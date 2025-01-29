@@ -48,6 +48,7 @@ use Google\Cloud\AIPlatform\V1\GetModelRequest;
 use Google\Cloud\AIPlatform\V1\ImportModelEvaluationRequest;
 use Google\Cloud\AIPlatform\V1\ListModelEvaluationSlicesRequest;
 use Google\Cloud\AIPlatform\V1\ListModelEvaluationsRequest;
+use Google\Cloud\AIPlatform\V1\ListModelVersionCheckpointsRequest;
 use Google\Cloud\AIPlatform\V1\ListModelVersionsRequest;
 use Google\Cloud\AIPlatform\V1\ListModelsRequest;
 use Google\Cloud\AIPlatform\V1\MergeVersionAliasesRequest;
@@ -93,6 +94,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<ModelEvaluation> importModelEvaluationAsync(ImportModelEvaluationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listModelEvaluationSlicesAsync(ListModelEvaluationSlicesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listModelEvaluationsAsync(ListModelEvaluationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listModelVersionCheckpointsAsync(ListModelVersionCheckpointsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listModelVersionsAsync(ListModelVersionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listModelsAsync(ListModelsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Model> mergeVersionAliasesAsync(MergeVersionAliasesRequest $request, array $optionalArgs = [])
@@ -852,6 +854,35 @@ final class ModelServiceClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('ListModelEvaluations', $request, $callOptions);
+    }
+
+    /**
+     * Lists checkpoints of the specified model version.
+     *
+     * The async variant is
+     * {@see ModelServiceClient::listModelVersionCheckpointsAsync()} .
+     *
+     * @example samples/V1/ModelServiceClient/list_model_version_checkpoints.php
+     *
+     * @param ListModelVersionCheckpointsRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listModelVersionCheckpoints(
+        ListModelVersionCheckpointsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListModelVersionCheckpoints', $request, $callOptions);
     }
 
     /**

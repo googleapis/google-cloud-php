@@ -42,6 +42,25 @@ class UsageMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 cached_content_token_count = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $cached_content_token_count = 0;
+    /**
+     * Output only. List of modalities that were processed in the request input.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModalityTokenCount prompt_tokens_details = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $prompt_tokens_details;
+    /**
+     * Output only. List of modalities of the cached content in the request
+     * input.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModalityTokenCount cache_tokens_details = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $cache_tokens_details;
+    /**
+     * Output only. List of modalities that were returned in the response.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModalityTokenCount candidates_tokens_details = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $candidates_tokens_details;
 
     /**
      * Constructor.
@@ -60,6 +79,13 @@ class UsageMetadata extends \Google\Protobuf\Internal\Message
      *     @type int $cached_content_token_count
      *           Output only. Number of tokens in the cached part in the input (the cached
      *           content).
+     *     @type array<\Google\Cloud\AIPlatform\V1\ModalityTokenCount>|\Google\Protobuf\Internal\RepeatedField $prompt_tokens_details
+     *           Output only. List of modalities that were processed in the request input.
+     *     @type array<\Google\Cloud\AIPlatform\V1\ModalityTokenCount>|\Google\Protobuf\Internal\RepeatedField $cache_tokens_details
+     *           Output only. List of modalities of the cached content in the request
+     *           input.
+     *     @type array<\Google\Cloud\AIPlatform\V1\ModalityTokenCount>|\Google\Protobuf\Internal\RepeatedField $candidates_tokens_details
+     *           Output only. List of modalities that were returned in the response.
      * }
      */
     public function __construct($data = NULL) {
@@ -173,6 +199,86 @@ class UsageMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->cached_content_token_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. List of modalities that were processed in the request input.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModalityTokenCount prompt_tokens_details = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPromptTokensDetails()
+    {
+        return $this->prompt_tokens_details;
+    }
+
+    /**
+     * Output only. List of modalities that were processed in the request input.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModalityTokenCount prompt_tokens_details = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\ModalityTokenCount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPromptTokensDetails($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\ModalityTokenCount::class);
+        $this->prompt_tokens_details = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. List of modalities of the cached content in the request
+     * input.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModalityTokenCount cache_tokens_details = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCacheTokensDetails()
+    {
+        return $this->cache_tokens_details;
+    }
+
+    /**
+     * Output only. List of modalities of the cached content in the request
+     * input.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModalityTokenCount cache_tokens_details = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\ModalityTokenCount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCacheTokensDetails($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\ModalityTokenCount::class);
+        $this->cache_tokens_details = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. List of modalities that were returned in the response.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModalityTokenCount candidates_tokens_details = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCandidatesTokensDetails()
+    {
+        return $this->candidates_tokens_details;
+    }
+
+    /**
+     * Output only. List of modalities that were returned in the response.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModalityTokenCount candidates_tokens_details = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\ModalityTokenCount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCandidatesTokensDetails($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\ModalityTokenCount::class);
+        $this->candidates_tokens_details = $arr;
 
         return $this;
     }
