@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
+use DateInterval;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Spanner\ArrayType;
@@ -33,6 +34,7 @@ use Google\Cloud\Spanner\ValueMapper;
 use Google\Cloud\Spanner\V1\TypeAnnotationCode;
 use Google\Cloud\Spanner\V1\TypeCode;
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
 
 /**
  * @group spanner
@@ -1083,6 +1085,70 @@ class ValueMapperTest extends TestCase
 
         $this->assertEquals('1337', $res['ID']);
         $this->assertEquals('John', $res[1]);
+    }
+
+    public function testDecodeIntervalField()
+    {
+        $interval = 'P1Y2M3DT4H5M6S';
+
+        $res = $this->mapper->decodeValues(
+            $this->createField(Database::TYPE_INTERVAL),
+            $this->createRow($interval),
+            Result::RETURN_ASSOCIATIVE
+        );
+
+        $expectedValue = new DateInterval($interval);
+        $this->assertEquals($expectedValue, $res['rowName']);
+    }
+
+    public function testDecodeIntervalWithFractionField()
+    {
+        $interval = 'P1Y2M3DT4H5M6.5S';
+
+        $res = $this->mapper->decodeValues(
+            $this->createField(Database::TYPE_INTERVAL),
+            $this->createRow($interval),
+            Result::RETURN_ASSOCIATIVE
+        );
+
+        $nonFractionalInterval = 'P1Y2M3DT4H5M6S';
+        $expectedFraction = 0.5;
+        $expectedValue = new DateInterval($nonFractionalInterval);
+        $this->assertEquals($expectedValue->y, $res['rowName']->y);
+        $this->assertEquals($expectedValue->m, $res['rowName']->m);
+        $this->assertEquals($expectedValue->d, $res['rowName']->d);
+        $this->assertEquals($expectedValue->h, $res['rowName']->h);
+        $this->assertEquals($expectedValue->m, $res['rowName']->m);
+        $this->assertEquals($expectedValue->s, $res['rowName']->s);
+        $this->assertEquals($expectedFraction, $res['rowName']->f);
+    }
+
+    /** @dataProvider invalidIntervals */
+    public function testIntervalWithInvalidFormatThrowsException(string $interval)
+    {
+        $this->expectException(RuntimeException::class);
+
+        $res = $this->mapper->decodeValues(
+            $this->createField(Database::TYPE_INTERVAL),
+            $this->createRow($interval),
+            Result::RETURN_ASSOCIATIVE
+        );
+    }
+
+    public function invalidIntervals()
+    {
+        $intervals = [
+            ['P1.5Y2M3DT4H5M6S'],
+            ['P1Y2.5M3DT4H5M6S'],
+            ['P1Y2M3.5DT4H5M6S'],
+            ['P1Y2M3DT4.5H5M6S'],
+            ['P1Y2M3DT4H5.5M6S'],
+            ['P1Y2M3DT4H5M6.5.5S'],
+            ['P1Y2M3DT4H5.5M6.5S'],
+            ['P1.5Y2.5M3.5DT4.5H5.5M6.5S'],
+        ];
+
+        return $intervals;
     }
 
     private function createField($code, $typeAnnotationCode = null, $type = null, array $typeObj = [])
