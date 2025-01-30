@@ -41,6 +41,8 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Spanner\Admin\Database\V1\AddSplitPointsRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\AddSplitPointsResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup;
 use Google\Cloud\Spanner\Admin\Database\V1\BackupSchedule;
 use Google\Cloud\Spanner\Admin\Database\V1\CopyBackupMetadata;
@@ -95,6 +97,7 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<AddSplitPointsResponse> addSplitPointsAsync(AddSplitPointsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> copyBackupAsync(CopyBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BackupSchedule> createBackupScheduleAsync(CreateBackupScheduleRequest $request, array $optionalArgs = [])
@@ -434,6 +437,32 @@ final class DatabaseAdminClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Adds split points to specified tables, indexes of a database.
+     *
+     * The async variant is {@see DatabaseAdminClient::addSplitPointsAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/add_split_points.php
+     *
+     * @param AddSplitPointsRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AddSplitPointsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function addSplitPoints(AddSplitPointsRequest $request, array $callOptions = []): AddSplitPointsResponse
+    {
+        return $this->startApiCall('AddSplitPoints', $request, $callOptions)->wait();
     }
 
     /**
@@ -1231,7 +1260,10 @@ final class DatabaseAdminClient
         }
 
         $options['apiEndpoint'] ??= $emulatorHost;
-        $options['transportConfig']['grpc']['stubOpts']['credentials'] ??= ChannelCredentials::createInsecure();
+        if (class_exists(ChannelCredentials::class)) {
+            $options['transportConfig']['grpc']['stubOpts']['credentials'] ??= ChannelCredentials::createInsecure();
+        }
+
         $options['credentials'] ??= new InsecureCredentialsWrapper();
         return $options;
     }
