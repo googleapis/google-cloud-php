@@ -23,6 +23,17 @@ class SelectiveGapicGeneration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string methods = 1;</code>
      */
     private $methods;
+    /**
+     * Setting this to true indicates to the client generators that methods
+     * that would be excluded from the generation should instead be generated
+     * in a way that indicates these methods should not be consumed by
+     * end users. How this is expressed is up to individual language
+     * implementations to decide. Some examples may be: added annotations,
+     * obfuscated identifiers, or other language idiomatic patterns.
+     *
+     * Generated from protobuf field <code>bool generate_omitted_as_internal = 2;</code>
+     */
+    protected $generate_omitted_as_internal = false;
 
     /**
      * Constructor.
@@ -33,6 +44,13 @@ class SelectiveGapicGeneration extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $methods
      *           An allowlist of the fully qualified names of RPCs that should be included
      *           on public client surfaces.
+     *     @type bool $generate_omitted_as_internal
+     *           Setting this to true indicates to the client generators that methods
+     *           that would be excluded from the generation should instead be generated
+     *           in a way that indicates these methods should not be consumed by
+     *           end users. How this is expressed is up to individual language
+     *           implementations to decide. Some examples may be: added annotations,
+     *           obfuscated identifiers, or other language idiomatic patterns.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,6 +82,42 @@ class SelectiveGapicGeneration extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->methods = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Setting this to true indicates to the client generators that methods
+     * that would be excluded from the generation should instead be generated
+     * in a way that indicates these methods should not be consumed by
+     * end users. How this is expressed is up to individual language
+     * implementations to decide. Some examples may be: added annotations,
+     * obfuscated identifiers, or other language idiomatic patterns.
+     *
+     * Generated from protobuf field <code>bool generate_omitted_as_internal = 2;</code>
+     * @return bool
+     */
+    public function getGenerateOmittedAsInternal()
+    {
+        return $this->generate_omitted_as_internal;
+    }
+
+    /**
+     * Setting this to true indicates to the client generators that methods
+     * that would be excluded from the generation should instead be generated
+     * in a way that indicates these methods should not be consumed by
+     * end users. How this is expressed is up to individual language
+     * implementations to decide. Some examples may be: added annotations,
+     * obfuscated identifiers, or other language idiomatic patterns.
+     *
+     * Generated from protobuf field <code>bool generate_omitted_as_internal = 2;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setGenerateOmittedAsInternal($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->generate_omitted_as_internal = $var;
 
         return $this;
     }
