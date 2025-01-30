@@ -22,7 +22,7 @@ class JavaScriptUDF extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string function_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $function_name = '';
+    private $function_name = '';
     /**
      * Required. JavaScript code that contains a function `function_name` with the
      * below signature:
@@ -52,7 +52,7 @@ class JavaScriptUDF extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $code = '';
+    private $code = '';
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class MessageTransform extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enabled = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $enabled = false;
+    private $enabled = false;
     protected $transform;
 
     /**
