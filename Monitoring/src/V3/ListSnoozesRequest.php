@@ -31,10 +31,8 @@ class ListSnoozesRequest extends \Google\Protobuf\Internal\Message
      *   * `interval.start_time`
      *   * `interval.end_time`
      * For example:
-     *     ```
      *     interval.start_time > "2022-03-11T00:00:00-08:00" AND
      *         interval.end_time < "2022-03-12T00:00:00-08:00"
-     *     ```
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -92,10 +90,8 @@ class ListSnoozesRequest extends \Google\Protobuf\Internal\Message
      *             * `interval.start_time`
      *             * `interval.end_time`
      *           For example:
-     *               ```
      *               interval.start_time > "2022-03-11T00:00:00-08:00" AND
      *                   interval.end_time < "2022-03-12T00:00:00-08:00"
-     *               ```
      *     @type int $page_size
      *           Optional. The maximum number of results to return for a single query. The
      *           server may further constrain the maximum number of results returned in a
@@ -150,10 +146,8 @@ class ListSnoozesRequest extends \Google\Protobuf\Internal\Message
      *   * `interval.start_time`
      *   * `interval.end_time`
      * For example:
-     *     ```
      *     interval.start_time > "2022-03-11T00:00:00-08:00" AND
      *         interval.end_time < "2022-03-12T00:00:00-08:00"
-     *     ```
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -169,10 +163,8 @@ class ListSnoozesRequest extends \Google\Protobuf\Internal\Message
      *   * `interval.start_time`
      *   * `interval.end_time`
      * For example:
-     *     ```
      *     interval.start_time > "2022-03-11T00:00:00-08:00" AND
      *         interval.end_time < "2022-03-12T00:00:00-08:00"
-     *     ```
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
