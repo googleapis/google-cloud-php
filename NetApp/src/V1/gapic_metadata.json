@@ -35,6 +35,11 @@
                                 "createKmsConfig"
                             ]
                         },
+                        "CreateQuotaRule": {
+                            "methods": [
+                                "createQuotaRule"
+                            ]
+                        },
                         "CreateReplication": {
                             "methods": [
                                 "createReplication"
@@ -78,6 +83,11 @@
                         "DeleteKmsConfig": {
                             "methods": [
                                 "deleteKmsConfig"
+                            ]
+                        },
+                        "DeleteQuotaRule": {
+                            "methods": [
+                                "deleteQuotaRule"
                             ]
                         },
                         "DeleteReplication": {
@@ -135,6 +145,11 @@
                                 "getKmsConfig"
                             ]
                         },
+                        "GetQuotaRule": {
+                            "methods": [
+                                "getQuotaRule"
+                            ]
+                        },
                         "GetReplication": {
                             "methods": [
                                 "getReplication"
@@ -178,6 +193,11 @@
                         "ListKmsConfigs": {
                             "methods": [
                                 "listKmsConfigs"
+                            ]
+                        },
+                        "ListQuotaRules": {
+                            "methods": [
+                                "listQuotaRules"
                             ]
                         },
                         "ListReplications": {
@@ -253,6 +273,11 @@
                         "UpdateKmsConfig": {
                             "methods": [
                                 "updateKmsConfig"
+                            ]
+                        },
+                        "UpdateQuotaRule": {
+                            "methods": [
+                                "updateQuotaRule"
                             ]
                         },
                         "UpdateReplication": {
