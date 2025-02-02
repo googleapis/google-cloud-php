@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\Commerce\Consumer\Procurement\V1\Client\ConsumerProcurementServiceClient;
+Google\Cloud\Commerce\Consumer\Procurement\V1\GetOrderRequest;
+Google\Cloud\Commerce\Consumer\Procurement\V1\Order;
+
+// Create a client.
+$consumerProcurementServiceClient = new ConsumerProcurementServiceClient();
+
+// Prepare the request message.
+$request = (new GetOrderRequest())
+    ->setName($name);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Order $response */
+    $response = $consumerProcurementServiceClient->getOrder($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/google-cloud-php-commerce-consumer-procurement/tree/main/samples) for a canonical list of samples.
 
 ### Debugging

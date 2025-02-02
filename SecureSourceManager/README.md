@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\SecureSourceManager\V1\BranchRule;
+Google\Cloud\SecureSourceManager\V1\Client\SecureSourceManagerClient;
+Google\Cloud\SecureSourceManager\V1\GetBranchRuleRequest;
+
+// Create a client.
+$secureSourceManagerClient = new SecureSourceManagerClient();
+
+// Prepare the request message.
+$request = (new GetBranchRuleRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var BranchRule $response */
+    $response = $secureSourceManagerClient->getBranchRule($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/google-cloud-php-securesourcemanager/tree/main/samples) for a canonical list of samples.
 
 ### Debugging

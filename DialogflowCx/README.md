@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\Dialogflow\Cx\V3\Agent;
+Google\Cloud\Dialogflow\Cx\V3\Client\AgentsClient;
+Google\Cloud\Dialogflow\Cx\V3\GetAgentRequest;
+
+// Create a client.
+$agentsClient = new AgentsClient();
+
+// Prepare the request message.
+$request = (new GetAgentRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Agent $response */
+    $response = $agentsClient->getAgent($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/google-cloud-php-dialogflow-cx/tree/main/samples) for a canonical list of samples.
 
 ### Debugging

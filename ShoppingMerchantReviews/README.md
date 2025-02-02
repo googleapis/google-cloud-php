@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Shopping\Merchant\Reviews\V1beta\Client\MerchantReviewsServiceClient;
+Google\Shopping\Merchant\Reviews\V1beta\GetMerchantReviewRequest;
+Google\Shopping\Merchant\Reviews\V1beta\MerchantReview;
+
+// Create a client.
+$merchantReviewsServiceClient = new MerchantReviewsServiceClient();
+
+// Prepare the request message.
+$request = (new GetMerchantReviewRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var MerchantReview $response */
+    $response = $merchantReviewsServiceClient->getMerchantReview($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/php-shopping-merchant-reviews/tree/main/samples) for a canonical list of samples.
 
 ### Debugging

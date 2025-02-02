@@ -34,6 +34,28 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\PolicyTroubleshooter\Iam\V3\Client\PolicyTroubleshooterClient;
+Google\Cloud\PolicyTroubleshooter\Iam\V3\TroubleshootIamPolicyRequest;
+Google\Cloud\PolicyTroubleshooter\Iam\V3\TroubleshootIamPolicyResponse;
+
+// Create a client.
+$policyTroubleshooterClient = new PolicyTroubleshooterClient();
+
+// Prepare the request message.
+$request = new TroubleshootIamPolicyRequest();
+
+// Call the API and handle any network failures.
+try {
+    /** @var TroubleshootIamPolicyResponse $response */
+    $response = $policyTroubleshooterClient->troubleshootIamPolicy($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/google-cloud-php-policytroubleshooter-iam/tree/main/samples) for a canonical list of samples.
 
 ### Debugging

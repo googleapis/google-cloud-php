@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\DiscoveryEngine\V1\Client\ControlServiceClient;
+Google\Cloud\DiscoveryEngine\V1\Control;
+Google\Cloud\DiscoveryEngine\V1\GetControlRequest;
+
+// Create a client.
+$controlServiceClient = new ControlServiceClient();
+
+// Prepare the request message.
+$request = (new GetControlRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Control $response */
+    $response = $controlServiceClient->getControl($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/google-cloud-php-discoveryengine/tree/main/samples) for a canonical list of samples.
 
 ### Debugging

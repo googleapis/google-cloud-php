@@ -32,6 +32,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\ErrorReporting\V1beta1\Client\ErrorGroupServiceClient;
+Google\Cloud\ErrorReporting\V1beta1\ErrorGroup;
+Google\Cloud\ErrorReporting\V1beta1\GetGroupRequest;
+
+// Create a client.
+$errorGroupServiceClient = new ErrorGroupServiceClient();
+
+// Prepare the request message.
+$request = (new GetGroupRequest())
+    ->setGroupName($formattedGroupName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var ErrorGroup $response */
+    $response = $errorGroupServiceClient->getGroup($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 The Stackdriver Error Reporting client provides APIs allowing you to easily configure your application to send errors and exceptions automatically to Stackdriver, or to manually report and manage errors and statistics.
 
 #### Reporting errors from your application:

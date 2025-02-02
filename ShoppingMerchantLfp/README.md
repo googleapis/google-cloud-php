@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Shopping\Merchant\Lfp\V1beta\Client\LfpStoreServiceClient;
+Google\Shopping\Merchant\Lfp\V1beta\GetLfpStoreRequest;
+Google\Shopping\Merchant\Lfp\V1beta\LfpStore;
+
+// Create a client.
+$lfpStoreServiceClient = new LfpStoreServiceClient();
+
+// Prepare the request message.
+$request = (new GetLfpStoreRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var LfpStore $response */
+    $response = $lfpStoreServiceClient->getLfpStore($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/php-shopping-merchant-lfp/tree/main/samples) for a canonical list of samples.
 
 ### Debugging
