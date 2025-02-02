@@ -235,7 +235,8 @@ class TableTest extends TestCase
                 [
                     'rowKey' => 'rk1',
                     'statusCode' => Code::INVALID_ARGUMENT,
-                    'message' => 'Invalid argument'
+                    'message' => 'Invalid argument',
+                    'index' => 0,
                 ]
             ];
             $this->assertEquals('partial failure', $e->getMessage());
