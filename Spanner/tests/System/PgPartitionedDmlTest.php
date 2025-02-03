@@ -33,7 +33,7 @@ class PgPartitionedDmlTest extends SpannerPgTestCase
         // Skipping temporarily while we figure out the issue with
         // `executePartitionedUpdate` not accepting parameters in
         // PG format.
-        self::skipEmulatorTests();
+        $this->skipEmulatorTests();
 
         $db = self::$database;
 
