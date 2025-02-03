@@ -122,15 +122,15 @@ class Job extends \Google\Protobuf\Internal\Message
     protected $client_version = '';
     /**
      * The launch stage as defined by [Google Cloud Platform
-     * Launch Stages](https://cloud.google.com/terms/launch-stages).
-     * Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
-     * is assumed.
-     * Set the launch stage to a preview stage on input to allow use of preview
-     * features in that stage. On read (or output), describes whether the resource
-     * uses preview features.
+     *  Launch Stages](https://cloud.google.com/terms/launch-stages).
+     *  Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
+     *  is assumed.
+     *  Set the launch stage to a preview stage on input to allow use of preview
+     *  features in that stage. On read (or output), describes whether the
+     *  resource uses preview features.
      * <p>
-     * For example, if ALPHA is provided as input, but only BETA and GA-level
-     * features are used, this field will be BETA on output.
+     *  For example, if ALPHA is provided as input, but only BETA and GA-level
+     *  features are used, this field will be BETA on output.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 14;</code>
      */
@@ -280,15 +280,15 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Arbitrary version identifier for the API client.
      *     @type int $launch_stage
      *           The launch stage as defined by [Google Cloud Platform
-     *           Launch Stages](https://cloud.google.com/terms/launch-stages).
-     *           Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
-     *           is assumed.
-     *           Set the launch stage to a preview stage on input to allow use of preview
-     *           features in that stage. On read (or output), describes whether the resource
-     *           uses preview features.
+     *            Launch Stages](https://cloud.google.com/terms/launch-stages).
+     *            Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
+     *            is assumed.
+     *            Set the launch stage to a preview stage on input to allow use of preview
+     *            features in that stage. On read (or output), describes whether the
+     *            resource uses preview features.
      *           <p>
-     *           For example, if ALPHA is provided as input, but only BETA and GA-level
-     *           features are used, this field will be BETA on output.
+     *            For example, if ALPHA is provided as input, but only BETA and GA-level
+     *            features are used, this field will be BETA on output.
      *     @type \Google\Cloud\Run\V2\BinaryAuthorization $binary_authorization
      *           Settings for the Binary Authorization feature.
      *     @type \Google\Cloud\Run\V2\ExecutionTemplate $template
@@ -779,15 +779,15 @@ class Job extends \Google\Protobuf\Internal\Message
 
     /**
      * The launch stage as defined by [Google Cloud Platform
-     * Launch Stages](https://cloud.google.com/terms/launch-stages).
-     * Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
-     * is assumed.
-     * Set the launch stage to a preview stage on input to allow use of preview
-     * features in that stage. On read (or output), describes whether the resource
-     * uses preview features.
+     *  Launch Stages](https://cloud.google.com/terms/launch-stages).
+     *  Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
+     *  is assumed.
+     *  Set the launch stage to a preview stage on input to allow use of preview
+     *  features in that stage. On read (or output), describes whether the
+     *  resource uses preview features.
      * <p>
-     * For example, if ALPHA is provided as input, but only BETA and GA-level
-     * features are used, this field will be BETA on output.
+     *  For example, if ALPHA is provided as input, but only BETA and GA-level
+     *  features are used, this field will be BETA on output.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 14;</code>
      * @return int
@@ -799,15 +799,15 @@ class Job extends \Google\Protobuf\Internal\Message
 
     /**
      * The launch stage as defined by [Google Cloud Platform
-     * Launch Stages](https://cloud.google.com/terms/launch-stages).
-     * Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
-     * is assumed.
-     * Set the launch stage to a preview stage on input to allow use of preview
-     * features in that stage. On read (or output), describes whether the resource
-     * uses preview features.
+     *  Launch Stages](https://cloud.google.com/terms/launch-stages).
+     *  Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
+     *  is assumed.
+     *  Set the launch stage to a preview stage on input to allow use of preview
+     *  features in that stage. On read (or output), describes whether the
+     *  resource uses preview features.
      * <p>
-     * For example, if ALPHA is provided as input, but only BETA and GA-level
-     * features are used, this field will be BETA on output.
+     *  For example, if ALPHA is provided as input, but only BETA and GA-level
+     *  features are used, this field will be BETA on output.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 14;</code>
      * @param int $var

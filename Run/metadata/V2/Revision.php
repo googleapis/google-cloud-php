@@ -29,7 +29,7 @@ class Revision
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-´
+ó
 "google/cloud/run/v2/revision.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/launch_stage.protogoogle/api/resource.protogoogle/api/routing.proto#google/cloud/run/v2/condition.proto!google/cloud/run/v2/k8s.min.proto google/cloud/run/v2/status.proto)google/cloud/run/v2/vendor_settings.proto#google/longrunning/operations.protogoogle/protobuf/duration.protogoogle/protobuf/timestamp.proto"G
 GetRevisionRequest1
 name (	B#àAúA
@@ -94,14 +94,14 @@ conditions (2.google.cloud.run.v2.ConditionBàA
 AnnotationsEntry
 key (	
 value (	:8:têAq
-run.googleapis.com/RevisionOprojects/{project}/locations/{location}/services/{service}/revisions/{revision}R2…
-	RevisionsÒ
-GetRevision\'.google.cloud.run.v2.GetRevisionRequest.google.cloud.run.v2.Revision"{ÚAname‚Óä“:8/v2/{name=projects/*/locations/*/services/*/revisions/*}ŠÓä“.,
-name$projects/*/locations/{location=*}/**ç
-ListRevisions).google.cloud.run.v2.ListRevisionsRequest*.google.cloud.run.v2.ListRevisionsResponse"ÚAparent‚Óä“:8/v2/{parent=projects/*/locations/*/services/*}/revisionsŠÓä“0.
-parent$projects/*/locations/{location=*}/**ð
-DeleteRevision*.google.cloud.run.v2.DeleteRevisionRequest.google.longrunning.Operation"’ÊA
-RevisionRevisionÚAname‚Óä“:*8/v2/{name=projects/*/locations/*/services/*/revisions/*}ŠÓä“.,
+run.googleapis.com/RevisionOprojects/{project}/locations/{location}/services/{service}/revisions/{revision}R2Ä
+	Revisions’
+GetRevision\'.google.cloud.run.v2.GetRevisionRequest.google.cloud.run.v2.Revision"ºÚAname‚Óä“y8/v2/{name=projects/*/locations/*/services/*/revisions/*}Z=;/v2/{name=projects/*/locations/*/workerPools/*/revisions/*}ŠÓä“.,
+name$projects/*/locations/{location=*}/**§
+ListRevisions).google.cloud.run.v2.ListRevisionsRequest*.google.cloud.run.v2.ListRevisionsResponse"¾ÚAparent‚Óä“y8/v2/{parent=projects/*/locations/*/services/*}/revisionsZ=;/v2/{parent=projects/*/locations/*/workerPools/*}/revisionsŠÓä“0.
+parent$projects/*/locations/{location=*}/**¯
+DeleteRevision*.google.cloud.run.v2.DeleteRevisionRequest.google.longrunning.Operation"ÑÊA
+RevisionRevisionÚAname‚Óä“y*8/v2/{name=projects/*/locations/*/services/*/revisions/*}Z=*;/v2/{name=projects/*/locations/*/workerPools/*/revisions/*}ŠÓä“.,
 name$projects/*/locations/{location=*}/**FÊArun.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBU
 com.google.cloud.run.v2BRevisionProtoPZ)cloud.google.com/go/run/apiv2/runpb;runpbbproto3'
         , true);

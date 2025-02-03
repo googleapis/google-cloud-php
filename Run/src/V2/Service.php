@@ -103,7 +103,7 @@ class Service extends \Google\Protobuf\Internal\Message
     protected $delete_time = null;
     /**
      * Output only. For a deleted resource, the time after which it will be
-     * permamently deleted.
+     * permanently deleted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -142,15 +142,15 @@ class Service extends \Google\Protobuf\Internal\Message
     protected $ingress = 0;
     /**
      * Optional. The launch stage as defined by [Google Cloud Platform
-     * Launch Stages](https://cloud.google.com/terms/launch-stages).
-     * Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
-     * is assumed.
-     * Set the launch stage to a preview stage on input to allow use of preview
-     * features in that stage. On read (or output), describes whether the resource
-     * uses preview features.
+     *  Launch Stages](https://cloud.google.com/terms/launch-stages).
+     *  Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
+     *  is assumed.
+     *  Set the launch stage to a preview stage on input to allow use of preview
+     *  features in that stage. On read (or output), describes whether the
+     *  resource uses preview features.
      * <p>
-     * For example, if ALPHA is provided as input, but only BETA and GA-level
-     * features are used, this field will be BETA on output.
+     *  For example, if ALPHA is provided as input, but only BETA and GA-level
+     *  features are used, this field will be BETA on output.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -277,13 +277,19 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     protected $satisfies_pzs = false;
     /**
+     * Optional. Configuration for building a Cloud Run function.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.BuildConfig build_config = 41 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $build_config = null;
+    /**
      * Output only. Returns true if the Service is currently being acted upon by
      * the system to bring it into the desired state.
      * When a new Service is created, or an existing one is updated, Cloud Run
      * will asynchronously perform all necessary steps to bring the Service to the
      * desired serving state. This process is called reconciliation.
      * While reconciliation is in process, `observed_generation`,
-     * `latest_ready_revison`, `traffic_statuses`, and `uri` will have transient
+     * `latest_ready_revision`, `traffic_statuses`, and `uri` will have transient
      * values that might mismatch the intended state: Once reconciliation is over
      * (and this field is false), there are two possible outcomes: reconciliation
      * succeeded and the serving state matches the Service, or there was an error,
@@ -362,7 +368,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Delete request.
      *     @type \Google\Protobuf\Timestamp $expire_time
      *           Output only. For a deleted resource, the time after which it will be
-     *           permamently deleted.
+     *           permanently deleted.
      *     @type string $creator
      *           Output only. Email address of the authenticated creator.
      *     @type string $last_modifier
@@ -377,15 +383,15 @@ class Service extends \Google\Protobuf\Internal\Message
      *           INGRESS_TRAFFIC_UNSPECIFIED if no revision is active.
      *     @type int $launch_stage
      *           Optional. The launch stage as defined by [Google Cloud Platform
-     *           Launch Stages](https://cloud.google.com/terms/launch-stages).
-     *           Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
-     *           is assumed.
-     *           Set the launch stage to a preview stage on input to allow use of preview
-     *           features in that stage. On read (or output), describes whether the resource
-     *           uses preview features.
+     *            Launch Stages](https://cloud.google.com/terms/launch-stages).
+     *            Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
+     *            is assumed.
+     *            Set the launch stage to a preview stage on input to allow use of preview
+     *            features in that stage. On read (or output), describes whether the
+     *            resource uses preview features.
      *           <p>
-     *           For example, if ALPHA is provided as input, but only BETA and GA-level
-     *           features are used, this field will be BETA on output.
+     *            For example, if ALPHA is provided as input, but only BETA and GA-level
+     *            features are used, this field will be BETA on output.
      *     @type \Google\Cloud\Run\V2\BinaryAuthorization $binary_authorization
      *           Optional. Settings for the Binary Authorization feature.
      *     @type \Google\Cloud\Run\V2\RevisionTemplate $template
@@ -443,6 +449,8 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Output only. The main URI in which this Service is serving traffic.
      *     @type bool $satisfies_pzs
      *           Output only. Reserved for future use.
+     *     @type \Google\Cloud\Run\V2\BuildConfig $build_config
+     *           Optional. Configuration for building a Cloud Run function.
      *     @type bool $reconciling
      *           Output only. Returns true if the Service is currently being acted upon by
      *           the system to bring it into the desired state.
@@ -450,7 +458,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *           will asynchronously perform all necessary steps to bring the Service to the
      *           desired serving state. This process is called reconciliation.
      *           While reconciliation is in process, `observed_generation`,
-     *           `latest_ready_revison`, `traffic_statuses`, and `uri` will have transient
+     *           `latest_ready_revision`, `traffic_statuses`, and `uri` will have transient
      *           values that might mismatch the intended state: Once reconciliation is over
      *           (and this field is false), there are two possible outcomes: reconciliation
      *           succeeded and the serving state matches the Service, or there was an error,
@@ -795,7 +803,7 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. For a deleted resource, the time after which it will be
-     * permamently deleted.
+     * permanently deleted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -817,7 +825,7 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. For a deleted resource, the time after which it will be
-     * permamently deleted.
+     * permanently deleted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -967,15 +975,15 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The launch stage as defined by [Google Cloud Platform
-     * Launch Stages](https://cloud.google.com/terms/launch-stages).
-     * Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
-     * is assumed.
-     * Set the launch stage to a preview stage on input to allow use of preview
-     * features in that stage. On read (or output), describes whether the resource
-     * uses preview features.
+     *  Launch Stages](https://cloud.google.com/terms/launch-stages).
+     *  Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
+     *  is assumed.
+     *  Set the launch stage to a preview stage on input to allow use of preview
+     *  features in that stage. On read (or output), describes whether the
+     *  resource uses preview features.
      * <p>
-     * For example, if ALPHA is provided as input, but only BETA and GA-level
-     * features are used, this field will be BETA on output.
+     *  For example, if ALPHA is provided as input, but only BETA and GA-level
+     *  features are used, this field will be BETA on output.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -987,15 +995,15 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The launch stage as defined by [Google Cloud Platform
-     * Launch Stages](https://cloud.google.com/terms/launch-stages).
-     * Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
-     * is assumed.
-     * Set the launch stage to a preview stage on input to allow use of preview
-     * features in that stage. On read (or output), describes whether the resource
-     * uses preview features.
+     *  Launch Stages](https://cloud.google.com/terms/launch-stages).
+     *  Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
+     *  is assumed.
+     *  Set the launch stage to a preview stage on input to allow use of preview
+     *  features in that stage. On read (or output), describes whether the
+     *  resource uses preview features.
      * <p>
-     * For example, if ALPHA is provided as input, but only BETA and GA-level
-     * features are used, this field will be BETA on output.
+     *  For example, if ALPHA is provided as input, but only BETA and GA-level
+     *  features are used, this field will be BETA on output.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -1516,13 +1524,49 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Configuration for building a Cloud Run function.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.BuildConfig build_config = 41 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Run\V2\BuildConfig|null
+     */
+    public function getBuildConfig()
+    {
+        return $this->build_config;
+    }
+
+    public function hasBuildConfig()
+    {
+        return isset($this->build_config);
+    }
+
+    public function clearBuildConfig()
+    {
+        unset($this->build_config);
+    }
+
+    /**
+     * Optional. Configuration for building a Cloud Run function.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.BuildConfig build_config = 41 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Run\V2\BuildConfig $var
+     * @return $this
+     */
+    public function setBuildConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\BuildConfig::class);
+        $this->build_config = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. Returns true if the Service is currently being acted upon by
      * the system to bring it into the desired state.
      * When a new Service is created, or an existing one is updated, Cloud Run
      * will asynchronously perform all necessary steps to bring the Service to the
      * desired serving state. This process is called reconciliation.
      * While reconciliation is in process, `observed_generation`,
-     * `latest_ready_revison`, `traffic_statuses`, and `uri` will have transient
+     * `latest_ready_revision`, `traffic_statuses`, and `uri` will have transient
      * values that might mismatch the intended state: Once reconciliation is over
      * (and this field is false), there are two possible outcomes: reconciliation
      * succeeded and the serving state matches the Service, or there was an error,
@@ -1551,7 +1595,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * will asynchronously perform all necessary steps to bring the Service to the
      * desired serving state. This process is called reconciliation.
      * While reconciliation is in process, `observed_generation`,
-     * `latest_ready_revison`, `traffic_statuses`, and `uri` will have transient
+     * `latest_ready_revision`, `traffic_statuses`, and `uri` will have transient
      * values that might mismatch the intended state: Once reconciliation is over
      * (and this field is false), there are two possible outcomes: reconciliation
      * succeeded and the serving state matches the Service, or there was an error,

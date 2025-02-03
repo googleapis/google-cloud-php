@@ -86,14 +86,14 @@ class Revision extends \Google\Protobuf\Internal\Message
      */
     protected $expire_time = null;
     /**
-     * The least stable launch stage needed to create this resource, as defined by
-     * [Google Cloud Platform Launch
-     * Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
-     * `ALPHA`, `BETA`, and `GA`.
+     * The least stable launch stage needed to create this resource, as defined
+     *  by [Google Cloud Platform Launch
+     *  Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
+     *  `ALPHA`, `BETA`, and `GA`.
      * <p>Note that this value might not be what was used
-     * as input. For example, if ALPHA was provided as input in the parent
-     * resource, but only BETA and GA-level features are were, this field will be
-     * BETA.
+     *  as input. For example, if ALPHA was provided as input in the parent
+     *  resource, but only BETA and GA-level features are were, this field will be
+     *  BETA.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 10;</code>
      */
@@ -284,14 +284,14 @@ class Revision extends \Google\Protobuf\Internal\Message
      *           permamently deleted. It is only populated as a response to a Delete
      *           request.
      *     @type int $launch_stage
-     *           The least stable launch stage needed to create this resource, as defined by
-     *           [Google Cloud Platform Launch
-     *           Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
-     *           `ALPHA`, `BETA`, and `GA`.
+     *           The least stable launch stage needed to create this resource, as defined
+     *            by [Google Cloud Platform Launch
+     *            Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
+     *            `ALPHA`, `BETA`, and `GA`.
      *           <p>Note that this value might not be what was used
-     *           as input. For example, if ALPHA was provided as input in the parent
-     *           resource, but only BETA and GA-level features are were, this field will be
-     *           BETA.
+     *            as input. For example, if ALPHA was provided as input in the parent
+     *            resource, but only BETA and GA-level features are were, this field will be
+     *            BETA.
      *     @type string $service
      *           Output only. The name of the parent service.
      *     @type \Google\Cloud\Run\V2\RevisionScaling $scaling
@@ -660,14 +660,14 @@ class Revision extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The least stable launch stage needed to create this resource, as defined by
-     * [Google Cloud Platform Launch
-     * Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
-     * `ALPHA`, `BETA`, and `GA`.
+     * The least stable launch stage needed to create this resource, as defined
+     *  by [Google Cloud Platform Launch
+     *  Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
+     *  `ALPHA`, `BETA`, and `GA`.
      * <p>Note that this value might not be what was used
-     * as input. For example, if ALPHA was provided as input in the parent
-     * resource, but only BETA and GA-level features are were, this field will be
-     * BETA.
+     *  as input. For example, if ALPHA was provided as input in the parent
+     *  resource, but only BETA and GA-level features are were, this field will be
+     *  BETA.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 10;</code>
      * @return int
@@ -678,14 +678,14 @@ class Revision extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The least stable launch stage needed to create this resource, as defined by
-     * [Google Cloud Platform Launch
-     * Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
-     * `ALPHA`, `BETA`, and `GA`.
+     * The least stable launch stage needed to create this resource, as defined
+     *  by [Google Cloud Platform Launch
+     *  Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
+     *  `ALPHA`, `BETA`, and `GA`.
      * <p>Note that this value might not be what was used
-     * as input. For example, if ALPHA was provided as input in the parent
-     * resource, but only BETA and GA-level features are were, this field will be
-     * BETA.
+     *  as input. For example, if ALPHA was provided as input in the parent
+     *  resource, but only BETA and GA-level features are were, this field will be
+     *  BETA.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 10;</code>
      * @param int $var

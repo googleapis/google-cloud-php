@@ -32,6 +32,12 @@ class Execution extends \Google\Protobuf\Internal\Message
      */
     protected $uid = '';
     /**
+     * Output only. Email address of the authenticated creator.
+     *
+     * Generated from protobuf field <code>string creator = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $creator = '';
+    /**
      * Output only. A number that monotonically increases every time the user
      * modifies the desired state.
      *
@@ -103,14 +109,14 @@ class Execution extends \Google\Protobuf\Internal\Message
      */
     protected $expire_time = null;
     /**
-     * The least stable launch stage needed to create this resource, as defined by
-     * [Google Cloud Platform Launch
-     * Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
-     * `ALPHA`, `BETA`, and `GA`.
+     * The least stable launch stage needed to create this resource, as defined
+     *  by [Google Cloud Platform Launch
+     *  Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
+     *  `ALPHA`, `BETA`, and `GA`.
      * <p>Note that this value might not be what was used
-     * as input. For example, if ALPHA was provided as input in the parent
-     * resource, but only BETA and GA-level features are were, this field will be
-     * BETA.
+     *  as input. For example, if ALPHA was provided as input in the parent
+     *  resource, but only BETA and GA-level features are were, this field will be
+     *  BETA.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 11;</code>
      */
@@ -232,6 +238,8 @@ class Execution extends \Google\Protobuf\Internal\Message
      *           Output only. Server assigned unique identifier for the Execution. The value
      *           is a UUID4 string and guaranteed to remain unchanged until the resource is
      *           deleted.
+     *     @type string $creator
+     *           Output only. Email address of the authenticated creator.
      *     @type int|string $generation
      *           Output only. A number that monotonically increases every time the user
      *           modifies the desired state.
@@ -268,14 +276,14 @@ class Execution extends \Google\Protobuf\Internal\Message
      *           permamently deleted. It is only populated as a response to a Delete
      *           request.
      *     @type int $launch_stage
-     *           The least stable launch stage needed to create this resource, as defined by
-     *           [Google Cloud Platform Launch
-     *           Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
-     *           `ALPHA`, `BETA`, and `GA`.
+     *           The least stable launch stage needed to create this resource, as defined
+     *            by [Google Cloud Platform Launch
+     *            Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
+     *            `ALPHA`, `BETA`, and `GA`.
      *           <p>Note that this value might not be what was used
-     *           as input. For example, if ALPHA was provided as input in the parent
-     *           resource, but only BETA and GA-level features are were, this field will be
-     *           BETA.
+     *            as input. For example, if ALPHA was provided as input in the parent
+     *            resource, but only BETA and GA-level features are were, this field will be
+     *            BETA.
      *     @type string $job
      *           Output only. The name of the parent Job.
      *     @type int $parallelism
@@ -379,6 +387,32 @@ class Execution extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->uid = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Email address of the authenticated creator.
+     *
+     * Generated from protobuf field <code>string creator = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getCreator()
+    {
+        return $this->creator;
+    }
+
+    /**
+     * Output only. Email address of the authenticated creator.
+     *
+     * Generated from protobuf field <code>string creator = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCreator($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->creator = $var;
 
         return $this;
     }
@@ -712,14 +746,14 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The least stable launch stage needed to create this resource, as defined by
-     * [Google Cloud Platform Launch
-     * Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
-     * `ALPHA`, `BETA`, and `GA`.
+     * The least stable launch stage needed to create this resource, as defined
+     *  by [Google Cloud Platform Launch
+     *  Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
+     *  `ALPHA`, `BETA`, and `GA`.
      * <p>Note that this value might not be what was used
-     * as input. For example, if ALPHA was provided as input in the parent
-     * resource, but only BETA and GA-level features are were, this field will be
-     * BETA.
+     *  as input. For example, if ALPHA was provided as input in the parent
+     *  resource, but only BETA and GA-level features are were, this field will be
+     *  BETA.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 11;</code>
      * @return int
@@ -730,14 +764,14 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The least stable launch stage needed to create this resource, as defined by
-     * [Google Cloud Platform Launch
-     * Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
-     * `ALPHA`, `BETA`, and `GA`.
+     * The least stable launch stage needed to create this resource, as defined
+     *  by [Google Cloud Platform Launch
+     *  Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
+     *  `ALPHA`, `BETA`, and `GA`.
      * <p>Note that this value might not be what was used
-     * as input. For example, if ALPHA was provided as input in the parent
-     * resource, but only BETA and GA-level features are were, this field will be
-     * BETA.
+     *  as input. For example, if ALPHA was provided as input in the parent
+     *  resource, but only BETA and GA-level features are were, this field will be
+     *  BETA.
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 11;</code>
      * @param int $var

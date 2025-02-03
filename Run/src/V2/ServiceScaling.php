@@ -31,6 +31,14 @@ class ServiceScaling extends \Google\Protobuf\Internal\Message
      */
     protected $scaling_mode = 0;
     /**
+     * Optional. total max instances for the service. This number of instances is
+     * divided among all revisions with specified traffic based on the percent
+     * of traffic they are receiving.
+     *
+     * Generated from protobuf field <code>int32 max_instance_count = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $max_instance_count = 0;
+    /**
      * Optional. total instance count for the service in manual scaling mode. This
      * number of instances is divided among all revisions with specified traffic
      * based on the percent of traffic they are receiving.
@@ -51,6 +59,10 @@ class ServiceScaling extends \Google\Protobuf\Internal\Message
      *           of traffic they are receiving.
      *     @type int $scaling_mode
      *           Optional. The scaling mode for the service.
+     *     @type int $max_instance_count
+     *           Optional. total max instances for the service. This number of instances is
+     *           divided among all revisions with specified traffic based on the percent
+     *           of traffic they are receiving.
      *     @type int $manual_instance_count
      *           Optional. total instance count for the service in manual scaling mode. This
      *           number of instances is divided among all revisions with specified traffic
@@ -114,6 +126,36 @@ class ServiceScaling extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Run\V2\ServiceScaling\ScalingMode::class);
         $this->scaling_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. total max instances for the service. This number of instances is
+     * divided among all revisions with specified traffic based on the percent
+     * of traffic they are receiving.
+     *
+     * Generated from protobuf field <code>int32 max_instance_count = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMaxInstanceCount()
+    {
+        return $this->max_instance_count;
+    }
+
+    /**
+     * Optional. total max instances for the service. This number of instances is
+     * divided among all revisions with specified traffic based on the percent
+     * of traffic they are receiving.
+     *
+     * Generated from protobuf field <code>int32 max_instance_count = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMaxInstanceCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->max_instance_count = $var;
 
         return $this;
     }
