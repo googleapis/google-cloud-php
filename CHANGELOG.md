@@ -1,5 +1,719 @@
 # Changelog
 
+## 0.274.0
+
+<details><summary>googleads/ad-manager 0.2.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>googleads/marketingplatform-admin 0.2.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-advisorynotifications 1.1.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-ai-platform 1.16.0</summary>
+
+
+
+### Features
+
+* Add optimized config in v1 API ([#8048](https://github.com/googleapis/google-cloud-php/issues/8048)) ([e3b9130](https://github.com/googleapis/google-cloud-php/commit/e3b9130e5585ad4c30d7b5e9c8b8bf9811ec3ea9))
+
+
+### Documentation
+
+* Update comments for NumericFilter and Operator ([e3b9130](https://github.com/googleapis/google-cloud-php/commit/e3b9130e5585ad4c30d7b5e9c8b8bf9811ec3ea9))
+
+</details>
+
+<details><summary>google/cloud-alloydb 1.2.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/analytics-admin 0.26.0</summary>
+
+
+
+### Features
+
+* Add `user_data_retention` field to `DataRetentionSettings` and mark as `REQUIRED` ([f945842](https://github.com/googleapis/google-cloud-php/commit/f945842defe547644e6d2562250b62840d4c7449))
+* Add `user_data_retention` field to `DataRetentionSettings` and mark as `REQUIRED` ([f945842](https://github.com/googleapis/google-cloud-php/commit/f945842defe547644e6d2562250b62840d4c7449))
+
+
+### Bug Fixes
+
+* Mark `event_data_retention` field in `DataRetentionSettings` as `REQUIRED` ([f945842](https://github.com/googleapis/google-cloud-php/commit/f945842defe547644e6d2562250b62840d4c7449))
+
+
+### Documentation
+
+* Replace "GA4" with "Google Analytics" or "GA" in all comments ([#8055](https://github.com/googleapis/google-cloud-php/issues/8055)) ([f945842](https://github.com/googleapis/google-cloud-php/commit/f945842defe547644e6d2562250b62840d4c7449))
+
+</details>
+
+<details><summary>google/cloud-apihub 0.2.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-apphub 0.2.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/apps-chat 0.8.0</summary>
+
+
+
+### Features
+
+* A new field `custom_emoji_metadata` is added to message `.google.chat.v1.Annotation` ([#8054](https://github.com/googleapis/google-cloud-php/issues/8054)) ([fce46dc](https://github.com/googleapis/google-cloud-php/commit/fce46dc1eb67bab1b3c9c5fe0504cf33952a2311))
+* A new message `CustomEmojiMetadata` is added ([fce46dc](https://github.com/googleapis/google-cloud-php/commit/fce46dc1eb67bab1b3c9c5fe0504cf33952a2311))
+* A new value `CUSTOM_EMOJI` is added to enum `AnnotationType` ([fce46dc](https://github.com/googleapis/google-cloud-php/commit/fce46dc1eb67bab1b3c9c5fe0504cf33952a2311))
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+
+### Documentation
+
+* A comment for field `custom_emoji` in message `.google.chat.v1.Emoji` is changed ([fce46dc](https://github.com/googleapis/google-cloud-php/commit/fce46dc1eb67bab1b3c9c5fe0504cf33952a2311))
+* A comment for method `CreateReaction` in service `ChatService` is changed ([fce46dc](https://github.com/googleapis/google-cloud-php/commit/fce46dc1eb67bab1b3c9c5fe0504cf33952a2311))
+* A comment for method `DeleteReaction` in service `ChatService` is changed ([fce46dc](https://github.com/googleapis/google-cloud-php/commit/fce46dc1eb67bab1b3c9c5fe0504cf33952a2311))
+
+</details>
+
+<details><summary>google/apps-events-subscriptions 0.2.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/apps-meet 0.3.0</summary>
+
+
+
+### Features
+
+* Add methods for [configuring meeting spaces and members](https://developers.google.com/meet/api/guides/beta/configuration-beta) ([3bda909](https://github.com/googleapis/google-cloud-php/commit/3bda909e931b7e36c23c606edf3afa7146a8c51d))
+* Add new OAuth scope `https://www.googleapis.com/auth/meetings.space.settings` to service `SpacesService` ([3bda909](https://github.com/googleapis/google-cloud-php/commit/3bda909e931b7e36c23c606edf3afa7146a8c51d))
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+
+### Documentation
+
+* Improve docs for GetSpaceRequest, EndActiveConferenceRequest, ListConferenceRecordsRequest ([#8051](https://github.com/googleapis/google-cloud-php/issues/8051)) ([3bda909](https://github.com/googleapis/google-cloud-php/commit/3bda909e931b7e36c23c606edf3afa7146a8c51d))
+
+</details>
+
+<details><summary>google/cloud-backupdr 0.6.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.7.0</summary>
+
+
+
+### Features
+
+* **tests:** [Bigtable] add conformance tests and proxy ([#7959](https://github.com/googleapis/google-cloud-php/issues/7959)) ([f3b954c](https://github.com/googleapis/google-cloud-php/commit/f3b954cda30e99d076c1382cc271d0cbb5f54cf1))
+
+</details>
+
+<details><summary>google/cloud-commerce-consumer-procurement 1.2.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/common-protos 4.10.0</summary>
+
+
+
+### Features
+
+* Add support for field generate_omitted_as_internal in selective gapic generation ([#8064](https://github.com/googleapis/google-cloud-php/issues/8064)) ([8931351](https://github.com/googleapis/google-cloud-php/commit/89313515423f44408a24368909f1991eb1cceda5))
+
+</details>
+
+<details><summary>google/cloud-compute 1.24.0</summary>
+
+
+
+### Features
+
+* Update Compute Engine API to revision 20250119 ([#981](https://github.com/googleapis/google-cloud-php/issues/981)) ([#8062](https://github.com/googleapis/google-cloud-php/issues/8062)) ([53b8e6c](https://github.com/googleapis/google-cloud-php/commit/53b8e6cfb91e7019dbee282d214b02469e4044bf))
+
+</details>
+
+<details><summary>google/cloud-confidentialcomputing 1.3.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-config 1.3.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-container 2.3.3</summary>
+
+
+
+### Documentation
+
+* Broken (or ambiguous) markdown link ([#8050](https://github.com/googleapis/google-cloud-php/issues/8050)) ([b75b6bd](https://github.com/googleapis/google-cloud-php/commit/b75b6bdda579923bf4e601d16657bd9128ba86e5))
+
+</details>
+
+<details><summary>google/cloud-cloudcontrolspartner 0.4.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-datacatalog-lineage 1.1.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-developerconnect 0.3.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-dialogflow-cx 0.6.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 1.4.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-edgenetwork 1.2.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.23.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-kms-inventory 1.1.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-managedkafka 0.3.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/maps-fleetengine 0.2.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/maps-fleetengine-delivery 0.2.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/maps-routeoptimization 0.4.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-memorystore 0.2.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-migrationcenter 1.1.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-monitoring 2.1.0</summary>
+
+
+
+### Features
+
+* Add filter field to snooze proto ([61056a5](https://github.com/googleapis/google-cloud-php/commit/61056a5c8627086de31d18f395f7273efefae93a))
+* Remove extra fenced code block markers ([#8067](https://github.com/googleapis/google-cloud-php/issues/8067)) ([61056a5](https://github.com/googleapis/google-cloud-php/commit/61056a5c8627086de31d18f395f7273efefae93a))
+
+</details>
+
+<details><summary>google/cloud-netapp 1.4.0</summary>
+
+
+
+### Features
+
+* Add ipAddress field to MountOption ([1709b97](https://github.com/googleapis/google-cloud-php/commit/1709b97e4922d847744806255228cf77b76c6d5d))
+* Add support for Quota Rule apis ([#8066](https://github.com/googleapis/google-cloud-php/issues/8066)) ([1709b97](https://github.com/googleapis/google-cloud-php/commit/1709b97e4922d847744806255228cf77b76c6d5d))
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-networkservices 0.3.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-oracledatabase 0.3.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-parallelstore 0.9.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-policysimulator 1.1.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-policytroubleshooter-iam 0.3.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-privilegedaccessmanager 0.2.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.10.0</summary>
+
+
+
+### Features
+
+* Add support for message transforms to Topic and Subscription ([#8060](https://github.com/googleapis/google-cloud-php/issues/8060)) ([3d83164](https://github.com/googleapis/google-cloud-php/commit/3d83164503f514190f7f8b4c0c834b97bee24a79))
+
+
+### Documentation
+
+* Fix link for AnalyticsHubSubscriptionInfo ([3d83164](https://github.com/googleapis/google-cloud-php/commit/3d83164503f514190f7f8b4c0c834b97bee24a79))
+
+</details>
+
+<details><summary>google/cloud-quotas 1.3.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-rapidmigrationassessment 1.1.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-redis-cluster 0.5.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-scheduler 2.0.4</summary>
+
+
+
+### Documentation
+
+* Annotate output-only fields as such ([40f1a1c](https://github.com/googleapis/google-cloud-php/commit/40f1a1ce41e48a7679a6bebf4e3c7dce2af77cb0))
+* Update comments ([#8049](https://github.com/googleapis/google-cloud-php/issues/8049)) ([40f1a1c](https://github.com/googleapis/google-cloud-php/commit/40f1a1ce41e48a7679a6bebf4e3c7dce2af77cb0))
+
+</details>
+
+<details><summary>google/cloud-securesourcemanager 1.4.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-securitycentermanagement 1.2.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-servicehealth 0.3.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/shopping-css 0.5.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/shopping-merchant-accounts 0.4.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/shopping-merchant-conversions 0.2.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/shopping-merchant-datasources 0.4.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 0.6.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/shopping-merchant-lfp 0.2.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/shopping-merchant-notifications 0.2.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/shopping-merchant-products 0.3.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/shopping-merchant-promotions 0.2.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/shopping-merchant-quota 0.2.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/shopping-merchant-reports 0.9.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/shopping-merchant-reviews 0.2.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.93.0</summary>
+
+
+
+### Features
+
+* Add AddSplitPoints API ([#8059](https://github.com/googleapis/google-cloud-php/issues/8059)) ([f00dd0b](https://github.com/googleapis/google-cloud-php/commit/f00dd0b1ebc523483400455839ca1d073c206f1d))
+
+</details>
+
+<details><summary>google/cloud-storage-control 1.1.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-storageinsights 1.1.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-support 1.1.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-telcoautomation 1.1.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
+<details><summary>google/cloud-translate 1.21.0</summary>
+
+
+
+### Features
+
+* **dev:** Add samples to README ([#7964](https://github.com/googleapis/google-cloud-php/issues/7964)) ([48737ab](https://github.com/googleapis/google-cloud-php/commit/48737abb8ecec895e79fa808267e3ada4bb35c43))
+
+</details>
+
 ## 0.273.0
 
 <details><summary>google/cloud-access-approval 2.0.4</summary>
