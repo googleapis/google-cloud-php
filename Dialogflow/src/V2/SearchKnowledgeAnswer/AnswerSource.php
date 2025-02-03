@@ -20,19 +20,25 @@ class AnswerSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string title = 1;</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * The URI of the article.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * The relevant snippet of the article.
      *
      * Generated from protobuf field <code>string snippet = 3;</code>
      */
-    private $snippet = '';
+    protected $snippet = '';
+    /**
+     * Metadata associated with the article.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct metadata = 5;</code>
+     */
+    protected $metadata = null;
 
     /**
      * Constructor.
@@ -46,6 +52,8 @@ class AnswerSource extends \Google\Protobuf\Internal\Message
      *           The URI of the article.
      *     @type string $snippet
      *           The relevant snippet of the article.
+     *     @type \Google\Protobuf\Struct $metadata
+     *           Metadata associated with the article.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +135,42 @@ class AnswerSource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->snippet = $var;
+
+        return $this;
+    }
+
+    /**
+     * Metadata associated with the article.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct metadata = 5;</code>
+     * @return \Google\Protobuf\Struct|null
+     */
+    public function getMetadata()
+    {
+        return $this->metadata;
+    }
+
+    public function hasMetadata()
+    {
+        return isset($this->metadata);
+    }
+
+    public function clearMetadata()
+    {
+        unset($this->metadata);
+    }
+
+    /**
+     * Metadata associated with the article.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct metadata = 5;</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->metadata = $var;
 
         return $this;
     }

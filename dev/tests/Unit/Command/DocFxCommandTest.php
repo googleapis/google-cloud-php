@@ -131,7 +131,7 @@ class DocFxCommandTest extends TestCase
         $rightContents = preg_replace('/nanos: \d+/', 'nanos: *', $rightContents);
         file_put_contents($right, $rightContents);
 
-        $this->assertFileEqualsWithDiff($left, $right);
+        $this->assertFileEqualsWithDiff($left, $right, '1' === getenv('UPDATE_FIXTURES'));
     }
 
     public function provideDocFxFiles()
@@ -141,7 +141,8 @@ class DocFxCommandTest extends TestCase
             '--xml' => self::$fixturesDir . '/phpdoc/structure.xml',
             '--out' => self::$tmpDir = sys_get_temp_dir() . '/' . rand(),
             '--metadata-version' => '1.0.0',
-            '--component-path' => self::$fixturesDir . '/component/Vision',
+            '--path' => self::$fixturesDir . '/component/Vision',
+            '--with-cache' => true,
         ]);
 
         $filesAsArguments = [];
@@ -163,6 +164,7 @@ class DocFxCommandTest extends TestCase
             '--xml' => self::$fixturesDir . '/phpdoc/newclient.xml',
             '--out' => $tmpDir = sys_get_temp_dir() . '/' . rand(),
             '--metadata-version' => '1.0.0',
+            '--with-cache' => true,
         ]);
 
         return [

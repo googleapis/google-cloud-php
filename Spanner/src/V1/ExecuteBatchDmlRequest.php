@@ -58,6 +58,19 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 5;</code>
      */
     private $request_options = null;
+    /**
+     * Optional. If set to true, this request marks the end of the transaction.
+     * The transaction should be committed or aborted after these statements
+     * execute, and attempts to execute any other requests against this
+     * transaction (including reads and queries) will be rejected.
+     * Setting this option may cause some error reporting to be deferred until
+     * commit time (e.g. validation of unique constraints). Given this, successful
+     * execution of statements should not be assumed until a subsequent Commit
+     * call completes successfully.
+     *
+     * Generated from protobuf field <code>bool last_statements = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $last_statements = false;
 
     /**
      * Constructor.
@@ -88,6 +101,15 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      *           handled requests will yield the same response as the first execution.
      *     @type \Google\Cloud\Spanner\V1\RequestOptions $request_options
      *           Common options for this request.
+     *     @type bool $last_statements
+     *           Optional. If set to true, this request marks the end of the transaction.
+     *           The transaction should be committed or aborted after these statements
+     *           execute, and attempts to execute any other requests against this
+     *           transaction (including reads and queries) will be rejected.
+     *           Setting this option may cause some error reporting to be deferred until
+     *           commit time (e.g. validation of unique constraints). Given this, successful
+     *           execution of statements should not be assumed until a subsequent Commit
+     *           call completes successfully.
      * }
      */
     public function __construct($data = NULL) {
@@ -267,6 +289,46 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\RequestOptions::class);
         $this->request_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set to true, this request marks the end of the transaction.
+     * The transaction should be committed or aborted after these statements
+     * execute, and attempts to execute any other requests against this
+     * transaction (including reads and queries) will be rejected.
+     * Setting this option may cause some error reporting to be deferred until
+     * commit time (e.g. validation of unique constraints). Given this, successful
+     * execution of statements should not be assumed until a subsequent Commit
+     * call completes successfully.
+     *
+     * Generated from protobuf field <code>bool last_statements = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getLastStatements()
+    {
+        return $this->last_statements;
+    }
+
+    /**
+     * Optional. If set to true, this request marks the end of the transaction.
+     * The transaction should be committed or aborted after these statements
+     * execute, and attempts to execute any other requests against this
+     * transaction (including reads and queries) will be rejected.
+     * Setting this option may cause some error reporting to be deferred until
+     * commit time (e.g. validation of unique constraints). Given this, successful
+     * execution of statements should not be assumed until a subsequent Commit
+     * call completes successfully.
+     *
+     * Generated from protobuf field <code>bool last_statements = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setLastStatements($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->last_statements = $var;
 
         return $this;
     }

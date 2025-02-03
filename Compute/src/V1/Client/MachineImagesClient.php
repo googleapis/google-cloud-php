@@ -45,6 +45,7 @@ use Google\Cloud\Compute\V1\SetIamPolicyMachineImageRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsMachineImageRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The MachineImages API.
@@ -52,13 +53,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteMachineImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetMachineImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyMachineImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertMachineImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListMachineImagesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyMachineImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsMachineImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteMachineImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MachineImage> getAsync(GetMachineImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyMachineImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertMachineImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListMachineImagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyMachineImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsMachineImageRequest $request, array $optionalArgs = [])
  */
 final class MachineImagesClient
 {
@@ -192,6 +193,12 @@ final class MachineImagesClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -222,6 +229,9 @@ final class MachineImagesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -249,6 +259,8 @@ final class MachineImagesClient
      *
      * The async variant is {@see MachineImagesClient::deleteAsync()} .
      *
+     * @example samples/V1/MachineImagesClient/delete.php
+     *
      * @param DeleteMachineImageRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -272,6 +284,8 @@ final class MachineImagesClient
      * Returns the specified machine image.
      *
      * The async variant is {@see MachineImagesClient::getAsync()} .
+     *
+     * @example samples/V1/MachineImagesClient/get.php
      *
      * @param GetMachineImageRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -297,6 +311,8 @@ final class MachineImagesClient
      *
      * The async variant is {@see MachineImagesClient::getIamPolicyAsync()} .
      *
+     * @example samples/V1/MachineImagesClient/get_iam_policy.php
+     *
      * @param GetIamPolicyMachineImageRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -320,6 +336,8 @@ final class MachineImagesClient
      * Creates a machine image in the specified project using the data that is included in the request. If you are creating a new machine image to update an existing instance, your new machine image should use the same network or, if applicable, the same subnetwork as the original instance.
      *
      * The async variant is {@see MachineImagesClient::insertAsync()} .
+     *
+     * @example samples/V1/MachineImagesClient/insert.php
      *
      * @param InsertMachineImageRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -345,6 +363,8 @@ final class MachineImagesClient
      *
      * The async variant is {@see MachineImagesClient::listAsync()} .
      *
+     * @example samples/V1/MachineImagesClient/list.php
+     *
      * @param ListMachineImagesRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -369,6 +389,8 @@ final class MachineImagesClient
      *
      * The async variant is {@see MachineImagesClient::setIamPolicyAsync()} .
      *
+     * @example samples/V1/MachineImagesClient/set_iam_policy.php
+     *
      * @param SetIamPolicyMachineImageRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -392,6 +414,8 @@ final class MachineImagesClient
      * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is {@see MachineImagesClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/MachineImagesClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsMachineImageRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {

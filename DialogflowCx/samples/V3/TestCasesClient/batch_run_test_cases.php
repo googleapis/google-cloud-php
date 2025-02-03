@@ -42,11 +42,11 @@ use Google\Rpc\Status;
  * - `response`:
  * [BatchRunTestCasesResponse][google.cloud.dialogflow.cx.v3.BatchRunTestCasesResponse]
  *
- * @param string $formattedParent           Agent name. Format: `projects/<Project ID>/locations/<Location
- *                                          ID>/agents/ <AgentID>`. Please see
+ * @param string $formattedParent           Agent name. Format:
+ *                                          `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
  *                                          {@see TestCasesClient::agentName()} for help formatting this field.
- * @param string $formattedTestCasesElement Format: `projects/<Project ID>/locations/<Location
- *                                          ID>/agents/<Agent ID>/testCases/<TestCase ID>`. Please see
+ * @param string $formattedTestCasesElement Format:
+ *                                          `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`. Please see
  *                                          {@see TestCasesClient::testCaseName()} for help formatting this field.
  */
 function batch_run_test_cases_sample(

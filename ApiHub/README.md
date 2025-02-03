@@ -34,7 +34,35 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\ApiHub\V1\Api;
+Google\Cloud\ApiHub\V1\Client\ApiHubClient;
+Google\Cloud\ApiHub\V1\GetApiRequest;
+
+// Create a client.
+$apiHubClient = new ApiHubClient();
+
+// Prepare the request message.
+$request = (new GetApiRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Api $response */
+    $response = $apiHubClient->getApi($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/google-cloud-php-apihub/tree/main/samples) for a canonical list of samples.
+
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
 
 ### Version
 

@@ -34,6 +34,6 @@ trait NameTrait
 
     public function getNamespace(): string
     {
-        return $this->xmlNode['namespace'];
+        return $this->xmlNode['namespace'] ?? '';
     }
 }

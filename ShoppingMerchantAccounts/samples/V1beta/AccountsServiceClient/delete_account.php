@@ -31,6 +31,9 @@ use Google\Shopping\Merchant\Accounts\V1beta\DeleteAccountRequest;
  * Deletes the specified account regardless of its type: standalone, MCA or
  * sub-account. Deleting an MCA leads to the deletion of all of its
  * sub-accounts. Executing this method requires admin access.
+ * The deletion succeeds only if the account does not provide services
+ * to any other account and has no processed offers. You can use the `force`
+ * parameter to override this.
  *
  * @param string $formattedName The name of the account to delete.
  *                              Format: `accounts/{account}`

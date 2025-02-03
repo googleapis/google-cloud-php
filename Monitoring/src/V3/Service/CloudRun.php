@@ -22,7 +22,7 @@ class CloudRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_name = 1;</code>
      */
-    private $service_name = '';
+    protected $service_name = '';
     /**
      * The location the service is run. Corresponds to the `location`
      * resource label in the [`cloud_run_revision` monitored
@@ -30,7 +30,7 @@ class CloudRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 2;</code>
      */
-    private $location = '';
+    protected $location = '';
 
     /**
      * Constructor.
@@ -115,6 +115,4 @@ class CloudRun extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CloudRun::class, \Google\Cloud\Monitoring\V3\Service_CloudRun::class);
 

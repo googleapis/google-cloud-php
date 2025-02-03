@@ -24,6 +24,14 @@ class DeleteDataScanRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
+    /**
+     * Optional. If set to true, any child resources of this data scan will also
+     * be deleted. (Otherwise, the request will only work if the data scan has no
+     * child resources.)
+     *
+     * Generated from protobuf field <code>bool force = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $force = false;
 
     /**
      * @param string $name Required. The resource name of the dataScan:
@@ -53,6 +61,10 @@ class DeleteDataScanRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`
      *           where `project` refers to a *project_id* or *project_number* and
      *           `location_id` refers to a GCP region.
+     *     @type bool $force
+     *           Optional. If set to true, any child resources of this data scan will also
+     *           be deleted. (Otherwise, the request will only work if the data scan has no
+     *           child resources.)
      * }
      */
     public function __construct($data = NULL) {
@@ -88,6 +100,36 @@ class DeleteDataScanRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set to true, any child resources of this data scan will also
+     * be deleted. (Otherwise, the request will only work if the data scan has no
+     * child resources.)
+     *
+     * Generated from protobuf field <code>bool force = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getForce()
+    {
+        return $this->force;
+    }
+
+    /**
+     * Optional. If set to true, any child resources of this data scan will also
+     * be deleted. (Otherwise, the request will only work if the data scan has no
+     * child resources.)
+     *
+     * Generated from protobuf field <code>bool force = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setForce($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->force = $var;
 
         return $this;
     }

@@ -18,8 +18,8 @@ class LoadVersionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The [Version][google.cloud.dialogflow.cx.v3.Version] to be loaded
-     * to draft flow. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/flows/<Flow ID>/versions/<Version ID>`.
+     * to draft flow. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -36,8 +36,8 @@ class LoadVersionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The [Version][google.cloud.dialogflow.cx.v3.Version] to be loaded
-     *                     to draft flow. Format: `projects/<Project ID>/locations/<Location
-     *                     ID>/agents/<Agent ID>/flows/<Flow ID>/versions/<Version ID>`. Please see
+     *                     to draft flow. Format:
+     *                     `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`. Please see
      *                     {@see VersionsClient::versionName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\LoadVersionRequest
@@ -58,8 +58,8 @@ class LoadVersionRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The [Version][google.cloud.dialogflow.cx.v3.Version] to be loaded
-     *           to draft flow. Format: `projects/<Project ID>/locations/<Location
-     *           ID>/agents/<Agent ID>/flows/<Flow ID>/versions/<Version ID>`.
+     *           to draft flow. Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *     @type bool $allow_override_agent_resources
      *           This field is used to prevent accidental overwrite of other agent
      *           resources, which can potentially impact other flow's behavior. If
@@ -74,8 +74,8 @@ class LoadVersionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The [Version][google.cloud.dialogflow.cx.v3.Version] to be loaded
-     * to draft flow. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/flows/<Flow ID>/versions/<Version ID>`.
+     * to draft flow. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -87,8 +87,8 @@ class LoadVersionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The [Version][google.cloud.dialogflow.cx.v3.Version] to be loaded
-     * to draft flow. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/flows/<Flow ID>/versions/<Version ID>`.
+     * to draft flow. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

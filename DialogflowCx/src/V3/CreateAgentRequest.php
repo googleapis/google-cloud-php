@@ -18,7 +18,7 @@ class CreateAgentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The location to create a agent for.
-     * Format: `projects/<Project ID>/locations/<Location ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -32,7 +32,7 @@ class CreateAgentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                               $parent Required. The location to create a agent for.
-     *                                                     Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+     *                                                     Format: `projects/<ProjectID>/locations/<LocationID>`. Please see
      *                                                     {@see AgentsClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Dialogflow\Cx\V3\Agent $agent  Required. The agent to create.
      *
@@ -55,7 +55,7 @@ class CreateAgentRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The location to create a agent for.
-     *           Format: `projects/<Project ID>/locations/<Location ID>`.
+     *           Format: `projects/<ProjectID>/locations/<LocationID>`.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Agent $agent
      *           Required. The agent to create.
      * }
@@ -67,7 +67,7 @@ class CreateAgentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The location to create a agent for.
-     * Format: `projects/<Project ID>/locations/<Location ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -79,7 +79,7 @@ class CreateAgentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The location to create a agent for.
-     * Format: `projects/<Project ID>/locations/<Location ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

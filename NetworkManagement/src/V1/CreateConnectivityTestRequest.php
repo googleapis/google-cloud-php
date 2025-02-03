@@ -19,7 +19,7 @@ class CreateConnectivityTestRequest extends \Google\Protobuf\Internal\Message
      * Required. The parent resource of the Connectivity Test to create:
      *     `projects/{project_id}/locations/global`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
@@ -44,6 +44,7 @@ class CreateConnectivityTestRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                              $parent   Required. The parent resource of the Connectivity Test to create:
      *                                                                      `projects/{project_id}/locations/global`
+     *                                                                      Please see {@see ReachabilityServiceClient::projectName()} for help formatting this field.
      * @param string                                              $testId   Required. The logical name of the Connectivity Test in your project
      *                                                                      with the following restrictions:
      *
@@ -96,7 +97,7 @@ class CreateConnectivityTestRequest extends \Google\Protobuf\Internal\Message
      * Required. The parent resource of the Connectivity Test to create:
      *     `projects/{project_id}/locations/global`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -108,7 +109,7 @@ class CreateConnectivityTestRequest extends \Google\Protobuf\Internal\Message
      * Required. The parent resource of the Connectivity Test to create:
      *     `projects/{project_id}/locations/global`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

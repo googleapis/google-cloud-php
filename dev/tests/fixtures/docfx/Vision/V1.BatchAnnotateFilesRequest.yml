@@ -19,6 +19,8 @@ items:
       - '\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest::setRequests()'
       - '\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest::getParent()'
       - '\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest::setParent()'
+      - '\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest::getLabels()'
+      - '\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest::setLabels()'
       - '\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest::build()'
   -
     uid: '\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest::__construct()'
@@ -37,19 +39,23 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ requests'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateFileRequest">Google\Cloud\Vision\V1\AnnotateFileRequest</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateFileRequest">AnnotateFileRequest</xref>&gt;'
           description: 'Required. The list of file annotation requests. Right now we support only one AnnotateFileRequest in BatchAnnotateFilesRequest.'
         -
           id: '↳ parent'
           var_type: string
           description: 'Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.'
+        -
+          id: '↳ labels'
+          var_type: 'array|<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/MapField">Google\Protobuf\Internal\MapField</a>'
+          description: 'Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.'
   -
     uid: '\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest::getRequests()'
     name: getRequests
     id: getRequests
     summary: |-
-      Required. The list of file annotation requests. Right now we support only one
-      AnnotateFileRequest in BatchAnnotateFilesRequest.
+      Required. The list of file annotation requests. Right now we support only
+      one AnnotateFileRequest in BatchAnnotateFilesRequest.
     parent: \Google\Cloud\Vision\V1\BatchAnnotateFilesRequest
     type: method
     langs:
@@ -63,8 +69,8 @@ items:
     name: setRequests
     id: setRequests
     summary: |-
-      Required. The list of file annotation requests. Right now we support only one
-      AnnotateFileRequest in BatchAnnotateFilesRequest.
+      Required. The list of file annotation requests. Right now we support only
+      one AnnotateFileRequest in BatchAnnotateFilesRequest.
     parent: \Google\Cloud\Vision\V1\BatchAnnotateFilesRequest
     type: method
     langs:
@@ -73,7 +79,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateFileRequest">Google\Cloud\Vision\V1\AnnotateFileRequest</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateFileRequest">AnnotateFileRequest</xref>&gt;'
           description: ''
       returns:
         -
@@ -128,6 +134,49 @@ items:
         -
           var_type: $this
   -
+    uid: '\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest::getLabels()'
+    name: getLabels
+    id: getLabels
+    summary: |-
+      Optional. The labels with user-defined metadata for the request.
+
+      Label keys and values can be no longer than 63 characters
+      (Unicode codepoints), can only contain lowercase letters, numeric
+      characters, underscores and dashes. International characters are allowed.
+      Label values are optional. Label keys must start with a letter.
+    parent: \Google\Cloud\Vision\V1\BatchAnnotateFilesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/MapField">Google\Protobuf\Internal\MapField</a>'
+  -
+    uid: '\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest::setLabels()'
+    name: setLabels
+    id: setLabels
+    summary: |-
+      Optional. The labels with user-defined metadata for the request.
+
+      Label keys and values can be no longer than 63 characters
+      (Unicode codepoints), can only contain lowercase letters, numeric
+      characters, underscores and dashes. International characters are allowed.
+      Label values are optional. Label keys must start with a letter.
+    parent: \Google\Cloud\Vision\V1\BatchAnnotateFilesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'array|<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/MapField">Google\Protobuf\Internal\MapField</a>'
+          description: ''
+      returns:
+        -
+          var_type: $this
+  -
     uid: '\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest::build()'
     name: 'static::build'
     id: build
@@ -139,10 +188,10 @@ items:
       parameters:
         -
           id: requests
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateFileRequest">Google\Cloud\Vision\V1\AnnotateFileRequest</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateFileRequest">AnnotateFileRequest</xref>&gt;'
           description: |-
-            Required. The list of file annotation requests. Right now we support only one
-            AnnotateFileRequest in BatchAnnotateFilesRequest.
+            Required. The list of file annotation requests. Right now we support only
+            one AnnotateFileRequest in BatchAnnotateFilesRequest.
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest">Google\Cloud\Vision\V1\BatchAnnotateFilesRequest</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest">BatchAnnotateFilesRequest</xref>'

@@ -73,6 +73,22 @@ class DataStore extends \Google\Protobuf\Internal\Message
      */
     protected $create_time = null;
     /**
+     * Output only. Data size estimation for billing.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.DataStore.BillingEstimation billing_estimation = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $billing_estimation = null;
+    /**
+     * Config to store data store type configuration for workspace data. This
+     * must be set when
+     * [DataStore.content_config][google.cloud.discoveryengine.v1.DataStore.content_config]
+     * is set as
+     * [DataStore.ContentConfig.GOOGLE_WORKSPACE][google.cloud.discoveryengine.v1.DataStore.ContentConfig.GOOGLE_WORKSPACE].
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.WorkspaceConfig workspace_config = 25;</code>
+     */
+    protected $workspace_config = null;
+    /**
      * Configuration for Document understanding and enrichment.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.DocumentProcessingConfig document_processing_config = 27;</code>
@@ -131,6 +147,14 @@ class DataStore extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp the
      *           [DataStore][google.cloud.discoveryengine.v1.DataStore] was created at.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\DataStore\BillingEstimation $billing_estimation
+     *           Output only. Data size estimation for billing.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\WorkspaceConfig $workspace_config
+     *           Config to store data store type configuration for workspace data. This
+     *           must be set when
+     *           [DataStore.content_config][google.cloud.discoveryengine.v1.DataStore.content_config]
+     *           is set as
+     *           [DataStore.ContentConfig.GOOGLE_WORKSPACE][google.cloud.discoveryengine.v1.DataStore.ContentConfig.GOOGLE_WORKSPACE].
      *     @type \Google\Cloud\DiscoveryEngine\V1\DocumentProcessingConfig $document_processing_config
      *           Configuration for Document understanding and enrichment.
      *     @type \Google\Cloud\DiscoveryEngine\V1\Schema $starting_schema
@@ -371,6 +395,86 @@ class DataStore extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Data size estimation for billing.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.DataStore.BillingEstimation billing_estimation = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\DataStore\BillingEstimation|null
+     */
+    public function getBillingEstimation()
+    {
+        return $this->billing_estimation;
+    }
+
+    public function hasBillingEstimation()
+    {
+        return isset($this->billing_estimation);
+    }
+
+    public function clearBillingEstimation()
+    {
+        unset($this->billing_estimation);
+    }
+
+    /**
+     * Output only. Data size estimation for billing.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.DataStore.BillingEstimation billing_estimation = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\DataStore\BillingEstimation $var
+     * @return $this
+     */
+    public function setBillingEstimation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\DataStore\BillingEstimation::class);
+        $this->billing_estimation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Config to store data store type configuration for workspace data. This
+     * must be set when
+     * [DataStore.content_config][google.cloud.discoveryengine.v1.DataStore.content_config]
+     * is set as
+     * [DataStore.ContentConfig.GOOGLE_WORKSPACE][google.cloud.discoveryengine.v1.DataStore.ContentConfig.GOOGLE_WORKSPACE].
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.WorkspaceConfig workspace_config = 25;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\WorkspaceConfig|null
+     */
+    public function getWorkspaceConfig()
+    {
+        return $this->workspace_config;
+    }
+
+    public function hasWorkspaceConfig()
+    {
+        return isset($this->workspace_config);
+    }
+
+    public function clearWorkspaceConfig()
+    {
+        unset($this->workspace_config);
+    }
+
+    /**
+     * Config to store data store type configuration for workspace data. This
+     * must be set when
+     * [DataStore.content_config][google.cloud.discoveryengine.v1.DataStore.content_config]
+     * is set as
+     * [DataStore.ContentConfig.GOOGLE_WORKSPACE][google.cloud.discoveryengine.v1.DataStore.ContentConfig.GOOGLE_WORKSPACE].
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.WorkspaceConfig workspace_config = 25;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\WorkspaceConfig $var
+     * @return $this
+     */
+    public function setWorkspaceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\WorkspaceConfig::class);
+        $this->workspace_config = $var;
 
         return $this;
     }

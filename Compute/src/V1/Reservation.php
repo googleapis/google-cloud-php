@@ -100,7 +100,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     private $specific_reservation_required = null;
     /**
-     * [Output Only] The status of the reservation.
+     * [Output Only] The status of the reservation. - CREATING: Reservation resources are being allocated. - READY: Reservation resources have been allocated, and the reservation is ready for use. - DELETING: Reservation deletion is in progress. - UPDATING: Reservation update is in progress.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -148,7 +148,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *     @type bool $specific_reservation_required
      *           Indicates whether the reservation can be consumed by VMs with affinity for "any" reservation. If the field is set, then only VMs that target the reservation by name can consume from this reservation.
      *     @type string $status
-     *           [Output Only] The status of the reservation.
+     *           [Output Only] The status of the reservation. - CREATING: Reservation resources are being allocated. - READY: Reservation resources have been allocated, and the reservation is ready for use. - DELETING: Reservation deletion is in progress. - UPDATING: Reservation update is in progress.
      *           Check the Status enum for the list of possible values.
      *     @type string $zone
      *           Zone in which the reservation resides. A zone must be provided if the reservation is created within a commitment.
@@ -654,7 +654,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the reservation.
+     * [Output Only] The status of the reservation. - CREATING: Reservation resources are being allocated. - READY: Reservation resources have been allocated, and the reservation is ready for use. - DELETING: Reservation deletion is in progress. - UPDATING: Reservation update is in progress.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -676,7 +676,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the reservation.
+     * [Output Only] The status of the reservation. - CREATING: Reservation resources are being allocated. - READY: Reservation resources have been allocated, and the reservation is ready for use. - DELETING: Reservation deletion is in progress. - UPDATING: Reservation update is in progress.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>

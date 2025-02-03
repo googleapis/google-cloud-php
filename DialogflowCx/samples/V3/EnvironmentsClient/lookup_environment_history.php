@@ -34,8 +34,8 @@ use Google\Cloud\Dialogflow\Cx\V3\LookupEnvironmentHistoryRequest;
  * [Environment][google.cloud.dialogflow.cx.v3.Environment].
  *
  * @param string $formattedName Resource name of the environment to look up the history for.
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/environments/<Environment ID>`. Please see
+ *                              Format:
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`. Please see
  *                              {@see EnvironmentsClient::environmentName()} for help formatting this field.
  */
 function lookup_environment_history_sample(string $formattedName): void

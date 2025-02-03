@@ -50,6 +50,7 @@ use Google\Cloud\WebSecurityScanner\V1\StartScanRunRequest;
 use Google\Cloud\WebSecurityScanner\V1\StopScanRunRequest;
 use Google\Cloud\WebSecurityScanner\V1\UpdateScanConfigRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Web Security Scanner Service identifies security vulnerabilities in web
@@ -59,19 +60,19 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface createScanConfigAsync(CreateScanConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteScanConfigAsync(DeleteScanConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getFindingAsync(GetFindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getScanConfigAsync(GetScanConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getScanRunAsync(GetScanRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCrawledUrlsAsync(ListCrawledUrlsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFindingTypeStatsAsync(ListFindingTypeStatsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFindingsAsync(ListFindingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listScanConfigsAsync(ListScanConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listScanRunsAsync(ListScanRunsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startScanRunAsync(StartScanRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface stopScanRunAsync(StopScanRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateScanConfigAsync(UpdateScanConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ScanConfig> createScanConfigAsync(CreateScanConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteScanConfigAsync(DeleteScanConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Finding> getFindingAsync(GetFindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ScanConfig> getScanConfigAsync(GetScanConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ScanRun> getScanRunAsync(GetScanRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCrawledUrlsAsync(ListCrawledUrlsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListFindingTypeStatsResponse> listFindingTypeStatsAsync(ListFindingTypeStatsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFindingsAsync(ListFindingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listScanConfigsAsync(ListScanConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listScanRunsAsync(ListScanRunsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ScanRun> startScanRunAsync(StartScanRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ScanRun> stopScanRunAsync(StopScanRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ScanConfig> updateScanConfigAsync(UpdateScanConfigRequest $request, array $optionalArgs = [])
  */
 final class WebSecurityScannerClient
 {
@@ -135,6 +136,12 @@ final class WebSecurityScannerClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -168,6 +175,9 @@ final class WebSecurityScannerClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

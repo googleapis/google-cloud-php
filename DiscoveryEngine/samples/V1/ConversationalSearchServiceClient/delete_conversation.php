@@ -34,7 +34,7 @@ use Google\Cloud\DiscoveryEngine\V1\DeleteConversationRequest;
  * delete does not exist, a NOT_FOUND error is returned.
  *
  * @param string $formattedName The resource name of the Conversation to delete. Format:
- *                              `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`
+ *                              `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`
  *                              Please see {@see ConversationalSearchServiceClient::conversationName()} for help formatting this field.
  */
 function delete_conversation_sample(string $formattedName): void

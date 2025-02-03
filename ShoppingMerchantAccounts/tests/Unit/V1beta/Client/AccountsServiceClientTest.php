@@ -103,7 +103,8 @@ class AccountsServiceClientTest extends GeneratedTest
         $account->setTimeZone($accountTimeZone);
         $accountLanguageCode = 'accountLanguageCode-1326363598';
         $account->setLanguageCode($accountLanguageCode);
-        $request = (new CreateAndConfigureAccountRequest())->setAccount($account);
+        $service = [];
+        $request = (new CreateAndConfigureAccountRequest())->setAccount($account)->setService($service);
         $response = $gapicClient->createAndConfigureAccount($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -116,6 +117,8 @@ class AccountsServiceClientTest extends GeneratedTest
         );
         $actualValue = $actualRequestObject->getAccount();
         $this->assertProtobufEquals($account, $actualValue);
+        $actualValue = $actualRequestObject->getService();
+        $this->assertProtobufEquals($service, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -148,7 +151,8 @@ class AccountsServiceClientTest extends GeneratedTest
         $account->setTimeZone($accountTimeZone);
         $accountLanguageCode = 'accountLanguageCode-1326363598';
         $account->setLanguageCode($accountLanguageCode);
-        $request = (new CreateAndConfigureAccountRequest())->setAccount($account);
+        $service = [];
+        $request = (new CreateAndConfigureAccountRequest())->setAccount($account)->setService($service);
         try {
             $gapicClient->createAndConfigureAccount($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -557,7 +561,8 @@ class AccountsServiceClientTest extends GeneratedTest
         $account->setTimeZone($accountTimeZone);
         $accountLanguageCode = 'accountLanguageCode-1326363598';
         $account->setLanguageCode($accountLanguageCode);
-        $request = (new CreateAndConfigureAccountRequest())->setAccount($account);
+        $service = [];
+        $request = (new CreateAndConfigureAccountRequest())->setAccount($account)->setService($service);
         $response = $gapicClient->createAndConfigureAccountAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -570,6 +575,8 @@ class AccountsServiceClientTest extends GeneratedTest
         );
         $actualValue = $actualRequestObject->getAccount();
         $this->assertProtobufEquals($account, $actualValue);
+        $actualValue = $actualRequestObject->getService();
+        $this->assertProtobufEquals($service, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

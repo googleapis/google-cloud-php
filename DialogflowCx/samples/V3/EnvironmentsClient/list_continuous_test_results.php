@@ -33,8 +33,8 @@ use Google\Cloud\Dialogflow\Cx\V3\ListContinuousTestResultsRequest;
  * Fetches a list of continuous test results for a given environment.
  *
  * @param string $formattedParent The environment to list results for.
- *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
- *                                environments/<Environment ID>`. Please see
+ *                                Format:
+ *                                `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`. Please see
  *                                {@see EnvironmentsClient::environmentName()} for help formatting this field.
  */
 function list_continuous_test_results_sample(string $formattedParent): void

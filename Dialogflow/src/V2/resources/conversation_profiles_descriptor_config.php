@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -173,6 +173,7 @@ return [
                 'generator' => 'projects/{project}/locations/{location}/generators/{generator}',
                 'knowledgeBase' => 'projects/{project}/knowledgeBases/{knowledge_base}',
                 'location' => 'projects/{project}/locations/{location}',
+                'phraseSet' => 'projects/{project}/locations/{location}/phraseSets/{phrase_set}',
                 'project' => 'projects/{project}',
                 'projectAgent' => 'projects/{project}/agent',
                 'projectConversationModel' => 'projects/{project}/conversationModels/{conversation_model}',

@@ -23,6 +23,7 @@ class CloudNetappService
         \GPBMetadata\Google\Cloud\Netapp\V1\BackupPolicy::initOnce();
         \GPBMetadata\Google\Cloud\Netapp\V1\BackupVault::initOnce();
         \GPBMetadata\Google\Cloud\Netapp\V1\Kms::initOnce();
+        \GPBMetadata\Google\Cloud\Netapp\V1\QuotaRule::initOnce();
         \GPBMetadata\Google\Cloud\Netapp\V1\Replication::initOnce();
         \GPBMetadata\Google\Cloud\Netapp\V1\Snapshot::initOnce();
         \GPBMetadata\Google\Cloud\Netapp\V1\StoragePool::initOnce();
@@ -32,8 +33,8 @@ class CloudNetappService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-∆_
-1google/cloud/netapp/v1/cloud_netapp_service.protogoogle.cloud.netapp.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto-google/cloud/netapp/v1/active_directory.proto#google/cloud/netapp/v1/backup.proto*google/cloud/netapp/v1/backup_policy.proto)google/cloud/netapp/v1/backup_vault.proto google/cloud/netapp/v1/kms.proto(google/cloud/netapp/v1/replication.proto%google/cloud/netapp/v1/snapshot.proto)google/cloud/netapp/v1/storage_pool.proto#google/cloud/netapp/v1/volume.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"Ä
+∆m
+1google/cloud/netapp/v1/cloud_netapp_service.protogoogle.cloud.netapp.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto-google/cloud/netapp/v1/active_directory.proto#google/cloud/netapp/v1/backup.proto*google/cloud/netapp/v1/backup_policy.proto)google/cloud/netapp/v1/backup_vault.proto google/cloud/netapp/v1/kms.proto\'google/cloud/netapp/v1/quota_rule.proto(google/cloud/netapp/v1/replication.proto%google/cloud/netapp/v1/snapshot.proto)google/cloud/netapp/v1/storage_pool.proto#google/cloud/netapp/v1/volume.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"Ä
 OperationMetadata4
 create_time (2.google.protobuf.TimestampB‡A1
 end_time (2.google.protobuf.TimestampB‡A
@@ -41,7 +42,7 @@ class CloudNetappService
 verb (	B‡A
 status_message (	B‡A#
 requested_cancellation (B‡A
-api_version (	B‡A2∫V
+api_version (	B‡A2ëd
 NetApp∏
 ListStoragePools/.google.cloud.netapp.v1.ListStoragePoolsRequest0.google.cloud.netapp.v1.ListStoragePoolsResponse"A⁄AparentÇ”‰ì20/v1/{parent=projects/*/locations/*}/storagePoolsˆ
 CreateStoragePool0.google.cloud.netapp.v1.CreateStoragePoolRequest.google.longrunning.Operation"è A 
@@ -50,7 +51,9 @@ class CloudNetappService
 UpdateStoragePool0.google.cloud.netapp.v1.UpdateStoragePoolRequest.google.longrunning.Operation"ë A 
 StoragePoolOperationMetadata⁄Astorage_pool,update_maskÇ”‰ìM2=/v1/{storage_pool.name=projects/*/locations/*/storagePools/*}:storage_pool“
 DeleteStoragePool0.google.cloud.netapp.v1.DeleteStoragePoolRequest.google.longrunning.Operation"l A*
-google.protobuf.EmptyOperationMetadata⁄AnameÇ”‰ì2*0/v1/{name=projects/*/locations/*/storagePools/*}◊
+google.protobuf.EmptyOperationMetadata⁄AnameÇ”‰ì2*0/v1/{name=projects/*/locations/*/storagePools/*}ˆ
+ValidateDirectoryService7.google.cloud.netapp.v1.ValidateDirectoryServiceRequest.google.longrunning.Operation"Å A*
+google.protobuf.EmptyOperationMetadataÇ”‰ìN"I/v1/{name=projects/*/locations/*/storagePools/*}:validateDirectoryService:*◊
 SwitchActiveReplicaZone6.google.cloud.netapp.v1.SwitchActiveReplicaZoneRequest.google.longrunning.Operation"e A 
 StoragePoolOperationMetadataÇ”‰ì<"7/v1/{name=projects/*/locations/*/storagePools/*}:switch:*§
 ListVolumes*.google.cloud.netapp.v1.ListVolumesRequest+.google.cloud.netapp.v1.ListVolumesResponse"<⁄AparentÇ”‰ì-+/v1/{parent=projects/*/locations/*}/volumesë
@@ -105,7 +108,11 @@ kms_config¬
 ResumeReplication0.google.cloud.netapp.v1.ResumeReplicationRequest.google.longrunning.Operation"o A 
 ReplicationOperationMetadataÇ”‰ìF"A/v1/{name=projects/*/locations/*/volumes/*/replications/*}:resume:*Û
 ReverseReplicationDirection:.google.cloud.netapp.v1.ReverseReplicationDirectionRequest.google.longrunning.Operation"y A 
-ReplicationOperationMetadataÇ”‰ìP"K/v1/{name=projects/*/locations/*/volumes/*/replications/*}:reverseDirection:*ˆ
+ReplicationOperationMetadataÇ”‰ìP"K/v1/{name=projects/*/locations/*/volumes/*/replications/*}:reverseDirection:*›
+EstablishPeering/.google.cloud.netapp.v1.EstablishPeeringRequest.google.longrunning.Operation"y A 
+ReplicationOperationMetadataÇ”‰ìP"K/v1/{name=projects/*/locations/*/volumes/*/replications/*}:establishPeering:*œ
+SyncReplication..google.cloud.netapp.v1.SyncReplicationRequest.google.longrunning.Operation"m A 
+ReplicationOperationMetadataÇ”‰ìD"?/v1/{name=projects/*/locations/*/volumes/*/replications/*}:sync:*ˆ
 CreateBackupVault0.google.cloud.netapp.v1.CreateBackupVaultRequest.google.longrunning.Operation"è A 
 BackupVaultOperationMetadata⁄A#parent,backup_vault,backup_vault_idÇ”‰ì@"0/v1/{parent=projects/*/locations/*}/backupVaults:backup_vault•
 GetBackupVault-.google.cloud.netapp.v1.GetBackupVaultRequest#.google.cloud.netapp.v1.BackupVault"?⁄AnameÇ”‰ì20/v1/{name=projects/*/locations/*/backupVaults/*}∏
@@ -129,7 +136,17 @@ kms_config¬
 UpdateBackupPolicy1.google.cloud.netapp.v1.UpdateBackupPolicyRequest.google.longrunning.Operation"ó A!
 BackupPolicyOperationMetadata⁄Abackup_policy,update_maskÇ”‰ìQ2@/v1/{backup_policy.name=projects/*/locations/*/backupPolicies/*}:backup_policy÷
 DeleteBackupPolicy1.google.cloud.netapp.v1.DeleteBackupPolicyRequest.google.longrunning.Operation"n A*
-google.protobuf.EmptyOperationMetadata⁄AnameÇ”‰ì4*2/v1/{name=projects/*/locations/*/backupPolicies/*}I Anetapp.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBä
+google.protobuf.EmptyOperationMetadata⁄AnameÇ”‰ì4*2/v1/{name=projects/*/locations/*/backupPolicies/*}∫
+ListQuotaRules-.google.cloud.netapp.v1.ListQuotaRulesRequest..google.cloud.netapp.v1.ListQuotaRulesResponse"I⁄AparentÇ”‰ì:8/v1/{parent=projects/*/locations/*/volumes/*}/quotaRulesß
+GetQuotaRule+.google.cloud.netapp.v1.GetQuotaRuleRequest!.google.cloud.netapp.v1.QuotaRule"G⁄AnameÇ”‰ì:8/v1/{name=projects/*/locations/*/volumes/*/quotaRules/*}Ú
+CreateQuotaRule..google.cloud.netapp.v1.CreateQuotaRuleRequest.google.longrunning.Operation"è A
+	QuotaRuleOperationMetadata⁄Aparent,quota_rule,quota_rule_idÇ”‰ìF"8/v1/{parent=projects/*/locations/*/volumes/*}/quotaRules:
+quota_ruleÙ
+UpdateQuotaRule..google.cloud.netapp.v1.UpdateQuotaRuleRequest.google.longrunning.Operation"ë A
+	QuotaRuleOperationMetadata⁄Aquota_rule,update_maskÇ”‰ìQ2C/v1/{quota_rule.name=projects/*/locations/*/volumes/*/quotaRules/*}:
+quota_rule÷
+DeleteQuotaRule..google.cloud.netapp.v1.DeleteQuotaRuleRequest.google.longrunning.Operation"t A*
+google.protobuf.EmptyOperationMetadata⁄AnameÇ”‰ì:*8/v1/{name=projects/*/locations/*/volumes/*/quotaRules/*}I Anetapp.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBä
 com.google.cloud.netapp.v1BCloudNetappServiceProtoPZ2cloud.google.com/go/netapp/apiv1/netapppb;netapppb™Google.Cloud.NetApp.V1 Google\\Cloud\\NetApp\\V1ÍGoogle::Cloud::NetApp::V1ÍAN
 compute.googleapis.com/Network,projects/{project}/global/networks/{network}bproto3'
         , true);

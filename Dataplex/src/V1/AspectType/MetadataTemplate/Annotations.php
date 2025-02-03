@@ -9,50 +9,51 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Definition of the annotations of a field
+ * Definition of the annotations of a field.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.AspectType.MetadataTemplate.Annotations</code>
  */
 class Annotations extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Marks a field as deprecated, a deprecation message can be
-     * included.
+     * Optional. Marks a field as deprecated. You can include a deprecation
+     * message.
      *
      * Generated from protobuf field <code>string deprecated = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $deprecated = '';
     /**
-     * Optional. Specify a displayname for a field.
+     * Optional. Display name for a field.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $display_name = '';
     /**
-     * Optional. Specify a description for a field
+     * Optional. Description for a field.
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $description = '';
     /**
-     * Optional. Specify a display order for a field. Display order can be
-     * used to reorder where a field is rendered
+     * Optional. Display order for a field. You can use this to reorder where
+     * a field is rendered.
      *
      * Generated from protobuf field <code>int32 display_order = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $display_order = 0;
     /**
-     * Optional. String Type annotations can be used to specify special
-     * meaning to string fields. The following values are supported: richText:
-     * The field must be interpreted as a rich text field. url: A fully
-     * qualified url link. resource: A service qualified resource reference.
+     * Optional. You can use String Type annotations to specify special
+     * meaning to string fields. The following values are supported:
+     * * richText: The field must be interpreted as a rich text field.
+     * * url: A fully qualified URL link.
+     * * resource: A service qualified resource reference.
      *
      * Generated from protobuf field <code>string string_type = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $string_type = '';
     /**
-     * Optional. Suggested hints for string fields. These can be used to
-     * suggest values to users, through an UI for example.
+     * Optional. Suggested hints for string fields. You can use them to
+     * suggest values to users through console.
      *
      * Generated from protobuf field <code>repeated string string_values = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -65,23 +66,24 @@ class Annotations extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $deprecated
-     *           Optional. Marks a field as deprecated, a deprecation message can be
-     *           included.
+     *           Optional. Marks a field as deprecated. You can include a deprecation
+     *           message.
      *     @type string $display_name
-     *           Optional. Specify a displayname for a field.
+     *           Optional. Display name for a field.
      *     @type string $description
-     *           Optional. Specify a description for a field
+     *           Optional. Description for a field.
      *     @type int $display_order
-     *           Optional. Specify a display order for a field. Display order can be
-     *           used to reorder where a field is rendered
+     *           Optional. Display order for a field. You can use this to reorder where
+     *           a field is rendered.
      *     @type string $string_type
-     *           Optional. String Type annotations can be used to specify special
-     *           meaning to string fields. The following values are supported: richText:
-     *           The field must be interpreted as a rich text field. url: A fully
-     *           qualified url link. resource: A service qualified resource reference.
+     *           Optional. You can use String Type annotations to specify special
+     *           meaning to string fields. The following values are supported:
+     *           * richText: The field must be interpreted as a rich text field.
+     *           * url: A fully qualified URL link.
+     *           * resource: A service qualified resource reference.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $string_values
-     *           Optional. Suggested hints for string fields. These can be used to
-     *           suggest values to users, through an UI for example.
+     *           Optional. Suggested hints for string fields. You can use them to
+     *           suggest values to users through console.
      * }
      */
     public function __construct($data = NULL) {
@@ -90,8 +92,8 @@ class Annotations extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Marks a field as deprecated, a deprecation message can be
-     * included.
+     * Optional. Marks a field as deprecated. You can include a deprecation
+     * message.
      *
      * Generated from protobuf field <code>string deprecated = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -102,8 +104,8 @@ class Annotations extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Marks a field as deprecated, a deprecation message can be
-     * included.
+     * Optional. Marks a field as deprecated. You can include a deprecation
+     * message.
      *
      * Generated from protobuf field <code>string deprecated = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -118,7 +120,7 @@ class Annotations extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specify a displayname for a field.
+     * Optional. Display name for a field.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -129,7 +131,7 @@ class Annotations extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specify a displayname for a field.
+     * Optional. Display name for a field.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -144,7 +146,7 @@ class Annotations extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specify a description for a field
+     * Optional. Description for a field.
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -155,7 +157,7 @@ class Annotations extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specify a description for a field
+     * Optional. Description for a field.
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -170,8 +172,8 @@ class Annotations extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specify a display order for a field. Display order can be
-     * used to reorder where a field is rendered
+     * Optional. Display order for a field. You can use this to reorder where
+     * a field is rendered.
      *
      * Generated from protobuf field <code>int32 display_order = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -182,8 +184,8 @@ class Annotations extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specify a display order for a field. Display order can be
-     * used to reorder where a field is rendered
+     * Optional. Display order for a field. You can use this to reorder where
+     * a field is rendered.
      *
      * Generated from protobuf field <code>int32 display_order = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -198,10 +200,11 @@ class Annotations extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. String Type annotations can be used to specify special
-     * meaning to string fields. The following values are supported: richText:
-     * The field must be interpreted as a rich text field. url: A fully
-     * qualified url link. resource: A service qualified resource reference.
+     * Optional. You can use String Type annotations to specify special
+     * meaning to string fields. The following values are supported:
+     * * richText: The field must be interpreted as a rich text field.
+     * * url: A fully qualified URL link.
+     * * resource: A service qualified resource reference.
      *
      * Generated from protobuf field <code>string string_type = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -212,10 +215,11 @@ class Annotations extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. String Type annotations can be used to specify special
-     * meaning to string fields. The following values are supported: richText:
-     * The field must be interpreted as a rich text field. url: A fully
-     * qualified url link. resource: A service qualified resource reference.
+     * Optional. You can use String Type annotations to specify special
+     * meaning to string fields. The following values are supported:
+     * * richText: The field must be interpreted as a rich text field.
+     * * url: A fully qualified URL link.
+     * * resource: A service qualified resource reference.
      *
      * Generated from protobuf field <code>string string_type = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -230,8 +234,8 @@ class Annotations extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Suggested hints for string fields. These can be used to
-     * suggest values to users, through an UI for example.
+     * Optional. Suggested hints for string fields. You can use them to
+     * suggest values to users through console.
      *
      * Generated from protobuf field <code>repeated string string_values = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -242,8 +246,8 @@ class Annotations extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Suggested hints for string fields. These can be used to
-     * suggest values to users, through an UI for example.
+     * Optional. Suggested hints for string fields. You can use them to
+     * suggest values to users through console.
      *
      * Generated from protobuf field <code>repeated string string_values = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

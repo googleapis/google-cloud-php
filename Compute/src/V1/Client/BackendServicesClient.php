@@ -55,6 +55,7 @@ use Google\Cloud\Compute\V1\TestIamPermissionsBackendServiceRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\UpdateBackendServiceRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The BackendServices API.
@@ -62,22 +63,22 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface addSignedUrlKeyAsync(AddSignedUrlKeyBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface aggregatedListAsync(AggregatedListBackendServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSignedUrlKeyAsync(DeleteSignedUrlKeyBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getHealthAsync(GetHealthBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListBackendServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listUsableAsync(ListUsableBackendServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setEdgeSecurityPolicyAsync(SetEdgeSecurityPolicyBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setSecurityPolicyAsync(SetSecurityPolicyBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(UpdateBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addSignedUrlKeyAsync(AddSignedUrlKeyBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListBackendServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteSignedUrlKeyAsync(DeleteSignedUrlKeyBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackendService> getAsync(GetBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackendServiceGroupHealth> getHealthAsync(GetHealthBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListBackendServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listUsableAsync(ListUsableBackendServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setEdgeSecurityPolicyAsync(SetEdgeSecurityPolicyBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setSecurityPolicyAsync(SetSecurityPolicyBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateBackendServiceRequest $request, array $optionalArgs = [])
  */
 final class BackendServicesClient
 {
@@ -211,6 +212,12 @@ final class BackendServicesClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -241,6 +248,9 @@ final class BackendServicesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -268,6 +278,8 @@ final class BackendServicesClient
      *
      * The async variant is {@see BackendServicesClient::addSignedUrlKeyAsync()} .
      *
+     * @example samples/V1/BackendServicesClient/add_signed_url_key.php
+     *
      * @param AddSignedUrlKeyBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -291,6 +303,8 @@ final class BackendServicesClient
      * Retrieves the list of all BackendService resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see BackendServicesClient::aggregatedListAsync()} .
+     *
+     * @example samples/V1/BackendServicesClient/aggregated_list.php
      *
      * @param AggregatedListBackendServicesRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -316,6 +330,8 @@ final class BackendServicesClient
      *
      * The async variant is {@see BackendServicesClient::deleteAsync()} .
      *
+     * @example samples/V1/BackendServicesClient/delete.php
+     *
      * @param DeleteBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -339,6 +355,8 @@ final class BackendServicesClient
      * Deletes a key for validating requests with signed URLs for this backend service.
      *
      * The async variant is {@see BackendServicesClient::deleteSignedUrlKeyAsync()} .
+     *
+     * @example samples/V1/BackendServicesClient/delete_signed_url_key.php
      *
      * @param DeleteSignedUrlKeyBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -364,6 +382,8 @@ final class BackendServicesClient
      *
      * The async variant is {@see BackendServicesClient::getAsync()} .
      *
+     * @example samples/V1/BackendServicesClient/get.php
+     *
      * @param GetBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -387,6 +407,8 @@ final class BackendServicesClient
      * Gets the most recent health check results for this BackendService. Example request body: { "group": "/zones/us-east1-b/instanceGroups/lb-backend-example" }
      *
      * The async variant is {@see BackendServicesClient::getHealthAsync()} .
+     *
+     * @example samples/V1/BackendServicesClient/get_health.php
      *
      * @param GetHealthBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -412,6 +434,8 @@ final class BackendServicesClient
      *
      * The async variant is {@see BackendServicesClient::getIamPolicyAsync()} .
      *
+     * @example samples/V1/BackendServicesClient/get_iam_policy.php
+     *
      * @param GetIamPolicyBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -435,6 +459,8 @@ final class BackendServicesClient
      * Creates a BackendService resource in the specified project using the data included in the request. For more information, see Backend services overview .
      *
      * The async variant is {@see BackendServicesClient::insertAsync()} .
+     *
+     * @example samples/V1/BackendServicesClient/insert.php
      *
      * @param InsertBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -460,6 +486,8 @@ final class BackendServicesClient
      *
      * The async variant is {@see BackendServicesClient::listAsync()} .
      *
+     * @example samples/V1/BackendServicesClient/list.php
+     *
      * @param ListBackendServicesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -480,9 +508,11 @@ final class BackendServicesClient
     }
 
     /**
-     * Retrieves an aggregated list of all usable backend services in the specified project.
+     * Retrieves a list of all usable backend services in the specified project.
      *
      * The async variant is {@see BackendServicesClient::listUsableAsync()} .
+     *
+     * @example samples/V1/BackendServicesClient/list_usable.php
      *
      * @param ListUsableBackendServicesRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -507,6 +537,8 @@ final class BackendServicesClient
      * Patches the specified BackendService resource with the data included in the request. For more information, see Backend services overview. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      *
      * The async variant is {@see BackendServicesClient::patchAsync()} .
+     *
+     * @example samples/V1/BackendServicesClient/patch.php
      *
      * @param PatchBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -533,6 +565,8 @@ final class BackendServicesClient
      * The async variant is {@see BackendServicesClient::setEdgeSecurityPolicyAsync()}
      * .
      *
+     * @example samples/V1/BackendServicesClient/set_edge_security_policy.php
+     *
      * @param SetEdgeSecurityPolicyBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {
      *     Optional.
@@ -556,6 +590,8 @@ final class BackendServicesClient
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
      * The async variant is {@see BackendServicesClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/BackendServicesClient/set_iam_policy.php
      *
      * @param SetIamPolicyBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -581,6 +617,8 @@ final class BackendServicesClient
      *
      * The async variant is {@see BackendServicesClient::setSecurityPolicyAsync()} .
      *
+     * @example samples/V1/BackendServicesClient/set_security_policy.php
+     *
      * @param SetSecurityPolicyBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -605,6 +643,8 @@ final class BackendServicesClient
      *
      * The async variant is {@see BackendServicesClient::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/BackendServicesClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -628,6 +668,8 @@ final class BackendServicesClient
      * Updates the specified BackendService resource with the data included in the request. For more information, see Backend services overview.
      *
      * The async variant is {@see BackendServicesClient::updateAsync()} .
+     *
+     * @example samples/V1/BackendServicesClient/update.php
      *
      * @param UpdateBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

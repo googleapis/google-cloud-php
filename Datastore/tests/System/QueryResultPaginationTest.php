@@ -30,9 +30,12 @@ class QueryResultPaginationTest extends DatastoreMultipleDbTestCase
     private static $parentKey;
     private static $testKind;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
         static $setUp = false;
         if ($setUp) {
             return;
@@ -66,10 +69,12 @@ class QueryResultPaginationTest extends DatastoreMultipleDbTestCase
 
         $setUp = true;
     }
-
-    public static function tearDownAfterClass(): void
+    /**
+     * @afterClass
+     */
+    public static function tearDownTestFixtures(): void
     {
-        self::setUpBeforeClass();
+        self::setUpTestFixtures();
 
         $client = self::$restClient;
         $q = $client->query()

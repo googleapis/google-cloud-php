@@ -34,9 +34,12 @@ class PgReadTest extends SpannerPgTestCase
     private static $indexes = [];
     private static $dataset;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
 
         self::$readTableName = "read_table";
         self::$rangeTableName = "range_table";

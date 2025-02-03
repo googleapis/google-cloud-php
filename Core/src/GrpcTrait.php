@@ -17,13 +17,11 @@
 
 namespace Google\Cloud\Core;
 
-use Google\Auth\GetUniverseDomainInterface;
 use Google\ApiCore\CredentialsWrapper;
+use Google\Auth\GetUniverseDomainInterface;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
-use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Protobuf\NullValue;
-use Google\Cloud\Core\Duration;
 
 /**
  * Provides shared functionality for gRPC service implementations.
@@ -98,8 +96,8 @@ trait GrpcTrait
      */
     private function getGaxConfig(
         $version,
-        callable $authHttpHandler = null,
-        string $universeDomain = null
+        ?callable $authHttpHandler = null,
+        ?string $universeDomain = null
     ) {
         $config = [
             'libName' => 'gccl',
@@ -278,7 +276,7 @@ trait GrpcTrait
      */
     private function formatTimestampForApi($value)
     {
-        list ($dt, $nanos) = $this->parseTimeString($value);
+        list($dt, $nanos) = $this->parseTimeString($value);
 
         return [
             'seconds' => (int) $dt->format('U'),

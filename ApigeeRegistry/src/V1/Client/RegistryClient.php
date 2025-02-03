@@ -83,6 +83,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Registry service allows teams to manage descriptions of APIs.
@@ -95,46 +96,46 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createApiAsync(CreateApiRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createApiDeploymentAsync(CreateApiDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createApiSpecAsync(CreateApiSpecRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createApiVersionAsync(CreateApiVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createArtifactAsync(CreateArtifactRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteApiAsync(DeleteApiRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteApiDeploymentAsync(DeleteApiDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteApiDeploymentRevisionAsync(DeleteApiDeploymentRevisionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteApiSpecAsync(DeleteApiSpecRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteApiSpecRevisionAsync(DeleteApiSpecRevisionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteApiVersionAsync(DeleteApiVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteArtifactAsync(DeleteArtifactRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getApiAsync(GetApiRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getApiDeploymentAsync(GetApiDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getApiSpecAsync(GetApiSpecRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getApiSpecContentsAsync(GetApiSpecContentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getApiVersionAsync(GetApiVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getArtifactAsync(GetArtifactRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getArtifactContentsAsync(GetArtifactContentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listApiDeploymentRevisionsAsync(ListApiDeploymentRevisionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listApiDeploymentsAsync(ListApiDeploymentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listApiSpecRevisionsAsync(ListApiSpecRevisionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listApiSpecsAsync(ListApiSpecsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listApiVersionsAsync(ListApiVersionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listApisAsync(ListApisRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listArtifactsAsync(ListArtifactsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface replaceArtifactAsync(ReplaceArtifactRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rollbackApiDeploymentAsync(RollbackApiDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rollbackApiSpecAsync(RollbackApiSpecRequest $request, array $optionalArgs = [])
- * @method PromiseInterface tagApiDeploymentRevisionAsync(TagApiDeploymentRevisionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface tagApiSpecRevisionAsync(TagApiSpecRevisionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateApiAsync(UpdateApiRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateApiDeploymentAsync(UpdateApiDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateApiSpecAsync(UpdateApiSpecRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateApiVersionAsync(UpdateApiVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Api> createApiAsync(CreateApiRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiDeployment> createApiDeploymentAsync(CreateApiDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiSpec> createApiSpecAsync(CreateApiSpecRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiVersion> createApiVersionAsync(CreateApiVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Artifact> createArtifactAsync(CreateArtifactRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteApiAsync(DeleteApiRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteApiDeploymentAsync(DeleteApiDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiDeployment> deleteApiDeploymentRevisionAsync(DeleteApiDeploymentRevisionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteApiSpecAsync(DeleteApiSpecRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiSpec> deleteApiSpecRevisionAsync(DeleteApiSpecRevisionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteApiVersionAsync(DeleteApiVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteArtifactAsync(DeleteArtifactRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Api> getApiAsync(GetApiRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiDeployment> getApiDeploymentAsync(GetApiDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiSpec> getApiSpecAsync(GetApiSpecRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HttpBody> getApiSpecContentsAsync(GetApiSpecContentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiVersion> getApiVersionAsync(GetApiVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Artifact> getArtifactAsync(GetArtifactRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HttpBody> getArtifactContentsAsync(GetArtifactContentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listApiDeploymentRevisionsAsync(ListApiDeploymentRevisionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listApiDeploymentsAsync(ListApiDeploymentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listApiSpecRevisionsAsync(ListApiSpecRevisionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listApiSpecsAsync(ListApiSpecsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listApiVersionsAsync(ListApiVersionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listApisAsync(ListApisRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listArtifactsAsync(ListArtifactsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Artifact> replaceArtifactAsync(ReplaceArtifactRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiDeployment> rollbackApiDeploymentAsync(RollbackApiDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiSpec> rollbackApiSpecAsync(RollbackApiSpecRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiDeployment> tagApiDeploymentRevisionAsync(TagApiDeploymentRevisionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiSpec> tagApiSpecRevisionAsync(TagApiSpecRevisionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Api> updateApiAsync(UpdateApiRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiDeployment> updateApiDeploymentAsync(UpdateApiDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiSpec> updateApiSpecAsync(UpdateApiSpecRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiVersion> updateApiVersionAsync(UpdateApiVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class RegistryClient
 {
@@ -460,14 +461,14 @@ final class RegistryClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -489,6 +490,12 @@ final class RegistryClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -522,6 +529,9 @@ final class RegistryClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

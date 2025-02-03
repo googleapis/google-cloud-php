@@ -1,0 +1,83 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.parametermanager.v1",
+    "libraryPackage": "Google\\Cloud\\ParameterManager\\V1",
+    "services": {
+        "ParameterManager": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ParameterManagerGapicClient",
+                    "rpcs": {
+                        "CreateParameter": {
+                            "methods": [
+                                "createParameter"
+                            ]
+                        },
+                        "CreateParameterVersion": {
+                            "methods": [
+                                "createParameterVersion"
+                            ]
+                        },
+                        "DeleteParameter": {
+                            "methods": [
+                                "deleteParameter"
+                            ]
+                        },
+                        "DeleteParameterVersion": {
+                            "methods": [
+                                "deleteParameterVersion"
+                            ]
+                        },
+                        "GetParameter": {
+                            "methods": [
+                                "getParameter"
+                            ]
+                        },
+                        "GetParameterVersion": {
+                            "methods": [
+                                "getParameterVersion"
+                            ]
+                        },
+                        "ListParameterVersions": {
+                            "methods": [
+                                "listParameterVersions"
+                            ]
+                        },
+                        "ListParameters": {
+                            "methods": [
+                                "listParameters"
+                            ]
+                        },
+                        "RenderParameterVersion": {
+                            "methods": [
+                                "renderParameterVersion"
+                            ]
+                        },
+                        "UpdateParameter": {
+                            "methods": [
+                                "updateParameter"
+                            ]
+                        },
+                        "UpdateParameterVersion": {
+                            "methods": [
+                                "updateParameterVersion"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

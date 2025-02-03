@@ -41,14 +41,14 @@ class Dimension extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * One dimension can be the result of an expression of multiple dimensions.
      * For example, dimension "country, city": concatenate(country, ", ", city).
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.DimensionExpression dimension_expression = 2;</code>
      */
-    private $dimension_expression = null;
+    protected $dimension_expression = null;
 
     /**
      * Constructor.

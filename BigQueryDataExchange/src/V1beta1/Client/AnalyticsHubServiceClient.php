@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,6 +59,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The `AnalyticsHubService` API facilitates data sharing within and across
@@ -78,23 +79,23 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createDataExchangeAsync(CreateDataExchangeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createListingAsync(CreateListingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDataExchangeAsync(DeleteDataExchangeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteListingAsync(DeleteListingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataExchangeAsync(GetDataExchangeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getListingAsync(GetListingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDataExchangesAsync(ListDataExchangesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listListingsAsync(ListListingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listOrgDataExchangesAsync(ListOrgDataExchangesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface subscribeListingAsync(SubscribeListingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDataExchangeAsync(UpdateDataExchangeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateListingAsync(UpdateListingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataExchange> createDataExchangeAsync(CreateDataExchangeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Listing> createListingAsync(CreateListingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteDataExchangeAsync(DeleteDataExchangeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteListingAsync(DeleteListingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataExchange> getDataExchangeAsync(GetDataExchangeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Listing> getListingAsync(GetListingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDataExchangesAsync(ListDataExchangesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listListingsAsync(ListListingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listOrgDataExchangesAsync(ListOrgDataExchangesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SubscribeListingResponse> subscribeListingAsync(SubscribeListingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataExchange> updateDataExchangeAsync(UpdateDataExchangeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Listing> updateListingAsync(UpdateListingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class AnalyticsHubServiceClient
 {
@@ -242,8 +243,8 @@ final class AnalyticsHubServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
@@ -251,7 +252,7 @@ final class AnalyticsHubServiceClient
      *
      * @experimental
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -273,6 +274,12 @@ final class AnalyticsHubServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -306,6 +313,9 @@ final class AnalyticsHubServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -605,8 +615,10 @@ final class AnalyticsHubServiceClient
      *
      * @experimental
      */
-    public function listOrgDataExchanges(ListOrgDataExchangesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listOrgDataExchanges(
+        ListOrgDataExchangesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListOrgDataExchanges', $request, $callOptions);
     }
 
@@ -666,8 +678,10 @@ final class AnalyticsHubServiceClient
      *
      * @experimental
      */
-    public function subscribeListing(SubscribeListingRequest $request, array $callOptions = []): SubscribeListingResponse
-    {
+    public function subscribeListing(
+        SubscribeListingRequest $request,
+        array $callOptions = []
+    ): SubscribeListingResponse {
         return $this->startApiCall('SubscribeListing', $request, $callOptions)->wait();
     }
 
@@ -695,8 +709,10 @@ final class AnalyticsHubServiceClient
      *
      * @experimental
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

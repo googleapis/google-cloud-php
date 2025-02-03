@@ -16,8 +16,6 @@ use Google\Protobuf\Internal\GPBUtil;
 class Binding extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is deprecated and has no effect. Do not use.
-     *
      * Generated from protobuf field <code>optional string binding_id = 441088277;</code>
      */
     private $binding_id = null;
@@ -47,7 +45,6 @@ class Binding extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $binding_id
-     *           This is deprecated and has no effect. Do not use.
      *     @type \Google\Cloud\Compute\V1\Expr $condition
      *           The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $members
@@ -62,8 +59,6 @@ class Binding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is deprecated and has no effect. Do not use.
-     *
      * Generated from protobuf field <code>optional string binding_id = 441088277;</code>
      * @return string
      */
@@ -83,8 +78,6 @@ class Binding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is deprecated and has no effect. Do not use.
-     *
      * Generated from protobuf field <code>optional string binding_id = 441088277;</code>
      * @param string $var
      * @return $this

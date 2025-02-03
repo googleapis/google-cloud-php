@@ -22,7 +22,19 @@ class UpdateConversationRequest extends \Google\Protobuf\Internal\Message
      */
     protected $conversation = null;
     /**
-     * The list of fields to be updated.
+     * The list of fields to be updated. All possible fields can be updated by
+     * passing `*`, or a subset of the following updateable fields can be
+     * provided:
+     * * `agent_id`
+     * * `language_code`
+     * * `labels`
+     * * `metadata`
+     * * `quality_metadata`
+     * * `call_metadata`
+     * * `start_time`
+     * * `expire_time` or `ttl`
+     * * `data_source.gcs_source.audio_uri` or
+     * `data_source.dialogflow_source.audio_uri`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -30,7 +42,20 @@ class UpdateConversationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param \Google\Cloud\ContactCenterInsights\V1\Conversation $conversation Required. The new values for the conversation.
-     * @param \Google\Protobuf\FieldMask                          $updateMask   The list of fields to be updated.
+     * @param \Google\Protobuf\FieldMask                          $updateMask   The list of fields to be updated. All possible fields can be updated by
+     *                                                                          passing `*`, or a subset of the following updateable fields can be
+     *                                                                          provided:
+     *
+     *                                                                          * `agent_id`
+     *                                                                          * `language_code`
+     *                                                                          * `labels`
+     *                                                                          * `metadata`
+     *                                                                          * `quality_metadata`
+     *                                                                          * `call_metadata`
+     *                                                                          * `start_time`
+     *                                                                          * `expire_time` or `ttl`
+     *                                                                          * `data_source.gcs_source.audio_uri` or
+     *                                                                          `data_source.dialogflow_source.audio_uri`
      *
      * @return \Google\Cloud\ContactCenterInsights\V1\UpdateConversationRequest
      *
@@ -52,7 +77,19 @@ class UpdateConversationRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\ContactCenterInsights\V1\Conversation $conversation
      *           Required. The new values for the conversation.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           The list of fields to be updated.
+     *           The list of fields to be updated. All possible fields can be updated by
+     *           passing `*`, or a subset of the following updateable fields can be
+     *           provided:
+     *           * `agent_id`
+     *           * `language_code`
+     *           * `labels`
+     *           * `metadata`
+     *           * `quality_metadata`
+     *           * `call_metadata`
+     *           * `start_time`
+     *           * `expire_time` or `ttl`
+     *           * `data_source.gcs_source.audio_uri` or
+     *           `data_source.dialogflow_source.audio_uri`
      * }
      */
     public function __construct($data = NULL) {
@@ -97,7 +134,19 @@ class UpdateConversationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of fields to be updated.
+     * The list of fields to be updated. All possible fields can be updated by
+     * passing `*`, or a subset of the following updateable fields can be
+     * provided:
+     * * `agent_id`
+     * * `language_code`
+     * * `labels`
+     * * `metadata`
+     * * `quality_metadata`
+     * * `call_metadata`
+     * * `start_time`
+     * * `expire_time` or `ttl`
+     * * `data_source.gcs_source.audio_uri` or
+     * `data_source.dialogflow_source.audio_uri`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -118,7 +167,19 @@ class UpdateConversationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of fields to be updated.
+     * The list of fields to be updated. All possible fields can be updated by
+     * passing `*`, or a subset of the following updateable fields can be
+     * provided:
+     * * `agent_id`
+     * * `language_code`
+     * * `labels`
+     * * `metadata`
+     * * `quality_metadata`
+     * * `call_metadata`
+     * * `start_time`
+     * * `expire_time` or `ttl`
+     * * `data_source.gcs_source.audio_uri` or
+     * `data_source.dialogflow_source.audio_uri`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

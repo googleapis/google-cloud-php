@@ -68,6 +68,7 @@ use Google\Cloud\Asset\V1\UpdateSavedQueryRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Asset service definition.
@@ -80,29 +81,29 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface analyzeIamPolicyAsync(AnalyzeIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface analyzeIamPolicyLongrunningAsync(AnalyzeIamPolicyLongrunningRequest $request, array $optionalArgs = [])
- * @method PromiseInterface analyzeMoveAsync(AnalyzeMoveRequest $request, array $optionalArgs = [])
- * @method PromiseInterface analyzeOrgPoliciesAsync(AnalyzeOrgPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface analyzeOrgPolicyGovernedAssetsAsync(AnalyzeOrgPolicyGovernedAssetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface analyzeOrgPolicyGovernedContainersAsync(AnalyzeOrgPolicyGovernedContainersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchGetAssetsHistoryAsync(BatchGetAssetsHistoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchGetEffectiveIamPoliciesAsync(BatchGetEffectiveIamPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createFeedAsync(CreateFeedRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSavedQueryAsync(CreateSavedQueryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteFeedAsync(DeleteFeedRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSavedQueryAsync(DeleteSavedQueryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportAssetsAsync(ExportAssetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getFeedAsync(GetFeedRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSavedQueryAsync(GetSavedQueryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAssetsAsync(ListAssetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFeedsAsync(ListFeedsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSavedQueriesAsync(ListSavedQueriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface queryAssetsAsync(QueryAssetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchAllIamPoliciesAsync(SearchAllIamPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchAllResourcesAsync(SearchAllResourcesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateFeedAsync(UpdateFeedRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSavedQueryAsync(UpdateSavedQueryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AnalyzeIamPolicyResponse> analyzeIamPolicyAsync(AnalyzeIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> analyzeIamPolicyLongrunningAsync(AnalyzeIamPolicyLongrunningRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AnalyzeMoveResponse> analyzeMoveAsync(AnalyzeMoveRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> analyzeOrgPoliciesAsync(AnalyzeOrgPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> analyzeOrgPolicyGovernedAssetsAsync(AnalyzeOrgPolicyGovernedAssetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> analyzeOrgPolicyGovernedContainersAsync(AnalyzeOrgPolicyGovernedContainersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchGetAssetsHistoryResponse> batchGetAssetsHistoryAsync(BatchGetAssetsHistoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchGetEffectiveIamPoliciesResponse> batchGetEffectiveIamPoliciesAsync(BatchGetEffectiveIamPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Feed> createFeedAsync(CreateFeedRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SavedQuery> createSavedQueryAsync(CreateSavedQueryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteFeedAsync(DeleteFeedRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteSavedQueryAsync(DeleteSavedQueryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportAssetsAsync(ExportAssetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Feed> getFeedAsync(GetFeedRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SavedQuery> getSavedQueryAsync(GetSavedQueryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAssetsAsync(ListAssetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListFeedsResponse> listFeedsAsync(ListFeedsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSavedQueriesAsync(ListSavedQueriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QueryAssetsResponse> queryAssetsAsync(QueryAssetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchAllIamPoliciesAsync(SearchAllIamPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchAllResourcesAsync(SearchAllResourcesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Feed> updateFeedAsync(UpdateFeedRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SavedQuery> updateSavedQueryAsync(UpdateSavedQueryRequest $request, array $optionalArgs = [])
  */
 final class AssetServiceClient
 {
@@ -405,14 +406,14 @@ final class AssetServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -434,6 +435,12 @@ final class AssetServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -467,6 +474,9 @@ final class AssetServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

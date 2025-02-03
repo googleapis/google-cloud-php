@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\Dialogflow\V2\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -53,8 +52,10 @@ use Google\Cloud\Dialogflow\V2\UndeployConversationModelRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Manages a collection of models for human agent assistant.
@@ -67,17 +68,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createConversationModelAsync(CreateConversationModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createConversationModelEvaluationAsync(CreateConversationModelEvaluationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteConversationModelAsync(DeleteConversationModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deployConversationModelAsync(DeployConversationModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConversationModelAsync(GetConversationModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConversationModelEvaluationAsync(GetConversationModelEvaluationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConversationModelEvaluationsAsync(ListConversationModelEvaluationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConversationModelsAsync(ListConversationModelsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface undeployConversationModelAsync(UndeployConversationModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createConversationModelAsync(CreateConversationModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createConversationModelEvaluationAsync(CreateConversationModelEvaluationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteConversationModelAsync(DeleteConversationModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deployConversationModelAsync(DeployConversationModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversationModel> getConversationModelAsync(GetConversationModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversationModelEvaluation> getConversationModelEvaluationAsync(GetConversationModelEvaluationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConversationModelEvaluationsAsync(ListConversationModelEvaluationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConversationModelsAsync(ListConversationModelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> undeployConversationModelAsync(UndeployConversationModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class ConversationModelsClient
 {
@@ -153,10 +154,31 @@ final class ConversationModelsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -169,8 +191,11 @@ final class ConversationModelsClient
      *
      * @return string The formatted conversation_dataset resource.
      */
-    public static function conversationDatasetName(string $project, string $location, string $conversationDataset): string
-    {
+    public static function conversationDatasetName(
+        string $project,
+        string $location,
+        string $conversationDataset
+    ): string {
         return self::getPathTemplate('conversationDataset')->render([
             'project' => $project,
             'location' => $location,
@@ -207,8 +232,11 @@ final class ConversationModelsClient
      *
      * @return string The formatted conversation_model_evaluation resource.
      */
-    public static function conversationModelEvaluationName(string $project, string $conversationModel, string $evaluation): string
-    {
+    public static function conversationModelEvaluationName(
+        string $project,
+        string $conversationModel,
+        string $evaluation
+    ): string {
         return self::getPathTemplate('conversationModelEvaluation')->render([
             'project' => $project,
             'conversation_model' => $conversationModel,
@@ -262,8 +290,11 @@ final class ConversationModelsClient
      *
      * @return string The formatted project_conversation_model_evaluation resource.
      */
-    public static function projectConversationModelEvaluationName(string $project, string $conversationModel, string $evaluation): string
-    {
+    public static function projectConversationModelEvaluationName(
+        string $project,
+        string $conversationModel,
+        string $evaluation
+    ): string {
         return self::getPathTemplate('projectConversationModelEvaluation')->render([
             'project' => $project,
             'conversation_model' => $conversationModel,
@@ -281,8 +312,11 @@ final class ConversationModelsClient
      *
      * @return string The formatted project_knowledge_base_document resource.
      */
-    public static function projectKnowledgeBaseDocumentName(string $project, string $knowledgeBase, string $document): string
-    {
+    public static function projectKnowledgeBaseDocumentName(
+        string $project,
+        string $knowledgeBase,
+        string $document
+    ): string {
         return self::getPathTemplate('projectKnowledgeBaseDocument')->render([
             'project' => $project,
             'knowledge_base' => $knowledgeBase,
@@ -300,8 +334,11 @@ final class ConversationModelsClient
      *
      * @return string The formatted project_location_conversation_model resource.
      */
-    public static function projectLocationConversationModelName(string $project, string $location, string $conversationModel): string
-    {
+    public static function projectLocationConversationModelName(
+        string $project,
+        string $location,
+        string $conversationModel
+    ): string {
         return self::getPathTemplate('projectLocationConversationModel')->render([
             'project' => $project,
             'location' => $location,
@@ -320,8 +357,12 @@ final class ConversationModelsClient
      *
      * @return string The formatted project_location_conversation_model_evaluation resource.
      */
-    public static function projectLocationConversationModelEvaluationName(string $project, string $location, string $conversationModel, string $evaluation): string
-    {
+    public static function projectLocationConversationModelEvaluationName(
+        string $project,
+        string $location,
+        string $conversationModel,
+        string $evaluation
+    ): string {
         return self::getPathTemplate('projectLocationConversationModelEvaluation')->render([
             'project' => $project,
             'location' => $location,
@@ -341,8 +382,12 @@ final class ConversationModelsClient
      *
      * @return string The formatted project_location_knowledge_base_document resource.
      */
-    public static function projectLocationKnowledgeBaseDocumentName(string $project, string $location, string $knowledgeBase, string $document): string
-    {
+    public static function projectLocationKnowledgeBaseDocumentName(
+        string $project,
+        string $location,
+        string $knowledgeBase,
+        string $document
+    ): string {
         return self::getPathTemplate('projectLocationKnowledgeBaseDocument')->render([
             'project' => $project,
             'location' => $location,
@@ -372,14 +417,14 @@ final class ConversationModelsClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -401,6 +446,12 @@ final class ConversationModelsClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -434,6 +485,9 @@ final class ConversationModelsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -487,8 +541,10 @@ final class ConversationModelsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createConversationModel(CreateConversationModelRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createConversationModel(
+        CreateConversationModelRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateConversationModel', $request, $callOptions)->wait();
     }
 
@@ -514,8 +570,10 @@ final class ConversationModelsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createConversationModelEvaluation(CreateConversationModelEvaluationRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createConversationModelEvaluation(
+        CreateConversationModelEvaluationRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateConversationModelEvaluation', $request, $callOptions)->wait();
     }
 
@@ -550,8 +608,10 @@ final class ConversationModelsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteConversationModel(DeleteConversationModelRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteConversationModel(
+        DeleteConversationModelRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteConversationModel', $request, $callOptions)->wait();
     }
 
@@ -589,8 +649,10 @@ final class ConversationModelsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deployConversationModel(DeployConversationModelRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deployConversationModel(
+        DeployConversationModelRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeployConversationModel', $request, $callOptions)->wait();
     }
 
@@ -616,8 +678,10 @@ final class ConversationModelsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getConversationModel(GetConversationModelRequest $request, array $callOptions = []): ConversationModel
-    {
+    public function getConversationModel(
+        GetConversationModelRequest $request,
+        array $callOptions = []
+    ): ConversationModel {
         return $this->startApiCall('GetConversationModel', $request, $callOptions)->wait();
     }
 
@@ -643,8 +707,10 @@ final class ConversationModelsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getConversationModelEvaluation(GetConversationModelEvaluationRequest $request, array $callOptions = []): ConversationModelEvaluation
-    {
+    public function getConversationModelEvaluation(
+        GetConversationModelEvaluationRequest $request,
+        array $callOptions = []
+    ): ConversationModelEvaluation {
         return $this->startApiCall('GetConversationModelEvaluation', $request, $callOptions)->wait();
     }
 
@@ -670,8 +736,10 @@ final class ConversationModelsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listConversationModelEvaluations(ListConversationModelEvaluationsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listConversationModelEvaluations(
+        ListConversationModelEvaluationsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListConversationModelEvaluations', $request, $callOptions);
     }
 
@@ -697,8 +765,10 @@ final class ConversationModelsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listConversationModels(ListConversationModelsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listConversationModels(
+        ListConversationModelsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListConversationModels', $request, $callOptions);
     }
 
@@ -736,8 +806,10 @@ final class ConversationModelsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function undeployConversationModel(UndeployConversationModelRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function undeployConversationModel(
+        UndeployConversationModelRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UndeployConversationModel', $request, $callOptions)->wait();
     }
 

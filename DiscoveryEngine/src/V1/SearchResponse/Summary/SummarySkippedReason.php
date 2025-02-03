@@ -30,6 +30,7 @@ class SummarySkippedReason
     const ADVERSARIAL_QUERY_IGNORED = 1;
     /**
      * The non-summary seeking query ignored case.
+     * Google skips the summary if the query is chit chat.
      * Only used when
      * [SummarySpec.ignore_non_summary_seeking_query][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SummarySpec.ignore_non_summary_seeking_query]
      * is set to `true`.
@@ -87,6 +88,16 @@ class SummarySkippedReason
      * Generated from protobuf enum <code>CUSTOMER_POLICY_VIOLATION = 8;</code>
      */
     const CUSTOMER_POLICY_VIOLATION = 8;
+    /**
+     * The non-answer seeking query ignored case.
+     * Google skips the summary if the query doesn't have clear intent.
+     * Only used when
+     * [SearchRequest.ContentSearchSpec.SummarySpec.ignore_non_answer_seeking_query]
+     * is set to `true`.
+     *
+     * Generated from protobuf enum <code>NON_SUMMARY_SEEKING_QUERY_IGNORED_V2 = 9;</code>
+     */
+    const NON_SUMMARY_SEEKING_QUERY_IGNORED_V2 = 9;
 
     private static $valueToName = [
         self::SUMMARY_SKIPPED_REASON_UNSPECIFIED => 'SUMMARY_SKIPPED_REASON_UNSPECIFIED',
@@ -98,6 +109,7 @@ class SummarySkippedReason
         self::NO_RELEVANT_CONTENT => 'NO_RELEVANT_CONTENT',
         self::JAIL_BREAKING_QUERY_IGNORED => 'JAIL_BREAKING_QUERY_IGNORED',
         self::CUSTOMER_POLICY_VIOLATION => 'CUSTOMER_POLICY_VIOLATION',
+        self::NON_SUMMARY_SEEKING_QUERY_IGNORED_V2 => 'NON_SUMMARY_SEEKING_QUERY_IGNORED_V2',
     ];
 
     public static function name($value)

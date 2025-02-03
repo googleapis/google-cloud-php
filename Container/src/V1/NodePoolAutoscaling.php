@@ -23,14 +23,14 @@ class NodePoolAutoscaling extends \Google\Protobuf\Internal\Message
      */
     protected $enabled = false;
     /**
-     * Minimum number of nodes for one location in the NodePool. Must be >= 1 and
-     * <= max_node_count.
+     * Minimum number of nodes for one location in the node pool. Must be greater
+     * than or equal to 0 and less than or equal to max_node_count.
      *
      * Generated from protobuf field <code>int32 min_node_count = 2;</code>
      */
     protected $min_node_count = 0;
     /**
-     * Maximum number of nodes for one location in the NodePool. Must be >=
+     * Maximum number of nodes for one location in the node pool. Must be >=
      * min_node_count. There has to be enough quota to scale up the cluster.
      *
      * Generated from protobuf field <code>int32 max_node_count = 3;</code>
@@ -49,8 +49,8 @@ class NodePoolAutoscaling extends \Google\Protobuf\Internal\Message
      */
     protected $location_policy = 0;
     /**
-     * Minimum number of nodes in the node pool. Must be greater than 1 less than
-     * total_max_node_count.
+     * Minimum number of nodes in the node pool. Must be greater than or equal
+     * to 0 and less than or equal to total_max_node_count.
      * The total_*_node_count fields are mutually exclusive with the *_node_count
      * fields.
      *
@@ -58,7 +58,7 @@ class NodePoolAutoscaling extends \Google\Protobuf\Internal\Message
      */
     protected $total_min_node_count = 0;
     /**
-     * Maximum number of nodes in the node pool. Must be greater than
+     * Maximum number of nodes in the node pool. Must be greater than or equal to
      * total_min_node_count. There has to be enough quota to scale up the cluster.
      * The total_*_node_count fields are mutually exclusive with the *_node_count
      * fields.
@@ -76,22 +76,22 @@ class NodePoolAutoscaling extends \Google\Protobuf\Internal\Message
      *     @type bool $enabled
      *           Is autoscaling enabled for this node pool.
      *     @type int $min_node_count
-     *           Minimum number of nodes for one location in the NodePool. Must be >= 1 and
-     *           <= max_node_count.
+     *           Minimum number of nodes for one location in the node pool. Must be greater
+     *           than or equal to 0 and less than or equal to max_node_count.
      *     @type int $max_node_count
-     *           Maximum number of nodes for one location in the NodePool. Must be >=
+     *           Maximum number of nodes for one location in the node pool. Must be >=
      *           min_node_count. There has to be enough quota to scale up the cluster.
      *     @type bool $autoprovisioned
      *           Can this node pool be deleted automatically.
      *     @type int $location_policy
      *           Location policy used when scaling up a nodepool.
      *     @type int $total_min_node_count
-     *           Minimum number of nodes in the node pool. Must be greater than 1 less than
-     *           total_max_node_count.
+     *           Minimum number of nodes in the node pool. Must be greater than or equal
+     *           to 0 and less than or equal to total_max_node_count.
      *           The total_*_node_count fields are mutually exclusive with the *_node_count
      *           fields.
      *     @type int $total_max_node_count
-     *           Maximum number of nodes in the node pool. Must be greater than
+     *           Maximum number of nodes in the node pool. Must be greater than or equal to
      *           total_min_node_count. There has to be enough quota to scale up the cluster.
      *           The total_*_node_count fields are mutually exclusive with the *_node_count
      *           fields.
@@ -129,8 +129,8 @@ class NodePoolAutoscaling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Minimum number of nodes for one location in the NodePool. Must be >= 1 and
-     * <= max_node_count.
+     * Minimum number of nodes for one location in the node pool. Must be greater
+     * than or equal to 0 and less than or equal to max_node_count.
      *
      * Generated from protobuf field <code>int32 min_node_count = 2;</code>
      * @return int
@@ -141,8 +141,8 @@ class NodePoolAutoscaling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Minimum number of nodes for one location in the NodePool. Must be >= 1 and
-     * <= max_node_count.
+     * Minimum number of nodes for one location in the node pool. Must be greater
+     * than or equal to 0 and less than or equal to max_node_count.
      *
      * Generated from protobuf field <code>int32 min_node_count = 2;</code>
      * @param int $var
@@ -157,7 +157,7 @@ class NodePoolAutoscaling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of nodes for one location in the NodePool. Must be >=
+     * Maximum number of nodes for one location in the node pool. Must be >=
      * min_node_count. There has to be enough quota to scale up the cluster.
      *
      * Generated from protobuf field <code>int32 max_node_count = 3;</code>
@@ -169,7 +169,7 @@ class NodePoolAutoscaling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of nodes for one location in the NodePool. Must be >=
+     * Maximum number of nodes for one location in the node pool. Must be >=
      * min_node_count. There has to be enough quota to scale up the cluster.
      *
      * Generated from protobuf field <code>int32 max_node_count = 3;</code>
@@ -237,8 +237,8 @@ class NodePoolAutoscaling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Minimum number of nodes in the node pool. Must be greater than 1 less than
-     * total_max_node_count.
+     * Minimum number of nodes in the node pool. Must be greater than or equal
+     * to 0 and less than or equal to total_max_node_count.
      * The total_*_node_count fields are mutually exclusive with the *_node_count
      * fields.
      *
@@ -251,8 +251,8 @@ class NodePoolAutoscaling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Minimum number of nodes in the node pool. Must be greater than 1 less than
-     * total_max_node_count.
+     * Minimum number of nodes in the node pool. Must be greater than or equal
+     * to 0 and less than or equal to total_max_node_count.
      * The total_*_node_count fields are mutually exclusive with the *_node_count
      * fields.
      *
@@ -269,7 +269,7 @@ class NodePoolAutoscaling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of nodes in the node pool. Must be greater than
+     * Maximum number of nodes in the node pool. Must be greater than or equal to
      * total_min_node_count. There has to be enough quota to scale up the cluster.
      * The total_*_node_count fields are mutually exclusive with the *_node_count
      * fields.
@@ -283,7 +283,7 @@ class NodePoolAutoscaling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of nodes in the node pool. Must be greater than
+     * Maximum number of nodes in the node pool. Must be greater than or equal to
      * total_min_node_count. There has to be enough quota to scale up the cluster.
      * The total_*_node_count fields are mutually exclusive with the *_node_count
      * fields.

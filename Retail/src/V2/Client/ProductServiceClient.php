@@ -50,6 +50,7 @@ use Google\Cloud\Retail\V2\UpdateProductRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service for ingesting [Product][google.cloud.retail.v2.Product] information
@@ -63,18 +64,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface addFulfillmentPlacesAsync(AddFulfillmentPlacesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface addLocalInventoriesAsync(AddLocalInventoriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createProductAsync(CreateProductRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteProductAsync(DeleteProductRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getProductAsync(GetProductRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importProductsAsync(ImportProductsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listProductsAsync(ListProductsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface purgeProductsAsync(PurgeProductsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeFulfillmentPlacesAsync(RemoveFulfillmentPlacesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeLocalInventoriesAsync(RemoveLocalInventoriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setInventoryAsync(SetInventoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateProductAsync(UpdateProductRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addFulfillmentPlacesAsync(AddFulfillmentPlacesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addLocalInventoriesAsync(AddLocalInventoriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Product> createProductAsync(CreateProductRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteProductAsync(DeleteProductRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Product> getProductAsync(GetProductRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importProductsAsync(ImportProductsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listProductsAsync(ListProductsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> purgeProductsAsync(PurgeProductsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeFulfillmentPlacesAsync(RemoveFulfillmentPlacesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeLocalInventoriesAsync(RemoveLocalInventoriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setInventoryAsync(SetInventoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Product> updateProductAsync(UpdateProductRequest $request, array $optionalArgs = [])
  */
 final class ProductServiceClient
 {
@@ -236,14 +237,14 @@ final class ProductServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -265,6 +266,12 @@ final class ProductServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -298,6 +305,9 @@ final class ProductServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

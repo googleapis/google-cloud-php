@@ -17,8 +17,8 @@ class Changelog extends \Google\Protobuf\Internal\Message
 {
     /**
      * The unique identifier of the changelog.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/changelogs/<Changelog ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/changelogs/<ChangelogID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -74,8 +74,8 @@ class Changelog extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The unique identifier of the changelog.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/changelogs/<Changelog ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/changelogs/<ChangelogID>`.
      *     @type string $user_email
      *           Email address of the authenticated user.
      *     @type string $display_name
@@ -99,8 +99,8 @@ class Changelog extends \Google\Protobuf\Internal\Message
 
     /**
      * The unique identifier of the changelog.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/changelogs/<Changelog ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/changelogs/<ChangelogID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -112,8 +112,8 @@ class Changelog extends \Google\Protobuf\Internal\Message
 
     /**
      * The unique identifier of the changelog.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/changelogs/<Changelog ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/changelogs/<ChangelogID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

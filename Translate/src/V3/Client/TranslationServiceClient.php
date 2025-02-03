@@ -88,6 +88,7 @@ use Google\Cloud\Translate\V3\UpdateGlossaryEntryRequest;
 use Google\Cloud\Translate\V3\UpdateGlossaryRequest;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Provides natural language translation operations.
@@ -100,44 +101,44 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface adaptiveMtTranslateAsync(AdaptiveMtTranslateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchTranslateDocumentAsync(BatchTranslateDocumentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchTranslateTextAsync(BatchTranslateTextRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createAdaptiveMtDatasetAsync(CreateAdaptiveMtDatasetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createDatasetAsync(CreateDatasetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createGlossaryAsync(CreateGlossaryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createGlossaryEntryAsync(CreateGlossaryEntryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createModelAsync(CreateModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAdaptiveMtDatasetAsync(DeleteAdaptiveMtDatasetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAdaptiveMtFileAsync(DeleteAdaptiveMtFileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDatasetAsync(DeleteDatasetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteGlossaryAsync(DeleteGlossaryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteGlossaryEntryAsync(DeleteGlossaryEntryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteModelAsync(DeleteModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface detectLanguageAsync(DetectLanguageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportDataAsync(ExportDataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAdaptiveMtDatasetAsync(GetAdaptiveMtDatasetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAdaptiveMtFileAsync(GetAdaptiveMtFileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDatasetAsync(GetDatasetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getGlossaryAsync(GetGlossaryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getGlossaryEntryAsync(GetGlossaryEntryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getModelAsync(GetModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSupportedLanguagesAsync(GetSupportedLanguagesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importAdaptiveMtFileAsync(ImportAdaptiveMtFileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importDataAsync(ImportDataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAdaptiveMtDatasetsAsync(ListAdaptiveMtDatasetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAdaptiveMtFilesAsync(ListAdaptiveMtFilesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAdaptiveMtSentencesAsync(ListAdaptiveMtSentencesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDatasetsAsync(ListDatasetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listExamplesAsync(ListExamplesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listGlossariesAsync(ListGlossariesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listGlossaryEntriesAsync(ListGlossaryEntriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listModelsAsync(ListModelsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface romanizeTextAsync(RomanizeTextRequest $request, array $optionalArgs = [])
- * @method PromiseInterface translateDocumentAsync(TranslateDocumentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface translateTextAsync(TranslateTextRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateGlossaryAsync(UpdateGlossaryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateGlossaryEntryAsync(UpdateGlossaryEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AdaptiveMtTranslateResponse> adaptiveMtTranslateAsync(AdaptiveMtTranslateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> batchTranslateDocumentAsync(BatchTranslateDocumentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> batchTranslateTextAsync(BatchTranslateTextRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AdaptiveMtDataset> createAdaptiveMtDatasetAsync(CreateAdaptiveMtDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createDatasetAsync(CreateDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createGlossaryAsync(CreateGlossaryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GlossaryEntry> createGlossaryEntryAsync(CreateGlossaryEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createModelAsync(CreateModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAdaptiveMtDatasetAsync(DeleteAdaptiveMtDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAdaptiveMtFileAsync(DeleteAdaptiveMtFileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDatasetAsync(DeleteDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteGlossaryAsync(DeleteGlossaryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteGlossaryEntryAsync(DeleteGlossaryEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteModelAsync(DeleteModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DetectLanguageResponse> detectLanguageAsync(DetectLanguageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportDataAsync(ExportDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AdaptiveMtDataset> getAdaptiveMtDatasetAsync(GetAdaptiveMtDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AdaptiveMtFile> getAdaptiveMtFileAsync(GetAdaptiveMtFileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Dataset> getDatasetAsync(GetDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Glossary> getGlossaryAsync(GetGlossaryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GlossaryEntry> getGlossaryEntryAsync(GetGlossaryEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Model> getModelAsync(GetModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SupportedLanguages> getSupportedLanguagesAsync(GetSupportedLanguagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ImportAdaptiveMtFileResponse> importAdaptiveMtFileAsync(ImportAdaptiveMtFileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importDataAsync(ImportDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAdaptiveMtDatasetsAsync(ListAdaptiveMtDatasetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAdaptiveMtFilesAsync(ListAdaptiveMtFilesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAdaptiveMtSentencesAsync(ListAdaptiveMtSentencesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDatasetsAsync(ListDatasetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listExamplesAsync(ListExamplesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGlossariesAsync(ListGlossariesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGlossaryEntriesAsync(ListGlossaryEntriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listModelsAsync(ListModelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RomanizeTextResponse> romanizeTextAsync(RomanizeTextRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TranslateDocumentResponse> translateDocumentAsync(TranslateDocumentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TranslateTextResponse> translateTextAsync(TranslateTextRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateGlossaryAsync(UpdateGlossaryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GlossaryEntry> updateGlossaryEntryAsync(UpdateGlossaryEntryRequest $request, array $optionalArgs = [])
  */
 final class TranslationServiceClient
 {
@@ -372,14 +373,14 @@ final class TranslationServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -401,6 +402,12 @@ final class TranslationServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -434,6 +441,9 @@ final class TranslationServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

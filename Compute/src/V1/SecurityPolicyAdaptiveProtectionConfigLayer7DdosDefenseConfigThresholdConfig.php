@@ -31,11 +31,29 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConf
      */
     private $auto_deploy_load_threshold = null;
     /**
+     * Generated from protobuf field <code>optional float detection_absolute_qps = 383123174;</code>
+     */
+    private $detection_absolute_qps = null;
+    /**
+     * Generated from protobuf field <code>optional float detection_load_threshold = 430499148;</code>
+     */
+    private $detection_load_threshold = null;
+    /**
+     * Generated from protobuf field <code>optional float detection_relative_to_baseline_qps = 291343749;</code>
+     */
+    private $detection_relative_to_baseline_qps = null;
+    /**
      * The name must be 1-63 characters long, and comply with RFC1035. The name must be unique within the security policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
+    /**
+     * Configuration options for enabling Adaptive Protection to operate on specified granular traffic units.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfigTrafficGranularityConfig traffic_granularity_configs = 85367358;</code>
+     */
+    private $traffic_granularity_configs;
 
     /**
      * Constructor.
@@ -47,8 +65,13 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConf
      *     @type int $auto_deploy_expiration_sec
      *     @type float $auto_deploy_impacted_baseline_threshold
      *     @type float $auto_deploy_load_threshold
+     *     @type float $detection_absolute_qps
+     *     @type float $detection_load_threshold
+     *     @type float $detection_relative_to_baseline_qps
      *     @type string $name
      *           The name must be 1-63 characters long, and comply with RFC1035. The name must be unique within the security policy.
+     *     @type array<\Google\Cloud\Compute\V1\SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfigTrafficGranularityConfig>|\Google\Protobuf\Internal\RepeatedField $traffic_granularity_configs
+     *           Configuration options for enabling Adaptive Protection to operate on specified granular traffic units.
      * }
      */
     public function __construct($data = NULL) {
@@ -185,6 +208,102 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConf
     }
 
     /**
+     * Generated from protobuf field <code>optional float detection_absolute_qps = 383123174;</code>
+     * @return float
+     */
+    public function getDetectionAbsoluteQps()
+    {
+        return isset($this->detection_absolute_qps) ? $this->detection_absolute_qps : 0.0;
+    }
+
+    public function hasDetectionAbsoluteQps()
+    {
+        return isset($this->detection_absolute_qps);
+    }
+
+    public function clearDetectionAbsoluteQps()
+    {
+        unset($this->detection_absolute_qps);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional float detection_absolute_qps = 383123174;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setDetectionAbsoluteQps($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->detection_absolute_qps = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional float detection_load_threshold = 430499148;</code>
+     * @return float
+     */
+    public function getDetectionLoadThreshold()
+    {
+        return isset($this->detection_load_threshold) ? $this->detection_load_threshold : 0.0;
+    }
+
+    public function hasDetectionLoadThreshold()
+    {
+        return isset($this->detection_load_threshold);
+    }
+
+    public function clearDetectionLoadThreshold()
+    {
+        unset($this->detection_load_threshold);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional float detection_load_threshold = 430499148;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setDetectionLoadThreshold($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->detection_load_threshold = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional float detection_relative_to_baseline_qps = 291343749;</code>
+     * @return float
+     */
+    public function getDetectionRelativeToBaselineQps()
+    {
+        return isset($this->detection_relative_to_baseline_qps) ? $this->detection_relative_to_baseline_qps : 0.0;
+    }
+
+    public function hasDetectionRelativeToBaselineQps()
+    {
+        return isset($this->detection_relative_to_baseline_qps);
+    }
+
+    public function clearDetectionRelativeToBaselineQps()
+    {
+        unset($this->detection_relative_to_baseline_qps);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional float detection_relative_to_baseline_qps = 291343749;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setDetectionRelativeToBaselineQps($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->detection_relative_to_baseline_qps = $var;
+
+        return $this;
+    }
+
+    /**
      * The name must be 1-63 characters long, and comply with RFC1035. The name must be unique within the security policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
@@ -216,6 +335,32 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConf
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration options for enabling Adaptive Protection to operate on specified granular traffic units.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfigTrafficGranularityConfig traffic_granularity_configs = 85367358;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTrafficGranularityConfigs()
+    {
+        return $this->traffic_granularity_configs;
+    }
+
+    /**
+     * Configuration options for enabling Adaptive Protection to operate on specified granular traffic units.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfigTrafficGranularityConfig traffic_granularity_configs = 85367358;</code>
+     * @param array<\Google\Cloud\Compute\V1\SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfigTrafficGranularityConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTrafficGranularityConfigs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfigTrafficGranularityConfig::class);
+        $this->traffic_granularity_configs = $arr;
 
         return $this;
     }

@@ -20,7 +20,7 @@ class Summary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string text = 1;</code>
      */
-    private $text = '';
+    protected $text = '';
     /**
      * The summary content that is divided into sections. The key is the
      * section's name and the value is the section's content. There is no
@@ -35,14 +35,14 @@ class Summary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string answer_record = 3 [(.google.api.resource_reference) = {</code>
      */
-    private $answer_record = '';
+    protected $answer_record = '';
     /**
      * The baseline model version used to generate this summary. It is empty if
      * a baseline model was not used to generate this summary.
      *
      * Generated from protobuf field <code>string baseline_model_version = 5;</code>
      */
-    private $baseline_model_version = '';
+    protected $baseline_model_version = '';
 
     /**
      * Constructor.

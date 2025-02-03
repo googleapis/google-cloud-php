@@ -11,7 +11,6 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * These messages contain information about the execution of a datascan.
  * The monitored resource is 'DataScan'
- * Next ID: 13
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DataScanEvent</code>
  */

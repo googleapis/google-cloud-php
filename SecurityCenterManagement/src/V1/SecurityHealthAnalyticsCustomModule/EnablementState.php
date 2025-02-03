@@ -14,29 +14,29 @@ use UnexpectedValueException;
 class EnablementState
 {
     /**
-     * Unspecified enablement state.
+     * Default value. This value is unused.
      *
      * Generated from protobuf enum <code>ENABLEMENT_STATE_UNSPECIFIED = 0;</code>
      */
     const ENABLEMENT_STATE_UNSPECIFIED = 0;
     /**
-     * The module is enabled at the given CRM resource.
+     * The module is enabled at the given organization, folder, or project.
      *
      * Generated from protobuf enum <code>ENABLED = 1;</code>
      */
     const ENABLED = 1;
     /**
-     * The module is disabled at the given CRM resource.
+     * The module is disabled at the given organization, folder, or project.
      *
      * Generated from protobuf enum <code>DISABLED = 2;</code>
      */
     const DISABLED = 2;
     /**
      * State is inherited from an ancestor module. The module will either
-     * be effectively ENABLED or DISABLED based on its closest non-inherited
-     * ancestor module in the CRM hierarchy. Attempting to set a top level
-     * module (module with no parent) to the INHERITED state will result in an
-     * INVALID_ARGUMENT error.
+     * be effectively `ENABLED` or `DISABLED` based on its closest non-inherited
+     * ancestor module in the resource hierarchy. If you try to set a top-level
+     * module (a module with no parent) to the `INHERITED` state, you receive an
+     * `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf enum <code>INHERITED = 3;</code>
      */

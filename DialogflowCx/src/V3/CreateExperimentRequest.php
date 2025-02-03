@@ -19,8 +19,7 @@ class CreateExperimentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The [Agent][google.cloud.dialogflow.cx.v3.Agent] to create an
      * [Environment][google.cloud.dialogflow.cx.v3.Environment] for. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -35,8 +34,7 @@ class CreateExperimentRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                    $parent     Required. The [Agent][google.cloud.dialogflow.cx.v3.Agent] to create an
      *                                                              [Environment][google.cloud.dialogflow.cx.v3.Environment] for. Format:
-     *                                                              `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                                                              ID>/environments/<Environment ID>`. Please see
+     *                                                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`. Please see
      *                                                              {@see ExperimentsClient::environmentName()} for help formatting this field.
      * @param \Google\Cloud\Dialogflow\Cx\V3\Experiment $experiment Required. The experiment to create.
      *
@@ -60,8 +58,7 @@ class CreateExperimentRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The [Agent][google.cloud.dialogflow.cx.v3.Agent] to create an
      *           [Environment][google.cloud.dialogflow.cx.v3.Environment] for. Format:
-     *           `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/environments/<Environment ID>`.
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Experiment $experiment
      *           Required. The experiment to create.
      * }
@@ -74,8 +71,7 @@ class CreateExperimentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The [Agent][google.cloud.dialogflow.cx.v3.Agent] to create an
      * [Environment][google.cloud.dialogflow.cx.v3.Environment] for. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -88,8 +84,7 @@ class CreateExperimentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The [Agent][google.cloud.dialogflow.cx.v3.Agent] to create an
      * [Environment][google.cloud.dialogflow.cx.v3.Environment] for. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

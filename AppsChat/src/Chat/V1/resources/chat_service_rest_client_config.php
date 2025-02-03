@@ -286,6 +286,9 @@ return [
                         'method' => 'patch',
                         'uriTemplate' => '/v1/{message.name=spaces/*/messages/*}',
                         'body' => 'message',
+                        'queryParams' => [
+                            'update_mask',
+                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -295,6 +298,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateSpace' => [
@@ -308,6 +314,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateSpaceReadState' => [

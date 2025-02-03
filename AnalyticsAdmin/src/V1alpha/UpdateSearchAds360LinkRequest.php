@@ -20,7 +20,7 @@ class UpdateSearchAds360LinkRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.SearchAds360Link search_ads_360_link = 1;</code>
      */
-    private $search_ads_360_link = null;
+    protected $search_ads_360_link = null;
     /**
      * Required. The list of fields to be updated. Omitted fields will not be
      * updated. To replace the entire entity, use one path with the string "*" to
@@ -28,7 +28,7 @@ class UpdateSearchAds360LinkRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Analytics\Admin\V1alpha\SearchAds360Link $searchAds360Link The SearchAds360Link to update

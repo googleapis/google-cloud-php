@@ -47,7 +47,7 @@ use Google\Rpc\Status;
  * documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
  *
  * @param string $formattedParent The agent to import the flow into.
- *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                                Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
  *                                {@see FlowsClient::agentName()} for help formatting this field.
  */
 function import_flow_sample(string $formattedParent): void

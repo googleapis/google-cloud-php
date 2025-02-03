@@ -94,7 +94,7 @@ items:
 
             Format is:
             `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-            Please see <xref uid="\Google\Cloud\Vision\V1\ProductSearchClient::productSetName()">Google\Cloud\Vision\V1\ProductSearchClient::productSetName()</xref> for help formatting this field.
+            Please see <xref uid="\Google\Cloud\Vision\V1\ProductSearchClient::productSetName()">ProductSearchClient::productSetName()</xref> for help formatting this field.
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\GetProductSetRequest">Google\Cloud\Vision\V1\GetProductSetRequest</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\GetProductSetRequest">GetProductSetRequest</xref>'

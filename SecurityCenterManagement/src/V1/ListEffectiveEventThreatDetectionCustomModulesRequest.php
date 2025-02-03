@@ -9,19 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for listing effective Event Threat Detection custom
- * modules.
+ * Request message for
+ * [SecurityCenterManagement.ListEffectiveEventThreatDetectionCustomModules][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListEffectiveEventThreatDetectionCustomModules].
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.ListEffectiveEventThreatDetectionCustomModulesRequest</code>
  */
 class ListEffectiveEventThreatDetectionCustomModulesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of parent to list effective custom modules. Its format is
-     * `organizations/{organization}/locations/{location}`,
-     * `folders/{folder}/locations/{location}`,
-     * or
-     * `projects/{project}/locations/{location}`
+     * Required. Name of parent to list effective custom modules, in one of the
+     * following formats:
+     * * `organizations/{organization}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -34,18 +34,22 @@ class ListEffectiveEventThreatDetectionCustomModulesRequest extends \Google\Prot
      */
     protected $page_size = 0;
     /**
-     * Optional. The value returned by the last call indicating a continuation
+     * Optional. A pagination token returned from a previous request. Provide this
+     * token to retrieve the next page of results.
+     * When paginating, the rest of the request must match the request that
+     * generated the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
 
     /**
-     * @param string $parent Required. Name of parent to list effective custom modules. Its format is
-     *                       `organizations/{organization}/locations/{location}`,
-     *                       `folders/{folder}/locations/{location}`,
-     *                       or
-     *                       `projects/{project}/locations/{location}`
+     * @param string $parent Required. Name of parent to list effective custom modules, in one of the
+     *                       following formats:
+     *
+     *                       * `organizations/{organization}/locations/{location}`
+     *                       * `folders/{folder}/locations/{location}`
+     *                       * `projects/{project}/locations/{location}`
      *                       Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenterManagement\V1\ListEffectiveEventThreatDetectionCustomModulesRequest
@@ -65,16 +69,19 @@ class ListEffectiveEventThreatDetectionCustomModulesRequest extends \Google\Prot
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Name of parent to list effective custom modules. Its format is
-     *           `organizations/{organization}/locations/{location}`,
-     *           `folders/{folder}/locations/{location}`,
-     *           or
-     *           `projects/{project}/locations/{location}`
+     *           Required. Name of parent to list effective custom modules, in one of the
+     *           following formats:
+     *           * `organizations/{organization}/locations/{location}`
+     *           * `folders/{folder}/locations/{location}`
+     *           * `projects/{project}/locations/{location}`
      *     @type int $page_size
      *           Optional. The maximum number of results to return in a single response.
      *           Default is 10, minimum is 1, maximum is 1000.
      *     @type string $page_token
-     *           Optional. The value returned by the last call indicating a continuation
+     *           Optional. A pagination token returned from a previous request. Provide this
+     *           token to retrieve the next page of results.
+     *           When paginating, the rest of the request must match the request that
+     *           generated the page token.
      * }
      */
     public function __construct($data = NULL) {
@@ -83,11 +90,11 @@ class ListEffectiveEventThreatDetectionCustomModulesRequest extends \Google\Prot
     }
 
     /**
-     * Required. Name of parent to list effective custom modules. Its format is
-     * `organizations/{organization}/locations/{location}`,
-     * `folders/{folder}/locations/{location}`,
-     * or
-     * `projects/{project}/locations/{location}`
+     * Required. Name of parent to list effective custom modules, in one of the
+     * following formats:
+     * * `organizations/{organization}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -98,11 +105,11 @@ class ListEffectiveEventThreatDetectionCustomModulesRequest extends \Google\Prot
     }
 
     /**
-     * Required. Name of parent to list effective custom modules. Its format is
-     * `organizations/{organization}/locations/{location}`,
-     * `folders/{folder}/locations/{location}`,
-     * or
-     * `projects/{project}/locations/{location}`
+     * Required. Name of parent to list effective custom modules, in one of the
+     * following formats:
+     * * `organizations/{organization}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -145,7 +152,10 @@ class ListEffectiveEventThreatDetectionCustomModulesRequest extends \Google\Prot
     }
 
     /**
-     * Optional. The value returned by the last call indicating a continuation
+     * Optional. A pagination token returned from a previous request. Provide this
+     * token to retrieve the next page of results.
+     * When paginating, the rest of the request must match the request that
+     * generated the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -156,7 +166,10 @@ class ListEffectiveEventThreatDetectionCustomModulesRequest extends \Google\Prot
     }
 
     /**
-     * Optional. The value returned by the last call indicating a continuation
+     * Optional. A pagination token returned from a previous request. Provide this
+     * token to retrieve the next page of results.
+     * When paginating, the rest of the request must match the request that
+     * generated the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

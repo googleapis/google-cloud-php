@@ -21,13 +21,13 @@ class PurgeUserEventsMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string operation_name = 1;</code>
      */
-    private $operation_name = '';
+    protected $operation_name = '';
     /**
      * Operation create time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
 
     /**
      * Constructor.

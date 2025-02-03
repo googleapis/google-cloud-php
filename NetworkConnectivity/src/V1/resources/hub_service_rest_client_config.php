@@ -232,6 +232,17 @@ return [
                     ],
                 ],
             ],
+            'QueryHubStatus' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/global/hubs/*}:queryStatus',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'RejectHubSpoke' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/global/hubs/*}:rejectSpoke',
@@ -239,6 +250,19 @@ return [
                 'placeholders' => [
                     'name' => [
                         'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateGroup' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{group.name=projects/*/locations/global/hubs/*/groups/*}',
+                'body' => 'group',
+                'placeholders' => [
+                    'group.name' => [
+                        'getters' => [
+                            'getGroup',
                             'getName',
                         ],
                     ],

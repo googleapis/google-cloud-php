@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents the metadata of the long-running operation.
+ * Long-running operation metadata.
  *
  * Generated from protobuf message <code>google.cloud.parallelstore.v1beta.OperationMetadata</code>
  */
@@ -48,7 +48,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Identifies whether the user has requested cancellation
      * of the operation. Operations that have been cancelled successfully
-     * have [Operation.error][] value with a
+     * have [Operation.error][google.longrunning.Operation.error] value with a
      * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
      * `Code.CANCELLED`.
      *
@@ -81,7 +81,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *     @type bool $requested_cancellation
      *           Output only. Identifies whether the user has requested cancellation
      *           of the operation. Operations that have been cancelled successfully
-     *           have [Operation.error][] value with a
+     *           have [Operation.error][google.longrunning.Operation.error] value with a
      *           [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
      *           `Code.CANCELLED`.
      *     @type string $api_version
@@ -246,7 +246,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Identifies whether the user has requested cancellation
      * of the operation. Operations that have been cancelled successfully
-     * have [Operation.error][] value with a
+     * have [Operation.error][google.longrunning.Operation.error] value with a
      * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
      * `Code.CANCELLED`.
      *
@@ -261,7 +261,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Identifies whether the user has requested cancellation
      * of the operation. Operations that have been cancelled successfully
-     * have [Operation.error][] value with a
+     * have [Operation.error][google.longrunning.Operation.error] value with a
      * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
      * `Code.CANCELLED`.
      *

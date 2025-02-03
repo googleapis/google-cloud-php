@@ -76,6 +76,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: EdgeNetwork API provides managed, highly available cloud dynamic network
@@ -91,34 +92,34 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createInterconnectAttachmentAsync(CreateInterconnectAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createNetworkAsync(CreateNetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createRouterAsync(CreateRouterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSubnetAsync(CreateSubnetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteInterconnectAttachmentAsync(DeleteInterconnectAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteNetworkAsync(DeleteNetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteRouterAsync(DeleteRouterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSubnetAsync(DeleteSubnetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface diagnoseInterconnectAsync(DiagnoseInterconnectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface diagnoseNetworkAsync(DiagnoseNetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface diagnoseRouterAsync(DiagnoseRouterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getInterconnectAsync(GetInterconnectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getInterconnectAttachmentAsync(GetInterconnectAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNetworkAsync(GetNetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRouterAsync(GetRouterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSubnetAsync(GetSubnetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getZoneAsync(GetZoneRequest $request, array $optionalArgs = [])
- * @method PromiseInterface initializeZoneAsync(InitializeZoneRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listInterconnectAttachmentsAsync(ListInterconnectAttachmentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listInterconnectsAsync(ListInterconnectsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNetworksAsync(ListNetworksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRoutersAsync(ListRoutersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSubnetsAsync(ListSubnetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listZonesAsync(ListZonesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateRouterAsync(UpdateRouterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSubnetAsync(UpdateSubnetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createInterconnectAttachmentAsync(CreateInterconnectAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createNetworkAsync(CreateNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createRouterAsync(CreateRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createSubnetAsync(CreateSubnetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteInterconnectAttachmentAsync(DeleteInterconnectAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteNetworkAsync(DeleteNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteRouterAsync(DeleteRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteSubnetAsync(DeleteSubnetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DiagnoseInterconnectResponse> diagnoseInterconnectAsync(DiagnoseInterconnectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DiagnoseNetworkResponse> diagnoseNetworkAsync(DiagnoseNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DiagnoseRouterResponse> diagnoseRouterAsync(DiagnoseRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Interconnect> getInterconnectAsync(GetInterconnectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InterconnectAttachment> getInterconnectAttachmentAsync(GetInterconnectAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Network> getNetworkAsync(GetNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Router> getRouterAsync(GetRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Subnet> getSubnetAsync(GetSubnetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Zone> getZoneAsync(GetZoneRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InitializeZoneResponse> initializeZoneAsync(InitializeZoneRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listInterconnectAttachmentsAsync(ListInterconnectAttachmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listInterconnectsAsync(ListInterconnectsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNetworksAsync(ListNetworksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRoutersAsync(ListRoutersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSubnetsAsync(ListSubnetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listZonesAsync(ListZonesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateRouterAsync(UpdateRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateSubnetAsync(UpdateSubnetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class EdgeNetworkClient
 {
@@ -385,14 +386,14 @@ final class EdgeNetworkClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -414,6 +415,12 @@ final class EdgeNetworkClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -447,6 +454,9 @@ final class EdgeNetworkClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

@@ -26,7 +26,7 @@ class Pipeline extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.Resources resources = 2;</code>
      */
-    private $resources = null;
+    protected $resources = null;
     /**
      * The environment to pass into every action. Each action can also specify
      * additional environment variables but cannot delete an entry from this map
@@ -45,7 +45,7 @@ class Pipeline extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.Secret encrypted_environment = 5;</code>
      */
-    private $encrypted_environment = null;
+    protected $encrypted_environment = null;
     /**
      * The maximum amount of time to give the pipeline to complete.  This includes
      * the time spent waiting for a worker to be allocated.  If the pipeline fails
@@ -55,7 +55,7 @@ class Pipeline extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 4;</code>
      */
-    private $timeout = null;
+    protected $timeout = null;
 
     /**
      * Constructor.

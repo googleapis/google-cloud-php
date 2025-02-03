@@ -28,10 +28,10 @@ use Google\Apps\Chat\V1\Client\ChatServiceClient;
 use Google\Apps\Chat\V1\DeleteReactionRequest;
 
 /**
- * Deletes a reaction to a message. Only unicode emojis are supported.
- * For an example, see
+ * Deletes a reaction to a message. For an example, see
  * [Delete a
  * reaction](https://developers.google.com/workspace/chat/delete-reactions).
+ *
  * Requires [user
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
  *

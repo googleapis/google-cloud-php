@@ -24,11 +24,12 @@ class Core
         \GPBMetadata\Google\Cloud\Cloudcontrolspartner\V1Beta\EkmConnections::initOnce();
         \GPBMetadata\Google\Cloud\Cloudcontrolspartner\V1Beta\PartnerPermissions::initOnce();
         \GPBMetadata\Google\Cloud\Cloudcontrolspartner\V1Beta\Partners::initOnce();
+        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-∏
-3google/cloud/cloudcontrolspartner/v1beta/core.proto(google.cloud.cloudcontrolspartner.v1betagoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protoGgoogle/cloud/cloudcontrolspartner/v1beta/access_approval_requests.protoAgoogle/cloud/cloudcontrolspartner/v1beta/customer_workloads.proto8google/cloud/cloudcontrolspartner/v1beta/customers.proto>google/cloud/cloudcontrolspartner/v1beta/ekm_connections.protoBgoogle/cloud/cloudcontrolspartner/v1beta/partner_permissions.proto7google/cloud/cloudcontrolspartner/v1beta/partners.protogoogle/protobuf/timestamp.proto"Ä
+Í
+3google/cloud/cloudcontrolspartner/v1beta/core.proto(google.cloud.cloudcontrolspartner.v1betagoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protoGgoogle/cloud/cloudcontrolspartner/v1beta/access_approval_requests.protoAgoogle/cloud/cloudcontrolspartner/v1beta/customer_workloads.proto8google/cloud/cloudcontrolspartner/v1beta/customers.proto>google/cloud/cloudcontrolspartner/v1beta/ekm_connections.protoBgoogle/cloud/cloudcontrolspartner/v1beta/partner_permissions.proto7google/cloud/cloudcontrolspartner/v1beta/partners.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"Ä
 OperationMetadata4
 create_time (2.google.protobuf.TimestampB‡A1
 end_time (2.google.protobuf.TimestampB‡A
@@ -36,7 +37,7 @@ class Core
 verb (	B‡A
 status_message (	B‡A#
 requested_cancellation (B‡A
-api_version (	B‡A2æ
+api_version (	B‡A2”
 CloudControlsPartnerCore“
 GetWorkload<.google.cloud.cloudcontrolspartner.v1beta.GetWorkloadRequest2.google.cloud.cloudcontrolspartner.v1beta.Workload"Q⁄AnameÇ”‰ìDB/v1beta/{name=organizations/*/locations/*/customers/*/workloads/*}Â
 ListWorkloads>.google.cloud.cloudcontrolspartner.v1beta.ListWorkloadsRequest?.google.cloud.cloudcontrolspartner.v1beta.ListWorkloadsResponse"S⁄AparentÇ”‰ìDB/v1beta/{parent=organizations/*/locations/*/customers/*}/workloads∆
@@ -46,7 +47,10 @@ class Core
 GetPartnerPermissionsF.google.cloud.cloudcontrolspartner.v1beta.GetPartnerPermissionsRequest<.google.cloud.cloudcontrolspartner.v1beta.PartnerPermissions"d⁄AnameÇ”‰ìWU/v1beta/{name=organizations/*/locations/*/customers/*/workloads/*/partnerPermissions}®
 ListAccessApprovalRequestsK.google.cloud.cloudcontrolspartner.v1beta.ListAccessApprovalRequestsRequestL.google.cloud.cloudcontrolspartner.v1beta.ListAccessApprovalRequestsResponse"oà⁄AparentÇ”‰ì][/v1beta/{parent=organizations/*/locations/*/customers/*/workloads/*}/accessApprovalRequestsø
 
-GetPartner;.google.cloud.cloudcontrolspartner.v1beta.GetPartnerRequest1.google.cloud.cloudcontrolspartner.v1beta.Partner"A⁄AnameÇ”‰ì42/v1beta/{name=organizations/*/locations/*/partner}W A#cloudcontrolspartner.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBë
+GetPartner;.google.cloud.cloudcontrolspartner.v1beta.GetPartnerRequest1.google.cloud.cloudcontrolspartner.v1beta.Partner"A⁄AnameÇ”‰ì42/v1beta/{name=organizations/*/locations/*/partner}Ì
+CreateCustomer?.google.cloud.cloudcontrolspartner.v1beta.CreateCustomerRequest2.google.cloud.cloudcontrolspartner.v1beta.Customer"f⁄Aparent,customer,customer_idÇ”‰ìB"6/v1beta/{parent=organizations/*/locations/*}/customers:customerÔ
+UpdateCustomer?.google.cloud.cloudcontrolspartner.v1beta.UpdateCustomerRequest2.google.cloud.cloudcontrolspartner.v1beta.Customer"h⁄Acustomer,update_maskÇ”‰ìK2?/v1beta/{customer.name=organizations/*/locations/*/customers/*}:customer∞
+DeleteCustomer?.google.cloud.cloudcontrolspartner.v1beta.DeleteCustomerRequest.google.protobuf.Empty"E⁄AnameÇ”‰ì8*6/v1beta/{name=organizations/*/locations/*/customers/*}W A#cloudcontrolspartner.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBë
 ,com.google.cloud.cloudcontrolspartner.v1betaB	CoreProtoPZ`cloud.google.com/go/cloudcontrolspartner/apiv1beta/cloudcontrolspartnerpb;cloudcontrolspartnerpb™(Google.Cloud.CloudControlsPartner.V1Beta (Google\\Cloud\\CloudControlsPartner\\V1betaÍ+Google::Cloud::CloudControlsPartner::V1betaÍAm
 8cloudcontrolspartner.googleapis.com/OrganizationLocation1organizations/{organization}/locations/{location}bproto3'
         , true);

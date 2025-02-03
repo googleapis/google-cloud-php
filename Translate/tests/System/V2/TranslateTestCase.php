@@ -25,7 +25,10 @@ class TranslateTestCase extends TestCase
     protected static $hasSetUp = false;
     protected static $client;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         if (self::$hasSetUp) {
             return;

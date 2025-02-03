@@ -40,6 +40,11 @@
                                 "deleteReservation"
                             ]
                         },
+                        "FailoverReservation": {
+                            "methods": [
+                                "failoverReservation"
+                            ]
+                        },
                         "GetBiReservation": {
                             "methods": [
                                 "getBiReservation"

@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A redirect action returns a 307 (temporary redirect) response, pointing
- * the user to a ReCaptcha interstitial page to attach a token.
+ * the user to a reCAPTCHA interstitial page to attach a token.
  *
  * Generated from protobuf message <code>google.cloud.recaptchaenterprise.v1.FirewallAction.RedirectAction</code>
  */
@@ -32,6 +32,4 @@ class RedirectAction extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RedirectAction::class, \Google\Cloud\RecaptchaEnterprise\V1\FirewallAction_RedirectAction::class);
 

@@ -44,6 +44,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: This service is used for managing the runtime project attachments.
@@ -56,13 +57,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createRuntimeProjectAttachmentAsync(CreateRuntimeProjectAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteRuntimeProjectAttachmentAsync(DeleteRuntimeProjectAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRuntimeProjectAttachmentAsync(GetRuntimeProjectAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRuntimeProjectAttachmentsAsync(ListRuntimeProjectAttachmentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface lookupRuntimeProjectAttachmentAsync(LookupRuntimeProjectAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RuntimeProjectAttachment> createRuntimeProjectAttachmentAsync(CreateRuntimeProjectAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteRuntimeProjectAttachmentAsync(DeleteRuntimeProjectAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RuntimeProjectAttachment> getRuntimeProjectAttachmentAsync(GetRuntimeProjectAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRuntimeProjectAttachmentsAsync(ListRuntimeProjectAttachmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LookupRuntimeProjectAttachmentResponse> lookupRuntimeProjectAttachmentAsync(LookupRuntimeProjectAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class RuntimeProjectAttachmentServiceClient
 {
@@ -192,14 +193,14 @@ final class RuntimeProjectAttachmentServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -221,6 +222,12 @@ final class RuntimeProjectAttachmentServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -251,6 +258,9 @@ final class RuntimeProjectAttachmentServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

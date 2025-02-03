@@ -52,7 +52,6 @@ use Google\Analytics\Data\V1alpha\SheetExportAudienceListResponse;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -60,8 +59,10 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Google Analytics reporting data service.
@@ -76,20 +77,20 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createAudienceListAsync(CreateAudienceListRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createRecurringAudienceListAsync(CreateRecurringAudienceListRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createReportTaskAsync(CreateReportTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAudienceListAsync(GetAudienceListRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPropertyQuotasSnapshotAsync(GetPropertyQuotasSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRecurringAudienceListAsync(GetRecurringAudienceListRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getReportTaskAsync(GetReportTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAudienceListsAsync(ListAudienceListsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRecurringAudienceListsAsync(ListRecurringAudienceListsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listReportTasksAsync(ListReportTasksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface queryAudienceListAsync(QueryAudienceListRequest $request, array $optionalArgs = [])
- * @method PromiseInterface queryReportTaskAsync(QueryReportTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runFunnelReportAsync(RunFunnelReportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface sheetExportAudienceListAsync(SheetExportAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAudienceListAsync(CreateAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RecurringAudienceList> createRecurringAudienceListAsync(CreateRecurringAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createReportTaskAsync(CreateReportTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AudienceList> getAudienceListAsync(GetAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PropertyQuotasSnapshot> getPropertyQuotasSnapshotAsync(GetPropertyQuotasSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RecurringAudienceList> getRecurringAudienceListAsync(GetRecurringAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportTask> getReportTaskAsync(GetReportTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAudienceListsAsync(ListAudienceListsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRecurringAudienceListsAsync(ListRecurringAudienceListsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReportTasksAsync(ListReportTasksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QueryAudienceListResponse> queryAudienceListAsync(QueryAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QueryReportTaskResponse> queryReportTaskAsync(QueryReportTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RunFunnelReportResponse> runFunnelReportAsync(RunFunnelReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SheetExportAudienceListResponse> sheetExportAudienceListAsync(SheetExportAudienceListRequest $request, array $optionalArgs = [])
  */
 final class AlphaAnalyticsDataClient
 {
@@ -172,10 +173,31 @@ final class AlphaAnalyticsDataClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -285,8 +307,8 @@ final class AlphaAnalyticsDataClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
@@ -294,7 +316,7 @@ final class AlphaAnalyticsDataClient
      *
      * @experimental
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -316,6 +338,12 @@ final class AlphaAnalyticsDataClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -349,6 +377,9 @@ final class AlphaAnalyticsDataClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -466,8 +497,10 @@ final class AlphaAnalyticsDataClient
      *
      * @experimental
      */
-    public function createRecurringAudienceList(CreateRecurringAudienceListRequest $request, array $callOptions = []): RecurringAudienceList
-    {
+    public function createRecurringAudienceList(
+        CreateRecurringAudienceListRequest $request,
+        array $callOptions = []
+    ): RecurringAudienceList {
         return $this->startApiCall('CreateRecurringAudienceList', $request, $callOptions)->wait();
     }
 
@@ -572,8 +605,10 @@ final class AlphaAnalyticsDataClient
      *
      * @experimental
      */
-    public function getPropertyQuotasSnapshot(GetPropertyQuotasSnapshotRequest $request, array $callOptions = []): PropertyQuotasSnapshot
-    {
+    public function getPropertyQuotasSnapshot(
+        GetPropertyQuotasSnapshotRequest $request,
+        array $callOptions = []
+    ): PropertyQuotasSnapshot {
         return $this->startApiCall('GetPropertyQuotasSnapshot', $request, $callOptions)->wait();
     }
 
@@ -611,8 +646,10 @@ final class AlphaAnalyticsDataClient
      *
      * @experimental
      */
-    public function getRecurringAudienceList(GetRecurringAudienceListRequest $request, array $callOptions = []): RecurringAudienceList
-    {
+    public function getRecurringAudienceList(
+        GetRecurringAudienceListRequest $request,
+        array $callOptions = []
+    ): RecurringAudienceList {
         return $this->startApiCall('GetRecurringAudienceList', $request, $callOptions)->wait();
     }
 
@@ -722,8 +759,10 @@ final class AlphaAnalyticsDataClient
      *
      * @experimental
      */
-    public function listRecurringAudienceLists(ListRecurringAudienceListsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listRecurringAudienceLists(
+        ListRecurringAudienceListsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListRecurringAudienceLists', $request, $callOptions);
     }
 
@@ -795,8 +834,10 @@ final class AlphaAnalyticsDataClient
      *
      * @experimental
      */
-    public function queryAudienceList(QueryAudienceListRequest $request, array $callOptions = []): QueryAudienceListResponse
-    {
+    public function queryAudienceList(
+        QueryAudienceListRequest $request,
+        array $callOptions = []
+    ): QueryAudienceListResponse {
         return $this->startApiCall('QueryAudienceList', $request, $callOptions)->wait();
     }
 
@@ -917,8 +958,10 @@ final class AlphaAnalyticsDataClient
      *
      * @experimental
      */
-    public function sheetExportAudienceList(SheetExportAudienceListRequest $request, array $callOptions = []): SheetExportAudienceListResponse
-    {
+    public function sheetExportAudienceList(
+        SheetExportAudienceListRequest $request,
+        array $callOptions = []
+    ): SheetExportAudienceListResponse {
         return $this->startApiCall('SheetExportAudienceList', $request, $callOptions)->wait();
     }
 }

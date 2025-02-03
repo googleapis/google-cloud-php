@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,7 +59,9 @@ class SessionEntityTypesClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return SessionEntityTypesClient */
@@ -121,12 +123,15 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
@@ -166,8 +171,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->sessionEntityTypeName('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]');
-        $request = (new DeleteSessionEntityTypeRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSessionEntityTypeRequest())->setName($formattedName);
         $gapicClient->deleteSessionEntityType($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -190,17 +194,19 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->sessionEntityTypeName('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]');
-        $request = (new DeleteSessionEntityTypeRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSessionEntityTypeRequest())->setName($formattedName);
         try {
             $gapicClient->deleteSessionEntityType($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -229,8 +235,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->sessionEntityTypeName('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]');
-        $request = (new GetSessionEntityTypeRequest())
-            ->setName($formattedName);
+        $request = (new GetSessionEntityTypeRequest())->setName($formattedName);
         $response = $gapicClient->getSessionEntityType($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -254,17 +259,19 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->sessionEntityTypeName('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]');
-        $request = (new GetSessionEntityTypeRequest())
-            ->setName($formattedName);
+        $request = (new GetSessionEntityTypeRequest())->setName($formattedName);
         try {
             $gapicClient->getSessionEntityType($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -289,17 +296,14 @@ class SessionEntityTypesClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $sessionEntityTypesElement = new SessionEntityType();
-        $sessionEntityTypes = [
-            $sessionEntityTypesElement,
-        ];
+        $sessionEntityTypes = [$sessionEntityTypesElement];
         $expectedResponse = new ListSessionEntityTypesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSessionEntityTypes($sessionEntityTypes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
-        $request = (new ListSessionEntityTypesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSessionEntityTypesRequest())->setParent($formattedParent);
         $response = $gapicClient->listSessionEntityTypes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -326,17 +330,19 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
-        $request = (new ListSessionEntityTypesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSessionEntityTypesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSessionEntityTypes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -371,8 +377,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $sessionEntityType->setEntityOverrideMode($sessionEntityTypeEntityOverrideMode);
         $sessionEntityTypeEntities = [];
         $sessionEntityType->setEntities($sessionEntityTypeEntities);
-        $request = (new UpdateSessionEntityTypeRequest())
-            ->setSessionEntityType($sessionEntityType);
+        $request = (new UpdateSessionEntityTypeRequest())->setSessionEntityType($sessionEntityType);
         $response = $gapicClient->updateSessionEntityType($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -396,12 +401,15 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $sessionEntityType = new SessionEntityType();
@@ -411,8 +419,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $sessionEntityType->setEntityOverrideMode($sessionEntityTypeEntityOverrideMode);
         $sessionEntityTypeEntities = [];
         $sessionEntityType->setEntities($sessionEntityTypeEntities);
-        $request = (new UpdateSessionEntityTypeRequest())
-            ->setSessionEntityType($sessionEntityType);
+        $request = (new UpdateSessionEntityTypeRequest())->setSessionEntityType($sessionEntityType);
         try {
             $gapicClient->updateSessionEntityType($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -465,12 +472,15 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -497,9 +507,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -529,12 +537,15 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {

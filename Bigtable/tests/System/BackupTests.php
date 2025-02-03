@@ -64,9 +64,12 @@ class BackupTests extends BigtableTestCase
      */
     private static $copyBackupClusterId;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
 
         self::$backupId = uniqid('backup');
         self::$copyBackupId = 'copy' . self::$backupId;
@@ -78,8 +81,10 @@ class BackupTests extends BigtableTestCase
         );
         self::$copyBackupClusterId = uniqid(self::CLUSTER_ID_PREFIX);
     }
-
-    public static function tearDownAfterClass(): void
+    /**
+     * @afterClass
+     */
+    public static function tearDownTestFixtures(): void
     {
         // Delete the base backup
         self::deleteBackupIfExists(self::$tableAdminClient, self::$backupName);

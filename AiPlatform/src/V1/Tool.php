@@ -28,7 +28,7 @@ class Tool extends \Google\Protobuf\Internal\Message
      * User should provide a [FunctionResponse][content.part.function_response]
      * for each function call in the next turn. Based on the function responses,
      * Model will generate the final response back to the user.
-     * Maximum 64 function declarations can be provided.
+     * Maximum 128 function declarations can be provided.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FunctionDeclaration function_declarations = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -49,6 +49,14 @@ class Tool extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GoogleSearchRetrieval google_search_retrieval = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $google_search_retrieval = null;
+    /**
+     * Optional. CodeExecution tool type.
+     * Enables the model to execute code as part of generation.
+     * This field is only used by the Gemini Developer API services.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tool.CodeExecution code_execution = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $code_execution = null;
 
     /**
      * Constructor.
@@ -64,7 +72,7 @@ class Tool extends \Google\Protobuf\Internal\Message
      *           User should provide a [FunctionResponse][content.part.function_response]
      *           for each function call in the next turn. Based on the function responses,
      *           Model will generate the final response back to the user.
-     *           Maximum 64 function declarations can be provided.
+     *           Maximum 128 function declarations can be provided.
      *     @type \Google\Cloud\AIPlatform\V1\Retrieval $retrieval
      *           Optional. Retrieval tool type.
      *           System will always execute the provided retrieval tool(s) to get external
@@ -73,6 +81,10 @@ class Tool extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\GoogleSearchRetrieval $google_search_retrieval
      *           Optional. GoogleSearchRetrieval tool type.
      *           Specialized retrieval tool that is powered by Google search.
+     *     @type \Google\Cloud\AIPlatform\V1\Tool\CodeExecution $code_execution
+     *           Optional. CodeExecution tool type.
+     *           Enables the model to execute code as part of generation.
+     *           This field is only used by the Gemini Developer API services.
      * }
      */
     public function __construct($data = NULL) {
@@ -88,7 +100,7 @@ class Tool extends \Google\Protobuf\Internal\Message
      * User should provide a [FunctionResponse][content.part.function_response]
      * for each function call in the next turn. Based on the function responses,
      * Model will generate the final response back to the user.
-     * Maximum 64 function declarations can be provided.
+     * Maximum 128 function declarations can be provided.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FunctionDeclaration function_declarations = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -106,7 +118,7 @@ class Tool extends \Google\Protobuf\Internal\Message
      * User should provide a [FunctionResponse][content.part.function_response]
      * for each function call in the next turn. Based on the function responses,
      * Model will generate the final response back to the user.
-     * Maximum 64 function declarations can be provided.
+     * Maximum 128 function declarations can be provided.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FunctionDeclaration function_declarations = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\AIPlatform\V1\FunctionDeclaration>|\Google\Protobuf\Internal\RepeatedField $var
@@ -196,6 +208,46 @@ class Tool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GoogleSearchRetrieval::class);
         $this->google_search_retrieval = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. CodeExecution tool type.
+     * Enables the model to execute code as part of generation.
+     * This field is only used by the Gemini Developer API services.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tool.CodeExecution code_execution = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\Tool\CodeExecution|null
+     */
+    public function getCodeExecution()
+    {
+        return $this->code_execution;
+    }
+
+    public function hasCodeExecution()
+    {
+        return isset($this->code_execution);
+    }
+
+    public function clearCodeExecution()
+    {
+        unset($this->code_execution);
+    }
+
+    /**
+     * Optional. CodeExecution tool type.
+     * Enables the model to execute code as part of generation.
+     * This field is only used by the Gemini Developer API services.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tool.CodeExecution code_execution = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\Tool\CodeExecution $var
+     * @return $this
+     */
+    public function setCodeExecution($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Tool\CodeExecution::class);
+        $this->code_execution = $var;
 
         return $this;
     }

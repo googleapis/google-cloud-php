@@ -42,6 +42,14 @@ class PrivateConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string ssh_service_attachment = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     protected $ssh_service_attachment = '';
+    /**
+     * Optional. Additional allowed projects for setting up PSC connections.
+     * Instance host project is automatically allowed and does not need to be
+     * included in this list.
+     *
+     * Generated from protobuf field <code>repeated string psc_allowed_projects = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $psc_allowed_projects;
 
     /**
      * Constructor.
@@ -60,6 +68,10 @@ class PrivateConfig extends \Google\Protobuf\Internal\Message
      *     @type string $ssh_service_attachment
      *           Output only. Service Attachment for SSH, resource is in the format of
      *           `projects/{project}/regions/{region}/serviceAttachments/{service_attachment}`.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $psc_allowed_projects
+     *           Optional. Additional allowed projects for setting up PSC connections.
+     *           Instance host project is automatically allowed and does not need to be
+     *           included in this list.
      * }
      */
     public function __construct($data = NULL) {
@@ -173,6 +185,36 @@ class PrivateConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->ssh_service_attachment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Additional allowed projects for setting up PSC connections.
+     * Instance host project is automatically allowed and does not need to be
+     * included in this list.
+     *
+     * Generated from protobuf field <code>repeated string psc_allowed_projects = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPscAllowedProjects()
+    {
+        return $this->psc_allowed_projects;
+    }
+
+    /**
+     * Optional. Additional allowed projects for setting up PSC connections.
+     * Instance host project is automatically allowed and does not need to be
+     * included in this list.
+     *
+     * Generated from protobuf field <code>repeated string psc_allowed_projects = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPscAllowedProjects($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->psc_allowed_projects = $arr;
 
         return $this;
     }

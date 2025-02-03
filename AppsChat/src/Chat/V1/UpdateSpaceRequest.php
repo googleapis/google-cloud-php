@@ -26,54 +26,63 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The updated field paths, comma separated if there are
      * multiple.
-     * Currently supported field paths:
-     * - `display_name` (Only supports changing the display name of a space with
-     * the `SPACE` type, or when also including the `space_type` mask to change a
-     * `GROUP_CHAT` space type to `SPACE`. Trying to update the display name of a
-     * `GROUP_CHAT` or a `DIRECT_MESSAGE` space results in an invalid argument
-     * error. If you receive the error message `ALREADY_EXISTS` when updating the
-     * `displayName`, try a different `displayName`. An existing space within the
-     * Google Workspace organization might already use this display name.)
-     * - `space_type` (Only supports changing a `GROUP_CHAT` space type to
+     * You can update the following fields for a space:
+     * `space_details`: Updates the space's description. Supports up to 150
+     * characters.
+     * `display_name`: Only supports updating the display name for spaces where
+     * `spaceType` field is `SPACE`.
+     *  If you receive the error message `ALREADY_EXISTS`, try a different
+     *  value. An existing space within the
+     * Google Workspace organization might already use this display name.
+     * `space_type`: Only supports changing a `GROUP_CHAT` space type to
      * `SPACE`. Include `display_name` together
      * with `space_type` in the update mask and ensure that the specified space
      * has a non-empty display name and the `SPACE` space type. Including the
      * `space_type` mask and the `SPACE` type in the specified space when updating
      * the display name is optional if the existing space already has the `SPACE`
      * type. Trying to update the space type in other ways results in an invalid
-     * argument error).
-     * `space_type` is not supported with admin access.
-     * - `space_details`
-     * - `space_history_state` (Supports [turning history on or off for the
-     * space](https://support.google.com/chat/answer/7664687) if [the organization
-     * allows users to change their history
-     * setting](https://support.google.com/a/answer/7664184).
-     * Warning: mutually exclusive with all other field paths.)
-     * `space_history_state` is not supported with admin access.
-     * - `access_settings.audience` (Supports changing the [access
+     * argument error.
+     * `space_type` is not supported with `useAdminAccess`.
+     * `space_history_state`: Updates [space history
+     * settings](https://support.google.com/chat/answer/7664687) by turning
+     * history on or off for the space. Only supported if history settings are
+     * enabled for the Google Workspace organization. To update the
+     * space history state, you must omit all other field masks in your request.
+     * `space_history_state` is not supported with `useAdminAccess`.
+     * `access_settings.audience`: Updates the [access
      * setting](https://support.google.com/chat/answer/11971020) of who can
-     * discover the space, join the space, and preview the messages in space. If
-     * no audience is specified in the access setting, the space's access setting
-     * is updated to private. Warning: mutually exclusive with all other field
-     * paths.)
-     * `access_settings.audience` is not supported with admin access.
-     * - Developer Preview: Supports changing the [permission
-     * settings](https://support.google.com/chat/answer/13340792) of a space,
-     * supported field paths
-     * include: `permission_settings.manage_members_and_groups`,
-     * `permission_settings.modify_space_details`,
-     * `permission_settings.toggle_history`,
-     * `permission_settings.use_at_mention_all`,
-     * `permission_settings.manage_apps`, `permission_settings.manage_webhooks`,
-     * `permission_settings.reply_messages`
-     *  (Warning: mutually exclusive with all other non-permission settings field
-     * paths). `permission_settings` is not supported with admin access.
+     * discover the space, join the space, and preview the messages in named space
+     * where `spaceType` field is `SPACE`. If the existing space has a
+     * target audience, you can remove the audience and restrict space access by
+     * omitting a value for this field mask. To update access settings for a
+     * space, the authenticating user must be a space manager and omit all other
+     * field masks in your request. You can't update this field if the space is in
+     * [import
+     * mode](https://developers.google.com/workspace/chat/import-data-overview).
+     * To learn more, see [Make a space discoverable to specific
+     * users](https://developers.google.com/workspace/chat/space-target-audience).
+     * `access_settings.audience` is not supported with `useAdminAccess`.
+     * `permission_settings`: Supports changing the
+     * [permission settings](https://support.google.com/chat/answer/13340792)
+     * of a space.
+     * When updating permission settings, you can only specify
+     * `permissionSettings` field masks; you cannot update other field masks
+     * at the same time. `permissionSettings` is not supported with
+     * `useAdminAccess`.
+     * The supported field masks include:
+     * - `permission_settings.manageMembersAndGroups`
+     * - `permission_settings.modifySpaceDetails`
+     * - `permission_settings.toggleHistory`
+     * - `permission_settings.useAtMentionAll`
+     * - `permission_settings.manageApps`
+     * - `permission_settings.manageWebhooks`
+     * - `permission_settings.replyMessages`
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $update_mask = null;
     /**
-     * When `true`, the method runs using the user's Google Workspace
+     * Optional. When `true`, the method runs using the user's Google Workspace
      * administrator privileges.
      * The calling user must be a Google Workspace administrator with the
      * [manage chat and spaces conversations
@@ -83,7 +92,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * Some `FieldMask` values are not supported using admin access. For details,
      * see the description of `update_mask`.
      *
-     * Generated from protobuf field <code>bool use_admin_access = 3;</code>
+     * Generated from protobuf field <code>bool use_admin_access = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $use_admin_access = false;
 
@@ -94,54 +103,64 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * @param \Google\Protobuf\FieldMask $updateMask Required. The updated field paths, comma separated if there are
      *                                               multiple.
      *
-     *                                               Currently supported field paths:
+     *                                               You can update the following fields for a space:
      *
-     *                                               - `display_name` (Only supports changing the display name of a space with
-     *                                               the `SPACE` type, or when also including the `space_type` mask to change a
-     *                                               `GROUP_CHAT` space type to `SPACE`. Trying to update the display name of a
-     *                                               `GROUP_CHAT` or a `DIRECT_MESSAGE` space results in an invalid argument
-     *                                               error. If you receive the error message `ALREADY_EXISTS` when updating the
-     *                                               `displayName`, try a different `displayName`. An existing space within the
-     *                                               Google Workspace organization might already use this display name.)
+     *                                               `space_details`: Updates the space's description. Supports up to 150
+     *                                               characters.
      *
-     *                                               - `space_type` (Only supports changing a `GROUP_CHAT` space type to
+     *                                               `display_name`: Only supports updating the display name for spaces where
+     *                                               `spaceType` field is `SPACE`.
+     *                                               If you receive the error message `ALREADY_EXISTS`, try a different
+     *                                               value. An existing space within the
+     *                                               Google Workspace organization might already use this display name.
+     *
+     *                                               `space_type`: Only supports changing a `GROUP_CHAT` space type to
      *                                               `SPACE`. Include `display_name` together
      *                                               with `space_type` in the update mask and ensure that the specified space
      *                                               has a non-empty display name and the `SPACE` space type. Including the
      *                                               `space_type` mask and the `SPACE` type in the specified space when updating
      *                                               the display name is optional if the existing space already has the `SPACE`
      *                                               type. Trying to update the space type in other ways results in an invalid
-     *                                               argument error).
-     *                                               `space_type` is not supported with admin access.
+     *                                               argument error.
+     *                                               `space_type` is not supported with `useAdminAccess`.
      *
-     *                                               - `space_details`
+     *                                               `space_history_state`: Updates [space history
+     *                                               settings](https://support.google.com/chat/answer/7664687) by turning
+     *                                               history on or off for the space. Only supported if history settings are
+     *                                               enabled for the Google Workspace organization. To update the
+     *                                               space history state, you must omit all other field masks in your request.
+     *                                               `space_history_state` is not supported with `useAdminAccess`.
      *
-     *                                               - `space_history_state` (Supports [turning history on or off for the
-     *                                               space](https://support.google.com/chat/answer/7664687) if [the organization
-     *                                               allows users to change their history
-     *                                               setting](https://support.google.com/a/answer/7664184).
-     *                                               Warning: mutually exclusive with all other field paths.)
-     *                                               `space_history_state` is not supported with admin access.
-     *
-     *                                               - `access_settings.audience` (Supports changing the [access
+     *                                               `access_settings.audience`: Updates the [access
      *                                               setting](https://support.google.com/chat/answer/11971020) of who can
-     *                                               discover the space, join the space, and preview the messages in space. If
-     *                                               no audience is specified in the access setting, the space's access setting
-     *                                               is updated to private. Warning: mutually exclusive with all other field
-     *                                               paths.)
-     *                                               `access_settings.audience` is not supported with admin access.
+     *                                               discover the space, join the space, and preview the messages in named space
+     *                                               where `spaceType` field is `SPACE`. If the existing space has a
+     *                                               target audience, you can remove the audience and restrict space access by
+     *                                               omitting a value for this field mask. To update access settings for a
+     *                                               space, the authenticating user must be a space manager and omit all other
+     *                                               field masks in your request. You can't update this field if the space is in
+     *                                               [import
+     *                                               mode](https://developers.google.com/workspace/chat/import-data-overview).
+     *                                               To learn more, see [Make a space discoverable to specific
+     *                                               users](https://developers.google.com/workspace/chat/space-target-audience).
+     *                                               `access_settings.audience` is not supported with `useAdminAccess`.
      *
-     *                                               - Developer Preview: Supports changing the [permission
-     *                                               settings](https://support.google.com/chat/answer/13340792) of a space,
-     *                                               supported field paths
-     *                                               include: `permission_settings.manage_members_and_groups`,
-     *                                               `permission_settings.modify_space_details`,
-     *                                               `permission_settings.toggle_history`,
-     *                                               `permission_settings.use_at_mention_all`,
-     *                                               `permission_settings.manage_apps`, `permission_settings.manage_webhooks`,
-     *                                               `permission_settings.reply_messages`
-     *                                               (Warning: mutually exclusive with all other non-permission settings field
-     *                                               paths). `permission_settings` is not supported with admin access.
+     *                                               `permission_settings`: Supports changing the
+     *                                               [permission settings](https://support.google.com/chat/answer/13340792)
+     *                                               of a space.
+     *                                               When updating permission settings, you can only specify
+     *                                               `permissionSettings` field masks; you cannot update other field masks
+     *                                               at the same time. `permissionSettings` is not supported with
+     *                                               `useAdminAccess`.
+     *                                               The supported field masks include:
+     *
+     *                                               - `permission_settings.manageMembersAndGroups`
+     *                                               - `permission_settings.modifySpaceDetails`
+     *                                               - `permission_settings.toggleHistory`
+     *                                               - `permission_settings.useAtMentionAll`
+     *                                               - `permission_settings.manageApps`
+     *                                               - `permission_settings.manageWebhooks`
+     *                                               - `permission_settings.replyMessages`
      *
      * @return \Google\Apps\Chat\V1\UpdateSpaceRequest
      *
@@ -167,50 +186,59 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. The updated field paths, comma separated if there are
      *           multiple.
-     *           Currently supported field paths:
-     *           - `display_name` (Only supports changing the display name of a space with
-     *           the `SPACE` type, or when also including the `space_type` mask to change a
-     *           `GROUP_CHAT` space type to `SPACE`. Trying to update the display name of a
-     *           `GROUP_CHAT` or a `DIRECT_MESSAGE` space results in an invalid argument
-     *           error. If you receive the error message `ALREADY_EXISTS` when updating the
-     *           `displayName`, try a different `displayName`. An existing space within the
-     *           Google Workspace organization might already use this display name.)
-     *           - `space_type` (Only supports changing a `GROUP_CHAT` space type to
+     *           You can update the following fields for a space:
+     *           `space_details`: Updates the space's description. Supports up to 150
+     *           characters.
+     *           `display_name`: Only supports updating the display name for spaces where
+     *           `spaceType` field is `SPACE`.
+     *            If you receive the error message `ALREADY_EXISTS`, try a different
+     *            value. An existing space within the
+     *           Google Workspace organization might already use this display name.
+     *           `space_type`: Only supports changing a `GROUP_CHAT` space type to
      *           `SPACE`. Include `display_name` together
      *           with `space_type` in the update mask and ensure that the specified space
      *           has a non-empty display name and the `SPACE` space type. Including the
      *           `space_type` mask and the `SPACE` type in the specified space when updating
      *           the display name is optional if the existing space already has the `SPACE`
      *           type. Trying to update the space type in other ways results in an invalid
-     *           argument error).
-     *           `space_type` is not supported with admin access.
-     *           - `space_details`
-     *           - `space_history_state` (Supports [turning history on or off for the
-     *           space](https://support.google.com/chat/answer/7664687) if [the organization
-     *           allows users to change their history
-     *           setting](https://support.google.com/a/answer/7664184).
-     *           Warning: mutually exclusive with all other field paths.)
-     *           `space_history_state` is not supported with admin access.
-     *           - `access_settings.audience` (Supports changing the [access
+     *           argument error.
+     *           `space_type` is not supported with `useAdminAccess`.
+     *           `space_history_state`: Updates [space history
+     *           settings](https://support.google.com/chat/answer/7664687) by turning
+     *           history on or off for the space. Only supported if history settings are
+     *           enabled for the Google Workspace organization. To update the
+     *           space history state, you must omit all other field masks in your request.
+     *           `space_history_state` is not supported with `useAdminAccess`.
+     *           `access_settings.audience`: Updates the [access
      *           setting](https://support.google.com/chat/answer/11971020) of who can
-     *           discover the space, join the space, and preview the messages in space. If
-     *           no audience is specified in the access setting, the space's access setting
-     *           is updated to private. Warning: mutually exclusive with all other field
-     *           paths.)
-     *           `access_settings.audience` is not supported with admin access.
-     *           - Developer Preview: Supports changing the [permission
-     *           settings](https://support.google.com/chat/answer/13340792) of a space,
-     *           supported field paths
-     *           include: `permission_settings.manage_members_and_groups`,
-     *           `permission_settings.modify_space_details`,
-     *           `permission_settings.toggle_history`,
-     *           `permission_settings.use_at_mention_all`,
-     *           `permission_settings.manage_apps`, `permission_settings.manage_webhooks`,
-     *           `permission_settings.reply_messages`
-     *            (Warning: mutually exclusive with all other non-permission settings field
-     *           paths). `permission_settings` is not supported with admin access.
+     *           discover the space, join the space, and preview the messages in named space
+     *           where `spaceType` field is `SPACE`. If the existing space has a
+     *           target audience, you can remove the audience and restrict space access by
+     *           omitting a value for this field mask. To update access settings for a
+     *           space, the authenticating user must be a space manager and omit all other
+     *           field masks in your request. You can't update this field if the space is in
+     *           [import
+     *           mode](https://developers.google.com/workspace/chat/import-data-overview).
+     *           To learn more, see [Make a space discoverable to specific
+     *           users](https://developers.google.com/workspace/chat/space-target-audience).
+     *           `access_settings.audience` is not supported with `useAdminAccess`.
+     *           `permission_settings`: Supports changing the
+     *           [permission settings](https://support.google.com/chat/answer/13340792)
+     *           of a space.
+     *           When updating permission settings, you can only specify
+     *           `permissionSettings` field masks; you cannot update other field masks
+     *           at the same time. `permissionSettings` is not supported with
+     *           `useAdminAccess`.
+     *           The supported field masks include:
+     *           - `permission_settings.manageMembersAndGroups`
+     *           - `permission_settings.modifySpaceDetails`
+     *           - `permission_settings.toggleHistory`
+     *           - `permission_settings.useAtMentionAll`
+     *           - `permission_settings.manageApps`
+     *           - `permission_settings.manageWebhooks`
+     *           - `permission_settings.replyMessages`
      *     @type bool $use_admin_access
-     *           When `true`, the method runs using the user's Google Workspace
+     *           Optional. When `true`, the method runs using the user's Google Workspace
      *           administrator privileges.
      *           The calling user must be a Google Workspace administrator with the
      *           [manage chat and spaces conversations
@@ -269,50 +297,59 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The updated field paths, comma separated if there are
      * multiple.
-     * Currently supported field paths:
-     * - `display_name` (Only supports changing the display name of a space with
-     * the `SPACE` type, or when also including the `space_type` mask to change a
-     * `GROUP_CHAT` space type to `SPACE`. Trying to update the display name of a
-     * `GROUP_CHAT` or a `DIRECT_MESSAGE` space results in an invalid argument
-     * error. If you receive the error message `ALREADY_EXISTS` when updating the
-     * `displayName`, try a different `displayName`. An existing space within the
-     * Google Workspace organization might already use this display name.)
-     * - `space_type` (Only supports changing a `GROUP_CHAT` space type to
+     * You can update the following fields for a space:
+     * `space_details`: Updates the space's description. Supports up to 150
+     * characters.
+     * `display_name`: Only supports updating the display name for spaces where
+     * `spaceType` field is `SPACE`.
+     *  If you receive the error message `ALREADY_EXISTS`, try a different
+     *  value. An existing space within the
+     * Google Workspace organization might already use this display name.
+     * `space_type`: Only supports changing a `GROUP_CHAT` space type to
      * `SPACE`. Include `display_name` together
      * with `space_type` in the update mask and ensure that the specified space
      * has a non-empty display name and the `SPACE` space type. Including the
      * `space_type` mask and the `SPACE` type in the specified space when updating
      * the display name is optional if the existing space already has the `SPACE`
      * type. Trying to update the space type in other ways results in an invalid
-     * argument error).
-     * `space_type` is not supported with admin access.
-     * - `space_details`
-     * - `space_history_state` (Supports [turning history on or off for the
-     * space](https://support.google.com/chat/answer/7664687) if [the organization
-     * allows users to change their history
-     * setting](https://support.google.com/a/answer/7664184).
-     * Warning: mutually exclusive with all other field paths.)
-     * `space_history_state` is not supported with admin access.
-     * - `access_settings.audience` (Supports changing the [access
+     * argument error.
+     * `space_type` is not supported with `useAdminAccess`.
+     * `space_history_state`: Updates [space history
+     * settings](https://support.google.com/chat/answer/7664687) by turning
+     * history on or off for the space. Only supported if history settings are
+     * enabled for the Google Workspace organization. To update the
+     * space history state, you must omit all other field masks in your request.
+     * `space_history_state` is not supported with `useAdminAccess`.
+     * `access_settings.audience`: Updates the [access
      * setting](https://support.google.com/chat/answer/11971020) of who can
-     * discover the space, join the space, and preview the messages in space. If
-     * no audience is specified in the access setting, the space's access setting
-     * is updated to private. Warning: mutually exclusive with all other field
-     * paths.)
-     * `access_settings.audience` is not supported with admin access.
-     * - Developer Preview: Supports changing the [permission
-     * settings](https://support.google.com/chat/answer/13340792) of a space,
-     * supported field paths
-     * include: `permission_settings.manage_members_and_groups`,
-     * `permission_settings.modify_space_details`,
-     * `permission_settings.toggle_history`,
-     * `permission_settings.use_at_mention_all`,
-     * `permission_settings.manage_apps`, `permission_settings.manage_webhooks`,
-     * `permission_settings.reply_messages`
-     *  (Warning: mutually exclusive with all other non-permission settings field
-     * paths). `permission_settings` is not supported with admin access.
+     * discover the space, join the space, and preview the messages in named space
+     * where `spaceType` field is `SPACE`. If the existing space has a
+     * target audience, you can remove the audience and restrict space access by
+     * omitting a value for this field mask. To update access settings for a
+     * space, the authenticating user must be a space manager and omit all other
+     * field masks in your request. You can't update this field if the space is in
+     * [import
+     * mode](https://developers.google.com/workspace/chat/import-data-overview).
+     * To learn more, see [Make a space discoverable to specific
+     * users](https://developers.google.com/workspace/chat/space-target-audience).
+     * `access_settings.audience` is not supported with `useAdminAccess`.
+     * `permission_settings`: Supports changing the
+     * [permission settings](https://support.google.com/chat/answer/13340792)
+     * of a space.
+     * When updating permission settings, you can only specify
+     * `permissionSettings` field masks; you cannot update other field masks
+     * at the same time. `permissionSettings` is not supported with
+     * `useAdminAccess`.
+     * The supported field masks include:
+     * - `permission_settings.manageMembersAndGroups`
+     * - `permission_settings.modifySpaceDetails`
+     * - `permission_settings.toggleHistory`
+     * - `permission_settings.useAtMentionAll`
+     * - `permission_settings.manageApps`
+     * - `permission_settings.manageWebhooks`
+     * - `permission_settings.replyMessages`
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
@@ -333,50 +370,59 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The updated field paths, comma separated if there are
      * multiple.
-     * Currently supported field paths:
-     * - `display_name` (Only supports changing the display name of a space with
-     * the `SPACE` type, or when also including the `space_type` mask to change a
-     * `GROUP_CHAT` space type to `SPACE`. Trying to update the display name of a
-     * `GROUP_CHAT` or a `DIRECT_MESSAGE` space results in an invalid argument
-     * error. If you receive the error message `ALREADY_EXISTS` when updating the
-     * `displayName`, try a different `displayName`. An existing space within the
-     * Google Workspace organization might already use this display name.)
-     * - `space_type` (Only supports changing a `GROUP_CHAT` space type to
+     * You can update the following fields for a space:
+     * `space_details`: Updates the space's description. Supports up to 150
+     * characters.
+     * `display_name`: Only supports updating the display name for spaces where
+     * `spaceType` field is `SPACE`.
+     *  If you receive the error message `ALREADY_EXISTS`, try a different
+     *  value. An existing space within the
+     * Google Workspace organization might already use this display name.
+     * `space_type`: Only supports changing a `GROUP_CHAT` space type to
      * `SPACE`. Include `display_name` together
      * with `space_type` in the update mask and ensure that the specified space
      * has a non-empty display name and the `SPACE` space type. Including the
      * `space_type` mask and the `SPACE` type in the specified space when updating
      * the display name is optional if the existing space already has the `SPACE`
      * type. Trying to update the space type in other ways results in an invalid
-     * argument error).
-     * `space_type` is not supported with admin access.
-     * - `space_details`
-     * - `space_history_state` (Supports [turning history on or off for the
-     * space](https://support.google.com/chat/answer/7664687) if [the organization
-     * allows users to change their history
-     * setting](https://support.google.com/a/answer/7664184).
-     * Warning: mutually exclusive with all other field paths.)
-     * `space_history_state` is not supported with admin access.
-     * - `access_settings.audience` (Supports changing the [access
+     * argument error.
+     * `space_type` is not supported with `useAdminAccess`.
+     * `space_history_state`: Updates [space history
+     * settings](https://support.google.com/chat/answer/7664687) by turning
+     * history on or off for the space. Only supported if history settings are
+     * enabled for the Google Workspace organization. To update the
+     * space history state, you must omit all other field masks in your request.
+     * `space_history_state` is not supported with `useAdminAccess`.
+     * `access_settings.audience`: Updates the [access
      * setting](https://support.google.com/chat/answer/11971020) of who can
-     * discover the space, join the space, and preview the messages in space. If
-     * no audience is specified in the access setting, the space's access setting
-     * is updated to private. Warning: mutually exclusive with all other field
-     * paths.)
-     * `access_settings.audience` is not supported with admin access.
-     * - Developer Preview: Supports changing the [permission
-     * settings](https://support.google.com/chat/answer/13340792) of a space,
-     * supported field paths
-     * include: `permission_settings.manage_members_and_groups`,
-     * `permission_settings.modify_space_details`,
-     * `permission_settings.toggle_history`,
-     * `permission_settings.use_at_mention_all`,
-     * `permission_settings.manage_apps`, `permission_settings.manage_webhooks`,
-     * `permission_settings.reply_messages`
-     *  (Warning: mutually exclusive with all other non-permission settings field
-     * paths). `permission_settings` is not supported with admin access.
+     * discover the space, join the space, and preview the messages in named space
+     * where `spaceType` field is `SPACE`. If the existing space has a
+     * target audience, you can remove the audience and restrict space access by
+     * omitting a value for this field mask. To update access settings for a
+     * space, the authenticating user must be a space manager and omit all other
+     * field masks in your request. You can't update this field if the space is in
+     * [import
+     * mode](https://developers.google.com/workspace/chat/import-data-overview).
+     * To learn more, see [Make a space discoverable to specific
+     * users](https://developers.google.com/workspace/chat/space-target-audience).
+     * `access_settings.audience` is not supported with `useAdminAccess`.
+     * `permission_settings`: Supports changing the
+     * [permission settings](https://support.google.com/chat/answer/13340792)
+     * of a space.
+     * When updating permission settings, you can only specify
+     * `permissionSettings` field masks; you cannot update other field masks
+     * at the same time. `permissionSettings` is not supported with
+     * `useAdminAccess`.
+     * The supported field masks include:
+     * - `permission_settings.manageMembersAndGroups`
+     * - `permission_settings.modifySpaceDetails`
+     * - `permission_settings.toggleHistory`
+     * - `permission_settings.useAtMentionAll`
+     * - `permission_settings.manageApps`
+     * - `permission_settings.manageWebhooks`
+     * - `permission_settings.replyMessages`
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */
@@ -389,7 +435,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When `true`, the method runs using the user's Google Workspace
+     * Optional. When `true`, the method runs using the user's Google Workspace
      * administrator privileges.
      * The calling user must be a Google Workspace administrator with the
      * [manage chat and spaces conversations
@@ -399,7 +445,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * Some `FieldMask` values are not supported using admin access. For details,
      * see the description of `update_mask`.
      *
-     * Generated from protobuf field <code>bool use_admin_access = 3;</code>
+     * Generated from protobuf field <code>bool use_admin_access = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getUseAdminAccess()
@@ -408,7 +454,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When `true`, the method runs using the user's Google Workspace
+     * Optional. When `true`, the method runs using the user's Google Workspace
      * administrator privileges.
      * The calling user must be a Google Workspace administrator with the
      * [manage chat and spaces conversations
@@ -418,7 +464,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * Some `FieldMask` values are not supported using admin access. For details,
      * see the description of `update_mask`.
      *
-     * Generated from protobuf field <code>bool use_admin_access = 3;</code>
+     * Generated from protobuf field <code>bool use_admin_access = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

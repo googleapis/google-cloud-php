@@ -30,7 +30,7 @@ use Google\Shopping\Css\V1\Client\AccountLabelsServiceClient;
 use Google\Shopping\Css\V1\ListAccountLabelsRequest;
 
 /**
- * Lists the labels assigned to an account.
+ * Lists the labels owned by an account.
  *
  * @param string $formattedParent The parent account.
  *                                Format: accounts/{account}

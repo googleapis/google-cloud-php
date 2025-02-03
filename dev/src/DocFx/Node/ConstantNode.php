@@ -30,7 +30,8 @@ class ConstantNode
 
     public function __construct(
         private SimpleXMLElement $xmlNode,
-        private array $protoPackages = []
+        private string $namespace,
+        private array $protoPackages
     ) {}
 
     public function getName(): string

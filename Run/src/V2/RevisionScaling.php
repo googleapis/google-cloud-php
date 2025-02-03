@@ -24,7 +24,9 @@ class RevisionScaling extends \Google\Protobuf\Internal\Message
     protected $min_instance_count = 0;
     /**
      * Optional. Maximum number of serving instances that this resource should
-     * have.
+     * have. When unspecified, the field is set to the server default value of
+     * 100. For more information see
+     * https://cloud.google.com/run/docs/configuring/max-instances
      *
      * Generated from protobuf field <code>int32 max_instance_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -41,7 +43,9 @@ class RevisionScaling extends \Google\Protobuf\Internal\Message
      *           have.
      *     @type int $max_instance_count
      *           Optional. Maximum number of serving instances that this resource should
-     *           have.
+     *           have. When unspecified, the field is set to the server default value of
+     *           100. For more information see
+     *           https://cloud.google.com/run/docs/configuring/max-instances
      * }
      */
     public function __construct($data = NULL) {
@@ -79,7 +83,9 @@ class RevisionScaling extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Maximum number of serving instances that this resource should
-     * have.
+     * have. When unspecified, the field is set to the server default value of
+     * 100. For more information see
+     * https://cloud.google.com/run/docs/configuring/max-instances
      *
      * Generated from protobuf field <code>int32 max_instance_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -91,7 +97,9 @@ class RevisionScaling extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Maximum number of serving instances that this resource should
-     * have.
+     * have. When unspecified, the field is set to the server default value of
+     * 100. For more information see
+     * https://cloud.google.com/run/docs/configuring/max-instances
      *
      * Generated from protobuf field <code>int32 max_instance_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

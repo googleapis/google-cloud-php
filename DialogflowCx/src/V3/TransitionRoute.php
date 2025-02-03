@@ -44,8 +44,8 @@ class TransitionRoute extends \Google\Protobuf\Internal\Message
     protected $description = '';
     /**
      * The unique identifier of an [Intent][google.cloud.dialogflow.cx.v3.Intent].
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/intents/<Intent ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      * Indicates that the transition can only happen when the given intent is
      * matched.
      * At least one of `intent` or `condition` must be specified. When both
@@ -91,8 +91,8 @@ class TransitionRoute extends \Google\Protobuf\Internal\Message
      *           500 characters.
      *     @type string $intent
      *           The unique identifier of an [Intent][google.cloud.dialogflow.cx.v3.Intent].
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/intents/<Intent ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *           Indicates that the transition can only happen when the given intent is
      *           matched.
      *           At least one of `intent` or `condition` must be specified. When both
@@ -113,12 +113,12 @@ class TransitionRoute extends \Google\Protobuf\Internal\Message
      *           defined, `trigger_fulfillment` is executed first.
      *     @type string $target_page
      *           The target page to transition to.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/flows/<Flow ID>/pages/<Page ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.
      *     @type string $target_flow
      *           The target flow to transition to.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/flows/<Flow ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      * }
      */
     public function __construct($data = NULL) {
@@ -182,8 +182,8 @@ class TransitionRoute extends \Google\Protobuf\Internal\Message
 
     /**
      * The unique identifier of an [Intent][google.cloud.dialogflow.cx.v3.Intent].
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/intents/<Intent ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      * Indicates that the transition can only happen when the given intent is
      * matched.
      * At least one of `intent` or `condition` must be specified. When both
@@ -200,8 +200,8 @@ class TransitionRoute extends \Google\Protobuf\Internal\Message
 
     /**
      * The unique identifier of an [Intent][google.cloud.dialogflow.cx.v3.Intent].
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/intents/<Intent ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      * Indicates that the transition can only happen when the given intent is
      * matched.
      * At least one of `intent` or `condition` must be specified. When both
@@ -302,8 +302,8 @@ class TransitionRoute extends \Google\Protobuf\Internal\Message
 
     /**
      * The target page to transition to.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/pages/<Page ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.
      *
      * Generated from protobuf field <code>string target_page = 4 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -320,8 +320,8 @@ class TransitionRoute extends \Google\Protobuf\Internal\Message
 
     /**
      * The target page to transition to.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/pages/<Page ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.
      *
      * Generated from protobuf field <code>string target_page = 4 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -337,8 +337,8 @@ class TransitionRoute extends \Google\Protobuf\Internal\Message
 
     /**
      * The target flow to transition to.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string target_flow = 5 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -355,8 +355,8 @@ class TransitionRoute extends \Google\Protobuf\Internal\Message
 
     /**
      * The target flow to transition to.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string target_flow = 5 [(.google.api.resource_reference) = {</code>
      * @param string $var

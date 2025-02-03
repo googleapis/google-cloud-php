@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_VpnTunnels_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\VpnTunnelsClient;
+use Google\Cloud\Compute\V1\GetVpnTunnelRequest;
 use Google\Cloud\Compute\V1\VpnTunnel;
-use Google\Cloud\Compute\V1\VpnTunnelsClient;
 
 /**
  * Returns the specified VpnTunnel resource.
@@ -39,10 +40,16 @@ function get_sample(string $project, string $region, string $vpnTunnel): void
     // Create a client.
     $vpnTunnelsClient = new VpnTunnelsClient();
 
+    // Prepare the request message.
+    $request = (new GetVpnTunnelRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setVpnTunnel($vpnTunnel);
+
     // Call the API and handle any network failures.
     try {
         /** @var VpnTunnel $response */
-        $response = $vpnTunnelsClient->get($project, $region, $vpnTunnel);
+        $response = $vpnTunnelsClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

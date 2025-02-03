@@ -47,6 +47,12 @@ class RuntimeAnnotation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnswerFeedback answer_feedback = 5;</code>
      */
     protected $answer_feedback = null;
+    /**
+     * Explicit input used for generating the answer
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.RuntimeAnnotation.UserInput user_input = 16;</code>
+     */
+    protected $user_input = null;
     protected $data;
 
     /**
@@ -79,6 +85,8 @@ class RuntimeAnnotation extends \Google\Protobuf\Internal\Message
      *           The boundary in the conversation where the annotation ends, inclusive.
      *     @type \Google\Cloud\ContactCenterInsights\V1\AnswerFeedback $answer_feedback
      *           The feedback that the customer has about the answer in `data`.
+     *     @type \Google\Cloud\ContactCenterInsights\V1\RuntimeAnnotation\UserInput $user_input
+     *           Explicit input used for generating the answer
      * }
      */
     public function __construct($data = NULL) {
@@ -442,6 +450,42 @@ class RuntimeAnnotation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\AnswerFeedback::class);
         $this->answer_feedback = $var;
+
+        return $this;
+    }
+
+    /**
+     * Explicit input used for generating the answer
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.RuntimeAnnotation.UserInput user_input = 16;</code>
+     * @return \Google\Cloud\ContactCenterInsights\V1\RuntimeAnnotation\UserInput|null
+     */
+    public function getUserInput()
+    {
+        return $this->user_input;
+    }
+
+    public function hasUserInput()
+    {
+        return isset($this->user_input);
+    }
+
+    public function clearUserInput()
+    {
+        unset($this->user_input);
+    }
+
+    /**
+     * Explicit input used for generating the answer
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.RuntimeAnnotation.UserInput user_input = 16;</code>
+     * @param \Google\Cloud\ContactCenterInsights\V1\RuntimeAnnotation\UserInput $var
+     * @return $this
+     */
+    public function setUserInput($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\RuntimeAnnotation\UserInput::class);
+        $this->user_input = $var;
 
         return $this;
     }

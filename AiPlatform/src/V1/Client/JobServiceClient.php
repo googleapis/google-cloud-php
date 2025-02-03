@@ -87,6 +87,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: A service for creating and managing Vertex AI's jobs.
@@ -99,46 +100,46 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface cancelBatchPredictionJobAsync(CancelBatchPredictionJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface cancelCustomJobAsync(CancelCustomJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface cancelDataLabelingJobAsync(CancelDataLabelingJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface cancelHyperparameterTuningJobAsync(CancelHyperparameterTuningJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface cancelNasJobAsync(CancelNasJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createBatchPredictionJobAsync(CreateBatchPredictionJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCustomJobAsync(CreateCustomJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createDataLabelingJobAsync(CreateDataLabelingJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createHyperparameterTuningJobAsync(CreateHyperparameterTuningJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createModelDeploymentMonitoringJobAsync(CreateModelDeploymentMonitoringJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createNasJobAsync(CreateNasJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBatchPredictionJobAsync(DeleteBatchPredictionJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteCustomJobAsync(DeleteCustomJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDataLabelingJobAsync(DeleteDataLabelingJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteHyperparameterTuningJobAsync(DeleteHyperparameterTuningJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteModelDeploymentMonitoringJobAsync(DeleteModelDeploymentMonitoringJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteNasJobAsync(DeleteNasJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBatchPredictionJobAsync(GetBatchPredictionJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCustomJobAsync(GetCustomJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataLabelingJobAsync(GetDataLabelingJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getHyperparameterTuningJobAsync(GetHyperparameterTuningJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getModelDeploymentMonitoringJobAsync(GetModelDeploymentMonitoringJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNasJobAsync(GetNasJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNasTrialDetailAsync(GetNasTrialDetailRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBatchPredictionJobsAsync(ListBatchPredictionJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCustomJobsAsync(ListCustomJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDataLabelingJobsAsync(ListDataLabelingJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listHyperparameterTuningJobsAsync(ListHyperparameterTuningJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listModelDeploymentMonitoringJobsAsync(ListModelDeploymentMonitoringJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNasJobsAsync(ListNasJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNasTrialDetailsAsync(ListNasTrialDetailsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface pauseModelDeploymentMonitoringJobAsync(PauseModelDeploymentMonitoringJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resumeModelDeploymentMonitoringJobAsync(ResumeModelDeploymentMonitoringJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchModelDeploymentMonitoringStatsAnomaliesAsync(SearchModelDeploymentMonitoringStatsAnomaliesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateModelDeploymentMonitoringJobAsync(UpdateModelDeploymentMonitoringJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> cancelBatchPredictionJobAsync(CancelBatchPredictionJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> cancelCustomJobAsync(CancelCustomJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> cancelDataLabelingJobAsync(CancelDataLabelingJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> cancelHyperparameterTuningJobAsync(CancelHyperparameterTuningJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> cancelNasJobAsync(CancelNasJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchPredictionJob> createBatchPredictionJobAsync(CreateBatchPredictionJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomJob> createCustomJobAsync(CreateCustomJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataLabelingJob> createDataLabelingJobAsync(CreateDataLabelingJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HyperparameterTuningJob> createHyperparameterTuningJobAsync(CreateHyperparameterTuningJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ModelDeploymentMonitoringJob> createModelDeploymentMonitoringJobAsync(CreateModelDeploymentMonitoringJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NasJob> createNasJobAsync(CreateNasJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteBatchPredictionJobAsync(DeleteBatchPredictionJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteCustomJobAsync(DeleteCustomJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDataLabelingJobAsync(DeleteDataLabelingJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteHyperparameterTuningJobAsync(DeleteHyperparameterTuningJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteModelDeploymentMonitoringJobAsync(DeleteModelDeploymentMonitoringJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteNasJobAsync(DeleteNasJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchPredictionJob> getBatchPredictionJobAsync(GetBatchPredictionJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomJob> getCustomJobAsync(GetCustomJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataLabelingJob> getDataLabelingJobAsync(GetDataLabelingJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HyperparameterTuningJob> getHyperparameterTuningJobAsync(GetHyperparameterTuningJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ModelDeploymentMonitoringJob> getModelDeploymentMonitoringJobAsync(GetModelDeploymentMonitoringJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NasJob> getNasJobAsync(GetNasJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NasTrialDetail> getNasTrialDetailAsync(GetNasTrialDetailRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBatchPredictionJobsAsync(ListBatchPredictionJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCustomJobsAsync(ListCustomJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDataLabelingJobsAsync(ListDataLabelingJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listHyperparameterTuningJobsAsync(ListHyperparameterTuningJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listModelDeploymentMonitoringJobsAsync(ListModelDeploymentMonitoringJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNasJobsAsync(ListNasJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNasTrialDetailsAsync(ListNasTrialDetailsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> pauseModelDeploymentMonitoringJobAsync(PauseModelDeploymentMonitoringJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> resumeModelDeploymentMonitoringJobAsync(ResumeModelDeploymentMonitoringJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchModelDeploymentMonitoringStatsAnomaliesAsync(SearchModelDeploymentMonitoringStatsAnomaliesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateModelDeploymentMonitoringJobAsync(UpdateModelDeploymentMonitoringJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class JobServiceClient
 {
@@ -672,14 +673,14 @@ final class JobServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -701,6 +702,12 @@ final class JobServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -734,6 +741,9 @@ final class JobServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

@@ -106,6 +106,7 @@ class ServicesClientTest extends GeneratedTest
         $lastModifier = 'lastModifier-28366240';
         $client = 'client-1357712437';
         $clientVersion = 'clientVersion-1506231196';
+        $invokerIamDisabled = false;
         $defaultUriDisabled = false;
         $observedGeneration = 900833007;
         $latestReadyRevision = 'latestReadyRevision-853854545';
@@ -123,6 +124,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setLastModifier($lastModifier);
         $expectedResponse->setClient($client);
         $expectedResponse->setClientVersion($clientVersion);
+        $expectedResponse->setInvokerIamDisabled($invokerIamDisabled);
         $expectedResponse->setDefaultUriDisabled($defaultUriDisabled);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
@@ -278,6 +280,7 @@ class ServicesClientTest extends GeneratedTest
         $lastModifier = 'lastModifier-28366240';
         $client = 'client-1357712437';
         $clientVersion = 'clientVersion-1506231196';
+        $invokerIamDisabled = false;
         $defaultUriDisabled = false;
         $observedGeneration = 900833007;
         $latestReadyRevision = 'latestReadyRevision-853854545';
@@ -295,6 +298,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setLastModifier($lastModifier);
         $expectedResponse->setClient($client);
         $expectedResponse->setClientVersion($clientVersion);
+        $expectedResponse->setInvokerIamDisabled($invokerIamDisabled);
         $expectedResponse->setDefaultUriDisabled($defaultUriDisabled);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
@@ -487,6 +491,7 @@ class ServicesClientTest extends GeneratedTest
         $lastModifier = 'lastModifier-28366240';
         $client = 'client-1357712437';
         $clientVersion = 'clientVersion-1506231196';
+        $invokerIamDisabled = false;
         $defaultUriDisabled = false;
         $observedGeneration = 900833007;
         $latestReadyRevision = 'latestReadyRevision-853854545';
@@ -504,6 +509,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setLastModifier($lastModifier);
         $expectedResponse->setClient($client);
         $expectedResponse->setClientVersion($clientVersion);
+        $expectedResponse->setInvokerIamDisabled($invokerIamDisabled);
         $expectedResponse->setDefaultUriDisabled($defaultUriDisabled);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
@@ -803,6 +809,7 @@ class ServicesClientTest extends GeneratedTest
         $lastModifier = 'lastModifier-28366240';
         $client = 'client-1357712437';
         $clientVersion = 'clientVersion-1506231196';
+        $invokerIamDisabled = false;
         $defaultUriDisabled = false;
         $observedGeneration = 900833007;
         $latestReadyRevision = 'latestReadyRevision-853854545';
@@ -820,6 +827,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setLastModifier($lastModifier);
         $expectedResponse->setClient($client);
         $expectedResponse->setClientVersion($clientVersion);
+        $expectedResponse->setInvokerIamDisabled($invokerIamDisabled);
         $expectedResponse->setDefaultUriDisabled($defaultUriDisabled);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
@@ -961,6 +969,7 @@ class ServicesClientTest extends GeneratedTest
         $lastModifier = 'lastModifier-28366240';
         $client = 'client-1357712437';
         $clientVersion = 'clientVersion-1506231196';
+        $invokerIamDisabled = false;
         $defaultUriDisabled = false;
         $observedGeneration = 900833007;
         $latestReadyRevision = 'latestReadyRevision-853854545';
@@ -978,6 +987,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setLastModifier($lastModifier);
         $expectedResponse->setClient($client);
         $expectedResponse->setClientVersion($clientVersion);
+        $expectedResponse->setInvokerIamDisabled($invokerIamDisabled);
         $expectedResponse->setDefaultUriDisabled($defaultUriDisabled);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);

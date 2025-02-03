@@ -27,9 +27,12 @@ class ImageTest extends StreamWrapperTestCase
     const TEST_IMAGE_WITH_EXIF = __DIR__ . '/../data/fujifilm-dx10.jpg';
     const TEST_IMAGE = __DIR__ . '/../data/screenshot.png';
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
 
         self::$bucket->upload(
             fopen(self::TEST_IMAGE_WITH_EXIF, 'r'),

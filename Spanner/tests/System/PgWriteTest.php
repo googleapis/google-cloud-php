@@ -42,11 +42,14 @@ class PgWriteTest extends SpannerPgTestCase
     const TABLE_NAME = 'Writes';
     const COMMIT_TIMESTAMP_TABLE_NAME = 'CommitTimestamps';
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         // The equiavalent tests for the GSQL dialect are also skipped.
         self::skipEmulatorTests();
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
 
         self::$database->updateDdlBatch([
             'CREATE TABLE ' . self::TABLE_NAME . ' (

@@ -51,6 +51,7 @@ use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Policy Tag Manager API service allows you to manage your policy tags and
@@ -68,19 +69,19 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createPolicyTagAsync(CreatePolicyTagRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTaxonomyAsync(CreateTaxonomyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePolicyTagAsync(DeletePolicyTagRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTaxonomyAsync(DeleteTaxonomyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPolicyTagAsync(GetPolicyTagRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTaxonomyAsync(GetTaxonomyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPolicyTagsAsync(ListPolicyTagsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTaxonomiesAsync(ListTaxonomiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updatePolicyTagAsync(UpdatePolicyTagRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTaxonomyAsync(UpdateTaxonomyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PolicyTag> createPolicyTagAsync(CreatePolicyTagRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Taxonomy> createTaxonomyAsync(CreateTaxonomyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deletePolicyTagAsync(DeletePolicyTagRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTaxonomyAsync(DeleteTaxonomyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PolicyTag> getPolicyTagAsync(GetPolicyTagRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Taxonomy> getTaxonomyAsync(GetTaxonomyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPolicyTagsAsync(ListPolicyTagsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTaxonomiesAsync(ListTaxonomiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PolicyTag> updatePolicyTagAsync(UpdatePolicyTagRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Taxonomy> updateTaxonomyAsync(UpdateTaxonomyRequest $request, array $optionalArgs = [])
  */
 final class PolicyTagManagerClient
 {
@@ -199,14 +200,14 @@ final class PolicyTagManagerClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -228,6 +229,12 @@ final class PolicyTagManagerClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -261,6 +268,9 @@ final class PolicyTagManagerClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

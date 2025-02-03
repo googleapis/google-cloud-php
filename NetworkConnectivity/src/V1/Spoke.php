@@ -93,6 +93,12 @@ class Spoke extends \Google\Protobuf\Internal\Message
      */
     protected $linked_vpc_network = null;
     /**
+     * Optional. The linked producer VPC that is associated with the spoke.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.LinkedProducerVpcNetwork linked_producer_vpc_network = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $linked_producer_vpc_network = null;
+    /**
      * Output only. The Google-generated UUID for the spoke. This value is unique
      * across all spoke resources. If a spoke is deleted and another with the same
      * name is created, the new spoke is assigned a different `unique_id`.
@@ -152,6 +158,8 @@ class Spoke extends \Google\Protobuf\Internal\Message
      *           Router appliance instances that are associated with the spoke.
      *     @type \Google\Cloud\NetworkConnectivity\V1\LinkedVpcNetwork $linked_vpc_network
      *           Optional. VPC network that is associated with the spoke.
+     *     @type \Google\Cloud\NetworkConnectivity\V1\LinkedProducerVpcNetwork $linked_producer_vpc_network
+     *           Optional. The linked producer VPC that is associated with the spoke.
      *     @type string $unique_id
      *           Output only. The Google-generated UUID for the spoke. This value is unique
      *           across all spoke resources. If a spoke is deleted and another with the same
@@ -520,6 +528,42 @@ class Spoke extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkConnectivity\V1\LinkedVpcNetwork::class);
         $this->linked_vpc_network = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The linked producer VPC that is associated with the spoke.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.LinkedProducerVpcNetwork linked_producer_vpc_network = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\NetworkConnectivity\V1\LinkedProducerVpcNetwork|null
+     */
+    public function getLinkedProducerVpcNetwork()
+    {
+        return $this->linked_producer_vpc_network;
+    }
+
+    public function hasLinkedProducerVpcNetwork()
+    {
+        return isset($this->linked_producer_vpc_network);
+    }
+
+    public function clearLinkedProducerVpcNetwork()
+    {
+        unset($this->linked_producer_vpc_network);
+    }
+
+    /**
+     * Optional. The linked producer VPC that is associated with the spoke.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.LinkedProducerVpcNetwork linked_producer_vpc_network = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\NetworkConnectivity\V1\LinkedProducerVpcNetwork $var
+     * @return $this
+     */
+    public function setLinkedProducerVpcNetwork($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkConnectivity\V1\LinkedProducerVpcNetwork::class);
+        $this->linked_producer_vpc_network = $var;
 
         return $this;
     }

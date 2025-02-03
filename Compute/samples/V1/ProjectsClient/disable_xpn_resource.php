@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Projects_DisableXpnResource_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\ProjectsClient;
+use Google\Cloud\Compute\V1\Client\ProjectsClient;
+use Google\Cloud\Compute\V1\DisableXpnResourceProjectRequest;
 use Google\Cloud\Compute\V1\ProjectsDisableXpnResourceRequest;
 use Google\Rpc\Status;
 
@@ -39,16 +40,16 @@ function disable_xpn_resource_sample(string $project): void
     // Create a client.
     $projectsClient = new ProjectsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $projectsDisableXpnResourceRequestResource = new ProjectsDisableXpnResourceRequest();
+    $request = (new DisableXpnResourceProjectRequest())
+        ->setProject($project)
+        ->setProjectsDisableXpnResourceRequestResource($projectsDisableXpnResourceRequestResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $projectsClient->disableXpnResource(
-            $project,
-            $projectsDisableXpnResourceRequestResource
-        );
+        $response = $projectsClient->disableXpnResource($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

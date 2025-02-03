@@ -24,8 +24,8 @@ class SimulatedResult extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\SecurityCenterManagement\V1\SimulatedFinding $finding
-     *           Finding that would be published for the test case,
-     *           if a violation is detected.
+     *           Finding that would be published for the test case if a violation is
+     *           detected.
      *     @type \Google\Protobuf\GPBEmpty $no_violation
      *           Indicates that the test case does not trigger any violation.
      *     @type \Google\Rpc\Status $error
@@ -38,8 +38,8 @@ class SimulatedResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Finding that would be published for the test case,
-     * if a violation is detected.
+     * Finding that would be published for the test case if a violation is
+     * detected.
      *
      * Generated from protobuf field <code>.google.cloud.securitycentermanagement.v1.SimulatedFinding finding = 1;</code>
      * @return \Google\Cloud\SecurityCenterManagement\V1\SimulatedFinding|null
@@ -55,8 +55,8 @@ class SimulatedResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Finding that would be published for the test case,
-     * if a violation is detected.
+     * Finding that would be published for the test case if a violation is
+     * detected.
      *
      * Generated from protobuf field <code>.google.cloud.securitycentermanagement.v1.SimulatedFinding finding = 1;</code>
      * @param \Google\Cloud\SecurityCenterManagement\V1\SimulatedFinding $var

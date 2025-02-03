@@ -44,9 +44,12 @@ class ComponentInfoCommand extends Command
         'php_namespaces' => 'Php Namespace',
         'github_repo' => 'Github Repo',
         'proto_path' => 'Proto Path',
+        'proto_packages' => 'Proto Packages',
+        'proto_namespaces' => 'Proto Namespaces',
         'service_address' => 'Service Address',
         'api_shortname' => 'API Shortname',
         'description' => 'Description',
+        'library_type' => 'Library Type',
         'created_at' => 'Created At',
         'available_api_versions' => 'Availble API Versions',
         'downloads' => 'Downloads',
@@ -58,6 +61,11 @@ class ComponentInfoCommand extends Command
         'api_version',
         'release_level',
         'api_shortname',
+    ];
+    private static $slowFields = [
+        'available_api_versions',
+        'created_at',
+        'downloads',
     ];
 
     private string $token;
@@ -71,20 +79,26 @@ class ComponentInfoCommand extends Command
             ->addOption('component', 'c', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'get info for a single component', [])
             ->addOption('csv', '', InputOption::VALUE_OPTIONAL, 'export findings to csv.', false)
             ->addOption('fields', 'f', InputOption::VALUE_REQUIRED, sprintf(
-                "Comma-separated list of fields, \"all\" for all fields. The following fields are available: \n - %s\n" .
-                "NOTE: \"available_api_versions\", \"created_at\", and \"downloads\" are omited by default because they ".
-                "take a long time to load.\n",
+                'Comma-separated list of fields. Prefix with "+" to add to default filters, or use "all" for all fields.'
+                . " The following fields are available: \n - %s\n"
+                . "\n EXAMPLE: --fields 'component_name,package_version,api_version'"
+                . "\n EXAMPLE: --fields '+migration_mode'"
+                . "\n EXAMPLE: --fields all"
+                . "\nNOTE: \"available_api_versions\", \"created_at\", and \"downloads\" are omited by default because they "
+                . "take a long time to load.",
                 implode("\n - ", array_keys(self::$allFields))
             ))
             ->addOption('filter', '', InputOption::VALUE_REQUIRED,
-                'Comma-separated list of key-value filters. Supported operators are "=", "!=", "~=", and "!~=".'
-                . "\nExample: `--filter 'release_level=preview,migration_mode~=NEW_SURFACE_ONLY,migration_mode!~=MIGRATING'`'"
+                'Comma-separated list of key-value filters.'
+                . "\nSupported operators are \"=\", \"!=\", \"~=\", and \"!~=\"."
+                . "\nEXAMPLE: --filter 'release_level=preview,migration_mode~=NEW_SURFACE_ONLY,migration_mode!~=MIGRATING'"
             )
             ->addOption('sort', '', InputOption::VALUE_REQUIRED,
                 'field to sort by (with optional ASC/DESC suffix. e.g. "component_name DESC"'
             )
-            ->addOption('token', 't', InputOption::VALUE_REQUIRED, 'Github token to use for authentication', '')
-            ->addOption('expanded', '', InputOption::VALUE_NONE, 'Break down each component by packages')
+            ->addOption('count', '', InputOption::VALUE_NONE, 'output number of components which match the provided filters')
+            ->addOption('expanded', '', InputOption::VALUE_NONE, 'Gives each component version its own row')
+            ->addOption('token', 't', InputOption::VALUE_REQUIRED, 'Github token to use for authentication. Used to prevent Github rate limiting.', '')
         ;
     }
 
@@ -94,7 +108,7 @@ class ComponentInfoCommand extends Command
             null => self::$defaultFields,
             'all' => array_keys(array_diff_key(
                 self::$allFields,
-                ['available_api_versions' => '', 'created_at' => '', 'downloads' => '']
+                array_flip(self::$slowFields)
             )),
             default => explode(',', $input->getOption('fields')),
         };
@@ -144,6 +158,11 @@ class ComponentInfoCommand extends Command
             if ($order === 'DESC') {
                 $rows = array_reverse($rows);
             }
+        }
+
+        if ($input->getOption('count')) {
+            $output->writeln(count($rows));
+            return 0;
         }
 
         // output the component data
@@ -216,10 +235,11 @@ class ComponentInfoCommand extends Command
             'migration_mode' => $package ? $package->getMigrationStatus() : implode(",", $component->getMigrationStatuses()),
             'php_namespaces' => implode(",", array_keys($component->getNamespaces())),
             'github_repo' => $component->getRepoName(),
-            'proto_path' => $package ? $package->getProtoPackage() : implode(",", $component->getProtoPackages()),
+            'proto_path' => $package ? $package->getProtoPath() : implode(",", $component->getProtoPaths()),
             'service_address' => $package ? $package->getServiceAddress() : implode(",", $component->getServiceAddresses()),
             'api_shortname' => $package ? $package->getApiShortname() : implode(",", array_filter($component->getApiShortnames())),
             'description' => $component->getDescription(),
+            'library_type' => $component->getLibraryType(),
             'available_api_versions' => null,
             'created_at' => null,
             'downloads' => null,
@@ -239,6 +259,22 @@ class ComponentInfoCommand extends Command
         if (array_key_exists('downloads', $requestedFields)) {
             $row['downloads'] = number_format($this->packagist->getDownloads($component->getPackageName()));
         }
+        if (
+            array_key_exists('proto_namespaces', $requestedFields)
+            || array_key_exists('proto_packages', $requestedFields)
+        ) {
+            $protoNamespaces = $component->getProtoNamespaces();
+            if (array_key_exists('proto_packages', $requestedFields)) {
+                $row['proto_packages'] = implode(",", array_keys($protoNamespaces));
+            }
+            if (array_key_exists('proto_namespaces', $requestedFields)) {
+                $row['proto_namespaces'] = implode("\n", array_map(
+                    fn ($key, $value) => $key . ' => ' . $value,
+                    array_keys($protoNamespaces),
+                    array_values($protoNamespaces)
+                ));
+            }
+        }
         // call again in case the filters were on the slow fields
         if ($this->filterRow($row, $filters)) {
             return null;
@@ -248,7 +284,7 @@ class ComponentInfoCommand extends Command
 
     private function getAvailableApiVersions(Component $component): string
     {
-        $protos = $component->getProtoPackages();
+        $protos = $component->getProtoPaths();
         $proto = array_shift($protos);
         // Proto packages should be in a version directory
         $versionPath = dirname($proto);
@@ -276,7 +312,7 @@ class ComponentInfoCommand extends Command
     {
         $filters = [];
         foreach (array_filter(explode(',', $filterString)) as $filter) {
-            if (!preg_match('/^(\w+?)(!~=|~=|!=|>=|<=|=|<|>)(.+)$/', $filter, $matches)) {
+            if (!preg_match('/^(\w+?)(!~=|~=|!=|>=|<=|=|<|>|\^=)(.+)$/', $filter, $matches)) {
                 throw new \InvalidArgumentException(sprintf('Invalid filter: %s', $filter));
             }
             $filters[] = [$matches[1], $matches[3], $matches[2]];
@@ -303,6 +339,7 @@ class ComponentInfoCommand extends Command
                 '!=' => ($row[$field] !== $value),
                 '~=' => strpos($row[$field], $value) !== false,
                 '!~=' => strpos($row[$field], $value) === false,
+                '^=' => str_starts_with($row[$field], $value) !== false,
                 '>','<','>=','<=' => match($field) {
                     'downloads' => version_compare(
                         str_replace(',' , '', $row[$field]),

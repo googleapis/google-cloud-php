@@ -53,7 +53,7 @@ class DocumentInfo extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The [Document][google.cloud.discoveryengine.v1.Document] resource full
      *           name, of the form:
-     *           `projects/{project_id}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/branches/{branch_id}/documents/{document_id}`
+     *           `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/branches/{branch_id}/documents/{document_id}`
      *     @type string $uri
      *           The [Document][google.cloud.discoveryengine.v1.Document] URI - only
      *           allowed for website data stores.
@@ -111,7 +111,7 @@ class DocumentInfo extends \Google\Protobuf\Internal\Message
     /**
      * The [Document][google.cloud.discoveryengine.v1.Document] resource full
      * name, of the form:
-     * `projects/{project_id}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/branches/{branch_id}/documents/{document_id}`
+     * `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/branches/{branch_id}/documents/{document_id}`
      *
      * Generated from protobuf field <code>string name = 2 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -129,7 +129,7 @@ class DocumentInfo extends \Google\Protobuf\Internal\Message
     /**
      * The [Document][google.cloud.discoveryengine.v1.Document] resource full
      * name, of the form:
-     * `projects/{project_id}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/branches/{branch_id}/documents/{document_id}`
+     * `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/branches/{branch_id}/documents/{document_id}`
      *
      * Generated from protobuf field <code>string name = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var

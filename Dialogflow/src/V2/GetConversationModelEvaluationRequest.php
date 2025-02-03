@@ -23,7 +23,7 @@ class GetConversationModelEvaluationRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string $name Required. The conversation model evaluation resource name. Format:

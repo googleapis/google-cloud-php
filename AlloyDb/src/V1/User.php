@@ -41,6 +41,13 @@ class User extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.User.UserType user_type = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $user_type = 0;
+    /**
+     * Input only. If the user already exists and it has additional roles, keep
+     * them granted.
+     *
+     * Generated from protobuf field <code>bool keep_extra_roles = 6 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    protected $keep_extra_roles = false;
 
     /**
      * Constructor.
@@ -58,6 +65,9 @@ class User extends \Google\Protobuf\Internal\Message
      *           The database role strings are subject to the PostgreSQL naming conventions.
      *     @type int $user_type
      *           Optional. Type of this user.
+     *     @type bool $keep_extra_roles
+     *           Input only. If the user already exists and it has additional roles, keep
+     *           them granted.
      * }
      */
     public function __construct($data = NULL) {
@@ -169,6 +179,34 @@ class User extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\AlloyDb\V1\User\UserType::class);
         $this->user_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. If the user already exists and it has additional roles, keep
+     * them granted.
+     *
+     * Generated from protobuf field <code>bool keep_extra_roles = 6 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getKeepExtraRoles()
+    {
+        return $this->keep_extra_roles;
+    }
+
+    /**
+     * Input only. If the user already exists and it has additional roles, keep
+     * them granted.
+     *
+     * Generated from protobuf field <code>bool keep_extra_roles = 6 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setKeepExtraRoles($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->keep_extra_roles = $var;
 
         return $this;
     }

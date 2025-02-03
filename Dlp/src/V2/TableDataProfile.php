@@ -48,19 +48,20 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      */
     protected $dataset_location = '';
     /**
-     * If the resource is BigQuery, the  dataset ID.
+     * If the resource is BigQuery, the dataset ID.
      *
      * Generated from protobuf field <code>string dataset_id = 25;</code>
      */
     protected $dataset_id = '';
     /**
-     * If the resource is BigQuery, the BigQuery table ID.
+     * The table ID.
      *
      * Generated from protobuf field <code>string table_id = 26;</code>
      */
     protected $table_id = '';
     /**
-     * The resource name of the resource profiled.
+     * The Cloud Asset Inventory resource that was profiled in order to generate
+     * this TableDataProfile.
      * https://cloud.google.com/apis/design/resource_names#full_resource_name
      *
      * Generated from protobuf field <code>string full_resource = 3;</code>
@@ -196,11 +197,12 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      *           See https://cloud.google.com/bigquery/docs/locations for supported
      *           locations.
      *     @type string $dataset_id
-     *           If the resource is BigQuery, the  dataset ID.
+     *           If the resource is BigQuery, the dataset ID.
      *     @type string $table_id
-     *           If the resource is BigQuery, the BigQuery table ID.
+     *           The table ID.
      *     @type string $full_resource
-     *           The resource name of the resource profiled.
+     *           The Cloud Asset Inventory resource that was profiled in order to generate
+     *           this TableDataProfile.
      *           https://cloud.google.com/apis/design/resource_names#full_resource_name
      *     @type \Google\Cloud\Dlp\V2\ProfileStatus $profile_status
      *           Success or error status from the most recent profile generation attempt.
@@ -392,7 +394,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the resource is BigQuery, the  dataset ID.
+     * If the resource is BigQuery, the dataset ID.
      *
      * Generated from protobuf field <code>string dataset_id = 25;</code>
      * @return string
@@ -403,7 +405,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the resource is BigQuery, the  dataset ID.
+     * If the resource is BigQuery, the dataset ID.
      *
      * Generated from protobuf field <code>string dataset_id = 25;</code>
      * @param string $var
@@ -418,7 +420,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the resource is BigQuery, the BigQuery table ID.
+     * The table ID.
      *
      * Generated from protobuf field <code>string table_id = 26;</code>
      * @return string
@@ -429,7 +431,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the resource is BigQuery, the BigQuery table ID.
+     * The table ID.
      *
      * Generated from protobuf field <code>string table_id = 26;</code>
      * @param string $var
@@ -444,7 +446,8 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the resource profiled.
+     * The Cloud Asset Inventory resource that was profiled in order to generate
+     * this TableDataProfile.
      * https://cloud.google.com/apis/design/resource_names#full_resource_name
      *
      * Generated from protobuf field <code>string full_resource = 3;</code>
@@ -456,7 +459,8 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the resource profiled.
+     * The Cloud Asset Inventory resource that was profiled in order to generate
+     * this TableDataProfile.
      * https://cloud.google.com/apis/design/resource_names#full_resource_name
      *
      * Generated from protobuf field <code>string full_resource = 3;</code>

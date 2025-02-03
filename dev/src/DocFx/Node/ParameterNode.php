@@ -29,7 +29,8 @@ class ParameterNode
     public function __construct(
         private string $name,
         private string $type,
-        private string $description
+        private string $description,
+        private string $namespace,
     ) {}
 
     public function getName(): string
@@ -107,7 +108,8 @@ class ParameterNode
             $parameters[] = new ParameterNode(
                 $name,
                 $type,
-                $this->replaceSeeTag(trim($description))
+                $this->replaceSeeTag(trim($description)),
+                $this->namespace
             );
         }
 

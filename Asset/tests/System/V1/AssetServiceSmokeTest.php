@@ -16,9 +16,9 @@
  */
 namespace Google\Cloud\Asset\Tests\System\V1;
 
-use Google\Cloud\Asset\V1\AssetServiceClient;
-use Google\Cloud\Asset\V1\GcsDestination;
-use Google\Cloud\Asset\V1\OutputConfig;
+use Google\Cloud\Asset\V1\Asset;
+use Google\Cloud\Asset\V1\Client\AssetServiceClient;
+use Google\Cloud\Asset\V1\ListAssetsRequest;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
 
 /**
@@ -36,20 +36,9 @@ class AssetServiceSmokeTest extends SystemTestCase
         if ($projectId === false) {
             $this->fail('Environment variable PROJECT_ID must be set for smoke test');
         }
-        $bucket = getenv('ASSET_TEST_BUCKET');
-        if ($bucket === false) {
-            $this->fail('Environment variable ASSET_TEST_BUCKET must be set for smoke test');
-        }
         $client = new AssetServiceClient();
-        $objectPath = "gs://$bucket/cai-system-test";
-        $gcsDestination = new GcsDestination(['uri' => $objectPath]);
-        $outputConfig = new OutputConfig([
-            'gcs_destination' => $gcsDestination
-        ]);
 
-        $resp = $client->exportAssets("projects/$projectId", $outputConfig);
-        $resp->pollUntilComplete();
-
-        $this->assertTrue($resp->operationSucceeded());
+        $response = $client->listAssets(ListAssetsRequest::build('projects/' . $projectId));
+        $this->assertInstanceOf(Asset::class, $response->getIterator()->current());
     }
 }

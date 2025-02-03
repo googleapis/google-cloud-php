@@ -20,7 +20,7 @@ class LaunchTemplateParameters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string job_name = 1;</code>
      */
-    private $job_name = '';
+    protected $job_name = '';
     /**
      * The runtime parameters to pass to the job.
      *
@@ -32,14 +32,14 @@ class LaunchTemplateParameters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.RuntimeEnvironment environment = 3;</code>
      */
-    private $environment = null;
+    protected $environment = null;
     /**
      * If set, replace the existing pipeline with the name specified by jobName
      * with this pipeline, preserving state.
      *
      * Generated from protobuf field <code>bool update = 4;</code>
      */
-    private $update = false;
+    protected $update = false;
     /**
      * Only applicable when updating a pipeline. Map of transform name prefixes of
      * the job to be replaced to the corresponding name prefixes of the new job.

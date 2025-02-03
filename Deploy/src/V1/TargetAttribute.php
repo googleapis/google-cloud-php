@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Contains criteria for selecting Targets.
+ * Contains criteria for selecting Targets. This could be used to select targets
+ * for a Deploy Policy or for an Automation.
  *
  * Generated from protobuf message <code>google.cloud.deploy.v1.TargetAttribute</code>
  */

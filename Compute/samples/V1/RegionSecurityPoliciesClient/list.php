@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionSecurityPolicies_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\RegionSecurityPoliciesClient;
+use Google\Cloud\Compute\V1\Client\RegionSecurityPoliciesClient;
+use Google\Cloud\Compute\V1\ListRegionSecurityPoliciesRequest;
 
 /**
  * List all the policies that have been configured for the specified project and region.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $region): void
     // Create a client.
     $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
 
+    // Prepare the request message.
+    $request = (new ListRegionSecurityPoliciesRequest())
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $regionSecurityPoliciesClient->list($project, $region);
+        $response = $regionSecurityPoliciesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

@@ -21,16 +21,16 @@ class DeleteNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * If true, the notification channel will be deleted regardless of its
      * use in alert policies (the policies will be updated to remove the
-     * channel). If false, channels that are still referenced by an existing
-     * alerting policy will fail to be deleted in a delete operation.
+     * channel). If false, this operation will fail if the notification channel
+     * is referenced by existing alerting policies.
      *
      * Generated from protobuf field <code>bool force = 5;</code>
      */
-    private $force = false;
+    protected $force = false;
 
     /**
      * @param string $name  Required. The channel for which to execute the request. The format is:
@@ -39,8 +39,8 @@ class DeleteNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      *                      Please see {@see NotificationChannelServiceClient::notificationChannelName()} for help formatting this field.
      * @param bool   $force If true, the notification channel will be deleted regardless of its
      *                      use in alert policies (the policies will be updated to remove the
-     *                      channel). If false, channels that are still referenced by an existing
-     *                      alerting policy will fail to be deleted in a delete operation.
+     *                      channel). If false, this operation will fail if the notification channel
+     *                      is referenced by existing alerting policies.
      *
      * @return \Google\Cloud\Monitoring\V3\DeleteNotificationChannelRequest
      *
@@ -65,8 +65,8 @@ class DeleteNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $force
      *           If true, the notification channel will be deleted regardless of its
      *           use in alert policies (the policies will be updated to remove the
-     *           channel). If false, channels that are still referenced by an existing
-     *           alerting policy will fail to be deleted in a delete operation.
+     *           channel). If false, this operation will fail if the notification channel
+     *           is referenced by existing alerting policies.
      * }
      */
     public function __construct($data = NULL) {
@@ -105,8 +105,8 @@ class DeleteNotificationChannelRequest extends \Google\Protobuf\Internal\Message
     /**
      * If true, the notification channel will be deleted regardless of its
      * use in alert policies (the policies will be updated to remove the
-     * channel). If false, channels that are still referenced by an existing
-     * alerting policy will fail to be deleted in a delete operation.
+     * channel). If false, this operation will fail if the notification channel
+     * is referenced by existing alerting policies.
      *
      * Generated from protobuf field <code>bool force = 5;</code>
      * @return bool
@@ -119,8 +119,8 @@ class DeleteNotificationChannelRequest extends \Google\Protobuf\Internal\Message
     /**
      * If true, the notification channel will be deleted regardless of its
      * use in alert policies (the policies will be updated to remove the
-     * channel). If false, channels that are still referenced by an existing
-     * alerting policy will fail to be deleted in a delete operation.
+     * channel). If false, this operation will fail if the notification channel
+     * is referenced by existing alerting policies.
      *
      * Generated from protobuf field <code>bool force = 5;</code>
      * @param bool $var

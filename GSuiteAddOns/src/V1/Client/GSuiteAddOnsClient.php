@@ -46,32 +46,33 @@ use Google\Cloud\GSuiteAddOns\V1\ListDeploymentsRequest;
 use Google\Cloud\GSuiteAddOns\V1\ReplaceDeploymentRequest;
 use Google\Cloud\GSuiteAddOns\V1\UninstallDeploymentRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: A service for managing Google Workspace Add-ons deployments.
+ * Service Description: A service for managing Google Workspace add-ons deployments.
  *
- * A Google Workspace Add-on is a third-party embedded component that can be
+ * A Google Workspace add-on is a third-party embedded component that can be
  * installed in Google Workspace Applications like Gmail, Calendar, Drive, and
- * the Google Docs, Sheets, and Slides editors. Google Workspace Add-ons can
+ * the Google Docs, Sheets, and Slides editors. Google Workspace add-ons can
  * display UI cards, receive contextual information from the host application,
  * and perform actions in the host application (See:
  * https://developers.google.com/gsuite/add-ons/overview for more information).
  *
- * A Google Workspace Add-on deployment resource specifies metadata about the
+ * A Google Workspace add-on deployment resource specifies metadata about the
  * add-on, including a specification of the entry points in the host application
  * that trigger add-on executions (see:
  * https://developers.google.com/gsuite/add-ons/concepts/gsuite-manifests).
- * Add-on deployments defined via the Google Workspace Add-ons API define their
+ * Add-on deployments defined via the Google Workspace add-ons API define their
  * entrypoints using HTTPS URLs (See:
  * https://developers.google.com/gsuite/add-ons/guides/alternate-runtimes),
  *
- * A Google Workspace Add-on deployment can be installed in developer mode,
+ * A Google Workspace add-on deployment can be installed in developer mode,
  * which allows an add-on developer to test the experience an end-user would see
  * when installing and running the add-on in their G Suite applications.  When
  * running in developer mode, more detailed error messages are exposed in the
  * add-on UI to aid in debugging.
  *
- * A Google Workspace Add-on deployment can be published to Google Workspace
+ * A Google Workspace add-on deployment can be published to Google Workspace
  * Marketplace, which allows other Google Workspace users to discover and
  * install the add-on.  See:
  * https://developers.google.com/gsuite/add-ons/how-tos/publish-add-on-overview
@@ -85,15 +86,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createDeploymentAsync(CreateDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDeploymentAsync(DeleteDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAuthorizationAsync(GetAuthorizationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDeploymentAsync(GetDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getInstallStatusAsync(GetInstallStatusRequest $request, array $optionalArgs = [])
- * @method PromiseInterface installDeploymentAsync(InstallDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDeploymentsAsync(ListDeploymentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface replaceDeploymentAsync(ReplaceDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface uninstallDeploymentAsync(UninstallDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Deployment> createDeploymentAsync(CreateDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteDeploymentAsync(DeleteDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Authorization> getAuthorizationAsync(GetAuthorizationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Deployment> getDeploymentAsync(GetDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstallStatus> getInstallStatusAsync(GetInstallStatusRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> installDeploymentAsync(InstallDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDeploymentsAsync(ListDeploymentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Deployment> replaceDeploymentAsync(ReplaceDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> uninstallDeploymentAsync(UninstallDeploymentRequest $request, array $optionalArgs = [])
  */
 final class GSuiteAddOnsClient
 {
@@ -220,14 +221,14 @@ final class GSuiteAddOnsClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -249,6 +250,12 @@ final class GSuiteAddOnsClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -282,6 +289,9 @@ final class GSuiteAddOnsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

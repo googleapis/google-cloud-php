@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request to get a Participant.
+ * Request to get a participant.
  *
  * Generated from protobuf message <code>google.apps.meet.v2beta.GetParticipantRequest</code>
  */

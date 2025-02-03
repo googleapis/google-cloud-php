@@ -49,6 +49,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Provides interfaces for using [Cloud KMS
@@ -78,14 +79,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createKeyHandleAsync(CreateKeyHandleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getKeyHandleAsync(GetKeyHandleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listKeyHandlesAsync(ListKeyHandlesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createKeyHandleAsync(CreateKeyHandleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<KeyHandle> getKeyHandleAsync(GetKeyHandleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listKeyHandlesAsync(ListKeyHandlesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class AutokeyClient
 {
@@ -259,14 +260,14 @@ final class AutokeyClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -288,6 +289,12 @@ final class AutokeyClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -321,6 +328,9 @@ final class AutokeyClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -347,9 +357,9 @@ final class AutokeyClient
      * Creates a new [KeyHandle][google.cloud.kms.v1.KeyHandle], triggering the
      * provisioning of a new [CryptoKey][google.cloud.kms.v1.CryptoKey] for CMEK
      * use with the given resource type in the configured key project and the same
-     * location. [GetOperation][Operations.GetOperation] should be used to resolve
-     * the resulting long-running operation and get the resulting
-     * [KeyHandle][google.cloud.kms.v1.KeyHandle] and
+     * location. [GetOperation][google.longrunning.Operations.GetOperation] should
+     * be used to resolve the resulting long-running operation and get the
+     * resulting [KeyHandle][google.cloud.kms.v1.KeyHandle] and
      * [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *
      * The async variant is {@see AutokeyClient::createKeyHandleAsync()} .

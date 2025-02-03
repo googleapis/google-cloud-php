@@ -7,14 +7,14 @@ namespace Google\Cloud\SecurityCenterManagement\V1\SimulatedFinding;
 use UnexpectedValueException;
 
 /**
- * Represents what kind of Finding it is.
+ * Represents what kind of finding it is.
  *
  * Protobuf type <code>google.cloud.securitycentermanagement.v1.SimulatedFinding.FindingClass</code>
  */
 class FindingClass
 {
     /**
-     * Unspecified finding class.
+     * Default value. This value is unused.
      *
      * Generated from protobuf enum <code>FINDING_CLASS_UNSPECIFIED = 0;</code>
      */
@@ -27,14 +27,14 @@ class FindingClass
     const THREAT = 1;
     /**
      * Describes a potential weakness in software that increases risk to
-     * Confidentiality & Integrity & Availability.
+     * confidentiality, integrity, and availability.
      *
      * Generated from protobuf enum <code>VULNERABILITY = 2;</code>
      */
     const VULNERABILITY = 2;
     /**
-     * Describes a potential weakness in cloud resource/asset configuration that
-     * increases risk.
+     * Describes a potential weakness in cloud resource or asset configuration
+     * that increases risk.
      *
      * Generated from protobuf enum <code>MISCONFIGURATION = 3;</code>
      */
@@ -46,7 +46,8 @@ class FindingClass
      */
     const OBSERVATION = 4;
     /**
-     * Describes an error that prevents some SCC functionality.
+     * Describes an error that prevents Security Command Center from working
+     * correctly.
      *
      * Generated from protobuf enum <code>SCC_ERROR = 5;</code>
      */

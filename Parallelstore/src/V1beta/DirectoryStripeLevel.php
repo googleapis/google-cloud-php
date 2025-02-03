@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class DirectoryStripeLevel
 {
     /**
-     * Default directory striping
+     * If not set, DirectoryStripeLevel will default to DIRECTORY_STRIPE_LEVEL_MAX
      *
      * Generated from protobuf enum <code>DIRECTORY_STRIPE_LEVEL_UNSPECIFIED = 0;</code>
      */

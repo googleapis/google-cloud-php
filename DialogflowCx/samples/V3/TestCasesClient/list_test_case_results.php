@@ -34,8 +34,9 @@ use Google\Cloud\Dialogflow\Cx\V3\TestCaseResult;
  * results are kept for each test case.
  *
  * @param string $formattedParent The test case to list results for.
- *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
- *                                testCases/<TestCase ID>`. Specify a `-` as a wildcard for TestCase ID to
+ *                                Format:
+ *                                `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
+ *                                Specify a `-` as a wildcard for TestCase ID to
  *                                list results across multiple test cases. Please see
  *                                {@see TestCasesClient::testCaseName()} for help formatting this field.
  */

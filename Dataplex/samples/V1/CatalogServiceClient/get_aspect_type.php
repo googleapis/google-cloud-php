@@ -29,7 +29,7 @@ use Google\Cloud\Dataplex\V1\Client\CatalogServiceClient;
 use Google\Cloud\Dataplex\V1\GetAspectTypeRequest;
 
 /**
- * Retrieves a AspectType resource.
+ * Gets an AspectType.
  *
  * @param string $formattedName The resource name of the AspectType:
  *                              `projects/{project_number}/locations/{location_id}/aspectTypes/{aspect_type_id}`. Please see

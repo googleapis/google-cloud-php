@@ -29,11 +29,17 @@ jobs:
             mkdir libgit2/build && cd libgit2/build
             cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local
             sudo cmake --build . --target install
-        - name: Compile splitsh
+        - name: Clone splitsh/lite
+          uses: actions/checkout@master
+          with:
+            repository: splitsh/lite
+            ref: v2.0.0
+            path: lite
+        - name: Build splitsh-lite
           run: |
-            go env -w GO111MODULE=off
-            go get github.com/splitsh/lite
-            go build -o /usr/local/bin/splitsh-lite github.com/splitsh/lite
+            cd lite
+            go build -o splitsh-lite github.com/splitsh/lite
+            mv splitsh-lite /usr/local/bin/splitsh-lite
         - name: Checkout google/cloud
           uses: actions/checkout@v4
           with:

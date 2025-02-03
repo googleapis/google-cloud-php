@@ -40,6 +40,7 @@ use Google\Cloud\Compute\V1\ListRegionNotificationEndpointsRequest;
 use Google\Cloud\Compute\V1\NotificationEndpoint;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The RegionNotificationEndpoints API.
@@ -47,10 +48,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteRegionNotificationEndpointRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRegionNotificationEndpointRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRegionNotificationEndpointRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionNotificationEndpointsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionNotificationEndpointRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NotificationEndpoint> getAsync(GetRegionNotificationEndpointRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionNotificationEndpointRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionNotificationEndpointsRequest $request, array $optionalArgs = [])
  */
 final class RegionNotificationEndpointsClient
 {
@@ -185,6 +186,12 @@ final class RegionNotificationEndpointsClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -215,6 +222,9 @@ final class RegionNotificationEndpointsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -242,6 +252,8 @@ final class RegionNotificationEndpointsClient
      *
      * The async variant is {@see RegionNotificationEndpointsClient::deleteAsync()} .
      *
+     * @example samples/V1/RegionNotificationEndpointsClient/delete.php
+     *
      * @param DeleteRegionNotificationEndpointRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -265,6 +277,8 @@ final class RegionNotificationEndpointsClient
      * Returns the specified NotificationEndpoint resource in the given region.
      *
      * The async variant is {@see RegionNotificationEndpointsClient::getAsync()} .
+     *
+     * @example samples/V1/RegionNotificationEndpointsClient/get.php
      *
      * @param GetRegionNotificationEndpointRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -290,6 +304,8 @@ final class RegionNotificationEndpointsClient
      *
      * The async variant is {@see RegionNotificationEndpointsClient::insertAsync()} .
      *
+     * @example samples/V1/RegionNotificationEndpointsClient/insert.php
+     *
      * @param InsertRegionNotificationEndpointRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -313,6 +329,8 @@ final class RegionNotificationEndpointsClient
      * Lists the NotificationEndpoints for a project in the given region.
      *
      * The async variant is {@see RegionNotificationEndpointsClient::listAsync()} .
+     *
+     * @example samples/V1/RegionNotificationEndpointsClient/list.php
      *
      * @param ListRegionNotificationEndpointsRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {

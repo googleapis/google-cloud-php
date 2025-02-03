@@ -50,6 +50,7 @@ use Google\Cloud\Parallelstore\V1beta\UpdateInstanceRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service describing handlers for resources
@@ -78,15 +79,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportDataAsync(ExportDataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importDataAsync(ImportDataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportDataAsync(ExportDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Instance> getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importDataAsync(ImportDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class ParallelstoreClient
 {
@@ -305,8 +306,8 @@ final class ParallelstoreClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
@@ -314,7 +315,7 @@ final class ParallelstoreClient
      *
      * @experimental
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -336,6 +337,12 @@ final class ParallelstoreClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -369,6 +376,9 @@ final class ParallelstoreClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -422,7 +432,7 @@ final class ParallelstoreClient
     }
 
     /**
-     * Deletes a single Instance.
+     * Deletes a single instance.
      *
      * The async variant is {@see ParallelstoreClient::deleteInstanceAsync()} .
      *
@@ -450,7 +460,7 @@ final class ParallelstoreClient
     }
 
     /**
-     * ExportData copies data from Parallelstore to Cloud Storage
+     * Copies data from Parallelstore to Cloud Storage.
      *
      * The async variant is {@see ParallelstoreClient::exportDataAsync()} .
      *
@@ -478,7 +488,7 @@ final class ParallelstoreClient
     }
 
     /**
-     * Gets details of a single Instance.
+     * Gets details of a single instance.
      *
      * The async variant is {@see ParallelstoreClient::getInstanceAsync()} .
      *
@@ -506,7 +516,7 @@ final class ParallelstoreClient
     }
 
     /**
-     * ImportData copies data from Cloud Storage to Parallelstore.
+     * Copies data from Cloud Storage to Parallelstore.
      *
      * The async variant is {@see ParallelstoreClient::importDataAsync()} .
      *
@@ -534,7 +544,7 @@ final class ParallelstoreClient
     }
 
     /**
-     * Lists Instances in a given project and location.
+     * Lists all instances in a given project and location.
      *
      * The async variant is {@see ParallelstoreClient::listInstancesAsync()} .
      *
@@ -562,7 +572,7 @@ final class ParallelstoreClient
     }
 
     /**
-     * Updates the parameters of a single Instance.
+     * Updates the parameters of a single instance.
      *
      * The async variant is {@see ParallelstoreClient::updateInstanceAsync()} .
      *

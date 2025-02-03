@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,7 +57,9 @@ class UptimeCheckServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return UptimeCheckServiceClient */
@@ -89,9 +91,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $uptimeCheckConfig = new UptimeCheckConfig();
-        $request = (new CreateUptimeCheckConfigRequest())
-            ->setParent($parent)
-            ->setUptimeCheckConfig($uptimeCheckConfig);
+        $request = (new CreateUptimeCheckConfigRequest())->setParent($parent)->setUptimeCheckConfig($uptimeCheckConfig);
         $response = $gapicClient->createUptimeCheckConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -117,19 +117,20 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
         $uptimeCheckConfig = new UptimeCheckConfig();
-        $request = (new CreateUptimeCheckConfigRequest())
-            ->setParent($parent)
-            ->setUptimeCheckConfig($uptimeCheckConfig);
+        $request = (new CreateUptimeCheckConfigRequest())->setParent($parent)->setUptimeCheckConfig($uptimeCheckConfig);
         try {
             $gapicClient->createUptimeCheckConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -156,8 +157,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
-        $request = (new DeleteUptimeCheckConfigRequest())
-            ->setName($formattedName);
+        $request = (new DeleteUptimeCheckConfigRequest())->setName($formattedName);
         $gapicClient->deleteUptimeCheckConfig($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -180,17 +180,19 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
-        $request = (new DeleteUptimeCheckConfigRequest())
-            ->setName($formattedName);
+        $request = (new DeleteUptimeCheckConfigRequest())->setName($formattedName);
         try {
             $gapicClient->deleteUptimeCheckConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -223,8 +225,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
-        $request = (new GetUptimeCheckConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetUptimeCheckConfigRequest())->setName($formattedName);
         $response = $gapicClient->getUptimeCheckConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -248,17 +249,19 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
-        $request = (new GetUptimeCheckConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetUptimeCheckConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getUptimeCheckConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -284,9 +287,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $nextPageToken = '';
         $totalSize = 705419236;
         $uptimeCheckConfigsElement = new UptimeCheckConfig();
-        $uptimeCheckConfigs = [
-            $uptimeCheckConfigsElement,
-        ];
+        $uptimeCheckConfigs = [$uptimeCheckConfigsElement];
         $expectedResponse = new ListUptimeCheckConfigsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTotalSize($totalSize);
@@ -294,8 +295,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListUptimeCheckConfigsRequest())
-            ->setParent($parent);
+        $request = (new ListUptimeCheckConfigsRequest())->setParent($parent);
         $response = $gapicClient->listUptimeCheckConfigs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -322,17 +322,19 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListUptimeCheckConfigsRequest())
-            ->setParent($parent);
+        $request = (new ListUptimeCheckConfigsRequest())->setParent($parent);
         try {
             $gapicClient->listUptimeCheckConfigs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -357,9 +359,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $uptimeCheckIpsElement = new UptimeCheckIp();
-        $uptimeCheckIps = [
-            $uptimeCheckIpsElement,
-        ];
+        $uptimeCheckIps = [$uptimeCheckIpsElement];
         $expectedResponse = new ListUptimeCheckIpsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setUptimeCheckIps($uptimeCheckIps);
@@ -389,12 +389,15 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListUptimeCheckIpsRequest();
         try {
@@ -429,8 +432,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $uptimeCheckConfig = new UptimeCheckConfig();
-        $request = (new UpdateUptimeCheckConfigRequest())
-            ->setUptimeCheckConfig($uptimeCheckConfig);
+        $request = (new UpdateUptimeCheckConfigRequest())->setUptimeCheckConfig($uptimeCheckConfig);
         $response = $gapicClient->updateUptimeCheckConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -454,17 +456,19 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $uptimeCheckConfig = new UptimeCheckConfig();
-        $request = (new UpdateUptimeCheckConfigRequest())
-            ->setUptimeCheckConfig($uptimeCheckConfig);
+        $request = (new UpdateUptimeCheckConfigRequest())->setUptimeCheckConfig($uptimeCheckConfig);
         try {
             $gapicClient->updateUptimeCheckConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -498,9 +502,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $uptimeCheckConfig = new UptimeCheckConfig();
-        $request = (new CreateUptimeCheckConfigRequest())
-            ->setParent($parent)
-            ->setUptimeCheckConfig($uptimeCheckConfig);
+        $request = (new CreateUptimeCheckConfigRequest())->setParent($parent)->setUptimeCheckConfig($uptimeCheckConfig);
         $response = $gapicClient->createUptimeCheckConfigAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

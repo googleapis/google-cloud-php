@@ -46,6 +46,7 @@ use Google\Cloud\Compute\V1\SetIamPolicyNodeTemplateRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsNodeTemplateRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The NodeTemplates API.
@@ -53,14 +54,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListNodeTemplatesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteNodeTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetNodeTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyNodeTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertNodeTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListNodeTemplatesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyNodeTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsNodeTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListNodeTemplatesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteNodeTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NodeTemplate> getAsync(GetNodeTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyNodeTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertNodeTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListNodeTemplatesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyNodeTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsNodeTemplateRequest $request, array $optionalArgs = [])
  */
 final class NodeTemplatesClient
 {
@@ -195,6 +196,12 @@ final class NodeTemplatesClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -225,6 +232,9 @@ final class NodeTemplatesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -252,6 +262,8 @@ final class NodeTemplatesClient
      *
      * The async variant is {@see NodeTemplatesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/NodeTemplatesClient/aggregated_list.php
+     *
      * @param AggregatedListNodeTemplatesRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -275,6 +287,8 @@ final class NodeTemplatesClient
      * Deletes the specified NodeTemplate resource.
      *
      * The async variant is {@see NodeTemplatesClient::deleteAsync()} .
+     *
+     * @example samples/V1/NodeTemplatesClient/delete.php
      *
      * @param DeleteNodeTemplateRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -300,6 +314,8 @@ final class NodeTemplatesClient
      *
      * The async variant is {@see NodeTemplatesClient::getAsync()} .
      *
+     * @example samples/V1/NodeTemplatesClient/get.php
+     *
      * @param GetNodeTemplateRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -323,6 +339,8 @@ final class NodeTemplatesClient
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
      * The async variant is {@see NodeTemplatesClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/NodeTemplatesClient/get_iam_policy.php
      *
      * @param GetIamPolicyNodeTemplateRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -348,6 +366,8 @@ final class NodeTemplatesClient
      *
      * The async variant is {@see NodeTemplatesClient::insertAsync()} .
      *
+     * @example samples/V1/NodeTemplatesClient/insert.php
+     *
      * @param InsertNodeTemplateRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -371,6 +391,8 @@ final class NodeTemplatesClient
      * Retrieves a list of node templates available to the specified project.
      *
      * The async variant is {@see NodeTemplatesClient::listAsync()} .
+     *
+     * @example samples/V1/NodeTemplatesClient/list.php
      *
      * @param ListNodeTemplatesRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -396,6 +418,8 @@ final class NodeTemplatesClient
      *
      * The async variant is {@see NodeTemplatesClient::setIamPolicyAsync()} .
      *
+     * @example samples/V1/NodeTemplatesClient/set_iam_policy.php
+     *
      * @param SetIamPolicyNodeTemplateRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -419,6 +443,8 @@ final class NodeTemplatesClient
      * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is {@see NodeTemplatesClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/NodeTemplatesClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsNodeTemplateRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {

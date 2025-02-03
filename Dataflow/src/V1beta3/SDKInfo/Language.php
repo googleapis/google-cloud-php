@@ -59,6 +59,4 @@ class Language
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Language::class, \Google\Cloud\Dataflow\V1beta3\SDKInfo_Language::class);
 

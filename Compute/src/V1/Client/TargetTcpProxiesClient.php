@@ -43,6 +43,7 @@ use Google\Cloud\Compute\V1\SetBackendServiceTargetTcpProxyRequest;
 use Google\Cloud\Compute\V1\SetProxyHeaderTargetTcpProxyRequest;
 use Google\Cloud\Compute\V1\TargetTcpProxy;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The TargetTcpProxies API.
@@ -50,13 +51,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListTargetTcpProxiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteTargetTcpProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetTargetTcpProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertTargetTcpProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListTargetTcpProxiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setBackendServiceAsync(SetBackendServiceTargetTcpProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setProxyHeaderAsync(SetProxyHeaderTargetTcpProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListTargetTcpProxiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteTargetTcpProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TargetTcpProxy> getAsync(GetTargetTcpProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertTargetTcpProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListTargetTcpProxiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setBackendServiceAsync(SetBackendServiceTargetTcpProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setProxyHeaderAsync(SetProxyHeaderTargetTcpProxyRequest $request, array $optionalArgs = [])
  */
 final class TargetTcpProxiesClient
 {
@@ -190,6 +191,12 @@ final class TargetTcpProxiesClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -220,6 +227,9 @@ final class TargetTcpProxiesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -247,6 +257,8 @@ final class TargetTcpProxiesClient
      *
      * The async variant is {@see TargetTcpProxiesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/TargetTcpProxiesClient/aggregated_list.php
+     *
      * @param AggregatedListTargetTcpProxiesRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -270,6 +282,8 @@ final class TargetTcpProxiesClient
      * Deletes the specified TargetTcpProxy resource.
      *
      * The async variant is {@see TargetTcpProxiesClient::deleteAsync()} .
+     *
+     * @example samples/V1/TargetTcpProxiesClient/delete.php
      *
      * @param DeleteTargetTcpProxyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -295,6 +309,8 @@ final class TargetTcpProxiesClient
      *
      * The async variant is {@see TargetTcpProxiesClient::getAsync()} .
      *
+     * @example samples/V1/TargetTcpProxiesClient/get.php
+     *
      * @param GetTargetTcpProxyRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -318,6 +334,8 @@ final class TargetTcpProxiesClient
      * Creates a TargetTcpProxy resource in the specified project using the data included in the request.
      *
      * The async variant is {@see TargetTcpProxiesClient::insertAsync()} .
+     *
+     * @example samples/V1/TargetTcpProxiesClient/insert.php
      *
      * @param InsertTargetTcpProxyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -343,6 +361,8 @@ final class TargetTcpProxiesClient
      *
      * The async variant is {@see TargetTcpProxiesClient::listAsync()} .
      *
+     * @example samples/V1/TargetTcpProxiesClient/list.php
+     *
      * @param ListTargetTcpProxiesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -367,6 +387,8 @@ final class TargetTcpProxiesClient
      *
      * The async variant is {@see TargetTcpProxiesClient::setBackendServiceAsync()} .
      *
+     * @example samples/V1/TargetTcpProxiesClient/set_backend_service.php
+     *
      * @param SetBackendServiceTargetTcpProxyRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -390,6 +412,8 @@ final class TargetTcpProxiesClient
      * Changes the ProxyHeaderType for TargetTcpProxy.
      *
      * The async variant is {@see TargetTcpProxiesClient::setProxyHeaderAsync()} .
+     *
+     * @example samples/V1/TargetTcpProxiesClient/set_proxy_header.php
      *
      * @param SetProxyHeaderTargetTcpProxyRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {

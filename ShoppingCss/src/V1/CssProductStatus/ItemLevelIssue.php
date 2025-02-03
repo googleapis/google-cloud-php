@@ -22,7 +22,7 @@ class ItemLevelIssue extends \Google\Protobuf\Internal\Message
      */
     protected $code = '';
     /**
-     * How this issue affects serving of the aggregate offer.
+     * How this issue affects serving of the CSS Product.
      *
      * Generated from protobuf field <code>string servability = 2;</code>
      */
@@ -65,7 +65,7 @@ class ItemLevelIssue extends \Google\Protobuf\Internal\Message
     protected $documentation = '';
     /**
      * List of country codes (ISO 3166-1 alpha-2) where issue applies to the
-     * aggregate offer.
+     * CSS Product.
      *
      * Generated from protobuf field <code>repeated string applicable_countries = 9;</code>
      */
@@ -80,7 +80,7 @@ class ItemLevelIssue extends \Google\Protobuf\Internal\Message
      *     @type string $code
      *           The error code of the issue.
      *     @type string $servability
-     *           How this issue affects serving of the aggregate offer.
+     *           How this issue affects serving of the CSS Product.
      *     @type string $resolution
      *           Whether the issue can be resolved by the merchant.
      *     @type string $attribute
@@ -95,7 +95,7 @@ class ItemLevelIssue extends \Google\Protobuf\Internal\Message
      *           The URL of a web page to help with resolving this issue.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $applicable_countries
      *           List of country codes (ISO 3166-1 alpha-2) where issue applies to the
-     *           aggregate offer.
+     *           CSS Product.
      * }
      */
     public function __construct($data = NULL) {
@@ -130,7 +130,7 @@ class ItemLevelIssue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * How this issue affects serving of the aggregate offer.
+     * How this issue affects serving of the CSS Product.
      *
      * Generated from protobuf field <code>string servability = 2;</code>
      * @return string
@@ -141,7 +141,7 @@ class ItemLevelIssue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * How this issue affects serving of the aggregate offer.
+     * How this issue affects serving of the CSS Product.
      *
      * Generated from protobuf field <code>string servability = 2;</code>
      * @param string $var
@@ -313,7 +313,7 @@ class ItemLevelIssue extends \Google\Protobuf\Internal\Message
 
     /**
      * List of country codes (ISO 3166-1 alpha-2) where issue applies to the
-     * aggregate offer.
+     * CSS Product.
      *
      * Generated from protobuf field <code>repeated string applicable_countries = 9;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -325,7 +325,7 @@ class ItemLevelIssue extends \Google\Protobuf\Internal\Message
 
     /**
      * List of country codes (ISO 3166-1 alpha-2) where issue applies to the
-     * aggregate offer.
+     * CSS Product.
      *
      * Generated from protobuf field <code>repeated string applicable_countries = 9;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

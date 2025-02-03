@@ -72,7 +72,7 @@ class DatastoreMultipleDbTestCase extends DatastoreTestCase
 
     public function multiDbClientProvider()
     {
-        self::setUpBeforeClass();
+        self::setUpTestFixtures();
         self::setUpMultiDbBeforeClass();
 
         if (!self::$multipleDbValidationResult) {

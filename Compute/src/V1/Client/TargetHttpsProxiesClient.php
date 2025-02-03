@@ -47,6 +47,7 @@ use Google\Cloud\Compute\V1\SetSslPolicyTargetHttpsProxyRequest;
 use Google\Cloud\Compute\V1\SetUrlMapTargetHttpsProxyRequest;
 use Google\Cloud\Compute\V1\TargetHttpsProxy;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The TargetHttpsProxies API.
@@ -54,17 +55,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListTargetHttpsProxiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteTargetHttpsProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetTargetHttpsProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertTargetHttpsProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListTargetHttpsProxiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchTargetHttpsProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setCertificateMapAsync(SetCertificateMapTargetHttpsProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setQuicOverrideAsync(SetQuicOverrideTargetHttpsProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setSslCertificatesAsync(SetSslCertificatesTargetHttpsProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setSslPolicyAsync(SetSslPolicyTargetHttpsProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setUrlMapAsync(SetUrlMapTargetHttpsProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListTargetHttpsProxiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteTargetHttpsProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TargetHttpsProxy> getAsync(GetTargetHttpsProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertTargetHttpsProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListTargetHttpsProxiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchTargetHttpsProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setCertificateMapAsync(SetCertificateMapTargetHttpsProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setQuicOverrideAsync(SetQuicOverrideTargetHttpsProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setSslCertificatesAsync(SetSslCertificatesTargetHttpsProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setSslPolicyAsync(SetSslPolicyTargetHttpsProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setUrlMapAsync(SetUrlMapTargetHttpsProxyRequest $request, array $optionalArgs = [])
  */
 final class TargetHttpsProxiesClient
 {
@@ -198,6 +199,12 @@ final class TargetHttpsProxiesClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -228,6 +235,9 @@ final class TargetHttpsProxiesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -255,6 +265,8 @@ final class TargetHttpsProxiesClient
      *
      * The async variant is {@see TargetHttpsProxiesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/TargetHttpsProxiesClient/aggregated_list.php
+     *
      * @param AggregatedListTargetHttpsProxiesRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -278,6 +290,8 @@ final class TargetHttpsProxiesClient
      * Deletes the specified TargetHttpsProxy resource.
      *
      * The async variant is {@see TargetHttpsProxiesClient::deleteAsync()} .
+     *
+     * @example samples/V1/TargetHttpsProxiesClient/delete.php
      *
      * @param DeleteTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -303,6 +317,8 @@ final class TargetHttpsProxiesClient
      *
      * The async variant is {@see TargetHttpsProxiesClient::getAsync()} .
      *
+     * @example samples/V1/TargetHttpsProxiesClient/get.php
+     *
      * @param GetTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -326,6 +342,8 @@ final class TargetHttpsProxiesClient
      * Creates a TargetHttpsProxy resource in the specified project using the data included in the request.
      *
      * The async variant is {@see TargetHttpsProxiesClient::insertAsync()} .
+     *
+     * @example samples/V1/TargetHttpsProxiesClient/insert.php
      *
      * @param InsertTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -351,6 +369,8 @@ final class TargetHttpsProxiesClient
      *
      * The async variant is {@see TargetHttpsProxiesClient::listAsync()} .
      *
+     * @example samples/V1/TargetHttpsProxiesClient/list.php
+     *
      * @param ListTargetHttpsProxiesRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -374,6 +394,8 @@ final class TargetHttpsProxiesClient
      * Patches the specified TargetHttpsProxy resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      *
      * The async variant is {@see TargetHttpsProxiesClient::patchAsync()} .
+     *
+     * @example samples/V1/TargetHttpsProxiesClient/patch.php
      *
      * @param PatchTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -399,6 +421,8 @@ final class TargetHttpsProxiesClient
      *
      * The async variant is {@see TargetHttpsProxiesClient::setCertificateMapAsync()} .
      *
+     * @example samples/V1/TargetHttpsProxiesClient/set_certificate_map.php
+     *
      * @param SetCertificateMapTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
      *     Optional.
@@ -422,6 +446,8 @@ final class TargetHttpsProxiesClient
      * Sets the QUIC override policy for TargetHttpsProxy.
      *
      * The async variant is {@see TargetHttpsProxiesClient::setQuicOverrideAsync()} .
+     *
+     * @example samples/V1/TargetHttpsProxiesClient/set_quic_override.php
      *
      * @param SetQuicOverrideTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -448,6 +474,8 @@ final class TargetHttpsProxiesClient
      * The async variant is {@see TargetHttpsProxiesClient::setSslCertificatesAsync()}
      * .
      *
+     * @example samples/V1/TargetHttpsProxiesClient/set_ssl_certificates.php
+     *
      * @param SetSslCertificatesTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
      *     Optional.
@@ -472,6 +500,8 @@ final class TargetHttpsProxiesClient
      *
      * The async variant is {@see TargetHttpsProxiesClient::setSslPolicyAsync()} .
      *
+     * @example samples/V1/TargetHttpsProxiesClient/set_ssl_policy.php
+     *
      * @param SetSslPolicyTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -495,6 +525,8 @@ final class TargetHttpsProxiesClient
      * Changes the URL map for TargetHttpsProxy.
      *
      * The async variant is {@see TargetHttpsProxiesClient::setUrlMapAsync()} .
+     *
+     * @example samples/V1/TargetHttpsProxiesClient/set_url_map.php
      *
      * @param SetUrlMapTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {

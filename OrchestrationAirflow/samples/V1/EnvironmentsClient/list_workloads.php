@@ -34,7 +34,7 @@ use Google\Cloud\Orchestration\Airflow\Service\V1\ListWorkloadsResponse\Composer
  * runs a single Composer component.
  *
  * This method is supported for Cloud Composer environments in versions
- * composer-3.*.*-airflow-*.*.* and newer.
+ * composer-2.*.*-airflow-*.*.* and newer.
  *
  * @param string $formattedParent The environment name to get workloads for, in the form:
  *                                "projects/{projectId}/locations/{locationId}/environments/{environmentId}"

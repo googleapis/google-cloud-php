@@ -27,6 +27,9 @@ class FunctionResponse extends \Google\Protobuf\Internal\Message
     protected $name = '';
     /**
      * Required. The function response in JSON object format.
+     * Use "output" key to specify function output and "error" key to specify
+     * error details (if any). If "output" and "error" keys are not specified,
+     * then whole "response" is treated as function output.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct response = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -43,6 +46,9 @@ class FunctionResponse extends \Google\Protobuf\Internal\Message
      *           Matches [FunctionDeclaration.name] and [FunctionCall.name].
      *     @type \Google\Protobuf\Struct $response
      *           Required. The function response in JSON object format.
+     *           Use "output" key to specify function output and "error" key to specify
+     *           error details (if any). If "output" and "error" keys are not specified,
+     *           then whole "response" is treated as function output.
      * }
      */
     public function __construct($data = NULL) {
@@ -80,6 +86,9 @@ class FunctionResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The function response in JSON object format.
+     * Use "output" key to specify function output and "error" key to specify
+     * error details (if any). If "output" and "error" keys are not specified,
+     * then whole "response" is treated as function output.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct response = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Struct|null
@@ -101,6 +110,9 @@ class FunctionResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The function response in JSON object format.
+     * Use "output" key to specify function output and "error" key to specify
+     * error details (if any). If "output" and "error" keys are not specified,
+     * then whole "response" is treated as function output.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct response = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\Struct $var

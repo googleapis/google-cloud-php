@@ -23,7 +23,7 @@ class ListConnectedSiteTagsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string property = 1;</code>
      */
-    private $property = '';
+    protected $property = '';
 
     /**
      * Constructor.

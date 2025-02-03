@@ -74,8 +74,10 @@ class BusinessInfoServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $koreanBusinessRegistrationNumber = 'koreanBusinessRegistrationNumber-1016868885';
         $expectedResponse = new BusinessInfo();
         $expectedResponse->setName($name2);
+        $expectedResponse->setKoreanBusinessRegistrationNumber($koreanBusinessRegistrationNumber);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->businessInfoName('[ACCOUNT]');
@@ -142,8 +144,10 @@ class BusinessInfoServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $koreanBusinessRegistrationNumber = 'koreanBusinessRegistrationNumber-1016868885';
         $expectedResponse = new BusinessInfo();
         $expectedResponse->setName($name);
+        $expectedResponse->setKoreanBusinessRegistrationNumber($koreanBusinessRegistrationNumber);
         $transport->addResponse($expectedResponse);
         // Mock request
         $businessInfo = new BusinessInfo();
@@ -214,8 +218,10 @@ class BusinessInfoServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $koreanBusinessRegistrationNumber = 'koreanBusinessRegistrationNumber-1016868885';
         $expectedResponse = new BusinessInfo();
         $expectedResponse->setName($name2);
+        $expectedResponse->setKoreanBusinessRegistrationNumber($koreanBusinessRegistrationNumber);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->businessInfoName('[ACCOUNT]');

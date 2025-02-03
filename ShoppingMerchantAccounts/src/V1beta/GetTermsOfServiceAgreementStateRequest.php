@@ -18,6 +18,7 @@ class GetTermsOfServiceAgreementStateRequest extends \Google\Protobuf\Internal\M
     /**
      * Required. The resource name of the terms of service version.
      * Format: `accounts/{account}/termsOfServiceAgreementState/{identifier}`
+     * The identifier format is: `{TermsOfServiceKind}-{country}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -26,6 +27,7 @@ class GetTermsOfServiceAgreementStateRequest extends \Google\Protobuf\Internal\M
     /**
      * @param string $name Required. The resource name of the terms of service version.
      *                     Format: `accounts/{account}/termsOfServiceAgreementState/{identifier}`
+     *                     The identifier format is: `{TermsOfServiceKind}-{country}`
      *                     Please see {@see TermsOfServiceAgreementStateServiceClient::termsOfServiceAgreementStateName()} for help formatting this field.
      *
      * @return \Google\Shopping\Merchant\Accounts\V1beta\GetTermsOfServiceAgreementStateRequest
@@ -47,6 +49,7 @@ class GetTermsOfServiceAgreementStateRequest extends \Google\Protobuf\Internal\M
      *     @type string $name
      *           Required. The resource name of the terms of service version.
      *           Format: `accounts/{account}/termsOfServiceAgreementState/{identifier}`
+     *           The identifier format is: `{TermsOfServiceKind}-{country}`
      * }
      */
     public function __construct($data = NULL) {
@@ -57,6 +60,7 @@ class GetTermsOfServiceAgreementStateRequest extends \Google\Protobuf\Internal\M
     /**
      * Required. The resource name of the terms of service version.
      * Format: `accounts/{account}/termsOfServiceAgreementState/{identifier}`
+     * The identifier format is: `{TermsOfServiceKind}-{country}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -69,6 +73,7 @@ class GetTermsOfServiceAgreementStateRequest extends \Google\Protobuf\Internal\M
     /**
      * Required. The resource name of the terms of service version.
      * Format: `accounts/{account}/termsOfServiceAgreementState/{identifier}`
+     * The identifier format is: `{TermsOfServiceKind}-{country}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

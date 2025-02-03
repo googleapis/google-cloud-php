@@ -20,7 +20,7 @@ class InitializeEncryptionSpecMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.InitializeEncryptionSpecRequest request = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $request = null;
+    protected $request = null;
 
     /**
      * Constructor.

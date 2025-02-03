@@ -23,7 +23,7 @@ class ClientConnectionConfig extends \Google\Protobuf\Internal\Message
      */
     protected $require_connectors = false;
     /**
-     * Optional. SSL config option for this instance.
+     * Optional. SSL configuration option for this instance.
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.SslConfig ssl_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -39,7 +39,7 @@ class ClientConnectionConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Configuration to enforce connectors only (ex: AuthProxy)
      *           connections to the database.
      *     @type \Google\Cloud\AlloyDb\V1\SslConfig $ssl_config
-     *           Optional. SSL config option for this instance.
+     *           Optional. SSL configuration option for this instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,7 +76,7 @@ class ClientConnectionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. SSL config option for this instance.
+     * Optional. SSL configuration option for this instance.
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.SslConfig ssl_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\AlloyDb\V1\SslConfig|null
@@ -97,7 +97,7 @@ class ClientConnectionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. SSL config option for this instance.
+     * Optional. SSL configuration option for this instance.
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.SslConfig ssl_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\AlloyDb\V1\SslConfig $var

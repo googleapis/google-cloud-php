@@ -49,6 +49,7 @@ use Google\Cloud\ManagedIdentities\V1\ValidateTrustRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: API Overview
@@ -92,16 +93,16 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface attachTrustAsync(AttachTrustRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createMicrosoftAdDomainAsync(CreateMicrosoftAdDomainRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDomainAsync(DeleteDomainRequest $request, array $optionalArgs = [])
- * @method PromiseInterface detachTrustAsync(DetachTrustRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDomainAsync(GetDomainRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDomainsAsync(ListDomainsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface reconfigureTrustAsync(ReconfigureTrustRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resetAdminPasswordAsync(ResetAdminPasswordRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDomainAsync(UpdateDomainRequest $request, array $optionalArgs = [])
- * @method PromiseInterface validateTrustAsync(ValidateTrustRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> attachTrustAsync(AttachTrustRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createMicrosoftAdDomainAsync(CreateMicrosoftAdDomainRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDomainAsync(DeleteDomainRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> detachTrustAsync(DetachTrustRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Domain> getDomainAsync(GetDomainRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDomainsAsync(ListDomainsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> reconfigureTrustAsync(ReconfigureTrustRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ResetAdminPasswordResponse> resetAdminPasswordAsync(ResetAdminPasswordRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateDomainAsync(UpdateDomainRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> validateTrustAsync(ValidateTrustRequest $request, array $optionalArgs = [])
  */
 final class ManagedIdentitiesServiceClient
 {
@@ -251,14 +252,14 @@ final class ManagedIdentitiesServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -280,6 +281,12 @@ final class ManagedIdentitiesServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -313,6 +320,9 @@ final class ManagedIdentitiesServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

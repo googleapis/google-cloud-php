@@ -27,7 +27,13 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
      */
     private $name = null;
     /**
-     * The rules that apply to the network.
+     * [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY.
+     *
+     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
+     */
+    private $priority = null;
+    /**
+     * [Output Only] The rules that apply to the instance. Only rules that target the specific VM instance are returned if target service accounts or target secure tags are specified in the rules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule rules = 108873975;</code>
      */
@@ -56,8 +62,10 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
      *           [Output Only] Deprecated, please use short name instead. The display name of the firewall policy.
      *     @type string $name
      *           [Output Only] The name of the firewall policy.
+     *     @type int $priority
+     *           [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY.
      *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $rules
-     *           The rules that apply to the network.
+     *           [Output Only] The rules that apply to the instance. Only rules that target the specific VM instance are returned if target service accounts or target secure tags are specified in the rules.
      *     @type string $short_name
      *           [Output Only] The short name of the firewall policy.
      *     @type string $type
@@ -143,7 +151,43 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
     }
 
     /**
-     * The rules that apply to the network.
+     * [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY.
+     *
+     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
+     * @return int
+     */
+    public function getPriority()
+    {
+        return isset($this->priority) ? $this->priority : 0;
+    }
+
+    public function hasPriority()
+    {
+        return isset($this->priority);
+    }
+
+    public function clearPriority()
+    {
+        unset($this->priority);
+    }
+
+    /**
+     * [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY.
+     *
+     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPriority($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->priority = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The rules that apply to the instance. Only rules that target the specific VM instance are returned if target service accounts or target secure tags are specified in the rules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule rules = 108873975;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -154,7 +198,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
     }
 
     /**
-     * The rules that apply to the network.
+     * [Output Only] The rules that apply to the instance. Only rules that target the specific VM instance are returned if target service accounts or target secure tags are specified in the rules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule rules = 108873975;</code>
      * @param array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $var

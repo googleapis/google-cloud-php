@@ -52,14 +52,19 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
     protected $state = 0;
     /**
      * Output only. The start of the current commitment period. It is applicable
-     * only for ACTIVE capacity commitments.
+     * only for ACTIVE capacity commitments. Note after the commitment is renewed,
+     * commitment_start_time won't be changed. It refers to the start time of the
+     * original commitment.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commitment_start_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $commitment_start_time = null;
     /**
      * Output only. The end of the current commitment period. It is applicable
-     * only for ACTIVE capacity commitments.
+     * only for ACTIVE capacity commitments. Note after renewal,
+     * commitment_end_time is the time the renewed commitment expires. So it would
+     * be at a time after commitment_start_time + committed period, because we
+     * don't change commitment_start_time ,
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commitment_end_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -96,6 +101,13 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Edition edition = 12;</code>
      */
     protected $edition = 0;
+    /**
+     * Output only. If true, the commitment is a flat-rate commitment, otherwise,
+     * it's an edition commitment.
+     *
+     * Generated from protobuf field <code>bool is_flat_rate = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $is_flat_rate = false;
 
     /**
      * Constructor.
@@ -117,10 +129,15 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      *           Output only. State of the commitment.
      *     @type \Google\Protobuf\Timestamp $commitment_start_time
      *           Output only. The start of the current commitment period. It is applicable
-     *           only for ACTIVE capacity commitments.
+     *           only for ACTIVE capacity commitments. Note after the commitment is renewed,
+     *           commitment_start_time won't be changed. It refers to the start time of the
+     *           original commitment.
      *     @type \Google\Protobuf\Timestamp $commitment_end_time
      *           Output only. The end of the current commitment period. It is applicable
-     *           only for ACTIVE capacity commitments.
+     *           only for ACTIVE capacity commitments. Note after renewal,
+     *           commitment_end_time is the time the renewed commitment expires. So it would
+     *           be at a time after commitment_start_time + committed period, because we
+     *           don't change commitment_start_time ,
      *     @type \Google\Rpc\Status $failure_status
      *           Output only. For FAILED commitment plan, provides the reason of failure.
      *     @type int $renewal_plan
@@ -137,6 +154,9 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      *           set this field.
      *     @type int $edition
      *           Edition of the capacity commitment.
+     *     @type bool $is_flat_rate
+     *           Output only. If true, the commitment is a flat-rate commitment, otherwise,
+     *           it's an edition commitment.
      * }
      */
     public function __construct($data = NULL) {
@@ -258,7 +278,9 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The start of the current commitment period. It is applicable
-     * only for ACTIVE capacity commitments.
+     * only for ACTIVE capacity commitments. Note after the commitment is renewed,
+     * commitment_start_time won't be changed. It refers to the start time of the
+     * original commitment.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commitment_start_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -280,7 +302,9 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The start of the current commitment period. It is applicable
-     * only for ACTIVE capacity commitments.
+     * only for ACTIVE capacity commitments. Note after the commitment is renewed,
+     * commitment_start_time won't be changed. It refers to the start time of the
+     * original commitment.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commitment_start_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -296,7 +320,10 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The end of the current commitment period. It is applicable
-     * only for ACTIVE capacity commitments.
+     * only for ACTIVE capacity commitments. Note after renewal,
+     * commitment_end_time is the time the renewed commitment expires. So it would
+     * be at a time after commitment_start_time + committed period, because we
+     * don't change commitment_start_time ,
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commitment_end_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -318,7 +345,10 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The end of the current commitment period. It is applicable
-     * only for ACTIVE capacity commitments.
+     * only for ACTIVE capacity commitments. Note after renewal,
+     * commitment_end_time is the time the renewed commitment expires. So it would
+     * be at a time after commitment_start_time + committed period, because we
+     * don't change commitment_start_time ,
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commitment_end_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -458,6 +488,34 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Reservation\V1\Edition::class);
         $this->edition = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. If true, the commitment is a flat-rate commitment, otherwise,
+     * it's an edition commitment.
+     *
+     * Generated from protobuf field <code>bool is_flat_rate = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getIsFlatRate()
+    {
+        return $this->is_flat_rate;
+    }
+
+    /**
+     * Output only. If true, the commitment is a flat-rate commitment, otherwise,
+     * it's an edition commitment.
+     *
+     * Generated from protobuf field <code>bool is_flat_rate = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIsFlatRate($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->is_flat_rate = $var;
 
         return $this;
     }

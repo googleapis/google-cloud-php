@@ -101,6 +101,20 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.ExperimentInfo experiment_info = 17;</code>
      */
     private $experiment_info;
+    /**
+     * This field specifies all related information that is needed on client
+     * side for UI rendering of conversational retail search.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.SearchResponse.ConversationalSearchResult conversational_search_result = 18;</code>
+     */
+    protected $conversational_search_result = null;
+    /**
+     * This field specifies all related information for tile navigation that will
+     * be used in client side.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.SearchResponse.TileNavigationResult tile_navigation_result = 19;</code>
+     */
+    protected $tile_navigation_result = null;
 
     /**
      * Constructor.
@@ -149,6 +163,12 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Retail\V2\ExperimentInfo>|\Google\Protobuf\Internal\RepeatedField $experiment_info
      *           Metadata related to A/B testing [Experiment][] associated with this
      *           response. Only exists when an experiment is triggered.
+     *     @type \Google\Cloud\Retail\V2\SearchResponse\ConversationalSearchResult $conversational_search_result
+     *           This field specifies all related information that is needed on client
+     *           side for UI rendering of conversational retail search.
+     *     @type \Google\Cloud\Retail\V2\SearchResponse\TileNavigationResult $tile_navigation_result
+     *           This field specifies all related information for tile navigation that will
+     *           be used in client side.
      * }
      */
     public function __construct($data = NULL) {
@@ -486,6 +506,82 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Retail\V2\ExperimentInfo::class);
         $this->experiment_info = $arr;
+
+        return $this;
+    }
+
+    /**
+     * This field specifies all related information that is needed on client
+     * side for UI rendering of conversational retail search.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.SearchResponse.ConversationalSearchResult conversational_search_result = 18;</code>
+     * @return \Google\Cloud\Retail\V2\SearchResponse\ConversationalSearchResult|null
+     */
+    public function getConversationalSearchResult()
+    {
+        return $this->conversational_search_result;
+    }
+
+    public function hasConversationalSearchResult()
+    {
+        return isset($this->conversational_search_result);
+    }
+
+    public function clearConversationalSearchResult()
+    {
+        unset($this->conversational_search_result);
+    }
+
+    /**
+     * This field specifies all related information that is needed on client
+     * side for UI rendering of conversational retail search.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.SearchResponse.ConversationalSearchResult conversational_search_result = 18;</code>
+     * @param \Google\Cloud\Retail\V2\SearchResponse\ConversationalSearchResult $var
+     * @return $this
+     */
+    public function setConversationalSearchResult($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Retail\V2\SearchResponse\ConversationalSearchResult::class);
+        $this->conversational_search_result = $var;
+
+        return $this;
+    }
+
+    /**
+     * This field specifies all related information for tile navigation that will
+     * be used in client side.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.SearchResponse.TileNavigationResult tile_navigation_result = 19;</code>
+     * @return \Google\Cloud\Retail\V2\SearchResponse\TileNavigationResult|null
+     */
+    public function getTileNavigationResult()
+    {
+        return $this->tile_navigation_result;
+    }
+
+    public function hasTileNavigationResult()
+    {
+        return isset($this->tile_navigation_result);
+    }
+
+    public function clearTileNavigationResult()
+    {
+        unset($this->tile_navigation_result);
+    }
+
+    /**
+     * This field specifies all related information for tile navigation that will
+     * be used in client side.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.SearchResponse.TileNavigationResult tile_navigation_result = 19;</code>
+     * @param \Google\Cloud\Retail\V2\SearchResponse\TileNavigationResult $var
+     * @return $this
+     */
+    public function setTileNavigationResult($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Retail\V2\SearchResponse\TileNavigationResult::class);
+        $this->tile_navigation_result = $var;
 
         return $this;
     }

@@ -57,7 +57,7 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
     /**
      * Whether nodes have internal IP addresses only.
      * If enable_private_nodes is not specified, then the value is derived from
-     * [cluster.privateClusterConfig.enablePrivateNodes][google.container.v1beta1.PrivateClusterConfig.enablePrivateNodes]
+     * [Cluster.NetworkConfig.default_enable_private_nodes][]
      *
      * Generated from protobuf field <code>optional bool enable_private_nodes = 9;</code>
      */
@@ -142,7 +142,7 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $enable_private_nodes
      *           Whether nodes have internal IP addresses only.
      *           If enable_private_nodes is not specified, then the value is derived from
-     *           [cluster.privateClusterConfig.enablePrivateNodes][google.container.v1beta1.PrivateClusterConfig.enablePrivateNodes]
+     *           [Cluster.NetworkConfig.default_enable_private_nodes][]
      *     @type \Google\Cloud\Container\V1\NodeNetworkConfig\NetworkPerformanceConfig $network_performance_config
      *           Network bandwidth tier configuration.
      *     @type \Google\Cloud\Container\V1\PodCIDROverprovisionConfig $pod_cidr_overprovision_config
@@ -296,7 +296,7 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
     /**
      * Whether nodes have internal IP addresses only.
      * If enable_private_nodes is not specified, then the value is derived from
-     * [cluster.privateClusterConfig.enablePrivateNodes][google.container.v1beta1.PrivateClusterConfig.enablePrivateNodes]
+     * [Cluster.NetworkConfig.default_enable_private_nodes][]
      *
      * Generated from protobuf field <code>optional bool enable_private_nodes = 9;</code>
      * @return bool
@@ -319,7 +319,7 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
     /**
      * Whether nodes have internal IP addresses only.
      * If enable_private_nodes is not specified, then the value is derived from
-     * [cluster.privateClusterConfig.enablePrivateNodes][google.container.v1beta1.PrivateClusterConfig.enablePrivateNodes]
+     * [Cluster.NetworkConfig.default_enable_private_nodes][]
      *
      * Generated from protobuf field <code>optional bool enable_private_nodes = 9;</code>
      * @param bool $var

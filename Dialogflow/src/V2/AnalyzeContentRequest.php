@@ -23,7 +23,7 @@ class AnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string participant = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $participant = '';
+    protected $participant = '';
     /**
      * Speech synthesis configuration.
      * The speech synthesis settings for a virtual agent that may be configured
@@ -33,19 +33,19 @@ class AnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig reply_audio_config = 5;</code>
      */
-    private $reply_audio_config = null;
+    protected $reply_audio_config = null;
     /**
      * Parameters for a Dialogflow virtual-agent query.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryParameters query_params = 9;</code>
      */
-    private $query_params = null;
+    protected $query_params = null;
     /**
      * Parameters for a human assist query.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AssistQueryParameters assist_query_params = 14;</code>
      */
-    private $assist_query_params = null;
+    protected $assist_query_params = null;
     /**
      * Additional parameters to be put into Dialogflow CX session parameters. To
      * remove a parameter from the session, clients should explicitly set the
@@ -55,7 +55,7 @@ class AnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct cx_parameters = 18;</code>
      */
-    private $cx_parameters = null;
+    protected $cx_parameters = null;
     /**
      * A unique identifier for this request. Restricted to 36 ASCII characters.
      * A random UUID is recommended.
@@ -63,7 +63,7 @@ class AnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 11;</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     protected $input;
 
     /**

@@ -21,27 +21,27 @@ class CreateGeneratorRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The generator to create.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Generator generator = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $generator = null;
+    protected $generator = null;
     /**
      * Optional. The ID to use for the generator, which will become the final
      * component of the generator's resource name.
-     * The generator ID must be compliant with the regression fomula
+     * The generator ID must be compliant with the regression formula
      * `[a-zA-Z][a-zA-Z0-9_-]*` with the characters length in range of [3,64].
      * If the field is not provided, an Id will be auto-generated.
-     * If the field is provided, the caller is resposible for
+     * If the field is provided, the caller is responsible for
      * 1. the uniqueness of the ID, otherwise the request will be rejected.
      * 2. the consistency for whether to use custom ID or not under a project to
      * better ensure uniqueness.
      *
      * Generated from protobuf field <code>string generator_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $generator_id = '';
+    protected $generator_id = '';
 
     /**
      * @param string                                $parent      Required. The project/location to create generator for. Format:
@@ -51,10 +51,10 @@ class CreateGeneratorRequest extends \Google\Protobuf\Internal\Message
      * @param string                                $generatorId Optional. The ID to use for the generator, which will become the final
      *                                                           component of the generator's resource name.
      *
-     *                                                           The generator ID must be compliant with the regression fomula
+     *                                                           The generator ID must be compliant with the regression formula
      *                                                           `[a-zA-Z][a-zA-Z0-9_-]*` with the characters length in range of [3,64].
      *                                                           If the field is not provided, an Id will be auto-generated.
-     *                                                           If the field is provided, the caller is resposible for
+     *                                                           If the field is provided, the caller is responsible for
      *                                                           1. the uniqueness of the ID, otherwise the request will be rejected.
      *                                                           2. the consistency for whether to use custom ID or not under a project to
      *                                                           better ensure uniqueness.
@@ -85,10 +85,10 @@ class CreateGeneratorRequest extends \Google\Protobuf\Internal\Message
      *     @type string $generator_id
      *           Optional. The ID to use for the generator, which will become the final
      *           component of the generator's resource name.
-     *           The generator ID must be compliant with the regression fomula
+     *           The generator ID must be compliant with the regression formula
      *           `[a-zA-Z][a-zA-Z0-9_-]*` with the characters length in range of [3,64].
      *           If the field is not provided, an Id will be auto-generated.
-     *           If the field is provided, the caller is resposible for
+     *           If the field is provided, the caller is responsible for
      *           1. the uniqueness of the ID, otherwise the request will be rejected.
      *           2. the consistency for whether to use custom ID or not under a project to
      *           better ensure uniqueness.
@@ -166,10 +166,10 @@ class CreateGeneratorRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The ID to use for the generator, which will become the final
      * component of the generator's resource name.
-     * The generator ID must be compliant with the regression fomula
+     * The generator ID must be compliant with the regression formula
      * `[a-zA-Z][a-zA-Z0-9_-]*` with the characters length in range of [3,64].
      * If the field is not provided, an Id will be auto-generated.
-     * If the field is provided, the caller is resposible for
+     * If the field is provided, the caller is responsible for
      * 1. the uniqueness of the ID, otherwise the request will be rejected.
      * 2. the consistency for whether to use custom ID or not under a project to
      * better ensure uniqueness.
@@ -185,10 +185,10 @@ class CreateGeneratorRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The ID to use for the generator, which will become the final
      * component of the generator's resource name.
-     * The generator ID must be compliant with the regression fomula
+     * The generator ID must be compliant with the regression formula
      * `[a-zA-Z][a-zA-Z0-9_-]*` with the characters length in range of [3,64].
      * If the field is not provided, an Id will be auto-generated.
-     * If the field is provided, the caller is resposible for
+     * If the field is provided, the caller is responsible for
      * 1. the uniqueness of the ID, otherwise the request will be rejected.
      * 2. the consistency for whether to use custom ID or not under a project to
      * better ensure uniqueness.

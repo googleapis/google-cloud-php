@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -186,6 +186,7 @@ return [
                 'conversation' => 'projects/{project}/conversations/{conversation}',
                 'message' => 'projects/{project}/conversations/{conversation}/messages/{message}',
                 'participant' => 'projects/{project}/conversations/{conversation}/participants/{participant}',
+                'phraseSet' => 'projects/{project}/locations/{location}/phraseSets/{phrase_set}',
                 'projectConversation' => 'projects/{project}/conversations/{conversation}',
                 'projectConversationMessage' => 'projects/{project}/conversations/{conversation}/messages/{message}',
                 'projectConversationParticipant' => 'projects/{project}/conversations/{conversation}/participants/{participant}',

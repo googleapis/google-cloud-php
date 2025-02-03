@@ -59,10 +59,37 @@ return [
                     ],
                 ],
             ],
+            'CreateAttachment' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/repositories/*}/attachments',
+                'body' => 'attachment',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'attachment_id',
+                ],
+            ],
             'CreateRepository' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/repositories',
                 'body' => 'repository',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateRule' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/repositories/*}/rules',
+                'body' => 'rule',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -79,6 +106,28 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteAttachment' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/repositories/*/attachments/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteFile' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/repositories/*/files/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -105,6 +154,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteRule' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/repositories/*/rules/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteTag' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/repositories/*/packages/*/tags/*}',
@@ -119,6 +179,17 @@ return [
             'DeleteVersion' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/repositories/*/packages/*/versions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAttachment' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/repositories/*/attachments/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -226,6 +297,17 @@ return [
                     ],
                 ],
             ],
+            'GetRule' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/repositories/*/rules/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetTag' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/repositories/*/packages/*/tags/*}',
@@ -275,6 +357,17 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/repositories/*}/yumArtifacts:import',
                 'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAttachments' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/repositories/*}/attachments',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -360,6 +453,17 @@ return [
                     ],
                 ],
             ],
+            'ListRules' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/repositories/*}/rules',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListTags' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/repositories/*/packages/*}/tags',
@@ -406,6 +510,35 @@ return [
                     ],
                 ],
             ],
+            'UpdateFile' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{file.name=projects/*/locations/*/repositories/*/files/*}',
+                'body' => 'file',
+                'placeholders' => [
+                    'file.name' => [
+                        'getters' => [
+                            'getFile',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdatePackage' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{package.name=projects/*/locations/*/repositories/*/packages/*}',
+                'body' => 'package',
+                'placeholders' => [
+                    'package.name' => [
+                        'getters' => [
+                            'getPackage',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateProjectSettings' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{project_settings.name=projects/*/projectSettings}',
@@ -432,6 +565,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateRule' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{rule.name=projects/*/locations/*/repositories/*/rules/*}',
+                'body' => 'rule',
+                'placeholders' => [
+                    'rule.name' => [
+                        'getters' => [
+                            'getRule',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateTag' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{tag.name=projects/*/locations/*/repositories/*/packages/*/tags/*}',
@@ -453,6 +599,19 @@ return [
                     'vpcsc_config.name' => [
                         'getters' => [
                             'getVpcscConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateVersion' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{version.name=projects/*/locations/*/repositories/*/packages/*/versions/*}',
+                'body' => 'version',
+                'placeholders' => [
+                    'version.name' => [
+                        'getters' => [
+                            'getVersion',
                             'getName',
                         ],
                     ],

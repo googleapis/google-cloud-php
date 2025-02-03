@@ -32,11 +32,11 @@ class EnablementState
      */
     const DISABLED = 2;
     /**
-     * State is inherited from an ancestor module. The module will either
-     * be effectively ENABLED or DISABLED based on its closest non-inherited
-     * ancestor module in the CRM hierarchy. Attempting to set a top level
-     * module (module with no parent) to the INHERITED state will result in an
-     * error.
+     * State is inherited from an ancestor module. The module will either be
+     * effectively `ENABLED` or `DISABLED` based on its closest non-inherited
+     * ancestor module in the CRM hierarchy. If you try to set a top-level
+     * module (a module with no parent) to the `INHERITED` state, you receive an
+     * `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf enum <code>INHERITED = 3;</code>
      */

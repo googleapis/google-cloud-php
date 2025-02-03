@@ -55,6 +55,7 @@ use Google\Cloud\StorageTransfer\V1\UpdateTransferJobRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Storage Transfer Service and its protos.
@@ -69,20 +70,20 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createAgentPoolAsync(CreateAgentPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTransferJobAsync(CreateTransferJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAgentPoolAsync(DeleteAgentPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTransferJobAsync(DeleteTransferJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAgentPoolAsync(GetAgentPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getGoogleServiceAccountAsync(GetGoogleServiceAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTransferJobAsync(GetTransferJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAgentPoolsAsync(ListAgentPoolsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTransferJobsAsync(ListTransferJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface pauseTransferOperationAsync(PauseTransferOperationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resumeTransferOperationAsync(ResumeTransferOperationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runTransferJobAsync(RunTransferJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAgentPoolAsync(UpdateAgentPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTransferJobAsync(UpdateTransferJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AgentPool> createAgentPoolAsync(CreateAgentPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TransferJob> createTransferJobAsync(CreateTransferJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAgentPoolAsync(DeleteAgentPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTransferJobAsync(DeleteTransferJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AgentPool> getAgentPoolAsync(GetAgentPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GoogleServiceAccount> getGoogleServiceAccountAsync(GetGoogleServiceAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TransferJob> getTransferJobAsync(GetTransferJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAgentPoolsAsync(ListAgentPoolsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTransferJobsAsync(ListTransferJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> pauseTransferOperationAsync(PauseTransferOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> resumeTransferOperationAsync(ResumeTransferOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> runTransferJobAsync(RunTransferJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AgentPool> updateAgentPoolAsync(UpdateAgentPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TransferJob> updateTransferJobAsync(UpdateTransferJobRequest $request, array $optionalArgs = [])
  */
 final class StorageTransferServiceClient
 {
@@ -211,14 +212,14 @@ final class StorageTransferServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -240,6 +241,12 @@ final class StorageTransferServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -273,6 +280,9 @@ final class StorageTransferServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

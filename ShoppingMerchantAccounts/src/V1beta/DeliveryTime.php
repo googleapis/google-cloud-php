@@ -42,6 +42,8 @@ class DeliveryTime extends \Google\Protobuf\Internal\Message
     /**
      * Minimum number of business days spent before an order is shipped.
      * 0 means same day shipped, 1 means next day shipped.
+     * 'min_handling_days' and 'max_handling_days' should be either set or not set
+     * at the same time.
      *
      * Generated from protobuf field <code>optional int32 min_handling_days = 4;</code>
      */
@@ -50,6 +52,8 @@ class DeliveryTime extends \Google\Protobuf\Internal\Message
      * Maximum number of business days spent before an order is shipped.
      * 0 means same day shipped, 1 means next day shipped.
      * Must be greater than or equal to `min_handling_days`.
+     * 'min_handling_days' and 'max_handling_days' should be either set or not set
+     * at the same time.
      *
      * Generated from protobuf field <code>optional int32 max_handling_days = 5;</code>
      */
@@ -108,10 +112,14 @@ class DeliveryTime extends \Google\Protobuf\Internal\Message
      *     @type int $min_handling_days
      *           Minimum number of business days spent before an order is shipped.
      *           0 means same day shipped, 1 means next day shipped.
+     *           'min_handling_days' and 'max_handling_days' should be either set or not set
+     *           at the same time.
      *     @type int $max_handling_days
      *           Maximum number of business days spent before an order is shipped.
      *           0 means same day shipped, 1 means next day shipped.
      *           Must be greater than or equal to `min_handling_days`.
+     *           'min_handling_days' and 'max_handling_days' should be either set or not set
+     *           at the same time.
      *     @type \Google\Shopping\Merchant\Accounts\V1beta\TransitTable $transit_time_table
      *           Transit time table, number of business days spent in transit based on row
      *           and column dimensions. Either `min_transit_days`, `max_transit_days` or
@@ -258,6 +266,8 @@ class DeliveryTime extends \Google\Protobuf\Internal\Message
     /**
      * Minimum number of business days spent before an order is shipped.
      * 0 means same day shipped, 1 means next day shipped.
+     * 'min_handling_days' and 'max_handling_days' should be either set or not set
+     * at the same time.
      *
      * Generated from protobuf field <code>optional int32 min_handling_days = 4;</code>
      * @return int
@@ -280,6 +290,8 @@ class DeliveryTime extends \Google\Protobuf\Internal\Message
     /**
      * Minimum number of business days spent before an order is shipped.
      * 0 means same day shipped, 1 means next day shipped.
+     * 'min_handling_days' and 'max_handling_days' should be either set or not set
+     * at the same time.
      *
      * Generated from protobuf field <code>optional int32 min_handling_days = 4;</code>
      * @param int $var
@@ -297,6 +309,8 @@ class DeliveryTime extends \Google\Protobuf\Internal\Message
      * Maximum number of business days spent before an order is shipped.
      * 0 means same day shipped, 1 means next day shipped.
      * Must be greater than or equal to `min_handling_days`.
+     * 'min_handling_days' and 'max_handling_days' should be either set or not set
+     * at the same time.
      *
      * Generated from protobuf field <code>optional int32 max_handling_days = 5;</code>
      * @return int
@@ -320,6 +334,8 @@ class DeliveryTime extends \Google\Protobuf\Internal\Message
      * Maximum number of business days spent before an order is shipped.
      * 0 means same day shipped, 1 means next day shipped.
      * Must be greater than or equal to `min_handling_days`.
+     * 'min_handling_days' and 'max_handling_days' should be either set or not set
+     * at the same time.
      *
      * Generated from protobuf field <code>optional int32 max_handling_days = 5;</code>
      * @param int $var

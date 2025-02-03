@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request to get an instance's details.
+ * Get an instance's details.
  *
  * Generated from protobuf message <code>google.cloud.parallelstore.v1beta.GetInstanceRequest</code>
  */

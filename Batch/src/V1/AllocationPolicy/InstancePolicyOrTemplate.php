@@ -71,7 +71,10 @@ class InstancePolicyOrTemplate extends \Google\Protobuf\Internal\Message
      *     @type string $instance_template
      *           Name of an instance template used to create VMs.
      *           Named the field as 'instance_template' instead of 'template' to avoid
-     *           c++ keyword conflict.
+     *           C++ keyword conflict.
+     *           Batch only supports global instance templates from the same project as
+     *           the job.
+     *           You can specify the global instance template as a full or partial URL.
      *     @type bool $install_gpu_drivers
      *           Set this field true if you want Batch to help fetch drivers from a third
      *           party location and install them for GPUs specified in
@@ -141,7 +144,10 @@ class InstancePolicyOrTemplate extends \Google\Protobuf\Internal\Message
     /**
      * Name of an instance template used to create VMs.
      * Named the field as 'instance_template' instead of 'template' to avoid
-     * c++ keyword conflict.
+     * C++ keyword conflict.
+     * Batch only supports global instance templates from the same project as
+     * the job.
+     * You can specify the global instance template as a full or partial URL.
      *
      * Generated from protobuf field <code>string instance_template = 2;</code>
      * @return string
@@ -159,7 +165,10 @@ class InstancePolicyOrTemplate extends \Google\Protobuf\Internal\Message
     /**
      * Name of an instance template used to create VMs.
      * Named the field as 'instance_template' instead of 'template' to avoid
-     * c++ keyword conflict.
+     * C++ keyword conflict.
+     * Batch only supports global instance templates from the same project as
+     * the job.
+     * You can specify the global instance template as a full or partial URL.
      *
      * Generated from protobuf field <code>string instance_template = 2;</code>
      * @param string $var

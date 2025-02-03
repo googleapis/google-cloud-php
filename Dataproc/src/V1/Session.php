@@ -130,6 +130,8 @@ class Session extends \Google\Protobuf\Internal\Message
      *           Output only. The time when the session was created.
      *     @type \Google\Cloud\Dataproc\V1\JupyterConfig $jupyter_session
      *           Optional. Jupyter session config.
+     *     @type \Google\Cloud\Dataproc\V1\SparkConnectConfig $spark_connect_session
+     *           Optional. Spark Connect session config.
      *     @type \Google\Cloud\Dataproc\V1\RuntimeInfo $runtime_info
      *           Output only. Runtime information about session execution.
      *     @type int $state
@@ -289,6 +291,37 @@ class Session extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\JupyterConfig::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Spark Connect session config.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SparkConnectConfig spark_connect_session = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\SparkConnectConfig|null
+     */
+    public function getSparkConnectSession()
+    {
+        return $this->readOneof(17);
+    }
+
+    public function hasSparkConnectSession()
+    {
+        return $this->hasOneof(17);
+    }
+
+    /**
+     * Optional. Spark Connect session config.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SparkConnectConfig spark_connect_session = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\SparkConnectConfig $var
+     * @return $this
+     */
+    public function setSparkConnectSession($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\SparkConnectConfig::class);
+        $this->writeOneof(17, $var);
 
         return $this;
     }

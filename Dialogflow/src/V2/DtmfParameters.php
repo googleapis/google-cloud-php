@@ -20,7 +20,7 @@ class DtmfParameters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool accepts_dtmf_input = 1;</code>
      */
-    private $accepts_dtmf_input = false;
+    protected $accepts_dtmf_input = false;
 
     /**
      * Constructor.

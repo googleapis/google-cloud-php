@@ -138,6 +138,18 @@ return [
                     ],
                 ],
             ],
+            'AddSplitPoints' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Spanner\Admin\Database\V1\AddSplitPointsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'database',
+                        'fieldAccessors' => [
+                            'getDatabase',
+                        ],
+                    ],
+                ],
+            ],
             'CreateBackupSchedule' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Spanner\Admin\Database\V1\BackupSchedule',

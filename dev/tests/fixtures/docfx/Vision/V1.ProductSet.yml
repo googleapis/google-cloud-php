@@ -58,7 +58,7 @@ items:
           description: 'Output only. The time at which this ProductSet was last indexed. Query results will reflect all updates before this time. If this ProductSet has never been indexed, this timestamp is the default value "1970-01-01T00:00:00Z". This field is ignored when creating a ProductSet.'
         -
           id: '↳ index_error'
-          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>'
+          var_type: '<xref uid="\Google\Rpc\Status">Google\Rpc\Status</xref>'
           description: 'Output only. If there was an error with indexing the product set, the field is populated. This field is ignored when creating a ProductSet.'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSet::getName()'
@@ -211,7 +211,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>|null'
+          var_type: '<xref uid="\Google\Rpc\Status">Google\Rpc\Status</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSet::hasIndexError()'
     name: hasIndexError
@@ -245,7 +245,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>'
+          var_type: '<xref uid="\Google\Rpc\Status">Google\Rpc\Status</xref>'
           description: ''
       returns:
         -

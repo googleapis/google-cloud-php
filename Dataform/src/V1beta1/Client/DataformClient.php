@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -113,6 +113,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Dataform is a service to develop, create, document, test, and update curated
@@ -128,62 +129,62 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface cancelWorkflowInvocationAsync(CancelWorkflowInvocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface commitRepositoryChangesAsync(CommitRepositoryChangesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface commitWorkspaceChangesAsync(CommitWorkspaceChangesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface computeRepositoryAccessTokenStatusAsync(ComputeRepositoryAccessTokenStatusRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCompilationResultAsync(CreateCompilationResultRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createReleaseConfigAsync(CreateReleaseConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createRepositoryAsync(CreateRepositoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createWorkflowConfigAsync(CreateWorkflowConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createWorkflowInvocationAsync(CreateWorkflowInvocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createWorkspaceAsync(CreateWorkspaceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteReleaseConfigAsync(DeleteReleaseConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteRepositoryAsync(DeleteRepositoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteWorkflowConfigAsync(DeleteWorkflowConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteWorkflowInvocationAsync(DeleteWorkflowInvocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteWorkspaceAsync(DeleteWorkspaceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface fetchFileDiffAsync(FetchFileDiffRequest $request, array $optionalArgs = [])
- * @method PromiseInterface fetchFileGitStatusesAsync(FetchFileGitStatusesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface fetchGitAheadBehindAsync(FetchGitAheadBehindRequest $request, array $optionalArgs = [])
- * @method PromiseInterface fetchRemoteBranchesAsync(FetchRemoteBranchesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface fetchRepositoryHistoryAsync(FetchRepositoryHistoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCompilationResultAsync(GetCompilationResultRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getReleaseConfigAsync(GetReleaseConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRepositoryAsync(GetRepositoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getWorkflowConfigAsync(GetWorkflowConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getWorkflowInvocationAsync(GetWorkflowInvocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getWorkspaceAsync(GetWorkspaceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface installNpmPackagesAsync(InstallNpmPackagesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCompilationResultsAsync(ListCompilationResultsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listReleaseConfigsAsync(ListReleaseConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRepositoriesAsync(ListRepositoriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listWorkflowConfigsAsync(ListWorkflowConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listWorkflowInvocationsAsync(ListWorkflowInvocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listWorkspacesAsync(ListWorkspacesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface makeDirectoryAsync(MakeDirectoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface moveDirectoryAsync(MoveDirectoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface moveFileAsync(MoveFileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface pullGitCommitsAsync(PullGitCommitsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface pushGitCommitsAsync(PushGitCommitsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface queryCompilationResultActionsAsync(QueryCompilationResultActionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface queryDirectoryContentsAsync(QueryDirectoryContentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface queryRepositoryDirectoryContentsAsync(QueryRepositoryDirectoryContentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface queryWorkflowInvocationActionsAsync(QueryWorkflowInvocationActionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface readFileAsync(ReadFileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface readRepositoryFileAsync(ReadRepositoryFileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeDirectoryAsync(RemoveDirectoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeFileAsync(RemoveFileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resetWorkspaceChangesAsync(ResetWorkspaceChangesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateReleaseConfigAsync(UpdateReleaseConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateRepositoryAsync(UpdateRepositoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateWorkflowConfigAsync(UpdateWorkflowConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface writeFileAsync(WriteFileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> cancelWorkflowInvocationAsync(CancelWorkflowInvocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> commitRepositoryChangesAsync(CommitRepositoryChangesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> commitWorkspaceChangesAsync(CommitWorkspaceChangesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ComputeRepositoryAccessTokenStatusResponse> computeRepositoryAccessTokenStatusAsync(ComputeRepositoryAccessTokenStatusRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CompilationResult> createCompilationResultAsync(CreateCompilationResultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReleaseConfig> createReleaseConfigAsync(CreateReleaseConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Repository> createRepositoryAsync(CreateRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<WorkflowConfig> createWorkflowConfigAsync(CreateWorkflowConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<WorkflowInvocation> createWorkflowInvocationAsync(CreateWorkflowInvocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Workspace> createWorkspaceAsync(CreateWorkspaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteReleaseConfigAsync(DeleteReleaseConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteRepositoryAsync(DeleteRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteWorkflowConfigAsync(DeleteWorkflowConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteWorkflowInvocationAsync(DeleteWorkflowInvocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteWorkspaceAsync(DeleteWorkspaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FetchFileDiffResponse> fetchFileDiffAsync(FetchFileDiffRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FetchFileGitStatusesResponse> fetchFileGitStatusesAsync(FetchFileGitStatusesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FetchGitAheadBehindResponse> fetchGitAheadBehindAsync(FetchGitAheadBehindRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FetchRemoteBranchesResponse> fetchRemoteBranchesAsync(FetchRemoteBranchesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> fetchRepositoryHistoryAsync(FetchRepositoryHistoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CompilationResult> getCompilationResultAsync(GetCompilationResultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReleaseConfig> getReleaseConfigAsync(GetReleaseConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Repository> getRepositoryAsync(GetRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<WorkflowConfig> getWorkflowConfigAsync(GetWorkflowConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<WorkflowInvocation> getWorkflowInvocationAsync(GetWorkflowInvocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Workspace> getWorkspaceAsync(GetWorkspaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstallNpmPackagesResponse> installNpmPackagesAsync(InstallNpmPackagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCompilationResultsAsync(ListCompilationResultsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReleaseConfigsAsync(ListReleaseConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRepositoriesAsync(ListRepositoriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listWorkflowConfigsAsync(ListWorkflowConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listWorkflowInvocationsAsync(ListWorkflowInvocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listWorkspacesAsync(ListWorkspacesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MakeDirectoryResponse> makeDirectoryAsync(MakeDirectoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MoveDirectoryResponse> moveDirectoryAsync(MoveDirectoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MoveFileResponse> moveFileAsync(MoveFileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> pullGitCommitsAsync(PullGitCommitsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> pushGitCommitsAsync(PushGitCommitsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> queryCompilationResultActionsAsync(QueryCompilationResultActionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> queryDirectoryContentsAsync(QueryDirectoryContentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> queryRepositoryDirectoryContentsAsync(QueryRepositoryDirectoryContentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> queryWorkflowInvocationActionsAsync(QueryWorkflowInvocationActionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReadFileResponse> readFileAsync(ReadFileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReadRepositoryFileResponse> readRepositoryFileAsync(ReadRepositoryFileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> removeDirectoryAsync(RemoveDirectoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> removeFileAsync(RemoveFileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> resetWorkspaceChangesAsync(ResetWorkspaceChangesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReleaseConfig> updateReleaseConfigAsync(UpdateReleaseConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Repository> updateRepositoryAsync(UpdateRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<WorkflowConfig> updateWorkflowConfigAsync(UpdateWorkflowConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<WriteFileResponse> writeFileAsync(WriteFileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class DataformClient
 {
@@ -210,9 +211,7 @@ final class DataformClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -246,8 +245,12 @@ final class DataformClient
      *
      * @experimental
      */
-    public static function compilationResultName(string $project, string $location, string $repository, string $compilationResult): string
-    {
+    public static function compilationResultName(
+        string $project,
+        string $location,
+        string $repository,
+        string $compilationResult
+    ): string {
         return self::getPathTemplate('compilationResult')->render([
             'project' => $project,
             'location' => $location,
@@ -288,8 +291,12 @@ final class DataformClient
      *
      * @experimental
      */
-    public static function releaseConfigName(string $project, string $location, string $repository, string $releaseConfig): string
-    {
+    public static function releaseConfigName(
+        string $project,
+        string $location,
+        string $repository,
+        string $releaseConfig
+    ): string {
         return self::getPathTemplate('releaseConfig')->render([
             'project' => $project,
             'location' => $location,
@@ -353,8 +360,12 @@ final class DataformClient
      *
      * @experimental
      */
-    public static function workflowConfigName(string $project, string $location, string $repository, string $workflowConfig): string
-    {
+    public static function workflowConfigName(
+        string $project,
+        string $location,
+        string $repository,
+        string $workflowConfig
+    ): string {
         return self::getPathTemplate('workflowConfig')->render([
             'project' => $project,
             'location' => $location,
@@ -376,8 +387,12 @@ final class DataformClient
      *
      * @experimental
      */
-    public static function workflowInvocationName(string $project, string $location, string $repository, string $workflowInvocation): string
-    {
+    public static function workflowInvocationName(
+        string $project,
+        string $location,
+        string $repository,
+        string $workflowInvocation
+    ): string {
         return self::getPathTemplate('workflowInvocation')->render([
             'project' => $project,
             'location' => $location,
@@ -399,8 +414,12 @@ final class DataformClient
      *
      * @experimental
      */
-    public static function workspaceName(string $project, string $location, string $repository, string $workspace): string
-    {
+    public static function workspaceName(
+        string $project,
+        string $location,
+        string $repository,
+        string $workspace
+    ): string {
         return self::getPathTemplate('workspace')->render([
             'project' => $project,
             'location' => $location,
@@ -428,8 +447,8 @@ final class DataformClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
@@ -437,7 +456,7 @@ final class DataformClient
      *
      * @experimental
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -459,6 +478,12 @@ final class DataformClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -492,6 +517,9 @@ final class DataformClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -618,8 +646,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function computeRepositoryAccessTokenStatus(ComputeRepositoryAccessTokenStatusRequest $request, array $callOptions = []): ComputeRepositoryAccessTokenStatusResponse
-    {
+    public function computeRepositoryAccessTokenStatus(
+        ComputeRepositoryAccessTokenStatusRequest $request,
+        array $callOptions = []
+    ): ComputeRepositoryAccessTokenStatusResponse {
         return $this->startApiCall('ComputeRepositoryAccessTokenStatus', $request, $callOptions)->wait();
     }
 
@@ -646,8 +676,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function createCompilationResult(CreateCompilationResultRequest $request, array $callOptions = []): CompilationResult
-    {
+    public function createCompilationResult(
+        CreateCompilationResultRequest $request,
+        array $callOptions = []
+    ): CompilationResult {
         return $this->startApiCall('CreateCompilationResult', $request, $callOptions)->wait();
     }
 
@@ -758,8 +790,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function createWorkflowInvocation(CreateWorkflowInvocationRequest $request, array $callOptions = []): WorkflowInvocation
-    {
+    public function createWorkflowInvocation(
+        CreateWorkflowInvocationRequest $request,
+        array $callOptions = []
+    ): WorkflowInvocation {
         return $this->startApiCall('CreateWorkflowInvocation', $request, $callOptions)->wait();
     }
 
@@ -972,8 +1006,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function fetchFileGitStatuses(FetchFileGitStatusesRequest $request, array $callOptions = []): FetchFileGitStatusesResponse
-    {
+    public function fetchFileGitStatuses(
+        FetchFileGitStatusesRequest $request,
+        array $callOptions = []
+    ): FetchFileGitStatusesResponse {
         return $this->startApiCall('FetchFileGitStatuses', $request, $callOptions)->wait();
     }
 
@@ -1000,8 +1036,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function fetchGitAheadBehind(FetchGitAheadBehindRequest $request, array $callOptions = []): FetchGitAheadBehindResponse
-    {
+    public function fetchGitAheadBehind(
+        FetchGitAheadBehindRequest $request,
+        array $callOptions = []
+    ): FetchGitAheadBehindResponse {
         return $this->startApiCall('FetchGitAheadBehind', $request, $callOptions)->wait();
     }
 
@@ -1028,8 +1066,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function fetchRemoteBranches(FetchRemoteBranchesRequest $request, array $callOptions = []): FetchRemoteBranchesResponse
-    {
+    public function fetchRemoteBranches(
+        FetchRemoteBranchesRequest $request,
+        array $callOptions = []
+    ): FetchRemoteBranchesResponse {
         return $this->startApiCall('FetchRemoteBranches', $request, $callOptions)->wait();
     }
 
@@ -1057,8 +1097,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function fetchRepositoryHistory(FetchRepositoryHistoryRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function fetchRepositoryHistory(
+        FetchRepositoryHistoryRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('FetchRepositoryHistory', $request, $callOptions);
     }
 
@@ -1085,8 +1127,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function getCompilationResult(GetCompilationResultRequest $request, array $callOptions = []): CompilationResult
-    {
+    public function getCompilationResult(
+        GetCompilationResultRequest $request,
+        array $callOptions = []
+    ): CompilationResult {
         return $this->startApiCall('GetCompilationResult', $request, $callOptions)->wait();
     }
 
@@ -1197,8 +1241,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function getWorkflowInvocation(GetWorkflowInvocationRequest $request, array $callOptions = []): WorkflowInvocation
-    {
+    public function getWorkflowInvocation(
+        GetWorkflowInvocationRequest $request,
+        array $callOptions = []
+    ): WorkflowInvocation {
         return $this->startApiCall('GetWorkflowInvocation', $request, $callOptions)->wait();
     }
 
@@ -1253,8 +1299,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function installNpmPackages(InstallNpmPackagesRequest $request, array $callOptions = []): InstallNpmPackagesResponse
-    {
+    public function installNpmPackages(
+        InstallNpmPackagesRequest $request,
+        array $callOptions = []
+    ): InstallNpmPackagesResponse {
         return $this->startApiCall('InstallNpmPackages', $request, $callOptions)->wait();
     }
 
@@ -1281,8 +1329,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function listCompilationResults(ListCompilationResultsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listCompilationResults(
+        ListCompilationResultsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListCompilationResults', $request, $callOptions);
     }
 
@@ -1393,8 +1443,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function listWorkflowInvocations(ListWorkflowInvocationsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listWorkflowInvocations(
+        ListWorkflowInvocationsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListWorkflowInvocations', $request, $callOptions);
     }
 
@@ -1587,8 +1639,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function queryCompilationResultActions(QueryCompilationResultActionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function queryCompilationResultActions(
+        QueryCompilationResultActionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('QueryCompilationResultActions', $request, $callOptions);
     }
 
@@ -1615,8 +1669,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function queryDirectoryContents(QueryDirectoryContentsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function queryDirectoryContents(
+        QueryDirectoryContentsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('QueryDirectoryContents', $request, $callOptions);
     }
 
@@ -1645,8 +1701,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function queryRepositoryDirectoryContents(QueryRepositoryDirectoryContentsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function queryRepositoryDirectoryContents(
+        QueryRepositoryDirectoryContentsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('QueryRepositoryDirectoryContents', $request, $callOptions);
     }
 
@@ -1674,8 +1732,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function queryWorkflowInvocationActions(QueryWorkflowInvocationActionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function queryWorkflowInvocationActions(
+        QueryWorkflowInvocationActionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('QueryWorkflowInvocationActions', $request, $callOptions);
     }
 
@@ -1731,8 +1791,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function readRepositoryFile(ReadRepositoryFileRequest $request, array $callOptions = []): ReadRepositoryFileResponse
-    {
+    public function readRepositoryFile(
+        ReadRepositoryFileRequest $request,
+        array $callOptions = []
+    ): ReadRepositoryFileResponse {
         return $this->startApiCall('ReadRepositoryFile', $request, $callOptions)->wait();
     }
 
@@ -2072,8 +2134,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

@@ -24,11 +24,20 @@ class CheckCloudIdentityAccountsExistRequest extends \Google\Protobuf\Internal\M
      */
     protected $parent = '';
     /**
-     * Required. Domain to fetch for Cloud Identity account customer.
+     * Required. Domain to fetch for Cloud Identity account customers, including
+     * domain and team customers. For team customers, please use the domain for
+     * their emails.
      *
      * Generated from protobuf field <code>string domain = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $domain = '';
+    /**
+     * Optional. Primary admin email to fetch for Cloud Identity account team
+     * customer.
+     *
+     * Generated from protobuf field <code>string primary_admin_email = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $primary_admin_email = '';
 
     /**
      * Constructor.
@@ -40,7 +49,12 @@ class CheckCloudIdentityAccountsExistRequest extends \Google\Protobuf\Internal\M
      *           Required. The reseller account's resource name.
      *           Parent uses the format: accounts/{account_id}
      *     @type string $domain
-     *           Required. Domain to fetch for Cloud Identity account customer.
+     *           Required. Domain to fetch for Cloud Identity account customers, including
+     *           domain and team customers. For team customers, please use the domain for
+     *           their emails.
+     *     @type string $primary_admin_email
+     *           Optional. Primary admin email to fetch for Cloud Identity account team
+     *           customer.
      * }
      */
     public function __construct($data = NULL) {
@@ -77,7 +91,9 @@ class CheckCloudIdentityAccountsExistRequest extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * Required. Domain to fetch for Cloud Identity account customer.
+     * Required. Domain to fetch for Cloud Identity account customers, including
+     * domain and team customers. For team customers, please use the domain for
+     * their emails.
      *
      * Generated from protobuf field <code>string domain = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -88,7 +104,9 @@ class CheckCloudIdentityAccountsExistRequest extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * Required. Domain to fetch for Cloud Identity account customer.
+     * Required. Domain to fetch for Cloud Identity account customers, including
+     * domain and team customers. For team customers, please use the domain for
+     * their emails.
      *
      * Generated from protobuf field <code>string domain = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -98,6 +116,34 @@ class CheckCloudIdentityAccountsExistRequest extends \Google\Protobuf\Internal\M
     {
         GPBUtil::checkString($var, True);
         $this->domain = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Primary admin email to fetch for Cloud Identity account team
+     * customer.
+     *
+     * Generated from protobuf field <code>string primary_admin_email = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPrimaryAdminEmail()
+    {
+        return $this->primary_admin_email;
+    }
+
+    /**
+     * Optional. Primary admin email to fetch for Cloud Identity account team
+     * customer.
+     *
+     * Generated from protobuf field <code>string primary_admin_email = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPrimaryAdminEmail($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->primary_admin_email = $var;
 
         return $this;
     }

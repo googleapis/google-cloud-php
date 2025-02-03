@@ -175,6 +175,25 @@ return [
                     ],
                 ],
             ],
+            'RunStream' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Datastream\V1\Stream',
+                    'metadataReturnType' => '\Google\Cloud\Datastream\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateConnectionProfile' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Datastream\V1\ConnectionProfile',

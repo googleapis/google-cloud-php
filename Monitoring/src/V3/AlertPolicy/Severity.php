@@ -7,7 +7,7 @@ namespace Google\Cloud\Monitoring\V3\AlertPolicy;
 use UnexpectedValueException;
 
 /**
- * An enumeration of possible severity level for an Alert Policy.
+ * An enumeration of possible severity level for an alerting policy.
  *
  * Protobuf type <code>google.monitoring.v3.AlertPolicy.Severity</code>
  */
@@ -70,6 +70,4 @@ class Severity
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Severity::class, \Google\Cloud\Monitoring\V3\AlertPolicy_Severity::class);
 

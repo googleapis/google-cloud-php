@@ -46,6 +46,7 @@ use Google\Cloud\AccessApproval\V1\InvalidateApprovalRequestMessage;
 use Google\Cloud\AccessApproval\V1\ListApprovalRequestsMessage;
 use Google\Cloud\AccessApproval\V1\UpdateAccessApprovalSettingsMessage;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: This API allows a customer to manage accesses to cloud resources by
@@ -90,15 +91,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface approveApprovalRequestAsync(ApproveApprovalRequestMessage $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAccessApprovalSettingsAsync(DeleteAccessApprovalSettingsMessage $request, array $optionalArgs = [])
- * @method PromiseInterface dismissApprovalRequestAsync(DismissApprovalRequestMessage $request, array $optionalArgs = [])
- * @method PromiseInterface getAccessApprovalServiceAccountAsync(GetAccessApprovalServiceAccountMessage $request, array $optionalArgs = [])
- * @method PromiseInterface getAccessApprovalSettingsAsync(GetAccessApprovalSettingsMessage $request, array $optionalArgs = [])
- * @method PromiseInterface getApprovalRequestAsync(GetApprovalRequestMessage $request, array $optionalArgs = [])
- * @method PromiseInterface invalidateApprovalRequestAsync(InvalidateApprovalRequestMessage $request, array $optionalArgs = [])
- * @method PromiseInterface listApprovalRequestsAsync(ListApprovalRequestsMessage $request, array $optionalArgs = [])
- * @method PromiseInterface updateAccessApprovalSettingsAsync(UpdateAccessApprovalSettingsMessage $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApprovalRequest> approveApprovalRequestAsync(ApproveApprovalRequestMessage $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAccessApprovalSettingsAsync(DeleteAccessApprovalSettingsMessage $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApprovalRequest> dismissApprovalRequestAsync(DismissApprovalRequestMessage $request, array $optionalArgs = [])
+ * @method PromiseInterface<AccessApprovalServiceAccount> getAccessApprovalServiceAccountAsync(GetAccessApprovalServiceAccountMessage $request, array $optionalArgs = [])
+ * @method PromiseInterface<AccessApprovalSettings> getAccessApprovalSettingsAsync(GetAccessApprovalSettingsMessage $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApprovalRequest> getApprovalRequestAsync(GetApprovalRequestMessage $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApprovalRequest> invalidateApprovalRequestAsync(InvalidateApprovalRequestMessage $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listApprovalRequestsAsync(ListApprovalRequestsMessage $request, array $optionalArgs = [])
+ * @method PromiseInterface<AccessApprovalSettings> updateAccessApprovalSettingsAsync(UpdateAccessApprovalSettingsMessage $request, array $optionalArgs = [])
  */
 final class AccessApprovalClient
 {
@@ -341,14 +342,14 @@ final class AccessApprovalClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -370,6 +371,12 @@ final class AccessApprovalClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -403,6 +410,9 @@ final class AccessApprovalClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

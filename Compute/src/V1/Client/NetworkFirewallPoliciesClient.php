@@ -35,6 +35,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AddAssociationNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\AddRuleNetworkFirewallPolicyRequest;
+use Google\Cloud\Compute\V1\AggregatedListNetworkFirewallPoliciesRequest;
 use Google\Cloud\Compute\V1\CloneRulesNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\DeleteNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\FirewallPolicy;
@@ -56,6 +57,7 @@ use Google\Cloud\Compute\V1\SetIamPolicyNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The NetworkFirewallPolicies API.
@@ -63,22 +65,23 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface addAssociationAsync(AddAssociationNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface addRuleAsync(AddRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface cloneRulesAsync(CloneRulesNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAssociationAsync(GetAssociationNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRuleAsync(GetRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListNetworkFirewallPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchRuleAsync(PatchRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeAssociationAsync(RemoveAssociationNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeRuleAsync(RemoveRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addAssociationAsync(AddAssociationNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addRuleAsync(AddRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListNetworkFirewallPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> cloneRulesAsync(CloneRulesNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirewallPolicy> getAsync(GetNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirewallPolicyAssociation> getAssociationAsync(GetAssociationNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirewallPolicyRule> getRuleAsync(GetRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListNetworkFirewallPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchRuleAsync(PatchRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeAssociationAsync(RemoveAssociationNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeRuleAsync(RemoveRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
  */
 final class NetworkFirewallPoliciesClient
 {
@@ -212,6 +215,12 @@ final class NetworkFirewallPoliciesClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -242,6 +251,9 @@ final class NetworkFirewallPoliciesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -270,6 +282,8 @@ final class NetworkFirewallPoliciesClient
      * The async variant is {@see NetworkFirewallPoliciesClient::addAssociationAsync()}
      * .
      *
+     * @example samples/V1/NetworkFirewallPoliciesClient/add_association.php
+     *
      * @param AddAssociationNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {
      *     Optional.
@@ -294,6 +308,8 @@ final class NetworkFirewallPoliciesClient
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::addRuleAsync()} .
      *
+     * @example samples/V1/NetworkFirewallPoliciesClient/add_rule.php
+     *
      * @param AddRuleNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -314,9 +330,38 @@ final class NetworkFirewallPoliciesClient
     }
 
     /**
+     * Retrieves an aggregated list of network firewall policies, listing network firewall policies from all applicable scopes (global and regional) and grouping the results per scope. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     *
+     * The async variant is {@see NetworkFirewallPoliciesClient::aggregatedListAsync()}
+     * .
+     *
+     * @example samples/V1/NetworkFirewallPoliciesClient/aggregated_list.php
+     *
+     * @param AggregatedListNetworkFirewallPoliciesRequest $request     A request to house fields associated with the call.
+     * @param array                                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function aggregatedList(AggregatedListNetworkFirewallPoliciesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('AggregatedList', $request, $callOptions);
+    }
+
+    /**
      * Copies rules to the specified firewall policy.
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::cloneRulesAsync()} .
+     *
+     * @example samples/V1/NetworkFirewallPoliciesClient/clone_rules.php
      *
      * @param CloneRulesNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -342,6 +387,8 @@ final class NetworkFirewallPoliciesClient
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::deleteAsync()} .
      *
+     * @example samples/V1/NetworkFirewallPoliciesClient/delete.php
+     *
      * @param DeleteNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -365,6 +412,8 @@ final class NetworkFirewallPoliciesClient
      * Returns the specified network firewall policy.
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::getAsync()} .
+     *
+     * @example samples/V1/NetworkFirewallPoliciesClient/get.php
      *
      * @param GetNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -391,6 +440,8 @@ final class NetworkFirewallPoliciesClient
      * The async variant is {@see NetworkFirewallPoliciesClient::getAssociationAsync()}
      * .
      *
+     * @example samples/V1/NetworkFirewallPoliciesClient/get_association.php
+     *
      * @param GetAssociationNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {
      *     Optional.
@@ -414,6 +465,8 @@ final class NetworkFirewallPoliciesClient
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkFirewallPoliciesClient/get_iam_policy.php
      *
      * @param GetIamPolicyNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
@@ -439,6 +492,8 @@ final class NetworkFirewallPoliciesClient
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::getRuleAsync()} .
      *
+     * @example samples/V1/NetworkFirewallPoliciesClient/get_rule.php
+     *
      * @param GetRuleNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -462,6 +517,8 @@ final class NetworkFirewallPoliciesClient
      * Creates a new policy in the specified project using the data included in the request.
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::insertAsync()} .
+     *
+     * @example samples/V1/NetworkFirewallPoliciesClient/insert.php
      *
      * @param InsertNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -487,6 +544,8 @@ final class NetworkFirewallPoliciesClient
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::listAsync()} .
      *
+     * @example samples/V1/NetworkFirewallPoliciesClient/list.php
+     *
      * @param ListNetworkFirewallPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -511,6 +570,8 @@ final class NetworkFirewallPoliciesClient
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::patchAsync()} .
      *
+     * @example samples/V1/NetworkFirewallPoliciesClient/patch.php
+     *
      * @param PatchNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -534,6 +595,8 @@ final class NetworkFirewallPoliciesClient
      * Patches a rule of the specified priority.
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::patchRuleAsync()} .
+     *
+     * @example samples/V1/NetworkFirewallPoliciesClient/patch_rule.php
      *
      * @param PatchRuleNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -560,6 +623,8 @@ final class NetworkFirewallPoliciesClient
      * The async variant is
      * {@see NetworkFirewallPoliciesClient::removeAssociationAsync()} .
      *
+     * @example samples/V1/NetworkFirewallPoliciesClient/remove_association.php
+     *
      * @param RemoveAssociationNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                         $callOptions {
      *     Optional.
@@ -583,6 +648,8 @@ final class NetworkFirewallPoliciesClient
      * Deletes a rule of the specified priority.
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::removeRuleAsync()} .
+     *
+     * @example samples/V1/NetworkFirewallPoliciesClient/remove_rule.php
      *
      * @param RemoveRuleNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -608,6 +675,8 @@ final class NetworkFirewallPoliciesClient
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::setIamPolicyAsync()} .
      *
+     * @example samples/V1/NetworkFirewallPoliciesClient/set_iam_policy.php
+     *
      * @param SetIamPolicyNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
      *     Optional.
@@ -632,6 +701,8 @@ final class NetworkFirewallPoliciesClient
      *
      * The async variant is
      * {@see NetworkFirewallPoliciesClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/NetworkFirewallPoliciesClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                          $callOptions {

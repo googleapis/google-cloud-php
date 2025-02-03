@@ -23,14 +23,14 @@ class UserSegmentExclusion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.UserExclusionDuration user_exclusion_duration = 1;</code>
      */
-    private $user_exclusion_duration = 0;
+    protected $user_exclusion_duration = 0;
     /**
      * If a user meets this condition, the user is excluded from membership in
      * the segment for the `userExclusionDuration`.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.UserSegmentCriteria user_exclusion_criteria = 2;</code>
      */
-    private $user_exclusion_criteria = null;
+    protected $user_exclusion_criteria = null;
 
     /**
      * Constructor.

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetPools_RemoveHealthCheck_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\TargetPoolsClient;
+use Google\Cloud\Compute\V1\Client\TargetPoolsClient;
+use Google\Cloud\Compute\V1\RemoveHealthCheckTargetPoolRequest;
 use Google\Cloud\Compute\V1\TargetPoolsRemoveHealthCheckRequest;
 use Google\Rpc\Status;
 
@@ -41,18 +42,18 @@ function remove_health_check_sample(string $project, string $region, string $tar
     // Create a client.
     $targetPoolsClient = new TargetPoolsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetPoolsRemoveHealthCheckRequestResource = new TargetPoolsRemoveHealthCheckRequest();
+    $request = (new RemoveHealthCheckTargetPoolRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setTargetPool($targetPool)
+        ->setTargetPoolsRemoveHealthCheckRequestResource($targetPoolsRemoveHealthCheckRequestResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetPoolsClient->removeHealthCheck(
-            $project,
-            $region,
-            $targetPool,
-            $targetPoolsRemoveHealthCheckRequestResource
-        );
+        $response = $targetPoolsClient->removeHealthCheck($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -54,6 +54,14 @@ class MutationResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool conflict_detected = 5;</code>
      */
     private $conflict_detected = false;
+    /**
+     * The results of applying each
+     * [PropertyTransform][google.datastore.v1.PropertyTransform], in the same
+     * order of the request.
+     *
+     * Generated from protobuf field <code>repeated .google.datastore.v1.Value transform_results = 8;</code>
+     */
+    private $transform_results;
 
     /**
      * Constructor.
@@ -80,6 +88,10 @@ class MutationResult extends \Google\Protobuf\Internal\Message
      *     @type bool $conflict_detected
      *           Whether a conflict was detected for this mutation. Always false when a
      *           conflict detection strategy field is not set in the mutation.
+     *     @type array<\Google\Cloud\Datastore\V1\Value>|\Google\Protobuf\Internal\RepeatedField $transform_results
+     *           The results of applying each
+     *           [PropertyTransform][google.datastore.v1.PropertyTransform], in the same
+     *           order of the request.
      * }
      */
     public function __construct($data = NULL) {
@@ -261,6 +273,36 @@ class MutationResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->conflict_detected = $var;
+
+        return $this;
+    }
+
+    /**
+     * The results of applying each
+     * [PropertyTransform][google.datastore.v1.PropertyTransform], in the same
+     * order of the request.
+     *
+     * Generated from protobuf field <code>repeated .google.datastore.v1.Value transform_results = 8;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTransformResults()
+    {
+        return $this->transform_results;
+    }
+
+    /**
+     * The results of applying each
+     * [PropertyTransform][google.datastore.v1.PropertyTransform], in the same
+     * order of the request.
+     *
+     * Generated from protobuf field <code>repeated .google.datastore.v1.Value transform_results = 8;</code>
+     * @param array<\Google\Cloud\Datastore\V1\Value>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTransformResults($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Datastore\V1\Value::class);
+        $this->transform_results = $arr;
 
         return $this;
     }

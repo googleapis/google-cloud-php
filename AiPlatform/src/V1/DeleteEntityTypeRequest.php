@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [FeaturestoreService.DeleteEntityTypes][].
+ * Request message for
+ * [FeaturestoreService.DeleteEntityType][google.cloud.aiplatform.v1.FeaturestoreService.DeleteEntityType].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.DeleteEntityTypeRequest</code>
  */

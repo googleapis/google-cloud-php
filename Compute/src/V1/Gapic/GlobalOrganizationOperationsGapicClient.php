@@ -190,7 +190,7 @@ class GlobalOrganizationOperationsGapicClient
      * }
      * ```
      *
-     * @param string $operation    Name of the Operations resource to delete.
+     * @param string $operation    Name of the Operations resource to delete, or its unique numeric identifier.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -235,7 +235,7 @@ class GlobalOrganizationOperationsGapicClient
      * }
      * ```
      *
-     * @param string $operation    Name of the Operations resource to return.
+     * @param string $operation    Name of the Operations resource to return, or its unique numeric identifier.
      * @param array  $optionalArgs {
      *     Optional.
      *

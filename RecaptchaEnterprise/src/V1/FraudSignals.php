@@ -20,14 +20,14 @@ class FraudSignals extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudSignals.UserSignals user_signals = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $user_signals = null;
+    protected $user_signals = null;
     /**
      * Output only. Signals describing the payment card or cards used in this
      * transaction.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudSignals.CardSignals card_signals = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $card_signals = null;
+    protected $card_signals = null;
 
     /**
      * Constructor.

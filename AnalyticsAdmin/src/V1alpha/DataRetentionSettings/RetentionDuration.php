@@ -33,21 +33,21 @@ class RetentionDuration
     const FOURTEEN_MONTHS = 3;
     /**
      * The data retention time duration is 26 months.
-     * Available to 360 properties only.
+     * Available to 360 properties only. Available for event data only.
      *
      * Generated from protobuf enum <code>TWENTY_SIX_MONTHS = 4;</code>
      */
     const TWENTY_SIX_MONTHS = 4;
     /**
      * The data retention time duration is 38 months.
-     * Available to 360 properties only.
+     * Available to 360 properties only. Available for event data only.
      *
      * Generated from protobuf enum <code>THIRTY_EIGHT_MONTHS = 5;</code>
      */
     const THIRTY_EIGHT_MONTHS = 5;
     /**
      * The data retention time duration is 50 months.
-     * Available to 360 properties only.
+     * Available to 360 properties only. Available for event data only.
      *
      * Generated from protobuf enum <code>FIFTY_MONTHS = 6;</code>
      */
@@ -83,6 +83,4 @@ class RetentionDuration
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RetentionDuration::class, \Google\Analytics\Admin\V1alpha\DataRetentionSettings_RetentionDuration::class);
 

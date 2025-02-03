@@ -26,11 +26,11 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The unique identifier of the session entity type.
-     * Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/sessions/<Session ID>/entityTypes/<Entity Type
-     * ID>` or `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>/sessions/<Session ID>/entityTypes/<Entity
-     * Type ID>`. If `Environment ID` is not specified, we assume default 'draft'
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/sessions/<SessionID>/entityTypes/<EntityTypeID>`
+     * or
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/sessions/<SessionID>/entityTypes/<EntityTypeID>`.
+     * If `Environment ID` is not specified, we assume default 'draft'
      * environment.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -59,11 +59,11 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The unique identifier of the session entity type.
-     *           Format: `projects/<Project ID>/locations/<Location
-     *           ID>/agents/<Agent ID>/sessions/<Session ID>/entityTypes/<Entity Type
-     *           ID>` or `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/environments/<Environment ID>/sessions/<Session ID>/entityTypes/<Entity
-     *           Type ID>`. If `Environment ID` is not specified, we assume default 'draft'
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/sessions/<SessionID>/entityTypes/<EntityTypeID>`
+     *           or
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/sessions/<SessionID>/entityTypes/<EntityTypeID>`.
+     *           If `Environment ID` is not specified, we assume default 'draft'
      *           environment.
      *     @type int $entity_override_mode
      *           Required. Indicates whether the additional data should override or
@@ -80,11 +80,11 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The unique identifier of the session entity type.
-     * Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/sessions/<Session ID>/entityTypes/<Entity Type
-     * ID>` or `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>/sessions/<Session ID>/entityTypes/<Entity
-     * Type ID>`. If `Environment ID` is not specified, we assume default 'draft'
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/sessions/<SessionID>/entityTypes/<EntityTypeID>`
+     * or
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/sessions/<SessionID>/entityTypes/<EntityTypeID>`.
+     * If `Environment ID` is not specified, we assume default 'draft'
      * environment.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -97,11 +97,11 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The unique identifier of the session entity type.
-     * Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/sessions/<Session ID>/entityTypes/<Entity Type
-     * ID>` or `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>/sessions/<Session ID>/entityTypes/<Entity
-     * Type ID>`. If `Environment ID` is not specified, we assume default 'draft'
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/sessions/<SessionID>/entityTypes/<EntityTypeID>`
+     * or
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/sessions/<SessionID>/entityTypes/<EntityTypeID>`.
+     * If `Environment ID` is not specified, we assume default 'draft'
      * environment.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>

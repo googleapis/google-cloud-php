@@ -22,14 +22,14 @@ class SshAuthenticationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string user_private_key_secret_version = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $user_private_key_secret_version = '';
+    protected $user_private_key_secret_version = '';
     /**
      * Required. Content of a public SSH key to verify an identity of a remote
      * Git host.
      *
      * Generated from protobuf field <code>string host_public_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $host_public_key = '';
+    protected $host_public_key = '';
 
     /**
      * Constructor.

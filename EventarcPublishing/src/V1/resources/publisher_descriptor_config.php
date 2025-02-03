@@ -23,6 +23,18 @@
 return [
     'interfaces' => [
         'google.cloud.eventarc.publishing.v1.Publisher' => [
+            'Publish' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Eventarc\Publishing\V1\PublishResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'message_bus',
+                        'fieldAccessors' => [
+                            'getMessageBus',
+                        ],
+                    ],
+                ],
+            ],
             'PublishChannelConnectionEvents' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Eventarc\Publishing\V1\PublishChannelConnectionEventsResponse',

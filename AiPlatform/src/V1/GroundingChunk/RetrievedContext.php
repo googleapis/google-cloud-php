@@ -27,6 +27,12 @@ class RetrievedContext extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string title = 2;</code>
      */
     protected $title = null;
+    /**
+     * Text of the attribution.
+     *
+     * Generated from protobuf field <code>optional string text = 3;</code>
+     */
+    protected $text = null;
 
     /**
      * Constructor.
@@ -38,6 +44,8 @@ class RetrievedContext extends \Google\Protobuf\Internal\Message
      *           URI reference of the attribution.
      *     @type string $title
      *           Title of the attribution.
+     *     @type string $text
+     *           Text of the attribution.
      * }
      */
     public function __construct($data = NULL) {
@@ -113,6 +121,42 @@ class RetrievedContext extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->title = $var;
+
+        return $this;
+    }
+
+    /**
+     * Text of the attribution.
+     *
+     * Generated from protobuf field <code>optional string text = 3;</code>
+     * @return string
+     */
+    public function getText()
+    {
+        return isset($this->text) ? $this->text : '';
+    }
+
+    public function hasText()
+    {
+        return isset($this->text);
+    }
+
+    public function clearText()
+    {
+        unset($this->text);
+    }
+
+    /**
+     * Text of the attribution.
+     *
+     * Generated from protobuf field <code>optional string text = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setText($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->text = $var;
 
         return $this;
     }

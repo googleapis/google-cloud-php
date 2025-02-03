@@ -30,14 +30,13 @@ use Google\Cloud\Parallelstore\V1beta\Instance;
 use Google\Cloud\Parallelstore\V1beta\ListInstancesRequest;
 
 /**
- * Lists Instances in a given project and location.
+ * Lists all instances in a given project and location.
  *
  * @param string $formattedParent The project and location for which to retrieve instance
  *                                information, in the format `projects/{project_id}/locations/{location}`.
- *                                For Parallelstore locations map to Google Cloud zones, for example
- *                                **us-central1-a**.
- *                                To retrieve instance information for all locations, use "-" for the
- *                                `{location}` value. Please see
+ *
+ *                                To retrieve instance information for all locations, use "-" as the value of
+ *                                `{location}`. Please see
  *                                {@see ParallelstoreClient::locationName()} for help formatting this field.
  */
 function list_instances_sample(string $formattedParent): void

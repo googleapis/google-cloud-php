@@ -62,6 +62,18 @@ class ChangeHistoryResourceType
      */
     const MEASUREMENT_PROTOCOL_SECRET = 10;
     /**
+     * CustomDimension resource
+     *
+     * Generated from protobuf enum <code>CUSTOM_DIMENSION = 11;</code>
+     */
+    const CUSTOM_DIMENSION = 11;
+    /**
+     * CustomMetric resource
+     *
+     * Generated from protobuf enum <code>CUSTOM_METRIC = 12;</code>
+     */
+    const CUSTOM_METRIC = 12;
+    /**
      * DataRetentionSettings resource
      *
      * Generated from protobuf enum <code>DATA_RETENTION_SETTINGS = 13;</code>
@@ -101,6 +113,8 @@ class ChangeHistoryResourceType
         self::GOOGLE_SIGNALS_SETTINGS => 'GOOGLE_SIGNALS_SETTINGS',
         self::CONVERSION_EVENT => 'CONVERSION_EVENT',
         self::MEASUREMENT_PROTOCOL_SECRET => 'MEASUREMENT_PROTOCOL_SECRET',
+        self::CUSTOM_DIMENSION => 'CUSTOM_DIMENSION',
+        self::CUSTOM_METRIC => 'CUSTOM_METRIC',
         self::DATA_RETENTION_SETTINGS => 'DATA_RETENTION_SETTINGS',
         self::DISPLAY_VIDEO_360_ADVERTISER_LINK => 'DISPLAY_VIDEO_360_ADVERTISER_LINK',
         self::DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL => 'DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL',

@@ -61,6 +61,7 @@ use Google\Cloud\Vision\V1\UpdateProductRequest;
 use Google\Cloud\Vision\V1\UpdateProductSetRequest;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Manages Products and ProductSets of reference images for use in product
@@ -88,25 +89,25 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface addProductToProductSetAsync(AddProductToProductSetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createProductAsync(CreateProductRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createProductSetAsync(CreateProductSetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createReferenceImageAsync(CreateReferenceImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteProductAsync(DeleteProductRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteProductSetAsync(DeleteProductSetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteReferenceImageAsync(DeleteReferenceImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getProductAsync(GetProductRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getProductSetAsync(GetProductSetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getReferenceImageAsync(GetReferenceImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importProductSetsAsync(ImportProductSetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listProductSetsAsync(ListProductSetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listProductsAsync(ListProductsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listProductsInProductSetAsync(ListProductsInProductSetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listReferenceImagesAsync(ListReferenceImagesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface purgeProductsAsync(PurgeProductsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeProductFromProductSetAsync(RemoveProductFromProductSetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateProductAsync(UpdateProductRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateProductSetAsync(UpdateProductSetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> addProductToProductSetAsync(AddProductToProductSetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Product> createProductAsync(CreateProductRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ProductSet> createProductSetAsync(CreateProductSetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReferenceImage> createReferenceImageAsync(CreateReferenceImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteProductAsync(DeleteProductRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteProductSetAsync(DeleteProductSetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteReferenceImageAsync(DeleteReferenceImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Product> getProductAsync(GetProductRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ProductSet> getProductSetAsync(GetProductSetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReferenceImage> getReferenceImageAsync(GetReferenceImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importProductSetsAsync(ImportProductSetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listProductSetsAsync(ListProductSetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listProductsAsync(ListProductsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listProductsInProductSetAsync(ListProductsInProductSetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReferenceImagesAsync(ListReferenceImagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> purgeProductsAsync(PurgeProductsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> removeProductFromProductSetAsync(RemoveProductFromProductSetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Product> updateProductAsync(UpdateProductRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ProductSet> updateProductSetAsync(UpdateProductSetRequest $request, array $optionalArgs = [])
  */
 final class ProductSearchClient
 {
@@ -279,14 +280,14 @@ final class ProductSearchClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -308,6 +309,12 @@ final class ProductSearchClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -341,6 +348,9 @@ final class ProductSearchClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

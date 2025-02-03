@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_VpnTunnels_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\VpnTunnelsClient;
+use Google\Cloud\Compute\V1\Client\VpnTunnelsClient;
+use Google\Cloud\Compute\V1\ListVpnTunnelsRequest;
 
 /**
  * Retrieves a list of VpnTunnel resources contained in the specified project and region.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $region): void
     // Create a client.
     $vpnTunnelsClient = new VpnTunnelsClient();
 
+    // Prepare the request message.
+    $request = (new ListVpnTunnelsRequest())
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $vpnTunnelsClient->list($project, $region);
+        $response = $vpnTunnelsClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

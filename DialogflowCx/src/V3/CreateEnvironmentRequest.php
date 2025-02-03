@@ -19,7 +19,7 @@ class CreateEnvironmentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The [Agent][google.cloud.dialogflow.cx.v3.Agent] to create an
      * [Environment][google.cloud.dialogflow.cx.v3.Environment] for. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -34,7 +34,7 @@ class CreateEnvironmentRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                     $parent      Required. The [Agent][google.cloud.dialogflow.cx.v3.Agent] to create an
      *                                                                [Environment][google.cloud.dialogflow.cx.v3.Environment] for. Format:
-     *                                                                `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+     *                                                                `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
      *                                                                {@see EnvironmentsClient::agentName()} for help formatting this field.
      * @param \Google\Cloud\Dialogflow\Cx\V3\Environment $environment Required. The environment to create.
      *
@@ -58,7 +58,7 @@ class CreateEnvironmentRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The [Agent][google.cloud.dialogflow.cx.v3.Agent] to create an
      *           [Environment][google.cloud.dialogflow.cx.v3.Environment] for. Format:
-     *           `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Environment $environment
      *           Required. The environment to create.
      * }
@@ -71,7 +71,7 @@ class CreateEnvironmentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The [Agent][google.cloud.dialogflow.cx.v3.Agent] to create an
      * [Environment][google.cloud.dialogflow.cx.v3.Environment] for. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -84,7 +84,7 @@ class CreateEnvironmentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The [Agent][google.cloud.dialogflow.cx.v3.Agent] to create an
      * [Environment][google.cloud.dialogflow.cx.v3.Environment] for. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

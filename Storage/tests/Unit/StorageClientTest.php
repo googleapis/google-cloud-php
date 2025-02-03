@@ -69,6 +69,45 @@ class StorageClientTest extends TestCase
         $bucket->reload();
     }
 
+    public function testGetSoftDeletedBucket()
+    {
+        $this->connection->projectId()->willReturn(self::PROJECT);
+        $this->connection->getBucket(Argument::any())->shouldBeCalled()
+        ->willReturn([
+            'name' => 'bucket1',
+            'generation' => 123456789,
+            'softDeleteTime' => '2024-09-10T01:01:01.045123456Z',
+            'hardDeleteTime' => '2024-09-17T01:01:01.045123456Z'
+        ]);
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $bucket = $this->client->bucket('bucket1', true, ['softDeleted' => true, 'generation' => 123456789]);
+
+        $bucket->reload(['softDeleted' => true, 'generation' => 123456789]);
+
+        $this->assertEquals('bucket1', $bucket->name());
+        $this->assertEquals(123456789, $bucket->info()['generation']);
+        $this->assertArrayHasKey('softDeleteTime', $bucket->info());
+        $this->assertArrayHasKey('hardDeleteTime', $bucket->info());
+    }
+
+    public function testGetsSoftDeletedBuckets()
+    {
+        $this->connection->listBuckets(
+            Argument::withEntry('softDeleted', true)
+        )->willReturn([
+            'items' => [
+                ['name' => 'bucket1']
+            ]
+        ]);
+        $this->connection->projectId()
+            ->willReturn(self::PROJECT);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $buckets = iterator_to_array($this->client->buckets(['softDeleted' => true]));
+
+        $this->assertEquals('bucket1', $buckets[0]->name());
+    }
+
     public function testGetsBucketsWithoutToken()
     {
         $this->connection->listBuckets(Argument::any())->willReturn([
@@ -106,6 +145,23 @@ class StorageClientTest extends TestCase
         $bucket = iterator_to_array($this->client->buckets());
 
         $this->assertEquals('bucket2', $bucket[1]->name());
+    }
+
+    public function testRestore()
+    {
+        $this->connection->restoreBucket(Argument::any())
+            ->willReturn([
+                'bucket' => 'bucket1',
+                'info' => [
+                    'generation' => 12345678
+                ]
+            ]);
+
+        $this->connection->projectId()
+            ->willReturn(self::PROJECT);
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $this->assertInstanceOf(Bucket::class, $this->client->restore('bucket1', 123456789));
     }
 
     public function testCreatesBucket()

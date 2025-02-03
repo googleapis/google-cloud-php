@@ -37,6 +37,8 @@ class TermsOfServiceAgreementState extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name of the terms of service version.
      * Format: `accounts/{account}/termsOfServiceAgreementState/{identifier}`
+     * The identifier format is: `{TermsOfServiceKind}-{country}`
+     * For example, an identifier could be: `MERCHANT_CENTER-US`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -77,6 +79,8 @@ class TermsOfServiceAgreementState extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Identifier. The resource name of the terms of service version.
      *           Format: `accounts/{account}/termsOfServiceAgreementState/{identifier}`
+     *           The identifier format is: `{TermsOfServiceKind}-{country}`
+     *           For example, an identifier could be: `MERCHANT_CENTER-US`
      *     @type string $region_code
      *           Region code as defined by https://cldr.unicode.org/. This is the
      *           country the current state applies to.
@@ -97,6 +101,8 @@ class TermsOfServiceAgreementState extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name of the terms of service version.
      * Format: `accounts/{account}/termsOfServiceAgreementState/{identifier}`
+     * The identifier format is: `{TermsOfServiceKind}-{country}`
+     * For example, an identifier could be: `MERCHANT_CENTER-US`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -109,6 +115,8 @@ class TermsOfServiceAgreementState extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name of the terms of service version.
      * Format: `accounts/{account}/termsOfServiceAgreementState/{identifier}`
+     * The identifier format is: `{TermsOfServiceKind}-{country}`
+     * For example, an identifier could be: `MERCHANT_CENTER-US`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var

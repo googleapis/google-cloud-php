@@ -41,33 +41,46 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * The number of nodes allocated to this instance. At most one of either
-     * node_count or processing_units should be present in the message.
-     * Users can set the node_count field to specify the target number of nodes
+     * The number of nodes allocated to this instance. At most, one of either
+     * `node_count` or `processing_units` should be present in the message.
+     * Users can set the `node_count` field to specify the target number of nodes
      * allocated to the instance.
-     * This may be zero in API responses for instances that are not yet in state
-     * `READY`.
-     * See [the
-     * documentation](https://cloud.google.com/spanner/docs/compute-capacity)
-     * for more information about nodes and processing units.
+     * If autoscaling is enabled, `node_count` is treated as an `OUTPUT_ONLY`
+     * field and reflects the current number of nodes allocated to the instance.
+     * This might be zero in API responses for instances that are not yet in the
+     * `READY` state.
+     * For more information, see
+     * [Compute capacity, nodes, and processing
+     * units](https://cloud.google.com/spanner/docs/compute-capacity).
      *
      * Generated from protobuf field <code>int32 node_count = 5;</code>
      */
     private $node_count = 0;
     /**
-     * The number of processing units allocated to this instance. At most one of
-     * processing_units or node_count should be present in the message.
-     * Users can set the processing_units field to specify the target number of
+     * The number of processing units allocated to this instance. At most, one of
+     * either `processing_units` or `node_count` should be present in the message.
+     * Users can set the `processing_units` field to specify the target number of
      * processing units allocated to the instance.
-     * This may be zero in API responses for instances that are not yet in state
-     * `READY`.
-     * See [the
-     * documentation](https://cloud.google.com/spanner/docs/compute-capacity)
-     * for more information about nodes and processing units.
+     * If autoscaling is enabled, `processing_units` is treated as an
+     * `OUTPUT_ONLY` field and reflects the current number of processing units
+     * allocated to the instance.
+     * This might be zero in API responses for instances that are not yet in the
+     * `READY` state.
+     * For more information, see
+     * [Compute capacity, nodes and processing
+     * units](https://cloud.google.com/spanner/docs/compute-capacity).
      *
      * Generated from protobuf field <code>int32 processing_units = 9;</code>
      */
     private $processing_units = 0;
+    /**
+     * Output only. Lists the compute capacity per ReplicaSelection. A replica
+     * selection identifies a set of replicas with common properties. Replicas
+     * identified by a ReplicaSelection are scaled with the same compute capacity.
+     *
+     * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaComputeCapacity replica_compute_capacity = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $replica_compute_capacity;
     /**
      * Optional. The autoscaling configuration. Autoscaling is enabled if this
      * field is set. When autoscaling is enabled, node_count and processing_units
@@ -111,6 +124,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
+     * The `InstanceType` of the current instance.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.InstanceType instance_type = 10;</code>
+     */
+    private $instance_type = 0;
+    /**
      * Deprecated. This field is not populated.
      *
      * Generated from protobuf field <code>repeated string endpoint_uris = 8;</code>
@@ -129,11 +148,30 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
+     * Free instance metadata. Only populated for free instances.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.FreeInstanceMetadata free_instance_metadata = 13;</code>
+     */
+    private $free_instance_metadata = null;
+    /**
      * Optional. The `Edition` of the current instance.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.Edition edition = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $edition = 0;
+    /**
+     * Optional. Controls the default backup schedule behavior for new databases
+     * within the instance. By default, a backup schedule is created automatically
+     * when a new database is created in a new instance.
+     * Note that the `AUTOMATIC` value isn't permitted for free instances,
+     * as backups and backup schedules aren't supported for free instances.
+     * In the `GetInstance` or `ListInstances` response, if the value of
+     * `default_backup_schedule_type` isn't set, or set to `NONE`, Spanner doesn't
+     * create a default backup schedule for new databases in the instance.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.DefaultBackupScheduleType default_backup_schedule_type = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $default_backup_schedule_type = 0;
 
     /**
      * Constructor.
@@ -155,25 +193,34 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Required. The descriptive name for this instance as it appears in UIs.
      *           Must be unique per project and between 4 and 30 characters in length.
      *     @type int $node_count
-     *           The number of nodes allocated to this instance. At most one of either
-     *           node_count or processing_units should be present in the message.
-     *           Users can set the node_count field to specify the target number of nodes
+     *           The number of nodes allocated to this instance. At most, one of either
+     *           `node_count` or `processing_units` should be present in the message.
+     *           Users can set the `node_count` field to specify the target number of nodes
      *           allocated to the instance.
-     *           This may be zero in API responses for instances that are not yet in state
-     *           `READY`.
-     *           See [the
-     *           documentation](https://cloud.google.com/spanner/docs/compute-capacity)
-     *           for more information about nodes and processing units.
+     *           If autoscaling is enabled, `node_count` is treated as an `OUTPUT_ONLY`
+     *           field and reflects the current number of nodes allocated to the instance.
+     *           This might be zero in API responses for instances that are not yet in the
+     *           `READY` state.
+     *           For more information, see
+     *           [Compute capacity, nodes, and processing
+     *           units](https://cloud.google.com/spanner/docs/compute-capacity).
      *     @type int $processing_units
-     *           The number of processing units allocated to this instance. At most one of
-     *           processing_units or node_count should be present in the message.
-     *           Users can set the processing_units field to specify the target number of
+     *           The number of processing units allocated to this instance. At most, one of
+     *           either `processing_units` or `node_count` should be present in the message.
+     *           Users can set the `processing_units` field to specify the target number of
      *           processing units allocated to the instance.
-     *           This may be zero in API responses for instances that are not yet in state
-     *           `READY`.
-     *           See [the
-     *           documentation](https://cloud.google.com/spanner/docs/compute-capacity)
-     *           for more information about nodes and processing units.
+     *           If autoscaling is enabled, `processing_units` is treated as an
+     *           `OUTPUT_ONLY` field and reflects the current number of processing units
+     *           allocated to the instance.
+     *           This might be zero in API responses for instances that are not yet in the
+     *           `READY` state.
+     *           For more information, see
+     *           [Compute capacity, nodes and processing
+     *           units](https://cloud.google.com/spanner/docs/compute-capacity).
+     *     @type array<\Google\Cloud\Spanner\Admin\Instance\V1\ReplicaComputeCapacity>|\Google\Protobuf\Internal\RepeatedField $replica_compute_capacity
+     *           Output only. Lists the compute capacity per ReplicaSelection. A replica
+     *           selection identifies a set of replicas with common properties. Replicas
+     *           identified by a ReplicaSelection are scaled with the same compute capacity.
      *     @type \Google\Cloud\Spanner\Admin\Instance\V1\AutoscalingConfig $autoscaling_config
      *           Optional. The autoscaling configuration. Autoscaling is enabled if this
      *           field is set. When autoscaling is enabled, node_count and processing_units
@@ -204,14 +251,27 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           specific characters being disallowed.  For example, representing labels
      *           as the string:  name + "_" + value  would prove problematic if we were to
      *           allow "_" in a future release.
+     *     @type int $instance_type
+     *           The `InstanceType` of the current instance.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $endpoint_uris
      *           Deprecated. This field is not populated.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time at which the instance was created.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The time at which the instance was most recently updated.
+     *     @type \Google\Cloud\Spanner\Admin\Instance\V1\FreeInstanceMetadata $free_instance_metadata
+     *           Free instance metadata. Only populated for free instances.
      *     @type int $edition
      *           Optional. The `Edition` of the current instance.
+     *     @type int $default_backup_schedule_type
+     *           Optional. Controls the default backup schedule behavior for new databases
+     *           within the instance. By default, a backup schedule is created automatically
+     *           when a new database is created in a new instance.
+     *           Note that the `AUTOMATIC` value isn't permitted for free instances,
+     *           as backups and backup schedules aren't supported for free instances.
+     *           In the `GetInstance` or `ListInstances` response, if the value of
+     *           `default_backup_schedule_type` isn't set, or set to `NONE`, Spanner doesn't
+     *           create a default backup schedule for new databases in the instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -312,15 +372,17 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of nodes allocated to this instance. At most one of either
-     * node_count or processing_units should be present in the message.
-     * Users can set the node_count field to specify the target number of nodes
+     * The number of nodes allocated to this instance. At most, one of either
+     * `node_count` or `processing_units` should be present in the message.
+     * Users can set the `node_count` field to specify the target number of nodes
      * allocated to the instance.
-     * This may be zero in API responses for instances that are not yet in state
-     * `READY`.
-     * See [the
-     * documentation](https://cloud.google.com/spanner/docs/compute-capacity)
-     * for more information about nodes and processing units.
+     * If autoscaling is enabled, `node_count` is treated as an `OUTPUT_ONLY`
+     * field and reflects the current number of nodes allocated to the instance.
+     * This might be zero in API responses for instances that are not yet in the
+     * `READY` state.
+     * For more information, see
+     * [Compute capacity, nodes, and processing
+     * units](https://cloud.google.com/spanner/docs/compute-capacity).
      *
      * Generated from protobuf field <code>int32 node_count = 5;</code>
      * @return int
@@ -331,15 +393,17 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of nodes allocated to this instance. At most one of either
-     * node_count or processing_units should be present in the message.
-     * Users can set the node_count field to specify the target number of nodes
+     * The number of nodes allocated to this instance. At most, one of either
+     * `node_count` or `processing_units` should be present in the message.
+     * Users can set the `node_count` field to specify the target number of nodes
      * allocated to the instance.
-     * This may be zero in API responses for instances that are not yet in state
-     * `READY`.
-     * See [the
-     * documentation](https://cloud.google.com/spanner/docs/compute-capacity)
-     * for more information about nodes and processing units.
+     * If autoscaling is enabled, `node_count` is treated as an `OUTPUT_ONLY`
+     * field and reflects the current number of nodes allocated to the instance.
+     * This might be zero in API responses for instances that are not yet in the
+     * `READY` state.
+     * For more information, see
+     * [Compute capacity, nodes, and processing
+     * units](https://cloud.google.com/spanner/docs/compute-capacity).
      *
      * Generated from protobuf field <code>int32 node_count = 5;</code>
      * @param int $var
@@ -354,15 +418,18 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of processing units allocated to this instance. At most one of
-     * processing_units or node_count should be present in the message.
-     * Users can set the processing_units field to specify the target number of
+     * The number of processing units allocated to this instance. At most, one of
+     * either `processing_units` or `node_count` should be present in the message.
+     * Users can set the `processing_units` field to specify the target number of
      * processing units allocated to the instance.
-     * This may be zero in API responses for instances that are not yet in state
-     * `READY`.
-     * See [the
-     * documentation](https://cloud.google.com/spanner/docs/compute-capacity)
-     * for more information about nodes and processing units.
+     * If autoscaling is enabled, `processing_units` is treated as an
+     * `OUTPUT_ONLY` field and reflects the current number of processing units
+     * allocated to the instance.
+     * This might be zero in API responses for instances that are not yet in the
+     * `READY` state.
+     * For more information, see
+     * [Compute capacity, nodes and processing
+     * units](https://cloud.google.com/spanner/docs/compute-capacity).
      *
      * Generated from protobuf field <code>int32 processing_units = 9;</code>
      * @return int
@@ -373,15 +440,18 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of processing units allocated to this instance. At most one of
-     * processing_units or node_count should be present in the message.
-     * Users can set the processing_units field to specify the target number of
+     * The number of processing units allocated to this instance. At most, one of
+     * either `processing_units` or `node_count` should be present in the message.
+     * Users can set the `processing_units` field to specify the target number of
      * processing units allocated to the instance.
-     * This may be zero in API responses for instances that are not yet in state
-     * `READY`.
-     * See [the
-     * documentation](https://cloud.google.com/spanner/docs/compute-capacity)
-     * for more information about nodes and processing units.
+     * If autoscaling is enabled, `processing_units` is treated as an
+     * `OUTPUT_ONLY` field and reflects the current number of processing units
+     * allocated to the instance.
+     * This might be zero in API responses for instances that are not yet in the
+     * `READY` state.
+     * For more information, see
+     * [Compute capacity, nodes and processing
+     * units](https://cloud.google.com/spanner/docs/compute-capacity).
      *
      * Generated from protobuf field <code>int32 processing_units = 9;</code>
      * @param int $var
@@ -391,6 +461,36 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->processing_units = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Lists the compute capacity per ReplicaSelection. A replica
+     * selection identifies a set of replicas with common properties. Replicas
+     * identified by a ReplicaSelection are scaled with the same compute capacity.
+     *
+     * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaComputeCapacity replica_compute_capacity = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getReplicaComputeCapacity()
+    {
+        return $this->replica_compute_capacity;
+    }
+
+    /**
+     * Output only. Lists the compute capacity per ReplicaSelection. A replica
+     * selection identifies a set of replicas with common properties. Replicas
+     * identified by a ReplicaSelection are scaled with the same compute capacity.
+     *
+     * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaComputeCapacity replica_compute_capacity = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\Spanner\Admin\Instance\V1\ReplicaComputeCapacity>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setReplicaComputeCapacity($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Spanner\Admin\Instance\V1\ReplicaComputeCapacity::class);
+        $this->replica_compute_capacity = $arr;
 
         return $this;
     }
@@ -532,6 +632,32 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The `InstanceType` of the current instance.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.InstanceType instance_type = 10;</code>
+     * @return int
+     */
+    public function getInstanceType()
+    {
+        return $this->instance_type;
+    }
+
+    /**
+     * The `InstanceType` of the current instance.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.InstanceType instance_type = 10;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setInstanceType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Instance\V1\Instance\InstanceType::class);
+        $this->instance_type = $var;
+
+        return $this;
+    }
+
+    /**
      * Deprecated. This field is not populated.
      *
      * Generated from protobuf field <code>repeated string endpoint_uris = 8;</code>
@@ -630,6 +756,42 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Free instance metadata. Only populated for free instances.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.FreeInstanceMetadata free_instance_metadata = 13;</code>
+     * @return \Google\Cloud\Spanner\Admin\Instance\V1\FreeInstanceMetadata|null
+     */
+    public function getFreeInstanceMetadata()
+    {
+        return $this->free_instance_metadata;
+    }
+
+    public function hasFreeInstanceMetadata()
+    {
+        return isset($this->free_instance_metadata);
+    }
+
+    public function clearFreeInstanceMetadata()
+    {
+        unset($this->free_instance_metadata);
+    }
+
+    /**
+     * Free instance metadata. Only populated for free instances.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.FreeInstanceMetadata free_instance_metadata = 13;</code>
+     * @param \Google\Cloud\Spanner\Admin\Instance\V1\FreeInstanceMetadata $var
+     * @return $this
+     */
+    public function setFreeInstanceMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\Admin\Instance\V1\FreeInstanceMetadata::class);
+        $this->free_instance_metadata = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. The `Edition` of the current instance.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.Edition edition = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -651,6 +813,46 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Instance\V1\Instance\Edition::class);
         $this->edition = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Controls the default backup schedule behavior for new databases
+     * within the instance. By default, a backup schedule is created automatically
+     * when a new database is created in a new instance.
+     * Note that the `AUTOMATIC` value isn't permitted for free instances,
+     * as backups and backup schedules aren't supported for free instances.
+     * In the `GetInstance` or `ListInstances` response, if the value of
+     * `default_backup_schedule_type` isn't set, or set to `NONE`, Spanner doesn't
+     * create a default backup schedule for new databases in the instance.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.DefaultBackupScheduleType default_backup_schedule_type = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDefaultBackupScheduleType()
+    {
+        return $this->default_backup_schedule_type;
+    }
+
+    /**
+     * Optional. Controls the default backup schedule behavior for new databases
+     * within the instance. By default, a backup schedule is created automatically
+     * when a new database is created in a new instance.
+     * Note that the `AUTOMATIC` value isn't permitted for free instances,
+     * as backups and backup schedules aren't supported for free instances.
+     * In the `GetInstance` or `ListInstances` response, if the value of
+     * `default_backup_schedule_type` isn't set, or set to `NONE`, Spanner doesn't
+     * create a default backup schedule for new databases in the instance.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.DefaultBackupScheduleType default_backup_schedule_type = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDefaultBackupScheduleType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Instance\V1\Instance\DefaultBackupScheduleType::class);
+        $this->default_backup_schedule_type = $var;
 
         return $this;
     }

@@ -438,7 +438,7 @@ class ManageSubscriptionsTest extends PubSubTestCase
             'identifier' => 'baz'
         ])->build());
 
-        sleep(6);
+        sleep(10);
         $messages = $sub->pull();
         $this->assertCount(2, $messages);
         $this->assertTrue(in_array($messages[0]->attribute('identifier'), ['foo', 'bar']));

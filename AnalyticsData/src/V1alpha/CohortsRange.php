@@ -22,7 +22,7 @@ class CohortsRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.CohortsRange.Granularity granularity = 1;</code>
      */
-    private $granularity = 0;
+    protected $granularity = 0;
     /**
      * `startOffset` specifies the start date of the extended reporting date range
      * for a cohort report. `startOffset` is commonly set to 0 so that reports
@@ -36,7 +36,7 @@ class CohortsRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 start_offset = 2;</code>
      */
-    private $start_offset = 0;
+    protected $start_offset = 0;
     /**
      * Required. `endOffset` specifies the end date of the extended reporting date
      * range for a cohort report. `endOffset` can be any positive integer but is
@@ -51,7 +51,7 @@ class CohortsRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 end_offset = 3;</code>
      */
-    private $end_offset = 0;
+    protected $end_offset = 0;
 
     /**
      * Constructor.

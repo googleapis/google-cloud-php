@@ -65,6 +65,11 @@
                                 "deleteUser"
                             ]
                         },
+                        "ExecuteSql": {
+                            "methods": [
+                                "executeSql"
+                            ]
+                        },
                         "FailoverInstance": {
                             "methods": [
                                 "failoverInstance"
@@ -115,6 +120,11 @@
                                 "listClusters"
                             ]
                         },
+                        "ListDatabases": {
+                            "methods": [
+                                "listDatabases"
+                            ]
+                        },
                         "ListInstances": {
                             "methods": [
                                 "listInstances"
@@ -143,6 +153,11 @@
                         "RestoreCluster": {
                             "methods": [
                                 "restoreCluster"
+                            ]
+                        },
+                        "SwitchoverCluster": {
+                            "methods": [
+                                "switchoverCluster"
                             ]
                         },
                         "UpdateBackup": {

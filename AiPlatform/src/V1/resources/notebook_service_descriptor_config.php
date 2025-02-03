@@ -156,6 +156,25 @@ return [
                     ],
                 ],
             ],
+            'StopNotebookRuntime' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AIPlatform\V1\StopNotebookRuntimeResponse',
+                    'metadataReturnType' => '\Google\Cloud\AIPlatform\V1\StopNotebookRuntimeOperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpgradeNotebookRuntime' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\AIPlatform\V1\UpgradeNotebookRuntimeResponse',

@@ -21,13 +21,13 @@ class Metrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Inclusive start time aligned to a day (UTC).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Metrics are continuous and in order by dates, and in the granularity
      * of day. All Key types should have score-based data.
@@ -37,7 +37,7 @@ class Metrics extends \Google\Protobuf\Internal\Message
     private $score_metrics;
     /**
      * Metrics are continuous and in order by dates, and in the granularity
-     * of day. Only challenge-based keys (CHECKBOX, INVISIBLE), will have
+     * of day. Only challenge-based keys (CHECKBOX, INVISIBLE) have
      * challenge-based data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.ChallengeMetrics challenge_metrics = 3;</code>
@@ -60,7 +60,7 @@ class Metrics extends \Google\Protobuf\Internal\Message
      *           of day. All Key types should have score-based data.
      *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\ChallengeMetrics>|\Google\Protobuf\Internal\RepeatedField $challenge_metrics
      *           Metrics are continuous and in order by dates, and in the granularity
-     *           of day. Only challenge-based keys (CHECKBOX, INVISIBLE), will have
+     *           of day. Only challenge-based keys (CHECKBOX, INVISIBLE) have
      *           challenge-based data.
      * }
      */
@@ -163,7 +163,7 @@ class Metrics extends \Google\Protobuf\Internal\Message
 
     /**
      * Metrics are continuous and in order by dates, and in the granularity
-     * of day. Only challenge-based keys (CHECKBOX, INVISIBLE), will have
+     * of day. Only challenge-based keys (CHECKBOX, INVISIBLE) have
      * challenge-based data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.ChallengeMetrics challenge_metrics = 3;</code>
@@ -176,7 +176,7 @@ class Metrics extends \Google\Protobuf\Internal\Message
 
     /**
      * Metrics are continuous and in order by dates, and in the granularity
-     * of day. Only challenge-based keys (CHECKBOX, INVISIBLE), will have
+     * of day. Only challenge-based keys (CHECKBOX, INVISIBLE) have
      * challenge-based data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.ChallengeMetrics challenge_metrics = 3;</code>

@@ -17,7 +17,8 @@ class Repository extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the repository, for example:
-     * `projects/p1/locations/us-central1/repositories/repo1`.
+     * `projects/p1/locations/us-central1/repositories/repo1`. For each location
+     * in a project, repository names must be unique.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -101,6 +102,26 @@ class Repository extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool cleanup_policy_dry_run = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $cleanup_policy_dry_run = false;
+    /**
+     * Optional. Config and state for vulnerability scanning of resources within
+     * this Repository.
+     *
+     * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Repository.VulnerabilityScanningConfig vulnerability_scanning_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $vulnerability_scanning_config = null;
+    /**
+     * Optional. If this is true, an unspecified repo type will be treated as
+     * error rather than defaulting to standard.
+     *
+     * Generated from protobuf field <code>bool disallow_unspecified_mode = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $disallow_unspecified_mode = false;
+    /**
+     * Output only. If set, the repository satisfies physical zone isolation.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = false;
     protected $format_config;
     protected $mode_config;
 
@@ -122,7 +143,8 @@ class Repository extends \Google\Protobuf\Internal\Message
      *           Configuration specific for a Remote Repository.
      *     @type string $name
      *           The name of the repository, for example:
-     *           `projects/p1/locations/us-central1/repositories/repo1`.
+     *           `projects/p1/locations/us-central1/repositories/repo1`. For each location
+     *           in a project, repository names must be unique.
      *     @type int $format
      *           Optional. The format of packages that are stored in the repository.
      *     @type string $description
@@ -158,6 +180,14 @@ class Repository extends \Google\Protobuf\Internal\Message
      *     @type bool $cleanup_policy_dry_run
      *           Optional. If true, the cleanup pipeline is prevented from deleting versions
      *           in this repository.
+     *     @type \Google\Cloud\ArtifactRegistry\V1\Repository\VulnerabilityScanningConfig $vulnerability_scanning_config
+     *           Optional. Config and state for vulnerability scanning of resources within
+     *           this Repository.
+     *     @type bool $disallow_unspecified_mode
+     *           Optional. If this is true, an unspecified repo type will be treated as
+     *           error rather than defaulting to standard.
+     *     @type bool $satisfies_pzi
+     *           Output only. If set, the repository satisfies physical zone isolation.
      * }
      */
     public function __construct($data = NULL) {
@@ -295,7 +325,8 @@ class Repository extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the repository, for example:
-     * `projects/p1/locations/us-central1/repositories/repo1`.
+     * `projects/p1/locations/us-central1/repositories/repo1`. For each location
+     * in a project, repository names must be unique.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -307,7 +338,8 @@ class Repository extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the repository, for example:
-     * `projects/p1/locations/us-central1/repositories/repo1`.
+     * `projects/p1/locations/us-central1/repositories/repo1`. For each location
+     * in a project, repository names must be unique.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -649,6 +681,98 @@ class Repository extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->cleanup_policy_dry_run = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Config and state for vulnerability scanning of resources within
+     * this Repository.
+     *
+     * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Repository.VulnerabilityScanningConfig vulnerability_scanning_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ArtifactRegistry\V1\Repository\VulnerabilityScanningConfig|null
+     */
+    public function getVulnerabilityScanningConfig()
+    {
+        return $this->vulnerability_scanning_config;
+    }
+
+    public function hasVulnerabilityScanningConfig()
+    {
+        return isset($this->vulnerability_scanning_config);
+    }
+
+    public function clearVulnerabilityScanningConfig()
+    {
+        unset($this->vulnerability_scanning_config);
+    }
+
+    /**
+     * Optional. Config and state for vulnerability scanning of resources within
+     * this Repository.
+     *
+     * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Repository.VulnerabilityScanningConfig vulnerability_scanning_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ArtifactRegistry\V1\Repository\VulnerabilityScanningConfig $var
+     * @return $this
+     */
+    public function setVulnerabilityScanningConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ArtifactRegistry\V1\Repository\VulnerabilityScanningConfig::class);
+        $this->vulnerability_scanning_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If this is true, an unspecified repo type will be treated as
+     * error rather than defaulting to standard.
+     *
+     * Generated from protobuf field <code>bool disallow_unspecified_mode = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDisallowUnspecifiedMode()
+    {
+        return $this->disallow_unspecified_mode;
+    }
+
+    /**
+     * Optional. If this is true, an unspecified repo type will be treated as
+     * error rather than defaulting to standard.
+     *
+     * Generated from protobuf field <code>bool disallow_unspecified_mode = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisallowUnspecifiedMode($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disallow_unspecified_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. If set, the repository satisfies physical zone isolation.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. If set, the repository satisfies physical zone isolation.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

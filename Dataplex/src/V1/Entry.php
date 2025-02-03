@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An entry is a representation of a data asset which can be described by
+ * An entry is a representation of a data resource that can be described by
  * various metadata.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.Entry</code>
@@ -17,38 +17,40 @@ use Google\Protobuf\Internal\GPBUtil;
 class Entry extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. The relative resource name of the Entry, of the form:
-     * projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}.
+     * Identifier. The relative resource name of the entry, in the format
+     * `projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}/entries/{entry_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * Required. Immutable. The resource name of the EntryType used to create this
-     * Entry.
+     * Required. Immutable. The relative resource name of the entry type that was
+     * used to create this entry, in the format
+     * `projects/{project_id_or_number}/locations/{location_id}/entryTypes/{entry_type_id}`.
      *
      * Generated from protobuf field <code>string entry_type = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $entry_type = '';
     /**
-     * Output only. The time when the Entry was created.
+     * Output only. The time when the entry was created in Dataplex.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $create_time = null;
     /**
-     * Output only. The time when the Entry was last updated.
+     * Output only. The time when the entry was last updated in Dataplex.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $update_time = null;
     /**
-     * Optional. The Aspects attached to the Entry.
-     * The format for the key can be one of the following:
-     * 1. {projectId}.{locationId}.{aspectTypeId} (if the aspect is attached
-     * directly to the entry)
-     * 2. {projectId}.{locationId}.{aspectTypeId}&#64;{path} (if the aspect is
-     * attached to an entry's path)
+     * Optional. The aspects that are attached to the entry. Depending on how the
+     * aspect is attached to the entry, the format of the aspect key can be one of
+     * the following:
+     * * If the aspect is attached directly to the entry:
+     * `{project_id_or_number}.{location_id}.{aspect_type_id}`
+     * * If the aspect is attached to an entry's path:
+     * `{project_id_or_number}.{location_id}.{aspect_type_id}&#64;{path}`
      *
      * Generated from protobuf field <code>map<string, .google.cloud.dataplex.v1.Aspect> aspects = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -60,14 +62,17 @@ class Entry extends \Google\Protobuf\Internal\Message
      */
     protected $parent_entry = '';
     /**
-     * Optional. A name for the entry that can reference it in an external system.
+     * Optional. A name for the entry that can be referenced by an external
+     * system. For more information, see [Fully qualified
+     * names](https://cloud.google.com/data-catalog/docs/fully-qualified-names).
      * The maximum size of the field is 4000 characters.
      *
      * Generated from protobuf field <code>string fully_qualified_name = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $fully_qualified_name = '';
     /**
-     * Optional. Source system related information for an entry.
+     * Optional. Information related to the source system of the data resource
+     * that is represented by the entry.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.EntrySource entry_source = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -80,29 +85,34 @@ class Entry extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Identifier. The relative resource name of the Entry, of the form:
-     *           projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}.
+     *           Identifier. The relative resource name of the entry, in the format
+     *           `projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}/entries/{entry_id}`.
      *     @type string $entry_type
-     *           Required. Immutable. The resource name of the EntryType used to create this
-     *           Entry.
+     *           Required. Immutable. The relative resource name of the entry type that was
+     *           used to create this entry, in the format
+     *           `projects/{project_id_or_number}/locations/{location_id}/entryTypes/{entry_type_id}`.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. The time when the Entry was created.
+     *           Output only. The time when the entry was created in Dataplex.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           Output only. The time when the Entry was last updated.
+     *           Output only. The time when the entry was last updated in Dataplex.
      *     @type array|\Google\Protobuf\Internal\MapField $aspects
-     *           Optional. The Aspects attached to the Entry.
-     *           The format for the key can be one of the following:
-     *           1. {projectId}.{locationId}.{aspectTypeId} (if the aspect is attached
-     *           directly to the entry)
-     *           2. {projectId}.{locationId}.{aspectTypeId}&#64;{path} (if the aspect is
-     *           attached to an entry's path)
+     *           Optional. The aspects that are attached to the entry. Depending on how the
+     *           aspect is attached to the entry, the format of the aspect key can be one of
+     *           the following:
+     *           * If the aspect is attached directly to the entry:
+     *           `{project_id_or_number}.{location_id}.{aspect_type_id}`
+     *           * If the aspect is attached to an entry's path:
+     *           `{project_id_or_number}.{location_id}.{aspect_type_id}&#64;{path}`
      *     @type string $parent_entry
      *           Optional. Immutable. The resource name of the parent entry.
      *     @type string $fully_qualified_name
-     *           Optional. A name for the entry that can reference it in an external system.
+     *           Optional. A name for the entry that can be referenced by an external
+     *           system. For more information, see [Fully qualified
+     *           names](https://cloud.google.com/data-catalog/docs/fully-qualified-names).
      *           The maximum size of the field is 4000 characters.
      *     @type \Google\Cloud\Dataplex\V1\EntrySource $entry_source
-     *           Optional. Source system related information for an entry.
+     *           Optional. Information related to the source system of the data resource
+     *           that is represented by the entry.
      * }
      */
     public function __construct($data = NULL) {
@@ -111,8 +121,8 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The relative resource name of the Entry, of the form:
-     * projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}.
+     * Identifier. The relative resource name of the entry, in the format
+     * `projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}/entries/{entry_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -123,8 +133,8 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The relative resource name of the Entry, of the form:
-     * projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}.
+     * Identifier. The relative resource name of the entry, in the format
+     * `projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}/entries/{entry_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -139,8 +149,9 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The resource name of the EntryType used to create this
-     * Entry.
+     * Required. Immutable. The relative resource name of the entry type that was
+     * used to create this entry, in the format
+     * `projects/{project_id_or_number}/locations/{location_id}/entryTypes/{entry_type_id}`.
      *
      * Generated from protobuf field <code>string entry_type = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -151,8 +162,9 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The resource name of the EntryType used to create this
-     * Entry.
+     * Required. Immutable. The relative resource name of the entry type that was
+     * used to create this entry, in the format
+     * `projects/{project_id_or_number}/locations/{location_id}/entryTypes/{entry_type_id}`.
      *
      * Generated from protobuf field <code>string entry_type = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -167,7 +179,7 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time when the Entry was created.
+     * Output only. The time when the entry was created in Dataplex.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -188,7 +200,7 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time when the Entry was created.
+     * Output only. The time when the entry was created in Dataplex.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -203,7 +215,7 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time when the Entry was last updated.
+     * Output only. The time when the entry was last updated in Dataplex.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -224,7 +236,7 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time when the Entry was last updated.
+     * Output only. The time when the entry was last updated in Dataplex.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -239,12 +251,13 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Aspects attached to the Entry.
-     * The format for the key can be one of the following:
-     * 1. {projectId}.{locationId}.{aspectTypeId} (if the aspect is attached
-     * directly to the entry)
-     * 2. {projectId}.{locationId}.{aspectTypeId}&#64;{path} (if the aspect is
-     * attached to an entry's path)
+     * Optional. The aspects that are attached to the entry. Depending on how the
+     * aspect is attached to the entry, the format of the aspect key can be one of
+     * the following:
+     * * If the aspect is attached directly to the entry:
+     * `{project_id_or_number}.{location_id}.{aspect_type_id}`
+     * * If the aspect is attached to an entry's path:
+     * `{project_id_or_number}.{location_id}.{aspect_type_id}&#64;{path}`
      *
      * Generated from protobuf field <code>map<string, .google.cloud.dataplex.v1.Aspect> aspects = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -255,12 +268,13 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Aspects attached to the Entry.
-     * The format for the key can be one of the following:
-     * 1. {projectId}.{locationId}.{aspectTypeId} (if the aspect is attached
-     * directly to the entry)
-     * 2. {projectId}.{locationId}.{aspectTypeId}&#64;{path} (if the aspect is
-     * attached to an entry's path)
+     * Optional. The aspects that are attached to the entry. Depending on how the
+     * aspect is attached to the entry, the format of the aspect key can be one of
+     * the following:
+     * * If the aspect is attached directly to the entry:
+     * `{project_id_or_number}.{location_id}.{aspect_type_id}`
+     * * If the aspect is attached to an entry's path:
+     * `{project_id_or_number}.{location_id}.{aspect_type_id}&#64;{path}`
      *
      * Generated from protobuf field <code>map<string, .google.cloud.dataplex.v1.Aspect> aspects = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -301,7 +315,9 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A name for the entry that can reference it in an external system.
+     * Optional. A name for the entry that can be referenced by an external
+     * system. For more information, see [Fully qualified
+     * names](https://cloud.google.com/data-catalog/docs/fully-qualified-names).
      * The maximum size of the field is 4000 characters.
      *
      * Generated from protobuf field <code>string fully_qualified_name = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -313,7 +329,9 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A name for the entry that can reference it in an external system.
+     * Optional. A name for the entry that can be referenced by an external
+     * system. For more information, see [Fully qualified
+     * names](https://cloud.google.com/data-catalog/docs/fully-qualified-names).
      * The maximum size of the field is 4000 characters.
      *
      * Generated from protobuf field <code>string fully_qualified_name = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -329,7 +347,8 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Source system related information for an entry.
+     * Optional. Information related to the source system of the data resource
+     * that is represented by the entry.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.EntrySource entry_source = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataplex\V1\EntrySource|null
@@ -350,7 +369,8 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Source system related information for an entry.
+     * Optional. Information related to the source system of the data resource
+     * that is represented by the entry.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.EntrySource entry_source = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataplex\V1\EntrySource $var

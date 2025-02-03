@@ -20,13 +20,13 @@ class Parameter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 1;</code>
      */
-    private $key = '';
+    protected $key = '';
     /**
      * Value for this parameter.
      *
      * Generated from protobuf field <code>.google.protobuf.Value value = 2;</code>
      */
-    private $value = null;
+    protected $value = null;
 
     /**
      * Constructor.
@@ -109,6 +109,4 @@ class Parameter extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Parameter::class, \Google\Cloud\Dataflow\V1beta3\StructuredMessage_Parameter::class);
 

@@ -67,9 +67,9 @@ class InterleaveFilter implements FilterInterface
      */
     public function toProto()
     {
-        $interleave = (new Interleave)
+        $interleave = (new Interleave())
             ->setFilters($this->filters);
-        return (new RowFilter)
+        return (new RowFilter())
             ->setInterleave($interleave);
     }
 }

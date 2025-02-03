@@ -81,8 +81,8 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     /**
      * The unique identifier of the [page][google.cloud.dialogflow.cx.v3.Page] to
      * override the [current page][QueryResult.current_page] in the session.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/pages/<Page ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.
      * If `current_page` is specified, the previous state of the session will be
      * ignored by Dialogflow, including the [previous
      * page][QueryResult.current_page] and the [previous session
@@ -123,8 +123,8 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     private $webhook_headers;
     /**
      * A list of flow versions to override for the request.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/versions/<Version ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      * If version 1 of flow X is included in this list, the traffic of
      * flow X will go through version 1 regardless of the version configuration in
      * the environment. Each flow can have at most one version specified in this
@@ -245,8 +245,8 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      *     @type string $current_page
      *           The unique identifier of the [page][google.cloud.dialogflow.cx.v3.Page] to
      *           override the [current page][QueryResult.current_page] in the session.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/flows/<Flow ID>/pages/<Page ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.
      *           If `current_page` is specified, the previous state of the session will be
      *           ignored by Dialogflow, including the [previous
      *           page][QueryResult.current_page] and the [previous session
@@ -271,8 +271,8 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      *           "If-Modified-Since", "If-None-Match", "X-Forwarded-For", etc.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $flow_versions
      *           A list of flow versions to override for the request.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/flows/<Flow ID>/versions/<Version ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *           If version 1 of flow X is included in this list, the traffic of
      *           flow X will go through version 1 regardless of the version configuration in
      *           the environment. Each flow can have at most one version specified in this
@@ -552,8 +552,8 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     /**
      * The unique identifier of the [page][google.cloud.dialogflow.cx.v3.Page] to
      * override the [current page][QueryResult.current_page] in the session.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/pages/<Page ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.
      * If `current_page` is specified, the previous state of the session will be
      * ignored by Dialogflow, including the [previous
      * page][QueryResult.current_page] and the [previous session
@@ -574,8 +574,8 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     /**
      * The unique identifier of the [page][google.cloud.dialogflow.cx.v3.Page] to
      * override the [current page][QueryResult.current_page] in the session.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/pages/<Page ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.
      * If `current_page` is specified, the previous state of the session will be
      * ignored by Dialogflow, including the [previous
      * page][QueryResult.current_page] and the [previous session
@@ -693,8 +693,8 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of flow versions to override for the request.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/versions/<Version ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      * If version 1 of flow X is included in this list, the traffic of
      * flow X will go through version 1 regardless of the version configuration in
      * the environment. Each flow can have at most one version specified in this
@@ -710,8 +710,8 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of flow versions to override for the request.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/versions/<Version ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      * If version 1 of flow X is included in this list, the traffic of
      * flow X will go through version 1 regardless of the version configuration in
      * the environment. Each flow can have at most one version specified in this

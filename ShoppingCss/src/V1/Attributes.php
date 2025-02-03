@@ -35,19 +35,19 @@ class Attributes extends \Google\Protobuf\Internal\Message
      */
     protected $cpp_ads_redirect = null;
     /**
-     * Low Price of the aggregate offer.
+     * Low Price of the CSS Product.
      *
      * Generated from protobuf field <code>.google.shopping.type.Price low_price = 3;</code>
      */
     protected $low_price = null;
     /**
-     * High Price of the aggregate offer.
+     * High Price of the CSS Product.
      *
      * Generated from protobuf field <code>.google.shopping.type.Price high_price = 4;</code>
      */
     protected $high_price = null;
     /**
-     * The number of aggregate offers.
+     * The number of CSS Products.
      *
      * Generated from protobuf field <code>optional int64 number_of_offers = 5;</code>
      */
@@ -59,7 +59,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      */
     protected $headline_offer_condition = null;
     /**
-     * Headline Price of the aggregate offer.
+     * Headline Price of the CSS Product.
      *
      * Generated from protobuf field <code>.google.shopping.type.Price headline_offer_price = 7;</code>
      */
@@ -77,7 +77,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      */
     protected $headline_offer_mobile_link = null;
     /**
-     * Headline Price of the aggregate offer.
+     * Headline Price of the CSS Product.
      *
      * Generated from protobuf field <code>.google.shopping.type.Price headline_offer_shipping_price = 41;</code>
      */
@@ -335,6 +335,19 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string custom_label_4 = 50;</code>
      */
     protected $custom_label_4 = null;
+    /**
+     * Number and amount of installments to pay for an item.
+     *
+     * Generated from protobuf field <code>.google.shopping.css.v1.HeadlineOfferInstallment headline_offer_installment = 51;</code>
+     */
+    protected $headline_offer_installment = null;
+    /**
+     * Number of periods (months or years) and amount of payment per period
+     * for an item with an associated subscription contract.
+     *
+     * Generated from protobuf field <code>.google.shopping.css.v1.HeadlineOfferSubscriptionCost headline_offer_subscription_cost = 52;</code>
+     */
+    protected $headline_offer_subscription_cost = null;
 
     /**
      * Constructor.
@@ -350,21 +363,21 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *           Allows advertisers to override the item URL when the product is shown
      *           within the context of Product Ads.
      *     @type \Google\Shopping\Type\Price $low_price
-     *           Low Price of the aggregate offer.
+     *           Low Price of the CSS Product.
      *     @type \Google\Shopping\Type\Price $high_price
-     *           High Price of the aggregate offer.
+     *           High Price of the CSS Product.
      *     @type int|string $number_of_offers
-     *           The number of aggregate offers.
+     *           The number of CSS Products.
      *     @type string $headline_offer_condition
      *           Condition of the headline offer.
      *     @type \Google\Shopping\Type\Price $headline_offer_price
-     *           Headline Price of the aggregate offer.
+     *           Headline Price of the CSS Product.
      *     @type string $headline_offer_link
      *           Link to the headline offer.
      *     @type string $headline_offer_mobile_link
      *           Mobile Link to the headline offer.
      *     @type \Google\Shopping\Type\Price $headline_offer_shipping_price
-     *           Headline Price of the aggregate offer.
+     *           Headline Price of the CSS Product.
      *     @type string $title
      *           Title of the item.
      *     @type string $image_link
@@ -470,6 +483,11 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *           Custom label 3 for custom grouping of items in a Shopping campaign.
      *     @type string $custom_label_4
      *           Custom label 4 for custom grouping of items in a Shopping campaign.
+     *     @type \Google\Shopping\Css\V1\HeadlineOfferInstallment $headline_offer_installment
+     *           Number and amount of installments to pay for an item.
+     *     @type \Google\Shopping\Css\V1\HeadlineOfferSubscriptionCost $headline_offer_subscription_cost
+     *           Number of periods (months or years) and amount of payment per period
+     *           for an item with an associated subscription contract.
      * }
      */
     public function __construct($data = NULL) {
@@ -588,7 +606,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Low Price of the aggregate offer.
+     * Low Price of the CSS Product.
      *
      * Generated from protobuf field <code>.google.shopping.type.Price low_price = 3;</code>
      * @return \Google\Shopping\Type\Price|null
@@ -609,7 +627,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Low Price of the aggregate offer.
+     * Low Price of the CSS Product.
      *
      * Generated from protobuf field <code>.google.shopping.type.Price low_price = 3;</code>
      * @param \Google\Shopping\Type\Price $var
@@ -624,7 +642,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * High Price of the aggregate offer.
+     * High Price of the CSS Product.
      *
      * Generated from protobuf field <code>.google.shopping.type.Price high_price = 4;</code>
      * @return \Google\Shopping\Type\Price|null
@@ -645,7 +663,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * High Price of the aggregate offer.
+     * High Price of the CSS Product.
      *
      * Generated from protobuf field <code>.google.shopping.type.Price high_price = 4;</code>
      * @param \Google\Shopping\Type\Price $var
@@ -660,7 +678,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of aggregate offers.
+     * The number of CSS Products.
      *
      * Generated from protobuf field <code>optional int64 number_of_offers = 5;</code>
      * @return int|string
@@ -681,7 +699,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of aggregate offers.
+     * The number of CSS Products.
      *
      * Generated from protobuf field <code>optional int64 number_of_offers = 5;</code>
      * @param int|string $var
@@ -732,7 +750,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Headline Price of the aggregate offer.
+     * Headline Price of the CSS Product.
      *
      * Generated from protobuf field <code>.google.shopping.type.Price headline_offer_price = 7;</code>
      * @return \Google\Shopping\Type\Price|null
@@ -753,7 +771,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Headline Price of the aggregate offer.
+     * Headline Price of the CSS Product.
      *
      * Generated from protobuf field <code>.google.shopping.type.Price headline_offer_price = 7;</code>
      * @param \Google\Shopping\Type\Price $var
@@ -840,7 +858,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Headline Price of the aggregate offer.
+     * Headline Price of the CSS Product.
      *
      * Generated from protobuf field <code>.google.shopping.type.Price headline_offer_shipping_price = 41;</code>
      * @return \Google\Shopping\Type\Price|null
@@ -861,7 +879,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Headline Price of the aggregate offer.
+     * Headline Price of the CSS Product.
      *
      * Generated from protobuf field <code>.google.shopping.type.Price headline_offer_shipping_price = 41;</code>
      * @param \Google\Shopping\Type\Price $var
@@ -2185,6 +2203,80 @@ class Attributes extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->custom_label_4 = $var;
+
+        return $this;
+    }
+
+    /**
+     * Number and amount of installments to pay for an item.
+     *
+     * Generated from protobuf field <code>.google.shopping.css.v1.HeadlineOfferInstallment headline_offer_installment = 51;</code>
+     * @return \Google\Shopping\Css\V1\HeadlineOfferInstallment|null
+     */
+    public function getHeadlineOfferInstallment()
+    {
+        return $this->headline_offer_installment;
+    }
+
+    public function hasHeadlineOfferInstallment()
+    {
+        return isset($this->headline_offer_installment);
+    }
+
+    public function clearHeadlineOfferInstallment()
+    {
+        unset($this->headline_offer_installment);
+    }
+
+    /**
+     * Number and amount of installments to pay for an item.
+     *
+     * Generated from protobuf field <code>.google.shopping.css.v1.HeadlineOfferInstallment headline_offer_installment = 51;</code>
+     * @param \Google\Shopping\Css\V1\HeadlineOfferInstallment $var
+     * @return $this
+     */
+    public function setHeadlineOfferInstallment($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Css\V1\HeadlineOfferInstallment::class);
+        $this->headline_offer_installment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Number of periods (months or years) and amount of payment per period
+     * for an item with an associated subscription contract.
+     *
+     * Generated from protobuf field <code>.google.shopping.css.v1.HeadlineOfferSubscriptionCost headline_offer_subscription_cost = 52;</code>
+     * @return \Google\Shopping\Css\V1\HeadlineOfferSubscriptionCost|null
+     */
+    public function getHeadlineOfferSubscriptionCost()
+    {
+        return $this->headline_offer_subscription_cost;
+    }
+
+    public function hasHeadlineOfferSubscriptionCost()
+    {
+        return isset($this->headline_offer_subscription_cost);
+    }
+
+    public function clearHeadlineOfferSubscriptionCost()
+    {
+        unset($this->headline_offer_subscription_cost);
+    }
+
+    /**
+     * Number of periods (months or years) and amount of payment per period
+     * for an item with an associated subscription contract.
+     *
+     * Generated from protobuf field <code>.google.shopping.css.v1.HeadlineOfferSubscriptionCost headline_offer_subscription_cost = 52;</code>
+     * @param \Google\Shopping\Css\V1\HeadlineOfferSubscriptionCost $var
+     * @return $this
+     */
+    public function setHeadlineOfferSubscriptionCost($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Css\V1\HeadlineOfferSubscriptionCost::class);
+        $this->headline_offer_subscription_cost = $var;
 
         return $this;
     }

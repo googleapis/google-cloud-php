@@ -20,7 +20,7 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Git commit/tag/branch name at which the repository should be
      * compiled. Must exist in the remote repository. Examples:
@@ -30,21 +30,21 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string git_commitish = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $git_commitish = '';
+    protected $git_commitish = '';
     /**
      * Optional. If set, fields of `code_compilation_config` override the default
      * compilation settings that are specified in dataform.json.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CodeCompilationConfig code_compilation_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $code_compilation_config = null;
+    protected $code_compilation_config = null;
     /**
      * Optional. Optional schedule (in cron format) for automatic creation of
      * compilation results.
      *
      * Generated from protobuf field <code>string cron_schedule = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cron_schedule = '';
+    protected $cron_schedule = '';
     /**
      * Optional. Specifies the time zone to be used when interpreting
      * cron_schedule. Must be a time zone name from the time zone database
@@ -53,7 +53,7 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string time_zone = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $time_zone = '';
+    protected $time_zone = '';
     /**
      * Output only. Records of the 10 most recent scheduled release attempts,
      * ordered in in descending order of `release_time`. Updated whenever
@@ -72,7 +72,7 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string release_compilation_result = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $release_compilation_result = '';
+    protected $release_compilation_result = '';
 
     /**
      * Constructor.

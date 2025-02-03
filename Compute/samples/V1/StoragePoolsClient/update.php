@@ -25,12 +25,13 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_StoragePools_Update_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\StoragePoolsClient;
 use Google\Cloud\Compute\V1\StoragePool;
-use Google\Cloud\Compute\V1\StoragePoolsClient;
+use Google\Cloud\Compute\V1\UpdateStoragePoolRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates the specified storagePool with the data included in the request. The update is performed only on selected fields included as part of update-mask. Only the following fields can be modified: size_tb and provisioned_iops.
+ * Updates the specified storagePool with the data included in the request. The update is performed only on selected fields included as part of update-mask. Only the following fields can be modified: pool_provisioned_capacity_gb, pool_provisioned_iops and pool_provisioned_throughput.
  *
  * @param string $project     Project ID for this request.
  * @param string $storagePool The storagePool name for this request.
@@ -41,13 +42,18 @@ function update_sample(string $project, string $storagePool, string $zone): void
     // Create a client.
     $storagePoolsClient = new StoragePoolsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $storagePoolResource = new StoragePool();
+    $request = (new UpdateStoragePoolRequest())
+        ->setProject($project)
+        ->setStoragePool($storagePool)
+        ->setStoragePoolResource($storagePoolResource)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $storagePoolsClient->update($project, $storagePool, $storagePoolResource, $zone);
+        $response = $storagePoolsClient->update($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

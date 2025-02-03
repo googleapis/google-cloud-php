@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Ancestor contains information about individual items in the hierarchy of
- * an Entry.
+ * Information about individual items in the hierarchy that is associated with
+ * the data resource.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.EntrySource.Ancestor</code>
  */

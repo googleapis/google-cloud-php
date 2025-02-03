@@ -46,6 +46,7 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\VpnGateway;
 use Google\Cloud\Compute\V1\VpnGatewaysGetStatusResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The VpnGateways API.
@@ -53,14 +54,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListVpnGatewaysRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteVpnGatewayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetVpnGatewayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getStatusAsync(GetStatusVpnGatewayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertVpnGatewayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListVpnGatewaysRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsVpnGatewayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsVpnGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListVpnGatewaysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteVpnGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<VpnGateway> getAsync(GetVpnGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<VpnGatewaysGetStatusResponse> getStatusAsync(GetStatusVpnGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertVpnGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListVpnGatewaysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsVpnGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsVpnGatewayRequest $request, array $optionalArgs = [])
  */
 final class VpnGatewaysClient
 {
@@ -195,6 +196,12 @@ final class VpnGatewaysClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -225,6 +232,9 @@ final class VpnGatewaysClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -252,6 +262,8 @@ final class VpnGatewaysClient
      *
      * The async variant is {@see VpnGatewaysClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/VpnGatewaysClient/aggregated_list.php
+     *
      * @param AggregatedListVpnGatewaysRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -275,6 +287,8 @@ final class VpnGatewaysClient
      * Deletes the specified VPN gateway.
      *
      * The async variant is {@see VpnGatewaysClient::deleteAsync()} .
+     *
+     * @example samples/V1/VpnGatewaysClient/delete.php
      *
      * @param DeleteVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -300,6 +314,8 @@ final class VpnGatewaysClient
      *
      * The async variant is {@see VpnGatewaysClient::getAsync()} .
      *
+     * @example samples/V1/VpnGatewaysClient/get.php
+     *
      * @param GetVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -323,6 +339,8 @@ final class VpnGatewaysClient
      * Returns the status for the specified VPN gateway.
      *
      * The async variant is {@see VpnGatewaysClient::getStatusAsync()} .
+     *
+     * @example samples/V1/VpnGatewaysClient/get_status.php
      *
      * @param GetStatusVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -348,6 +366,8 @@ final class VpnGatewaysClient
      *
      * The async variant is {@see VpnGatewaysClient::insertAsync()} .
      *
+     * @example samples/V1/VpnGatewaysClient/insert.php
+     *
      * @param InsertVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -371,6 +391,8 @@ final class VpnGatewaysClient
      * Retrieves a list of VPN gateways available to the specified project and region.
      *
      * The async variant is {@see VpnGatewaysClient::listAsync()} .
+     *
+     * @example samples/V1/VpnGatewaysClient/list.php
      *
      * @param ListVpnGatewaysRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -396,6 +418,8 @@ final class VpnGatewaysClient
      *
      * The async variant is {@see VpnGatewaysClient::setLabelsAsync()} .
      *
+     * @example samples/V1/VpnGatewaysClient/set_labels.php
+     *
      * @param SetLabelsVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -419,6 +443,8 @@ final class VpnGatewaysClient
      * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is {@see VpnGatewaysClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/VpnGatewaysClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {

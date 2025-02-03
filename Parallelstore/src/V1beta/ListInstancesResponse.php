@@ -9,14 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message for response to listing Instances
+ * Response from
+ * [ListInstances][google.cloud.parallelstore.v1beta.Parallelstore.ListInstances].
  *
  * Generated from protobuf message <code>google.cloud.parallelstore.v1beta.ListInstancesResponse</code>
  */
 class ListInstancesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The list of Parallelstore Instances
+     * The list of Parallelstore instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.parallelstore.v1beta.Instance instances = 1;</code>
      */
@@ -41,7 +42,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Parallelstore\V1beta\Instance>|\Google\Protobuf\Internal\RepeatedField $instances
-     *           The list of Parallelstore Instances
+     *           The list of Parallelstore instances.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
@@ -54,7 +55,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of Parallelstore Instances
+     * The list of Parallelstore instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.parallelstore.v1beta.Instance instances = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -65,7 +66,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of Parallelstore Instances
+     * The list of Parallelstore instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.parallelstore.v1beta.Instance instances = 1;</code>
      * @param array<\Google\Cloud\Parallelstore\V1beta\Instance>|\Google\Protobuf\Internal\RepeatedField $var

@@ -35,7 +35,8 @@ class PageTree
         private string $xmlPath,
         private string $namespace,
         private string $packageDescription,
-        private string $componentPath
+        private string $componentPath,
+        private array $componentPackages
     ) {}
 
     public function getPages(): array
@@ -65,7 +66,7 @@ class PageTree
                 continue;
             }
 
-            $classNode = new ClassNode($file->class[0]);
+            $classNode = new ClassNode($file->class[0], $this->componentPackages);
 
             // Skip the protobuf classes with underscores, they're all deprecated
             // @TODO: Do not generate them in V2
@@ -147,27 +148,6 @@ class PageTree
                     ));
                 }
             }
-        }
-
-        /**
-         * Set a map of protobuf package names to PHP namespaces for Xrefs.
-         * This MUST be done after combining GAPIC clients.
-         */
-        $protoPackages = [
-            // shared packages
-            'google.longrunning' => 'Google\\LongRunning'
-        ];
-        foreach ($pages as $page) {
-            $classNode = $page->getClassNode();
-            if ($protoPackage = $classNode->getProtoPackage()) {
-                $package = rtrim(ltrim($classNode->getNamespace(), '\\'), '\\Client');
-                $protoPackages[$protoPackage] = $package;
-            }
-        }
-
-        // Add the proto packages to every class node
-        foreach ($pages as $page) {
-            $page->getClassNode()->setProtoPackages($protoPackages);
         }
 
         // Sort pages alphabetically by full class name

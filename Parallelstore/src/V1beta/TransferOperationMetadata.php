@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents the metadata of the long-running operation.
+ * Long-running operation metadata related to a data transfer.
  *
  * Generated from protobuf message <code>google.cloud.parallelstore.v1beta.TransferOperationMetadata</code>
  */
 class TransferOperationMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Information about the progress of the transfer operation.
+     * Output only. The progress of the transfer operation.
      *
      * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferCounters counters = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -45,7 +45,7 @@ class TransferOperationMetadata extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Parallelstore\V1beta\DestinationParallelstore $destination_parallelstore
      *           Output only. Parallelstore destination.
      *     @type \Google\Cloud\Parallelstore\V1beta\TransferCounters $counters
-     *           Output only. Information about the progress of the transfer operation.
+     *           Output only. The progress of the transfer operation.
      *     @type int $transfer_type
      *           Output only. The type of transfer occurring.
      * }
@@ -180,7 +180,7 @@ class TransferOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Information about the progress of the transfer operation.
+     * Output only. The progress of the transfer operation.
      *
      * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferCounters counters = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Parallelstore\V1beta\TransferCounters|null
@@ -201,7 +201,7 @@ class TransferOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Information about the progress of the transfer operation.
+     * Output only. The progress of the transfer operation.
      *
      * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferCounters counters = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Parallelstore\V1beta\TransferCounters $var

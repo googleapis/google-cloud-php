@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [Developer Preview](https://developers.google.com/workspace/preview).
  * Single entry for one user’s speech during a transcript session.
  *
  * Generated from protobuf message <code>google.apps.meet.v2beta.TranscriptEntry</code>
@@ -24,7 +23,7 @@ class TranscriptEntry extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Output only. Refer to the participant who speaks.
+     * Output only. Refers to the participant who speaks.
      *
      * Generated from protobuf field <code>string participant = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -66,7 +65,7 @@ class TranscriptEntry extends \Google\Protobuf\Internal\Message
      *           Output only. Resource name of the entry. Format:
      *           "conferenceRecords/{conference_record}/transcripts/{transcript}/entries/{entry}"
      *     @type string $participant
-     *           Output only. Refer to the participant who speaks.
+     *           Output only. Refers to the participant who speaks.
      *     @type string $text
      *           Output only. The transcribed text of the participant's voice, at maximum
      *           10K words. Note that the limit is subject to change.
@@ -113,7 +112,7 @@ class TranscriptEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Refer to the participant who speaks.
+     * Output only. Refers to the participant who speaks.
      *
      * Generated from protobuf field <code>string participant = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -124,7 +123,7 @@ class TranscriptEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Refer to the participant who speaks.
+     * Output only. Refers to the participant who speaks.
      *
      * Generated from protobuf field <code>string participant = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var

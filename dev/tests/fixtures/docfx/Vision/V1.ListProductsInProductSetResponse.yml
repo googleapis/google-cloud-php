@@ -36,7 +36,7 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ products'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Product">Product</xref>&gt;'
           description: 'The list of Products.'
         -
           id: '↳ next_page_token'
@@ -68,7 +68,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Product">Product</xref>&gt;'
           description: ''
       returns:
         -

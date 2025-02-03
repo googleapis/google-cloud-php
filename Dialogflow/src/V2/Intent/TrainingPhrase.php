@@ -18,15 +18,15 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The unique identifier of this training phrase.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The type of the training phrase.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.TrainingPhrase.Type type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Required. The ordered list of training phrase parts.
      * The parts are concatenated in order to form the training phrase.
@@ -55,7 +55,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 times_added_count = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $times_added_count = 0;
+    protected $times_added_count = 0;
 
     /**
      * Constructor.
@@ -98,7 +98,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The unique identifier of this training phrase.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -109,7 +109,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The unique identifier of this training phrase.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

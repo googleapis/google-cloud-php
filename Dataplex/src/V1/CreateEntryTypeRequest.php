@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Create EntryType Request
+ * Create EntryType Request.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.CreateEntryTypeRequest</code>
  */
@@ -18,7 +18,7 @@ class CreateEntryTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the EntryType, of the form:
      * projects/{project_number}/locations/{location_id}
-     * where `location_id` refers to a GCP region.
+     * where `location_id` refers to a Google Cloud region.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -30,14 +30,14 @@ class CreateEntryTypeRequest extends \Google\Protobuf\Internal\Message
      */
     protected $entry_type_id = '';
     /**
-     * Required. EntryType Resource
+     * Required. EntryType Resource.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.EntryType entry_type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $entry_type = null;
     /**
-     * Optional. Only validate the request, but do not perform mutations.
-     * The default is false.
+     * Optional. The service validates the request without performing any
+     * mutations. The default is false.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -46,9 +46,9 @@ class CreateEntryTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                              $parent      Required. The resource name of the EntryType, of the form:
      *                                                         projects/{project_number}/locations/{location_id}
-     *                                                         where `location_id` refers to a GCP region. Please see
+     *                                                         where `location_id` refers to a Google Cloud region. Please see
      *                                                         {@see CatalogServiceClient::locationName()} for help formatting this field.
-     * @param \Google\Cloud\Dataplex\V1\EntryType $entryType   Required. EntryType Resource
+     * @param \Google\Cloud\Dataplex\V1\EntryType $entryType   Required. EntryType Resource.
      * @param string                              $entryTypeId Required. EntryType identifier.
      *
      * @return \Google\Cloud\Dataplex\V1\CreateEntryTypeRequest
@@ -72,14 +72,14 @@ class CreateEntryTypeRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The resource name of the EntryType, of the form:
      *           projects/{project_number}/locations/{location_id}
-     *           where `location_id` refers to a GCP region.
+     *           where `location_id` refers to a Google Cloud region.
      *     @type string $entry_type_id
      *           Required. EntryType identifier.
      *     @type \Google\Cloud\Dataplex\V1\EntryType $entry_type
-     *           Required. EntryType Resource
+     *           Required. EntryType Resource.
      *     @type bool $validate_only
-     *           Optional. Only validate the request, but do not perform mutations.
-     *           The default is false.
+     *           Optional. The service validates the request without performing any
+     *           mutations. The default is false.
      * }
      */
     public function __construct($data = NULL) {
@@ -90,7 +90,7 @@ class CreateEntryTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the EntryType, of the form:
      * projects/{project_number}/locations/{location_id}
-     * where `location_id` refers to a GCP region.
+     * where `location_id` refers to a Google Cloud region.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -103,7 +103,7 @@ class CreateEntryTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the EntryType, of the form:
      * projects/{project_number}/locations/{location_id}
-     * where `location_id` refers to a GCP region.
+     * where `location_id` refers to a Google Cloud region.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -144,7 +144,7 @@ class CreateEntryTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. EntryType Resource
+     * Required. EntryType Resource.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.EntryType entry_type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dataplex\V1\EntryType|null
@@ -165,7 +165,7 @@ class CreateEntryTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. EntryType Resource
+     * Required. EntryType Resource.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.EntryType entry_type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dataplex\V1\EntryType $var
@@ -180,8 +180,8 @@ class CreateEntryTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Only validate the request, but do not perform mutations.
-     * The default is false.
+     * Optional. The service validates the request without performing any
+     * mutations. The default is false.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -192,8 +192,8 @@ class CreateEntryTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Only validate the request, but do not perform mutations.
-     * The default is false.
+     * Optional. The service validates the request without performing any
+     * mutations. The default is false.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

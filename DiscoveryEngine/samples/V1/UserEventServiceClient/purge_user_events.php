@@ -38,8 +38,8 @@ use Google\Rpc\Status;
  *
  * @param string $formattedParent The resource name of the catalog under which the events are
  *                                created. The format is
- *                                `projects/{project}/locations/global/collections/{collection}/dataStores/{dataStore}`
- *                                Please see {@see UserEventServiceClient::dataStoreName()} for help formatting this field.
+ *                                `projects/{project}/locations/global/collections/{collection}/dataStores/{dataStore}`. Please see
+ *                                {@see UserEventServiceClient::dataStoreName()} for help formatting this field.
  * @param string $filter          The filter string to specify the events to be deleted with a
  *                                length limit of 5,000 characters. The eligible fields for filtering are:
  *

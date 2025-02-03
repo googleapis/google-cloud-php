@@ -48,6 +48,7 @@ use Google\Cloud\AIPlatform\V1\GetModelRequest;
 use Google\Cloud\AIPlatform\V1\ImportModelEvaluationRequest;
 use Google\Cloud\AIPlatform\V1\ListModelEvaluationSlicesRequest;
 use Google\Cloud\AIPlatform\V1\ListModelEvaluationsRequest;
+use Google\Cloud\AIPlatform\V1\ListModelVersionCheckpointsRequest;
 use Google\Cloud\AIPlatform\V1\ListModelVersionsRequest;
 use Google\Cloud\AIPlatform\V1\ListModelsRequest;
 use Google\Cloud\AIPlatform\V1\MergeVersionAliasesRequest;
@@ -68,6 +69,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: A service for managing Vertex AI's machine learning Models.
@@ -80,29 +82,30 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchImportEvaluatedAnnotationsAsync(BatchImportEvaluatedAnnotationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchImportModelEvaluationSlicesAsync(BatchImportModelEvaluationSlicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface copyModelAsync(CopyModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteModelAsync(DeleteModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteModelVersionAsync(DeleteModelVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportModelAsync(ExportModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getModelAsync(GetModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getModelEvaluationAsync(GetModelEvaluationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getModelEvaluationSliceAsync(GetModelEvaluationSliceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importModelEvaluationAsync(ImportModelEvaluationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listModelEvaluationSlicesAsync(ListModelEvaluationSlicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listModelEvaluationsAsync(ListModelEvaluationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listModelVersionsAsync(ListModelVersionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listModelsAsync(ListModelsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface mergeVersionAliasesAsync(MergeVersionAliasesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateExplanationDatasetAsync(UpdateExplanationDatasetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateModelAsync(UpdateModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface uploadModelAsync(UploadModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchImportEvaluatedAnnotationsResponse> batchImportEvaluatedAnnotationsAsync(BatchImportEvaluatedAnnotationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchImportModelEvaluationSlicesResponse> batchImportModelEvaluationSlicesAsync(BatchImportModelEvaluationSlicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> copyModelAsync(CopyModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteModelAsync(DeleteModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteModelVersionAsync(DeleteModelVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportModelAsync(ExportModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Model> getModelAsync(GetModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ModelEvaluation> getModelEvaluationAsync(GetModelEvaluationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ModelEvaluationSlice> getModelEvaluationSliceAsync(GetModelEvaluationSliceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ModelEvaluation> importModelEvaluationAsync(ImportModelEvaluationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listModelEvaluationSlicesAsync(ListModelEvaluationSlicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listModelEvaluationsAsync(ListModelEvaluationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listModelVersionCheckpointsAsync(ListModelVersionCheckpointsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listModelVersionsAsync(ListModelVersionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listModelsAsync(ListModelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Model> mergeVersionAliasesAsync(MergeVersionAliasesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateExplanationDatasetAsync(UpdateExplanationDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Model> updateModelAsync(UpdateModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> uploadModelAsync(UploadModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class ModelServiceClient
 {
@@ -412,14 +415,14 @@ final class ModelServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -441,6 +444,12 @@ final class ModelServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -474,6 +483,9 @@ final class ModelServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -842,6 +854,35 @@ final class ModelServiceClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('ListModelEvaluations', $request, $callOptions);
+    }
+
+    /**
+     * Lists checkpoints of the specified model version.
+     *
+     * The async variant is
+     * {@see ModelServiceClient::listModelVersionCheckpointsAsync()} .
+     *
+     * @example samples/V1/ModelServiceClient/list_model_version_checkpoints.php
+     *
+     * @param ListModelVersionCheckpointsRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listModelVersionCheckpoints(
+        ListModelVersionCheckpointsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListModelVersionCheckpoints', $request, $callOptions);
     }
 
     /**

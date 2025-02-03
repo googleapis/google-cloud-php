@@ -169,6 +169,9 @@ class ManageTablesTest extends BigQueryTestCase
     public function testCreatesExternalTable()
     {
         $externalKeyFilePath = getenv('GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH');
+        if (!$externalKeyFilePath) {
+            $this->markTestSkipped('GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH must be set to run this test.');
+        }
         $authenticatedKeyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         $externalKey = json_decode(file_get_contents($externalKeyFilePath), true);
         $authenticatedKey = json_decode(file_get_contents($authenticatedKeyFilePath), true);
