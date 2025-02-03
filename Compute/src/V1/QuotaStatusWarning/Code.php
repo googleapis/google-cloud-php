@@ -146,6 +146,12 @@ class Code
      */
     const PARTIAL_SUCCESS = 39966469;
     /**
+     * Quota information is not available to client requests (e.g: regions.list).
+     *
+     * Generated from protobuf enum <code>QUOTA_INFO_UNAVAILABLE = 304294182;</code>
+     */
+    const QUOTA_INFO_UNAVAILABLE = 304294182;
+    /**
      * The user attempted to use a resource that requires a TOS they have not accepted.
      *
      * Generated from protobuf enum <code>REQUIRED_TOS_AGREEMENT = 3745539;</code>
@@ -211,6 +217,7 @@ class Code
         self::NOT_CRITICAL_ERROR => 'NOT_CRITICAL_ERROR',
         self::NO_RESULTS_ON_PAGE => 'NO_RESULTS_ON_PAGE',
         self::PARTIAL_SUCCESS => 'PARTIAL_SUCCESS',
+        self::QUOTA_INFO_UNAVAILABLE => 'QUOTA_INFO_UNAVAILABLE',
         self::REQUIRED_TOS_AGREEMENT => 'REQUIRED_TOS_AGREEMENT',
         self::RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING => 'RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING',
         self::RESOURCE_NOT_DELETED => 'RESOURCE_NOT_DELETED',

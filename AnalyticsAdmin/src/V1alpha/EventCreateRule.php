@@ -28,7 +28,7 @@ class EventCreateRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The name of the new event to be created.
      * This value must:
@@ -38,7 +38,7 @@ class EventCreateRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string destination_event = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $destination_event = '';
+    protected $destination_event = '';
     /**
      * Required. Must have at least one condition, and can have up to 10 max.
      * Conditions on the source event must match for this rule to be applied.
@@ -54,7 +54,7 @@ class EventCreateRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool source_copy_parameters = 4;</code>
      */
-    private $source_copy_parameters = false;
+    protected $source_copy_parameters = false;
     /**
      * Parameter mutations define parameter behavior on the new event, and
      * are applied in order.

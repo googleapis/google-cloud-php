@@ -125,6 +125,18 @@ return [
             ],
         ],
         'google.spanner.admin.database.v1.DatabaseAdmin' => [
+            'AddSplitPoints' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{database=projects/*/instances/*/databases/*}:addSplitPoints',
+                'body' => '*',
+                'placeholders' => [
+                    'database' => [
+                        'getters' => [
+                            'getDatabase',
+                        ],
+                    ],
+                ],
+            ],
             'CopyBackup' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/instances/*}/backups:copy',

@@ -144,6 +144,13 @@ class TypeCode
      * Generated from protobuf enum <code>INTERVAL = 16;</code>
      */
     const INTERVAL = 16;
+    /**
+     * Encoded as `string`, in lower-case hexa-decimal format, as described
+     * in RFC 9562, section 4.
+     *
+     * Generated from protobuf enum <code>UUID = 17;</code>
+     */
+    const UUID = 17;
 
     private static $valueToName = [
         self::TYPE_CODE_UNSPECIFIED => 'TYPE_CODE_UNSPECIFIED',
@@ -162,6 +169,7 @@ class TypeCode
         self::PROTO => 'PROTO',
         self::ENUM => 'ENUM',
         self::INTERVAL => 'INTERVAL',
+        self::UUID => 'UUID',
     ];
 
     public static function name($value)

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetInstances_AggregatedList_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\TargetInstancesClient;
+use Google\Cloud\Compute\V1\AggregatedListTargetInstancesRequest;
+use Google\Cloud\Compute\V1\Client\TargetInstancesClient;
 
 /**
  * Retrieves an aggregated list of target instances. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
@@ -37,10 +38,14 @@ function aggregated_list_sample(string $project): void
     // Create a client.
     $targetInstancesClient = new TargetInstancesClient();
 
+    // Prepare the request message.
+    $request = (new AggregatedListTargetInstancesRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $targetInstancesClient->aggregatedList($project);
+        $response = $targetInstancesClient->aggregatedList($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

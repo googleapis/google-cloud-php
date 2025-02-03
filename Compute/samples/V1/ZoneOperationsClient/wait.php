@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_ZoneOperations_Wait_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\ZoneOperationsClient;
 use Google\Cloud\Compute\V1\Operation;
-use Google\Cloud\Compute\V1\ZoneOperationsClient;
+use Google\Cloud\Compute\V1\WaitZoneOperationRequest;
 
 /**
  * Waits for the specified Operation resource to return as `DONE` or for the request to approach the 2 minute deadline, and retrieves the specified Operation resource. This method waits for no more than the 2 minutes and then returns the current state of the operation, which might be `DONE` or still in progress. This method is called on a best-effort basis. Specifically: - In uncommon cases, when the server is overloaded, the request might return before the default deadline is reached, or might return after zero seconds. - If the default deadline is reached, there is no guarantee that the operation is actually done when the method returns. Be prepared to retry if the operation is not `DONE`.
@@ -39,10 +40,16 @@ function wait_sample(string $operation, string $project, string $zone): void
     // Create a client.
     $zoneOperationsClient = new ZoneOperationsClient();
 
+    // Prepare the request message.
+    $request = (new WaitZoneOperationRequest())
+        ->setOperation($operation)
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var Operation $response */
-        $response = $zoneOperationsClient->wait($operation, $project, $zone);
+        $response = $zoneOperationsClient->wait($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

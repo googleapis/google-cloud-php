@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NetworkAttachments_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\NetworkAttachmentsClient;
+use Google\Cloud\Compute\V1\Client\NetworkAttachmentsClient;
+use Google\Cloud\Compute\V1\DeleteNetworkAttachmentRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $networkAttachment, string $project, string $regio
     // Create a client.
     $networkAttachmentsClient = new NetworkAttachmentsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteNetworkAttachmentRequest())
+        ->setNetworkAttachment($networkAttachment)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkAttachmentsClient->delete($networkAttachment, $project, $region);
+        $response = $networkAttachmentsClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

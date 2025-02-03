@@ -54,7 +54,7 @@ class Project extends \Google\Protobuf\Internal\Message
      */
     private $description = null;
     /**
-     * Restricted features enabled for use on this project.
+     * An optional list of restricted features enabled for use on this project.
      *
      * Generated from protobuf field <code>repeated string enabled_features = 469017467;</code>
      */
@@ -90,7 +90,7 @@ class Project extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
-     * The naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
+     * An optional naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.UsageExportLocation usage_export_location = 347543874;</code>
      */
@@ -131,7 +131,7 @@ class Project extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           An optional textual description of the resource.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $enabled_features
-     *           Restricted features enabled for use on this project.
+     *           An optional list of restricted features enabled for use on this project.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is *not* the project ID, and is just a unique ID used by Compute Engine to identify resources.
      *     @type string $kind
@@ -143,7 +143,7 @@ class Project extends \Google\Protobuf\Internal\Message
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type \Google\Cloud\Compute\V1\UsageExportLocation $usage_export_location
-     *           The naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
+     *           An optional naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
      *     @type string $vm_dns_setting
      *           [Output Only] Default internal DNS setting used by VMs running in this project.
      *           Check the VmDnsSetting enum for the list of possible values.
@@ -378,7 +378,7 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Restricted features enabled for use on this project.
+     * An optional list of restricted features enabled for use on this project.
      *
      * Generated from protobuf field <code>repeated string enabled_features = 469017467;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -389,7 +389,7 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Restricted features enabled for use on this project.
+     * An optional list of restricted features enabled for use on this project.
      *
      * Generated from protobuf field <code>repeated string enabled_features = 469017467;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -574,7 +574,7 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
+     * An optional naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.UsageExportLocation usage_export_location = 347543874;</code>
      * @return \Google\Cloud\Compute\V1\UsageExportLocation|null
@@ -595,7 +595,7 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
+     * An optional naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.UsageExportLocation usage_export_location = 347543874;</code>
      * @param \Google\Cloud\Compute\V1\UsageExportLocation $var

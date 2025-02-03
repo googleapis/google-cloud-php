@@ -38,7 +38,12 @@ class ListConferenceRecordsRequest extends \Google\Protobuf\Internal\Message
      * * `space.name`
      * * `start_time`
      * * `end_time`
-     * For example, `space.meeting_code = "abc-mnop-xyz"`.
+     * For example, consider the following filters:
+     * * `space.name = "spaces/NAME"`
+     * * `space.meeting_code = "abc-mnop-xyz"`
+     * * `start_time>="2024-01-01T00:00:00.000Z" AND
+     * start_time<="2024-01-02T00:00:00.000Z"`
+     * * `end_time IS NULL`
      *
      * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -65,7 +70,12 @@ class ListConferenceRecordsRequest extends \Google\Protobuf\Internal\Message
      *           * `space.name`
      *           * `start_time`
      *           * `end_time`
-     *           For example, `space.meeting_code = "abc-mnop-xyz"`.
+     *           For example, consider the following filters:
+     *           * `space.name = "spaces/NAME"`
+     *           * `space.meeting_code = "abc-mnop-xyz"`
+     *           * `start_time>="2024-01-01T00:00:00.000Z" AND
+     *           start_time<="2024-01-02T00:00:00.000Z"`
+     *           * `end_time IS NULL`
      * }
      */
     public function __construct($data = NULL) {
@@ -139,7 +149,12 @@ class ListConferenceRecordsRequest extends \Google\Protobuf\Internal\Message
      * * `space.name`
      * * `start_time`
      * * `end_time`
-     * For example, `space.meeting_code = "abc-mnop-xyz"`.
+     * For example, consider the following filters:
+     * * `space.name = "spaces/NAME"`
+     * * `space.meeting_code = "abc-mnop-xyz"`
+     * * `start_time>="2024-01-01T00:00:00.000Z" AND
+     * start_time<="2024-01-02T00:00:00.000Z"`
+     * * `end_time IS NULL`
      *
      * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -157,7 +172,12 @@ class ListConferenceRecordsRequest extends \Google\Protobuf\Internal\Message
      * * `space.name`
      * * `start_time`
      * * `end_time`
-     * For example, `space.meeting_code = "abc-mnop-xyz"`.
+     * For example, consider the following filters:
+     * * `space.name = "spaces/NAME"`
+     * * `space.meeting_code = "abc-mnop-xyz"`
+     * * `start_time>="2024-01-01T00:00:00.000Z" AND
+     * start_time<="2024-01-02T00:00:00.000Z"`
+     * * `end_time IS NULL`
      *
      * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

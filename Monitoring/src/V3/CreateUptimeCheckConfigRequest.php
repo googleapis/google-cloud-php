@@ -23,13 +23,13 @@ class CreateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The new Uptime check configuration.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig uptime_check_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $uptime_check_config = null;
+    protected $uptime_check_config = null;
 
     /**
      * @param string                                        $parent            Required. The

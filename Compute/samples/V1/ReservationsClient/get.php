@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_Reservations_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\ReservationsClient;
+use Google\Cloud\Compute\V1\GetReservationRequest;
 use Google\Cloud\Compute\V1\Reservation;
-use Google\Cloud\Compute\V1\ReservationsClient;
 
 /**
  * Retrieves information about the specified reservation.
@@ -39,10 +40,16 @@ function get_sample(string $project, string $reservation, string $zone): void
     // Create a client.
     $reservationsClient = new ReservationsClient();
 
+    // Prepare the request message.
+    $request = (new GetReservationRequest())
+        ->setProject($project)
+        ->setReservation($reservation)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var Reservation $response */
-        $response = $reservationsClient->get($project, $reservation, $zone);
+        $response = $reservationsClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

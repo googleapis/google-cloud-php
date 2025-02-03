@@ -211,6 +211,13 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.pubsub.v1.Subscription.AnalyticsHubSubscriptionInfo analytics_hub_subscription_info = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $analytics_hub_subscription_info = null;
+    /**
+     * Optional. Transforms to be applied to messages before they are delivered to
+     * subscribers. Transforms are applied in the order specified.
+     *
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.MessageTransform message_transforms = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $message_transforms;
 
     /**
      * @param string                             $name               Required. The name of the subscription. It must have the format
@@ -383,6 +390,9 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\PubSub\V1\Subscription\AnalyticsHubSubscriptionInfo $analytics_hub_subscription_info
      *           Output only. Information about the associated Analytics Hub subscription.
      *           Only set if the subscritpion is created by Analytics Hub.
+     *     @type array<\Google\Cloud\PubSub\V1\MessageTransform>|\Google\Protobuf\Internal\RepeatedField $message_transforms
+     *           Optional. Transforms to be applied to messages before they are delivered to
+     *           subscribers. Transforms are applied in the order specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -1130,6 +1140,34 @@ class Subscription extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\Subscription\AnalyticsHubSubscriptionInfo::class);
         $this->analytics_hub_subscription_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Transforms to be applied to messages before they are delivered to
+     * subscribers. Transforms are applied in the order specified.
+     *
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.MessageTransform message_transforms = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getMessageTransforms()
+    {
+        return $this->message_transforms;
+    }
+
+    /**
+     * Optional. Transforms to be applied to messages before they are delivered to
+     * subscribers. Transforms are applied in the order specified.
+     *
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.MessageTransform message_transforms = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\PubSub\V1\MessageTransform>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setMessageTransforms($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\PubSub\V1\MessageTransform::class);
+        $this->message_transforms = $arr;
 
         return $this;
     }

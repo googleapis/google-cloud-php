@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\Dialogflow\Tests\Unit\V2\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dialogflow\V2\Client\EncryptionSpecServiceClient;
@@ -36,6 +35,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -58,7 +58,9 @@ class EncryptionSpecServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return EncryptionSpecServiceClient */
@@ -87,8 +89,7 @@ class EncryptionSpecServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->encryptionSpecName('[PROJECT]', '[LOCATION]');
-        $request = (new GetEncryptionSpecRequest())
-            ->setName($formattedName);
+        $request = (new GetEncryptionSpecRequest())->setName($formattedName);
         $response = $gapicClient->getEncryptionSpec($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -112,17 +113,19 @@ class EncryptionSpecServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->encryptionSpecName('[PROJECT]', '[LOCATION]');
-        $request = (new GetEncryptionSpecRequest())
-            ->setName($formattedName);
+        $request = (new GetEncryptionSpecRequest())->setName($formattedName);
         try {
             $gapicClient->getEncryptionSpec($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -169,8 +172,7 @@ class EncryptionSpecServiceClientTest extends GeneratedTest
         $encryptionSpec = new EncryptionSpec();
         $encryptionSpecKmsKey = 'encryptionSpecKmsKey627607756';
         $encryptionSpec->setKmsKey($encryptionSpecKmsKey);
-        $request = (new InitializeEncryptionSpecRequest())
-            ->setEncryptionSpec($encryptionSpec);
+        $request = (new InitializeEncryptionSpecRequest())->setEncryptionSpec($encryptionSpec);
         $response = $gapicClient->initializeEncryptionSpec($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -180,7 +182,10 @@ class EncryptionSpecServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dialogflow.v2.EncryptionSpecService/InitializeEncryptionSpec', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.dialogflow.v2.EncryptionSpecService/InitializeEncryptionSpec',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getEncryptionSpec();
         $this->assertProtobufEquals($encryptionSpec, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -226,19 +231,21 @@ class EncryptionSpecServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $encryptionSpec = new EncryptionSpec();
         $encryptionSpecKmsKey = 'encryptionSpecKmsKey627607756';
         $encryptionSpec->setKmsKey($encryptionSpecKmsKey);
-        $request = (new InitializeEncryptionSpecRequest())
-            ->setEncryptionSpec($encryptionSpec);
+        $request = (new InitializeEncryptionSpecRequest())->setEncryptionSpec($encryptionSpec);
         $response = $gapicClient->initializeEncryptionSpec($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -300,12 +307,15 @@ class EncryptionSpecServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -332,9 +342,7 @@ class EncryptionSpecServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -364,12 +372,15 @@ class EncryptionSpecServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -402,8 +413,7 @@ class EncryptionSpecServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->encryptionSpecName('[PROJECT]', '[LOCATION]');
-        $request = (new GetEncryptionSpecRequest())
-            ->setName($formattedName);
+        $request = (new GetEncryptionSpecRequest())->setName($formattedName);
         $response = $gapicClient->getEncryptionSpecAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

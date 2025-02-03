@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Subnetwork;
 use UnexpectedValueException;
 
 /**
- * The purpose of the resource. This field can be either PRIVATE, GLOBAL_MANAGED_PROXY, REGIONAL_MANAGED_PROXY, PRIVATE_SERVICE_CONNECT, or PRIVATE is the default purpose for user-created subnets or subnets that are automatically created in auto mode networks. Subnets with purpose set to GLOBAL_MANAGED_PROXY or REGIONAL_MANAGED_PROXY are user-created subnetworks that are reserved for Envoy-based load balancers. A subnet with purpose set to PRIVATE_SERVICE_CONNECT is used to publish services using Private Service Connect. If unspecified, the subnet purpose defaults to PRIVATE. The enableFlowLogs field isn't supported if the subnet purpose field is set to GLOBAL_MANAGED_PROXY or REGIONAL_MANAGED_PROXY.
+ * The purpose of the resource. This field can be either PRIVATE, GLOBAL_MANAGED_PROXY, REGIONAL_MANAGED_PROXY, PEER_MIGRATION or PRIVATE_SERVICE_CONNECT. PRIVATE is the default purpose for user-created subnets or subnets that are automatically created in auto mode networks. Subnets with purpose set to GLOBAL_MANAGED_PROXY or REGIONAL_MANAGED_PROXY are user-created subnetworks that are reserved for Envoy-based load balancers. A subnet with purpose set to PRIVATE_SERVICE_CONNECT is used to publish services using Private Service Connect. A subnet with purpose set to PEER_MIGRATION is used for subnet migration from one peered VPC to another. If unspecified, the subnet purpose defaults to PRIVATE. The enableFlowLogs field isn't supported if the subnet purpose field is set to GLOBAL_MANAGED_PROXY or REGIONAL_MANAGED_PROXY.
  *
  * Protobuf type <code>google.cloud.compute.v1.Subnetwork.Purpose</code>
  */
@@ -31,6 +31,12 @@ class Purpose
      * Generated from protobuf enum <code>INTERNAL_HTTPS_LOAD_BALANCER = 248748889;</code>
      */
     const INTERNAL_HTTPS_LOAD_BALANCER = 248748889;
+    /**
+     * Subnetwork will be used for Migration from one peered VPC to another. (a transient state of subnetwork while migrating resources from one project to another).
+     *
+     * Generated from protobuf enum <code>PEER_MIGRATION = 491902225;</code>
+     */
+    const PEER_MIGRATION = 491902225;
     /**
      * Regular user created or automatically created subnet.
      *
@@ -66,6 +72,7 @@ class Purpose
         self::UNDEFINED_PURPOSE => 'UNDEFINED_PURPOSE',
         self::GLOBAL_MANAGED_PROXY => 'GLOBAL_MANAGED_PROXY',
         self::INTERNAL_HTTPS_LOAD_BALANCER => 'INTERNAL_HTTPS_LOAD_BALANCER',
+        self::PEER_MIGRATION => 'PEER_MIGRATION',
         self::PBPRIVATE => 'PRIVATE',
         self::PRIVATE_NAT => 'PRIVATE_NAT',
         self::PRIVATE_RFC_1918 => 'PRIVATE_RFC_1918',

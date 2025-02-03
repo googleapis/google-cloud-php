@@ -21,20 +21,20 @@ class ChannelGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The display name of the Channel Group. Max length of 80
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The description of the Channel Group. Max length of 256 characters.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. The grouping rules of channels. Maximum number of rules is 50.
      *
@@ -48,7 +48,7 @@ class ChannelGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool system_defined = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $system_defined = false;
+    protected $system_defined = false;
     /**
      * Optional. If true, this channel group will be used as the default channel
      * group for reports. Only one channel group can be set as `primary` at any
@@ -58,7 +58,7 @@ class ChannelGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool primary = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $primary = false;
+    protected $primary = false;
 
     /**
      * Constructor.

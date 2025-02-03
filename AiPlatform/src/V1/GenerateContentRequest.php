@@ -44,6 +44,16 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      */
     protected $system_instruction = null;
     /**
+     * Optional. The name of the cached content used as context to serve the
+     * prediction. Note: only used in explicit caching, where users can have
+     * control over caching (e.g. what content to cache) and enjoy guaranteed cost
+     * savings. Format:
+     * `projects/{project}/locations/{location}/cachedContents/{cachedContent}`
+     *
+     * Generated from protobuf field <code>string cached_content = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $cached_content = '';
+    /**
      * Optional. A list of `Tools` the model may use to generate the next
      * response.
      * A `Tool` is a piece of code that enables the system to interact with
@@ -133,6 +143,12 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The user provided system instructions for the model.
      *           Note: only text should be used in parts and content in each part will be in
      *           a separate paragraph.
+     *     @type string $cached_content
+     *           Optional. The name of the cached content used as context to serve the
+     *           prediction. Note: only used in explicit caching, where users can have
+     *           control over caching (e.g. what content to cache) and enjoy guaranteed cost
+     *           savings. Format:
+     *           `projects/{project}/locations/{location}/cachedContents/{cachedContent}`
      *     @type array<\Google\Cloud\AIPlatform\V1\Tool>|\Google\Protobuf\Internal\RepeatedField $tools
      *           Optional. A list of `Tools` the model may use to generate the next
      *           response.
@@ -265,6 +281,40 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Content::class);
         $this->system_instruction = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name of the cached content used as context to serve the
+     * prediction. Note: only used in explicit caching, where users can have
+     * control over caching (e.g. what content to cache) and enjoy guaranteed cost
+     * savings. Format:
+     * `projects/{project}/locations/{location}/cachedContents/{cachedContent}`
+     *
+     * Generated from protobuf field <code>string cached_content = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getCachedContent()
+    {
+        return $this->cached_content;
+    }
+
+    /**
+     * Optional. The name of the cached content used as context to serve the
+     * prediction. Note: only used in explicit caching, where users can have
+     * control over caching (e.g. what content to cache) and enjoy guaranteed cost
+     * savings. Format:
+     * `projects/{project}/locations/{location}/cachedContents/{cachedContent}`
+     *
+     * Generated from protobuf field <code>string cached_content = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCachedContent($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->cached_content = $var;
 
         return $this;
     }

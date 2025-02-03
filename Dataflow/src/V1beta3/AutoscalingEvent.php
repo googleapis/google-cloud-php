@@ -21,19 +21,19 @@ class AutoscalingEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 current_num_workers = 1;</code>
      */
-    private $current_num_workers = 0;
+    protected $current_num_workers = 0;
     /**
      * The target number of workers the worker pool wants to resize to use.
      *
      * Generated from protobuf field <code>int64 target_num_workers = 2;</code>
      */
-    private $target_num_workers = 0;
+    protected $target_num_workers = 0;
     /**
      * The type of autoscaling event to report.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.AutoscalingEvent.AutoscalingEventType event_type = 3;</code>
      */
-    private $event_type = 0;
+    protected $event_type = 0;
     /**
      * A message describing why the system decided to adjust the current
      * number of workers, why it failed, or why the system decided to
@@ -41,20 +41,20 @@ class AutoscalingEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.StructuredMessage description = 4;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * The time this event was emitted to indicate a new target or current
      * num_workers value.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp time = 5;</code>
      */
-    private $time = null;
+    protected $time = null;
     /**
      * A short and friendly name for the worker pool this event refers to.
      *
      * Generated from protobuf field <code>string worker_pool = 7;</code>
      */
-    private $worker_pool = '';
+    protected $worker_pool = '';
 
     /**
      * Constructor.

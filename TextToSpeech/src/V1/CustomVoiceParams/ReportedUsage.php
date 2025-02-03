@@ -63,6 +63,4 @@ class ReportedUsage
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReportedUsage::class, \Google\Cloud\TextToSpeech\V1\CustomVoiceParams_ReportedUsage::class);
 

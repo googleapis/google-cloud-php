@@ -44,6 +44,12 @@ class IngestionFailureEvent extends \Google\Protobuf\Internal\Message
      *           Required. Error details explaining why ingestion to Pub/Sub has failed.
      *     @type \Google\Cloud\PubSub\V1\IngestionFailureEvent\CloudStorageFailure $cloud_storage_failure
      *           Optional. Failure when ingesting from Cloud Storage.
+     *     @type \Google\Cloud\PubSub\V1\IngestionFailureEvent\AwsMskFailureReason $aws_msk_failure
+     *           Optional. Failure when ingesting from Amazon MSK.
+     *     @type \Google\Cloud\PubSub\V1\IngestionFailureEvent\AzureEventHubsFailureReason $azure_event_hubs_failure
+     *           Optional. Failure when ingesting from Azure Event Hubs.
+     *     @type \Google\Cloud\PubSub\V1\IngestionFailureEvent\ConfluentCloudFailureReason $confluent_cloud_failure
+     *           Optional. Failure when ingesting from Confluent Cloud.
      * }
      */
     public function __construct($data = NULL) {
@@ -132,6 +138,99 @@ class IngestionFailureEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\IngestionFailureEvent\CloudStorageFailure::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Failure when ingesting from Amazon MSK.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionFailureEvent.AwsMskFailureReason aws_msk_failure = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\PubSub\V1\IngestionFailureEvent\AwsMskFailureReason|null
+     */
+    public function getAwsMskFailure()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasAwsMskFailure()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Optional. Failure when ingesting from Amazon MSK.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionFailureEvent.AwsMskFailureReason aws_msk_failure = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\PubSub\V1\IngestionFailureEvent\AwsMskFailureReason $var
+     * @return $this
+     */
+    public function setAwsMskFailure($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\IngestionFailureEvent\AwsMskFailureReason::class);
+        $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Failure when ingesting from Azure Event Hubs.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionFailureEvent.AzureEventHubsFailureReason azure_event_hubs_failure = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\PubSub\V1\IngestionFailureEvent\AzureEventHubsFailureReason|null
+     */
+    public function getAzureEventHubsFailure()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasAzureEventHubsFailure()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Optional. Failure when ingesting from Azure Event Hubs.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionFailureEvent.AzureEventHubsFailureReason azure_event_hubs_failure = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\PubSub\V1\IngestionFailureEvent\AzureEventHubsFailureReason $var
+     * @return $this
+     */
+    public function setAzureEventHubsFailure($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\IngestionFailureEvent\AzureEventHubsFailureReason::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Failure when ingesting from Confluent Cloud.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionFailureEvent.ConfluentCloudFailureReason confluent_cloud_failure = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\PubSub\V1\IngestionFailureEvent\ConfluentCloudFailureReason|null
+     */
+    public function getConfluentCloudFailure()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasConfluentCloudFailure()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Optional. Failure when ingesting from Confluent Cloud.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionFailureEvent.ConfluentCloudFailureReason confluent_cloud_failure = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\PubSub\V1\IngestionFailureEvent\ConfluentCloudFailureReason $var
+     * @return $this
+     */
+    public function setConfluentCloudFailure($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\IngestionFailureEvent\ConfluentCloudFailureReason::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

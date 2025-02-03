@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_PacketMirrorings_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\PacketMirroringsClient;
+use Google\Cloud\Compute\V1\InsertPacketMirroringRequest;
 use Google\Cloud\Compute\V1\PacketMirroring;
-use Google\Cloud\Compute\V1\PacketMirroringsClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function insert_sample(string $project, string $region): void
     // Create a client.
     $packetMirroringsClient = new PacketMirroringsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $packetMirroringResource = new PacketMirroring();
+    $request = (new InsertPacketMirroringRequest())
+        ->setPacketMirroringResource($packetMirroringResource)
+        ->setProject($project)
+        ->setRegion($region);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $packetMirroringsClient->insert($packetMirroringResource, $project, $region);
+        $response = $packetMirroringsClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

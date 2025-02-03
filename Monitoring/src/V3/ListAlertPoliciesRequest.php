@@ -28,7 +28,7 @@ class ListAlertPoliciesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. If provided, this field specifies the criteria that must be met
      * by alert policies to be included in the response.
@@ -37,7 +37,7 @@ class ListAlertPoliciesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. A comma-separated list of fields by which to sort the result.
      * Supports the same set of field references as the `filter` field. Entries
@@ -47,13 +47,13 @@ class ListAlertPoliciesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
     /**
      * Optional. The maximum number of results to return in a single response.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. If this field is not empty then it must contain the
      * `nextPageToken` value returned by a previous call to this method.  Using
@@ -62,7 +62,7 @@ class ListAlertPoliciesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $name Required. The

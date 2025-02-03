@@ -40,9 +40,9 @@ class EkmSolution
      */
     const THALES = 3;
     /**
-     * EKM Partner Virtu
+     * This enum value is never used.
      *
-     * Generated from protobuf enum <code>VIRTRU = 4;</code>
+     * Generated from protobuf enum <code>VIRTRU = 4 [deprecated = true];</code>
      */
     const VIRTRU = 4;
 

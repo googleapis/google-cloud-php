@@ -20,7 +20,7 @@ class ListSelect extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string title = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * Required. List items.
      *
@@ -32,7 +32,7 @@ class ListSelect extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subtitle = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $subtitle = '';
+    protected $subtitle = '';
 
     /**
      * Constructor.

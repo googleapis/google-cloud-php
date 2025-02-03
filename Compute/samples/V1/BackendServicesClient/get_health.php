@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_BackendServices_GetHealth_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Compute\V1\BackendServiceGroupHealth;
-use Google\Cloud\Compute\V1\BackendServicesClient;
+use Google\Cloud\Compute\V1\Client\BackendServicesClient;
+use Google\Cloud\Compute\V1\GetHealthBackendServiceRequest;
 use Google\Cloud\Compute\V1\ResourceGroupReference;
 
 /**
@@ -39,17 +40,17 @@ function get_health_sample(string $backendService, string $project): void
     // Create a client.
     $backendServicesClient = new BackendServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $resourceGroupReferenceResource = new ResourceGroupReference();
+    $request = (new GetHealthBackendServiceRequest())
+        ->setBackendService($backendService)
+        ->setProject($project)
+        ->setResourceGroupReferenceResource($resourceGroupReferenceResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var BackendServiceGroupHealth $response */
-        $response = $backendServicesClient->getHealth(
-            $backendService,
-            $project,
-            $resourceGroupReferenceResource
-        );
+        $response = $backendServicesClient->getHealth($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -92,4 +92,14 @@ class ComponentTest extends TestCase
         $this->assertEquals('Google\Cloud\Iam\V1', $allProtoNamespaces['google.iam.v1']);
         $this->assertEquals('Google\Cloud\Logging\Type', $allProtoNamespaces['google.logging.type']);
     }
+
+    public function testSimplestSample()
+    {
+        $component = new Component('SecretManager');
+
+        $sample = $component->getSimplestSample();
+
+        $this->assertNotEmpty($sample);
+        $this->assertStringContainsString('getSecret', $sample);
+    }
 }

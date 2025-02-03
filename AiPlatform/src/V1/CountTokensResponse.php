@@ -28,6 +28,12 @@ class CountTokensResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 total_billable_characters = 2;</code>
      */
     protected $total_billable_characters = 0;
+    /**
+     * Output only. List of modalities that were processed in the request input.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModalityTokenCount prompt_tokens_details = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $prompt_tokens_details;
 
     /**
      * Constructor.
@@ -40,6 +46,8 @@ class CountTokensResponse extends \Google\Protobuf\Internal\Message
      *     @type int $total_billable_characters
      *           The total number of billable characters counted across all instances from
      *           the request.
+     *     @type array<\Google\Cloud\AIPlatform\V1\ModalityTokenCount>|\Google\Protobuf\Internal\RepeatedField $prompt_tokens_details
+     *           Output only. List of modalities that were processed in the request input.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,6 +105,32 @@ class CountTokensResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->total_billable_characters = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. List of modalities that were processed in the request input.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModalityTokenCount prompt_tokens_details = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPromptTokensDetails()
+    {
+        return $this->prompt_tokens_details;
+    }
+
+    /**
+     * Output only. List of modalities that were processed in the request input.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModalityTokenCount prompt_tokens_details = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\ModalityTokenCount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPromptTokensDetails($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\ModalityTokenCount::class);
+        $this->prompt_tokens_details = $arr;
 
         return $this;
     }

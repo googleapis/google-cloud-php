@@ -23,13 +23,13 @@ class CreateParticipantRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The participant to create.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Participant participant = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $participant = null;
+    protected $participant = null;
 
     /**
      * @param string                                  $parent      Required. Resource identifier of the conversation adding the participant.

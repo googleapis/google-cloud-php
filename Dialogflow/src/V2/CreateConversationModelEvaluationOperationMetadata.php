@@ -24,7 +24,7 @@ class CreateConversationModelEvaluationOperationMetadata extends \Google\Protobu
      *
      * Generated from protobuf field <code>string conversation_model_evaluation = 1;</code>
      */
-    private $conversation_model_evaluation = '';
+    protected $conversation_model_evaluation = '';
     /**
      * The resource name of the conversation model. Format:
      * `projects/<Project ID>/locations/<Location
@@ -32,20 +32,20 @@ class CreateConversationModelEvaluationOperationMetadata extends \Google\Protobu
      *
      * Generated from protobuf field <code>string conversation_model = 4;</code>
      */
-    private $conversation_model = '';
+    protected $conversation_model = '';
     /**
      * State of CreateConversationModel operation.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.CreateConversationModelEvaluationOperationMetadata.State state = 2;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Timestamp when the request to create conversation model was submitted. The
      * time is measured on server side.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
 
     /**
      * Constructor.

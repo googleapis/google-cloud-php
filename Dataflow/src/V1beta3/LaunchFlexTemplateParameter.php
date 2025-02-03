@@ -21,7 +21,7 @@ class LaunchFlexTemplateParameter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string job_name = 1;</code>
      */
-    private $job_name = '';
+    protected $job_name = '';
     /**
      * The parameters for FlexTemplate.
      * Ex. {"num_workers":"5"}
@@ -42,7 +42,7 @@ class LaunchFlexTemplateParameter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.FlexTemplateRuntimeEnvironment environment = 7;</code>
      */
-    private $environment = null;
+    protected $environment = null;
     /**
      * Set this to true if you are sending a request to update a running
      * streaming job. When set, the job name should be the same as the
@@ -50,7 +50,7 @@ class LaunchFlexTemplateParameter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool update = 8;</code>
      */
-    private $update = false;
+    protected $update = false;
     /**
      * Use this to pass transform_name_mappings for streaming update jobs.
      * Ex:{"oldTransformName":"newTransformName",...}'

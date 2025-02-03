@@ -47,7 +47,7 @@ class PrometheusQueryLanguageCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $query = '';
+    protected $query = '';
     /**
      * Optional. Alerts are considered firing once their PromQL expression was
      * evaluated to be "true" for this long.
@@ -58,7 +58,7 @@ class PrometheusQueryLanguageCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $duration = null;
+    protected $duration = null;
     /**
      * Optional. How often this rule should be evaluated.
      * Must be a positive multiple of 30 seconds or missing.
@@ -69,7 +69,7 @@ class PrometheusQueryLanguageCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration evaluation_interval = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $evaluation_interval = null;
+    protected $evaluation_interval = null;
     /**
      * Optional. Labels to add to or overwrite in the PromQL query result.
      * Label names [must be
@@ -96,7 +96,7 @@ class PrometheusQueryLanguageCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string rule_group = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $rule_group = '';
+    protected $rule_group = '';
     /**
      * Optional. The alerting rule name of this alert in the corresponding
      * Prometheus configuration file.
@@ -112,7 +112,19 @@ class PrometheusQueryLanguageCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string alert_rule = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $alert_rule = '';
+    protected $alert_rule = '';
+    /**
+     * Optional. Whether to disable metric existence validation for this
+     * condition.
+     * This allows alerting policies to be defined on metrics that do not yet
+     * exist, improving advanced customer workflows such as configuring
+     * alerting policies using Terraform.
+     * Users with the `monitoring.alertPolicyViewer` role are able to see the
+     * name of the non-existent metric in the alerting policy condition.
+     *
+     * Generated from protobuf field <code>bool disable_metric_validation = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $disable_metric_validation = false;
 
     /**
      * Constructor.
@@ -169,6 +181,14 @@ class PrometheusQueryLanguageCondition extends \Google\Protobuf\Internal\Message
      *           [valid Prometheus label
      *           name](https://prometheus.io/docs/concepts/data_model/#metric-names-and-labels).
      *           This field may not exceed 2048 Unicode characters in length.
+     *     @type bool $disable_metric_validation
+     *           Optional. Whether to disable metric existence validation for this
+     *           condition.
+     *           This allows alerting policies to be defined on metrics that do not yet
+     *           exist, improving advanced customer workflows such as configuring
+     *           alerting policies using Terraform.
+     *           Users with the `monitoring.alertPolicyViewer` role are able to see the
+     *           name of the non-existent metric in the alerting policy condition.
      * }
      */
     public function __construct($data = NULL) {
@@ -426,8 +446,44 @@ class PrometheusQueryLanguageCondition extends \Google\Protobuf\Internal\Message
         return $this;
     }
 
+    /**
+     * Optional. Whether to disable metric existence validation for this
+     * condition.
+     * This allows alerting policies to be defined on metrics that do not yet
+     * exist, improving advanced customer workflows such as configuring
+     * alerting policies using Terraform.
+     * Users with the `monitoring.alertPolicyViewer` role are able to see the
+     * name of the non-existent metric in the alerting policy condition.
+     *
+     * Generated from protobuf field <code>bool disable_metric_validation = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDisableMetricValidation()
+    {
+        return $this->disable_metric_validation;
+    }
+
+    /**
+     * Optional. Whether to disable metric existence validation for this
+     * condition.
+     * This allows alerting policies to be defined on metrics that do not yet
+     * exist, improving advanced customer workflows such as configuring
+     * alerting policies using Terraform.
+     * Users with the `monitoring.alertPolicyViewer` role are able to see the
+     * name of the non-existent metric in the alerting policy condition.
+     *
+     * Generated from protobuf field <code>bool disable_metric_validation = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableMetricValidation($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_metric_validation = $var;
+
+        return $this;
+    }
+
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PrometheusQueryLanguageCondition::class, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition_PrometheusQueryLanguageCondition::class);
 

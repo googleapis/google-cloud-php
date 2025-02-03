@@ -20,19 +20,19 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * If specified, list snapshots created from this job.
      *
      * Generated from protobuf field <code>string job_id = 3;</code>
      */
-    private $job_id = '';
+    protected $job_id = '';
     /**
      * The location to list snapshots in.
      *
      * Generated from protobuf field <code>string location = 2;</code>
      */
-    private $location = '';
+    protected $location = '';
 
     /**
      * Constructor.

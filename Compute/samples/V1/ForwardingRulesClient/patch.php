@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_ForwardingRules_Patch_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\ForwardingRulesClient;
 use Google\Cloud\Compute\V1\ForwardingRule;
-use Google\Cloud\Compute\V1\ForwardingRulesClient;
+use Google\Cloud\Compute\V1\PatchForwardingRuleRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function patch_sample(string $forwardingRule, string $project, string $region): 
     // Create a client.
     $forwardingRulesClient = new ForwardingRulesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $forwardingRuleResource = new ForwardingRule();
+    $request = (new PatchForwardingRuleRequest())
+        ->setForwardingRule($forwardingRule)
+        ->setForwardingRuleResource($forwardingRuleResource)
+        ->setProject($project)
+        ->setRegion($region);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $forwardingRulesClient->patch(
-            $forwardingRule,
-            $forwardingRuleResource,
-            $project,
-            $region
-        );
+        $response = $forwardingRulesClient->patch($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

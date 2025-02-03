@@ -38,9 +38,12 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
      */
     protected $description = '';
     /**
-     * Output only. The default template to use if not specified.
+     * Output only. Deprecated: This field has no behavior. Use
+     * notebook_runtime_type = 'ONE_CLICK' instead.
+     * The default template to use if not specified.
      *
-     * Generated from protobuf field <code>bool is_default = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>bool is_default = 4 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     protected $is_default = false;
     /**
@@ -65,6 +68,14 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
      */
     protected $network_spec = null;
     /**
+     * Deprecated: This field is ignored and the "Vertex AI Notebook Service
+     * Account"
+     * (service-PROJECT_NUMBER&#64;gcp-sa-aiplatform-vm.iam.gserviceaccount.com) is
+     * used for the runtime workload identity.
+     * See
+     * https://cloud.google.com/iam/docs/service-agents#vertex-ai-notebook-service-account
+     * for more details.
+     * For NotebookExecutionJob, use NotebookExecutionJob.service_account instead.
      * The service account that the runtime workload runs as.
      * You can use any service account within the same project, but you
      * must have the service account user permission to use the instance.
@@ -72,7 +83,8 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
      * account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account)
      * is used.
      *
-     * Generated from protobuf field <code>string service_account = 13;</code>
+     * Generated from protobuf field <code>string service_account = 13 [deprecated = true];</code>
+     * @deprecated
      */
     protected $service_account = '';
     /**
@@ -160,7 +172,9 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           The description of the NotebookRuntimeTemplate.
      *     @type bool $is_default
-     *           Output only. The default template to use if not specified.
+     *           Output only. Deprecated: This field has no behavior. Use
+     *           notebook_runtime_type = 'ONE_CLICK' instead.
+     *           The default template to use if not specified.
      *     @type \Google\Cloud\AIPlatform\V1\MachineSpec $machine_spec
      *           Optional. Immutable. The specification of a single machine for the
      *           template.
@@ -171,6 +185,14 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\NetworkSpec $network_spec
      *           Optional. Network spec.
      *     @type string $service_account
+     *           Deprecated: This field is ignored and the "Vertex AI Notebook Service
+     *           Account"
+     *           (service-PROJECT_NUMBER&#64;gcp-sa-aiplatform-vm.iam.gserviceaccount.com) is
+     *           used for the runtime workload identity.
+     *           See
+     *           https://cloud.google.com/iam/docs/service-agents#vertex-ai-notebook-service-account
+     *           for more details.
+     *           For NotebookExecutionJob, use NotebookExecutionJob.service_account instead.
      *           The service account that the runtime workload runs as.
      *           You can use any service account within the same project, but you
      *           must have the service account user permission to use the instance.
@@ -296,25 +318,33 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The default template to use if not specified.
+     * Output only. Deprecated: This field has no behavior. Use
+     * notebook_runtime_type = 'ONE_CLICK' instead.
+     * The default template to use if not specified.
      *
-     * Generated from protobuf field <code>bool is_default = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>bool is_default = 4 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
+     * @deprecated
      */
     public function getIsDefault()
     {
+        @trigger_error('is_default is deprecated.', E_USER_DEPRECATED);
         return $this->is_default;
     }
 
     /**
-     * Output only. The default template to use if not specified.
+     * Output only. Deprecated: This field has no behavior. Use
+     * notebook_runtime_type = 'ONE_CLICK' instead.
+     * The default template to use if not specified.
      *
-     * Generated from protobuf field <code>bool is_default = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>bool is_default = 4 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setIsDefault($var)
     {
+        @trigger_error('is_default is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->is_default = $var;
 
@@ -436,6 +466,14 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Deprecated: This field is ignored and the "Vertex AI Notebook Service
+     * Account"
+     * (service-PROJECT_NUMBER&#64;gcp-sa-aiplatform-vm.iam.gserviceaccount.com) is
+     * used for the runtime workload identity.
+     * See
+     * https://cloud.google.com/iam/docs/service-agents#vertex-ai-notebook-service-account
+     * for more details.
+     * For NotebookExecutionJob, use NotebookExecutionJob.service_account instead.
      * The service account that the runtime workload runs as.
      * You can use any service account within the same project, but you
      * must have the service account user permission to use the instance.
@@ -443,15 +481,25 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
      * account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account)
      * is used.
      *
-     * Generated from protobuf field <code>string service_account = 13;</code>
+     * Generated from protobuf field <code>string service_account = 13 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getServiceAccount()
     {
+        @trigger_error('service_account is deprecated.', E_USER_DEPRECATED);
         return $this->service_account;
     }
 
     /**
+     * Deprecated: This field is ignored and the "Vertex AI Notebook Service
+     * Account"
+     * (service-PROJECT_NUMBER&#64;gcp-sa-aiplatform-vm.iam.gserviceaccount.com) is
+     * used for the runtime workload identity.
+     * See
+     * https://cloud.google.com/iam/docs/service-agents#vertex-ai-notebook-service-account
+     * for more details.
+     * For NotebookExecutionJob, use NotebookExecutionJob.service_account instead.
      * The service account that the runtime workload runs as.
      * You can use any service account within the same project, but you
      * must have the service account user permission to use the instance.
@@ -459,12 +507,14 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
      * account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account)
      * is used.
      *
-     * Generated from protobuf field <code>string service_account = 13;</code>
+     * Generated from protobuf field <code>string service_account = 13 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setServiceAccount($var)
     {
+        @trigger_error('service_account is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->service_account = $var;
 

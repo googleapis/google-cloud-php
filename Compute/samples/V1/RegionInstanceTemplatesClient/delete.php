@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionInstanceTemplates_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionInstanceTemplatesClient;
+use Google\Cloud\Compute\V1\Client\RegionInstanceTemplatesClient;
+use Google\Cloud\Compute\V1\DeleteRegionInstanceTemplateRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $instanceTemplate, string $project, string $region
     // Create a client.
     $regionInstanceTemplatesClient = new RegionInstanceTemplatesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteRegionInstanceTemplateRequest())
+        ->setInstanceTemplate($instanceTemplate)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionInstanceTemplatesClient->delete($instanceTemplate, $project, $region);
+        $response = $regionInstanceTemplatesClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -20,13 +20,13 @@ class Range extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double min = 1;</code>
      */
-    private $min = 0.0;
+    protected $min = 0.0;
     /**
      * Range maximum.
      *
      * Generated from protobuf field <code>double max = 2;</code>
      */
-    private $max = 0.0;
+    protected $max = 0.0;
 
     /**
      * Constructor.

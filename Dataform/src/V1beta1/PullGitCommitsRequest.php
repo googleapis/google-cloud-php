@@ -20,21 +20,21 @@ class PullGitCommitsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The name of the branch in the Git remote from which to pull
      * commits. If left unset, the repository's default branch name will be used.
      *
      * Generated from protobuf field <code>string remote_branch = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $remote_branch = '';
+    protected $remote_branch = '';
     /**
      * Required. The author of any merge commit which may be created as a result
      * of merging fetched Git commits into this workspace.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CommitAuthor author = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $author = null;
+    protected $author = null;
 
     /**
      * Constructor.

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Disks_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\DisksClient;
+use Google\Cloud\Compute\V1\Client\DisksClient;
+use Google\Cloud\Compute\V1\ListDisksRequest;
 
 /**
  * Retrieves a list of persistent disks contained within the specified zone.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $zone): void
     // Create a client.
     $disksClient = new DisksClient();
 
+    // Prepare the request message.
+    $request = (new ListDisksRequest())
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $disksClient->list($project, $zone);
+        $response = $disksClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

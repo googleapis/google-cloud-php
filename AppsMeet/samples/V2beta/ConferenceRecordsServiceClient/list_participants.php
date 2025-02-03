@@ -30,8 +30,7 @@ use Google\Apps\Meet\V2beta\ListParticipantsRequest;
 use Google\Apps\Meet\V2beta\Participant;
 
 /**
- * [Developer Preview](https://developers.google.com/workspace/preview).
- * Lists the participants in a conference record, by default ordered by join
+ * Lists the participants in a conference record. By default, ordered by join
  * time and in descending order. This API supports `fields` as standard
  * parameters like every other API. However, when the `fields` request
  * parameter is omitted, this API defaults to `'participants/*,

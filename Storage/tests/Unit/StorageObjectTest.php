@@ -977,7 +977,7 @@ class StorageObjectTest extends TestCase
     }
 
     private function getStorageObjectForSigning(
-        SignBlobInterface $credentials = null,
+        ?SignBlobInterface $credentials = null,
         $scopes = '',
         $generation = null
     ) {

@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_UrlMaps_Validate_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\UrlMapsClient;
+use Google\Cloud\Compute\V1\Client\UrlMapsClient;
 use Google\Cloud\Compute\V1\UrlMapsValidateRequest;
 use Google\Cloud\Compute\V1\UrlMapsValidateResponse;
+use Google\Cloud\Compute\V1\ValidateUrlMapRequest;
 
 /**
  * Runs static validation for the UrlMap. In particular, the tests of the provided UrlMap will be run. Calling this method does NOT create the UrlMap.
@@ -39,13 +40,17 @@ function validate_sample(string $project, string $urlMap): void
     // Create a client.
     $urlMapsClient = new UrlMapsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $urlMapsValidateRequestResource = new UrlMapsValidateRequest();
+    $request = (new ValidateUrlMapRequest())
+        ->setProject($project)
+        ->setUrlMap($urlMap)
+        ->setUrlMapsValidateRequestResource($urlMapsValidateRequestResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var UrlMapsValidateResponse $response */
-        $response = $urlMapsClient->validate($project, $urlMap, $urlMapsValidateRequestResource);
+        $response = $urlMapsClient->validate($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

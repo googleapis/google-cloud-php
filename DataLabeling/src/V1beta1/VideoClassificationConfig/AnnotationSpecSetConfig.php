@@ -20,14 +20,14 @@ class AnnotationSpecSetConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string annotation_spec_set = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $annotation_spec_set = '';
+    protected $annotation_spec_set = '';
     /**
      * Optional. If allow_multi_label is true, contributors are able to
      * choose multiple labels from one annotation spec set.
      *
      * Generated from protobuf field <code>bool allow_multi_label = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $allow_multi_label = false;
+    protected $allow_multi_label = false;
 
     /**
      * Constructor.
@@ -103,6 +103,4 @@ class AnnotationSpecSetConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AnnotationSpecSetConfig::class, \Google\Cloud\DataLabeling\V1beta1\VideoClassificationConfig_AnnotationSpecSetConfig::class);
 

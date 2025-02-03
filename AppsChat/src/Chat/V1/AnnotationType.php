@@ -37,12 +37,19 @@ class AnnotationType
      * Generated from protobuf enum <code>RICH_LINK = 3;</code>
      */
     const RICH_LINK = 3;
+    /**
+     * A custom emoji annotation.
+     *
+     * Generated from protobuf enum <code>CUSTOM_EMOJI = 4;</code>
+     */
+    const CUSTOM_EMOJI = 4;
 
     private static $valueToName = [
         self::ANNOTATION_TYPE_UNSPECIFIED => 'ANNOTATION_TYPE_UNSPECIFIED',
         self::USER_MENTION => 'USER_MENTION',
         self::SLASH_COMMAND => 'SLASH_COMMAND',
         self::RICH_LINK => 'RICH_LINK',
+        self::CUSTOM_EMOJI => 'CUSTOM_EMOJI',
     ];
 
     public static function name($value)

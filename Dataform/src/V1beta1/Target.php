@@ -21,19 +21,19 @@ class Target extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database = 1;</code>
      */
-    private $database = '';
+    protected $database = '';
     /**
      * The action's schema (BigQuery dataset ID), within `database`.
      *
      * Generated from protobuf field <code>string schema = 2;</code>
      */
-    private $schema = '';
+    protected $schema = '';
     /**
      * The action's name, within `database` and `schema`.
      *
      * Generated from protobuf field <code>string name = 3;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * Constructor.

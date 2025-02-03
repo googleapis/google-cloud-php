@@ -30,7 +30,7 @@ use Google\Cloud\Config\V1\ListResourcesRequest;
 use Google\Cloud\Config\V1\Resource;
 
 /**
- * Lists [Resource][google.cloud.config.v1.Resource]s in a given revision.
+ * Lists [Resources][google.cloud.config.v1.Resource] in a given revision.
  *
  * @param string $formattedParent The parent in whose context the Resources are listed. The parent
  *                                value is in the format:

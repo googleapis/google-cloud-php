@@ -20,7 +20,7 @@ class SdkHarnessContainerImage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string container_image = 1;</code>
      */
-    private $container_image = '';
+    protected $container_image = '';
     /**
      * If true, recommends the Dataflow service to use only one core per SDK
      * container instance with this image. If false (or unset) recommends using
@@ -30,14 +30,14 @@ class SdkHarnessContainerImage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool use_single_core_per_container = 2;</code>
      */
-    private $use_single_core_per_container = false;
+    protected $use_single_core_per_container = false;
     /**
      * Environment ID for the Beam runner API proto Environment that corresponds
      * to the current SDK Harness.
      *
      * Generated from protobuf field <code>string environment_id = 3;</code>
      */
-    private $environment_id = '';
+    protected $environment_id = '';
     /**
      * The set of capabilities enumerated in the above Environment proto. See also
      * https://github.com/apache/beam/blob/master/model/pipeline/src/main/proto/beam_runner_api.proto

@@ -20,19 +20,19 @@ class ExecutionStageState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string execution_stage_name = 1;</code>
      */
-    private $execution_stage_name = '';
+    protected $execution_stage_name = '';
     /**
      * Executions stage states allow the same set of values as JobState.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.JobState execution_stage_state = 2;</code>
      */
-    private $execution_stage_state = 0;
+    protected $execution_stage_state = 0;
     /**
      * The time at which the stage transitioned to this state.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp current_state_time = 3;</code>
      */
-    private $current_state_time = null;
+    protected $current_state_time = null;
 
     /**
      * Constructor.

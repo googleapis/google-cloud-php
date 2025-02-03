@@ -22,7 +22,7 @@ class AudienceEventFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string event_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $event_name = '';
+    protected $event_name = '';
     /**
      * Optional. If specified, this filter matches events that match both the
      * single event name and the parameter filter expressions. AudienceEventFilter
@@ -34,7 +34,7 @@ class AudienceEventFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AudienceFilterExpression event_parameter_filter_expression = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $event_parameter_filter_expression = null;
+    protected $event_parameter_filter_expression = null;
 
     /**
      * Constructor.

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Instances_SetName_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\Client\InstancesClient;
 use Google\Cloud\Compute\V1\InstancesSetNameRequest;
+use Google\Cloud\Compute\V1\SetNameInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,13 +42,18 @@ function set_name_sample(string $instance, string $project, string $zone): void
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instancesSetNameRequestResource = new InstancesSetNameRequest();
+    $request = (new SetNameInstanceRequest())
+        ->setInstance($instance)
+        ->setInstancesSetNameRequestResource($instancesSetNameRequestResource)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->setName($instance, $instancesSetNameRequestResource, $project, $zone);
+        $response = $instancesClient->setName($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

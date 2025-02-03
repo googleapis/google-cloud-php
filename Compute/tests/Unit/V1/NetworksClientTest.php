@@ -324,6 +324,7 @@ class NetworksClientTest extends GeneratedTest
         $mtu = 108462;
         $name = 'name3373707';
         $networkFirewallPolicyEnforcementOrder = 'networkFirewallPolicyEnforcementOrder1617117520';
+        $networkProfile = 'networkProfile709983384';
         $selfLink = 'selfLink-1691268851';
         $selfLinkWithId = 'selfLinkWithId-1029220862';
         $expectedResponse = new Network();
@@ -340,6 +341,7 @@ class NetworksClientTest extends GeneratedTest
         $expectedResponse->setMtu($mtu);
         $expectedResponse->setName($name);
         $expectedResponse->setNetworkFirewallPolicyEnforcementOrder($networkFirewallPolicyEnforcementOrder);
+        $expectedResponse->setNetworkProfile($networkProfile);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setSelfLinkWithId($selfLinkWithId);
         $transport->addResponse($expectedResponse);

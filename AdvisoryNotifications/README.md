@@ -34,7 +34,35 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\AdvisoryNotifications\V1\Client\AdvisoryNotificationsServiceClient;
+Google\Cloud\AdvisoryNotifications\V1\GetNotificationRequest;
+Google\Cloud\AdvisoryNotifications\V1\Notification;
+
+// Create a client.
+$advisoryNotificationsServiceClient = new AdvisoryNotificationsServiceClient();
+
+// Prepare the request message.
+$request = (new GetNotificationRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Notification $response */
+    $response = $advisoryNotificationsServiceClient->getNotification($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/google-cloud-php-advisorynotifications/tree/main/samples) for a canonical list of samples.
+
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
 
 ### Version
 
