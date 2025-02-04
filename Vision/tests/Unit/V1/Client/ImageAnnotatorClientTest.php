@@ -24,7 +24,6 @@ namespace Google\Cloud\Vision\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest;
@@ -37,6 +36,7 @@ use Google\Cloud\Vision\V1\BatchAnnotateImagesRequest;
 use Google\Cloud\Vision\V1\BatchAnnotateImagesResponse;
 use Google\Cloud\Vision\V1\Client\ImageAnnotatorClient;
 use Google\Cloud\Vision\V1\OutputConfig;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

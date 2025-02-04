@@ -24,7 +24,6 @@ namespace Google\Cloud\Vision\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Vision\V1\AddProductToProductSetRequest;
@@ -56,6 +55,7 @@ use Google\Cloud\Vision\V1\ReferenceImage;
 use Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest;
 use Google\Cloud\Vision\V1\UpdateProductRequest;
 use Google\Cloud\Vision\V1\UpdateProductSetRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
