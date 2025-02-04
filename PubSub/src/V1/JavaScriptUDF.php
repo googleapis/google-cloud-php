@@ -26,6 +26,7 @@ class JavaScriptUDF extends \Google\Protobuf\Internal\Message
     /**
      * Required. JavaScript code that contains a function `function_name` with the
      * below signature:
+     * ```
      *   /&#42;*
      *   * Transforms a Pub/Sub message.
      *   * &#64;return {(Object<string, (string | Object<string, string>)>|null)} - To
@@ -49,6 +50,7 @@ class JavaScriptUDF extends \Google\Protobuf\Internal\Message
      *   *&#47;
      *   function <function_name>(message, metadata) {
      *   }
+     * ```
      *
      * Generated from protobuf field <code>string code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -66,6 +68,7 @@ class JavaScriptUDF extends \Google\Protobuf\Internal\Message
      *     @type string $code
      *           Required. JavaScript code that contains a function `function_name` with the
      *           below signature:
+     *           ```
      *             /&#42;*
      *             * Transforms a Pub/Sub message.
      *             * &#64;return {(Object<string, (string | Object<string, string>)>|null)} - To
@@ -89,6 +92,7 @@ class JavaScriptUDF extends \Google\Protobuf\Internal\Message
      *             *&#47;
      *             function <function_name>(message, metadata) {
      *             }
+     *           ```
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +131,7 @@ class JavaScriptUDF extends \Google\Protobuf\Internal\Message
     /**
      * Required. JavaScript code that contains a function `function_name` with the
      * below signature:
+     * ```
      *   /&#42;*
      *   * Transforms a Pub/Sub message.
      *   * &#64;return {(Object<string, (string | Object<string, string>)>|null)} - To
@@ -150,6 +155,7 @@ class JavaScriptUDF extends \Google\Protobuf\Internal\Message
      *   *&#47;
      *   function <function_name>(message, metadata) {
      *   }
+     * ```
      *
      * Generated from protobuf field <code>string code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -162,6 +168,7 @@ class JavaScriptUDF extends \Google\Protobuf\Internal\Message
     /**
      * Required. JavaScript code that contains a function `function_name` with the
      * below signature:
+     * ```
      *   /&#42;*
      *   * Transforms a Pub/Sub message.
      *   * &#64;return {(Object<string, (string | Object<string, string>)>|null)} - To
@@ -185,6 +192,7 @@ class JavaScriptUDF extends \Google\Protobuf\Internal\Message
      *   *&#47;
      *   function <function_name>(message, metadata) {
      *   }
+     * ```
      *
      * Generated from protobuf field <code>string code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
