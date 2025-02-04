@@ -24,7 +24,6 @@ namespace Google\Cloud\Translate\Tests\Unit\V3\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Translate\V3\AdaptiveMtDataset;
@@ -97,6 +96,7 @@ use Google\Cloud\Translate\V3\TranslateTextRequest;
 use Google\Cloud\Translate\V3\TranslateTextResponse;
 use Google\Cloud\Translate\V3\UpdateGlossaryEntryRequest;
 use Google\Cloud\Translate\V3\UpdateGlossaryRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
