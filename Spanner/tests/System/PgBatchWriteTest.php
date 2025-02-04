@@ -31,6 +31,8 @@ class PgBatchWriteTest extends SpannerPgTestCase
      */
     public static function setUpTestFixtures(): void
     {
+        // The BatchWrite tests are skipped for the GSQL dialect when running
+        // against the emulator.
         self::skipEmulatorTests();
         parent::setUpTestFixtures();
 
