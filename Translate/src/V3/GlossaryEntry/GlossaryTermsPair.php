@@ -20,13 +20,13 @@ class GlossaryTermsPair extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.GlossaryTerm source_term = 1;</code>
      */
-    private $source_term = null;
+    protected $source_term = null;
     /**
      * The term that will replace the match source term.
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.GlossaryTerm target_term = 2;</code>
      */
-    private $target_term = null;
+    protected $target_term = null;
 
     /**
      * Constructor.
@@ -119,6 +119,4 @@ class GlossaryTermsPair extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GlossaryTermsPair::class, \Google\Cloud\Translate\V3\GlossaryEntry_GlossaryTermsPair::class);
 

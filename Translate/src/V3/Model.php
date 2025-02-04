@@ -21,7 +21,7 @@ class Model extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The name of the model to show in the interface. The name can be
      * up to 32 characters long and can consist only of ASCII Latin letters A-Z
@@ -29,58 +29,58 @@ class Model extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The dataset from which the model is trained, in form of
      * `projects/{project-number-or-id}/locations/{location_id}/datasets/{dataset_id}`
      *
      * Generated from protobuf field <code>string dataset = 3;</code>
      */
-    private $dataset = '';
+    protected $dataset = '';
     /**
      * Output only. The BCP-47 language code of the source language.
      *
      * Generated from protobuf field <code>string source_language_code = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $source_language_code = '';
+    protected $source_language_code = '';
     /**
      * Output only. The BCP-47 language code of the target language.
      *
      * Generated from protobuf field <code>string target_language_code = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $target_language_code = '';
+    protected $target_language_code = '';
     /**
      * Output only. Number of examples (sentence pairs) used to train the model.
      *
      * Generated from protobuf field <code>int32 train_example_count = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $train_example_count = 0;
+    protected $train_example_count = 0;
     /**
      * Output only. Number of examples (sentence pairs) used to validate the
      * model.
      *
      * Generated from protobuf field <code>int32 validate_example_count = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $validate_example_count = 0;
+    protected $validate_example_count = 0;
     /**
      * Output only. Number of examples (sentence pairs) used to test the model.
      *
      * Generated from protobuf field <code>int32 test_example_count = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $test_example_count = 0;
+    protected $test_example_count = 0;
     /**
      * Output only. Timestamp when the model resource was created, which is also
      * when the training started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this model was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
 
     /**
      * Constructor.
