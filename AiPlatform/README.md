@@ -1,6 +1,6 @@
 # Google Cloud Vertex AI for PHP
 
-> Idiomatic PHP client for [Google Cloud Vertex AI](https://cloud.google.com/ai-platform).
+> Idiomatic PHP client for [Google Cloud Vertex AI](https://cloud.google.com/vertex-ai).
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-ai-platform/v/stable)](https://packagist.org/packages/google/cloud-ai-platform) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-ai-platform.svg)](https://packagist.org/packages/google/cloud-ai-platform)
 
@@ -40,4 +40,4 @@ any minor or patch releases. We will address issues and requests with the highes
 
 ### Next Steps
 
-1. Understand the [official documentation](https://cloud.google.com/ai-platform/docs).
+1. Understand the [official documentation](https://cloud.google.com/vertex-ai/docs).
