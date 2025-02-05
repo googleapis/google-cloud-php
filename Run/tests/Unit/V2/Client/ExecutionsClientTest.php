@@ -93,6 +93,7 @@ class ExecutionsClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name2 = 'name2-1052831874';
         $uid = 'uid115792';
+        $creator = 'creator1028554796';
         $generation = 305703192;
         $job = 'job105405';
         $parallelism = 635164956;
@@ -110,6 +111,7 @@ class ExecutionsClientTest extends GeneratedTest
         $expectedResponse = new Execution();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
+        $expectedResponse->setCreator($creator);
         $expectedResponse->setGeneration($generation);
         $expectedResponse->setJob($job);
         $expectedResponse->setParallelism($parallelism);
@@ -247,6 +249,7 @@ class ExecutionsClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name2 = 'name2-1052831874';
         $uid = 'uid115792';
+        $creator = 'creator1028554796';
         $generation = 305703192;
         $job = 'job105405';
         $parallelism = 635164956;
@@ -264,6 +267,7 @@ class ExecutionsClientTest extends GeneratedTest
         $expectedResponse = new Execution();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
+        $expectedResponse->setCreator($creator);
         $expectedResponse->setGeneration($generation);
         $expectedResponse->setJob($job);
         $expectedResponse->setParallelism($parallelism);
@@ -389,6 +393,7 @@ class ExecutionsClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $uid = 'uid115792';
+        $creator = 'creator1028554796';
         $generation = 305703192;
         $job = 'job105405';
         $parallelism = 635164956;
@@ -406,6 +411,7 @@ class ExecutionsClientTest extends GeneratedTest
         $expectedResponse = new Execution();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
+        $expectedResponse->setCreator($creator);
         $expectedResponse->setGeneration($generation);
         $expectedResponse->setJob($job);
         $expectedResponse->setParallelism($parallelism);
@@ -567,6 +573,7 @@ class ExecutionsClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name2 = 'name2-1052831874';
         $uid = 'uid115792';
+        $creator = 'creator1028554796';
         $generation = 305703192;
         $job = 'job105405';
         $parallelism = 635164956;
@@ -584,6 +591,7 @@ class ExecutionsClientTest extends GeneratedTest
         $expectedResponse = new Execution();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
+        $expectedResponse->setCreator($creator);
         $expectedResponse->setGeneration($generation);
         $expectedResponse->setJob($job);
         $expectedResponse->setParallelism($parallelism);

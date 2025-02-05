@@ -40,7 +40,7 @@ class BuildpacksBuild extends \Google\Protobuf\Internal\Message
      */
     protected $cache_image_uri = '';
     /**
-     * Optional. The base image used to opt into automatic base image updates.
+     * Optional. The base image to use for the build.
      *
      * Generated from protobuf field <code>string base_image = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -59,6 +59,14 @@ class BuildpacksBuild extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_automatic_updates = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $enable_automatic_updates = false;
+    /**
+     * Optional. project_descriptor stores the path to the project descriptor
+     * file. When empty, it means that there is no project descriptor file in
+     * the source.
+     *
+     * Generated from protobuf field <code>string project_descriptor = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $project_descriptor = '';
 
     /**
      * Constructor.
@@ -78,13 +86,17 @@ class BuildpacksBuild extends \Google\Protobuf\Internal\Message
      *           build-specific temporary URL by substituting the tag with the build ID.
      *           The build will clean up the temporary image on a best-effort basis.
      *     @type string $base_image
-     *           Optional. The base image used to opt into automatic base image updates.
+     *           Optional. The base image to use for the build.
      *     @type array|\Google\Protobuf\Internal\MapField $environment_variables
      *           Optional. User-provided build-time environment variables.
      *     @type bool $enable_automatic_updates
      *           Optional. Whether or not the application container will be enrolled in
      *           automatic base image updates. When true, the application will be built on
      *           a scratch base image, so the base layers can be appended at run time.
+     *     @type string $project_descriptor
+     *           Optional. project_descriptor stores the path to the project descriptor
+     *           file. When empty, it means that there is no project descriptor file in
+     *           the source.
      * }
      */
     public function __construct($data = NULL) {
@@ -185,7 +197,7 @@ class BuildpacksBuild extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The base image used to opt into automatic base image updates.
+     * Optional. The base image to use for the build.
      *
      * Generated from protobuf field <code>string base_image = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -196,7 +208,7 @@ class BuildpacksBuild extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The base image used to opt into automatic base image updates.
+     * Optional. The base image to use for the build.
      *
      * Generated from protobuf field <code>string base_image = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -262,6 +274,36 @@ class BuildpacksBuild extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_automatic_updates = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. project_descriptor stores the path to the project descriptor
+     * file. When empty, it means that there is no project descriptor file in
+     * the source.
+     *
+     * Generated from protobuf field <code>string project_descriptor = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getProjectDescriptor()
+    {
+        return $this->project_descriptor;
+    }
+
+    /**
+     * Optional. project_descriptor stores the path to the project descriptor
+     * file. When empty, it means that there is no project descriptor file in
+     * the source.
+     *
+     * Generated from protobuf field <code>string project_descriptor = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setProjectDescriptor($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->project_descriptor = $var;
 
         return $this;
     }

@@ -169,6 +169,25 @@ final class ServicesClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a build
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $build
+     *
+     * @return string The formatted build resource.
+     */
+    public static function buildName(string $project, string $location, string $build): string
+    {
+        return self::getPathTemplate('build')->render([
+            'project' => $project,
+            'location' => $location,
+            'build' => $build,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a connector
      * resource.
      *
@@ -366,9 +385,29 @@ final class ServicesClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a worker_pool
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $workerPool
+     *
+     * @return string The formatted worker_pool resource.
+     */
+    public static function workerPoolName(string $project, string $location, string $workerPool): string
+    {
+        return self::getPathTemplate('workerPool')->render([
+            'project' => $project,
+            'location' => $location,
+            'worker_pool' => $workerPool,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - build: projects/{project}/locations/{location}/builds/{build}
      * - connector: projects/{project}/locations/{location}/connectors/{connector}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - location: projects/{project}/locations/{location}
@@ -380,6 +419,7 @@ final class ServicesClient
      * - secret: projects/{project}/secrets/{secret}
      * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}
      * - service: projects/{project}/locations/{location}/services/{service}
+     * - workerPool: projects/{project}/locations/{location}/workerPools/{worker_pool}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

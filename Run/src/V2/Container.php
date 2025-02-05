@@ -105,6 +105,19 @@ class Container extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string depends_on = 12;</code>
      */
     private $depends_on;
+    /**
+     * Base image for this container. Only supported for services. If set, it
+     * indicates that the service is enrolled into automatic base image update.
+     *
+     * Generated from protobuf field <code>string base_image_uri = 13;</code>
+     */
+    protected $base_image_uri = '';
+    /**
+     * Output only. The build info of the container image.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.BuildInfo build_info = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $build_info = null;
 
     /**
      * Constructor.
@@ -150,6 +163,11 @@ class Container extends \Google\Protobuf\Internal\Message
      *           fails.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $depends_on
      *           Names of the containers that must start before this container.
+     *     @type string $base_image_uri
+     *           Base image for this container. Only supported for services. If set, it
+     *           indicates that the service is enrolled into automatic base image update.
+     *     @type \Google\Cloud\Run\V2\BuildInfo $build_info
+     *           Output only. The build info of the container image.
      * }
      */
     public function __construct($data = NULL) {
@@ -523,6 +541,70 @@ class Container extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->depends_on = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Base image for this container. Only supported for services. If set, it
+     * indicates that the service is enrolled into automatic base image update.
+     *
+     * Generated from protobuf field <code>string base_image_uri = 13;</code>
+     * @return string
+     */
+    public function getBaseImageUri()
+    {
+        return $this->base_image_uri;
+    }
+
+    /**
+     * Base image for this container. Only supported for services. If set, it
+     * indicates that the service is enrolled into automatic base image update.
+     *
+     * Generated from protobuf field <code>string base_image_uri = 13;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBaseImageUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->base_image_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The build info of the container image.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.BuildInfo build_info = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Run\V2\BuildInfo|null
+     */
+    public function getBuildInfo()
+    {
+        return $this->build_info;
+    }
+
+    public function hasBuildInfo()
+    {
+        return isset($this->build_info);
+    }
+
+    public function clearBuildInfo()
+    {
+        unset($this->build_info);
+    }
+
+    /**
+     * Output only. The build info of the container image.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.BuildInfo build_info = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Run\V2\BuildInfo $var
+     * @return $this
+     */
+    public function setBuildInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\BuildInfo::class);
+        $this->build_info = $var;
 
         return $this;
     }
