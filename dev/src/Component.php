@@ -238,8 +238,12 @@ class Component
         }
         $this->namespaces = $namespaces;
 
-        // find dependencies which are google/cloud components
         $this->componentDependencies = [];
+        // All components depend on google/auth
+        if ($this->name !== 'auth') {
+            $this->componentDependencies[] = new Component('auth', self::ROOT_DIR . '/dev/vendor/google/auth');
+        }
+        // find dependencies which are google/cloud components
         foreach ($composerJson['require'] ?? [] as $name => $version) {
             if ($componentName = key(array_filter(
                 $repoMetadataFullJson,
@@ -248,6 +252,7 @@ class Component
                 $this->componentDependencies[] = new Component($componentName);
             }
         }
+        // add gax if it's required
         if (isset($composerJson['require']['google/gax'])) {
             $this->componentDependencies[] = new Component('gax', self::ROOT_DIR . '/dev/vendor/google/gax');
             if (!isset($composerJson['require']['google/common-protos'])) {
