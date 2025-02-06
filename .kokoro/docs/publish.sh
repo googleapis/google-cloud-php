@@ -60,6 +60,13 @@ $PROJECT_DIR/dev/google-cloud docfx \
     $STAGING_FLAG \
     $VERBOSITY_FLAG
 
+# Add product-neutral guides
+$PROJECT_DIR/dev/google-cloud docfx \
+    --generate-product-neutral-guides \
+    --metadata-version 1.0.0 \
+    $STAGING_FLAG \
+    $VERBOSITY_FLAG
+
 # If this run after a release, store the released artifacts.
 if [ "$KOKORO_GITHUB_COMMIT" != "" ]; then
     # Move to the project directory
