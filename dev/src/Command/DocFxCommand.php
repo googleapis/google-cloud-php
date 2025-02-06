@@ -126,7 +126,7 @@ class DocFxCommand extends Command
 
             if ($stagingBucket = $input->getOption('staging-bucket')) {
                 $output->write(sprintf('Running docuploader to upload to staging bucket <fg=white>%s</>... ', $stagingBucket));
-                $this->uploadToStagingBucket($outDir, $stagingBucket, $output);
+                $this->uploadToStagingBucket($outDir, $stagingBucket);
                 $output->writeln('Done.');
             }
 
