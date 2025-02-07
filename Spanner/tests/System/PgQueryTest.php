@@ -208,6 +208,8 @@ class PgQueryTest extends SpannerPgTestCase
 
     public function testBindFloat32Parameter()
     {
+        // Emulator as an issue with FLOAT32 for PG.
+        $this->skipEmulatorTests();
         $db = self::$database;
 
         $res = $db->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE weight = $1', [
@@ -547,6 +549,8 @@ class PgQueryTest extends SpannerPgTestCase
 
     public function testBindPgOidParameter()
     {
+        // Emulator support for PG.OID is pending.
+        $this->skipEmulatorTests();
         $db = self::$database;
 
         $res = $db->execute('SELECT $1', [
@@ -562,6 +566,8 @@ class PgQueryTest extends SpannerPgTestCase
 
     public function testBindPgOidParameterNull()
     {
+        // Emulator support for PG.OID is pending.
+        $this->skipEmulatorTests();
         $db = self::$database;
 
         $res = $db->execute('SELECT $1', [
@@ -729,6 +735,8 @@ class PgQueryTest extends SpannerPgTestCase
      */
     public function testBindEmptyArrayOfType($type)
     {
+        // Emulator support for PG.OID is pending.
+        $this->skipEmulatorTests();
         $db = self::$database;
 
         $res = $db->execute('SELECT $1 as foo', [
@@ -767,6 +775,8 @@ class PgQueryTest extends SpannerPgTestCase
      */
     public function testBindNullArrayOfType($type)
     {
+        // Emulator support for PG.OID is pending.
+        $this->skipEmulatorTests();
         $db = self::$database;
 
         $res = $db->execute('SELECT $1 as foo', [
