@@ -25,7 +25,7 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string recognizer = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $recognizer = '';
+    protected $recognizer = '';
     /**
      * Features and audio metadata to use for the Automatic Speech Recognition.
      * This field in combination with the
@@ -36,7 +36,7 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.RecognitionConfig config = 4;</code>
      */
-    private $config = null;
+    protected $config = null;
     /**
      * The list of fields in
      * [config][google.cloud.speech.v2.BatchRecognizeRequest.config] that override
@@ -54,7 +54,7 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask config_mask = 5;</code>
      */
-    private $config_mask = null;
+    protected $config_mask = null;
     /**
      * Audio files with file metadata for ASR.
      * The maximum number of files allowed to be specified is 15.
@@ -67,13 +67,13 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.RecognitionOutputConfig recognition_output_config = 6;</code>
      */
-    private $recognition_output_config = null;
+    protected $recognition_output_config = null;
     /**
      * Processing strategy to use for this request.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.BatchRecognizeRequest.ProcessingStrategy processing_strategy = 7;</code>
      */
-    private $processing_strategy = 0;
+    protected $processing_strategy = 0;
 
     /**
      * @param string                                               $recognizer Required. The name of the Recognizer to use during recognition. The

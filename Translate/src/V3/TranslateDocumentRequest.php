@@ -27,7 +27,7 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The ISO-639 language code of the input document if known, for
      * example, "en-US" or "sr-Latn". Supported language codes are listed in
@@ -38,20 +38,20 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_language_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $source_language_code = '';
+    protected $source_language_code = '';
     /**
      * Required. The ISO-639 language code to use for translation of the input
      * document, set to one of the language codes listed in Language Support.
      *
      * Generated from protobuf field <code>string target_language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $target_language_code = '';
+    protected $target_language_code = '';
     /**
      * Required. Input configurations.
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.DocumentInputConfig document_input_config = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $document_input_config = null;
+    protected $document_input_config = null;
     /**
      * Optional. Output configurations.
      * Defines if the output file should be stored within Cloud Storage as well
@@ -61,7 +61,7 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.DocumentOutputConfig document_output_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $document_output_config = null;
+    protected $document_output_config = null;
     /**
      * Optional. The `model` type requested for this translation.
      * The format depends on model type:
@@ -74,7 +74,7 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * Optional. Glossary to be applied. The glossary must be within the same
      * region (have the same location-id) as the model, otherwise an
@@ -82,7 +82,7 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.TranslateTextGlossaryConfig glossary_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $glossary_config = null;
+    protected $glossary_config = null;
     /**
      * Optional. The labels with user-defined metadata for the request.
      * Label keys and values can be no longer than 63 characters (Unicode
@@ -103,7 +103,7 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string customized_attribution = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $customized_attribution = '';
+    protected $customized_attribution = '';
     /**
      * Optional. is_translate_native_pdf_only field for external customers.
      * If true, the page limit of online native pdf translation is 300 and only
@@ -111,7 +111,7 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool is_translate_native_pdf_only = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $is_translate_native_pdf_only = false;
+    protected $is_translate_native_pdf_only = false;
     /**
      * Optional. If true, use the text removal server to remove the shadow text on
      * background image for native pdf translation.
@@ -120,13 +120,13 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_shadow_removal_native_pdf = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_shadow_removal_native_pdf = false;
+    protected $enable_shadow_removal_native_pdf = false;
     /**
      * Optional. If true, enable auto rotation correction in DVS.
      *
      * Generated from protobuf field <code>bool enable_rotation_correction = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_rotation_correction = false;
+    protected $enable_rotation_correction = false;
 
     /**
      * Constructor.

@@ -20,7 +20,7 @@ class ImportAdaptiveMtFileResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.AdaptiveMtFile adaptive_mt_file = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $adaptive_mt_file = null;
+    protected $adaptive_mt_file = null;
 
     /**
      * Constructor.

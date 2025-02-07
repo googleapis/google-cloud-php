@@ -20,21 +20,21 @@ class InlineResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.BatchRecognizeResults transcript = 1;</code>
      */
-    private $transcript = null;
+    protected $transcript = null;
     /**
      * The transcript for the audio file as VTT formatted captions. This is
      * populated only when `VTT` output is requested.
      *
      * Generated from protobuf field <code>string vtt_captions = 2;</code>
      */
-    private $vtt_captions = '';
+    protected $vtt_captions = '';
     /**
      * The transcript for the audio file as SRT formatted captions. This is
      * populated only when `SRT` output is requested.
      *
      * Generated from protobuf field <code>string srt_captions = 3;</code>
      */
-    private $srt_captions = '';
+    protected $srt_captions = '';
 
     /**
      * Constructor.

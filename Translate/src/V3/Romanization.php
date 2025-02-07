@@ -22,7 +22,7 @@ class Romanization extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string romanized_text = 1;</code>
      */
-    private $romanized_text = '';
+    protected $romanized_text = '';
     /**
      * The ISO-639 language code of source text in the initial request, detected
      * automatically, if no source language was passed within the initial
@@ -31,7 +31,7 @@ class Romanization extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string detected_language_code = 2;</code>
      */
-    private $detected_language_code = '';
+    protected $detected_language_code = '';
 
     /**
      * Constructor.

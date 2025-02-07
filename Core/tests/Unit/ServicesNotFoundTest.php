@@ -76,10 +76,8 @@ class ServicesNotFoundTest extends TestCase
             "OsLogin",
             "PubSub",
             "Spanner",
-            "Speech",
             "Storage",
             "Trace",
-            "Translate",
             "VideoIntelligence",
         ];
     }
@@ -93,10 +91,8 @@ class ServicesNotFoundTest extends TestCase
             ['language'],
             ['pubsub'],
             ['spanner'],
-            ['speech'],
             ['storage'],
             ['trace'],
-            ['translate']
         ];
     }
 

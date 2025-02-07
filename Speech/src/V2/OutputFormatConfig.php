@@ -22,21 +22,21 @@ class OutputFormatConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.NativeOutputFileFormatConfig native = 1;</code>
      */
-    private $native = null;
+    protected $native = null;
     /**
      * Configuration for the VTT output format. If this field is set, then
      * transcripts will be written to the sink in the VTT format.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.VttOutputFileFormatConfig vtt = 2;</code>
      */
-    private $vtt = null;
+    protected $vtt = null;
     /**
      * Configuration for the SRT output format. If this field is set, then
      * transcripts will be written to the sink in the SRT format.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.SrtOutputFileFormatConfig srt = 3;</code>
      */
-    private $srt = null;
+    protected $srt = null;
 
     /**
      * Constructor.
