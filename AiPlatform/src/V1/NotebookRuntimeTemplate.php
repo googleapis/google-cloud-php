@@ -156,6 +156,12 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 23;</code>
      */
     protected $encryption_spec = null;
+    /**
+     * Optional. The notebook software configuration of the notebook runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookSoftwareConfig software_config = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $software_config = null;
 
     /**
      * Constructor.
@@ -228,6 +234,8 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
      *           instances](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
      *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
      *           Customer-managed encryption key spec for the notebook runtime.
+     *     @type \Google\Cloud\AIPlatform\V1\NotebookSoftwareConfig $software_config
+     *           Optional. The notebook software configuration of the notebook runtime.
      * }
      */
     public function __construct($data = NULL) {
@@ -855,6 +863,42 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EncryptionSpec::class);
         $this->encryption_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The notebook software configuration of the notebook runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookSoftwareConfig software_config = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\NotebookSoftwareConfig|null
+     */
+    public function getSoftwareConfig()
+    {
+        return $this->software_config;
+    }
+
+    public function hasSoftwareConfig()
+    {
+        return isset($this->software_config);
+    }
+
+    public function clearSoftwareConfig()
+    {
+        unset($this->software_config);
+    }
+
+    /**
+     * Optional. The notebook software configuration of the notebook runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookSoftwareConfig software_config = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\NotebookSoftwareConfig $var
+     * @return $this
+     */
+    public function setSoftwareConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\NotebookSoftwareConfig::class);
+        $this->software_config = $var;
 
         return $this;
     }

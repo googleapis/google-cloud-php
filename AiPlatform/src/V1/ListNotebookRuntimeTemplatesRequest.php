@@ -38,11 +38,15 @@ class ListNotebookRuntimeTemplatesRequest extends \Google\Protobuf\Internal\Mess
      *     * A key including a space must be quoted. `labels."a key"`.
      *   * `notebookRuntimeType` supports = and !=. notebookRuntimeType enum:
      *   [USER_DEFINED, ONE_CLICK].
+     *   * `machineType` supports = and !=.
+     *   * `acceleratorType` supports = and !=.
      * Some examples:
      *   * `notebookRuntimeTemplate=notebookRuntimeTemplate123`
      *   * `displayName="myDisplayName"`
      *   * `labels.myKey="myValue"`
      *   * `notebookRuntimeType=USER_DEFINED`
+     *   * `machineType=e2-standard-4`
+     *   * `acceleratorType=NVIDIA_TESLA_T4`
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -122,11 +126,15 @@ class ListNotebookRuntimeTemplatesRequest extends \Google\Protobuf\Internal\Mess
      *               * A key including a space must be quoted. `labels."a key"`.
      *             * `notebookRuntimeType` supports = and !=. notebookRuntimeType enum:
      *             [USER_DEFINED, ONE_CLICK].
+     *             * `machineType` supports = and !=.
+     *             * `acceleratorType` supports = and !=.
      *           Some examples:
      *             * `notebookRuntimeTemplate=notebookRuntimeTemplate123`
      *             * `displayName="myDisplayName"`
      *             * `labels.myKey="myValue"`
      *             * `notebookRuntimeType=USER_DEFINED`
+     *             * `machineType=e2-standard-4`
+     *             * `acceleratorType=NVIDIA_TESLA_T4`
      *     @type int $page_size
      *           Optional. The standard list page size.
      *     @type string $page_token
@@ -196,11 +204,15 @@ class ListNotebookRuntimeTemplatesRequest extends \Google\Protobuf\Internal\Mess
      *     * A key including a space must be quoted. `labels."a key"`.
      *   * `notebookRuntimeType` supports = and !=. notebookRuntimeType enum:
      *   [USER_DEFINED, ONE_CLICK].
+     *   * `machineType` supports = and !=.
+     *   * `acceleratorType` supports = and !=.
      * Some examples:
      *   * `notebookRuntimeTemplate=notebookRuntimeTemplate123`
      *   * `displayName="myDisplayName"`
      *   * `labels.myKey="myValue"`
      *   * `notebookRuntimeType=USER_DEFINED`
+     *   * `machineType=e2-standard-4`
+     *   * `acceleratorType=NVIDIA_TESLA_T4`
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -224,11 +236,15 @@ class ListNotebookRuntimeTemplatesRequest extends \Google\Protobuf\Internal\Mess
      *     * A key including a space must be quoted. `labels."a key"`.
      *   * `notebookRuntimeType` supports = and !=. notebookRuntimeType enum:
      *   [USER_DEFINED, ONE_CLICK].
+     *   * `machineType` supports = and !=.
+     *   * `acceleratorType` supports = and !=.
      * Some examples:
      *   * `notebookRuntimeTemplate=notebookRuntimeTemplate123`
      *   * `displayName="myDisplayName"`
      *   * `labels.myKey="myValue"`
      *   * `notebookRuntimeType=USER_DEFINED`
+     *   * `machineType=e2-standard-4`
+     *   * `acceleratorType=NVIDIA_TESLA_T4`
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
