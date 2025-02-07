@@ -36,11 +36,20 @@ class SyncMode
      * Generated from protobuf enum <code>INCREMENTAL = 2;</code>
      */
     const INCREMENTAL = 2;
+    /**
+     * If entry sync mode is NONE, then the entry-specific fields (apart from
+     * aspects) are not modified and the aspects are modified according to the
+     * aspect_sync_mode
+     *
+     * Generated from protobuf enum <code>NONE = 3;</code>
+     */
+    const NONE = 3;
 
     private static $valueToName = [
         self::SYNC_MODE_UNSPECIFIED => 'SYNC_MODE_UNSPECIFIED',
         self::FULL => 'FULL',
         self::INCREMENTAL => 'INCREMENTAL',
+        self::NONE => 'NONE',
     ];
 
     public static function name($value)
