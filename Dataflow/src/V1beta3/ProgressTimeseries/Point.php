@@ -20,13 +20,13 @@ class Point extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp time = 1;</code>
      */
-    private $time = null;
+    protected $time = null;
     /**
      * The value of the point.
      *
      * Generated from protobuf field <code>double value = 2;</code>
      */
-    private $value = 0.0;
+    protected $value = 0.0;
 
     /**
      * Constructor.
@@ -109,6 +109,4 @@ class Point extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Point::class, \Google\Cloud\Dataflow\V1beta3\ProgressTimeseries_Point::class);
 

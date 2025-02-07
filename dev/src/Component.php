@@ -35,12 +35,13 @@ class Component
     private string $repoName;
     private string $productDocumentation;
     private string $clientDocumentation;
+    private string $libraryType;
     private string $description;
     private array $namespaces;
     /** @var array<Component> */
     private array $componentDependencies;
 
-    public function __construct(private string $name, string $path = null)
+    public function __construct(private string $name, ?string $path = null)
     {
         $this->path = $path ?: $this->getComponentPath($name);
         $this->validateComponentFiles();
@@ -111,6 +112,11 @@ class Component
     public function getProductDocumentation(): string
     {
         return $this->productDocumentation;
+    }
+
+    public function getLibraryType(): string
+    {
+        return $this->libraryType;
     }
 
     public function getDescription(): string
@@ -219,6 +225,7 @@ class Component
         $this->releaseLevel = $repoMetadataJson['release_level'];
         $this->clientDocumentation = $repoMetadataJson['client_documentation'];
         $this->productDocumentation = $repoMetadataJson['product_documentation'] ?? '';
+        $this->libraryType = $repoMetadataJson['library_type'];
 
         $namespaces = [];
         foreach ($composerJson['autoload']['psr-4'] as $namespace => $dir) {
@@ -357,5 +364,60 @@ class Component
     public function getComponentDependencies(): array
     {
         return $this->componentDependencies;
+    }
+
+    public function getSimplestSample(): string
+    {
+        if (!file_exists($this->path . '/samples')) {
+            return '';
+        }
+
+        $result = (new Finder())->files()->in($this->path . '/samples')
+            ->name('*.php')->sortByName();
+
+        $preferredFile = array_filter(
+            iterator_to_array($result),
+            fn ($f) => str_starts_with($f->getFilename(), 'get') && $f->getFilename() !== 'get_iam_policy.php'
+        )[0] ?? null;
+
+        // grab the shortest file if no "get" example exists
+        if ($preferredFile === null) {
+            foreach ($result as $file) {
+                if (str_starts_with($file->getFilename(),'get')
+                    && $file->getFilename() !== 'get_iam_policy.php'
+                ) {
+                    $preferredFile = $file;
+                    break;
+                }
+                $preferredFile ??= $file; // set first file to default preferred file
+
+                $preferredFile = count(file($file->getRealPath())) < count(file($preferredFile->getRealPath()))
+                    ? $file
+                    : $preferredFile;
+            }
+        }
+
+        if ($preferredFile === null || !preg_match('/^{(.|\n)*?(^})/m', $preferredFile->getContents(), $matches)) {
+            return '';
+        }
+
+        $lines = explode("\n", $matches[0]);
+
+        // remove wrapped parenthesis
+        array_shift($lines);
+        array_pop($lines);
+
+        // add imports
+        $imports = array_filter(
+            explode("\n", $preferredFile->getContents()),
+            fn ($line) => str_starts_with($line, 'use Google\\')
+        );
+
+        if ($imports) {
+            $imports[] = "\n";
+            $lines = array_merge($imports, $lines);
+        }
+
+        return implode("\n", array_map(fn ($line) => substr($line, 4), $lines));
     }
 }

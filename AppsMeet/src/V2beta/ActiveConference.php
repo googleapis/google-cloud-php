@@ -18,7 +18,7 @@ class ActiveConference extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Reference to 'ConferenceRecord' resource.
      * Format: `conferenceRecords/{conference_record}` where `{conference_record}`
-     * is a unique id for each instance of a call within a space.
+     * is a unique ID for each instance of a call within a space.
      *
      * Generated from protobuf field <code>string conference_record = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -33,7 +33,7 @@ class ActiveConference extends \Google\Protobuf\Internal\Message
      *     @type string $conference_record
      *           Output only. Reference to 'ConferenceRecord' resource.
      *           Format: `conferenceRecords/{conference_record}` where `{conference_record}`
-     *           is a unique id for each instance of a call within a space.
+     *           is a unique ID for each instance of a call within a space.
      * }
      */
     public function __construct($data = NULL) {
@@ -44,7 +44,7 @@ class ActiveConference extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Reference to 'ConferenceRecord' resource.
      * Format: `conferenceRecords/{conference_record}` where `{conference_record}`
-     * is a unique id for each instance of a call within a space.
+     * is a unique ID for each instance of a call within a space.
      *
      * Generated from protobuf field <code>string conference_record = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -57,7 +57,7 @@ class ActiveConference extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Reference to 'ConferenceRecord' resource.
      * Format: `conferenceRecords/{conference_record}` where `{conference_record}`
-     * is a unique id for each instance of a call within a space.
+     * is a unique ID for each instance of a call within a space.
      *
      * Generated from protobuf field <code>string conference_record = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var

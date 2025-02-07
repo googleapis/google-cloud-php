@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InstanceTemplates_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\InstanceTemplatesClient;
+use Google\Cloud\Compute\V1\Client\InstanceTemplatesClient;
+use Google\Cloud\Compute\V1\ListInstanceTemplatesRequest;
 
 /**
  * Retrieves a list of instance templates that are contained within the specified project.
@@ -37,10 +38,14 @@ function list_sample(string $project): void
     // Create a client.
     $instanceTemplatesClient = new InstanceTemplatesClient();
 
+    // Prepare the request message.
+    $request = (new ListInstanceTemplatesRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $instanceTemplatesClient->list($project);
+        $response = $instanceTemplatesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

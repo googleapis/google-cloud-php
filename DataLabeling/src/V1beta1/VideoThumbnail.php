@@ -20,14 +20,14 @@ class VideoThumbnail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes thumbnail = 1;</code>
      */
-    private $thumbnail = '';
+    protected $thumbnail = '';
     /**
      * Time offset relative to the beginning of the video, corresponding to the
      * video frame where the thumbnail has been extracted from.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration time_offset = 2;</code>
      */
-    private $time_offset = null;
+    protected $time_offset = null;
 
     /**
      * Constructor.

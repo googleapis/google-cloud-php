@@ -22,7 +22,7 @@ class QueryAudienceListResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.analytics.data.v1alpha.AudienceList audience_list = 1;</code>
      */
-    private $audience_list = null;
+    protected $audience_list = null;
     /**
      * Rows for each user in an audience list. The number of rows in this
      * response will be less than or equal to request's page size.
@@ -41,7 +41,7 @@ class QueryAudienceListResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 row_count = 3;</code>
      */
-    private $row_count = null;
+    protected $row_count = null;
 
     /**
      * Constructor.

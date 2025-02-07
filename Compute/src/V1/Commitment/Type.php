@@ -32,6 +32,10 @@ class Type
      */
     const ACCELERATOR_OPTIMIZED_A3_MEGA = 156517459;
     /**
+     * Generated from protobuf enum <code>ACCELERATOR_OPTIMIZED_A3_ULTRA = 27812811;</code>
+     */
+    const ACCELERATOR_OPTIMIZED_A3_ULTRA = 27812811;
+    /**
      * Generated from protobuf enum <code>COMPUTE_OPTIMIZED = 158349023;</code>
      */
     const COMPUTE_OPTIMIZED = 158349023;
@@ -96,6 +100,18 @@ class Type
      */
     const MEMORY_OPTIMIZED_M3 = 276301372;
     /**
+     * Generated from protobuf enum <code>MEMORY_OPTIMIZED_X4_16TB = 183089120;</code>
+     */
+    const MEMORY_OPTIMIZED_X4_16TB = 183089120;
+    /**
+     * Generated from protobuf enum <code>MEMORY_OPTIMIZED_X4_24TB = 183116989;</code>
+     */
+    const MEMORY_OPTIMIZED_X4_24TB = 183116989;
+    /**
+     * Generated from protobuf enum <code>MEMORY_OPTIMIZED_X4_32TB = 183144858;</code>
+     */
+    const MEMORY_OPTIMIZED_X4_32TB = 183144858;
+    /**
      * Generated from protobuf enum <code>STORAGE_OPTIMIZED_Z3 = 316796085;</code>
      */
     const STORAGE_OPTIMIZED_Z3 = 316796085;
@@ -109,6 +125,7 @@ class Type
         self::ACCELERATOR_OPTIMIZED => 'ACCELERATOR_OPTIMIZED',
         self::ACCELERATOR_OPTIMIZED_A3 => 'ACCELERATOR_OPTIMIZED_A3',
         self::ACCELERATOR_OPTIMIZED_A3_MEGA => 'ACCELERATOR_OPTIMIZED_A3_MEGA',
+        self::ACCELERATOR_OPTIMIZED_A3_ULTRA => 'ACCELERATOR_OPTIMIZED_A3_ULTRA',
         self::COMPUTE_OPTIMIZED => 'COMPUTE_OPTIMIZED',
         self::COMPUTE_OPTIMIZED_C2D => 'COMPUTE_OPTIMIZED_C2D',
         self::COMPUTE_OPTIMIZED_C3 => 'COMPUTE_OPTIMIZED_C3',
@@ -125,6 +142,9 @@ class Type
         self::GRAPHICS_OPTIMIZED => 'GRAPHICS_OPTIMIZED',
         self::MEMORY_OPTIMIZED => 'MEMORY_OPTIMIZED',
         self::MEMORY_OPTIMIZED_M3 => 'MEMORY_OPTIMIZED_M3',
+        self::MEMORY_OPTIMIZED_X4_16TB => 'MEMORY_OPTIMIZED_X4_16TB',
+        self::MEMORY_OPTIMIZED_X4_24TB => 'MEMORY_OPTIMIZED_X4_24TB',
+        self::MEMORY_OPTIMIZED_X4_32TB => 'MEMORY_OPTIMIZED_X4_32TB',
         self::STORAGE_OPTIMIZED_Z3 => 'STORAGE_OPTIMIZED_Z3',
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
     ];

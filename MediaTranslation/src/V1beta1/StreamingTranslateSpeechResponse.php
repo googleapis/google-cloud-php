@@ -22,20 +22,20 @@ class StreamingTranslateSpeechResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * Output only. The translation result that is currently being processed (is_final could be
      * true or false).
      *
      * Generated from protobuf field <code>.google.cloud.mediatranslation.v1beta1.StreamingTranslateSpeechResult result = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $result = null;
+    protected $result = null;
     /**
      * Output only. Indicates the type of speech event.
      *
      * Generated from protobuf field <code>.google.cloud.mediatranslation.v1beta1.StreamingTranslateSpeechResponse.SpeechEventType speech_event_type = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $speech_event_type = 0;
+    protected $speech_event_type = 0;
 
     /**
      * Constructor.

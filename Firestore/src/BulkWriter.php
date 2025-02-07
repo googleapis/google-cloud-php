@@ -1132,14 +1132,14 @@ class BulkWriter
                 ];
                 break;
 
-            // @codeCoverageIgnoreStart
+                // @codeCoverageIgnoreStart
             default:
                 throw new \InvalidArgumentException(sprintf(
                     'Write operation type `%s is not valid. Allowed values are update, delete, verify, transform.',
                     $type
                 ));
                 break;
-            // @codeCoverageIgnoreEnd
+                // @codeCoverageIgnoreEnd
         }
     }
 

@@ -21,7 +21,7 @@ class SuggestKnowledgeAssistResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.KnowledgeAssistAnswer knowledge_assist_answer = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $knowledge_assist_answer = null;
+    protected $knowledge_assist_answer = null;
     /**
      * The name of the latest conversation message used to compile suggestion for.
      * Format: `projects/<Project ID>/locations/<Location
@@ -29,7 +29,7 @@ class SuggestKnowledgeAssistResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string latest_message = 2;</code>
      */
-    private $latest_message = '';
+    protected $latest_message = '';
     /**
      * Number of messages prior to and including
      * [latest_message][google.cloud.dialogflow.v2.SuggestKnowledgeAssistResponse.latest_message]
@@ -39,7 +39,7 @@ class SuggestKnowledgeAssistResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 context_size = 3;</code>
      */
-    private $context_size = 0;
+    protected $context_size = 0;
 
     /**
      * Constructor.

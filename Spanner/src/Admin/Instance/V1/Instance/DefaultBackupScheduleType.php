@@ -7,8 +7,10 @@ namespace Google\Cloud\Spanner\Admin\Instance\V1\Instance;
 use UnexpectedValueException;
 
 /**
- * Indicates the default backup behavior for new databases within the
- * instance.
+ * Indicates the
+ * [default backup
+ * schedule](https://cloud.google.com/spanner/docs/backup#default-backup-schedules)
+ * behavior for new databases within the instance.
  *
  * Protobuf type <code>google.spanner.admin.instance.v1.Instance.DefaultBackupScheduleType</code>
  */
@@ -21,18 +23,17 @@ class DefaultBackupScheduleType
      */
     const DEFAULT_BACKUP_SCHEDULE_TYPE_UNSPECIFIED = 0;
     /**
-     * No default backup schedule will be created automatically on creation of a
-     * database within the instance.
+     * A default backup schedule isn't created automatically when a new database
+     * is created in the instance.
      *
      * Generated from protobuf enum <code>NONE = 1;</code>
      */
     const NONE = 1;
     /**
-     * A default backup schedule will be created automatically on creation of a
-     * database within the instance. The default backup schedule creates a full
-     * backup every 24 hours and retains the backup for a period of 7 days. Once
-     * created, the default backup schedule can be edited/deleted similar to any
-     * other backup schedule.
+     * A default backup schedule is created automatically when a new database
+     * is created in the instance. The default backup schedule creates a full
+     * backup every 24 hours. These full backups are retained for 7 days.
+     * You can edit or delete the default backup schedule once it's created.
      *
      * Generated from protobuf enum <code>AUTOMATIC = 2;</code>
      */

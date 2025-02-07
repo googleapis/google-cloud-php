@@ -10,6 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Configuration for Oracle Automatic Storage Management (ASM) connection.
+ * .
  *
  * Generated from protobuf message <code>google.cloud.datastream.v1.OracleAsmConfig</code>
  */
@@ -34,9 +35,9 @@ class OracleAsmConfig extends \Google\Protobuf\Internal\Message
      */
     protected $username = '';
     /**
-     * Required. Password for the Oracle ASM connection.
+     * Optional. Password for the Oracle ASM connection.
      *
-     * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $password = '';
     /**
@@ -71,7 +72,7 @@ class OracleAsmConfig extends \Google\Protobuf\Internal\Message
      *     @type string $username
      *           Required. Username for the Oracle ASM connection.
      *     @type string $password
-     *           Required. Password for the Oracle ASM connection.
+     *           Optional. Password for the Oracle ASM connection.
      *     @type string $asm_service
      *           Required. ASM service name for the Oracle ASM connection.
      *     @type array|\Google\Protobuf\Internal\MapField $connection_attributes
@@ -164,9 +165,9 @@ class OracleAsmConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Password for the Oracle ASM connection.
+     * Optional. Password for the Oracle ASM connection.
      *
-     * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPassword()
@@ -175,9 +176,9 @@ class OracleAsmConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Password for the Oracle ASM connection.
+     * Optional. Password for the Oracle ASM connection.
      *
-     * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

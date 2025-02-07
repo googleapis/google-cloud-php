@@ -20,13 +20,13 @@ class CreateEventEditRuleRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The EventEditRule to create.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.EventEditRule event_edit_rule = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $event_edit_rule = null;
+    protected $event_edit_rule = null;
 
     /**
      * @param string                                        $parent        Required. Example format: properties/123/dataStreams/456

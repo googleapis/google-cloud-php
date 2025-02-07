@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionNetworkEndpointGroups_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionNetworkEndpointGroupsClient;
+use Google\Cloud\Compute\V1\Client\RegionNetworkEndpointGroupsClient;
+use Google\Cloud\Compute\V1\DeleteRegionNetworkEndpointGroupRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $networkEndpointGroup, string $project, string $re
     // Create a client.
     $regionNetworkEndpointGroupsClient = new RegionNetworkEndpointGroupsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteRegionNetworkEndpointGroupRequest())
+        ->setNetworkEndpointGroup($networkEndpointGroup)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionNetworkEndpointGroupsClient->delete($networkEndpointGroup, $project, $region);
+        $response = $regionNetworkEndpointGroupsClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

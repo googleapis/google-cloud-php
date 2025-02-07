@@ -29,7 +29,6 @@ use Google\Apps\Meet\V2beta\GetTranscriptRequest;
 use Google\Apps\Meet\V2beta\Transcript;
 
 /**
- * [Developer Preview](https://developers.google.com/workspace/preview).
  * Gets a transcript by transcript ID.
  *
  * @param string $formattedName Resource name of the transcript. Please see

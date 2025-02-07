@@ -27,7 +27,7 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 1;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Identifier. The full REST resource name for this channel. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
@@ -35,7 +35,7 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 6 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * An optional human-readable name for this notification channel. It is
      * recommended that you specify a non-empty and unique name in order to
@@ -44,7 +44,7 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * An optional human-readable description of this notification channel. This
      * description may provide additional details, beyond the display
@@ -52,7 +52,7 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 4;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Configuration fields that define the channel and its behavior. The
      * permissible and required labels are specified in the
@@ -95,7 +95,7 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.NotificationChannel.VerificationStatus verification_status = 9;</code>
      */
-    private $verification_status = 0;
+    protected $verification_status = 0;
     /**
      * Whether notifications are forwarded to the described channel. This makes
      * it possible to disable delivery of notifications to a particular channel
@@ -106,13 +106,13 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue enabled = 11;</code>
      */
-    private $enabled = null;
+    protected $enabled = null;
     /**
      * Record of the creation of this channel.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.MutationRecord creation_record = 12;</code>
      */
-    private $creation_record = null;
+    protected $creation_record = null;
     /**
      * Records of the modification of this channel.
      *
@@ -484,7 +484,7 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue enabled = 11;</code>
      * @return bool|null
      */
-    public function getEnabledValue()
+    public function getEnabledUnwrapped()
     {
         return $this->readWrapperValue("enabled");
     }
@@ -523,7 +523,7 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setEnabledValue($var)
+    public function setEnabledUnwrapped($var)
     {
         $this->writeWrapperValue("enabled", $var);
         return $this;}

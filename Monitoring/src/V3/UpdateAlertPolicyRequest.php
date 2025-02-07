@@ -37,7 +37,7 @@ class UpdateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. The updated alerting policy or the updated values for the
      * fields listed in `update_mask`.
@@ -46,7 +46,7 @@ class UpdateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy alert_policy = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $alert_policy = null;
+    protected $alert_policy = null;
 
     /**
      * @param \Google\Protobuf\FieldMask              $updateMask  Optional. A list of alerting policy field names. If this field is not

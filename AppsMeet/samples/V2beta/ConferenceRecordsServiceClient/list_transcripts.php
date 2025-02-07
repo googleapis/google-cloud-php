@@ -30,8 +30,8 @@ use Google\Apps\Meet\V2beta\ListTranscriptsRequest;
 use Google\Apps\Meet\V2beta\Transcript;
 
 /**
- * [Developer Preview](https://developers.google.com/workspace/preview).
- * Lists the set of transcripts from the conference record.
+ * Lists the set of transcripts from the conference record. By default,
+ * ordered by start time and in ascending order.
  *
  * @param string $formattedParent Format: `conferenceRecords/{conference_record}`
  *                                Please see {@see ConferenceRecordsServiceClient::conferenceRecordName()} for help formatting this field.

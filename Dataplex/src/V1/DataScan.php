@@ -23,19 +23,19 @@ use Google\Protobuf\Internal\GPBUtil;
 class DataScan extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The relative resource name of the scan, of the form:
-     * `projects/{project}/locations/{location_id}/dataScans/{datascan_id}`,
+     * Output only. Identifier. The relative resource name of the scan, of the
+     * form: `projects/{project}/locations/{location_id}/dataScans/{datascan_id}`,
      * where `project` refers to a *project_id* or *project_number* and
      * `location_id` refers to a GCP region.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
      * Output only. System generated globally unique ID for the scan. This ID will
      * be different if the scan is deleted and re-created with the same name.
      *
-     * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      */
     protected $uid = '';
     /**
@@ -111,8 +111,8 @@ class DataScan extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The relative resource name of the scan, of the form:
-     *           `projects/{project}/locations/{location_id}/dataScans/{datascan_id}`,
+     *           Output only. Identifier. The relative resource name of the scan, of the
+     *           form: `projects/{project}/locations/{location_id}/dataScans/{datascan_id}`,
      *           where `project` refers to a *project_id* or *project_number* and
      *           `location_id` refers to a GCP region.
      *     @type string $uid
@@ -161,12 +161,12 @@ class DataScan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The relative resource name of the scan, of the form:
-     * `projects/{project}/locations/{location_id}/dataScans/{datascan_id}`,
+     * Output only. Identifier. The relative resource name of the scan, of the
+     * form: `projects/{project}/locations/{location_id}/dataScans/{datascan_id}`,
      * where `project` refers to a *project_id* or *project_number* and
      * `location_id` refers to a GCP region.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -175,12 +175,12 @@ class DataScan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The relative resource name of the scan, of the form:
-     * `projects/{project}/locations/{location_id}/dataScans/{datascan_id}`,
+     * Output only. Identifier. The relative resource name of the scan, of the
+     * form: `projects/{project}/locations/{location_id}/dataScans/{datascan_id}`,
      * where `project` refers to a *project_id* or *project_number* and
      * `location_id` refers to a GCP region.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -196,7 +196,7 @@ class DataScan extends \Google\Protobuf\Internal\Message
      * Output only. System generated globally unique ID for the scan. This ID will
      * be different if the scan is deleted and re-created with the same name.
      *
-     * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      * @return string
      */
     public function getUid()
@@ -208,7 +208,7 @@ class DataScan extends \Google\Protobuf\Internal\Message
      * Output only. System generated globally unique ID for the scan. This ID will
      * be different if the scan is deleted and re-created with the same name.
      *
-     * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      * @param string $var
      * @return $this
      */

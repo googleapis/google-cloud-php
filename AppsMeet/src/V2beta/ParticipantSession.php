@@ -9,10 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [Developer Preview](https://developers.google.com/workspace/preview).
- * Refers to each unique join/leave session when a user joins a conference from
- * a device. Note that any time a user joins the conference a new unique ID is
- * assigned. That means if a user joins a space multiple times from the same
+ * Refers to each unique join or leave session when a user joins a conference
+ * from a device. Note that any time a user joins the conference a new unique ID
+ * is assigned. That means if a user joins a space multiple times from the same
  * device, they're assigned different IDs, and are also be treated as different
  * participant sessions.
  *
@@ -27,13 +26,13 @@ class ParticipantSession extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Output only. Timestamp when the user session started.
+     * Output only. Timestamp when the user session starts.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $start_time = null;
     /**
-     * Output only. Timestamp when the user session ended. Unset if the user
+     * Output only. Timestamp when the user session ends. Unset if the user
      * session hasn’t ended.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -49,9 +48,9 @@ class ParticipantSession extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Identifier. Session id.
      *     @type \Google\Protobuf\Timestamp $start_time
-     *           Output only. Timestamp when the user session started.
+     *           Output only. Timestamp when the user session starts.
      *     @type \Google\Protobuf\Timestamp $end_time
-     *           Output only. Timestamp when the user session ended. Unset if the user
+     *           Output only. Timestamp when the user session ends. Unset if the user
      *           session hasn’t ended.
      * }
      */
@@ -87,7 +86,7 @@ class ParticipantSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Timestamp when the user session started.
+     * Output only. Timestamp when the user session starts.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -108,7 +107,7 @@ class ParticipantSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Timestamp when the user session started.
+     * Output only. Timestamp when the user session starts.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -123,7 +122,7 @@ class ParticipantSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Timestamp when the user session ended. Unset if the user
+     * Output only. Timestamp when the user session ends. Unset if the user
      * session hasn’t ended.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -145,7 +144,7 @@ class ParticipantSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Timestamp when the user session ended. Unset if the user
+     * Output only. Timestamp when the user session ends. Unset if the user
      * session hasn’t ended.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

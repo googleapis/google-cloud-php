@@ -90,7 +90,7 @@ class DeletionQueue
      * @experimental
      * @internal
      */
-    public function process(callable $action = null)
+    public function process(?callable $action = null)
     {
         if ($action) {
             $action($this->queue);

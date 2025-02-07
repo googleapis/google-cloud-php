@@ -21,7 +21,7 @@ class FetchAutomatedGa4ConfigurationOptOutResponse extends \Google\Protobuf\Inte
      *
      * Generated from protobuf field <code>bool opt_out = 1;</code>
      */
-    private $opt_out = false;
+    protected $opt_out = false;
 
     /**
      * Constructor.

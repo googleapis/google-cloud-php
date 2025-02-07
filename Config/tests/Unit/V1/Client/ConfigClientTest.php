@@ -167,6 +167,8 @@ class ConfigClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $deploymentId = 'deploymentId51250389';
         $deployment = new Deployment();
+        $deploymentServiceAccount = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
+        $deployment->setServiceAccount($deploymentServiceAccount);
         $request = (new CreateDeploymentRequest())
             ->setParent($formattedParent)
             ->setDeploymentId($deploymentId)
@@ -244,6 +246,8 @@ class ConfigClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $deploymentId = 'deploymentId51250389';
         $deployment = new Deployment();
+        $deploymentServiceAccount = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
+        $deployment->setServiceAccount($deploymentServiceAccount);
         $request = (new CreateDeploymentRequest())
             ->setParent($formattedParent)
             ->setDeploymentId($deploymentId)
@@ -322,6 +326,8 @@ class ConfigClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $preview = new Preview();
+        $previewServiceAccount = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
+        $preview->setServiceAccount($previewServiceAccount);
         $request = (new CreatePreviewRequest())->setParent($formattedParent)->setPreview($preview);
         $response = $gapicClient->createPreview($request);
         $this->assertFalse($response->isDone());
@@ -393,6 +399,8 @@ class ConfigClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $preview = new Preview();
+        $previewServiceAccount = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
+        $preview->setServiceAccount($previewServiceAccount);
         $request = (new CreatePreviewRequest())->setParent($formattedParent)->setPreview($preview);
         $response = $gapicClient->createPreview($request);
         $this->assertFalse($response->isDone());
@@ -2208,6 +2216,8 @@ class ConfigClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $deployment = new Deployment();
+        $deploymentServiceAccount = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
+        $deployment->setServiceAccount($deploymentServiceAccount);
         $request = (new UpdateDeploymentRequest())->setDeployment($deployment);
         $response = $gapicClient->updateDeployment($request);
         $this->assertFalse($response->isDone());
@@ -2276,6 +2286,8 @@ class ConfigClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $deployment = new Deployment();
+        $deploymentServiceAccount = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
+        $deployment->setServiceAccount($deploymentServiceAccount);
         $request = (new UpdateDeploymentRequest())->setDeployment($deployment);
         $response = $gapicClient->updateDeployment($request);
         $this->assertFalse($response->isDone());
@@ -2689,6 +2701,8 @@ class ConfigClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $deploymentId = 'deploymentId51250389';
         $deployment = new Deployment();
+        $deploymentServiceAccount = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
+        $deployment->setServiceAccount($deploymentServiceAccount);
         $request = (new CreateDeploymentRequest())
             ->setParent($formattedParent)
             ->setDeploymentId($deploymentId)

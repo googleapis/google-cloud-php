@@ -736,6 +736,65 @@
                 }
             }
         },
+        "GenAiCacheService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "GenAiCacheServiceGapicClient",
+                    "rpcs": {
+                        "CreateCachedContent": {
+                            "methods": [
+                                "createCachedContent"
+                            ]
+                        },
+                        "DeleteCachedContent": {
+                            "methods": [
+                                "deleteCachedContent"
+                            ]
+                        },
+                        "GetCachedContent": {
+                            "methods": [
+                                "getCachedContent"
+                            ]
+                        },
+                        "ListCachedContents": {
+                            "methods": [
+                                "listCachedContents"
+                            ]
+                        },
+                        "UpdateCachedContent": {
+                            "methods": [
+                                "updateCachedContent"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "GenAiTuningService": {
             "clients": {
                 "grpc": {
@@ -1676,6 +1735,11 @@
                                 "listModelEvaluations"
                             ]
                         },
+                        "ListModelVersionCheckpoints": {
+                            "methods": [
+                                "listModelVersionCheckpoints"
+                            ]
+                        },
                         "ListModelVersions": {
                             "methods": [
                                 "listModelVersions"
@@ -1976,6 +2040,109 @@
                         "ListTrainingPipelines": {
                             "methods": [
                                 "listTrainingPipelines"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ReasoningEngineExecutionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ReasoningEngineExecutionServiceGapicClient",
+                    "rpcs": {
+                        "QueryReasoningEngine": {
+                            "methods": [
+                                "queryReasoningEngine"
+                            ]
+                        },
+                        "StreamQueryReasoningEngine": {
+                            "methods": [
+                                "streamQueryReasoningEngine"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ReasoningEngineService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ReasoningEngineServiceGapicClient",
+                    "rpcs": {
+                        "CreateReasoningEngine": {
+                            "methods": [
+                                "createReasoningEngine"
+                            ]
+                        },
+                        "DeleteReasoningEngine": {
+                            "methods": [
+                                "deleteReasoningEngine"
+                            ]
+                        },
+                        "GetReasoningEngine": {
+                            "methods": [
+                                "getReasoningEngine"
+                            ]
+                        },
+                        "ListReasoningEngines": {
+                            "methods": [
+                                "listReasoningEngines"
+                            ]
+                        },
+                        "UpdateReasoningEngine": {
+                            "methods": [
+                                "updateReasoningEngine"
                             ]
                         },
                         "GetLocation": {

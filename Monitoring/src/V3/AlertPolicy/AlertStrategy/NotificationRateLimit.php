@@ -21,7 +21,7 @@ class NotificationRateLimit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration period = 1;</code>
      */
-    private $period = null;
+    protected $period = null;
 
     /**
      * Constructor.
@@ -76,6 +76,4 @@ class NotificationRateLimit extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(NotificationRateLimit::class, \Google\Cloud\Monitoring\V3\AlertPolicy_AlertStrategy_NotificationRateLimit::class);
 

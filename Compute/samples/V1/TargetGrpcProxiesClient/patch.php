@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetGrpcProxies_Patch_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\TargetGrpcProxiesClient;
+use Google\Cloud\Compute\V1\Client\TargetGrpcProxiesClient;
+use Google\Cloud\Compute\V1\PatchTargetGrpcProxyRequest;
 use Google\Cloud\Compute\V1\TargetGrpcProxy;
 use Google\Rpc\Status;
 
@@ -40,13 +41,17 @@ function patch_sample(string $project, string $targetGrpcProxy): void
     // Create a client.
     $targetGrpcProxiesClient = new TargetGrpcProxiesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetGrpcProxyResource = new TargetGrpcProxy();
+    $request = (new PatchTargetGrpcProxyRequest())
+        ->setProject($project)
+        ->setTargetGrpcProxy($targetGrpcProxy)
+        ->setTargetGrpcProxyResource($targetGrpcProxyResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetGrpcProxiesClient->patch($project, $targetGrpcProxy, $targetGrpcProxyResource);
+        $response = $targetGrpcProxiesClient->patch($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

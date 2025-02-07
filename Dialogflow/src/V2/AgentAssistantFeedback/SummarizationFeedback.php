@@ -20,19 +20,19 @@ class SummarizationFeedback extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Timestamp when the summary was submitted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp submit_time = 2;</code>
      */
-    private $submit_time = null;
+    protected $submit_time = null;
     /**
      * Text of actual submitted summary.
      *
      * Generated from protobuf field <code>string summary_text = 3;</code>
      */
-    private $summary_text = '';
+    protected $summary_text = '';
     /**
      * Optional. Actual text sections of submitted summary.
      *

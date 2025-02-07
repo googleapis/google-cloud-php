@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListPreviewsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * List of [Previews][]s.
+     * List of [Previews][google.cloud.config.v1.Preview].
      *
      * Generated from protobuf field <code>repeated .google.cloud.config.v1.Preview previews = 1;</code>
      */
@@ -42,7 +42,7 @@ class ListPreviewsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Config\V1\Preview>|\Google\Protobuf\Internal\RepeatedField $previews
-     *           List of [Previews][]s.
+     *           List of [Previews][google.cloud.config.v1.Preview].
      *     @type string $next_page_token
      *           Token to be supplied to the next ListPreviews request via `page_token`
      *           to obtain the next set of results.
@@ -56,7 +56,7 @@ class ListPreviewsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of [Previews][]s.
+     * List of [Previews][google.cloud.config.v1.Preview].
      *
      * Generated from protobuf field <code>repeated .google.cloud.config.v1.Preview previews = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -67,7 +67,7 @@ class ListPreviewsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of [Previews][]s.
+     * List of [Previews][google.cloud.config.v1.Preview].
      *
      * Generated from protobuf field <code>repeated .google.cloud.config.v1.Preview previews = 1;</code>
      * @param array<\Google\Cloud\Config\V1\Preview>|\Google\Protobuf\Internal\RepeatedField $var

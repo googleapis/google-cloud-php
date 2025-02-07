@@ -28,6 +28,12 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      */
     private $availability_domain = null;
     /**
+     * Specify the time in seconds for host error detection, the value must be within the range of [90, 330] with the increment of 30, if unset, the default behavior of host error recovery will be used.
+     *
+     * Generated from protobuf field <code>optional int32 host_error_timeout_seconds = 408317459;</code>
+     */
+    private $host_error_timeout_seconds = null;
+    /**
      * Specifies the termination action for the instance.
      * Check the InstanceTerminationAction enum for the list of possible values.
      *
@@ -105,6 +111,8 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      *           Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). You can only set the automatic restart option for standard instances. Preemptible instances cannot be automatically restarted. By default, this is set to true so an instance is automatically restarted if it is terminated by Compute Engine.
      *     @type int $availability_domain
      *           Specifies the availability domain to place the instance in. The value must be a number between 1 and the number of availability domains specified in the spread placement policy attached to the instance.
+     *     @type int $host_error_timeout_seconds
+     *           Specify the time in seconds for host error detection, the value must be within the range of [90, 330] with the increment of 30, if unset, the default behavior of host error recovery will be used.
      *     @type string $instance_termination_action
      *           Specifies the termination action for the instance.
      *           Check the InstanceTerminationAction enum for the list of possible values.
@@ -204,6 +212,42 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->availability_domain = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specify the time in seconds for host error detection, the value must be within the range of [90, 330] with the increment of 30, if unset, the default behavior of host error recovery will be used.
+     *
+     * Generated from protobuf field <code>optional int32 host_error_timeout_seconds = 408317459;</code>
+     * @return int
+     */
+    public function getHostErrorTimeoutSeconds()
+    {
+        return isset($this->host_error_timeout_seconds) ? $this->host_error_timeout_seconds : 0;
+    }
+
+    public function hasHostErrorTimeoutSeconds()
+    {
+        return isset($this->host_error_timeout_seconds);
+    }
+
+    public function clearHostErrorTimeoutSeconds()
+    {
+        unset($this->host_error_timeout_seconds);
+    }
+
+    /**
+     * Specify the time in seconds for host error detection, the value must be within the range of [90, 330] with the increment of 30, if unset, the default behavior of host error recovery will be used.
+     *
+     * Generated from protobuf field <code>optional int32 host_error_timeout_seconds = 408317459;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setHostErrorTimeoutSeconds($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->host_error_timeout_seconds = $var;
 
         return $this;
     }

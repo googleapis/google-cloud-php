@@ -16,9 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class HybridReplicationParameters extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Desired Identifier (name) of the replication which will be created for this volume.
-     * Format:
-     * `projects/{project_id}/locations/{location}/volumes/{volume_id}/replications/{replication_id}`
+     * Required. Desired name for the replication of this volume.
      *
      * Generated from protobuf field <code>string replication = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -77,9 +75,7 @@ class HybridReplicationParameters extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $replication
-     *           Required. Desired Identifier (name) of the replication which will be created for this volume.
-     *           Format:
-     *           `projects/{project_id}/locations/{location}/volumes/{volume_id}/replications/{replication_id}`
+     *           Required. Desired name for the replication of this volume.
      *     @type string $peer_volume_name
      *           Required. Name of the user's local source volume to be peered with the
      *           destination volume.
@@ -106,9 +102,7 @@ class HybridReplicationParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Desired Identifier (name) of the replication which will be created for this volume.
-     * Format:
-     * `projects/{project_id}/locations/{location}/volumes/{volume_id}/replications/{replication_id}`
+     * Required. Desired name for the replication of this volume.
      *
      * Generated from protobuf field <code>string replication = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -119,9 +113,7 @@ class HybridReplicationParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Desired Identifier (name) of the replication which will be created for this volume.
-     * Format:
-     * `projects/{project_id}/locations/{location}/volumes/{volume_id}/replications/{replication_id}`
+     * Required. Desired name for the replication of this volume.
      *
      * Generated from protobuf field <code>string replication = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_Instances_GetScreenshot_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\Client\InstancesClient;
+use Google\Cloud\Compute\V1\GetScreenshotInstanceRequest;
 use Google\Cloud\Compute\V1\Screenshot;
 
 /**
@@ -39,10 +40,16 @@ function get_screenshot_sample(string $instance, string $project, string $zone):
     // Create a client.
     $instancesClient = new InstancesClient();
 
+    // Prepare the request message.
+    $request = (new GetScreenshotInstanceRequest())
+        ->setInstance($instance)
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var Screenshot $response */
-        $response = $instancesClient->getScreenshot($instance, $project, $zone);
+        $response = $instancesClient->getScreenshot($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

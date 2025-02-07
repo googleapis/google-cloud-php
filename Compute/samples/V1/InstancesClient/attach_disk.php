@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Instances_AttachDisk_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\AttachDiskInstanceRequest;
 use Google\Cloud\Compute\V1\AttachedDisk;
-use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\Client\InstancesClient;
 use Google\Rpc\Status;
 
 /**
@@ -41,13 +42,18 @@ function attach_disk_sample(string $instance, string $project, string $zone): vo
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $attachedDiskResource = new AttachedDisk();
+    $request = (new AttachDiskInstanceRequest())
+        ->setAttachedDiskResource($attachedDiskResource)
+        ->setInstance($instance)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->attachDisk($attachedDiskResource, $instance, $project, $zone);
+        $response = $instancesClient->attachDisk($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

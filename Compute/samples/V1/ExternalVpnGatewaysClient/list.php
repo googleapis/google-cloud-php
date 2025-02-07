@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_ExternalVpnGateways_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\ExternalVpnGatewaysClient;
+use Google\Cloud\Compute\V1\Client\ExternalVpnGatewaysClient;
+use Google\Cloud\Compute\V1\ListExternalVpnGatewaysRequest;
 
 /**
  * Retrieves the list of ExternalVpnGateway available to the specified project.
@@ -37,10 +38,14 @@ function list_sample(string $project): void
     // Create a client.
     $externalVpnGatewaysClient = new ExternalVpnGatewaysClient();
 
+    // Prepare the request message.
+    $request = (new ListExternalVpnGatewaysRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $externalVpnGatewaysClient->list($project);
+        $response = $externalVpnGatewaysClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

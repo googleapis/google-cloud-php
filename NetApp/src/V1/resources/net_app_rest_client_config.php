@@ -122,6 +122,21 @@ return [
                     'kms_config_id',
                 ],
             ],
+            'CreateQuotaRule' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/volumes/*}/quotaRules',
+                'body' => 'quota_rule',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'quota_rule_id',
+                ],
+            ],
             'CreateReplication' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/volumes/*}/replications',
@@ -229,6 +244,17 @@ return [
             'DeleteKmsConfig' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/kmsConfigs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteQuotaRule' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/volumes/*/quotaRules/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -360,6 +386,17 @@ return [
                     ],
                 ],
             ],
+            'GetQuotaRule' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/volumes/*/quotaRules/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetReplication' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/volumes/*/replications/*}',
@@ -451,6 +488,17 @@ return [
             'ListKmsConfigs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/kmsConfigs',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListQuotaRules' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/volumes/*}/quotaRules',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -655,6 +703,19 @@ return [
                     'update_mask',
                 ],
             ],
+            'UpdateQuotaRule' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{quota_rule.name=projects/*/locations/*/volumes/*/quotaRules/*}',
+                'body' => 'quota_rule',
+                'placeholders' => [
+                    'quota_rule.name' => [
+                        'getters' => [
+                            'getQuotaRule',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateReplication' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{replication.name=projects/*/locations/*/volumes/*/replications/*}',
@@ -717,6 +778,18 @@ return [
                 ],
                 'queryParams' => [
                     'update_mask',
+                ],
+            ],
+            'ValidateDirectoryService' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/storagePools/*}:validateDirectoryService',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'VerifyKmsConfig' => [

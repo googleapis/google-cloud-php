@@ -46,6 +46,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateCssProductInput' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{css_product_input.name=accounts/*/cssProductInputs/*}',
+                'body' => 'css_product_input',
+                'placeholders' => [
+                    'css_product_input.name' => [
+                        'getters' => [
+                            'getCssProductInput',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
     'numericEnums' => true,

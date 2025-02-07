@@ -20,25 +20,25 @@ class BigQueryIODetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string table = 1;</code>
      */
-    private $table = '';
+    protected $table = '';
     /**
      * Dataset accessed in the connection.
      *
      * Generated from protobuf field <code>string dataset = 2;</code>
      */
-    private $dataset = '';
+    protected $dataset = '';
     /**
      * Project accessed in the connection.
      *
      * Generated from protobuf field <code>string project_id = 3;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Query used to access data in the connection.
      *
      * Generated from protobuf field <code>string query = 4;</code>
      */
-    private $query = '';
+    protected $query = '';
 
     /**
      * Constructor.

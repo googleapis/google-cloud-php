@@ -23,20 +23,20 @@ class ConversationEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string conversation = 1;</code>
      */
-    private $conversation = '';
+    protected $conversation = '';
     /**
      * The type of the event that this notification refers to.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ConversationEvent.Type type = 2;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * More detailed information about an error. Only set for type
      * UNRECOVERABLE_ERROR_IN_PHONE_CALL.
      *
      * Generated from protobuf field <code>.google.rpc.Status error_status = 3;</code>
      */
-    private $error_status = null;
+    protected $error_status = null;
     protected $payload;
 
     /**
@@ -56,6 +56,8 @@ class ConversationEvent extends \Google\Protobuf\Internal\Message
      *           UNRECOVERABLE_ERROR_IN_PHONE_CALL.
      *     @type \Google\Cloud\Dialogflow\V2\Message $new_message_payload
      *           Payload of NEW_MESSAGE event.
+     *     @type \Google\Cloud\Dialogflow\V2\StreamingRecognitionResult $new_recognition_result_payload
+     *           Payload of NEW_RECOGNITION_RESULT event.
      * }
      */
     public function __construct($data = NULL) {
@@ -184,6 +186,37 @@ class ConversationEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Message::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Payload of NEW_RECOGNITION_RESULT event.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.StreamingRecognitionResult new_recognition_result_payload = 5;</code>
+     * @return \Google\Cloud\Dialogflow\V2\StreamingRecognitionResult|null
+     */
+    public function getNewRecognitionResultPayload()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasNewRecognitionResultPayload()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Payload of NEW_RECOGNITION_RESULT event.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.StreamingRecognitionResult new_recognition_result_payload = 5;</code>
+     * @param \Google\Cloud\Dialogflow\V2\StreamingRecognitionResult $var
+     * @return $this
+     */
+    public function setNewRecognitionResultPayload($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\StreamingRecognitionResult::class);
+        $this->writeOneof(5, $var);
 
         return $this;
     }

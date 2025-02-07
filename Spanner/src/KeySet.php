@@ -102,7 +102,6 @@ class KeySet
         return $this->ranges;
     }
 
-
     /**
      * Add a single KeyRange.
      *

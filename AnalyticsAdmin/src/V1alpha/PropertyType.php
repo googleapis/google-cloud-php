@@ -7,7 +7,7 @@ namespace Google\Analytics\Admin\V1alpha;
 use UnexpectedValueException;
 
 /**
- * Types of Property resources.
+ * Types of `Property` resources.
  *
  * Protobuf type <code>google.analytics.admin.v1alpha.PropertyType</code>
  */
@@ -20,19 +20,19 @@ class PropertyType
      */
     const PROPERTY_TYPE_UNSPECIFIED = 0;
     /**
-     * Ordinary GA4 property
+     * Ordinary Google Analytics property
      *
      * Generated from protobuf enum <code>PROPERTY_TYPE_ORDINARY = 1;</code>
      */
     const PROPERTY_TYPE_ORDINARY = 1;
     /**
-     * GA4 subproperty
+     * Google Analytics subproperty
      *
      * Generated from protobuf enum <code>PROPERTY_TYPE_SUBPROPERTY = 2;</code>
      */
     const PROPERTY_TYPE_SUBPROPERTY = 2;
     /**
-     * GA4 rollup property
+     * Google Analytics rollup property
      *
      * Generated from protobuf enum <code>PROPERTY_TYPE_ROLLUP = 3;</code>
      */

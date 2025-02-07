@@ -29,13 +29,16 @@ class InsertCssProductInputRequest extends \Google\Protobuf\Internal\Message
      */
     protected $css_product_input = null;
     /**
-     * Required. The primary or supplemental feed id. If CSS Product already
-     * exists and feed id provided is different, then the CSS Product will be
-     * moved to a new feed. Note: For now, CSSs do not need to provide feed ids as
-     * we create feeds on the fly. We do not have supplemental feed support for
-     * CSS Products yet.
+     * Optional. DEPRECATED. Feed id is not required for CSS Products.
+     * The primary or supplemental feed id. If CSS Product already exists and
+     * feed id provided is different, then the CSS Product will be moved to a
+     * new feed.
+     * Note: For now, CSSs do not need to provide feed ids as we create
+     * feeds on the fly.
+     * We do not have supplemental feed support for CSS Products yet.
      *
-     * Generated from protobuf field <code>int64 feed_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>int64 feed_id = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     protected $feed_id = 0;
 
@@ -51,11 +54,13 @@ class InsertCssProductInputRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Shopping\Css\V1\CssProductInput $css_product_input
      *           Required. The CSS Product Input to insert.
      *     @type int|string $feed_id
-     *           Required. The primary or supplemental feed id. If CSS Product already
-     *           exists and feed id provided is different, then the CSS Product will be
-     *           moved to a new feed. Note: For now, CSSs do not need to provide feed ids as
-     *           we create feeds on the fly. We do not have supplemental feed support for
-     *           CSS Products yet.
+     *           Optional. DEPRECATED. Feed id is not required for CSS Products.
+     *           The primary or supplemental feed id. If CSS Product already exists and
+     *           feed id provided is different, then the CSS Product will be moved to a
+     *           new feed.
+     *           Note: For now, CSSs do not need to provide feed ids as we create
+     *           feeds on the fly.
+     *           We do not have supplemental feed support for CSS Products yet.
      * }
      */
     public function __construct($data = NULL) {
@@ -128,33 +133,41 @@ class InsertCssProductInputRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The primary or supplemental feed id. If CSS Product already
-     * exists and feed id provided is different, then the CSS Product will be
-     * moved to a new feed. Note: For now, CSSs do not need to provide feed ids as
-     * we create feeds on the fly. We do not have supplemental feed support for
-     * CSS Products yet.
+     * Optional. DEPRECATED. Feed id is not required for CSS Products.
+     * The primary or supplemental feed id. If CSS Product already exists and
+     * feed id provided is different, then the CSS Product will be moved to a
+     * new feed.
+     * Note: For now, CSSs do not need to provide feed ids as we create
+     * feeds on the fly.
+     * We do not have supplemental feed support for CSS Products yet.
      *
-     * Generated from protobuf field <code>int64 feed_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>int64 feed_id = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
+     * @deprecated
      */
     public function getFeedId()
     {
+        @trigger_error('feed_id is deprecated.', E_USER_DEPRECATED);
         return $this->feed_id;
     }
 
     /**
-     * Required. The primary or supplemental feed id. If CSS Product already
-     * exists and feed id provided is different, then the CSS Product will be
-     * moved to a new feed. Note: For now, CSSs do not need to provide feed ids as
-     * we create feeds on the fly. We do not have supplemental feed support for
-     * CSS Products yet.
+     * Optional. DEPRECATED. Feed id is not required for CSS Products.
+     * The primary or supplemental feed id. If CSS Product already exists and
+     * feed id provided is different, then the CSS Product will be moved to a
+     * new feed.
+     * Note: For now, CSSs do not need to provide feed ids as we create
+     * feeds on the fly.
+     * We do not have supplemental feed support for CSS Products yet.
      *
-     * Generated from protobuf field <code>int64 feed_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>int64 feed_id = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var
      * @return $this
+     * @deprecated
      */
     public function setFeedId($var)
     {
+        @trigger_error('feed_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt64($var);
         $this->feed_id = $var;
 

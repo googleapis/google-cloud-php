@@ -36,6 +36,7 @@ use Google\Cloud\Compute\V1\GetRegionRequest;
 use Google\Cloud\Compute\V1\ListRegionsRequest;
 use Google\Cloud\Compute\V1\Region;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Regions API.
@@ -126,6 +127,12 @@ final class RegionsClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -156,6 +163,9 @@ final class RegionsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -182,6 +192,8 @@ final class RegionsClient
      *
      * The async variant is {@see RegionsClient::getAsync()} .
      *
+     * @example samples/V1/RegionsClient/get.php
+     *
      * @param GetRegionRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -205,6 +217,8 @@ final class RegionsClient
      * Retrieves the list of region resources available to the specified project. To decrease latency for this method, you can optionally omit any unneeded information from the response by using a field mask. This practice is especially recommended for unused quota information (the `items.quotas` field). To exclude one or more fields, set your request's `fields` query parameter to only include the fields you need. For example, to only include the `id` and `selfLink` fields, add the query parameter `?fields=id,selfLink` to your request. This method fails if the quota information is unavailable for the region and if the organization policy constraint compute.requireBasicQuotaInResponse is enforced. This constraint, when enforced, disables the fail-open behaviour when quota information (the `items.quotas` field) is unavailable for the region. It is recommended to use the default setting for the constraint unless your application requires the fail-closed behaviour for this method.
      *
      * The async variant is {@see RegionsClient::listAsync()} .
+     *
+     * @example samples/V1/RegionsClient/list.php
      *
      * @param ListRegionsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {

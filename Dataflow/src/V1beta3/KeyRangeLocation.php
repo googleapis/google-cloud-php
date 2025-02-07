@@ -22,20 +22,20 @@ class KeyRangeLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string start = 1;</code>
      */
-    private $start = '';
+    protected $start = '';
     /**
      * The end (exclusive) of the key range.
      *
      * Generated from protobuf field <code>string end = 2;</code>
      */
-    private $end = '';
+    protected $end = '';
     /**
      * The physical location of this range assignment to be used for
      * streaming computation cross-worker message delivery.
      *
      * Generated from protobuf field <code>string delivery_endpoint = 3;</code>
      */
-    private $delivery_endpoint = '';
+    protected $delivery_endpoint = '';
     /**
      * The name of the data disk where data for this range is stored.
      * This name is local to the Google Cloud Platform project and uniquely
@@ -44,7 +44,7 @@ class KeyRangeLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string data_disk = 5;</code>
      */
-    private $data_disk = '';
+    protected $data_disk = '';
     /**
      * DEPRECATED. The location of the persistent state for this range, as a
      * persistent directory in the worker local filesystem.

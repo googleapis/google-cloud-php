@@ -33,17 +33,24 @@ use Google\Rpc\Status;
 /**
  * Creates a [Preview][google.cloud.config.v1.Preview].
  *
- * @param string $formattedParent The parent in whose context the Preview is created. The parent
- *                                value is in the format: 'projects/{project_id}/locations/{location}'. Please see
- *                                {@see ConfigClient::locationName()} for help formatting this field.
+ * @param string $formattedParent                The parent in whose context the Preview is created. The parent
+ *                                               value is in the format: 'projects/{project_id}/locations/{location}'. Please see
+ *                                               {@see ConfigClient::locationName()} for help formatting this field.
+ * @param string $formattedPreviewServiceAccount User-specified Service Account (SA) credentials to be used when
+ *                                               previewing resources.
+ *                                               Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
+ *                                               Please see {@see ConfigClient::serviceAccountName()} for help formatting this field.
  */
-function create_preview_sample(string $formattedParent): void
-{
+function create_preview_sample(
+    string $formattedParent,
+    string $formattedPreviewServiceAccount
+): void {
     // Create a client.
     $configClient = new ConfigClient();
 
     // Prepare the request message.
-    $preview = new Preview();
+    $preview = (new Preview())
+        ->setServiceAccount($formattedPreviewServiceAccount);
     $request = (new CreatePreviewRequest())
         ->setParent($formattedParent)
         ->setPreview($preview);
@@ -80,7 +87,11 @@ function create_preview_sample(string $formattedParent): void
 function callSample(): void
 {
     $formattedParent = ConfigClient::locationName('[PROJECT]', '[LOCATION]');
+    $formattedPreviewServiceAccount = ConfigClient::serviceAccountName(
+        '[PROJECT]',
+        '[SERVICE_ACCOUNT]'
+    );
 
-    create_preview_sample($formattedParent);
+    create_preview_sample($formattedParent, $formattedPreviewServiceAccount);
 }
 // [END config_v1_generated_Config_CreatePreview_sync]

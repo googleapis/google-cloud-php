@@ -28,7 +28,7 @@ class SearchKnowledgeResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string rewritten_query = 3;</code>
      */
-    private $rewritten_query = '';
+    protected $rewritten_query = '';
 
     /**
      * Constructor.

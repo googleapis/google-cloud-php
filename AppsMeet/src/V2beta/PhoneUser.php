@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class PhoneUser extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Partially redacted user's phone number when they call in.
+     * Output only. Partially redacted user's phone number when calling.
      *
      * Generated from protobuf field <code>string display_name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -30,7 +30,7 @@ class PhoneUser extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $display_name
-     *           Output only. Partially redacted user's phone number when they call in.
+     *           Output only. Partially redacted user's phone number when calling.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,7 +39,7 @@ class PhoneUser extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Partially redacted user's phone number when they call in.
+     * Output only. Partially redacted user's phone number when calling.
      *
      * Generated from protobuf field <code>string display_name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -50,7 +50,7 @@ class PhoneUser extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Partially redacted user's phone number when they call in.
+     * Output only. Partially redacted user's phone number when calling.
      *
      * Generated from protobuf field <code>string display_name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

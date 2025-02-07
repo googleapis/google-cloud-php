@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A Google Workspace Add-on deployment
+ * A Google Workspace add-on deployment
  *
  * Generated from protobuf message <code>google.cloud.gsuiteaddons.v1.Deployment</code>
  */
@@ -30,7 +30,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      */
     private $oauth_scopes;
     /**
-     * The Google Workspace Add-on configuration.
+     * The Google Workspace add-on configuration.
      *
      * Generated from protobuf field <code>.google.cloud.gsuiteaddons.v1.AddOns add_ons = 3;</code>
      */
@@ -57,7 +57,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *           The list of Google OAuth scopes for which to request consent from the end
      *           user before executing an add-on endpoint.
      *     @type \Google\Cloud\GSuiteAddOns\V1\AddOns $add_ons
-     *           The Google Workspace Add-on configuration.
+     *           The Google Workspace add-on configuration.
      *     @type string $etag
      *           This value is computed by the server based on the version of the
      *           deployment in storage, and may be sent on update and delete requests to
@@ -126,7 +126,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Workspace Add-on configuration.
+     * The Google Workspace add-on configuration.
      *
      * Generated from protobuf field <code>.google.cloud.gsuiteaddons.v1.AddOns add_ons = 3;</code>
      * @return \Google\Cloud\GSuiteAddOns\V1\AddOns|null
@@ -147,7 +147,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Workspace Add-on configuration.
+     * The Google Workspace add-on configuration.
      *
      * Generated from protobuf field <code>.google.cloud.gsuiteaddons.v1.AddOns add_ons = 3;</code>
      * @param \Google\Cloud\GSuiteAddOns\V1\AddOns $var

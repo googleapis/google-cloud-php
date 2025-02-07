@@ -17,6 +17,10 @@
 
 namespace Google\Cloud\Core\Tests\Unit\Report;
 
+use Google\Cloud\Core\Compute\Metadata;
+use Google\Cloud\Core\Compute\Metadata\Readers\ReaderInterface;
+use Google\Cloud\Core\Report\CloudRunJobMetadataProvider;
+use Google\Cloud\Core\Report\CloudRunServiceMetadataProvider;
 use Google\Cloud\Core\Report\EmptyMetadataProvider;
 use Google\Cloud\Core\Report\GAEFlexMetadataProvider;
 use Google\Cloud\Core\Report\GAEStandardMetadataProvider;
@@ -30,6 +34,20 @@ class MetadataProviderUtilsTest extends TestCase
 {
     private $envs = ['GAE_SERVICE' => 'my-service'];
     private $std_envs = ['GAE_SERVICE' => 'my-service', 'GAE_ENV' => 'standard'];
+    private $configuration;
+    private $jobName;
+
+    protected function setUp(): void
+    {
+        $this->configuration = \getenv('K_CONFIGURATION');
+        $this->jobName = \getenv('CLOUD_RUN_JOB');
+    }
+
+    protected function tearDown(): void
+    {
+        \putenv('K_CONFIGURATION=' . $this->configuration);
+        \putenv('CLOUD_RUN_JOB=' . $this->jobName);
+    }
 
     public function testAutoSelect()
     {
@@ -46,6 +64,32 @@ class MetadataProviderUtilsTest extends TestCase
         $metadataProvider = MetadataProviderUtils::autoSelect([]);
         $this->assertInstanceOf(
             EmptyMetadataProvider::class,
+            $metadataProvider
+        );
+    }
+
+    public function testAutoSelectReturnsCloudRunJobMetadataProvider(): void
+    {
+        \putenv('CLOUD_RUN_JOB=my-job');
+        $metadataProvider = MetadataProviderUtils::autoSelect(
+            [],
+            new Metadata(self::createStub(ReaderInterface::class))
+        );
+        $this->assertInstanceOf(
+            CloudRunJobMetadataProvider::class,
+            $metadataProvider
+        );
+    }
+
+    public function testAutoSelectReturnsCloudRunServiceMetadataProvider(): void
+    {
+        \putenv('K_CONFIGURATION=my-configuration');
+        $metadataProvider = MetadataProviderUtils::autoSelect(
+            [],
+            new Metadata(self::createStub(ReaderInterface::class))
+        );
+        $this->assertInstanceOf(
+            CloudRunServiceMetadataProvider::class,
             $metadataProvider
         );
     }

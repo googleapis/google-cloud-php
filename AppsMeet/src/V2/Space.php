@@ -18,22 +18,28 @@ class Space extends \Google\Protobuf\Internal\Message
 {
     /**
      * Immutable. Resource name of the space.
-     * Format: `spaces/{space}`
+     * Format: `spaces/{space}`.
+     * `{space}` is the resource identifier for the space. It's a unique,
+     * server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`.
+     * For more information, see [How Meet identifies a meeting
+     * space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $name = '';
     /**
-     * Output only. URI used to join meetings, such as
+     * Output only. URI used to join meetings consisting of
+     * `https://meet.google.com/` followed by the `meeting_code`. For example,
      * `https://meet.google.com/abc-mnop-xyz`.
      *
      * Generated from protobuf field <code>string meeting_uri = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $meeting_uri = '';
     /**
-     * Output only. Type friendly code to join the meeting. Format:
-     * `[a-z]+-[a-z]+-[a-z]+` such as `abc-mnop-xyz`. The maximum length is 128
-     * characters. Can only be used as an alias of the space ID to get the space.
+     * Output only. Type friendly unique string used to join the meeting.
+     * Format: `[a-z]+-[a-z]+-[a-z]+`. For example, `abc-mnop-xyz`.
+     * The maximum length is 128 characters.
+     * Can only be used as an alias of the space name to get the space.
      *
      * Generated from protobuf field <code>string meeting_code = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -59,14 +65,20 @@ class Space extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Immutable. Resource name of the space.
-     *           Format: `spaces/{space}`
+     *           Format: `spaces/{space}`.
+     *           `{space}` is the resource identifier for the space. It's a unique,
+     *           server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`.
+     *           For more information, see [How Meet identifies a meeting
+     *           space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).
      *     @type string $meeting_uri
-     *           Output only. URI used to join meetings, such as
+     *           Output only. URI used to join meetings consisting of
+     *           `https://meet.google.com/` followed by the `meeting_code`. For example,
      *           `https://meet.google.com/abc-mnop-xyz`.
      *     @type string $meeting_code
-     *           Output only. Type friendly code to join the meeting. Format:
-     *           `[a-z]+-[a-z]+-[a-z]+` such as `abc-mnop-xyz`. The maximum length is 128
-     *           characters. Can only be used as an alias of the space ID to get the space.
+     *           Output only. Type friendly unique string used to join the meeting.
+     *           Format: `[a-z]+-[a-z]+-[a-z]+`. For example, `abc-mnop-xyz`.
+     *           The maximum length is 128 characters.
+     *           Can only be used as an alias of the space name to get the space.
      *     @type \Google\Apps\Meet\V2\SpaceConfig $config
      *           Configuration pertaining to the meeting space.
      *     @type \Google\Apps\Meet\V2\ActiveConference $active_conference
@@ -80,7 +92,11 @@ class Space extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. Resource name of the space.
-     * Format: `spaces/{space}`
+     * Format: `spaces/{space}`.
+     * `{space}` is the resource identifier for the space. It's a unique,
+     * server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`.
+     * For more information, see [How Meet identifies a meeting
+     * space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -92,7 +108,11 @@ class Space extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. Resource name of the space.
-     * Format: `spaces/{space}`
+     * Format: `spaces/{space}`.
+     * `{space}` is the resource identifier for the space. It's a unique,
+     * server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`.
+     * For more information, see [How Meet identifies a meeting
+     * space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -107,7 +127,8 @@ class Space extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. URI used to join meetings, such as
+     * Output only. URI used to join meetings consisting of
+     * `https://meet.google.com/` followed by the `meeting_code`. For example,
      * `https://meet.google.com/abc-mnop-xyz`.
      *
      * Generated from protobuf field <code>string meeting_uri = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -119,7 +140,8 @@ class Space extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. URI used to join meetings, such as
+     * Output only. URI used to join meetings consisting of
+     * `https://meet.google.com/` followed by the `meeting_code`. For example,
      * `https://meet.google.com/abc-mnop-xyz`.
      *
      * Generated from protobuf field <code>string meeting_uri = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -135,9 +157,10 @@ class Space extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Type friendly code to join the meeting. Format:
-     * `[a-z]+-[a-z]+-[a-z]+` such as `abc-mnop-xyz`. The maximum length is 128
-     * characters. Can only be used as an alias of the space ID to get the space.
+     * Output only. Type friendly unique string used to join the meeting.
+     * Format: `[a-z]+-[a-z]+-[a-z]+`. For example, `abc-mnop-xyz`.
+     * The maximum length is 128 characters.
+     * Can only be used as an alias of the space name to get the space.
      *
      * Generated from protobuf field <code>string meeting_code = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -148,9 +171,10 @@ class Space extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Type friendly code to join the meeting. Format:
-     * `[a-z]+-[a-z]+-[a-z]+` such as `abc-mnop-xyz`. The maximum length is 128
-     * characters. Can only be used as an alias of the space ID to get the space.
+     * Output only. Type friendly unique string used to join the meeting.
+     * Format: `[a-z]+-[a-z]+-[a-z]+`. For example, `abc-mnop-xyz`.
+     * The maximum length is 128 characters.
+     * Can only be used as an alias of the space name to get the space.
      *
      * Generated from protobuf field <code>string meeting_code = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

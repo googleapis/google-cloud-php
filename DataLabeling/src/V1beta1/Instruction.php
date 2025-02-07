@@ -22,38 +22,38 @@ class Instruction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The display name of the instruction. Maximum of 64 characters.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. User-provided description of the instruction.
      * The description can be up to 10000 characters long.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. Creation time of instruction.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Last update time of instruction.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Required. The data type of this instruction.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.DataType data_type = 6;</code>
      */
-    private $data_type = 0;
+    protected $data_type = 0;
     /**
      * Deprecated: this instruction format is not supported any more.
      * Instruction from a CSV file, such as for classification task.
@@ -71,7 +71,7 @@ class Instruction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.PdfInstruction pdf_instruction = 9;</code>
      */
-    private $pdf_instruction = null;
+    protected $pdf_instruction = null;
     /**
      * Output only. The names of any related resources that are blocking changes
      * to the instruction.

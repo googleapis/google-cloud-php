@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetSslProxies_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\TargetSslProxiesClient;
+use Google\Cloud\Compute\V1\Client\TargetSslProxiesClient;
+use Google\Cloud\Compute\V1\ListTargetSslProxiesRequest;
 
 /**
  * Retrieves the list of TargetSslProxy resources available to the specified project.
@@ -37,10 +38,14 @@ function list_sample(string $project): void
     // Create a client.
     $targetSslProxiesClient = new TargetSslProxiesClient();
 
+    // Prepare the request message.
+    $request = (new ListTargetSslProxiesRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $targetSslProxiesClient->list($project);
+        $response = $targetSslProxiesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

@@ -42,7 +42,7 @@ protos = [
 
 dest = Path().resolve()
 for proto in protos:
-    src = Path(f"{php.STAGING_DIR}/{proto[0]}").resolve()
+    src = Path(f"../{php.STAGING_DIR}/CommonProtos/{proto[0]}").resolve()
 
     # Added so that we can pass copy_excludes in the owlbot_main() call
     _tracked_paths.add(src)
@@ -61,14 +61,6 @@ for proto in protos:
 # move metadata to more specific directories (owlbot isnt smart enough to do this)
 s.move("metadata/Google/Iam/V1", "metadata/Iam/V1")
 s.move("metadata/Google/Logging/Type", "metadata/Logging/Type")
-
-# remove owl-bot-staging dir
-if os.path.exists(php.STAGING_DIR):
-    shutil.rmtree(Path(php.STAGING_DIR))
-
-# remove the metadata/Google files that we copied
-if os.path.exists("metadata/Google"):
-    shutil.rmtree(Path("metadata/Google"))
 
 s.replace(
     "src/**/*.php",

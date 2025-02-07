@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionSslCertificates_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\RegionSslCertificatesClient;
+use Google\Cloud\Compute\V1\Client\RegionSslCertificatesClient;
+use Google\Cloud\Compute\V1\ListRegionSslCertificatesRequest;
 
 /**
  * Retrieves the list of SslCertificate resources available to the specified project in the specified region.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $region): void
     // Create a client.
     $regionSslCertificatesClient = new RegionSslCertificatesClient();
 
+    // Prepare the request message.
+    $request = (new ListRegionSslCertificatesRequest())
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $regionSslCertificatesClient->list($project, $region);
+        $response = $regionSslCertificatesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

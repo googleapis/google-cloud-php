@@ -34,8 +34,8 @@ class AppendFsync
      */
     const EVERYSEC = 2;
     /**
-     * fsync every time new commands are appended to the AOF. It has the best
-     * data loss protection at the cost of performance
+     * fsync every time new write commands are appended to the AOF. It has the
+     * best data loss protection at the cost of performance
      *
      * Generated from protobuf enum <code>ALWAYS = 3;</code>
      */

@@ -20,7 +20,7 @@ class LabelImagePolylineOperationMetadata extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.HumanAnnotationConfig basic_config = 1;</code>
      */
-    private $basic_config = null;
+    protected $basic_config = null;
 
     /**
      * Constructor.

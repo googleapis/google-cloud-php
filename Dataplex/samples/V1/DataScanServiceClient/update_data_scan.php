@@ -29,7 +29,6 @@ use Google\Cloud\Dataplex\V1\Client\DataScanServiceClient;
 use Google\Cloud\Dataplex\V1\DataScan;
 use Google\Cloud\Dataplex\V1\DataSource;
 use Google\Cloud\Dataplex\V1\UpdateDataScanRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -50,10 +49,8 @@ function update_data_scan_sample(): void
     $dataScanData = new DataSource();
     $dataScan = (new DataScan())
         ->setData($dataScanData);
-    $updateMask = new FieldMask();
     $request = (new UpdateDataScanRequest())
-        ->setDataScan($dataScan)
-        ->setUpdateMask($updateMask);
+        ->setDataScan($dataScan);
 
     // Call the API and handle any network failures.
     try {

@@ -44,6 +44,7 @@ use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\SetLabelsForwardingRuleRequest;
 use Google\Cloud\Compute\V1\SetTargetForwardingRuleRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The ForwardingRules API.
@@ -193,6 +194,12 @@ final class ForwardingRulesClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -223,6 +230,9 @@ final class ForwardingRulesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -250,6 +260,8 @@ final class ForwardingRulesClient
      *
      * The async variant is {@see ForwardingRulesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/ForwardingRulesClient/aggregated_list.php
+     *
      * @param AggregatedListForwardingRulesRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -273,6 +285,8 @@ final class ForwardingRulesClient
      * Deletes the specified ForwardingRule resource.
      *
      * The async variant is {@see ForwardingRulesClient::deleteAsync()} .
+     *
+     * @example samples/V1/ForwardingRulesClient/delete.php
      *
      * @param DeleteForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -298,6 +312,8 @@ final class ForwardingRulesClient
      *
      * The async variant is {@see ForwardingRulesClient::getAsync()} .
      *
+     * @example samples/V1/ForwardingRulesClient/get.php
+     *
      * @param GetForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -321,6 +337,8 @@ final class ForwardingRulesClient
      * Creates a ForwardingRule resource in the specified project and region using the data included in the request.
      *
      * The async variant is {@see ForwardingRulesClient::insertAsync()} .
+     *
+     * @example samples/V1/ForwardingRulesClient/insert.php
      *
      * @param InsertForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -346,6 +364,8 @@ final class ForwardingRulesClient
      *
      * The async variant is {@see ForwardingRulesClient::listAsync()} .
      *
+     * @example samples/V1/ForwardingRulesClient/list.php
+     *
      * @param ListForwardingRulesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -369,6 +389,8 @@ final class ForwardingRulesClient
      * Updates the specified forwarding rule with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. Currently, you can only patch the network_tier field.
      *
      * The async variant is {@see ForwardingRulesClient::patchAsync()} .
+     *
+     * @example samples/V1/ForwardingRulesClient/patch.php
      *
      * @param PatchForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -394,6 +416,8 @@ final class ForwardingRulesClient
      *
      * The async variant is {@see ForwardingRulesClient::setLabelsAsync()} .
      *
+     * @example samples/V1/ForwardingRulesClient/set_labels.php
+     *
      * @param SetLabelsForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -417,6 +441,8 @@ final class ForwardingRulesClient
      * Changes target URL for forwarding rule. The new target should be of the same type as the old target.
      *
      * The async variant is {@see ForwardingRulesClient::setTargetAsync()} .
+     *
+     * @example samples/V1/ForwardingRulesClient/set_target.php
      *
      * @param SetTargetForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {

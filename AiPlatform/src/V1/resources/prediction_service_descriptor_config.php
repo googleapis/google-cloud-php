@@ -242,6 +242,7 @@ return [
                 'interfaceOverride' => 'google.iam.v1.IAMPolicy',
             ],
             'templateMap' => [
+                'cachedContent' => 'projects/{project}/locations/{location}/cachedContents/{cached_content}',
                 'endpoint' => 'projects/{project}/locations/{location}/endpoints/{endpoint}',
                 'projectLocationEndpoint' => 'projects/{project}/locations/{location}/endpoints/{endpoint}',
                 'projectLocationPublisherModel' => 'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}',

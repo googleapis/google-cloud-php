@@ -65,8 +65,8 @@ class FetchSettings extends \Google\Protobuf\Internal\Message
      */
     protected $fetch_uri = '';
     /**
-     * Optional. An optional user name for [fetch
-     * url][google.shopping.content.bundles.DataSources.FileInput.fetch_url].
+     * Optional. An optional user name for
+     * [fetch_uri][google.shopping.merchant.datasources.v1beta.FileInput.FetchSettings.fetch_uri].
      * Used for [submitting data sources through
      * SFTP](https://support.google.com/merchants/answer/13813117).
      *
@@ -74,8 +74,8 @@ class FetchSettings extends \Google\Protobuf\Internal\Message
      */
     protected $username = '';
     /**
-     * Optional. An optional password for [fetch
-     * url][google.shopping.content.bundles.DataSources.FileInput.fetch_url].
+     * Optional. An optional password for
+     * [fetch_uri][google.shopping.merchant.datasources.v1beta.FileInput.FetchSettings.fetch_uri].
      * Used for [submitting data sources through
      * SFTP](https://support.google.com/merchants/answer/13813117).
      *
@@ -111,13 +111,13 @@ class FetchSettings extends \Google\Protobuf\Internal\Message
      *           HTTPS or SFTP protocols, so the value will need to be a valid link using
      *           one of those three protocols. Immutable for Google Sheets files.
      *     @type string $username
-     *           Optional. An optional user name for [fetch
-     *           url][google.shopping.content.bundles.DataSources.FileInput.fetch_url].
+     *           Optional. An optional user name for
+     *           [fetch_uri][google.shopping.merchant.datasources.v1beta.FileInput.FetchSettings.fetch_uri].
      *           Used for [submitting data sources through
      *           SFTP](https://support.google.com/merchants/answer/13813117).
      *     @type string $password
-     *           Optional. An optional password for [fetch
-     *           url][google.shopping.content.bundles.DataSources.FileInput.fetch_url].
+     *           Optional. An optional password for
+     *           [fetch_uri][google.shopping.merchant.datasources.v1beta.FileInput.FetchSettings.fetch_uri].
      *           Used for [submitting data sources through
      *           SFTP](https://support.google.com/merchants/answer/13813117).
      * }
@@ -334,8 +334,8 @@ class FetchSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An optional user name for [fetch
-     * url][google.shopping.content.bundles.DataSources.FileInput.fetch_url].
+     * Optional. An optional user name for
+     * [fetch_uri][google.shopping.merchant.datasources.v1beta.FileInput.FetchSettings.fetch_uri].
      * Used for [submitting data sources through
      * SFTP](https://support.google.com/merchants/answer/13813117).
      *
@@ -348,8 +348,8 @@ class FetchSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An optional user name for [fetch
-     * url][google.shopping.content.bundles.DataSources.FileInput.fetch_url].
+     * Optional. An optional user name for
+     * [fetch_uri][google.shopping.merchant.datasources.v1beta.FileInput.FetchSettings.fetch_uri].
      * Used for [submitting data sources through
      * SFTP](https://support.google.com/merchants/answer/13813117).
      *
@@ -366,8 +366,8 @@ class FetchSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An optional password for [fetch
-     * url][google.shopping.content.bundles.DataSources.FileInput.fetch_url].
+     * Optional. An optional password for
+     * [fetch_uri][google.shopping.merchant.datasources.v1beta.FileInput.FetchSettings.fetch_uri].
      * Used for [submitting data sources through
      * SFTP](https://support.google.com/merchants/answer/13813117).
      *
@@ -380,8 +380,8 @@ class FetchSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An optional password for [fetch
-     * url][google.shopping.content.bundles.DataSources.FileInput.fetch_url].
+     * Optional. An optional password for
+     * [fetch_uri][google.shopping.merchant.datasources.v1beta.FileInput.FetchSettings.fetch_uri].
      * Used for [submitting data sources through
      * SFTP](https://support.google.com/merchants/answer/13813117).
      *
