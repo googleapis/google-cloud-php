@@ -23,13 +23,13 @@ class SetAutomatedGa4ConfigurationOptOutRequest extends \Google\Protobuf\Interna
      *
      * Generated from protobuf field <code>string property = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $property = '';
+    protected $property = '';
     /**
      * The status to set.
      *
      * Generated from protobuf field <code>bool opt_out = 2;</code>
      */
-    private $opt_out = false;
+    protected $opt_out = false;
 
     /**
      * Constructor.

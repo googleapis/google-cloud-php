@@ -34,6 +34,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\GetImageFamilyViewRequest;
 use Google\Cloud\Compute\V1\ImageFamilyView;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The ImageFamilyViews API.
@@ -123,6 +124,12 @@ final class ImageFamilyViewsClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -153,6 +160,9 @@ final class ImageFamilyViewsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -178,6 +188,8 @@ final class ImageFamilyViewsClient
      * Returns the latest image that is part of an image family, is not deprecated and is rolled out in the specified zone.
      *
      * The async variant is {@see ImageFamilyViewsClient::getAsync()} .
+     *
+     * @example samples/V1/ImageFamilyViewsClient/get.php
      *
      * @param GetImageFamilyViewRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

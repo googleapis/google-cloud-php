@@ -22,7 +22,7 @@ class DeleteGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * If this field is true, then the request means to delete a group with all
      * its descendants. Otherwise, the request means to delete a group only when
@@ -30,7 +30,7 @@ class DeleteGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool recursive = 4;</code>
      */
-    private $recursive = false;
+    protected $recursive = false;
 
     /**
      * @param string $name Required. The group to delete. The format is:

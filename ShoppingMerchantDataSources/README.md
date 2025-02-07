@@ -34,7 +34,35 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Shopping\Merchant\DataSources\V1beta\Client\DataSourcesServiceClient;
+Google\Shopping\Merchant\DataSources\V1beta\DataSource;
+Google\Shopping\Merchant\DataSources\V1beta\GetDataSourceRequest;
+
+// Create a client.
+$dataSourcesServiceClient = new DataSourcesServiceClient();
+
+// Prepare the request message.
+$request = (new GetDataSourceRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var DataSource $response */
+    $response = $dataSourcesServiceClient->getDataSource($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/php-shopping-merchant-datasources/tree/main/samples) for a canonical list of samples.
+
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
 
 ### Version
 

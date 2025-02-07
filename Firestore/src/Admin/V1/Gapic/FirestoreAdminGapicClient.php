@@ -1592,6 +1592,19 @@ class FirestoreAdminGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $filter
+     *           An expression that filters the list of returned backups.
+     *
+     *           A filter expression consists of a field name, a comparison operator, and a
+     *           value for filtering.
+     *           The value must be a string, a number, or a boolean. The comparison operator
+     *           must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`.
+     *           Colon `:` is the contains operator. Filter rules are not case sensitive.
+     *
+     *           The following fields in the [Backup][google.firestore.admin.v1.Backup] are
+     *           eligible for filtering:
+     *
+     *           * `database_uid` (supports `=` only)
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1608,6 +1621,10 @@ class FirestoreAdminGapicClient
         $requestParamHeaders = [];
         $request->setParent($parent);
         $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ListBackups', ListBackupsResponse::class, $optionalArgs, $request)->wait();

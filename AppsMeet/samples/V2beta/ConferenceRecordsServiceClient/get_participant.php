@@ -29,7 +29,6 @@ use Google\Apps\Meet\V2beta\GetParticipantRequest;
 use Google\Apps\Meet\V2beta\Participant;
 
 /**
- * [Developer Preview](https://developers.google.com/workspace/preview).
  * Gets a participant by participant ID.
  *
  * @param string $formattedName Resource name of the participant. Please see

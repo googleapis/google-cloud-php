@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\Dialogflow\Tests\Unit\V2\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dialogflow\V2\Client\ConversationDatasetsClient;
@@ -41,6 +40,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -64,7 +64,9 @@ class ConversationDatasetsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ConversationDatasetsClient */
@@ -134,7 +136,10 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dialogflow.v2.ConversationDatasets/CreateConversationDataset', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.dialogflow.v2.ConversationDatasets/CreateConversationDataset',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($parent, $actualValue);
         $actualValue = $actualApiRequestObject->getConversationDataset();
@@ -182,12 +187,15 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
@@ -250,8 +258,7 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->conversationDatasetName('[PROJECT]', '[LOCATION]', '[CONVERSATION_DATASET]');
-        $request = (new DeleteConversationDatasetRequest())
-            ->setName($formattedName);
+        $request = (new DeleteConversationDatasetRequest())->setName($formattedName);
         $response = $gapicClient->deleteConversationDataset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -261,7 +268,10 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dialogflow.v2.ConversationDatasets/DeleteConversationDataset', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.dialogflow.v2.ConversationDatasets/DeleteConversationDataset',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -307,17 +317,19 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->conversationDatasetName('[PROJECT]', '[LOCATION]', '[CONVERSATION_DATASET]');
-        $request = (new DeleteConversationDatasetRequest())
-            ->setName($formattedName);
+        $request = (new DeleteConversationDatasetRequest())->setName($formattedName);
         $response = $gapicClient->deleteConversationDataset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -365,8 +377,7 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->conversationDatasetName('[PROJECT]', '[LOCATION]', '[CONVERSATION_DATASET]');
-        $request = (new GetConversationDatasetRequest())
-            ->setName($formattedName);
+        $request = (new GetConversationDatasetRequest())->setName($formattedName);
         $response = $gapicClient->getConversationDataset($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -390,17 +401,19 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->conversationDatasetName('[PROJECT]', '[LOCATION]', '[CONVERSATION_DATASET]');
-        $request = (new GetConversationDatasetRequest())
-            ->setName($formattedName);
+        $request = (new GetConversationDatasetRequest())->setName($formattedName);
         try {
             $gapicClient->getConversationDataset($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -450,9 +463,7 @@ class ConversationDatasetsClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->conversationDatasetName('[PROJECT]', '[LOCATION]', '[CONVERSATION_DATASET]');
         $inputConfig = new InputConfig();
-        $request = (new ImportConversationDataRequest())
-            ->setName($formattedName)
-            ->setInputConfig($inputConfig);
+        $request = (new ImportConversationDataRequest())->setName($formattedName)->setInputConfig($inputConfig);
         $response = $gapicClient->importConversationData($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -462,7 +473,10 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dialogflow.v2.ConversationDatasets/ImportConversationData', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.dialogflow.v2.ConversationDatasets/ImportConversationData',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $actualValue = $actualApiRequestObject->getInputConfig();
@@ -510,19 +524,20 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->conversationDatasetName('[PROJECT]', '[LOCATION]', '[CONVERSATION_DATASET]');
         $inputConfig = new InputConfig();
-        $request = (new ImportConversationDataRequest())
-            ->setName($formattedName)
-            ->setInputConfig($inputConfig);
+        $request = (new ImportConversationDataRequest())->setName($formattedName)->setInputConfig($inputConfig);
         $response = $gapicClient->importConversationData($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -556,17 +571,14 @@ class ConversationDatasetsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $conversationDatasetsElement = new ConversationDataset();
-        $conversationDatasets = [
-            $conversationDatasetsElement,
-        ];
+        $conversationDatasets = [$conversationDatasetsElement];
         $expectedResponse = new ListConversationDatasetsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConversationDatasets($conversationDatasets);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListConversationDatasetsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListConversationDatasetsRequest())->setParent($formattedParent);
         $response = $gapicClient->listConversationDatasets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -593,17 +605,19 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListConversationDatasetsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListConversationDatasetsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listConversationDatasets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -656,12 +670,15 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -688,9 +705,7 @@ class ConversationDatasetsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -720,12 +735,15 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -799,7 +817,10 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dialogflow.v2.ConversationDatasets/CreateConversationDataset', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.dialogflow.v2.ConversationDatasets/CreateConversationDataset',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($parent, $actualValue);
         $actualValue = $actualApiRequestObject->getConversationDataset();

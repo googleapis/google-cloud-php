@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListResourcesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * List of [Resources][]s.
+     * List of [Resources][google.cloud.config.v1.Resource].
      *
      * Generated from protobuf field <code>repeated .google.cloud.config.v1.Resource resources = 1;</code>
      */
@@ -43,7 +43,7 @@ class ListResourcesResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Config\V1\Resource>|\Google\Protobuf\Internal\RepeatedField $resources
-     *           List of [Resources][]s.
+     *           List of [Resources][google.cloud.config.v1.Resource].
      *     @type string $next_page_token
      *           A token to request the next page of resources from the 'ListResources'
      *           method. The value of an empty string means that there are no more resources
@@ -58,7 +58,7 @@ class ListResourcesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of [Resources][]s.
+     * List of [Resources][google.cloud.config.v1.Resource].
      *
      * Generated from protobuf field <code>repeated .google.cloud.config.v1.Resource resources = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -69,7 +69,7 @@ class ListResourcesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of [Resources][]s.
+     * List of [Resources][google.cloud.config.v1.Resource].
      *
      * Generated from protobuf field <code>repeated .google.cloud.config.v1.Resource resources = 1;</code>
      * @param array<\Google\Cloud\Config\V1\Resource>|\Google\Protobuf\Internal\RepeatedField $var

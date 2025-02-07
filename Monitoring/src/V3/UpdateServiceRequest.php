@@ -21,13 +21,13 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Service service = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $service = null;
+    protected $service = null;
     /**
      * A set of field paths defining which fields to use for the update.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Monitoring\V3\Service $service Required. The `Service` to draw updates from.

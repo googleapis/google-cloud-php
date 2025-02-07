@@ -22,14 +22,14 @@ class SearchExampleComparisonsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. Requested page size. Server may return fewer results than
      * requested. Default value is 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. A token identifying a page of results for the server to return.
      * Typically obtained by the
@@ -40,7 +40,7 @@ class SearchExampleComparisonsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. Name of the [Evaluation][google.cloud.datalabeling.v1beta1.Evaluation] resource to search for example

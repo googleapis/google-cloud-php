@@ -41,6 +41,8 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Spanner\Admin\Database\V1\AddSplitPointsRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\AddSplitPointsResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup;
 use Google\Cloud\Spanner\Admin\Database\V1\BackupSchedule;
 use Google\Cloud\Spanner\Admin\Database\V1\CopyBackupEncryptionConfig;
@@ -77,6 +79,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\SplitPoints;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateBackupScheduleRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata;
@@ -103,36 +106,9 @@ use Google\Protobuf\Timestamp;
  * ```
  * $databaseAdminClient = new DatabaseAdminClient();
  * try {
- *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
- *     $backupId = 'backup_id';
- *     $formattedSourceBackup = $databaseAdminClient->backupName('[PROJECT]', '[INSTANCE]', '[BACKUP]');
- *     $expireTime = new Timestamp();
- *     $operationResponse = $databaseAdminClient->copyBackup($formattedParent, $backupId, $formattedSourceBackup, $expireTime);
- *     $operationResponse->pollUntilComplete();
- *     if ($operationResponse->operationSucceeded()) {
- *         $result = $operationResponse->getResult();
- *         // doSomethingWith($result)
- *     } else {
- *         $error = $operationResponse->getError();
- *         // handleError($error)
- *     }
- *     // Alternatively:
- *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $databaseAdminClient->copyBackup($formattedParent, $backupId, $formattedSourceBackup, $expireTime);
- *     $operationName = $operationResponse->getName();
- *     // ... do other work
- *     $newOperationResponse = $databaseAdminClient->resumeOperation($operationName, 'copyBackup');
- *     while (!$newOperationResponse->isDone()) {
- *         // ... do other work
- *         $newOperationResponse->reload();
- *     }
- *     if ($newOperationResponse->operationSucceeded()) {
- *         $result = $newOperationResponse->getResult();
- *         // doSomethingWith($result)
- *     } else {
- *         $error = $newOperationResponse->getError();
- *         // handleError($error)
- *     }
+ *     $formattedDatabase = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+ *     $splitPoints = [];
+ *     $response = $databaseAdminClient->addSplitPoints($formattedDatabase, $splitPoints);
  * } finally {
  *     $databaseAdminClient->close();
  * }
@@ -574,6 +550,72 @@ class DatabaseAdminGapicClient
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
+    }
+
+    /**
+     * Adds split points to specified tables, indexes of a database.
+     *
+     * Sample code:
+     * ```
+     * $databaseAdminClient = new DatabaseAdminClient();
+     * try {
+     *     $formattedDatabase = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+     *     $splitPoints = [];
+     *     $response = $databaseAdminClient->addSplitPoints($formattedDatabase, $splitPoints);
+     * } finally {
+     *     $databaseAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string        $database     Required. The database on whose tables/indexes split points are to be
+     *                                    added. Values are of the form
+     *                                    `projects/<project>/instances/<instance>/databases/<database>`.
+     * @param SplitPoints[] $splitPoints  Required. The split points to add.
+     * @param array         $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $initiator
+     *           Optional. A user-supplied tag associated with the split points.
+     *           For example, "intital_data_load", "special_event_1".
+     *           Defaults to "CloudAddSplitPointsAPI" if not specified.
+     *           The length of the tag must not exceed 50 characters,else will be trimmed.
+     *           Only valid UTF8 characters are allowed.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\AddSplitPointsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function addSplitPoints(
+        $database,
+        $splitPoints,
+        array $optionalArgs = []
+    ) {
+        $request = new AddSplitPointsRequest();
+        $requestParamHeaders = [];
+        $request->setDatabase($database);
+        $request->setSplitPoints($splitPoints);
+        $requestParamHeaders['database'] = $database;
+        if (isset($optionalArgs['initiator'])) {
+            $request->setInitiator($optionalArgs['initiator']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'AddSplitPoints',
+            AddSplitPointsResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**

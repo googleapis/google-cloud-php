@@ -149,6 +149,12 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> system_labels = 28;</code>
      */
     private $system_labels;
+    /**
+     * Optional. Spec for configuring speculative decoding.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SpeculativeDecodingSpec speculative_decoding_spec = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $speculative_decoding_spec = null;
     protected $prediction_resources;
 
     /**
@@ -245,6 +251,8 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $system_labels
      *           System labels to apply to Model Garden deployments.
      *           System labels are managed by Google for internal use only.
+     *     @type \Google\Cloud\AIPlatform\V1\SpeculativeDecodingSpec $speculative_decoding_spec
+     *           Optional. Spec for configuring speculative decoding.
      * }
      */
     public function __construct($data = NULL) {
@@ -863,6 +871,42 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->system_labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Spec for configuring speculative decoding.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SpeculativeDecodingSpec speculative_decoding_spec = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\SpeculativeDecodingSpec|null
+     */
+    public function getSpeculativeDecodingSpec()
+    {
+        return $this->speculative_decoding_spec;
+    }
+
+    public function hasSpeculativeDecodingSpec()
+    {
+        return isset($this->speculative_decoding_spec);
+    }
+
+    public function clearSpeculativeDecodingSpec()
+    {
+        unset($this->speculative_decoding_spec);
+    }
+
+    /**
+     * Optional. Spec for configuring speculative decoding.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SpeculativeDecodingSpec speculative_decoding_spec = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\SpeculativeDecodingSpec $var
+     * @return $this
+     */
+    public function setSpeculativeDecodingSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\SpeculativeDecodingSpec::class);
+        $this->speculative_decoding_spec = $var;
 
         return $this;
     }

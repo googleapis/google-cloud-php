@@ -21,7 +21,7 @@ class UserSignals extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 active_days_lower_bound = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $active_days_lower_bound = 0;
+    protected $active_days_lower_bound = 0;
     /**
      * Output only. Likelihood (from 0.0 to 1.0) this user includes synthetic
      * components in their identity, such as a randomly generated email address,
@@ -29,7 +29,7 @@ class UserSignals extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float synthetic_risk = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $synthetic_risk = 0.0;
+    protected $synthetic_risk = 0.0;
 
     /**
      * Constructor.
@@ -111,6 +111,4 @@ class UserSignals extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(UserSignals::class, \Google\Cloud\RecaptchaEnterprise\V1\FraudSignals_UserSignals::class);
 

@@ -28,9 +28,11 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\AddAssociationNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\AddRuleNetworkFirewallPolicyRequest;
+use Google\Cloud\Compute\V1\AggregatedListNetworkFirewallPoliciesRequest;
 use Google\Cloud\Compute\V1\Client\NetworkFirewallPoliciesClient;
 use Google\Cloud\Compute\V1\CloneRulesNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\DeleteNetworkFirewallPolicyRequest;
+use Google\Cloud\Compute\V1\FirewallPoliciesScopedList;
 use Google\Cloud\Compute\V1\FirewallPolicy;
 use Google\Cloud\Compute\V1\FirewallPolicyAssociation;
 use Google\Cloud\Compute\V1\FirewallPolicyList;
@@ -44,6 +46,7 @@ use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\GlobalSetPolicyRequest;
 use Google\Cloud\Compute\V1\InsertNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\ListNetworkFirewallPoliciesRequest;
+use Google\Cloud\Compute\V1\NetworkFirewallPolicyAggregatedList;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\PatchNetworkFirewallPolicyRequest;
@@ -336,6 +339,85 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function aggregatedListTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $id = 'id3355';
+        $kind = 'kind3292052';
+        $nextPageToken = '';
+        $selfLink = 'selfLink-1691268851';
+        $items = [
+            'itemsKey' => new FirewallPoliciesScopedList(),
+        ];
+        $expectedResponse = new NetworkFirewallPolicyAggregatedList();
+        $expectedResponse->setId($id);
+        $expectedResponse->setKind($kind);
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setItems($items);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListNetworkFirewallPoliciesRequest())
+            ->setProject($project);
+        $response = $gapicClient->aggregatedList($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertArrayHasKey('itemsKey', $expectedResponse->getItems());
+        $this->assertArrayHasKey('itemsKey', $resources);
+        $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources['itemsKey']);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.NetworkFirewallPolicies/AggregatedList', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function aggregatedListExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListNetworkFirewallPoliciesRequest())
+            ->setProject($project);
+        try {
+            $gapicClient->aggregatedList($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */

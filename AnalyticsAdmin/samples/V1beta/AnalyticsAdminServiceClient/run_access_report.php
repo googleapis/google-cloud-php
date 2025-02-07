@@ -38,12 +38,17 @@ use Google\ApiCore\ApiException;
  * only be requested on Google Analytics 360 properties. This method is only
  * available to Administrators.
  *
- * These data access records include GA4 UI Reporting, GA4 UI Explorations,
- * GA4 Data API, and other products like Firebase & Admob that can retrieve
+ * These data access records include GA UI Reporting, GA UI Explorations,
+ * GA Data API, and other products like Firebase & Admob that can retrieve
  * data from Google Analytics through a linkage. These records don't include
  * property configuration changes like adding a stream or changing a
  * property's time zone. For configuration change history, see
  * [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).
+ *
+ * To give your feedback on this API, complete the [Google Analytics Access
+ * Reports
+ * feedback](https://docs.google.com/forms/d/e/1FAIpQLSdmEBUrMzAEdiEKk5TV5dEHvDUZDRlgWYdQdAeSdtR4hVjEhw/viewform)
+ * form.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

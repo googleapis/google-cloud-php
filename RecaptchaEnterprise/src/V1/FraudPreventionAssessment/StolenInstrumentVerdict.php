@@ -22,7 +22,7 @@ class StolenInstrumentVerdict extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float risk = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $risk = 0.0;
+    protected $risk = 0.0;
 
     /**
      * Constructor.
@@ -70,6 +70,4 @@ class StolenInstrumentVerdict extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(StolenInstrumentVerdict::class, \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment_StolenInstrumentVerdict::class);
 

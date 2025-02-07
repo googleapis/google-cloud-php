@@ -143,6 +143,4 @@ class ComparisonType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ComparisonType::class, \Google\Analytics\Admin\V1alpha\MatchingCondition_ComparisonType::class);
 

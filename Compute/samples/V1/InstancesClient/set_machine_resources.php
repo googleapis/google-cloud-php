@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Instances_SetMachineResources_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\Client\InstancesClient;
 use Google\Cloud\Compute\V1\InstancesSetMachineResourcesRequest;
+use Google\Cloud\Compute\V1\SetMachineResourcesInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function set_machine_resources_sample(string $instance, string $project, string 
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instancesSetMachineResourcesRequestResource = new InstancesSetMachineResourcesRequest();
+    $request = (new SetMachineResourcesInstanceRequest())
+        ->setInstance($instance)
+        ->setInstancesSetMachineResourcesRequestResource($instancesSetMachineResourcesRequestResource)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->setMachineResources(
-            $instance,
-            $instancesSetMachineResourcesRequestResource,
-            $project,
-            $zone
-        );
+        $response = $instancesClient->setMachineResources($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

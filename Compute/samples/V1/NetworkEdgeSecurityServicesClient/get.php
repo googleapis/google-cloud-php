@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_NetworkEdgeSecurityServices_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\NetworkEdgeSecurityServicesClient;
+use Google\Cloud\Compute\V1\GetNetworkEdgeSecurityServiceRequest;
 use Google\Cloud\Compute\V1\NetworkEdgeSecurityService;
-use Google\Cloud\Compute\V1\NetworkEdgeSecurityServicesClient;
 
 /**
  * Gets a specified NetworkEdgeSecurityService.
@@ -39,10 +40,16 @@ function get_sample(string $networkEdgeSecurityService, string $project, string 
     // Create a client.
     $networkEdgeSecurityServicesClient = new NetworkEdgeSecurityServicesClient();
 
+    // Prepare the request message.
+    $request = (new GetNetworkEdgeSecurityServiceRequest())
+        ->setNetworkEdgeSecurityService($networkEdgeSecurityService)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var NetworkEdgeSecurityService $response */
-        $response = $networkEdgeSecurityServicesClient->get($networkEdgeSecurityService, $project, $region);
+        $response = $networkEdgeSecurityServicesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

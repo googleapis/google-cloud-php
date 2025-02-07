@@ -21,13 +21,13 @@ class UpdateGeneratorRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Generator generator = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $generator = null;
+    protected $generator = null;
     /**
      * Optional. The list of fields to update.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Dialogflow\V2\Generator $generator  Required. The generator to update.

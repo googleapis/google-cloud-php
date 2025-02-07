@@ -21,14 +21,14 @@ class FollowupIntentInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string followup_intent_name = 1;</code>
      */
-    private $followup_intent_name = '';
+    protected $followup_intent_name = '';
     /**
      * The unique identifier of the followup intent's parent.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
      * Generated from protobuf field <code>string parent_followup_intent_name = 2;</code>
      */
-    private $parent_followup_intent_name = '';
+    protected $parent_followup_intent_name = '';
 
     /**
      * Constructor.

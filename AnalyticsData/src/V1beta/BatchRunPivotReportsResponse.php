@@ -28,7 +28,7 @@ class BatchRunPivotReportsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 2;</code>
      */
-    private $kind = '';
+    protected $kind = '';
 
     /**
      * Constructor.

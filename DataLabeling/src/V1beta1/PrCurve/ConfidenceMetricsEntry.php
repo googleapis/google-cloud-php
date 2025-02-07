@@ -21,66 +21,66 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
      * threshold.
      * For image object detection (bounding box) tasks, this is the
      * [intersection-over-union
-     * (IOU)](https://cloud.google.com/vision/automl/object-detection/docs/evaluate#intersection-over-union)
+     * (IOU)](/vision/automl/object-detection/docs/evaluate#intersection-over-union)
      * threshold for the context of this point on the PR curve.
      *
      * Generated from protobuf field <code>float confidence_threshold = 1;</code>
      */
-    private $confidence_threshold = 0.0;
+    protected $confidence_threshold = 0.0;
     /**
      * Recall value.
      *
      * Generated from protobuf field <code>float recall = 2;</code>
      */
-    private $recall = 0.0;
+    protected $recall = 0.0;
     /**
      * Precision value.
      *
      * Generated from protobuf field <code>float precision = 3;</code>
      */
-    private $precision = 0.0;
+    protected $precision = 0.0;
     /**
      * Harmonic mean of recall and precision.
      *
      * Generated from protobuf field <code>float f1_score = 4;</code>
      */
-    private $f1_score = 0.0;
+    protected $f1_score = 0.0;
     /**
      * Recall value for entries with label that has highest score.
      *
      * Generated from protobuf field <code>float recall_at1 = 5;</code>
      */
-    private $recall_at1 = 0.0;
+    protected $recall_at1 = 0.0;
     /**
      * Precision value for entries with label that has highest score.
      *
      * Generated from protobuf field <code>float precision_at1 = 6;</code>
      */
-    private $precision_at1 = 0.0;
+    protected $precision_at1 = 0.0;
     /**
      * The harmonic mean of [recall_at1][google.cloud.datalabeling.v1beta1.PrCurve.ConfidenceMetricsEntry.recall_at1] and [precision_at1][google.cloud.datalabeling.v1beta1.PrCurve.ConfidenceMetricsEntry.precision_at1].
      *
      * Generated from protobuf field <code>float f1_score_at1 = 7;</code>
      */
-    private $f1_score_at1 = 0.0;
+    protected $f1_score_at1 = 0.0;
     /**
      * Recall value for entries with label that has highest 5 scores.
      *
      * Generated from protobuf field <code>float recall_at5 = 8;</code>
      */
-    private $recall_at5 = 0.0;
+    protected $recall_at5 = 0.0;
     /**
      * Precision value for entries with label that has highest 5 scores.
      *
      * Generated from protobuf field <code>float precision_at5 = 9;</code>
      */
-    private $precision_at5 = 0.0;
+    protected $precision_at5 = 0.0;
     /**
      * The harmonic mean of [recall_at5][google.cloud.datalabeling.v1beta1.PrCurve.ConfidenceMetricsEntry.recall_at5] and [precision_at5][google.cloud.datalabeling.v1beta1.PrCurve.ConfidenceMetricsEntry.precision_at5].
      *
      * Generated from protobuf field <code>float f1_score_at5 = 10;</code>
      */
-    private $f1_score_at5 = 0.0;
+    protected $f1_score_at5 = 0.0;
 
     /**
      * Constructor.
@@ -96,7 +96,7 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
      *           threshold.
      *           For image object detection (bounding box) tasks, this is the
      *           [intersection-over-union
-     *           (IOU)](https://cloud.google.com/vision/automl/object-detection/docs/evaluate#intersection-over-union)
+     *           (IOU)](/vision/automl/object-detection/docs/evaluate#intersection-over-union)
      *           threshold for the context of this point on the PR curve.
      *     @type float $recall
      *           Recall value.
@@ -131,7 +131,7 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
      * threshold.
      * For image object detection (bounding box) tasks, this is the
      * [intersection-over-union
-     * (IOU)](https://cloud.google.com/vision/automl/object-detection/docs/evaluate#intersection-over-union)
+     * (IOU)](/vision/automl/object-detection/docs/evaluate#intersection-over-union)
      * threshold for the context of this point on the PR curve.
      *
      * Generated from protobuf field <code>float confidence_threshold = 1;</code>
@@ -150,7 +150,7 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
      * threshold.
      * For image object detection (bounding box) tasks, this is the
      * [intersection-over-union
-     * (IOU)](https://cloud.google.com/vision/automl/object-detection/docs/evaluate#intersection-over-union)
+     * (IOU)](/vision/automl/object-detection/docs/evaluate#intersection-over-union)
      * threshold for the context of this point on the PR curve.
      *
      * Generated from protobuf field <code>float confidence_threshold = 1;</code>
@@ -401,6 +401,4 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConfidenceMetricsEntry::class, \Google\Cloud\DataLabeling\V1beta1\PrCurve_ConfidenceMetricsEntry::class);
 

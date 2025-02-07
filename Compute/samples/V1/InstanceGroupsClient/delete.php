@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InstanceGroups_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstanceGroupsClient;
+use Google\Cloud\Compute\V1\Client\InstanceGroupsClient;
+use Google\Cloud\Compute\V1\DeleteInstanceGroupRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $instanceGroup, string $project, string $zone): vo
     // Create a client.
     $instanceGroupsClient = new InstanceGroupsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteInstanceGroupRequest())
+        ->setInstanceGroup($instanceGroup)
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instanceGroupsClient->delete($instanceGroup, $project, $zone);
+        $response = $instanceGroupsClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

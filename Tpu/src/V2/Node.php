@@ -20,44 +20,55 @@ class Node extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The user-supplied description of the TPU. Maximum of 512 characters.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. The type of hardware accelerators associated with this node.
      *
      * Generated from protobuf field <code>string accelerator_type = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $accelerator_type = '';
+    protected $accelerator_type = '';
     /**
      * Output only. The current state for the TPU Node.
      *
      * Generated from protobuf field <code>.google.cloud.tpu.v2.Node.State state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. If this field is populated, it contains a description of why
      * the TPU Node is unhealthy.
      *
      * Generated from protobuf field <code>string health_description = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $health_description = '';
+    protected $health_description = '';
     /**
      * Required. The runtime version running in the Node.
      *
      * Generated from protobuf field <code>string runtime_version = 11 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $runtime_version = '';
+    protected $runtime_version = '';
     /**
-     * Network configurations for the TPU node.
+     * Network configurations for the TPU node. network_config and network_configs
+     * are mutually exclusive, you can only specify one of them. If both are
+     * specified, an error will be returned.
      *
      * Generated from protobuf field <code>.google.cloud.tpu.v2.NetworkConfig network_config = 36;</code>
      */
-    private $network_config = null;
+    protected $network_config = null;
+    /**
+     * Optional. Repeated network configurations for the TPU node. This field is
+     * used to specify multiple networks configs for the TPU node. network_config
+     * and network_configs are mutually exclusive, you can only specify one of
+     * them. If both are specified, an error will be returned.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.tpu.v2.NetworkConfig network_configs = 49 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $network_configs;
     /**
      * The CIDR block that the TPU node will use when selecting an IP address.
      * This CIDR block must be a /29 block; the Compute Engine networks API
@@ -70,26 +81,26 @@ class Node extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cidr_block = 13;</code>
      */
-    private $cidr_block = '';
+    protected $cidr_block = '';
     /**
      * The Google Cloud Platform Service Account to be used by the TPU node VMs.
      * If None is specified, the default compute service account will be used.
      *
      * Generated from protobuf field <code>.google.cloud.tpu.v2.ServiceAccount service_account = 37;</code>
      */
-    private $service_account = null;
+    protected $service_account = null;
     /**
      * Output only. The time when the node was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The scheduling options for this node.
      *
      * Generated from protobuf field <code>.google.cloud.tpu.v2.SchedulingConfig scheduling_config = 17;</code>
      */
-    private $scheduling_config = null;
+    protected $scheduling_config = null;
     /**
      * Output only. The network endpoints where TPU workers can be accessed and
      * sent work. It is recommended that runtime clients of the node reach out
@@ -103,7 +114,7 @@ class Node extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.tpu.v2.Node.Health health = 22;</code>
      */
-    private $health = 0;
+    protected $health = 0;
     /**
      * Resource labels to represent user-provided metadata.
      *
@@ -129,7 +140,7 @@ class Node extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 id = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $id = 0;
+    protected $id = 0;
     /**
      * The additional data disks for the Node.
      *
@@ -141,7 +152,7 @@ class Node extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.tpu.v2.Node.ApiVersion api_version = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $api_version = 0;
+    protected $api_version = 0;
     /**
      * Output only. The Symptoms that have occurred to the TPU Node.
      *
@@ -153,26 +164,26 @@ class Node extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.tpu.v2.ShieldedInstanceConfig shielded_instance_config = 45;</code>
      */
-    private $shielded_instance_config = null;
+    protected $shielded_instance_config = null;
     /**
      * The AccleratorConfig for the TPU Node.
      *
      * Generated from protobuf field <code>.google.cloud.tpu.v2.AcceleratorConfig accelerator_config = 46;</code>
      */
-    private $accelerator_config = null;
+    protected $accelerator_config = null;
     /**
      * Output only. The qualified name of the QueuedResource that requested this
      * Node.
      *
      * Generated from protobuf field <code>string queued_resource = 47 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $queued_resource = '';
+    protected $queued_resource = '';
     /**
      * Output only. Whether the Node belongs to a Multislice group.
      *
      * Generated from protobuf field <code>bool multislice_node = 48 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $multislice_node = false;
+    protected $multislice_node = false;
 
     /**
      * Constructor.
@@ -194,7 +205,14 @@ class Node extends \Google\Protobuf\Internal\Message
      *     @type string $runtime_version
      *           Required. The runtime version running in the Node.
      *     @type \Google\Cloud\Tpu\V2\NetworkConfig $network_config
-     *           Network configurations for the TPU node.
+     *           Network configurations for the TPU node. network_config and network_configs
+     *           are mutually exclusive, you can only specify one of them. If both are
+     *           specified, an error will be returned.
+     *     @type array<\Google\Cloud\Tpu\V2\NetworkConfig>|\Google\Protobuf\Internal\RepeatedField $network_configs
+     *           Optional. Repeated network configurations for the TPU node. This field is
+     *           used to specify multiple networks configs for the TPU node. network_config
+     *           and network_configs are mutually exclusive, you can only specify one of
+     *           them. If both are specified, an error will be returned.
      *     @type string $cidr_block
      *           The CIDR block that the TPU node will use when selecting an IP address.
      *           This CIDR block must be a /29 block; the Compute Engine networks API
@@ -408,7 +426,9 @@ class Node extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Network configurations for the TPU node.
+     * Network configurations for the TPU node. network_config and network_configs
+     * are mutually exclusive, you can only specify one of them. If both are
+     * specified, an error will be returned.
      *
      * Generated from protobuf field <code>.google.cloud.tpu.v2.NetworkConfig network_config = 36;</code>
      * @return \Google\Cloud\Tpu\V2\NetworkConfig|null
@@ -429,7 +449,9 @@ class Node extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Network configurations for the TPU node.
+     * Network configurations for the TPU node. network_config and network_configs
+     * are mutually exclusive, you can only specify one of them. If both are
+     * specified, an error will be returned.
      *
      * Generated from protobuf field <code>.google.cloud.tpu.v2.NetworkConfig network_config = 36;</code>
      * @param \Google\Cloud\Tpu\V2\NetworkConfig $var
@@ -439,6 +461,38 @@ class Node extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Tpu\V2\NetworkConfig::class);
         $this->network_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Repeated network configurations for the TPU node. This field is
+     * used to specify multiple networks configs for the TPU node. network_config
+     * and network_configs are mutually exclusive, you can only specify one of
+     * them. If both are specified, an error will be returned.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.tpu.v2.NetworkConfig network_configs = 49 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNetworkConfigs()
+    {
+        return $this->network_configs;
+    }
+
+    /**
+     * Optional. Repeated network configurations for the TPU node. This field is
+     * used to specify multiple networks configs for the TPU node. network_config
+     * and network_configs are mutually exclusive, you can only specify one of
+     * them. If both are specified, an error will be returned.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.tpu.v2.NetworkConfig network_configs = 49 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\Tpu\V2\NetworkConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNetworkConfigs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Tpu\V2\NetworkConfig::class);
+        $this->network_configs = $arr;
 
         return $this;
     }

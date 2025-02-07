@@ -29,7 +29,6 @@ use Google\Apps\Meet\V2beta\GetRecordingRequest;
 use Google\Apps\Meet\V2beta\Recording;
 
 /**
- * [Developer Preview](https://developers.google.com/workspace/preview).
  * Gets a recording by recording ID.
  *
  * @param string $formattedName Resource name of the recording. Please see

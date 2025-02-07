@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\DataLabeling\Tests\Unit\V1beta1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\DataLabeling\V1beta1\AnnotatedDataset;
@@ -86,6 +85,7 @@ use Google\Cloud\DataLabeling\V1beta1\SearchExampleComparisonsRequest;
 use Google\Cloud\DataLabeling\V1beta1\SearchExampleComparisonsResponse;
 use Google\Cloud\DataLabeling\V1beta1\SearchExampleComparisonsResponse\ExampleComparison;
 use Google\Cloud\DataLabeling\V1beta1\UpdateEvaluationJobRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -109,7 +109,9 @@ class DataLabelingServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return DataLabelingServiceClient */
@@ -150,7 +152,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/CreateAnnotationSpecSet', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.datalabeling.v1beta1.DataLabelingService/CreateAnnotationSpecSet',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getAnnotationSpecSet();
@@ -169,12 +174,15 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
@@ -217,9 +225,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $dataset = new Dataset();
-        $request = (new CreateDatasetRequest())
-            ->setParent($formattedParent)
-            ->setDataset($dataset);
+        $request = (new CreateDatasetRequest())->setParent($formattedParent)->setDataset($dataset);
         $response = $gapicClient->createDataset($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -245,19 +251,20 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $dataset = new Dataset();
-        $request = (new CreateDatasetRequest())
-            ->setParent($formattedParent)
-            ->setDataset($dataset);
+        $request = (new CreateDatasetRequest())->setParent($formattedParent)->setDataset($dataset);
         try {
             $gapicClient->createDataset($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -297,16 +304,17 @@ class DataLabelingServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $job = new EvaluationJob();
-        $request = (new CreateEvaluationJobRequest())
-            ->setParent($formattedParent)
-            ->setJob($job);
+        $request = (new CreateEvaluationJobRequest())->setParent($formattedParent)->setJob($job);
         $response = $gapicClient->createEvaluationJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/CreateEvaluationJob', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.datalabeling.v1beta1.DataLabelingService/CreateEvaluationJob',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getJob();
@@ -325,19 +333,20 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $job = new EvaluationJob();
-        $request = (new CreateEvaluationJobRequest())
-            ->setParent($formattedParent)
-            ->setJob($job);
+        $request = (new CreateEvaluationJobRequest())->setParent($formattedParent)->setJob($job);
         try {
             $gapicClient->createEvaluationJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -389,9 +398,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $instruction = new Instruction();
-        $request = (new CreateInstructionRequest())
-            ->setParent($formattedParent)
-            ->setInstruction($instruction);
+        $request = (new CreateInstructionRequest())->setParent($formattedParent)->setInstruction($instruction);
         $response = $gapicClient->createInstruction($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -401,7 +408,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/CreateInstruction', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.datalabeling.v1beta1.DataLabelingService/CreateInstruction',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getInstruction();
@@ -449,19 +459,20 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $instruction = new Instruction();
-        $request = (new CreateInstructionRequest())
-            ->setParent($formattedParent)
-            ->setInstruction($instruction);
+        $request = (new CreateInstructionRequest())->setParent($formattedParent)->setInstruction($instruction);
         $response = $gapicClient->createInstruction($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -497,14 +508,16 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->annotatedDatasetName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]');
-        $request = (new DeleteAnnotatedDatasetRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAnnotatedDatasetRequest())->setName($formattedName);
         $gapicClient->deleteAnnotatedDataset($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/DeleteAnnotatedDataset', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.datalabeling.v1beta1.DataLabelingService/DeleteAnnotatedDataset',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -521,17 +534,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->annotatedDatasetName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]');
-        $request = (new DeleteAnnotatedDatasetRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAnnotatedDatasetRequest())->setName($formattedName);
         try {
             $gapicClient->deleteAnnotatedDataset($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -558,14 +573,16 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->annotationSpecSetName('[PROJECT]', '[ANNOTATION_SPEC_SET]');
-        $request = (new DeleteAnnotationSpecSetRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAnnotationSpecSetRequest())->setName($formattedName);
         $gapicClient->deleteAnnotationSpecSet($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/DeleteAnnotationSpecSet', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.datalabeling.v1beta1.DataLabelingService/DeleteAnnotationSpecSet',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -582,17 +599,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->annotationSpecSetName('[PROJECT]', '[ANNOTATION_SPEC_SET]');
-        $request = (new DeleteAnnotationSpecSetRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAnnotationSpecSetRequest())->setName($formattedName);
         try {
             $gapicClient->deleteAnnotationSpecSet($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -619,8 +638,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
-        $request = (new DeleteDatasetRequest())
-            ->setName($formattedName);
+        $request = (new DeleteDatasetRequest())->setName($formattedName);
         $gapicClient->deleteDataset($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -643,17 +661,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
-        $request = (new DeleteDatasetRequest())
-            ->setName($formattedName);
+        $request = (new DeleteDatasetRequest())->setName($formattedName);
         try {
             $gapicClient->deleteDataset($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -680,14 +700,16 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->evaluationJobName('[PROJECT]', '[EVALUATION_JOB]');
-        $request = (new DeleteEvaluationJobRequest())
-            ->setName($formattedName);
+        $request = (new DeleteEvaluationJobRequest())->setName($formattedName);
         $gapicClient->deleteEvaluationJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/DeleteEvaluationJob', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.datalabeling.v1beta1.DataLabelingService/DeleteEvaluationJob',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -704,17 +726,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->evaluationJobName('[PROJECT]', '[EVALUATION_JOB]');
-        $request = (new DeleteEvaluationJobRequest())
-            ->setName($formattedName);
+        $request = (new DeleteEvaluationJobRequest())->setName($formattedName);
         try {
             $gapicClient->deleteEvaluationJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -741,8 +765,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->instructionName('[PROJECT]', '[INSTRUCTION]');
-        $request = (new DeleteInstructionRequest())
-            ->setName($formattedName);
+        $request = (new DeleteInstructionRequest())->setName($formattedName);
         $gapicClient->deleteInstruction($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -765,17 +788,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->instructionName('[PROJECT]', '[INSTRUCTION]');
-        $request = (new DeleteInstructionRequest())
-            ->setName($formattedName);
+        $request = (new DeleteInstructionRequest())->setName($formattedName);
         try {
             $gapicClient->deleteInstruction($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -826,7 +851,11 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
-        $formattedAnnotatedDataset = $gapicClient->annotatedDatasetName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]');
+        $formattedAnnotatedDataset = $gapicClient->annotatedDatasetName(
+            '[PROJECT]',
+            '[DATASET]',
+            '[ANNOTATED_DATASET]'
+        );
         $outputConfig = new OutputConfig();
         $request = (new ExportDataRequest())
             ->setName($formattedName)
@@ -891,16 +920,23 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
-        $formattedAnnotatedDataset = $gapicClient->annotatedDatasetName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]');
+        $formattedAnnotatedDataset = $gapicClient->annotatedDatasetName(
+            '[PROJECT]',
+            '[DATASET]',
+            '[ANNOTATED_DATASET]'
+        );
         $outputConfig = new OutputConfig();
         $request = (new ExportDataRequest())
             ->setName($formattedName)
@@ -951,15 +987,17 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->annotatedDatasetName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]');
-        $request = (new GetAnnotatedDatasetRequest())
-            ->setName($formattedName);
+        $request = (new GetAnnotatedDatasetRequest())->setName($formattedName);
         $response = $gapicClient->getAnnotatedDataset($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/GetAnnotatedDataset', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.datalabeling.v1beta1.DataLabelingService/GetAnnotatedDataset',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -976,17 +1014,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->annotatedDatasetName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]');
-        $request = (new GetAnnotatedDatasetRequest())
-            ->setName($formattedName);
+        $request = (new GetAnnotatedDatasetRequest())->setName($formattedName);
         try {
             $gapicClient->getAnnotatedDataset($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1019,15 +1059,17 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->annotationSpecSetName('[PROJECT]', '[ANNOTATION_SPEC_SET]');
-        $request = (new GetAnnotationSpecSetRequest())
-            ->setName($formattedName);
+        $request = (new GetAnnotationSpecSetRequest())->setName($formattedName);
         $response = $gapicClient->getAnnotationSpecSet($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/GetAnnotationSpecSet', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.datalabeling.v1beta1.DataLabelingService/GetAnnotationSpecSet',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1044,17 +1086,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->annotationSpecSetName('[PROJECT]', '[ANNOTATION_SPEC_SET]');
-        $request = (new GetAnnotationSpecSetRequest())
-            ->setName($formattedName);
+        $request = (new GetAnnotationSpecSetRequest())->setName($formattedName);
         try {
             $gapicClient->getAnnotationSpecSet($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1083,8 +1127,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->dataItemName('[PROJECT]', '[DATASET]', '[DATA_ITEM]');
-        $request = (new GetDataItemRequest())
-            ->setName($formattedName);
+        $request = (new GetDataItemRequest())->setName($formattedName);
         $response = $gapicClient->getDataItem($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1108,17 +1151,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->dataItemName('[PROJECT]', '[DATASET]', '[DATA_ITEM]');
-        $request = (new GetDataItemRequest())
-            ->setName($formattedName);
+        $request = (new GetDataItemRequest())->setName($formattedName);
         try {
             $gapicClient->getDataItem($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1153,8 +1198,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
-        $request = (new GetDatasetRequest())
-            ->setName($formattedName);
+        $request = (new GetDatasetRequest())->setName($formattedName);
         $response = $gapicClient->getDataset($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1178,17 +1222,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
-        $request = (new GetDatasetRequest())
-            ->setName($formattedName);
+        $request = (new GetDatasetRequest())->setName($formattedName);
         try {
             $gapicClient->getDataset($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1219,8 +1265,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->evaluationName('[PROJECT]', '[DATASET]', '[EVALUATION]');
-        $request = (new GetEvaluationRequest())
-            ->setName($formattedName);
+        $request = (new GetEvaluationRequest())->setName($formattedName);
         $response = $gapicClient->getEvaluation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1244,17 +1289,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->evaluationName('[PROJECT]', '[DATASET]', '[EVALUATION]');
-        $request = (new GetEvaluationRequest())
-            ->setName($formattedName);
+        $request = (new GetEvaluationRequest())->setName($formattedName);
         try {
             $gapicClient->getEvaluation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1293,8 +1340,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->evaluationJobName('[PROJECT]', '[EVALUATION_JOB]');
-        $request = (new GetEvaluationJobRequest())
-            ->setName($formattedName);
+        $request = (new GetEvaluationJobRequest())->setName($formattedName);
         $response = $gapicClient->getEvaluationJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1318,17 +1364,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->evaluationJobName('[PROJECT]', '[EVALUATION_JOB]');
-        $request = (new GetEvaluationJobRequest())
-            ->setName($formattedName);
+        $request = (new GetEvaluationJobRequest())->setName($formattedName);
         try {
             $gapicClient->getEvaluationJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1357,8 +1405,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->exampleName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]', '[EXAMPLE]');
-        $request = (new GetExampleRequest())
-            ->setName($formattedName);
+        $request = (new GetExampleRequest())->setName($formattedName);
         $response = $gapicClient->getExample($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1382,17 +1429,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->exampleName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]', '[EXAMPLE]');
-        $request = (new GetExampleRequest())
-            ->setName($formattedName);
+        $request = (new GetExampleRequest())->setName($formattedName);
         try {
             $gapicClient->getExample($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1425,8 +1474,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->instructionName('[PROJECT]', '[INSTRUCTION]');
-        $request = (new GetInstructionRequest())
-            ->setName($formattedName);
+        $request = (new GetInstructionRequest())->setName($formattedName);
         $response = $gapicClient->getInstruction($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1450,17 +1498,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->instructionName('[PROJECT]', '[INSTRUCTION]');
-        $request = (new GetInstructionRequest())
-            ->setName($formattedName);
+        $request = (new GetInstructionRequest())->setName($formattedName);
         try {
             $gapicClient->getInstruction($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1512,9 +1562,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
         $inputConfig = new InputConfig();
-        $request = (new ImportDataRequest())
-            ->setName($formattedName)
-            ->setInputConfig($inputConfig);
+        $request = (new ImportDataRequest())->setName($formattedName)->setInputConfig($inputConfig);
         $response = $gapicClient->importData($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1572,19 +1620,20 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
         $inputConfig = new InputConfig();
-        $request = (new ImportDataRequest())
-            ->setName($formattedName)
-            ->setInputConfig($inputConfig);
+        $request = (new ImportDataRequest())->setName($formattedName)->setInputConfig($inputConfig);
         $response = $gapicClient->importData($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1717,12 +1766,15 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
@@ -1868,12 +1920,15 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
@@ -2019,12 +2074,15 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
@@ -2071,17 +2129,14 @@ class DataLabelingServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $annotatedDatasetsElement = new AnnotatedDataset();
-        $annotatedDatasets = [
-            $annotatedDatasetsElement,
-        ];
+        $annotatedDatasets = [$annotatedDatasetsElement];
         $expectedResponse = new ListAnnotatedDatasetsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAnnotatedDatasets($annotatedDatasets);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
-        $request = (new ListAnnotatedDatasetsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAnnotatedDatasetsRequest())->setParent($formattedParent);
         $response = $gapicClient->listAnnotatedDatasets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2091,7 +2146,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/ListAnnotatedDatasets', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.datalabeling.v1beta1.DataLabelingService/ListAnnotatedDatasets',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -2108,17 +2166,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
-        $request = (new ListAnnotatedDatasetsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAnnotatedDatasetsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAnnotatedDatasets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2143,17 +2203,14 @@ class DataLabelingServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $annotationSpecSetsElement = new AnnotationSpecSet();
-        $annotationSpecSets = [
-            $annotationSpecSetsElement,
-        ];
+        $annotationSpecSets = [$annotationSpecSetsElement];
         $expectedResponse = new ListAnnotationSpecSetsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAnnotationSpecSets($annotationSpecSets);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListAnnotationSpecSetsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAnnotationSpecSetsRequest())->setParent($formattedParent);
         $response = $gapicClient->listAnnotationSpecSets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2163,7 +2220,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/ListAnnotationSpecSets', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.datalabeling.v1beta1.DataLabelingService/ListAnnotationSpecSets',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -2180,17 +2240,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListAnnotationSpecSetsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAnnotationSpecSetsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAnnotationSpecSets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2215,17 +2277,14 @@ class DataLabelingServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $dataItemsElement = new DataItem();
-        $dataItems = [
-            $dataItemsElement,
-        ];
+        $dataItems = [$dataItemsElement];
         $expectedResponse = new ListDataItemsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDataItems($dataItems);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
-        $request = (new ListDataItemsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDataItemsRequest())->setParent($formattedParent);
         $response = $gapicClient->listDataItems($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2252,17 +2311,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
-        $request = (new ListDataItemsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDataItemsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDataItems($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2287,17 +2348,14 @@ class DataLabelingServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $datasetsElement = new Dataset();
-        $datasets = [
-            $datasetsElement,
-        ];
+        $datasets = [$datasetsElement];
         $expectedResponse = new ListDatasetsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDatasets($datasets);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListDatasetsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDatasetsRequest())->setParent($formattedParent);
         $response = $gapicClient->listDatasets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2324,17 +2382,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListDatasetsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDatasetsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDatasets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2359,17 +2419,14 @@ class DataLabelingServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $evaluationJobsElement = new EvaluationJob();
-        $evaluationJobs = [
-            $evaluationJobsElement,
-        ];
+        $evaluationJobs = [$evaluationJobsElement];
         $expectedResponse = new ListEvaluationJobsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEvaluationJobs($evaluationJobs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListEvaluationJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListEvaluationJobsRequest())->setParent($formattedParent);
         $response = $gapicClient->listEvaluationJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2396,17 +2453,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListEvaluationJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListEvaluationJobsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listEvaluationJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2431,17 +2490,14 @@ class DataLabelingServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $examplesElement = new Example();
-        $examples = [
-            $examplesElement,
-        ];
+        $examples = [$examplesElement];
         $expectedResponse = new ListExamplesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setExamples($examples);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->annotatedDatasetName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]');
-        $request = (new ListExamplesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListExamplesRequest())->setParent($formattedParent);
         $response = $gapicClient->listExamples($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2468,17 +2524,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->annotatedDatasetName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]');
-        $request = (new ListExamplesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListExamplesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listExamples($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2503,17 +2561,14 @@ class DataLabelingServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $instructionsElement = new Instruction();
-        $instructions = [
-            $instructionsElement,
-        ];
+        $instructions = [$instructionsElement];
         $expectedResponse = new ListInstructionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setInstructions($instructions);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListInstructionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListInstructionsRequest())->setParent($formattedParent);
         $response = $gapicClient->listInstructions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2540,17 +2595,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListInstructionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListInstructionsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listInstructions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2577,8 +2634,7 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->evaluationJobName('[PROJECT]', '[EVALUATION_JOB]');
-        $request = (new PauseEvaluationJobRequest())
-            ->setName($formattedName);
+        $request = (new PauseEvaluationJobRequest())->setName($formattedName);
         $gapicClient->pauseEvaluationJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2601,17 +2657,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->evaluationJobName('[PROJECT]', '[EVALUATION_JOB]');
-        $request = (new PauseEvaluationJobRequest())
-            ->setName($formattedName);
+        $request = (new PauseEvaluationJobRequest())->setName($formattedName);
         try {
             $gapicClient->pauseEvaluationJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2638,14 +2696,16 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->evaluationJobName('[PROJECT]', '[EVALUATION_JOB]');
-        $request = (new ResumeEvaluationJobRequest())
-            ->setName($formattedName);
+        $request = (new ResumeEvaluationJobRequest())->setName($formattedName);
         $gapicClient->resumeEvaluationJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/ResumeEvaluationJob', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.datalabeling.v1beta1.DataLabelingService/ResumeEvaluationJob',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -2662,17 +2722,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->evaluationJobName('[PROJECT]', '[EVALUATION_JOB]');
-        $request = (new ResumeEvaluationJobRequest())
-            ->setName($formattedName);
+        $request = (new ResumeEvaluationJobRequest())->setName($formattedName);
         try {
             $gapicClient->resumeEvaluationJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2697,17 +2759,14 @@ class DataLabelingServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $evaluationsElement = new Evaluation();
-        $evaluations = [
-            $evaluationsElement,
-        ];
+        $evaluations = [$evaluationsElement];
         $expectedResponse = new SearchEvaluationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEvaluations($evaluations);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->evaluationName('[PROJECT]', '[DATASET]', '[EVALUATION]');
-        $request = (new SearchEvaluationsRequest())
-            ->setParent($formattedParent);
+        $request = (new SearchEvaluationsRequest())->setParent($formattedParent);
         $response = $gapicClient->searchEvaluations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2734,17 +2793,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->evaluationName('[PROJECT]', '[DATASET]', '[EVALUATION]');
-        $request = (new SearchEvaluationsRequest())
-            ->setParent($formattedParent);
+        $request = (new SearchEvaluationsRequest())->setParent($formattedParent);
         try {
             $gapicClient->searchEvaluations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2769,17 +2830,14 @@ class DataLabelingServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $exampleComparisonsElement = new ExampleComparison();
-        $exampleComparisons = [
-            $exampleComparisonsElement,
-        ];
+        $exampleComparisons = [$exampleComparisonsElement];
         $expectedResponse = new SearchExampleComparisonsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setExampleComparisons($exampleComparisons);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->evaluationName('[PROJECT]', '[DATASET]', '[EVALUATION]');
-        $request = (new SearchExampleComparisonsRequest())
-            ->setParent($formattedParent);
+        $request = (new SearchExampleComparisonsRequest())->setParent($formattedParent);
         $response = $gapicClient->searchExampleComparisons($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2789,7 +2847,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/SearchExampleComparisons', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.datalabeling.v1beta1.DataLabelingService/SearchExampleComparisons',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -2806,17 +2867,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->evaluationName('[PROJECT]', '[DATASET]', '[EVALUATION]');
-        $request = (new SearchExampleComparisonsRequest())
-            ->setParent($formattedParent);
+        $request = (new SearchExampleComparisonsRequest())->setParent($formattedParent);
         try {
             $gapicClient->searchExampleComparisons($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2855,15 +2918,17 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $evaluationJob = new EvaluationJob();
-        $request = (new UpdateEvaluationJobRequest())
-            ->setEvaluationJob($evaluationJob);
+        $request = (new UpdateEvaluationJobRequest())->setEvaluationJob($evaluationJob);
         $response = $gapicClient->updateEvaluationJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/UpdateEvaluationJob', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.datalabeling.v1beta1.DataLabelingService/UpdateEvaluationJob',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getEvaluationJob();
         $this->assertProtobufEquals($evaluationJob, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -2880,17 +2945,19 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $evaluationJob = new EvaluationJob();
-        $request = (new UpdateEvaluationJobRequest())
-            ->setEvaluationJob($evaluationJob);
+        $request = (new UpdateEvaluationJobRequest())->setEvaluationJob($evaluationJob);
         try {
             $gapicClient->updateEvaluationJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2933,7 +3000,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/CreateAnnotationSpecSet', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.datalabeling.v1beta1.DataLabelingService/CreateAnnotationSpecSet',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getAnnotationSpecSet();

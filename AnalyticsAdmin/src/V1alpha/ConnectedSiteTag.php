@@ -21,14 +21,14 @@ class ConnectedSiteTag extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Required. "Tag ID to forward events to. Also known as the Measurement ID,
      * or the "G-ID"  (For example: G-12345).
      *
      * Generated from protobuf field <code>string tag_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tag_id = '';
+    protected $tag_id = '';
 
     /**
      * Constructor.

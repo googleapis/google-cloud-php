@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_Subnetworks_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\SubnetworksClient;
+use Google\Cloud\Compute\V1\GetSubnetworkRequest;
 use Google\Cloud\Compute\V1\Subnetwork;
-use Google\Cloud\Compute\V1\SubnetworksClient;
 
 /**
  * Returns the specified subnetwork.
@@ -39,10 +40,16 @@ function get_sample(string $project, string $region, string $subnetwork): void
     // Create a client.
     $subnetworksClient = new SubnetworksClient();
 
+    // Prepare the request message.
+    $request = (new GetSubnetworkRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setSubnetwork($subnetwork);
+
     // Call the API and handle any network failures.
     try {
         /** @var Subnetwork $response */
-        $response = $subnetworksClient->get($project, $region, $subnetwork);
+        $response = $subnetworksClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

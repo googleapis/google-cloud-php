@@ -33,19 +33,19 @@ use Google\Rpc\Status;
 /**
  * Updates a [Deployment][google.cloud.config.v1.Deployment].
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedDeploymentServiceAccount User-specified Service Account (SA) credentials to be used when
+ *                                                  actuating resources.
+ *                                                  Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
+ *                                                  Please see {@see ConfigClient::serviceAccountName()} for help formatting this field.
  */
-function update_deployment_sample(): void
+function update_deployment_sample(string $formattedDeploymentServiceAccount): void
 {
     // Create a client.
     $configClient = new ConfigClient();
 
     // Prepare the request message.
-    $deployment = new Deployment();
+    $deployment = (new Deployment())
+        ->setServiceAccount($formattedDeploymentServiceAccount);
     $request = (new UpdateDeploymentRequest())
         ->setDeployment($deployment);
 
@@ -67,5 +67,24 @@ function update_deployment_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedDeploymentServiceAccount = ConfigClient::serviceAccountName(
+        '[PROJECT]',
+        '[SERVICE_ACCOUNT]'
+    );
+
+    update_deployment_sample($formattedDeploymentServiceAccount);
 }
 // [END config_v1_generated_Config_UpdateDeployment_sync]

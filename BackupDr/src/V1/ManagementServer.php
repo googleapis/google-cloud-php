@@ -76,10 +76,11 @@ class ManagementServer extends \Google\Protobuf\Internal\Message
      */
     protected $state = 0;
     /**
-     * Required. VPC networks to which the ManagementServer instance is connected.
-     * For this version, only a single network is supported.
+     * Optional. VPC networks to which the ManagementServer instance is connected.
+     * For this version, only a single network is supported. This field is
+     * optional if MS is created without PSA
      *
-     * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.NetworkConfig networks = 8 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.NetworkConfig networks = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $networks;
     /**
@@ -156,8 +157,9 @@ class ManagementServer extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. The ManagementServer state.
      *     @type array<\Google\Cloud\BackupDR\V1\NetworkConfig>|\Google\Protobuf\Internal\RepeatedField $networks
-     *           Required. VPC networks to which the ManagementServer instance is connected.
-     *           For this version, only a single network is supported.
+     *           Optional. VPC networks to which the ManagementServer instance is connected.
+     *           For this version, only a single network is supported. This field is
+     *           optional if MS is created without PSA
      *     @type string $etag
      *           Optional. Server specified ETag for the ManagementServer resource to
      *           prevent simultaneous updates from overwiting each other.
@@ -470,10 +472,11 @@ class ManagementServer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. VPC networks to which the ManagementServer instance is connected.
-     * For this version, only a single network is supported.
+     * Optional. VPC networks to which the ManagementServer instance is connected.
+     * For this version, only a single network is supported. This field is
+     * optional if MS is created without PSA
      *
-     * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.NetworkConfig networks = 8 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.NetworkConfig networks = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getNetworks()
@@ -482,10 +485,11 @@ class ManagementServer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. VPC networks to which the ManagementServer instance is connected.
-     * For this version, only a single network is supported.
+     * Optional. VPC networks to which the ManagementServer instance is connected.
+     * For this version, only a single network is supported. This field is
+     * optional if MS is created without PSA
      *
-     * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.NetworkConfig networks = 8 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.NetworkConfig networks = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\BackupDR\V1\NetworkConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

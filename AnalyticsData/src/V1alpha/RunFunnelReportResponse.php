@@ -26,7 +26,7 @@ class RunFunnelReportResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.FunnelSubReport funnel_table = 1;</code>
      */
-    private $funnel_table = null;
+    protected $funnel_table = null;
     /**
      * The funnel visualization is a report with the funnel step, segment, date,
      * next action dimension, and active users.
@@ -37,13 +37,13 @@ class RunFunnelReportResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.FunnelSubReport funnel_visualization = 2;</code>
      */
-    private $funnel_visualization = null;
+    protected $funnel_visualization = null;
     /**
      * This Analytics Property's quota state including this request.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.PropertyQuota property_quota = 3;</code>
      */
-    private $property_quota = null;
+    protected $property_quota = null;
     /**
      * Identifies what kind of resource this message is. This `kind` is always the
      * fixed string "analyticsData#runFunnelReport". Useful to distinguish between
@@ -51,7 +51,7 @@ class RunFunnelReportResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 4;</code>
      */
-    private $kind = '';
+    protected $kind = '';
 
     /**
      * Constructor.

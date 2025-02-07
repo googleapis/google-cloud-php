@@ -20,7 +20,7 @@ class UpdateDisplayVideo360AdvertiserLinkRequest extends \Google\Protobuf\Intern
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.DisplayVideo360AdvertiserLink display_video_360_advertiser_link = 1;</code>
      */
-    private $display_video_360_advertiser_link = null;
+    protected $display_video_360_advertiser_link = null;
     /**
      * Required. The list of fields to be updated. Omitted fields will not be
      * updated. To replace the entire entity, use one path with the string "*" to
@@ -28,7 +28,7 @@ class UpdateDisplayVideo360AdvertiserLinkRequest extends \Google\Protobuf\Intern
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink $displayVideo360AdvertiserLink The DisplayVideo360AdvertiserLink to update

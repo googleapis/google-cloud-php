@@ -36,14 +36,14 @@ class Step extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * The name that identifies the step. This must be unique for each
      * step with respect to all other steps in the Cloud Dataflow job.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Named properties associated with the step. Each kind of
      * predefined step has its own required set of properties.
@@ -51,7 +51,7 @@ class Step extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct properties = 3;</code>
      */
-    private $properties = null;
+    protected $properties = null;
 
     /**
      * Constructor.

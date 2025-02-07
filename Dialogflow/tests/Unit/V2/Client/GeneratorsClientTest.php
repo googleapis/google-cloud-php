@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,7 +58,9 @@ class GeneratorsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return GeneratorsClient */
@@ -88,9 +90,7 @@ class GeneratorsClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $generator = new Generator();
-        $request = (new CreateGeneratorRequest())
-            ->setParent($formattedParent)
-            ->setGenerator($generator);
+        $request = (new CreateGeneratorRequest())->setParent($formattedParent)->setGenerator($generator);
         $response = $gapicClient->createGenerator($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -116,19 +116,20 @@ class GeneratorsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $generator = new Generator();
-        $request = (new CreateGeneratorRequest())
-            ->setParent($formattedParent)
-            ->setGenerator($generator);
+        $request = (new CreateGeneratorRequest())->setParent($formattedParent)->setGenerator($generator);
         try {
             $gapicClient->createGenerator($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -155,8 +156,7 @@ class GeneratorsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->generatorName('[PROJECT]', '[LOCATION]', '[GENERATOR]');
-        $request = (new DeleteGeneratorRequest())
-            ->setName($formattedName);
+        $request = (new DeleteGeneratorRequest())->setName($formattedName);
         $gapicClient->deleteGenerator($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -179,17 +179,19 @@ class GeneratorsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->generatorName('[PROJECT]', '[LOCATION]', '[GENERATOR]');
-        $request = (new DeleteGeneratorRequest())
-            ->setName($formattedName);
+        $request = (new DeleteGeneratorRequest())->setName($formattedName);
         try {
             $gapicClient->deleteGenerator($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -220,8 +222,7 @@ class GeneratorsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->generatorName('[PROJECT]', '[LOCATION]', '[GENERATOR]');
-        $request = (new GetGeneratorRequest())
-            ->setName($formattedName);
+        $request = (new GetGeneratorRequest())->setName($formattedName);
         $response = $gapicClient->getGenerator($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -245,17 +246,19 @@ class GeneratorsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->generatorName('[PROJECT]', '[LOCATION]', '[GENERATOR]');
-        $request = (new GetGeneratorRequest())
-            ->setName($formattedName);
+        $request = (new GetGeneratorRequest())->setName($formattedName);
         try {
             $gapicClient->getGenerator($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -280,17 +283,14 @@ class GeneratorsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $generatorsElement = new Generator();
-        $generators = [
-            $generatorsElement,
-        ];
+        $generators = [$generatorsElement];
         $expectedResponse = new ListGeneratorsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setGenerators($generators);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListGeneratorsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListGeneratorsRequest())->setParent($formattedParent);
         $response = $gapicClient->listGenerators($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -317,17 +317,19 @@ class GeneratorsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListGeneratorsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListGeneratorsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listGenerators($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -358,8 +360,7 @@ class GeneratorsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $generator = new Generator();
-        $request = (new UpdateGeneratorRequest())
-            ->setGenerator($generator);
+        $request = (new UpdateGeneratorRequest())->setGenerator($generator);
         $response = $gapicClient->updateGenerator($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -383,17 +384,19 @@ class GeneratorsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $generator = new Generator();
-        $request = (new UpdateGeneratorRequest())
-            ->setGenerator($generator);
+        $request = (new UpdateGeneratorRequest())->setGenerator($generator);
         try {
             $gapicClient->updateGenerator($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -446,12 +449,15 @@ class GeneratorsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -478,9 +484,7 @@ class GeneratorsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -510,12 +514,15 @@ class GeneratorsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -549,9 +556,7 @@ class GeneratorsClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $generator = new Generator();
-        $request = (new CreateGeneratorRequest())
-            ->setParent($formattedParent)
-            ->setGenerator($generator);
+        $request = (new CreateGeneratorRequest())->setParent($formattedParent)->setGenerator($generator);
         $response = $gapicClient->createGeneratorAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

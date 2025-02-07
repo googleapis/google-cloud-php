@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_Disks_GetIamPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\DisksClient;
+use Google\Cloud\Compute\V1\Client\DisksClient;
+use Google\Cloud\Compute\V1\GetIamPolicyDiskRequest;
 use Google\Cloud\Compute\V1\Policy;
 
 /**
@@ -39,10 +40,16 @@ function get_iam_policy_sample(string $project, string $resource, string $zone):
     // Create a client.
     $disksClient = new DisksClient();
 
+    // Prepare the request message.
+    $request = (new GetIamPolicyDiskRequest())
+        ->setProject($project)
+        ->setResource($resource)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $disksClient->getIamPolicy($project, $resource, $zone);
+        $response = $disksClient->getIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

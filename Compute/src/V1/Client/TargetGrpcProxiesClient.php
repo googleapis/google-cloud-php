@@ -41,6 +41,7 @@ use Google\Cloud\Compute\V1\ListTargetGrpcProxiesRequest;
 use Google\Cloud\Compute\V1\PatchTargetGrpcProxyRequest;
 use Google\Cloud\Compute\V1\TargetGrpcProxy;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The TargetGrpcProxies API.
@@ -186,6 +187,12 @@ final class TargetGrpcProxiesClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -216,6 +223,9 @@ final class TargetGrpcProxiesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -243,6 +253,8 @@ final class TargetGrpcProxiesClient
      *
      * The async variant is {@see TargetGrpcProxiesClient::deleteAsync()} .
      *
+     * @example samples/V1/TargetGrpcProxiesClient/delete.php
+     *
      * @param DeleteTargetGrpcProxyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -266,6 +278,8 @@ final class TargetGrpcProxiesClient
      * Returns the specified TargetGrpcProxy resource in the given scope.
      *
      * The async variant is {@see TargetGrpcProxiesClient::getAsync()} .
+     *
+     * @example samples/V1/TargetGrpcProxiesClient/get.php
      *
      * @param GetTargetGrpcProxyRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -291,6 +305,8 @@ final class TargetGrpcProxiesClient
      *
      * The async variant is {@see TargetGrpcProxiesClient::insertAsync()} .
      *
+     * @example samples/V1/TargetGrpcProxiesClient/insert.php
+     *
      * @param InsertTargetGrpcProxyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -315,6 +331,8 @@ final class TargetGrpcProxiesClient
      *
      * The async variant is {@see TargetGrpcProxiesClient::listAsync()} .
      *
+     * @example samples/V1/TargetGrpcProxiesClient/list.php
+     *
      * @param ListTargetGrpcProxiesRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -338,6 +356,8 @@ final class TargetGrpcProxiesClient
      * Patches the specified TargetGrpcProxy resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      *
      * The async variant is {@see TargetGrpcProxiesClient::patchAsync()} .
+     *
+     * @example samples/V1/TargetGrpcProxiesClient/patch.php
      *
      * @param PatchTargetGrpcProxyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

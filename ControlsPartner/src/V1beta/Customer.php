@@ -40,6 +40,13 @@ class Customer extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool is_onboarded = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $is_onboarded = false;
+    /**
+     * Output only. The customer organization domain, extracted from
+     * CRM Organization’s display_name field. e.g. "google.com"
+     *
+     * Generated from protobuf field <code>string organization_domain = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $organization_domain = '';
 
     /**
      * Constructor.
@@ -56,6 +63,9 @@ class Customer extends \Google\Protobuf\Internal\Message
      *           Output only. Container for customer onboarding steps
      *     @type bool $is_onboarded
      *           Output only. Indicates whether a customer is fully onboarded
+     *     @type string $organization_domain
+     *           Output only. The customer organization domain, extracted from
+     *           CRM Organization’s display_name field. e.g. "google.com"
      * }
      */
     public function __construct($data = NULL) {
@@ -175,6 +185,34 @@ class Customer extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->is_onboarded = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The customer organization domain, extracted from
+     * CRM Organization’s display_name field. e.g. "google.com"
+     *
+     * Generated from protobuf field <code>string organization_domain = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getOrganizationDomain()
+    {
+        return $this->organization_domain;
+    }
+
+    /**
+     * Output only. The customer organization domain, extracted from
+     * CRM Organization’s display_name field. e.g. "google.com"
+     *
+     * Generated from protobuf field <code>string organization_domain = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOrganizationDomain($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->organization_domain = $var;
 
         return $this;
     }

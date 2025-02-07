@@ -20,13 +20,13 @@ class CreateCustomDimensionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The CustomDimension to create.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.CustomDimension custom_dimension = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $custom_dimension = null;
+    protected $custom_dimension = null;
 
     /**
      * @param string                                          $parent          Required. Example format: properties/1234

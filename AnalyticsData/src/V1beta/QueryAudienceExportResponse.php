@@ -22,7 +22,7 @@ class QueryAudienceExportResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.analytics.data.v1beta.AudienceExport audience_export = 1;</code>
      */
-    private $audience_export = null;
+    protected $audience_export = null;
     /**
      * Rows for each user in an audience export. The number of rows in this
      * response will be less than or equal to request's page size.
@@ -41,7 +41,7 @@ class QueryAudienceExportResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 row_count = 3;</code>
      */
-    private $row_count = null;
+    protected $row_count = null;
 
     /**
      * Constructor.

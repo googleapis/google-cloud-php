@@ -34,7 +34,40 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\ApiCore\PagedListResponse;
+Google\Shopping\Merchant\Quota\V1beta\Client\QuotaServiceClient;
+Google\Shopping\Merchant\Quota\V1beta\ListQuotaGroupsRequest;
+Google\Shopping\Merchant\Quota\V1beta\QuotaGroup;
+
+// Create a client.
+$quotaServiceClient = new QuotaServiceClient();
+
+// Prepare the request message.
+$request = (new ListQuotaGroupsRequest())
+    ->setParent($formattedParent);
+
+// Call the API and handle any network failures.
+try {
+    /** @var PagedListResponse $response */
+    $response = $quotaServiceClient->listQuotaGroups($request);
+
+    /** @var QuotaGroup $element */
+    foreach ($response as $element) {
+        printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+    }
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/php-shopping-merchant-quota/tree/main/samples) for a canonical list of samples.
+
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
 
 ### Version
 

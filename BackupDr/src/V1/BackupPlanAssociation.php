@@ -25,9 +25,10 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Optional. Resource type of workload on which backupplan is applied
+     * Required. Immutable. Resource type of workload on which backupplan is
+     * applied
      *
-     * Generated from protobuf field <code>string resource_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string resource_type = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $resource_type = '';
     /**
@@ -70,10 +71,8 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
      */
     private $rules_config_info;
     /**
-     * Output only. Output Only.
-     * Resource name of data source which will be used as storage location for
-     * backups taken.
-     * Format :
+     * Output only. Resource name of data source which will be used as storage
+     * location for backups taken. Format :
      * projects/{project}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}
      *
      * Generated from protobuf field <code>string data_source = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -91,7 +90,8 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
      *           below format Format :
      *           projects/{project}/locations/{location}/backupPlanAssociations/{backupPlanAssociationId}
      *     @type string $resource_type
-     *           Optional. Resource type of workload on which backupplan is applied
+     *           Required. Immutable. Resource type of workload on which backupplan is
+     *           applied
      *     @type string $resource
      *           Required. Immutable. Resource name of workload on which backupplan is
      *           applied
@@ -108,10 +108,8 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\BackupDR\V1\RuleConfigInfo>|\Google\Protobuf\Internal\RepeatedField $rules_config_info
      *           Output only. The config info related to backup rules.
      *     @type string $data_source
-     *           Output only. Output Only.
-     *           Resource name of data source which will be used as storage location for
-     *           backups taken.
-     *           Format :
+     *           Output only. Resource name of data source which will be used as storage
+     *           location for backups taken. Format :
      *           projects/{project}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}
      * }
      */
@@ -151,9 +149,10 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Resource type of workload on which backupplan is applied
+     * Required. Immutable. Resource type of workload on which backupplan is
+     * applied
      *
-     * Generated from protobuf field <code>string resource_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string resource_type = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getResourceType()
@@ -162,9 +161,10 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Resource type of workload on which backupplan is applied
+     * Required. Immutable. Resource type of workload on which backupplan is
+     * applied
      *
-     * Generated from protobuf field <code>string resource_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string resource_type = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -359,10 +359,8 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Output Only.
-     * Resource name of data source which will be used as storage location for
-     * backups taken.
-     * Format :
+     * Output only. Resource name of data source which will be used as storage
+     * location for backups taken. Format :
      * projects/{project}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}
      *
      * Generated from protobuf field <code>string data_source = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -374,10 +372,8 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Output Only.
-     * Resource name of data source which will be used as storage location for
-     * backups taken.
-     * Format :
+     * Output only. Resource name of data source which will be used as storage
+     * location for backups taken. Format :
      * projects/{project}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}
      *
      * Generated from protobuf field <code>string data_source = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

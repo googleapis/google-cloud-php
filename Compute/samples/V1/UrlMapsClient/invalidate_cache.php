@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\CacheInvalidationRule;
-use Google\Cloud\Compute\V1\UrlMapsClient;
+use Google\Cloud\Compute\V1\Client\UrlMapsClient;
+use Google\Cloud\Compute\V1\InvalidateCacheUrlMapRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function invalidate_cache_sample(string $project, string $urlMap): void
     // Create a client.
     $urlMapsClient = new UrlMapsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $cacheInvalidationRuleResource = new CacheInvalidationRule();
+    $request = (new InvalidateCacheUrlMapRequest())
+        ->setCacheInvalidationRuleResource($cacheInvalidationRuleResource)
+        ->setProject($project)
+        ->setUrlMap($urlMap);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $urlMapsClient->invalidateCache($cacheInvalidationRuleResource, $project, $urlMap);
+        $response = $urlMapsClient->invalidateCache($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

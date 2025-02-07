@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [Developer Preview](https://developers.google.com/workspace/preview).
  * Metadata for a transcript generated from a conference. It refers to the ASR
  * (Automatic Speech Recognition) result of user's speech during the conference.
  *

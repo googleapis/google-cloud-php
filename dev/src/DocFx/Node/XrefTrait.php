@@ -156,7 +156,7 @@ trait XrefTrait
         );
     }
 
-    private function replaceUidWithLink(string $uid, string $name = null): string
+    private function replaceUidWithLink(string $uid, ?string $name = null): string
     {
         if (is_null($name)) {
             $name = ltrim($uid, '\\');
@@ -177,9 +177,6 @@ trait XrefTrait
 
         // Check for external package namespaces
         switch (true) {
-            case str_starts_with($uid, '\Google\Auth\\'):
-                $extLinkRoot = 'https://googleapis.github.io/google-auth-library-php/main/';
-                break;
             case str_starts_with($uid, '\Google\Protobuf\\'):
                 $extLinkRoot = 'https://protobuf.dev/reference/php/api-docs/';
                 break;

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\Dialogflow\Tests\Unit\V2\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dialogflow\V2\ClearSuggestionFeatureConfigRequest;
@@ -44,6 +43,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -68,7 +68,9 @@ class ConversationProfilesClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ConversationProfilesClient */
@@ -136,7 +138,10 @@ class ConversationProfilesClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dialogflow.v2.ConversationProfiles/ClearSuggestionFeatureConfig', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.dialogflow.v2.ConversationProfiles/ClearSuggestionFeatureConfig',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getConversationProfile();
         $this->assertProtobufEquals($conversationProfile, $actualValue);
         $actualValue = $actualApiRequestObject->getParticipantRole();
@@ -186,12 +191,15 @@ class ConversationProfilesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $conversationProfile = 'conversationProfile-408626707';
@@ -258,7 +266,10 @@ class ConversationProfilesClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dialogflow.v2.ConversationProfiles/CreateConversationProfile', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.dialogflow.v2.ConversationProfiles/CreateConversationProfile',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getConversationProfile();
@@ -277,12 +288,15 @@ class ConversationProfilesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
@@ -318,14 +332,16 @@ class ConversationProfilesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->conversationProfileName('[PROJECT]', '[CONVERSATION_PROFILE]');
-        $request = (new DeleteConversationProfileRequest())
-            ->setName($formattedName);
+        $request = (new DeleteConversationProfileRequest())->setName($formattedName);
         $gapicClient->deleteConversationProfile($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dialogflow.v2.ConversationProfiles/DeleteConversationProfile', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.dialogflow.v2.ConversationProfiles/DeleteConversationProfile',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -342,17 +358,19 @@ class ConversationProfilesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->conversationProfileName('[PROJECT]', '[CONVERSATION_PROFILE]');
-        $request = (new DeleteConversationProfileRequest())
-            ->setName($formattedName);
+        $request = (new DeleteConversationProfileRequest())->setName($formattedName);
         try {
             $gapicClient->deleteConversationProfile($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -389,8 +407,7 @@ class ConversationProfilesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->conversationProfileName('[PROJECT]', '[CONVERSATION_PROFILE]');
-        $request = (new GetConversationProfileRequest())
-            ->setName($formattedName);
+        $request = (new GetConversationProfileRequest())->setName($formattedName);
         $response = $gapicClient->getConversationProfile($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -414,17 +431,19 @@ class ConversationProfilesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->conversationProfileName('[PROJECT]', '[CONVERSATION_PROFILE]');
-        $request = (new GetConversationProfileRequest())
-            ->setName($formattedName);
+        $request = (new GetConversationProfileRequest())->setName($formattedName);
         try {
             $gapicClient->getConversationProfile($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -449,17 +468,14 @@ class ConversationProfilesClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $conversationProfilesElement = new ConversationProfile();
-        $conversationProfiles = [
-            $conversationProfilesElement,
-        ];
+        $conversationProfiles = [$conversationProfilesElement];
         $expectedResponse = new ListConversationProfilesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConversationProfiles($conversationProfiles);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListConversationProfilesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListConversationProfilesRequest())->setParent($formattedParent);
         $response = $gapicClient->listConversationProfiles($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -486,17 +502,19 @@ class ConversationProfilesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListConversationProfilesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListConversationProfilesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listConversationProfiles($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -566,7 +584,10 @@ class ConversationProfilesClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dialogflow.v2.ConversationProfiles/SetSuggestionFeatureConfig', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.dialogflow.v2.ConversationProfiles/SetSuggestionFeatureConfig',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getConversationProfile();
         $this->assertProtobufEquals($conversationProfile, $actualValue);
         $actualValue = $actualApiRequestObject->getParticipantRole();
@@ -616,12 +637,15 @@ class ConversationProfilesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $conversationProfile = 'conversationProfile-408626707';
@@ -688,7 +712,10 @@ class ConversationProfilesClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dialogflow.v2.ConversationProfiles/UpdateConversationProfile', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.dialogflow.v2.ConversationProfiles/UpdateConversationProfile',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getConversationProfile();
         $this->assertProtobufEquals($conversationProfile, $actualValue);
         $actualValue = $actualRequestObject->getUpdateMask();
@@ -707,12 +734,15 @@ class ConversationProfilesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $conversationProfile = new ConversationProfile();
@@ -774,12 +804,15 @@ class ConversationProfilesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -806,9 +839,7 @@ class ConversationProfilesClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -838,12 +869,15 @@ class ConversationProfilesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -915,7 +949,10 @@ class ConversationProfilesClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dialogflow.v2.ConversationProfiles/ClearSuggestionFeatureConfig', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.dialogflow.v2.ConversationProfiles/ClearSuggestionFeatureConfig',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getConversationProfile();
         $this->assertProtobufEquals($conversationProfile, $actualValue);
         $actualValue = $actualApiRequestObject->getParticipantRole();
