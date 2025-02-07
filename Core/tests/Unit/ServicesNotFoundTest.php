@@ -78,7 +78,6 @@ class ServicesNotFoundTest extends TestCase
             "Spanner",
             "Storage",
             "Trace",
-            "Translate",
             "VideoIntelligence",
             "Vision",
         ];
@@ -96,7 +95,6 @@ class ServicesNotFoundTest extends TestCase
             ['storage'],
             ['trace'],
             ['vision'],
-            ['translate']
         ];
     }
 

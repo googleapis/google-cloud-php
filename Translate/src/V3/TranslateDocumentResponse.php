@@ -20,7 +20,7 @@ class TranslateDocumentResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.DocumentTranslation document_translation = 1;</code>
      */
-    private $document_translation = null;
+    protected $document_translation = null;
     /**
      * The document's translation output if a glossary is provided in the request.
      * This can be the same as [TranslateDocumentResponse.document_translation]
@@ -28,7 +28,7 @@ class TranslateDocumentResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.DocumentTranslation glossary_document_translation = 2;</code>
      */
-    private $glossary_document_translation = null;
+    protected $glossary_document_translation = null;
     /**
      * Only present when 'model' is present in the request.
      * 'model' is normalized to have a project number.
@@ -40,13 +40,13 @@ class TranslateDocumentResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 3;</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * The `glossary_config` used for this translation.
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.TranslateTextGlossaryConfig glossary_config = 4;</code>
      */
-    private $glossary_config = null;
+    protected $glossary_config = null;
 
     /**
      * Constructor.

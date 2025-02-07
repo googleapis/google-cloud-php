@@ -28,7 +28,7 @@ class DocumentInputConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mime_type = 4;</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
     protected $source;
 
     /**

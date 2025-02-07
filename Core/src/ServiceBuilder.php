@@ -30,7 +30,8 @@ use Google\Cloud\Speech\V2\Client\SpeechClient;
 use Google\Cloud\Speech\SpeechClient as DeprecatedSpeechClient;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Trace\TraceClient;
-use Google\Cloud\Translate\V2\TranslateClient;
+use Google\Cloud\Translate\V2\TranslateClient as DeprecatedTranslateClient;
+use Google\Cloud\Translate\V3\Client\TranslationServiceClient;
 use Google\Cloud\Vision\VisionClient;
 use Psr\Cache\CacheItemPoolInterface;
 
@@ -345,51 +346,19 @@ class ServiceBuilder
     }
 
     /**
-     * Google Cloud Translation provides the ability to dynamically translate
-     * text between thousands of language pairs and lets websites and programs
-     * integrate with translation service programmatically.
-     *
-     * The Google Cloud Translation API is available as a paid
-     * service. See the [Pricing](https://cloud.google.com/translation/v2/pricing)
-     * and [FAQ](https://cloud.google.com/translation/v2/faq) pages for details.
-     * Find more information at the the
-     * [Google Cloud Translation docs](https://cloud.google.com/translation/docs/).
-     *
-     * Please note that while the Google Cloud Translation API supports
-     * authentication via service account and application default credentials
-     * like other Cloud Platform APIs, it also supports authentication via a
-     * public API access key. If you wish to authenticate using an API key,
-     * follow the
-     * [before you begin](https://cloud.google.com/translation/v2/translating-text-with-rest#before-you-begin)
-     * instructions to learn how to generate a key.
-     *
-     * Example:
-     * ```
-     * use Google\Cloud\Core\ServiceBuilder;
-     *
-     * $builder = new ServiceBuilder([
-     *     'key' => 'YOUR_KEY'
-     * ]);
-     *
-     * $translate = $builder->translate();
-     * ```
-     *
-     * @param array $config [optional] {
-     *     Configuration options.
-     *
-     *     @type string $key A public API access key.
-     *     @type string $target The target language to assign to the client.
-     *           Defaults to `en` (English).
-     *     @type callable $httpHandler A handler used to deliver Psr7 requests.
-     *           Only valid for requests sent over REST.
-     *     @type int $retries Number of retries for a failed request.
-     *           **Defaults to** `3`.
-     * }
-     * @return TranslateClient
+     * @deprecated
+     * @see TranslationServiceClient
+     * @throws \BadMethodCallException
      */
     public function translate(array $config = [])
     {
-        return $this->createClient(TranslateClient::class, 'translate', $config);
+        if (class_exists(DeprecatedTranslateClient::class)) {
+            return $this->createClient(DeprecatedTranslateClient::class, 'translate', $config);
+        }
+        throw new \BadMethodCallException(sprintf(
+            'This method is no longer supported, create %s directly instead.',
+            TranslationServiceClient::class
+        ));
     }
 
     /**
