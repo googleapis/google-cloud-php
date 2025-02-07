@@ -32,6 +32,7 @@ use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Trace\TraceClient;
 use Google\Cloud\Translate\V2\TranslateClient as DeprecatedTranslateClient;
 use Google\Cloud\Translate\V3\Client\TranslationServiceClient;
+use Google\Cloud\Vision\V1\Client\ImageAnnotatorClient;
 use Google\Cloud\Vision\VisionClient as DeprecatedVisionClient;
 use Psr\Cache\CacheItemPoolInterface;
 
