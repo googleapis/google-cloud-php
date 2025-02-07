@@ -26,13 +26,14 @@ use Google\Cloud\Language\LanguageClient;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Spanner\SpannerClient;
-use Google\Cloud\Speech\V2\Client\SpeechClient;
 use Google\Cloud\Speech\SpeechClient as DeprecatedSpeechClient;
+use Google\Cloud\Speech\V2\Client\SpeechClient;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Trace\TraceClient;
 use Google\Cloud\Translate\V2\TranslateClient as DeprecatedTranslateClient;
 use Google\Cloud\Translate\V3\Client\TranslationServiceClient;
-use Google\Cloud\Vision\VisionClient;
+use Google\Cloud\Vision\V1\Client\ImageAnnotatorClient;
+use Google\Cloud\Vision\VisionClient as DeprecatedVisionClient;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
@@ -326,23 +327,19 @@ class ServiceBuilder
     }
 
     /**
-     * Google Cloud Vision allows you to understand the content of an image,
-     * classify images into categories, detect text, objects, faces and more.
-     * Find more information at the
-     * [Google Cloud Vision docs](https://cloud.google.com/vision/docs/).
-     *
-     * Example:
-     * ```
-     * $vision = $cloud->vision();
-     * ```
-     *
-     * @param array $config [optional] Configuration options. See
-     *        {@see \Google\Cloud\Core\ServiceBuilder::__construct()} for the available options.
-     * @return VisionClient
+     * @deprecated
+     * @see ImageAnnotatorClient
+     * @throws \BadMethodCallException
      */
     public function vision(array $config = [])
     {
-        return $this->createClient(VisionClient::class, 'vision', $config);
+        if (class_exists(DeprecatedVisionClient::class)) {
+            return $this->createClient(DeprecatedVisionClient::class, 'vision', $config);
+        }
+        throw new \BadMethodCallException(sprintf(
+            'This method is no longer supported, create %s directly instead.',
+            ImageAnnotatorClient::class
+        ));
     }
 
     /**

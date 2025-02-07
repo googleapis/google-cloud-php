@@ -27,7 +27,6 @@ use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Core\Tests\Unit\Fixtures;
-use Google\Cloud\Vision\VisionClient;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
@@ -170,9 +169,6 @@ class ServiceBuilderTest extends TestCase
             ], [
                 'storage',
                 StorageClient::class
-            ], [
-                'vision',
-                VisionClient::class
             ]
         ];
     }

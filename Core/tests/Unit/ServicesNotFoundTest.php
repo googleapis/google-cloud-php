@@ -79,7 +79,6 @@ class ServicesNotFoundTest extends TestCase
             "Storage",
             "Trace",
             "VideoIntelligence",
-            "Vision",
         ];
     }
 
@@ -94,7 +93,6 @@ class ServicesNotFoundTest extends TestCase
             ['spanner'],
             ['storage'],
             ['trace'],
-            ['vision'],
         ];
     }
 

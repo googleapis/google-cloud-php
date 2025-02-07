@@ -28,7 +28,6 @@ use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Trace\TraceClient;
-use Google\Cloud\Vision\VisionClient;
 
 /**
  * @group root
@@ -60,7 +59,6 @@ class ServiceBuilderTest extends SnippetTestCase
             ['spanner', SpannerClient::class, 'spanner', true],
             ['storage', StorageClient::class, 'storage'],
             ['trace', TraceClient::class, 'trace'],
-            ['vision', VisionClient::class, 'vision'],
         ];
     }
 
