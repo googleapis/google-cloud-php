@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NetworkEdgeSecurityServices_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\NetworkEdgeSecurityServicesClient;
+use Google\Cloud\Compute\V1\InsertNetworkEdgeSecurityServiceRequest;
 use Google\Cloud\Compute\V1\NetworkEdgeSecurityService;
-use Google\Cloud\Compute\V1\NetworkEdgeSecurityServicesClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,17 +41,17 @@ function insert_sample(string $project, string $region): void
     // Create a client.
     $networkEdgeSecurityServicesClient = new NetworkEdgeSecurityServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $networkEdgeSecurityServiceResource = new NetworkEdgeSecurityService();
+    $request = (new InsertNetworkEdgeSecurityServiceRequest())
+        ->setNetworkEdgeSecurityServiceResource($networkEdgeSecurityServiceResource)
+        ->setProject($project)
+        ->setRegion($region);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkEdgeSecurityServicesClient->insert(
-            $networkEdgeSecurityServiceResource,
-            $project,
-            $region
-        );
+        $response = $networkEdgeSecurityServicesClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

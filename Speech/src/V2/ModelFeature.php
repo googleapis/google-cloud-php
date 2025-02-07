@@ -21,13 +21,13 @@ class ModelFeature extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string feature = 1;</code>
      */
-    private $feature = '';
+    protected $feature = '';
     /**
      * The release state of the feature
      *
      * Generated from protobuf field <code>string release_state = 2;</code>
      */
-    private $release_state = '';
+    protected $release_state = '';
 
     /**
      * Constructor.

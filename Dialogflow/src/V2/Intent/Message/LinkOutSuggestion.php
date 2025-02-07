@@ -21,14 +21,14 @@ class LinkOutSuggestion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string destination_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $destination_name = '';
+    protected $destination_name = '';
     /**
      * Required. The URI of the app or site to open when the user taps the
      * suggestion chip.
      *
      * Generated from protobuf field <code>string uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $uri = '';
+    protected $uri = '';
 
     /**
      * Constructor.

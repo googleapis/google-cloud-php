@@ -264,11 +264,13 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $etag = 'etag3123477';
+        $serviceAccountEmail = 'serviceAccountEmail-1300473088';
         $satisfiesPzs = false;
         $satisfiesPzi = false;
         $expectedResponse = new FeatureView();
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setServiceAccountEmail($serviceAccountEmail);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
@@ -733,11 +735,13 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $etag = 'etag3123477';
+        $serviceAccountEmail = 'serviceAccountEmail-1300473088';
         $satisfiesPzs = false;
         $satisfiesPzi = false;
         $expectedResponse = new FeatureView();
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setServiceAccountEmail($serviceAccountEmail);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
@@ -1351,11 +1355,13 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $etag = 'etag3123477';
+        $serviceAccountEmail = 'serviceAccountEmail-1300473088';
         $satisfiesPzs = false;
         $satisfiesPzi = false;
         $expectedResponse = new FeatureView();
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setServiceAccountEmail($serviceAccountEmail);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();

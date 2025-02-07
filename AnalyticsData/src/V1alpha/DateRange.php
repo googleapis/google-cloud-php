@@ -24,7 +24,7 @@ class DateRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string start_date = 1;</code>
      */
-    private $start_date = '';
+    protected $start_date = '';
     /**
      * The inclusive end date for the query in the format `YYYY-MM-DD`. Cannot
      * be before `start_date`. The format `NdaysAgo`, `yesterday`, or `today` is
@@ -33,7 +33,7 @@ class DateRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string end_date = 2;</code>
      */
-    private $end_date = '';
+    protected $end_date = '';
     /**
      * Assigns a name to this date range. The dimension `dateRange` is valued to
      * this name in a report response. If set, cannot begin with `date_range_` or
@@ -42,7 +42,7 @@ class DateRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 3;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * Constructor.

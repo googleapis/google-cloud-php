@@ -24,14 +24,14 @@ class UndeleteCustomClassRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * If set, validate the request and preview the undeleted CustomClass, but do
      * not actually undelete it.
      *
      * Generated from protobuf field <code>bool validate_only = 3;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
     /**
      * This checksum is computed by the server based on the value of other
      * fields. This may be sent on update, undelete, and delete requests to ensure
@@ -39,7 +39,7 @@ class UndeleteCustomClassRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 4;</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * @param string $name Required. The name of the CustomClass to undelete.

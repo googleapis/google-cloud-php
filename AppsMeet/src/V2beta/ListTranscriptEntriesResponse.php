@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response for ListTranscriptEntries method
+ * Response for ListTranscriptEntries method.
  *
  * Generated from protobuf message <code>google.apps.meet.v2beta.ListTranscriptEntriesResponse</code>
  */

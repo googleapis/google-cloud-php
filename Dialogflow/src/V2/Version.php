@@ -37,34 +37,34 @@ class Version extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The developer-provided description of this version.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The sequential number of this version. This field is read-only
      * which means it cannot be set by create and update methods.
      *
      * Generated from protobuf field <code>int32 version_number = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $version_number = 0;
+    protected $version_number = 0;
     /**
      * Output only. The creation time of this version. This field is read-only,
      * i.e., it cannot be set by create and update methods.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The status of this version. This field is read-only and cannot
      * be set by create and update methods.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Version.VersionStatus status = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $status = 0;
+    protected $status = 0;
 
     /**
      * Constructor.

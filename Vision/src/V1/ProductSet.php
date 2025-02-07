@@ -25,14 +25,14 @@ class ProductSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The user-provided name for this ProductSet. Must not be empty. Must be at
      * most 4096 characters long.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. The time at which this ProductSet was last indexed. Query
      * results will reflect all updates before this time. If this ProductSet has
@@ -42,7 +42,7 @@ class ProductSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $index_time = null;
+    protected $index_time = null;
     /**
      * Output only. If there was an error with indexing the product set, the field
      * is populated.
@@ -50,7 +50,7 @@ class ProductSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status index_error = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $index_error = null;
+    protected $index_error = null;
 
     /**
      * Constructor.

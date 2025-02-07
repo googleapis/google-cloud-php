@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionTargetHttpProxies_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionTargetHttpProxiesClient;
+use Google\Cloud\Compute\V1\Client\RegionTargetHttpProxiesClient;
+use Google\Cloud\Compute\V1\DeleteRegionTargetHttpProxyRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $project, string $region, string $targetHttpProxy)
     // Create a client.
     $regionTargetHttpProxiesClient = new RegionTargetHttpProxiesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteRegionTargetHttpProxyRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setTargetHttpProxy($targetHttpProxy);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionTargetHttpProxiesClient->delete($project, $region, $targetHttpProxy);
+        $response = $regionTargetHttpProxiesClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

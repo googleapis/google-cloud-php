@@ -83,6 +83,4 @@ class AutoscalingEventType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AutoscalingEventType::class, \Google\Cloud\Dataflow\V1beta3\AutoscalingEvent_AutoscalingEventType::class);
 

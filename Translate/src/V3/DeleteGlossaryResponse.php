@@ -22,13 +22,13 @@ class DeleteGlossaryResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The time when the operation was submitted to the server.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp submit_time = 2;</code>
      */
-    private $submit_time = null;
+    protected $submit_time = null;
     /**
      * The time when the glossary deletion is finished and
      * [google.longrunning.Operation.done][google.longrunning.Operation.done] is
@@ -36,7 +36,7 @@ class DeleteGlossaryResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
 
     /**
      * Constructor.

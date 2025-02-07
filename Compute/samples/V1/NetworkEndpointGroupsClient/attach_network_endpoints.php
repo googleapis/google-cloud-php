@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NetworkEndpointGroups_AttachNetworkEndpoints_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\AttachNetworkEndpointsNetworkEndpointGroupRequest;
+use Google\Cloud\Compute\V1\Client\NetworkEndpointGroupsClient;
 use Google\Cloud\Compute\V1\NetworkEndpointGroupsAttachEndpointsRequest;
-use Google\Cloud\Compute\V1\NetworkEndpointGroupsClient;
 use Google\Rpc\Status;
 
 /**
@@ -44,18 +45,20 @@ function attach_network_endpoints_sample(
     // Create a client.
     $networkEndpointGroupsClient = new NetworkEndpointGroupsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $networkEndpointGroupsAttachEndpointsRequestResource = new NetworkEndpointGroupsAttachEndpointsRequest();
+    $request = (new AttachNetworkEndpointsNetworkEndpointGroupRequest())
+        ->setNetworkEndpointGroup($networkEndpointGroup)
+        ->setNetworkEndpointGroupsAttachEndpointsRequestResource(
+            $networkEndpointGroupsAttachEndpointsRequestResource
+        )
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkEndpointGroupsClient->attachNetworkEndpoints(
-            $networkEndpointGroup,
-            $networkEndpointGroupsAttachEndpointsRequestResource,
-            $project,
-            $zone
-        );
+        $response = $networkEndpointGroupsClient->attachNetworkEndpoints($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

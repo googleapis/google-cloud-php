@@ -24,13 +24,13 @@ class DialogflowQuerySource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string agent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $agent = '';
+    protected $agent = '';
     /**
      * Optional. The Dialogflow assist configuration for human agent.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionQueryConfig.DialogflowQuerySource.HumanAgentSideConfig human_agent_side_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $human_agent_side_config = null;
+    protected $human_agent_side_config = null;
 
     /**
      * Constructor.

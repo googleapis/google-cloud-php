@@ -56,7 +56,6 @@ use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -810,8 +809,7 @@ class DataScanServiceClientTest extends GeneratedTest
         $dataScan = new DataScan();
         $dataScanData = new DataSource();
         $dataScan->setData($dataScanData);
-        $updateMask = new FieldMask();
-        $request = (new UpdateDataScanRequest())->setDataScan($dataScan)->setUpdateMask($updateMask);
+        $request = (new UpdateDataScanRequest())->setDataScan($dataScan);
         $response = $gapicClient->updateDataScan($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -824,8 +822,6 @@ class DataScanServiceClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.dataplex.v1.DataScanService/UpdateDataScan', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getDataScan();
         $this->assertProtobufEquals($dataScan, $actualValue);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateDataScanTest');
         $response->pollUntilComplete([
@@ -883,8 +879,7 @@ class DataScanServiceClientTest extends GeneratedTest
         $dataScan = new DataScan();
         $dataScanData = new DataSource();
         $dataScan->setData($dataScanData);
-        $updateMask = new FieldMask();
-        $request = (new UpdateDataScanRequest())->setDataScan($dataScan)->setUpdateMask($updateMask);
+        $request = (new UpdateDataScanRequest())->setDataScan($dataScan);
         $response = $gapicClient->updateDataScan($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

@@ -17,16 +17,15 @@
 
 namespace Google\Cloud\Bigtable;
 
+use Google\ApiCore\ArrayTrait;
+use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\Serializer;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\ApiCore\ArrayTrait;
-use Google\ApiCore\ClientOptionsTrait;
-use Google\ApiCore\Serializer;
 use Google\Cloud\Bigtable\V2\Client\BigtableClient as GapicClient;
 use Google\Cloud\Core\DetectProjectIdTrait;
-use Google\Cloud\Core\RequestHandler;
 
 /**
  * Google Cloud Bigtable is Google's NoSQL Big Data database service.
@@ -45,6 +44,9 @@ class BigtableClient
     use ArrayTrait;
     use DetectProjectIdTrait;
     use ClientOptionsTrait;
+
+    // The name of the service. Used in debug logging.
+    private const SERVICE_NAME = 'google.bigtable.v2.Bigtable';
 
     /**
      * @var GapicClient

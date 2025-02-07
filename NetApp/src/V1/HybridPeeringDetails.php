@@ -41,6 +41,27 @@ class HybridPeeringDetails extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string passphrase = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $passphrase = '';
+    /**
+     * Optional. Name of the user's local source volume to be peered with the
+     * destination volume.
+     *
+     * Generated from protobuf field <code>string peer_volume_name = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $peer_volume_name = '';
+    /**
+     * Optional. Name of the user's local source cluster to be peered with the
+     * destination cluster.
+     *
+     * Generated from protobuf field <code>string peer_cluster_name = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $peer_cluster_name = '';
+    /**
+     * Optional. Name of the user's local source vserver svm to be peered with the
+     * destination vserver svm.
+     *
+     * Generated from protobuf field <code>string peer_svm_name = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $peer_svm_name = '';
 
     /**
      * Constructor.
@@ -58,6 +79,15 @@ class HybridPeeringDetails extends \Google\Protobuf\Internal\Message
      *           ONTAP.
      *     @type string $passphrase
      *           Optional. Temporary passphrase generated to accept cluster peering command.
+     *     @type string $peer_volume_name
+     *           Optional. Name of the user's local source volume to be peered with the
+     *           destination volume.
+     *     @type string $peer_cluster_name
+     *           Optional. Name of the user's local source cluster to be peered with the
+     *           destination cluster.
+     *     @type string $peer_svm_name
+     *           Optional. Name of the user's local source vserver svm to be peered with the
+     *           destination vserver svm.
      * }
      */
     public function __construct($data = NULL) {
@@ -179,6 +209,90 @@ class HybridPeeringDetails extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->passphrase = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Name of the user's local source volume to be peered with the
+     * destination volume.
+     *
+     * Generated from protobuf field <code>string peer_volume_name = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPeerVolumeName()
+    {
+        return $this->peer_volume_name;
+    }
+
+    /**
+     * Optional. Name of the user's local source volume to be peered with the
+     * destination volume.
+     *
+     * Generated from protobuf field <code>string peer_volume_name = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPeerVolumeName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->peer_volume_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Name of the user's local source cluster to be peered with the
+     * destination cluster.
+     *
+     * Generated from protobuf field <code>string peer_cluster_name = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPeerClusterName()
+    {
+        return $this->peer_cluster_name;
+    }
+
+    /**
+     * Optional. Name of the user's local source cluster to be peered with the
+     * destination cluster.
+     *
+     * Generated from protobuf field <code>string peer_cluster_name = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPeerClusterName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->peer_cluster_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Name of the user's local source vserver svm to be peered with the
+     * destination vserver svm.
+     *
+     * Generated from protobuf field <code>string peer_svm_name = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPeerSvmName()
+    {
+        return $this->peer_svm_name;
+    }
+
+    /**
+     * Optional. Name of the user's local source vserver svm to be peered with the
+     * destination vserver svm.
+     *
+     * Generated from protobuf field <code>string peer_svm_name = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPeerSvmName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->peer_svm_name = $var;
 
         return $this;
     }

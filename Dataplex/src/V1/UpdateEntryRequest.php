@@ -54,7 +54,7 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
      * specified path. For example, to attach an aspect to a field that is
      * specified by the `schema` aspect, the path should have the format
      * `Schema.<field_name>`.
-     * * `<aspect_type_reference>*` - matches aspects of the given type for all
+     * * `<aspect_type_reference>&#64;*` - matches aspects of the given type for all
      * paths.
      * * `*&#64;path` - matches aspects of all types on the given path.
      * The service will not remove existing aspects matching the syntax unless
@@ -114,7 +114,7 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
      *           specified path. For example, to attach an aspect to a field that is
      *           specified by the `schema` aspect, the path should have the format
      *           `Schema.<field_name>`.
-     *           * `<aspect_type_reference>*` - matches aspects of the given type for all
+     *           * `<aspect_type_reference>&#64;*` - matches aspects of the given type for all
      *           paths.
      *           * `*&#64;path` - matches aspects of all types on the given path.
      *           The service will not remove existing aspects matching the syntax unless
@@ -273,7 +273,7 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
      * specified path. For example, to attach an aspect to a field that is
      * specified by the `schema` aspect, the path should have the format
      * `Schema.<field_name>`.
-     * * `<aspect_type_reference>*` - matches aspects of the given type for all
+     * * `<aspect_type_reference>&#64;*` - matches aspects of the given type for all
      * paths.
      * * `*&#64;path` - matches aspects of all types on the given path.
      * The service will not remove existing aspects matching the syntax unless
@@ -298,7 +298,7 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
      * specified path. For example, to attach an aspect to a field that is
      * specified by the `schema` aspect, the path should have the format
      * `Schema.<field_name>`.
-     * * `<aspect_type_reference>*` - matches aspects of the given type for all
+     * * `<aspect_type_reference>&#64;*` - matches aspects of the given type for all
      * paths.
      * * `*&#64;path` - matches aspects of all types on the given path.
      * The service will not remove existing aspects matching the syntax unless

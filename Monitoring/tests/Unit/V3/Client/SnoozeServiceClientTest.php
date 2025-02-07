@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,7 +55,9 @@ class SnoozeServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return SnoozeServiceClient */
@@ -91,9 +93,7 @@ class SnoozeServiceClientTest extends GeneratedTest
         $snooze->setInterval($snoozeInterval);
         $snoozeDisplayName = 'snoozeDisplayName-1956223833';
         $snooze->setDisplayName($snoozeDisplayName);
-        $request = (new CreateSnoozeRequest())
-            ->setParent($formattedParent)
-            ->setSnooze($snooze);
+        $request = (new CreateSnoozeRequest())->setParent($formattedParent)->setSnooze($snooze);
         $response = $gapicClient->createSnooze($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -119,12 +119,15 @@ class SnoozeServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->workspaceName('[PROJECT]');
@@ -135,9 +138,7 @@ class SnoozeServiceClientTest extends GeneratedTest
         $snooze->setInterval($snoozeInterval);
         $snoozeDisplayName = 'snoozeDisplayName-1956223833';
         $snooze->setDisplayName($snoozeDisplayName);
-        $request = (new CreateSnoozeRequest())
-            ->setParent($formattedParent)
-            ->setSnooze($snooze);
+        $request = (new CreateSnoozeRequest())->setParent($formattedParent)->setSnooze($snooze);
         try {
             $gapicClient->createSnooze($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -168,8 +169,7 @@ class SnoozeServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->snoozeName('[PROJECT]', '[SNOOZE]');
-        $request = (new GetSnoozeRequest())
-            ->setName($formattedName);
+        $request = (new GetSnoozeRequest())->setName($formattedName);
         $response = $gapicClient->getSnooze($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -193,17 +193,19 @@ class SnoozeServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->snoozeName('[PROJECT]', '[SNOOZE]');
-        $request = (new GetSnoozeRequest())
-            ->setName($formattedName);
+        $request = (new GetSnoozeRequest())->setName($formattedName);
         try {
             $gapicClient->getSnooze($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -228,17 +230,14 @@ class SnoozeServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $snoozesElement = new Snooze();
-        $snoozes = [
-            $snoozesElement,
-        ];
+        $snoozes = [$snoozesElement];
         $expectedResponse = new ListSnoozesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSnoozes($snoozes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->workspaceName('[PROJECT]');
-        $request = (new ListSnoozesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSnoozesRequest())->setParent($formattedParent);
         $response = $gapicClient->listSnoozes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -265,17 +264,19 @@ class SnoozeServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->workspaceName('[PROJECT]');
-        $request = (new ListSnoozesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSnoozesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSnoozes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -313,9 +314,7 @@ class SnoozeServiceClientTest extends GeneratedTest
         $snoozeDisplayName = 'snoozeDisplayName-1956223833';
         $snooze->setDisplayName($snoozeDisplayName);
         $updateMask = new FieldMask();
-        $request = (new UpdateSnoozeRequest())
-            ->setSnooze($snooze)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateSnoozeRequest())->setSnooze($snooze)->setUpdateMask($updateMask);
         $response = $gapicClient->updateSnooze($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -341,12 +340,15 @@ class SnoozeServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $snooze = new Snooze();
@@ -357,9 +359,7 @@ class SnoozeServiceClientTest extends GeneratedTest
         $snoozeDisplayName = 'snoozeDisplayName-1956223833';
         $snooze->setDisplayName($snoozeDisplayName);
         $updateMask = new FieldMask();
-        $request = (new UpdateSnoozeRequest())
-            ->setSnooze($snooze)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateSnoozeRequest())->setSnooze($snooze)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateSnooze($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -397,9 +397,7 @@ class SnoozeServiceClientTest extends GeneratedTest
         $snooze->setInterval($snoozeInterval);
         $snoozeDisplayName = 'snoozeDisplayName-1956223833';
         $snooze->setDisplayName($snoozeDisplayName);
-        $request = (new CreateSnoozeRequest())
-            ->setParent($formattedParent)
-            ->setSnooze($snooze);
+        $request = (new CreateSnoozeRequest())->setParent($formattedParent)->setSnooze($snooze);
         $response = $gapicClient->createSnoozeAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

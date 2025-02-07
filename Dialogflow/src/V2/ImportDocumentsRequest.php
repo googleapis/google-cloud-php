@@ -23,20 +23,20 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Document template used for importing all the documents.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ImportDocumentTemplate document_template = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $document_template = null;
+    protected $document_template = null;
     /**
      * Whether to import custom metadata from Google Cloud Storage.
      * Only valid when the document source is Google Cloud Storage URI.
      *
      * Generated from protobuf field <code>bool import_gcs_custom_metadata = 4;</code>
      */
-    private $import_gcs_custom_metadata = false;
+    protected $import_gcs_custom_metadata = false;
     protected $source;
 
     /**

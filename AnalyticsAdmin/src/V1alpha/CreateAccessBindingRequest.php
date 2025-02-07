@@ -22,13 +22,13 @@ class CreateAccessBindingRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The access binding to create.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AccessBinding access_binding = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $access_binding = null;
+    protected $access_binding = null;
 
     /**
      * @param string                                        $parent        Required. Formats:

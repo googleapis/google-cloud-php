@@ -43,6 +43,7 @@ use Google\Cloud\Compute\V1\MoveAddressRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\SetLabelsAddressRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Addresses API.
@@ -191,6 +192,12 @@ final class AddressesClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -221,6 +228,9 @@ final class AddressesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -248,6 +258,8 @@ final class AddressesClient
      *
      * The async variant is {@see AddressesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/AddressesClient/aggregated_list.php
+     *
      * @param AggregatedListAddressesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -271,6 +283,8 @@ final class AddressesClient
      * Deletes the specified address resource.
      *
      * The async variant is {@see AddressesClient::deleteAsync()} .
+     *
+     * @example samples/V1/AddressesClient/delete.php
      *
      * @param DeleteAddressRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -296,6 +310,8 @@ final class AddressesClient
      *
      * The async variant is {@see AddressesClient::getAsync()} .
      *
+     * @example samples/V1/AddressesClient/get.php
+     *
      * @param GetAddressRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -319,6 +335,8 @@ final class AddressesClient
      * Creates an address resource in the specified project by using the data included in the request.
      *
      * The async variant is {@see AddressesClient::insertAsync()} .
+     *
+     * @example samples/V1/AddressesClient/insert.php
      *
      * @param InsertAddressRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -344,6 +362,8 @@ final class AddressesClient
      *
      * The async variant is {@see AddressesClient::listAsync()} .
      *
+     * @example samples/V1/AddressesClient/list.php
+     *
      * @param ListAddressesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -368,6 +388,8 @@ final class AddressesClient
      *
      * The async variant is {@see AddressesClient::moveAsync()} .
      *
+     * @example samples/V1/AddressesClient/move.php
+     *
      * @param MoveAddressRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -391,6 +413,8 @@ final class AddressesClient
      * Sets the labels on an Address. To learn more about labels, read the Labeling Resources documentation.
      *
      * The async variant is {@see AddressesClient::setLabelsAsync()} .
+     *
+     * @example samples/V1/AddressesClient/set_labels.php
      *
      * @param SetLabelsAddressRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Instances_SetDeletionProtection_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\Client\InstancesClient;
+use Google\Cloud\Compute\V1\SetDeletionProtectionInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function set_deletion_protection_sample(string $project, string $resource, strin
     // Create a client.
     $instancesClient = new InstancesClient();
 
+    // Prepare the request message.
+    $request = (new SetDeletionProtectionInstanceRequest())
+        ->setProject($project)
+        ->setResource($resource)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->setDeletionProtection($project, $resource, $zone);
+        $response = $instancesClient->setDeletionProtection($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

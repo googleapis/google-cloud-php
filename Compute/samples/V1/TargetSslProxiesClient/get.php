@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_TargetSslProxies_Get_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\TargetSslProxiesClient;
+use Google\Cloud\Compute\V1\Client\TargetSslProxiesClient;
+use Google\Cloud\Compute\V1\GetTargetSslProxyRequest;
 use Google\Cloud\Compute\V1\TargetSslProxy;
 
 /**
@@ -38,10 +39,15 @@ function get_sample(string $project, string $targetSslProxy): void
     // Create a client.
     $targetSslProxiesClient = new TargetSslProxiesClient();
 
+    // Prepare the request message.
+    $request = (new GetTargetSslProxyRequest())
+        ->setProject($project)
+        ->setTargetSslProxy($targetSslProxy);
+
     // Call the API and handle any network failures.
     try {
         /** @var TargetSslProxy $response */
-        $response = $targetSslProxiesClient->get($project, $targetSslProxy);
+        $response = $targetSslProxiesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

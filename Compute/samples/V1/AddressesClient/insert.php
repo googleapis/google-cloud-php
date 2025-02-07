@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\Address;
-use Google\Cloud\Compute\V1\AddressesClient;
+use Google\Cloud\Compute\V1\Client\AddressesClient;
+use Google\Cloud\Compute\V1\InsertAddressRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function insert_sample(string $project, string $region): void
     // Create a client.
     $addressesClient = new AddressesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $addressResource = new Address();
+    $request = (new InsertAddressRequest())
+        ->setAddressResource($addressResource)
+        ->setProject($project)
+        ->setRegion($region);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $addressesClient->insert($addressResource, $project, $region);
+        $response = $addressesClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

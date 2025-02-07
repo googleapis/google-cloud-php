@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,7 +54,9 @@ class AlertPolicyServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return AlertPolicyServiceClient */
@@ -84,9 +86,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $alertPolicy = new AlertPolicy();
-        $request = (new CreateAlertPolicyRequest())
-            ->setName($name)
-            ->setAlertPolicy($alertPolicy);
+        $request = (new CreateAlertPolicyRequest())->setName($name)->setAlertPolicy($alertPolicy);
         $response = $gapicClient->createAlertPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -112,19 +112,20 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
         $alertPolicy = new AlertPolicy();
-        $request = (new CreateAlertPolicyRequest())
-            ->setName($name)
-            ->setAlertPolicy($alertPolicy);
+        $request = (new CreateAlertPolicyRequest())->setName($name)->setAlertPolicy($alertPolicy);
         try {
             $gapicClient->createAlertPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -151,8 +152,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->alertPolicyName('[PROJECT]', '[ALERT_POLICY]');
-        $request = (new DeleteAlertPolicyRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAlertPolicyRequest())->setName($formattedName);
         $gapicClient->deleteAlertPolicy($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -175,17 +175,19 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->alertPolicyName('[PROJECT]', '[ALERT_POLICY]');
-        $request = (new DeleteAlertPolicyRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAlertPolicyRequest())->setName($formattedName);
         try {
             $gapicClient->deleteAlertPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -216,8 +218,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->alertPolicyName('[PROJECT]', '[ALERT_POLICY]');
-        $request = (new GetAlertPolicyRequest())
-            ->setName($formattedName);
+        $request = (new GetAlertPolicyRequest())->setName($formattedName);
         $response = $gapicClient->getAlertPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -241,17 +242,19 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->alertPolicyName('[PROJECT]', '[ALERT_POLICY]');
-        $request = (new GetAlertPolicyRequest())
-            ->setName($formattedName);
+        $request = (new GetAlertPolicyRequest())->setName($formattedName);
         try {
             $gapicClient->getAlertPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -277,9 +280,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $nextPageToken = '';
         $totalSize = 705419236;
         $alertPoliciesElement = new AlertPolicy();
-        $alertPolicies = [
-            $alertPoliciesElement,
-        ];
+        $alertPolicies = [$alertPoliciesElement];
         $expectedResponse = new ListAlertPoliciesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTotalSize($totalSize);
@@ -287,8 +288,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new ListAlertPoliciesRequest())
-            ->setName($name);
+        $request = (new ListAlertPoliciesRequest())->setName($name);
         $response = $gapicClient->listAlertPolicies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -315,17 +315,19 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new ListAlertPoliciesRequest())
-            ->setName($name);
+        $request = (new ListAlertPoliciesRequest())->setName($name);
         try {
             $gapicClient->listAlertPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -356,8 +358,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $alertPolicy = new AlertPolicy();
-        $request = (new UpdateAlertPolicyRequest())
-            ->setAlertPolicy($alertPolicy);
+        $request = (new UpdateAlertPolicyRequest())->setAlertPolicy($alertPolicy);
         $response = $gapicClient->updateAlertPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -381,17 +382,19 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $alertPolicy = new AlertPolicy();
-        $request = (new UpdateAlertPolicyRequest())
-            ->setAlertPolicy($alertPolicy);
+        $request = (new UpdateAlertPolicyRequest())->setAlertPolicy($alertPolicy);
         try {
             $gapicClient->updateAlertPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -423,9 +426,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $alertPolicy = new AlertPolicy();
-        $request = (new CreateAlertPolicyRequest())
-            ->setName($name)
-            ->setAlertPolicy($alertPolicy);
+        $request = (new CreateAlertPolicyRequest())->setName($name)->setAlertPolicy($alertPolicy);
         $response = $gapicClient->createAlertPolicyAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

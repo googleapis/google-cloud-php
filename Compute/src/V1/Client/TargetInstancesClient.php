@@ -42,6 +42,7 @@ use Google\Cloud\Compute\V1\SetSecurityPolicyTargetInstanceRequest;
 use Google\Cloud\Compute\V1\TargetInstance;
 use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The TargetInstances API.
@@ -189,6 +190,12 @@ final class TargetInstancesClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -219,6 +226,9 @@ final class TargetInstancesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -246,6 +256,8 @@ final class TargetInstancesClient
      *
      * The async variant is {@see TargetInstancesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/TargetInstancesClient/aggregated_list.php
+     *
      * @param AggregatedListTargetInstancesRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -269,6 +281,8 @@ final class TargetInstancesClient
      * Deletes the specified TargetInstance resource.
      *
      * The async variant is {@see TargetInstancesClient::deleteAsync()} .
+     *
+     * @example samples/V1/TargetInstancesClient/delete.php
      *
      * @param DeleteTargetInstanceRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -294,6 +308,8 @@ final class TargetInstancesClient
      *
      * The async variant is {@see TargetInstancesClient::getAsync()} .
      *
+     * @example samples/V1/TargetInstancesClient/get.php
+     *
      * @param GetTargetInstanceRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -317,6 +333,8 @@ final class TargetInstancesClient
      * Creates a TargetInstance resource in the specified project and zone using the data included in the request.
      *
      * The async variant is {@see TargetInstancesClient::insertAsync()} .
+     *
+     * @example samples/V1/TargetInstancesClient/insert.php
      *
      * @param InsertTargetInstanceRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -342,6 +360,8 @@ final class TargetInstancesClient
      *
      * The async variant is {@see TargetInstancesClient::listAsync()} .
      *
+     * @example samples/V1/TargetInstancesClient/list.php
+     *
      * @param ListTargetInstancesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -365,6 +385,8 @@ final class TargetInstancesClient
      * Sets the Google Cloud Armor security policy for the specified target instance. For more information, see Google Cloud Armor Overview
      *
      * The async variant is {@see TargetInstancesClient::setSecurityPolicyAsync()} .
+     *
+     * @example samples/V1/TargetInstancesClient/set_security_policy.php
      *
      * @param SetSecurityPolicyTargetInstanceRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {

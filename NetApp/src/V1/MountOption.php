@@ -39,6 +39,12 @@ class MountOption extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string instructions = 4;</code>
      */
     protected $instructions = '';
+    /**
+     * Output only. IP Address.
+     *
+     * Generated from protobuf field <code>string ip_address = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     */
+    protected $ip_address = '';
 
     /**
      * Constructor.
@@ -54,6 +60,8 @@ class MountOption extends \Google\Protobuf\Internal\Message
      *           Protocol to mount with.
      *     @type string $instructions
      *           Instructions for mounting
+     *     @type string $ip_address
+     *           Output only. IP Address.
      * }
      */
     public function __construct($data = NULL) {
@@ -161,6 +169,32 @@ class MountOption extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->instructions = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. IP Address.
+     *
+     * Generated from protobuf field <code>string ip_address = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     * @return string
+     */
+    public function getIpAddress()
+    {
+        return $this->ip_address;
+    }
+
+    /**
+     * Output only. IP Address.
+     *
+     * Generated from protobuf field <code>string ip_address = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIpAddress($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ip_address = $var;
 
         return $this;
     }

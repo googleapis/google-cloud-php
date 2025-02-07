@@ -31,6 +31,37 @@ class SpaceConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.apps.meet.v2beta.SpaceConfig.EntryPointAccess entry_point_access = 2;</code>
      */
     protected $entry_point_access = 0;
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview):
+     * The pre-configured moderation mode for the Meeting.
+     * Default: Controlled by the user's policies.
+     *
+     * Generated from protobuf field <code>.google.apps.meet.v2beta.SpaceConfig.Moderation moderation = 3;</code>
+     */
+    protected $moderation = 0;
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview):
+     * When moderation.ON, these restrictions go into effect for the meeting.
+     * When moderation.OFF, will be reset to default ModerationRestrictions.
+     *
+     * Generated from protobuf field <code>.google.apps.meet.v2beta.SpaceConfig.ModerationRestrictions moderation_restrictions = 4;</code>
+     */
+    protected $moderation_restrictions = null;
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview):
+     * Whether attendance report is enabled for the meeting space.
+     *
+     * Generated from protobuf field <code>.google.apps.meet.v2beta.SpaceConfig.AttendanceReportGenerationType attendance_report_generation_type = 6;</code>
+     */
+    protected $attendance_report_generation_type = 0;
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview):
+     * Configuration pertaining to the auto-generated artifacts that the meeting
+     * supports.
+     *
+     * Generated from protobuf field <code>.google.apps.meet.v2beta.SpaceConfig.ArtifactConfig artifact_config = 7;</code>
+     */
+    protected $artifact_config = null;
 
     /**
      * Constructor.
@@ -46,6 +77,21 @@ class SpaceConfig extends \Google\Protobuf\Internal\Message
      *           Defines the entry points that can be used to join meetings hosted in this
      *           meeting space.
      *           Default: EntryPointAccess.ALL
+     *     @type int $moderation
+     *           [Developer Preview](https://developers.google.com/workspace/preview):
+     *           The pre-configured moderation mode for the Meeting.
+     *           Default: Controlled by the user's policies.
+     *     @type \Google\Apps\Meet\V2beta\SpaceConfig\ModerationRestrictions $moderation_restrictions
+     *           [Developer Preview](https://developers.google.com/workspace/preview):
+     *           When moderation.ON, these restrictions go into effect for the meeting.
+     *           When moderation.OFF, will be reset to default ModerationRestrictions.
+     *     @type int $attendance_report_generation_type
+     *           [Developer Preview](https://developers.google.com/workspace/preview):
+     *           Whether attendance report is enabled for the meeting space.
+     *     @type \Google\Apps\Meet\V2beta\SpaceConfig\ArtifactConfig $artifact_config
+     *           [Developer Preview](https://developers.google.com/workspace/preview):
+     *           Configuration pertaining to the auto-generated artifacts that the meeting
+     *           supports.
      * }
      */
     public function __construct($data = NULL) {
@@ -109,6 +155,144 @@ class SpaceConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Apps\Meet\V2beta\SpaceConfig\EntryPointAccess::class);
         $this->entry_point_access = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview):
+     * The pre-configured moderation mode for the Meeting.
+     * Default: Controlled by the user's policies.
+     *
+     * Generated from protobuf field <code>.google.apps.meet.v2beta.SpaceConfig.Moderation moderation = 3;</code>
+     * @return int
+     */
+    public function getModeration()
+    {
+        return $this->moderation;
+    }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview):
+     * The pre-configured moderation mode for the Meeting.
+     * Default: Controlled by the user's policies.
+     *
+     * Generated from protobuf field <code>.google.apps.meet.v2beta.SpaceConfig.Moderation moderation = 3;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setModeration($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Apps\Meet\V2beta\SpaceConfig\Moderation::class);
+        $this->moderation = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview):
+     * When moderation.ON, these restrictions go into effect for the meeting.
+     * When moderation.OFF, will be reset to default ModerationRestrictions.
+     *
+     * Generated from protobuf field <code>.google.apps.meet.v2beta.SpaceConfig.ModerationRestrictions moderation_restrictions = 4;</code>
+     * @return \Google\Apps\Meet\V2beta\SpaceConfig\ModerationRestrictions|null
+     */
+    public function getModerationRestrictions()
+    {
+        return $this->moderation_restrictions;
+    }
+
+    public function hasModerationRestrictions()
+    {
+        return isset($this->moderation_restrictions);
+    }
+
+    public function clearModerationRestrictions()
+    {
+        unset($this->moderation_restrictions);
+    }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview):
+     * When moderation.ON, these restrictions go into effect for the meeting.
+     * When moderation.OFF, will be reset to default ModerationRestrictions.
+     *
+     * Generated from protobuf field <code>.google.apps.meet.v2beta.SpaceConfig.ModerationRestrictions moderation_restrictions = 4;</code>
+     * @param \Google\Apps\Meet\V2beta\SpaceConfig\ModerationRestrictions $var
+     * @return $this
+     */
+    public function setModerationRestrictions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Meet\V2beta\SpaceConfig\ModerationRestrictions::class);
+        $this->moderation_restrictions = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview):
+     * Whether attendance report is enabled for the meeting space.
+     *
+     * Generated from protobuf field <code>.google.apps.meet.v2beta.SpaceConfig.AttendanceReportGenerationType attendance_report_generation_type = 6;</code>
+     * @return int
+     */
+    public function getAttendanceReportGenerationType()
+    {
+        return $this->attendance_report_generation_type;
+    }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview):
+     * Whether attendance report is enabled for the meeting space.
+     *
+     * Generated from protobuf field <code>.google.apps.meet.v2beta.SpaceConfig.AttendanceReportGenerationType attendance_report_generation_type = 6;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAttendanceReportGenerationType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Apps\Meet\V2beta\SpaceConfig\AttendanceReportGenerationType::class);
+        $this->attendance_report_generation_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview):
+     * Configuration pertaining to the auto-generated artifacts that the meeting
+     * supports.
+     *
+     * Generated from protobuf field <code>.google.apps.meet.v2beta.SpaceConfig.ArtifactConfig artifact_config = 7;</code>
+     * @return \Google\Apps\Meet\V2beta\SpaceConfig\ArtifactConfig|null
+     */
+    public function getArtifactConfig()
+    {
+        return $this->artifact_config;
+    }
+
+    public function hasArtifactConfig()
+    {
+        return isset($this->artifact_config);
+    }
+
+    public function clearArtifactConfig()
+    {
+        unset($this->artifact_config);
+    }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview):
+     * Configuration pertaining to the auto-generated artifacts that the meeting
+     * supports.
+     *
+     * Generated from protobuf field <code>.google.apps.meet.v2beta.SpaceConfig.ArtifactConfig artifact_config = 7;</code>
+     * @param \Google\Apps\Meet\V2beta\SpaceConfig\ArtifactConfig $var
+     * @return $this
+     */
+    public function setArtifactConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Meet\V2beta\SpaceConfig\ArtifactConfig::class);
+        $this->artifact_config = $var;
 
         return $this;
     }

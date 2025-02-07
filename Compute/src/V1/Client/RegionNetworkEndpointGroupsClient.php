@@ -43,6 +43,7 @@ use Google\Cloud\Compute\V1\ListRegionNetworkEndpointGroupsRequest;
 use Google\Cloud\Compute\V1\NetworkEndpointGroup;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The RegionNetworkEndpointGroups API.
@@ -191,6 +192,12 @@ final class RegionNetworkEndpointGroupsClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -221,6 +228,9 @@ final class RegionNetworkEndpointGroupsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -249,6 +259,8 @@ final class RegionNetworkEndpointGroupsClient
      * The async variant is
      * {@see RegionNetworkEndpointGroupsClient::attachNetworkEndpointsAsync()} .
      *
+     * @example samples/V1/RegionNetworkEndpointGroupsClient/attach_network_endpoints.php
+     *
      * @param AttachNetworkEndpointsRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                                   $callOptions {
      *     Optional.
@@ -272,6 +284,8 @@ final class RegionNetworkEndpointGroupsClient
      * Deletes the specified network endpoint group. Note that the NEG cannot be deleted if it is configured as a backend of a backend service.
      *
      * The async variant is {@see RegionNetworkEndpointGroupsClient::deleteAsync()} .
+     *
+     * @example samples/V1/RegionNetworkEndpointGroupsClient/delete.php
      *
      * @param DeleteRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -298,6 +312,8 @@ final class RegionNetworkEndpointGroupsClient
      * The async variant is
      * {@see RegionNetworkEndpointGroupsClient::detachNetworkEndpointsAsync()} .
      *
+     * @example samples/V1/RegionNetworkEndpointGroupsClient/detach_network_endpoints.php
+     *
      * @param DetachNetworkEndpointsRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                                   $callOptions {
      *     Optional.
@@ -321,6 +337,8 @@ final class RegionNetworkEndpointGroupsClient
      * Returns the specified network endpoint group.
      *
      * The async variant is {@see RegionNetworkEndpointGroupsClient::getAsync()} .
+     *
+     * @example samples/V1/RegionNetworkEndpointGroupsClient/get.php
      *
      * @param GetRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -346,6 +364,8 @@ final class RegionNetworkEndpointGroupsClient
      *
      * The async variant is {@see RegionNetworkEndpointGroupsClient::insertAsync()} .
      *
+     * @example samples/V1/RegionNetworkEndpointGroupsClient/insert.php
+     *
      * @param InsertRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -369,6 +389,8 @@ final class RegionNetworkEndpointGroupsClient
      * Retrieves the list of regional network endpoint groups available to the specified project in the given region.
      *
      * The async variant is {@see RegionNetworkEndpointGroupsClient::listAsync()} .
+     *
+     * @example samples/V1/RegionNetworkEndpointGroupsClient/list.php
      *
      * @param ListRegionNetworkEndpointGroupsRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -394,6 +416,8 @@ final class RegionNetworkEndpointGroupsClient
      *
      * The async variant is
      * {@see RegionNetworkEndpointGroupsClient::listNetworkEndpointsAsync()} .
+     *
+     * @example samples/V1/RegionNetworkEndpointGroupsClient/list_network_endpoints.php
      *
      * @param ListNetworkEndpointsRegionNetworkEndpointGroupsRequest $request     A request to house fields associated with the call.
      * @param array                                                  $callOptions {

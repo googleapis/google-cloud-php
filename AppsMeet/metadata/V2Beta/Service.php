@@ -23,7 +23,7 @@ class Service
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ş,
+ß7
 %google/apps/meet/v2beta/service.protogoogle.apps.meet.v2betagoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/apps/meet/v2beta/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"C
 CreateSpaceRequest-
 space (2.google.apps.meet.v2beta.Space"B
@@ -35,7 +35,24 @@ class Service
 update_mask (2.google.protobuf.FieldMaskBàA"M
 EndActiveConferenceRequest/
 name (	B!àAúA
-meet.googleapis.com/Space"X
+meet.googleapis.com/Space"
+CreateMemberRequest2
+parent (	B"àAúAmeet.googleapis.com/Member4
+member (2.google.apps.meet.v2beta.MemberBàA"D
+GetMemberRequest0
+name (	B"àAúA
+meet.googleapis.com/Member"y
+ListMembersRequest2
+parent (	B"àAúAmeet.googleapis.com/Member
+	page_size (BàA
+
+page_token (	BàA"`
+ListMembersResponse0
+members (2.google.apps.meet.v2beta.Member
+next_page_token (	"G
+DeleteMemberRequest0
+name (	B"àAúA
+meet.googleapis.com/Member"X
 GetConferenceRecordRequest:
 name (	B,àAúA&
 $meet.googleapis.com/ConferenceRecord"d
@@ -106,12 +123,17 @@ page_token (	"l
 page_token (	"~
 ListTranscriptEntriesResponseD
 transcript_entries (2(.google.apps.meet.v2beta.TranscriptEntry
-next_page_token (	2ì
+next_page_token (	2î
+
 SpacesService
 CreateSpace+.google.apps.meet.v2beta.CreateSpaceRequest.google.apps.meet.v2beta.Space"%ÚAspace‚Óä“"/v2beta/spaces:space|
 GetSpace(.google.apps.meet.v2beta.GetSpaceRequest.google.apps.meet.v2beta.Space"&ÚAname‚Óä“/v2beta/{name=spaces/*}œ
 UpdateSpace+.google.apps.meet.v2beta.UpdateSpaceRequest.google.apps.meet.v2beta.Space"@ÚAspace,update_mask‚Óä“&2/v2beta/{space.name=spaces/*}:space¡
-EndActiveConference3.google.apps.meet.v2beta.EndActiveConferenceRequest.google.protobuf.Empty"=ÚAname‚Óä“0"+/v2beta/{name=spaces/*}:endActiveConference:*ÊAmeet.googleapis.com2
+EndActiveConference3.google.apps.meet.v2beta.EndActiveConferenceRequest.google.protobuf.Empty"=ÚAname‚Óä“0"+/v2beta/{name=spaces/*}:endActiveConference:* 
+CreateMember,.google.apps.meet.v2beta.CreateMemberRequest.google.apps.meet.v2beta.Member"AÚAparent,member‚Óä“+"!/v2beta/{parent=spaces/*}/members:member‰
+	GetMember).google.apps.meet.v2beta.GetMemberRequest.google.apps.meet.v2beta.Member"0ÚAname‚Óä“#!/v2beta/{name=spaces/*/members/*}œ
+ListMembers+.google.apps.meet.v2beta.ListMembersRequest,.google.apps.meet.v2beta.ListMembersResponse"2ÚAparent‚Óä“#!/v2beta/{parent=spaces/*}/members†
+DeleteMember,.google.apps.meet.v2beta.DeleteMemberRequest.google.protobuf.Empty"0ÚAname‚Óä“#*!/v2beta/{name=spaces/*/members/*}ÀÊAmeet.googleapis.comÒA¦https://www.googleapis.com/auth/meetings.space.created,https://www.googleapis.com/auth/meetings.space.readonly,https://www.googleapis.com/auth/meetings.space.settings2ó
 ConferenceRecordsService¨
 GetConferenceRecord3.google.apps.meet.v2beta.GetConferenceRecordRequest).google.apps.meet.v2beta.ConferenceRecord"1ÚAname‚Óä“$"/v2beta/{name=conferenceRecords/*}©
 ListConferenceRecords5.google.apps.meet.v2beta.ListConferenceRecordsRequest6.google.apps.meet.v2beta.ListConferenceRecordsResponse"!‚Óä“/v2beta/conferenceRecords¨
@@ -124,7 +146,7 @@ page_token (	"~
 GetTranscript-.google.apps.meet.v2beta.GetTranscriptRequest#.google.apps.meet.v2beta.Transcript"?ÚAname‚Óä“20/v2beta/{name=conferenceRecords/*/transcripts/*}·
 ListTranscripts/.google.apps.meet.v2beta.ListTranscriptsRequest0.google.apps.meet.v2beta.ListTranscriptsResponse"AÚAparent‚Óä“20/v2beta/{parent=conferenceRecords/*}/transcripts½
 GetTranscriptEntry2.google.apps.meet.v2beta.GetTranscriptEntryRequest(.google.apps.meet.v2beta.TranscriptEntry"IÚAname‚Óä“<:/v2beta/{name=conferenceRecords/*/transcripts/*/entries/*}Ó
-ListTranscriptEntries5.google.apps.meet.v2beta.ListTranscriptEntriesRequest6.google.apps.meet.v2beta.ListTranscriptEntriesResponse"KÚAparent‚Óä“<:/v2beta/{parent=conferenceRecords/*/transcripts/*}/entriesÊAmeet.googleapis.comBµ
+ListTranscriptEntries5.google.apps.meet.v2beta.ListTranscriptEntriesRequest6.google.apps.meet.v2beta.ListTranscriptEntriesResponse"KÚAparent‚Óä“<:/v2beta/{parent=conferenceRecords/*/transcripts/*}/entries‡ÊAmeet.googleapis.comÒAnhttps://www.googleapis.com/auth/meetings.space.created,https://www.googleapis.com/auth/meetings.space.readonlyBµ
 com.google.apps.meet.v2betaBServiceProtoPZ5cloud.google.com/go/apps/meet/apiv2beta/meetpb;meetpbªGoogle.Apps.Meet.V2BetaÊGoogle\\Apps\\Meet\\V2betaêGoogle::Apps::Meet::V2betabproto3'
         , true);
 

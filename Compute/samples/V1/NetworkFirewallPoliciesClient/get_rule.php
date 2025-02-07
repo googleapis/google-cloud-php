@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_NetworkFirewallPolicies_GetRule_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\NetworkFirewallPoliciesClient;
 use Google\Cloud\Compute\V1\FirewallPolicyRule;
-use Google\Cloud\Compute\V1\NetworkFirewallPoliciesClient;
+use Google\Cloud\Compute\V1\GetRuleNetworkFirewallPolicyRequest;
 
 /**
  * Gets a rule of the specified priority.
@@ -38,10 +39,15 @@ function get_rule_sample(string $firewallPolicy, string $project): void
     // Create a client.
     $networkFirewallPoliciesClient = new NetworkFirewallPoliciesClient();
 
+    // Prepare the request message.
+    $request = (new GetRuleNetworkFirewallPolicyRequest())
+        ->setFirewallPolicy($firewallPolicy)
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var FirewallPolicyRule $response */
-        $response = $networkFirewallPoliciesClient->getRule($firewallPolicy, $project);
+        $response = $networkFirewallPoliciesClient->getRule($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A virtual resource representing an overview of an account and
- * all its child GA4 properties.
+ * all its child Google Analytics properties.
  *
  * Generated from protobuf message <code>google.analytics.admin.v1beta.AccountSummary</code>
  */
@@ -23,7 +23,7 @@ class AccountSummary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Resource name of account referred to by this account summary
      * Format: accounts/{account_id}
@@ -31,13 +31,13 @@ class AccountSummary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string account = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $account = '';
+    protected $account = '';
     /**
      * Display name for the account referred to in this account summary.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * List of summaries for child accounts of this account.
      *

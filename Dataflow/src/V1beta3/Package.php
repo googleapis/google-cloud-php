@@ -27,7 +27,7 @@ class Package extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The resource to read the package from. The supported resource type is:
      * Google Cloud Storage:
@@ -36,7 +36,7 @@ class Package extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 2;</code>
      */
-    private $location = '';
+    protected $location = '';
 
     /**
      * Constructor.

@@ -20,13 +20,13 @@ class PolylineConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string annotation_spec_set = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $annotation_spec_set = '';
+    protected $annotation_spec_set = '';
     /**
      * Optional. Instruction message showed on contributors UI.
      *
      * Generated from protobuf field <code>string instruction_message = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $instruction_message = '';
+    protected $instruction_message = '';
 
     /**
      * Constructor.

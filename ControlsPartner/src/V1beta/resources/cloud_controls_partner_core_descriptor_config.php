@@ -23,6 +23,30 @@
 return [
     'interfaces' => [
         'google.cloud.cloudcontrolspartner.v1beta.CloudControlsPartnerCore' => [
+            'CreateCustomer' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\CloudControlsPartner\V1beta\Customer',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteCustomer' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetCustomer' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\CloudControlsPartner\V1beta\Customer',
@@ -139,6 +163,19 @@ return [
                         'keyName' => 'parent',
                         'fieldAccessors' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateCustomer' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\CloudControlsPartner\V1beta\Customer',
+                'headerParams' => [
+                    [
+                        'keyName' => 'customer.name',
+                        'fieldAccessors' => [
+                            'getCustomer',
+                            'getName',
                         ],
                     ],
                 ],

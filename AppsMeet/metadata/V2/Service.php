@@ -23,7 +23,7 @@ class Service
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‰,
+ù-
 !google/apps/meet/v2/service.protogoogle.apps.meet.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"google/apps/meet/v2/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"?
 CreateSpaceRequest)
 space (2.google.apps.meet.v2.Space"B
@@ -106,13 +106,13 @@ page_token (	"h
 page_token (	"z
 ListTranscriptEntriesResponse@
 transcript_entries (2$.google.apps.meet.v2.TranscriptEntry
-next_page_token (	2±
+next_page_token (	2Í
 SpacesServiceu
 CreateSpace\'.google.apps.meet.v2.CreateSpaceRequest.google.apps.meet.v2.Space"!⁄AspaceÇ”‰ì"
 /v2/spaces:spacep
 GetSpace$.google.apps.meet.v2.GetSpaceRequest.google.apps.meet.v2.Space""⁄AnameÇ”‰ì/v2/{name=spaces/*}ê
 UpdateSpace\'.google.apps.meet.v2.UpdateSpaceRequest.google.apps.meet.v2.Space"<⁄Aspace,update_maskÇ”‰ì"2/v2/{space.name=spaces/*}:spaceô
-EndActiveConference/.google.apps.meet.v2.EndActiveConferenceRequest.google.protobuf.Empty"9⁄AnameÇ”‰ì,"\'/v2/{name=spaces/*}:endActiveConference:*á Ameet.googleapis.com“Anhttps://www.googleapis.com/auth/meetings.space.created,https://www.googleapis.com/auth/meetings.space.readonly2„
+EndActiveConference/.google.apps.meet.v2.EndActiveConferenceRequest.google.protobuf.Empty"9⁄AnameÇ”‰ì,"\'/v2/{name=spaces/*}:endActiveConference:*¿ Ameet.googleapis.com“A¶https://www.googleapis.com/auth/meetings.space.created,https://www.googleapis.com/auth/meetings.space.readonly,https://www.googleapis.com/auth/meetings.space.settings2„
 ConferenceRecordsServiceú
 GetConferenceRecord/.google.apps.meet.v2.GetConferenceRecordRequest%.google.apps.meet.v2.ConferenceRecord"-⁄AnameÇ”‰ì /v2/{name=conferenceRecords/*}ù
 ListConferenceRecords1.google.apps.meet.v2.ListConferenceRecordsRequest2.google.apps.meet.v2.ListConferenceRecordsResponse"Ç”‰ì/v2/conferenceRecordsú

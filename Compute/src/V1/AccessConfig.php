@@ -59,7 +59,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      */
     private $public_ptr_domain_name = null;
     /**
-     * [Output Only] The resource URL for the security policy associated with this access config.
+     * The resource URL for the security policy associated with this access config.
      *
      * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
      */
@@ -100,7 +100,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      *     @type string $public_ptr_domain_name
      *           The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled in accessConfig. If this field is unspecified in ipv6AccessConfig, a default PTR record will be created for first IP in associated external IPv6 range.
      *     @type string $security_policy
-     *           [Output Only] The resource URL for the security policy associated with this access config.
+     *           The resource URL for the security policy associated with this access config.
      *     @type bool $set_public_ptr
      *           Specifies whether a public DNS 'PTR' record should be created to map the external IP address of the instance to a DNS domain name. This field is not used in ipv6AccessConfig. A default PTR record will be created if the VM has external IPv6 range associated.
      *     @type string $type
@@ -368,7 +368,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The resource URL for the security policy associated with this access config.
+     * The resource URL for the security policy associated with this access config.
      *
      * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
      * @return string
@@ -389,7 +389,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The resource URL for the security policy associated with this access config.
+     * The resource URL for the security policy associated with this access config.
      *
      * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
      * @param string $var

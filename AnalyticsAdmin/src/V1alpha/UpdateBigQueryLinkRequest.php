@@ -21,7 +21,7 @@ class UpdateBigQueryLinkRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.BigQueryLink bigquery_link = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $bigquery_link = null;
+    protected $bigquery_link = null;
     /**
      * Required. The list of fields to be updated. Field names must be in snake
      * case (e.g., "field_to_update"). Omitted fields will not be updated. To
@@ -30,7 +30,7 @@ class UpdateBigQueryLinkRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Analytics\Admin\V1alpha\BigQueryLink $bigqueryLink Required. The settings to update.

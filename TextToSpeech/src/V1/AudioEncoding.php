@@ -57,6 +57,14 @@ class AudioEncoding
      * Generated from protobuf enum <code>ALAW = 6;</code>
      */
     const ALAW = 6;
+    /**
+     * Uncompressed 16-bit signed little-endian samples (Linear PCM).
+     * Note that as opposed to LINEAR16, audio will not be wrapped in a WAV (or
+     * any other) header.
+     *
+     * Generated from protobuf enum <code>PCM = 7;</code>
+     */
+    const PCM = 7;
 
     private static $valueToName = [
         self::AUDIO_ENCODING_UNSPECIFIED => 'AUDIO_ENCODING_UNSPECIFIED',
@@ -65,6 +73,7 @@ class AudioEncoding
         self::OGG_OPUS => 'OGG_OPUS',
         self::MULAW => 'MULAW',
         self::ALAW => 'ALAW',
+        self::PCM => 'PCM',
     ];
 
     public static function name($value)

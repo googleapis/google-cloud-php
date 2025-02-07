@@ -43,6 +43,7 @@ use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\SslPoliciesListAvailableFeaturesResponse;
 use Google\Cloud\Compute\V1\SslPolicy;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The RegionSslPolicies API.
@@ -190,6 +191,12 @@ final class RegionSslPoliciesClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -220,6 +227,9 @@ final class RegionSslPoliciesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -247,6 +257,8 @@ final class RegionSslPoliciesClient
      *
      * The async variant is {@see RegionSslPoliciesClient::deleteAsync()} .
      *
+     * @example samples/V1/RegionSslPoliciesClient/delete.php
+     *
      * @param DeleteRegionSslPolicyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -270,6 +282,8 @@ final class RegionSslPoliciesClient
      * Lists all of the ordered rules present in a single specified policy.
      *
      * The async variant is {@see RegionSslPoliciesClient::getAsync()} .
+     *
+     * @example samples/V1/RegionSslPoliciesClient/get.php
      *
      * @param GetRegionSslPolicyRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -295,6 +309,8 @@ final class RegionSslPoliciesClient
      *
      * The async variant is {@see RegionSslPoliciesClient::insertAsync()} .
      *
+     * @example samples/V1/RegionSslPoliciesClient/insert.php
+     *
      * @param InsertRegionSslPolicyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -318,6 +334,8 @@ final class RegionSslPoliciesClient
      * Lists all the SSL policies that have been configured for the specified project and region.
      *
      * The async variant is {@see RegionSslPoliciesClient::listAsync()} .
+     *
+     * @example samples/V1/RegionSslPoliciesClient/list.php
      *
      * @param ListRegionSslPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -344,6 +362,8 @@ final class RegionSslPoliciesClient
      * The async variant is
      * {@see RegionSslPoliciesClient::listAvailableFeaturesAsync()} .
      *
+     * @example samples/V1/RegionSslPoliciesClient/list_available_features.php
+     *
      * @param ListAvailableFeaturesRegionSslPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                                         $callOptions {
      *     Optional.
@@ -367,6 +387,8 @@ final class RegionSslPoliciesClient
      * Patches the specified SSL policy with the data included in the request.
      *
      * The async variant is {@see RegionSslPoliciesClient::patchAsync()} .
+     *
+     * @example samples/V1/RegionSslPoliciesClient/patch.php
      *
      * @param PatchRegionSslPolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

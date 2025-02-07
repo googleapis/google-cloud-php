@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Information about an associated Analytics Hub subscription
- * (https://cloud.google.com/bigquery/docs/analytics-hub-manage-subscriptions).
+ * Information about an associated [Analytics Hub
+ * subscription](https://cloud.google.com/bigquery/docs/analytics-hub-manage-subscriptions).
  *
  * Generated from protobuf message <code>google.pubsub.v1.Subscription.AnalyticsHubSubscriptionInfo</code>
  */

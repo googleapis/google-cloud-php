@@ -49,6 +49,7 @@ class ComponentInfoCommand extends Command
         'service_address' => 'Service Address',
         'api_shortname' => 'API Shortname',
         'description' => 'Description',
+        'library_type' => 'Library Type',
         'created_at' => 'Created At',
         'available_api_versions' => 'Availble API Versions',
         'downloads' => 'Downloads',
@@ -60,6 +61,11 @@ class ComponentInfoCommand extends Command
         'api_version',
         'release_level',
         'api_shortname',
+    ];
+    private static $slowFields = [
+        'available_api_versions',
+        'created_at',
+        'downloads',
     ];
 
     private string $token;
@@ -73,20 +79,26 @@ class ComponentInfoCommand extends Command
             ->addOption('component', 'c', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'get info for a single component', [])
             ->addOption('csv', '', InputOption::VALUE_OPTIONAL, 'export findings to csv.', false)
             ->addOption('fields', 'f', InputOption::VALUE_REQUIRED, sprintf(
-                "Comma-separated list of fields, \"all\" for all fields. The following fields are available: \n - %s\n" .
-                "NOTE: \"available_api_versions\", \"created_at\", and \"downloads\" are omited by default because they ".
-                "take a long time to load.\n",
+                'Comma-separated list of fields. Prefix with "+" to add to default filters, or use "all" for all fields.'
+                . " The following fields are available: \n - %s\n"
+                . "\n EXAMPLE: --fields 'component_name,package_version,api_version'"
+                . "\n EXAMPLE: --fields '+migration_mode'"
+                . "\n EXAMPLE: --fields all"
+                . "\nNOTE: \"available_api_versions\", \"created_at\", and \"downloads\" are omited by default because they "
+                . "take a long time to load.",
                 implode("\n - ", array_keys(self::$allFields))
             ))
             ->addOption('filter', '', InputOption::VALUE_REQUIRED,
-                'Comma-separated list of key-value filters. Supported operators are "=", "!=", "~=", and "!~=".'
-                . "\nExample: `--filter 'release_level=preview,migration_mode~=NEW_SURFACE_ONLY,migration_mode!~=MIGRATING'`'"
+                'Comma-separated list of key-value filters.'
+                . "\nSupported operators are \"=\", \"!=\", \"~=\", and \"!~=\"."
+                . "\nEXAMPLE: --filter 'release_level=preview,migration_mode~=NEW_SURFACE_ONLY,migration_mode!~=MIGRATING'"
             )
             ->addOption('sort', '', InputOption::VALUE_REQUIRED,
                 'field to sort by (with optional ASC/DESC suffix. e.g. "component_name DESC"'
             )
-            ->addOption('token', 't', InputOption::VALUE_REQUIRED, 'Github token to use for authentication', '')
-            ->addOption('expanded', '', InputOption::VALUE_NONE, 'Break down each component by packages')
+            ->addOption('count', '', InputOption::VALUE_NONE, 'output number of components which match the provided filters')
+            ->addOption('expanded', '', InputOption::VALUE_NONE, 'Gives each component version its own row')
+            ->addOption('token', 't', InputOption::VALUE_REQUIRED, 'Github token to use for authentication. Used to prevent Github rate limiting.', '')
         ;
     }
 
@@ -96,7 +108,7 @@ class ComponentInfoCommand extends Command
             null => self::$defaultFields,
             'all' => array_keys(array_diff_key(
                 self::$allFields,
-                ['available_api_versions' => '', 'created_at' => '', 'downloads' => '']
+                array_flip(self::$slowFields)
             )),
             default => explode(',', $input->getOption('fields')),
         };
@@ -146,6 +158,11 @@ class ComponentInfoCommand extends Command
             if ($order === 'DESC') {
                 $rows = array_reverse($rows);
             }
+        }
+
+        if ($input->getOption('count')) {
+            $output->writeln(count($rows));
+            return 0;
         }
 
         // output the component data
@@ -222,6 +239,7 @@ class ComponentInfoCommand extends Command
             'service_address' => $package ? $package->getServiceAddress() : implode(",", $component->getServiceAddresses()),
             'api_shortname' => $package ? $package->getApiShortname() : implode(",", array_filter($component->getApiShortnames())),
             'description' => $component->getDescription(),
+            'library_type' => $component->getLibraryType(),
             'available_api_versions' => null,
             'created_at' => null,
             'downloads' => null,

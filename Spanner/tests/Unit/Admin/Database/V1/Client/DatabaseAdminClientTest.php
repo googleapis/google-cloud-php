@@ -32,6 +32,8 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Spanner\Admin\Database\V1\AddSplitPointsRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\AddSplitPointsResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup;
 use Google\Cloud\Spanner\Admin\Database\V1\BackupSchedule;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
@@ -101,6 +103,74 @@ class DatabaseAdminClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new DatabaseAdminClient($options);
+    }
+
+    /** @test */
+    public function addSplitPointsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new AddSplitPointsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $splitPoints = [];
+        $request = (new AddSplitPointsRequest())
+            ->setDatabase($formattedDatabase)
+            ->setSplitPoints($splitPoints);
+        $response = $gapicClient->addSplitPoints($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/AddSplitPoints', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDatabase();
+        $this->assertProtobufEquals($formattedDatabase, $actualValue);
+        $actualValue = $actualRequestObject->getSplitPoints();
+        $this->assertProtobufEquals($splitPoints, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function addSplitPointsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $splitPoints = [];
+        $request = (new AddSplitPointsRequest())
+            ->setDatabase($formattedDatabase)
+            ->setSplitPoints($splitPoints);
+        try {
+            $gapicClient->addSplitPoints($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -2263,90 +2333,33 @@ class DatabaseAdminClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function copyBackupAsyncTest()
+    public function addSplitPointsAsyncTest()
     {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
             'transport' => $transport,
-            'operationsClient' => $operationsClient,
         ]);
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/copyBackupTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $database = 'database1789464955';
-        $name = 'name3373707';
-        $sizeBytes = 1796325715;
-        $freeableSizeBytes = 1302251206;
-        $exclusiveSizeBytes = 1085921554;
-        $incrementalBackupChainId = 'incrementalBackupChainId-792099119';
-        $expectedResponse = new Backup();
-        $expectedResponse->setDatabase($database);
-        $expectedResponse->setName($name);
-        $expectedResponse->setSizeBytes($sizeBytes);
-        $expectedResponse->setFreeableSizeBytes($freeableSizeBytes);
-        $expectedResponse->setExclusiveSizeBytes($exclusiveSizeBytes);
-        $expectedResponse->setIncrementalBackupChainId($incrementalBackupChainId);
-        $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serializeToString());
-        $completeOperation = new Operation();
-        $completeOperation->setName('operations/copyBackupTest');
-        $completeOperation->setDone(true);
-        $completeOperation->setResponse($anyResponse);
-        $operationsTransport->addResponse($completeOperation);
+        $expectedResponse = new AddSplitPointsResponse();
+        $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $backupId = 'backupId1355353272';
-        $formattedSourceBackup = $gapicClient->backupName('[PROJECT]', '[INSTANCE]', '[BACKUP]');
-        $expireTime = new Timestamp();
-        $request = (new CopyBackupRequest())
-            ->setParent($formattedParent)
-            ->setBackupId($backupId)
-            ->setSourceBackup($formattedSourceBackup)
-            ->setExpireTime($expireTime);
-        $response = $gapicClient->copyBackupAsync($request)->wait();
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
-        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
-        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/CopyBackup', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackupId();
-        $this->assertProtobufEquals($backupId, $actualValue);
-        $actualValue = $actualApiRequestObject->getSourceBackup();
-        $this->assertProtobufEquals($formattedSourceBackup, $actualValue);
-        $actualValue = $actualApiRequestObject->getExpireTime();
-        $this->assertProtobufEquals($expireTime, $actualValue);
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/copyBackupTest');
-        $response->pollUntilComplete([
-            'initialPollDelayMillis' => 1,
-        ]);
-        $this->assertTrue($response->isDone());
-        $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
-        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
-        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
-        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $splitPoints = [];
+        $request = (new AddSplitPointsRequest())
+            ->setDatabase($formattedDatabase)
+            ->setSplitPoints($splitPoints);
+        $response = $gapicClient->addSplitPointsAsync($request)->wait();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/AddSplitPoints', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDatabase();
+        $this->assertProtobufEquals($formattedDatabase, $actualValue);
+        $actualValue = $actualRequestObject->getSplitPoints();
+        $this->assertProtobufEquals($splitPoints, $actualValue);
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
     }
 }

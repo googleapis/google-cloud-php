@@ -20,7 +20,7 @@ class ObjectTrackingFrame extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration time_offset = 3;</code>
      */
-    private $time_offset = null;
+    protected $time_offset = null;
     protected $bounded_area;
 
     /**

@@ -20,13 +20,13 @@ class CreateJobFromTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Required. The job name to use for the created job.
      *
      * Generated from protobuf field <code>string job_name = 4;</code>
      */
-    private $job_name = '';
+    protected $job_name = '';
     /**
      * The runtime parameters to pass to the job.
      *
@@ -38,7 +38,7 @@ class CreateJobFromTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.RuntimeEnvironment environment = 5;</code>
      */
-    private $environment = null;
+    protected $environment = null;
     /**
      * The [regional endpoint]
      * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to
@@ -46,7 +46,7 @@ class CreateJobFromTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 6;</code>
      */
-    private $location = '';
+    protected $location = '';
     protected $template;
 
     /**

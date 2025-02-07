@@ -128,6 +128,7 @@ use Google\Cloud\ContactCenterInsights\V1\View;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: An API that lets users analyze and explore their business conversation data.
@@ -559,6 +560,172 @@ final class ContactCenterInsightsClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_authorized_view_set_authorized_view_conversation resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $authorizedViewSet
+     * @param string $authorizedView
+     * @param string $conversation
+     *
+     * @return string The formatted project_location_authorized_view_set_authorized_view_conversation resource.
+     */
+    public static function projectLocationAuthorizedViewSetAuthorizedViewConversationName(
+        string $project,
+        string $location,
+        string $authorizedViewSet,
+        string $authorizedView,
+        string $conversation
+    ): string {
+        return self::getPathTemplate('projectLocationAuthorizedViewSetAuthorizedViewConversation')->render([
+            'project' => $project,
+            'location' => $location,
+            'authorized_view_set' => $authorizedViewSet,
+            'authorized_view' => $authorizedView,
+            'conversation' => $conversation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_authorized_view_set_authorized_view_conversation_analysis
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $authorizedViewSet
+     * @param string $authorizedView
+     * @param string $conversation
+     * @param string $analysis
+     *
+     * @return string The formatted project_location_authorized_view_set_authorized_view_conversation_analysis resource.
+     */
+    public static function projectLocationAuthorizedViewSetAuthorizedViewConversationAnalysisName(
+        string $project,
+        string $location,
+        string $authorizedViewSet,
+        string $authorizedView,
+        string $conversation,
+        string $analysis
+    ): string {
+        return self::getPathTemplate('projectLocationAuthorizedViewSetAuthorizedViewConversationAnalysis')->render([
+            'project' => $project,
+            'location' => $location,
+            'authorized_view_set' => $authorizedViewSet,
+            'authorized_view' => $authorizedView,
+            'conversation' => $conversation,
+            'analysis' => $analysis,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_authorized_view_set_authorized_view_conversation_feedback_label
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $authorizedViewSet
+     * @param string $authorizedView
+     * @param string $conversation
+     * @param string $feedbackLabel
+     *
+     * @return string The formatted project_location_authorized_view_set_authorized_view_conversation_feedback_label resource.
+     */
+    public static function projectLocationAuthorizedViewSetAuthorizedViewConversationFeedbackLabelName(
+        string $project,
+        string $location,
+        string $authorizedViewSet,
+        string $authorizedView,
+        string $conversation,
+        string $feedbackLabel
+    ): string {
+        return self::getPathTemplate('projectLocationAuthorizedViewSetAuthorizedViewConversationFeedbackLabel')->render(
+            [
+                'project' => $project,
+                'location' => $location,
+                'authorized_view_set' => $authorizedViewSet,
+                'authorized_view' => $authorizedView,
+                'conversation' => $conversation,
+                'feedback_label' => $feedbackLabel,
+            ]
+        );
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_conversation resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $conversation
+     *
+     * @return string The formatted project_location_conversation resource.
+     */
+    public static function projectLocationConversationName(
+        string $project,
+        string $location,
+        string $conversation
+    ): string {
+        return self::getPathTemplate('projectLocationConversation')->render([
+            'project' => $project,
+            'location' => $location,
+            'conversation' => $conversation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_conversation_analysis resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $conversation
+     * @param string $analysis
+     *
+     * @return string The formatted project_location_conversation_analysis resource.
+     */
+    public static function projectLocationConversationAnalysisName(
+        string $project,
+        string $location,
+        string $conversation,
+        string $analysis
+    ): string {
+        return self::getPathTemplate('projectLocationConversationAnalysis')->render([
+            'project' => $project,
+            'location' => $location,
+            'conversation' => $conversation,
+            'analysis' => $analysis,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_conversation_feedback_label resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $conversation
+     * @param string $feedbackLabel
+     *
+     * @return string The formatted project_location_conversation_feedback_label resource.
+     */
+    public static function projectLocationConversationFeedbackLabelName(
+        string $project,
+        string $location,
+        string $conversation,
+        string $feedbackLabel
+    ): string {
+        return self::getPathTemplate('projectLocationConversationFeedbackLabel')->render([
+            'project' => $project,
+            'location' => $location,
+            'conversation' => $conversation,
+            'feedback_label' => $feedbackLabel,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_conversation_participant resource.
      *
      * @param string $project
@@ -744,6 +911,12 @@ final class ContactCenterInsightsClient
      * - participant: projects/{project}/conversations/{conversation}/participants/{participant}
      * - phraseMatcher: projects/{project}/locations/{location}/phraseMatchers/{phrase_matcher}
      * - projectConversationParticipant: projects/{project}/conversations/{conversation}/participants/{participant}
+     * - projectLocationAuthorizedViewSetAuthorizedViewConversation: projects/{project}/locations/{location}/authorizedViewSets/{authorized_view_set}/authorizedViews/{authorized_view}/conversations/{conversation}
+     * - projectLocationAuthorizedViewSetAuthorizedViewConversationAnalysis: projects/{project}/locations/{location}/authorizedViewSets/{authorized_view_set}/authorizedViews/{authorized_view}/conversations/{conversation}/analyses/{analysis}
+     * - projectLocationAuthorizedViewSetAuthorizedViewConversationFeedbackLabel: projects/{project}/locations/{location}/authorizedViewSets/{authorized_view_set}/authorizedViews/{authorized_view}/conversations/{conversation}/feedbackLabels/{feedback_label}
+     * - projectLocationConversation: projects/{project}/locations/{location}/conversations/{conversation}
+     * - projectLocationConversationAnalysis: projects/{project}/locations/{location}/conversations/{conversation}/analyses/{analysis}
+     * - projectLocationConversationFeedbackLabel: projects/{project}/locations/{location}/conversations/{conversation}/feedbackLabels/{feedback_label}
      * - projectLocationConversationParticipant: projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}
      * - qaQuestion: projects/{project}/locations/{location}/qaScorecards/{qa_scorecard}/revisions/{revision}/qaQuestions/{qa_question}
      * - qaScorecard: projects/{project}/locations/{location}/qaScorecards/{qa_scorecard}
@@ -759,14 +932,14 @@ final class ContactCenterInsightsClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -788,6 +961,12 @@ final class ContactCenterInsightsClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -821,6 +1000,9 @@ final class ContactCenterInsightsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

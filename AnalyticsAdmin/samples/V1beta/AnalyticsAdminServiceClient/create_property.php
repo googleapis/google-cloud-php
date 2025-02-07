@@ -29,7 +29,8 @@ use Google\Analytics\Admin\V1beta\Property;
 use Google\ApiCore\ApiException;
 
 /**
- * Creates an "GA4" property with the specified location and attributes.
+ * Creates a Google Analytics property with the specified location and
+ * attributes.
  *
  * @param string $propertyDisplayName Human-readable display name for this property.
  *

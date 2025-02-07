@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_StoragePoolTypes_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\StoragePoolTypesClient;
+use Google\Cloud\Compute\V1\Client\StoragePoolTypesClient;
+use Google\Cloud\Compute\V1\ListStoragePoolTypesRequest;
 
 /**
  * Retrieves a list of storage pool types available to the specified project.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $zone): void
     // Create a client.
     $storagePoolTypesClient = new StoragePoolTypesClient();
 
+    // Prepare the request message.
+    $request = (new ListStoragePoolTypesRequest())
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $storagePoolTypesClient->list($project, $zone);
+        $response = $storagePoolTypesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

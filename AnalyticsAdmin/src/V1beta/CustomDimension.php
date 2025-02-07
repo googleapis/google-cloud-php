@@ -21,7 +21,7 @@ class CustomDimension extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Immutable. Tagging parameter name for this custom dimension.
      * If this is a user-scoped dimension, then this is the user property name.
@@ -35,7 +35,7 @@ class CustomDimension extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parameter_name = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $parameter_name = '';
+    protected $parameter_name = '';
     /**
      * Required. Display name for this custom dimension as shown in the Analytics
      * UI. Max length of 82 characters, alphanumeric plus space and underscore
@@ -45,20 +45,20 @@ class CustomDimension extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. Description for this custom dimension. Max length of 150
      * characters.
      *
      * Generated from protobuf field <code>string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. Immutable. The scope of this dimension.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1beta.CustomDimension.DimensionScope scope = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $scope = 0;
+    protected $scope = 0;
     /**
      * Optional. If set to true, sets this dimension as NPA and excludes it from
      * ads personalization.
@@ -66,7 +66,7 @@ class CustomDimension extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disallow_ads_personalization = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $disallow_ads_personalization = false;
+    protected $disallow_ads_personalization = false;
 
     /**
      * Constructor.

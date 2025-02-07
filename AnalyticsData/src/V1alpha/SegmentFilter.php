@@ -20,13 +20,13 @@ class SegmentFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string field_name = 1;</code>
      */
-    private $field_name = '';
+    protected $field_name = '';
     /**
      * Specifies the scope for the filter.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.SegmentFilterScoping filter_scoping = 8;</code>
      */
-    private $filter_scoping = null;
+    protected $filter_scoping = null;
     protected $one_filter;
 
     /**

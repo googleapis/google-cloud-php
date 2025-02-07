@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Instances_SetMachineType_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\Client\InstancesClient;
 use Google\Cloud\Compute\V1\InstancesSetMachineTypeRequest;
+use Google\Cloud\Compute\V1\SetMachineTypeInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function set_machine_type_sample(string $instance, string $project, string $zone
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instancesSetMachineTypeRequestResource = new InstancesSetMachineTypeRequest();
+    $request = (new SetMachineTypeInstanceRequest())
+        ->setInstance($instance)
+        ->setInstancesSetMachineTypeRequestResource($instancesSetMachineTypeRequestResource)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->setMachineType(
-            $instance,
-            $instancesSetMachineTypeRequestResource,
-            $project,
-            $zone
-        );
+        $response = $instancesClient->setMachineType($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

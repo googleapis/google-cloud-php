@@ -59,25 +59,33 @@ class DataSource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource $primary_product_data_source
-     *           Required. The [primary data
+     *           The [primary data
      *           source](https://support.google.com/merchants/answer/7439058) for local
      *           and online products.
      *     @type \Google\Shopping\Merchant\DataSources\V1beta\SupplementalProductDataSource $supplemental_product_data_source
-     *           Required. The [supplemental data
+     *           The [supplemental data
      *           source](https://support.google.com/merchants/answer/7439058) for local
      *           and online products.
      *     @type \Google\Shopping\Merchant\DataSources\V1beta\LocalInventoryDataSource $local_inventory_data_source
-     *           Required. The [local
+     *           The [local
      *           inventory](https://support.google.com/merchants/answer/7023001) data
      *           source.
      *     @type \Google\Shopping\Merchant\DataSources\V1beta\RegionalInventoryDataSource $regional_inventory_data_source
-     *           Required. The [regional
+     *           The [regional
      *           inventory](https://support.google.com/merchants/answer/7439058) data
      *           source.
      *     @type \Google\Shopping\Merchant\DataSources\V1beta\PromotionDataSource $promotion_data_source
-     *           Required. The
+     *           The
      *           [promotion](https://support.google.com/merchants/answer/2906014) data
      *           source.
+     *     @type \Google\Shopping\Merchant\DataSources\V1beta\ProductReviewDataSource $product_review_data_source
+     *           The [product
+     *           review](https://support.google.com/merchants/answer/7045996)
+     *           data source.
+     *     @type \Google\Shopping\Merchant\DataSources\V1beta\MerchantReviewDataSource $merchant_review_data_source
+     *           The [merchant
+     *           review](https://support.google.com/merchants/answer/7045996)
+     *           data source.
      *     @type string $name
      *           Identifier. The name of the data source.
      *           Format:
@@ -100,11 +108,11 @@ class DataSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [primary data
+     * The [primary data
      * source](https://support.google.com/merchants/answer/7439058) for local
      * and online products.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.PrimaryProductDataSource primary_product_data_source = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.PrimaryProductDataSource primary_product_data_source = 4;</code>
      * @return \Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource|null
      */
     public function getPrimaryProductDataSource()
@@ -118,11 +126,11 @@ class DataSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [primary data
+     * The [primary data
      * source](https://support.google.com/merchants/answer/7439058) for local
      * and online products.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.PrimaryProductDataSource primary_product_data_source = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.PrimaryProductDataSource primary_product_data_source = 4;</code>
      * @param \Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource $var
      * @return $this
      */
@@ -135,11 +143,11 @@ class DataSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [supplemental data
+     * The [supplemental data
      * source](https://support.google.com/merchants/answer/7439058) for local
      * and online products.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.SupplementalProductDataSource supplemental_product_data_source = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.SupplementalProductDataSource supplemental_product_data_source = 5;</code>
      * @return \Google\Shopping\Merchant\DataSources\V1beta\SupplementalProductDataSource|null
      */
     public function getSupplementalProductDataSource()
@@ -153,11 +161,11 @@ class DataSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [supplemental data
+     * The [supplemental data
      * source](https://support.google.com/merchants/answer/7439058) for local
      * and online products.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.SupplementalProductDataSource supplemental_product_data_source = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.SupplementalProductDataSource supplemental_product_data_source = 5;</code>
      * @param \Google\Shopping\Merchant\DataSources\V1beta\SupplementalProductDataSource $var
      * @return $this
      */
@@ -170,11 +178,11 @@ class DataSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [local
+     * The [local
      * inventory](https://support.google.com/merchants/answer/7023001) data
      * source.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.LocalInventoryDataSource local_inventory_data_source = 6 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.LocalInventoryDataSource local_inventory_data_source = 6;</code>
      * @return \Google\Shopping\Merchant\DataSources\V1beta\LocalInventoryDataSource|null
      */
     public function getLocalInventoryDataSource()
@@ -188,11 +196,11 @@ class DataSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [local
+     * The [local
      * inventory](https://support.google.com/merchants/answer/7023001) data
      * source.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.LocalInventoryDataSource local_inventory_data_source = 6 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.LocalInventoryDataSource local_inventory_data_source = 6;</code>
      * @param \Google\Shopping\Merchant\DataSources\V1beta\LocalInventoryDataSource $var
      * @return $this
      */
@@ -205,11 +213,11 @@ class DataSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [regional
+     * The [regional
      * inventory](https://support.google.com/merchants/answer/7439058) data
      * source.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.RegionalInventoryDataSource regional_inventory_data_source = 7 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.RegionalInventoryDataSource regional_inventory_data_source = 7;</code>
      * @return \Google\Shopping\Merchant\DataSources\V1beta\RegionalInventoryDataSource|null
      */
     public function getRegionalInventoryDataSource()
@@ -223,11 +231,11 @@ class DataSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [regional
+     * The [regional
      * inventory](https://support.google.com/merchants/answer/7439058) data
      * source.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.RegionalInventoryDataSource regional_inventory_data_source = 7 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.RegionalInventoryDataSource regional_inventory_data_source = 7;</code>
      * @param \Google\Shopping\Merchant\DataSources\V1beta\RegionalInventoryDataSource $var
      * @return $this
      */
@@ -240,11 +248,11 @@ class DataSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The
+     * The
      * [promotion](https://support.google.com/merchants/answer/2906014) data
      * source.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.PromotionDataSource promotion_data_source = 8 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.PromotionDataSource promotion_data_source = 8;</code>
      * @return \Google\Shopping\Merchant\DataSources\V1beta\PromotionDataSource|null
      */
     public function getPromotionDataSource()
@@ -258,11 +266,11 @@ class DataSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The
+     * The
      * [promotion](https://support.google.com/merchants/answer/2906014) data
      * source.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.PromotionDataSource promotion_data_source = 8 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.PromotionDataSource promotion_data_source = 8;</code>
      * @param \Google\Shopping\Merchant\DataSources\V1beta\PromotionDataSource $var
      * @return $this
      */
@@ -270,6 +278,76 @@ class DataSource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Shopping\Merchant\DataSources\V1beta\PromotionDataSource::class);
         $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * The [product
+     * review](https://support.google.com/merchants/answer/7045996)
+     * data source.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.ProductReviewDataSource product_review_data_source = 9;</code>
+     * @return \Google\Shopping\Merchant\DataSources\V1beta\ProductReviewDataSource|null
+     */
+    public function getProductReviewDataSource()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasProductReviewDataSource()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * The [product
+     * review](https://support.google.com/merchants/answer/7045996)
+     * data source.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.ProductReviewDataSource product_review_data_source = 9;</code>
+     * @param \Google\Shopping\Merchant\DataSources\V1beta\ProductReviewDataSource $var
+     * @return $this
+     */
+    public function setProductReviewDataSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\DataSources\V1beta\ProductReviewDataSource::class);
+        $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * The [merchant
+     * review](https://support.google.com/merchants/answer/7045996)
+     * data source.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.MerchantReviewDataSource merchant_review_data_source = 12;</code>
+     * @return \Google\Shopping\Merchant\DataSources\V1beta\MerchantReviewDataSource|null
+     */
+    public function getMerchantReviewDataSource()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasMerchantReviewDataSource()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * The [merchant
+     * review](https://support.google.com/merchants/answer/7045996)
+     * data source.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.MerchantReviewDataSource merchant_review_data_source = 12;</code>
+     * @param \Google\Shopping\Merchant\DataSources\V1beta\MerchantReviewDataSource $var
+     * @return $this
+     */
+    public function setMerchantReviewDataSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\DataSources\V1beta\MerchantReviewDataSource::class);
+        $this->writeOneof(12, $var);
 
         return $this;
     }

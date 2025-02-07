@@ -33,18 +33,26 @@ use Google\Rpc\Status;
 /**
  * Creates a [Deployment][google.cloud.config.v1.Deployment].
  *
- * @param string $formattedParent The parent in whose context the Deployment is created. The parent
- *                                value is in the format: 'projects/{project_id}/locations/{location}'. Please see
- *                                {@see ConfigClient::locationName()} for help formatting this field.
- * @param string $deploymentId    The Deployment ID.
+ * @param string $formattedParent                   The parent in whose context the Deployment is created. The parent
+ *                                                  value is in the format: 'projects/{project_id}/locations/{location}'. Please see
+ *                                                  {@see ConfigClient::locationName()} for help formatting this field.
+ * @param string $deploymentId                      The Deployment ID.
+ * @param string $formattedDeploymentServiceAccount User-specified Service Account (SA) credentials to be used when
+ *                                                  actuating resources.
+ *                                                  Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
+ *                                                  Please see {@see ConfigClient::serviceAccountName()} for help formatting this field.
  */
-function create_deployment_sample(string $formattedParent, string $deploymentId): void
-{
+function create_deployment_sample(
+    string $formattedParent,
+    string $deploymentId,
+    string $formattedDeploymentServiceAccount
+): void {
     // Create a client.
     $configClient = new ConfigClient();
 
     // Prepare the request message.
-    $deployment = new Deployment();
+    $deployment = (new Deployment())
+        ->setServiceAccount($formattedDeploymentServiceAccount);
     $request = (new CreateDeploymentRequest())
         ->setParent($formattedParent)
         ->setDeploymentId($deploymentId)
@@ -83,7 +91,11 @@ function callSample(): void
 {
     $formattedParent = ConfigClient::locationName('[PROJECT]', '[LOCATION]');
     $deploymentId = '[DEPLOYMENT_ID]';
+    $formattedDeploymentServiceAccount = ConfigClient::serviceAccountName(
+        '[PROJECT]',
+        '[SERVICE_ACCOUNT]'
+    );
 
-    create_deployment_sample($formattedParent, $deploymentId);
+    create_deployment_sample($formattedParent, $deploymentId, $formattedDeploymentServiceAccount);
 }
 // [END config_v1_generated_Config_CreateDeployment_sync]

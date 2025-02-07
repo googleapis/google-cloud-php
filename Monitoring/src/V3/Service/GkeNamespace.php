@@ -24,25 +24,25 @@ class GkeNamespace extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The location of the parent cluster. This may be a zone or region.
      *
      * Generated from protobuf field <code>string location = 2;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * The name of the parent cluster.
      *
      * Generated from protobuf field <code>string cluster_name = 3;</code>
      */
-    private $cluster_name = '';
+    protected $cluster_name = '';
     /**
      * The name of this namespace.
      *
      * Generated from protobuf field <code>string namespace_name = 4;</code>
      */
-    private $namespace_name = '';
+    protected $namespace_name = '';
 
     /**
      * Constructor.
@@ -177,6 +177,4 @@ class GkeNamespace extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GkeNamespace::class, \Google\Cloud\Monitoring\V3\Service_GkeNamespace::class);
 

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_ForwardingRules_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\ForwardingRulesClient;
+use Google\Cloud\Compute\V1\Client\ForwardingRulesClient;
+use Google\Cloud\Compute\V1\ListForwardingRulesRequest;
 
 /**
  * Retrieves a list of ForwardingRule resources available to the specified project and region.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $region): void
     // Create a client.
     $forwardingRulesClient = new ForwardingRulesClient();
 
+    // Prepare the request message.
+    $request = (new ListForwardingRulesRequest())
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $forwardingRulesClient->list($project, $region);
+        $response = $forwardingRulesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

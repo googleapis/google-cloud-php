@@ -45,6 +45,7 @@ use Google\Cloud\Compute\V1\SetSslCertificatesTargetSslProxyRequest;
 use Google\Cloud\Compute\V1\SetSslPolicyTargetSslProxyRequest;
 use Google\Cloud\Compute\V1\TargetSslProxy;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The TargetSslProxies API.
@@ -194,6 +195,12 @@ final class TargetSslProxiesClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -224,6 +231,9 @@ final class TargetSslProxiesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -251,6 +261,8 @@ final class TargetSslProxiesClient
      *
      * The async variant is {@see TargetSslProxiesClient::deleteAsync()} .
      *
+     * @example samples/V1/TargetSslProxiesClient/delete.php
+     *
      * @param DeleteTargetSslProxyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -274,6 +286,8 @@ final class TargetSslProxiesClient
      * Returns the specified TargetSslProxy resource.
      *
      * The async variant is {@see TargetSslProxiesClient::getAsync()} .
+     *
+     * @example samples/V1/TargetSslProxiesClient/get.php
      *
      * @param GetTargetSslProxyRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -299,6 +313,8 @@ final class TargetSslProxiesClient
      *
      * The async variant is {@see TargetSslProxiesClient::insertAsync()} .
      *
+     * @example samples/V1/TargetSslProxiesClient/insert.php
+     *
      * @param InsertTargetSslProxyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -322,6 +338,8 @@ final class TargetSslProxiesClient
      * Retrieves the list of TargetSslProxy resources available to the specified project.
      *
      * The async variant is {@see TargetSslProxiesClient::listAsync()} .
+     *
+     * @example samples/V1/TargetSslProxiesClient/list.php
      *
      * @param ListTargetSslProxiesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -347,6 +365,8 @@ final class TargetSslProxiesClient
      *
      * The async variant is {@see TargetSslProxiesClient::setBackendServiceAsync()} .
      *
+     * @example samples/V1/TargetSslProxiesClient/set_backend_service.php
+     *
      * @param SetBackendServiceTargetSslProxyRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -370,6 +390,8 @@ final class TargetSslProxiesClient
      * Changes the Certificate Map for TargetSslProxy.
      *
      * The async variant is {@see TargetSslProxiesClient::setCertificateMapAsync()} .
+     *
+     * @example samples/V1/TargetSslProxiesClient/set_certificate_map.php
      *
      * @param SetCertificateMapTargetSslProxyRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -395,6 +417,8 @@ final class TargetSslProxiesClient
      *
      * The async variant is {@see TargetSslProxiesClient::setProxyHeaderAsync()} .
      *
+     * @example samples/V1/TargetSslProxiesClient/set_proxy_header.php
+     *
      * @param SetProxyHeaderTargetSslProxyRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -419,6 +443,8 @@ final class TargetSslProxiesClient
      *
      * The async variant is {@see TargetSslProxiesClient::setSslCertificatesAsync()} .
      *
+     * @example samples/V1/TargetSslProxiesClient/set_ssl_certificates.php
+     *
      * @param SetSslCertificatesTargetSslProxyRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -442,6 +468,8 @@ final class TargetSslProxiesClient
      * Sets the SSL policy for TargetSslProxy. The SSL policy specifies the server-side support for SSL features. This affects connections between clients and the load balancer. They do not affect the connection between the load balancer and the backends.
      *
      * The async variant is {@see TargetSslProxiesClient::setSslPolicyAsync()} .
+     *
+     * @example samples/V1/TargetSslProxiesClient/set_ssl_policy.php
      *
      * @param SetSslPolicyTargetSslProxyRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {

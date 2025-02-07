@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\Translate\V3\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -86,8 +85,10 @@ use Google\Cloud\Translate\V3\TranslateTextRequest;
 use Google\Cloud\Translate\V3\TranslateTextResponse;
 use Google\Cloud\Translate\V3\UpdateGlossaryEntryRequest;
 use Google\Cloud\Translate\V3\UpdateGlossaryRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Provides natural language translation operations.
@@ -213,10 +214,31 @@ final class TranslationServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -308,8 +330,12 @@ final class TranslationServiceClient
      *
      * @return string The formatted glossary_entry resource.
      */
-    public static function glossaryEntryName(string $project, string $location, string $glossary, string $glossaryEntry): string
-    {
+    public static function glossaryEntryName(
+        string $project,
+        string $location,
+        string $glossary,
+        string $glossaryEntry
+    ): string {
         return self::getPathTemplate('glossaryEntry')->render([
             'project' => $project,
             'location' => $location,
@@ -372,14 +398,14 @@ final class TranslationServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -401,6 +427,12 @@ final class TranslationServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -434,6 +466,9 @@ final class TranslationServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -478,8 +513,10 @@ final class TranslationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function adaptiveMtTranslate(AdaptiveMtTranslateRequest $request, array $callOptions = []): AdaptiveMtTranslateResponse
-    {
+    public function adaptiveMtTranslate(
+        AdaptiveMtTranslateRequest $request,
+        array $callOptions = []
+    ): AdaptiveMtTranslateResponse {
         return $this->startApiCall('AdaptiveMtTranslate', $request, $callOptions)->wait();
     }
 
@@ -511,8 +548,10 @@ final class TranslationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchTranslateDocument(BatchTranslateDocumentRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function batchTranslateDocument(
+        BatchTranslateDocumentRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('BatchTranslateDocument', $request, $callOptions)->wait();
     }
 
@@ -571,8 +610,10 @@ final class TranslationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createAdaptiveMtDataset(CreateAdaptiveMtDatasetRequest $request, array $callOptions = []): AdaptiveMtDataset
-    {
+    public function createAdaptiveMtDataset(
+        CreateAdaptiveMtDatasetRequest $request,
+        array $callOptions = []
+    ): AdaptiveMtDataset {
         return $this->startApiCall('CreateAdaptiveMtDataset', $request, $callOptions)->wait();
     }
 
@@ -912,8 +953,10 @@ final class TranslationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAdaptiveMtDataset(GetAdaptiveMtDatasetRequest $request, array $callOptions = []): AdaptiveMtDataset
-    {
+    public function getAdaptiveMtDataset(
+        GetAdaptiveMtDatasetRequest $request,
+        array $callOptions = []
+    ): AdaptiveMtDataset {
         return $this->startApiCall('GetAdaptiveMtDataset', $request, $callOptions)->wait();
     }
 
@@ -1070,8 +1113,10 @@ final class TranslationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getSupportedLanguages(GetSupportedLanguagesRequest $request, array $callOptions = []): SupportedLanguages
-    {
+    public function getSupportedLanguages(
+        GetSupportedLanguagesRequest $request,
+        array $callOptions = []
+    ): SupportedLanguages {
         return $this->startApiCall('GetSupportedLanguages', $request, $callOptions)->wait();
     }
 
@@ -1098,8 +1143,10 @@ final class TranslationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function importAdaptiveMtFile(ImportAdaptiveMtFileRequest $request, array $callOptions = []): ImportAdaptiveMtFileResponse
-    {
+    public function importAdaptiveMtFile(
+        ImportAdaptiveMtFileRequest $request,
+        array $callOptions = []
+    ): ImportAdaptiveMtFileResponse {
         return $this->startApiCall('ImportAdaptiveMtFile', $request, $callOptions)->wait();
     }
 
@@ -1151,8 +1198,10 @@ final class TranslationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAdaptiveMtDatasets(ListAdaptiveMtDatasetsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listAdaptiveMtDatasets(
+        ListAdaptiveMtDatasetsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListAdaptiveMtDatasets', $request, $callOptions);
     }
 
@@ -1205,8 +1254,10 @@ final class TranslationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAdaptiveMtSentences(ListAdaptiveMtSentencesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listAdaptiveMtSentences(
+        ListAdaptiveMtSentencesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListAdaptiveMtSentences', $request, $callOptions);
     }
 
@@ -1389,8 +1440,10 @@ final class TranslationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function translateDocument(TranslateDocumentRequest $request, array $callOptions = []): TranslateDocumentResponse
-    {
+    public function translateDocument(
+        TranslateDocumentRequest $request,
+        array $callOptions = []
+    ): TranslateDocumentResponse {
         return $this->startApiCall('TranslateDocument', $request, $callOptions)->wait();
     }
 

@@ -23,15 +23,49 @@
 return [
     'interfaces' => [
         'google.apps.meet.v2beta.SpacesService' => [
+            'CreateMember' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2beta/{parent=spaces/*}/members',
+                'body' => 'member',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateSpace' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2beta/spaces',
                 'body' => 'space',
             ],
+            'DeleteMember' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2beta/{name=spaces/*/members/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'EndActiveConference' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2beta/{name=spaces/*}:endActiveConference',
                 'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetMember' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2beta/{name=spaces/*/members/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -47,6 +81,17 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListMembers' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2beta/{parent=spaces/*}/members',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],

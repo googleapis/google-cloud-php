@@ -48,6 +48,7 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\UpdateReservationRequest;
 use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Reservations API.
@@ -199,6 +200,12 @@ final class ReservationsClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -229,6 +236,9 @@ final class ReservationsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -256,6 +266,8 @@ final class ReservationsClient
      *
      * The async variant is {@see ReservationsClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/ReservationsClient/aggregated_list.php
+     *
      * @param AggregatedListReservationsRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -279,6 +291,8 @@ final class ReservationsClient
      * Deletes the specified reservation.
      *
      * The async variant is {@see ReservationsClient::deleteAsync()} .
+     *
+     * @example samples/V1/ReservationsClient/delete.php
      *
      * @param DeleteReservationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -304,6 +318,8 @@ final class ReservationsClient
      *
      * The async variant is {@see ReservationsClient::getAsync()} .
      *
+     * @example samples/V1/ReservationsClient/get.php
+     *
      * @param GetReservationRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -327,6 +343,8 @@ final class ReservationsClient
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
      * The async variant is {@see ReservationsClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/ReservationsClient/get_iam_policy.php
      *
      * @param GetIamPolicyReservationRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -352,6 +370,8 @@ final class ReservationsClient
      *
      * The async variant is {@see ReservationsClient::insertAsync()} .
      *
+     * @example samples/V1/ReservationsClient/insert.php
+     *
      * @param InsertReservationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -375,6 +395,8 @@ final class ReservationsClient
      * A list of all the reservations that have been configured for the specified project in specified zone.
      *
      * The async variant is {@see ReservationsClient::listAsync()} .
+     *
+     * @example samples/V1/ReservationsClient/list.php
      *
      * @param ListReservationsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -400,6 +422,8 @@ final class ReservationsClient
      *
      * The async variant is {@see ReservationsClient::resizeAsync()} .
      *
+     * @example samples/V1/ReservationsClient/resize.php
+     *
      * @param ResizeReservationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -423,6 +447,8 @@ final class ReservationsClient
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
      * The async variant is {@see ReservationsClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/ReservationsClient/set_iam_policy.php
      *
      * @param SetIamPolicyReservationRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -448,6 +474,8 @@ final class ReservationsClient
      *
      * The async variant is {@see ReservationsClient::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/ReservationsClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsReservationRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -471,6 +499,8 @@ final class ReservationsClient
      * Update share settings of the reservation.
      *
      * The async variant is {@see ReservationsClient::updateAsync()} .
+     *
+     * @example samples/V1/ReservationsClient/update.php
      *
      * @param UpdateReservationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

@@ -20,19 +20,19 @@ class GetJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The job ID.
      *
      * Generated from protobuf field <code>string job_id = 2;</code>
      */
-    private $job_id = '';
+    protected $job_id = '';
     /**
      * The level of information requested in response.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.JobView view = 3;</code>
      */
-    private $view = 0;
+    protected $view = 0;
     /**
      * The [regional endpoint]
      * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
@@ -40,7 +40,7 @@ class GetJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 4;</code>
      */
-    private $location = '';
+    protected $location = '';
 
     /**
      * Constructor.

@@ -41,7 +41,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 12;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A short name or phrase used to identify the condition in dashboards,
      * notifications, and incidents. To avoid confusion, don't use the same
@@ -49,7 +49,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 6;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     protected $condition;
 
     /**
@@ -96,6 +96,8 @@ class Condition extends \Google\Protobuf\Internal\Message
      *           alerts.
      *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\PrometheusQueryLanguageCondition $condition_prometheus_query_language
      *           A condition that uses the Prometheus query language to define alerts.
+     *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\SqlCondition $condition_sql
+     *           A condition that periodically evaluates a SQL query result.
      * }
      */
     public function __construct($data = NULL) {
@@ -359,6 +361,37 @@ class Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A condition that periodically evaluates a SQL query result.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.SqlCondition condition_sql = 22;</code>
+     * @return \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\SqlCondition|null
+     */
+    public function getConditionSql()
+    {
+        return $this->readOneof(22);
+    }
+
+    public function hasConditionSql()
+    {
+        return $this->hasOneof(22);
+    }
+
+    /**
+     * A condition that periodically evaluates a SQL query result.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.SqlCondition condition_sql = 22;</code>
+     * @param \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\SqlCondition $var
+     * @return $this
+     */
+    public function setConditionSql($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\SqlCondition::class);
+        $this->writeOneof(22, $var);
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getCondition()
@@ -368,6 +401,4 @@ class Condition extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Condition::class, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition::class);
 

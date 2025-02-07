@@ -300,6 +300,4 @@ class Type
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Type::class, \Google\Cloud\Vision\V1\FaceAnnotation_Landmark_Type::class);
 

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_UrlMaps_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\UrlMapsClient;
+use Google\Cloud\Compute\V1\Client\UrlMapsClient;
+use Google\Cloud\Compute\V1\DeleteUrlMapRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,15 @@ function delete_sample(string $project, string $urlMap): void
     // Create a client.
     $urlMapsClient = new UrlMapsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteUrlMapRequest())
+        ->setProject($project)
+        ->setUrlMap($urlMap);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $urlMapsClient->delete($project, $urlMap);
+        $response = $urlMapsClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
