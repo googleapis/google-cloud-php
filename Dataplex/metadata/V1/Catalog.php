@@ -27,7 +27,7 @@ class Catalog
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-˚å
+Öç
 &google/cloud/dataplex/v1/catalog.protogoogle.cloud.dataplex.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/field_info.protogoogle/api/resource.proto&google/cloud/dataplex/v1/service.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"”
 
 AspectType8
@@ -342,7 +342,7 @@ page_token (	B‡A
 unreachable_locations (	"U
 CancelMetadataJobRequest9
 name (	B+‡A˙A%
-#dataplex.googleapis.com/MetadataJob"À
+#dataplex.googleapis.com/MetadataJob"’
 MetadataJob
 name (	B‡A‡A
 uid (	B‡A‚åœ◊4
@@ -359,7 +359,7 @@ page_token (	B‡A
 created_entries (B‡A
 unchanged_entries (B‡A
 recreated_entries (B‡A4
-update_time (2.google.protobuf.TimestampB‡A©
+update_time (2.google.protobuf.TimestampB‡A≥
 ImportJobSpec
 source_storage_uri (	B‡A;
 source_create_time (2.google.protobuf.TimestampB‡AV
@@ -373,11 +373,12 @@ page_token (	B‡A
 entry_types (	B)‡A˙A#
 !dataplex.googleapis.com/EntryType@
 aspect_types (	B*‡A˙A$
-"dataplex.googleapis.com/AspectType"@
+"dataplex.googleapis.com/AspectType"J
 SyncMode
 SYNC_MODE_UNSPECIFIED 
 FULL
-INCREMENTAL":
+INCREMENTAL
+NONE":
 LogLevel
 LOG_LEVEL_UNSPECIFIED 	
 DEBUG

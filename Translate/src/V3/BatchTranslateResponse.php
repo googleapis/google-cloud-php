@@ -23,25 +23,25 @@ class BatchTranslateResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 total_characters = 1;</code>
      */
-    private $total_characters = 0;
+    protected $total_characters = 0;
     /**
      * Number of successfully translated characters (Unicode codepoints).
      *
      * Generated from protobuf field <code>int64 translated_characters = 2;</code>
      */
-    private $translated_characters = 0;
+    protected $translated_characters = 0;
     /**
      * Number of characters that have failed to process (Unicode codepoints).
      *
      * Generated from protobuf field <code>int64 failed_characters = 3;</code>
      */
-    private $failed_characters = 0;
+    protected $failed_characters = 0;
     /**
      * Time when the operation was submitted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp submit_time = 4;</code>
      */
-    private $submit_time = null;
+    protected $submit_time = null;
     /**
      * The time when the operation is finished and
      * [google.longrunning.Operation.done][google.longrunning.Operation.done] is
@@ -49,7 +49,7 @@ class BatchTranslateResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 5;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
 
     /**
      * Constructor.

@@ -56,7 +56,8 @@ class Entry extends \Google\Protobuf\Internal\Message
      */
     private $aspects;
     /**
-     * Optional. Immutable. The resource name of the parent entry.
+     * Optional. Immutable. The resource name of the parent entry, in the format
+     * `projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}/entries/{entry_id}`.
      *
      * Generated from protobuf field <code>string parent_entry = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -104,7 +105,8 @@ class Entry extends \Google\Protobuf\Internal\Message
      *           * If the aspect is attached to an entry's path:
      *           `{project_id_or_number}.{location_id}.{aspect_type_id}&#64;{path}`
      *     @type string $parent_entry
-     *           Optional. Immutable. The resource name of the parent entry.
+     *           Optional. Immutable. The resource name of the parent entry, in the format
+     *           `projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}/entries/{entry_id}`.
      *     @type string $fully_qualified_name
      *           Optional. A name for the entry that can be referenced by an external
      *           system. For more information, see [Fully qualified
@@ -289,7 +291,8 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Immutable. The resource name of the parent entry.
+     * Optional. Immutable. The resource name of the parent entry, in the format
+     * `projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}/entries/{entry_id}`.
      *
      * Generated from protobuf field <code>string parent_entry = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -300,7 +303,8 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Immutable. The resource name of the parent entry.
+     * Optional. Immutable. The resource name of the parent entry, in the format
+     * `projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}/entries/{entry_id}`.
      *
      * Generated from protobuf field <code>string parent_entry = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var

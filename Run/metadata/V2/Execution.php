@@ -25,7 +25,7 @@ class Execution
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ä
+ñ
 #google/cloud/run/v2/execution.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/launch_stage.protogoogle/api/resource.proto#google/cloud/run/v2/condition.proto\'google/cloud/run/v2/task_template.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.proto"I
 GetExecutionRequest2
 name (	B$‡A˙A
@@ -49,11 +49,12 @@ executions (2.google.cloud.run.v2.Execution
 name (	B$‡A˙A
 run.googleapis.com/Execution
 validate_only (
-etag (	"Ç
+etag (	"ò
 
 	Execution
 name (	B‡A
-uid (	B‡A
+uid (	B‡A
+creator  (	B‡A
 
 generation (B‡A?
 labels (2*.google.cloud.run.v2.Execution.LabelsEntryB‡AI

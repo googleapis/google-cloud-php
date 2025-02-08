@@ -20,7 +20,7 @@ class GcsInputSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string input_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $input_uri = '';
+    protected $input_uri = '';
 
     /**
      * Constructor.

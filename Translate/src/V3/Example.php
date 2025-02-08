@@ -21,25 +21,25 @@ class Example extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Sentence in source language.
      *
      * Generated from protobuf field <code>string source_text = 2;</code>
      */
-    private $source_text = '';
+    protected $source_text = '';
     /**
      * Sentence in target language.
      *
      * Generated from protobuf field <code>string target_text = 3;</code>
      */
-    private $target_text = '';
+    protected $target_text = '';
     /**
      * Output only. Usage of the sentence pair. Options are TRAIN|VALIDATION|TEST.
      *
      * Generated from protobuf field <code>string usage = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $usage = '';
+    protected $usage = '';
 
     /**
      * Constructor.

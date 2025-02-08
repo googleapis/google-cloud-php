@@ -65,6 +65,4 @@ class ReferenceSentencePairList extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReferenceSentencePairList::class, \Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest_ReferenceSentencePairList::class);
 

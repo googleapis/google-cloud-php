@@ -21,7 +21,7 @@ class TransliterationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_transliteration = 1;</code>
      */
-    private $enable_transliteration = false;
+    protected $enable_transliteration = false;
 
     /**
      * Constructor.

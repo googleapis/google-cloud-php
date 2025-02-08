@@ -263,6 +263,12 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Probe health_probe = 13 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $health_probe = null;
+    /**
+     * Immutable. Specification for Kubernetes liveness probe.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Probe liveness_probe = 14 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $liveness_probe = null;
 
     /**
      * Constructor.
@@ -468,6 +474,8 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      *           Immutable. Specification for Kubernetes startup probe.
      *     @type \Google\Cloud\AIPlatform\V1\Probe $health_probe
      *           Immutable. Specification for Kubernetes readiness probe.
+     *     @type \Google\Cloud\AIPlatform\V1\Probe $liveness_probe
+     *           Immutable. Specification for Kubernetes liveness probe.
      * }
      */
     public function __construct($data = NULL) {
@@ -1161,6 +1169,42 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Probe::class);
         $this->health_probe = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. Specification for Kubernetes liveness probe.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Probe liveness_probe = 14 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Cloud\AIPlatform\V1\Probe|null
+     */
+    public function getLivenessProbe()
+    {
+        return $this->liveness_probe;
+    }
+
+    public function hasLivenessProbe()
+    {
+        return isset($this->liveness_probe);
+    }
+
+    public function clearLivenessProbe()
+    {
+        unset($this->liveness_probe);
+    }
+
+    /**
+     * Immutable. Specification for Kubernetes liveness probe.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Probe liveness_probe = 14 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param \Google\Cloud\AIPlatform\V1\Probe $var
+     * @return $this
+     */
+    public function setLivenessProbe($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Probe::class);
+        $this->liveness_probe = $var;
 
         return $this;
     }
