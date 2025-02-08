@@ -63,6 +63,7 @@ $PROJECT_DIR/dev/google-cloud docfx \
 # Add product-neutral guides
 $PROJECT_DIR/dev/google-cloud docfx \
     --generate-product-neutral-guides \
+    --out help-out \
     --metadata-version 1.0.0 \
     $STAGING_FLAG \
     $VERBOSITY_FLAG
