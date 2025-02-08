@@ -1,5 +1,138 @@
 # Changelog
 
+## 0.275.0
+
+<details><summary>google/cloud-ai-platform 1.17.0</summary>
+
+
+
+### Features
+
+* Add additional Probe options to v1 model.proto ([#8079](https://github.com/googleapis/google-cloud-php/issues/8079)) ([6d54b59](https://github.com/googleapis/google-cloud-php/commit/6d54b590254c62b5830476b30dd5505123201b6a))
+
+
+### Documentation
+
+* Update README for Vertex AI ([#8071](https://github.com/googleapis/google-cloud-php/issues/8071)) ([254c52c](https://github.com/googleapis/google-cloud-php/commit/254c52c51344d2bce78522022bc6fcb64bd6913f))
+
+</details>
+
+<details><summary>google/cloud-core 1.62.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote Vision to v2 ([#7904](https://github.com/googleapis/google-cloud-php/issues/7904))
+* Promote Translate to v2 ([#7903](https://github.com/googleapis/google-cloud-php/issues/7903))
+* Promote Speech to v2 ([#7902](https://github.com/googleapis/google-cloud-php/issues/7902))
+
+### Chores
+
+* Promote Speech to v2 ([#7902](https://github.com/googleapis/google-cloud-php/issues/7902)) ([d9d6ef0](https://github.com/googleapis/google-cloud-php/commit/d9d6ef06436e9e80d5ac5bd8f5bc247fe064f13e))
+* Promote Translate to v2 ([#7903](https://github.com/googleapis/google-cloud-php/issues/7903)) ([96c3d5f](https://github.com/googleapis/google-cloud-php/commit/96c3d5faadae4bff13adc21ac675347e5f19106c))
+* Promote Vision to v2 ([#7904](https://github.com/googleapis/google-cloud-php/issues/7904)) ([792b2fa](https://github.com/googleapis/google-cloud-php/commit/792b2faf157a4e813f09eac7fe83475aedad2257))
+
+</details>
+
+<details><summary>google/cloud-dataplex 1.3.0</summary>
+
+
+
+### Features
+
+* Added value `NONE` to  the `SyncMode` enum ([#8078](https://github.com/googleapis/google-cloud-php/issues/8078)) ([f3b1165](https://github.com/googleapis/google-cloud-php/commit/f3b11658c516b442997dccf1328ae282f0c5f7e1))
+
+
+### Documentation
+
+* Modified various comments ([f3b1165](https://github.com/googleapis/google-cloud-php/commit/f3b11658c516b442997dccf1328ae282f0c5f7e1))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.10.1</summary>
+
+
+
+### Documentation
+
+* A comment for field `code` in message `.google.pubsub.v1.JavaScriptUDF` is changed ([#8070](https://github.com/googleapis/google-cloud-php/issues/8070)) ([49efa37](https://github.com/googleapis/google-cloud-php/commit/49efa37b44b27618f13c15ed0ab37ff0f7feedba))
+
+</details>
+
+<details><summary>google/cloud-run 1.6.0</summary>
+
+
+
+### Features
+
+* Add Base Image URI to Container ([0f0f88a](https://github.com/googleapis/google-cloud-php/commit/0f0f88aefc9af649d684b0cc2078e2b91fcc4e4a))
+* Add BuildConfig to Services for configuring Run functions ([#8074](https://github.com/googleapis/google-cloud-php/issues/8074)) ([0f0f88a](https://github.com/googleapis/google-cloud-php/commit/0f0f88aefc9af649d684b0cc2078e2b91fcc4e4a))
+* Add BuildInfo to Revision for displaying BuildConfig used for a specific revision deployment ([0f0f88a](https://github.com/googleapis/google-cloud-php/commit/0f0f88aefc9af649d684b0cc2078e2b91fcc4e4a))
+* Add creator field to Execution ([0f0f88a](https://github.com/googleapis/google-cloud-php/commit/0f0f88aefc9af649d684b0cc2078e2b91fcc4e4a))
+* Add project_descriptor to BuildspackBuild ([0f0f88a](https://github.com/googleapis/google-cloud-php/commit/0f0f88aefc9af649d684b0cc2078e2b91fcc4e4a))
+
+
+### Documentation
+
+* Some typos were fixed and formatting changed ([0f0f88a](https://github.com/googleapis/google-cloud-php/commit/0f0f88aefc9af649d684b0cc2078e2b91fcc4e4a))
+
+</details>
+
+<details><summary>google/cloud-service-directory 2.0.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-spanner 1.93.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-speech 2.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote Speech to v2 ([#7902](https://github.com/googleapis/google-cloud-php/issues/7902))
+
+### Chores
+
+* Promote Speech to v2 ([#7902](https://github.com/googleapis/google-cloud-php/issues/7902)) ([d9d6ef0](https://github.com/googleapis/google-cloud-php/commit/d9d6ef06436e9e80d5ac5bd8f5bc247fe064f13e))
+
+</details>
+
+<details><summary>google/cloud-translate 2.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote Translate to v2 ([#7903](https://github.com/googleapis/google-cloud-php/issues/7903))
+
+### Chores
+
+* Promote Translate to v2 ([#7903](https://github.com/googleapis/google-cloud-php/issues/7903)) ([96c3d5f](https://github.com/googleapis/google-cloud-php/commit/96c3d5faadae4bff13adc21ac675347e5f19106c))
+
+</details>
+
+<details><summary>google/cloud-vision 2.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote Vision to v2 ([#7904](https://github.com/googleapis/google-cloud-php/issues/7904))
+
+### Chores
+
+* Promote Vision to v2 ([#7904](https://github.com/googleapis/google-cloud-php/issues/7904)) ([792b2fa](https://github.com/googleapis/google-cloud-php/commit/792b2faf157a4e813f09eac7fe83475aedad2257))
+
+</details>
+
 ## 0.274.0
 
 <details><summary>googleads/ad-manager 0.2.0</summary>
