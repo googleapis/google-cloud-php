@@ -41,6 +41,7 @@ namespace Google\Cloud\Debugger;
  * @codingStandardsIgnoreStart
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee#cloudreposourcecontext CloudRepoSourceContext model documentation
  * @codingStandardsIgnoreEnd
+ * @deprecated see https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation
  */
 class CloudRepoSourceContext implements SourceContext
 {

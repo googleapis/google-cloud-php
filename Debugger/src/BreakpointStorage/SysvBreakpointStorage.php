@@ -23,6 +23,7 @@ use Google\Cloud\Debugger\Debuggee;
 /**
  * This implementation of BreakpointStorageInterface using PHP's shared memory
  * provided by the [Semaphore Functions](http://php.net/manual/en/ref.sem.php).
+ * @deprecated see https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation
  */
 class SysvBreakpointStorage implements BreakpointStorageInterface
 {

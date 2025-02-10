@@ -6,6 +6,10 @@
 
 * [API documentation](https://cloud.google.com/php/docs/reference/cloud-debugger/latest)
 
+**IMPORTANT**: This library has been deprecated. See [Cloud Debugger Deprecation][debugger-deprecation]
+
+[debugger-deprecation]: https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation
+
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
 that project.

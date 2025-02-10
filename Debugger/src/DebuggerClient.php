@@ -35,6 +35,7 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * $debugger = new DebuggerClient();
  * ```
+ * @deprecated see https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation
  */
 class DebuggerClient
 {

@@ -28,6 +28,7 @@ namespace Google\Cloud\Debugger;
  * ```
  *
  * @access private
+ * @deprecated see https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation
  */
 class MatchingFileIterator extends \FilterIterator
 {

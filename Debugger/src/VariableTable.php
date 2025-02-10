@@ -13,6 +13,7 @@ namespace Google\Cloud\Debugger;
  *
  * $variableTable = new VariableTable();
  * ```
+ * @deprecated see https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation
  */
 class VariableTable
 {
