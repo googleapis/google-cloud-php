@@ -20,7 +20,7 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.DataType data_type = 1;</code>
      */
-    private $data_type = 0;
+    protected $data_type = 0;
     /**
      * Optional. The type of annotation to be performed on this data. You must
      * specify this field if you are using this InputConfig in an
@@ -28,7 +28,7 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.AnnotationType annotation_type = 3;</code>
      */
-    private $annotation_type = 0;
+    protected $annotation_type = 0;
     /**
      * Optional. Metadata about annotations for the input. You must specify this
      * field if you are using this InputConfig in an [EvaluationJob][google.cloud.datalabeling.v1beta1.EvaluationJob] for a
@@ -36,7 +36,7 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.ClassificationMetadata classification_metadata = 4;</code>
      */
-    private $classification_metadata = null;
+    protected $classification_metadata = null;
     protected $data_type_metadata;
     protected $source;
 

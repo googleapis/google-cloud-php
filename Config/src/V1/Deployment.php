@@ -116,11 +116,11 @@ class Deployment extends \Google\Protobuf\Internal\Message
      */
     protected $artifacts_gcs_bucket = null;
     /**
-     * Optional. User-specified Service Account (SA) credentials to be used when
+     * Required. User-specified Service Account (SA) credentials to be used when
      * actuating resources.
      * Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
      *
-     * Generated from protobuf field <code>optional string service_account = 16 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string service_account = 16 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $service_account = null;
     /**
@@ -236,7 +236,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *           - The path cannot be within the path of `gcs_source`
      *           - The field cannot be updated, including changing its presence
      *     @type string $service_account
-     *           Optional. User-specified Service Account (SA) credentials to be used when
+     *           Required. User-specified Service Account (SA) credentials to be used when
      *           actuating resources.
      *           Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
      *     @type bool $import_existing_resources
@@ -744,11 +744,11 @@ class Deployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User-specified Service Account (SA) credentials to be used when
+     * Required. User-specified Service Account (SA) credentials to be used when
      * actuating resources.
      * Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
      *
-     * Generated from protobuf field <code>optional string service_account = 16 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string service_account = 16 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getServiceAccount()
@@ -767,11 +767,11 @@ class Deployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User-specified Service Account (SA) credentials to be used when
+     * Required. User-specified Service Account (SA) credentials to be used when
      * actuating resources.
      * Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
      *
-     * Generated from protobuf field <code>optional string service_account = 16 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string service_account = 16 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

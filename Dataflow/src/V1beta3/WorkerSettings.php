@@ -26,33 +26,33 @@ class WorkerSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string base_url = 1;</code>
      */
-    private $base_url = '';
+    protected $base_url = '';
     /**
      * Whether to send work progress updates to the service.
      *
      * Generated from protobuf field <code>bool reporting_enabled = 2;</code>
      */
-    private $reporting_enabled = false;
+    protected $reporting_enabled = false;
     /**
      * The Cloud Dataflow service path relative to the root URL, for example,
      * "dataflow/v1b3/projects".
      *
      * Generated from protobuf field <code>string service_path = 3;</code>
      */
-    private $service_path = '';
+    protected $service_path = '';
     /**
      * The Shuffle service path relative to the root URL, for example,
      * "shuffle/v1beta1".
      *
      * Generated from protobuf field <code>string shuffle_service_path = 4;</code>
      */
-    private $shuffle_service_path = '';
+    protected $shuffle_service_path = '';
     /**
      * The ID of the worker running this pipeline.
      *
      * Generated from protobuf field <code>string worker_id = 5;</code>
      */
-    private $worker_id = '';
+    protected $worker_id = '';
     /**
      * The prefix of the resources the system should use for temporary
      * storage.
@@ -63,7 +63,7 @@ class WorkerSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string temp_storage_prefix = 6;</code>
      */
-    private $temp_storage_prefix = '';
+    protected $temp_storage_prefix = '';
 
     /**
      * Constructor.

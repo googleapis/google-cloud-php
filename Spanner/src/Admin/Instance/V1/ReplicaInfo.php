@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReplicaInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The location of the serving resources, e.g. "us-central1".
+     * The location of the serving resources, e.g., "us-central1".
      *
      * Generated from protobuf field <code>string location = 1;</code>
      */
@@ -42,7 +42,7 @@ class ReplicaInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $location
-     *           The location of the serving resources, e.g. "us-central1".
+     *           The location of the serving resources, e.g., "us-central1".
      *     @type int $type
      *           The type of replica.
      *     @type bool $default_leader_location
@@ -58,7 +58,7 @@ class ReplicaInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The location of the serving resources, e.g. "us-central1".
+     * The location of the serving resources, e.g., "us-central1".
      *
      * Generated from protobuf field <code>string location = 1;</code>
      * @return string
@@ -69,7 +69,7 @@ class ReplicaInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The location of the serving resources, e.g. "us-central1".
+     * The location of the serving resources, e.g., "us-central1".
      *
      * Generated from protobuf field <code>string location = 1;</code>
      * @param string $var

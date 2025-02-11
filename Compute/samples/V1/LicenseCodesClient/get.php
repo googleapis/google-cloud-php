@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_LicenseCodes_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\LicenseCodesClient;
+use Google\Cloud\Compute\V1\GetLicenseCodeRequest;
 use Google\Cloud\Compute\V1\LicenseCode;
-use Google\Cloud\Compute\V1\LicenseCodesClient;
 
 /**
  * Return a specified license code. License codes are mirrored across all projects that have permissions to read the License Code. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
@@ -38,10 +39,15 @@ function get_sample(string $licenseCode, string $project): void
     // Create a client.
     $licenseCodesClient = new LicenseCodesClient();
 
+    // Prepare the request message.
+    $request = (new GetLicenseCodeRequest())
+        ->setLicenseCode($licenseCode)
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var LicenseCode $response */
-        $response = $licenseCodesClient->get($licenseCode, $project);
+        $response = $licenseCodesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -55,6 +55,7 @@ use Google\Cloud\BackupDR\V1\GetBackupRequest;
 use Google\Cloud\BackupDR\V1\GetBackupVaultRequest;
 use Google\Cloud\BackupDR\V1\GetDataSourceRequest;
 use Google\Cloud\BackupDR\V1\GetManagementServerRequest;
+use Google\Cloud\BackupDR\V1\InitializeServiceRequest;
 use Google\Cloud\BackupDR\V1\ListBackupPlanAssociationsRequest;
 use Google\Cloud\BackupDR\V1\ListBackupPlansRequest;
 use Google\Cloud\BackupDR\V1\ListBackupVaultsRequest;
@@ -78,6 +79,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The BackupDR Service
@@ -106,6 +108,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface<BackupVault> getBackupVaultAsync(GetBackupVaultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DataSource> getDataSourceAsync(GetDataSourceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ManagementServer> getManagementServerAsync(GetManagementServerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> initializeServiceAsync(InitializeServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupPlanAssociationsAsync(ListBackupPlanAssociationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupPlansAsync(ListBackupPlansRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupVaultsAsync(ListBackupVaultsRequest $request, array $optionalArgs = [])
@@ -388,14 +391,14 @@ final class BackupDRClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -417,6 +420,12 @@ final class BackupDRClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -450,6 +459,9 @@ final class BackupDRClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -900,6 +912,32 @@ final class BackupDRClient
     public function getManagementServer(GetManagementServerRequest $request, array $callOptions = []): ManagementServer
     {
         return $this->startApiCall('GetManagementServer', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Initializes the service related config for a project.
+     *
+     * The async variant is {@see BackupDRClient::initializeServiceAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/initialize_service.php
+     *
+     * @param InitializeServiceRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function initializeService(InitializeServiceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('InitializeService', $request, $callOptions)->wait();
     }
 
     /**

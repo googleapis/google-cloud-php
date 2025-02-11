@@ -23,7 +23,7 @@ class RollupPropertySourceLink extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Immutable. Resource name of the source property.
      * Format: properties/{property_id}
@@ -31,7 +31,7 @@ class RollupPropertySourceLink extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_property = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $source_property = '';
+    protected $source_property = '';
 
     /**
      * Constructor.

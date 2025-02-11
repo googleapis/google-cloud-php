@@ -37,21 +37,21 @@ class Task extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The time when the task is scheduled to be attempted or retried.
      * `schedule_time` will be truncated to the nearest microsecond.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 4;</code>
      */
-    private $schedule_time = null;
+    protected $schedule_time = null;
     /**
      * Output only. The time that the task was created.
      * `create_time` will be truncated to the nearest second.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The deadline for requests sent to the worker. If the worker does not
      * respond by this deadline then the request is cancelled and the attempt
@@ -84,7 +84,7 @@ class Task extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration dispatch_deadline = 6;</code>
      */
-    private $dispatch_deadline = null;
+    protected $dispatch_deadline = null;
     /**
      * Output only. The number of attempts dispatched.
      * This count includes attempts which have been dispatched but haven't
@@ -92,13 +92,13 @@ class Task extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 dispatch_count = 7;</code>
      */
-    private $dispatch_count = 0;
+    protected $dispatch_count = 0;
     /**
      * Output only. The number of attempts which have received a response.
      *
      * Generated from protobuf field <code>int32 response_count = 8;</code>
      */
-    private $response_count = 0;
+    protected $response_count = 0;
     /**
      * Output only. The status of the task's first attempt.
      * Only [dispatch_time][google.cloud.tasks.v2.Attempt.dispatch_time] will be
@@ -107,20 +107,20 @@ class Task extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.Attempt first_attempt = 9;</code>
      */
-    private $first_attempt = null;
+    protected $first_attempt = null;
     /**
      * Output only. The status of the task's last attempt.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.Attempt last_attempt = 10;</code>
      */
-    private $last_attempt = null;
+    protected $last_attempt = null;
     /**
      * Output only. The view specifies which subset of the
      * [Task][google.cloud.tasks.v2.Task] has been returned.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.Task.View view = 11;</code>
      */
-    private $view = 0;
+    protected $view = 0;
     protected $message_type;
 
     /**

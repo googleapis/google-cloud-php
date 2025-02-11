@@ -20,13 +20,13 @@ class HumanAgentAssistantConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.NotificationConfig notification_config = 2;</code>
      */
-    private $notification_config = null;
+    protected $notification_config = null;
     /**
      * Configuration for agent assistance of human agent participant.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig human_agent_suggestion_config = 3;</code>
      */
-    private $human_agent_suggestion_config = null;
+    protected $human_agent_suggestion_config = null;
     /**
      * Configuration for agent assistance of end user participant.
      * Currently, this feature is not general available, please contact Google
@@ -34,13 +34,13 @@ class HumanAgentAssistantConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig end_user_suggestion_config = 4;</code>
      */
-    private $end_user_suggestion_config = null;
+    protected $end_user_suggestion_config = null;
     /**
      * Configuration for message analysis.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentAssistantConfig.MessageAnalysisConfig message_analysis_config = 5;</code>
      */
-    private $message_analysis_config = null;
+    protected $message_analysis_config = null;
 
     /**
      * Constructor.

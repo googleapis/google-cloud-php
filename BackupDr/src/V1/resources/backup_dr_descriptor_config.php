@@ -194,6 +194,25 @@ return [
                     ],
                 ],
             ],
+            'InitializeService' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\BackupDR\V1\InitializeServiceResponse',
+                    'metadataReturnType' => '\Google\Cloud\BackupDR\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'RestoreBackup' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\BackupDR\V1\RestoreBackupResponse',

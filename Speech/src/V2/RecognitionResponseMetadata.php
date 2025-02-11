@@ -20,13 +20,13 @@ class RecognitionResponseMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 9 [(.google.api.field_info) = {</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * When available, billed audio seconds for the corresponding request.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration total_billed_duration = 6;</code>
      */
-    private $total_billed_duration = null;
+    protected $total_billed_duration = null;
 
     /**
      * Constructor.

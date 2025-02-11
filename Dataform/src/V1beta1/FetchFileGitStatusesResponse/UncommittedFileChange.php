@@ -20,13 +20,13 @@ class UncommittedFileChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string path = 1;</code>
      */
-    private $path = '';
+    protected $path = '';
     /**
      * Indicates the status of the file.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.FetchFileGitStatusesResponse.UncommittedFileChange.State state = 2;</code>
      */
-    private $state = 0;
+    protected $state = 0;
 
     /**
      * Constructor.

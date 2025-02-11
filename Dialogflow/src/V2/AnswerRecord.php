@@ -28,8 +28,9 @@ use Google\Protobuf\Internal\GPBUtil;
  *    returned to the customers.
  * 2. The customer uses the
  * [AnswerRecord.name][google.cloud.dialogflow.v2.AnswerRecord.name] to call the
- *    [UpdateAnswerRecord][] method to send feedback about a specific answer
- *    that they believe is wrong.
+ *    [AnswerRecords.UpdateAnswerRecord][google.cloud.dialogflow.v2.AnswerRecords.UpdateAnswerRecord]
+ *    method to send feedback about a specific answer that they believe is
+ *    wrong.
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.AnswerRecord</code>
  */
@@ -42,7 +43,7 @@ class AnswerRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The AnswerFeedback for this record. You can set this with
      * [AnswerRecords.UpdateAnswerRecord][google.cloud.dialogflow.v2.AnswerRecords.UpdateAnswerRecord]
@@ -50,7 +51,7 @@ class AnswerRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AnswerFeedback answer_feedback = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $answer_feedback = null;
+    protected $answer_feedback = null;
     protected $record;
 
     /**

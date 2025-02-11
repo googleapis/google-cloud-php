@@ -22,37 +22,37 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Human readable name for this profile. Max length 1024 bytes.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. Create time of the conversation profile.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Update time of the conversation profile.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Configuration for an automated agent to use with this profile.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AutomatedAgentConfig automated_agent_config = 3;</code>
      */
-    private $automated_agent_config = null;
+    protected $automated_agent_config = null;
     /**
      * Configuration for agent assistance to use with this profile.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentAssistantConfig human_agent_assistant_config = 4;</code>
      */
-    private $human_agent_assistant_config = null;
+    protected $human_agent_assistant_config = null;
     /**
      * Configuration for connecting to a live agent.
      * Currently, this feature is not general available, please contact Google
@@ -60,32 +60,46 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentHandoffConfig human_agent_handoff_config = 5;</code>
      */
-    private $human_agent_handoff_config = null;
+    protected $human_agent_handoff_config = null;
     /**
      * Configuration for publishing conversation lifecycle events.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.NotificationConfig notification_config = 6;</code>
      */
-    private $notification_config = null;
+    protected $notification_config = null;
     /**
      * Configuration for logging conversation lifecycle events.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.LoggingConfig logging_config = 7;</code>
      */
-    private $logging_config = null;
+    protected $logging_config = null;
     /**
      * Configuration for publishing new message events. Event will be sent in
      * format of [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent]
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.NotificationConfig new_message_event_notification_config = 8;</code>
      */
-    private $new_message_event_notification_config = null;
+    protected $new_message_event_notification_config = null;
+    /**
+     * Optional. Configuration for publishing transcription intermediate results.
+     * Event will be sent in format of
+     * [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent]. If
+     * configured, the following information will be populated as
+     * [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent] Pub/Sub
+     * message attributes:
+     * - "participant_id"
+     * - "participant_role"
+     * - "message_id"
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.NotificationConfig new_recognition_result_notification_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $new_recognition_result_notification_config = null;
     /**
      * Settings for speech transcription.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SpeechToTextConfig stt_config = 9;</code>
      */
-    private $stt_config = null;
+    protected $stt_config = null;
     /**
      * Language code for the conversation profile. If not specified, the language
      * is en-US. Language at ConversationProfile should be set for all non en-US
@@ -95,7 +109,7 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 10;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * The time zone of this conversational profile from the
      * [time zone database](https://www.iana.org/time-zones), e.g.,
@@ -103,7 +117,7 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string time_zone = 14;</code>
      */
-    private $time_zone = '';
+    protected $time_zone = '';
     /**
      * Name of the CX SecuritySettings reference for the agent.
      * Format: `projects/<Project ID>/locations/<Location
@@ -111,7 +125,7 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string security_settings = 13 [(.google.api.resource_reference) = {</code>
      */
-    private $security_settings = '';
+    protected $security_settings = '';
     /**
      * Configuration for Text-to-Speech synthesization.
      * Used by Phone Gateway to specify synthesization options. If agent defines
@@ -119,7 +133,7 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SynthesizeSpeechConfig tts_config = 18;</code>
      */
-    private $tts_config = null;
+    protected $tts_config = null;
 
     /**
      * Constructor.
@@ -152,6 +166,16 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\V2\NotificationConfig $new_message_event_notification_config
      *           Configuration for publishing new message events. Event will be sent in
      *           format of [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent]
+     *     @type \Google\Cloud\Dialogflow\V2\NotificationConfig $new_recognition_result_notification_config
+     *           Optional. Configuration for publishing transcription intermediate results.
+     *           Event will be sent in format of
+     *           [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent]. If
+     *           configured, the following information will be populated as
+     *           [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent] Pub/Sub
+     *           message attributes:
+     *           - "participant_id"
+     *           - "participant_role"
+     *           - "message_id"
      *     @type \Google\Cloud\Dialogflow\V2\SpeechToTextConfig $stt_config
      *           Settings for speech transcription.
      *     @type string $language_code
@@ -525,6 +549,58 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\NotificationConfig::class);
         $this->new_message_event_notification_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for publishing transcription intermediate results.
+     * Event will be sent in format of
+     * [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent]. If
+     * configured, the following information will be populated as
+     * [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent] Pub/Sub
+     * message attributes:
+     * - "participant_id"
+     * - "participant_role"
+     * - "message_id"
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.NotificationConfig new_recognition_result_notification_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\V2\NotificationConfig|null
+     */
+    public function getNewRecognitionResultNotificationConfig()
+    {
+        return $this->new_recognition_result_notification_config;
+    }
+
+    public function hasNewRecognitionResultNotificationConfig()
+    {
+        return isset($this->new_recognition_result_notification_config);
+    }
+
+    public function clearNewRecognitionResultNotificationConfig()
+    {
+        unset($this->new_recognition_result_notification_config);
+    }
+
+    /**
+     * Optional. Configuration for publishing transcription intermediate results.
+     * Event will be sent in format of
+     * [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent]. If
+     * configured, the following information will be populated as
+     * [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent] Pub/Sub
+     * message attributes:
+     * - "participant_id"
+     * - "participant_role"
+     * - "message_id"
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.NotificationConfig new_recognition_result_notification_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\V2\NotificationConfig $var
+     * @return $this
+     */
+    public function setNewRecognitionResultNotificationConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\NotificationConfig::class);
+        $this->new_recognition_result_notification_config = $var;
 
         return $this;
     }

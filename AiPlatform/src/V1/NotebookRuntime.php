@@ -75,7 +75,14 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
      */
     protected $description = '';
     /**
-     * Output only. The service account that the NotebookRuntime workload runs as.
+     * Output only. Deprecated: This field is no longer used and the "Vertex AI
+     * Notebook Service Account"
+     * (service-PROJECT_NUMBER&#64;gcp-sa-aiplatform-vm.iam.gserviceaccount.com) is
+     * used for the runtime workload identity.
+     * See
+     * https://cloud.google.com/iam/docs/service-agents#vertex-ai-notebook-service-account
+     * for more details.
+     * The service account that the NotebookRuntime workload runs as.
      *
      * Generated from protobuf field <code>string service_account = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -135,11 +142,44 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
      */
     protected $notebook_runtime_type = 0;
     /**
+     * Output only. The specification of a single machine used by the notebook
+     * runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MachineSpec machine_spec = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $machine_spec = null;
+    /**
+     * Output only. The specification of [persistent
+     * disk][https://cloud.google.com/compute/docs/disks/persistent-disks]
+     * attached to the notebook runtime as data disk storage.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PersistentDiskSpec data_persistent_disk_spec = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $data_persistent_disk_spec = null;
+    /**
+     * Output only. Network spec of the notebook runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NetworkSpec network_spec = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $network_spec = null;
+    /**
      * Output only. The idle shutdown configuration of the notebook runtime.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookIdleShutdownConfig idle_shutdown_config = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $idle_shutdown_config = null;
+    /**
+     * Output only. EUC configuration of the notebook runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookEucConfig euc_config = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $euc_config = null;
+    /**
+     * Output only. Runtime Shielded VM spec.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ShieldedVmConfig shielded_vm_config = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $shielded_vm_config = null;
     /**
      * Optional. The Compute Engine tags to add to runtime (see [Tagging
      * instances](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
@@ -147,6 +187,12 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string network_tags = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $network_tags;
+    /**
+     * Output only. Software config of the notebook runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookSoftwareConfig software_config = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $software_config = null;
     /**
      * Output only. Customer-managed encryption key spec for the notebook runtime.
      *
@@ -194,7 +240,14 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           The description of the NotebookRuntime.
      *     @type string $service_account
-     *           Output only. The service account that the NotebookRuntime workload runs as.
+     *           Output only. Deprecated: This field is no longer used and the "Vertex AI
+     *           Notebook Service Account"
+     *           (service-PROJECT_NUMBER&#64;gcp-sa-aiplatform-vm.iam.gserviceaccount.com) is
+     *           used for the runtime workload identity.
+     *           See
+     *           https://cloud.google.com/iam/docs/service-agents#vertex-ai-notebook-service-account
+     *           for more details.
+     *           The service account that the NotebookRuntime workload runs as.
      *     @type int $runtime_state
      *           Output only. The runtime (instance) state of the NotebookRuntime.
      *     @type bool $is_upgradable
@@ -225,11 +278,26 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
      *           Output only. The VM os image version of NotebookRuntime.
      *     @type int $notebook_runtime_type
      *           Output only. The type of the notebook runtime.
+     *     @type \Google\Cloud\AIPlatform\V1\MachineSpec $machine_spec
+     *           Output only. The specification of a single machine used by the notebook
+     *           runtime.
+     *     @type \Google\Cloud\AIPlatform\V1\PersistentDiskSpec $data_persistent_disk_spec
+     *           Output only. The specification of [persistent
+     *           disk][https://cloud.google.com/compute/docs/disks/persistent-disks]
+     *           attached to the notebook runtime as data disk storage.
+     *     @type \Google\Cloud\AIPlatform\V1\NetworkSpec $network_spec
+     *           Output only. Network spec of the notebook runtime.
      *     @type \Google\Cloud\AIPlatform\V1\NotebookIdleShutdownConfig $idle_shutdown_config
      *           Output only. The idle shutdown configuration of the notebook runtime.
+     *     @type \Google\Cloud\AIPlatform\V1\NotebookEucConfig $euc_config
+     *           Output only. EUC configuration of the notebook runtime.
+     *     @type \Google\Cloud\AIPlatform\V1\ShieldedVmConfig $shielded_vm_config
+     *           Output only. Runtime Shielded VM spec.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $network_tags
      *           Optional. The Compute Engine tags to add to runtime (see [Tagging
      *           instances](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
+     *     @type \Google\Cloud\AIPlatform\V1\NotebookSoftwareConfig $software_config
+     *           Output only. Software config of the notebook runtime.
      *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
      *           Output only. Customer-managed encryption key spec for the notebook runtime.
      *     @type bool $satisfies_pzs
@@ -514,7 +582,14 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The service account that the NotebookRuntime workload runs as.
+     * Output only. Deprecated: This field is no longer used and the "Vertex AI
+     * Notebook Service Account"
+     * (service-PROJECT_NUMBER&#64;gcp-sa-aiplatform-vm.iam.gserviceaccount.com) is
+     * used for the runtime workload identity.
+     * See
+     * https://cloud.google.com/iam/docs/service-agents#vertex-ai-notebook-service-account
+     * for more details.
+     * The service account that the NotebookRuntime workload runs as.
      *
      * Generated from protobuf field <code>string service_account = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -525,7 +600,14 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The service account that the NotebookRuntime workload runs as.
+     * Output only. Deprecated: This field is no longer used and the "Vertex AI
+     * Notebook Service Account"
+     * (service-PROJECT_NUMBER&#64;gcp-sa-aiplatform-vm.iam.gserviceaccount.com) is
+     * used for the runtime workload identity.
+     * See
+     * https://cloud.google.com/iam/docs/service-agents#vertex-ai-notebook-service-account
+     * for more details.
+     * The service account that the NotebookRuntime workload runs as.
      *
      * Generated from protobuf field <code>string service_account = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -742,6 +824,120 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. The specification of a single machine used by the notebook
+     * runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MachineSpec machine_spec = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\MachineSpec|null
+     */
+    public function getMachineSpec()
+    {
+        return $this->machine_spec;
+    }
+
+    public function hasMachineSpec()
+    {
+        return isset($this->machine_spec);
+    }
+
+    public function clearMachineSpec()
+    {
+        unset($this->machine_spec);
+    }
+
+    /**
+     * Output only. The specification of a single machine used by the notebook
+     * runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MachineSpec machine_spec = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\MachineSpec $var
+     * @return $this
+     */
+    public function setMachineSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\MachineSpec::class);
+        $this->machine_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The specification of [persistent
+     * disk][https://cloud.google.com/compute/docs/disks/persistent-disks]
+     * attached to the notebook runtime as data disk storage.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PersistentDiskSpec data_persistent_disk_spec = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\PersistentDiskSpec|null
+     */
+    public function getDataPersistentDiskSpec()
+    {
+        return $this->data_persistent_disk_spec;
+    }
+
+    public function hasDataPersistentDiskSpec()
+    {
+        return isset($this->data_persistent_disk_spec);
+    }
+
+    public function clearDataPersistentDiskSpec()
+    {
+        unset($this->data_persistent_disk_spec);
+    }
+
+    /**
+     * Output only. The specification of [persistent
+     * disk][https://cloud.google.com/compute/docs/disks/persistent-disks]
+     * attached to the notebook runtime as data disk storage.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PersistentDiskSpec data_persistent_disk_spec = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\PersistentDiskSpec $var
+     * @return $this
+     */
+    public function setDataPersistentDiskSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\PersistentDiskSpec::class);
+        $this->data_persistent_disk_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Network spec of the notebook runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NetworkSpec network_spec = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\NetworkSpec|null
+     */
+    public function getNetworkSpec()
+    {
+        return $this->network_spec;
+    }
+
+    public function hasNetworkSpec()
+    {
+        return isset($this->network_spec);
+    }
+
+    public function clearNetworkSpec()
+    {
+        unset($this->network_spec);
+    }
+
+    /**
+     * Output only. Network spec of the notebook runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NetworkSpec network_spec = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\NetworkSpec $var
+     * @return $this
+     */
+    public function setNetworkSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\NetworkSpec::class);
+        $this->network_spec = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. The idle shutdown configuration of the notebook runtime.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookIdleShutdownConfig idle_shutdown_config = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -778,6 +974,78 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. EUC configuration of the notebook runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookEucConfig euc_config = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\NotebookEucConfig|null
+     */
+    public function getEucConfig()
+    {
+        return $this->euc_config;
+    }
+
+    public function hasEucConfig()
+    {
+        return isset($this->euc_config);
+    }
+
+    public function clearEucConfig()
+    {
+        unset($this->euc_config);
+    }
+
+    /**
+     * Output only. EUC configuration of the notebook runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookEucConfig euc_config = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\NotebookEucConfig $var
+     * @return $this
+     */
+    public function setEucConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\NotebookEucConfig::class);
+        $this->euc_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Runtime Shielded VM spec.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ShieldedVmConfig shielded_vm_config = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\ShieldedVmConfig|null
+     */
+    public function getShieldedVmConfig()
+    {
+        return $this->shielded_vm_config;
+    }
+
+    public function hasShieldedVmConfig()
+    {
+        return isset($this->shielded_vm_config);
+    }
+
+    public function clearShieldedVmConfig()
+    {
+        unset($this->shielded_vm_config);
+    }
+
+    /**
+     * Output only. Runtime Shielded VM spec.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ShieldedVmConfig shielded_vm_config = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\ShieldedVmConfig $var
+     * @return $this
+     */
+    public function setShieldedVmConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ShieldedVmConfig::class);
+        $this->shielded_vm_config = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. The Compute Engine tags to add to runtime (see [Tagging
      * instances](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
      *
@@ -801,6 +1069,42 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->network_tags = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Software config of the notebook runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookSoftwareConfig software_config = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\NotebookSoftwareConfig|null
+     */
+    public function getSoftwareConfig()
+    {
+        return $this->software_config;
+    }
+
+    public function hasSoftwareConfig()
+    {
+        return isset($this->software_config);
+    }
+
+    public function clearSoftwareConfig()
+    {
+        unset($this->software_config);
+    }
+
+    /**
+     * Output only. Software config of the notebook runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookSoftwareConfig software_config = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\NotebookSoftwareConfig $var
+     * @return $this
+     */
+    public function setSoftwareConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\NotebookSoftwareConfig::class);
+        $this->software_config = $var;
 
         return $this;
     }

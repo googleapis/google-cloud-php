@@ -28,7 +28,7 @@ class AutoscalingTargets extends \Google\Protobuf\Internal\Message
      * Required. The target storage utilization percentage that the autoscaler
      * should be trying to achieve for the instance. This number is on a scale
      * from 0 (no utilization) to 100 (full utilization). The valid range is
-     * [10, 100] inclusive.
+     * [10, 99] inclusive.
      *
      * Generated from protobuf field <code>int32 storage_utilization_percent = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -49,7 +49,7 @@ class AutoscalingTargets extends \Google\Protobuf\Internal\Message
      *           Required. The target storage utilization percentage that the autoscaler
      *           should be trying to achieve for the instance. This number is on a scale
      *           from 0 (no utilization) to 100 (full utilization). The valid range is
-     *           [10, 100] inclusive.
+     *           [10, 99] inclusive.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,7 +93,7 @@ class AutoscalingTargets extends \Google\Protobuf\Internal\Message
      * Required. The target storage utilization percentage that the autoscaler
      * should be trying to achieve for the instance. This number is on a scale
      * from 0 (no utilization) to 100 (full utilization). The valid range is
-     * [10, 100] inclusive.
+     * [10, 99] inclusive.
      *
      * Generated from protobuf field <code>int32 storage_utilization_percent = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -107,7 +107,7 @@ class AutoscalingTargets extends \Google\Protobuf\Internal\Message
      * Required. The target storage utilization percentage that the autoscaler
      * should be trying to achieve for the instance. This number is on a scale
      * from 0 (no utilization) to 100 (full utilization). The valid range is
-     * [10, 100] inclusive.
+     * [10, 99] inclusive.
      *
      * Generated from protobuf field <code>int32 storage_utilization_percent = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var

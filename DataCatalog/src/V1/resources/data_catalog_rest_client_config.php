@@ -341,10 +341,57 @@ return [
                     ],
                 ],
             ],
+            'RetrieveConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=organizations/*/locations/*}:retrieveConfig',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'RetrieveEffectiveConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=organizations/*/locations/*}:retrieveEffectiveConfig',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*}:retrieveEffectiveConfig',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'SearchCatalog' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/catalog:search',
                 'body' => '*',
+            ],
+            'SetConfig' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=organizations/*/locations/*}:setConfig',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*}:setConfig',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
             'SetIamPolicy' => [
                 'method' => 'post',

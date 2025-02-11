@@ -49,6 +49,14 @@ class Tool extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GoogleSearchRetrieval google_search_retrieval = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $google_search_retrieval = null;
+    /**
+     * Optional. CodeExecution tool type.
+     * Enables the model to execute code as part of generation.
+     * This field is only used by the Gemini Developer API services.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tool.CodeExecution code_execution = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $code_execution = null;
 
     /**
      * Constructor.
@@ -73,6 +81,10 @@ class Tool extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\GoogleSearchRetrieval $google_search_retrieval
      *           Optional. GoogleSearchRetrieval tool type.
      *           Specialized retrieval tool that is powered by Google search.
+     *     @type \Google\Cloud\AIPlatform\V1\Tool\CodeExecution $code_execution
+     *           Optional. CodeExecution tool type.
+     *           Enables the model to execute code as part of generation.
+     *           This field is only used by the Gemini Developer API services.
      * }
      */
     public function __construct($data = NULL) {
@@ -196,6 +208,46 @@ class Tool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GoogleSearchRetrieval::class);
         $this->google_search_retrieval = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. CodeExecution tool type.
+     * Enables the model to execute code as part of generation.
+     * This field is only used by the Gemini Developer API services.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tool.CodeExecution code_execution = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\Tool\CodeExecution|null
+     */
+    public function getCodeExecution()
+    {
+        return $this->code_execution;
+    }
+
+    public function hasCodeExecution()
+    {
+        return isset($this->code_execution);
+    }
+
+    public function clearCodeExecution()
+    {
+        unset($this->code_execution);
+    }
+
+    /**
+     * Optional. CodeExecution tool type.
+     * Enables the model to execute code as part of generation.
+     * This field is only used by the Gemini Developer API services.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tool.CodeExecution code_execution = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\Tool\CodeExecution $var
+     * @return $this
+     */
+    public function setCodeExecution($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Tool\CodeExecution::class);
+        $this->code_execution = $var;
 
         return $this;
     }

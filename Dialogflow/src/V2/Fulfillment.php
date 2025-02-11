@@ -32,7 +32,7 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The human-readable name of the fulfillment, unique within the
      * agent.
@@ -40,13 +40,13 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. Whether fulfillment is enabled.
      *
      * Generated from protobuf field <code>bool enabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enabled = false;
+    protected $enabled = false;
     /**
      * Optional. The field defines whether the fulfillment is enabled for certain
      * features.

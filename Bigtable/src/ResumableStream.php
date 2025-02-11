@@ -163,6 +163,7 @@ class ResumableStream implements \IteratorAggregate
                     $headers['bigtable-attempt'] = [(string) $totalAttempt];
                     ($this->delayFunction)($currentAttempt);
                 }
+
                 $stream = call_user_func_array(
                     [$this->gapicClient, $this->method],
                     [$this->request, ['headers' => $headers] + $this->callOptions]
@@ -209,7 +210,7 @@ class ResumableStream implements \IteratorAggregate
         return isset(self::$retryableStatusCodes[$code]);
     }
 
-    private function getMaxRetries(array $options) : int
+    private function getMaxRetries(array $options): int
     {
         $retrySettings = $options['retrySettings'] ?? [];
 

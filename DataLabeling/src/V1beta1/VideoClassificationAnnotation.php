@@ -20,13 +20,13 @@ class VideoClassificationAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.TimeSegment time_segment = 1;</code>
      */
-    private $time_segment = null;
+    protected $time_segment = null;
     /**
      * Label of the segment specified by time_segment.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.AnnotationSpec annotation_spec = 2;</code>
      */
-    private $annotation_spec = null;
+    protected $annotation_spec = null;
 
     /**
      * Constructor.

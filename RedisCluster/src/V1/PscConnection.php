@@ -16,41 +16,64 @@ use Google\Protobuf\Internal\GPBUtil;
 class PscConnection extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The PSC connection id of the forwarding rule connected to the
+     * Required. The PSC connection id of the forwarding rule connected to the
      * service attachment.
      *
-     * Generated from protobuf field <code>string psc_connection_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string psc_connection_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $psc_connection_id = '';
     /**
-     * Output only. The IP allocated on the consumer network for the PSC
-     * forwarding rule.
+     * Required. The IP allocated on the consumer network for the PSC forwarding
+     * rule.
      *
-     * Generated from protobuf field <code>string address = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string address = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_info) = {</code>
      */
     protected $address = '';
     /**
-     * Output only. The URI of the consumer side forwarding rule.
+     * Required. The URI of the consumer side forwarding rule.
      * Example:
      * projects/{projectNumOrId}/regions/us-east1/forwardingRules/{resourceId}.
      *
-     * Generated from protobuf field <code>string forwarding_rule = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string forwarding_rule = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $forwarding_rule = '';
     /**
-     * Output only. The consumer project_id where the forwarding rule is created
-     * from.
+     * Optional. Project ID of the consumer project where the forwarding rule is
+     * created in.
      *
-     * Generated from protobuf field <code>string project_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string project_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $project_id = '';
     /**
-     * The consumer network where the IP address resides, in the form of
+     * Required. The consumer network where the IP address resides, in the form of
      * projects/{project_id}/global/networks/{network_id}.
      *
-     * Generated from protobuf field <code>string network = 5;</code>
+     * Generated from protobuf field <code>string network = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $network = '';
+    /**
+     * Required. The service attachment which is the target of the PSC connection,
+     * in the form of
+     * projects/{project-id}/regions/{region}/serviceAttachments/{service-attachment-id}.
+     *
+     * Generated from protobuf field <code>string service_attachment = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     */
+    protected $service_attachment = '';
+    /**
+     * Output only. The status of the PSC connection.
+     * Please note that this value is updated periodically.
+     * To get the latest status of a PSC connection, follow
+     * https://cloud.google.com/vpc/docs/configure-private-service-connect-services#endpoint-details.
+     *
+     * Generated from protobuf field <code>.google.cloud.redis.cluster.v1.PscConnectionStatus psc_connection_status = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $psc_connection_status = 0;
+    /**
+     * Output only. Type of the PSC connection.
+     *
+     * Generated from protobuf field <code>.google.cloud.redis.cluster.v1.ConnectionType connection_type = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $connection_type = 0;
 
     /**
      * Constructor.
@@ -59,21 +82,32 @@ class PscConnection extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $psc_connection_id
-     *           Output only. The PSC connection id of the forwarding rule connected to the
+     *           Required. The PSC connection id of the forwarding rule connected to the
      *           service attachment.
      *     @type string $address
-     *           Output only. The IP allocated on the consumer network for the PSC
-     *           forwarding rule.
+     *           Required. The IP allocated on the consumer network for the PSC forwarding
+     *           rule.
      *     @type string $forwarding_rule
-     *           Output only. The URI of the consumer side forwarding rule.
+     *           Required. The URI of the consumer side forwarding rule.
      *           Example:
      *           projects/{projectNumOrId}/regions/us-east1/forwardingRules/{resourceId}.
      *     @type string $project_id
-     *           Output only. The consumer project_id where the forwarding rule is created
-     *           from.
+     *           Optional. Project ID of the consumer project where the forwarding rule is
+     *           created in.
      *     @type string $network
-     *           The consumer network where the IP address resides, in the form of
+     *           Required. The consumer network where the IP address resides, in the form of
      *           projects/{project_id}/global/networks/{network_id}.
+     *     @type string $service_attachment
+     *           Required. The service attachment which is the target of the PSC connection,
+     *           in the form of
+     *           projects/{project-id}/regions/{region}/serviceAttachments/{service-attachment-id}.
+     *     @type int $psc_connection_status
+     *           Output only. The status of the PSC connection.
+     *           Please note that this value is updated periodically.
+     *           To get the latest status of a PSC connection, follow
+     *           https://cloud.google.com/vpc/docs/configure-private-service-connect-services#endpoint-details.
+     *     @type int $connection_type
+     *           Output only. Type of the PSC connection.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,10 +116,10 @@ class PscConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The PSC connection id of the forwarding rule connected to the
+     * Required. The PSC connection id of the forwarding rule connected to the
      * service attachment.
      *
-     * Generated from protobuf field <code>string psc_connection_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string psc_connection_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getPscConnectionId()
@@ -94,10 +128,10 @@ class PscConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The PSC connection id of the forwarding rule connected to the
+     * Required. The PSC connection id of the forwarding rule connected to the
      * service attachment.
      *
-     * Generated from protobuf field <code>string psc_connection_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string psc_connection_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -110,10 +144,10 @@ class PscConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The IP allocated on the consumer network for the PSC
-     * forwarding rule.
+     * Required. The IP allocated on the consumer network for the PSC forwarding
+     * rule.
      *
-     * Generated from protobuf field <code>string address = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string address = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_info) = {</code>
      * @return string
      */
     public function getAddress()
@@ -122,10 +156,10 @@ class PscConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The IP allocated on the consumer network for the PSC
-     * forwarding rule.
+     * Required. The IP allocated on the consumer network for the PSC forwarding
+     * rule.
      *
-     * Generated from protobuf field <code>string address = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string address = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_info) = {</code>
      * @param string $var
      * @return $this
      */
@@ -138,11 +172,11 @@ class PscConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The URI of the consumer side forwarding rule.
+     * Required. The URI of the consumer side forwarding rule.
      * Example:
      * projects/{projectNumOrId}/regions/us-east1/forwardingRules/{resourceId}.
      *
-     * Generated from protobuf field <code>string forwarding_rule = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string forwarding_rule = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getForwardingRule()
@@ -151,11 +185,11 @@ class PscConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The URI of the consumer side forwarding rule.
+     * Required. The URI of the consumer side forwarding rule.
      * Example:
      * projects/{projectNumOrId}/regions/us-east1/forwardingRules/{resourceId}.
      *
-     * Generated from protobuf field <code>string forwarding_rule = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string forwarding_rule = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -168,10 +202,10 @@ class PscConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The consumer project_id where the forwarding rule is created
-     * from.
+     * Optional. Project ID of the consumer project where the forwarding rule is
+     * created in.
      *
-     * Generated from protobuf field <code>string project_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string project_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getProjectId()
@@ -180,10 +214,10 @@ class PscConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The consumer project_id where the forwarding rule is created
-     * from.
+     * Optional. Project ID of the consumer project where the forwarding rule is
+     * created in.
      *
-     * Generated from protobuf field <code>string project_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string project_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -196,10 +230,10 @@ class PscConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The consumer network where the IP address resides, in the form of
+     * Required. The consumer network where the IP address resides, in the form of
      * projects/{project_id}/global/networks/{network_id}.
      *
-     * Generated from protobuf field <code>string network = 5;</code>
+     * Generated from protobuf field <code>string network = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getNetwork()
@@ -208,10 +242,10 @@ class PscConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The consumer network where the IP address resides, in the form of
+     * Required. The consumer network where the IP address resides, in the form of
      * projects/{project_id}/global/networks/{network_id}.
      *
-     * Generated from protobuf field <code>string network = 5;</code>
+     * Generated from protobuf field <code>string network = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -219,6 +253,94 @@ class PscConnection extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->network = $var;
+
+        return $this;
+    }
+
+    /**
+     * Required. The service attachment which is the target of the PSC connection,
+     * in the form of
+     * projects/{project-id}/regions/{region}/serviceAttachments/{service-attachment-id}.
+     *
+     * Generated from protobuf field <code>string service_attachment = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getServiceAttachment()
+    {
+        return $this->service_attachment;
+    }
+
+    /**
+     * Required. The service attachment which is the target of the PSC connection,
+     * in the form of
+     * projects/{project-id}/regions/{region}/serviceAttachments/{service-attachment-id}.
+     *
+     * Generated from protobuf field <code>string service_attachment = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceAttachment($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_attachment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The status of the PSC connection.
+     * Please note that this value is updated periodically.
+     * To get the latest status of a PSC connection, follow
+     * https://cloud.google.com/vpc/docs/configure-private-service-connect-services#endpoint-details.
+     *
+     * Generated from protobuf field <code>.google.cloud.redis.cluster.v1.PscConnectionStatus psc_connection_status = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getPscConnectionStatus()
+    {
+        return $this->psc_connection_status;
+    }
+
+    /**
+     * Output only. The status of the PSC connection.
+     * Please note that this value is updated periodically.
+     * To get the latest status of a PSC connection, follow
+     * https://cloud.google.com/vpc/docs/configure-private-service-connect-services#endpoint-details.
+     *
+     * Generated from protobuf field <code>.google.cloud.redis.cluster.v1.PscConnectionStatus psc_connection_status = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPscConnectionStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Redis\Cluster\V1\PscConnectionStatus::class);
+        $this->psc_connection_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Type of the PSC connection.
+     *
+     * Generated from protobuf field <code>.google.cloud.redis.cluster.v1.ConnectionType connection_type = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getConnectionType()
+    {
+        return $this->connection_type;
+    }
+
+    /**
+     * Output only. Type of the PSC connection.
+     *
+     * Generated from protobuf field <code>.google.cloud.redis.cluster.v1.ConnectionType connection_type = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setConnectionType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Redis\Cluster\V1\ConnectionType::class);
+        $this->connection_type = $var;
 
         return $this;
     }

@@ -20,13 +20,13 @@ class ParameterViolation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parameter = 1;</code>
      */
-    private $parameter = '';
+    protected $parameter = '';
     /**
      * A description of why the parameter failed to validate.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
 
     /**
      * Constructor.
@@ -99,6 +99,4 @@ class ParameterViolation extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ParameterViolation::class, \Google\Cloud\Dataflow\V1beta3\InvalidTemplateParameters_ParameterViolation::class);
 

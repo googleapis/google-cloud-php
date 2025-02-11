@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_ServiceAttachments_Patch_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\ServiceAttachmentsClient;
+use Google\Cloud\Compute\V1\PatchServiceAttachmentRequest;
 use Google\Cloud\Compute\V1\ServiceAttachment;
-use Google\Cloud\Compute\V1\ServiceAttachmentsClient;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function patch_sample(string $project, string $region, string $serviceAttachment
     // Create a client.
     $serviceAttachmentsClient = new ServiceAttachmentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $serviceAttachmentResource = new ServiceAttachment();
+    $request = (new PatchServiceAttachmentRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setServiceAttachment($serviceAttachment)
+        ->setServiceAttachmentResource($serviceAttachmentResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $serviceAttachmentsClient->patch(
-            $project,
-            $region,
-            $serviceAttachment,
-            $serviceAttachmentResource
-        );
+        $response = $serviceAttachmentsClient->patch($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

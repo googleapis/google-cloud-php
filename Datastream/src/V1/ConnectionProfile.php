@@ -17,9 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ConnectionProfile extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource's name.
+     * Output only. Identifier. The resource's name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $name = '';
     /**
@@ -56,7 +56,7 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource's name.
+     *           Output only. Identifier. The resource's name.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The create time of the resource.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -75,6 +75,8 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
      *           BigQuery Connection Profile configuration.
      *     @type \Google\Cloud\Datastream\V1\PostgresqlProfile $postgresql_profile
      *           PostgreSQL Connection Profile configuration.
+     *     @type \Google\Cloud\Datastream\V1\SqlServerProfile $sql_server_profile
+     *           SQLServer Connection Profile configuration.
      *     @type \Google\Cloud\Datastream\V1\StaticServiceIpConnectivity $static_service_ip_connectivity
      *           Static Service IP connectivity.
      *     @type \Google\Cloud\Datastream\V1\ForwardSshTunnelConnectivity $forward_ssh_connectivity
@@ -89,9 +91,9 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource's name.
+     * Output only. Identifier. The resource's name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -100,9 +102,9 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource's name.
+     * Output only. Identifier. The resource's name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -389,6 +391,37 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\PostgresqlProfile::class);
         $this->writeOneof(104, $var);
+
+        return $this;
+    }
+
+    /**
+     * SQLServer Connection Profile configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerProfile sql_server_profile = 105;</code>
+     * @return \Google\Cloud\Datastream\V1\SqlServerProfile|null
+     */
+    public function getSqlServerProfile()
+    {
+        return $this->readOneof(105);
+    }
+
+    public function hasSqlServerProfile()
+    {
+        return $this->hasOneof(105);
+    }
+
+    /**
+     * SQLServer Connection Profile configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerProfile sql_server_profile = 105;</code>
+     * @param \Google\Cloud\Datastream\V1\SqlServerProfile $var
+     * @return $this
+     */
+    public function setSqlServerProfile($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SqlServerProfile::class);
+        $this->writeOneof(105, $var);
 
         return $this;
     }

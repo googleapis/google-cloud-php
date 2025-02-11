@@ -21,7 +21,7 @@ class TranslationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string target_language = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $target_language = '';
+    protected $target_language = '';
 
     /**
      * Constructor.

@@ -4,11 +4,11 @@ on:
       - main
     paths:
       - 'Storage/**'
-      - '.github/workflows/emulator-conformance-tests-storage.yaml'
+      - '.github/workflows/conformance-tests-storage-emulator.yaml'
   pull_request:
     paths:
       - 'Storage/**'
-      - '.github/workflows/emulator-conformance-tests-storage.yaml'
+      - '.github/workflows/conformance-tests-storage-emulator.yaml'
 name: Run Storage Retry Conformance Tests With Emulator
 jobs:
   test:
@@ -16,7 +16,7 @@ jobs:
 
     services:
       emulator:
-        image: gcr.io/cloud-devrel-public-resources/storage-testbench:v0.49.0
+        image: gcr.io/cloud-devrel-public-resources/storage-testbench:v0.52.0
         ports:
           - 9000:9000
 

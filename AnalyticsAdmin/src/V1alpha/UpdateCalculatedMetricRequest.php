@@ -20,7 +20,7 @@ class UpdateCalculatedMetricRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.CalculatedMetric calculated_metric = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $calculated_metric = null;
+    protected $calculated_metric = null;
     /**
      * Required. The list of fields to be updated. Omitted fields will not be
      * updated. To replace the entire entity, use one path with the string "*" to
@@ -28,7 +28,7 @@ class UpdateCalculatedMetricRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Analytics\Admin\V1alpha\CalculatedMetric $calculatedMetric Required. The CalculatedMetric to update

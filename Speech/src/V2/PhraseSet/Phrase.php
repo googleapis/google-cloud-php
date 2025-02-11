@@ -26,7 +26,7 @@ class Phrase extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string value = 1;</code>
      */
-    private $value = '';
+    protected $value = '';
     /**
      * Hint Boost. Overrides the boost set at the phrase set level.
      * Positive value will increase the probability that a specific phrase will
@@ -41,7 +41,7 @@ class Phrase extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float boost = 2;</code>
      */
-    private $boost = 0.0;
+    protected $boost = 0.0;
 
     /**
      * Constructor.
@@ -141,6 +141,4 @@ class Phrase extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Phrase::class, \Google\Cloud\Speech\V2\PhraseSet_Phrase::class);
 

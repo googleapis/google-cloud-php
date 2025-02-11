@@ -35,6 +35,11 @@
                                 "createKmsConfig"
                             ]
                         },
+                        "CreateQuotaRule": {
+                            "methods": [
+                                "createQuotaRule"
+                            ]
+                        },
                         "CreateReplication": {
                             "methods": [
                                 "createReplication"
@@ -80,6 +85,11 @@
                                 "deleteKmsConfig"
                             ]
                         },
+                        "DeleteQuotaRule": {
+                            "methods": [
+                                "deleteQuotaRule"
+                            ]
+                        },
                         "DeleteReplication": {
                             "methods": [
                                 "deleteReplication"
@@ -105,6 +115,11 @@
                                 "encryptVolumes"
                             ]
                         },
+                        "EstablishPeering": {
+                            "methods": [
+                                "establishPeering"
+                            ]
+                        },
                         "GetActiveDirectory": {
                             "methods": [
                                 "getActiveDirectory"
@@ -128,6 +143,11 @@
                         "GetKmsConfig": {
                             "methods": [
                                 "getKmsConfig"
+                            ]
+                        },
+                        "GetQuotaRule": {
+                            "methods": [
+                                "getQuotaRule"
                             ]
                         },
                         "GetReplication": {
@@ -175,6 +195,11 @@
                                 "listKmsConfigs"
                             ]
                         },
+                        "ListQuotaRules": {
+                            "methods": [
+                                "listQuotaRules"
+                            ]
+                        },
                         "ListReplications": {
                             "methods": [
                                 "listReplications"
@@ -220,6 +245,11 @@
                                 "switchActiveReplicaZone"
                             ]
                         },
+                        "SyncReplication": {
+                            "methods": [
+                                "syncReplication"
+                            ]
+                        },
                         "UpdateActiveDirectory": {
                             "methods": [
                                 "updateActiveDirectory"
@@ -245,6 +275,11 @@
                                 "updateKmsConfig"
                             ]
                         },
+                        "UpdateQuotaRule": {
+                            "methods": [
+                                "updateQuotaRule"
+                            ]
+                        },
                         "UpdateReplication": {
                             "methods": [
                                 "updateReplication"
@@ -263,6 +298,11 @@
                         "UpdateVolume": {
                             "methods": [
                                 "updateVolume"
+                            ]
+                        },
+                        "ValidateDirectoryService": {
+                            "methods": [
+                                "validateDirectoryService"
                             ]
                         },
                         "VerifyKmsConfig": {

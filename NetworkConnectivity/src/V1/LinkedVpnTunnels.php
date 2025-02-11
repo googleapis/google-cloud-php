@@ -38,6 +38,14 @@ class LinkedVpnTunnels extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string vpc_network = 3 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     protected $vpc_network = '';
+    /**
+     * Optional. IP ranges allowed to be included during import from hub (does not
+     * control transit connectivity). The only allowed value for now is
+     * "ALL_IPV4_RANGES".
+     *
+     * Generated from protobuf field <code>repeated string include_import_ranges = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $include_import_ranges;
 
     /**
      * Constructor.
@@ -53,6 +61,10 @@ class LinkedVpnTunnels extends \Google\Protobuf\Internal\Message
      *           locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).
      *     @type string $vpc_network
      *           Output only. The VPC network where these VPN tunnels are located.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $include_import_ranges
+     *           Optional. IP ranges allowed to be included during import from hub (does not
+     *           control transit connectivity). The only allowed value for now is
+     *           "ALL_IPV4_RANGES".
      * }
      */
     public function __construct($data = NULL) {
@@ -138,6 +150,36 @@ class LinkedVpnTunnels extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->vpc_network = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. IP ranges allowed to be included during import from hub (does not
+     * control transit connectivity). The only allowed value for now is
+     * "ALL_IPV4_RANGES".
+     *
+     * Generated from protobuf field <code>repeated string include_import_ranges = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getIncludeImportRanges()
+    {
+        return $this->include_import_ranges;
+    }
+
+    /**
+     * Optional. IP ranges allowed to be included during import from hub (does not
+     * control transit connectivity). The only allowed value for now is
+     * "ALL_IPV4_RANGES".
+     *
+     * Generated from protobuf field <code>repeated string include_import_ranges = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setIncludeImportRanges($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->include_import_ranges = $arr;
 
         return $this;
     }

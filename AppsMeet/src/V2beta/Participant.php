@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [Developer Preview](https://developers.google.com/workspace/preview).
  * User who attended or is attending a conference.
  *
  * Generated from protobuf message <code>google.apps.meet.v2beta.Participant</code>
@@ -24,15 +23,14 @@ class Participant extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Output only. Time when the participant joined the meeting for the first
-     * time.
+     * Output only. Time when the participant first joined the meeting.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp earliest_start_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $earliest_start_time = null;
     /**
      * Output only. Time when the participant left the meeting for the last time.
-     * This can be null if it is an active meeting.
+     * This can be null if it's an active meeting.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp latest_end_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -50,16 +48,15 @@ class Participant extends \Google\Protobuf\Internal\Message
      *     @type \Google\Apps\Meet\V2beta\AnonymousUser $anonymous_user
      *           Anonymous user.
      *     @type \Google\Apps\Meet\V2beta\PhoneUser $phone_user
-     *           User who calls in from their phone.
+     *           User calling from their phone.
      *     @type string $name
      *           Output only. Resource name of the participant.
      *           Format: `conferenceRecords/{conference_record}/participants/{participant}`
      *     @type \Google\Protobuf\Timestamp $earliest_start_time
-     *           Output only. Time when the participant joined the meeting for the first
-     *           time.
+     *           Output only. Time when the participant first joined the meeting.
      *     @type \Google\Protobuf\Timestamp $latest_end_time
      *           Output only. Time when the participant left the meeting for the last time.
-     *           This can be null if it is an active meeting.
+     *           This can be null if it's an active meeting.
      * }
      */
     public function __construct($data = NULL) {
@@ -130,7 +127,7 @@ class Participant extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User who calls in from their phone.
+     * User calling from their phone.
      *
      * Generated from protobuf field <code>.google.apps.meet.v2beta.PhoneUser phone_user = 6;</code>
      * @return \Google\Apps\Meet\V2beta\PhoneUser|null
@@ -146,7 +143,7 @@ class Participant extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User who calls in from their phone.
+     * User calling from their phone.
      *
      * Generated from protobuf field <code>.google.apps.meet.v2beta.PhoneUser phone_user = 6;</code>
      * @param \Google\Apps\Meet\V2beta\PhoneUser $var
@@ -189,8 +186,7 @@ class Participant extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time when the participant joined the meeting for the first
-     * time.
+     * Output only. Time when the participant first joined the meeting.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp earliest_start_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -211,8 +207,7 @@ class Participant extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time when the participant joined the meeting for the first
-     * time.
+     * Output only. Time when the participant first joined the meeting.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp earliest_start_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -228,7 +223,7 @@ class Participant extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Time when the participant left the meeting for the last time.
-     * This can be null if it is an active meeting.
+     * This can be null if it's an active meeting.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp latest_end_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -250,7 +245,7 @@ class Participant extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Time when the participant left the meeting for the last time.
-     * This can be null if it is an active meeting.
+     * This can be null if it's an active meeting.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp latest_end_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var

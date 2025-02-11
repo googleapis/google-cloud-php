@@ -24,15 +24,13 @@ use Google\Auth\GetUniverseDomainInterface;
 use Google\Auth\HttpHandler\Guzzle6HttpHandler;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Auth\UpdateMetadataInterface;
-use Google\Cloud\Core\Exception\ServiceException;
-use Google\Cloud\Core\RequestWrapperTrait;
 use Google\Cloud\Core\Exception\GoogleException;
+use Google\Cloud\Core\Exception\ServiceException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
 
 /**
  * The RequestWrapper is responsible for delivering and signing requests.
@@ -370,7 +368,8 @@ class RequestWrapper
             return $backoff->execute(
                 function () use ($request, $fetcher) {
                     if (!$fetcher instanceof UpdateMetadataInterface ||
-                         ($fetcher instanceof FetchAuthTokenCache &&
+                         (
+                             $fetcher instanceof FetchAuthTokenCache &&
                             !$fetcher->getFetcher() instanceof UpdateMetadataInterface
                          )
                     ) {
@@ -511,7 +510,7 @@ class RequestWrapper
     /**
      * Verify that the expected universe domain matches the universe domain from the credentials.
      */
-    private function checkUniverseDomain(FetchAuthTokenInterface $credentialsFetcher = null)
+    private function checkUniverseDomain(?FetchAuthTokenInterface $credentialsFetcher = null)
     {
         if (false === $this->hasCheckedUniverse) {
             if ($this->universeDomain === '') {

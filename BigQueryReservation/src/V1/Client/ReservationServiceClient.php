@@ -42,6 +42,7 @@ use Google\Cloud\BigQuery\Reservation\V1\CreateReservationRequest;
 use Google\Cloud\BigQuery\Reservation\V1\DeleteAssignmentRequest;
 use Google\Cloud\BigQuery\Reservation\V1\DeleteCapacityCommitmentRequest;
 use Google\Cloud\BigQuery\Reservation\V1\DeleteReservationRequest;
+use Google\Cloud\BigQuery\Reservation\V1\FailoverReservationRequest;
 use Google\Cloud\BigQuery\Reservation\V1\GetBiReservationRequest;
 use Google\Cloud\BigQuery\Reservation\V1\GetCapacityCommitmentRequest;
 use Google\Cloud\BigQuery\Reservation\V1\GetReservationRequest;
@@ -60,6 +61,7 @@ use Google\Cloud\BigQuery\Reservation\V1\UpdateBiReservationRequest;
 use Google\Cloud\BigQuery\Reservation\V1\UpdateCapacityCommitmentRequest;
 use Google\Cloud\BigQuery\Reservation\V1\UpdateReservationRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: This API allows users to manage their BigQuery reservations.
@@ -92,6 +94,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface<void> deleteAssignmentAsync(DeleteAssignmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteCapacityCommitmentAsync(DeleteCapacityCommitmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteReservationAsync(DeleteReservationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Reservation> failoverReservationAsync(FailoverReservationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BiReservation> getBiReservationAsync(GetBiReservationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CapacityCommitment> getCapacityCommitmentAsync(GetCapacityCommitmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Reservation> getReservationAsync(GetReservationRequest $request, array $optionalArgs = [])
@@ -270,14 +273,14 @@ final class ReservationServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -299,6 +302,12 @@ final class ReservationServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -332,6 +341,9 @@ final class ReservationServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -557,6 +569,37 @@ final class ReservationServiceClient
     public function deleteReservation(DeleteReservationRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteReservation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fail over a reservation to the secondary location. The operation should be
+     * done in the current secondary location, which will be promoted to the
+     * new primary location for the reservation.
+     * Attempting to failover a reservation in the current primary location will
+     * fail with the error code `google.rpc.Code.FAILED_PRECONDITION`.
+     *
+     * The async variant is {@see ReservationServiceClient::failoverReservationAsync()}
+     * .
+     *
+     * @example samples/V1/ReservationServiceClient/failover_reservation.php
+     *
+     * @param FailoverReservationRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Reservation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function failoverReservation(FailoverReservationRequest $request, array $callOptions = []): Reservation
+    {
+        return $this->startApiCall('FailoverReservation', $request, $callOptions)->wait();
     }
 
     /**

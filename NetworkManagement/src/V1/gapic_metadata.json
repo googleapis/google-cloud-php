@@ -68,6 +68,65 @@
                     }
                 }
             }
+        },
+        "VpcFlowLogsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "VpcFlowLogsServiceGapicClient",
+                    "rpcs": {
+                        "CreateVpcFlowLogsConfig": {
+                            "methods": [
+                                "createVpcFlowLogsConfig"
+                            ]
+                        },
+                        "DeleteVpcFlowLogsConfig": {
+                            "methods": [
+                                "deleteVpcFlowLogsConfig"
+                            ]
+                        },
+                        "GetVpcFlowLogsConfig": {
+                            "methods": [
+                                "getVpcFlowLogsConfig"
+                            ]
+                        },
+                        "ListVpcFlowLogsConfigs": {
+                            "methods": [
+                                "listVpcFlowLogsConfigs"
+                            ]
+                        },
+                        "UpdateVpcFlowLogsConfig": {
+                            "methods": [
+                                "updateVpcFlowLogsConfig"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
         }
     }
 }

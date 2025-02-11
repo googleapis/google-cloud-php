@@ -19,7 +19,7 @@ class CrontabSpec extends \Google\Protobuf\Internal\Message
     /**
      * Required. Textual representation of the crontab. User can customize the
      * backup frequency and the backup version time using the cron
-     * expression. The version time must be in UTC timzeone.
+     * expression. The version time must be in UTC timezone.
      * The backup will contain an externally consistent copy of the
      * database at the version time. Allowed frequencies are 12 hour, 1 day,
      * 1 week and 1 month. Examples of valid cron specifications:
@@ -61,7 +61,7 @@ class CrontabSpec extends \Google\Protobuf\Internal\Message
      *     @type string $text
      *           Required. Textual representation of the crontab. User can customize the
      *           backup frequency and the backup version time using the cron
-     *           expression. The version time must be in UTC timzeone.
+     *           expression. The version time must be in UTC timezone.
      *           The backup will contain an externally consistent copy of the
      *           database at the version time. Allowed frequencies are 12 hour, 1 day,
      *           1 week and 1 month. Examples of valid cron specifications:
@@ -91,7 +91,7 @@ class CrontabSpec extends \Google\Protobuf\Internal\Message
     /**
      * Required. Textual representation of the crontab. User can customize the
      * backup frequency and the backup version time using the cron
-     * expression. The version time must be in UTC timzeone.
+     * expression. The version time must be in UTC timezone.
      * The backup will contain an externally consistent copy of the
      * database at the version time. Allowed frequencies are 12 hour, 1 day,
      * 1 week and 1 month. Examples of valid cron specifications:
@@ -112,7 +112,7 @@ class CrontabSpec extends \Google\Protobuf\Internal\Message
     /**
      * Required. Textual representation of the crontab. User can customize the
      * backup frequency and the backup version time using the cron
-     * expression. The version time must be in UTC timzeone.
+     * expression. The version time must be in UTC timezone.
      * The backup will contain an externally consistent copy of the
      * database at the version time. Allowed frequencies are 12 hour, 1 day,
      * 1 week and 1 month. Examples of valid cron specifications:

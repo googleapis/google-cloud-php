@@ -21,14 +21,14 @@ class CreatePhraseSetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.PhraseSet phrase_set = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $phrase_set = null;
+    protected $phrase_set = null;
     /**
      * If set, validate the request and preview the PhraseSet, but do not
      * actually create it.
      *
      * Generated from protobuf field <code>bool validate_only = 2;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
     /**
      * The ID to use for the PhraseSet, which will become the final component of
      * the PhraseSet's resource name.
@@ -37,14 +37,14 @@ class CreatePhraseSetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string phrase_set_id = 3;</code>
      */
-    private $phrase_set_id = '';
+    protected $phrase_set_id = '';
     /**
      * Required. The project and location where this PhraseSet will be created.
      * The expected format is `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
 
     /**
      * @param string                            $parent      Required. The project and location where this PhraseSet will be created.

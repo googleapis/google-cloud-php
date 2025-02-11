@@ -22,7 +22,7 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float score = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $score = 0.0;
+    protected $score = 0.0;
     /**
      * Output only. Reasons contributing to the risk analysis verdict.
      *
@@ -37,11 +37,12 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
      */
     private $extended_verdict_reasons;
     /**
-     * Output only. Challenge information for SCORE_AND_CHALLENGE keys
+     * Output only. Challenge information for SCORE_AND_CHALLENGE and INVISIBLE
+     * keys
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.RiskAnalysis.Challenge challenge = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $challenge = 0;
+    protected $challenge = 0;
 
     /**
      * Constructor.
@@ -59,7 +60,8 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
      *           Output only. Extended verdict reasons to be used for experimentation only.
      *           The set of possible reasons is subject to change.
      *     @type int $challenge
-     *           Output only. Challenge information for SCORE_AND_CHALLENGE keys
+     *           Output only. Challenge information for SCORE_AND_CHALLENGE and INVISIBLE
+     *           keys
      * }
      */
     public function __construct($data = NULL) {
@@ -152,7 +154,8 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Challenge information for SCORE_AND_CHALLENGE keys
+     * Output only. Challenge information for SCORE_AND_CHALLENGE and INVISIBLE
+     * keys
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.RiskAnalysis.Challenge challenge = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -163,7 +166,8 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Challenge information for SCORE_AND_CHALLENGE keys
+     * Output only. Challenge information for SCORE_AND_CHALLENGE and INVISIBLE
+     * keys
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.RiskAnalysis.Challenge challenge = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var

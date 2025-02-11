@@ -43,6 +43,11 @@ $entryGroup = $client->createEntryGroup($location, 'sample_entry_group');
 printf('Created entry group: %s' . PHP_EOL, $entryGroup->getName());
 ```
 
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
+
 ### Version
 
 This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in

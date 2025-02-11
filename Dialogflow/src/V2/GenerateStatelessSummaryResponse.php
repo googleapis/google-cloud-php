@@ -21,7 +21,7 @@ class GenerateStatelessSummaryResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.GenerateStatelessSummaryResponse.Summary summary = 1;</code>
      */
-    private $summary = null;
+    protected $summary = null;
     /**
      * The name of the latest conversation message used as context for
      * compiling suggestion. The format is specific to the user and the names of
@@ -29,16 +29,18 @@ class GenerateStatelessSummaryResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string latest_message = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $latest_message = '';
+    protected $latest_message = '';
     /**
      * Number of messages prior to and including
-     * [last_conversation_message][] used to compile the suggestion. It may be
-     * smaller than the [GenerateStatelessSummaryRequest.context_size][] field in
-     * the request if there weren't that many messages in the conversation.
+     * [latest_message][google.cloud.dialogflow.v2.GenerateStatelessSummaryResponse.latest_message]
+     * used to compile the suggestion. It may be smaller than the
+     * [GenerateStatelessSummaryRequest.max_context_size][google.cloud.dialogflow.v2.GenerateStatelessSummaryRequest.max_context_size]
+     * field in the request if there weren't that many messages in the
+     * conversation.
      *
      * Generated from protobuf field <code>int32 context_size = 3;</code>
      */
-    private $context_size = 0;
+    protected $context_size = 0;
 
     /**
      * Constructor.
@@ -54,9 +56,11 @@ class GenerateStatelessSummaryResponse extends \Google\Protobuf\Internal\Message
      *           the messages provided.
      *     @type int $context_size
      *           Number of messages prior to and including
-     *           [last_conversation_message][] used to compile the suggestion. It may be
-     *           smaller than the [GenerateStatelessSummaryRequest.context_size][] field in
-     *           the request if there weren't that many messages in the conversation.
+     *           [latest_message][google.cloud.dialogflow.v2.GenerateStatelessSummaryResponse.latest_message]
+     *           used to compile the suggestion. It may be smaller than the
+     *           [GenerateStatelessSummaryRequest.max_context_size][google.cloud.dialogflow.v2.GenerateStatelessSummaryRequest.max_context_size]
+     *           field in the request if there weren't that many messages in the
+     *           conversation.
      * }
      */
     public function __construct($data = NULL) {
@@ -132,9 +136,11 @@ class GenerateStatelessSummaryResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Number of messages prior to and including
-     * [last_conversation_message][] used to compile the suggestion. It may be
-     * smaller than the [GenerateStatelessSummaryRequest.context_size][] field in
-     * the request if there weren't that many messages in the conversation.
+     * [latest_message][google.cloud.dialogflow.v2.GenerateStatelessSummaryResponse.latest_message]
+     * used to compile the suggestion. It may be smaller than the
+     * [GenerateStatelessSummaryRequest.max_context_size][google.cloud.dialogflow.v2.GenerateStatelessSummaryRequest.max_context_size]
+     * field in the request if there weren't that many messages in the
+     * conversation.
      *
      * Generated from protobuf field <code>int32 context_size = 3;</code>
      * @return int
@@ -146,9 +152,11 @@ class GenerateStatelessSummaryResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Number of messages prior to and including
-     * [last_conversation_message][] used to compile the suggestion. It may be
-     * smaller than the [GenerateStatelessSummaryRequest.context_size][] field in
-     * the request if there weren't that many messages in the conversation.
+     * [latest_message][google.cloud.dialogflow.v2.GenerateStatelessSummaryResponse.latest_message]
+     * used to compile the suggestion. It may be smaller than the
+     * [GenerateStatelessSummaryRequest.max_context_size][google.cloud.dialogflow.v2.GenerateStatelessSummaryRequest.max_context_size]
+     * field in the request if there weren't that many messages in the
+     * conversation.
      *
      * Generated from protobuf field <code>int32 context_size = 3;</code>
      * @param int $var

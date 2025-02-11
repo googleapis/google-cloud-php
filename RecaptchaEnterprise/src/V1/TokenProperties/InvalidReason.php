@@ -88,6 +88,4 @@ class InvalidReason
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(InvalidReason::class, \Google\Cloud\RecaptchaEnterprise\V1\TokenProperties_InvalidReason::class);
 

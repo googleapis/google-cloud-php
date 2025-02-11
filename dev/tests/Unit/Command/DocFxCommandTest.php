@@ -194,6 +194,24 @@ class DocFxCommandTest extends TestCase
         $this->assertGreaterThan(0, count($asyncMethods));
     }
 
+    public function testProductNeutralGuides()
+    {
+        self::getCommandTester()->execute([
+            '--generate-product-neutral-guides' => true,
+            '--out' => $tmpDir = sys_get_temp_dir() . '/' . rand(),
+            '--metadata-version' => '1.0.0',
+        ]);
+
+        $generatedFiles = array_diff(scandir($tmpDir), ['..', '.']);
+        $this->assertEquals([
+            'authentication.md',
+            'debug.md',
+            'docs.metadata',
+            'migrating.md',
+            'toc.yml',
+        ], array_values($generatedFiles));
+    }
+
     private function assertFileEqualsWithDiff(string $left, string $right, bool $updateFixtures = false)
     {
         if (file_get_contents($left) !== file_get_contents($right)) {

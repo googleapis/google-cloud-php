@@ -30,8 +30,7 @@ class ListInstanceConfigOperationsRequest extends \Google\Protobuf\Internal\Mess
      * The value must be a string, a number, or a boolean. The comparison operator
      * must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`.
      * Colon `:` is the contains operator. Filter rules are not case sensitive.
-     * The following fields in the [Operation][google.longrunning.Operation]
-     * are eligible for filtering:
+     * The following fields in the Operation are eligible for filtering:
      *   * `name` - The name of the long-running operation
      *   * `done` - False if the operation is in progress, else true.
      *   * `metadata.&#64;type` - the type of metadata. For example, the type string
@@ -114,8 +113,7 @@ class ListInstanceConfigOperationsRequest extends \Google\Protobuf\Internal\Mess
      *           The value must be a string, a number, or a boolean. The comparison operator
      *           must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`.
      *           Colon `:` is the contains operator. Filter rules are not case sensitive.
-     *           The following fields in the [Operation][google.longrunning.Operation]
-     *           are eligible for filtering:
+     *           The following fields in the Operation are eligible for filtering:
      *             * `name` - The name of the long-running operation
      *             * `done` - False if the operation is in progress, else true.
      *             * `metadata.&#64;type` - the type of metadata. For example, the type string
@@ -196,8 +194,7 @@ class ListInstanceConfigOperationsRequest extends \Google\Protobuf\Internal\Mess
      * The value must be a string, a number, or a boolean. The comparison operator
      * must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`.
      * Colon `:` is the contains operator. Filter rules are not case sensitive.
-     * The following fields in the [Operation][google.longrunning.Operation]
-     * are eligible for filtering:
+     * The following fields in the Operation are eligible for filtering:
      *   * `name` - The name of the long-running operation
      *   * `done` - False if the operation is in progress, else true.
      *   * `metadata.&#64;type` - the type of metadata. For example, the type string
@@ -243,8 +240,7 @@ class ListInstanceConfigOperationsRequest extends \Google\Protobuf\Internal\Mess
      * The value must be a string, a number, or a boolean. The comparison operator
      * must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`.
      * Colon `:` is the contains operator. Filter rules are not case sensitive.
-     * The following fields in the [Operation][google.longrunning.Operation]
-     * are eligible for filtering:
+     * The following fields in the Operation are eligible for filtering:
      *   * `name` - The name of the long-running operation
      *   * `done` - False if the operation is in progress, else true.
      *   * `metadata.&#64;type` - the type of metadata. For example, the type string

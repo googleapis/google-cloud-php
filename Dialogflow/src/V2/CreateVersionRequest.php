@@ -24,13 +24,13 @@ class CreateVersionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The version to create.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Version version = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $version = null;
+    protected $version = null;
 
     /**
      * @param string                              $parent  Required. The agent to create a version for.

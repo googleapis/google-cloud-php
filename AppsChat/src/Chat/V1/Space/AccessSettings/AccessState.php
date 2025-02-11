@@ -33,6 +33,8 @@ class AccessState
      * invited to the space can also discover and access the space. To learn
      * more, see [Make a space discoverable to specific
      * users](https://developers.google.com/workspace/chat/space-target-audience).
+     * Creating discoverable spaces requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *
      * Generated from protobuf enum <code>DISCOVERABLE = 2;</code>
      */

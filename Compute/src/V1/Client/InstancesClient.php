@@ -92,6 +92,7 @@ use Google\Cloud\Compute\V1\UpdateNetworkInterfaceInstanceRequest;
 use Google\Cloud\Compute\V1\UpdateShieldedInstanceConfigInstanceRequest;
 use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Instances API.
@@ -281,6 +282,12 @@ final class InstancesClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -311,6 +318,9 @@ final class InstancesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -338,6 +348,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::addAccessConfigAsync()} .
      *
+     * @example samples/V1/InstancesClient/add_access_config.php
+     *
      * @param AddAccessConfigInstanceRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -361,6 +373,8 @@ final class InstancesClient
      * Adds existing resource policies to an instance. You can only add one policy right now which will be applied to this instance for scheduling live migrations.
      *
      * The async variant is {@see InstancesClient::addResourcePoliciesAsync()} .
+     *
+     * @example samples/V1/InstancesClient/add_resource_policies.php
      *
      * @param AddResourcePoliciesInstanceRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -386,6 +400,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/InstancesClient/aggregated_list.php
+     *
      * @param AggregatedListInstancesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -409,6 +425,8 @@ final class InstancesClient
      * Attaches an existing Disk resource to an instance. You must first create the disk before you can attach it. It is not possible to create and attach a disk at the same time. For more information, read Adding a persistent disk to your instance.
      *
      * The async variant is {@see InstancesClient::attachDiskAsync()} .
+     *
+     * @example samples/V1/InstancesClient/attach_disk.php
      *
      * @param AttachDiskInstanceRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -434,6 +452,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::bulkInsertAsync()} .
      *
+     * @example samples/V1/InstancesClient/bulk_insert.php
+     *
      * @param BulkInsertInstanceRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -457,6 +477,8 @@ final class InstancesClient
      * Deletes the specified Instance resource. For more information, see Deleting an instance.
      *
      * The async variant is {@see InstancesClient::deleteAsync()} .
+     *
+     * @example samples/V1/InstancesClient/delete.php
      *
      * @param DeleteInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -482,6 +504,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::deleteAccessConfigAsync()} .
      *
+     * @example samples/V1/InstancesClient/delete_access_config.php
+     *
      * @param DeleteAccessConfigInstanceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -505,6 +529,8 @@ final class InstancesClient
      * Detaches a disk from an instance.
      *
      * The async variant is {@see InstancesClient::detachDiskAsync()} .
+     *
+     * @example samples/V1/InstancesClient/detach_disk.php
      *
      * @param DetachDiskInstanceRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -530,6 +556,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::getAsync()} .
      *
+     * @example samples/V1/InstancesClient/get.php
+     *
      * @param GetInstanceRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -553,6 +581,8 @@ final class InstancesClient
      * Returns effective firewalls applied to an interface of the instance.
      *
      * The async variant is {@see InstancesClient::getEffectiveFirewallsAsync()} .
+     *
+     * @example samples/V1/InstancesClient/get_effective_firewalls.php
      *
      * @param GetEffectiveFirewallsInstanceRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -578,6 +608,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::getGuestAttributesAsync()} .
      *
+     * @example samples/V1/InstancesClient/get_guest_attributes.php
+     *
      * @param GetGuestAttributesInstanceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -601,6 +633,8 @@ final class InstancesClient
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
      * The async variant is {@see InstancesClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/InstancesClient/get_iam_policy.php
      *
      * @param GetIamPolicyInstanceRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -626,6 +660,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::getScreenshotAsync()} .
      *
+     * @example samples/V1/InstancesClient/get_screenshot.php
+     *
      * @param GetScreenshotInstanceRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -649,6 +685,8 @@ final class InstancesClient
      * Returns the last 1 MB of serial port output from the specified instance.
      *
      * The async variant is {@see InstancesClient::getSerialPortOutputAsync()} .
+     *
+     * @example samples/V1/InstancesClient/get_serial_port_output.php
      *
      * @param GetSerialPortOutputInstanceRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -675,6 +713,8 @@ final class InstancesClient
      * The async variant is {@see InstancesClient::getShieldedInstanceIdentityAsync()}
      * .
      *
+     * @example samples/V1/InstancesClient/get_shielded_instance_identity.php
+     *
      * @param GetShieldedInstanceIdentityInstanceRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {
      *     Optional.
@@ -698,6 +738,8 @@ final class InstancesClient
      * Creates an instance resource in the specified project using the data included in the request.
      *
      * The async variant is {@see InstancesClient::insertAsync()} .
+     *
+     * @example samples/V1/InstancesClient/insert.php
      *
      * @param InsertInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -723,6 +765,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::listAsync()} .
      *
+     * @example samples/V1/InstancesClient/list.php
+     *
      * @param ListInstancesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -746,6 +790,8 @@ final class InstancesClient
      * Retrieves a list of resources that refer to the VM instance specified in the request. For example, if the VM instance is part of a managed or unmanaged instance group, the referrers list includes the instance group. For more information, read Viewing referrers to VM instances.
      *
      * The async variant is {@see InstancesClient::listReferrersAsync()} .
+     *
+     * @example samples/V1/InstancesClient/list_referrers.php
      *
      * @param ListReferrersInstancesRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -771,6 +817,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::performMaintenanceAsync()} .
      *
+     * @example samples/V1/InstancesClient/perform_maintenance.php
+     *
      * @param PerformMaintenanceInstanceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -794,6 +842,8 @@ final class InstancesClient
      * Removes resource policies from an instance.
      *
      * The async variant is {@see InstancesClient::removeResourcePoliciesAsync()} .
+     *
+     * @example samples/V1/InstancesClient/remove_resource_policies.php
      *
      * @param RemoveResourcePoliciesInstanceRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -819,6 +869,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::resetAsync()} .
      *
+     * @example samples/V1/InstancesClient/reset.php
+     *
      * @param ResetInstanceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -842,6 +894,8 @@ final class InstancesClient
      * Resumes an instance that was suspended using the instances().suspend method.
      *
      * The async variant is {@see InstancesClient::resumeAsync()} .
+     *
+     * @example samples/V1/InstancesClient/resume.php
      *
      * @param ResumeInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -867,6 +921,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::sendDiagnosticInterruptAsync()} .
      *
+     * @example samples/V1/InstancesClient/send_diagnostic_interrupt.php
+     *
      * @param SendDiagnosticInterruptInstanceRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -890,6 +946,8 @@ final class InstancesClient
      * Sets deletion protection on the instance.
      *
      * The async variant is {@see InstancesClient::setDeletionProtectionAsync()} .
+     *
+     * @example samples/V1/InstancesClient/set_deletion_protection.php
      *
      * @param SetDeletionProtectionInstanceRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -915,6 +973,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::setDiskAutoDeleteAsync()} .
      *
+     * @example samples/V1/InstancesClient/set_disk_auto_delete.php
+     *
      * @param SetDiskAutoDeleteInstanceRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -938,6 +998,8 @@ final class InstancesClient
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
      * The async variant is {@see InstancesClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/InstancesClient/set_iam_policy.php
      *
      * @param SetIamPolicyInstanceRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -963,6 +1025,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::setLabelsAsync()} .
      *
+     * @example samples/V1/InstancesClient/set_labels.php
+     *
      * @param SetLabelsInstanceRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -986,6 +1050,8 @@ final class InstancesClient
      * Changes the number and/or type of accelerator for a stopped instance to the values specified in the request.
      *
      * The async variant is {@see InstancesClient::setMachineResourcesAsync()} .
+     *
+     * @example samples/V1/InstancesClient/set_machine_resources.php
      *
      * @param SetMachineResourcesInstanceRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -1011,6 +1077,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::setMachineTypeAsync()} .
      *
+     * @example samples/V1/InstancesClient/set_machine_type.php
+     *
      * @param SetMachineTypeInstanceRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -1034,6 +1102,8 @@ final class InstancesClient
      * Sets metadata for the specified instance to the data included in the request.
      *
      * The async variant is {@see InstancesClient::setMetadataAsync()} .
+     *
+     * @example samples/V1/InstancesClient/set_metadata.php
      *
      * @param SetMetadataInstanceRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -1059,6 +1129,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::setMinCpuPlatformAsync()} .
      *
+     * @example samples/V1/InstancesClient/set_min_cpu_platform.php
+     *
      * @param SetMinCpuPlatformInstanceRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -1082,6 +1154,8 @@ final class InstancesClient
      * Sets name of an instance.
      *
      * The async variant is {@see InstancesClient::setNameAsync()} .
+     *
+     * @example samples/V1/InstancesClient/set_name.php
      *
      * @param SetNameInstanceRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1107,6 +1181,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::setSchedulingAsync()} .
      *
+     * @example samples/V1/InstancesClient/set_scheduling.php
+     *
      * @param SetSchedulingInstanceRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -1131,6 +1207,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::setSecurityPolicyAsync()} .
      *
+     * @example samples/V1/InstancesClient/set_security_policy.php
+     *
      * @param SetSecurityPolicyInstanceRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -1154,6 +1232,8 @@ final class InstancesClient
      * Sets the service account on the instance. For more information, read Changing the service account and access scopes for an instance.
      *
      * The async variant is {@see InstancesClient::setServiceAccountAsync()} .
+     *
+     * @example samples/V1/InstancesClient/set_service_account.php
      *
      * @param SetServiceAccountInstanceRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -1180,6 +1260,8 @@ final class InstancesClient
      * The async variant is
      * {@see InstancesClient::setShieldedInstanceIntegrityPolicyAsync()} .
      *
+     * @example samples/V1/InstancesClient/set_shielded_instance_integrity_policy.php
+     *
      * @param SetShieldedInstanceIntegrityPolicyInstanceRequest $request     A request to house fields associated with the call.
      * @param array                                             $callOptions {
      *     Optional.
@@ -1203,6 +1285,8 @@ final class InstancesClient
      * Sets network tags for the specified instance to the data included in the request.
      *
      * The async variant is {@see InstancesClient::setTagsAsync()} .
+     *
+     * @example samples/V1/InstancesClient/set_tags.php
      *
      * @param SetTagsInstanceRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1228,6 +1312,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::simulateMaintenanceEventAsync()} .
      *
+     * @example samples/V1/InstancesClient/simulate_maintenance_event.php
+     *
      * @param SimulateMaintenanceEventInstanceRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -1251,6 +1337,8 @@ final class InstancesClient
      * Starts an instance that was stopped using the instances().stop method. For more information, see Restart an instance.
      *
      * The async variant is {@see InstancesClient::startAsync()} .
+     *
+     * @example samples/V1/InstancesClient/start.php
      *
      * @param StartInstanceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1276,6 +1364,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::startWithEncryptionKeyAsync()} .
      *
+     * @example samples/V1/InstancesClient/start_with_encryption_key.php
+     *
      * @param StartWithEncryptionKeyInstanceRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -1299,6 +1389,8 @@ final class InstancesClient
      * Stops a running instance, shutting it down cleanly, and allows you to restart the instance at a later time. Stopped instances do not incur VM usage charges while they are stopped. However, resources that the VM is using, such as persistent disks and static IP addresses, will continue to be charged until they are deleted. For more information, see Stopping an instance.
      *
      * The async variant is {@see InstancesClient::stopAsync()} .
+     *
+     * @example samples/V1/InstancesClient/stop.php
      *
      * @param StopInstanceRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1324,6 +1416,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::suspendAsync()} .
      *
+     * @example samples/V1/InstancesClient/suspend.php
+     *
      * @param SuspendInstanceRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -1347,6 +1441,8 @@ final class InstancesClient
      * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is {@see InstancesClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/InstancesClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsInstanceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -1372,6 +1468,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::updateAsync()} .
      *
+     * @example samples/V1/InstancesClient/update.php
+     *
      * @param UpdateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -1395,6 +1493,8 @@ final class InstancesClient
      * Updates the specified access config from an instance's network interface with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      *
      * The async variant is {@see InstancesClient::updateAccessConfigAsync()} .
+     *
+     * @example samples/V1/InstancesClient/update_access_config.php
      *
      * @param UpdateAccessConfigInstanceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -1420,6 +1520,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::updateDisplayDeviceAsync()} .
      *
+     * @example samples/V1/InstancesClient/update_display_device.php
+     *
      * @param UpdateDisplayDeviceInstanceRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -1443,6 +1545,8 @@ final class InstancesClient
      * Updates an instance's network interface. This method can only update an interface's alias IP range and attached network. See Modifying alias IP ranges for an existing instance for instructions on changing alias IP ranges. See Migrating a VM between networks for instructions on migrating an interface. This method follows PATCH semantics.
      *
      * The async variant is {@see InstancesClient::updateNetworkInterfaceAsync()} .
+     *
+     * @example samples/V1/InstancesClient/update_network_interface.php
      *
      * @param UpdateNetworkInterfaceInstanceRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -1468,6 +1572,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::updateShieldedInstanceConfigAsync()}
      * .
+     *
+     * @example samples/V1/InstancesClient/update_shielded_instance_config.php
      *
      * @param UpdateShieldedInstanceConfigInstanceRequest $request     A request to house fields associated with the call.
      * @param array                                       $callOptions {

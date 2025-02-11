@@ -30,7 +30,7 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool data_loss_from_other_row = 3;</code>
      */
-    private $data_loss_from_other_row = false;
+    protected $data_loss_from_other_row = false;
     /**
      * Describes the schema restrictions actively enforced in creating this
      * report. To learn more, see [Access and data-restriction
@@ -38,7 +38,7 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.analytics.data.v1alpha.ResponseMetaData.SchemaRestrictionResponse schema_restriction_response = 4;</code>
      */
-    private $schema_restriction_response = null;
+    protected $schema_restriction_response = null;
     /**
      * The currency code used in this report. Intended to be used in formatting
      * currency metrics like `purchaseRevenue` for visualization. If currency_code
@@ -52,7 +52,7 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string currency_code = 5;</code>
      */
-    private $currency_code = null;
+    protected $currency_code = null;
     /**
      * The property's current timezone. Intended to be used to interpret
      * time-based dimensions like `hour` and `minute`. Formatted as strings from
@@ -61,13 +61,13 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string time_zone = 6;</code>
      */
-    private $time_zone = null;
+    protected $time_zone = null;
     /**
      * If empty reason is specified, the report is empty for this reason.
      *
      * Generated from protobuf field <code>optional string empty_reason = 7;</code>
      */
-    private $empty_reason = null;
+    protected $empty_reason = null;
     /**
      * If `subjectToThresholding` is true, this report is subject to thresholding
      * and only returns data that meets the minimum aggregation thresholds. It is
@@ -80,7 +80,19 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool subject_to_thresholding = 8;</code>
      */
-    private $subject_to_thresholding = null;
+    protected $subject_to_thresholding = null;
+    /**
+     * If this report's results are
+     * [sampled](https://support.google.com/analytics/answer/13331292), this
+     * describes the percentage of events used in this report. One
+     * `samplingMetadatas` is populated for each date range. Each
+     * `samplingMetadatas` corresponds to a date range in the order that date
+     * ranges were specified in the request.
+     * However if the results are not sampled, this field will not be defined.
+     *
+     * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.SamplingMetadata sampling_metadatas = 9;</code>
+     */
+    private $sampling_metadatas;
 
     /**
      * Constructor.
@@ -130,6 +142,14 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
      *           thresholds](https://support.google.com/analytics/answer/9383630) and [About
      *           Demographics and
      *           Interests](https://support.google.com/analytics/answer/2799357).
+     *     @type array<\Google\Analytics\Data\V1alpha\SamplingMetadata>|\Google\Protobuf\Internal\RepeatedField $sampling_metadatas
+     *           If this report's results are
+     *           [sampled](https://support.google.com/analytics/answer/13331292), this
+     *           describes the percentage of events used in this report. One
+     *           `samplingMetadatas` is populated for each date range. Each
+     *           `samplingMetadatas` corresponds to a date range in the order that date
+     *           ranges were specified in the request.
+     *           However if the results are not sampled, this field will not be defined.
      * }
      */
     public function __construct($data = NULL) {
@@ -399,6 +419,44 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->subject_to_thresholding = $var;
+
+        return $this;
+    }
+
+    /**
+     * If this report's results are
+     * [sampled](https://support.google.com/analytics/answer/13331292), this
+     * describes the percentage of events used in this report. One
+     * `samplingMetadatas` is populated for each date range. Each
+     * `samplingMetadatas` corresponds to a date range in the order that date
+     * ranges were specified in the request.
+     * However if the results are not sampled, this field will not be defined.
+     *
+     * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.SamplingMetadata sampling_metadatas = 9;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSamplingMetadatas()
+    {
+        return $this->sampling_metadatas;
+    }
+
+    /**
+     * If this report's results are
+     * [sampled](https://support.google.com/analytics/answer/13331292), this
+     * describes the percentage of events used in this report. One
+     * `samplingMetadatas` is populated for each date range. Each
+     * `samplingMetadatas` corresponds to a date range in the order that date
+     * ranges were specified in the request.
+     * However if the results are not sampled, this field will not be defined.
+     *
+     * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.SamplingMetadata sampling_metadatas = 9;</code>
+     * @param array<\Google\Analytics\Data\V1alpha\SamplingMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSamplingMetadatas($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Analytics\Data\V1alpha\SamplingMetadata::class);
+        $this->sampling_metadatas = $arr;
 
         return $this;
     }

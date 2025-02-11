@@ -62,13 +62,14 @@ class RunRealtimeReportResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 row_count = 7;</code>
      */
-    private $row_count = 0;
+    protected $row_count = 0;
     /**
-     * This Analytics Property's Realtime quota state including this request.
+     * This Google Analytics property's Realtime quota state including this
+     * request.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.PropertyQuota property_quota = 8;</code>
      */
-    private $property_quota = null;
+    protected $property_quota = null;
     /**
      * Identifies what kind of resource this message is. This `kind` is always the
      * fixed string "analyticsData#runRealtimeReport". Useful to distinguish
@@ -76,7 +77,7 @@ class RunRealtimeReportResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 9;</code>
      */
-    private $kind = '';
+    protected $kind = '';
 
     /**
      * Constructor.
@@ -105,7 +106,8 @@ class RunRealtimeReportResponse extends \Google\Protobuf\Internal\Message
      *           of 50 in the API request, the response will contain `rowCount` of 175 but
      *           only 50 rows.
      *     @type \Google\Analytics\Data\V1beta\PropertyQuota $property_quota
-     *           This Analytics Property's Realtime quota state including this request.
+     *           This Google Analytics property's Realtime quota state including this
+     *           request.
      *     @type string $kind
      *           Identifies what kind of resource this message is. This `kind` is always the
      *           fixed string "analyticsData#runRealtimeReport". Useful to distinguish
@@ -312,7 +314,8 @@ class RunRealtimeReportResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This Analytics Property's Realtime quota state including this request.
+     * This Google Analytics property's Realtime quota state including this
+     * request.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.PropertyQuota property_quota = 8;</code>
      * @return \Google\Analytics\Data\V1beta\PropertyQuota|null
@@ -333,7 +336,8 @@ class RunRealtimeReportResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This Analytics Property's Realtime quota state including this request.
+     * This Google Analytics property's Realtime quota state including this
+     * request.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.PropertyQuota property_quota = 8;</code>
      * @param \Google\Analytics\Data\V1beta\PropertyQuota $var

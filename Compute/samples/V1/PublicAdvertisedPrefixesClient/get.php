@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_PublicAdvertisedPrefixes_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\PublicAdvertisedPrefixesClient;
+use Google\Cloud\Compute\V1\GetPublicAdvertisedPrefixeRequest;
 use Google\Cloud\Compute\V1\PublicAdvertisedPrefix;
-use Google\Cloud\Compute\V1\PublicAdvertisedPrefixesClient;
 
 /**
  * Returns the specified PublicAdvertisedPrefix resource.
@@ -38,10 +39,15 @@ function get_sample(string $project, string $publicAdvertisedPrefix): void
     // Create a client.
     $publicAdvertisedPrefixesClient = new PublicAdvertisedPrefixesClient();
 
+    // Prepare the request message.
+    $request = (new GetPublicAdvertisedPrefixeRequest())
+        ->setProject($project)
+        ->setPublicAdvertisedPrefix($publicAdvertisedPrefix);
+
     // Call the API and handle any network failures.
     try {
         /** @var PublicAdvertisedPrefix $response */
-        $response = $publicAdvertisedPrefixesClient->get($project, $publicAdvertisedPrefix);
+        $response = $publicAdvertisedPrefixesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

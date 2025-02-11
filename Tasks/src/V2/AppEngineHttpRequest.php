@@ -78,7 +78,7 @@ class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.HttpMethod http_method = 1;</code>
      */
-    private $http_method = 0;
+    protected $http_method = 0;
     /**
      * Task-level setting for App Engine routing.
      * * If [app_engine_routing_override is set on the
@@ -89,7 +89,7 @@ class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.AppEngineRouting app_engine_routing = 2;</code>
      */
-    private $app_engine_routing = null;
+    protected $app_engine_routing = null;
     /**
      * The relative URI.
      * The relative URI must begin with "/" and must be a valid HTTP relative URI.
@@ -99,7 +99,7 @@ class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string relative_uri = 3;</code>
      */
-    private $relative_uri = '';
+    protected $relative_uri = '';
     /**
      * HTTP request headers.
      * This map contains the header field names and values.
@@ -147,7 +147,7 @@ class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes body = 5;</code>
      */
-    private $body = '';
+    protected $body = '';
 
     /**
      * Constructor.

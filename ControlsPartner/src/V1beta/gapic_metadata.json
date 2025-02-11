@@ -10,6 +10,16 @@
                 "grpc": {
                     "libraryClient": "CloudControlsPartnerCoreGapicClient",
                     "rpcs": {
+                        "CreateCustomer": {
+                            "methods": [
+                                "createCustomer"
+                            ]
+                        },
+                        "DeleteCustomer": {
+                            "methods": [
+                                "deleteCustomer"
+                            ]
+                        },
                         "GetCustomer": {
                             "methods": [
                                 "getCustomer"
@@ -48,6 +58,11 @@
                         "ListWorkloads": {
                             "methods": [
                                 "listWorkloads"
+                            ]
+                        },
+                        "UpdateCustomer": {
+                            "methods": [
+                                "updateCustomer"
                             ]
                         }
                     }

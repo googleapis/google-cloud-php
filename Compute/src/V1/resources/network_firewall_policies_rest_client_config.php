@@ -57,6 +57,17 @@ return [
                     ],
                 ],
             ],
+            'AggregatedList' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/aggregated/firewallPolicies',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'CloneRules' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/firewallPolicies/{firewall_policy}/cloneRules',

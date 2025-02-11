@@ -21,7 +21,7 @@ class GenerateStatelessSummaryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.GenerateStatelessSummaryRequest.MinimalConversation stateless_conversation = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $stateless_conversation = null;
+    protected $stateless_conversation = null;
     /**
      * Required. A ConversationProfile containing information required for Summary
      * generation.
@@ -30,7 +30,7 @@ class GenerateStatelessSummaryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ConversationProfile conversation_profile = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $conversation_profile = null;
+    protected $conversation_profile = null;
     /**
      * Optional. The name of the latest conversation message used as context for
      * generating a Summary. If empty, the latest message of the conversation will
@@ -39,7 +39,7 @@ class GenerateStatelessSummaryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string latest_message = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $latest_message = '';
+    protected $latest_message = '';
     /**
      * Optional. Max number of messages prior to and including
      * [latest_message] to use as context when compiling the
@@ -47,7 +47,7 @@ class GenerateStatelessSummaryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_context_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_context_size = 0;
+    protected $max_context_size = 0;
 
     /**
      * Constructor.

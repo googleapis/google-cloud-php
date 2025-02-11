@@ -18,7 +18,9 @@ class ListInstancePartitionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The instance whose instance partitions should be listed. Values
-     * are of the form `projects/<project>/instances/<instance>`.
+     * are of the form `projects/<project>/instances/<instance>`. Use `{instance}
+     * = '-'` to list instance partitions for all Instances in a project, e.g.,
+     * `projects/myproject/instances/-`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -53,7 +55,9 @@ class ListInstancePartitionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The instance whose instance partitions should be listed. Values
-     *                       are of the form `projects/<project>/instances/<instance>`. Please see
+     *                       are of the form `projects/<project>/instances/<instance>`. Use `{instance}
+     *                       = '-'` to list instance partitions for all Instances in a project, e.g.,
+     *                       `projects/myproject/instances/-`. Please see
      *                       {@see InstanceAdminClient::instanceName()} for help formatting this field.
      *
      * @return \Google\Cloud\Spanner\Admin\Instance\V1\ListInstancePartitionsRequest
@@ -74,7 +78,9 @@ class ListInstancePartitionsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The instance whose instance partitions should be listed. Values
-     *           are of the form `projects/<project>/instances/<instance>`.
+     *           are of the form `projects/<project>/instances/<instance>`. Use `{instance}
+     *           = '-'` to list instance partitions for all Instances in a project, e.g.,
+     *           `projects/myproject/instances/-`.
      *     @type int $page_size
      *           Number of instance partitions to be returned in the response. If 0 or less,
      *           defaults to the server's maximum allowed page size.
@@ -99,7 +105,9 @@ class ListInstancePartitionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The instance whose instance partitions should be listed. Values
-     * are of the form `projects/<project>/instances/<instance>`.
+     * are of the form `projects/<project>/instances/<instance>`. Use `{instance}
+     * = '-'` to list instance partitions for all Instances in a project, e.g.,
+     * `projects/myproject/instances/-`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -111,7 +119,9 @@ class ListInstancePartitionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The instance whose instance partitions should be listed. Values
-     * are of the form `projects/<project>/instances/<instance>`.
+     * are of the form `projects/<project>/instances/<instance>`. Use `{instance}
+     * = '-'` to list instance partitions for all Instances in a project, e.g.,
+     * `projects/myproject/instances/-`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

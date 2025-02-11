@@ -39,7 +39,7 @@ class Pivot extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 offset = 3;</code>
      */
-    private $offset = 0;
+    protected $offset = 0;
     /**
      * The number of unique combinations of dimension values to return in this
      * pivot. The `limit` parameter is required. A `limit` of 10,000 is common for
@@ -50,7 +50,7 @@ class Pivot extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 limit = 4;</code>
      */
-    private $limit = 0;
+    protected $limit = 0;
     /**
      * Aggregate the metrics by dimensions in this pivot using the specified
      * metric_aggregations.

@@ -37,12 +37,19 @@ class State
      * Generated from protobuf enum <code>ACTIVE = 3;</code>
      */
     const ACTIVE = 3;
+    /**
+     * Account is suspended.
+     *
+     * Generated from protobuf enum <code>ACCOUNT_SUSPENDED = 4;</code>
+     */
+    const ACCOUNT_SUSPENDED = 4;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
         self::ACCOUNT_NOT_LINKED => 'ACCOUNT_NOT_LINKED',
         self::ACCOUNT_NOT_ACTIVE => 'ACCOUNT_NOT_ACTIVE',
         self::ACTIVE => 'ACTIVE',
+        self::ACCOUNT_SUSPENDED => 'ACCOUNT_SUSPENDED',
     ];
 
     public static function name($value)

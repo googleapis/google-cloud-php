@@ -51,6 +51,23 @@ class LoyaltyProgram extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional int64 loyalty_points = 5;</code>
      */
     protected $loyalty_points = null;
+    /**
+     * A date range during which the item is eligible for member price. If not
+     * specified, the member price is always applicable. The date range is
+     * represented by a pair of ISO 8601 dates separated by a space,
+     * comma, or slash.
+     *
+     * Generated from protobuf field <code>optional .google.type.Interval member_price_effective_date = 6;</code>
+     */
+    protected $member_price_effective_date = null;
+    /**
+     * The label of the shipping benefit. If the field has value, this offer has
+     * loyalty shipping benefit. If the field value isn't provided, the item is
+     * not eligible for loyalty shipping for the given loyalty tier.
+     *
+     * Generated from protobuf field <code>optional string shipping_label = 7;</code>
+     */
+    protected $shipping_label = null;
 
     /**
      * Constructor.
@@ -74,6 +91,15 @@ class LoyaltyProgram extends \Google\Protobuf\Internal\Message
      *           The cashback that can be used for future purchases.
      *     @type int|string $loyalty_points
      *           The amount of loyalty points earned on a purchase.
+     *     @type \Google\Type\Interval $member_price_effective_date
+     *           A date range during which the item is eligible for member price. If not
+     *           specified, the member price is always applicable. The date range is
+     *           represented by a pair of ISO 8601 dates separated by a space,
+     *           comma, or slash.
+     *     @type string $shipping_label
+     *           The label of the shipping benefit. If the field has value, this offer has
+     *           loyalty shipping benefit. If the field value isn't provided, the item is
+     *           not eligible for loyalty shipping for the given loyalty tier.
      * }
      */
     public function __construct($data = NULL) {
@@ -269,6 +295,88 @@ class LoyaltyProgram extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->loyalty_points = $var;
+
+        return $this;
+    }
+
+    /**
+     * A date range during which the item is eligible for member price. If not
+     * specified, the member price is always applicable. The date range is
+     * represented by a pair of ISO 8601 dates separated by a space,
+     * comma, or slash.
+     *
+     * Generated from protobuf field <code>optional .google.type.Interval member_price_effective_date = 6;</code>
+     * @return \Google\Type\Interval|null
+     */
+    public function getMemberPriceEffectiveDate()
+    {
+        return $this->member_price_effective_date;
+    }
+
+    public function hasMemberPriceEffectiveDate()
+    {
+        return isset($this->member_price_effective_date);
+    }
+
+    public function clearMemberPriceEffectiveDate()
+    {
+        unset($this->member_price_effective_date);
+    }
+
+    /**
+     * A date range during which the item is eligible for member price. If not
+     * specified, the member price is always applicable. The date range is
+     * represented by a pair of ISO 8601 dates separated by a space,
+     * comma, or slash.
+     *
+     * Generated from protobuf field <code>optional .google.type.Interval member_price_effective_date = 6;</code>
+     * @param \Google\Type\Interval $var
+     * @return $this
+     */
+    public function setMemberPriceEffectiveDate($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Type\Interval::class);
+        $this->member_price_effective_date = $var;
+
+        return $this;
+    }
+
+    /**
+     * The label of the shipping benefit. If the field has value, this offer has
+     * loyalty shipping benefit. If the field value isn't provided, the item is
+     * not eligible for loyalty shipping for the given loyalty tier.
+     *
+     * Generated from protobuf field <code>optional string shipping_label = 7;</code>
+     * @return string
+     */
+    public function getShippingLabel()
+    {
+        return isset($this->shipping_label) ? $this->shipping_label : '';
+    }
+
+    public function hasShippingLabel()
+    {
+        return isset($this->shipping_label);
+    }
+
+    public function clearShippingLabel()
+    {
+        unset($this->shipping_label);
+    }
+
+    /**
+     * The label of the shipping benefit. If the field has value, this offer has
+     * loyalty shipping benefit. If the field value isn't provided, the item is
+     * not eligible for loyalty shipping for the given loyalty tier.
+     *
+     * Generated from protobuf field <code>optional string shipping_label = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setShippingLabel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->shipping_label = $var;
 
         return $this;
     }

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_Snapshots_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\SnapshotsClient;
+use Google\Cloud\Compute\V1\GetSnapshotRequest;
 use Google\Cloud\Compute\V1\Snapshot;
-use Google\Cloud\Compute\V1\SnapshotsClient;
 
 /**
  * Returns the specified Snapshot resource.
@@ -38,10 +39,15 @@ function get_sample(string $project, string $snapshot): void
     // Create a client.
     $snapshotsClient = new SnapshotsClient();
 
+    // Prepare the request message.
+    $request = (new GetSnapshotRequest())
+        ->setProject($project)
+        ->setSnapshot($snapshot);
+
     // Call the API and handle any network failures.
     try {
         /** @var Snapshot $response */
-        $response = $snapshotsClient->get($project, $snapshot);
+        $response = $snapshotsClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

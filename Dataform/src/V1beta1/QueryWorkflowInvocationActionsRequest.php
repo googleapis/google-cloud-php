@@ -20,7 +20,7 @@ class QueryWorkflowInvocationActionsRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Maximum number of workflow invocations to return. The server may
      * return fewer items than requested. If unspecified, the server will pick an
@@ -28,7 +28,7 @@ class QueryWorkflowInvocationActionsRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. Page token received from a previous
      * `QueryWorkflowInvocationActions` call. Provide this to retrieve the
@@ -39,7 +39,7 @@ class QueryWorkflowInvocationActionsRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * Constructor.

@@ -29,7 +29,10 @@ use Google\Apps\Meet\V2\Space;
 use Google\Apps\Meet\V2\UpdateSpaceRequest;
 
 /**
- * Updates a space.
+ * Updates details about a meeting space.
+ *
+ * For an example, see [Update a meeting
+ * space](https://developers.google.com/meet/api/guides/meeting-spaces#update-meeting-space).
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

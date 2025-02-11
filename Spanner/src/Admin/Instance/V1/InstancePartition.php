@@ -72,12 +72,14 @@ class InstancePartition extends \Google\Protobuf\Internal\Message
      */
     private $referencing_databases;
     /**
+     * Output only. Deprecated: This field is not populated.
      * Output only. The names of the backups that reference this instance
      * partition. Referencing backups should share the parent instance. The
      * existence of any referencing backup prevents the instance partition from
      * being deleted.
      *
-     * Generated from protobuf field <code>repeated string referencing_backups = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated string referencing_backups = 11 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     private $referencing_backups;
     /**
@@ -120,16 +122,16 @@ class InstancePartition extends \Google\Protobuf\Internal\Message
      *           UIs. Must be unique per project and between 4 and 30 characters in length.
      *     @type int $node_count
      *           The number of nodes allocated to this instance partition.
-     *           Users can set the node_count field to specify the target number of nodes
-     *           allocated to the instance partition.
+     *           Users can set the `node_count` field to specify the target number of
+     *           nodes allocated to the instance partition.
      *           This may be zero in API responses for instance partitions that are not
      *           yet in state `READY`.
      *     @type int $processing_units
      *           The number of processing units allocated to this instance partition.
-     *           Users can set the processing_units field to specify the target number of
-     *           processing units allocated to the instance partition.
-     *           This may be zero in API responses for instance partitions that are not
-     *           yet in state `READY`.
+     *           Users can set the `processing_units` field to specify the target number
+     *           of processing units allocated to the instance partition.
+     *           This might be zero in API responses for instance partitions that are not
+     *           yet in the `READY` state.
      *     @type int $state
      *           Output only. The current instance partition state.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -143,6 +145,7 @@ class InstancePartition extends \Google\Protobuf\Internal\Message
      *           The existence of any referencing database prevents the instance partition
      *           from being deleted.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $referencing_backups
+     *           Output only. Deprecated: This field is not populated.
      *           Output only. The names of the backups that reference this instance
      *           partition. Referencing backups should share the parent instance. The
      *           existence of any referencing backup prevents the instance partition from
@@ -263,8 +266,8 @@ class InstancePartition extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of nodes allocated to this instance partition.
-     * Users can set the node_count field to specify the target number of nodes
-     * allocated to the instance partition.
+     * Users can set the `node_count` field to specify the target number of
+     * nodes allocated to the instance partition.
      * This may be zero in API responses for instance partitions that are not
      * yet in state `READY`.
      *
@@ -283,8 +286,8 @@ class InstancePartition extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of nodes allocated to this instance partition.
-     * Users can set the node_count field to specify the target number of nodes
-     * allocated to the instance partition.
+     * Users can set the `node_count` field to specify the target number of
+     * nodes allocated to the instance partition.
      * This may be zero in API responses for instance partitions that are not
      * yet in state `READY`.
      *
@@ -302,10 +305,10 @@ class InstancePartition extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of processing units allocated to this instance partition.
-     * Users can set the processing_units field to specify the target number of
-     * processing units allocated to the instance partition.
-     * This may be zero in API responses for instance partitions that are not
-     * yet in state `READY`.
+     * Users can set the `processing_units` field to specify the target number
+     * of processing units allocated to the instance partition.
+     * This might be zero in API responses for instance partitions that are not
+     * yet in the `READY` state.
      *
      * Generated from protobuf field <code>int32 processing_units = 6;</code>
      * @return int
@@ -322,10 +325,10 @@ class InstancePartition extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of processing units allocated to this instance partition.
-     * Users can set the processing_units field to specify the target number of
-     * processing units allocated to the instance partition.
-     * This may be zero in API responses for instance partitions that are not
-     * yet in state `READY`.
+     * Users can set the `processing_units` field to specify the target number
+     * of processing units allocated to the instance partition.
+     * This might be zero in API responses for instance partitions that are not
+     * yet in the `READY` state.
      *
      * Generated from protobuf field <code>int32 processing_units = 6;</code>
      * @param int $var
@@ -472,31 +475,37 @@ class InstancePartition extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. Deprecated: This field is not populated.
      * Output only. The names of the backups that reference this instance
      * partition. Referencing backups should share the parent instance. The
      * existence of any referencing backup prevents the instance partition from
      * being deleted.
      *
-     * Generated from protobuf field <code>repeated string referencing_backups = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated string referencing_backups = 11 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getReferencingBackups()
     {
+        @trigger_error('referencing_backups is deprecated.', E_USER_DEPRECATED);
         return $this->referencing_backups;
     }
 
     /**
+     * Output only. Deprecated: This field is not populated.
      * Output only. The names of the backups that reference this instance
      * partition. Referencing backups should share the parent instance. The
      * existence of any referencing backup prevents the instance partition from
      * being deleted.
      *
-     * Generated from protobuf field <code>repeated string referencing_backups = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated string referencing_backups = 11 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setReferencingBackups($var)
     {
+        @trigger_error('referencing_backups is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->referencing_backups = $arr;
 

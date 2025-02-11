@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -73,7 +73,9 @@ class CloudTasksClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return CloudTasksClient */
@@ -101,9 +103,7 @@ class CloudTasksClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $queue = new Queue();
-        $request = (new CreateQueueRequest())
-            ->setParent($formattedParent)
-            ->setQueue($queue);
+        $request = (new CreateQueueRequest())->setParent($formattedParent)->setQueue($queue);
         $response = $gapicClient->createQueue($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -129,19 +129,20 @@ class CloudTasksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $queue = new Queue();
-        $request = (new CreateQueueRequest())
-            ->setParent($formattedParent)
-            ->setQueue($queue);
+        $request = (new CreateQueueRequest())->setParent($formattedParent)->setQueue($queue);
         try {
             $gapicClient->createQueue($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -175,9 +176,7 @@ class CloudTasksClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
         $task = new Task();
-        $request = (new CreateTaskRequest())
-            ->setParent($formattedParent)
-            ->setTask($task);
+        $request = (new CreateTaskRequest())->setParent($formattedParent)->setTask($task);
         $response = $gapicClient->createTask($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -203,19 +202,20 @@ class CloudTasksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
         $task = new Task();
-        $request = (new CreateTaskRequest())
-            ->setParent($formattedParent)
-            ->setTask($task);
+        $request = (new CreateTaskRequest())->setParent($formattedParent)->setTask($task);
         try {
             $gapicClient->createTask($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -242,8 +242,7 @@ class CloudTasksClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $request = (new DeleteQueueRequest())
-            ->setName($formattedName);
+        $request = (new DeleteQueueRequest())->setName($formattedName);
         $gapicClient->deleteQueue($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -266,17 +265,19 @@ class CloudTasksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $request = (new DeleteQueueRequest())
-            ->setName($formattedName);
+        $request = (new DeleteQueueRequest())->setName($formattedName);
         try {
             $gapicClient->deleteQueue($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -303,8 +304,7 @@ class CloudTasksClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[QUEUE]', '[TASK]');
-        $request = (new DeleteTaskRequest())
-            ->setName($formattedName);
+        $request = (new DeleteTaskRequest())->setName($formattedName);
         $gapicClient->deleteTask($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -327,17 +327,19 @@ class CloudTasksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[QUEUE]', '[TASK]');
-        $request = (new DeleteTaskRequest())
-            ->setName($formattedName);
+        $request = (new DeleteTaskRequest())->setName($formattedName);
         try {
             $gapicClient->deleteTask($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -368,8 +370,7 @@ class CloudTasksClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -393,17 +394,19 @@ class CloudTasksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -432,8 +435,7 @@ class CloudTasksClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $request = (new GetQueueRequest())
-            ->setName($formattedName);
+        $request = (new GetQueueRequest())->setName($formattedName);
         $response = $gapicClient->getQueue($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -457,17 +459,19 @@ class CloudTasksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $request = (new GetQueueRequest())
-            ->setName($formattedName);
+        $request = (new GetQueueRequest())->setName($formattedName);
         try {
             $gapicClient->getQueue($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -500,8 +504,7 @@ class CloudTasksClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[QUEUE]', '[TASK]');
-        $request = (new GetTaskRequest())
-            ->setName($formattedName);
+        $request = (new GetTaskRequest())->setName($formattedName);
         $response = $gapicClient->getTask($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -525,17 +528,19 @@ class CloudTasksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[QUEUE]', '[TASK]');
-        $request = (new GetTaskRequest())
-            ->setName($formattedName);
+        $request = (new GetTaskRequest())->setName($formattedName);
         try {
             $gapicClient->getTask($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -560,17 +565,14 @@ class CloudTasksClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $queuesElement = new Queue();
-        $queues = [
-            $queuesElement,
-        ];
+        $queues = [$queuesElement];
         $expectedResponse = new ListQueuesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setQueues($queues);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListQueuesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListQueuesRequest())->setParent($formattedParent);
         $response = $gapicClient->listQueues($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -597,17 +599,19 @@ class CloudTasksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListQueuesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListQueuesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listQueues($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -632,17 +636,14 @@ class CloudTasksClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $tasksElement = new Task();
-        $tasks = [
-            $tasksElement,
-        ];
+        $tasks = [$tasksElement];
         $expectedResponse = new ListTasksResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTasks($tasks);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $request = (new ListTasksRequest())
-            ->setParent($formattedParent);
+        $request = (new ListTasksRequest())->setParent($formattedParent);
         $response = $gapicClient->listTasks($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -669,17 +670,19 @@ class CloudTasksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $request = (new ListTasksRequest())
-            ->setParent($formattedParent);
+        $request = (new ListTasksRequest())->setParent($formattedParent);
         try {
             $gapicClient->listTasks($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -708,8 +711,7 @@ class CloudTasksClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $request = (new PauseQueueRequest())
-            ->setName($formattedName);
+        $request = (new PauseQueueRequest())->setName($formattedName);
         $response = $gapicClient->pauseQueue($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -733,17 +735,19 @@ class CloudTasksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $request = (new PauseQueueRequest())
-            ->setName($formattedName);
+        $request = (new PauseQueueRequest())->setName($formattedName);
         try {
             $gapicClient->pauseQueue($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -772,8 +776,7 @@ class CloudTasksClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $request = (new PurgeQueueRequest())
-            ->setName($formattedName);
+        $request = (new PurgeQueueRequest())->setName($formattedName);
         $response = $gapicClient->purgeQueue($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -797,17 +800,19 @@ class CloudTasksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $request = (new PurgeQueueRequest())
-            ->setName($formattedName);
+        $request = (new PurgeQueueRequest())->setName($formattedName);
         try {
             $gapicClient->purgeQueue($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -836,8 +841,7 @@ class CloudTasksClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $request = (new ResumeQueueRequest())
-            ->setName($formattedName);
+        $request = (new ResumeQueueRequest())->setName($formattedName);
         $response = $gapicClient->resumeQueue($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -861,17 +865,19 @@ class CloudTasksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $request = (new ResumeQueueRequest())
-            ->setName($formattedName);
+        $request = (new ResumeQueueRequest())->setName($formattedName);
         try {
             $gapicClient->resumeQueue($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -904,8 +910,7 @@ class CloudTasksClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[QUEUE]', '[TASK]');
-        $request = (new RunTaskRequest())
-            ->setName($formattedName);
+        $request = (new RunTaskRequest())->setName($formattedName);
         $response = $gapicClient->runTask($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -929,17 +934,19 @@ class CloudTasksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[QUEUE]', '[TASK]');
-        $request = (new RunTaskRequest())
-            ->setName($formattedName);
+        $request = (new RunTaskRequest())->setName($formattedName);
         try {
             $gapicClient->runTask($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -971,9 +978,7 @@ class CloudTasksClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -999,19 +1004,20 @@ class CloudTasksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1039,9 +1045,7 @@ class CloudTasksClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1067,19 +1071,20 @@ class CloudTasksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1108,8 +1113,7 @@ class CloudTasksClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $queue = new Queue();
-        $request = (new UpdateQueueRequest())
-            ->setQueue($queue);
+        $request = (new UpdateQueueRequest())->setQueue($queue);
         $response = $gapicClient->updateQueue($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1133,17 +1137,19 @@ class CloudTasksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $queue = new Queue();
-        $request = (new UpdateQueueRequest())
-            ->setQueue($queue);
+        $request = (new UpdateQueueRequest())->setQueue($queue);
         try {
             $gapicClient->updateQueue($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1196,12 +1202,15 @@ class CloudTasksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -1228,9 +1237,7 @@ class CloudTasksClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -1260,12 +1267,15 @@ class CloudTasksClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -1297,9 +1307,7 @@ class CloudTasksClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $queue = new Queue();
-        $request = (new CreateQueueRequest())
-            ->setParent($formattedParent)
-            ->setQueue($queue);
+        $request = (new CreateQueueRequest())->setParent($formattedParent)->setQueue($queue);
         $response = $gapicClient->createQueueAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

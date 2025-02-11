@@ -87,6 +87,18 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 chain_storage_bytes = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $chain_storage_bytes = 0;
+    /**
+     * Output only. Reserved for future use
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
+    /**
+     * Output only. Reserved for future use
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = false;
 
     /**
      * Constructor.
@@ -126,6 +138,10 @@ class Backup extends \Google\Protobuf\Internal\Message
      *     @type int|string $chain_storage_bytes
      *           Output only. Total size of all backups in a chain in bytes = baseline
      *           backup size + sum(incremental backup size)
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use
      * }
      */
     public function __construct($data = NULL) {
@@ -433,6 +449,58 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->chain_storage_bytes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. Reserved for future use
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

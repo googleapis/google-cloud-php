@@ -21,10 +21,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class Thread extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource name of the thread.
+     * Identifier. Resource name of the thread.
      * Example: `spaces/{space}/threads/{thread}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -47,7 +47,7 @@ class Thread extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Resource name of the thread.
+     *           Identifier. Resource name of the thread.
      *           Example: `spaces/{space}/threads/{thread}`
      *     @type string $thread_key
      *           Optional. Input for creating or updating a thread. Otherwise, output only.
@@ -65,10 +65,10 @@ class Thread extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the thread.
+     * Identifier. Resource name of the thread.
      * Example: `spaces/{space}/threads/{thread}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -77,10 +77,10 @@ class Thread extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the thread.
+     * Identifier. Resource name of the thread.
      * Example: `spaces/{space}/threads/{thread}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

@@ -24,9 +24,9 @@ class Emoji extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $unicode
-     *           A basic emoji represented by a unicode string.
+     *           Optional. A basic emoji represented by a unicode string.
      *     @type \Google\Apps\Chat\V1\CustomEmoji $custom_emoji
-     *           Output only. A custom emoji.
+     *           A custom emoji.
      * }
      */
     public function __construct($data = NULL) {
@@ -35,9 +35,9 @@ class Emoji extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A basic emoji represented by a unicode string.
+     * Optional. A basic emoji represented by a unicode string.
      *
-     * Generated from protobuf field <code>string unicode = 1;</code>
+     * Generated from protobuf field <code>string unicode = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getUnicode()
@@ -51,9 +51,9 @@ class Emoji extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A basic emoji represented by a unicode string.
+     * Optional. A basic emoji represented by a unicode string.
      *
-     * Generated from protobuf field <code>string unicode = 1;</code>
+     * Generated from protobuf field <code>string unicode = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -66,9 +66,9 @@ class Emoji extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A custom emoji.
+     * A custom emoji.
      *
-     * Generated from protobuf field <code>.google.chat.v1.CustomEmoji custom_emoji = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.chat.v1.CustomEmoji custom_emoji = 2;</code>
      * @return \Google\Apps\Chat\V1\CustomEmoji|null
      */
     public function getCustomEmoji()
@@ -82,9 +82,9 @@ class Emoji extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A custom emoji.
+     * A custom emoji.
      *
-     * Generated from protobuf field <code>.google.chat.v1.CustomEmoji custom_emoji = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.chat.v1.CustomEmoji custom_emoji = 2;</code>
      * @param \Google\Apps\Chat\V1\CustomEmoji $var
      * @return $this
      */

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_FirewallPolicies_AddAssociation_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\FirewallPoliciesClient;
+use Google\Cloud\Compute\V1\AddAssociationFirewallPolicyRequest;
+use Google\Cloud\Compute\V1\Client\FirewallPoliciesClient;
 use Google\Cloud\Compute\V1\FirewallPolicyAssociation;
 use Google\Rpc\Status;
 
@@ -39,16 +40,16 @@ function add_association_sample(string $firewallPolicy): void
     // Create a client.
     $firewallPoliciesClient = new FirewallPoliciesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $firewallPolicyAssociationResource = new FirewallPolicyAssociation();
+    $request = (new AddAssociationFirewallPolicyRequest())
+        ->setFirewallPolicy($firewallPolicy)
+        ->setFirewallPolicyAssociationResource($firewallPolicyAssociationResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $firewallPoliciesClient->addAssociation(
-            $firewallPolicy,
-            $firewallPolicyAssociationResource
-        );
+        $response = $firewallPoliciesClient->addAssociation($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

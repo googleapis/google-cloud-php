@@ -36,6 +36,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\GkeConnect\Gateway\V1beta1\GenerateCredentialsRequest;
 use Google\Cloud\GkeConnect\Gateway\V1beta1\GenerateCredentialsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: GatewayControl is the control plane API for Connect Gateway.
@@ -71,9 +72,7 @@ final class GatewayControlClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -103,9 +102,7 @@ final class GatewayControlClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -125,6 +122,12 @@ final class GatewayControlClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -155,6 +158,9 @@ final class GatewayControlClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -202,8 +208,10 @@ final class GatewayControlClient
      *
      * @experimental
      */
-    public function generateCredentials(GenerateCredentialsRequest $request, array $callOptions = []): GenerateCredentialsResponse
-    {
+    public function generateCredentials(
+        GenerateCredentialsRequest $request,
+        array $callOptions = []
+    ): GenerateCredentialsResponse {
         return $this->startApiCall('GenerateCredentials', $request, $callOptions)->wait();
     }
 }

@@ -58,14 +58,19 @@ use Google\Cloud\DataCatalog\V1\ListEntriesRequest;
 use Google\Cloud\DataCatalog\V1\ListEntryGroupsRequest;
 use Google\Cloud\DataCatalog\V1\ListTagsRequest;
 use Google\Cloud\DataCatalog\V1\LookupEntryRequest;
+use Google\Cloud\DataCatalog\V1\MigrationConfig;
 use Google\Cloud\DataCatalog\V1\ModifyEntryContactsRequest;
 use Google\Cloud\DataCatalog\V1\ModifyEntryOverviewRequest;
+use Google\Cloud\DataCatalog\V1\OrganizationConfig;
 use Google\Cloud\DataCatalog\V1\ReconcileTagsMetadata;
 use Google\Cloud\DataCatalog\V1\ReconcileTagsRequest;
 use Google\Cloud\DataCatalog\V1\ReconcileTagsResponse;
 use Google\Cloud\DataCatalog\V1\RenameTagTemplateFieldEnumValueRequest;
 use Google\Cloud\DataCatalog\V1\RenameTagTemplateFieldRequest;
+use Google\Cloud\DataCatalog\V1\RetrieveConfigRequest;
+use Google\Cloud\DataCatalog\V1\RetrieveEffectiveConfigRequest;
 use Google\Cloud\DataCatalog\V1\SearchCatalogRequest;
+use Google\Cloud\DataCatalog\V1\SetConfigRequest;
 use Google\Cloud\DataCatalog\V1\StarEntryRequest;
 use Google\Cloud\DataCatalog\V1\StarEntryResponse;
 use Google\Cloud\DataCatalog\V1\Tag;
@@ -86,6 +91,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Data Catalog API service allows you to discover, understand, and manage
@@ -123,7 +129,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface<OperationResponse> reconcileTagsAsync(ReconcileTagsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TagTemplateField> renameTagTemplateFieldAsync(RenameTagTemplateFieldRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TagTemplateField> renameTagTemplateFieldEnumValueAsync(RenameTagTemplateFieldEnumValueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OrganizationConfig> retrieveConfigAsync(RetrieveConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MigrationConfig> retrieveEffectiveConfigAsync(RetrieveEffectiveConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> searchCatalogAsync(SearchCatalogRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MigrationConfig> setConfigAsync(SetConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<StarEntryResponse> starEntryAsync(StarEntryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
@@ -407,14 +416,14 @@ final class DataCatalogClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -436,6 +445,12 @@ final class DataCatalogClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -469,6 +484,9 @@ final class DataCatalogClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -1263,6 +1281,66 @@ final class DataCatalogClient
     }
 
     /**
+     * Retrieves the configuration related to the migration from Data Catalog to
+     * Dataplex for a specific organization, including all the projects under it
+     * which have a separate configuration set.
+     *
+     * The async variant is {@see DataCatalogClient::retrieveConfigAsync()} .
+     *
+     * @example samples/V1/DataCatalogClient/retrieve_config.php
+     *
+     * @param RetrieveConfigRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OrganizationConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function retrieveConfig(RetrieveConfigRequest $request, array $callOptions = []): OrganizationConfig
+    {
+        return $this->startApiCall('RetrieveConfig', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Retrieves the effective configuration related to the migration from Data
+     * Catalog to Dataplex for a specific organization or project. If there is no
+     * specific configuration set for the resource, the setting is checked
+     * hierarchicahlly through the ancestors of the resource, starting from the
+     * resource itself.
+     *
+     * The async variant is {@see DataCatalogClient::retrieveEffectiveConfigAsync()} .
+     *
+     * @example samples/V1/DataCatalogClient/retrieve_effective_config.php
+     *
+     * @param RetrieveEffectiveConfigRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return MigrationConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function retrieveEffectiveConfig(
+        RetrieveEffectiveConfigRequest $request,
+        array $callOptions = []
+    ): MigrationConfig {
+        return $this->startApiCall('RetrieveEffectiveConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Searches Data Catalog for multiple resources like entries and tags that
      * match a query.
      *
@@ -1300,6 +1378,33 @@ final class DataCatalogClient
     public function searchCatalog(SearchCatalogRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('SearchCatalog', $request, $callOptions);
+    }
+
+    /**
+     * Sets the configuration related to the migration to Dataplex for an
+     * organization or project.
+     *
+     * The async variant is {@see DataCatalogClient::setConfigAsync()} .
+     *
+     * @example samples/V1/DataCatalogClient/set_config.php
+     *
+     * @param SetConfigRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return MigrationConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setConfig(SetConfigRequest $request, array $callOptions = []): MigrationConfig
+    {
+        return $this->startApiCall('SetConfig', $request, $callOptions)->wait();
     }
 
     /**

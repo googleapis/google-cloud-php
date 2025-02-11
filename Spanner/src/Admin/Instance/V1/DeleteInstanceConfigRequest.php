@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The request for
- * [DeleteInstanceConfigRequest][InstanceAdmin.DeleteInstanceConfigRequest].
+ * [DeleteInstanceConfig][google.spanner.admin.instance.v1.InstanceAdmin.DeleteInstanceConfig].
  *
  * Generated from protobuf message <code>google.spanner.admin.instance.v1.DeleteInstanceConfigRequest</code>
  */
