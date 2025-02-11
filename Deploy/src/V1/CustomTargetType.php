@@ -19,12 +19,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class CustomTargetType extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Name of the `CustomTargetType`. Format is
+     * Identifier. Name of the `CustomTargetType`. Format is
      * `projects/{project}/locations/{location}/customTargetTypes/{customTargetType}`.
      * The `customTargetType` component must match
      * `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -98,7 +98,7 @@ class CustomTargetType extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Optional. Name of the `CustomTargetType`. Format is
+     *           Identifier. Name of the `CustomTargetType`. Format is
      *           `projects/{project}/locations/{location}/customTargetTypes/{customTargetType}`.
      *           The `customTargetType` component must match
      *           `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
@@ -133,8 +133,8 @@ class CustomTargetType extends \Google\Protobuf\Internal\Message
      *           other fields, and may be sent on update and delete requests to ensure the
      *           client has an up-to-date value before proceeding.
      *     @type \Google\Cloud\Deploy\V1\CustomTargetSkaffoldActions $custom_actions
-     *           Configures render and deploy for the `CustomTargetType` using Skaffold
-     *           custom actions.
+     *           Optional. Configures render and deploy for the `CustomTargetType` using
+     *           Skaffold custom actions.
      * }
      */
     public function __construct($data = NULL) {
@@ -143,12 +143,12 @@ class CustomTargetType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the `CustomTargetType`. Format is
+     * Identifier. Name of the `CustomTargetType`. Format is
      * `projects/{project}/locations/{location}/customTargetTypes/{customTargetType}`.
      * The `customTargetType` component must match
      * `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -157,12 +157,12 @@ class CustomTargetType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the `CustomTargetType`. Format is
+     * Identifier. Name of the `CustomTargetType`. Format is
      * `projects/{project}/locations/{location}/customTargetTypes/{customTargetType}`.
      * The `customTargetType` component must match
      * `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -431,10 +431,10 @@ class CustomTargetType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configures render and deploy for the `CustomTargetType` using Skaffold
-     * custom actions.
+     * Optional. Configures render and deploy for the `CustomTargetType` using
+     * Skaffold custom actions.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomTargetSkaffoldActions custom_actions = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomTargetSkaffoldActions custom_actions = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Deploy\V1\CustomTargetSkaffoldActions|null
      */
     public function getCustomActions()
@@ -448,10 +448,10 @@ class CustomTargetType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configures render and deploy for the `CustomTargetType` using Skaffold
-     * custom actions.
+     * Optional. Configures render and deploy for the `CustomTargetType` using
+     * Skaffold custom actions.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomTargetSkaffoldActions custom_actions = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomTargetSkaffoldActions custom_actions = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Deploy\V1\CustomTargetSkaffoldActions $var
      * @return $this
      */
