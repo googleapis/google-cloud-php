@@ -26,7 +26,7 @@ class Batch
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-†
+ï
 !google/cloud/batch/v1/batch.protogoogle.cloud.batch.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/field_info.protogoogle/api/resource.protogoogle/cloud/batch/v1/job.proto google/cloud/batch/v1/task.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"›
 CreateJobRequest0
 parent (	B àAúAbatch.googleapis.com/Job
@@ -41,7 +41,13 @@ request_id (	BàA"?
 name (	
 reason (	BàA
 
-request_id (	BàA"o
+request_id (	BàA"c
+CancelJobRequest.
+name (	B àAúA
+batch.googleapis.com/Job
+
+request_id (	BàAâŒÏ×"
+CancelJobResponse"o
 ListJobsRequest
 parent (	
 filter (	
@@ -74,12 +80,15 @@ page_token (	"m
 verb (	BàA
 status_message (	BàA#
 requested_cancellation (BàA
-api_version (	BàA2¶
+api_version (	BàA2¥
+
 BatchService›
 	CreateJob\'.google.cloud.batch.v1.CreateJobRequest.google.cloud.batch.v1.Job"IÚAparent,job,job_id‚Óä“/"(/v1/{parent=projects/*/locations/*}/jobs:jobƒ
 GetJob$.google.cloud.batch.v1.GetJobRequest.google.cloud.batch.v1.Job"7ÚAname‚Óä“*(/v1/{name=projects/*/locations/*/jobs/*}Ï
 	DeleteJob\'.google.cloud.batch.v1.DeleteJobRequest.google.longrunning.Operation"zÊA@
-google.protobuf.Empty\'google.cloud.batch.v1.OperationMetadataÚAname‚Óä“**(/v1/{name=projects/*/locations/*/jobs/*}–
+google.protobuf.Empty\'google.cloud.batch.v1.OperationMetadataÚAname‚Óä“**(/v1/{name=projects/*/locations/*/jobs/*}ì
+	CancelJob\'.google.cloud.batch.v1.CancelJobRequest.google.longrunning.Operation"–ÊAR
+\'google.cloud.batch.v1.CancelJobResponse\'google.cloud.batch.v1.OperationMetadataÚAname‚Óä“4"//v1/{name=projects/*/locations/*/jobs/*}:cancel:*–
 ListJobs&.google.cloud.batch.v1.ListJobsRequest\'.google.cloud.batch.v1.ListJobsResponse"9ÚAparent‚Óä“*(/v1/{parent=projects/*/locations/*}/jobs›
 GetTask%.google.cloud.batch.v1.GetTaskRequest.google.cloud.batch.v1.Task"LÚAname‚Óä“?=/v1/{name=projects/*/locations/*/jobs/*/taskGroups/*/tasks/*}®
 	ListTasks\'.google.cloud.batch.v1.ListTasksRequest(.google.cloud.batch.v1.ListTasksResponse"NÚAparent‚Óä“?=/v1/{parent=projects/*/locations/*/jobs/*/taskGroups/*}/tasksHÊAbatch.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB«
