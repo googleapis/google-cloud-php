@@ -32,14 +32,14 @@ class DeployPolicy extends \Google\Protobuf\Internal\Message
      */
     protected $uid = '';
     /**
-     * Description of the `DeployPolicy`. Max length is 255 characters.
+     * Optional. Description of the `DeployPolicy`. Max length is 255 characters.
      *
-     * Generated from protobuf field <code>string description = 3;</code>
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $description = '';
     /**
-     * User annotations. These attributes can only be set and used by the
-     * user, and not by Cloud Deploy. Annotations must meet the following
+     * Optional. User annotations. These attributes can only be set and used by
+     * the user, and not by Cloud Deploy. Annotations must meet the following
      * constraints:
      * * Annotations are key/value pairs.
      * * Valid annotation keys have two segments: an optional prefix and name,
@@ -54,7 +54,7 @@ class DeployPolicy extends \Google\Protobuf\Internal\Message
      * https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/#syntax-and-character-set
      * for more details.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 4;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $annotations;
     /**
@@ -84,10 +84,10 @@ class DeployPolicy extends \Google\Protobuf\Internal\Message
      */
     protected $update_time = null;
     /**
-     * When suspended, the policy will not prevent actions from occurring, even
-     * if the action violates the policy.
+     * Optional. When suspended, the policy will not prevent actions from
+     * occurring, even if the action violates the policy.
      *
-     * Generated from protobuf field <code>bool suspended = 8;</code>
+     * Generated from protobuf field <code>bool suspended = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $suspended = false;
     /**
@@ -128,10 +128,10 @@ class DeployPolicy extends \Google\Protobuf\Internal\Message
      *     @type string $uid
      *           Output only. Unique identifier of the `DeployPolicy`.
      *     @type string $description
-     *           Description of the `DeployPolicy`. Max length is 255 characters.
+     *           Optional. Description of the `DeployPolicy`. Max length is 255 characters.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
-     *           User annotations. These attributes can only be set and used by the
-     *           user, and not by Cloud Deploy. Annotations must meet the following
+     *           Optional. User annotations. These attributes can only be set and used by
+     *           the user, and not by Cloud Deploy. Annotations must meet the following
      *           constraints:
      *           * Annotations are key/value pairs.
      *           * Valid annotation keys have two segments: an optional prefix and name,
@@ -160,8 +160,8 @@ class DeployPolicy extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Most recent time at which the deploy policy was updated.
      *     @type bool $suspended
-     *           When suspended, the policy will not prevent actions from occurring, even
-     *           if the action violates the policy.
+     *           Optional. When suspended, the policy will not prevent actions from
+     *           occurring, even if the action violates the policy.
      *     @type array<\Google\Cloud\Deploy\V1\DeployPolicyResourceSelector>|\Google\Protobuf\Internal\RepeatedField $selectors
      *           Required. Selected resources to which the policy will be applied. At least
      *           one selector is required. If one selector matches the resource the policy
@@ -238,9 +238,9 @@ class DeployPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Description of the `DeployPolicy`. Max length is 255 characters.
+     * Optional. Description of the `DeployPolicy`. Max length is 255 characters.
      *
-     * Generated from protobuf field <code>string description = 3;</code>
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -249,9 +249,9 @@ class DeployPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Description of the `DeployPolicy`. Max length is 255 characters.
+     * Optional. Description of the `DeployPolicy`. Max length is 255 characters.
      *
-     * Generated from protobuf field <code>string description = 3;</code>
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -264,8 +264,8 @@ class DeployPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User annotations. These attributes can only be set and used by the
-     * user, and not by Cloud Deploy. Annotations must meet the following
+     * Optional. User annotations. These attributes can only be set and used by
+     * the user, and not by Cloud Deploy. Annotations must meet the following
      * constraints:
      * * Annotations are key/value pairs.
      * * Valid annotation keys have two segments: an optional prefix and name,
@@ -280,7 +280,7 @@ class DeployPolicy extends \Google\Protobuf\Internal\Message
      * https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/#syntax-and-character-set
      * for more details.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 4;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getAnnotations()
@@ -289,8 +289,8 @@ class DeployPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User annotations. These attributes can only be set and used by the
-     * user, and not by Cloud Deploy. Annotations must meet the following
+     * Optional. User annotations. These attributes can only be set and used by
+     * the user, and not by Cloud Deploy. Annotations must meet the following
      * constraints:
      * * Annotations are key/value pairs.
      * * Valid annotation keys have two segments: an optional prefix and name,
@@ -305,7 +305,7 @@ class DeployPolicy extends \Google\Protobuf\Internal\Message
      * https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/#syntax-and-character-set
      * for more details.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 4;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -432,10 +432,10 @@ class DeployPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When suspended, the policy will not prevent actions from occurring, even
-     * if the action violates the policy.
+     * Optional. When suspended, the policy will not prevent actions from
+     * occurring, even if the action violates the policy.
      *
-     * Generated from protobuf field <code>bool suspended = 8;</code>
+     * Generated from protobuf field <code>bool suspended = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getSuspended()
@@ -444,10 +444,10 @@ class DeployPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When suspended, the policy will not prevent actions from occurring, even
-     * if the action violates the policy.
+     * Optional. When suspended, the policy will not prevent actions from
+     * occurring, even if the action violates the policy.
      *
-     * Generated from protobuf field <code>bool suspended = 8;</code>
+     * Generated from protobuf field <code>bool suspended = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

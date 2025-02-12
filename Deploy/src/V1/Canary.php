@@ -36,11 +36,11 @@ class Canary extends \Google\Protobuf\Internal\Message
      *           runtime configuration is used to determine how Cloud Deploy will split
      *           traffic to enable a progressive deployment.
      *     @type \Google\Cloud\Deploy\V1\CanaryDeployment $canary_deployment
-     *           Configures the progressive based deployment for a Target.
+     *           Optional. Configures the progressive based deployment for a Target.
      *     @type \Google\Cloud\Deploy\V1\CustomCanaryDeployment $custom_canary_deployment
-     *           Configures the progressive based deployment for a Target, but allows
-     *           customizing at the phase level where a phase represents each of the
-     *           percentage deployments.
+     *           Optional. Configures the progressive based deployment for a Target, but
+     *           allows customizing at the phase level where a phase represents each of
+     *           the percentage deployments.
      * }
      */
     public function __construct($data = NULL) {
@@ -89,9 +89,9 @@ class Canary extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configures the progressive based deployment for a Target.
+     * Optional. Configures the progressive based deployment for a Target.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.CanaryDeployment canary_deployment = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CanaryDeployment canary_deployment = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Deploy\V1\CanaryDeployment|null
      */
     public function getCanaryDeployment()
@@ -105,9 +105,9 @@ class Canary extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configures the progressive based deployment for a Target.
+     * Optional. Configures the progressive based deployment for a Target.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.CanaryDeployment canary_deployment = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CanaryDeployment canary_deployment = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Deploy\V1\CanaryDeployment $var
      * @return $this
      */
@@ -120,11 +120,11 @@ class Canary extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configures the progressive based deployment for a Target, but allows
-     * customizing at the phase level where a phase represents each of the
-     * percentage deployments.
+     * Optional. Configures the progressive based deployment for a Target, but
+     * allows customizing at the phase level where a phase represents each of
+     * the percentage deployments.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomCanaryDeployment custom_canary_deployment = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomCanaryDeployment custom_canary_deployment = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Deploy\V1\CustomCanaryDeployment|null
      */
     public function getCustomCanaryDeployment()
@@ -138,11 +138,11 @@ class Canary extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configures the progressive based deployment for a Target, but allows
-     * customizing at the phase level where a phase represents each of the
-     * percentage deployments.
+     * Optional. Configures the progressive based deployment for a Target, but
+     * allows customizing at the phase level where a phase represents each of
+     * the percentage deployments.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomCanaryDeployment custom_canary_deployment = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomCanaryDeployment custom_canary_deployment = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Deploy\V1\CustomCanaryDeployment $var
      * @return $this
      */
