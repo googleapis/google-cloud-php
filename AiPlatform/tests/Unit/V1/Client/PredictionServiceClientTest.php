@@ -299,8 +299,10 @@ class PredictionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $modelVersion = 'modelVersion-1669102142';
+        $responseId = 'responseId1847552473';
         $expectedResponse = new GenerateContentResponse();
         $expectedResponse->setModelVersion($modelVersion);
+        $expectedResponse->setResponseId($responseId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $model = 'model104069929';
@@ -779,16 +781,22 @@ class PredictionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $modelVersion = 'modelVersion-1669102142';
+        $responseId = 'responseId1847552473';
         $expectedResponse = new GenerateContentResponse();
         $expectedResponse->setModelVersion($modelVersion);
+        $expectedResponse->setResponseId($responseId);
         $transport->addResponse($expectedResponse);
         $modelVersion2 = 'modelVersion2-1984354059';
+        $responseId2 = 'responseId21676436300';
         $expectedResponse2 = new GenerateContentResponse();
         $expectedResponse2->setModelVersion($modelVersion2);
+        $expectedResponse2->setResponseId($responseId2);
         $transport->addResponse($expectedResponse2);
         $modelVersion3 = 'modelVersion3-1984354058';
+        $responseId3 = 'responseId31676436301';
         $expectedResponse3 = new GenerateContentResponse();
         $expectedResponse3->setModelVersion($modelVersion3);
+        $expectedResponse3->setResponseId($responseId3);
         $transport->addResponse($expectedResponse3);
         // Mock request
         $model = 'model104069929';
