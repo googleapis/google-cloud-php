@@ -435,6 +435,7 @@ return [
                 'cryptoKeyVersion' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}',
                 'database' => 'projects/{project}/instances/{instance}/databases/{database}',
                 'instance' => 'projects/{project}/instances/{instance}',
+                'instancePartition' => 'projects/{project}/instances/{instance}/instancePartitions/{instance_partition}',
             ],
         ],
     ],
