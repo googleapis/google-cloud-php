@@ -417,6 +417,30 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.GroupMembership group_memberships = 57;</code>
      */
     private $group_memberships;
+    /**
+     * Disk associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Disk disk = 58;</code>
+     */
+    protected $disk = null;
+    /**
+     * Data access events associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.DataAccessEvent data_access_events = 61;</code>
+     */
+    private $data_access_events;
+    /**
+     * Data flow events associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.DataFlowEvent data_flow_events = 62;</code>
+     */
+    private $data_flow_events;
+    /**
+     * Data retention deletion events associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.DataRetentionDeletionEvent data_retention_deletion_events = 64;</code>
+     */
+    private $data_retention_deletion_events;
 
     /**
      * Constructor.
@@ -621,6 +645,14 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Contains details about groups of which this finding is a member. A group is
      *           a collection of findings that are related in some way.
      *           This field cannot be updated. Its value is ignored in all update requests.
+     *     @type \Google\Cloud\SecurityCenter\V2\Disk $disk
+     *           Disk associated with the finding.
+     *     @type array<\Google\Cloud\SecurityCenter\V2\DataAccessEvent>|\Google\Protobuf\Internal\RepeatedField $data_access_events
+     *           Data access events associated with the finding.
+     *     @type array<\Google\Cloud\SecurityCenter\V2\DataFlowEvent>|\Google\Protobuf\Internal\RepeatedField $data_flow_events
+     *           Data flow events associated with the finding.
+     *     @type array<\Google\Cloud\SecurityCenter\V2\DataRetentionDeletionEvent>|\Google\Protobuf\Internal\RepeatedField $data_retention_deletion_events
+     *           Data retention deletion events associated with the finding.
      * }
      */
     public function __construct($data = NULL) {
@@ -2338,6 +2370,120 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V2\GroupMembership::class);
         $this->group_memberships = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Disk associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Disk disk = 58;</code>
+     * @return \Google\Cloud\SecurityCenter\V2\Disk|null
+     */
+    public function getDisk()
+    {
+        return $this->disk;
+    }
+
+    public function hasDisk()
+    {
+        return isset($this->disk);
+    }
+
+    public function clearDisk()
+    {
+        unset($this->disk);
+    }
+
+    /**
+     * Disk associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Disk disk = 58;</code>
+     * @param \Google\Cloud\SecurityCenter\V2\Disk $var
+     * @return $this
+     */
+    public function setDisk($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\Disk::class);
+        $this->disk = $var;
+
+        return $this;
+    }
+
+    /**
+     * Data access events associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.DataAccessEvent data_access_events = 61;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDataAccessEvents()
+    {
+        return $this->data_access_events;
+    }
+
+    /**
+     * Data access events associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.DataAccessEvent data_access_events = 61;</code>
+     * @param array<\Google\Cloud\SecurityCenter\V2\DataAccessEvent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDataAccessEvents($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V2\DataAccessEvent::class);
+        $this->data_access_events = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Data flow events associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.DataFlowEvent data_flow_events = 62;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDataFlowEvents()
+    {
+        return $this->data_flow_events;
+    }
+
+    /**
+     * Data flow events associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.DataFlowEvent data_flow_events = 62;</code>
+     * @param array<\Google\Cloud\SecurityCenter\V2\DataFlowEvent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDataFlowEvents($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V2\DataFlowEvent::class);
+        $this->data_flow_events = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Data retention deletion events associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.DataRetentionDeletionEvent data_retention_deletion_events = 64;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDataRetentionDeletionEvents()
+    {
+        return $this->data_retention_deletion_events;
+    }
+
+    /**
+     * Data retention deletion events associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.DataRetentionDeletionEvent data_retention_deletion_events = 64;</code>
+     * @param array<\Google\Cloud\SecurityCenter\V2\DataRetentionDeletionEvent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDataRetentionDeletionEvents($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V2\DataRetentionDeletionEvent::class);
+        $this->data_retention_deletion_events = $arr;
 
         return $this;
     }
