@@ -78,10 +78,10 @@ class ArrayType
      *        `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
      *        `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
      *        `Database::TYPE_DATE`, `Database::TYPE_STRING`,
-     *        `Database::TYPE_NUMERIC`, `Database::TYPE_PG_NUMERIC` and
-     *        `Database::TYPE_BYTES`. Nested arrays are not supported in Cloud
-     *        Spanner, and attempts to use `Database::TYPE_ARRAY` will result in
-     *        an exception. If null is given,
+     *        `Database::TYPE_NUMERIC`, `Database::TYPE_PG_NUMERIC`
+     *        `Database::TYPE_BYTES`, and `Database::TYPE_PROTO`. Nested arrays
+     *        are not supported in Cloud Spanner, and attempts to use
+     *        `Database::TYPE_ARRAY` will result in an exception. If null is given,
      *        Google Cloud PHP will attempt to infer the array type.
      * @throws \InvalidArgumentException If an invalid type is provided, or if
      *        a struct is defined but the given type is not
