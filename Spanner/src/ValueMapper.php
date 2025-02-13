@@ -22,6 +22,8 @@ use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\V1\TypeAnnotationCode;
 use Google\Cloud\Spanner\V1\TypeCode;
+use Google\Protobuf\Internal\DescriptorPool;
+use Google\Protobuf\Internal\Message;
 
 /**
  * Manage value mappings between Google Cloud PHP and Cloud Spanner
@@ -43,6 +45,7 @@ class ValueMapper
     const TYPE_STRUCT = TypeCode::STRUCT;
     const TYPE_NUMERIC = TypeCode::NUMERIC;
     const TYPE_JSON = TypeCode::JSON;
+    const TYPE_PROTO = TypeCode::PROTO;
     const TYPE_PG_NUMERIC = 'pgNumeric';
     const TYPE_PG_JSONB = 'pgJsonb';
     const TYPE_PG_OID = 'pgOid';
@@ -366,6 +369,19 @@ class ValueMapper
                     }
                 }
 
+                break;
+            case self::TYPE_PROTO:
+                $descriptor = DescriptorPool::getGeneratedPool()
+                    ->getDescriptorByProtoName($type['protoTypeFqn']);
+                if (!$descriptor) {
+                    throw new \RuntimeException(sprintf(
+                        'Unable to decode proto value. Descriptor not found for %s.',
+                        $type['protoTypeFqn']
+                    ));
+                }
+                $message = new ($descriptor->getClass())();
+                $message->mergeFromString(base64_decode($value));
+                $value = $message;
                 break;
         }
 
@@ -763,6 +779,13 @@ class ValueMapper
             return [
                 $this->typeObject(self::TYPE_INT64),
                 $value->get()
+            ];
+        }
+
+        if ($value instanceof Message) {
+            return [
+                $this->typeObject(self::TYPE_PROTO),
+                base64_encode($value->serializetoString())
             ];
         }
 
