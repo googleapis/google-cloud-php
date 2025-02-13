@@ -527,6 +527,10 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=organizations/*}/attackPaths',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v2/{parent=organizations/*/simulations/*/valuedResources/*}/attackPaths',
                     ],
                     [
@@ -703,6 +707,10 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{parent=organizations/*/simulations/*/attackExposureResults/*}/valuedResources',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=organizations/*}/valuedResources',
                     ],
                 ],
                 'placeholders' => [

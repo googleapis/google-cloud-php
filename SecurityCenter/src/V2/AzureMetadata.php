@@ -35,6 +35,12 @@ class AzureMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AzureMetadata.AzureResourceGroup resource_group = 3;</code>
      */
     protected $resource_group = null;
+    /**
+     * The Azure Entra tenant associated with the resource.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AzureMetadata.AzureTenant tenant = 7;</code>
+     */
+    protected $tenant = null;
 
     /**
      * Constructor.
@@ -49,6 +55,8 @@ class AzureMetadata extends \Google\Protobuf\Internal\Message
      *           The Azure subscription associated with the resource.
      *     @type \Google\Cloud\SecurityCenter\V2\AzureMetadata\AzureResourceGroup $resource_group
      *           The Azure resource group associated with the resource.
+     *     @type \Google\Cloud\SecurityCenter\V2\AzureMetadata\AzureTenant $tenant
+     *           The Azure Entra tenant associated with the resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -152,6 +160,42 @@ class AzureMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\AzureMetadata\AzureResourceGroup::class);
         $this->resource_group = $var;
+
+        return $this;
+    }
+
+    /**
+     * The Azure Entra tenant associated with the resource.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AzureMetadata.AzureTenant tenant = 7;</code>
+     * @return \Google\Cloud\SecurityCenter\V2\AzureMetadata\AzureTenant|null
+     */
+    public function getTenant()
+    {
+        return $this->tenant;
+    }
+
+    public function hasTenant()
+    {
+        return isset($this->tenant);
+    }
+
+    public function clearTenant()
+    {
+        unset($this->tenant);
+    }
+
+    /**
+     * The Azure Entra tenant associated with the resource.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AzureMetadata.AzureTenant tenant = 7;</code>
+     * @param \Google\Cloud\SecurityCenter\V2\AzureMetadata\AzureTenant $var
+     * @return $this
+     */
+    public function setTenant($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\AzureMetadata\AzureTenant::class);
+        $this->tenant = $var;
 
         return $this;
     }

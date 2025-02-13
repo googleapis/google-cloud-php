@@ -9,7 +9,6 @@ use UnexpectedValueException;
 /**
  * MITRE ATT&CK techniques that can be referenced by SCC findings.
  * See: https://attack.mitre.org/techniques/enterprise/
- * Next ID: 65
  *
  * Protobuf type <code>google.cloud.securitycenter.v2.MitreAttack.Technique</code>
  */
@@ -292,6 +291,12 @@ class Technique
      */
     const CREATE_OR_MODIFY_SYSTEM_PROCESS = 24;
     /**
+     * T1546
+     *
+     * Generated from protobuf enum <code>EVENT_TRIGGERED_EXECUTION = 65;</code>
+     */
+    const EVENT_TRIGGERED_EXECUTION = 65;
+    /**
      * T1548
      *
      * Generated from protobuf enum <code>ABUSE_ELEVATION_CONTROL_MECHANISM = 34;</code>
@@ -388,6 +393,12 @@ class Technique
      */
     const CONTAINER_ADMINISTRATION_COMMAND = 60;
     /**
+     * T1610
+     *
+     * Generated from protobuf enum <code>DEPLOY_CONTAINER = 66;</code>
+     */
+    const DEPLOY_CONTAINER = 66;
+    /**
      * T1611
      *
      * Generated from protobuf enum <code>ESCAPE_TO_HOST = 61;</code>
@@ -453,6 +464,7 @@ class Technique
         self::ACCOUNT_ACCESS_REMOVAL => 'ACCOUNT_ACCESS_REMOVAL',
         self::STEAL_WEB_SESSION_COOKIE => 'STEAL_WEB_SESSION_COOKIE',
         self::CREATE_OR_MODIFY_SYSTEM_PROCESS => 'CREATE_OR_MODIFY_SYSTEM_PROCESS',
+        self::EVENT_TRIGGERED_EXECUTION => 'EVENT_TRIGGERED_EXECUTION',
         self::ABUSE_ELEVATION_CONTROL_MECHANISM => 'ABUSE_ELEVATION_CONTROL_MECHANISM',
         self::UNSECURED_CREDENTIALS => 'UNSECURED_CREDENTIALS',
         self::MODIFY_AUTHENTICATION_PROCESS => 'MODIFY_AUTHENTICATION_PROCESS',
@@ -469,6 +481,7 @@ class Technique
         self::ACTIVE_SCANNING => 'ACTIVE_SCANNING',
         self::SCANNING_IP_BLOCKS => 'SCANNING_IP_BLOCKS',
         self::CONTAINER_ADMINISTRATION_COMMAND => 'CONTAINER_ADMINISTRATION_COMMAND',
+        self::DEPLOY_CONTAINER => 'DEPLOY_CONTAINER',
         self::ESCAPE_TO_HOST => 'ESCAPE_TO_HOST',
         self::CONTAINER_AND_RESOURCE_DISCOVERY => 'CONTAINER_AND_RESOURCE_DISCOVERY',
         self::STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES => 'STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES',

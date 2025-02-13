@@ -17,7 +17,7 @@ class CloudArmor
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         $pool->internalAddGeneratedFile(
             '
-∆
+Å
 0google/cloud/securitycenter/v2/cloud_armor.protogoogle.cloud.securitycenter.v2"ﬁ
 
 CloudArmorG
@@ -38,13 +38,15 @@ CloudArmorG
 long_term_denied ("(
 AdaptiveProtection
 
-confidence ("H
-Attack
+confidence ("Ç
+Attack
+volume_pps_long (
+volume_bps_long (
+classification (	
 
-volume_pps (
+volume_pps (B
 
-volume_bps (
-classification (	BÈ
+volume_bps (BBÈ
 "com.google.cloud.securitycenter.v2BCloudArmorProtoPZJcloud.google.com/go/securitycenter/apiv2/securitycenterpb;securitycenterpb™Google.Cloud.SecurityCenter.V2 Google\\Cloud\\SecurityCenter\\V2Í!Google::Cloud::SecurityCenter::V2bproto3'
         , true);
 
