@@ -200,6 +200,14 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp oldest_version_time = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $oldest_version_time = null;
+    /**
+     * Output only. The instance partition(s) storing the backup.
+     * This is the same as the list of the instance partition(s) that the database
+     * had footprint in at the backup's `version_time`.
+     *
+     * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.BackupInstancePartition instance_partitions = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $instance_partitions;
 
     /**
      * Constructor.
@@ -320,6 +328,10 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           ever existed in the chain. For all other backups, this is the version time
      *           of the backup. This field can be used to understand what data is being
      *           retained by the backup system.
+     *     @type array<\Google\Cloud\Spanner\Admin\Database\V1\BackupInstancePartition>|\Google\Protobuf\Internal\RepeatedField $instance_partitions
+     *           Output only. The instance partition(s) storing the backup.
+     *           This is the same as the list of the instance partition(s) that the database
+     *           had footprint in at the backup's `version_time`.
      * }
      */
     public function __construct($data = NULL) {
@@ -1005,6 +1017,36 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->oldest_version_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The instance partition(s) storing the backup.
+     * This is the same as the list of the instance partition(s) that the database
+     * had footprint in at the backup's `version_time`.
+     *
+     * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.BackupInstancePartition instance_partitions = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getInstancePartitions()
+    {
+        return $this->instance_partitions;
+    }
+
+    /**
+     * Output only. The instance partition(s) storing the backup.
+     * This is the same as the list of the instance partition(s) that the database
+     * had footprint in at the backup's `version_time`.
+     *
+     * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.BackupInstancePartition instance_partitions = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\Spanner\Admin\Database\V1\BackupInstancePartition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setInstancePartitions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Spanner\Admin\Database\V1\BackupInstancePartition::class);
+        $this->instance_partitions = $arr;
 
         return $this;
     }

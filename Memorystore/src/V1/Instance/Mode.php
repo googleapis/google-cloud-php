@@ -20,9 +20,9 @@ class Mode
      */
     const MODE_UNSPECIFIED = 0;
     /**
-     * Instance is in standalone mode.
+     * Deprecated: Use CLUSTER_DISABLED instead.
      *
-     * Generated from protobuf enum <code>STANDALONE = 1;</code>
+     * Generated from protobuf enum <code>STANDALONE = 1 [deprecated = true];</code>
      */
     const STANDALONE = 1;
     /**
@@ -31,11 +31,18 @@ class Mode
      * Generated from protobuf enum <code>CLUSTER = 2;</code>
      */
     const CLUSTER = 2;
+    /**
+     * Cluster mode is disabled for the instance.
+     *
+     * Generated from protobuf enum <code>CLUSTER_DISABLED = 4;</code>
+     */
+    const CLUSTER_DISABLED = 4;
 
     private static $valueToName = [
         self::MODE_UNSPECIFIED => 'MODE_UNSPECIFIED',
         self::STANDALONE => 'STANDALONE',
         self::CLUSTER => 'CLUSTER',
+        self::CLUSTER_DISABLED => 'CLUSTER_DISABLED',
     ];
 
     public static function name($value)

@@ -45,7 +45,7 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
     protected $proxy_url = '';
     /**
      * Optional. If set, the cluster will be accessed using the DNS endpoint. Note
-     * that `dns_endpoint` and `internal_ip` cannot both be set to true.
+     * that both `dns_endpoint` and `internal_ip` cannot be set to true.
      *
      * Generated from protobuf field <code>bool dns_endpoint = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -75,7 +75,7 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
      *           to the Kubernetes server.
      *     @type bool $dns_endpoint
      *           Optional. If set, the cluster will be accessed using the DNS endpoint. Note
-     *           that `dns_endpoint` and `internal_ip` cannot both be set to true.
+     *           that both `dns_endpoint` and `internal_ip` cannot be set to true.
      * }
      */
     public function __construct($data = NULL) {
@@ -183,7 +183,7 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. If set, the cluster will be accessed using the DNS endpoint. Note
-     * that `dns_endpoint` and `internal_ip` cannot both be set to true.
+     * that both `dns_endpoint` and `internal_ip` cannot be set to true.
      *
      * Generated from protobuf field <code>bool dns_endpoint = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -195,7 +195,7 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. If set, the cluster will be accessed using the DNS endpoint. Note
-     * that `dns_endpoint` and `internal_ip` cannot both be set to true.
+     * that both `dns_endpoint` and `internal_ip` cannot be set to true.
      *
      * Generated from protobuf field <code>bool dns_endpoint = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

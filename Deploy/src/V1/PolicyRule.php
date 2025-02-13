@@ -24,7 +24,7 @@ class PolicyRule extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Deploy\V1\RolloutRestriction $rollout_restriction
-     *           Rollout restrictions.
+     *           Optional. Rollout restrictions.
      * }
      */
     public function __construct($data = NULL) {
@@ -33,9 +33,9 @@ class PolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Rollout restrictions.
+     * Optional. Rollout restrictions.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.RolloutRestriction rollout_restriction = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.RolloutRestriction rollout_restriction = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Deploy\V1\RolloutRestriction|null
      */
     public function getRolloutRestriction()
@@ -49,9 +49,9 @@ class PolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Rollout restrictions.
+     * Optional. Rollout restrictions.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.RolloutRestriction rollout_restriction = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.RolloutRestriction rollout_restriction = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Deploy\V1\RolloutRestriction $var
      * @return $this
      */

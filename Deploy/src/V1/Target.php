@@ -18,11 +18,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class Target extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Name of the `Target`. Format is
+     * Identifier. Name of the `Target`. Format is
      * `projects/{project}/locations/{location}/targets/{target}`.
      * The `target` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -106,7 +106,7 @@ class Target extends \Google\Protobuf\Internal\Message
      */
     protected $etag = '';
     /**
-     * Configurations for all execution that relates to this `Target`.
+     * Optional. Configurations for all execution that relates to this `Target`.
      * Each `ExecutionEnvironmentUsage` value may only be used in a single
      * configuration; using the same value multiple times is an error.
      * When one or more configurations are specified, they must include the
@@ -114,7 +114,7 @@ class Target extends \Google\Protobuf\Internal\Message
      * When no configurations are specified, execution will use the default
      * specified in `DefaultPool`.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.ExecutionConfig execution_configs = 16;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.ExecutionConfig execution_configs = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $execution_configs;
     /**
@@ -132,7 +132,7 @@ class Target extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Optional. Name of the `Target`. Format is
+     *           Identifier. Name of the `Target`. Format is
      *           `projects/{project}/locations/{location}/targets/{target}`.
      *           The `target` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *     @type string $target_id
@@ -186,7 +186,7 @@ class Target extends \Google\Protobuf\Internal\Message
      *           other fields, and may be sent on update and delete requests to ensure the
      *           client has an up-to-date value before proceeding.
      *     @type array<\Google\Cloud\Deploy\V1\ExecutionConfig>|\Google\Protobuf\Internal\RepeatedField $execution_configs
-     *           Configurations for all execution that relates to this `Target`.
+     *           Optional. Configurations for all execution that relates to this `Target`.
      *           Each `ExecutionEnvironmentUsage` value may only be used in a single
      *           configuration; using the same value multiple times is an error.
      *           When one or more configurations are specified, they must include the
@@ -203,11 +203,11 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the `Target`. Format is
+     * Identifier. Name of the `Target`. Format is
      * `projects/{project}/locations/{location}/targets/{target}`.
      * The `target` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -216,11 +216,11 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the `Target`. Format is
+     * Identifier. Name of the `Target`. Format is
      * `projects/{project}/locations/{location}/targets/{target}`.
      * The `target` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -708,7 +708,7 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configurations for all execution that relates to this `Target`.
+     * Optional. Configurations for all execution that relates to this `Target`.
      * Each `ExecutionEnvironmentUsage` value may only be used in a single
      * configuration; using the same value multiple times is an error.
      * When one or more configurations are specified, they must include the
@@ -716,7 +716,7 @@ class Target extends \Google\Protobuf\Internal\Message
      * When no configurations are specified, execution will use the default
      * specified in `DefaultPool`.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.ExecutionConfig execution_configs = 16;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.ExecutionConfig execution_configs = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getExecutionConfigs()
@@ -725,7 +725,7 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configurations for all execution that relates to this `Target`.
+     * Optional. Configurations for all execution that relates to this `Target`.
      * Each `ExecutionEnvironmentUsage` value may only be used in a single
      * configuration; using the same value multiple times is an error.
      * When one or more configurations are specified, they must include the
@@ -733,7 +733,7 @@ class Target extends \Google\Protobuf\Internal\Message
      * When no configurations are specified, execution will use the default
      * specified in `DefaultPool`.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.ExecutionConfig execution_configs = 16;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.ExecutionConfig execution_configs = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\Deploy\V1\ExecutionConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

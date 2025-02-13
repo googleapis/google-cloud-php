@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class AzureResourceGroup extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The ID of the Azure resource group.
+     *
+     * Generated from protobuf field <code>string id = 2;</code>
+     */
+    protected $id = '';
+    /**
      * The name of the Azure resource group. This is not a UUID.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -28,6 +34,8 @@ class AzureResourceGroup extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $id
+     *           The ID of the Azure resource group.
      *     @type string $name
      *           The name of the Azure resource group. This is not a UUID.
      * }
@@ -35,6 +43,32 @@ class AzureResourceGroup extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Securitycenter\V2\Resource::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * The ID of the Azure resource group.
+     *
+     * Generated from protobuf field <code>string id = 2;</code>
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * The ID of the Azure resource group.
+     *
+     * Generated from protobuf field <code>string id = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->id = $var;
+
+        return $this;
     }
 
     /**

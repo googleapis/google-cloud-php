@@ -16,12 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class CloudRunConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Whether Cloud Deploy should update the traffic stanza in a Cloud Run
-     * Service on the user's behalf to facilitate traffic splitting. This is
+     * Optional. Whether Cloud Deploy should update the traffic stanza in a Cloud
+     * Run Service on the user's behalf to facilitate traffic splitting. This is
      * required to be true for CanaryDeployments, but optional for
      * CustomCanaryDeployments.
      *
-     * Generated from protobuf field <code>bool automatic_traffic_control = 1;</code>
+     * Generated from protobuf field <code>bool automatic_traffic_control = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $automatic_traffic_control = false;
     /**
@@ -53,8 +53,8 @@ class CloudRunConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $automatic_traffic_control
-     *           Whether Cloud Deploy should update the traffic stanza in a Cloud Run
-     *           Service on the user's behalf to facilitate traffic splitting. This is
+     *           Optional. Whether Cloud Deploy should update the traffic stanza in a Cloud
+     *           Run Service on the user's behalf to facilitate traffic splitting. This is
      *           required to be true for CanaryDeployments, but optional for
      *           CustomCanaryDeployments.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $canary_revision_tags
@@ -74,12 +74,12 @@ class CloudRunConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether Cloud Deploy should update the traffic stanza in a Cloud Run
-     * Service on the user's behalf to facilitate traffic splitting. This is
+     * Optional. Whether Cloud Deploy should update the traffic stanza in a Cloud
+     * Run Service on the user's behalf to facilitate traffic splitting. This is
      * required to be true for CanaryDeployments, but optional for
      * CustomCanaryDeployments.
      *
-     * Generated from protobuf field <code>bool automatic_traffic_control = 1;</code>
+     * Generated from protobuf field <code>bool automatic_traffic_control = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getAutomaticTrafficControl()
@@ -88,12 +88,12 @@ class CloudRunConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether Cloud Deploy should update the traffic stanza in a Cloud Run
-     * Service on the user's behalf to facilitate traffic splitting. This is
+     * Optional. Whether Cloud Deploy should update the traffic stanza in a Cloud
+     * Run Service on the user's behalf to facilitate traffic splitting. This is
      * required to be true for CanaryDeployments, but optional for
      * CustomCanaryDeployments.
      *
-     * Generated from protobuf field <code>bool automatic_traffic_control = 1;</code>
+     * Generated from protobuf field <code>bool automatic_traffic_control = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

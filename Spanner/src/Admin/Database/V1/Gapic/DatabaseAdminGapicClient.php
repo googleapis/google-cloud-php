@@ -162,6 +162,8 @@ class DatabaseAdminGapicClient
 
     private static $instanceNameTemplate;
 
+    private static $instancePartitionNameTemplate;
+
     private static $pathTemplateMap;
 
     private $operationsClient;
@@ -257,6 +259,17 @@ class DatabaseAdminGapicClient
         return self::$instanceNameTemplate;
     }
 
+    private static function getInstancePartitionNameTemplate()
+    {
+        if (self::$instancePartitionNameTemplate == null) {
+            self::$instancePartitionNameTemplate = new PathTemplate(
+                'projects/{project}/instances/{instance}/instancePartitions/{instance_partition}'
+            );
+        }
+
+        return self::$instancePartitionNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -267,6 +280,7 @@ class DatabaseAdminGapicClient
                 'cryptoKeyVersion' => self::getCryptoKeyVersionNameTemplate(),
                 'database' => self::getDatabaseNameTemplate(),
                 'instance' => self::getInstanceNameTemplate(),
+                'instancePartition' => self::getInstancePartitionNameTemplate(),
             ];
         }
 
@@ -407,6 +421,28 @@ class DatabaseAdminGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * instance_partition resource.
+     *
+     * @param string $project
+     * @param string $instance
+     * @param string $instancePartition
+     *
+     * @return string The formatted instance_partition resource.
+     */
+    public static function instancePartitionName(
+        $project,
+        $instance,
+        $instancePartition
+    ) {
+        return self::getInstancePartitionNameTemplate()->render([
+            'project' => $project,
+            'instance' => $instance,
+            'instance_partition' => $instancePartition,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -416,6 +452,7 @@ class DatabaseAdminGapicClient
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
      * - database: projects/{project}/instances/{instance}/databases/{database}
      * - instance: projects/{project}/instances/{instance}
+     * - instancePartition: projects/{project}/instances/{instance}/instancePartitions/{instance_partition}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

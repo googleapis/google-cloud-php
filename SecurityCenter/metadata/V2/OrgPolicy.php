@@ -14,13 +14,14 @@ class OrgPolicy
         if (static::$is_initialized == true) {
           return;
         }
+        \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ù
-/google/cloud/securitycenter/v2/org_policy.protogoogle.cloud.securitycenter.v2"÷
-	OrgPolicy
-name (	:∫ÍA∂
+Ω
+/google/cloud/securitycenter/v2/org_policy.protogoogle.cloud.securitycenter.v2google/api/resource.proto"€
+	OrgPolicy
+name (	B‡A:∫ÍA∂
 orgpolicy.googleapis.com/Policy7organizations/{organization}/policies/{constraint_name}+folders/{folder}/policies/{constraint_name}-projects/{project}/policies/{constraint_name}BË
 "com.google.cloud.securitycenter.v2BOrgPolicyProtoPZJcloud.google.com/go/securitycenter/apiv2/securitycenterpb;securitycenterpb™Google.Cloud.SecurityCenter.V2 Google\\Cloud\\SecurityCenter\\V2Í!Google::Cloud::SecurityCenter::V2bproto3'
         , true);

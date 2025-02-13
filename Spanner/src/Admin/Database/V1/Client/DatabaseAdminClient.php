@@ -325,6 +325,25 @@ final class DatabaseAdminClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * instance_partition resource.
+     *
+     * @param string $project
+     * @param string $instance
+     * @param string $instancePartition
+     *
+     * @return string The formatted instance_partition resource.
+     */
+    public static function instancePartitionName(string $project, string $instance, string $instancePartition): string
+    {
+        return self::getPathTemplate('instancePartition')->render([
+            'project' => $project,
+            'instance' => $instance,
+            'instance_partition' => $instancePartition,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -334,6 +353,7 @@ final class DatabaseAdminClient
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
      * - database: projects/{project}/instances/{instance}/databases/{database}
      * - instance: projects/{project}/instances/{instance}
+     * - instancePartition: projects/{project}/instances/{instance}/instancePartitions/{instance_partition}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
