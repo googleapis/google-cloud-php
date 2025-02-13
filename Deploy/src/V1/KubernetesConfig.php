@@ -24,9 +24,9 @@ class KubernetesConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Deploy\V1\KubernetesConfig\GatewayServiceMesh $gateway_service_mesh
-     *           Kubernetes Gateway API service mesh configuration.
+     *           Optional. Kubernetes Gateway API service mesh configuration.
      *     @type \Google\Cloud\Deploy\V1\KubernetesConfig\ServiceNetworking $service_networking
-     *           Kubernetes Service networking configuration.
+     *           Optional. Kubernetes Service networking configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -35,9 +35,9 @@ class KubernetesConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Kubernetes Gateway API service mesh configuration.
+     * Optional. Kubernetes Gateway API service mesh configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.KubernetesConfig.GatewayServiceMesh gateway_service_mesh = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.KubernetesConfig.GatewayServiceMesh gateway_service_mesh = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Deploy\V1\KubernetesConfig\GatewayServiceMesh|null
      */
     public function getGatewayServiceMesh()
@@ -51,9 +51,9 @@ class KubernetesConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Kubernetes Gateway API service mesh configuration.
+     * Optional. Kubernetes Gateway API service mesh configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.KubernetesConfig.GatewayServiceMesh gateway_service_mesh = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.KubernetesConfig.GatewayServiceMesh gateway_service_mesh = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Deploy\V1\KubernetesConfig\GatewayServiceMesh $var
      * @return $this
      */
@@ -66,9 +66,9 @@ class KubernetesConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Kubernetes Service networking configuration.
+     * Optional. Kubernetes Service networking configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.KubernetesConfig.ServiceNetworking service_networking = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.KubernetesConfig.ServiceNetworking service_networking = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Deploy\V1\KubernetesConfig\ServiceNetworking|null
      */
     public function getServiceNetworking()
@@ -82,9 +82,9 @@ class KubernetesConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Kubernetes Service networking configuration.
+     * Optional. Kubernetes Service networking configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.KubernetesConfig.ServiceNetworking service_networking = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.KubernetesConfig.ServiceNetworking service_networking = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Deploy\V1\KubernetesConfig\ServiceNetworking $var
      * @return $this
      */

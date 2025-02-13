@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class Standard extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Whether to verify a deployment.
+     * Optional. Whether to verify a deployment.
      *
-     * Generated from protobuf field <code>bool verify = 1;</code>
+     * Generated from protobuf field <code>bool verify = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $verify = false;
     /**
@@ -43,7 +43,7 @@ class Standard extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $verify
-     *           Whether to verify a deployment.
+     *           Optional. Whether to verify a deployment.
      *     @type \Google\Cloud\Deploy\V1\Predeploy $predeploy
      *           Optional. Configuration for the predeploy job. If this is not configured,
      *           predeploy job will not be present.
@@ -58,9 +58,9 @@ class Standard extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to verify a deployment.
+     * Optional. Whether to verify a deployment.
      *
-     * Generated from protobuf field <code>bool verify = 1;</code>
+     * Generated from protobuf field <code>bool verify = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getVerify()
@@ -69,9 +69,9 @@ class Standard extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to verify a deployment.
+     * Optional. Whether to verify a deployment.
      *
-     * Generated from protobuf field <code>bool verify = 1;</code>
+     * Generated from protobuf field <code>bool verify = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

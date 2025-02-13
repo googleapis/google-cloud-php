@@ -16,17 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class BuildArtifact extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Image name in Skaffold configuration.
+     * Optional. Image name in Skaffold configuration.
      *
-     * Generated from protobuf field <code>string image = 3;</code>
+     * Generated from protobuf field <code>string image = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $image = '';
     /**
-     * Image tag to use. This will generally be the full path to an image, such
-     * as "gcr.io/my-project/busybox:1.2.3" or
+     * Optional. Image tag to use. This will generally be the full path to an
+     * image, such as "gcr.io/my-project/busybox:1.2.3" or
      * "gcr.io/my-project/busybox&#64;sha256:abc123".
      *
-     * Generated from protobuf field <code>string tag = 2;</code>
+     * Generated from protobuf field <code>string tag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $tag = '';
 
@@ -37,10 +37,10 @@ class BuildArtifact extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $image
-     *           Image name in Skaffold configuration.
+     *           Optional. Image name in Skaffold configuration.
      *     @type string $tag
-     *           Image tag to use. This will generally be the full path to an image, such
-     *           as "gcr.io/my-project/busybox:1.2.3" or
+     *           Optional. Image tag to use. This will generally be the full path to an
+     *           image, such as "gcr.io/my-project/busybox:1.2.3" or
      *           "gcr.io/my-project/busybox&#64;sha256:abc123".
      * }
      */
@@ -50,9 +50,9 @@ class BuildArtifact extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Image name in Skaffold configuration.
+     * Optional. Image name in Skaffold configuration.
      *
-     * Generated from protobuf field <code>string image = 3;</code>
+     * Generated from protobuf field <code>string image = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getImage()
@@ -61,9 +61,9 @@ class BuildArtifact extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Image name in Skaffold configuration.
+     * Optional. Image name in Skaffold configuration.
      *
-     * Generated from protobuf field <code>string image = 3;</code>
+     * Generated from protobuf field <code>string image = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -76,11 +76,11 @@ class BuildArtifact extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Image tag to use. This will generally be the full path to an image, such
-     * as "gcr.io/my-project/busybox:1.2.3" or
+     * Optional. Image tag to use. This will generally be the full path to an
+     * image, such as "gcr.io/my-project/busybox:1.2.3" or
      * "gcr.io/my-project/busybox&#64;sha256:abc123".
      *
-     * Generated from protobuf field <code>string tag = 2;</code>
+     * Generated from protobuf field <code>string tag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getTag()
@@ -89,11 +89,11 @@ class BuildArtifact extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Image tag to use. This will generally be the full path to an image, such
-     * as "gcr.io/my-project/busybox:1.2.3" or
+     * Optional. Image tag to use. This will generally be the full path to an
+     * image, such as "gcr.io/my-project/busybox:1.2.3" or
      * "gcr.io/my-project/busybox&#64;sha256:abc123".
      *
-     * Generated from protobuf field <code>string tag = 2;</code>
+     * Generated from protobuf field <code>string tag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

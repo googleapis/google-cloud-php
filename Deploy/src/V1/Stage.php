@@ -16,21 +16,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class Stage extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The target_id to which this stage points. This field refers exclusively to
-     * the last segment of a target name. For example, this field would just be
-     * `my-target` (rather than
+     * Optional. The target_id to which this stage points. This field refers
+     * exclusively to the last segment of a target name. For example, this field
+     * would just be `my-target` (rather than
      * `projects/project/locations/location/targets/my-target`). The location of
      * the `Target` is inferred to be the same as the location of the
      * `DeliveryPipeline` that contains this `Stage`.
      *
-     * Generated from protobuf field <code>string target_id = 1;</code>
+     * Generated from protobuf field <code>string target_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $target_id = '';
     /**
-     * Skaffold profiles to use when rendering the manifest for this stage's
-     * `Target`.
+     * Optional. Skaffold profiles to use when rendering the manifest for this
+     * stage's `Target`.
      *
-     * Generated from protobuf field <code>repeated string profiles = 2;</code>
+     * Generated from protobuf field <code>repeated string profiles = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $profiles;
     /**
@@ -53,15 +53,15 @@ class Stage extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $target_id
-     *           The target_id to which this stage points. This field refers exclusively to
-     *           the last segment of a target name. For example, this field would just be
-     *           `my-target` (rather than
+     *           Optional. The target_id to which this stage points. This field refers
+     *           exclusively to the last segment of a target name. For example, this field
+     *           would just be `my-target` (rather than
      *           `projects/project/locations/location/targets/my-target`). The location of
      *           the `Target` is inferred to be the same as the location of the
      *           `DeliveryPipeline` that contains this `Stage`.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $profiles
-     *           Skaffold profiles to use when rendering the manifest for this stage's
-     *           `Target`.
+     *           Optional. Skaffold profiles to use when rendering the manifest for this
+     *           stage's `Target`.
      *     @type \Google\Cloud\Deploy\V1\Strategy $strategy
      *           Optional. The strategy to use for a `Rollout` to this stage.
      *     @type array<\Google\Cloud\Deploy\V1\DeployParameters>|\Google\Protobuf\Internal\RepeatedField $deploy_parameters
@@ -74,14 +74,14 @@ class Stage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The target_id to which this stage points. This field refers exclusively to
-     * the last segment of a target name. For example, this field would just be
-     * `my-target` (rather than
+     * Optional. The target_id to which this stage points. This field refers
+     * exclusively to the last segment of a target name. For example, this field
+     * would just be `my-target` (rather than
      * `projects/project/locations/location/targets/my-target`). The location of
      * the `Target` is inferred to be the same as the location of the
      * `DeliveryPipeline` that contains this `Stage`.
      *
-     * Generated from protobuf field <code>string target_id = 1;</code>
+     * Generated from protobuf field <code>string target_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getTargetId()
@@ -90,14 +90,14 @@ class Stage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The target_id to which this stage points. This field refers exclusively to
-     * the last segment of a target name. For example, this field would just be
-     * `my-target` (rather than
+     * Optional. The target_id to which this stage points. This field refers
+     * exclusively to the last segment of a target name. For example, this field
+     * would just be `my-target` (rather than
      * `projects/project/locations/location/targets/my-target`). The location of
      * the `Target` is inferred to be the same as the location of the
      * `DeliveryPipeline` that contains this `Stage`.
      *
-     * Generated from protobuf field <code>string target_id = 1;</code>
+     * Generated from protobuf field <code>string target_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -110,10 +110,10 @@ class Stage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Skaffold profiles to use when rendering the manifest for this stage's
-     * `Target`.
+     * Optional. Skaffold profiles to use when rendering the manifest for this
+     * stage's `Target`.
      *
-     * Generated from protobuf field <code>repeated string profiles = 2;</code>
+     * Generated from protobuf field <code>repeated string profiles = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getProfiles()
@@ -122,10 +122,10 @@ class Stage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Skaffold profiles to use when rendering the manifest for this stage's
-     * `Target`.
+     * Optional. Skaffold profiles to use when rendering the manifest for this
+     * stage's `Target`.
      *
-     * Generated from protobuf field <code>repeated string profiles = 2;</code>
+     * Generated from protobuf field <code>repeated string profiles = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
