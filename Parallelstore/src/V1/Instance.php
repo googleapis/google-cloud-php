@@ -64,9 +64,11 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $capacity_gib = 0;
     /**
+     * Deprecated 'daos_version' field.
      * Output only. The version of DAOS software running in the instance.
      *
-     * Generated from protobuf field <code>string daos_version = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string daos_version = 9 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     protected $daos_version = '';
     /**
@@ -101,18 +103,18 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $effective_reserved_ip_range = '';
     /**
-     * Optional. Stripe level for files. Allowed values are:
+     * Optional. Immutable. Stripe level for files. Allowed values are:
      * * `FILE_STRIPE_LEVEL_MIN`: offers the best performance for small size
      *   files.
      * * `FILE_STRIPE_LEVEL_BALANCED`: balances performance for workloads
      *   involving a mix of small and large files.
      * * `FILE_STRIPE_LEVEL_MAX`: higher throughput performance for larger files.
      *
-     * Generated from protobuf field <code>.google.cloud.parallelstore.v1.FileStripeLevel file_stripe_level = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1.FileStripeLevel file_stripe_level = 15 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $file_stripe_level = 0;
     /**
-     * Optional. Stripe level for directories. Allowed values are:
+     * Optional. Immutable. Stripe level for directories. Allowed values are:
      * * `DIRECTORY_STRIPE_LEVEL_MIN`: recommended when directories contain a
      *   small number of files.
      * * `DIRECTORY_STRIPE_LEVEL_BALANCED`: balances performance for workloads
@@ -120,9 +122,18 @@ class Instance extends \Google\Protobuf\Internal\Message
      * * `DIRECTORY_STRIPE_LEVEL_MAX`: recommended for directories with a large
      *   number of files.
      *
-     * Generated from protobuf field <code>.google.cloud.parallelstore.v1.DirectoryStripeLevel directory_stripe_level = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1.DirectoryStripeLevel directory_stripe_level = 16 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $directory_stripe_level = 0;
+    /**
+     * Optional. Immutable. The deployment type of the instance. Allowed values
+     * are:
+     * * `SCRATCH`: the instance is a scratch instance.
+     * * `PERSISTENT`: the instance is a persistent instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1.DeploymentType deployment_type = 17 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $deployment_type = 0;
 
     /**
      * Constructor.
@@ -151,6 +162,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Allowed values are between 12000 and 100000, in multiples of 4000; e.g.,
      *           12000, 16000, 20000, ...
      *     @type string $daos_version
+     *           Deprecated 'daos_version' field.
      *           Output only. The version of DAOS software running in the instance.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $access_points
      *           Output only. A list of IPv4 addresses used for client side configuration.
@@ -168,20 +180,25 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           instance's VPC network. This field is populated by the service and contains
      *           the value currently used by the service.
      *     @type int $file_stripe_level
-     *           Optional. Stripe level for files. Allowed values are:
+     *           Optional. Immutable. Stripe level for files. Allowed values are:
      *           * `FILE_STRIPE_LEVEL_MIN`: offers the best performance for small size
      *             files.
      *           * `FILE_STRIPE_LEVEL_BALANCED`: balances performance for workloads
      *             involving a mix of small and large files.
      *           * `FILE_STRIPE_LEVEL_MAX`: higher throughput performance for larger files.
      *     @type int $directory_stripe_level
-     *           Optional. Stripe level for directories. Allowed values are:
+     *           Optional. Immutable. Stripe level for directories. Allowed values are:
      *           * `DIRECTORY_STRIPE_LEVEL_MIN`: recommended when directories contain a
      *             small number of files.
      *           * `DIRECTORY_STRIPE_LEVEL_BALANCED`: balances performance for workloads
      *             involving a mix of small and large directories.
      *           * `DIRECTORY_STRIPE_LEVEL_MAX`: recommended for directories with a large
      *             number of files.
+     *     @type int $deployment_type
+     *           Optional. Immutable. The deployment type of the instance. Allowed values
+     *           are:
+     *           * `SCRATCH`: the instance is a scratch instance.
+     *           * `PERSISTENT`: the instance is a persistent instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -404,25 +421,31 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Deprecated 'daos_version' field.
      * Output only. The version of DAOS software running in the instance.
      *
-     * Generated from protobuf field <code>string daos_version = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string daos_version = 9 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
+     * @deprecated
      */
     public function getDaosVersion()
     {
+        @trigger_error('daos_version is deprecated.', E_USER_DEPRECATED);
         return $this->daos_version;
     }
 
     /**
+     * Deprecated 'daos_version' field.
      * Output only. The version of DAOS software running in the instance.
      *
-     * Generated from protobuf field <code>string daos_version = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string daos_version = 9 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setDaosVersion($var)
     {
+        @trigger_error('daos_version is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->daos_version = $var;
 
@@ -548,14 +571,14 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Stripe level for files. Allowed values are:
+     * Optional. Immutable. Stripe level for files. Allowed values are:
      * * `FILE_STRIPE_LEVEL_MIN`: offers the best performance for small size
      *   files.
      * * `FILE_STRIPE_LEVEL_BALANCED`: balances performance for workloads
      *   involving a mix of small and large files.
      * * `FILE_STRIPE_LEVEL_MAX`: higher throughput performance for larger files.
      *
-     * Generated from protobuf field <code>.google.cloud.parallelstore.v1.FileStripeLevel file_stripe_level = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1.FileStripeLevel file_stripe_level = 15 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getFileStripeLevel()
@@ -564,14 +587,14 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Stripe level for files. Allowed values are:
+     * Optional. Immutable. Stripe level for files. Allowed values are:
      * * `FILE_STRIPE_LEVEL_MIN`: offers the best performance for small size
      *   files.
      * * `FILE_STRIPE_LEVEL_BALANCED`: balances performance for workloads
      *   involving a mix of small and large files.
      * * `FILE_STRIPE_LEVEL_MAX`: higher throughput performance for larger files.
      *
-     * Generated from protobuf field <code>.google.cloud.parallelstore.v1.FileStripeLevel file_stripe_level = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1.FileStripeLevel file_stripe_level = 15 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -584,7 +607,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Stripe level for directories. Allowed values are:
+     * Optional. Immutable. Stripe level for directories. Allowed values are:
      * * `DIRECTORY_STRIPE_LEVEL_MIN`: recommended when directories contain a
      *   small number of files.
      * * `DIRECTORY_STRIPE_LEVEL_BALANCED`: balances performance for workloads
@@ -592,7 +615,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * * `DIRECTORY_STRIPE_LEVEL_MAX`: recommended for directories with a large
      *   number of files.
      *
-     * Generated from protobuf field <code>.google.cloud.parallelstore.v1.DirectoryStripeLevel directory_stripe_level = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1.DirectoryStripeLevel directory_stripe_level = 16 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getDirectoryStripeLevel()
@@ -601,7 +624,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Stripe level for directories. Allowed values are:
+     * Optional. Immutable. Stripe level for directories. Allowed values are:
      * * `DIRECTORY_STRIPE_LEVEL_MIN`: recommended when directories contain a
      *   small number of files.
      * * `DIRECTORY_STRIPE_LEVEL_BALANCED`: balances performance for workloads
@@ -609,7 +632,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * * `DIRECTORY_STRIPE_LEVEL_MAX`: recommended for directories with a large
      *   number of files.
      *
-     * Generated from protobuf field <code>.google.cloud.parallelstore.v1.DirectoryStripeLevel directory_stripe_level = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1.DirectoryStripeLevel directory_stripe_level = 16 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -617,6 +640,38 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Parallelstore\V1\DirectoryStripeLevel::class);
         $this->directory_stripe_level = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. The deployment type of the instance. Allowed values
+     * are:
+     * * `SCRATCH`: the instance is a scratch instance.
+     * * `PERSISTENT`: the instance is a persistent instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1.DeploymentType deployment_type = 17 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDeploymentType()
+    {
+        return $this->deployment_type;
+    }
+
+    /**
+     * Optional. Immutable. The deployment type of the instance. Allowed values
+     * are:
+     * * `SCRATCH`: the instance is a scratch instance.
+     * * `PERSISTENT`: the instance is a persistent instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1.DeploymentType deployment_type = 17 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDeploymentType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Parallelstore\V1\DeploymentType::class);
+        $this->deployment_type = $var;
 
         return $this;
     }
