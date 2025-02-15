@@ -9,20 +9,20 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a regional Commitment resource. Creating a commitment resource means that you are purchasing a committed use contract with an explicit start and end time. You can create commitments based on vCPUs and memory usage and receive discounted rates. For full details, read Signing Up for Committed Use Discounts.
+ * Represents a regional resource-based commitment resource. Creating this commitment resource means that you are purchasing a resource-based committed use contract, with an explicit start and end time. You can purchase resource-based commitments for both hardware and software resources. For more information, read Resource-based committed use discounts
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Commitment</code>
  */
 class Commitment extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Specifies whether to enable automatic renewal for the commitment. The default value is false if not specified. The field can be updated until the day of the commitment expiration at 12:00am PST. If the field is set to true, the commitment will be automatically renewed for either one or three years according to the terms of the existing commitment.
+     * Specifies whether to automatically renew the commitment at the end of its current term. The default value is false. If you set the field to true, each time your commitment reaches the end of its term, Compute Engine automatically renews it for another term. You can update this field anytime before the commitment expires. For example, if the commitment is set to expire at 12 AM UTC-8 on January 3, 2027, you can update this field until 11:59 PM UTC-8 on January 2, 2027.
      *
      * Generated from protobuf field <code>optional bool auto_renew = 495520765;</code>
      */
     private $auto_renew = null;
     /**
-     * The category of the commitment. Category MACHINE specifies commitments composed of machine resources such as VCPU or MEMORY, listed in resources. Category LICENSE specifies commitments composed of software licenses, listed in licenseResources. Note that only MACHINE commitments should have a Type specified.
+     * The category of the commitment; specifies whether the commitment is for hardware or software resources. Category MACHINE specifies that you are committing to hardware machine resources such as VCPU or MEMORY, listed in resources. Category LICENSE specifies that you are committing to software licenses, listed in licenseResources. Note that if you specify MACHINE commitments, then you must also specify a type to indicate the machine series of the hardware resource that you are committing to.
      * Check the Category enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string category = 50511102;</code>
@@ -35,13 +35,13 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     private $creation_timestamp = null;
     /**
-     * [Input Only] Optional, specifies the CUD end time requested by the customer in RFC3339 text format. Needed when the customer wants CUD's end date is later than the start date + term duration.
+     * [Input Only] Optional, specifies the requested commitment end time in RFC3339 text format. Use this option when the desired commitment's end date is later than the start date + term duration.
      *
      * Generated from protobuf field <code>optional string custom_end_timestamp = 181770852;</code>
      */
     private $custom_end_timestamp = null;
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of the commitment. You can provide this property when you create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
@@ -53,8 +53,6 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     private $end_timestamp = null;
     /**
-     * Specifies the already existing reservations to attach to the Commitment. This field is optional, and it can be a full or partial URL. For example, the following are valid URLs to an reservation: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /reservations/reservation - projects/project/zones/zone/reservations/reservation 
-     *
      * Generated from protobuf field <code>repeated string existing_reservations = 493028443;</code>
      */
     private $existing_reservations;
@@ -77,32 +75,32 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     private $license_resource = null;
     /**
-     * List of source commitments to be merged into a new commitment.
+     * The list of source commitments that you are merging to create the new merged commitment. For more information, see Merging commitments.
      *
      * Generated from protobuf field <code>repeated string merge_source_commitments = 188093761;</code>
      */
     private $merge_source_commitments;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the commitment. You must specify a name when you purchase the commitment. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
-     * The plan for this commitment, which determines duration and discount rate. The currently supported plans are TWELVE_MONTH (1 year), and THIRTY_SIX_MONTH (3 years).
+     * The minimum time duration that you commit to purchasing resources. The plan that you choose determines the preset term length of the commitment (which is 1 year or 3 years) and affects the discount rate that you receive for your resources. Committing to a longer time duration typically gives you a higher discount rate. The supported values for this field are TWELVE_MONTH (1 year), and THIRTY_SIX_MONTH (3 years).
      * Check the Plan enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string plan = 3443497;</code>
      */
     private $plan = null;
     /**
-     * [Output Only] URL of the region where this commitment may be used.
+     * [Output Only] URL of the region where the commitment and committed resources are located.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
     private $region = null;
     /**
-     * List of create-on-create reservations for this commitment.
+     * The list of new reservations that you want to create and attach to this commitment. You must attach reservations to your commitment if your commitment specifies any GPUs or Local SSD disks. For more information, see Attach reservations to resource-based commitments. Specify this property only if you want to create new reservations to attach. To attach existing reservations, specify the existingReservations property instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 399717927;</code>
      */
@@ -114,7 +112,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     private $resource_status = null;
     /**
-     * A list of commitment amounts for particular resources. Note that VCPU and MEMORY resource commitments must occur together.
+     * The list of all the hardware resources, with their types and amounts, that you want to commit to. Specify as a separate entry in the list for each individual resource type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ResourceCommitment resources = 164412965;</code>
      */
@@ -126,7 +124,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
-     * Source commitment to be split into a new commitment.
+     * The source commitment from which you are transferring resources to create the new split commitment. For more information, see Split commitments.
      *
      * Generated from protobuf field <code>optional string split_source_commitment = 402611156;</code>
      */
@@ -138,7 +136,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     private $start_timestamp = null;
     /**
-     * [Output Only] Status of the commitment with regards to eventual expiration (each commitment has an end date defined). One of the following values: NOT_YET_ACTIVE, ACTIVE, EXPIRED.
+     * [Output Only] Status of the commitment with regards to eventual expiration (each commitment has an end date defined). Status can be one of the following values: NOT_YET_ACTIVE, ACTIVE, or EXPIRED.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -151,7 +149,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     private $status_message = null;
     /**
-     * The type of commitment, which affects the discount rate and the eligible resources. Type MEMORY_OPTIMIZED specifies a commitment that will only apply to memory optimized machines. Type ACCELERATOR_OPTIMIZED specifies a commitment that will only apply to accelerator optimized machines.
+     * The type of commitment; specifies the machine series for which you want to commit to purchasing resources. The choice of machine series affects the discount rate and the eligible resource types. The type must be one of the following: ACCELERATOR_OPTIMIZED, ACCELERATOR_OPTIMIZED_A3, ACCELERATOR_OPTIMIZED_A3_MEGA, COMPUTE_OPTIMIZED, COMPUTE_OPTIMIZED_C2D, COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D, COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE, GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2, GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D, GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D, GRAPHICS_OPTIMIZED, MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3, MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3. For example, type MEMORY_OPTIMIZED specifies a commitment that applies only to eligible resources of memory optimized M1 and M2 machine series. Type GENERAL_PURPOSE specifies a commitment that applies only to eligible resources of general purpose N1 machine series.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
@@ -165,20 +163,19 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $auto_renew
-     *           Specifies whether to enable automatic renewal for the commitment. The default value is false if not specified. The field can be updated until the day of the commitment expiration at 12:00am PST. If the field is set to true, the commitment will be automatically renewed for either one or three years according to the terms of the existing commitment.
+     *           Specifies whether to automatically renew the commitment at the end of its current term. The default value is false. If you set the field to true, each time your commitment reaches the end of its term, Compute Engine automatically renews it for another term. You can update this field anytime before the commitment expires. For example, if the commitment is set to expire at 12 AM UTC-8 on January 3, 2027, you can update this field until 11:59 PM UTC-8 on January 2, 2027.
      *     @type string $category
-     *           The category of the commitment. Category MACHINE specifies commitments composed of machine resources such as VCPU or MEMORY, listed in resources. Category LICENSE specifies commitments composed of software licenses, listed in licenseResources. Note that only MACHINE commitments should have a Type specified.
+     *           The category of the commitment; specifies whether the commitment is for hardware or software resources. Category MACHINE specifies that you are committing to hardware machine resources such as VCPU or MEMORY, listed in resources. Category LICENSE specifies that you are committing to software licenses, listed in licenseResources. Note that if you specify MACHINE commitments, then you must also specify a type to indicate the machine series of the hardware resource that you are committing to.
      *           Check the Category enum for the list of possible values.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $custom_end_timestamp
-     *           [Input Only] Optional, specifies the CUD end time requested by the customer in RFC3339 text format. Needed when the customer wants CUD's end date is later than the start date + term duration.
+     *           [Input Only] Optional, specifies the requested commitment end time in RFC3339 text format. Use this option when the desired commitment's end date is later than the start date + term duration.
      *     @type string $description
-     *           An optional description of this resource. Provide this property when you create the resource.
+     *           An optional description of the commitment. You can provide this property when you create the resource.
      *     @type string $end_timestamp
      *           [Output Only] Commitment end time in RFC3339 text format.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $existing_reservations
-     *           Specifies the already existing reservations to attach to the Commitment. This field is optional, and it can be a full or partial URL. For example, the following are valid URLs to an reservation: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /reservations/reservation - projects/project/zones/zone/reservations/reservation 
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
@@ -186,33 +183,33 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\LicenseResourceCommitment $license_resource
      *           The license specification required as part of a license commitment.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $merge_source_commitments
-     *           List of source commitments to be merged into a new commitment.
+     *           The list of source commitments that you are merging to create the new merged commitment. For more information, see Merging commitments.
      *     @type string $name
-     *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *           Name of the commitment. You must specify a name when you purchase the commitment. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type string $plan
-     *           The plan for this commitment, which determines duration and discount rate. The currently supported plans are TWELVE_MONTH (1 year), and THIRTY_SIX_MONTH (3 years).
+     *           The minimum time duration that you commit to purchasing resources. The plan that you choose determines the preset term length of the commitment (which is 1 year or 3 years) and affects the discount rate that you receive for your resources. Committing to a longer time duration typically gives you a higher discount rate. The supported values for this field are TWELVE_MONTH (1 year), and THIRTY_SIX_MONTH (3 years).
      *           Check the Plan enum for the list of possible values.
      *     @type string $region
-     *           [Output Only] URL of the region where this commitment may be used.
+     *           [Output Only] URL of the region where the commitment and committed resources are located.
      *     @type array<\Google\Cloud\Compute\V1\Reservation>|\Google\Protobuf\Internal\RepeatedField $reservations
-     *           List of create-on-create reservations for this commitment.
+     *           The list of new reservations that you want to create and attach to this commitment. You must attach reservations to your commitment if your commitment specifies any GPUs or Local SSD disks. For more information, see Attach reservations to resource-based commitments. Specify this property only if you want to create new reservations to attach. To attach existing reservations, specify the existingReservations property instead.
      *     @type \Google\Cloud\Compute\V1\CommitmentResourceStatus $resource_status
      *           [Output Only] Status information for Commitment resource.
      *     @type array<\Google\Cloud\Compute\V1\ResourceCommitment>|\Google\Protobuf\Internal\RepeatedField $resources
-     *           A list of commitment amounts for particular resources. Note that VCPU and MEMORY resource commitments must occur together.
+     *           The list of all the hardware resources, with their types and amounts, that you want to commit to. Specify as a separate entry in the list for each individual resource type.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $split_source_commitment
-     *           Source commitment to be split into a new commitment.
+     *           The source commitment from which you are transferring resources to create the new split commitment. For more information, see Split commitments.
      *     @type string $start_timestamp
      *           [Output Only] Commitment start time in RFC3339 text format.
      *     @type string $status
-     *           [Output Only] Status of the commitment with regards to eventual expiration (each commitment has an end date defined). One of the following values: NOT_YET_ACTIVE, ACTIVE, EXPIRED.
+     *           [Output Only] Status of the commitment with regards to eventual expiration (each commitment has an end date defined). Status can be one of the following values: NOT_YET_ACTIVE, ACTIVE, or EXPIRED.
      *           Check the Status enum for the list of possible values.
      *     @type string $status_message
      *           [Output Only] An optional, human-readable explanation of the status.
      *     @type string $type
-     *           The type of commitment, which affects the discount rate and the eligible resources. Type MEMORY_OPTIMIZED specifies a commitment that will only apply to memory optimized machines. Type ACCELERATOR_OPTIMIZED specifies a commitment that will only apply to accelerator optimized machines.
+     *           The type of commitment; specifies the machine series for which you want to commit to purchasing resources. The choice of machine series affects the discount rate and the eligible resource types. The type must be one of the following: ACCELERATOR_OPTIMIZED, ACCELERATOR_OPTIMIZED_A3, ACCELERATOR_OPTIMIZED_A3_MEGA, COMPUTE_OPTIMIZED, COMPUTE_OPTIMIZED_C2D, COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D, COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE, GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2, GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D, GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D, GRAPHICS_OPTIMIZED, MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3, MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3. For example, type MEMORY_OPTIMIZED specifies a commitment that applies only to eligible resources of memory optimized M1 and M2 machine series. Type GENERAL_PURPOSE specifies a commitment that applies only to eligible resources of general purpose N1 machine series.
      *           Check the Type enum for the list of possible values.
      * }
      */
@@ -222,7 +219,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies whether to enable automatic renewal for the commitment. The default value is false if not specified. The field can be updated until the day of the commitment expiration at 12:00am PST. If the field is set to true, the commitment will be automatically renewed for either one or three years according to the terms of the existing commitment.
+     * Specifies whether to automatically renew the commitment at the end of its current term. The default value is false. If you set the field to true, each time your commitment reaches the end of its term, Compute Engine automatically renews it for another term. You can update this field anytime before the commitment expires. For example, if the commitment is set to expire at 12 AM UTC-8 on January 3, 2027, you can update this field until 11:59 PM UTC-8 on January 2, 2027.
      *
      * Generated from protobuf field <code>optional bool auto_renew = 495520765;</code>
      * @return bool
@@ -243,7 +240,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies whether to enable automatic renewal for the commitment. The default value is false if not specified. The field can be updated until the day of the commitment expiration at 12:00am PST. If the field is set to true, the commitment will be automatically renewed for either one or three years according to the terms of the existing commitment.
+     * Specifies whether to automatically renew the commitment at the end of its current term. The default value is false. If you set the field to true, each time your commitment reaches the end of its term, Compute Engine automatically renews it for another term. You can update this field anytime before the commitment expires. For example, if the commitment is set to expire at 12 AM UTC-8 on January 3, 2027, you can update this field until 11:59 PM UTC-8 on January 2, 2027.
      *
      * Generated from protobuf field <code>optional bool auto_renew = 495520765;</code>
      * @param bool $var
@@ -258,7 +255,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The category of the commitment. Category MACHINE specifies commitments composed of machine resources such as VCPU or MEMORY, listed in resources. Category LICENSE specifies commitments composed of software licenses, listed in licenseResources. Note that only MACHINE commitments should have a Type specified.
+     * The category of the commitment; specifies whether the commitment is for hardware or software resources. Category MACHINE specifies that you are committing to hardware machine resources such as VCPU or MEMORY, listed in resources. Category LICENSE specifies that you are committing to software licenses, listed in licenseResources. Note that if you specify MACHINE commitments, then you must also specify a type to indicate the machine series of the hardware resource that you are committing to.
      * Check the Category enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string category = 50511102;</code>
@@ -280,7 +277,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The category of the commitment. Category MACHINE specifies commitments composed of machine resources such as VCPU or MEMORY, listed in resources. Category LICENSE specifies commitments composed of software licenses, listed in licenseResources. Note that only MACHINE commitments should have a Type specified.
+     * The category of the commitment; specifies whether the commitment is for hardware or software resources. Category MACHINE specifies that you are committing to hardware machine resources such as VCPU or MEMORY, listed in resources. Category LICENSE specifies that you are committing to software licenses, listed in licenseResources. Note that if you specify MACHINE commitments, then you must also specify a type to indicate the machine series of the hardware resource that you are committing to.
      * Check the Category enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string category = 50511102;</code>
@@ -332,7 +329,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Input Only] Optional, specifies the CUD end time requested by the customer in RFC3339 text format. Needed when the customer wants CUD's end date is later than the start date + term duration.
+     * [Input Only] Optional, specifies the requested commitment end time in RFC3339 text format. Use this option when the desired commitment's end date is later than the start date + term duration.
      *
      * Generated from protobuf field <code>optional string custom_end_timestamp = 181770852;</code>
      * @return string
@@ -353,7 +350,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Input Only] Optional, specifies the CUD end time requested by the customer in RFC3339 text format. Needed when the customer wants CUD's end date is later than the start date + term duration.
+     * [Input Only] Optional, specifies the requested commitment end time in RFC3339 text format. Use this option when the desired commitment's end date is later than the start date + term duration.
      *
      * Generated from protobuf field <code>optional string custom_end_timestamp = 181770852;</code>
      * @param string $var
@@ -368,7 +365,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of the commitment. You can provide this property when you create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
@@ -389,7 +386,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of the commitment. You can provide this property when you create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
@@ -440,8 +437,6 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the already existing reservations to attach to the Commitment. This field is optional, and it can be a full or partial URL. For example, the following are valid URLs to an reservation: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /reservations/reservation - projects/project/zones/zone/reservations/reservation 
-     *
      * Generated from protobuf field <code>repeated string existing_reservations = 493028443;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
@@ -451,8 +446,6 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the already existing reservations to attach to the Commitment. This field is optional, and it can be a full or partial URL. For example, the following are valid URLs to an reservation: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /reservations/reservation - projects/project/zones/zone/reservations/reservation 
-     *
      * Generated from protobuf field <code>repeated string existing_reservations = 493028443;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
@@ -574,7 +567,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of source commitments to be merged into a new commitment.
+     * The list of source commitments that you are merging to create the new merged commitment. For more information, see Merging commitments.
      *
      * Generated from protobuf field <code>repeated string merge_source_commitments = 188093761;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -585,7 +578,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of source commitments to be merged into a new commitment.
+     * The list of source commitments that you are merging to create the new merged commitment. For more information, see Merging commitments.
      *
      * Generated from protobuf field <code>repeated string merge_source_commitments = 188093761;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -600,7 +593,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the commitment. You must specify a name when you purchase the commitment. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -621,7 +614,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the commitment. You must specify a name when you purchase the commitment. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -636,7 +629,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The plan for this commitment, which determines duration and discount rate. The currently supported plans are TWELVE_MONTH (1 year), and THIRTY_SIX_MONTH (3 years).
+     * The minimum time duration that you commit to purchasing resources. The plan that you choose determines the preset term length of the commitment (which is 1 year or 3 years) and affects the discount rate that you receive for your resources. Committing to a longer time duration typically gives you a higher discount rate. The supported values for this field are TWELVE_MONTH (1 year), and THIRTY_SIX_MONTH (3 years).
      * Check the Plan enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string plan = 3443497;</code>
@@ -658,7 +651,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The plan for this commitment, which determines duration and discount rate. The currently supported plans are TWELVE_MONTH (1 year), and THIRTY_SIX_MONTH (3 years).
+     * The minimum time duration that you commit to purchasing resources. The plan that you choose determines the preset term length of the commitment (which is 1 year or 3 years) and affects the discount rate that you receive for your resources. Committing to a longer time duration typically gives you a higher discount rate. The supported values for this field are TWELVE_MONTH (1 year), and THIRTY_SIX_MONTH (3 years).
      * Check the Plan enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string plan = 3443497;</code>
@@ -674,7 +667,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where this commitment may be used.
+     * [Output Only] URL of the region where the commitment and committed resources are located.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @return string
@@ -695,7 +688,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where this commitment may be used.
+     * [Output Only] URL of the region where the commitment and committed resources are located.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @param string $var
@@ -710,7 +703,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of create-on-create reservations for this commitment.
+     * The list of new reservations that you want to create and attach to this commitment. You must attach reservations to your commitment if your commitment specifies any GPUs or Local SSD disks. For more information, see Attach reservations to resource-based commitments. Specify this property only if you want to create new reservations to attach. To attach existing reservations, specify the existingReservations property instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 399717927;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -721,7 +714,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of create-on-create reservations for this commitment.
+     * The list of new reservations that you want to create and attach to this commitment. You must attach reservations to your commitment if your commitment specifies any GPUs or Local SSD disks. For more information, see Attach reservations to resource-based commitments. Specify this property only if you want to create new reservations to attach. To attach existing reservations, specify the existingReservations property instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 399717927;</code>
      * @param array<\Google\Cloud\Compute\V1\Reservation>|\Google\Protobuf\Internal\RepeatedField $var
@@ -772,7 +765,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of commitment amounts for particular resources. Note that VCPU and MEMORY resource commitments must occur together.
+     * The list of all the hardware resources, with their types and amounts, that you want to commit to. Specify as a separate entry in the list for each individual resource type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ResourceCommitment resources = 164412965;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -783,7 +776,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of commitment amounts for particular resources. Note that VCPU and MEMORY resource commitments must occur together.
+     * The list of all the hardware resources, with their types and amounts, that you want to commit to. Specify as a separate entry in the list for each individual resource type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ResourceCommitment resources = 164412965;</code>
      * @param array<\Google\Cloud\Compute\V1\ResourceCommitment>|\Google\Protobuf\Internal\RepeatedField $var
@@ -834,7 +827,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Source commitment to be split into a new commitment.
+     * The source commitment from which you are transferring resources to create the new split commitment. For more information, see Split commitments.
      *
      * Generated from protobuf field <code>optional string split_source_commitment = 402611156;</code>
      * @return string
@@ -855,7 +848,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Source commitment to be split into a new commitment.
+     * The source commitment from which you are transferring resources to create the new split commitment. For more information, see Split commitments.
      *
      * Generated from protobuf field <code>optional string split_source_commitment = 402611156;</code>
      * @param string $var
@@ -906,7 +899,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Status of the commitment with regards to eventual expiration (each commitment has an end date defined). One of the following values: NOT_YET_ACTIVE, ACTIVE, EXPIRED.
+     * [Output Only] Status of the commitment with regards to eventual expiration (each commitment has an end date defined). Status can be one of the following values: NOT_YET_ACTIVE, ACTIVE, or EXPIRED.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -928,7 +921,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Status of the commitment with regards to eventual expiration (each commitment has an end date defined). One of the following values: NOT_YET_ACTIVE, ACTIVE, EXPIRED.
+     * [Output Only] Status of the commitment with regards to eventual expiration (each commitment has an end date defined). Status can be one of the following values: NOT_YET_ACTIVE, ACTIVE, or EXPIRED.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -980,7 +973,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of commitment, which affects the discount rate and the eligible resources. Type MEMORY_OPTIMIZED specifies a commitment that will only apply to memory optimized machines. Type ACCELERATOR_OPTIMIZED specifies a commitment that will only apply to accelerator optimized machines.
+     * The type of commitment; specifies the machine series for which you want to commit to purchasing resources. The choice of machine series affects the discount rate and the eligible resource types. The type must be one of the following: ACCELERATOR_OPTIMIZED, ACCELERATOR_OPTIMIZED_A3, ACCELERATOR_OPTIMIZED_A3_MEGA, COMPUTE_OPTIMIZED, COMPUTE_OPTIMIZED_C2D, COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D, COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE, GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2, GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D, GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D, GRAPHICS_OPTIMIZED, MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3, MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3. For example, type MEMORY_OPTIMIZED specifies a commitment that applies only to eligible resources of memory optimized M1 and M2 machine series. Type GENERAL_PURPOSE specifies a commitment that applies only to eligible resources of general purpose N1 machine series.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
@@ -1002,7 +995,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of commitment, which affects the discount rate and the eligible resources. Type MEMORY_OPTIMIZED specifies a commitment that will only apply to memory optimized machines. Type ACCELERATOR_OPTIMIZED specifies a commitment that will only apply to accelerator optimized machines.
+     * The type of commitment; specifies the machine series for which you want to commit to purchasing resources. The choice of machine series affects the discount rate and the eligible resource types. The type must be one of the following: ACCELERATOR_OPTIMIZED, ACCELERATOR_OPTIMIZED_A3, ACCELERATOR_OPTIMIZED_A3_MEGA, COMPUTE_OPTIMIZED, COMPUTE_OPTIMIZED_C2D, COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D, COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE, GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2, GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D, GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D, GRAPHICS_OPTIMIZED, MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3, MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3. For example, type MEMORY_OPTIMIZED specifies a commitment that applies only to eligible resources of memory optimized M1 and M2 machine series. Type GENERAL_PURPOSE specifies a commitment that applies only to eligible resources of general purpose N1 machine series.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
