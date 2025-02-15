@@ -64,6 +64,12 @@ class NodeType extends \Google\Protobuf\Internal\Message
      */
     private $local_ssd_gb = null;
     /**
+     * [Output Only] Maximum number of VMs that can be created for this node type.
+     *
+     * Generated from protobuf field <code>optional int32 max_vms = 307579713;</code>
+     */
+    private $max_vms = null;
+    /**
      * [Output Only] The amount of physical memory available to the node type, defined in MB.
      *
      * Generated from protobuf field <code>optional int32 memory_mb = 116001171;</code>
@@ -110,6 +116,8 @@ class NodeType extends \Google\Protobuf\Internal\Message
      *           [Output Only] The type of the resource. Always compute#nodeType for node types.
      *     @type int $local_ssd_gb
      *           [Output Only] Local SSD available to the node type, defined in GB.
+     *     @type int $max_vms
+     *           [Output Only] Maximum number of VMs that can be created for this node type.
      *     @type int $memory_mb
      *           [Output Only] The amount of physical memory available to the node type, defined in MB.
      *     @type string $name
@@ -409,6 +417,42 @@ class NodeType extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->local_ssd_gb = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Maximum number of VMs that can be created for this node type.
+     *
+     * Generated from protobuf field <code>optional int32 max_vms = 307579713;</code>
+     * @return int
+     */
+    public function getMaxVms()
+    {
+        return isset($this->max_vms) ? $this->max_vms : 0;
+    }
+
+    public function hasMaxVms()
+    {
+        return isset($this->max_vms);
+    }
+
+    public function clearMaxVms()
+    {
+        unset($this->max_vms);
+    }
+
+    /**
+     * [Output Only] Maximum number of VMs that can be created for this node type.
+     *
+     * Generated from protobuf field <code>optional int32 max_vms = 307579713;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMaxVms($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->max_vms = $var;
 
         return $this;
     }

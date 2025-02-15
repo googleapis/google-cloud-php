@@ -354,7 +354,7 @@ final class RegionCommitmentsClient
     }
 
     /**
-     * Updates the specified commitment with the data included in the request. Update is performed only on selected fields included as part of update-mask. Only the following fields can be modified: auto_renew.
+     * Updates the specified commitment with the data included in the request. Update is performed only on selected fields included as part of update-mask. Only the following fields can be updated: auto_renew and plan.
      *
      * The async variant is {@see RegionCommitmentsClient::updateAsync()} .
      *

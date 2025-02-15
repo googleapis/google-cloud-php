@@ -27,6 +27,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\AddAssociationNetworkFirewallPolicyRequest;
+use Google\Cloud\Compute\V1\AddPacketMirroringRuleNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\AddRuleNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\AggregatedListNetworkFirewallPoliciesRequest;
 use Google\Cloud\Compute\V1\Client\NetworkFirewallPoliciesClient;
@@ -41,6 +42,7 @@ use Google\Cloud\Compute\V1\GetAssociationNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
 use Google\Cloud\Compute\V1\GetIamPolicyNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\GetNetworkFirewallPolicyRequest;
+use Google\Cloud\Compute\V1\GetPacketMirroringRuleNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\GetRuleNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\GlobalSetPolicyRequest;
@@ -50,9 +52,11 @@ use Google\Cloud\Compute\V1\NetworkFirewallPolicyAggregatedList;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\PatchNetworkFirewallPolicyRequest;
+use Google\Cloud\Compute\V1\PatchPacketMirroringRuleNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\PatchRuleNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RemoveAssociationNetworkFirewallPolicyRequest;
+use Google\Cloud\Compute\V1\RemovePacketMirroringRuleNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\RemoveRuleNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\SetIamPolicyNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsNetworkFirewallPolicyRequest;
@@ -196,6 +200,132 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
             ->setFirewallPolicyAssociationResource($firewallPolicyAssociationResource)
             ->setProject($project);
         $response = $gapicClient->addAssociation($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function addPacketMirroringRuleTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/addPacketMirroringRuleTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/addPacketMirroringRuleTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $firewallPolicyRuleResource = new FirewallPolicyRule();
+        $project = 'project-309310695';
+        $request = (new AddPacketMirroringRuleNetworkFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy)
+            ->setFirewallPolicyRuleResource($firewallPolicyRuleResource)
+            ->setProject($project);
+        $response = $gapicClient->addPacketMirroringRule($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.NetworkFirewallPolicies/AddPacketMirroringRule', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getFirewallPolicy();
+        $this->assertProtobufEquals($firewallPolicy, $actualValue);
+        $actualValue = $actualApiRequestObject->getFirewallPolicyRuleResource();
+        $this->assertProtobufEquals($firewallPolicyRuleResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $expectedOperationsRequestObject = new GetGlobalOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function addPacketMirroringRuleExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/addPacketMirroringRuleExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $firewallPolicyRuleResource = new FirewallPolicyRule();
+        $project = 'project-309310695';
+        $request = (new AddPacketMirroringRuleNetworkFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy)
+            ->setFirewallPolicyRuleResource($firewallPolicyRuleResource)
+            ->setProject($project);
+        $response = $gapicClient->addPacketMirroringRule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -907,6 +1037,96 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getPacketMirroringRuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $action = 'action-1422950858';
+        $description = 'description-1724546052';
+        $direction = 'direction-962590849';
+        $disabled = true;
+        $enableLogging = false;
+        $kind = 'kind3292052';
+        $priority2 = 978365527;
+        $ruleName = 'ruleName-2092197394';
+        $ruleTupleCount = 388342037;
+        $securityProfileGroup = 'securityProfileGroup-329459286';
+        $tlsInspect = true;
+        $expectedResponse = new FirewallPolicyRule();
+        $expectedResponse->setAction($action);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setDirection($direction);
+        $expectedResponse->setDisabled($disabled);
+        $expectedResponse->setEnableLogging($enableLogging);
+        $expectedResponse->setKind($kind);
+        $expectedResponse->setPriority($priority2);
+        $expectedResponse->setRuleName($ruleName);
+        $expectedResponse->setRuleTupleCount($ruleTupleCount);
+        $expectedResponse->setSecurityProfileGroup($securityProfileGroup);
+        $expectedResponse->setTlsInspect($tlsInspect);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $project = 'project-309310695';
+        $request = (new GetPacketMirroringRuleNetworkFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy)
+            ->setProject($project);
+        $response = $gapicClient->getPacketMirroringRule($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.NetworkFirewallPolicies/GetPacketMirroringRule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getFirewallPolicy();
+        $this->assertProtobufEquals($firewallPolicy, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getPacketMirroringRuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $project = 'project-309310695';
+        $request = (new GetPacketMirroringRuleNetworkFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy)
+            ->setProject($project);
+        try {
+            $gapicClient->getPacketMirroringRule($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getRuleTest()
     {
         $transport = $this->createTransport();
@@ -1319,6 +1539,132 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function patchPacketMirroringRuleTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/patchPacketMirroringRuleTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/patchPacketMirroringRuleTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $firewallPolicyRuleResource = new FirewallPolicyRule();
+        $project = 'project-309310695';
+        $request = (new PatchPacketMirroringRuleNetworkFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy)
+            ->setFirewallPolicyRuleResource($firewallPolicyRuleResource)
+            ->setProject($project);
+        $response = $gapicClient->patchPacketMirroringRule($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.NetworkFirewallPolicies/PatchPacketMirroringRule', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getFirewallPolicy();
+        $this->assertProtobufEquals($firewallPolicy, $actualValue);
+        $actualValue = $actualApiRequestObject->getFirewallPolicyRuleResource();
+        $this->assertProtobufEquals($firewallPolicyRuleResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $expectedOperationsRequestObject = new GetGlobalOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function patchPacketMirroringRuleExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/patchPacketMirroringRuleExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $firewallPolicyRuleResource = new FirewallPolicyRule();
+        $project = 'project-309310695';
+        $request = (new PatchPacketMirroringRuleNetworkFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy)
+            ->setFirewallPolicyRuleResource($firewallPolicyRuleResource)
+            ->setProject($project);
+        $response = $gapicClient->patchPacketMirroringRule($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function patchRuleTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1545,6 +1891,126 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
             ->setFirewallPolicy($firewallPolicy)
             ->setProject($project);
         $response = $gapicClient->removeAssociation($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function removePacketMirroringRuleTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/removePacketMirroringRuleTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/removePacketMirroringRuleTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $project = 'project-309310695';
+        $request = (new RemovePacketMirroringRuleNetworkFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy)
+            ->setProject($project);
+        $response = $gapicClient->removePacketMirroringRule($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.NetworkFirewallPolicies/RemovePacketMirroringRule', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getFirewallPolicy();
+        $this->assertProtobufEquals($firewallPolicy, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $expectedOperationsRequestObject = new GetGlobalOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function removePacketMirroringRuleExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/removePacketMirroringRuleExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $project = 'project-309310695';
+        $request = (new RemovePacketMirroringRuleNetworkFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy)
+            ->setProject($project);
+        $response = $gapicClient->removePacketMirroringRule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
