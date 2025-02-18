@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,38 +22,36 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START compute_v1_generated_RegionCommitments_Update_sync]
+// [START compute_v1_generated_NetworkFirewallPolicies_PatchPacketMirroringRule_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\Client\RegionCommitmentsClient;
-use Google\Cloud\Compute\V1\Commitment;
-use Google\Cloud\Compute\V1\UpdateRegionCommitmentRequest;
+use Google\Cloud\Compute\V1\Client\NetworkFirewallPoliciesClient;
+use Google\Cloud\Compute\V1\FirewallPolicyRule;
+use Google\Cloud\Compute\V1\PatchPacketMirroringRuleNetworkFirewallPolicyRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates the specified commitment with the data included in the request. Update is performed only on selected fields included as part of update-mask. Only the following fields can be updated: auto_renew and plan.
+ * Patches a packet mirroring rule of the specified priority.
  *
- * @param string $commitment Name of the commitment that you want to update.
- * @param string $project    Project ID for this request.
- * @param string $region     Name of the region for this request.
+ * @param string $firewallPolicy Name of the firewall policy to update.
+ * @param string $project        Project ID for this request.
  */
-function update_sample(string $commitment, string $project, string $region): void
+function patch_packet_mirroring_rule_sample(string $firewallPolicy, string $project): void
 {
     // Create a client.
-    $regionCommitmentsClient = new RegionCommitmentsClient();
+    $networkFirewallPoliciesClient = new NetworkFirewallPoliciesClient();
 
     // Prepare the request message.
-    $commitmentResource = new Commitment();
-    $request = (new UpdateRegionCommitmentRequest())
-        ->setCommitment($commitment)
-        ->setCommitmentResource($commitmentResource)
-        ->setProject($project)
-        ->setRegion($region);
+    $firewallPolicyRuleResource = new FirewallPolicyRule();
+    $request = (new PatchPacketMirroringRuleNetworkFirewallPolicyRequest())
+        ->setFirewallPolicy($firewallPolicy)
+        ->setFirewallPolicyRuleResource($firewallPolicyRuleResource)
+        ->setProject($project);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionCommitmentsClient->update($request);
+        $response = $networkFirewallPoliciesClient->patchPacketMirroringRule($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -79,10 +77,9 @@ function update_sample(string $commitment, string $project, string $region): voi
  */
 function callSample(): void
 {
-    $commitment = '[COMMITMENT]';
+    $firewallPolicy = '[FIREWALL_POLICY]';
     $project = '[PROJECT]';
-    $region = '[REGION]';
 
-    update_sample($commitment, $project, $region);
+    patch_packet_mirroring_rule_sample($firewallPolicy, $project);
 }
-// [END compute_v1_generated_RegionCommitments_Update_sync]
+// [END compute_v1_generated_NetworkFirewallPolicies_PatchPacketMirroringRule_sync]

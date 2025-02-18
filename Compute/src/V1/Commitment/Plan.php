@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Commitment;
 use UnexpectedValueException;
 
 /**
- * The plan for this commitment, which determines duration and discount rate. The currently supported plans are TWELVE_MONTH (1 year), and THIRTY_SIX_MONTH (3 years).
+ * The minimum time duration that you commit to purchasing resources. The plan that you choose determines the preset term length of the commitment (which is 1 year or 3 years) and affects the discount rate that you receive for your resources. Committing to a longer time duration typically gives you a higher discount rate. The supported values for this field are TWELVE_MONTH (1 year), and THIRTY_SIX_MONTH (3 years).
  *
  * Protobuf type <code>google.cloud.compute.v1.Commitment.Plan</code>
  */

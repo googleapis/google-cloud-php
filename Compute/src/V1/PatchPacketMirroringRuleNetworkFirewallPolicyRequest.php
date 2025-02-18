@@ -9,28 +9,30 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A request message for RegionCommitments.Update. See the method description for details.
+ * A request message for NetworkFirewallPolicies.PatchPacketMirroringRule. See the method description for details.
  *
- * Generated from protobuf message <code>google.cloud.compute.v1.UpdateRegionCommitmentRequest</code>
+ * Generated from protobuf message <code>google.cloud.compute.v1.PatchPacketMirroringRuleNetworkFirewallPolicyRequest</code>
  */
-class UpdateRegionCommitmentRequest extends \Google\Protobuf\Internal\Message
+class PatchPacketMirroringRuleNetworkFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the commitment that you want to update.
+     * Name of the firewall policy to update.
      *
-     * Generated from protobuf field <code>string commitment = 482134805 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string firewall_policy = 498173265 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $commitment = '';
+    private $firewall_policy = '';
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Commitment commitment_resource = 244240888 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.FirewallPolicyRule firewall_policy_rule_resource = 250523523 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $commitment_resource = null;
+    private $firewall_policy_rule_resource = null;
     /**
-     * Generated from protobuf field <code>optional string paths = 106438894;</code>
+     * The priority of the rule to patch.
+     *
+     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      */
-    private $paths = null;
+    private $priority = null;
     /**
      * Project ID for this request.
      *
@@ -38,41 +40,27 @@ class UpdateRegionCommitmentRequest extends \Google\Protobuf\Internal\Message
      */
     private $project = '';
     /**
-     * Name of the region for this request.
-     *
-     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
-     */
-    private $region = '';
-    /**
      * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
     private $request_id = null;
-    /**
-     * update_mask indicates fields to be updated as part of this request.
-     *
-     * Generated from protobuf field <code>optional string update_mask = 500079778;</code>
-     */
-    private $update_mask = null;
 
     /**
-     * @param string                              $project            Project ID for this request.
-     * @param string                              $region             Name of the region for this request.
-     * @param string                              $commitment         Name of the commitment that you want to update.
-     * @param \Google\Cloud\Compute\V1\Commitment $commitmentResource The body resource for this request
+     * @param string                                      $project                    Project ID for this request.
+     * @param string                                      $firewallPolicy             Name of the firewall policy to update.
+     * @param \Google\Cloud\Compute\V1\FirewallPolicyRule $firewallPolicyRuleResource The body resource for this request
      *
-     * @return \Google\Cloud\Compute\V1\UpdateRegionCommitmentRequest
+     * @return \Google\Cloud\Compute\V1\PatchPacketMirroringRuleNetworkFirewallPolicyRequest
      *
      * @experimental
      */
-    public static function build(string $project, string $region, string $commitment, \Google\Cloud\Compute\V1\Commitment $commitmentResource): self
+    public static function build(string $project, string $firewallPolicy, \Google\Cloud\Compute\V1\FirewallPolicyRule $firewallPolicyRuleResource): self
     {
         return (new self())
             ->setProject($project)
-            ->setRegion($region)
-            ->setCommitment($commitment)
-            ->setCommitmentResource($commitmentResource);
+            ->setFirewallPolicy($firewallPolicy)
+            ->setFirewallPolicyRuleResource($firewallPolicyRuleResource);
     }
 
     /**
@@ -81,19 +69,16 @@ class UpdateRegionCommitmentRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $commitment
-     *           Name of the commitment that you want to update.
-     *     @type \Google\Cloud\Compute\V1\Commitment $commitment_resource
+     *     @type string $firewall_policy
+     *           Name of the firewall policy to update.
+     *     @type \Google\Cloud\Compute\V1\FirewallPolicyRule $firewall_policy_rule_resource
      *           The body resource for this request
-     *     @type string $paths
+     *     @type int $priority
+     *           The priority of the rule to patch.
      *     @type string $project
      *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region for this request.
      *     @type string $request_id
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $update_mask
-     *           update_mask indicates fields to be updated as part of this request.
      * }
      */
     public function __construct($data = NULL) {
@@ -102,27 +87,27 @@ class UpdateRegionCommitmentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the commitment that you want to update.
+     * Name of the firewall policy to update.
      *
-     * Generated from protobuf field <code>string commitment = 482134805 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string firewall_policy = 498173265 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
-    public function getCommitment()
+    public function getFirewallPolicy()
     {
-        return $this->commitment;
+        return $this->firewall_policy;
     }
 
     /**
-     * Name of the commitment that you want to update.
+     * Name of the firewall policy to update.
      *
-     * Generated from protobuf field <code>string commitment = 482134805 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string firewall_policy = 498173265 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
-    public function setCommitment($var)
+    public function setFirewallPolicy($var)
     {
         GPBUtil::checkString($var, True);
-        $this->commitment = $var;
+        $this->firewall_policy = $var;
 
         return $this;
     }
@@ -130,67 +115,71 @@ class UpdateRegionCommitmentRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Commitment commitment_resource = 244240888 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\Commitment|null
+     * Generated from protobuf field <code>.google.cloud.compute.v1.FirewallPolicyRule firewall_policy_rule_resource = 250523523 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\FirewallPolicyRule|null
      */
-    public function getCommitmentResource()
+    public function getFirewallPolicyRuleResource()
     {
-        return $this->commitment_resource;
+        return $this->firewall_policy_rule_resource;
     }
 
-    public function hasCommitmentResource()
+    public function hasFirewallPolicyRuleResource()
     {
-        return isset($this->commitment_resource);
+        return isset($this->firewall_policy_rule_resource);
     }
 
-    public function clearCommitmentResource()
+    public function clearFirewallPolicyRuleResource()
     {
-        unset($this->commitment_resource);
+        unset($this->firewall_policy_rule_resource);
     }
 
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Commitment commitment_resource = 244240888 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Compute\V1\Commitment $var
+     * Generated from protobuf field <code>.google.cloud.compute.v1.FirewallPolicyRule firewall_policy_rule_resource = 250523523 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param \Google\Cloud\Compute\V1\FirewallPolicyRule $var
      * @return $this
      */
-    public function setCommitmentResource($var)
+    public function setFirewallPolicyRuleResource($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\Commitment::class);
-        $this->commitment_resource = $var;
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\FirewallPolicyRule::class);
+        $this->firewall_policy_rule_resource = $var;
 
         return $this;
     }
 
     /**
-     * Generated from protobuf field <code>optional string paths = 106438894;</code>
-     * @return string
+     * The priority of the rule to patch.
+     *
+     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
+     * @return int
      */
-    public function getPaths()
+    public function getPriority()
     {
-        return isset($this->paths) ? $this->paths : '';
+        return isset($this->priority) ? $this->priority : 0;
     }
 
-    public function hasPaths()
+    public function hasPriority()
     {
-        return isset($this->paths);
+        return isset($this->priority);
     }
 
-    public function clearPaths()
+    public function clearPriority()
     {
-        unset($this->paths);
+        unset($this->priority);
     }
 
     /**
-     * Generated from protobuf field <code>optional string paths = 106438894;</code>
-     * @param string $var
+     * The priority of the rule to patch.
+     *
+     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
+     * @param int $var
      * @return $this
      */
-    public function setPaths($var)
+    public function setPriority($var)
     {
-        GPBUtil::checkString($var, True);
-        $this->paths = $var;
+        GPBUtil::checkInt32($var);
+        $this->priority = $var;
 
         return $this;
     }
@@ -217,32 +206,6 @@ class UpdateRegionCommitmentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->project = $var;
-
-        return $this;
-    }
-
-    /**
-     * Name of the region for this request.
-     *
-     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
-     * @return string
-     */
-    public function getRegion()
-    {
-        return $this->region;
-    }
-
-    /**
-     * Name of the region for this request.
-     *
-     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setRegion($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->region = $var;
 
         return $this;
     }
@@ -279,42 +242,6 @@ class UpdateRegionCommitmentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->request_id = $var;
-
-        return $this;
-    }
-
-    /**
-     * update_mask indicates fields to be updated as part of this request.
-     *
-     * Generated from protobuf field <code>optional string update_mask = 500079778;</code>
-     * @return string
-     */
-    public function getUpdateMask()
-    {
-        return isset($this->update_mask) ? $this->update_mask : '';
-    }
-
-    public function hasUpdateMask()
-    {
-        return isset($this->update_mask);
-    }
-
-    public function clearUpdateMask()
-    {
-        unset($this->update_mask);
-    }
-
-    /**
-     * update_mask indicates fields to be updated as part of this request.
-     *
-     * Generated from protobuf field <code>optional string update_mask = 500079778;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setUpdateMask($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->update_mask = $var;
 
         return $this;
     }

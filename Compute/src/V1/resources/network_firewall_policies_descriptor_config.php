@@ -57,6 +57,40 @@ return [
                     ],
                 ],
             ],
+            'AddPacketMirroringRule' => [
+                'longRunning' => [
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                    ],
+                    'getOperationMethod' => 'get',
+                    'cancelOperationMethod' => null,
+                    'deleteOperationMethod' => 'delete',
+                    'operationErrorCodeMethod' => 'getHttpErrorStatusCode',
+                    'operationErrorMessageMethod' => 'getHttpErrorMessage',
+                    'operationNameMethod' => 'getName',
+                    'operationStatusMethod' => 'getStatus',
+                    'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+                    'getOperationRequest' => '\Google\Cloud\Compute\V1\GetGlobalOperationRequest',
+                    'cancelOperationRequest' => null,
+                    'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteGlobalOperationRequest',
+                ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'firewall_policy',
+                        'fieldAccessors' => [
+                            'getFirewallPolicy',
+                        ],
+                    ],
+                ],
+            ],
             'AddRule' => [
                 'longRunning' => [
                     'additionalArgumentMethods' => [
@@ -221,6 +255,40 @@ return [
                     ],
                 ],
             ],
+            'PatchPacketMirroringRule' => [
+                'longRunning' => [
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                    ],
+                    'getOperationMethod' => 'get',
+                    'cancelOperationMethod' => null,
+                    'deleteOperationMethod' => 'delete',
+                    'operationErrorCodeMethod' => 'getHttpErrorStatusCode',
+                    'operationErrorMessageMethod' => 'getHttpErrorMessage',
+                    'operationNameMethod' => 'getName',
+                    'operationStatusMethod' => 'getStatus',
+                    'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+                    'getOperationRequest' => '\Google\Cloud\Compute\V1\GetGlobalOperationRequest',
+                    'cancelOperationRequest' => null,
+                    'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteGlobalOperationRequest',
+                ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'firewall_policy',
+                        'fieldAccessors' => [
+                            'getFirewallPolicy',
+                        ],
+                    ],
+                ],
+            ],
             'PatchRule' => [
                 'longRunning' => [
                     'additionalArgumentMethods' => [
@@ -256,6 +324,40 @@ return [
                 ],
             ],
             'RemoveAssociation' => [
+                'longRunning' => [
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                    ],
+                    'getOperationMethod' => 'get',
+                    'cancelOperationMethod' => null,
+                    'deleteOperationMethod' => 'delete',
+                    'operationErrorCodeMethod' => 'getHttpErrorStatusCode',
+                    'operationErrorMessageMethod' => 'getHttpErrorMessage',
+                    'operationNameMethod' => 'getName',
+                    'operationStatusMethod' => 'getStatus',
+                    'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+                    'getOperationRequest' => '\Google\Cloud\Compute\V1\GetGlobalOperationRequest',
+                    'cancelOperationRequest' => null,
+                    'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteGlobalOperationRequest',
+                ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'firewall_policy',
+                        'fieldAccessors' => [
+                            'getFirewallPolicy',
+                        ],
+                    ],
+                ],
+            ],
+            'RemovePacketMirroringRule' => [
                 'longRunning' => [
                     'additionalArgumentMethods' => [
                         'getProject',
@@ -393,6 +495,24 @@ return [
                         'keyName' => 'resource',
                         'fieldAccessors' => [
                             'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'GetPacketMirroringRule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\FirewallPolicyRule',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'firewall_policy',
+                        'fieldAccessors' => [
+                            'getFirewallPolicy',
                         ],
                     ],
                 ],
