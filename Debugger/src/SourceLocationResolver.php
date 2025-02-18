@@ -28,6 +28,7 @@ namespace Google\Cloud\Debugger;
  * $resolver = new SourceLocationResolver();
  * $resolvedLocation = $resolver->resolve($location);
  * ```
+ * @deprecated see https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation
  */
 class SourceLocationResolver
 {

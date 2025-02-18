@@ -40,6 +40,7 @@ use Psr\Log\LoggerInterface;
  *
  * $agent = new Agent();
  * ```
+ * @deprecated see https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation
  */
 class Agent
 {
