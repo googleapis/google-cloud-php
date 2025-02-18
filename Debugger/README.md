@@ -151,7 +151,7 @@ any minor or patch releases. We will address issues and requests with the highes
 2. Take a look at [in-depth usage samples][usage-samples].
 
 [semaphore-extensions]: http://php.net/manual/en/book.sem.php
-[batch-daemon]: https://github.com/googleapis/google-cloud-php/blob/main/src/Core/Batch/BatchDaemon.php
+[batch-daemon]: https://github.com/googleapis/google-cloud-php/blob/main/Core/src/Batch/BatchDaemon.php
 [debugger-daemon]: https://cloud.google.com/php/docs/reference/debugger/latest/Daemon
 [pecl-debugger]: https://pecl.php.net/package/stackdriver_debugger
 [debugger-console]: https://console.cloud.google.com/debug
