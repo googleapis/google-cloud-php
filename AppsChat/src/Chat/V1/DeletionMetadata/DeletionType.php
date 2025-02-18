@@ -56,6 +56,13 @@ class DeletionType
      * Generated from protobuf enum <code>SPACE_OWNER_VIA_APP = 6;</code>
      */
     const SPACE_OWNER_VIA_APP = 6;
+    /**
+     * A member of the space deleted the message. Human users can delete
+     * messages sent by apps.
+     *
+     * Generated from protobuf enum <code>SPACE_MEMBER = 7;</code>
+     */
+    const SPACE_MEMBER = 7;
 
     private static $valueToName = [
         self::DELETION_TYPE_UNSPECIFIED => 'DELETION_TYPE_UNSPECIFIED',
@@ -65,6 +72,7 @@ class DeletionType
         self::APP_MESSAGE_EXPIRY => 'APP_MESSAGE_EXPIRY',
         self::CREATOR_VIA_APP => 'CREATOR_VIA_APP',
         self::SPACE_OWNER_VIA_APP => 'SPACE_OWNER_VIA_APP',
+        self::SPACE_MEMBER => 'SPACE_MEMBER',
     ];
 
     public static function name($value)
