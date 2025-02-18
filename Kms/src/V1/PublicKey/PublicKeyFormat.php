@@ -73,6 +73,4 @@ class PublicKeyFormat
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PublicKeyFormat::class, \Google\Cloud\Kms\V1\PublicKey_PublicKeyFormat::class);
 
