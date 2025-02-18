@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Language\Tests\System;
 
-use Google\Cloud\Language\V2\LanguageClient;
+use Google\Cloud\Language\V2\Client\LanguageServiceClient;
 use PHPUnit\Framework\TestCase;
 
 class LanguageTestCase extends TestCase
@@ -35,7 +35,7 @@ class LanguageTestCase extends TestCase
         }
 
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-        self::$client = new LanguageClient([
+        self::$client = new LanguageServiceClient([
             'keyFilePath' => $keyFilePath
         ]);
         self::$hasSetUp = true;
