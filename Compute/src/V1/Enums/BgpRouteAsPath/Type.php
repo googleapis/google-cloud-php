@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,20 +22,17 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-namespace Google\Cloud\Compute\V1\Enums\SecurityPolicyDdosProtectionConfig;
+namespace Google\Cloud\Compute\V1\Enums\BgpRouteAsPath;
 
 /**
- * DdosProtection contains string constants that represent the names of each value
- * in the google.cloud.compute.v1.SecurityPolicyDdosProtectionConfig.DdosProtection
- * descriptor.
+ * Type contains string constants that represent the names of each value in the
+ * google.cloud.compute.v1.BgpRouteAsPath.Type descriptor.
  */
-class DdosProtection
+class Type
 {
-    const UNDEFINED_DDOS_PROTECTION = 'UNDEFINED_DDOS_PROTECTION';
+    const UNDEFINED_TYPE = 'UNDEFINED_TYPE';
 
-    const ADVANCED = 'ADVANCED';
+    const AS_PATH_TYPE_SEQUENCE = 'AS_PATH_TYPE_SEQUENCE';
 
-    const ADVANCED_PREVIEW = 'ADVANCED_PREVIEW';
-
-    const STANDARD = 'STANDARD';
+    const AS_PATH_TYPE_SET = 'AS_PATH_TYPE_SET';
 }

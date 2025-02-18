@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,20 +22,20 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-namespace Google\Cloud\Compute\V1\Enums\SecurityPolicyDdosProtectionConfig;
+namespace Google\Cloud\Compute\V1\Enums\ListBgpRoutesRoutersRequest;
 
 /**
- * DdosProtection contains string constants that represent the names of each value
- * in the google.cloud.compute.v1.SecurityPolicyDdosProtectionConfig.DdosProtection
+ * AddressFamily contains string constants that represent the names of each value
+ * in the google.cloud.compute.v1.ListBgpRoutesRoutersRequest.AddressFamily
  * descriptor.
  */
-class DdosProtection
+class AddressFamily
 {
-    const UNDEFINED_DDOS_PROTECTION = 'UNDEFINED_DDOS_PROTECTION';
+    const UNDEFINED_ADDRESS_FAMILY = 'UNDEFINED_ADDRESS_FAMILY';
 
-    const ADVANCED = 'ADVANCED';
+    const IPV4 = 'IPV4';
 
-    const ADVANCED_PREVIEW = 'ADVANCED_PREVIEW';
+    const IPV6 = 'IPV6';
 
-    const STANDARD = 'STANDARD';
+    const UNSPECIFIED_IP_VERSION = 'UNSPECIFIED_IP_VERSION';
 }

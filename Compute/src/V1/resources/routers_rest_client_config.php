@@ -55,6 +55,27 @@ return [
                     ],
                 ],
             ],
+            'DeleteRoutePolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}/deleteRoutePolicy',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                    'router' => [
+                        'getters' => [
+                            'getRouter',
+                        ],
+                    ],
+                ],
+            ],
             'Get' => [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}',
@@ -100,6 +121,27 @@ return [
             'GetNatMappingInfo' => [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}/getNatMappingInfo',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                    'router' => [
+                        'getters' => [
+                            'getRouter',
+                        ],
+                    ],
+                ],
+            ],
+            'GetRoutePolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}/getRoutePolicy',
                 'placeholders' => [
                     'project' => [
                         'getters' => [
@@ -172,10 +214,74 @@ return [
                     ],
                 ],
             ],
+            'ListBgpRoutes' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}/listBgpRoutes',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                    'router' => [
+                        'getters' => [
+                            'getRouter',
+                        ],
+                    ],
+                ],
+            ],
+            'ListRoutePolicies' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}/listRoutePolicies',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                    'router' => [
+                        'getters' => [
+                            'getRouter',
+                        ],
+                    ],
+                ],
+            ],
             'Patch' => [
                 'method' => 'patch',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}',
                 'body' => 'router_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                    'router' => [
+                        'getters' => [
+                            'getRouter',
+                        ],
+                    ],
+                ],
+            ],
+            'PatchRoutePolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}/patchRoutePolicy',
+                'body' => 'route_policy_resource',
                 'placeholders' => [
                     'project' => [
                         'getters' => [
@@ -220,6 +326,28 @@ return [
                 'method' => 'put',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}',
                 'body' => 'router_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                    'router' => [
+                        'getters' => [
+                            'getRouter',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateRoutePolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}/updateRoutePolicy',
+                'body' => 'route_policy_resource',
                 'placeholders' => [
                     'project' => [
                         'getters' => [

@@ -34,23 +34,33 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AggregatedListRoutersRequest;
+use Google\Cloud\Compute\V1\DeleteRoutePolicyRouterRequest;
 use Google\Cloud\Compute\V1\DeleteRouterRequest;
 use Google\Cloud\Compute\V1\GetNatIpInfoRouterRequest;
 use Google\Cloud\Compute\V1\GetNatMappingInfoRoutersRequest;
+use Google\Cloud\Compute\V1\GetRoutePolicyRouterRequest;
 use Google\Cloud\Compute\V1\GetRouterRequest;
 use Google\Cloud\Compute\V1\GetRouterStatusRouterRequest;
 use Google\Cloud\Compute\V1\InsertRouterRequest;
+use Google\Cloud\Compute\V1\ListBgpRoutesRoutersRequest;
+use Google\Cloud\Compute\V1\ListRoutePoliciesRoutersRequest;
 use Google\Cloud\Compute\V1\ListRoutersRequest;
 use Google\Cloud\Compute\V1\NatIpInfoResponse;
 use Google\Cloud\Compute\V1\Operation;
+use Google\Cloud\Compute\V1\PatchRoutePolicyRouterRequest;
 use Google\Cloud\Compute\V1\PatchRouterRequest;
 use Google\Cloud\Compute\V1\PreviewRouterRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
+use Google\Cloud\Compute\V1\RoutePolicy;
 use Google\Cloud\Compute\V1\Router;
 use Google\Cloud\Compute\V1\RouterAggregatedList;
 use Google\Cloud\Compute\V1\RouterList;
 use Google\Cloud\Compute\V1\RouterStatusResponse;
+use Google\Cloud\Compute\V1\RoutersGetRoutePolicyResponse;
+use Google\Cloud\Compute\V1\RoutersListBgpRoutes;
+use Google\Cloud\Compute\V1\RoutersListRoutePolicies;
 use Google\Cloud\Compute\V1\RoutersPreviewResponse;
+use Google\Cloud\Compute\V1\UpdateRoutePolicyRouterRequest;
 use Google\Cloud\Compute\V1\UpdateRouterRequest;
 use Google\Cloud\Compute\V1\VmEndpointNatMappingsList;
 
@@ -431,6 +441,88 @@ class RoutersGapicClient
     }
 
     /**
+     * Deletes Route Policy
+     *
+     * Sample code:
+     * ```
+     * $routersClient = new RoutersClient();
+     * try {
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $router = 'router';
+     *     $operationResponse = $routersClient->deleteRoutePolicy($project, $region, $router);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $routersClient->deleteRoutePolicy($project, $region, $router);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $routersClient->resumeOperation($operationName, 'deleteRoutePolicy');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $routersClient->close();
+     * }
+     * ```
+     *
+     * @param string $project      Project ID for this request.
+     * @param string $region       Name of the region for this request.
+     * @param string $router       Name of the Router resource where Route Policy is defined.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $policy
+     *           The Policy name for this request. Name must conform to RFC1035
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteRoutePolicy($project, $region, $router, array $optionalArgs = [])
+    {
+        $request = new DeleteRoutePolicyRouterRequest();
+        $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRouter($router);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['router'] = $router;
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('DeleteRoutePolicy', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
      * Returns the specified Router resource.
      *
      * Sample code:
@@ -626,6 +718,59 @@ class RoutersGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('GetNatMappingInfo', $optionalArgs, VmEndpointNatMappingsList::class, $request);
+    }
+
+    /**
+     * Returns specified Route Policy
+     *
+     * Sample code:
+     * ```
+     * $routersClient = new RoutersClient();
+     * try {
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $router = 'router';
+     *     $response = $routersClient->getRoutePolicy($project, $region, $router);
+     * } finally {
+     *     $routersClient->close();
+     * }
+     * ```
+     *
+     * @param string $project      Project ID for this request.
+     * @param string $region       Name of the region for this request.
+     * @param string $router       Name of the Router resource to query for the route policy. The name should conform to RFC1035.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $policy
+     *           The Policy name for this request. Name must conform to RFC1035
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Compute\V1\RoutersGetRoutePolicyResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getRoutePolicy($project, $region, $router, array $optionalArgs = [])
+    {
+        $request = new GetRoutePolicyRouterRequest();
+        $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRouter($router);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['router'] = $router;
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetRoutePolicy', RoutersGetRoutePolicyResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -839,6 +984,192 @@ class RoutersGapicClient
     }
 
     /**
+     * Retrieves a list of router bgp routes available to the specified project.
+     *
+     * Sample code:
+     * ```
+     * $routersClient = new RoutersClient();
+     * try {
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $router = 'router';
+     *     $response = $routersClient->listBgpRoutes($project, $region, $router);
+     * } finally {
+     *     $routersClient->close();
+     * }
+     * ```
+     *
+     * @param string $project      Project ID for this request.
+     * @param string $region       Name of the region for this request.
+     * @param string $router       Name or id of the resource for this request. Name should conform to RFC1035.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $addressFamily
+     *           (Required) limit results to this address family (either IPv4 or IPv6)
+     *           Check the AddressFamily enum for the list of possible values.
+     *     @type string $destinationPrefix
+     *           Limit results to destinations that are subnets of this CIDR range
+     *     @type string $filter
+     *           A filter expression that filters resources listed in the response. Most Compute resources support two types of filter expressions: expressions that support regular expressions and expressions that follow API improvement proposal AIP-160. These two types of filter expressions cannot be mixed in one request. If you want to use AIP-160, your expression must specify the field name, an operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. The `:*` comparison can be used to test whether a key has been defined. For example, to find all objects with `owner` label use: ``` labels.owner:* ``` You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a regular expression, use the `eq` (equal) or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or against multiple parenthesized expressions. Examples: `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is interpreted as a regular expression using Google RE2 library syntax. The literal value must match the entire field. For example, to filter for instances that do not end with name "instance", you would use `name ne .*instance`. You cannot combine constraints on multiple fields using regular expressions.
+     *     @type int $maxResults
+     *           The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
+     *     @type string $orderBy
+     *           Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     *     @type string $pageToken
+     *           Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
+     *     @type string $peer
+     *           (Required) limit results to the BGP peer with the given name. Name should conform to RFC1035.
+     *     @type bool $policyApplied
+     *           When true, the method returns post-policy routes. Otherwise, it returns pre-policy routes.
+     *     @type bool $returnPartialSuccess
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code.
+     *     @type string $routeType
+     *           (Required) limit results to this type of route (either LEARNED or ADVERTISED)
+     *           Check the RouteType enum for the list of possible values.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Compute\V1\RoutersListBgpRoutes
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listBgpRoutes($project, $region, $router, array $optionalArgs = [])
+    {
+        $request = new ListBgpRoutesRoutersRequest();
+        $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRouter($router);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['router'] = $router;
+        if (isset($optionalArgs['addressFamily'])) {
+            $request->setAddressFamily($optionalArgs['addressFamily']);
+        }
+
+        if (isset($optionalArgs['destinationPrefix'])) {
+            $request->setDestinationPrefix($optionalArgs['destinationPrefix']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['maxResults'])) {
+            $request->setMaxResults($optionalArgs['maxResults']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['peer'])) {
+            $request->setPeer($optionalArgs['peer']);
+        }
+
+        if (isset($optionalArgs['policyApplied'])) {
+            $request->setPolicyApplied($optionalArgs['policyApplied']);
+        }
+
+        if (isset($optionalArgs['returnPartialSuccess'])) {
+            $request->setReturnPartialSuccess($optionalArgs['returnPartialSuccess']);
+        }
+
+        if (isset($optionalArgs['routeType'])) {
+            $request->setRouteType($optionalArgs['routeType']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('ListBgpRoutes', RoutersListBgpRoutes::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Retrieves a list of router route policy subresources available to the specified project.
+     *
+     * Sample code:
+     * ```
+     * $routersClient = new RoutersClient();
+     * try {
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $router = 'router';
+     *     $response = $routersClient->listRoutePolicies($project, $region, $router);
+     * } finally {
+     *     $routersClient->close();
+     * }
+     * ```
+     *
+     * @param string $project      Project ID for this request.
+     * @param string $region       Name of the region for this request.
+     * @param string $router       Name or id of the resource for this request. Name should conform to RFC1035.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $filter
+     *           A filter expression that filters resources listed in the response. Most Compute resources support two types of filter expressions: expressions that support regular expressions and expressions that follow API improvement proposal AIP-160. These two types of filter expressions cannot be mixed in one request. If you want to use AIP-160, your expression must specify the field name, an operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. The `:*` comparison can be used to test whether a key has been defined. For example, to find all objects with `owner` label use: ``` labels.owner:* ``` You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a regular expression, use the `eq` (equal) or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or against multiple parenthesized expressions. Examples: `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is interpreted as a regular expression using Google RE2 library syntax. The literal value must match the entire field. For example, to filter for instances that do not end with name "instance", you would use `name ne .*instance`. You cannot combine constraints on multiple fields using regular expressions.
+     *     @type int $maxResults
+     *           The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
+     *     @type string $orderBy
+     *           Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     *     @type string $pageToken
+     *           Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
+     *     @type bool $returnPartialSuccess
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Compute\V1\RoutersListRoutePolicies
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listRoutePolicies($project, $region, $router, array $optionalArgs = [])
+    {
+        $request = new ListRoutePoliciesRoutersRequest();
+        $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRouter($router);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['router'] = $router;
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['maxResults'])) {
+            $request->setMaxResults($optionalArgs['maxResults']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['returnPartialSuccess'])) {
+            $request->setReturnPartialSuccess($optionalArgs['returnPartialSuccess']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('ListRoutePolicies', RoutersListRoutePolicies::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Patches the specified Router resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      *
      * Sample code:
@@ -915,6 +1246,85 @@ class RoutersGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('Patch', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
+     * Patches Route Policy
+     *
+     * Sample code:
+     * ```
+     * $routersClient = new RoutersClient();
+     * try {
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $routePolicyResource = new RoutePolicy();
+     *     $router = 'router';
+     *     $operationResponse = $routersClient->patchRoutePolicy($project, $region, $routePolicyResource, $router);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $routersClient->patchRoutePolicy($project, $region, $routePolicyResource, $router);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $routersClient->resumeOperation($operationName, 'patchRoutePolicy');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $routersClient->close();
+     * }
+     * ```
+     *
+     * @param string      $project             Project ID for this request.
+     * @param string      $region              Name of the region for this request.
+     * @param RoutePolicy $routePolicyResource The body resource for this request
+     * @param string      $router              Name of the Router resource where Route Policy is defined.
+     * @param array       $optionalArgs        {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function patchRoutePolicy($project, $region, $routePolicyResource, $router, array $optionalArgs = [])
+    {
+        $request = new PatchRoutePolicyRouterRequest();
+        $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRoutePolicyResource($routePolicyResource);
+        $request->setRouter($router);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['router'] = $router;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('PatchRoutePolicy', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
     }
 
     /**
@@ -1044,5 +1454,84 @@ class RoutersGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('Update', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
+     * Updates or creates new Route Policy
+     *
+     * Sample code:
+     * ```
+     * $routersClient = new RoutersClient();
+     * try {
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $routePolicyResource = new RoutePolicy();
+     *     $router = 'router';
+     *     $operationResponse = $routersClient->updateRoutePolicy($project, $region, $routePolicyResource, $router);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $routersClient->updateRoutePolicy($project, $region, $routePolicyResource, $router);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $routersClient->resumeOperation($operationName, 'updateRoutePolicy');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $routersClient->close();
+     * }
+     * ```
+     *
+     * @param string      $project             Project ID for this request.
+     * @param string      $region              Name of the region for this request.
+     * @param RoutePolicy $routePolicyResource The body resource for this request
+     * @param string      $router              Name of the Router resource where Route Policy is defined.
+     * @param array       $optionalArgs        {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateRoutePolicy($project, $region, $routePolicyResource, $router, array $optionalArgs = [])
+    {
+        $request = new UpdateRoutePolicyRouterRequest();
+        $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRoutePolicyResource($routePolicyResource);
+        $request->setRouter($router);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['router'] = $router;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('UpdateRoutePolicy', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
     }
 }
