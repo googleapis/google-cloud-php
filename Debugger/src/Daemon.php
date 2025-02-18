@@ -41,6 +41,7 @@ use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
  * $daemon = new Daemon();
  * $daemon->run();
  * ```
+ * @deprecated see https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation
  */
 class Daemon
 {

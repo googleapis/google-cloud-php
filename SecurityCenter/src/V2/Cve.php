@@ -75,6 +75,12 @@ class Cve extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp exploit_release_date = 9;</code>
      */
     protected $exploit_release_date = null;
+    /**
+     * Date of the earliest known exploitation.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp first_exploitation_date = 10;</code>
+     */
+    protected $first_exploitation_date = null;
 
     /**
      * Constructor.
@@ -103,6 +109,8 @@ class Cve extends \Google\Protobuf\Internal\Message
      *           published.
      *     @type \Google\Protobuf\Timestamp $exploit_release_date
      *           Date the first publicly available exploit or PoC was released.
+     *     @type \Google\Protobuf\Timestamp $first_exploitation_date
+     *           Date of the earliest known exploitation.
      * }
      */
     public function __construct($data = NULL) {
@@ -366,6 +374,42 @@ class Cve extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->exploit_release_date = $var;
+
+        return $this;
+    }
+
+    /**
+     * Date of the earliest known exploitation.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp first_exploitation_date = 10;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getFirstExploitationDate()
+    {
+        return $this->first_exploitation_date;
+    }
+
+    public function hasFirstExploitationDate()
+    {
+        return isset($this->first_exploitation_date);
+    }
+
+    public function clearFirstExploitationDate()
+    {
+        unset($this->first_exploitation_date);
+    }
+
+    /**
+     * Date of the earliest known exploitation.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp first_exploitation_date = 10;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setFirstExploitationDate($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->first_exploitation_date = $var;
 
         return $this;
     }

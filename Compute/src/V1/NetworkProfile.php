@@ -70,8 +70,6 @@ class NetworkProfile extends \Google\Protobuf\Internal\Message
      */
     private $self_link_with_id = null;
     /**
-     * [Output Only] Zone to which the network is restricted.
-     *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
     private $zone = null;
@@ -101,7 +99,6 @@ class NetworkProfile extends \Google\Protobuf\Internal\Message
      *     @type string $self_link_with_id
      *           [Output Only] Server-defined URL for this resource with the resource id.
      *     @type string $zone
-     *           [Output Only] Zone to which the network is restricted.
      * }
      */
     public function __construct($data = NULL) {
@@ -434,8 +431,6 @@ class NetworkProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Zone to which the network is restricted.
-     *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @return string
      */
@@ -455,8 +450,6 @@ class NetworkProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Zone to which the network is restricted.
-     *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @param string $var
      * @return $this

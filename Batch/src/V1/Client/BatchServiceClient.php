@@ -34,6 +34,7 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Batch\V1\CancelJobRequest;
 use Google\Cloud\Batch\V1\CreateJobRequest;
 use Google\Cloud\Batch\V1\DeleteJobRequest;
 use Google\Cloud\Batch\V1\GetJobRequest;
@@ -63,6 +64,7 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<OperationResponse> cancelJobAsync(CancelJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Job> createJobAsync(CreateJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteJobAsync(DeleteJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Job> getJobAsync(GetJobRequest $request, array $optionalArgs = [])
@@ -361,6 +363,32 @@ final class BatchServiceClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Cancel a Job.
+     *
+     * The async variant is {@see BatchServiceClient::cancelJobAsync()} .
+     *
+     * @example samples/V1/BatchServiceClient/cancel_job.php
+     *
+     * @param CancelJobRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function cancelJob(CancelJobRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CancelJob', $request, $callOptions)->wait();
     }
 
     /**

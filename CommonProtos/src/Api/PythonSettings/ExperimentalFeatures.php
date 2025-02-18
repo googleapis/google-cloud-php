@@ -35,6 +35,15 @@ class ExperimentalFeatures extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool protobuf_pythonic_types_enabled = 2;</code>
      */
     protected $protobuf_pythonic_types_enabled = false;
+    /**
+     * Disables generation of an unversioned Python package for this client
+     * library. This means that the module names will need to be versioned in
+     * import statements. For example `import google.cloud.library_v2` instead
+     * of `import google.cloud.library`.
+     *
+     * Generated from protobuf field <code>bool unversioned_package_disabled = 3;</code>
+     */
+    protected $unversioned_package_disabled = false;
 
     /**
      * Constructor.
@@ -52,6 +61,11 @@ class ExperimentalFeatures extends \Google\Protobuf\Internal\Message
      *           Pythonic which are included in `protobuf>=5.29.x`. This feature will be
      *           enabled by default 1 month after launching the feature in preview
      *           packages.
+     *     @type bool $unversioned_package_disabled
+     *           Disables generation of an unversioned Python package for this client
+     *           library. This means that the module names will need to be versioned in
+     *           import statements. For example `import google.cloud.library_v2` instead
+     *           of `import google.cloud.library`.
      * }
      */
     public function __construct($data = NULL) {
@@ -119,6 +133,38 @@ class ExperimentalFeatures extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->protobuf_pythonic_types_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Disables generation of an unversioned Python package for this client
+     * library. This means that the module names will need to be versioned in
+     * import statements. For example `import google.cloud.library_v2` instead
+     * of `import google.cloud.library`.
+     *
+     * Generated from protobuf field <code>bool unversioned_package_disabled = 3;</code>
+     * @return bool
+     */
+    public function getUnversionedPackageDisabled()
+    {
+        return $this->unversioned_package_disabled;
+    }
+
+    /**
+     * Disables generation of an unversioned Python package for this client
+     * library. This means that the module names will need to be versioned in
+     * import statements. For example `import google.cloud.library_v2` instead
+     * of `import google.cloud.library`.
+     *
+     * Generated from protobuf field <code>bool unversioned_package_disabled = 3;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUnversionedPackageDisabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->unversioned_package_disabled = $var;
 
         return $this;
     }

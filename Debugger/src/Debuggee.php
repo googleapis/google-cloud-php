@@ -32,6 +32,7 @@ use Google\Cloud\Debugger\Connection\ConnectionInterface;
  * ```
  *
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee Debuggee API Documentation
+ * @deprecated see https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation
  */
 class Debuggee
 {

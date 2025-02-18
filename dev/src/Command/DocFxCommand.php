@@ -51,6 +51,7 @@ class DocFxCommand extends Command
     ];
 
     private static array $productNeutralGuides = [
+        'README.md' => 'Getting Started',
         'AUTHENTICATION.md' => 'Authentication',
         'DEBUG.md' => 'Debug Logging',
         'MIGRATING.md' => 'Migrating to V2',

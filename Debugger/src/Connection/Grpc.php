@@ -31,6 +31,7 @@ use Google\Cloud\Debugger\V2\Debugger2Client;
  * [Google Debugger gRPC API](https://cloud.google.com/debugger/docs/).
  *
  * @internal
+ * @deprecated see https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation
  */
 class Grpc implements ConnectionInterface
 {

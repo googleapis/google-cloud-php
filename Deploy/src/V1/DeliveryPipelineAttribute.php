@@ -16,12 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeliveryPipelineAttribute extends \Google\Protobuf\Internal\Message
 {
     /**
-     * ID of the `DeliveryPipeline`. The value of this field could be one of the
-     * following:
+     * Optional. ID of the `DeliveryPipeline`. The value of this field could be
+     * one of the following:
      * * The last segment of a pipeline name
      * * "*", all delivery pipelines in a location
      *
-     * Generated from protobuf field <code>string id = 1;</code>
+     * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $id = '';
     /**
@@ -38,8 +38,8 @@ class DeliveryPipelineAttribute extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $id
-     *           ID of the `DeliveryPipeline`. The value of this field could be one of the
-     *           following:
+     *           Optional. ID of the `DeliveryPipeline`. The value of this field could be
+     *           one of the following:
      *           * The last segment of a pipeline name
      *           * "*", all delivery pipelines in a location
      *     @type array|\Google\Protobuf\Internal\MapField $labels
@@ -52,12 +52,12 @@ class DeliveryPipelineAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * ID of the `DeliveryPipeline`. The value of this field could be one of the
-     * following:
+     * Optional. ID of the `DeliveryPipeline`. The value of this field could be
+     * one of the following:
      * * The last segment of a pipeline name
      * * "*", all delivery pipelines in a location
      *
-     * Generated from protobuf field <code>string id = 1;</code>
+     * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getId()
@@ -66,12 +66,12 @@ class DeliveryPipelineAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * ID of the `DeliveryPipeline`. The value of this field could be one of the
-     * following:
+     * Optional. ID of the `DeliveryPipeline`. The value of this field could be
+     * one of the following:
      * * The last segment of a pipeline name
      * * "*", all delivery pipelines in a location
      *
-     * Generated from protobuf field <code>string id = 1;</code>
+     * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

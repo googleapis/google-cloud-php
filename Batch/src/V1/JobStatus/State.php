@@ -59,6 +59,20 @@ class State
      * Generated from protobuf enum <code>DELETION_IN_PROGRESS = 6;</code>
      */
     const DELETION_IN_PROGRESS = 6;
+    /**
+     * The Job cancellation is in progress, this is because the resources used
+     * by the Job are still being cleaned up.
+     *
+     * Generated from protobuf enum <code>CANCELLATION_IN_PROGRESS = 7;</code>
+     */
+    const CANCELLATION_IN_PROGRESS = 7;
+    /**
+     * The Job has been cancelled, the task executions were stopped and the
+     * resources were cleaned up.
+     *
+     * Generated from protobuf enum <code>CANCELLED = 8;</code>
+     */
+    const CANCELLED = 8;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -68,6 +82,8 @@ class State
         self::SUCCEEDED => 'SUCCEEDED',
         self::FAILED => 'FAILED',
         self::DELETION_IN_PROGRESS => 'DELETION_IN_PROGRESS',
+        self::CANCELLATION_IN_PROGRESS => 'CANCELLATION_IN_PROGRESS',
+        self::CANCELLED => 'CANCELLED',
     ];
 
     public static function name($value)

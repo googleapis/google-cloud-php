@@ -41,6 +41,7 @@ use Google\Cloud\Debugger\V2\Breakpoint\LogLevel;
  * @codingStandardsIgnoreStart
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/debugger.debuggees.breakpoints#Breakpoint Breakpoint model documentation
  * @codingStandardsIgnoreEnd
+ * @deprecated see https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation
  */
 class Breakpoint
 {

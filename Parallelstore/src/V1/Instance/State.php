@@ -49,6 +49,13 @@ class State
      * Generated from protobuf enum <code>UPGRADING = 5;</code>
      */
     const UPGRADING = 5;
+    /**
+     * The instance is being repaired. This should only be used by instances
+     * using the `PERSISTENT` deployment type.
+     *
+     * Generated from protobuf enum <code>REPAIRING = 6;</code>
+     */
+    const REPAIRING = 6;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -57,6 +64,7 @@ class State
         self::DELETING => 'DELETING',
         self::FAILED => 'FAILED',
         self::UPGRADING => 'UPGRADING',
+        self::REPAIRING => 'REPAIRING',
     ];
 
     public static function name($value)

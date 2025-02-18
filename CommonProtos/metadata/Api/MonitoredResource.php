@@ -19,7 +19,7 @@ class MonitoredResource
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         $pool->internalAddGeneratedFile(
             '
-è
+å
 #google/api/monitored_resource.proto
 google.apigoogle/api/launch_stage.protogoogle/protobuf/struct.proto"¿
 MonitoredResourceDescriptor
@@ -40,8 +40,8 @@ google.apigoogle/api/launch_stage.protogoogle/protobuf/struct.proto"¿
 user_labels (25.google.api.MonitoredResourceMetadata.UserLabelsEntry1
 UserLabelsEntry
 key (	
-value (	:8By
-com.google.apiBMonitoredResourceProtoPZCgoogle.golang.org/genproto/googleapis/api/monitoredres;monitoredres¯¢GAPIbproto3'
+value (	:8Bv
+com.google.apiBMonitoredResourceProtoPZCgoogle.golang.org/genproto/googleapis/api/monitoredres;monitoredres¢GAPIbproto3'
         , true);
 
         static::$is_initialized = true;

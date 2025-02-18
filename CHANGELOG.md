@@ -1,5 +1,282 @@
 # Changelog
 
+## 0.276.0
+
+<details><summary>google/cloud-ai-platform 1.18.0</summary>
+
+
+
+### Features
+
+* A new field `create_time` is added to message `.google.cloud.aiplatform.v1.GenerateContentResponse` ([c09e185](https://github.com/googleapis/google-cloud-php/commit/c09e1852617f4db2e41c75762b764e08717f6e77))
+* A new field `response_id` is added to message `.google.cloud.aiplatform.v1.GenerateContentResponse` ([#8089](https://github.com/googleapis/google-cloud-php/issues/8089)) ([c09e185](https://github.com/googleapis/google-cloud-php/commit/c09e1852617f4db2e41c75762b764e08717f6e77))
+
+</details>
+
+<details><summary>google/apps-chat 0.8.1</summary>
+
+
+
+### Documentation
+
+* Update Google chat app command documentation ([#8090](https://github.com/googleapis/google-cloud-php/issues/8090)) ([eb381ee](https://github.com/googleapis/google-cloud-php/commit/eb381eeeb1a007842c09961aef7e44553dfbe025))
+
+</details>
+
+<details><summary>google/cloud-batch 1.2.0</summary>
+
+
+
+### Features
+
+* Promote cancel job API to GA ([#8087](https://github.com/googleapis/google-cloud-php/issues/8087)) ([d9db19e](https://github.com/googleapis/google-cloud-php/commit/d9db19ebf4cfa2ad94e37ebb0fd3f92351133307))
+
+</details>
+
+<details><summary>google/common-protos 4.11.0</summary>
+
+
+
+### Features
+
+* A new field `unversioned_package_disabled` is added to message `.google.api.PythonSettings` ([#8081](https://github.com/googleapis/google-cloud-php/issues/8081)) ([eab6523](https://github.com/googleapis/google-cloud-php/commit/eab652320e48ea801b4529fced82250270a7ff8d))
+
+
+### Documentation
+
+* A comment for field `content` in message `.google.api.Page` is changed ([eab6523](https://github.com/googleapis/google-cloud-php/commit/eab652320e48ea801b4529fced82250270a7ff8d))
+* A comment for message `RoutingRule` is changed ([eab6523](https://github.com/googleapis/google-cloud-php/commit/eab652320e48ea801b4529fced82250270a7ff8d))
+
+</details>
+
+<details><summary>google/cloud-compute 1.25.0</summary>
+
+
+
+### Features
+
+* [Compute] Update Compute Engine API to revision 20250126 ([#8095](https://github.com/googleapis/google-cloud-php/issues/8095)) ([b9348f5](https://github.com/googleapis/google-cloud-php/commit/b9348f5730db9415c3860c4d4deefd60bd3b7a2e))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.9.5</summary>
+
+
+
+### Bug Fixes
+
+* Mark Debugger deprecated ([#8084](https://github.com/googleapis/google-cloud-php/issues/8084)) ([e651206](https://github.com/googleapis/google-cloud-php/commit/e6512067b98669ae70df2646dcd56734675979ce))
+
+
+### Documentation
+
+* Fix `BatchDaemon.php` reference ([#8073](https://github.com/googleapis/google-cloud-php/issues/8073)) ([70ea0bd](https://github.com/googleapis/google-cloud-php/commit/70ea0bd062ef8a27eedb38c1b292a3fb39a40ffb))
+
+</details>
+
+<details><summary>google/cloud-deploy 1.5.3</summary>
+
+
+
+### Documentation
+
+* Minor documentation improvements ([9900c7d](https://github.com/googleapis/google-cloud-php/commit/9900c7dc518505684c3f3fd256b9a56236a22a6c))
+
+</details>
+
+<details><summary>google/cloud-memorystore 0.3.0</summary>
+
+
+
+### Features
+
+* Add Instance.Mode.CLUSTER_DISABLED value, and deprecate STANDALONE ([#8083](https://github.com/googleapis/google-cloud-php/issues/8083)) ([60a747f](https://github.com/googleapis/google-cloud-php/commit/60a747f50413954b7f90a6da908751e053b39b7e))
+
+
+### Documentation
+
+* A comment for enum value `STANDALONE` in enum `Mode` is changed ([60a747f](https://github.com/googleapis/google-cloud-php/commit/60a747f50413954b7f90a6da908751e053b39b7e))
+* A comment for enum value `STANDALONE` in enum `Mode` is changed ([60a747f](https://github.com/googleapis/google-cloud-php/commit/60a747f50413954b7f90a6da908751e053b39b7e))
+
+</details>
+
+<details><summary>google/cloud-parallelstore 0.10.0</summary>
+
+
+
+### Features
+
+* Adding `deployment_type` field ([c5c3064](https://github.com/googleapis/google-cloud-php/commit/c5c306487e9e1732b7f22a769ce90ac2724f2de7))
+* Deprecating `daos_version` field ([#8094](https://github.com/googleapis/google-cloud-php/issues/8094)) ([c5c3064](https://github.com/googleapis/google-cloud-php/commit/c5c306487e9e1732b7f22a769ce90ac2724f2de7))
+
+
+### Documentation
+
+* Updated `directory_stripe_level` in message `.google.cloud.parallelstore.v1.Instance` to reflect that the field is now immutable ([c5c3064](https://github.com/googleapis/google-cloud-php/commit/c5c306487e9e1732b7f22a769ce90ac2724f2de7))
+* Updated documentation for field `daos_version` in message `.google.cloud.parallelstore.v1.Instance` to reflect that the field is deprecated. ([c5c3064](https://github.com/googleapis/google-cloud-php/commit/c5c306487e9e1732b7f22a769ce90ac2724f2de7))
+* Updated field `file_stripe_level` in message `.google.cloud.parallelstore.v1.Instance` to reflected that message is now immutable ([c5c3064](https://github.com/googleapis/google-cloud-php/commit/c5c306487e9e1732b7f22a769ce90ac2724f2de7))
+
+</details>
+
+<details><summary>google/cloud-security-center 2.1.0</summary>
+
+
+
+### Features
+
+* Added data access event fields to finding proto ([8fe4957](https://github.com/googleapis/google-cloud-php/commit/8fe495702baca77d75dba6750ff5dd48553835a0))
+* Added more information about DDoS attack in cloud armor proto ([#8092](https://github.com/googleapis/google-cloud-php/issues/8092)) ([8fe4957](https://github.com/googleapis/google-cloud-php/commit/8fe495702baca77d75dba6750ff5dd48553835a0))
+
+
+### Documentation
+
+* Clarified comments for tag_values field in resource_value_config to make it clear that field represents tag value ids, not tag values ([8fe4957](https://github.com/googleapis/google-cloud-php/commit/8fe495702baca77d75dba6750ff5dd48553835a0))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.94.0</summary>
+
+
+
+### Features
+
+* **spanner:** Add instance partitions field in backup proto ([#8091](https://github.com/googleapis/google-cloud-php/issues/8091)) ([5bc883a](https://github.com/googleapis/google-cloud-php/commit/5bc883a674738d3a5ab8b4d1b02b7d447523acf9))
+
+</details>
+
+## 0.275.0
+
+<details><summary>google/cloud-ai-platform 1.17.0</summary>
+
+
+
+### Features
+
+* Add additional Probe options to v1 model.proto ([#8079](https://github.com/googleapis/google-cloud-php/issues/8079)) ([6d54b59](https://github.com/googleapis/google-cloud-php/commit/6d54b590254c62b5830476b30dd5505123201b6a))
+
+
+### Documentation
+
+* Update README for Vertex AI ([#8071](https://github.com/googleapis/google-cloud-php/issues/8071)) ([254c52c](https://github.com/googleapis/google-cloud-php/commit/254c52c51344d2bce78522022bc6fcb64bd6913f))
+
+</details>
+
+<details><summary>google/cloud-core 1.62.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote Vision to v2 ([#7904](https://github.com/googleapis/google-cloud-php/issues/7904))
+* Promote Translate to v2 ([#7903](https://github.com/googleapis/google-cloud-php/issues/7903))
+* Promote Speech to v2 ([#7902](https://github.com/googleapis/google-cloud-php/issues/7902))
+
+### Chores
+
+* Promote Speech to v2 ([#7902](https://github.com/googleapis/google-cloud-php/issues/7902)) ([d9d6ef0](https://github.com/googleapis/google-cloud-php/commit/d9d6ef06436e9e80d5ac5bd8f5bc247fe064f13e))
+* Promote Translate to v2 ([#7903](https://github.com/googleapis/google-cloud-php/issues/7903)) ([96c3d5f](https://github.com/googleapis/google-cloud-php/commit/96c3d5faadae4bff13adc21ac675347e5f19106c))
+* Promote Vision to v2 ([#7904](https://github.com/googleapis/google-cloud-php/issues/7904)) ([792b2fa](https://github.com/googleapis/google-cloud-php/commit/792b2faf157a4e813f09eac7fe83475aedad2257))
+
+</details>
+
+<details><summary>google/cloud-dataplex 1.3.0</summary>
+
+
+
+### Features
+
+* Added value `NONE` to  the `SyncMode` enum ([#8078](https://github.com/googleapis/google-cloud-php/issues/8078)) ([f3b1165](https://github.com/googleapis/google-cloud-php/commit/f3b11658c516b442997dccf1328ae282f0c5f7e1))
+
+
+### Documentation
+
+* Modified various comments ([f3b1165](https://github.com/googleapis/google-cloud-php/commit/f3b11658c516b442997dccf1328ae282f0c5f7e1))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.10.1</summary>
+
+
+
+### Documentation
+
+* A comment for field `code` in message `.google.pubsub.v1.JavaScriptUDF` is changed ([#8070](https://github.com/googleapis/google-cloud-php/issues/8070)) ([49efa37](https://github.com/googleapis/google-cloud-php/commit/49efa37b44b27618f13c15ed0ab37ff0f7feedba))
+
+</details>
+
+<details><summary>google/cloud-run 1.6.0</summary>
+
+
+
+### Features
+
+* Add Base Image URI to Container ([0f0f88a](https://github.com/googleapis/google-cloud-php/commit/0f0f88aefc9af649d684b0cc2078e2b91fcc4e4a))
+* Add BuildConfig to Services for configuring Run functions ([#8074](https://github.com/googleapis/google-cloud-php/issues/8074)) ([0f0f88a](https://github.com/googleapis/google-cloud-php/commit/0f0f88aefc9af649d684b0cc2078e2b91fcc4e4a))
+* Add BuildInfo to Revision for displaying BuildConfig used for a specific revision deployment ([0f0f88a](https://github.com/googleapis/google-cloud-php/commit/0f0f88aefc9af649d684b0cc2078e2b91fcc4e4a))
+* Add creator field to Execution ([0f0f88a](https://github.com/googleapis/google-cloud-php/commit/0f0f88aefc9af649d684b0cc2078e2b91fcc4e4a))
+* Add project_descriptor to BuildspackBuild ([0f0f88a](https://github.com/googleapis/google-cloud-php/commit/0f0f88aefc9af649d684b0cc2078e2b91fcc4e4a))
+
+
+### Documentation
+
+* Some typos were fixed and formatting changed ([0f0f88a](https://github.com/googleapis/google-cloud-php/commit/0f0f88aefc9af649d684b0cc2078e2b91fcc4e4a))
+
+</details>
+
+<details><summary>google/cloud-service-directory 2.0.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-spanner 1.93.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-speech 2.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote Speech to v2 ([#7902](https://github.com/googleapis/google-cloud-php/issues/7902))
+
+### Chores
+
+* Promote Speech to v2 ([#7902](https://github.com/googleapis/google-cloud-php/issues/7902)) ([d9d6ef0](https://github.com/googleapis/google-cloud-php/commit/d9d6ef06436e9e80d5ac5bd8f5bc247fe064f13e))
+
+</details>
+
+<details><summary>google/cloud-translate 2.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote Translate to v2 ([#7903](https://github.com/googleapis/google-cloud-php/issues/7903))
+
+### Chores
+
+* Promote Translate to v2 ([#7903](https://github.com/googleapis/google-cloud-php/issues/7903)) ([96c3d5f](https://github.com/googleapis/google-cloud-php/commit/96c3d5faadae4bff13adc21ac675347e5f19106c))
+
+</details>
+
+<details><summary>google/cloud-vision 2.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote Vision to v2 ([#7904](https://github.com/googleapis/google-cloud-php/issues/7904))
+
+### Chores
+
+* Promote Vision to v2 ([#7904](https://github.com/googleapis/google-cloud-php/issues/7904)) ([792b2fa](https://github.com/googleapis/google-cloud-php/commit/792b2faf157a4e813f09eac7fe83475aedad2257))
+
+</details>
+
 ## 0.274.0
 
 <details><summary>googleads/ad-manager 0.2.0</summary>

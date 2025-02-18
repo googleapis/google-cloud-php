@@ -34,6 +34,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AddAssociationNetworkFirewallPolicyRequest;
+use Google\Cloud\Compute\V1\AddPacketMirroringRuleNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\AddRuleNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\AggregatedListNetworkFirewallPoliciesRequest;
 use Google\Cloud\Compute\V1\CloneRulesNetworkFirewallPolicyRequest;
@@ -45,6 +46,7 @@ use Google\Cloud\Compute\V1\FirewallPolicyRule;
 use Google\Cloud\Compute\V1\GetAssociationNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\GetIamPolicyNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\GetNetworkFirewallPolicyRequest;
+use Google\Cloud\Compute\V1\GetPacketMirroringRuleNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\GetRuleNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\GlobalSetPolicyRequest;
@@ -53,9 +55,11 @@ use Google\Cloud\Compute\V1\ListNetworkFirewallPoliciesRequest;
 use Google\Cloud\Compute\V1\NetworkFirewallPolicyAggregatedList;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\PatchNetworkFirewallPolicyRequest;
+use Google\Cloud\Compute\V1\PatchPacketMirroringRuleNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\PatchRuleNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RemoveAssociationNetworkFirewallPolicyRequest;
+use Google\Cloud\Compute\V1\RemovePacketMirroringRuleNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\RemoveRuleNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\SetIamPolicyNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsNetworkFirewallPolicyRequest;
@@ -357,6 +361,93 @@ class NetworkFirewallPoliciesGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('AddAssociation', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
+     * Inserts a packet mirroring rule into a firewall policy.
+     *
+     * Sample code:
+     * ```
+     * $networkFirewallPoliciesClient = new NetworkFirewallPoliciesClient();
+     * try {
+     *     $firewallPolicy = 'firewall_policy';
+     *     $firewallPolicyRuleResource = new FirewallPolicyRule();
+     *     $project = 'project';
+     *     $operationResponse = $networkFirewallPoliciesClient->addPacketMirroringRule($firewallPolicy, $firewallPolicyRuleResource, $project);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $networkFirewallPoliciesClient->addPacketMirroringRule($firewallPolicy, $firewallPolicyRuleResource, $project);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $networkFirewallPoliciesClient->resumeOperation($operationName, 'addPacketMirroringRule');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $networkFirewallPoliciesClient->close();
+     * }
+     * ```
+     *
+     * @param string             $firewallPolicy             Name of the firewall policy to update.
+     * @param FirewallPolicyRule $firewallPolicyRuleResource The body resource for this request
+     * @param string             $project                    Project ID for this request.
+     * @param array              $optionalArgs               {
+     *     Optional.
+     *
+     *     @type int $maxPriority
+     *           When rule.priority is not specified, auto choose a unused priority between minPriority and maxPriority>. This field is exclusive with rule.priority.
+     *     @type int $minPriority
+     *           When rule.priority is not specified, auto choose a unused priority between minPriority and maxPriority>. This field is exclusive with rule.priority.
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function addPacketMirroringRule($firewallPolicy, $firewallPolicyRuleResource, $project, array $optionalArgs = [])
+    {
+        $request = new AddPacketMirroringRuleNetworkFirewallPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setFirewallPolicy($firewallPolicy);
+        $request->setFirewallPolicyRuleResource($firewallPolicyRuleResource);
+        $request->setProject($project);
+        $requestParamHeaders['firewall_policy'] = $firewallPolicy;
+        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['maxPriority'])) {
+            $request->setMaxPriority($optionalArgs['maxPriority']);
+        }
+
+        if (isset($optionalArgs['minPriority'])) {
+            $request->setMinPriority($optionalArgs['minPriority']);
+        }
+
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('AddPacketMirroringRule', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
     }
 
     /**
@@ -834,6 +925,55 @@ class NetworkFirewallPoliciesGapicClient
     }
 
     /**
+     * Gets a packet mirroring rule of the specified priority.
+     *
+     * Sample code:
+     * ```
+     * $networkFirewallPoliciesClient = new NetworkFirewallPoliciesClient();
+     * try {
+     *     $firewallPolicy = 'firewall_policy';
+     *     $project = 'project';
+     *     $response = $networkFirewallPoliciesClient->getPacketMirroringRule($firewallPolicy, $project);
+     * } finally {
+     *     $networkFirewallPoliciesClient->close();
+     * }
+     * ```
+     *
+     * @param string $firewallPolicy Name of the firewall policy to which the queried rule belongs.
+     * @param string $project        Project ID for this request.
+     * @param array  $optionalArgs   {
+     *     Optional.
+     *
+     *     @type int $priority
+     *           The priority of the rule to get from the firewall policy.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Compute\V1\FirewallPolicyRule
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getPacketMirroringRule($firewallPolicy, $project, array $optionalArgs = [])
+    {
+        $request = new GetPacketMirroringRuleNetworkFirewallPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setFirewallPolicy($firewallPolicy);
+        $request->setProject($project);
+        $requestParamHeaders['firewall_policy'] = $firewallPolicy;
+        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['priority'])) {
+            $request->setPriority($optionalArgs['priority']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetPacketMirroringRule', FirewallPolicyRule::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Gets a rule of the specified priority.
      *
      * Sample code:
@@ -1113,6 +1253,87 @@ class NetworkFirewallPoliciesGapicClient
     }
 
     /**
+     * Patches a packet mirroring rule of the specified priority.
+     *
+     * Sample code:
+     * ```
+     * $networkFirewallPoliciesClient = new NetworkFirewallPoliciesClient();
+     * try {
+     *     $firewallPolicy = 'firewall_policy';
+     *     $firewallPolicyRuleResource = new FirewallPolicyRule();
+     *     $project = 'project';
+     *     $operationResponse = $networkFirewallPoliciesClient->patchPacketMirroringRule($firewallPolicy, $firewallPolicyRuleResource, $project);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $networkFirewallPoliciesClient->patchPacketMirroringRule($firewallPolicy, $firewallPolicyRuleResource, $project);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $networkFirewallPoliciesClient->resumeOperation($operationName, 'patchPacketMirroringRule');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $networkFirewallPoliciesClient->close();
+     * }
+     * ```
+     *
+     * @param string             $firewallPolicy             Name of the firewall policy to update.
+     * @param FirewallPolicyRule $firewallPolicyRuleResource The body resource for this request
+     * @param string             $project                    Project ID for this request.
+     * @param array              $optionalArgs               {
+     *     Optional.
+     *
+     *     @type int $priority
+     *           The priority of the rule to patch.
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function patchPacketMirroringRule($firewallPolicy, $firewallPolicyRuleResource, $project, array $optionalArgs = [])
+    {
+        $request = new PatchPacketMirroringRuleNetworkFirewallPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setFirewallPolicy($firewallPolicy);
+        $request->setFirewallPolicyRuleResource($firewallPolicyRuleResource);
+        $request->setProject($project);
+        $requestParamHeaders['firewall_policy'] = $firewallPolicy;
+        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['priority'])) {
+            $request->setPriority($optionalArgs['priority']);
+        }
+
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('PatchPacketMirroringRule', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
      * Patches a rule of the specified priority.
      *
      * Sample code:
@@ -1269,6 +1490,84 @@ class NetworkFirewallPoliciesGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('RemoveAssociation', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
+     * Deletes a packet mirroring rule of the specified priority.
+     *
+     * Sample code:
+     * ```
+     * $networkFirewallPoliciesClient = new NetworkFirewallPoliciesClient();
+     * try {
+     *     $firewallPolicy = 'firewall_policy';
+     *     $project = 'project';
+     *     $operationResponse = $networkFirewallPoliciesClient->removePacketMirroringRule($firewallPolicy, $project);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $networkFirewallPoliciesClient->removePacketMirroringRule($firewallPolicy, $project);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $networkFirewallPoliciesClient->resumeOperation($operationName, 'removePacketMirroringRule');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $networkFirewallPoliciesClient->close();
+     * }
+     * ```
+     *
+     * @param string $firewallPolicy Name of the firewall policy to update.
+     * @param string $project        Project ID for this request.
+     * @param array  $optionalArgs   {
+     *     Optional.
+     *
+     *     @type int $priority
+     *           The priority of the rule to remove from the firewall policy.
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function removePacketMirroringRule($firewallPolicy, $project, array $optionalArgs = [])
+    {
+        $request = new RemovePacketMirroringRuleNetworkFirewallPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setFirewallPolicy($firewallPolicy);
+        $request->setProject($project);
+        $requestParamHeaders['firewall_policy'] = $firewallPolicy;
+        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['priority'])) {
+            $request->setPriority($optionalArgs['priority']);
+        }
+
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('RemovePacketMirroringRule', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
     }
 
     /**

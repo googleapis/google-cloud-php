@@ -37,6 +37,7 @@ use Google\Cloud\Debugger\V2\StatusMessage\Reference;
  * @codingStandardsIgnoreStart
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/debugger.debuggees.breakpoints#statusmessage StatusMessage model documentation
  * @codingStandardsIgnoreEnd
+ * @deprecated see https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation
  */
 class StatusMessage
 {
