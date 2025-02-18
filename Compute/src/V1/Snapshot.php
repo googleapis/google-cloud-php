@@ -192,7 +192,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     private $source_instant_snapshot_encryption_key = null;
     /**
-     * [Output Only] The unique ID of the instant snapshot used to create this snapshot. This value identifies the exact instant snapshot that was used to create this persistent disk. For example, if you created the persistent disk from an instant snapshot that was later deleted and recreated under the same name, the source instant snapshot ID would identify the exact instant snapshot that was used.
+     * [Output Only] The unique ID of the instant snapshot used to create this snapshot. This value identifies the exact instant snapshot that was used to create this snapshot. For example, if you created the snapshot from an instant snapshot that was later deleted and recreated under the same name, the source instant snapshot ID would identify the exact instant snapshot that was used.
      *
      * Generated from protobuf field <code>optional string source_instant_snapshot_id = 287582708;</code>
      */
@@ -303,7 +303,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\CustomerEncryptionKey $source_instant_snapshot_encryption_key
      *           Customer provided encryption key when creating Snapshot from Instant Snapshot.
      *     @type string $source_instant_snapshot_id
-     *           [Output Only] The unique ID of the instant snapshot used to create this snapshot. This value identifies the exact instant snapshot that was used to create this persistent disk. For example, if you created the persistent disk from an instant snapshot that was later deleted and recreated under the same name, the source instant snapshot ID would identify the exact instant snapshot that was used.
+     *           [Output Only] The unique ID of the instant snapshot used to create this snapshot. This value identifies the exact instant snapshot that was used to create this snapshot. For example, if you created the snapshot from an instant snapshot that was later deleted and recreated under the same name, the source instant snapshot ID would identify the exact instant snapshot that was used.
      *     @type string $source_snapshot_schedule_policy
      *           [Output Only] URL of the resource policy which created this scheduled snapshot.
      *     @type string $source_snapshot_schedule_policy_id
@@ -1334,7 +1334,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique ID of the instant snapshot used to create this snapshot. This value identifies the exact instant snapshot that was used to create this persistent disk. For example, if you created the persistent disk from an instant snapshot that was later deleted and recreated under the same name, the source instant snapshot ID would identify the exact instant snapshot that was used.
+     * [Output Only] The unique ID of the instant snapshot used to create this snapshot. This value identifies the exact instant snapshot that was used to create this snapshot. For example, if you created the snapshot from an instant snapshot that was later deleted and recreated under the same name, the source instant snapshot ID would identify the exact instant snapshot that was used.
      *
      * Generated from protobuf field <code>optional string source_instant_snapshot_id = 287582708;</code>
      * @return string
@@ -1355,7 +1355,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique ID of the instant snapshot used to create this snapshot. This value identifies the exact instant snapshot that was used to create this persistent disk. For example, if you created the persistent disk from an instant snapshot that was later deleted and recreated under the same name, the source instant snapshot ID would identify the exact instant snapshot that was used.
+     * [Output Only] The unique ID of the instant snapshot used to create this snapshot. This value identifies the exact instant snapshot that was used to create this snapshot. For example, if you created the snapshot from an instant snapshot that was later deleted and recreated under the same name, the source instant snapshot ID would identify the exact instant snapshot that was used.
      *
      * Generated from protobuf field <code>optional string source_instant_snapshot_id = 287582708;</code>
      * @param string $var

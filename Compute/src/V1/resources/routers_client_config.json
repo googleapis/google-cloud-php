@@ -49,6 +49,11 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
+                "DeleteRoutePolicy": {
+                    "timeout_millis": 600000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
                 "Get": {
                     "timeout_millis": 600000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -60,6 +65,11 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "GetNatMappingInfo": {
+                    "timeout_millis": 600000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetRoutePolicy": {
                     "timeout_millis": 600000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -79,7 +89,22 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "ListBgpRoutes": {
+                    "timeout_millis": 600000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListRoutePolicies": {
+                    "timeout_millis": 600000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "Patch": {
+                    "timeout_millis": 600000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "PatchRoutePolicy": {
                     "timeout_millis": 600000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
@@ -90,6 +115,11 @@
                     "retry_params_name": "no_retry_1_params"
                 },
                 "Update": {
+                    "timeout_millis": 600000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "UpdateRoutePolicy": {
                     "timeout_millis": 600000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
