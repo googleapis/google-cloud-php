@@ -73,6 +73,9 @@ trait TimeTrait
      */
     private function formatTimeAsString(\DateTimeInterface $dateTime, $ns)
     {
+        if (!$dateTime instanceof \DateTimeImmutable) {
+            $dateTime = clone $dateTime;
+        }
         $dateTime = $dateTime->setTimeZone(new \DateTimeZone('UTC'));
         if ($ns === null) {
             return $dateTime->format(Timestamp::FORMAT);
