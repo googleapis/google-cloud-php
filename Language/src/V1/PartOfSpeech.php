@@ -22,73 +22,73 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.PartOfSpeech.Tag tag = 1;</code>
      */
-    private $tag = 0;
+    protected $tag = 0;
     /**
      * The grammatical aspect.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.PartOfSpeech.Aspect aspect = 2;</code>
      */
-    private $aspect = 0;
+    protected $aspect = 0;
     /**
      * The grammatical case.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.PartOfSpeech.Case case = 3;</code>
      */
-    private $case = 0;
+    protected $case = 0;
     /**
      * The grammatical form.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.PartOfSpeech.Form form = 4;</code>
      */
-    private $form = 0;
+    protected $form = 0;
     /**
      * The grammatical gender.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.PartOfSpeech.Gender gender = 5;</code>
      */
-    private $gender = 0;
+    protected $gender = 0;
     /**
      * The grammatical mood.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.PartOfSpeech.Mood mood = 6;</code>
      */
-    private $mood = 0;
+    protected $mood = 0;
     /**
      * The grammatical number.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.PartOfSpeech.Number number = 7;</code>
      */
-    private $number = 0;
+    protected $number = 0;
     /**
      * The grammatical person.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.PartOfSpeech.Person person = 8;</code>
      */
-    private $person = 0;
+    protected $person = 0;
     /**
      * The grammatical properness.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.PartOfSpeech.Proper proper = 9;</code>
      */
-    private $proper = 0;
+    protected $proper = 0;
     /**
      * The grammatical reciprocity.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.PartOfSpeech.Reciprocity reciprocity = 10;</code>
      */
-    private $reciprocity = 0;
+    protected $reciprocity = 0;
     /**
      * The grammatical tense.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.PartOfSpeech.Tense tense = 11;</code>
      */
-    private $tense = 0;
+    protected $tense = 0;
     /**
      * The grammatical voice.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.PartOfSpeech.Voice voice = 12;</code>
      */
-    private $voice = 0;
+    protected $voice = 0;
 
     /**
      * Constructor.

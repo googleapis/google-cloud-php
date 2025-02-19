@@ -1,4 +1,4 @@
-# Copyright 2018 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -32,46 +32,25 @@ _tracked_paths.add(src)
 
 php.owlbot_main(src=src, dest=dest)
 
-
-# Fix class references in gapic samples
-for version in ['V1', 'V1beta2']:
-    pathExpr = 'src/' + version + '/Gapic/LanguageServiceGapicClient.php'
-
-    types = {
-        'new LanguageServiceClient': r'new Google\\Cloud\\Language\\'+ version + r'\\LanguageServiceClient',
-        'new Document': r'new Google\\Cloud\\Language\\'+ version + r'\\Document',
-        'new Features': r'new Google\\Cloud\\Language\\'+ version + r'\\AnnotateTextRequest\\Features',
-    }
-
-    for search, replace in types.items():
-        s.replace(
-            pathExpr,
-            search,
-            replace
-)
-
-### [START] protoc backwards compatibility fixes
-
-# roll back to private properties.
+# remove class_alias code
 s.replace(
-    "src/**/V*/**/*.php",
-    r"Generated from protobuf field ([^\n]{0,})\n\s{5}\*/\n\s{4}protected \$",
-    r"""Generated from protobuf field \1
-     */
-    private $""")
+    "src/V*/**/*.php",
+    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
+    + "\n"
+    + r"^class_alias\(.*\);$"
+    + "\n",
+    '')
 
-# Replace "Unwrapped" with "Value" for method names.
-s.replace(
-    "src/**/V*/**/*.php",
-    r"public function ([s|g]\w{3,})Unwrapped",
-    r"public function \1Value"
-)
-
-### [END] protoc backwards compatibility fixes
-
-# fix relative cloud.google.com links
-s.replace(
-    "src/**/V*/**/*.php",
-    r"(.{0,})\]\((/.{0,})\)",
-    r"\1](https://cloud.google.com\2)"
-)
+# format generated clients
+subprocess.run([
+    'npm',
+    'exec',
+    '--yes',
+    '--package=@prettier/plugin-php@^0.16',
+    '--',
+    'prettier',
+    '**/Client/*',
+    '--write',
+    '--parser=php',
+    '--single-quote',
+    '--print-width=120'])

@@ -66,6 +66,4 @@ class Aspect
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Aspect::class, \Google\Cloud\Language\V1\PartOfSpeech_Aspect::class);
 
