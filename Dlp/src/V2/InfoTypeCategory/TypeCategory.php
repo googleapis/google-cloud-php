@@ -66,6 +66,12 @@ class TypeCategory
      * Generated from protobuf enum <code>CONTEXTUAL_INFORMATION = 7;</code>
      */
     const CONTEXTUAL_INFORMATION = 7;
+    /**
+     * Category for `CustomInfoType` types.
+     *
+     * Generated from protobuf enum <code>CUSTOM = 8;</code>
+     */
+    const CUSTOM = 8;
 
     private static $valueToName = [
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
@@ -76,6 +82,7 @@ class TypeCategory
         self::GOVERNMENT_ID => 'GOVERNMENT_ID',
         self::DOCUMENT => 'DOCUMENT',
         self::CONTEXTUAL_INFORMATION => 'CONTEXTUAL_INFORMATION',
+        self::CUSTOM => 'CUSTOM',
     ];
 
     public static function name($value)

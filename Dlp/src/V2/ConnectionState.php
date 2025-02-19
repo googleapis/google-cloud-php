@@ -21,8 +21,8 @@ class ConnectionState
      */
     const CONNECTION_STATE_UNSPECIFIED = 0;
     /**
-     * DLP automatically created this connection during an initial scan, and it is
-     * awaiting full configuration by a user.
+     * The DLP API automatically created this connection during an initial scan,
+     * and it is awaiting full configuration by a user.
      *
      * Generated from protobuf enum <code>MISSING_CREDENTIALS = 1;</code>
      */

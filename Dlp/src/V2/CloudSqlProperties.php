@@ -30,7 +30,7 @@ class CloudSqlProperties extends \Google\Protobuf\Internal\Message
      */
     protected $connection_name = '';
     /**
-     * Required. DLP will limit its connections to max_connections.
+     * Required. The DLP API will limit its connections to max_connections.
      * Must be 2 or greater.
      *
      * Generated from protobuf field <code>int32 max_connections = 4 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -66,7 +66,7 @@ class CloudSqlProperties extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\CloudSqlIamCredential $cloud_sql_iam
      *           Built-in IAM authentication (must be configured in Cloud SQL).
      *     @type int $max_connections
-     *           Required. DLP will limit its connections to max_connections.
+     *           Required. The DLP API will limit its connections to max_connections.
      *           Must be 2 or greater.
      *     @type int $database_engine
      *           Required. The database engine used by the Cloud SQL instance that this
@@ -183,7 +183,7 @@ class CloudSqlProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. DLP will limit its connections to max_connections.
+     * Required. The DLP API will limit its connections to max_connections.
      * Must be 2 or greater.
      *
      * Generated from protobuf field <code>int32 max_connections = 4 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -195,7 +195,7 @@ class CloudSqlProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. DLP will limit its connections to max_connections.
+     * Required. The DLP API will limit its connections to max_connections.
      * Must be 2 or greater.
      *
      * Generated from protobuf field <code>int32 max_connections = 4 [(.google.api.field_behavior) = REQUIRED];</code>

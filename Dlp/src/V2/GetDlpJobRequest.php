@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [DlpJobs.GetDlpJob][].
+ * The request message for
+ * [GetDlpJob][google.privacy.dlp.v2.DlpService.GetDlpJob].
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.GetDlpJobRequest</code>
  */

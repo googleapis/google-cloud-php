@@ -64,8 +64,8 @@ class FileClusterSummary extends \Google\Protobuf\Internal\Message
      */
     private $file_extensions_seen;
     /**
-     * True if no files exist in this cluster. If the bucket had more files than
-     * could be listed, this will be false even if no files for this cluster
+     * True if no files exist in this cluster. If the file store had more files
+     * than could be listed, this will be false even if no files for this cluster
      * were seen and file_extensions_seen is empty.
      *
      * Generated from protobuf field <code>bool no_files_exist = 9;</code>
@@ -99,8 +99,8 @@ class FileClusterSummary extends \Google\Protobuf\Internal\Message
      *           A sample of file types seen in this cluster. Empty if no files were seen.
      *           File extensions can be derived from the file name or the file content.
      *     @type bool $no_files_exist
-     *           True if no files exist in this cluster. If the bucket had more files than
-     *           could be listed, this will be false even if no files for this cluster
+     *           True if no files exist in this cluster. If the file store had more files
+     *           than could be listed, this will be false even if no files for this cluster
      *           were seen and file_extensions_seen is empty.
      * }
      */
@@ -334,8 +334,8 @@ class FileClusterSummary extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True if no files exist in this cluster. If the bucket had more files than
-     * could be listed, this will be false even if no files for this cluster
+     * True if no files exist in this cluster. If the file store had more files
+     * than could be listed, this will be false even if no files for this cluster
      * were seen and file_extensions_seen is empty.
      *
      * Generated from protobuf field <code>bool no_files_exist = 9;</code>
@@ -347,8 +347,8 @@ class FileClusterSummary extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True if no files exist in this cluster. If the bucket had more files than
-     * could be listed, this will be false even if no files for this cluster
+     * True if no files exist in this cluster. If the file store had more files
+     * than could be listed, this will be false even if no files for this cluster
      * were seen and file_extensions_seen is empty.
      *
      * Generated from protobuf field <code>bool no_files_exist = 9;</code>
