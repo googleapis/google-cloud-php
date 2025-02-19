@@ -64,8 +64,8 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      */
     private $data_storage_locations;
     /**
-     * The location type of the bucket (region, dual-region, multi-region, etc).
-     * If dual-region, expect data_storage_locations to be populated.
+     * The location type of the file store (region, dual-region, multi-region,
+     * etc). If dual-region, expect data_storage_locations to be populated.
      *
      * Generated from protobuf field <code>string location_type = 20;</code>
      */
@@ -74,6 +74,8 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      * The file store path.
      * * Cloud Storage: `gs://{bucket}`
      * * Amazon S3: `s3://{bucket}`
+     * * Vertex AI dataset:
+     * `projects/{project_number}/locations/{location}/datasets/{dataset_id}`
      *
      * Generated from protobuf field <code>string file_store_path = 6;</code>
      */
@@ -176,6 +178,12 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool file_store_is_empty = 23;</code>
      */
     protected $file_store_is_empty = false;
+    /**
+     * Resources related to this profile.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RelatedResource related_resources = 26;</code>
+     */
+    private $related_resources;
 
     /**
      * Constructor.
@@ -206,12 +214,14 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      *           region is always picked as the processing and storage location for the data
      *           profile.
      *     @type string $location_type
-     *           The location type of the bucket (region, dual-region, multi-region, etc).
-     *           If dual-region, expect data_storage_locations to be populated.
+     *           The location type of the file store (region, dual-region, multi-region,
+     *           etc). If dual-region, expect data_storage_locations to be populated.
      *     @type string $file_store_path
      *           The file store path.
      *           * Cloud Storage: `gs://{bucket}`
      *           * Amazon S3: `s3://{bucket}`
+     *           * Vertex AI dataset:
+     *           `projects/{project_number}/locations/{location}/datasets/{dataset_id}`
      *     @type string $full_resource
      *           The resource name of the resource profiled.
      *           https://cloud.google.com/apis/design/resource_names#full_resource_name
@@ -250,6 +260,8 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      *           InfoTypes detected in this file store.
      *     @type bool $file_store_is_empty
      *           The file store does not have any files.
+     *     @type array<\Google\Cloud\Dlp\V2\RelatedResource>|\Google\Protobuf\Internal\RepeatedField $related_resources
+     *           Resources related to this profile.
      * }
      */
     public function __construct($data = NULL) {
@@ -444,8 +456,8 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The location type of the bucket (region, dual-region, multi-region, etc).
-     * If dual-region, expect data_storage_locations to be populated.
+     * The location type of the file store (region, dual-region, multi-region,
+     * etc). If dual-region, expect data_storage_locations to be populated.
      *
      * Generated from protobuf field <code>string location_type = 20;</code>
      * @return string
@@ -456,8 +468,8 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The location type of the bucket (region, dual-region, multi-region, etc).
-     * If dual-region, expect data_storage_locations to be populated.
+     * The location type of the file store (region, dual-region, multi-region,
+     * etc). If dual-region, expect data_storage_locations to be populated.
      *
      * Generated from protobuf field <code>string location_type = 20;</code>
      * @param string $var
@@ -475,6 +487,8 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      * The file store path.
      * * Cloud Storage: `gs://{bucket}`
      * * Amazon S3: `s3://{bucket}`
+     * * Vertex AI dataset:
+     * `projects/{project_number}/locations/{location}/datasets/{dataset_id}`
      *
      * Generated from protobuf field <code>string file_store_path = 6;</code>
      * @return string
@@ -488,6 +502,8 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      * The file store path.
      * * Cloud Storage: `gs://{bucket}`
      * * Amazon S3: `s3://{bucket}`
+     * * Vertex AI dataset:
+     * `projects/{project_number}/locations/{location}/datasets/{dataset_id}`
      *
      * Generated from protobuf field <code>string file_store_path = 6;</code>
      * @param string $var
@@ -973,6 +989,32 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->file_store_is_empty = $var;
+
+        return $this;
+    }
+
+    /**
+     * Resources related to this profile.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RelatedResource related_resources = 26;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getRelatedResources()
+    {
+        return $this->related_resources;
+    }
+
+    /**
+     * Resources related to this profile.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RelatedResource related_resources = 26;</code>
+     * @param array<\Google\Cloud\Dlp\V2\RelatedResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setRelatedResources($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\RelatedResource::class);
+        $this->related_resources = $arr;
 
         return $this;
     }
