@@ -269,8 +269,10 @@ class TimestampTest extends TestCase
         return [
             [new \DateTime('now', new \DateTimeZone('Asia/Tokyo'))],
             [new \DateTimeImmutable('now', new \DateTimeZone('Asia/Tokyo'))],
-            [new class ('now', new \DateTimeZone('Asia/Tokyo')) extends \DateTime {}],
-            [new class ('now', new \DateTimeZone('Asia/Tokyo')) extends \DateTimeImmutable {}],
+            [new class ('now', new \DateTimeZone('Asia/Tokyo')) extends \DateTime {
+            }],
+            [new class ('now', new \DateTimeZone('Asia/Tokyo')) extends \DateTimeImmutable {
+            }],
         ];
     }
 
