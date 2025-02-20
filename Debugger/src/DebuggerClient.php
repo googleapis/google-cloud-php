@@ -35,12 +35,13 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * $debugger = new DebuggerClient();
  * ```
+ * @deprecated see https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation
  */
 class DebuggerClient
 {
     use ClientTrait;
 
-    const VERSION = '1.9.4';
+    const VERSION = '1.9.5';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/debugger.readonly';

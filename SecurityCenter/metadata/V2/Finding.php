@@ -27,7 +27,11 @@ class Finding
         \GPBMetadata\Google\Cloud\Securitycenter\V2\Connection::initOnce();
         \GPBMetadata\Google\Cloud\Securitycenter\V2\ContactDetails::initOnce();
         \GPBMetadata\Google\Cloud\Securitycenter\V2\Container::initOnce();
+        \GPBMetadata\Google\Cloud\Securitycenter\V2\DataAccessEvent::initOnce();
+        \GPBMetadata\Google\Cloud\Securitycenter\V2\DataFlowEvent::initOnce();
+        \GPBMetadata\Google\Cloud\Securitycenter\V2\DataRetentionDeletionEvent::initOnce();
         \GPBMetadata\Google\Cloud\Securitycenter\V2\Database::initOnce();
+        \GPBMetadata\Google\Cloud\Securitycenter\V2\Disk::initOnce();
         \GPBMetadata\Google\Cloud\Securitycenter\V2\Exfiltration::initOnce();
         \GPBMetadata\Google\Cloud\Securitycenter\V2\ExternalSystem::initOnce();
         \GPBMetadata\Google\Cloud\Securitycenter\V2\File::initOnce();
@@ -50,8 +54,8 @@ class Finding
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-´2
-,google/cloud/securitycenter/v2/finding.protogoogle.cloud.securitycenter.v2google/api/resource.proto+google/cloud/securitycenter/v2/access.proto0google/cloud/securitycenter/v2/application.proto4google/cloud/securitycenter/v2/attack_exposure.proto=google/cloud/securitycenter/v2/backup_disaster_recovery.proto0google/cloud/securitycenter/v2/cloud_armor.proto;google/cloud/securitycenter/v2/cloud_dlp_data_profile.proto9google/cloud/securitycenter/v2/cloud_dlp_inspection.proto/google/cloud/securitycenter/v2/compliance.proto/google/cloud/securitycenter/v2/connection.proto4google/cloud/securitycenter/v2/contact_details.proto.google/cloud/securitycenter/v2/container.proto-google/cloud/securitycenter/v2/database.proto1google/cloud/securitycenter/v2/exfiltration.proto4google/cloud/securitycenter/v2/external_system.proto)google/cloud/securitycenter/v2/file.proto5google/cloud/securitycenter/v2/group_membership.proto0google/cloud/securitycenter/v2/iam_binding.proto.google/cloud/securitycenter/v2/indicator.proto3google/cloud/securitycenter/v2/kernel_rootkit.proto/google/cloud/securitycenter/v2/kubernetes.proto2google/cloud/securitycenter/v2/load_balancer.proto.google/cloud/securitycenter/v2/log_entry.proto1google/cloud/securitycenter/v2/mitre_attack.proto-google/cloud/securitycenter/v2/notebook.proto/google/cloud/securitycenter/v2/org_policy.proto,google/cloud/securitycenter/v2/process.proto3google/cloud/securitycenter/v2/security_marks.proto5google/cloud/securitycenter/v2/security_posture.proto6google/cloud/securitycenter/v2/toxic_combination.proto2google/cloud/securitycenter/v2/vulnerability.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"“#
+Ø6
+,google/cloud/securitycenter/v2/finding.protogoogle.cloud.securitycenter.v2google/api/resource.proto+google/cloud/securitycenter/v2/access.proto0google/cloud/securitycenter/v2/application.proto4google/cloud/securitycenter/v2/attack_exposure.proto=google/cloud/securitycenter/v2/backup_disaster_recovery.proto0google/cloud/securitycenter/v2/cloud_armor.proto;google/cloud/securitycenter/v2/cloud_dlp_data_profile.proto9google/cloud/securitycenter/v2/cloud_dlp_inspection.proto/google/cloud/securitycenter/v2/compliance.proto/google/cloud/securitycenter/v2/connection.proto4google/cloud/securitycenter/v2/contact_details.proto.google/cloud/securitycenter/v2/container.proto6google/cloud/securitycenter/v2/data_access_event.proto4google/cloud/securitycenter/v2/data_flow_event.protoBgoogle/cloud/securitycenter/v2/data_retention_deletion_event.proto-google/cloud/securitycenter/v2/database.proto)google/cloud/securitycenter/v2/disk.proto1google/cloud/securitycenter/v2/exfiltration.proto4google/cloud/securitycenter/v2/external_system.proto)google/cloud/securitycenter/v2/file.proto5google/cloud/securitycenter/v2/group_membership.proto0google/cloud/securitycenter/v2/iam_binding.proto.google/cloud/securitycenter/v2/indicator.proto3google/cloud/securitycenter/v2/kernel_rootkit.proto/google/cloud/securitycenter/v2/kubernetes.proto2google/cloud/securitycenter/v2/load_balancer.proto.google/cloud/securitycenter/v2/log_entry.proto1google/cloud/securitycenter/v2/mitre_attack.proto-google/cloud/securitycenter/v2/notebook.proto/google/cloud/securitycenter/v2/org_policy.proto,google/cloud/securitycenter/v2/process.proto3google/cloud/securitycenter/v2/security_marks.proto5google/cloud/securitycenter/v2/security_posture.proto6google/cloud/securitycenter/v2/toxic_combination.proto2google/cloud/securitycenter/v2/vulnerability.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"Ú%
 Finding
 name (	
 canonical_name (	BàA
@@ -107,7 +111,11 @@ kubernetes$ (2*.google.cloud.securitycenter.v2.Kubernetes:
 cloud_armor3 (2*.google.cloud.securitycenter.v2.CloudArmor:
 notebook7 (2(.google.cloud.securitycenter.v2.NotebookK
 toxic_combination8 (20.google.cloud.securitycenter.v2.ToxicCombinationJ
-group_memberships9 (2/.google.cloud.securitycenter.v2.GroupMembership“
+group_memberships9 (2/.google.cloud.securitycenter.v2.GroupMembership2
+disk: (2$.google.cloud.securitycenter.v2.DiskK
+data_access_events= (2/.google.cloud.securitycenter.v2.DataAccessEventG
+data_flow_events> (2-.google.cloud.securitycenter.v2.DataFlowEventb
+data_retention_deletion_events@ (2:.google.cloud.securitycenter.v2.DataRetentionDeletionEvent“
 MuteInfoP
 static_mute (2;.google.cloud.securitycenter.v2.Finding.MuteInfo.StaticMute`
 dynamic_mute_records (2B.google.cloud.securitycenter.v2.Finding.MuteInfo.DynamicMuteRecordy
@@ -145,7 +153,7 @@ match_time (2.google.protobuf.TimestampO
 MUTE_UNSPECIFIED 	
 MUTED
 UNMUTED
-	UNDEFINED"°
+	UNDEFINED"É
 FindingClass
 FINDING_CLASS_UNSPECIFIED 
 
@@ -155,7 +163,8 @@ match_time (2.google.protobuf.TimestampO
 OBSERVATION
 	SCC_ERROR
 POSTURE_VIOLATION
-TOXIC_COMBINATION:ÝêAÙ
+TOXIC_COMBINATION
+SENSITIVE_DATA_RISK:ÝêAÙ
 %securitycenter.googleapis.com/Finding@organizations/{organization}/sources/{source}/findings/{finding}Uorganizations/{organization}/sources/{source}/locations/{location}/findings/{finding}4folders/{folder}/sources/{source}/findings/{finding}Ifolders/{folder}/sources/{source}/locations/{location}/findings/{finding}6projects/{project}/sources/{source}/findings/{finding}Kprojects/{project}/sources/{source}/locations/{location}/findings/{finding}*findings2findingBæ
 "com.google.cloud.securitycenter.v2BFindingProtoPZJcloud.google.com/go/securitycenter/apiv2/securitycenterpb;securitycenterpbªGoogle.Cloud.SecurityCenter.V2ÊGoogle\\Cloud\\SecurityCenter\\V2ê!Google::Cloud::SecurityCenter::V2bproto3'
         , true);

@@ -32,8 +32,9 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
     protected $resource_value = 0;
     /**
      * Tag values combined with `AND` to check against.
-     * Values in the form "tagValues/123"
-     * Example: `[ "tagValues/123", "tagValues/456", "tagValues/789" ]`
+     * For Google Cloud resources, they are tag value IDs in the form of
+     * "tagValues/123". Example: `[ "tagValues/123", "tagValues/456",
+     * "tagValues/789" ]`
      * https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      *
      * Generated from protobuf field <code>repeated string tag_values = 3;</code>
@@ -114,8 +115,9 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
      *           request
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tag_values
      *           Tag values combined with `AND` to check against.
-     *           Values in the form "tagValues/123"
-     *           Example: `[ "tagValues/123", "tagValues/456", "tagValues/789" ]`
+     *           For Google Cloud resources, they are tag value IDs in the form of
+     *           "tagValues/123". Example: `[ "tagValues/123", "tagValues/456",
+     *           "tagValues/789" ]`
      *           https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      *     @type string $resource_type
      *           Apply resource_value only to resources that match resource_type.
@@ -210,8 +212,9 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Tag values combined with `AND` to check against.
-     * Values in the form "tagValues/123"
-     * Example: `[ "tagValues/123", "tagValues/456", "tagValues/789" ]`
+     * For Google Cloud resources, they are tag value IDs in the form of
+     * "tagValues/123". Example: `[ "tagValues/123", "tagValues/456",
+     * "tagValues/789" ]`
      * https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      *
      * Generated from protobuf field <code>repeated string tag_values = 3;</code>
@@ -224,8 +227,9 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Tag values combined with `AND` to check against.
-     * Values in the form "tagValues/123"
-     * Example: `[ "tagValues/123", "tagValues/456", "tagValues/789" ]`
+     * For Google Cloud resources, they are tag value IDs in the form of
+     * "tagValues/123". Example: `[ "tagValues/123", "tagValues/456",
+     * "tagValues/789" ]`
      * https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      *
      * Generated from protobuf field <code>repeated string tag_values = 3;</code>

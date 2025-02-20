@@ -18,21 +18,37 @@ class Attack extends \Google\Protobuf\Internal\Message
     /**
      * Total PPS (packets per second) volume of attack.
      *
-     * Generated from protobuf field <code>int32 volume_pps = 1;</code>
+     * Generated from protobuf field <code>int64 volume_pps_long = 4;</code>
      */
-    protected $volume_pps = 0;
+    protected $volume_pps_long = 0;
     /**
      * Total BPS (bytes per second) volume of attack.
      *
-     * Generated from protobuf field <code>int32 volume_bps = 2;</code>
+     * Generated from protobuf field <code>int64 volume_bps_long = 5;</code>
      */
-    protected $volume_bps = 0;
+    protected $volume_bps_long = 0;
     /**
      * Type of attack, for example, 'SYN-flood', 'NTP-udp', or 'CHARGEN-udp'.
      *
      * Generated from protobuf field <code>string classification = 3;</code>
      */
     protected $classification = '';
+    /**
+     * Total PPS (packets per second) volume of attack. Deprecated - refer to
+     * volume_pps_long instead.
+     *
+     * Generated from protobuf field <code>int32 volume_pps = 1 [deprecated = true];</code>
+     * @deprecated
+     */
+    protected $volume_pps = 0;
+    /**
+     * Total BPS (bytes per second) volume of attack. Deprecated - refer to
+     * volume_bps_long instead.
+     *
+     * Generated from protobuf field <code>int32 volume_bps = 2 [deprecated = true];</code>
+     * @deprecated
+     */
+    protected $volume_bps = 0;
 
     /**
      * Constructor.
@@ -40,12 +56,18 @@ class Attack extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $volume_pps
+     *     @type int|string $volume_pps_long
      *           Total PPS (packets per second) volume of attack.
-     *     @type int $volume_bps
+     *     @type int|string $volume_bps_long
      *           Total BPS (bytes per second) volume of attack.
      *     @type string $classification
      *           Type of attack, for example, 'SYN-flood', 'NTP-udp', or 'CHARGEN-udp'.
+     *     @type int $volume_pps
+     *           Total PPS (packets per second) volume of attack. Deprecated - refer to
+     *           volume_pps_long instead.
+     *     @type int $volume_bps
+     *           Total BPS (bytes per second) volume of attack. Deprecated - refer to
+     *           volume_bps_long instead.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,25 +78,25 @@ class Attack extends \Google\Protobuf\Internal\Message
     /**
      * Total PPS (packets per second) volume of attack.
      *
-     * Generated from protobuf field <code>int32 volume_pps = 1;</code>
-     * @return int
+     * Generated from protobuf field <code>int64 volume_pps_long = 4;</code>
+     * @return int|string
      */
-    public function getVolumePps()
+    public function getVolumePpsLong()
     {
-        return $this->volume_pps;
+        return $this->volume_pps_long;
     }
 
     /**
      * Total PPS (packets per second) volume of attack.
      *
-     * Generated from protobuf field <code>int32 volume_pps = 1;</code>
-     * @param int $var
+     * Generated from protobuf field <code>int64 volume_pps_long = 4;</code>
+     * @param int|string $var
      * @return $this
      */
-    public function setVolumePps($var)
+    public function setVolumePpsLong($var)
     {
-        GPBUtil::checkInt32($var);
-        $this->volume_pps = $var;
+        GPBUtil::checkInt64($var);
+        $this->volume_pps_long = $var;
 
         return $this;
     }
@@ -82,25 +104,25 @@ class Attack extends \Google\Protobuf\Internal\Message
     /**
      * Total BPS (bytes per second) volume of attack.
      *
-     * Generated from protobuf field <code>int32 volume_bps = 2;</code>
-     * @return int
+     * Generated from protobuf field <code>int64 volume_bps_long = 5;</code>
+     * @return int|string
      */
-    public function getVolumeBps()
+    public function getVolumeBpsLong()
     {
-        return $this->volume_bps;
+        return $this->volume_bps_long;
     }
 
     /**
      * Total BPS (bytes per second) volume of attack.
      *
-     * Generated from protobuf field <code>int32 volume_bps = 2;</code>
-     * @param int $var
+     * Generated from protobuf field <code>int64 volume_bps_long = 5;</code>
+     * @param int|string $var
      * @return $this
      */
-    public function setVolumeBps($var)
+    public function setVolumeBpsLong($var)
     {
-        GPBUtil::checkInt32($var);
-        $this->volume_bps = $var;
+        GPBUtil::checkInt64($var);
+        $this->volume_bps_long = $var;
 
         return $this;
     }
@@ -127,6 +149,70 @@ class Attack extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->classification = $var;
+
+        return $this;
+    }
+
+    /**
+     * Total PPS (packets per second) volume of attack. Deprecated - refer to
+     * volume_pps_long instead.
+     *
+     * Generated from protobuf field <code>int32 volume_pps = 1 [deprecated = true];</code>
+     * @return int
+     * @deprecated
+     */
+    public function getVolumePps()
+    {
+        @trigger_error('volume_pps is deprecated.', E_USER_DEPRECATED);
+        return $this->volume_pps;
+    }
+
+    /**
+     * Total PPS (packets per second) volume of attack. Deprecated - refer to
+     * volume_pps_long instead.
+     *
+     * Generated from protobuf field <code>int32 volume_pps = 1 [deprecated = true];</code>
+     * @param int $var
+     * @return $this
+     * @deprecated
+     */
+    public function setVolumePps($var)
+    {
+        @trigger_error('volume_pps is deprecated.', E_USER_DEPRECATED);
+        GPBUtil::checkInt32($var);
+        $this->volume_pps = $var;
+
+        return $this;
+    }
+
+    /**
+     * Total BPS (bytes per second) volume of attack. Deprecated - refer to
+     * volume_bps_long instead.
+     *
+     * Generated from protobuf field <code>int32 volume_bps = 2 [deprecated = true];</code>
+     * @return int
+     * @deprecated
+     */
+    public function getVolumeBps()
+    {
+        @trigger_error('volume_bps is deprecated.', E_USER_DEPRECATED);
+        return $this->volume_bps;
+    }
+
+    /**
+     * Total BPS (bytes per second) volume of attack. Deprecated - refer to
+     * volume_bps_long instead.
+     *
+     * Generated from protobuf field <code>int32 volume_bps = 2 [deprecated = true];</code>
+     * @param int $var
+     * @return $this
+     * @deprecated
+     */
+    public function setVolumeBps($var)
+    {
+        @trigger_error('volume_bps is deprecated.', E_USER_DEPRECATED);
+        GPBUtil::checkInt32($var);
+        $this->volume_bps = $var;
 
         return $this;
     }

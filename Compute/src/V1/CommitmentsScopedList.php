@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class CommitmentsScopedList extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] A list of commitments contained in this scope.
+     * [Output Only] The list of commitments contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Commitment commitments = 450664446;</code>
      */
@@ -34,7 +34,7 @@ class CommitmentsScopedList extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\Commitment>|\Google\Protobuf\Internal\RepeatedField $commitments
-     *           [Output Only] A list of commitments contained in this scope.
+     *           [Output Only] The list of commitments contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning which replaces the list of commitments when the list is empty.
      * }
@@ -45,7 +45,7 @@ class CommitmentsScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A list of commitments contained in this scope.
+     * [Output Only] The list of commitments contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Commitment commitments = 450664446;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -56,7 +56,7 @@ class CommitmentsScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A list of commitments contained in this scope.
+     * [Output Only] The list of commitments contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Commitment commitments = 450664446;</code>
      * @param array<\Google\Cloud\Compute\V1\Commitment>|\Google\Protobuf\Internal\RepeatedField $var

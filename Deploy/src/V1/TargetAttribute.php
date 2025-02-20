@@ -17,12 +17,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class TargetAttribute extends \Google\Protobuf\Internal\Message
 {
     /**
-     * ID of the `Target`. The value of this field could be one of the
+     * Optional. ID of the `Target`. The value of this field could be one of the
      * following:
      * * The last segment of a target name
      * * "*", all targets in a location
      *
-     * Generated from protobuf field <code>string id = 1;</code>
+     * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $id = '';
     /**
@@ -39,7 +39,7 @@ class TargetAttribute extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $id
-     *           ID of the `Target`. The value of this field could be one of the
+     *           Optional. ID of the `Target`. The value of this field could be one of the
      *           following:
      *           * The last segment of a target name
      *           * "*", all targets in a location
@@ -53,12 +53,12 @@ class TargetAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * ID of the `Target`. The value of this field could be one of the
+     * Optional. ID of the `Target`. The value of this field could be one of the
      * following:
      * * The last segment of a target name
      * * "*", all targets in a location
      *
-     * Generated from protobuf field <code>string id = 1;</code>
+     * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getId()
@@ -67,12 +67,12 @@ class TargetAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * ID of the `Target`. The value of this field could be one of the
+     * Optional. ID of the `Target`. The value of this field could be one of the
      * following:
      * * The last segment of a target name
      * * "*", all targets in a location
      *
-     * Generated from protobuf field <code>string id = 1;</code>
+     * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A [slash
- * command](https://developers.google.com/workspace/chat/slash-commands) in
+ * command](https://developers.google.com/workspace/chat/commands) in
  * Google Chat.
  *
  * Generated from protobuf message <code>google.chat.v1.SlashCommand</code>

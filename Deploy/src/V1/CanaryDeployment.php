@@ -26,9 +26,9 @@ class CanaryDeployment extends \Google\Protobuf\Internal\Message
      */
     private $percentages;
     /**
-     * Whether to run verify tests after each percentage deployment.
+     * Optional. Whether to run verify tests after each percentage deployment.
      *
-     * Generated from protobuf field <code>bool verify = 2;</code>
+     * Generated from protobuf field <code>bool verify = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $verify = false;
     /**
@@ -59,7 +59,7 @@ class CanaryDeployment extends \Google\Protobuf\Internal\Message
      *           If the GatewayServiceMesh is configured for Kubernetes, then the range for
      *           n is 0 <= n <= 100.
      *     @type bool $verify
-     *           Whether to run verify tests after each percentage deployment.
+     *           Optional. Whether to run verify tests after each percentage deployment.
      *     @type \Google\Cloud\Deploy\V1\Predeploy $predeploy
      *           Optional. Configuration for the predeploy job of the first phase. If this
      *           is not configured, there will be no predeploy job for this phase.
@@ -108,9 +108,9 @@ class CanaryDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to run verify tests after each percentage deployment.
+     * Optional. Whether to run verify tests after each percentage deployment.
      *
-     * Generated from protobuf field <code>bool verify = 2;</code>
+     * Generated from protobuf field <code>bool verify = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getVerify()
@@ -119,9 +119,9 @@ class CanaryDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to run verify tests after each percentage deployment.
+     * Optional. Whether to run verify tests after each percentage deployment.
      *
-     * Generated from protobuf field <code>bool verify = 2;</code>
+     * Generated from protobuf field <code>bool verify = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

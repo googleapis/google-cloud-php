@@ -34,6 +34,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AddAssociationNetworkFirewallPolicyRequest;
+use Google\Cloud\Compute\V1\AddPacketMirroringRuleNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\AddRuleNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\AggregatedListNetworkFirewallPoliciesRequest;
 use Google\Cloud\Compute\V1\CloneRulesNetworkFirewallPolicyRequest;
@@ -44,14 +45,17 @@ use Google\Cloud\Compute\V1\FirewallPolicyRule;
 use Google\Cloud\Compute\V1\GetAssociationNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\GetIamPolicyNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\GetNetworkFirewallPolicyRequest;
+use Google\Cloud\Compute\V1\GetPacketMirroringRuleNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\GetRuleNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\InsertNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\ListNetworkFirewallPoliciesRequest;
 use Google\Cloud\Compute\V1\PatchNetworkFirewallPolicyRequest;
+use Google\Cloud\Compute\V1\PatchPacketMirroringRuleNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\PatchRuleNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RemoveAssociationNetworkFirewallPolicyRequest;
+use Google\Cloud\Compute\V1\RemovePacketMirroringRuleNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\RemoveRuleNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\SetIamPolicyNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsNetworkFirewallPolicyRequest;
@@ -66,6 +70,7 @@ use Psr\Log\LoggerInterface;
  * calls that map to API methods.
  *
  * @method PromiseInterface<OperationResponse> addAssociationAsync(AddAssociationNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addPacketMirroringRuleAsync(AddPacketMirroringRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> addRuleAsync(AddRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListNetworkFirewallPoliciesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> cloneRulesAsync(CloneRulesNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
@@ -73,12 +78,15 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<FirewallPolicy> getAsync(GetNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<FirewallPolicyAssociation> getAssociationAsync(GetAssociationNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirewallPolicyRule> getPacketMirroringRuleAsync(GetPacketMirroringRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<FirewallPolicyRule> getRuleAsync(GetRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> insertAsync(InsertNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAsync(ListNetworkFirewallPoliciesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> patchAsync(PatchNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchPacketMirroringRuleAsync(PatchPacketMirroringRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> patchRuleAsync(PatchRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> removeAssociationAsync(RemoveAssociationNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removePacketMirroringRuleAsync(RemovePacketMirroringRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> removeRuleAsync(RemoveRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
@@ -304,6 +312,33 @@ final class NetworkFirewallPoliciesClient
     }
 
     /**
+     * Inserts a packet mirroring rule into a firewall policy.
+     *
+     * The async variant is
+     * {@see NetworkFirewallPoliciesClient::addPacketMirroringRuleAsync()} .
+     *
+     * @example samples/V1/NetworkFirewallPoliciesClient/add_packet_mirroring_rule.php
+     *
+     * @param AddPacketMirroringRuleNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function addPacketMirroringRule(AddPacketMirroringRuleNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('AddPacketMirroringRule', $request, $callOptions)->wait();
+    }
+
+    /**
      * Inserts a rule into a firewall policy.
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::addRuleAsync()} .
@@ -488,6 +523,33 @@ final class NetworkFirewallPoliciesClient
     }
 
     /**
+     * Gets a packet mirroring rule of the specified priority.
+     *
+     * The async variant is
+     * {@see NetworkFirewallPoliciesClient::getPacketMirroringRuleAsync()} .
+     *
+     * @example samples/V1/NetworkFirewallPoliciesClient/get_packet_mirroring_rule.php
+     *
+     * @param GetPacketMirroringRuleNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return FirewallPolicyRule
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getPacketMirroringRule(GetPacketMirroringRuleNetworkFirewallPolicyRequest $request, array $callOptions = []): FirewallPolicyRule
+    {
+        return $this->startApiCall('GetPacketMirroringRule', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets a rule of the specified priority.
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::getRuleAsync()} .
@@ -592,6 +654,33 @@ final class NetworkFirewallPoliciesClient
     }
 
     /**
+     * Patches a packet mirroring rule of the specified priority.
+     *
+     * The async variant is
+     * {@see NetworkFirewallPoliciesClient::patchPacketMirroringRuleAsync()} .
+     *
+     * @example samples/V1/NetworkFirewallPoliciesClient/patch_packet_mirroring_rule.php
+     *
+     * @param PatchPacketMirroringRuleNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function patchPacketMirroringRule(PatchPacketMirroringRuleNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('PatchPacketMirroringRule', $request, $callOptions)->wait();
+    }
+
+    /**
      * Patches a rule of the specified priority.
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::patchRuleAsync()} .
@@ -642,6 +731,33 @@ final class NetworkFirewallPoliciesClient
     public function removeAssociation(RemoveAssociationNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('RemoveAssociation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a packet mirroring rule of the specified priority.
+     *
+     * The async variant is
+     * {@see NetworkFirewallPoliciesClient::removePacketMirroringRuleAsync()} .
+     *
+     * @example samples/V1/NetworkFirewallPoliciesClient/remove_packet_mirroring_rule.php
+     *
+     * @param RemovePacketMirroringRuleNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function removePacketMirroringRule(RemovePacketMirroringRuleNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('RemovePacketMirroringRule', $request, $callOptions)->wait();
     }
 
     /**

@@ -25,9 +25,9 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Deploy\V1\KubernetesConfig $kubernetes
-     *           Kubernetes runtime configuration.
+     *           Optional. Kubernetes runtime configuration.
      *     @type \Google\Cloud\Deploy\V1\CloudRunConfig $cloud_run
-     *           Cloud Run runtime configuration.
+     *           Optional. Cloud Run runtime configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -36,9 +36,9 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Kubernetes runtime configuration.
+     * Optional. Kubernetes runtime configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.KubernetesConfig kubernetes = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.KubernetesConfig kubernetes = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Deploy\V1\KubernetesConfig|null
      */
     public function getKubernetes()
@@ -52,9 +52,9 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Kubernetes runtime configuration.
+     * Optional. Kubernetes runtime configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.KubernetesConfig kubernetes = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.KubernetesConfig kubernetes = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Deploy\V1\KubernetesConfig $var
      * @return $this
      */
@@ -67,9 +67,9 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cloud Run runtime configuration.
+     * Optional. Cloud Run runtime configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.CloudRunConfig cloud_run = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CloudRunConfig cloud_run = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Deploy\V1\CloudRunConfig|null
      */
     public function getCloudRun()
@@ -83,9 +83,9 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cloud Run runtime configuration.
+     * Optional. Cloud Run runtime configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.CloudRunConfig cloud_run = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CloudRunConfig cloud_run = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Deploy\V1\CloudRunConfig $var
      * @return $this
      */

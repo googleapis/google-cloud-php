@@ -160,6 +160,7 @@ class NodeTypesClientTest extends GeneratedTest
         $id = 3355;
         $kind = 'kind3292052';
         $localSsdGb = 1281375158;
+        $maxVms = 844450625;
         $memoryMb = 1726613907;
         $name = 'name3373707';
         $selfLink = 'selfLink-1691268851';
@@ -172,6 +173,7 @@ class NodeTypesClientTest extends GeneratedTest
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setLocalSsdGb($localSsdGb);
+        $expectedResponse->setMaxVms($maxVms);
         $expectedResponse->setMemoryMb($memoryMb);
         $expectedResponse->setName($name);
         $expectedResponse->setSelfLink($selfLink);

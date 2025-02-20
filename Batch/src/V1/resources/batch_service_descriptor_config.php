@@ -23,6 +23,25 @@
 return [
     'interfaces' => [
         'google.cloud.batch.v1.BatchService' => [
+            'CancelJob' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Batch\V1\CancelJobResponse',
+                    'metadataReturnType' => '\Google\Cloud\Batch\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteJob' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',

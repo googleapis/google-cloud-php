@@ -23,6 +23,7 @@ use Google\Cloud\Core\SysvTrait;
 /**
  * This class handles command line options and starts a configured Debugger
  * Daemon.
+ * @deprecated see https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation
  */
 class CliDaemon
 {

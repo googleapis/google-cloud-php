@@ -25,6 +25,7 @@ use Kreait\Firebase\Factory;
  * Implementation of the Firebase connection
  *
  * @internal
+ * @deprecated see https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation
  */
 class Firebase implements ConnectionInterface
 {
