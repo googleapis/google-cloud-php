@@ -70,6 +70,7 @@ class ValueMapper
         self::TYPE_PG_JSONB,
         self::TYPE_PG_OID,
         self::TYPE_FLOAT32,
+        self::TYPE_PROTO,
     ];
 
     /*
@@ -668,6 +669,7 @@ class ValueMapper
 
         // counts the diff data types used inside the array
         $uniqueTypes = [];
+        $protoTypeFqn = null;
         $res = null;
         if ($value !== null) {
             $res = [];
@@ -696,6 +698,10 @@ class ValueMapper
 
                     if (isset($type[1]['typeAnnotation'])) {
                         $inferredType['typeAnnotation'] = $type[1]['typeAnnotation'];
+                    }
+
+                    if (isset($type[1]['protoTypeFqn'])) {
+                        $protoTypeFqn = $type[1]['protoTypeFqn'];
                     }
 
                     $inferredTypes[] = $inferredType;
@@ -738,6 +744,9 @@ class ValueMapper
             $typeObject = $nestedDef[1];
         } else {
             $typeObject = $this->typeObject($typeCode, $typeAnnotationCode);
+            if ($protoTypeFqn) {
+                $typeObject['protoTypeFqn'] = $protoTypeFqn;
+            }
         }
 
         $type = $this->typeObject(
@@ -783,8 +792,15 @@ class ValueMapper
         }
 
         if ($value instanceof Message) {
+            $fullName = DescriptorPool::getGeneratedPool()
+                ->getDescriptorByClassName(get_class($value))
+                ->getFullName();
+            $typeObject = [
+                'code' => self::TYPE_PROTO,
+                'protoTypeFqn' => $fullName,
+            ];
             return [
-                $this->typeObject(self::TYPE_PROTO),
+                $typeObject,
                 base64_encode($value->serializetoString())
             ];
         }
