@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,20 +22,19 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-namespace Google\Cloud\Compute\V1\Enums\SecurityPolicyDdosProtectionConfig;
+namespace Google\Cloud\Compute\V1\Enums\BgpRoute;
 
 /**
- * DdosProtection contains string constants that represent the names of each value
- * in the google.cloud.compute.v1.SecurityPolicyDdosProtectionConfig.DdosProtection
- * descriptor.
+ * Origin contains string constants that represent the names of each value in the
+ * google.cloud.compute.v1.BgpRoute.Origin descriptor.
  */
-class DdosProtection
+class Origin
 {
-    const UNDEFINED_DDOS_PROTECTION = 'UNDEFINED_DDOS_PROTECTION';
+    const UNDEFINED_ORIGIN = 'UNDEFINED_ORIGIN';
 
-    const ADVANCED = 'ADVANCED';
+    const BGP_ORIGIN_EGP = 'BGP_ORIGIN_EGP';
 
-    const ADVANCED_PREVIEW = 'ADVANCED_PREVIEW';
+    const BGP_ORIGIN_IGP = 'BGP_ORIGIN_IGP';
 
-    const STANDARD = 'STANDARD';
+    const BGP_ORIGIN_INCOMPLETE = 'BGP_ORIGIN_INCOMPLETE';
 }
