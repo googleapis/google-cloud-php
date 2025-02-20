@@ -17,19 +17,20 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\StructType;
-use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
+use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\PartialResultSet;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -40,15 +41,14 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class StructTypeTest extends SnippetTestCase
 {
     use GrpcTestTrait;
-    use OperationRefreshTrait;
     use ProphecyTrait;
-    use StubCreationTrait;
 
     const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';
     const INSTANCE = 'my-instance';
 
-    private $connection;
+    private $spannerClient;
+    private $serializer;
     private $database;
     private $type;
 
@@ -76,18 +76,17 @@ class StructTypeTest extends SnippetTestCase
         $sessionPool->setDatabase(Argument::any())
             ->willReturn(null);
 
-        $this->connection = $this->getConnStub();
-        $this->database = TestHelpers::stub(Database::class, [
-            $this->connection->reveal(),
+        $this->serializer = new Serializer();
+        $this->database = new Database(
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $instance->reveal(),
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
-            [],
             self::PROJECT,
             self::DATABASE,
             $sessionPool->reveal()
-        ], ['operation']);
+        );
 
-        $this->type = new StructType;
+        $this->type = new StructType();
     }
 
     public function testExecuteStruct()
@@ -96,12 +95,16 @@ class StructTypeTest extends SnippetTestCase
             [
                 'name' => 'firstName',
                 'type' => [
-                    'code' => Database::TYPE_STRING
+                    'code' => Database::TYPE_STRING,
+                    'typeAnnotation' => 0,
+                    'protoTypeFqn' => ''
                 ]
             ], [
                 'name' => 'lastName',
                 'type' => [
-                    'code' => Database::TYPE_STRING
+                    'code' => Database::TYPE_STRING,
+                    'typeAnnotation' => 0,
+                    'protoTypeFqn' => ''
                 ]
             ]
         ];
@@ -111,30 +114,23 @@ class StructTypeTest extends SnippetTestCase
             'Testuser'
         ];
 
-        $this->connection->executeStreamingSql(Argument::allOf(
-            Argument::withEntry('sql', 'SELECT @userStruct.firstName, @userStruct.lastName'),
-            Argument::withEntry('params', [
-                'userStruct' => $values
-            ]),
-            Argument::withEntry('paramTypes', [
-                'userStruct' => [
-                    'code' => Database::TYPE_STRUCT,
-                    'structType' => [
+        $this->spannerClient->executeStreamingSql(
+            function ($args) use ($fields, $values) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals('SELECT @userStruct.firstName, @userStruct.lastName', $args->getSql());
+                $this->assertEquals($message['params']['userStruct'], $values);
+                $this->assertEquals($message['paramTypes']['userStruct']['structType']['fields'], $fields);
+                return true;
+            },
+            $this->resultGenerator([
+                'metadata' => [
+                    'rowType' => [
                         'fields' => $fields
                     ]
-                ]
+                ],
+                'values' => $values
             ])
-        ))->shouldBeCalled()->willReturn($this->resultGenerator([
-            'metadata' => [
-                'rowType' => [
-                    'fields' => $fields
-                ]
-            ],
-            'values' => $values
-        ]));
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
-
+        );
         $snippet = $this->snippetFromClass(StructType::class);
         $snippet->replace('$database = $spanner->connect(\'my-instance\', \'my-database\');', '');
         $snippet->addLocal('database', $this->database);
@@ -177,7 +173,7 @@ class StructTypeTest extends SnippetTestCase
             [
                 'name' => 'customer',
                 'type' => Database::TYPE_STRUCT,
-                'child' => (new StructType)
+                'child' => (new StructType())
                     ->add('name', Database::TYPE_STRING)
                     ->add('phone', Database::TYPE_STRING)
                     ->add('email', Database::TYPE_STRING)

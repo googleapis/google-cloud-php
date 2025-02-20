@@ -26,7 +26,7 @@ namespace Google\Cloud\Spanner;
  * use Google\Cloud\Spanner\Database;
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $database = $spanner->connect('my-instance', 'my-database');
  *
  * $res = $database->execute('SELECT @userStruct.firstName, @userStruct.lastName', [

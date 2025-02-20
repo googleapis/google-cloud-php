@@ -18,8 +18,8 @@
 namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Spanner\PgNumeric;
-use Google\Cloud\Spanner\V1\TypeCode;
 use Google\Cloud\Spanner\V1\TypeAnnotationCode;
+use Google\Cloud\Spanner\V1\TypeCode;
 use PHPUnit\Framework\TestCase;
 
 /**
