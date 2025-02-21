@@ -23,6 +23,10 @@ class DdosProtection
      */
     const ADVANCED = 63789090;
     /**
+     * Generated from protobuf enum <code>ADVANCED_PREVIEW = 40905867;</code>
+     */
+    const ADVANCED_PREVIEW = 40905867;
+    /**
      * Generated from protobuf enum <code>STANDARD = 484642493;</code>
      */
     const STANDARD = 484642493;
@@ -30,6 +34,7 @@ class DdosProtection
     private static $valueToName = [
         self::UNDEFINED_DDOS_PROTECTION => 'UNDEFINED_DDOS_PROTECTION',
         self::ADVANCED => 'ADVANCED',
+        self::ADVANCED_PREVIEW => 'ADVANCED_PREVIEW',
         self::STANDARD => 'STANDARD',
     ];
 

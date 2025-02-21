@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -244,8 +244,10 @@ final class LanguageServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function analyzeEntitySentiment(AnalyzeEntitySentimentRequest $request, array $callOptions = []): AnalyzeEntitySentimentResponse
-    {
+    public function analyzeEntitySentiment(
+        AnalyzeEntitySentimentRequest $request,
+        array $callOptions = []
+    ): AnalyzeEntitySentimentResponse {
         return $this->startApiCall('AnalyzeEntitySentiment', $request, $callOptions)->wait();
     }
 
@@ -270,8 +272,10 @@ final class LanguageServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function analyzeSentiment(AnalyzeSentimentRequest $request, array $callOptions = []): AnalyzeSentimentResponse
-    {
+    public function analyzeSentiment(
+        AnalyzeSentimentRequest $request,
+        array $callOptions = []
+    ): AnalyzeSentimentResponse {
         return $this->startApiCall('AnalyzeSentiment', $request, $callOptions)->wait();
     }
 
