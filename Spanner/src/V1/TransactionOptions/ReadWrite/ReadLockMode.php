@@ -16,7 +16,17 @@ class ReadLockMode
 {
     /**
      * Default value.
-     * If the value is not specified, the pessimistic read lock is used.
+     * * If isolation level is `REPEATABLE_READ`, then it is an error to
+     *   specify `read_lock_mode`. Locking semantics default to `OPTIMISTIC`.
+     *   No validation checks are done for reads, except for:
+     *     1. reads done as part of queries that use `SELECT FOR UPDATE`
+     *     2. reads done as part of statements with a `LOCK_SCANNED_RANGES`
+     *        hint
+     *     3. reads done as part of DML statements
+     *   to validate that the data that was served at the snapshot time is
+     *   unchanged at commit time.
+     * * At all other isolation levels, if `read_lock_mode` is the default
+     *   value, then pessimistic read lock is used.
      *
      * Generated from protobuf enum <code>READ_LOCK_MODE_UNSPECIFIED = 0;</code>
      */
@@ -24,6 +34,7 @@ class ReadLockMode
     /**
      * Pessimistic lock mode.
      * Read locks are acquired immediately on read.
+     * Semantics described only applies to `SERIALIZABLE` isolation.
      *
      * Generated from protobuf enum <code>PESSIMISTIC = 1;</code>
      */
@@ -33,6 +44,7 @@ class ReadLockMode
      * Locks for reads within the transaction are not acquired on read.
      * Instead the locks are acquired on a commit to validate that
      * read/queried data has not changed since the transaction started.
+     * Semantics described only applies to `SERIALIZABLE` isolation.
      *
      * Generated from protobuf enum <code>OPTIMISTIC = 2;</code>
      */
