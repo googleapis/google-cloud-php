@@ -412,7 +412,7 @@ class Database
      *     Configuration Options
      *
      *     @type string[] $statements Additional DDL statements.
-     *     @type \Google\Protobuf\FileDescriptorSet|string $descriptorSet The file
+     *     @type \Google\Protobuf\FileDescriptorSet|string $protoDescriptors The file
      *         descriptor set object to be used in the update, or alternatively, an absolute
      *         path to the generated file descriptor set. The descriptor set is only used
      *         during DDL statements, such as `CREATE PROTO BUNDLE`.

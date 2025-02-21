@@ -768,10 +768,13 @@ class ValueMapper
                           ? $value->typeAnnotation()
                           : null;
 
-            return [
-                $this->typeObject($value->type(), $typeAnnotation),
-                $value->formatAsString()
-            ];
+            $typeObject = $this->typeObject($value->type(), $typeAnnotation);
+
+            if ($value instanceof Proto) {
+                $typeObject['protoTypeFqn'] = $value->getProtoTypeFqn();
+            }
+
+            return [$typeObject, $value->formatAsString()];
         }
 
         if ($value instanceof Int64) {
@@ -793,14 +796,6 @@ class ValueMapper
                 $typeObject,
                 base64_encode($value->serializetoString())
             ];
-        }
-
-        if ($value instanceof Proto) {
-            $typeObject = [
-                'code' => self::TYPE_PROTO,
-                'protoTypeFqn' => $value->getProtoTypeFqn(),
-            ];
-            return [$typeObject, $value->getValue()];
         }
 
         throw new \InvalidArgumentException(sprintf(

@@ -27,7 +27,7 @@ use Google\Protobuf\Internal\Message;
 class Proto implements ValueInterface
 {
     /**
-     * @param string $value The proto data.
+     * @param string $value The proto data, base64-encoded.
      * @param string $protoTypeFqn The fully qualified name of the proto type.
      */
     public function __construct(

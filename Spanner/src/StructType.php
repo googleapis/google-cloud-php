@@ -152,12 +152,6 @@ class StructType
             );
         }
 
-        if ($type === Database::TYPE_PROTO) {
-            throw new \InvalidArgumentException(
-                '`Database::TYPE_PROTO` is not valid as struct types. Instead supply the proto message.'
-            );
-        }
-
         $child = null;
         if ($type instanceof StructType) {
             $child = $type;
