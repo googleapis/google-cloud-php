@@ -26,13 +26,13 @@ class DependencyEdge extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 head_token_index = 1;</code>
      */
-    private $head_token_index = 0;
+    protected $head_token_index = 0;
     /**
      * The parse label for the token.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.DependencyEdge.Label label = 2;</code>
      */
-    private $label = 0;
+    protected $label = 0;
 
     /**
      * Constructor.
