@@ -372,17 +372,7 @@ class ValueMapper
 
                 break;
             case self::TYPE_PROTO:
-                $descriptor = DescriptorPool::getGeneratedPool()
-                    ->getDescriptorByProtoName($type['protoTypeFqn']);
-                if (!$descriptor) {
-                    throw new \RuntimeException(sprintf(
-                        'Unable to decode proto value. Descriptor not found for %s.',
-                        $type['protoTypeFqn']
-                    ));
-                }
-                $message = new ($descriptor->getClass())();
-                $message->mergeFromString(base64_decode($value));
-                $value = $message;
+                $value = new Proto($value, $type['protoTypeFqn']);
                 break;
         }
 
@@ -803,6 +793,14 @@ class ValueMapper
                 $typeObject,
                 base64_encode($value->serializetoString())
             ];
+        }
+
+        if ($value instanceof Proto) {
+            $typeObject = [
+                'code' => self::TYPE_PROTO,
+                'protoTypeFqn' => $value->getProtoTypeFqn(),
+            ];
+            return [$typeObject, $value->getValue()];
         }
 
         throw new \InvalidArgumentException(sprintf(
