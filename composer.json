@@ -760,7 +760,9 @@
             "Google\\Cloud\\WebSecurityScanner\\Tests\\": "WebSecurityScanner/tests",
             "Google\\Cloud\\Workflows\\Tests\\": "Workflows/tests",
             "Google\\Identity\\AccessContextManager\\Tests\\": "AccessContextManager/tests",
-            "Grafeas\\Tests\\": "Grafeas/tests"
+            "Grafeas\\Tests\\": "Grafeas/tests",
+            "Testing\\Data\\": "Spanner/tests/Unit/fixtures/generated/Testing/Data",
+            "GPBMetadata\\Data\\": "Spanner/tests/Unit/fixtures/generated/GPBMetadata/Data"
         },
         "files": [
             "PubSub/tests/System/testdata/generated/Metadata.php",
