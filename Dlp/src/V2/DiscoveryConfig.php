@@ -109,6 +109,14 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryConfig.Status status = 10 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $status = 0;
+    /**
+     * Optional. Processing location configuration. Vertex AI dataset scanning
+     * will set processing_location.image_fallback_type to MultiRegionProcessing
+     * by default.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.ProcessingLocation processing_location = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $processing_location = null;
 
     /**
      * Constructor.
@@ -157,6 +165,10 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
      *           Output only. The timestamp of the last time this config was executed.
      *     @type int $status
      *           Required. A status for this configuration.
+     *     @type \Google\Cloud\Dlp\V2\ProcessingLocation $processing_location
+     *           Optional. Processing location configuration. Vertex AI dataset scanning
+     *           will set processing_location.image_fallback_type to MultiRegionProcessing
+     *           by default.
      * }
      */
     public function __construct($data = NULL) {
@@ -556,6 +568,46 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\DiscoveryConfig\Status::class);
         $this->status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Processing location configuration. Vertex AI dataset scanning
+     * will set processing_location.image_fallback_type to MultiRegionProcessing
+     * by default.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.ProcessingLocation processing_location = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dlp\V2\ProcessingLocation|null
+     */
+    public function getProcessingLocation()
+    {
+        return $this->processing_location;
+    }
+
+    public function hasProcessingLocation()
+    {
+        return isset($this->processing_location);
+    }
+
+    public function clearProcessingLocation()
+    {
+        unset($this->processing_location);
+    }
+
+    /**
+     * Optional. Processing location configuration. Vertex AI dataset scanning
+     * will set processing_location.image_fallback_type to MultiRegionProcessing
+     * by default.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.ProcessingLocation processing_location = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dlp\V2\ProcessingLocation $var
+     * @return $this
+     */
+    public function setProcessingLocation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\ProcessingLocation::class);
+        $this->processing_location = $var;
 
         return $this;
     }

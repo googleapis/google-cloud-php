@@ -177,6 +177,12 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 23;</code>
      */
     protected $create_time = null;
+    /**
+     * Resources related to this profile.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RelatedResource related_resources = 41;</code>
+     */
+    private $related_resources;
 
     /**
      * Constructor.
@@ -242,6 +248,8 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      *           The labels applied to the resource at the time the profile was generated.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The time at which the table was created.
+     *     @type array<\Google\Cloud\Dlp\V2\RelatedResource>|\Google\Protobuf\Internal\RepeatedField $related_resources
+     *           Resources related to this profile.
      * }
      */
     public function __construct($data = NULL) {
@@ -1023,6 +1031,32 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Resources related to this profile.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RelatedResource related_resources = 41;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getRelatedResources()
+    {
+        return $this->related_resources;
+    }
+
+    /**
+     * Resources related to this profile.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RelatedResource related_resources = 41;</code>
+     * @param array<\Google\Cloud\Dlp\V2\RelatedResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setRelatedResources($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\RelatedResource::class);
+        $this->related_resources = $arr;
 
         return $this;
     }

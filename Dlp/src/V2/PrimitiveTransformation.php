@@ -30,7 +30,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\CharacterMaskConfig $character_mask_config
      *           Mask
      *     @type \Google\Cloud\Dlp\V2\CryptoReplaceFfxFpeConfig $crypto_replace_ffx_fpe_config
-     *           Ffx-Fpe
+     *           Ffx-Fpe. Strongly discouraged, consider using CryptoDeterministicConfig
+     *           instead. Fpe is computationally expensive incurring latency costs.
      *     @type \Google\Cloud\Dlp\V2\FixedSizeBucketingConfig $fixed_size_bucketing_config
      *           Fixed size bucketing
      *     @type \Google\Cloud\Dlp\V2\BucketingConfig $bucketing_config
@@ -148,7 +149,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Ffx-Fpe
+     * Ffx-Fpe. Strongly discouraged, consider using CryptoDeterministicConfig
+     * instead. Fpe is computationally expensive incurring latency costs.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CryptoReplaceFfxFpeConfig crypto_replace_ffx_fpe_config = 4;</code>
      * @return \Google\Cloud\Dlp\V2\CryptoReplaceFfxFpeConfig|null
@@ -164,7 +166,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Ffx-Fpe
+     * Ffx-Fpe. Strongly discouraged, consider using CryptoDeterministicConfig
+     * instead. Fpe is computationally expensive incurring latency costs.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CryptoReplaceFfxFpeConfig crypto_replace_ffx_fpe_config = 4;</code>
      * @param \Google\Cloud\Dlp\V2\CryptoReplaceFfxFpeConfig $var

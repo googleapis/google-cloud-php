@@ -24,7 +24,7 @@ class OrgConfig extends \Google\Protobuf\Internal\Message
     /**
      * The project that will run the scan. The DLP service
      * account that exists within this project must have access to all resources
-     * that are profiled, and the Cloud DLP API must be enabled.
+     * that are profiled, and the DLP API must be enabled.
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      */
@@ -41,7 +41,7 @@ class OrgConfig extends \Google\Protobuf\Internal\Message
      *     @type string $project_id
      *           The project that will run the scan. The DLP service
      *           account that exists within this project must have access to all resources
-     *           that are profiled, and the Cloud DLP API must be enabled.
+     *           that are profiled, and the DLP API must be enabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -88,7 +88,7 @@ class OrgConfig extends \Google\Protobuf\Internal\Message
     /**
      * The project that will run the scan. The DLP service
      * account that exists within this project must have access to all resources
-     * that are profiled, and the Cloud DLP API must be enabled.
+     * that are profiled, and the DLP API must be enabled.
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      * @return string
@@ -101,7 +101,7 @@ class OrgConfig extends \Google\Protobuf\Internal\Message
     /**
      * The project that will run the scan. The DLP service
      * account that exists within this project must have access to all resources
-     * that are profiled, and the Cloud DLP API must be enabled.
+     * that are profiled, and the DLP API must be enabled.
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      * @param string $var

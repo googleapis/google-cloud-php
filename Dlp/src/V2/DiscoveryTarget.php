@@ -39,6 +39,15 @@ class DiscoveryTarget extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\OtherCloudDiscoveryTarget $other_cloud_target
      *           Other clouds target for discovery. The first target to match a resource
      *           will be the one applied.
+     *     @type \Google\Cloud\Dlp\V2\VertexDatasetDiscoveryTarget $vertex_dataset_target
+     *           Vertex AI dataset target for Discovery. The first target to match a
+     *           dataset will be the one applied. Note that discovery for Vertex AI can
+     *           incur Cloud Storage Class B operation charges for storage.objects.get
+     *           operations and retrieval fees. For more information, see [Cloud Storage
+     *           pricing](https://cloud.google.com/storage/pricing#price-tables).
+     *           Note that discovery for Vertex AI dataset will not be able to scan images
+     *           unless DiscoveryConfig.processing_location.image_fallback_location has
+     *           multi_region_processing or global_processing configured.
      * }
      */
     public function __construct($data = NULL) {
@@ -209,6 +218,51 @@ class DiscoveryTarget extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\OtherCloudDiscoveryTarget::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Vertex AI dataset target for Discovery. The first target to match a
+     * dataset will be the one applied. Note that discovery for Vertex AI can
+     * incur Cloud Storage Class B operation charges for storage.objects.get
+     * operations and retrieval fees. For more information, see [Cloud Storage
+     * pricing](https://cloud.google.com/storage/pricing#price-tables).
+     * Note that discovery for Vertex AI dataset will not be able to scan images
+     * unless DiscoveryConfig.processing_location.image_fallback_location has
+     * multi_region_processing or global_processing configured.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.VertexDatasetDiscoveryTarget vertex_dataset_target = 7;</code>
+     * @return \Google\Cloud\Dlp\V2\VertexDatasetDiscoveryTarget|null
+     */
+    public function getVertexDatasetTarget()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasVertexDatasetTarget()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Vertex AI dataset target for Discovery. The first target to match a
+     * dataset will be the one applied. Note that discovery for Vertex AI can
+     * incur Cloud Storage Class B operation charges for storage.objects.get
+     * operations and retrieval fees. For more information, see [Cloud Storage
+     * pricing](https://cloud.google.com/storage/pricing#price-tables).
+     * Note that discovery for Vertex AI dataset will not be able to scan images
+     * unless DiscoveryConfig.processing_location.image_fallback_location has
+     * multi_region_processing or global_processing configured.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.VertexDatasetDiscoveryTarget vertex_dataset_target = 7;</code>
+     * @param \Google\Cloud\Dlp\V2\VertexDatasetDiscoveryTarget $var
+     * @return $this
+     */
+    public function setVertexDatasetTarget($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\VertexDatasetDiscoveryTarget::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }

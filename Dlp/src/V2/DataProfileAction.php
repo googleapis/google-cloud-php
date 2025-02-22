@@ -33,7 +33,7 @@ class DataProfileAction extends \Google\Protobuf\Internal\Message
      *           context-aware
      *           analytics](https://cloud.google.com/chronicle/docs/detection/usecase-dlp-high-risk-user-download).
      *     @type \Google\Cloud\Dlp\V2\DataProfileAction\PublishToSecurityCommandCenter $publish_to_scc
-     *           Publishes findings to SCC for each data profile.
+     *           Publishes findings to Security Command Center for each data profile.
      *     @type \Google\Cloud\Dlp\V2\DataProfileAction\TagResources $tag_resources
      *           Tags the profiled resources with the specified tag values.
      * }
@@ -143,7 +143,7 @@ class DataProfileAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Publishes findings to SCC for each data profile.
+     * Publishes findings to Security Command Center for each data profile.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileAction.PublishToSecurityCommandCenter publish_to_scc = 4;</code>
      * @return \Google\Cloud\Dlp\V2\DataProfileAction\PublishToSecurityCommandCenter|null
@@ -159,7 +159,7 @@ class DataProfileAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Publishes findings to SCC for each data profile.
+     * Publishes findings to Security Command Center for each data profile.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileAction.PublishToSecurityCommandCenter publish_to_scc = 4;</code>
      * @param \Google\Cloud\Dlp\V2\DataProfileAction\PublishToSecurityCommandCenter $var
