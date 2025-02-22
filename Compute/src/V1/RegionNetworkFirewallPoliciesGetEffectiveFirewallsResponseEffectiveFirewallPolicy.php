@@ -33,6 +33,12 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
      */
     private $packet_mirroring_rules;
     /**
+     * [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY.
+     *
+     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
+     */
+    private $priority = null;
+    /**
      * [Output only] The rules that apply to the network.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule rules = 108873975;</code>
@@ -58,6 +64,8 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
      *           [Output Only] The name of the firewall policy.
      *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $packet_mirroring_rules
      *           [Output only] The packet mirroring rules that apply to the network.
+     *     @type int $priority
+     *           [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY.
      *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $rules
      *           [Output only] The rules that apply to the network.
      *     @type string $type
@@ -164,6 +172,42 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\FirewallPolicyRule::class);
         $this->packet_mirroring_rules = $arr;
+
+        return $this;
+    }
+
+    /**
+     * [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY.
+     *
+     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
+     * @return int
+     */
+    public function getPriority()
+    {
+        return isset($this->priority) ? $this->priority : 0;
+    }
+
+    public function hasPriority()
+    {
+        return isset($this->priority);
+    }
+
+    public function clearPriority()
+    {
+        unset($this->priority);
+    }
+
+    /**
+     * [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY.
+     *
+     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPriority($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->priority = $var;
 
         return $this;
     }

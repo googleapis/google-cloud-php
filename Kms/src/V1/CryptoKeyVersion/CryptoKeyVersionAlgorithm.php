@@ -269,6 +269,20 @@ class CryptoKeyVersionAlgorithm
      * Generated from protobuf enum <code>EXTERNAL_SYMMETRIC_ENCRYPTION = 18;</code>
      */
     const EXTERNAL_SYMMETRIC_ENCRYPTION = 18;
+    /**
+     * The post-quantum Module-Lattice-Based Digital Signature Algorithm, at
+     * security level 3. Randomized version.
+     *
+     * Generated from protobuf enum <code>PQ_SIGN_ML_DSA_65 = 56;</code>
+     */
+    const PQ_SIGN_ML_DSA_65 = 56;
+    /**
+     * The post-quantum stateless hash-based digital signature algorithm, at
+     * security level 1. Randomized version.
+     *
+     * Generated from protobuf enum <code>PQ_SIGN_SLH_DSA_SHA2_128S = 57;</code>
+     */
+    const PQ_SIGN_SLH_DSA_SHA2_128S = 57;
 
     private static $valueToName = [
         self::CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED => 'CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED',
@@ -307,6 +321,8 @@ class CryptoKeyVersionAlgorithm
         self::HMAC_SHA512 => 'HMAC_SHA512',
         self::HMAC_SHA224 => 'HMAC_SHA224',
         self::EXTERNAL_SYMMETRIC_ENCRYPTION => 'EXTERNAL_SYMMETRIC_ENCRYPTION',
+        self::PQ_SIGN_ML_DSA_65 => 'PQ_SIGN_ML_DSA_65',
+        self::PQ_SIGN_SLH_DSA_SHA2_128S => 'PQ_SIGN_SLH_DSA_SHA2_128S',
     ];
 
     public static function name($value)

@@ -125,6 +125,4 @@ class Form
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Form::class, \Google\Cloud\Language\V1\PartOfSpeech_Form::class);
 

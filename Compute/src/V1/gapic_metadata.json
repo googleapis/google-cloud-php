@@ -3735,6 +3735,11 @@
                                 "delete"
                             ]
                         },
+                        "DeleteRoutePolicy": {
+                            "methods": [
+                                "deleteRoutePolicy"
+                            ]
+                        },
                         "Get": {
                             "methods": [
                                 "get"
@@ -3748,6 +3753,11 @@
                         "GetNatMappingInfo": {
                             "methods": [
                                 "getNatMappingInfo"
+                            ]
+                        },
+                        "GetRoutePolicy": {
+                            "methods": [
+                                "getRoutePolicy"
                             ]
                         },
                         "GetRouterStatus": {
@@ -3765,9 +3775,24 @@
                                 "list"
                             ]
                         },
+                        "ListBgpRoutes": {
+                            "methods": [
+                                "listBgpRoutes"
+                            ]
+                        },
+                        "ListRoutePolicies": {
+                            "methods": [
+                                "listRoutePolicies"
+                            ]
+                        },
                         "Patch": {
                             "methods": [
                                 "patch"
+                            ]
+                        },
+                        "PatchRoutePolicy": {
+                            "methods": [
+                                "patchRoutePolicy"
                             ]
                         },
                         "Preview": {
@@ -3778,6 +3803,11 @@
                         "Update": {
                             "methods": [
                                 "update"
+                            ]
+                        },
+                        "UpdateRoutePolicy": {
+                            "methods": [
+                                "updateRoutePolicy"
                             ]
                         }
                     }

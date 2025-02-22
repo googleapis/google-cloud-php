@@ -78,13 +78,13 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      */
     private $enable_ipv6 = null;
     /**
-     * List of export policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_EXPORT type. Note that Route Policies are currently available in preview. Please use Beta API to use Route Policies.
+     * List of export policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_EXPORT type.
      *
      * Generated from protobuf field <code>repeated string export_policies = 134084987;</code>
      */
     private $export_policies;
     /**
-     * List of import policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_IMPORT type. Note that Route Policies are currently available in preview. Please use Beta API to use Route Policies.
+     * List of import policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_IMPORT type.
      *
      * Generated from protobuf field <code>repeated string import_policies = 451147946;</code>
      */
@@ -193,9 +193,9 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      *     @type bool $enable_ipv6
      *           Enable IPv6 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 6.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $export_policies
-     *           List of export policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_EXPORT type. Note that Route Policies are currently available in preview. Please use Beta API to use Route Policies.
+     *           List of export policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_EXPORT type.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $import_policies
-     *           List of import policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_IMPORT type. Note that Route Policies are currently available in preview. Please use Beta API to use Route Policies.
+     *           List of import policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_IMPORT type.
      *     @type string $interface_name
      *           Name of the interface the BGP peer is associated with.
      *     @type string $ip_address
@@ -565,7 +565,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of export policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_EXPORT type. Note that Route Policies are currently available in preview. Please use Beta API to use Route Policies.
+     * List of export policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_EXPORT type.
      *
      * Generated from protobuf field <code>repeated string export_policies = 134084987;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -576,7 +576,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of export policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_EXPORT type. Note that Route Policies are currently available in preview. Please use Beta API to use Route Policies.
+     * List of export policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_EXPORT type.
      *
      * Generated from protobuf field <code>repeated string export_policies = 134084987;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -591,7 +591,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of import policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_IMPORT type. Note that Route Policies are currently available in preview. Please use Beta API to use Route Policies.
+     * List of import policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_IMPORT type.
      *
      * Generated from protobuf field <code>repeated string import_policies = 451147946;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -602,7 +602,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of import policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_IMPORT type. Note that Route Policies are currently available in preview. Please use Beta API to use Route Policies.
+     * List of import policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_IMPORT type.
      *
      * Generated from protobuf field <code>repeated string import_policies = 451147946;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

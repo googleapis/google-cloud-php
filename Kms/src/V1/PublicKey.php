@@ -46,8 +46,8 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      * mismatch may indicate an issue in your computation of the CRC32C checksum.
      * Note: This field is defined as int64 for reasons of compatibility across
      * different languages. However, it is a non-negative integer, which will
-     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     * that support this type.
+     * never exceed `2^32-1`, and can be safely downconverted to uint32 in
+     * languages that support this type.
      * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value pem_crc32c = 3;</code>
@@ -69,6 +69,23 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 5;</code>
      */
     protected $protection_level = 0;
+    /**
+     * The [PublicKey][google.cloud.kms.v1.PublicKey] format specified by the
+     * customer through the
+     * [public_key_format][google.cloud.kms.v1.GetPublicKeyRequest.public_key_format]
+     * field.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.PublicKey.PublicKeyFormat public_key_format = 7;</code>
+     */
+    protected $public_key_format = 0;
+    /**
+     * This field contains the public key (with integrity verification), formatted
+     * according to the
+     * [public_key_format][google.cloud.kms.v1.PublicKey.public_key_format] field.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ChecksummedData public_key = 8;</code>
+     */
+    protected $public_key = null;
 
     /**
      * Constructor.
@@ -97,8 +114,8 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      *           mismatch may indicate an issue in your computation of the CRC32C checksum.
      *           Note: This field is defined as int64 for reasons of compatibility across
      *           different languages. However, it is a non-negative integer, which will
-     *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     *           that support this type.
+     *           never exceed `2^32-1`, and can be safely downconverted to uint32 in
+     *           languages that support this type.
      *           NOTE: This field is in Beta.
      *     @type string $name
      *           The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
@@ -108,6 +125,15 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      *     @type int $protection_level
      *           The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the
      *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
+     *     @type int $public_key_format
+     *           The [PublicKey][google.cloud.kms.v1.PublicKey] format specified by the
+     *           customer through the
+     *           [public_key_format][google.cloud.kms.v1.GetPublicKeyRequest.public_key_format]
+     *           field.
+     *     @type \Google\Cloud\Kms\V1\ChecksummedData $public_key
+     *           This field contains the public key (with integrity verification), formatted
+     *           according to the
+     *           [public_key_format][google.cloud.kms.v1.PublicKey.public_key_format] field.
      * }
      */
     public function __construct($data = NULL) {
@@ -190,8 +216,8 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      * mismatch may indicate an issue in your computation of the CRC32C checksum.
      * Note: This field is defined as int64 for reasons of compatibility across
      * different languages. However, it is a non-negative integer, which will
-     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     * that support this type.
+     * never exceed `2^32-1`, and can be safely downconverted to uint32 in
+     * languages that support this type.
      * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value pem_crc32c = 3;</code>
@@ -225,8 +251,8 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      * mismatch may indicate an issue in your computation of the CRC32C checksum.
      * Note: This field is defined as int64 for reasons of compatibility across
      * different languages. However, it is a non-negative integer, which will
-     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     * that support this type.
+     * never exceed `2^32-1`, and can be safely downconverted to uint32 in
+     * languages that support this type.
      * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value pem_crc32c = 3;</code>
@@ -248,8 +274,8 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      * mismatch may indicate an issue in your computation of the CRC32C checksum.
      * Note: This field is defined as int64 for reasons of compatibility across
      * different languages. However, it is a non-negative integer, which will
-     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     * that support this type.
+     * never exceed `2^32-1`, and can be safely downconverted to uint32 in
+     * languages that support this type.
      * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value pem_crc32c = 3;</code>
@@ -277,8 +303,8 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      * mismatch may indicate an issue in your computation of the CRC32C checksum.
      * Note: This field is defined as int64 for reasons of compatibility across
      * different languages. However, it is a non-negative integer, which will
-     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     * that support this type.
+     * never exceed `2^32-1`, and can be safely downconverted to uint32 in
+     * languages that support this type.
      * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value pem_crc32c = 3;</code>
@@ -346,6 +372,78 @@ class PublicKey extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\ProtectionLevel::class);
         $this->protection_level = $var;
+
+        return $this;
+    }
+
+    /**
+     * The [PublicKey][google.cloud.kms.v1.PublicKey] format specified by the
+     * customer through the
+     * [public_key_format][google.cloud.kms.v1.GetPublicKeyRequest.public_key_format]
+     * field.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.PublicKey.PublicKeyFormat public_key_format = 7;</code>
+     * @return int
+     */
+    public function getPublicKeyFormat()
+    {
+        return $this->public_key_format;
+    }
+
+    /**
+     * The [PublicKey][google.cloud.kms.v1.PublicKey] format specified by the
+     * customer through the
+     * [public_key_format][google.cloud.kms.v1.GetPublicKeyRequest.public_key_format]
+     * field.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.PublicKey.PublicKeyFormat public_key_format = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPublicKeyFormat($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\PublicKey\PublicKeyFormat::class);
+        $this->public_key_format = $var;
+
+        return $this;
+    }
+
+    /**
+     * This field contains the public key (with integrity verification), formatted
+     * according to the
+     * [public_key_format][google.cloud.kms.v1.PublicKey.public_key_format] field.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ChecksummedData public_key = 8;</code>
+     * @return \Google\Cloud\Kms\V1\ChecksummedData|null
+     */
+    public function getPublicKey()
+    {
+        return $this->public_key;
+    }
+
+    public function hasPublicKey()
+    {
+        return isset($this->public_key);
+    }
+
+    public function clearPublicKey()
+    {
+        unset($this->public_key);
+    }
+
+    /**
+     * This field contains the public key (with integrity verification), formatted
+     * according to the
+     * [public_key_format][google.cloud.kms.v1.PublicKey.public_key_format] field.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ChecksummedData public_key = 8;</code>
+     * @param \Google\Cloud\Kms\V1\ChecksummedData $var
+     * @return $this
+     */
+    public function setPublicKey($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Kms\V1\ChecksummedData::class);
+        $this->public_key = $var;
 
         return $this;
     }

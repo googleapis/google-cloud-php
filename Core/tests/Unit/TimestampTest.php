@@ -263,4 +263,28 @@ class TimestampTest extends TestCase
             ['002222', 2222]
         ];
     }
+
+    public function datetimes()
+    {
+        return [
+            [new \DateTime('now', new \DateTimeZone('Asia/Tokyo'))],
+            [new \DateTimeImmutable('now', new \DateTimeZone('Asia/Tokyo'))],
+            [new class ('now', new \DateTimeZone('Asia/Tokyo')) extends \DateTime {
+            }],
+            [new class ('now', new \DateTimeZone('Asia/Tokyo')) extends \DateTimeImmutable {
+            }],
+        ];
+    }
+
+    /**
+     * @dataProvider datetimes
+     */
+    public function testTimezoneUnchanged($dt)
+    {
+        (new Timestamp($dt))->formatAsString();
+        $this->assertEquals(
+            'Asia/Tokyo',
+            $dt->getTimezone()->getName()
+        );
+    }
 }

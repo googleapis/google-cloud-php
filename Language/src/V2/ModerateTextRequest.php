@@ -20,13 +20,13 @@ class ModerateTextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.language.v2.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $document = null;
+    protected $document = null;
     /**
      * Optional. The model version to use for ModerateText.
      *
      * Generated from protobuf field <code>.google.cloud.language.v2.ModerateTextRequest.ModelVersion model_version = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $model_version = 0;
+    protected $model_version = 0;
 
     /**
      * @param \Google\Cloud\Language\V2\Document $document Required. Input document.

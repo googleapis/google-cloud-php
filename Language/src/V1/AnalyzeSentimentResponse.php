@@ -20,7 +20,7 @@ class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.Sentiment document_sentiment = 1;</code>
      */
-    private $document_sentiment = null;
+    protected $document_sentiment = null;
     /**
      * The language of the text, which will be the same as the language specified
      * in the request or, if not specified, the automatically-detected language.
@@ -29,7 +29,7 @@ class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language = 2;</code>
      */
-    private $language = '';
+    protected $language = '';
     /**
      * The sentiment for all the sentences in the document.
      *

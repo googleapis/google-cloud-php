@@ -35,5 +35,7 @@ class DdosProtection
 
     const ADVANCED = 'ADVANCED';
 
+    const ADVANCED_PREVIEW = 'ADVANCED_PREVIEW';
+
     const STANDARD = 'STANDARD';
 }
