@@ -28,7 +28,7 @@ class ModerateTextResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 2;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * Whether the language is officially supported. The API may still return a
      * response when the language is not supported, but it is on a best effort
@@ -36,7 +36,7 @@ class ModerateTextResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool language_supported = 3;</code>
      */
-    private $language_supported = false;
+    protected $language_supported = false;
 
     /**
      * Constructor.

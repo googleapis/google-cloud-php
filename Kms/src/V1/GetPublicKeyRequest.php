@@ -23,6 +23,18 @@ class GetPublicKeyRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
+    /**
+     * Optional. The [PublicKey][google.cloud.kms.v1.PublicKey] format specified
+     * by the user. This field is required for PQC algorithms. If specified, the
+     * public key will be exported through the
+     * [public_key][google.cloud.kms.v1.PublicKey.public_key] field in the
+     * requested format. Otherwise, the [pem][google.cloud.kms.v1.PublicKey.pem]
+     * field will be populated for non-PQC algorithms, and an error will be
+     * returned for PQC algorithms.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.PublicKey.PublicKeyFormat public_key_format = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $public_key_format = 0;
 
     /**
      * @param string $name Required. The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
@@ -48,6 +60,14 @@ class GetPublicKeyRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
      *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key to get.
+     *     @type int $public_key_format
+     *           Optional. The [PublicKey][google.cloud.kms.v1.PublicKey] format specified
+     *           by the user. This field is required for PQC algorithms. If specified, the
+     *           public key will be exported through the
+     *           [public_key][google.cloud.kms.v1.PublicKey.public_key] field in the
+     *           requested format. Otherwise, the [pem][google.cloud.kms.v1.PublicKey.pem]
+     *           field will be populated for non-PQC algorithms, and an error will be
+     *           returned for PQC algorithms.
      * }
      */
     public function __construct($data = NULL) {
@@ -79,6 +99,44 @@ class GetPublicKeyRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The [PublicKey][google.cloud.kms.v1.PublicKey] format specified
+     * by the user. This field is required for PQC algorithms. If specified, the
+     * public key will be exported through the
+     * [public_key][google.cloud.kms.v1.PublicKey.public_key] field in the
+     * requested format. Otherwise, the [pem][google.cloud.kms.v1.PublicKey.pem]
+     * field will be populated for non-PQC algorithms, and an error will be
+     * returned for PQC algorithms.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.PublicKey.PublicKeyFormat public_key_format = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getPublicKeyFormat()
+    {
+        return $this->public_key_format;
+    }
+
+    /**
+     * Optional. The [PublicKey][google.cloud.kms.v1.PublicKey] format specified
+     * by the user. This field is required for PQC algorithms. If specified, the
+     * public key will be exported through the
+     * [public_key][google.cloud.kms.v1.PublicKey.public_key] field in the
+     * requested format. Otherwise, the [pem][google.cloud.kms.v1.PublicKey.pem]
+     * field will be populated for non-PQC algorithms, and an error will be
+     * returned for PQC algorithms.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.PublicKey.PublicKeyFormat public_key_format = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPublicKeyFormat($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\PublicKey\PublicKeyFormat::class);
+        $this->public_key_format = $var;
 
         return $this;
     }
