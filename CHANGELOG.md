@@ -1,5 +1,104 @@
 # Changelog
 
+## 0.277.0
+
+<details><summary>google/apps-chat 0.9.0</summary>
+
+
+
+### Features
+
+* Add DeletionType.SPACE_MEMBER. This is returned when a message sent by an app is deleted by a human in a space ([#8098](https://github.com/googleapis/google-cloud-php/issues/8098)) ([120378c](https://github.com/googleapis/google-cloud-php/commit/120378c181d57330ad84cb9d923a9f4d9f96a1f1))
+
+</details>
+
+<details><summary>google/cloud-compute 1.26.0</summary>
+
+
+
+### Features
+
+* Update Compute Engine API to revision 20250211 ([#8097](https://github.com/googleapis/google-cloud-php/issues/8097)) ([9d6ba53](https://github.com/googleapis/google-cloud-php/commit/9d6ba532bb711ed18a2a1407b16b5970251dfdf8))
+
+</details>
+
+<details><summary>google/cloud-confidentialcomputing 1.4.0</summary>
+
+
+
+### Features
+
+* A new field `attester` is added to message `.google.cloud.confidentialcomputing.v1.VerifyAttestationRequest` ([#8102](https://github.com/googleapis/google-cloud-php/issues/8102)) ([93fc023](https://github.com/googleapis/google-cloud-php/commit/93fc023b59af80506beacf3c155cbd0adf46025e))
+
+
+### Documentation
+
+* Fixed a typo in `VerifyAttestationRequest` comment ([93fc023](https://github.com/googleapis/google-cloud-php/commit/93fc023b59af80506beacf3c155cbd0adf46025e))
+
+</details>
+
+<details><summary>google/cloud-core 1.62.1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote Language to v1 ([#7385](https://github.com/googleapis/google-cloud-php/issues/7385))
+
+### Bug Fixes
+
+* Avoid  modify TZ of DateTime ([#8101](https://github.com/googleapis/google-cloud-php/issues/8101)) ([8e1a9b4](https://github.com/googleapis/google-cloud-php/commit/8e1a9b4e838524e8685060f576ee0a5297e6b9d9))
+
+
+### Chores
+
+* Promote Language to v1 ([#7385](https://github.com/googleapis/google-cloud-php/issues/7385)) ([a74f5b8](https://github.com/googleapis/google-cloud-php/commit/a74f5b873b78b152ce38899a752311c5c328ee3f))
+
+</details>
+
+<details><summary>google/cloud-kms 2.2.0</summary>
+
+
+
+### Features
+
+* Add a PublicKeyFormat enum to allow specifying the format the public is going to be exported in ([ad5b20e](https://github.com/googleapis/google-cloud-php/commit/ad5b20ea0ae76095bada9e52482dc491416679f1))
+* Support PQC asymmetric signing algorithms ML_DSA_65 and SLH_DSA_SHA2_128s ([#8096](https://github.com/googleapis/google-cloud-php/issues/8096)) ([ad5b20e](https://github.com/googleapis/google-cloud-php/commit/ad5b20ea0ae76095bada9e52482dc491416679f1))
+
+</details>
+
+<details><summary>google/cloud-language 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote Language to v1 ([#7385](https://github.com/googleapis/google-cloud-php/issues/7385))
+
+### Chores
+
+* Promote Language to v1 ([#7385](https://github.com/googleapis/google-cloud-php/issues/7385)) ([a74f5b8](https://github.com/googleapis/google-cloud-php/commit/a74f5b873b78b152ce38899a752311c5c328ee3f))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.95.0</summary>
+
+
+
+### Features
+
+* **spanner:** A new enum `IsolationLevel` is added ([#8104](https://github.com/googleapis/google-cloud-php/issues/8104)) ([a128487](https://github.com/googleapis/google-cloud-php/commit/a1284875fc4a457e1de3306e3fa06e6d768bae8b))
+* **spanner:** A new field `isolation_level` is added to message `.google.spanner.v1.TransactionOptions` ([a128487](https://github.com/googleapis/google-cloud-php/commit/a1284875fc4a457e1de3306e3fa06e6d768bae8b))
+
+
+### Documentation
+
+* **spanner:** A comment for enum value `OPTIMISTIC` in enum `ReadLockMode` is changed ([a128487](https://github.com/googleapis/google-cloud-php/commit/a1284875fc4a457e1de3306e3fa06e6d768bae8b))
+* **spanner:** A comment for enum value `PESSIMISTIC` in enum `ReadLockMode` is changed ([a128487](https://github.com/googleapis/google-cloud-php/commit/a1284875fc4a457e1de3306e3fa06e6d768bae8b))
+* **spanner:** A comment for enum value `READ_LOCK_MODE_UNSPECIFIED` in enum `ReadLockMode` is changed ([a128487](https://github.com/googleapis/google-cloud-php/commit/a1284875fc4a457e1de3306e3fa06e6d768bae8b))
+
+</details>
+
 ## 0.276.0
 
 <details><summary>google/cloud-ai-platform 1.18.0</summary>
