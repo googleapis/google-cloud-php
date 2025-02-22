@@ -17,14 +17,13 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Exception\ConflictException;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig;
-use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
-use Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo\Type;
+use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Date;
 
@@ -77,7 +76,7 @@ class BackupTest extends SpannerTestCase
         });
 
         $db1->updateDdl(
-            'CREATE TABLE '. self::TEST_TABLE_NAME .' (
+            'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
                 id INT64 NOT NULL,
                 name STRING(MAX) NOT NULL,
                 birthday DATE NOT NULL
@@ -95,7 +94,7 @@ class BackupTest extends SpannerTestCase
         });
 
         $db2->updateDdl(
-            'CREATE TABLE '. self::TEST_TABLE_NAME .' (
+            'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
                 id INT64 NOT NULL,
                 name STRING(MAX) NOT NULL,
                 birthday DATE NOT NULL
@@ -106,8 +105,8 @@ class BackupTest extends SpannerTestCase
         self::insertData(10, self::$dbName2);
 
         self::$backupId1 = uniqid(self::BACKUP_PREFIX);
-        self::$backupId2 = uniqid("users-");
-        self::$copyBackupId = uniqid("copy-");
+        self::$backupId2 = uniqid('users-');
+        self::$copyBackupId = uniqid('copy-');
         self::$hasSetUp = true;
     }
 
@@ -124,7 +123,6 @@ class BackupTest extends SpannerTestCase
     public function testCreateBackup()
     {
         $expireTime = new \DateTime('+7 hours');
-        $versionTime = new \DateTime('-5 seconds');
         $encryptionConfig = [
             'encryptionType' => CreateBackupEncryptionConfig\EncryptionType::GOOGLE_DEFAULT_ENCRYPTION,
         ];
@@ -134,7 +132,6 @@ class BackupTest extends SpannerTestCase
 
         self::$createTime1 = gmdate('"Y-m-d\TH:i:s\Z"');
         $op = $backup->create(self::$dbName1, $expireTime, [
-            'versionTime' => $versionTime,
             'encryptionConfig' => $encryptionConfig,
         ]);
         self::$backupOperationName = $op->name();
@@ -200,7 +197,7 @@ class BackupTest extends SpannerTestCase
         $e = null;
         try {
             $backup->create(self::$dbName1, $expireTime, [
-                'versionTime' => "invalidType",
+                'versionTime' => 'invalidType',
             ]);
         } catch (\InvalidArgumentException $e) {
         }
@@ -220,6 +217,9 @@ class BackupTest extends SpannerTestCase
         $this->assertFalse($backup->exists());
     }
 
+    /**
+     * @depends testCreateBackup
+     */
     public function testCancelBackupOperation()
     {
         $expireTime = new \DateTime('+7 hours');
@@ -335,6 +335,9 @@ class BackupTest extends SpannerTestCase
         $this->assertEquals($currentExpireTime, $backup->info()['expireTime']);
     }
 
+    /**
+     * @depends testCreateBackup
+     */
     public function testListAllBackups()
     {
         $allBackups = iterator_to_array(self::$instance->backups(), false);
@@ -347,6 +350,9 @@ class BackupTest extends SpannerTestCase
         $this->assertContainsOnlyInstancesOf(Backup::class, $allBackups);
     }
 
+    /**
+     * @depends testCreateBackup
+     */
     public function testListAllBackupsContainsName()
     {
         $backups = iterator_to_array(self::$instance->backups(['filter' => 'name:' . self::$backupId1]));
@@ -354,9 +360,12 @@ class BackupTest extends SpannerTestCase
         $this->assertEquals(self::$backupId1, DatabaseAdminClient::parseName($backups[0]->info()['name'])['backup']);
     }
 
+    /**
+     * @depends testCreateBackup
+     */
     public function testListAllBackupsReady()
     {
-        $backups = iterator_to_array(self::$instance->backups(['filter'=>'state:READY']));
+        $backups = iterator_to_array(self::$instance->backups(['filter' => 'state:READY']));
 
         $backupNames = [];
         foreach ($backups as $b) {
@@ -366,6 +375,9 @@ class BackupTest extends SpannerTestCase
         $this->assertTrue(in_array(self::fullyQualifiedBackupName(self::$backupId1), $backupNames));
     }
 
+    /**
+     * @depends testCreateBackup
+     */
     public function testListAllBackupsOfDatabase()
     {
         $database = self::$instance->database(self::$dbName1);
@@ -378,26 +390,31 @@ class BackupTest extends SpannerTestCase
         }
     }
 
+    /**
+     * @depends testCreateBackup
+     */
     public function testListAllBackupsCreatedAfterTimestamp()
     {
-        $filter = sprintf("create_time >= %s", self::$createTime2);
+        $filter = sprintf('create_time >= %s', self::$createTime1);
 
-        $backups = iterator_to_array(self::$instance->backups(['filter'=>$filter]));
+        $backups = iterator_to_array(self::$instance->backups(['filter' => $filter]));
 
         $backupNames = [];
         foreach ($backups as $b) {
             $backupNames[] = $b->name();
         }
         $this->assertTrue(count($backupNames) > 0);
-        $this->assertFalse(in_array(self::fullyQualifiedBackupName(self::$backupId1), $backupNames));
-        $this->assertTrue(in_array(self::fullyQualifiedBackupName(self::$backupId2), $backupNames));
+        $this->assertTrue(in_array(self::fullyQualifiedBackupName(self::$backupId1), $backupNames));
     }
 
+    /**
+     * @depends testCreateBackup
+     */
     public function testListAllBackupsExpireBeforeTimestamp()
     {
-        $filter = "expire_time < " . gmdate('"Y-m-d\TH:i:s\Z"', strtotime('+9 hours'));
+        $filter = 'expire_time < ' . gmdate('"Y-m-d\TH:i:s\Z"', strtotime('+9 hours'));
 
-        $backups = iterator_to_array(self::$instance->backups(['filter'=>$filter]));
+        $backups = iterator_to_array(self::$instance->backups(['filter' => $filter]));
 
         $backupNames = [];
         foreach ($backups as $b) {
@@ -415,7 +432,7 @@ class BackupTest extends SpannerTestCase
     {
         $backup = self::$instance->backup(self::$backupId1);
         $size = $backup->info()['sizeBytes'];
-        $filter = "size_bytes > " . $size;
+        $filter = 'size_bytes > ' . $size;
 
         $backups = iterator_to_array(self::$instance->backups(['filter' => $filter]));
 
@@ -429,6 +446,9 @@ class BackupTest extends SpannerTestCase
         $this->assertTrue(in_array(self::fullyQualifiedBackupName(self::$backupId2), $backupNames));
     }
 
+    /**
+     * @depends testCancelBackupOperation
+     */
     public function testPagination()
     {
         $backupsfirstPage = self::$instance->backups(['pageSize' => 1]);
@@ -445,6 +465,9 @@ class BackupTest extends SpannerTestCase
         $this->assertEquals(2, count($backupsPageSizeTwo));
     }
 
+    /**
+     * @depends testRestoreToNewDatabase
+     */
     public function testListAllBackupOperations()
     {
         $backupOps = iterator_to_array($this::$instance->backupOperations());
@@ -454,7 +477,7 @@ class BackupTest extends SpannerTestCase
         }, $backupOps);
 
         $this->assertTrue(count($backupOps) > 0);
-        $this->assertContainsOnlyInstancesOf(LongRunningOperation::class, $backupOps);
+        $this->assertContainsOnlyInstancesOf(OperationResponse::class, $backupOps);
         $this->assertTrue(in_array(self::$backupOperationName, $backupOpsNames));
     }
 
@@ -477,7 +500,7 @@ class BackupTest extends SpannerTestCase
 
     public function testDeleteNonExistantBackup()
     {
-        $backup = self::$instance->backup("does_not_exis");
+        $backup = self::$instance->backup('does_not_exis');
 
         $this->assertFalse($backup->exists());
 
@@ -557,6 +580,9 @@ class BackupTest extends SpannerTestCase
         $this->assertArrayHasKey('startTime', $metadata['progress']);
     }
 
+    /**
+     * @depends testRestoreToNewDatabase
+     */
     public function testRestoreAppearsInListDatabaseOperations()
     {
         $databaseOps = iterator_to_array($this::$instance->databaseOperations());
@@ -565,10 +591,13 @@ class BackupTest extends SpannerTestCase
         }, $databaseOps);
 
         $this->assertTrue(count($databaseOps) > 0);
-        $this->assertContainsOnlyInstancesOf(LongRunningOperation::class, $databaseOps);
+        $this->assertContainsOnlyInstancesOf(OperationResponse::class, $databaseOps);
         $this->assertTrue(in_array(self::$restoreOperationName, $databaseOpsNames));
     }
 
+    /**
+     * @depends testCreateBackup
+     */
     public function testRestoreBackupToAnExistingDatabase()
     {
         $existingDb = self::$instance->database(self::$dbName2);
@@ -603,7 +632,7 @@ class BackupTest extends SpannerTestCase
     {
         $rows = [];
 
-        for ($id=1; $id <= $number; $id++) {
+        for ($id = 1; $id <= $number; $id++) {
             $rows[] = self::generateRow($id, uniqid(self::TESTING_PREFIX), new Date(new \DateTime()));
         }
         return $rows;

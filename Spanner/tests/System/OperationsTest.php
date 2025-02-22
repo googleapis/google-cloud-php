@@ -17,9 +17,9 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Core\Exception\ServiceException;
 
 /**
  * @group spanner
@@ -147,7 +147,7 @@ class OperationsTest extends SpannerTestCase
 
         $keySet = self::$client->keySet(['keys' => [99999]]);
 
-        $res = $db->read(self::TEST_TABLE_NAME, $keySet, ['id','name']);
+        $res = $db->read(self::TEST_TABLE_NAME, $keySet, ['id', 'name']);
         $this->assertEmpty(iterator_to_array($res->rows()));
     }
 
@@ -157,7 +157,7 @@ class OperationsTest extends SpannerTestCase
 
         $keySet = self::$client->keySet(['keys' => [99999]]);
 
-        $res = $db->read(self::TEST_TABLE_NAME, $keySet, ['id','name'], [
+        $res = $db->read(self::TEST_TABLE_NAME, $keySet, ['id', 'name'], [
             'index' => self::TEST_INDEX_NAME
         ]);
 
@@ -185,7 +185,7 @@ class OperationsTest extends SpannerTestCase
             'keys' => [99999]
         ]);
 
-        $res = $db->read(self::TEST_TABLE_NAME, $keySet, ['id','name']);
+        $res = $db->read(self::TEST_TABLE_NAME, $keySet, ['id', 'name']);
         $this->assertEmpty(iterator_to_array($res->rows()));
     }
 
