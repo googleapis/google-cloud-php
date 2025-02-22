@@ -62,6 +62,4 @@ class AuthenticationType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AuthenticationType::class, \Google\Cloud\Dataproc\V1\AuthenticationConfig_AuthenticationType::class);
 
