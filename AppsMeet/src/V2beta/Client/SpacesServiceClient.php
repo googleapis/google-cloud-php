@@ -34,6 +34,8 @@ use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Apps\Meet\V2beta\ConnectActiveConferenceRequest;
+use Google\Apps\Meet\V2beta\ConnectActiveConferenceResponse;
 use Google\Apps\Meet\V2beta\CreateMemberRequest;
 use Google\Apps\Meet\V2beta\CreateSpaceRequest;
 use Google\Apps\Meet\V2beta\DeleteMemberRequest;
@@ -61,6 +63,7 @@ use Psr\Log\LoggerInterface;
  *
  * @experimental
  *
+ * @method PromiseInterface<ConnectActiveConferenceResponse> connectActiveConferenceAsync(ConnectActiveConferenceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Member> createMemberAsync(CreateMemberRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Space> createSpaceAsync(CreateSpaceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteMemberAsync(DeleteMemberRequest $request, array $optionalArgs = [])
@@ -96,6 +99,9 @@ final class SpacesServiceClient
 
     /** The default scopes required by the service. */
     public static $serviceScopes = [
+        'https://www.googleapis.com/auth/meetings.conference.media.audio.readonly',
+        'https://www.googleapis.com/auth/meetings.conference.media.readonly',
+        'https://www.googleapis.com/auth/meetings.conference.media.video.readonly',
         'https://www.googleapis.com/auth/meetings.space.created',
         'https://www.googleapis.com/auth/meetings.space.readonly',
         'https://www.googleapis.com/auth/meetings.space.settings',
@@ -281,6 +287,46 @@ final class SpacesServiceClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview):
+     * Broker a WebRTC connection to the active conference of a space.
+     *
+     * On success, clients must use the resulting SDP (Session Description
+     * Protocol) answer to establish a WebRTC connection. Once connected,
+     * additional functionality is available across WebRTC data channels.
+     *
+     * See [Meet Media API
+     * overview](https://developers.google.com/meet/media-api/guides/overview) for
+     * more details about this connection.
+     *
+     * The async variant is {@see SpacesServiceClient::connectActiveConferenceAsync()}
+     * .
+     *
+     * @example samples/V2beta/SpacesServiceClient/connect_active_conference.php
+     *
+     * @param ConnectActiveConferenceRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ConnectActiveConferenceResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function connectActiveConference(
+        ConnectActiveConferenceRequest $request,
+        array $callOptions = []
+    ): ConnectActiveConferenceResponse {
+        return $this->startApiCall('ConnectActiveConference', $request, $callOptions)->wait();
     }
 
     /**

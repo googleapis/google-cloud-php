@@ -27,6 +27,8 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Apps\Meet\V2beta\Client\SpacesServiceClient;
+use Google\Apps\Meet\V2beta\ConnectActiveConferenceRequest;
+use Google\Apps\Meet\V2beta\ConnectActiveConferenceResponse;
 use Google\Apps\Meet\V2beta\CreateMemberRequest;
 use Google\Apps\Meet\V2beta\CreateSpaceRequest;
 use Google\Apps\Meet\V2beta\DeleteMemberRequest;
@@ -70,6 +72,77 @@ class SpacesServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new SpacesServiceClient($options);
+    }
+
+    /** @test */
+    public function connectActiveConferenceTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $answer = 'answer-1412808770';
+        $traceId = 'traceId1270300245';
+        $expectedResponse = new ConnectActiveConferenceResponse();
+        $expectedResponse->setAnswer($answer);
+        $expectedResponse->setTraceId($traceId);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->spaceName('[SPACE]');
+        $offer = 'offer105650780';
+        $request = (new ConnectActiveConferenceRequest())->setName($formattedName)->setOffer($offer);
+        $response = $gapicClient->connectActiveConference($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.apps.meet.v2beta.SpacesService/ConnectActiveConference', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getOffer();
+        $this->assertProtobufEquals($offer, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function connectActiveConferenceExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->spaceName('[SPACE]');
+        $offer = 'offer105650780';
+        $request = (new ConnectActiveConferenceRequest())->setName($formattedName)->setOffer($offer);
+        try {
+            $gapicClient->connectActiveConference($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -611,7 +684,7 @@ class SpacesServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createMemberAsyncTest()
+    public function connectActiveConferenceAsyncTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -619,29 +692,27 @@ class SpacesServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $name = 'name3373707';
-        $email = 'email96619420';
-        $user = 'user3599307';
-        $expectedResponse = new Member();
-        $expectedResponse->setName($name);
-        $expectedResponse->setEmail($email);
-        $expectedResponse->setUser($user);
+        $answer = 'answer-1412808770';
+        $traceId = 'traceId1270300245';
+        $expectedResponse = new ConnectActiveConferenceResponse();
+        $expectedResponse->setAnswer($answer);
+        $expectedResponse->setTraceId($traceId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->spaceName('[SPACE]');
-        $member = new Member();
-        $request = (new CreateMemberRequest())->setParent($formattedParent)->setMember($member);
-        $response = $gapicClient->createMemberAsync($request)->wait();
+        $formattedName = $gapicClient->spaceName('[SPACE]');
+        $offer = 'offer105650780';
+        $request = (new ConnectActiveConferenceRequest())->setName($formattedName)->setOffer($offer);
+        $response = $gapicClient->connectActiveConferenceAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.apps.meet.v2beta.SpacesService/CreateMember', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getMember();
-        $this->assertProtobufEquals($member, $actualValue);
+        $this->assertSame('/google.apps.meet.v2beta.SpacesService/ConnectActiveConference', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getOffer();
+        $this->assertProtobufEquals($offer, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

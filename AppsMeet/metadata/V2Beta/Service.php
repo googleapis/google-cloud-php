@@ -23,7 +23,7 @@ class Service
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ß7
+²<
 %google/apps/meet/v2beta/service.protogoogle.apps.meet.v2betagoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/apps/meet/v2beta/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"C
 CreateSpaceRequest-
 space (2.google.apps.meet.v2beta.Space"B
@@ -32,7 +32,14 @@ class Service
 meet.googleapis.com/Space"~
 UpdateSpaceRequest2
 space (2.google.apps.meet.v2beta.SpaceBàA4
-update_mask (2.google.protobuf.FieldMaskBàA"M
+update_mask (2.google.protobuf.FieldMaskBàA"e
+ConnectActiveConferenceRequest/
+name (	B!àAúA
+meet.googleapis.com/Space
+offer (	BàA"C
+ConnectActiveConferenceResponse
+answer (	
+trace_id (	"M
 EndActiveConferenceRequest/
 name (	B!àAúA
 meet.googleapis.com/Space"
@@ -123,17 +130,17 @@ page_token (	"l
 page_token (	"~
 ListTranscriptEntriesResponseD
 transcript_entries (2(.google.apps.meet.v2beta.TranscriptEntry
-next_page_token (	2î
-
+next_page_token (	2•
 SpacesService
 CreateSpace+.google.apps.meet.v2beta.CreateSpaceRequest.google.apps.meet.v2beta.Space"%ÚAspace‚Óä“"/v2beta/spaces:space|
 GetSpace(.google.apps.meet.v2beta.GetSpaceRequest.google.apps.meet.v2beta.Space"&ÚAname‚Óä“/v2beta/{name=spaces/*}œ
-UpdateSpace+.google.apps.meet.v2beta.UpdateSpaceRequest.google.apps.meet.v2beta.Space"@ÚAspace,update_mask‚Óä“&2/v2beta/{space.name=spaces/*}:space¡
+UpdateSpace+.google.apps.meet.v2beta.UpdateSpaceRequest.google.apps.meet.v2beta.Space"@ÚAspace,update_mask‚Óä“&2/v2beta/{space.name=spaces/*}:spaceÏ
+ConnectActiveConference7.google.apps.meet.v2beta.ConnectActiveConferenceRequest8.google.apps.meet.v2beta.ConnectActiveConferenceResponse"AÚAname‚Óä“4"//v2beta/{name=spaces/*}:connectActiveConference:*¡
 EndActiveConference3.google.apps.meet.v2beta.EndActiveConferenceRequest.google.protobuf.Empty"=ÚAname‚Óä“0"+/v2beta/{name=spaces/*}:endActiveConference:* 
 CreateMember,.google.apps.meet.v2beta.CreateMemberRequest.google.apps.meet.v2beta.Member"AÚAparent,member‚Óä“+"!/v2beta/{parent=spaces/*}/members:member‰
 	GetMember).google.apps.meet.v2beta.GetMemberRequest.google.apps.meet.v2beta.Member"0ÚAname‚Óä“#!/v2beta/{name=spaces/*/members/*}œ
 ListMembers+.google.apps.meet.v2beta.ListMembersRequest,.google.apps.meet.v2beta.ListMembersResponse"2ÚAparent‚Óä“#!/v2beta/{parent=spaces/*}/members†
-DeleteMember,.google.apps.meet.v2beta.DeleteMemberRequest.google.protobuf.Empty"0ÚAname‚Óä“#*!/v2beta/{name=spaces/*/members/*}ÀÊAmeet.googleapis.comÒA¦https://www.googleapis.com/auth/meetings.space.created,https://www.googleapis.com/auth/meetings.space.readonly,https://www.googleapis.com/auth/meetings.space.settings2ó
+DeleteMember,.google.apps.meet.v2beta.DeleteMemberRequest.google.protobuf.Empty"0ÚAname‚Óä“#*!/v2beta/{name=spaces/*/members/*}•ÊAmeet.googleapis.comÒAûhttps://www.googleapis.com/auth/meetings.conference.media.audio.readonly,https://www.googleapis.com/auth/meetings.conference.media.readonly,https://www.googleapis.com/auth/meetings.conference.media.video.readonly,https://www.googleapis.com/auth/meetings.space.created,https://www.googleapis.com/auth/meetings.space.readonly,https://www.googleapis.com/auth/meetings.space.settings2ó
 ConferenceRecordsService¨
 GetConferenceRecord3.google.apps.meet.v2beta.GetConferenceRecordRequest).google.apps.meet.v2beta.ConferenceRecord"1ÚAname‚Óä“$"/v2beta/{name=conferenceRecords/*}©
 ListConferenceRecords5.google.apps.meet.v2beta.ListConferenceRecordsRequest6.google.apps.meet.v2beta.ListConferenceRecordsResponse"!‚Óä“/v2beta/conferenceRecords¨
