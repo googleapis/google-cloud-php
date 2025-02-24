@@ -19,10 +19,13 @@ namespace Google\Cloud\Spanner;
 
 use Google\Protobuf\Internal\DescriptorPool;
 use Google\Protobuf\Internal\Message;
+use RuntimeException;
 
 /**
  * Represents a value with a data type of
  * [proto](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.TypeCode).
+ *
+ * @phpstan-template T of Message
  */
 class Proto implements ValueInterface
 {
@@ -45,18 +48,22 @@ class Proto implements ValueInterface
      * var_dump($message->serializeToJsonString());
      * ```
      *
-     * @return Message
+     * @return T
+     * @throws RuntimeException If the proto type is not found.
      */
     public function get(): Message
     {
-        $descriptor = DescriptorPool::getGeneratedPool()
-            ->getDescriptorByProtoName($this->protoTypeFqn);
+        /** @var \Google\Protobuf\Internal\DescriptorPool $pool */
+        $pool = DescriptorPool::getGeneratedPool();
+        /** @var \Google\Protobuf\Internal\Descriptor|null $descriptor */
+        $descriptor = $pool->getDescriptorByProtoName($this->protoTypeFqn);
         if (!$descriptor) {
-            throw new \RuntimeException(sprintf(
+            throw new RuntimeException(sprintf(
                 'Unable to decode proto value. Descriptor not found for %s.',
                 $this->protoTypeFqn
             ));
         }
+        /** @var Message $message */
         $message = new ($descriptor->getClass())();
         $message->mergeFromString(base64_decode($this->value));
         return $message;
