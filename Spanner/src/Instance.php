@@ -445,6 +445,10 @@ class Instance
      *     Configuration Options
      *
      *     @type array $statements Additional DDL statements.
+     *     @type \Google\Protobuf\FileDescriptorSet|string $protoDescriptors The file
+     *         descriptor set object to be used in the update, or alternatively, an absolute
+     *         path to the generated file descriptor set. The descriptor set is only used
+     *         during DDL statements, such as `CREATE PROTO BUNDLE`.
      *     @type SessionPoolInterface $sessionPool A pool used to manage
      *           sessions.
      * }
