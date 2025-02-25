@@ -98,7 +98,8 @@ class DocFxCommand extends Command
                     $outDir . '/' . strtolower($file),
                     file_get_contents(Component::ROOT_DIR . '/' . $file)
                 );
-                $tocItems[] = ['name' => $name, 'href' => strtolower($file)];
+                $href = $file === 'README.md' ? 'getting-started' : strtolower($file);
+                $tocItems[] = ['name' => $name, 'href' => $href];
             }
             // Write the TOC to a file
             $guideToc = array_filter([
