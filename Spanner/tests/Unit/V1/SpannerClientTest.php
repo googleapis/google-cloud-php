@@ -599,21 +599,27 @@ class SpannerClientTest extends GeneratedTest
         // Mock response
         $chunkedValue = true;
         $resumeToken2 = '90';
+        $last = true;
         $expectedResponse = new PartialResultSet();
         $expectedResponse->setChunkedValue($chunkedValue);
         $expectedResponse->setResumeToken($resumeToken2);
+        $expectedResponse->setLast($last);
         $transport->addResponse($expectedResponse);
         $chunkedValue2 = false;
         $resumeToken3 = '91';
+        $last2 = false;
         $expectedResponse2 = new PartialResultSet();
         $expectedResponse2->setChunkedValue($chunkedValue2);
         $expectedResponse2->setResumeToken($resumeToken3);
+        $expectedResponse2->setLast($last2);
         $transport->addResponse($expectedResponse2);
         $chunkedValue3 = true;
         $resumeToken4 = '92';
+        $last3 = true;
         $expectedResponse3 = new PartialResultSet();
         $expectedResponse3->setChunkedValue($chunkedValue3);
         $expectedResponse3->setResumeToken($resumeToken4);
+        $expectedResponse3->setLast($last3);
         $transport->addResponse($expectedResponse3);
         // Mock request
         $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
@@ -1076,21 +1082,27 @@ class SpannerClientTest extends GeneratedTest
         // Mock response
         $chunkedValue = true;
         $resumeToken2 = '90';
+        $last = true;
         $expectedResponse = new PartialResultSet();
         $expectedResponse->setChunkedValue($chunkedValue);
         $expectedResponse->setResumeToken($resumeToken2);
+        $expectedResponse->setLast($last);
         $transport->addResponse($expectedResponse);
         $chunkedValue2 = false;
         $resumeToken3 = '91';
+        $last2 = false;
         $expectedResponse2 = new PartialResultSet();
         $expectedResponse2->setChunkedValue($chunkedValue2);
         $expectedResponse2->setResumeToken($resumeToken3);
+        $expectedResponse2->setLast($last2);
         $transport->addResponse($expectedResponse2);
         $chunkedValue3 = true;
         $resumeToken4 = '92';
+        $last3 = true;
         $expectedResponse3 = new PartialResultSet();
         $expectedResponse3->setChunkedValue($chunkedValue3);
         $expectedResponse3->setResumeToken($resumeToken4);
+        $expectedResponse3->setLast($last3);
         $transport->addResponse($expectedResponse3);
         // Mock request
         $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
