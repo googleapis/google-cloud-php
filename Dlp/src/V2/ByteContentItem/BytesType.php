@@ -117,6 +117,12 @@ class BytesType
      * Generated from protobuf enum <code>EXECUTABLE = 17;</code>
      */
     const EXECUTABLE = 17;
+    /**
+     * AI model file types. Only used for profiling.
+     *
+     * Generated from protobuf enum <code>AI_MODEL = 18;</code>
+     */
+    const AI_MODEL = 18;
 
     private static $valueToName = [
         self::BYTES_TYPE_UNSPECIFIED => 'BYTES_TYPE_UNSPECIFIED',
@@ -136,6 +142,7 @@ class BytesType
         self::AUDIO => 'AUDIO',
         self::VIDEO => 'VIDEO',
         self::EXECUTABLE => 'EXECUTABLE',
+        self::AI_MODEL => 'AI_MODEL',
     ];
 
     public static function name($value)

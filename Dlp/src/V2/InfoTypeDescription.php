@@ -41,6 +41,12 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
      */
     protected $description = '';
     /**
+     * A sample that is a true positive for this infoType.
+     *
+     * Generated from protobuf field <code>string example = 8;</code>
+     */
+    protected $example = '';
+    /**
      * A list of available versions for the infotype.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.VersionDescription versions = 9;</code>
@@ -74,6 +80,8 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Description of the infotype. Translated when language is provided in the
      *           request.
+     *     @type string $example
+     *           A sample that is a true positive for this infoType.
      *     @type array<\Google\Cloud\Dlp\V2\VersionDescription>|\Google\Protobuf\Internal\RepeatedField $versions
      *           A list of available versions for the infotype.
      *     @type array<\Google\Cloud\Dlp\V2\InfoTypeCategory>|\Google\Protobuf\Internal\RepeatedField $categories
@@ -189,6 +197,32 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * A sample that is a true positive for this infoType.
+     *
+     * Generated from protobuf field <code>string example = 8;</code>
+     * @return string
+     */
+    public function getExample()
+    {
+        return $this->example;
+    }
+
+    /**
+     * A sample that is a true positive for this infoType.
+     *
+     * Generated from protobuf field <code>string example = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setExample($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->example = $var;
 
         return $this;
     }
