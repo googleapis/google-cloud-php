@@ -23,6 +23,18 @@
 return [
     'interfaces' => [
         'google.apps.meet.v2beta.SpacesService' => [
+            'ConnectActiveConference' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2beta/{name=spaces/*}:connectActiveConference',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateMember' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2beta/{parent=spaces/*}/members',
