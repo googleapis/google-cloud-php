@@ -30,13 +30,13 @@ class GenerateEphemeralCertRequest extends \Google\Protobuf\Internal\Message
     /**
      * PEM encoded public key to include in the signed certificate.
      *
-     * Generated from protobuf field <code>string public_key = 3;</code>
+     * Generated from protobuf field <code>string public_key = 3 [json_name = "public_key"];</code>
      */
     protected $public_key = '';
     /**
      * Optional. Access token to include in the signed certificate.
      *
-     * Generated from protobuf field <code>string access_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string access_token = 4 [json_name = "access_token", (.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $access_token = '';
     /**
@@ -134,7 +134,7 @@ class GenerateEphemeralCertRequest extends \Google\Protobuf\Internal\Message
     /**
      * PEM encoded public key to include in the signed certificate.
      *
-     * Generated from protobuf field <code>string public_key = 3;</code>
+     * Generated from protobuf field <code>string public_key = 3 [json_name = "public_key"];</code>
      * @return string
      */
     public function getPublicKey()
@@ -145,7 +145,7 @@ class GenerateEphemeralCertRequest extends \Google\Protobuf\Internal\Message
     /**
      * PEM encoded public key to include in the signed certificate.
      *
-     * Generated from protobuf field <code>string public_key = 3;</code>
+     * Generated from protobuf field <code>string public_key = 3 [json_name = "public_key"];</code>
      * @param string $var
      * @return $this
      */
@@ -160,7 +160,7 @@ class GenerateEphemeralCertRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Access token to include in the signed certificate.
      *
-     * Generated from protobuf field <code>string access_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string access_token = 4 [json_name = "access_token", (.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAccessToken()
@@ -171,7 +171,7 @@ class GenerateEphemeralCertRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Access token to include in the signed certificate.
      *
-     * Generated from protobuf field <code>string access_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string access_token = 4 [json_name = "access_token", (.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
