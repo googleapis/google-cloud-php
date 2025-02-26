@@ -183,6 +183,4 @@ class ReplicationStatus extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReplicationStatus::class, \Google\Cloud\BigQuery\Reservation\V1\Reservation_ReplicationStatus::class);
 
