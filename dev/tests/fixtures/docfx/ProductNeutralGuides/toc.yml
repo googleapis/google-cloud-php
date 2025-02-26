@@ -4,7 +4,7 @@
   items:
     -
       name: 'Getting Started'
-      href: readme.md
+      href: getting-started
     -
       name: Authentication
       href: authentication.md
