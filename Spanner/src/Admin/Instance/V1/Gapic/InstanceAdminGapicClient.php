@@ -488,7 +488,7 @@ class InstanceAdminGapicClient
 
     /**
      * Creates an instance and begins preparing it to begin serving. The
-     * returned long-running operation
+     * returned [long-running operation][google.longrunning.Operation]
      * can be used to track the progress of preparing the new
      * instance. The instance name is assigned by the caller. If the
      * named instance already exists, `CreateInstance` returns
@@ -514,12 +514,12 @@ class InstanceAdminGapicClient
      * * The instance's allocated resource levels are readable via the API.
      * * The instance's state becomes `READY`.
      *
-     * The returned long-running operation will
+     * The returned [long-running operation][google.longrunning.Operation] will
      * have a name of the format `<instance_name>/operations/<operation_id>` and
      * can be used to track creation of the instance.  The
-     * metadata field type is
+     * [metadata][google.longrunning.Operation.metadata] field type is
      * [CreateInstanceMetadata][google.spanner.admin.instance.v1.CreateInstanceMetadata].
-     * The response field type is
+     * The [response][google.longrunning.Operation.response] field type is
      * [Instance][google.spanner.admin.instance.v1.Instance], if successful.
      *
      * Sample code:
@@ -608,7 +608,7 @@ class InstanceAdminGapicClient
 
     /**
      * Creates an instance configuration and begins preparing it to be used. The
-     * returned long-running operation
+     * returned [long-running operation][google.longrunning.Operation]
      * can be used to track the progress of preparing the new
      * instance configuration. The instance configuration name is assigned by the
      * caller. If the named instance configuration already exists,
@@ -635,13 +635,13 @@ class InstanceAdminGapicClient
      * [reconciling][google.spanner.admin.instance.v1.InstanceConfig.reconciling]
      * field becomes false. Its state becomes `READY`.
      *
-     * The returned long-running operation will
+     * The returned [long-running operation][google.longrunning.Operation] will
      * have a name of the format
      * `<instance_config_name>/operations/<operation_id>` and can be used to track
      * creation of the instance configuration. The
-     * metadata field type is
+     * [metadata][google.longrunning.Operation.metadata] field type is
      * [CreateInstanceConfigMetadata][google.spanner.admin.instance.v1.CreateInstanceConfigMetadata].
-     * The response field type is
+     * The [response][google.longrunning.Operation.response] field type is
      * [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig], if
      * successful.
      *
@@ -693,10 +693,10 @@ class InstanceAdminGapicClient
      *                                         are of the form `custom-[-a-z0-9]*[a-z0-9]` and must be between 2 and 64
      *                                         characters in length. The `custom-` prefix is required to avoid name
      *                                         conflicts with Google-managed configurations.
-     * @param InstanceConfig $instanceConfig   Required. The `InstanceConfig` proto of the configuration to create.
-     *                                         `instance_config.name` must be
+     * @param InstanceConfig $instanceConfig   Required. The InstanceConfig proto of the configuration to create.
+     *                                         instance_config.name must be
      *                                         `<parent>/instanceConfigs/<instance_config_id>`.
-     *                                         `instance_config.base_config` must be a Google-managed configuration name,
+     *                                         instance_config.base_config must be a Google managed configuration name,
      *                                         e.g. <parent>/instanceConfigs/us-east1, <parent>/instanceConfigs/nam3.
      * @param array          $optionalArgs     {
      *     Optional.
@@ -746,7 +746,7 @@ class InstanceAdminGapicClient
 
     /**
      * Creates an instance partition and begins preparing it to be used. The
-     * returned long-running operation
+     * returned [long-running operation][google.longrunning.Operation]
      * can be used to track the progress of preparing the new instance partition.
      * The instance partition name is assigned by the caller. If the named
      * instance partition already exists, `CreateInstancePartition` returns
@@ -773,13 +773,13 @@ class InstanceAdminGapicClient
      * API.
      * * The instance partition's state becomes `READY`.
      *
-     * The returned long-running operation will
+     * The returned [long-running operation][google.longrunning.Operation] will
      * have a name of the format
      * `<instance_partition_name>/operations/<operation_id>` and can be used to
      * track creation of the instance partition.  The
-     * metadata field type is
+     * [metadata][google.longrunning.Operation.metadata] field type is
      * [CreateInstancePartitionMetadata][google.spanner.admin.instance.v1.CreateInstancePartitionMetadata].
-     * The response field type is
+     * The [response][google.longrunning.Operation.response] field type is
      * [InstancePartition][google.spanner.admin.instance.v1.InstancePartition], if
      * successful.
      *
@@ -1281,12 +1281,12 @@ class InstanceAdminGapicClient
     }
 
     /**
-     * Lists the user-managed instance configuration long-running
-     * operations in the given project. An instance
+     * Lists the user-managed instance configuration [long-running
+     * operations][google.longrunning.Operation] in the given project. An instance
      * configuration operation has a name of the form
      * `projects/<project>/instanceConfigs/<instance_config>/operations/<operation>`.
      * The long-running operation
-     * metadata field type
+     * [metadata][google.longrunning.Operation.metadata] field type
      * `metadata.type_url` describes the type of the metadata. Operations returned
      * include those that have completed/failed/canceled within the last 7 days,
      * and pending operations. Operations returned are ordered by
@@ -1330,7 +1330,8 @@ class InstanceAdminGapicClient
      *           must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`.
      *           Colon `:` is the contains operator. Filter rules are not case sensitive.
      *
-     *           The following fields in the Operation are eligible for filtering:
+     *           The following fields in the [Operation][google.longrunning.Operation]
+     *           are eligible for filtering:
      *
      *           * `name` - The name of the long-running operation
      *           * `done` - False if the operation is in progress, else true.
@@ -1420,9 +1421,6 @@ class InstanceAdminGapicClient
     /**
      * Lists the supported instance configurations for a given project.
      *
-     * Returns both Google-managed configurations and user-managed
-     * configurations.
-     *
      * Sample code:
      * ```
      * $instanceAdminClient = new InstanceAdminClient();
@@ -1500,11 +1498,12 @@ class InstanceAdminGapicClient
     }
 
     /**
-     * Lists instance partition long-running operations in the given instance.
+     * Lists instance partition [long-running
+     * operations][google.longrunning.Operation] in the given instance.
      * An instance partition operation has a name of the form
      * `projects/<project>/instances/<instance>/instancePartitions/<instance_partition>/operations/<operation>`.
      * The long-running operation
-     * metadata field type
+     * [metadata][google.longrunning.Operation.metadata] field type
      * `metadata.type_url` describes the type of the metadata. Operations returned
      * include those that have completed/failed/canceled within the last 7 days,
      * and pending operations. Operations returned are ordered by
@@ -1552,7 +1551,8 @@ class InstanceAdminGapicClient
      *           must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`.
      *           Colon `:` is the contains operator. Filter rules are not case sensitive.
      *
-     *           The following fields in the Operation are eligible for filtering:
+     *           The following fields in the [Operation][google.longrunning.Operation]
+     *           are eligible for filtering:
      *
      *           * `name` - The name of the long-running operation
      *           * `done` - False if the operation is in progress, else true.
@@ -1599,8 +1599,7 @@ class InstanceAdminGapicClient
      *           Optional. Deadline used while retrieving metadata for instance partition
      *           operations. Instance partitions whose operation metadata cannot be
      *           retrieved within this deadline will be added to
-     *           [unreachable_instance_partitions][google.spanner.admin.instance.v1.ListInstancePartitionOperationsResponse.unreachable_instance_partitions]
-     *           in
+     *           [unreachable][ListInstancePartitionOperationsResponse.unreachable] in
      *           [ListInstancePartitionOperationsResponse][google.spanner.admin.instance.v1.ListInstancePartitionOperationsResponse].
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -1679,9 +1678,7 @@ class InstanceAdminGapicClient
      * ```
      *
      * @param string $parent       Required. The instance whose instance partitions should be listed. Values
-     *                             are of the form `projects/<project>/instances/<instance>`. Use `{instance}
-     *                             = '-'` to list instance partitions for all Instances in a project, e.g.,
-     *                             `projects/myproject/instances/-`.
+     *                             are of the form `projects/<project>/instances/<instance>`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1860,7 +1857,7 @@ class InstanceAdminGapicClient
 
     /**
      * Moves an instance to the target instance configuration. You can use the
-     * returned long-running operation to track
+     * returned [long-running operation][google.longrunning.Operation] to track
      * the progress of moving the instance.
      *
      * `MoveInstance` returns `FAILED_PRECONDITION` if the instance meets any of
@@ -1891,13 +1888,13 @@ class InstanceAdminGapicClient
      * transaction abort rate. However, moving an instance doesn't cause any
      * downtime.
      *
-     * The returned long-running operation has
+     * The returned [long-running operation][google.longrunning.Operation] has
      * a name of the format
      * `<instance_name>/operations/<operation_id>` and can be used to track
      * the move instance operation. The
-     * metadata field type is
+     * [metadata][google.longrunning.Operation.metadata] field type is
      * [MoveInstanceMetadata][google.spanner.admin.instance.v1.MoveInstanceMetadata].
-     * The response field type is
+     * The [response][google.longrunning.Operation.response] field type is
      * [Instance][google.spanner.admin.instance.v1.Instance],
      * if successful.
      * Cancelling the operation sets its metadata's
@@ -2130,7 +2127,8 @@ class InstanceAdminGapicClient
 
     /**
      * Updates an instance, and begins allocating or releasing resources
-     * as requested. The returned long-running operation can be used to track the
+     * as requested. The returned [long-running
+     * operation][google.longrunning.Operation] can be used to track the
      * progress of updating the instance. If the named instance does not
      * exist, returns `NOT_FOUND`.
      *
@@ -2158,12 +2156,12 @@ class InstanceAdminGapicClient
      * tables.
      * * The instance's new resource levels are readable via the API.
      *
-     * The returned long-running operation will
+     * The returned [long-running operation][google.longrunning.Operation] will
      * have a name of the format `<instance_name>/operations/<operation_id>` and
      * can be used to track the instance modification.  The
-     * metadata field type is
+     * [metadata][google.longrunning.Operation.metadata] field type is
      * [UpdateInstanceMetadata][google.spanner.admin.instance.v1.UpdateInstanceMetadata].
-     * The response field type is
+     * The [response][google.longrunning.Operation.response] field type is
      * [Instance][google.spanner.admin.instance.v1.Instance], if successful.
      *
      * Authorization requires `spanner.instances.update` permission on
@@ -2254,7 +2252,7 @@ class InstanceAdminGapicClient
 
     /**
      * Updates an instance configuration. The returned
-     * long-running operation can be used to track
+     * [long-running operation][google.longrunning.Operation] can be used to track
      * the progress of updating the instance. If the named instance configuration
      * does not exist, returns `NOT_FOUND`.
      *
@@ -2285,13 +2283,13 @@ class InstanceAdminGapicClient
      * [reconciling][google.spanner.admin.instance.v1.InstanceConfig.reconciling]
      * field becomes false.
      *
-     * The returned long-running operation will
+     * The returned [long-running operation][google.longrunning.Operation] will
      * have a name of the format
      * `<instance_config_name>/operations/<operation_id>` and can be used to track
      * the instance configuration modification.  The
-     * metadata field type is
+     * [metadata][google.longrunning.Operation.metadata] field type is
      * [UpdateInstanceConfigMetadata][google.spanner.admin.instance.v1.UpdateInstanceConfigMetadata].
-     * The response field type is
+     * The [response][google.longrunning.Operation.response] field type is
      * [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig], if
      * successful.
      *
@@ -2396,7 +2394,8 @@ class InstanceAdminGapicClient
 
     /**
      * Updates an instance partition, and begins allocating or releasing resources
-     * as requested. The returned long-running operation can be used to track the
+     * as requested. The returned [long-running
+     * operation][google.longrunning.Operation] can be used to track the
      * progress of updating the instance partition. If the named instance
      * partition does not exist, returns `NOT_FOUND`.
      *
@@ -2425,13 +2424,13 @@ class InstanceAdminGapicClient
      * partition's tables.
      * * The instance partition's new resource levels are readable via the API.
      *
-     * The returned long-running operation will
+     * The returned [long-running operation][google.longrunning.Operation] will
      * have a name of the format
      * `<instance_partition_name>/operations/<operation_id>` and can be used to
      * track the instance partition modification. The
-     * metadata field type is
+     * [metadata][google.longrunning.Operation.metadata] field type is
      * [UpdateInstancePartitionMetadata][google.spanner.admin.instance.v1.UpdateInstancePartitionMetadata].
-     * The response field type is
+     * The [response][google.longrunning.Operation.response] field type is
      * [InstancePartition][google.spanner.admin.instance.v1.InstancePartition], if
      * successful.
      *

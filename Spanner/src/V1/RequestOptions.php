@@ -20,7 +20,7 @@ class RequestOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.RequestOptions.Priority priority = 1;</code>
      */
-    private $priority = 0;
+    protected $priority = 0;
     /**
      * A per-request tag which can be applied to queries or reads, used for
      * statistics collection.
@@ -35,7 +35,7 @@ class RequestOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_tag = 2;</code>
      */
-    private $request_tag = '';
+    protected $request_tag = '';
     /**
      * A tag used for statistics collection about this transaction.
      * Both request_tag and transaction_tag can be specified for a read or query
@@ -51,7 +51,7 @@ class RequestOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string transaction_tag = 3;</code>
      */
-    private $transaction_tag = '';
+    protected $transaction_tag = '';
 
     /**
      * Constructor.
