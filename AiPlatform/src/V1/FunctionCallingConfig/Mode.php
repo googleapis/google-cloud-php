@@ -20,23 +20,23 @@ class Mode
      */
     const MODE_UNSPECIFIED = 0;
     /**
-     * Default model behavior, model decides to predict either a function call
-     * or a natural language response.
+     * Default model behavior, model decides to predict either function calls
+     * or natural language response.
      *
      * Generated from protobuf enum <code>AUTO = 1;</code>
      */
     const AUTO = 1;
     /**
-     * Model is constrained to always predicting a function call only.
-     * If "allowed_function_names" are set, the predicted function call will be
+     * Model is constrained to always predicting function calls only.
+     * If "allowed_function_names" are set, the predicted function calls will be
      * limited to any one of "allowed_function_names", else the predicted
-     * function call will be any one of the provided "function_declarations".
+     * function calls will be any one of the provided "function_declarations".
      *
      * Generated from protobuf enum <code>ANY = 2;</code>
      */
     const ANY = 2;
     /**
-     * Model will not predict any function call. Model behavior is same as when
+     * Model will not predict any function calls. Model behavior is same as when
      * not passing any function declarations.
      *
      * Generated from protobuf enum <code>NONE = 3;</code>
