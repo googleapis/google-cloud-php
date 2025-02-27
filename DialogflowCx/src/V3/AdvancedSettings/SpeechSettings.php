@@ -29,7 +29,7 @@ class SpeechSettings extends \Google\Protobuf\Internal\Message
      */
     protected $no_speech_timeout = null;
     /**
-     * Use timeout based endpointing, interpreting endpointer sensitivy as
+     * Use timeout based endpointing, interpreting endpointer sensitivity as
      * seconds of timeout value.
      *
      * Generated from protobuf field <code>bool use_timeout_based_endpointing = 3;</code>
@@ -58,7 +58,7 @@ class SpeechSettings extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $no_speech_timeout
      *           Timeout before detecting no speech.
      *     @type bool $use_timeout_based_endpointing
-     *           Use timeout based endpointing, interpreting endpointer sensitivy as
+     *           Use timeout based endpointing, interpreting endpointer sensitivity as
      *           seconds of timeout value.
      *     @type array|\Google\Protobuf\Internal\MapField $models
      *           Mapping from language to Speech-to-Text model. The mapped Speech-to-Text
@@ -138,7 +138,7 @@ class SpeechSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Use timeout based endpointing, interpreting endpointer sensitivy as
+     * Use timeout based endpointing, interpreting endpointer sensitivity as
      * seconds of timeout value.
      *
      * Generated from protobuf field <code>bool use_timeout_based_endpointing = 3;</code>
@@ -150,7 +150,7 @@ class SpeechSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Use timeout based endpointing, interpreting endpointer sensitivy as
+     * Use timeout based endpointing, interpreting endpointer sensitivity as
      * seconds of timeout value.
      *
      * Generated from protobuf field <code>bool use_timeout_based_endpointing = 3;</code>

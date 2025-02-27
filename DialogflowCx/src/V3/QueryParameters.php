@@ -189,7 +189,8 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      * DetectIntentResponse.query_result.data_store_connection_signals
      * will be filled with data that can help evaluations.
      *
-     * Generated from protobuf field <code>bool populate_data_store_connection_signals = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool populate_data_store_connection_signals = 25 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     protected $populate_data_store_connection_signals = false;
 
@@ -921,11 +922,13 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      * DetectIntentResponse.query_result.data_store_connection_signals
      * will be filled with data that can help evaluations.
      *
-     * Generated from protobuf field <code>bool populate_data_store_connection_signals = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool populate_data_store_connection_signals = 25 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
+     * @deprecated
      */
     public function getPopulateDataStoreConnectionSignals()
     {
+        @trigger_error('populate_data_store_connection_signals is deprecated.', E_USER_DEPRECATED);
         return $this->populate_data_store_connection_signals;
     }
 
@@ -935,12 +938,14 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      * DetectIntentResponse.query_result.data_store_connection_signals
      * will be filled with data that can help evaluations.
      *
-     * Generated from protobuf field <code>bool populate_data_store_connection_signals = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool populate_data_store_connection_signals = 25 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setPopulateDataStoreConnectionSignals($var)
     {
+        @trigger_error('populate_data_store_connection_signals is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->populate_data_store_connection_signals = $var;
 

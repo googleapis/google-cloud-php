@@ -37,8 +37,7 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
      */
     protected $password = '';
     /**
-     * The HTTP request headers to send together with webhook
-     * requests.
+     * The HTTP request headers to send together with webhook requests.
      *
      * Generated from protobuf field <code>map<string, string> request_headers = 4;</code>
      */
@@ -121,8 +120,7 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
      *     @type string $password
      *           The password for HTTP Basic authentication.
      *     @type array|\Google\Protobuf\Internal\MapField $request_headers
-     *           The HTTP request headers to send together with webhook
-     *           requests.
+     *           The HTTP request headers to send together with webhook requests.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_ca_certs
      *           Optional. Specifies a list of allowed custom CA certificates (in DER
      *           format) for HTTPS verification. This overrides the default SSL trust
@@ -254,8 +252,7 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The HTTP request headers to send together with webhook
-     * requests.
+     * The HTTP request headers to send together with webhook requests.
      *
      * Generated from protobuf field <code>map<string, string> request_headers = 4;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -266,8 +263,7 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The HTTP request headers to send together with webhook
-     * requests.
+     * The HTTP request headers to send together with webhook requests.
      *
      * Generated from protobuf field <code>map<string, string> request_headers = 4;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

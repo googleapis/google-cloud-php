@@ -88,7 +88,7 @@ class Page extends \Google\Protobuf\Internal\Message
      * A list of transitions for the transition rules of this page.
      * They route the conversation to another page in the same flow, or another
      * flow.
-     * When we are in a certain page, the TransitionRoutes are evalauted in the
+     * When we are in a certain page, the TransitionRoutes are evaluated in the
      * following order:
      * *   TransitionRoutes defined in the page with intent specified.
      * *   TransitionRoutes defined in the
@@ -173,7 +173,7 @@ class Page extends \Google\Protobuf\Internal\Message
      *           A list of transitions for the transition rules of this page.
      *           They route the conversation to another page in the same flow, or another
      *           flow.
-     *           When we are in a certain page, the TransitionRoutes are evalauted in the
+     *           When we are in a certain page, the TransitionRoutes are evaluated in the
      *           following order:
      *           *   TransitionRoutes defined in the page with intent specified.
      *           *   TransitionRoutes defined in the
@@ -427,7 +427,7 @@ class Page extends \Google\Protobuf\Internal\Message
      * A list of transitions for the transition rules of this page.
      * They route the conversation to another page in the same flow, or another
      * flow.
-     * When we are in a certain page, the TransitionRoutes are evalauted in the
+     * When we are in a certain page, the TransitionRoutes are evaluated in the
      * following order:
      * *   TransitionRoutes defined in the page with intent specified.
      * *   TransitionRoutes defined in the
@@ -457,7 +457,7 @@ class Page extends \Google\Protobuf\Internal\Message
      * A list of transitions for the transition rules of this page.
      * They route the conversation to another page in the same flow, or another
      * flow.
-     * When we are in a certain page, the TransitionRoutes are evalauted in the
+     * When we are in a certain page, the TransitionRoutes are evaluated in the
      * following order:
      * *   TransitionRoutes defined in the page with intent specified.
      * *   TransitionRoutes defined in the

@@ -106,6 +106,8 @@ class AgentsClientTest extends GeneratedTest
         $enableSpellCorrection = false;
         $enableMultiLanguageTraining = false;
         $locked = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Agent();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -119,6 +121,8 @@ class AgentsClientTest extends GeneratedTest
         $expectedResponse->setEnableSpellCorrection($enableSpellCorrection);
         $expectedResponse->setEnableMultiLanguageTraining($enableMultiLanguageTraining);
         $expectedResponse->setLocked($locked);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -395,6 +399,8 @@ class AgentsClientTest extends GeneratedTest
         $enableSpellCorrection = false;
         $enableMultiLanguageTraining = false;
         $locked = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Agent();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -408,6 +414,8 @@ class AgentsClientTest extends GeneratedTest
         $expectedResponse->setEnableSpellCorrection($enableSpellCorrection);
         $expectedResponse->setEnableMultiLanguageTraining($enableMultiLanguageTraining);
         $expectedResponse->setLocked($locked);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
@@ -811,6 +819,8 @@ class AgentsClientTest extends GeneratedTest
         $enableSpellCorrection = false;
         $enableMultiLanguageTraining = false;
         $locked = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Agent();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -824,6 +834,8 @@ class AgentsClientTest extends GeneratedTest
         $expectedResponse->setEnableSpellCorrection($enableSpellCorrection);
         $expectedResponse->setEnableMultiLanguageTraining($enableMultiLanguageTraining);
         $expectedResponse->setLocked($locked);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $agent = new Agent();
@@ -1170,6 +1182,8 @@ class AgentsClientTest extends GeneratedTest
         $enableSpellCorrection = false;
         $enableMultiLanguageTraining = false;
         $locked = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Agent();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -1183,6 +1197,8 @@ class AgentsClientTest extends GeneratedTest
         $expectedResponse->setEnableSpellCorrection($enableSpellCorrection);
         $expectedResponse->setEnableMultiLanguageTraining($enableMultiLanguageTraining);
         $expectedResponse->setLocked($locked);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');

@@ -186,6 +186,20 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Agent.ClientCertificateSettings client_certificate_settings = 43 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $client_certificate_settings = null;
+    /**
+     * Optional. Output only. A read only boolean field reflecting Zone Separation
+     * status of the agent.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 45 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = null;
+    /**
+     * Optional. Output only. A read only boolean field reflecting Zone Isolation
+     * status of the agent.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 46 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = null;
 
     /**
      * Constructor.
@@ -268,6 +282,12 @@ class Agent extends \Google\Protobuf\Internal\Message
      *           Optional. Settings for end user personalization.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Agent\ClientCertificateSettings $client_certificate_settings
      *           Optional. Settings for custom client certificates.
+     *     @type bool $satisfies_pzs
+     *           Optional. Output only. A read only boolean field reflecting Zone Separation
+     *           status of the agent.
+     *     @type bool $satisfies_pzi
+     *           Optional. Output only. A read only boolean field reflecting Zone Isolation
+     *           status of the agent.
      * }
      */
     public function __construct($data = NULL) {
@@ -967,6 +987,82 @@ class Agent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\Agent\ClientCertificateSettings::class);
         $this->client_certificate_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Output only. A read only boolean field reflecting Zone Separation
+     * status of the agent.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 45 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs) ? $this->satisfies_pzs : false;
+    }
+
+    public function hasSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs);
+    }
+
+    public function clearSatisfiesPzs()
+    {
+        unset($this->satisfies_pzs);
+    }
+
+    /**
+     * Optional. Output only. A read only boolean field reflecting Zone Separation
+     * status of the agent.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 45 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Output only. A read only boolean field reflecting Zone Isolation
+     * status of the agent.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 46 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi) ? $this->satisfies_pzi : false;
+    }
+
+    public function hasSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi);
+    }
+
+    public function clearSatisfiesPzi()
+    {
+        unset($this->satisfies_pzi);
+    }
+
+    /**
+     * Optional. Output only. A read only boolean field reflecting Zone Isolation
+     * status of the agent.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 46 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }
