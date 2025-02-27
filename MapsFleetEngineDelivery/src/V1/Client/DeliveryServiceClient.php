@@ -37,6 +37,8 @@ use Google\Maps\FleetEngine\Delivery\V1\BatchCreateTasksRequest;
 use Google\Maps\FleetEngine\Delivery\V1\BatchCreateTasksResponse;
 use Google\Maps\FleetEngine\Delivery\V1\CreateDeliveryVehicleRequest;
 use Google\Maps\FleetEngine\Delivery\V1\CreateTaskRequest;
+use Google\Maps\FleetEngine\Delivery\V1\DeleteDeliveryVehicleRequest;
+use Google\Maps\FleetEngine\Delivery\V1\DeleteTaskRequest;
 use Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicle;
 use Google\Maps\FleetEngine\Delivery\V1\GetDeliveryVehicleRequest;
 use Google\Maps\FleetEngine\Delivery\V1\GetTaskRequest;
@@ -64,6 +66,8 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<BatchCreateTasksResponse> batchCreateTasksAsync(BatchCreateTasksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DeliveryVehicle> createDeliveryVehicleAsync(CreateDeliveryVehicleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Task> createTaskAsync(CreateTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteDeliveryVehicleAsync(DeleteDeliveryVehicleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTaskAsync(DeleteTaskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DeliveryVehicle> getDeliveryVehicleAsync(GetDeliveryVehicleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Task> getTaskAsync(GetTaskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TaskTrackingInfo> getTaskTrackingInfoAsync(GetTaskTrackingInfoRequest $request, array $optionalArgs = [])
@@ -372,6 +376,61 @@ final class DeliveryServiceClient
     public function createTask(CreateTaskRequest $request, array $callOptions = []): Task
     {
         return $this->startApiCall('CreateTask', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a DeliveryVehicle from the Fleet Engine.
+     *
+     * Returns FAILED_PRECONDITION if the DeliveryVehicle has OPEN Tasks
+     * assigned to it.
+     *
+     * The async variant is {@see DeliveryServiceClient::deleteDeliveryVehicleAsync()}
+     * .
+     *
+     * @example samples/V1/DeliveryServiceClient/delete_delivery_vehicle.php
+     *
+     * @param DeleteDeliveryVehicleRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteDeliveryVehicle(DeleteDeliveryVehicleRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteDeliveryVehicle', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single Task.
+     *
+     * Returns FAILED_PRECONDITION if the Task is OPEN and assigned to a
+     * DeliveryVehicle.
+     *
+     * The async variant is {@see DeliveryServiceClient::deleteTaskAsync()} .
+     *
+     * @example samples/V1/DeliveryServiceClient/delete_task.php
+     *
+     * @param DeleteTaskRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteTask(DeleteTaskRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteTask', $request, $callOptions)->wait();
     }
 
     /**
