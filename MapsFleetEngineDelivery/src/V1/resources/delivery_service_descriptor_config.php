@@ -68,6 +68,36 @@ return [
                     ],
                 ],
             ],
+            'DeleteDeliveryVehicle' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'provider_id',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                        'matchers' => [
+                            '/^(?<provider_id>providers\/[^\/]+)$/',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteTask' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'provider_id',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                        'matchers' => [
+                            '/^(?<provider_id>providers\/[^\/]+)$/',
+                        ],
+                    ],
+                ],
+            ],
             'GetDeliveryVehicle' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicle',

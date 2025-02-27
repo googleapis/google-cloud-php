@@ -65,6 +65,28 @@ return [
                     'task_id',
                 ],
             ],
+            'DeleteDeliveryVehicle' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=providers/*/deliveryVehicles/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteTask' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=providers/*/tasks/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetDeliveryVehicle' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=providers/*/deliveryVehicles/*}',

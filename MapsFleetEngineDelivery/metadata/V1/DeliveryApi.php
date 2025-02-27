@@ -24,11 +24,12 @@ class DeliveryApi
         \GPBMetadata\Google\Maps\Fleetengine\Delivery\V1\Header::initOnce();
         \GPBMetadata\Google\Maps\Fleetengine\Delivery\V1\TaskTrackingInfo::initOnce();
         \GPBMetadata\Google\Maps\Fleetengine\Delivery\V1\Tasks::initOnce();
+        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ú,
-6google/maps/fleetengine/delivery/v1/delivery_api.protomaps.fleetengine.delivery.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/api/routing.protogoogle/geo/type/viewport.proto;google/maps/fleetengine/delivery/v1/delivery_vehicles.proto0google/maps/fleetengine/delivery/v1/header.proto<google/maps/fleetengine/delivery/v1/task_tracking_info.proto/google/maps/fleetengine/delivery/v1/tasks.proto google/protobuf/field_mask.proto"í
+¼2
+6google/maps/fleetengine/delivery/v1/delivery_api.protomaps.fleetengine.delivery.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/api/routing.protogoogle/geo/type/viewport.proto;google/maps/fleetengine/delivery/v1/delivery_vehicles.proto0google/maps/fleetengine/delivery/v1/header.proto<google/maps/fleetengine/delivery/v1/task_tracking_info.proto/google/maps/fleetengine/delivery/v1/tasks.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"í
 CreateDeliveryVehicleRequestH
 header (23.maps.fleetengine.delivery.v1.DeliveryRequestHeaderBàA
 parent (	BàA 
@@ -37,6 +38,10 @@ class DeliveryApi
 GetDeliveryVehicleRequestH
 header (23.maps.fleetengine.delivery.v1.DeliveryRequestHeaderBàA@
 name (	B2àAúA,
+*fleetengine.googleapis.com/DeliveryVehicle"ª
+DeleteDeliveryVehicleRequestH
+header (23.maps.fleetengine.delivery.v1.DeliveryRequestHeaderBàA@
+name (	B2àAúA,
 *fleetengine.googleapis.com/DeliveryVehicle"£
 ListDeliveryVehiclesRequestH
 header (23.maps.fleetengine.delivery.v1.DeliveryRequestHeaderBàAB
@@ -69,6 +74,10 @@ total_size ("ì
 GetTaskRequestH
 header (23.maps.fleetengine.delivery.v1.DeliveryRequestHeaderBàA5
 name (	B\'àAúA!
+fleetengine.googleapis.com/Task"”
+DeleteTaskRequestH
+header (23.maps.fleetengine.delivery.v1.DeliveryRequestHeaderBàA5
+name (	B\'àAúA!
 fleetengine.googleapis.com/Task"Ê
 UpdateTaskRequestH
 header (23.maps.fleetengine.delivery.v1.DeliveryRequestHeaderBàA5
@@ -89,11 +98,13 @@ total_size ("©
 GetTaskTrackingInfoRequestH
 header (23.maps.fleetengine.delivery.v1.DeliveryRequestHeaderBàAA
 name (	B3àAúA-
-+fleetengine.googleapis.com/TaskTrackingInfo2Š
++fleetengine.googleapis.com/TaskTrackingInfo2‹
 DeliveryService¡
 CreateDeliveryVehicle:.maps.fleetengine.delivery.v1.CreateDeliveryVehicleRequest-.maps.fleetengine.delivery.v1.DeliveryVehicle"œÚA+parent,delivery_vehicle,delivery_vehicle_id‚Óä“=")/v1/{parent=providers/*}/deliveryVehicles:delivery_vehicleŠÓä“%#
 parent{provider_id=providers/*}ß
 GetDeliveryVehicle7.maps.fleetengine.delivery.v1.GetDeliveryVehicleRequest-.maps.fleetengine.delivery.v1.DeliveryVehicle"aÚAname‚Óä“+)/v1/{name=providers/*/deliveryVehicles/*}ŠÓä“#!
+name{provider_id=providers/*}Î
+DeleteDeliveryVehicle:.maps.fleetengine.delivery.v1.DeleteDeliveryVehicleRequest.google.protobuf.Empty"aÚAname‚Óä“+*)/v1/{name=providers/*/deliveryVehicles/*}ŠÓä“#!
 name{provider_id=providers/*}²
 UpdateDeliveryVehicle:.maps.fleetengine.delivery.v1.UpdateDeliveryVehicleRequest-.maps.fleetengine.delivery.v1.DeliveryVehicle"­ÚAdelivery_vehicle,update_mask‚Óä“N2:/v1/{delivery_vehicle.name=providers/*/deliveryVehicles/*}:delivery_vehicleŠÓä“42
 delivery_vehicle.name{provider_id=providers/*}ã
@@ -103,6 +114,9 @@ total_size ("©
 CreateTask/.maps.fleetengine.delivery.v1.CreateTaskRequest".maps.fleetengine.delivery.v1.Task"mÚAparent,task,task_id‚Óä“&"/v1/{parent=providers/*}/tasks:taskŠÓä“%#
 parent{provider_id=providers/*}³
 GetTask,.maps.fleetengine.delivery.v1.GetTaskRequest".maps.fleetengine.delivery.v1.Task"VÚAname‚Óä“ /v1/{name=providers/*/tasks/*}ŠÓä“#!
+name{provider_id=providers/*}­
+
+DeleteTask/.maps.fleetengine.delivery.v1.DeleteTaskRequest.google.protobuf.Empty"VÚAname‚Óä“ */v1/{name=providers/*/tasks/*}ŠÓä“#!
 name{provider_id=providers/*}Õ
 
 UpdateTask/.maps.fleetengine.delivery.v1.UpdateTaskRequest".maps.fleetengine.delivery.v1.Task"rÚAtask,update_mask‚Óä“+2#/v1/{task.name=providers/*/tasks/*}:taskŠÓä“(&
