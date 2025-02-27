@@ -17,6 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * 4. order_by + start_at + end_at
  * 5. offset
  * 6. limit
+ * 7. find_nearest
  *
  * Generated from protobuf message <code>google.firestore.v1.StructuredQuery</code>
  */
