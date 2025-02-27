@@ -48,6 +48,16 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      */
     protected $last_location = null;
     /**
+     * Input only. Locations where this vehicle has been in the past that haven't
+     * yet been reported to Fleet Engine. This is used in `UpdateVehicleRequest`
+     * to record locations which were previously unable to be sent to the server.
+     * Typically this happens when the vehicle does not have internet
+     * connectivity.
+     *
+     * Generated from protobuf field <code>repeated .maps.fleetengine.v1.VehicleLocation past_locations = 30 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    private $past_locations;
+    /**
      * The total numbers of riders this vehicle can carry.  The driver is not
      * considered in this value. This value must be greater than or equal to one.
      *
@@ -202,6 +212,12 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *           vehicle.
      *     @type \Google\Maps\FleetEngine\V1\VehicleLocation $last_location
      *           Last reported location of the vehicle.
+     *     @type array<\Google\Maps\FleetEngine\V1\VehicleLocation>|\Google\Protobuf\Internal\RepeatedField $past_locations
+     *           Input only. Locations where this vehicle has been in the past that haven't
+     *           yet been reported to Fleet Engine. This is used in `UpdateVehicleRequest`
+     *           to record locations which were previously unable to be sent to the server.
+     *           Typically this happens when the vehicle does not have internet
+     *           connectivity.
      *     @type int $maximum_capacity
      *           The total numbers of riders this vehicle can carry.  The driver is not
      *           considered in this value. This value must be greater than or equal to one.
@@ -416,6 +432,40 @@ class Vehicle extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Maps\FleetEngine\V1\VehicleLocation::class);
         $this->last_location = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. Locations where this vehicle has been in the past that haven't
+     * yet been reported to Fleet Engine. This is used in `UpdateVehicleRequest`
+     * to record locations which were previously unable to be sent to the server.
+     * Typically this happens when the vehicle does not have internet
+     * connectivity.
+     *
+     * Generated from protobuf field <code>repeated .maps.fleetengine.v1.VehicleLocation past_locations = 30 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPastLocations()
+    {
+        return $this->past_locations;
+    }
+
+    /**
+     * Input only. Locations where this vehicle has been in the past that haven't
+     * yet been reported to Fleet Engine. This is used in `UpdateVehicleRequest`
+     * to record locations which were previously unable to be sent to the server.
+     * Typically this happens when the vehicle does not have internet
+     * connectivity.
+     *
+     * Generated from protobuf field <code>repeated .maps.fleetengine.v1.VehicleLocation past_locations = 30 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param array<\Google\Maps\FleetEngine\V1\VehicleLocation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPastLocations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Maps\FleetEngine\V1\VehicleLocation::class);
+        $this->past_locations = $arr;
 
         return $this;
     }
