@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Rules used to convert to/from lower level types.
+ * Rules used to convert to or from lower level types.
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.Type.Bytes.Encoding</code>
  */

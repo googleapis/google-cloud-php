@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Int64 extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The encoding to use when converting to/from lower level types.
+     * The encoding to use when converting to or from lower level types.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Int64.Encoding encoding = 1;</code>
      */
@@ -30,7 +30,7 @@ class Int64 extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Bigtable\Admin\V2\Type\Int64\Encoding $encoding
-     *           The encoding to use when converting to/from lower level types.
+     *           The encoding to use when converting to or from lower level types.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,7 +39,7 @@ class Int64 extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The encoding to use when converting to/from lower level types.
+     * The encoding to use when converting to or from lower level types.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Int64.Encoding encoding = 1;</code>
      * @return \Google\Cloud\Bigtable\Admin\V2\Type\Int64\Encoding|null
@@ -60,7 +60,7 @@ class Int64 extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The encoding to use when converting to/from lower level types.
+     * The encoding to use when converting to or from lower level types.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Int64.Encoding encoding = 1;</code>
      * @param \Google\Cloud\Bigtable\Admin\V2\Type\Int64\Encoding $var

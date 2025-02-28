@@ -32,12 +32,19 @@ class UpdateTableRequest extends \Google\Protobuf\Internal\Message
      * * `change_stream_config`
      * * `change_stream_config.retention_period`
      * * `deletion_protection`
+     * * `row_key_schema`
      * If `column_families` is set in `update_mask`, it will return an
      * UNIMPLEMENTED error.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $update_mask = null;
+    /**
+     * Optional. If true, ignore safety checks when updating the table.
+     *
+     * Generated from protobuf field <code>bool ignore_warnings = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ignore_warnings = false;
 
     /**
      * @param \Google\Cloud\Bigtable\Admin\V2\Table $table      Required. The table to update.
@@ -51,6 +58,7 @@ class UpdateTableRequest extends \Google\Protobuf\Internal\Message
      *                                                          * `change_stream_config`
      *                                                          * `change_stream_config.retention_period`
      *                                                          * `deletion_protection`
+     *                                                          * `row_key_schema`
      *
      *                                                          If `column_families` is set in `update_mask`, it will return an
      *                                                          UNIMPLEMENTED error.
@@ -84,8 +92,11 @@ class UpdateTableRequest extends \Google\Protobuf\Internal\Message
      *           * `change_stream_config`
      *           * `change_stream_config.retention_period`
      *           * `deletion_protection`
+     *           * `row_key_schema`
      *           If `column_families` is set in `update_mask`, it will return an
      *           UNIMPLEMENTED error.
+     *     @type bool $ignore_warnings
+     *           Optional. If true, ignore safety checks when updating the table.
      * }
      */
     public function __construct($data = NULL) {
@@ -140,6 +151,7 @@ class UpdateTableRequest extends \Google\Protobuf\Internal\Message
      * * `change_stream_config`
      * * `change_stream_config.retention_period`
      * * `deletion_protection`
+     * * `row_key_schema`
      * If `column_families` is set in `update_mask`, it will return an
      * UNIMPLEMENTED error.
      *
@@ -170,6 +182,7 @@ class UpdateTableRequest extends \Google\Protobuf\Internal\Message
      * * `change_stream_config`
      * * `change_stream_config.retention_period`
      * * `deletion_protection`
+     * * `row_key_schema`
      * If `column_families` is set in `update_mask`, it will return an
      * UNIMPLEMENTED error.
      *
@@ -181,6 +194,32 @@ class UpdateTableRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
         $this->update_mask = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, ignore safety checks when updating the table.
+     *
+     * Generated from protobuf field <code>bool ignore_warnings = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getIgnoreWarnings()
+    {
+        return $this->ignore_warnings;
+    }
+
+    /**
+     * Optional. If true, ignore safety checks when updating the table.
+     *
+     * Generated from protobuf field <code>bool ignore_warnings = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIgnoreWarnings($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->ignore_warnings = $var;
 
         return $this;
     }
