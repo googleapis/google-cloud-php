@@ -9,14 +9,13 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Encodes the value as an 8-byte big endian twos complement `Bytes`
- * value.
- * * Order-preserving? No (positive values only)
- * * Self-delimiting? Yes
- * * Compatibility?
- *    - BigQuery Federation `BINARY` encoding
- *    - HBase `Bytes.toBytes`
- *    - Java `ByteBuffer.putLong()` with `ByteOrder.BIG_ENDIAN`
+ * Encodes the value as an 8-byte big-endian two's complement value.
+ * Sorted mode: non-negative values are supported.
+ * Distinct mode: all values are supported.
+ * Compatible with:
+ *  - BigQuery `BINARY` encoding
+ *  - HBase `Bytes.toBytes`
+ *  - Java `ByteBuffer.putLong()` with `ByteOrder.BIG_ENDIAN`
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.Type.Int64.Encoding.BigEndianBytes</code>
  */
@@ -25,7 +24,8 @@ class BigEndianBytes extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated: ignored if set.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Bytes bytes_type = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Bytes bytes_type = 1 [deprecated = true];</code>
+     * @deprecated
      */
     protected $bytes_type = null;
 
@@ -47,33 +47,39 @@ class BigEndianBytes extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated: ignored if set.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Bytes bytes_type = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Bytes bytes_type = 1 [deprecated = true];</code>
      * @return \Google\Cloud\Bigtable\Admin\V2\Type\Bytes|null
+     * @deprecated
      */
     public function getBytesType()
     {
+        @trigger_error('bytes_type is deprecated.', E_USER_DEPRECATED);
         return $this->bytes_type;
     }
 
     public function hasBytesType()
     {
+        @trigger_error('bytes_type is deprecated.', E_USER_DEPRECATED);
         return isset($this->bytes_type);
     }
 
     public function clearBytesType()
     {
+        @trigger_error('bytes_type is deprecated.', E_USER_DEPRECATED);
         unset($this->bytes_type);
     }
 
     /**
      * Deprecated: ignored if set.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Bytes bytes_type = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Bytes bytes_type = 1 [deprecated = true];</code>
      * @param \Google\Cloud\Bigtable\Admin\V2\Type\Bytes $var
      * @return $this
+     * @deprecated
      */
     public function setBytesType($var)
     {
+        @trigger_error('bytes_type is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Type\Bytes::class);
         $this->bytes_type = $var;
 
