@@ -36,10 +36,10 @@ class CommitRepositoryChangesRequest extends \Google\Protobuf\Internal\Message
      */
     protected $required_head_commit_sha = '';
     /**
-     * A map to the path of the file to the operation. The path is the full file
-     * path including filename, from repository root.
+     * Optional. A map to the path of the file to the operation. The path is the
+     * full file path including filename, from repository root.
      *
-     * Generated from protobuf field <code>map<string, .google.cloud.dataform.v1beta1.CommitRepositoryChangesRequest.FileOperation> file_operations = 3;</code>
+     * Generated from protobuf field <code>map<string, .google.cloud.dataform.v1beta1.CommitRepositoryChangesRequest.FileOperation> file_operations = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $file_operations;
 
@@ -58,8 +58,8 @@ class CommitRepositoryChangesRequest extends \Google\Protobuf\Internal\Message
      *           applying this commit; otherwise this request will fail. If unset, no
      *           validation on the current HEAD commit SHA is performed.
      *     @type array|\Google\Protobuf\Internal\MapField $file_operations
-     *           A map to the path of the file to the operation. The path is the full file
-     *           path including filename, from repository root.
+     *           Optional. A map to the path of the file to the operation. The path is the
+     *           full file path including filename, from repository root.
      * }
      */
     public function __construct($data = NULL) {
@@ -160,10 +160,10 @@ class CommitRepositoryChangesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A map to the path of the file to the operation. The path is the full file
-     * path including filename, from repository root.
+     * Optional. A map to the path of the file to the operation. The path is the
+     * full file path including filename, from repository root.
      *
-     * Generated from protobuf field <code>map<string, .google.cloud.dataform.v1beta1.CommitRepositoryChangesRequest.FileOperation> file_operations = 3;</code>
+     * Generated from protobuf field <code>map<string, .google.cloud.dataform.v1beta1.CommitRepositoryChangesRequest.FileOperation> file_operations = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getFileOperations()
@@ -172,10 +172,10 @@ class CommitRepositoryChangesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A map to the path of the file to the operation. The path is the full file
-     * path including filename, from repository root.
+     * Optional. A map to the path of the file to the operation. The path is the
+     * full file path including filename, from repository root.
      *
-     * Generated from protobuf field <code>map<string, .google.cloud.dataform.v1beta1.CommitRepositoryChangesRequest.FileOperation> file_operations = 3;</code>
+     * Generated from protobuf field <code>map<string, .google.cloud.dataform.v1beta1.CommitRepositoryChangesRequest.FileOperation> file_operations = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */

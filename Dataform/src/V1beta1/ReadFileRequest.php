@@ -28,6 +28,13 @@ class ReadFileRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string path = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $path = '';
+    /**
+     * Optional. The Git revision of the file to return. If left empty, the
+     * current contents of `path` will be returned.
+     *
+     * Generated from protobuf field <code>string revision = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $revision = '';
 
     /**
      * Constructor.
@@ -40,6 +47,9 @@ class ReadFileRequest extends \Google\Protobuf\Internal\Message
      *     @type string $path
      *           Required. The file's full path including filename, relative to the
      *           workspace root.
+     *     @type string $revision
+     *           Optional. The Git revision of the file to return. If left empty, the
+     *           current contents of `path` will be returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,6 +107,34 @@ class ReadFileRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->path = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Git revision of the file to return. If left empty, the
+     * current contents of `path` will be returned.
+     *
+     * Generated from protobuf field <code>string revision = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getRevision()
+    {
+        return $this->revision;
+    }
+
+    /**
+     * Optional. The Git revision of the file to return. If left empty, the
+     * current contents of `path` will be returned.
+     *
+     * Generated from protobuf field <code>string revision = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRevision($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->revision = $var;
 
         return $this;
     }

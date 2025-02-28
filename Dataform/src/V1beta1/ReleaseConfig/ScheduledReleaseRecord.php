@@ -17,9 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ScheduledReleaseRecord extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The timestamp of this release attempt.
+     * Output only. The timestamp of this release attempt.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp release_time = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp release_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $release_time = null;
     protected $result;
@@ -30,8 +30,6 @@ class ScheduledReleaseRecord extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Protobuf\Timestamp $release_time
-     *           The timestamp of this release attempt.
      *     @type string $compilation_result
      *           The name of the created compilation result, if one was successfully
      *           created. Must be in the format
@@ -39,47 +37,13 @@ class ScheduledReleaseRecord extends \Google\Protobuf\Internal\Message
      *     @type \Google\Rpc\Status $error_status
      *           The error status encountered upon this attempt to create the
      *           compilation result, if the attempt was unsuccessful.
+     *     @type \Google\Protobuf\Timestamp $release_time
+     *           Output only. The timestamp of this release attempt.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataform\V1Beta1\Dataform::initOnce();
         parent::__construct($data);
-    }
-
-    /**
-     * The timestamp of this release attempt.
-     *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp release_time = 1;</code>
-     * @return \Google\Protobuf\Timestamp|null
-     */
-    public function getReleaseTime()
-    {
-        return $this->release_time;
-    }
-
-    public function hasReleaseTime()
-    {
-        return isset($this->release_time);
-    }
-
-    public function clearReleaseTime()
-    {
-        unset($this->release_time);
-    }
-
-    /**
-     * The timestamp of this release attempt.
-     *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp release_time = 1;</code>
-     * @param \Google\Protobuf\Timestamp $var
-     * @return $this
-     */
-    public function setReleaseTime($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
-        $this->release_time = $var;
-
-        return $this;
     }
 
     /**
@@ -146,6 +110,42 @@ class ScheduledReleaseRecord extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Rpc\Status::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. The timestamp of this release attempt.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp release_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getReleaseTime()
+    {
+        return $this->release_time;
+    }
+
+    public function hasReleaseTime()
+    {
+        return isset($this->release_time);
+    }
+
+    public function clearReleaseTime()
+    {
+        unset($this->release_time);
+    }
+
+    /**
+     * Output only. The timestamp of this release attempt.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp release_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setReleaseTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->release_time = $var;
 
         return $this;
     }

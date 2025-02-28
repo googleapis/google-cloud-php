@@ -39,6 +39,28 @@ class WorkflowInvocation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.type.Interval invocation_timing = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $invocation_timing = null;
+    /**
+     * Output only. The resolved compilation result that was used to create this
+     * invocation. Will be in the format
+     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;compilationResults/&#42;`.
+     *
+     * Generated from protobuf field <code>string resolved_compilation_result = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    protected $resolved_compilation_result = '';
+    /**
+     * Output only. Only set if the repository has a KMS Key.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.DataEncryptionState data_encryption_state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $data_encryption_state = null;
+    /**
+     * Output only. All the metadata information that is used internally to serve
+     * the resource. For example: timestamps, flags, status fields, etc. The
+     * format of this field is a JSON string.
+     *
+     * Generated from protobuf field <code>optional string internal_metadata = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $internal_metadata = null;
     protected $compilation_source;
 
     /**
@@ -47,8 +69,6 @@ class WorkflowInvocation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $name
-     *           Output only. The workflow invocation's name.
      *     @type string $compilation_result
      *           Immutable. The name of the compilation result to use for this invocation.
      *           Must be in the format
@@ -56,43 +76,29 @@ class WorkflowInvocation extends \Google\Protobuf\Internal\Message
      *     @type string $workflow_config
      *           Immutable. The name of the workflow config to invoke. Must be in the
      *           format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;workflowConfigs/&#42;`.
+     *     @type string $name
+     *           Output only. The workflow invocation's name.
      *     @type \Google\Cloud\Dataform\V1beta1\InvocationConfig $invocation_config
      *           Immutable. If left unset, a default InvocationConfig will be used.
      *     @type int $state
      *           Output only. This workflow invocation's current state.
      *     @type \Google\Type\Interval $invocation_timing
      *           Output only. This workflow invocation's timing details.
+     *     @type string $resolved_compilation_result
+     *           Output only. The resolved compilation result that was used to create this
+     *           invocation. Will be in the format
+     *           `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;compilationResults/&#42;`.
+     *     @type \Google\Cloud\Dataform\V1beta1\DataEncryptionState $data_encryption_state
+     *           Output only. Only set if the repository has a KMS Key.
+     *     @type string $internal_metadata
+     *           Output only. All the metadata information that is used internally to serve
+     *           the resource. For example: timestamps, flags, status fields, etc. The
+     *           format of this field is a JSON string.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataform\V1Beta1\Dataform::initOnce();
         parent::__construct($data);
-    }
-
-    /**
-     * Output only. The workflow invocation's name.
-     *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Output only. The workflow invocation's name.
-     *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setName($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->name = $var;
-
-        return $this;
     }
 
     /**
@@ -159,6 +165,32 @@ class WorkflowInvocation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. The workflow invocation's name.
+     *
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Output only. The workflow invocation's name.
+     *
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->name = $var;
 
         return $this;
     }
@@ -257,6 +289,112 @@ class WorkflowInvocation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Type\Interval::class);
         $this->invocation_timing = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The resolved compilation result that was used to create this
+     * invocation. Will be in the format
+     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;compilationResults/&#42;`.
+     *
+     * Generated from protobuf field <code>string resolved_compilation_result = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getResolvedCompilationResult()
+    {
+        return $this->resolved_compilation_result;
+    }
+
+    /**
+     * Output only. The resolved compilation result that was used to create this
+     * invocation. Will be in the format
+     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;compilationResults/&#42;`.
+     *
+     * Generated from protobuf field <code>string resolved_compilation_result = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setResolvedCompilationResult($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->resolved_compilation_result = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Only set if the repository has a KMS Key.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.DataEncryptionState data_encryption_state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataform\V1beta1\DataEncryptionState|null
+     */
+    public function getDataEncryptionState()
+    {
+        return $this->data_encryption_state;
+    }
+
+    public function hasDataEncryptionState()
+    {
+        return isset($this->data_encryption_state);
+    }
+
+    public function clearDataEncryptionState()
+    {
+        unset($this->data_encryption_state);
+    }
+
+    /**
+     * Output only. Only set if the repository has a KMS Key.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.DataEncryptionState data_encryption_state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataform\V1beta1\DataEncryptionState $var
+     * @return $this
+     */
+    public function setDataEncryptionState($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\DataEncryptionState::class);
+        $this->data_encryption_state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. All the metadata information that is used internally to serve
+     * the resource. For example: timestamps, flags, status fields, etc. The
+     * format of this field is a JSON string.
+     *
+     * Generated from protobuf field <code>optional string internal_metadata = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getInternalMetadata()
+    {
+        return isset($this->internal_metadata) ? $this->internal_metadata : '';
+    }
+
+    public function hasInternalMetadata()
+    {
+        return isset($this->internal_metadata);
+    }
+
+    public function clearInternalMetadata()
+    {
+        unset($this->internal_metadata);
+    }
+
+    /**
+     * Output only. All the metadata information that is used internally to serve
+     * the resource. For example: timestamps, flags, status fields, etc. The
+     * format of this field is a JSON string.
+     *
+     * Generated from protobuf field <code>optional string internal_metadata = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setInternalMetadata($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->internal_metadata = $var;
 
         return $this;
     }

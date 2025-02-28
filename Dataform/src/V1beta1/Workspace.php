@@ -16,11 +16,32 @@ use Google\Protobuf\Internal\GPBUtil;
 class Workspace extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The workspace's name.
+     * Identifier. The workspace's name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
+    /**
+     * Output only. The timestamp of when the workspace was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $create_time = null;
+    /**
+     * Output only. A data encryption state of a Git repository if this Workspace
+     * is protected by a KMS key.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.DataEncryptionState data_encryption_state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $data_encryption_state = null;
+    /**
+     * Output only. All the metadata information that is used internally to serve
+     * the resource. For example: timestamps, flags, status fields, etc. The
+     * format of this field is a JSON string.
+     *
+     * Generated from protobuf field <code>optional string internal_metadata = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $internal_metadata = null;
 
     /**
      * Constructor.
@@ -29,7 +50,16 @@ class Workspace extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The workspace's name.
+     *           Identifier. The workspace's name.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Output only. The timestamp of when the workspace was created.
+     *     @type \Google\Cloud\Dataform\V1beta1\DataEncryptionState $data_encryption_state
+     *           Output only. A data encryption state of a Git repository if this Workspace
+     *           is protected by a KMS key.
+     *     @type string $internal_metadata
+     *           Output only. All the metadata information that is used internally to serve
+     *           the resource. For example: timestamps, flags, status fields, etc. The
+     *           format of this field is a JSON string.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,9 +68,9 @@ class Workspace extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The workspace's name.
+     * Identifier. The workspace's name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -49,9 +79,9 @@ class Workspace extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The workspace's name.
+     * Identifier. The workspace's name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -59,6 +89,120 @@ class Workspace extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The timestamp of when the workspace was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreateTime()
+    {
+        return $this->create_time;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
+    }
+
+    /**
+     * Output only. The timestamp of when the workspace was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A data encryption state of a Git repository if this Workspace
+     * is protected by a KMS key.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.DataEncryptionState data_encryption_state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataform\V1beta1\DataEncryptionState|null
+     */
+    public function getDataEncryptionState()
+    {
+        return $this->data_encryption_state;
+    }
+
+    public function hasDataEncryptionState()
+    {
+        return isset($this->data_encryption_state);
+    }
+
+    public function clearDataEncryptionState()
+    {
+        unset($this->data_encryption_state);
+    }
+
+    /**
+     * Output only. A data encryption state of a Git repository if this Workspace
+     * is protected by a KMS key.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.DataEncryptionState data_encryption_state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataform\V1beta1\DataEncryptionState $var
+     * @return $this
+     */
+    public function setDataEncryptionState($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\DataEncryptionState::class);
+        $this->data_encryption_state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. All the metadata information that is used internally to serve
+     * the resource. For example: timestamps, flags, status fields, etc. The
+     * format of this field is a JSON string.
+     *
+     * Generated from protobuf field <code>optional string internal_metadata = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getInternalMetadata()
+    {
+        return isset($this->internal_metadata) ? $this->internal_metadata : '';
+    }
+
+    public function hasInternalMetadata()
+    {
+        return isset($this->internal_metadata);
+    }
+
+    public function clearInternalMetadata()
+    {
+        unset($this->internal_metadata);
+    }
+
+    /**
+     * Output only. All the metadata information that is used internally to serve
+     * the resource. For example: timestamps, flags, status fields, etc. The
+     * format of this field is a JSON string.
+     *
+     * Generated from protobuf field <code>optional string internal_metadata = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setInternalMetadata($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->internal_metadata = $var;
 
         return $this;
     }

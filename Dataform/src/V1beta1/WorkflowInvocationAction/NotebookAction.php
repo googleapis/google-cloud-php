@@ -107,6 +107,4 @@ class NotebookAction extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(NotebookAction::class, \Google\Cloud\Dataform\V1beta1\WorkflowInvocationAction_NotebookAction::class);
 

@@ -115,6 +115,11 @@
                                 "getCompilationResult"
                             ]
                         },
+                        "GetConfig": {
+                            "methods": [
+                                "getConfig"
+                            ]
+                        },
                         "GetReleaseConfig": {
                             "methods": [
                                 "getReleaseConfig"
@@ -243,6 +248,16 @@
                         "ResetWorkspaceChanges": {
                             "methods": [
                                 "resetWorkspaceChanges"
+                            ]
+                        },
+                        "SearchFiles": {
+                            "methods": [
+                                "searchFiles"
+                            ]
+                        },
+                        "UpdateConfig": {
+                            "methods": [
+                                "updateConfig"
                             ]
                         },
                         "UpdateReleaseConfig": {

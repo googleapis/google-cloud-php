@@ -17,21 +17,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class Target extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The action's database (Google Cloud project ID) .
+     * Optional. The action's database (Google Cloud project ID) .
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $database = '';
     /**
-     * The action's schema (BigQuery dataset ID), within `database`.
+     * Optional. The action's schema (BigQuery dataset ID), within `database`.
      *
-     * Generated from protobuf field <code>string schema = 2;</code>
+     * Generated from protobuf field <code>string schema = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $schema = '';
     /**
-     * The action's name, within `database` and `schema`.
+     * Optional. The action's name, within `database` and `schema`.
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $name = '';
 
@@ -42,11 +42,11 @@ class Target extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $database
-     *           The action's database (Google Cloud project ID) .
+     *           Optional. The action's database (Google Cloud project ID) .
      *     @type string $schema
-     *           The action's schema (BigQuery dataset ID), within `database`.
+     *           Optional. The action's schema (BigQuery dataset ID), within `database`.
      *     @type string $name
-     *           The action's name, within `database` and `schema`.
+     *           Optional. The action's name, within `database` and `schema`.
      * }
      */
     public function __construct($data = NULL) {
@@ -55,9 +55,9 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The action's database (Google Cloud project ID) .
+     * Optional. The action's database (Google Cloud project ID) .
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDatabase()
@@ -66,9 +66,9 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The action's database (Google Cloud project ID) .
+     * Optional. The action's database (Google Cloud project ID) .
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -81,9 +81,9 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The action's schema (BigQuery dataset ID), within `database`.
+     * Optional. The action's schema (BigQuery dataset ID), within `database`.
      *
-     * Generated from protobuf field <code>string schema = 2;</code>
+     * Generated from protobuf field <code>string schema = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getSchema()
@@ -92,9 +92,9 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The action's schema (BigQuery dataset ID), within `database`.
+     * Optional. The action's schema (BigQuery dataset ID), within `database`.
      *
-     * Generated from protobuf field <code>string schema = 2;</code>
+     * Generated from protobuf field <code>string schema = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -107,9 +107,9 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The action's name, within `database` and `schema`.
+     * Optional. The action's name, within `database` and `schema`.
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getName()
@@ -118,9 +118,9 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The action's name, within `database` and `schema`.
+     * Optional. The action's name, within `database` and `schema`.
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

@@ -33,8 +33,9 @@ class ListWorkflowConfigsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Page token received from a previous `ListWorkflowConfigs` call.
      * Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `ListWorkflowConfigs`
-     * must match the call that provided the page token.
+     * When paginating, all other parameters provided to `ListWorkflowConfigs`,
+     * with the exception of `page_size`, must match the call that provided the
+     * page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -71,8 +72,9 @@ class ListWorkflowConfigsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           Optional. Page token received from a previous `ListWorkflowConfigs` call.
      *           Provide this to retrieve the subsequent page.
-     *           When paginating, all other parameters provided to `ListWorkflowConfigs`
-     *           must match the call that provided the page token.
+     *           When paginating, all other parameters provided to `ListWorkflowConfigs`,
+     *           with the exception of `page_size`, must match the call that provided the
+     *           page token.
      * }
      */
     public function __construct($data = NULL) {
@@ -141,8 +143,9 @@ class ListWorkflowConfigsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Page token received from a previous `ListWorkflowConfigs` call.
      * Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `ListWorkflowConfigs`
-     * must match the call that provided the page token.
+     * When paginating, all other parameters provided to `ListWorkflowConfigs`,
+     * with the exception of `page_size`, must match the call that provided the
+     * page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -155,8 +158,9 @@ class ListWorkflowConfigsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Page token received from a previous `ListWorkflowConfigs` call.
      * Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `ListWorkflowConfigs`
-     * must match the call that provided the page token.
+     * When paginating, all other parameters provided to `ListWorkflowConfigs`,
+     * with the exception of `page_size`, must match the call that provided the
+     * page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

@@ -22,9 +22,9 @@ class UncommittedFileChange extends \Google\Protobuf\Internal\Message
      */
     protected $path = '';
     /**
-     * Indicates the status of the file.
+     * Output only. Indicates the status of the file.
      *
-     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.FetchFileGitStatusesResponse.UncommittedFileChange.State state = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.FetchFileGitStatusesResponse.UncommittedFileChange.State state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $state = 0;
 
@@ -37,7 +37,7 @@ class UncommittedFileChange extends \Google\Protobuf\Internal\Message
      *     @type string $path
      *           The file's full path including filename, relative to the workspace root.
      *     @type int $state
-     *           Indicates the status of the file.
+     *           Output only. Indicates the status of the file.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,9 +72,9 @@ class UncommittedFileChange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates the status of the file.
+     * Output only. Indicates the status of the file.
      *
-     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.FetchFileGitStatusesResponse.UncommittedFileChange.State state = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.FetchFileGitStatusesResponse.UncommittedFileChange.State state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getState()
@@ -83,9 +83,9 @@ class UncommittedFileChange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates the status of the file.
+     * Output only. Indicates the status of the file.
      *
-     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.FetchFileGitStatusesResponse.UncommittedFileChange.State state = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.FetchFileGitStatusesResponse.UncommittedFileChange.State state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */

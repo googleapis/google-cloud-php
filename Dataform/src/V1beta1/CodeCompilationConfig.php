@@ -68,6 +68,12 @@ class CodeCompilationConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string table_prefix = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $table_prefix = '';
+    /**
+     * Optional. The default notebook runtime options.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.NotebookRuntimeOptions default_notebook_runtime_options = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $default_notebook_runtime_options = null;
 
     /**
      * Constructor.
@@ -96,6 +102,8 @@ class CodeCompilationConfig extends \Google\Protobuf\Internal\Message
      *           dataset ID) names.
      *     @type string $table_prefix
      *           Optional. The prefix that should be prepended to all table names.
+     *     @type \Google\Cloud\Dataform\V1beta1\NotebookRuntimeOptions $default_notebook_runtime_options
+     *           Optional. The default notebook runtime options.
      * }
      */
     public function __construct($data = NULL) {
@@ -317,6 +325,42 @@ class CodeCompilationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->table_prefix = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The default notebook runtime options.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.NotebookRuntimeOptions default_notebook_runtime_options = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataform\V1beta1\NotebookRuntimeOptions|null
+     */
+    public function getDefaultNotebookRuntimeOptions()
+    {
+        return $this->default_notebook_runtime_options;
+    }
+
+    public function hasDefaultNotebookRuntimeOptions()
+    {
+        return isset($this->default_notebook_runtime_options);
+    }
+
+    public function clearDefaultNotebookRuntimeOptions()
+    {
+        unset($this->default_notebook_runtime_options);
+    }
+
+    /**
+     * Optional. The default notebook runtime options.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.NotebookRuntimeOptions default_notebook_runtime_options = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataform\V1beta1\NotebookRuntimeOptions $var
+     * @return $this
+     */
+    public function setDefaultNotebookRuntimeOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\NotebookRuntimeOptions::class);
+        $this->default_notebook_runtime_options = $var;
 
         return $this;
     }

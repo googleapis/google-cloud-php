@@ -167,6 +167,4 @@ class Notebook extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Notebook::class, \Google\Cloud\Dataform\V1beta1\CompilationResultAction_Notebook::class);
 

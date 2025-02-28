@@ -34,8 +34,8 @@ class QueryCompilationResultActionsRequest extends \Google\Protobuf\Internal\Mes
      * `QueryCompilationResultActions` call. Provide this to retrieve the
      * subsequent page.
      * When paginating, all other parameters provided to
-     * `QueryCompilationResultActions` must match the call that provided the page
-     * token.
+     * `QueryCompilationResultActions`, with the exception of `page_size`, must
+     * match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -65,8 +65,8 @@ class QueryCompilationResultActionsRequest extends \Google\Protobuf\Internal\Mes
      *           `QueryCompilationResultActions` call. Provide this to retrieve the
      *           subsequent page.
      *           When paginating, all other parameters provided to
-     *           `QueryCompilationResultActions` must match the call that provided the page
-     *           token.
+     *           `QueryCompilationResultActions`, with the exception of `page_size`, must
+     *           match the call that provided the page token.
      *     @type string $filter
      *           Optional. Optional filter for the returned list. Filtering is only
      *           currently supported on the `file_path` field.
@@ -138,8 +138,8 @@ class QueryCompilationResultActionsRequest extends \Google\Protobuf\Internal\Mes
      * `QueryCompilationResultActions` call. Provide this to retrieve the
      * subsequent page.
      * When paginating, all other parameters provided to
-     * `QueryCompilationResultActions` must match the call that provided the page
-     * token.
+     * `QueryCompilationResultActions`, with the exception of `page_size`, must
+     * match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -154,8 +154,8 @@ class QueryCompilationResultActionsRequest extends \Google\Protobuf\Internal\Mes
      * `QueryCompilationResultActions` call. Provide this to retrieve the
      * subsequent page.
      * When paginating, all other parameters provided to
-     * `QueryCompilationResultActions` must match the call that provided the page
-     * token.
+     * `QueryCompilationResultActions`, with the exception of `page_size`, must
+     * match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

@@ -35,6 +35,14 @@ class CompilationResultAction extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string file_path = 3;</code>
      */
     protected $file_path = '';
+    /**
+     * Output only. All the metadata information that is used internally to serve
+     * the resource. For example: timestamps, flags, status fields, etc. The
+     * format of this field is a JSON string.
+     *
+     * Generated from protobuf field <code>optional string internal_metadata = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $internal_metadata = null;
     protected $compiled_object;
 
     /**
@@ -43,14 +51,6 @@ class CompilationResultAction extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dataform\V1beta1\Target $target
-     *           This action's identifier. Unique within the compilation result.
-     *     @type \Google\Cloud\Dataform\V1beta1\Target $canonical_target
-     *           The action's identifier if the project had been compiled without any
-     *           overrides configured. Unique within the compilation result.
-     *     @type string $file_path
-     *           The full path including filename in which this action is located, relative
-     *           to the workspace root.
      *     @type \Google\Cloud\Dataform\V1beta1\CompilationResultAction\Relation $relation
      *           The database relation created/updated by this action.
      *     @type \Google\Cloud\Dataform\V1beta1\CompilationResultAction\Operations $operations
@@ -59,113 +59,25 @@ class CompilationResultAction extends \Google\Protobuf\Internal\Message
      *           The assertion executed by this action.
      *     @type \Google\Cloud\Dataform\V1beta1\CompilationResultAction\Declaration $declaration
      *           The declaration declared by this action.
+     *     @type \Google\Cloud\Dataform\V1beta1\CompilationResultAction\Notebook $notebook
+     *           The notebook executed by this action.
+     *     @type \Google\Cloud\Dataform\V1beta1\Target $target
+     *           This action's identifier. Unique within the compilation result.
+     *     @type \Google\Cloud\Dataform\V1beta1\Target $canonical_target
+     *           The action's identifier if the project had been compiled without any
+     *           overrides configured. Unique within the compilation result.
+     *     @type string $file_path
+     *           The full path including filename in which this action is located, relative
+     *           to the workspace root.
+     *     @type string $internal_metadata
+     *           Output only. All the metadata information that is used internally to serve
+     *           the resource. For example: timestamps, flags, status fields, etc. The
+     *           format of this field is a JSON string.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataform\V1Beta1\Dataform::initOnce();
         parent::__construct($data);
-    }
-
-    /**
-     * This action's identifier. Unique within the compilation result.
-     *
-     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target target = 1;</code>
-     * @return \Google\Cloud\Dataform\V1beta1\Target|null
-     */
-    public function getTarget()
-    {
-        return $this->target;
-    }
-
-    public function hasTarget()
-    {
-        return isset($this->target);
-    }
-
-    public function clearTarget()
-    {
-        unset($this->target);
-    }
-
-    /**
-     * This action's identifier. Unique within the compilation result.
-     *
-     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target target = 1;</code>
-     * @param \Google\Cloud\Dataform\V1beta1\Target $var
-     * @return $this
-     */
-    public function setTarget($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\Target::class);
-        $this->target = $var;
-
-        return $this;
-    }
-
-    /**
-     * The action's identifier if the project had been compiled without any
-     * overrides configured. Unique within the compilation result.
-     *
-     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target canonical_target = 2;</code>
-     * @return \Google\Cloud\Dataform\V1beta1\Target|null
-     */
-    public function getCanonicalTarget()
-    {
-        return $this->canonical_target;
-    }
-
-    public function hasCanonicalTarget()
-    {
-        return isset($this->canonical_target);
-    }
-
-    public function clearCanonicalTarget()
-    {
-        unset($this->canonical_target);
-    }
-
-    /**
-     * The action's identifier if the project had been compiled without any
-     * overrides configured. Unique within the compilation result.
-     *
-     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target canonical_target = 2;</code>
-     * @param \Google\Cloud\Dataform\V1beta1\Target $var
-     * @return $this
-     */
-    public function setCanonicalTarget($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\Target::class);
-        $this->canonical_target = $var;
-
-        return $this;
-    }
-
-    /**
-     * The full path including filename in which this action is located, relative
-     * to the workspace root.
-     *
-     * Generated from protobuf field <code>string file_path = 3;</code>
-     * @return string
-     */
-    public function getFilePath()
-    {
-        return $this->file_path;
-    }
-
-    /**
-     * The full path including filename in which this action is located, relative
-     * to the workspace root.
-     *
-     * Generated from protobuf field <code>string file_path = 3;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setFilePath($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->file_path = $var;
-
-        return $this;
     }
 
     /**
@@ -288,6 +200,179 @@ class CompilationResultAction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\CompilationResultAction\Declaration::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * The notebook executed by this action.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CompilationResultAction.Notebook notebook = 8;</code>
+     * @return \Google\Cloud\Dataform\V1beta1\CompilationResultAction\Notebook|null
+     */
+    public function getNotebook()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasNotebook()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * The notebook executed by this action.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CompilationResultAction.Notebook notebook = 8;</code>
+     * @param \Google\Cloud\Dataform\V1beta1\CompilationResultAction\Notebook $var
+     * @return $this
+     */
+    public function setNotebook($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\CompilationResultAction\Notebook::class);
+        $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * This action's identifier. Unique within the compilation result.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target target = 1;</code>
+     * @return \Google\Cloud\Dataform\V1beta1\Target|null
+     */
+    public function getTarget()
+    {
+        return $this->target;
+    }
+
+    public function hasTarget()
+    {
+        return isset($this->target);
+    }
+
+    public function clearTarget()
+    {
+        unset($this->target);
+    }
+
+    /**
+     * This action's identifier. Unique within the compilation result.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target target = 1;</code>
+     * @param \Google\Cloud\Dataform\V1beta1\Target $var
+     * @return $this
+     */
+    public function setTarget($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\Target::class);
+        $this->target = $var;
+
+        return $this;
+    }
+
+    /**
+     * The action's identifier if the project had been compiled without any
+     * overrides configured. Unique within the compilation result.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target canonical_target = 2;</code>
+     * @return \Google\Cloud\Dataform\V1beta1\Target|null
+     */
+    public function getCanonicalTarget()
+    {
+        return $this->canonical_target;
+    }
+
+    public function hasCanonicalTarget()
+    {
+        return isset($this->canonical_target);
+    }
+
+    public function clearCanonicalTarget()
+    {
+        unset($this->canonical_target);
+    }
+
+    /**
+     * The action's identifier if the project had been compiled without any
+     * overrides configured. Unique within the compilation result.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target canonical_target = 2;</code>
+     * @param \Google\Cloud\Dataform\V1beta1\Target $var
+     * @return $this
+     */
+    public function setCanonicalTarget($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\Target::class);
+        $this->canonical_target = $var;
+
+        return $this;
+    }
+
+    /**
+     * The full path including filename in which this action is located, relative
+     * to the workspace root.
+     *
+     * Generated from protobuf field <code>string file_path = 3;</code>
+     * @return string
+     */
+    public function getFilePath()
+    {
+        return $this->file_path;
+    }
+
+    /**
+     * The full path including filename in which this action is located, relative
+     * to the workspace root.
+     *
+     * Generated from protobuf field <code>string file_path = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilePath($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->file_path = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. All the metadata information that is used internally to serve
+     * the resource. For example: timestamps, flags, status fields, etc. The
+     * format of this field is a JSON string.
+     *
+     * Generated from protobuf field <code>optional string internal_metadata = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getInternalMetadata()
+    {
+        return isset($this->internal_metadata) ? $this->internal_metadata : '';
+    }
+
+    public function hasInternalMetadata()
+    {
+        return isset($this->internal_metadata);
+    }
+
+    public function clearInternalMetadata()
+    {
+        unset($this->internal_metadata);
+    }
+
+    /**
+     * Output only. All the metadata information that is used internally to serve
+     * the resource. For example: timestamps, flags, status fields, etc. The
+     * format of this field is a JSON string.
+     *
+     * Generated from protobuf field <code>optional string internal_metadata = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setInternalMetadata($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->internal_metadata = $var;
 
         return $this;
     }

@@ -33,8 +33,9 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Page token received from a previous `ListRepositories` call.
      * Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `ListRepositories`
-     * must match the call that provided the page token.
+     * When paginating, all other parameters provided to `ListRepositories`,
+     * with the exception of `page_size`, must match the call that provided the
+     * page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -85,8 +86,9 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           Optional. Page token received from a previous `ListRepositories` call.
      *           Provide this to retrieve the subsequent page.
-     *           When paginating, all other parameters provided to `ListRepositories`
-     *           must match the call that provided the page token.
+     *           When paginating, all other parameters provided to `ListRepositories`,
+     *           with the exception of `page_size`, must match the call that provided the
+     *           page token.
      *     @type string $order_by
      *           Optional. This field only supports ordering by `name`. If unspecified, the
      *           server will choose the ordering. If specified, the default order is
@@ -161,8 +163,9 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Page token received from a previous `ListRepositories` call.
      * Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `ListRepositories`
-     * must match the call that provided the page token.
+     * When paginating, all other parameters provided to `ListRepositories`,
+     * with the exception of `page_size`, must match the call that provided the
+     * page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -175,8 +178,9 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Page token received from a previous `ListRepositories` call.
      * Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `ListRepositories`
-     * must match the call that provided the page token.
+     * When paginating, all other parameters provided to `ListRepositories`,
+     * with the exception of `page_size`, must match the call that provided the
+     * page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

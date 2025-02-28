@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class WorkflowConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The workflow config's name.
+     * Identifier. The workflow config's name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -53,12 +53,32 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
     protected $time_zone = '';
     /**
      * Output only. Records of the 10 most recent scheduled execution attempts,
-     * ordered in in descending order of `execution_time`. Updated whenever
-     * automatic creation of a workflow invocation is triggered by cron_schedule.
+     * ordered in descending order of `execution_time`. Updated whenever automatic
+     * creation of a workflow invocation is triggered by cron_schedule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.WorkflowConfig.ScheduledExecutionRecord recent_scheduled_execution_records = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $recent_scheduled_execution_records;
+    /**
+     * Output only. The timestamp of when the WorkflowConfig was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $create_time = null;
+    /**
+     * Output only. The timestamp of when the WorkflowConfig was last updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $update_time = null;
+    /**
+     * Output only. All the metadata information that is used internally to serve
+     * the resource. For example: timestamps, flags, status fields, etc. The
+     * format of this field is a JSON string.
+     *
+     * Generated from protobuf field <code>optional string internal_metadata = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $internal_metadata = null;
 
     /**
      * Constructor.
@@ -67,7 +87,7 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The workflow config's name.
+     *           Identifier. The workflow config's name.
      *     @type string $release_config
      *           Required. The name of the release config whose release_compilation_result
      *           should be executed. Must be in the format
@@ -84,8 +104,16 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
      *           unspecified, the default is UTC.
      *     @type array<\Google\Cloud\Dataform\V1beta1\WorkflowConfig\ScheduledExecutionRecord>|\Google\Protobuf\Internal\RepeatedField $recent_scheduled_execution_records
      *           Output only. Records of the 10 most recent scheduled execution attempts,
-     *           ordered in in descending order of `execution_time`. Updated whenever
-     *           automatic creation of a workflow invocation is triggered by cron_schedule.
+     *           ordered in descending order of `execution_time`. Updated whenever automatic
+     *           creation of a workflow invocation is triggered by cron_schedule.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Output only. The timestamp of when the WorkflowConfig was created.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           Output only. The timestamp of when the WorkflowConfig was last updated.
+     *     @type string $internal_metadata
+     *           Output only. All the metadata information that is used internally to serve
+     *           the resource. For example: timestamps, flags, status fields, etc. The
+     *           format of this field is a JSON string.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,9 +122,9 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The workflow config's name.
+     * Identifier. The workflow config's name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -105,9 +133,9 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The workflow config's name.
+     * Identifier. The workflow config's name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -247,8 +275,8 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Records of the 10 most recent scheduled execution attempts,
-     * ordered in in descending order of `execution_time`. Updated whenever
-     * automatic creation of a workflow invocation is triggered by cron_schedule.
+     * ordered in descending order of `execution_time`. Updated whenever automatic
+     * creation of a workflow invocation is triggered by cron_schedule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.WorkflowConfig.ScheduledExecutionRecord recent_scheduled_execution_records = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -260,8 +288,8 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Records of the 10 most recent scheduled execution attempts,
-     * ordered in in descending order of `execution_time`. Updated whenever
-     * automatic creation of a workflow invocation is triggered by cron_schedule.
+     * ordered in descending order of `execution_time`. Updated whenever automatic
+     * creation of a workflow invocation is triggered by cron_schedule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.WorkflowConfig.ScheduledExecutionRecord recent_scheduled_execution_records = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\Dataform\V1beta1\WorkflowConfig\ScheduledExecutionRecord>|\Google\Protobuf\Internal\RepeatedField $var
@@ -271,6 +299,118 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataform\V1beta1\WorkflowConfig\ScheduledExecutionRecord::class);
         $this->recent_scheduled_execution_records = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The timestamp of when the WorkflowConfig was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreateTime()
+    {
+        return $this->create_time;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
+    }
+
+    /**
+     * Output only. The timestamp of when the WorkflowConfig was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The timestamp of when the WorkflowConfig was last updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getUpdateTime()
+    {
+        return $this->update_time;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
+    }
+
+    /**
+     * Output only. The timestamp of when the WorkflowConfig was last updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. All the metadata information that is used internally to serve
+     * the resource. For example: timestamps, flags, status fields, etc. The
+     * format of this field is a JSON string.
+     *
+     * Generated from protobuf field <code>optional string internal_metadata = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getInternalMetadata()
+    {
+        return isset($this->internal_metadata) ? $this->internal_metadata : '';
+    }
+
+    public function hasInternalMetadata()
+    {
+        return isset($this->internal_metadata);
+    }
+
+    public function clearInternalMetadata()
+    {
+        unset($this->internal_metadata);
+    }
+
+    /**
+     * Output only. All the metadata information that is used internally to serve
+     * the resource. For example: timestamps, flags, status fields, etc. The
+     * format of this field is a JSON string.
+     *
+     * Generated from protobuf field <code>optional string internal_metadata = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setInternalMetadata($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->internal_metadata = $var;
 
         return $this;
     }

@@ -22,11 +22,11 @@ class DeleteRepositoryRequest extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * If set to true, any child resources of this repository will also be
-     * deleted. (Otherwise, the request will only succeed if the repository has no
-     * child resources.)
+     * Optional. If set to true, any child resources of this repository will also
+     * be deleted. (Otherwise, the request will only succeed if the repository has
+     * no child resources.)
      *
-     * Generated from protobuf field <code>bool force = 2;</code>
+     * Generated from protobuf field <code>bool force = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $force = false;
 
@@ -53,9 +53,9 @@ class DeleteRepositoryRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The repository's name.
      *     @type bool $force
-     *           If set to true, any child resources of this repository will also be
-     *           deleted. (Otherwise, the request will only succeed if the repository has no
-     *           child resources.)
+     *           Optional. If set to true, any child resources of this repository will also
+     *           be deleted. (Otherwise, the request will only succeed if the repository has
+     *           no child resources.)
      * }
      */
     public function __construct($data = NULL) {
@@ -90,11 +90,11 @@ class DeleteRepositoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, any child resources of this repository will also be
-     * deleted. (Otherwise, the request will only succeed if the repository has no
-     * child resources.)
+     * Optional. If set to true, any child resources of this repository will also
+     * be deleted. (Otherwise, the request will only succeed if the repository has
+     * no child resources.)
      *
-     * Generated from protobuf field <code>bool force = 2;</code>
+     * Generated from protobuf field <code>bool force = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getForce()
@@ -103,11 +103,11 @@ class DeleteRepositoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, any child resources of this repository will also be
-     * deleted. (Otherwise, the request will only succeed if the repository has no
-     * child resources.)
+     * Optional. If set to true, any child resources of this repository will also
+     * be deleted. (Otherwise, the request will only succeed if the repository has
+     * no child resources.)
      *
-     * Generated from protobuf field <code>bool force = 2;</code>
+     * Generated from protobuf field <code>bool force = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
