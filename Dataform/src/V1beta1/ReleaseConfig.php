@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReleaseConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The release config's name.
+     * Identifier. The release config's name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -56,23 +56,38 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
     protected $time_zone = '';
     /**
      * Output only. Records of the 10 most recent scheduled release attempts,
-     * ordered in in descending order of `release_time`. Updated whenever
-     * automatic creation of a compilation result is triggered by cron_schedule.
+     * ordered in descending order of `release_time`. Updated whenever automatic
+     * creation of a compilation result is triggered by cron_schedule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.ReleaseConfig.ScheduledReleaseRecord recent_scheduled_release_records = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $recent_scheduled_release_records;
     /**
      * Optional. The name of the currently released compilation result for this
-     * release config. This value is updated when a compilation result is created
-     * from this release config, or when this resource is updated by API call
-     * (perhaps to roll back to an earlier release). The compilation result must
-     * have been created using this release config. Must be in the format
+     * release config. This value is updated when a compilation result is
+     * automatically created from this release config (using cron_schedule), or
+     * when this resource is updated by API call (perhaps to roll back to an
+     * earlier release). The compilation result must have been created using this
+     * release config. Must be in the format
      * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;compilationResults/&#42;`.
      *
      * Generated from protobuf field <code>string release_compilation_result = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $release_compilation_result = '';
+    /**
+     * Optional. Disables automatic creation of compilation results.
+     *
+     * Generated from protobuf field <code>bool disabled = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $disabled = false;
+    /**
+     * Output only. All the metadata information that is used internally to serve
+     * the resource. For example: timestamps, flags, status fields, etc. The
+     * format of this field is a JSON string.
+     *
+     * Generated from protobuf field <code>optional string internal_metadata = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $internal_metadata = null;
 
     /**
      * Constructor.
@@ -81,7 +96,7 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The release config's name.
+     *           Identifier. The release config's name.
      *     @type string $git_commitish
      *           Required. Git commit/tag/branch name at which the repository should be
      *           compiled. Must exist in the remote repository. Examples:
@@ -101,15 +116,22 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
      *           unspecified, the default is UTC.
      *     @type array<\Google\Cloud\Dataform\V1beta1\ReleaseConfig\ScheduledReleaseRecord>|\Google\Protobuf\Internal\RepeatedField $recent_scheduled_release_records
      *           Output only. Records of the 10 most recent scheduled release attempts,
-     *           ordered in in descending order of `release_time`. Updated whenever
-     *           automatic creation of a compilation result is triggered by cron_schedule.
+     *           ordered in descending order of `release_time`. Updated whenever automatic
+     *           creation of a compilation result is triggered by cron_schedule.
      *     @type string $release_compilation_result
      *           Optional. The name of the currently released compilation result for this
-     *           release config. This value is updated when a compilation result is created
-     *           from this release config, or when this resource is updated by API call
-     *           (perhaps to roll back to an earlier release). The compilation result must
-     *           have been created using this release config. Must be in the format
+     *           release config. This value is updated when a compilation result is
+     *           automatically created from this release config (using cron_schedule), or
+     *           when this resource is updated by API call (perhaps to roll back to an
+     *           earlier release). The compilation result must have been created using this
+     *           release config. Must be in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;compilationResults/&#42;`.
+     *     @type bool $disabled
+     *           Optional. Disables automatic creation of compilation results.
+     *     @type string $internal_metadata
+     *           Output only. All the metadata information that is used internally to serve
+     *           the resource. For example: timestamps, flags, status fields, etc. The
+     *           format of this field is a JSON string.
      * }
      */
     public function __construct($data = NULL) {
@@ -118,9 +140,9 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The release config's name.
+     * Identifier. The release config's name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -129,9 +151,9 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The release config's name.
+     * Identifier. The release config's name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -277,8 +299,8 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Records of the 10 most recent scheduled release attempts,
-     * ordered in in descending order of `release_time`. Updated whenever
-     * automatic creation of a compilation result is triggered by cron_schedule.
+     * ordered in descending order of `release_time`. Updated whenever automatic
+     * creation of a compilation result is triggered by cron_schedule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.ReleaseConfig.ScheduledReleaseRecord recent_scheduled_release_records = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -290,8 +312,8 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Records of the 10 most recent scheduled release attempts,
-     * ordered in in descending order of `release_time`. Updated whenever
-     * automatic creation of a compilation result is triggered by cron_schedule.
+     * ordered in descending order of `release_time`. Updated whenever automatic
+     * creation of a compilation result is triggered by cron_schedule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.ReleaseConfig.ScheduledReleaseRecord recent_scheduled_release_records = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\Dataform\V1beta1\ReleaseConfig\ScheduledReleaseRecord>|\Google\Protobuf\Internal\RepeatedField $var
@@ -307,10 +329,11 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The name of the currently released compilation result for this
-     * release config. This value is updated when a compilation result is created
-     * from this release config, or when this resource is updated by API call
-     * (perhaps to roll back to an earlier release). The compilation result must
-     * have been created using this release config. Must be in the format
+     * release config. This value is updated when a compilation result is
+     * automatically created from this release config (using cron_schedule), or
+     * when this resource is updated by API call (perhaps to roll back to an
+     * earlier release). The compilation result must have been created using this
+     * release config. Must be in the format
      * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;compilationResults/&#42;`.
      *
      * Generated from protobuf field <code>string release_compilation_result = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -323,10 +346,11 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The name of the currently released compilation result for this
-     * release config. This value is updated when a compilation result is created
-     * from this release config, or when this resource is updated by API call
-     * (perhaps to roll back to an earlier release). The compilation result must
-     * have been created using this release config. Must be in the format
+     * release config. This value is updated when a compilation result is
+     * automatically created from this release config (using cron_schedule), or
+     * when this resource is updated by API call (perhaps to roll back to an
+     * earlier release). The compilation result must have been created using this
+     * release config. Must be in the format
      * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;compilationResults/&#42;`.
      *
      * Generated from protobuf field <code>string release_compilation_result = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -337,6 +361,72 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->release_compilation_result = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Disables automatic creation of compilation results.
+     *
+     * Generated from protobuf field <code>bool disabled = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDisabled()
+    {
+        return $this->disabled;
+    }
+
+    /**
+     * Optional. Disables automatic creation of compilation results.
+     *
+     * Generated from protobuf field <code>bool disabled = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. All the metadata information that is used internally to serve
+     * the resource. For example: timestamps, flags, status fields, etc. The
+     * format of this field is a JSON string.
+     *
+     * Generated from protobuf field <code>optional string internal_metadata = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getInternalMetadata()
+    {
+        return isset($this->internal_metadata) ? $this->internal_metadata : '';
+    }
+
+    public function hasInternalMetadata()
+    {
+        return isset($this->internal_metadata);
+    }
+
+    public function clearInternalMetadata()
+    {
+        unset($this->internal_metadata);
+    }
+
+    /**
+     * Output only. All the metadata information that is used internally to serve
+     * the resource. For example: timestamps, flags, status fields, etc. The
+     * format of this field is a JSON string.
+     *
+     * Generated from protobuf field <code>optional string internal_metadata = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setInternalMetadata($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->internal_metadata = $var;
 
         return $this;
     }

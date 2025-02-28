@@ -9,13 +9,12 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configures workspace compilation overrides for a repository.
- * Primarily used by the UI (`console.cloud.google.com`).
- * `schema_suffix` and `table_prefix` can have a special expression -
- * `${workspaceName}`, which refers to the workspace name from which the
- * compilation results will be created. API callers are expected to resolve
- * the expression in these overrides and provide them explicitly in
- * `code_compilation_config`
+ * Configures workspace compilation overrides for a repository. Primarily used
+ * by the UI (`console.cloud.google.com`). `schema_suffix` and `table_prefix`
+ * can have a special expression - `${workspaceName}`, which refers to the
+ * workspace name from which the compilation results will be created. API
+ * callers are expected to resolve the expression in these overrides and
+ * provide them explicitly in `code_compilation_config`
  * (https://cloud.google.com/dataform/reference/rest/v1beta1/projects.locations.repositories.compilationResults#codecompilationconfig)
  * when creating workspace-scoped compilation results.
  *

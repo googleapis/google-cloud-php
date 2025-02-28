@@ -26,6 +26,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
 use Google\Cloud\Dataform\V1beta1\RemoveFileRequest;
+use Google\Cloud\Dataform\V1beta1\RemoveFileResponse;
 
 /**
  * Deletes a file (inside a Workspace).
@@ -47,8 +48,9 @@ function remove_file_sample(string $formattedWorkspace, string $path): void
 
     // Call the API and handle any network failures.
     try {
-        $dataformClient->removeFile($request);
-        printf('Call completed successfully.' . PHP_EOL);
+        /** @var RemoveFileResponse $response */
+        $response = $dataformClient->removeFile($request);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }

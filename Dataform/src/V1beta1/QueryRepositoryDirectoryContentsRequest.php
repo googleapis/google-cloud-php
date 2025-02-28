@@ -48,8 +48,8 @@ class QueryRepositoryDirectoryContentsRequest extends \Google\Protobuf\Internal\
      * `QueryRepositoryDirectoryContents` call. Provide this to retrieve the
      * subsequent page.
      * When paginating, all other parameters provided to
-     * `QueryRepositoryDirectoryContents` must match the call that provided the
-     * page token.
+     * `QueryRepositoryDirectoryContents`, with the exception of `page_size`, must
+     * match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -78,8 +78,8 @@ class QueryRepositoryDirectoryContentsRequest extends \Google\Protobuf\Internal\
      *           `QueryRepositoryDirectoryContents` call. Provide this to retrieve the
      *           subsequent page.
      *           When paginating, all other parameters provided to
-     *           `QueryRepositoryDirectoryContents` must match the call that provided the
-     *           page token.
+     *           `QueryRepositoryDirectoryContents`, with the exception of `page_size`, must
+     *           match the call that provided the page token.
      * }
      */
     public function __construct($data = NULL) {
@@ -204,8 +204,8 @@ class QueryRepositoryDirectoryContentsRequest extends \Google\Protobuf\Internal\
      * `QueryRepositoryDirectoryContents` call. Provide this to retrieve the
      * subsequent page.
      * When paginating, all other parameters provided to
-     * `QueryRepositoryDirectoryContents` must match the call that provided the
-     * page token.
+     * `QueryRepositoryDirectoryContents`, with the exception of `page_size`, must
+     * match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -220,8 +220,8 @@ class QueryRepositoryDirectoryContentsRequest extends \Google\Protobuf\Internal\
      * `QueryRepositoryDirectoryContents` call. Provide this to retrieve the
      * subsequent page.
      * When paginating, all other parameters provided to
-     * `QueryRepositoryDirectoryContents` must match the call that provided the
-     * page token.
+     * `QueryRepositoryDirectoryContents`, with the exception of `page_size`, must
+     * match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

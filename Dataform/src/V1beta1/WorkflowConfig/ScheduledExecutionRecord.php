@@ -17,9 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ScheduledExecutionRecord extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The timestamp of this execution attempt.
+     * Output only. The timestamp of this execution attempt.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp execution_time = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp execution_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $execution_time = null;
     protected $result;
@@ -30,8 +30,6 @@ class ScheduledExecutionRecord extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Protobuf\Timestamp $execution_time
-     *           The timestamp of this execution attempt.
      *     @type string $workflow_invocation
      *           The name of the created workflow invocation, if one was successfully
      *           created. Must be in the format
@@ -39,47 +37,13 @@ class ScheduledExecutionRecord extends \Google\Protobuf\Internal\Message
      *     @type \Google\Rpc\Status $error_status
      *           The error status encountered upon this attempt to create the
      *           workflow invocation, if the attempt was unsuccessful.
+     *     @type \Google\Protobuf\Timestamp $execution_time
+     *           Output only. The timestamp of this execution attempt.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataform\V1Beta1\Dataform::initOnce();
         parent::__construct($data);
-    }
-
-    /**
-     * The timestamp of this execution attempt.
-     *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp execution_time = 1;</code>
-     * @return \Google\Protobuf\Timestamp|null
-     */
-    public function getExecutionTime()
-    {
-        return $this->execution_time;
-    }
-
-    public function hasExecutionTime()
-    {
-        return isset($this->execution_time);
-    }
-
-    public function clearExecutionTime()
-    {
-        unset($this->execution_time);
-    }
-
-    /**
-     * The timestamp of this execution attempt.
-     *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp execution_time = 1;</code>
-     * @param \Google\Protobuf\Timestamp $var
-     * @return $this
-     */
-    public function setExecutionTime($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
-        $this->execution_time = $var;
-
-        return $this;
     }
 
     /**
@@ -146,6 +110,42 @@ class ScheduledExecutionRecord extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Rpc\Status::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. The timestamp of this execution attempt.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp execution_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getExecutionTime()
+    {
+        return $this->execution_time;
+    }
+
+    public function hasExecutionTime()
+    {
+        return isset($this->execution_time);
+    }
+
+    public function clearExecutionTime()
+    {
+        unset($this->execution_time);
+    }
+
+    /**
+     * Output only. The timestamp of this execution attempt.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp execution_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setExecutionTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->execution_time = $var;
 
         return $this;
     }

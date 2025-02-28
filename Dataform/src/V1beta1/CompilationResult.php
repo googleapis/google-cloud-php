@@ -47,6 +47,26 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.CompilationResult.CompilationError compilation_errors = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $compilation_errors;
+    /**
+     * Output only. Only set if the repository has a KMS Key.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.DataEncryptionState data_encryption_state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $data_encryption_state = null;
+    /**
+     * Output only. The timestamp of when the compilation result was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $create_time = null;
+    /**
+     * Output only. All the metadata information that is used internally to serve
+     * the resource. For example: timestamps, flags, status fields, etc. The
+     * format of this field is a JSON string.
+     *
+     * Generated from protobuf field <code>optional string internal_metadata = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $internal_metadata = null;
     protected $source;
 
     /**
@@ -55,8 +75,6 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $name
-     *           Output only. The compilation result's name.
      *     @type string $git_commitish
      *           Immutable. Git commit/tag/branch name at which the repository should be
      *           compiled. Must exist in the remote repository. Examples:
@@ -67,10 +85,10 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
      *           Immutable. The name of the workspace to compile. Must be in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;workspaces/&#42;`.
      *     @type string $release_config
-     *           Immutable. The name of the release config to compile. The release
-     *           config's 'current_compilation_result' field will be updated to this
-     *           compilation result. Must be in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;releaseConfigs/&#42;`.
+     *           Immutable. The name of the release config to compile. Must be in the
+     *           format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;releaseConfigs/&#42;`.
+     *     @type string $name
+     *           Output only. The compilation result's name.
      *     @type \Google\Cloud\Dataform\V1beta1\CodeCompilationConfig $code_compilation_config
      *           Immutable. If set, fields of `code_compilation_config` override the default
      *           compilation settings that are specified in dataform.json.
@@ -81,37 +99,19 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
      *           Output only. The version of `&#64;dataform/core` that was used for compilation.
      *     @type array<\Google\Cloud\Dataform\V1beta1\CompilationResult\CompilationError>|\Google\Protobuf\Internal\RepeatedField $compilation_errors
      *           Output only. Errors encountered during project compilation.
+     *     @type \Google\Cloud\Dataform\V1beta1\DataEncryptionState $data_encryption_state
+     *           Output only. Only set if the repository has a KMS Key.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Output only. The timestamp of when the compilation result was created.
+     *     @type string $internal_metadata
+     *           Output only. All the metadata information that is used internally to serve
+     *           the resource. For example: timestamps, flags, status fields, etc. The
+     *           format of this field is a JSON string.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataform\V1Beta1\Dataform::initOnce();
         parent::__construct($data);
-    }
-
-    /**
-     * Output only. The compilation result's name.
-     *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Output only. The compilation result's name.
-     *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setName($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->name = $var;
-
-        return $this;
     }
 
     /**
@@ -187,10 +187,8 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The name of the release config to compile. The release
-     * config's 'current_compilation_result' field will be updated to this
-     * compilation result. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;releaseConfigs/&#42;`.
+     * Immutable. The name of the release config to compile. Must be in the
+     * format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;releaseConfigs/&#42;`.
      *
      * Generated from protobuf field <code>string release_config = 7 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
@@ -206,10 +204,8 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The name of the release config to compile. The release
-     * config's 'current_compilation_result' field will be updated to this
-     * compilation result. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;releaseConfigs/&#42;`.
+     * Immutable. The name of the release config to compile. Must be in the
+     * format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;releaseConfigs/&#42;`.
      *
      * Generated from protobuf field <code>string release_config = 7 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -219,6 +215,32 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. The compilation result's name.
+     *
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Output only. The compilation result's name.
+     *
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->name = $var;
 
         return $this;
     }
@@ -337,6 +359,118 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataform\V1beta1\CompilationResult\CompilationError::class);
         $this->compilation_errors = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Only set if the repository has a KMS Key.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.DataEncryptionState data_encryption_state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataform\V1beta1\DataEncryptionState|null
+     */
+    public function getDataEncryptionState()
+    {
+        return $this->data_encryption_state;
+    }
+
+    public function hasDataEncryptionState()
+    {
+        return isset($this->data_encryption_state);
+    }
+
+    public function clearDataEncryptionState()
+    {
+        unset($this->data_encryption_state);
+    }
+
+    /**
+     * Output only. Only set if the repository has a KMS Key.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.DataEncryptionState data_encryption_state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataform\V1beta1\DataEncryptionState $var
+     * @return $this
+     */
+    public function setDataEncryptionState($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\DataEncryptionState::class);
+        $this->data_encryption_state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The timestamp of when the compilation result was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreateTime()
+    {
+        return $this->create_time;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
+    }
+
+    /**
+     * Output only. The timestamp of when the compilation result was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. All the metadata information that is used internally to serve
+     * the resource. For example: timestamps, flags, status fields, etc. The
+     * format of this field is a JSON string.
+     *
+     * Generated from protobuf field <code>optional string internal_metadata = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getInternalMetadata()
+    {
+        return isset($this->internal_metadata) ? $this->internal_metadata : '';
+    }
+
+    public function hasInternalMetadata()
+    {
+        return isset($this->internal_metadata);
+    }
+
+    public function clearInternalMetadata()
+    {
+        unset($this->internal_metadata);
+    }
+
+    /**
+     * Output only. All the metadata information that is used internally to serve
+     * the resource. For example: timestamps, flags, status fields, etc. The
+     * format of this field is a JSON string.
+     *
+     * Generated from protobuf field <code>optional string internal_metadata = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setInternalMetadata($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->internal_metadata = $var;
 
         return $this;
     }

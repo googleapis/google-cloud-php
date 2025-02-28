@@ -25,7 +25,7 @@ return [
         'google.cloud.dataform.v1beta1.Dataform' => [
             'CancelWorkflowInvocation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\CancelWorkflowInvocationResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -37,7 +37,7 @@ return [
             ],
             'CommitRepositoryChanges' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\CommitRepositoryChangesResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -49,7 +49,7 @@ return [
             ],
             'CommitWorkspaceChanges' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\CommitWorkspaceChangesResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -274,6 +274,18 @@ return [
             'GetCompilationResult' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dataform\V1beta1\CompilationResult',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\Config',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -513,7 +525,7 @@ return [
             ],
             'PullGitCommits' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\PullGitCommitsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -525,7 +537,7 @@ return [
             ],
             'PushGitCommits' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\PushGitCommitsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -641,7 +653,7 @@ return [
             ],
             'RemoveDirectory' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\RemoveDirectoryResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'workspace',
@@ -653,7 +665,7 @@ return [
             ],
             'RemoveFile' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\RemoveFileResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'workspace',
@@ -665,11 +677,44 @@ return [
             ],
             'ResetWorkspaceChanges' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\ResetWorkspaceChangesResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
                         'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'SearchFiles' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSearchResults',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\SearchFilesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'workspace',
+                        'fieldAccessors' => [
+                            'getWorkspace',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\Config',
+                'headerParams' => [
+                    [
+                        'keyName' => 'config.name',
+                        'fieldAccessors' => [
+                            'getConfig',
                             'getName',
                         ],
                     ],
@@ -801,6 +846,9 @@ return [
             ],
             'templateMap' => [
                 'compilationResult' => 'projects/{project}/locations/{location}/repositories/{repository}/compilationResults/{compilation_result}',
+                'config' => 'projects/{project}/locations/{location}/config',
+                'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
+                'cryptoKeyVersion' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}',
                 'location' => 'projects/{project}/locations/{location}',
                 'releaseConfig' => 'projects/{project}/locations/{location}/repositories/{repository}/releaseConfigs/{release_config}',
                 'repository' => 'projects/{project}/locations/{location}/repositories/{repository}',

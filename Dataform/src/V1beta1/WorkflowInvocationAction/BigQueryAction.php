@@ -21,6 +21,13 @@ class BigQueryAction extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string sql_script = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $sql_script = '';
+    /**
+     * Output only. The ID of the BigQuery job that executed the SQL in
+     * sql_script. Only set once the job has started to run.
+     *
+     * Generated from protobuf field <code>string job_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $job_id = '';
 
     /**
      * Constructor.
@@ -30,6 +37,9 @@ class BigQueryAction extends \Google\Protobuf\Internal\Message
      *
      *     @type string $sql_script
      *           Output only. The generated BigQuery SQL script that will be executed.
+     *     @type string $job_id
+     *           Output only. The ID of the BigQuery job that executed the SQL in
+     *           sql_script. Only set once the job has started to run.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +69,34 @@ class BigQueryAction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->sql_script = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The ID of the BigQuery job that executed the SQL in
+     * sql_script. Only set once the job has started to run.
+     *
+     * Generated from protobuf field <code>string job_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getJobId()
+    {
+        return $this->job_id;
+    }
+
+    /**
+     * Output only. The ID of the BigQuery job that executed the SQL in
+     * sql_script. Only set once the job has started to run.
+     *
+     * Generated from protobuf field <code>string job_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setJobId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->job_id = $var;
 
         return $this;
     }

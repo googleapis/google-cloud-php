@@ -27,16 +27,20 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dataform\V1beta1\CancelWorkflowInvocationRequest;
+use Google\Cloud\Dataform\V1beta1\CancelWorkflowInvocationResponse;
 use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
 use Google\Cloud\Dataform\V1beta1\CommitAuthor;
 use Google\Cloud\Dataform\V1beta1\CommitLogEntry;
 use Google\Cloud\Dataform\V1beta1\CommitMetadata;
 use Google\Cloud\Dataform\V1beta1\CommitRepositoryChangesRequest;
+use Google\Cloud\Dataform\V1beta1\CommitRepositoryChangesResponse;
 use Google\Cloud\Dataform\V1beta1\CommitWorkspaceChangesRequest;
+use Google\Cloud\Dataform\V1beta1\CommitWorkspaceChangesResponse;
 use Google\Cloud\Dataform\V1beta1\CompilationResult;
 use Google\Cloud\Dataform\V1beta1\CompilationResultAction;
 use Google\Cloud\Dataform\V1beta1\ComputeRepositoryAccessTokenStatusRequest;
 use Google\Cloud\Dataform\V1beta1\ComputeRepositoryAccessTokenStatusResponse;
+use Google\Cloud\Dataform\V1beta1\Config;
 use Google\Cloud\Dataform\V1beta1\CreateCompilationResultRequest;
 use Google\Cloud\Dataform\V1beta1\CreateReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\CreateRepositoryRequest;
@@ -60,6 +64,7 @@ use Google\Cloud\Dataform\V1beta1\FetchRemoteBranchesResponse;
 use Google\Cloud\Dataform\V1beta1\FetchRepositoryHistoryRequest;
 use Google\Cloud\Dataform\V1beta1\FetchRepositoryHistoryResponse;
 use Google\Cloud\Dataform\V1beta1\GetCompilationResultRequest;
+use Google\Cloud\Dataform\V1beta1\GetConfigRequest;
 use Google\Cloud\Dataform\V1beta1\GetReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\GetRepositoryRequest;
 use Google\Cloud\Dataform\V1beta1\GetWorkflowConfigRequest;
@@ -86,7 +91,9 @@ use Google\Cloud\Dataform\V1beta1\MoveDirectoryResponse;
 use Google\Cloud\Dataform\V1beta1\MoveFileRequest;
 use Google\Cloud\Dataform\V1beta1\MoveFileResponse;
 use Google\Cloud\Dataform\V1beta1\PullGitCommitsRequest;
+use Google\Cloud\Dataform\V1beta1\PullGitCommitsResponse;
 use Google\Cloud\Dataform\V1beta1\PushGitCommitsRequest;
+use Google\Cloud\Dataform\V1beta1\PushGitCommitsResponse;
 use Google\Cloud\Dataform\V1beta1\QueryCompilationResultActionsRequest;
 use Google\Cloud\Dataform\V1beta1\QueryCompilationResultActionsResponse;
 use Google\Cloud\Dataform\V1beta1\QueryDirectoryContentsRequest;
@@ -101,9 +108,16 @@ use Google\Cloud\Dataform\V1beta1\ReadRepositoryFileRequest;
 use Google\Cloud\Dataform\V1beta1\ReadRepositoryFileResponse;
 use Google\Cloud\Dataform\V1beta1\ReleaseConfig;
 use Google\Cloud\Dataform\V1beta1\RemoveDirectoryRequest;
+use Google\Cloud\Dataform\V1beta1\RemoveDirectoryResponse;
 use Google\Cloud\Dataform\V1beta1\RemoveFileRequest;
+use Google\Cloud\Dataform\V1beta1\RemoveFileResponse;
 use Google\Cloud\Dataform\V1beta1\Repository;
 use Google\Cloud\Dataform\V1beta1\ResetWorkspaceChangesRequest;
+use Google\Cloud\Dataform\V1beta1\ResetWorkspaceChangesResponse;
+use Google\Cloud\Dataform\V1beta1\SearchFilesRequest;
+use Google\Cloud\Dataform\V1beta1\SearchFilesResponse;
+use Google\Cloud\Dataform\V1beta1\SearchResult;
+use Google\Cloud\Dataform\V1beta1\UpdateConfigRequest;
 use Google\Cloud\Dataform\V1beta1\UpdateReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\UpdateRepositoryRequest;
 use Google\Cloud\Dataform\V1beta1\UpdateWorkflowConfigRequest;
@@ -165,7 +179,7 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new GPBEmpty();
+        $expectedResponse = new CancelWorkflowInvocationResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->workflowInvocationName(
@@ -175,7 +189,8 @@ class DataformClientTest extends GeneratedTest
             '[WORKFLOW_INVOCATION]'
         );
         $request = (new CancelWorkflowInvocationRequest())->setName($formattedName);
-        $gapicClient->cancelWorkflowInvocation($request);
+        $response = $gapicClient->cancelWorkflowInvocation($request);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -237,7 +252,9 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new GPBEmpty();
+        $commitSha = 'commitSha1018601892';
+        $expectedResponse = new CommitRepositoryChangesResponse();
+        $expectedResponse->setCommitSha($commitSha);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
@@ -249,7 +266,8 @@ class DataformClientTest extends GeneratedTest
         $commitMetadataAuthor->setEmailAddress($authorEmailAddress);
         $commitMetadata->setAuthor($commitMetadataAuthor);
         $request = (new CommitRepositoryChangesRequest())->setName($formattedName)->setCommitMetadata($commitMetadata);
-        $gapicClient->commitRepositoryChanges($request);
+        $response = $gapicClient->commitRepositoryChanges($request);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -315,7 +333,7 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new GPBEmpty();
+        $expectedResponse = new CommitWorkspaceChangesResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
@@ -325,7 +343,8 @@ class DataformClientTest extends GeneratedTest
         $authorEmailAddress = 'authorEmailAddress-6398493';
         $author->setEmailAddress($authorEmailAddress);
         $request = (new CommitWorkspaceChangesRequest())->setName($formattedName)->setAuthor($author);
-        $gapicClient->commitWorkspaceChanges($request);
+        $response = $gapicClient->commitWorkspaceChanges($request);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -455,15 +474,17 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $name = 'name3373707';
         $gitCommitish = 'gitCommitish-459981894';
+        $name = 'name3373707';
         $resolvedGitCommitSha = 'resolvedGitCommitSha-1974209704';
         $dataformCoreVersion = 'dataformCoreVersion1918089577';
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new CompilationResult();
-        $expectedResponse->setName($name);
         $expectedResponse->setGitCommitish($gitCommitish);
+        $expectedResponse->setName($name);
         $expectedResponse->setResolvedGitCommitSha($resolvedGitCommitSha);
         $expectedResponse->setDataformCoreVersion($dataformCoreVersion);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
@@ -539,12 +560,16 @@ class DataformClientTest extends GeneratedTest
         $cronSchedule = 'cronSchedule206244136';
         $timeZone = 'timeZone36848094';
         $releaseCompilationResult = 'releaseCompilationResult1831489873';
+        $disabled = true;
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new ReleaseConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setGitCommitish($gitCommitish);
         $expectedResponse->setCronSchedule($cronSchedule);
         $expectedResponse->setTimeZone($timeZone);
         $expectedResponse->setReleaseCompilationResult($releaseCompilationResult);
+        $expectedResponse->setDisabled($disabled);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
@@ -630,12 +655,16 @@ class DataformClientTest extends GeneratedTest
         $npmrcEnvironmentVariablesSecretVersion = 'npmrcEnvironmentVariablesSecretVersion-2118517056';
         $setAuthenticatedUserAdmin = true;
         $serviceAccount = 'serviceAccount-1948028253';
+        $kmsKeyName = 'kmsKeyName2094986649';
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new Repository();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setNpmrcEnvironmentVariablesSecretVersion($npmrcEnvironmentVariablesSecretVersion);
         $expectedResponse->setSetAuthenticatedUserAdmin($setAuthenticatedUserAdmin);
         $expectedResponse->setServiceAccount($serviceAccount);
+        $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -716,11 +745,13 @@ class DataformClientTest extends GeneratedTest
         $releaseConfig = 'releaseConfig582587002';
         $cronSchedule = 'cronSchedule206244136';
         $timeZone = 'timeZone36848094';
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new WorkflowConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setReleaseConfig($releaseConfig);
         $expectedResponse->setCronSchedule($cronSchedule);
         $expectedResponse->setTimeZone($timeZone);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
@@ -811,11 +842,15 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $name = 'name3373707';
         $compilationResult = 'compilationResult-2035984871';
+        $name = 'name3373707';
+        $resolvedCompilationResult = 'resolvedCompilationResult-2110280256';
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new WorkflowInvocation();
-        $expectedResponse->setName($name);
         $expectedResponse->setCompilationResult($compilationResult);
+        $expectedResponse->setName($name);
+        $expectedResponse->setResolvedCompilationResult($resolvedCompilationResult);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
@@ -887,8 +922,10 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new Workspace();
         $expectedResponse->setName($name);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
@@ -1628,15 +1665,17 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $name2 = 'name2-1052831874';
         $gitCommitish = 'gitCommitish-459981894';
+        $name2 = 'name2-1052831874';
         $resolvedGitCommitSha = 'resolvedGitCommitSha-1974209704';
         $dataformCoreVersion = 'dataformCoreVersion1918089577';
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new CompilationResult();
-        $expectedResponse->setName($name2);
         $expectedResponse->setGitCommitish($gitCommitish);
+        $expectedResponse->setName($name2);
         $expectedResponse->setResolvedGitCommitSha($resolvedGitCommitSha);
         $expectedResponse->setDataformCoreVersion($dataformCoreVersion);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->compilationResultName(
@@ -1701,6 +1740,73 @@ class DataformClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getConfigTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $defaultKmsKeyName = 'defaultKmsKeyName-635012393';
+        $expectedResponse = new Config();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDefaultKmsKeyName($defaultKmsKeyName);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->configName('[PROJECT]', '[LOCATION]');
+        $request = (new GetConfigRequest())->setName($formattedName);
+        $response = $gapicClient->getConfig($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/GetConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->configName('[PROJECT]', '[LOCATION]');
+        $request = (new GetConfigRequest())->setName($formattedName);
+        try {
+            $gapicClient->getConfig($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getReleaseConfigTest()
     {
         $transport = $this->createTransport();
@@ -1714,12 +1820,16 @@ class DataformClientTest extends GeneratedTest
         $cronSchedule = 'cronSchedule206244136';
         $timeZone = 'timeZone36848094';
         $releaseCompilationResult = 'releaseCompilationResult1831489873';
+        $disabled = true;
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new ReleaseConfig();
         $expectedResponse->setName($name2);
         $expectedResponse->setGitCommitish($gitCommitish);
         $expectedResponse->setCronSchedule($cronSchedule);
         $expectedResponse->setTimeZone($timeZone);
         $expectedResponse->setReleaseCompilationResult($releaseCompilationResult);
+        $expectedResponse->setDisabled($disabled);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->releaseConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RELEASE_CONFIG]');
@@ -1787,12 +1897,16 @@ class DataformClientTest extends GeneratedTest
         $npmrcEnvironmentVariablesSecretVersion = 'npmrcEnvironmentVariablesSecretVersion-2118517056';
         $setAuthenticatedUserAdmin = true;
         $serviceAccount = 'serviceAccount-1948028253';
+        $kmsKeyName = 'kmsKeyName2094986649';
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new Repository();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setNpmrcEnvironmentVariablesSecretVersion($npmrcEnvironmentVariablesSecretVersion);
         $expectedResponse->setSetAuthenticatedUserAdmin($setAuthenticatedUserAdmin);
         $expectedResponse->setServiceAccount($serviceAccount);
+        $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
@@ -1859,11 +1973,13 @@ class DataformClientTest extends GeneratedTest
         $releaseConfig = 'releaseConfig582587002';
         $cronSchedule = 'cronSchedule206244136';
         $timeZone = 'timeZone36848094';
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new WorkflowConfig();
         $expectedResponse->setName($name2);
         $expectedResponse->setReleaseConfig($releaseConfig);
         $expectedResponse->setCronSchedule($cronSchedule);
         $expectedResponse->setTimeZone($timeZone);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->workflowConfigName(
@@ -1936,11 +2052,15 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $name2 = 'name2-1052831874';
         $compilationResult = 'compilationResult-2035984871';
+        $name2 = 'name2-1052831874';
+        $resolvedCompilationResult = 'resolvedCompilationResult-2110280256';
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new WorkflowInvocation();
-        $expectedResponse->setName($name2);
         $expectedResponse->setCompilationResult($compilationResult);
+        $expectedResponse->setName($name2);
+        $expectedResponse->setResolvedCompilationResult($resolvedCompilationResult);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->workflowInvocationName(
@@ -2014,8 +2134,10 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new Workspace();
         $expectedResponse->setName($name2);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
@@ -2788,7 +2910,7 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new GPBEmpty();
+        $expectedResponse = new PullGitCommitsResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
@@ -2798,7 +2920,8 @@ class DataformClientTest extends GeneratedTest
         $authorEmailAddress = 'authorEmailAddress-6398493';
         $author->setEmailAddress($authorEmailAddress);
         $request = (new PullGitCommitsRequest())->setName($formattedName)->setAuthor($author);
-        $gapicClient->pullGitCommits($request);
+        $response = $gapicClient->pullGitCommits($request);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -2862,12 +2985,13 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new GPBEmpty();
+        $expectedResponse = new PushGitCommitsResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
         $request = (new PushGitCommitsRequest())->setName($formattedName);
-        $gapicClient->pushGitCommits($request);
+        $response = $gapicClient->pushGitCommits($request);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -3366,13 +3490,14 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new GPBEmpty();
+        $expectedResponse = new RemoveDirectoryResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
         $path = 'path3433509';
         $request = (new RemoveDirectoryRequest())->setWorkspace($formattedWorkspace)->setPath($path);
-        $gapicClient->removeDirectory($request);
+        $response = $gapicClient->removeDirectory($request);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -3432,13 +3557,14 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new GPBEmpty();
+        $expectedResponse = new RemoveFileResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
         $path = 'path3433509';
         $request = (new RemoveFileRequest())->setWorkspace($formattedWorkspace)->setPath($path);
-        $gapicClient->removeFile($request);
+        $response = $gapicClient->removeFile($request);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -3498,12 +3624,13 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new GPBEmpty();
+        $expectedResponse = new ResetWorkspaceChangesResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
         $request = (new ResetWorkspaceChangesRequest())->setName($formattedName);
-        $gapicClient->resetWorkspaceChanges($request);
+        $response = $gapicClient->resetWorkspaceChanges($request);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -3552,6 +3679,144 @@ class DataformClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function searchFilesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $searchResultsElement = new SearchResult();
+        $searchResults = [$searchResultsElement];
+        $expectedResponse = new SearchFilesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSearchResults($searchResults);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $request = (new SearchFilesRequest())->setWorkspace($formattedWorkspace);
+        $response = $gapicClient->searchFiles($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getSearchResults()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/SearchFiles', $actualFuncCall);
+        $actualValue = $actualRequestObject->getWorkspace();
+        $this->assertProtobufEquals($formattedWorkspace, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function searchFilesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $request = (new SearchFilesRequest())->setWorkspace($formattedWorkspace);
+        try {
+            $gapicClient->searchFiles($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateConfigTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $defaultKmsKeyName = 'defaultKmsKeyName-635012393';
+        $expectedResponse = new Config();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDefaultKmsKeyName($defaultKmsKeyName);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $config = new Config();
+        $request = (new UpdateConfigRequest())->setConfig($config);
+        $response = $gapicClient->updateConfig($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/UpdateConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getConfig();
+        $this->assertProtobufEquals($config, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $config = new Config();
+        $request = (new UpdateConfigRequest())->setConfig($config);
+        try {
+            $gapicClient->updateConfig($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function updateReleaseConfigTest()
     {
         $transport = $this->createTransport();
@@ -3565,12 +3830,16 @@ class DataformClientTest extends GeneratedTest
         $cronSchedule = 'cronSchedule206244136';
         $timeZone = 'timeZone36848094';
         $releaseCompilationResult = 'releaseCompilationResult1831489873';
+        $disabled = true;
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new ReleaseConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setGitCommitish($gitCommitish);
         $expectedResponse->setCronSchedule($cronSchedule);
         $expectedResponse->setTimeZone($timeZone);
         $expectedResponse->setReleaseCompilationResult($releaseCompilationResult);
+        $expectedResponse->setDisabled($disabled);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $releaseConfig = new ReleaseConfig();
@@ -3642,12 +3911,16 @@ class DataformClientTest extends GeneratedTest
         $npmrcEnvironmentVariablesSecretVersion = 'npmrcEnvironmentVariablesSecretVersion-2118517056';
         $setAuthenticatedUserAdmin = true;
         $serviceAccount = 'serviceAccount-1948028253';
+        $kmsKeyName = 'kmsKeyName2094986649';
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new Repository();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setNpmrcEnvironmentVariablesSecretVersion($npmrcEnvironmentVariablesSecretVersion);
         $expectedResponse->setSetAuthenticatedUserAdmin($setAuthenticatedUserAdmin);
         $expectedResponse->setServiceAccount($serviceAccount);
+        $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $repository = new Repository();
@@ -3714,11 +3987,13 @@ class DataformClientTest extends GeneratedTest
         $releaseConfig = 'releaseConfig582587002';
         $cronSchedule = 'cronSchedule206244136';
         $timeZone = 'timeZone36848094';
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new WorkflowConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setReleaseConfig($releaseConfig);
         $expectedResponse->setCronSchedule($cronSchedule);
         $expectedResponse->setTimeZone($timeZone);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $workflowConfig = new WorkflowConfig();
@@ -4205,7 +4480,7 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new GPBEmpty();
+        $expectedResponse = new CancelWorkflowInvocationResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->workflowInvocationName(
@@ -4215,7 +4490,8 @@ class DataformClientTest extends GeneratedTest
             '[WORKFLOW_INVOCATION]'
         );
         $request = (new CancelWorkflowInvocationRequest())->setName($formattedName);
-        $gapicClient->cancelWorkflowInvocationAsync($request)->wait();
+        $response = $gapicClient->cancelWorkflowInvocationAsync($request)->wait();
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();

@@ -33,12 +33,27 @@ class ListCompilationResultsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Page token received from a previous `ListCompilationResults`
      * call. Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `ListCompilationResults`
-     * must match the call that provided the page token.
+     * When paginating, all other parameters provided to `ListCompilationResults`,
+     * with the exception of `page_size`, must match the call that provided the
+     * page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
+    /**
+     * Optional. This field only supports ordering by `name` and `create_time`.
+     * If unspecified, the server will choose the ordering.
+     * If specified, the default order is ascending for the `name` field.
+     *
+     * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $order_by = '';
+    /**
+     * Optional. Filter for the returned list.
+     *
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $filter = '';
 
     /**
      * @param string $parent Required. The repository in which to list compilation results. Must be in
@@ -71,8 +86,15 @@ class ListCompilationResultsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           Optional. Page token received from a previous `ListCompilationResults`
      *           call. Provide this to retrieve the subsequent page.
-     *           When paginating, all other parameters provided to `ListCompilationResults`
-     *           must match the call that provided the page token.
+     *           When paginating, all other parameters provided to `ListCompilationResults`,
+     *           with the exception of `page_size`, must match the call that provided the
+     *           page token.
+     *     @type string $order_by
+     *           Optional. This field only supports ordering by `name` and `create_time`.
+     *           If unspecified, the server will choose the ordering.
+     *           If specified, the default order is ascending for the `name` field.
+     *     @type string $filter
+     *           Optional. Filter for the returned list.
      * }
      */
     public function __construct($data = NULL) {
@@ -141,8 +163,9 @@ class ListCompilationResultsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Page token received from a previous `ListCompilationResults`
      * call. Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `ListCompilationResults`
-     * must match the call that provided the page token.
+     * When paginating, all other parameters provided to `ListCompilationResults`,
+     * with the exception of `page_size`, must match the call that provided the
+     * page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -155,8 +178,9 @@ class ListCompilationResultsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Page token received from a previous `ListCompilationResults`
      * call. Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `ListCompilationResults`
-     * must match the call that provided the page token.
+     * When paginating, all other parameters provided to `ListCompilationResults`,
+     * with the exception of `page_size`, must match the call that provided the
+     * page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -166,6 +190,62 @@ class ListCompilationResultsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. This field only supports ordering by `name` and `create_time`.
+     * If unspecified, the server will choose the ordering.
+     * If specified, the default order is ascending for the `name` field.
+     *
+     * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getOrderBy()
+    {
+        return $this->order_by;
+    }
+
+    /**
+     * Optional. This field only supports ordering by `name` and `create_time`.
+     * If unspecified, the server will choose the ordering.
+     * If specified, the default order is ascending for the `name` field.
+     *
+     * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOrderBy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->order_by = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Filter for the returned list.
+     *
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * Optional. Filter for the returned list.
+     *
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
 
         return $this;
     }
