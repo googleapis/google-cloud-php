@@ -34,6 +34,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Maps\FleetEngine\V1\CreateTripRequest;
+use Google\Maps\FleetEngine\V1\DeleteTripRequest;
 use Google\Maps\FleetEngine\V1\GetTripRequest;
 use Google\Maps\FleetEngine\V1\ReportBillableTripRequest;
 use Google\Maps\FleetEngine\V1\SearchTripsRequest;
@@ -54,6 +55,7 @@ use Psr\Log\LoggerInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface<Trip> createTripAsync(CreateTripRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTripAsync(DeleteTripRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Trip> getTripAsync(GetTripRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> reportBillableTripAsync(ReportBillableTripRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> searchTripsAsync(SearchTripsRequest $request, array $optionalArgs = [])
@@ -250,6 +252,33 @@ final class TripServiceClient
     public function createTrip(CreateTripRequest $request, array $callOptions = []): Trip
     {
         return $this->startApiCall('CreateTrip', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single Trip.
+     *
+     * Returns FAILED_PRECONDITION if the Trip is active and assigned to a
+     * vehicle.
+     *
+     * The async variant is {@see TripServiceClient::deleteTripAsync()} .
+     *
+     * @example samples/V1/TripServiceClient/delete_trip.php
+     *
+     * @param DeleteTripRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteTrip(DeleteTripRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteTrip', $request, $callOptions)->wait();
     }
 
     /**
