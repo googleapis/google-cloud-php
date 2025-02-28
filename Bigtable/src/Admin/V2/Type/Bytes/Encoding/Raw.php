@@ -9,10 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Leaves the value "as-is"
- * * Order-preserving? Yes
- * * Self-delimiting? No
- * * Compatibility? N/A
+ * Leaves the value as-is.
+ * Sorted mode: all values are supported.
+ * Distinct mode: all values are supported.
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.Type.Bytes.Encoding.Raw</code>
  */
