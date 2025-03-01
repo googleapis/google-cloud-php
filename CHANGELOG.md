@@ -1,5 +1,157 @@
 # Changelog
 
+## 0.278.0
+
+<details><summary>google/cloud-ai-platform 1.19.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add EnterpriseWebSearch tool option ([#8120](https://github.com/googleapis/google-cloud-php/issues/8120)) ([7d5d1da](https://github.com/googleapis/google-cloud-php/commit/7d5d1da27e43f78eb96463acd88cb2f55ab69e8c))
+* [AiPlatform] add VertexAISearch.engine option ([#8126](https://github.com/googleapis/google-cloud-php/issues/8126)) ([879c995](https://github.com/googleapis/google-cloud-php/commit/879c995786391a1098af3338e6997348fa6b64fa))
+
+</details>
+
+<details><summary>google/apps-meet 0.4.0</summary>
+
+
+
+### Features
+
+* [AppsMeet] Add `ConnectActiveConference` method to `SpacesService` ([#8110](https://github.com/googleapis/google-cloud-php/issues/8110)) ([00c94d1](https://github.com/googleapis/google-cloud-php/commit/00c94d11c77d5d126912e17a2409d030d46ae7f0))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 2.2.0</summary>
+
+
+
+### Features
+
+* [BigQueryReservation] Add a new field `replication_status` to `.google.cloud.bigquery.reservation.v1.Reservation` to provide visibility into errors that could arise during Disaster Recovery(DR) replication ([#8116](https://github.com/googleapis/google-cloud-php/issues/8116)) ([1660f84](https://github.com/googleapis/google-cloud-php/commit/1660f84f0416374bf70a62e30392aabf43e34b43))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.8.0</summary>
+
+
+
+### Features
+
+* [Bigtable] publish row_key_schema fields in table proto and relevant admin APIs to setup a table with a row_key_schema ([#8124](https://github.com/googleapis/google-cloud-php/issues/8124)) ([6876f78](https://github.com/googleapis/google-cloud-php/commit/6876f7896957c30ddc10df24457bbdcea3b1f07c))
+
+</details>
+
+<details><summary>google/cloud-dataform 0.6.0</summary>
+
+
+
+### Features
+
+* [Dataform] Added new field `internal_metadata` to all resources to export all the metadata information that is used internally to serve the resource ([#8123](https://github.com/googleapis/google-cloud-php/issues/8123)) ([8a2e3a8](https://github.com/googleapis/google-cloud-php/commit/8a2e3a81d1f1d78b17029cbf86012313d230c625))
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.3.0</summary>
+
+
+
+### Features
+
+* [Dataproc] Added support for the AuthenticationConfig field to Dataproc serverless workload configurations, allowing specification of the user workload identity as either the end user or a service account ([#8107](https://github.com/googleapis/google-cloud-php/issues/8107)) ([753979e](https://github.com/googleapis/google-cloud-php/commit/753979e2e86716f39e3b3029836815ce6578df24))
+
+</details>
+
+<details><summary>google/cloud-dialogflow-cx 0.7.0</summary>
+
+
+
+### Features
+
+* [DialogflowCx] exposed Zone Separation & Zone Isolation status of an agent ([#8117](https://github.com/googleapis/google-cloud-php/issues/8117)) ([9cad976](https://github.com/googleapis/google-cloud-php/commit/9cad976bce3204b789451a43c5766c1eff0ad1a8))
+
+</details>
+
+<details><summary>google/cloud-dlp 2.3.0</summary>
+
+
+
+### Features
+
+* Discovery of Vertex AI datasets ([#8099](https://github.com/googleapis/google-cloud-php/issues/8099)) ([932b7eb](https://github.com/googleapis/google-cloud-php/commit/932b7ebd71d970701462b0fe11a80ede173ca9cd))
+
+
+### Documentation
+
+* Documentation revisions for data profiles ([932b7eb](https://github.com/googleapis/google-cloud-php/commit/932b7ebd71d970701462b0fe11a80ede173ca9cd))
+
+</details>
+
+<details><summary>google/cloud-dms 2.0.5</summary>
+
+
+
+### Documentation
+
+* [Dms] fix broken link in comment for field `OperationMetadata.requested_cancellation` ([#8109](https://github.com/googleapis/google-cloud-php/issues/8109)) ([ff9bc52](https://github.com/googleapis/google-cloud-php/commit/ff9bc5244ad8377c0eb37e9fcc901a4de48162b4))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.48.1</summary>
+
+
+
+</details>
+
+<details><summary>google/maps-fleetengine 0.3.0</summary>
+
+
+
+### Features
+
+* [MapsFleetEngine] A new field `past_locations` is added to message `.maps.fleetengine.delivery.v1.DeliveryVehicle` ([#8119](https://github.com/googleapis/google-cloud-php/issues/8119)) ([5665f8f](https://github.com/googleapis/google-cloud-php/commit/5665f8f430ff2b0a3a603cfca36015670b3b0234))
+* [MapsFleetEngine] Added Fleet Engine Delete APIs ([#8121](https://github.com/googleapis/google-cloud-php/issues/8121)) ([ce507e5](https://github.com/googleapis/google-cloud-php/commit/ce507e5e0ec4a75a2fcc7e690316bf105f28b89e))
+* A new field `past_locations` is added to message `.maps.fleetengine.v1.Vehicle` ([5665f8f](https://github.com/googleapis/google-cloud-php/commit/5665f8f430ff2b0a3a603cfca36015670b3b0234))
+
+
+### Documentation
+
+* Updated documentation for field `task` in message `.maps.fleetengine.delivery.v1.CreateTaskRequest` to clarify certain fields can be optionally set. ([5665f8f](https://github.com/googleapis/google-cloud-php/commit/5665f8f430ff2b0a3a603cfca36015670b3b0234))
+
+</details>
+
+<details><summary>google/maps-fleetengine-delivery 0.3.0</summary>
+
+
+
+### Features
+
+* [MapsFleetEngineDelivery] Added Fleet Engine Delete APIs ([#8118](https://github.com/googleapis/google-cloud-php/issues/8118)) ([0ee3b31](https://github.com/googleapis/google-cloud-php/commit/0ee3b31f1f8bab77b373dd9882d975362699e4c0))
+* A new field `past_locations` is added to message `.maps.fleetengine.delivery.v1.DeliveryVehicle` ([0ee3b31](https://github.com/googleapis/google-cloud-php/commit/0ee3b31f1f8bab77b373dd9882d975362699e4c0))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.96.0</summary>
+
+
+
+### Features
+
+* [Spanner] add a last field in the PartialResultSet ([#8112](https://github.com/googleapis/google-cloud-php/issues/8112)) ([964eb96](https://github.com/googleapis/google-cloud-php/commit/964eb963e1204a6b0c412eb2c11f5784945f80e9))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 1.2.4</summary>
+
+
+
+### Bug Fixes
+
+* [SqlAdmin] use `json_name` annotations where needed ([#8111](https://github.com/googleapis/google-cloud-php/issues/8111)) ([25c027b](https://github.com/googleapis/google-cloud-php/commit/25c027b34c401a093aadfd1294a23203b992b125))
+
+</details>
+
 ## 0.277.0
 
 <details><summary>google/apps-chat 0.9.0</summary>
