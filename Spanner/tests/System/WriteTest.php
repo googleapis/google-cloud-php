@@ -27,7 +27,10 @@ use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Numeric;
+use Google\Cloud\Spanner\Proto;
 use Google\Rpc\Code;
+use Google\Protobuf\Internal\Message;
+use Testing\Data\User;
 
 /**
  * @group spanner
@@ -49,6 +52,11 @@ class WriteTest extends SpannerTestCase
         parent::setUpTestFixtures();
 
         self::$database->updateDdlBatch([
+            'CREATE PROTO BUNDLE (' .
+                'testing.data.User,' .
+                'testing.data.User.Address,' .
+                'testing.data.Book' .
+            ')',
             'CREATE TABLE ' . self::TABLE_NAME . ' (
                 id INT64 NOT NULL,
                 arrayField ARRAY<INT64>,
@@ -60,6 +68,7 @@ class WriteTest extends SpannerTestCase
                 arrayTimestampField ARRAY<TIMESTAMP>,
                 arrayDateField ARRAY<DATE>,
                 arrayNumericField ARRAY<NUMERIC>,
+                arrayProtoField ARRAY<`testing.data.User`>
                 boolField BOOL,
                 bytesField BYTES(MAX),
                 dateField DATE,
@@ -69,12 +78,15 @@ class WriteTest extends SpannerTestCase
                 stringField STRING(MAX),
                 timestampField TIMESTAMP,
                 numericField NUMERIC
+                protoField `testing.data.User`
             ) PRIMARY KEY (id)',
             'CREATE TABLE ' . self::COMMIT_TIMESTAMP_TABLE_NAME . ' (
                 id INT64 NOT NULL,
                 commitTimestamp TIMESTAMP NOT NULL OPTIONS
                     (allow_commit_timestamp=true)
             ) PRIMARY KEY (id, commitTimestamp DESC)'
+        ], [
+            'protoDescriptors' => file_get_contents(__DIR__ . '/../data/proto/user.pb'),
         ])->pollUntilComplete();
     }
 
@@ -94,7 +106,8 @@ class WriteTest extends SpannerTestCase
             [$this->randId(), 'intField', 787878787],
             [$this->randId(), 'stringField', 'foo bar'],
             [$this->randId(), 'timestampField', new Timestamp(new \DateTime)],
-            [$this->randId(), 'numericField', new Numeric('0.123456789')]
+            [$this->randId(), 'numericField', new Numeric('0.123456789')],
+            [$this->randId(), 'protoField', new User(['name' => 'John Doe'])],
         ];
     }
 
@@ -138,6 +151,10 @@ class WriteTest extends SpannerTestCase
         $row = $exec->rows()->current();
         if ($value instanceof Timestamp) {
             $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
+        } elseif ($value instanceof Message) {
+            $this->assertInstanceOf(Proto::class, $row[$field]);
+            $this->assertEquals($value->serializeToString(), $row[$field]->getValue());
+            $this->assertEquals($value, $row[$field]->get());
         } else {
             $this->assertValues($value, $row[$field]);
         }
@@ -281,6 +298,12 @@ class WriteTest extends SpannerTestCase
             [$this->randId(), 'arrayDateField', null],
             [$this->randId(), 'arrayNumericField', []],
             [$this->randId(), 'arrayNumericField', null],
+            [$this->randId(), 'arrayProtoField', []],
+            [$this->randId(), 'arrayProtoField', null],
+            [$this->randId(), 'arrayProtoField', [
+                new User(['name' => 'User 1']),
+                new User(['name' => 'User 2']),
+            ]],
         ];
     }
 
@@ -336,6 +359,11 @@ class WriteTest extends SpannerTestCase
         if ($value instanceof Bytes) {
             $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
         } else {
+            if ($field === 'arrayProtoField') {
+                foreach ($row[$field] as $i => $protoItem) {
+                    $row[$field][$i] = $protoItem->get();
+                }
+            }
             $this->assertValues($value, $row[$field]);
         }
     }

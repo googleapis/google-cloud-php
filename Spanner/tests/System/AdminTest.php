@@ -193,7 +193,7 @@ class AdminTest extends SpannerTestCase
                     'Books ARRAY<`testing.data.Book`>,' .
                 ') PRIMARY KEY (Id)'
             ],
-            'protoDescriptors' => file_get_contents(__DIR__ . '/data/user.pb'),
+            'protoDescriptors' => file_get_contents(__DIR__ . '/../data/proto/user.pb'),
         ]);
 
         $this->assertInstanceOf(LongRunningOperation::class, $op);

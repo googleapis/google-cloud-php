@@ -759,8 +759,8 @@
             "Google\\Cloud\\Workflows\\Tests\\": "Workflows/tests",
             "Google\\Identity\\AccessContextManager\\Tests\\": "AccessContextManager/tests",
             "Grafeas\\Tests\\": "Grafeas/tests",
-            "Testing\\Data\\": "Spanner/tests/Unit/fixtures/generated/Testing/Data",
-            "GPBMetadata\\Data\\": "Spanner/tests/Unit/fixtures/generated/GPBMetadata/Data"
+            "Testing\\Data\\": "Spanner/tests/data/generated/Testing/Data",
+            "GPBMetadata\\Data\\": "Spanner/tests/data/generated/GPBMetadata/Data"
         },
         "files": [
             "PubSub/tests/System/testdata/generated/Metadata.php",
