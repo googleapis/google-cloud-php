@@ -18,7 +18,7 @@ class LogicalView extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The unique name of the logical view.
      * Format:
-     * `projects/{project}/instances/{instance}/logicalViews/{logical_view}
+     * `projects/{project}/instances/{instance}/logicalViews/{logical_view}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -48,7 +48,7 @@ class LogicalView extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Identifier. The unique name of the logical view.
      *           Format:
-     *           `projects/{project}/instances/{instance}/logicalViews/{logical_view}
+     *           `projects/{project}/instances/{instance}/logicalViews/{logical_view}`
      *     @type string $query
      *           Required. The logical view's select query.
      *     @type string $etag
@@ -66,7 +66,7 @@ class LogicalView extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The unique name of the logical view.
      * Format:
-     * `projects/{project}/instances/{instance}/logicalViews/{logical_view}
+     * `projects/{project}/instances/{instance}/logicalViews/{logical_view}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -79,7 +79,7 @@ class LogicalView extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The unique name of the logical view.
      * Format:
-     * `projects/{project}/instances/{instance}/logicalViews/{logical_view}
+     * `projects/{project}/instances/{instance}/logicalViews/{logical_view}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var

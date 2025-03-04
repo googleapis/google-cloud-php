@@ -18,7 +18,7 @@ class MaterializedView extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The unique name of the materialized view.
      * Format:
-     * `projects/{project}/instances/{instance}/materializedViews/{materialized_view}
+     * `projects/{project}/instances/{instance}/materializedViews/{materialized_view}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -54,7 +54,7 @@ class MaterializedView extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Identifier. The unique name of the materialized view.
      *           Format:
-     *           `projects/{project}/instances/{instance}/materializedViews/{materialized_view}
+     *           `projects/{project}/instances/{instance}/materializedViews/{materialized_view}`
      *     @type string $query
      *           Required. Immutable. The materialized view's select query.
      *     @type string $etag
@@ -74,7 +74,7 @@ class MaterializedView extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The unique name of the materialized view.
      * Format:
-     * `projects/{project}/instances/{instance}/materializedViews/{materialized_view}
+     * `projects/{project}/instances/{instance}/materializedViews/{materialized_view}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -87,7 +87,7 @@ class MaterializedView extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The unique name of the materialized view.
      * Format:
-     * `projects/{project}/instances/{instance}/materializedViews/{materialized_view}
+     * `projects/{project}/instances/{instance}/materializedViews/{materialized_view}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
