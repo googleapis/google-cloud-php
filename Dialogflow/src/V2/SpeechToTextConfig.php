@@ -98,7 +98,7 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      */
     protected $enable_word_info = false;
     /**
-     * Use timeout based endpointing, interpreting endpointer sensitivy as
+     * Use timeout based endpointing, interpreting endpointer sensitivity as
      * seconds of timeout value.
      *
      * Generated from protobuf field <code>bool use_timeout_based_endpointing = 11;</code>
@@ -165,7 +165,7 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      *           offsets. If false or unspecified, Speech doesn't return any word-level
      *           information.
      *     @type bool $use_timeout_based_endpointing
-     *           Use timeout based endpointing, interpreting endpointer sensitivy as
+     *           Use timeout based endpointing, interpreting endpointer sensitivity as
      *           seconds of timeout value.
      * }
      */
@@ -435,7 +435,7 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Use timeout based endpointing, interpreting endpointer sensitivy as
+     * Use timeout based endpointing, interpreting endpointer sensitivity as
      * seconds of timeout value.
      *
      * Generated from protobuf field <code>bool use_timeout_based_endpointing = 11;</code>
@@ -447,7 +447,7 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Use timeout based endpointing, interpreting endpointer sensitivy as
+     * Use timeout based endpointing, interpreting endpointer sensitivity as
      * seconds of timeout value.
      *
      * Generated from protobuf field <code>bool use_timeout_based_endpointing = 11;</code>

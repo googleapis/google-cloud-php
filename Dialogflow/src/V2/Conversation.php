@@ -79,6 +79,12 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.ConversationStage conversation_stage = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $conversation_stage = 0;
+    /**
+     * Output only. The telephony connection information.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.TelephonyConnectionInfo telephony_connection_info = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $telephony_connection_info = null;
 
     /**
      * Constructor.
@@ -119,6 +125,8 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *           [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE]
      *           stage and directly goes to
      *           [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE].
+     *     @type \Google\Cloud\Dialogflow\V2\Conversation\TelephonyConnectionInfo $telephony_connection_info
+     *           Output only. The telephony connection information.
      * }
      */
     public function __construct($data = NULL) {
@@ -372,6 +380,42 @@ class Conversation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Conversation\ConversationStage::class);
         $this->conversation_stage = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The telephony connection information.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.TelephonyConnectionInfo telephony_connection_info = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dialogflow\V2\Conversation\TelephonyConnectionInfo|null
+     */
+    public function getTelephonyConnectionInfo()
+    {
+        return $this->telephony_connection_info;
+    }
+
+    public function hasTelephonyConnectionInfo()
+    {
+        return isset($this->telephony_connection_info);
+    }
+
+    public function clearTelephonyConnectionInfo()
+    {
+        unset($this->telephony_connection_info);
+    }
+
+    /**
+     * Output only. The telephony connection information.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.TelephonyConnectionInfo telephony_connection_info = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dialogflow\V2\Conversation\TelephonyConnectionInfo $var
+     * @return $this
+     */
+    public function setTelephonyConnectionInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Conversation\TelephonyConnectionInfo::class);
+        $this->telephony_connection_info = $var;
 
         return $this;
     }

@@ -372,16 +372,22 @@ class ParticipantsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $replyText = 'replyText-549180062';
+        $speechModel = 'speechModel-893274740';
         $expectedResponse = new StreamingAnalyzeContentResponse();
         $expectedResponse->setReplyText($replyText);
+        $expectedResponse->setSpeechModel($speechModel);
         $transport->addResponse($expectedResponse);
         $replyText2 = 'replyText2518940821';
+        $speechModel2 = 'speechModel2556437055';
         $expectedResponse2 = new StreamingAnalyzeContentResponse();
         $expectedResponse2->setReplyText($replyText2);
+        $expectedResponse2->setSpeechModel($speechModel2);
         $transport->addResponse($expectedResponse2);
         $replyText3 = 'replyText3518940822';
+        $speechModel3 = 'speechModel3556437056';
         $expectedResponse3 = new StreamingAnalyzeContentResponse();
         $expectedResponse3->setReplyText($replyText3);
+        $expectedResponse3->setSpeechModel($speechModel3);
         $transport->addResponse($expectedResponse3);
         // Mock request
         $formattedParticipant = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');

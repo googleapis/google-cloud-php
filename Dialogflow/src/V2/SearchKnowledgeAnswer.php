@@ -39,7 +39,7 @@ class SearchKnowledgeAnswer extends \Google\Protobuf\Internal\Message
      * Format: `projects/<Project ID>/locations/<location ID>/answer
      * Records/<Answer Record ID>`
      *
-     * Generated from protobuf field <code>string answer_record = 5;</code>
+     * Generated from protobuf field <code>string answer_record = 5 [(.google.api.resource_reference) = {</code>
      */
     protected $answer_record = '';
 
@@ -152,7 +152,7 @@ class SearchKnowledgeAnswer extends \Google\Protobuf\Internal\Message
      * Format: `projects/<Project ID>/locations/<location ID>/answer
      * Records/<Answer Record ID>`
      *
-     * Generated from protobuf field <code>string answer_record = 5;</code>
+     * Generated from protobuf field <code>string answer_record = 5 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getAnswerRecord()
@@ -165,7 +165,7 @@ class SearchKnowledgeAnswer extends \Google\Protobuf\Internal\Message
      * Format: `projects/<Project ID>/locations/<location ID>/answer
      * Records/<Answer Record ID>`
      *
-     * Generated from protobuf field <code>string answer_record = 5;</code>
+     * Generated from protobuf field <code>string answer_record = 5 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
