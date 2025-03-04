@@ -237,6 +237,4 @@ class SeasonalOverride extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SeasonalOverride::class, \Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy_SeasonalOverride::class);
 
