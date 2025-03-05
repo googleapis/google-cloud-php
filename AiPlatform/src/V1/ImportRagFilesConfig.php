@@ -22,6 +22,13 @@ class ImportRagFilesConfig extends \Google\Protobuf\Internal\Message
      */
     protected $rag_file_transformation_config = null;
     /**
+     * Optional. Specifies the parsing config for RagFiles.
+     * RAG will use the default parser if this field is not set.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RagFileParsingConfig rag_file_parsing_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $rag_file_parsing_config = null;
+    /**
      * Optional. The max number of queries per minute that this job is allowed to
      * make to the embedding model specified on the corpus. This value is specific
      * to this job and not shared across other import jobs. Consult the Quotas
@@ -67,6 +74,9 @@ class ImportRagFilesConfig extends \Google\Protobuf\Internal\Message
      *           Deprecated. Prefer to use `import_result_bq_sink`.
      *     @type \Google\Cloud\AIPlatform\V1\RagFileTransformationConfig $rag_file_transformation_config
      *           Specifies the transformation config for RagFiles.
+     *     @type \Google\Cloud\AIPlatform\V1\RagFileParsingConfig $rag_file_parsing_config
+     *           Optional. Specifies the parsing config for RagFiles.
+     *           RAG will use the default parser if this field is not set.
      *     @type int $max_embedding_requests_per_min
      *           Optional. The max number of queries per minute that this job is allowed to
      *           make to the embedding model specified on the corpus. This value is specific
@@ -361,6 +371,44 @@ class ImportRagFilesConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\RagFileTransformationConfig::class);
         $this->rag_file_transformation_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the parsing config for RagFiles.
+     * RAG will use the default parser if this field is not set.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RagFileParsingConfig rag_file_parsing_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\RagFileParsingConfig|null
+     */
+    public function getRagFileParsingConfig()
+    {
+        return $this->rag_file_parsing_config;
+    }
+
+    public function hasRagFileParsingConfig()
+    {
+        return isset($this->rag_file_parsing_config);
+    }
+
+    public function clearRagFileParsingConfig()
+    {
+        unset($this->rag_file_parsing_config);
+    }
+
+    /**
+     * Optional. Specifies the parsing config for RagFiles.
+     * RAG will use the default parser if this field is not set.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RagFileParsingConfig rag_file_parsing_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\RagFileParsingConfig $var
+     * @return $this
+     */
+    public function setRagFileParsingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\RagFileParsingConfig::class);
+        $this->rag_file_parsing_config = $var;
 
         return $this;
     }
