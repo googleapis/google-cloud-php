@@ -65,6 +65,4 @@ class FixedIOPS extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FixedIOPS::class, \Google\Cloud\Filestore\V1\Instance_FixedIOPS::class);
 

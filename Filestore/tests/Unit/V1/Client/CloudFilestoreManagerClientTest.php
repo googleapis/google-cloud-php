@@ -44,6 +44,7 @@ use Google\Cloud\Filestore\V1\ListInstancesRequest;
 use Google\Cloud\Filestore\V1\ListInstancesResponse;
 use Google\Cloud\Filestore\V1\ListSnapshotsRequest;
 use Google\Cloud\Filestore\V1\ListSnapshotsResponse;
+use Google\Cloud\Filestore\V1\PromoteReplicaRequest;
 use Google\Cloud\Filestore\V1\RestoreInstanceRequest;
 use Google\Cloud\Filestore\V1\RevertInstanceRequest;
 use Google\Cloud\Filestore\V1\Snapshot;
@@ -270,6 +271,9 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $satisfiesPzi = false;
         $kmsKeyName = 'kmsKeyName2094986649';
+        $customPerformanceSupported = false;
+        $deletionProtectionEnabled = true;
+        $deletionProtectionReason = 'deletionProtectionReason1966535737';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -277,6 +281,9 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setCustomPerformanceSupported($customPerformanceSupported);
+        $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
+        $expectedResponse->setDeletionProtectionReason($deletionProtectionReason);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -995,6 +1002,9 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $satisfiesPzi = false;
         $kmsKeyName = 'kmsKeyName2094986649';
+        $customPerformanceSupported = false;
+        $deletionProtectionEnabled = true;
+        $deletionProtectionReason = 'deletionProtectionReason1966535737';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
@@ -1002,6 +1012,9 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setCustomPerformanceSupported($customPerformanceSupported);
+        $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
+        $expectedResponse->setDeletionProtectionReason($deletionProtectionReason);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
@@ -1338,6 +1351,146 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function promoteReplicaTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/promoteReplicaTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name2 = 'name2-1052831874';
+        $description = 'description-1724546052';
+        $statusMessage = 'statusMessage-239442758';
+        $etag = 'etag3123477';
+        $satisfiesPzi = false;
+        $kmsKeyName = 'kmsKeyName2094986649';
+        $customPerformanceSupported = false;
+        $deletionProtectionEnabled = true;
+        $deletionProtectionReason = 'deletionProtectionReason1966535737';
+        $expectedResponse = new Instance();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setStatusMessage($statusMessage);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setCustomPerformanceSupported($customPerformanceSupported);
+        $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
+        $expectedResponse->setDeletionProtectionReason($deletionProtectionReason);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/promoteReplicaTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $request = (new PromoteReplicaRequest())->setName($formattedName);
+        $response = $gapicClient->promoteReplica($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.filestore.v1.CloudFilestoreManager/PromoteReplica', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/promoteReplicaTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function promoteReplicaExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/promoteReplicaTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $request = (new PromoteReplicaRequest())->setName($formattedName);
+        $response = $gapicClient->promoteReplica($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/promoteReplicaTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function restoreInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1364,6 +1517,9 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $satisfiesPzi = false;
         $kmsKeyName = 'kmsKeyName2094986649';
+        $customPerformanceSupported = false;
+        $deletionProtectionEnabled = true;
+        $deletionProtectionReason = 'deletionProtectionReason1966535737';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
@@ -1371,6 +1527,9 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setCustomPerformanceSupported($customPerformanceSupported);
+        $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
+        $expectedResponse->setDeletionProtectionReason($deletionProtectionReason);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1502,6 +1661,9 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $satisfiesPzi = false;
         $kmsKeyName = 'kmsKeyName2094986649';
+        $customPerformanceSupported = false;
+        $deletionProtectionEnabled = true;
+        $deletionProtectionReason = 'deletionProtectionReason1966535737';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
@@ -1509,6 +1671,9 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setCustomPerformanceSupported($customPerformanceSupported);
+        $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
+        $expectedResponse->setDeletionProtectionReason($deletionProtectionReason);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1784,6 +1949,9 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $satisfiesPzi = false;
         $kmsKeyName = 'kmsKeyName2094986649';
+        $customPerformanceSupported = false;
+        $deletionProtectionEnabled = true;
+        $deletionProtectionReason = 'deletionProtectionReason1966535737';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -1791,6 +1959,9 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setCustomPerformanceSupported($customPerformanceSupported);
+        $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
+        $expectedResponse->setDeletionProtectionReason($deletionProtectionReason);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

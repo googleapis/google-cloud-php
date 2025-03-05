@@ -7,28 +7,36 @@ namespace Google\Cloud\Filestore\V1\Instance;
 use UnexpectedValueException;
 
 /**
- * SuspensionReason contains the possible reasons for a suspension.
+ * File access protocol.
  *
- * Protobuf type <code>google.cloud.filestore.v1.Instance.SuspensionReason</code>
+ * Protobuf type <code>google.cloud.filestore.v1.Instance.FileProtocol</code>
  */
-class SuspensionReason
+class FileProtocol
 {
     /**
-     * Not set.
+     * FILE_PROTOCOL_UNSPECIFIED serves a "not set" default value when
+     * a FileProtocol is a separate field in a message.
      *
-     * Generated from protobuf enum <code>SUSPENSION_REASON_UNSPECIFIED = 0;</code>
+     * Generated from protobuf enum <code>FILE_PROTOCOL_UNSPECIFIED = 0;</code>
      */
-    const SUSPENSION_REASON_UNSPECIFIED = 0;
+    const FILE_PROTOCOL_UNSPECIFIED = 0;
     /**
-     * The KMS key used by the instance is either revoked or denied access to.
+     * NFS 3.0.
      *
-     * Generated from protobuf enum <code>KMS_KEY_ISSUE = 1;</code>
+     * Generated from protobuf enum <code>NFS_V3 = 1;</code>
      */
-    const KMS_KEY_ISSUE = 1;
+    const NFS_V3 = 1;
+    /**
+     * NFS 4.1.
+     *
+     * Generated from protobuf enum <code>NFS_V4_1 = 2;</code>
+     */
+    const NFS_V4_1 = 2;
 
     private static $valueToName = [
-        self::SUSPENSION_REASON_UNSPECIFIED => 'SUSPENSION_REASON_UNSPECIFIED',
-        self::KMS_KEY_ISSUE => 'KMS_KEY_ISSUE',
+        self::FILE_PROTOCOL_UNSPECIFIED => 'FILE_PROTOCOL_UNSPECIFIED',
+        self::NFS_V3 => 'NFS_V3',
+        self::NFS_V4_1 => 'NFS_V4_1',
     ];
 
     public static function name($value)
@@ -52,6 +60,4 @@ class SuspensionReason
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SuspensionReason::class, \Google\Cloud\Filestore\V1\Instance_SuspensionReason::class);
 

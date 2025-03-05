@@ -59,6 +59,4 @@ class StateReason
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(StateReason::class, \Google\Cloud\Filestore\V1\ReplicaConfig_StateReason::class);
 

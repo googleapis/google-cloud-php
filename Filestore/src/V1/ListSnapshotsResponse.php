@@ -28,6 +28,12 @@ class ListSnapshotsResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     protected $next_page_token = '';
+    /**
+     * Unordered list. Locations that could not be reached.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
+     */
+    private $unreachable;
 
     /**
      * Constructor.
@@ -40,6 +46,8 @@ class ListSnapshotsResponse extends \Google\Protobuf\Internal\Message
      *     @type string $next_page_token
      *           The token you can use to retrieve the next page of results. Not returned
      *           if there are no more results in the list.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *           Unordered list. Locations that could not be reached.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,6 +105,32 @@ class ListSnapshotsResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->next_page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Unordered list. Locations that could not be reached.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getUnreachable()
+    {
+        return $this->unreachable;
+    }
+
+    /**
+     * Unordered list. Locations that could not be reached.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setUnreachable($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->unreachable = $arr;
 
         return $this;
     }

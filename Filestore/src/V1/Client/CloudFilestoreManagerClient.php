@@ -48,6 +48,7 @@ use Google\Cloud\Filestore\V1\Instance;
 use Google\Cloud\Filestore\V1\ListBackupsRequest;
 use Google\Cloud\Filestore\V1\ListInstancesRequest;
 use Google\Cloud\Filestore\V1\ListSnapshotsRequest;
+use Google\Cloud\Filestore\V1\PromoteReplicaRequest;
 use Google\Cloud\Filestore\V1\RestoreInstanceRequest;
 use Google\Cloud\Filestore\V1\RevertInstanceRequest;
 use Google\Cloud\Filestore\V1\Snapshot;
@@ -100,6 +101,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listSnapshotsAsync(ListSnapshotsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> promoteReplicaAsync(PromoteReplicaRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> restoreInstanceAsync(RestoreInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> revertInstanceAsync(RevertInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
@@ -704,6 +706,32 @@ final class CloudFilestoreManagerClient
     public function listSnapshots(ListSnapshotsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListSnapshots', $request, $callOptions);
+    }
+
+    /**
+     * Promote the standby instance (replica).
+     *
+     * The async variant is {@see CloudFilestoreManagerClient::promoteReplicaAsync()} .
+     *
+     * @example samples/V1/CloudFilestoreManagerClient/promote_replica.php
+     *
+     * @param PromoteReplicaRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function promoteReplica(PromoteReplicaRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('PromoteReplica', $request, $callOptions)->wait();
     }
 
     /**
