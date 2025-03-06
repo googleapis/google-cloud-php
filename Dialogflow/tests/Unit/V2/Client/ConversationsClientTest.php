@@ -30,13 +30,19 @@ use Google\Cloud\Dialogflow\V2\Client\ConversationsClient;
 use Google\Cloud\Dialogflow\V2\CompleteConversationRequest;
 use Google\Cloud\Dialogflow\V2\Conversation;
 use Google\Cloud\Dialogflow\V2\ConversationProfile;
+use Google\Cloud\Dialogflow\V2\Conversation\ContextReference;
+use Google\Cloud\Dialogflow\V2\Conversation\ContextReference\UpdateMode;
 use Google\Cloud\Dialogflow\V2\CreateConversationRequest;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSuggestionRequest;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSuggestionResponse;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryRequest;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryRequest\MinimalConversation;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryResponse;
+use Google\Cloud\Dialogflow\V2\GenerateSuggestionsRequest;
+use Google\Cloud\Dialogflow\V2\GenerateSuggestionsResponse;
 use Google\Cloud\Dialogflow\V2\GetConversationRequest;
+use Google\Cloud\Dialogflow\V2\IngestContextReferencesRequest;
+use Google\Cloud\Dialogflow\V2\IngestContextReferencesResponse;
 use Google\Cloud\Dialogflow\V2\ListConversationsRequest;
 use Google\Cloud\Dialogflow\V2\ListConversationsResponse;
 use Google\Cloud\Dialogflow\V2\ListMessagesRequest;
@@ -377,6 +383,71 @@ class ConversationsClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function generateSuggestionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $latestMessage2 = 'latestMessage2-440913086';
+        $expectedResponse = new GenerateSuggestionsResponse();
+        $expectedResponse->setLatestMessage($latestMessage2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedConversation = $gapicClient->conversationName('[PROJECT]', '[CONVERSATION]');
+        $request = (new GenerateSuggestionsRequest())->setConversation($formattedConversation);
+        $response = $gapicClient->generateSuggestions($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dialogflow.v2.Conversations/GenerateSuggestions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getConversation();
+        $this->assertProtobufEquals($formattedConversation, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function generateSuggestionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedConversation = $gapicClient->conversationName('[PROJECT]', '[CONVERSATION]');
+        $request = (new GenerateSuggestionsRequest())->setConversation($formattedConversation);
+        try {
+            $gapicClient->generateSuggestions($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getConversationTest()
     {
         $transport = $this->createTransport();
@@ -432,6 +503,91 @@ class ConversationsClientTest extends GeneratedTest
         $request = (new GetConversationRequest())->setName($formattedName);
         try {
             $gapicClient->getConversation($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function ingestContextReferencesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new IngestContextReferencesResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedConversation = $gapicClient->conversationName('[PROJECT]', '[CONVERSATION]');
+        $contextReferencesValue = new ContextReference();
+        $valueContextContents = [];
+        $contextReferencesValue->setContextContents($valueContextContents);
+        $valueUpdateMode = UpdateMode::UPDATE_MODE_UNSPECIFIED;
+        $contextReferencesValue->setUpdateMode($valueUpdateMode);
+        $contextReferences = [
+            'contextReferencesKey' => $contextReferencesValue,
+        ];
+        $request = (new IngestContextReferencesRequest())
+            ->setConversation($formattedConversation)
+            ->setContextReferences($contextReferences);
+        $response = $gapicClient->ingestContextReferences($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dialogflow.v2.Conversations/IngestContextReferences', $actualFuncCall);
+        $actualValue = $actualRequestObject->getConversation();
+        $this->assertProtobufEquals($formattedConversation, $actualValue);
+        $actualValue = $actualRequestObject->getContextReferences();
+        $this->assertProtobufEquals($contextReferences, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function ingestContextReferencesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedConversation = $gapicClient->conversationName('[PROJECT]', '[CONVERSATION]');
+        $contextReferencesValue = new ContextReference();
+        $valueContextContents = [];
+        $contextReferencesValue->setContextContents($valueContextContents);
+        $valueUpdateMode = UpdateMode::UPDATE_MODE_UNSPECIFIED;
+        $contextReferencesValue->setUpdateMode($valueUpdateMode);
+        $contextReferences = [
+            'contextReferencesKey' => $contextReferencesValue,
+        ];
+        $request = (new IngestContextReferencesRequest())
+            ->setConversation($formattedConversation)
+            ->setContextReferences($contextReferences);
+        try {
+            $gapicClient->ingestContextReferences($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

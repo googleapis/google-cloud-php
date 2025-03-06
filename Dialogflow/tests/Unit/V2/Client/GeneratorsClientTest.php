@@ -83,9 +83,11 @@ class GeneratorsClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $description = 'description-1724546052';
+        $publishedModel = 'publishedModel1881429400';
         $expectedResponse = new Generator();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setPublishedModel($publishedModel);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
@@ -216,9 +218,11 @@ class GeneratorsClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $description = 'description-1724546052';
+        $publishedModel = 'publishedModel1881429400';
         $expectedResponse = new Generator();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setPublishedModel($publishedModel);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->generatorName('[PROJECT]', '[LOCATION]', '[GENERATOR]');
@@ -354,9 +358,11 @@ class GeneratorsClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $description = 'description-1724546052';
+        $publishedModel = 'publishedModel1881429400';
         $expectedResponse = new Generator();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setPublishedModel($publishedModel);
         $transport->addResponse($expectedResponse);
         // Mock request
         $generator = new Generator();
@@ -549,9 +555,11 @@ class GeneratorsClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $description = 'description-1724546052';
+        $publishedModel = 'publishedModel1881429400';
         $expectedResponse = new Generator();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setPublishedModel($publishedModel);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');

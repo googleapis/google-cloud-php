@@ -33,11 +33,25 @@ class TriggerEvent
      * Generated from protobuf enum <code>MANUAL_CALL = 2;</code>
      */
     const MANUAL_CALL = 2;
+    /**
+     * Triggers after each customer message only.
+     *
+     * Generated from protobuf enum <code>CUSTOMER_MESSAGE = 3;</code>
+     */
+    const CUSTOMER_MESSAGE = 3;
+    /**
+     * Triggers after each agent message only.
+     *
+     * Generated from protobuf enum <code>AGENT_MESSAGE = 4;</code>
+     */
+    const AGENT_MESSAGE = 4;
 
     private static $valueToName = [
         self::TRIGGER_EVENT_UNSPECIFIED => 'TRIGGER_EVENT_UNSPECIFIED',
         self::END_OF_UTTERANCE => 'END_OF_UTTERANCE',
         self::MANUAL_CALL => 'MANUAL_CALL',
+        self::CUSTOMER_MESSAGE => 'CUSTOMER_MESSAGE',
+        self::AGENT_MESSAGE => 'AGENT_MESSAGE',
     ];
 
     public static function name($value)

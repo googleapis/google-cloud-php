@@ -85,6 +85,12 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.TelephonyConnectionInfo telephony_connection_info = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $telephony_connection_info = null;
+    /**
+     * Output only. The context reference updates provided by external systems.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.dialogflow.v2.Conversation.ContextReference> ingested_context_references = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $ingested_context_references;
 
     /**
      * Constructor.
@@ -127,6 +133,8 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *           [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE].
      *     @type \Google\Cloud\Dialogflow\V2\Conversation\TelephonyConnectionInfo $telephony_connection_info
      *           Output only. The telephony connection information.
+     *     @type array|\Google\Protobuf\Internal\MapField $ingested_context_references
+     *           Output only. The context reference updates provided by external systems.
      * }
      */
     public function __construct($data = NULL) {
@@ -416,6 +424,32 @@ class Conversation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Conversation\TelephonyConnectionInfo::class);
         $this->telephony_connection_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The context reference updates provided by external systems.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.dialogflow.v2.Conversation.ContextReference> ingested_context_references = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getIngestedContextReferences()
+    {
+        return $this->ingested_context_references;
+    }
+
+    /**
+     * Output only. The context reference updates provided by external systems.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.dialogflow.v2.Conversation.ContextReference> ingested_context_references = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setIngestedContextReferences($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\Conversation\ContextReference::class);
+        $this->ingested_context_references = $arr;
 
         return $this;
     }

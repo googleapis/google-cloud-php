@@ -24,6 +24,15 @@ class GenerateStatelessSuggestionRequest extends \Google\Protobuf\Internal\Messa
      */
     protected $parent = '';
     /**
+     * Optional. A section of ingested context information. The key is the name of
+     * the context reference and the value contains the contents of the context
+     * reference. The key is used to incorporate ingested context references to
+     * enhance the generator.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.dialogflow.v2.Conversation.ContextReference> context_references = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $context_references;
+    /**
      * Optional. Context of the conversation, including transcripts.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ConversationContext conversation_context = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -53,6 +62,11 @@ class GenerateStatelessSuggestionRequest extends \Google\Protobuf\Internal\Messa
      *     @type string $generator_name
      *           The resource name of the existing created generator. Format:
      *           `projects/<Project ID>/locations/<Location ID>/generators/<Generator ID>`
+     *     @type array|\Google\Protobuf\Internal\MapField $context_references
+     *           Optional. A section of ingested context information. The key is the name of
+     *           the context reference and the value contains the contents of the context
+     *           reference. The key is used to incorporate ingested context references to
+     *           enhance the generator.
      *     @type \Google\Cloud\Dialogflow\V2\ConversationContext $conversation_context
      *           Optional. Context of the conversation, including transcripts.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $trigger_events
@@ -155,6 +169,38 @@ class GenerateStatelessSuggestionRequest extends \Google\Protobuf\Internal\Messa
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. A section of ingested context information. The key is the name of
+     * the context reference and the value contains the contents of the context
+     * reference. The key is used to incorporate ingested context references to
+     * enhance the generator.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.dialogflow.v2.Conversation.ContextReference> context_references = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getContextReferences()
+    {
+        return $this->context_references;
+    }
+
+    /**
+     * Optional. A section of ingested context information. The key is the name of
+     * the context reference and the value contains the contents of the context
+     * reference. The key is used to incorporate ingested context references to
+     * enhance the generator.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.dialogflow.v2.Conversation.ContextReference> context_references = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setContextReferences($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\Conversation\ContextReference::class);
+        $this->context_references = $arr;
 
         return $this;
     }

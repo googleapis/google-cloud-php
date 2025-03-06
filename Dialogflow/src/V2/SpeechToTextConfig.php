@@ -57,6 +57,8 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
     protected $model = '';
     /**
      * List of names of Cloud Speech phrase sets that are used for transcription.
+     * For phrase set limitations, please refer to [Cloud Speech API quotas and
+     * limits](https://cloud.google.com/speech-to-text/quotas#content).
      *
      * Generated from protobuf field <code>repeated string phrase_sets = 4 [(.google.api.resource_reference) = {</code>
      */
@@ -144,6 +146,8 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      *           for model selection.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $phrase_sets
      *           List of names of Cloud Speech phrase sets that are used for transcription.
+     *           For phrase set limitations, please refer to [Cloud Speech API quotas and
+     *           limits](https://cloud.google.com/speech-to-text/quotas#content).
      *     @type int $audio_encoding
      *           Audio encoding of the audio content to process.
      *     @type int $sample_rate_hertz
@@ -282,6 +286,8 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * List of names of Cloud Speech phrase sets that are used for transcription.
+     * For phrase set limitations, please refer to [Cloud Speech API quotas and
+     * limits](https://cloud.google.com/speech-to-text/quotas#content).
      *
      * Generated from protobuf field <code>repeated string phrase_sets = 4 [(.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -293,6 +299,8 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * List of names of Cloud Speech phrase sets that are used for transcription.
+     * For phrase set limitations, please refer to [Cloud Speech API quotas and
+     * limits](https://cloud.google.com/speech-to-text/quotas#content).
      *
      * Generated from protobuf field <code>repeated string phrase_sets = 4 [(.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
