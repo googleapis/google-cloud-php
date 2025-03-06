@@ -48,6 +48,14 @@ class AuthorizationInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.rpc.context.AttributeContext.Resource resource_attributes = 5;</code>
      */
     protected $resource_attributes = null;
+    /**
+     * The type of the permission that was checked. For data access audit logs
+     * this corresponds with the permission type that must be enabled in the
+     * project/folder/organization IAM policy in order for the log to be written.
+     *
+     * Generated from protobuf field <code>.google.cloud.audit.AuthorizationInfo.PermissionType permission_type = 7;</code>
+     */
+    protected $permission_type = 0;
 
     /**
      * Constructor.
@@ -72,6 +80,10 @@ class AuthorizationInfo extends \Google\Protobuf\Internal\Message
      *           To get the whole view of the attributes used in IAM
      *           condition evaluation, the user must also look into
      *           `AuditLog.request_metadata.request_attributes`.
+     *     @type int $permission_type
+     *           The type of the permission that was checked. For data access audit logs
+     *           this corresponds with the permission type that must be enabled in the
+     *           project/folder/organization IAM policy in order for the log to be written.
      * }
      */
     public function __construct($data = NULL) {
@@ -207,6 +219,36 @@ class AuthorizationInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Rpc\Context\AttributeContext\Resource::class);
         $this->resource_attributes = $var;
+
+        return $this;
+    }
+
+    /**
+     * The type of the permission that was checked. For data access audit logs
+     * this corresponds with the permission type that must be enabled in the
+     * project/folder/organization IAM policy in order for the log to be written.
+     *
+     * Generated from protobuf field <code>.google.cloud.audit.AuthorizationInfo.PermissionType permission_type = 7;</code>
+     * @return int
+     */
+    public function getPermissionType()
+    {
+        return $this->permission_type;
+    }
+
+    /**
+     * The type of the permission that was checked. For data access audit logs
+     * this corresponds with the permission type that must be enabled in the
+     * project/folder/organization IAM policy in order for the log to be written.
+     *
+     * Generated from protobuf field <code>.google.cloud.audit.AuthorizationInfo.PermissionType permission_type = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPermissionType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Audit\AuthorizationInfo\PermissionType::class);
+        $this->permission_type = $var;
 
         return $this;
     }
