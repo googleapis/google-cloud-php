@@ -48,6 +48,7 @@ use Google\Apps\Chat\V1\GetAttachmentRequest;
 use Google\Apps\Chat\V1\GetMembershipRequest;
 use Google\Apps\Chat\V1\GetMessageRequest;
 use Google\Apps\Chat\V1\GetSpaceEventRequest;
+use Google\Apps\Chat\V1\GetSpaceNotificationSettingRequest;
 use Google\Apps\Chat\V1\GetSpaceReadStateRequest;
 use Google\Apps\Chat\V1\GetSpaceRequest;
 use Google\Apps\Chat\V1\GetThreadReadStateRequest;
@@ -63,10 +64,12 @@ use Google\Apps\Chat\V1\SearchSpacesRequest;
 use Google\Apps\Chat\V1\SetUpSpaceRequest;
 use Google\Apps\Chat\V1\Space;
 use Google\Apps\Chat\V1\SpaceEvent;
+use Google\Apps\Chat\V1\SpaceNotificationSetting;
 use Google\Apps\Chat\V1\SpaceReadState;
 use Google\Apps\Chat\V1\ThreadReadState;
 use Google\Apps\Chat\V1\UpdateMembershipRequest;
 use Google\Apps\Chat\V1\UpdateMessageRequest;
+use Google\Apps\Chat\V1\UpdateSpaceNotificationSettingRequest;
 use Google\Apps\Chat\V1\UpdateSpaceReadStateRequest;
 use Google\Apps\Chat\V1\UpdateSpaceRequest;
 use Google\Apps\Chat\V1\UploadAttachmentRequest;
@@ -102,6 +105,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Message> getMessageAsync(GetMessageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Space> getSpaceAsync(GetSpaceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SpaceEvent> getSpaceEventAsync(GetSpaceEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SpaceNotificationSetting> getSpaceNotificationSettingAsync(GetSpaceNotificationSettingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SpaceReadState> getSpaceReadStateAsync(GetSpaceReadStateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ThreadReadState> getThreadReadStateAsync(GetThreadReadStateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listMembershipsAsync(ListMembershipsRequest $request, array $optionalArgs = [])
@@ -114,6 +118,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Membership> updateMembershipAsync(UpdateMembershipRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Message> updateMessageAsync(UpdateMessageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Space> updateSpaceAsync(UpdateSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SpaceNotificationSetting> updateSpaceNotificationSettingAsync(UpdateSpaceNotificationSettingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SpaceReadState> updateSpaceReadStateAsync(UpdateSpaceReadStateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<UploadAttachmentResponse> uploadAttachmentAsync(UploadAttachmentRequest $request, array $optionalArgs = [])
  */
@@ -165,6 +170,7 @@ final class ChatServiceClient
         'https://www.googleapis.com/auth/chat.spaces.readonly',
         'https://www.googleapis.com/auth/chat.users.readstate',
         'https://www.googleapis.com/auth/chat.users.readstate.readonly',
+        'https://www.googleapis.com/auth/chat.users.spacesettings',
     ];
 
     private static function getClientDefaults()
@@ -314,6 +320,23 @@ final class ChatServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * space_notification_setting resource.
+     *
+     * @param string $user
+     * @param string $space
+     *
+     * @return string The formatted space_notification_setting resource.
+     */
+    public static function spaceNotificationSettingName(string $user, string $space): string
+    {
+        return self::getPathTemplate('spaceNotificationSetting')->render([
+            'user' => $user,
+            'space' => $space,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * space_read_state resource.
      *
      * @param string $user
@@ -376,6 +399,7 @@ final class ChatServiceClient
      * - reaction: spaces/{space}/messages/{message}/reactions/{reaction}
      * - space: spaces/{space}
      * - spaceEvent: spaces/{space}/spaceEvents/{space_event}
+     * - spaceNotificationSetting: users/{user}/spaces/{space}/spaceNotificationSetting
      * - spaceReadState: users/{user}/spaces/{space}/spaceReadState
      * - thread: spaces/{space}/threads/{thread}
      * - threadReadState: users/{user}/spaces/{space}/threads/{thread}/threadReadState
@@ -1094,6 +1118,40 @@ final class ChatServiceClient
     }
 
     /**
+     * Gets the space notification setting. For an example, see [Get the
+     * caller's space notification
+     * setting](https://developers.google.com/workspace/chat/get-space-notification-setting).
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     *
+     * The async variant is
+     * {@see ChatServiceClient::getSpaceNotificationSettingAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/get_space_notification_setting.php
+     *
+     * @param GetSpaceNotificationSettingRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SpaceNotificationSetting
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getSpaceNotificationSetting(
+        GetSpaceNotificationSettingRequest $request,
+        array $callOptions = []
+    ): SpaceNotificationSetting {
+        return $this->startApiCall('GetSpaceNotificationSetting', $request, $callOptions)->wait();
+    }
+
+    /**
      * Returns details about a user's read state within a space, used to identify
      * read and unread messages. For an example, see [Get details about a user's
      * space read
@@ -1586,6 +1644,40 @@ final class ChatServiceClient
     public function updateSpace(UpdateSpaceRequest $request, array $callOptions = []): Space
     {
         return $this->startApiCall('UpdateSpace', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the space notification setting. For an example, see [Update
+     * the caller's space notification
+     * setting](https://developers.google.com/workspace/chat/update-space-notification-setting).
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     *
+     * The async variant is
+     * {@see ChatServiceClient::updateSpaceNotificationSettingAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/update_space_notification_setting.php
+     *
+     * @param UpdateSpaceNotificationSettingRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SpaceNotificationSetting
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateSpaceNotificationSetting(
+        UpdateSpaceNotificationSettingRequest $request,
+        array $callOptions = []
+    ): SpaceNotificationSetting {
+        return $this->startApiCall('UpdateSpaceNotificationSetting', $request, $callOptions)->wait();
     }
 
     /**

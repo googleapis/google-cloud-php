@@ -85,6 +85,11 @@
                                 "getSpaceEvent"
                             ]
                         },
+                        "GetSpaceNotificationSetting": {
+                            "methods": [
+                                "getSpaceNotificationSetting"
+                            ]
+                        },
                         "GetSpaceReadState": {
                             "methods": [
                                 "getSpaceReadState"
@@ -143,6 +148,11 @@
                         "UpdateSpace": {
                             "methods": [
                                 "updateSpace"
+                            ]
+                        },
+                        "UpdateSpaceNotificationSetting": {
+                            "methods": [
+                                "updateSpaceNotificationSetting"
                             ]
                         },
                         "UpdateSpaceReadState": {
