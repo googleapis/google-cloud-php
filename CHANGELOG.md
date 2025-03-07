@@ -1,5 +1,118 @@
 # Changelog
 
+## 0.279.0
+
+<details><summary>google/cloud-ai-platform 1.20.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] allowing users to specify the version id of the Model Garden model ([#8127](https://github.com/googleapis/google-cloud-php/issues/8127)) ([9a9c3b1](https://github.com/googleapis/google-cloud-php/commit/9a9c3b1b65eccb227b737288438293565d339964))
+
+</details>
+
+<details><summary>google/analytics-admin 0.27.0</summary>
+
+
+
+### Features
+
+* [AnalyticsAdmin] added support for KeyEvents AdminAPI ChangeHistory ([#8130](https://github.com/googleapis/google-cloud-php/issues/8130)) ([0469752](https://github.com/googleapis/google-cloud-php/commit/046975256ff2131a0dff3d5c505666da22ffc337))
+
+</details>
+
+<details><summary>google/apps-chat 0.10.0</summary>
+
+
+
+### Features
+
+* [AppsChat] Addition of space notification setting Chat API ([#8139](https://github.com/googleapis/google-cloud-php/issues/8139)) ([9409cd0](https://github.com/googleapis/google-cloud-php/commit/9409cd0422f53bf04a388a4f2ac83e31c336e0bf))
+
+</details>
+
+<details><summary>google/cloud-common-protos 0.8.0</summary>
+
+
+
+### Features
+
+* [CloudCommonProtos] Updates audit_log proto with PermissionType ([#8135](https://github.com/googleapis/google-cloud-php/issues/8135)) ([4aaddc0](https://github.com/googleapis/google-cloud-php/commit/4aaddc0056f02dc63a8a7977f50e200a5a82d48d))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 2.1.0</summary>
+
+
+
+### Features
+
+* [Dialogflow] Add new RPC IngestContextReferences, GenerateSuggestions ([#8128](https://github.com/googleapis/google-cloud-php/issues/8128)) ([6312c78](https://github.com/googleapis/google-cloud-php/commit/6312c780976d05f22b3977310e6ff56023554117))
+
+</details>
+
+<details><summary>google/cloud-eventarc-publishing 1.1.4</summary>
+
+
+
+### Documentation
+
+* [EventarcPublishing] Documentation improvements for the Publisher service ([#8134](https://github.com/googleapis/google-cloud-php/issues/8134)) ([1811165](https://github.com/googleapis/google-cloud-php/commit/18111652c6f5e9da48fc55a4a0250956bf7a4795))
+
+</details>
+
+<details><summary>google/cloud-filestore 2.1.0</summary>
+
+
+
+### Features
+
+* [Filestore] Added REGIONAL tier support in the v1 API ([#8132](https://github.com/googleapis/google-cloud-php/issues/8132)) ([5f791ec](https://github.com/googleapis/google-cloud-php/commit/5f791ecbe6f9f3b13c0d2254d03988da1c3692b3))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.11.0</summary>
+
+
+
+### Features
+
+* [PubSub] deprecate `enabled` field for message transforms and add `disabled` field ([#8136](https://github.com/googleapis/google-cloud-php/issues/8136)) ([e015159](https://github.com/googleapis/google-cloud-php/commit/e01515962fb168bfc2b57c7dbbb95e4a23d0152e))
+
+</details>
+
+<details><summary>google/shopping-merchant-accounts 0.5.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* An existing optional field `type` is converted to required field in message .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy
+* An existing optional field `label` is converted to required field in message .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy
+* An existing optional field `countries` is converted to required field in message .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy
+* An existing optional field `return_policy_uri` is converted to required field in message .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy
+
+### Features
+
+* [ShoppingMerchantAccounts] A new message `SeasonalOverride` is added ([#8131](https://github.com/googleapis/google-cloud-php/issues/8131)) ([eb6f007](https://github.com/googleapis/google-cloud-php/commit/eb6f0076f223ae7fa5f03d883d8f5db507f75faa))
+* A new field `seasonal_overrides` is added to message .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy ([eb6f007](https://github.com/googleapis/google-cloud-php/commit/eb6f0076f223ae7fa5f03d883d8f5db507f75faa))
+
+
+### Bug Fixes
+
+* An existing optional field `countries` is converted to required field in message .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy ([eb6f007](https://github.com/googleapis/google-cloud-php/commit/eb6f0076f223ae7fa5f03d883d8f5db507f75faa))
+* An existing optional field `label` is converted to required field in message .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy ([eb6f007](https://github.com/googleapis/google-cloud-php/commit/eb6f0076f223ae7fa5f03d883d8f5db507f75faa))
+* An existing optional field `return_policy_uri` is converted to required field in message .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy ([eb6f007](https://github.com/googleapis/google-cloud-php/commit/eb6f0076f223ae7fa5f03d883d8f5db507f75faa))
+* An existing optional field `type` is converted to required field in message .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy ([eb6f007](https://github.com/googleapis/google-cloud-php/commit/eb6f0076f223ae7fa5f03d883d8f5db507f75faa))
+
+
+### Documentation
+
+* The documentation for method `GetOnlineReturnPolicy` in service `OnlineReturnPolicyService` is improved ([eb6f007](https://github.com/googleapis/google-cloud-php/commit/eb6f0076f223ae7fa5f03d883d8f5db507f75faa))
+
+</details>
+
 ## 0.278.0
 
 <details><summary>google/cloud-ai-platform 1.19.0</summary>
