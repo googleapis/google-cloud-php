@@ -44,7 +44,7 @@ class SuggestKnowledgeAssistRequest extends \Google\Protobuf\Internal\Message
     protected $context_size = 0;
     /**
      * Optional. The previously suggested query for the given conversation. This
-     * helps identify whether the next suggestion we generate is resonably
+     * helps identify whether the next suggestion we generate is reasonably
      * different from the previous one. This is useful to avoid similar
      * suggestions within the conversation.
      *
@@ -74,7 +74,7 @@ class SuggestKnowledgeAssistRequest extends \Google\Protobuf\Internal\Message
      *           default 100 and at most 100.
      *     @type string $previous_suggested_query
      *           Optional. The previously suggested query for the given conversation. This
-     *           helps identify whether the next suggestion we generate is resonably
+     *           helps identify whether the next suggestion we generate is reasonably
      *           different from the previous one. This is useful to avoid similar
      *           suggestions within the conversation.
      * }
@@ -180,7 +180,7 @@ class SuggestKnowledgeAssistRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The previously suggested query for the given conversation. This
-     * helps identify whether the next suggestion we generate is resonably
+     * helps identify whether the next suggestion we generate is reasonably
      * different from the previous one. This is useful to avoid similar
      * suggestions within the conversation.
      *
@@ -194,7 +194,7 @@ class SuggestKnowledgeAssistRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The previously suggested query for the given conversation. This
-     * helps identify whether the next suggestion we generate is resonably
+     * helps identify whether the next suggestion we generate is reasonably
      * different from the previous one. This is useful to avoid similar
      * suggestions within the conversation.
      *

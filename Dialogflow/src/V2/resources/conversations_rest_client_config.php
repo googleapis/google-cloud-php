@@ -93,6 +93,25 @@ return [
                     ],
                 ],
             ],
+            'GenerateSuggestions' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{conversation=projects/*/conversations/*}/suggestions:generate',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{conversation=projects/*/locations/*/conversations/*}/suggestions:generate',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'conversation' => [
+                        'getters' => [
+                            'getConversation',
+                        ],
+                    ],
+                ],
+            ],
             'GetConversation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=projects/*/conversations/*}',
@@ -106,6 +125,18 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'IngestContextReferences' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{conversation=projects/*/locations/*/conversations/*}:ingestContextReferences',
+                'body' => '*',
+                'placeholders' => [
+                    'conversation' => [
+                        'getters' => [
+                            'getConversation',
                         ],
                     ],
                 ],

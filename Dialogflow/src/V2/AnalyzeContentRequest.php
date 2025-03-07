@@ -103,6 +103,24 @@ class AnalyzeContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * @param string                                 $participant Required. The name of the participant this text comes from.
+     *                                                            Format: `projects/<Project ID>/locations/<Location
+     *                                                            ID>/conversations/<Conversation ID>/participants/<Participant ID>`. Please see
+     *                                                            {@see ParticipantsClient::participantName()} for help formatting this field.
+     * @param \Google\Cloud\Dialogflow\V2\AudioInput $audioInput  The natural language speech audio to be processed.
+     *
+     * @return \Google\Cloud\Dialogflow\V2\AnalyzeContentRequest
+     *
+     * @experimental
+     */
+    public static function buildFromParticipantAudioInput(string $participant, \Google\Cloud\Dialogflow\V2\AudioInput $audioInput): self
+    {
+        return (new self())
+            ->setParticipant($participant)
+            ->setAudioInput($audioInput);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -114,6 +132,8 @@ class AnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      *           ID>/conversations/<Conversation ID>/participants/<Participant ID>`.
      *     @type \Google\Cloud\Dialogflow\V2\TextInput $text_input
      *           The natural language text to be processed.
+     *     @type \Google\Cloud\Dialogflow\V2\AudioInput $audio_input
+     *           The natural language speech audio to be processed.
      *     @type \Google\Cloud\Dialogflow\V2\EventInput $event_input
      *           An input event to send to Dialogflow.
      *     @type \Google\Cloud\Dialogflow\V2\SuggestionInput $suggestion_input
@@ -202,6 +222,37 @@ class AnalyzeContentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\TextInput::class);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * The natural language speech audio to be processed.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AudioInput audio_input = 7;</code>
+     * @return \Google\Cloud\Dialogflow\V2\AudioInput|null
+     */
+    public function getAudioInput()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasAudioInput()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * The natural language speech audio to be processed.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AudioInput audio_input = 7;</code>
+     * @param \Google\Cloud\Dialogflow\V2\AudioInput $var
+     * @return $this
+     */
+    public function setAudioInput($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\AudioInput::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }

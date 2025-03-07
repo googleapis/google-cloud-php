@@ -109,12 +109,12 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      */
     protected $enable_extended_streaming = false;
     /**
-     * Enable partial virtual agent responses. If this flag is not enabled,
-     * response stream still contains only one final response even if some
-     * `Fulfillment`s in Dialogflow virtual agent have been configured to return
-     * partial responses.
+     * Optional. Enable partial responses from Dialogflow CX agent. If this flag
+     * is not enabled, response stream still contains only one final response even
+     * if some `Fulfillment`s in Dialogflow CX agent have been configured to
+     * return partial responses.
      *
-     * Generated from protobuf field <code>bool enable_partial_automated_agent_reply = 12;</code>
+     * Generated from protobuf field <code>bool enable_partial_automated_agent_reply = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $enable_partial_automated_agent_reply = false;
     /**
@@ -188,10 +188,10 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      *           You can find more details in
      *           https://cloud.google.com/agent-assist/docs/extended-streaming
      *     @type bool $enable_partial_automated_agent_reply
-     *           Enable partial virtual agent responses. If this flag is not enabled,
-     *           response stream still contains only one final response even if some
-     *           `Fulfillment`s in Dialogflow virtual agent have been configured to return
-     *           partial responses.
+     *           Optional. Enable partial responses from Dialogflow CX agent. If this flag
+     *           is not enabled, response stream still contains only one final response even
+     *           if some `Fulfillment`s in Dialogflow CX agent have been configured to
+     *           return partial responses.
      *     @type bool $enable_debugging_info
      *           If true, `StreamingAnalyzeContentResponse.debugging_info` will get
      *           populated.
@@ -618,12 +618,12 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable partial virtual agent responses. If this flag is not enabled,
-     * response stream still contains only one final response even if some
-     * `Fulfillment`s in Dialogflow virtual agent have been configured to return
-     * partial responses.
+     * Optional. Enable partial responses from Dialogflow CX agent. If this flag
+     * is not enabled, response stream still contains only one final response even
+     * if some `Fulfillment`s in Dialogflow CX agent have been configured to
+     * return partial responses.
      *
-     * Generated from protobuf field <code>bool enable_partial_automated_agent_reply = 12;</code>
+     * Generated from protobuf field <code>bool enable_partial_automated_agent_reply = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getEnablePartialAutomatedAgentReply()
@@ -632,12 +632,12 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable partial virtual agent responses. If this flag is not enabled,
-     * response stream still contains only one final response even if some
-     * `Fulfillment`s in Dialogflow virtual agent have been configured to return
-     * partial responses.
+     * Optional. Enable partial responses from Dialogflow CX agent. If this flag
+     * is not enabled, response stream still contains only one final response even
+     * if some `Fulfillment`s in Dialogflow CX agent have been configured to
+     * return partial responses.
      *
-     * Generated from protobuf field <code>bool enable_partial_automated_agent_reply = 12;</code>
+     * Generated from protobuf field <code>bool enable_partial_automated_agent_reply = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

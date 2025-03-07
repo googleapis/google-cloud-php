@@ -25,13 +25,19 @@ class ListAnswerRecordsRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
-     * Optional. Filters to restrict results to specific answer records.
-     * Marked deprecated as it hasn't been, and isn't currently, supported.
+     * Optional. Filters to restrict results to specific answer records. The
+     * expression has the following syntax:
+     *     <field> <operator> <value> [AND <field> <operator> <value>] ...
+     * The following fields and operators are supported:
+     * * conversation_id with equals(=) operator
+     * Examples:
+     * * `conversation_id=bar` matches answer records in the
+     *   `projects/foo/locations/global/conversations/bar` conversation
+     *   (assuming the parent is `projects/foo/locations/global`).
      * For more information about filtering, see
      * [API Filtering](https://aip.dev/160).
      *
-     * Generated from protobuf field <code>string filter = 2 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
-     * @deprecated
+     * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $filter = '';
     /**
@@ -79,8 +85,15 @@ class ListAnswerRecordsRequest extends \Google\Protobuf\Internal\Message
      *           chronological order. Format: `projects/<Project ID>/locations/<Location
      *           ID>`.
      *     @type string $filter
-     *           Optional. Filters to restrict results to specific answer records.
-     *           Marked deprecated as it hasn't been, and isn't currently, supported.
+     *           Optional. Filters to restrict results to specific answer records. The
+     *           expression has the following syntax:
+     *               <field> <operator> <value> [AND <field> <operator> <value>] ...
+     *           The following fields and operators are supported:
+     *           * conversation_id with equals(=) operator
+     *           Examples:
+     *           * `conversation_id=bar` matches answer records in the
+     *             `projects/foo/locations/global/conversations/bar` conversation
+     *             (assuming the parent is `projects/foo/locations/global`).
      *           For more information about filtering, see
      *           [API Filtering](https://aip.dev/160).
      *     @type int $page_size
@@ -130,35 +143,45 @@ class ListAnswerRecordsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Filters to restrict results to specific answer records.
-     * Marked deprecated as it hasn't been, and isn't currently, supported.
+     * Optional. Filters to restrict results to specific answer records. The
+     * expression has the following syntax:
+     *     <field> <operator> <value> [AND <field> <operator> <value>] ...
+     * The following fields and operators are supported:
+     * * conversation_id with equals(=) operator
+     * Examples:
+     * * `conversation_id=bar` matches answer records in the
+     *   `projects/foo/locations/global/conversations/bar` conversation
+     *   (assuming the parent is `projects/foo/locations/global`).
      * For more information about filtering, see
      * [API Filtering](https://aip.dev/160).
      *
-     * Generated from protobuf field <code>string filter = 2 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
-     * @deprecated
      */
     public function getFilter()
     {
-        @trigger_error('filter is deprecated.', E_USER_DEPRECATED);
         return $this->filter;
     }
 
     /**
-     * Optional. Filters to restrict results to specific answer records.
-     * Marked deprecated as it hasn't been, and isn't currently, supported.
+     * Optional. Filters to restrict results to specific answer records. The
+     * expression has the following syntax:
+     *     <field> <operator> <value> [AND <field> <operator> <value>] ...
+     * The following fields and operators are supported:
+     * * conversation_id with equals(=) operator
+     * Examples:
+     * * `conversation_id=bar` matches answer records in the
+     *   `projects/foo/locations/global/conversations/bar` conversation
+     *   (assuming the parent is `projects/foo/locations/global`).
      * For more information about filtering, see
      * [API Filtering](https://aip.dev/160).
      *
-     * Generated from protobuf field <code>string filter = 2 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
-     * @deprecated
      */
     public function setFilter($var)
     {
-        @trigger_error('filter is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->filter = $var;
 

@@ -56,7 +56,8 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     protected $create_time = null;
     /**
-     * Optional. The time when the message was sent.
+     * Optional. The time when the message was sent. For voice messages, this is
+     * the time when an utterance started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp send_time = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -97,7 +98,8 @@ class Message extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time when the message was created in Contact Center AI.
      *     @type \Google\Protobuf\Timestamp $send_time
-     *           Optional. The time when the message was sent.
+     *           Optional. The time when the message was sent. For voice messages, this is
+     *           the time when an utterance started.
      *     @type \Google\Cloud\Dialogflow\V2\MessageAnnotation $message_annotation
      *           Output only. The annotation for the message.
      *     @type \Google\Cloud\Dialogflow\V2\SentimentAnalysisResult $sentiment_analysis
@@ -284,7 +286,8 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The time when the message was sent.
+     * Optional. The time when the message was sent. For voice messages, this is
+     * the time when an utterance started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp send_time = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -305,7 +308,8 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The time when the message was sent.
+     * Optional. The time when the message was sent. For voice messages, this is
+     * the time when an utterance started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp send_time = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Timestamp $var

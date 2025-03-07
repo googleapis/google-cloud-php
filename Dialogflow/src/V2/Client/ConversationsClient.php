@@ -40,7 +40,11 @@ use Google\Cloud\Dialogflow\V2\GenerateStatelessSuggestionRequest;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSuggestionResponse;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryRequest;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryResponse;
+use Google\Cloud\Dialogflow\V2\GenerateSuggestionsRequest;
+use Google\Cloud\Dialogflow\V2\GenerateSuggestionsResponse;
 use Google\Cloud\Dialogflow\V2\GetConversationRequest;
+use Google\Cloud\Dialogflow\V2\IngestContextReferencesRequest;
+use Google\Cloud\Dialogflow\V2\IngestContextReferencesResponse;
 use Google\Cloud\Dialogflow\V2\ListConversationsRequest;
 use Google\Cloud\Dialogflow\V2\ListMessagesRequest;
 use Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest;
@@ -69,7 +73,9 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Conversation> createConversationAsync(CreateConversationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GenerateStatelessSuggestionResponse> generateStatelessSuggestionAsync(GenerateStatelessSuggestionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GenerateStatelessSummaryResponse> generateStatelessSummaryAsync(GenerateStatelessSummaryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateSuggestionsResponse> generateSuggestionsAsync(GenerateSuggestionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Conversation> getConversationAsync(GetConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IngestContextReferencesResponse> ingestContextReferencesAsync(IngestContextReferencesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listConversationsAsync(ListConversationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listMessagesAsync(ListMessagesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SearchKnowledgeResponse> searchKnowledgeAsync(SearchKnowledgeRequest $request, array $optionalArgs = [])
@@ -955,6 +961,36 @@ final class ConversationsClient
     }
 
     /**
+     * Generates all the suggestions using generators configured in the
+     * conversation profile. A generator is used only if its trigger event is
+     * matched.
+     *
+     * The async variant is {@see ConversationsClient::generateSuggestionsAsync()} .
+     *
+     * @example samples/V2/ConversationsClient/generate_suggestions.php
+     *
+     * @param GenerateSuggestionsRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GenerateSuggestionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function generateSuggestions(
+        GenerateSuggestionsRequest $request,
+        array $callOptions = []
+    ): GenerateSuggestionsResponse {
+        return $this->startApiCall('GenerateSuggestions', $request, $callOptions)->wait();
+    }
+
+    /**
      * Retrieves the specific conversation.
      *
      * The async variant is {@see ConversationsClient::getConversationAsync()} .
@@ -978,6 +1014,36 @@ final class ConversationsClient
     public function getConversation(GetConversationRequest $request, array $callOptions = []): Conversation
     {
         return $this->startApiCall('GetConversation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Data ingestion API.
+     * Ingests context references for an existing conversation.
+     *
+     * The async variant is {@see ConversationsClient::ingestContextReferencesAsync()}
+     * .
+     *
+     * @example samples/V2/ConversationsClient/ingest_context_references.php
+     *
+     * @param IngestContextReferencesRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return IngestContextReferencesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function ingestContextReferences(
+        IngestContextReferencesRequest $request,
+        array $callOptions = []
+    ): IngestContextReferencesResponse {
+        return $this->startApiCall('IngestContextReferences', $request, $callOptions)->wait();
     }
 
     /**

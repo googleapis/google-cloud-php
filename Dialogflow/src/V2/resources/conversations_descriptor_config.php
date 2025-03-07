@@ -72,6 +72,18 @@ return [
                     ],
                 ],
             ],
+            'GenerateSuggestions' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dialogflow\V2\GenerateSuggestionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'conversation',
+                        'fieldAccessors' => [
+                            'getConversation',
+                        ],
+                    ],
+                ],
+            ],
             'GetConversation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dialogflow\V2\Conversation',
@@ -80,6 +92,18 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'IngestContextReferences' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dialogflow\V2\IngestContextReferencesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'conversation',
+                        'fieldAccessors' => [
+                            'getConversation',
                         ],
                     ],
                 ],

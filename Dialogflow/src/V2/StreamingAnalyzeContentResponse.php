@@ -107,6 +107,12 @@ class StreamingAnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.CloudConversationDebuggingInfo debugging_info = 11;</code>
      */
     protected $debugging_info = null;
+    /**
+     * The name of the actual Cloud speech model used for speech recognition.
+     *
+     * Generated from protobuf field <code>string speech_model = 13;</code>
+     */
+    protected $speech_model = '';
 
     /**
      * Constructor.
@@ -153,6 +159,8 @@ class StreamingAnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\V2\CloudConversationDebuggingInfo $debugging_info
      *           Debugging info that would get populated when
      *           `StreamingAnalyzeContentRequest.enable_debugging_info` is set to true.
+     *     @type string $speech_model
+     *           The name of the actual Cloud speech model used for speech recognition.
      * }
      */
     public function __construct($data = NULL) {
@@ -492,6 +500,32 @@ class StreamingAnalyzeContentResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\CloudConversationDebuggingInfo::class);
         $this->debugging_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * The name of the actual Cloud speech model used for speech recognition.
+     *
+     * Generated from protobuf field <code>string speech_model = 13;</code>
+     * @return string
+     */
+    public function getSpeechModel()
+    {
+        return $this->speech_model;
+    }
+
+    /**
+     * The name of the actual Cloud speech model used for speech recognition.
+     *
+     * Generated from protobuf field <code>string speech_model = 13;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSpeechModel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->speech_model = $var;
 
         return $this;
     }

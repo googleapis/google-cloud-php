@@ -54,6 +54,7 @@ class Generator extends \Google\Protobuf\Internal\Message
      */
     protected $update_time = null;
     protected $context;
+    protected $foundation_model;
 
     /**
      * Constructor.
@@ -66,6 +67,8 @@ class Generator extends \Google\Protobuf\Internal\Message
      *           `projects/<Project ID>/locations/<Location ID>/generators/<Generator ID>`
      *     @type string $description
      *           Optional. Human readable description of the generator.
+     *     @type \Google\Cloud\Dialogflow\V2\FreeFormContext $free_form_context
+     *           Input of free from generator to LLM.
      *     @type \Google\Cloud\Dialogflow\V2\SummarizationContext $summarization_context
      *           Input of prebuilt Summarization feature.
      *     @type \Google\Cloud\Dialogflow\V2\InferenceParameter $inference_parameter
@@ -73,6 +76,12 @@ class Generator extends \Google\Protobuf\Internal\Message
      *     @type int $trigger_event
      *           Optional. The trigger event of the generator. It defines when the generator
      *           is triggered in a conversation.
+     *     @type string $published_model
+     *           Optional. The published Large Language Model name.
+     *           * To use the latest model version, specify the model name without version
+     *             number. Example: `text-bison`
+     *           * To use a stable model version, specify the version number as well.
+     *             Example: `text-bison&#64;002`.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Creation time of this generator.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -134,6 +143,37 @@ class Generator extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input of free from generator to LLM.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.FreeFormContext free_form_context = 11;</code>
+     * @return \Google\Cloud\Dialogflow\V2\FreeFormContext|null
+     */
+    public function getFreeFormContext()
+    {
+        return $this->readOneof(11);
+    }
+
+    public function hasFreeFormContext()
+    {
+        return $this->hasOneof(11);
+    }
+
+    /**
+     * Input of free from generator to LLM.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.FreeFormContext free_form_context = 11;</code>
+     * @param \Google\Cloud\Dialogflow\V2\FreeFormContext $var
+     * @return $this
+     */
+    public function setFreeFormContext($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\FreeFormContext::class);
+        $this->writeOneof(11, $var);
 
         return $this;
     }
@@ -234,6 +274,45 @@ class Generator extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The published Large Language Model name.
+     * * To use the latest model version, specify the model name without version
+     *   number. Example: `text-bison`
+     * * To use a stable model version, specify the version number as well.
+     *   Example: `text-bison&#64;002`.
+     *
+     * Generated from protobuf field <code>string published_model = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPublishedModel()
+    {
+        return $this->readOneof(15);
+    }
+
+    public function hasPublishedModel()
+    {
+        return $this->hasOneof(15);
+    }
+
+    /**
+     * Optional. The published Large Language Model name.
+     * * To use the latest model version, specify the model name without version
+     *   number. Example: `text-bison`
+     * * To use a stable model version, specify the version number as well.
+     *   Example: `text-bison&#64;002`.
+     *
+     * Generated from protobuf field <code>string published_model = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPublishedModel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(15, $var);
+
+        return $this;
+    }
+
+    /**
      * Output only. Creation time of this generator.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -311,6 +390,14 @@ class Generator extends \Google\Protobuf\Internal\Message
     public function getContext()
     {
         return $this->whichOneof("context");
+    }
+
+    /**
+     * @return string
+     */
+    public function getFoundationModel()
+    {
+        return $this->whichOneof("foundation_model");
     }
 
 }

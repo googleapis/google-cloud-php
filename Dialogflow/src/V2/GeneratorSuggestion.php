@@ -23,6 +23,8 @@ class GeneratorSuggestion extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Dialogflow\V2\FreeFormSuggestion $free_form_suggestion
+     *           Optional. Free form suggestion.
      *     @type \Google\Cloud\Dialogflow\V2\SummarySuggestion $summary_suggestion
      *           Optional. Suggested summary.
      * }
@@ -30,6 +32,37 @@ class GeneratorSuggestion extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Generator::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. Free form suggestion.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.FreeFormSuggestion free_form_suggestion = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\V2\FreeFormSuggestion|null
+     */
+    public function getFreeFormSuggestion()
+    {
+        return $this->readOneof(1);
+    }
+
+    public function hasFreeFormSuggestion()
+    {
+        return $this->hasOneof(1);
+    }
+
+    /**
+     * Optional. Free form suggestion.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.FreeFormSuggestion free_form_suggestion = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\V2\FreeFormSuggestion $var
+     * @return $this
+     */
+    public function setFreeFormSuggestion($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\FreeFormSuggestion::class);
+        $this->writeOneof(1, $var);
+
+        return $this;
     }
 
     /**

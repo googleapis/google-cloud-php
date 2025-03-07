@@ -20,7 +20,7 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Condition boost specifications. If a document matches
-     * multiple conditions in the specifictions, boost scores from these
+     * multiple conditions in the specifications, boost scores from these
      * specifications are all applied and combined in a non-linear way.
      * Maximum number of specifications is 20.
      *
@@ -36,7 +36,7 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest\SearchConfig\BoostSpecs\BoostSpec\ConditionBoostSpec>|\Google\Protobuf\Internal\RepeatedField $condition_boost_specs
      *           Optional. Condition boost specifications. If a document matches
-     *           multiple conditions in the specifictions, boost scores from these
+     *           multiple conditions in the specifications, boost scores from these
      *           specifications are all applied and combined in a non-linear way.
      *           Maximum number of specifications is 20.
      * }
@@ -48,7 +48,7 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Condition boost specifications. If a document matches
-     * multiple conditions in the specifictions, boost scores from these
+     * multiple conditions in the specifications, boost scores from these
      * specifications are all applied and combined in a non-linear way.
      * Maximum number of specifications is 20.
      *
@@ -62,7 +62,7 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Condition boost specifications. If a document matches
-     * multiple conditions in the specifictions, boost scores from these
+     * multiple conditions in the specifications, boost scores from these
      * specifications are all applied and combined in a non-linear way.
      * Maximum number of specifications is 20.
      *

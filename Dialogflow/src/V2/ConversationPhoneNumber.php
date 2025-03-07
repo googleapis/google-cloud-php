@@ -17,6 +17,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class ConversationPhoneNumber extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Output only. Desired country code for the phone number.
+     *
+     * Generated from protobuf field <code>int32 country_code = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $country_code = 0;
+    /**
      * Output only. The phone number to connect to this conversation.
      *
      * Generated from protobuf field <code>string phone_number = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -29,6 +35,8 @@ class ConversationPhoneNumber extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type int $country_code
+     *           Output only. Desired country code for the phone number.
      *     @type string $phone_number
      *           Output only. The phone number to connect to this conversation.
      * }
@@ -36,6 +44,32 @@ class ConversationPhoneNumber extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Conversation::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Output only. Desired country code for the phone number.
+     *
+     * Generated from protobuf field <code>int32 country_code = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getCountryCode()
+    {
+        return $this->country_code;
+    }
+
+    /**
+     * Output only. Desired country code for the phone number.
+     *
+     * Generated from protobuf field <code>int32 country_code = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCountryCode($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->country_code = $var;
+
+        return $this;
     }
 
     /**

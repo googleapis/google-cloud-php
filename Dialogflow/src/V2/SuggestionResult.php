@@ -39,6 +39,9 @@ class SuggestionResult extends \Google\Protobuf\Internal\Message
      *           SuggestFaqAnswersResponse if request is for FAQ_ANSWER.
      *     @type \Google\Cloud\Dialogflow\V2\SuggestSmartRepliesResponse $suggest_smart_replies_response
      *           SuggestSmartRepliesResponse if request is for SMART_REPLY.
+     *     @type \Google\Cloud\Dialogflow\V2\GenerateSuggestionsResponse $generate_suggestions_response
+     *           Suggestions generated using generators triggered by customer or agent
+     *           messages.
      * }
      */
     public function __construct($data = NULL) {
@@ -197,6 +200,39 @@ class SuggestionResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\SuggestSmartRepliesResponse::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Suggestions generated using generators triggered by customer or agent
+     * messages.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.GenerateSuggestionsResponse generate_suggestions_response = 9;</code>
+     * @return \Google\Cloud\Dialogflow\V2\GenerateSuggestionsResponse|null
+     */
+    public function getGenerateSuggestionsResponse()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasGenerateSuggestionsResponse()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * Suggestions generated using generators triggered by customer or agent
+     * messages.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.GenerateSuggestionsResponse generate_suggestions_response = 9;</code>
+     * @param \Google\Cloud\Dialogflow\V2\GenerateSuggestionsResponse $var
+     * @return $this
+     */
+    public function setGenerateSuggestionsResponse($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\GenerateSuggestionsResponse::class);
+        $this->writeOneof(9, $var);
 
         return $this;
     }
