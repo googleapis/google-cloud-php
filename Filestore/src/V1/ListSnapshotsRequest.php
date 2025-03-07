@@ -48,6 +48,13 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string filter = 5;</code>
      */
     protected $filter = '';
+    /**
+     * Optional. If true, allow partial responses for multi-regional Aggregated
+     * List requests.
+     *
+     * Generated from protobuf field <code>bool return_partial_success = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $return_partial_success = false;
 
     /**
      * @param string $parent Required. The instance for which to retrieve snapshot information,
@@ -84,6 +91,9 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
      *           Sort results. Supported values are "name", "name desc" or "" (unsorted).
      *     @type string $filter
      *           List filter.
+     *     @type bool $return_partial_success
+     *           Optional. If true, allow partial responses for multi-regional Aggregated
+     *           List requests.
      * }
      */
     public function __construct($data = NULL) {
@@ -223,6 +233,34 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, allow partial responses for multi-regional Aggregated
+     * List requests.
+     *
+     * Generated from protobuf field <code>bool return_partial_success = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getReturnPartialSuccess()
+    {
+        return $this->return_partial_success;
+    }
+
+    /**
+     * Optional. If true, allow partial responses for multi-regional Aggregated
+     * List requests.
+     *
+     * Generated from protobuf field <code>bool return_partial_success = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReturnPartialSuccess($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->return_partial_success = $var;
 
         return $this;
     }

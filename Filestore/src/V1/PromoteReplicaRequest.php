@@ -9,12 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * RevertInstanceRequest reverts the given instance's file share to the
- * specified snapshot.
+ * PromoteReplicaRequest promotes a Filestore standby instance (replica).
  *
- * Generated from protobuf message <code>google.cloud.filestore.v1.RevertInstanceRequest</code>
+ * Generated from protobuf message <code>google.cloud.filestore.v1.PromoteReplicaRequest</code>
  */
-class RevertInstanceRequest extends \Google\Protobuf\Internal\Message
+class PromoteReplicaRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the instance, in the format
@@ -24,13 +23,14 @@ class RevertInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Required. The snapshot resource ID, in the format 'my-snapshot', where the
-     * specified ID is the {snapshot_id} of the fully qualified name like
-     * `projects/{project_id}/locations/{location_id}/instances/{instance_id}/snapshots/{snapshot_id}`
+     * Optional. The resource name of the peer instance to promote, in the format
+     * `projects/{project_id}/locations/{location_id}/instances/{instance_id}`.
+     * The peer instance is required if the operation is called on an active
+     * instance.
      *
-     * Generated from protobuf field <code>string target_snapshot_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string peer_instance = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    protected $target_snapshot_id = '';
+    protected $peer_instance = '';
 
     /**
      * Constructor.
@@ -41,10 +41,11 @@ class RevertInstanceRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The resource name of the instance, in the format
      *           `projects/{project_id}/locations/{location_id}/instances/{instance_id}`.
-     *     @type string $target_snapshot_id
-     *           Required. The snapshot resource ID, in the format 'my-snapshot', where the
-     *           specified ID is the {snapshot_id} of the fully qualified name like
-     *           `projects/{project_id}/locations/{location_id}/instances/{instance_id}/snapshots/{snapshot_id}`
+     *     @type string $peer_instance
+     *           Optional. The resource name of the peer instance to promote, in the format
+     *           `projects/{project_id}/locations/{location_id}/instances/{instance_id}`.
+     *           The peer instance is required if the operation is called on an active
+     *           instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -81,31 +82,33 @@ class RevertInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The snapshot resource ID, in the format 'my-snapshot', where the
-     * specified ID is the {snapshot_id} of the fully qualified name like
-     * `projects/{project_id}/locations/{location_id}/instances/{instance_id}/snapshots/{snapshot_id}`
+     * Optional. The resource name of the peer instance to promote, in the format
+     * `projects/{project_id}/locations/{location_id}/instances/{instance_id}`.
+     * The peer instance is required if the operation is called on an active
+     * instance.
      *
-     * Generated from protobuf field <code>string target_snapshot_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string peer_instance = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
-    public function getTargetSnapshotId()
+    public function getPeerInstance()
     {
-        return $this->target_snapshot_id;
+        return $this->peer_instance;
     }
 
     /**
-     * Required. The snapshot resource ID, in the format 'my-snapshot', where the
-     * specified ID is the {snapshot_id} of the fully qualified name like
-     * `projects/{project_id}/locations/{location_id}/instances/{instance_id}/snapshots/{snapshot_id}`
+     * Optional. The resource name of the peer instance to promote, in the format
+     * `projects/{project_id}/locations/{location_id}/instances/{instance_id}`.
+     * The peer instance is required if the operation is called on an active
+     * instance.
      *
-     * Generated from protobuf field <code>string target_snapshot_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string peer_instance = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
-    public function setTargetSnapshotId($var)
+    public function setPeerInstance($var)
     {
         GPBUtil::checkString($var, True);
-        $this->target_snapshot_id = $var;
+        $this->peer_instance = $var;
 
         return $this;
     }

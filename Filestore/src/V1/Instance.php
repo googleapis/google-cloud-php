@@ -104,6 +104,67 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.filestore.v1.Instance.SuspensionReason suspension_reasons = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $suspension_reasons;
+    /**
+     * Optional. Replication configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.filestore.v1.Replication replication = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $replication = null;
+    /**
+     * Optional. Input only. Immutable. Tag key-value pairs bound to this
+     * resource. Each key must be a namespaced name and each value a short name.
+     * Example:
+     * "123456789012/environment" : "production",
+     * "123456789013/costCenter" : "marketing"
+     * See the documentation for more information:
+     * - Namespaced name:
+     * https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_key
+     * - Short name:
+     * https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_value
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 20 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tags;
+    /**
+     * Immutable. The protocol indicates the access protocol for all shares in the
+     * instance. This field is immutable and it cannot be changed after the
+     * instance has been created. Default value: `NFS_V3`.
+     *
+     * Generated from protobuf field <code>.google.cloud.filestore.v1.Instance.FileProtocol protocol = 21 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $protocol = 0;
+    /**
+     * Output only. Indicates whether this instance supports configuring its
+     * performance. If true, the user can configure the instance's performance by
+     * using the 'performance_config' field.
+     *
+     * Generated from protobuf field <code>bool custom_performance_supported = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $custom_performance_supported = false;
+    /**
+     * Optional. Used to configure performance.
+     *
+     * Generated from protobuf field <code>.google.cloud.filestore.v1.Instance.PerformanceConfig performance_config = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $performance_config = null;
+    /**
+     * Output only. Used for getting performance limits.
+     *
+     * Generated from protobuf field <code>.google.cloud.filestore.v1.Instance.PerformanceLimits performance_limits = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $performance_limits = null;
+    /**
+     * Optional. Indicates whether the instance is protected against deletion.
+     *
+     * Generated from protobuf field <code>bool deletion_protection_enabled = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $deletion_protection_enabled = false;
+    /**
+     * Optional. The reason for enabling deletion protection.
+     *
+     * Generated from protobuf field <code>string deletion_protection_reason = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $deletion_protection_reason = '';
 
     /**
      * Constructor.
@@ -144,6 +205,35 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $suspension_reasons
      *           Output only. Field indicates all the reasons the instance is in "SUSPENDED"
      *           state.
+     *     @type \Google\Cloud\Filestore\V1\Replication $replication
+     *           Optional. Replication configuration.
+     *     @type array|\Google\Protobuf\Internal\MapField $tags
+     *           Optional. Input only. Immutable. Tag key-value pairs bound to this
+     *           resource. Each key must be a namespaced name and each value a short name.
+     *           Example:
+     *           "123456789012/environment" : "production",
+     *           "123456789013/costCenter" : "marketing"
+     *           See the documentation for more information:
+     *           - Namespaced name:
+     *           https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_key
+     *           - Short name:
+     *           https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_value
+     *     @type int $protocol
+     *           Immutable. The protocol indicates the access protocol for all shares in the
+     *           instance. This field is immutable and it cannot be changed after the
+     *           instance has been created. Default value: `NFS_V3`.
+     *     @type bool $custom_performance_supported
+     *           Output only. Indicates whether this instance supports configuring its
+     *           performance. If true, the user can configure the instance's performance by
+     *           using the 'performance_config' field.
+     *     @type \Google\Cloud\Filestore\V1\Instance\PerformanceConfig $performance_config
+     *           Optional. Used to configure performance.
+     *     @type \Google\Cloud\Filestore\V1\Instance\PerformanceLimits $performance_limits
+     *           Output only. Used for getting performance limits.
+     *     @type bool $deletion_protection_enabled
+     *           Optional. Indicates whether the instance is protected against deletion.
+     *     @type string $deletion_protection_reason
+     *           Optional. The reason for enabling deletion protection.
      * }
      */
     public function __construct($data = NULL) {
@@ -568,6 +658,270 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Filestore\V1\Instance\SuspensionReason::class);
         $this->suspension_reasons = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Replication configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.filestore.v1.Replication replication = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Filestore\V1\Replication|null
+     */
+    public function getReplication()
+    {
+        return $this->replication;
+    }
+
+    public function hasReplication()
+    {
+        return isset($this->replication);
+    }
+
+    public function clearReplication()
+    {
+        unset($this->replication);
+    }
+
+    /**
+     * Optional. Replication configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.filestore.v1.Replication replication = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Filestore\V1\Replication $var
+     * @return $this
+     */
+    public function setReplication($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Filestore\V1\Replication::class);
+        $this->replication = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag key-value pairs bound to this
+     * resource. Each key must be a namespaced name and each value a short name.
+     * Example:
+     * "123456789012/environment" : "production",
+     * "123456789013/costCenter" : "marketing"
+     * See the documentation for more information:
+     * - Namespaced name:
+     * https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_key
+     * - Short name:
+     * https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_value
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 20 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag key-value pairs bound to this
+     * resource. Each key must be a namespaced name and each value a short name.
+     * Example:
+     * "123456789012/environment" : "production",
+     * "123456789013/costCenter" : "marketing"
+     * See the documentation for more information:
+     * - Namespaced name:
+     * https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_key
+     * - Short name:
+     * https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_value
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 20 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setTags($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->tags = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The protocol indicates the access protocol for all shares in the
+     * instance. This field is immutable and it cannot be changed after the
+     * instance has been created. Default value: `NFS_V3`.
+     *
+     * Generated from protobuf field <code>.google.cloud.filestore.v1.Instance.FileProtocol protocol = 21 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return int
+     */
+    public function getProtocol()
+    {
+        return $this->protocol;
+    }
+
+    /**
+     * Immutable. The protocol indicates the access protocol for all shares in the
+     * instance. This field is immutable and it cannot be changed after the
+     * instance has been created. Default value: `NFS_V3`.
+     *
+     * Generated from protobuf field <code>.google.cloud.filestore.v1.Instance.FileProtocol protocol = 21 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setProtocol($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Filestore\V1\Instance\FileProtocol::class);
+        $this->protocol = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Indicates whether this instance supports configuring its
+     * performance. If true, the user can configure the instance's performance by
+     * using the 'performance_config' field.
+     *
+     * Generated from protobuf field <code>bool custom_performance_supported = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getCustomPerformanceSupported()
+    {
+        return $this->custom_performance_supported;
+    }
+
+    /**
+     * Output only. Indicates whether this instance supports configuring its
+     * performance. If true, the user can configure the instance's performance by
+     * using the 'performance_config' field.
+     *
+     * Generated from protobuf field <code>bool custom_performance_supported = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setCustomPerformanceSupported($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->custom_performance_supported = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Used to configure performance.
+     *
+     * Generated from protobuf field <code>.google.cloud.filestore.v1.Instance.PerformanceConfig performance_config = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Filestore\V1\Instance\PerformanceConfig|null
+     */
+    public function getPerformanceConfig()
+    {
+        return $this->performance_config;
+    }
+
+    public function hasPerformanceConfig()
+    {
+        return isset($this->performance_config);
+    }
+
+    public function clearPerformanceConfig()
+    {
+        unset($this->performance_config);
+    }
+
+    /**
+     * Optional. Used to configure performance.
+     *
+     * Generated from protobuf field <code>.google.cloud.filestore.v1.Instance.PerformanceConfig performance_config = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Filestore\V1\Instance\PerformanceConfig $var
+     * @return $this
+     */
+    public function setPerformanceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Filestore\V1\Instance\PerformanceConfig::class);
+        $this->performance_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Used for getting performance limits.
+     *
+     * Generated from protobuf field <code>.google.cloud.filestore.v1.Instance.PerformanceLimits performance_limits = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Filestore\V1\Instance\PerformanceLimits|null
+     */
+    public function getPerformanceLimits()
+    {
+        return $this->performance_limits;
+    }
+
+    public function hasPerformanceLimits()
+    {
+        return isset($this->performance_limits);
+    }
+
+    public function clearPerformanceLimits()
+    {
+        unset($this->performance_limits);
+    }
+
+    /**
+     * Output only. Used for getting performance limits.
+     *
+     * Generated from protobuf field <code>.google.cloud.filestore.v1.Instance.PerformanceLimits performance_limits = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Filestore\V1\Instance\PerformanceLimits $var
+     * @return $this
+     */
+    public function setPerformanceLimits($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Filestore\V1\Instance\PerformanceLimits::class);
+        $this->performance_limits = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates whether the instance is protected against deletion.
+     *
+     * Generated from protobuf field <code>bool deletion_protection_enabled = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDeletionProtectionEnabled()
+    {
+        return $this->deletion_protection_enabled;
+    }
+
+    /**
+     * Optional. Indicates whether the instance is protected against deletion.
+     *
+     * Generated from protobuf field <code>bool deletion_protection_enabled = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDeletionProtectionEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->deletion_protection_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The reason for enabling deletion protection.
+     *
+     * Generated from protobuf field <code>string deletion_protection_reason = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getDeletionProtectionReason()
+    {
+        return $this->deletion_protection_reason;
+    }
+
+    /**
+     * Optional. The reason for enabling deletion protection.
+     *
+     * Generated from protobuf field <code>string deletion_protection_reason = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDeletionProtectionReason($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->deletion_protection_reason = $var;
 
         return $this;
     }

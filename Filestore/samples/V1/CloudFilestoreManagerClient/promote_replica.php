@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,38 +22,34 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START file_v1_generated_CloudFilestoreManager_RevertInstance_sync]
+// [START file_v1_generated_CloudFilestoreManager_PromoteReplica_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Filestore\V1\Client\CloudFilestoreManagerClient;
 use Google\Cloud\Filestore\V1\Instance;
-use Google\Cloud\Filestore\V1\RevertInstanceRequest;
+use Google\Cloud\Filestore\V1\PromoteReplicaRequest;
 use Google\Rpc\Status;
 
 /**
- * Revert an existing instance's file system to a specified snapshot.
+ * Promote the standby instance (replica).
  *
- * @param string $formattedName    The resource name of the instance, in the format
- *                                 `projects/{project_id}/locations/{location_id}/instances/{instance_id}`. Please see
- *                                 {@see CloudFilestoreManagerClient::instanceName()} for help formatting this field.
- * @param string $targetSnapshotId The snapshot resource ID, in the format 'my-snapshot', where the
- *                                 specified ID is the {snapshot_id} of the fully qualified name like
- *                                 `projects/{project_id}/locations/{location_id}/instances/{instance_id}/snapshots/{snapshot_id}`
+ * @param string $formattedName The resource name of the instance, in the format
+ *                              `projects/{project_id}/locations/{location_id}/instances/{instance_id}`. Please see
+ *                              {@see CloudFilestoreManagerClient::instanceName()} for help formatting this field.
  */
-function revert_instance_sample(string $formattedName, string $targetSnapshotId): void
+function promote_replica_sample(string $formattedName): void
 {
     // Create a client.
     $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
 
     // Prepare the request message.
-    $request = (new RevertInstanceRequest())
-        ->setName($formattedName)
-        ->setTargetSnapshotId($targetSnapshotId);
+    $request = (new PromoteReplicaRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudFilestoreManagerClient->revertInstance($request);
+        $response = $cloudFilestoreManagerClient->promoteReplica($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -82,8 +78,7 @@ function revert_instance_sample(string $formattedName, string $targetSnapshotId)
 function callSample(): void
 {
     $formattedName = CloudFilestoreManagerClient::instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-    $targetSnapshotId = '[TARGET_SNAPSHOT_ID]';
 
-    revert_instance_sample($formattedName, $targetSnapshotId);
+    promote_replica_sample($formattedName);
 }
-// [END file_v1_generated_CloudFilestoreManager_RevertInstance_sync]
+// [END file_v1_generated_CloudFilestoreManager_PromoteReplica_sync]
