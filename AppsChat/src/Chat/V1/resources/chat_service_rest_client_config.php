@@ -179,6 +179,17 @@ return [
                     ],
                 ],
             ],
+            'GetSpaceNotificationSetting' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=users/*/spaces/*/spaceNotificationSetting}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetSpaceReadState' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=users/*/spaces/*/spaceReadState}',
@@ -311,6 +322,22 @@ return [
                     'space.name' => [
                         'getters' => [
                             'getSpace',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateSpaceNotificationSetting' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{space_notification_setting.name=users/*/spaces/*/spaceNotificationSetting}',
+                'body' => 'space_notification_setting',
+                'placeholders' => [
+                    'space_notification_setting.name' => [
+                        'getters' => [
+                            'getSpaceNotificationSetting',
                             'getName',
                         ],
                     ],

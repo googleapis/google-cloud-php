@@ -61,6 +61,4 @@ class MuteSetting
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MuteSetting::class, \Google\Apps\Chat\V1\SpaceNotificationSetting_MuteSetting::class);
 

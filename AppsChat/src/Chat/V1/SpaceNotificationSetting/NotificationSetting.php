@@ -78,6 +78,4 @@ class NotificationSetting
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(NotificationSetting::class, \Google\Apps\Chat\V1\SpaceNotificationSetting_NotificationSetting::class);
 
