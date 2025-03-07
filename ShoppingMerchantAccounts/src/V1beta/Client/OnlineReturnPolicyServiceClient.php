@@ -254,7 +254,7 @@ final class OnlineReturnPolicyServiceClient
     }
 
     /**
-     * Gets an existing return policy.
+     * Gets an existing return policy for a given business.
      *
      * The async variant is
      * {@see OnlineReturnPolicyServiceClient::getOnlineReturnPolicyAsync()} .
@@ -285,7 +285,7 @@ final class OnlineReturnPolicyServiceClient
     }
 
     /**
-     * Lists all existing return policies.
+     * Lists all existing return policies for a given business.
      *
      * The async variant is
      * {@see OnlineReturnPolicyServiceClient::listOnlineReturnPoliciesAsync()} .

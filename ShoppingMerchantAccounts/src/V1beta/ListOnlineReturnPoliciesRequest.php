@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListOnlineReturnPoliciesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The merchant account for which to list return policies.
+     * Required. The business account for which to list return policies.
      * Format: `accounts/{account}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -46,7 +46,7 @@ class ListOnlineReturnPoliciesRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
-     * @param string $parent Required. The merchant account for which to list return policies.
+     * @param string $parent Required. The business account for which to list return policies.
      *                       Format: `accounts/{account}`
      *                       Please see {@see OnlineReturnPolicyServiceClient::accountName()} for help formatting this field.
      *
@@ -67,7 +67,7 @@ class ListOnlineReturnPoliciesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The merchant account for which to list return policies.
+     *           Required. The business account for which to list return policies.
      *           Format: `accounts/{account}`
      *     @type int $page_size
      *           Optional. The maximum number of `OnlineReturnPolicy` resources to return.
@@ -91,7 +91,7 @@ class ListOnlineReturnPoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The merchant account for which to list return policies.
+     * Required. The business account for which to list return policies.
      * Format: `accounts/{account}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -103,7 +103,7 @@ class ListOnlineReturnPoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The merchant account for which to list return policies.
+     * Required. The business account for which to list return policies.
      * Format: `accounts/{account}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

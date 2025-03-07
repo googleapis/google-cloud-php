@@ -30,9 +30,9 @@ use Google\Shopping\Merchant\Accounts\V1beta\ListOnlineReturnPoliciesRequest;
 use Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy;
 
 /**
- * Lists all existing return policies.
+ * Lists all existing return policies for a given business.
  *
- * @param string $formattedParent The merchant account for which to list return policies.
+ * @param string $formattedParent The business account for which to list return policies.
  *                                Format: `accounts/{account}`
  *                                Please see {@see OnlineReturnPolicyServiceClient::accountName()} for help formatting this field.
  */
