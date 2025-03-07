@@ -16,12 +16,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class MessageTransform extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. If set to true, the transform is enabled. If false, the transform
-     * is disabled and will not be applied to messages. Defaults to `true`.
+     * Optional. This field is deprecated, use the `disabled` field to disable
+     * transforms.
      *
-     * Generated from protobuf field <code>bool enabled = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool enabled = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
-    private $enabled = false;
+    protected $enabled = false;
+    /**
+     * Optional. If true, the transform is disabled and will not be applied to
+     * messages. Defaults to `false`.
+     *
+     * Generated from protobuf field <code>bool disabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $disabled = false;
     protected $transform;
 
     /**
@@ -34,8 +42,11 @@ class MessageTransform extends \Google\Protobuf\Internal\Message
      *           Optional. JavaScript User Defined Function. If multiple JavaScriptUDF's
      *           are specified on a resource, each must have a unique `function_name`.
      *     @type bool $enabled
-     *           Optional. If set to true, the transform is enabled. If false, the transform
-     *           is disabled and will not be applied to messages. Defaults to `true`.
+     *           Optional. This field is deprecated, use the `disabled` field to disable
+     *           transforms.
+     *     @type bool $disabled
+     *           Optional. If true, the transform is disabled and will not be applied to
+     *           messages. Defaults to `false`.
      * }
      */
     public function __construct($data = NULL) {
@@ -77,29 +88,61 @@ class MessageTransform extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, the transform is enabled. If false, the transform
-     * is disabled and will not be applied to messages. Defaults to `true`.
+     * Optional. This field is deprecated, use the `disabled` field to disable
+     * transforms.
      *
-     * Generated from protobuf field <code>bool enabled = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool enabled = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
+     * @deprecated
      */
     public function getEnabled()
     {
+        @trigger_error('enabled is deprecated.', E_USER_DEPRECATED);
         return $this->enabled;
     }
 
     /**
-     * Optional. If set to true, the transform is enabled. If false, the transform
-     * is disabled and will not be applied to messages. Defaults to `true`.
+     * Optional. This field is deprecated, use the `disabled` field to disable
+     * transforms.
      *
-     * Generated from protobuf field <code>bool enabled = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool enabled = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setEnabled($var)
     {
+        @trigger_error('enabled is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, the transform is disabled and will not be applied to
+     * messages. Defaults to `false`.
+     *
+     * Generated from protobuf field <code>bool disabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDisabled()
+    {
+        return $this->disabled;
+    }
+
+    /**
+     * Optional. If true, the transform is disabled and will not be applied to
+     * messages. Defaults to `false`.
+     *
+     * Generated from protobuf field <code>bool disabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disabled = $var;
 
         return $this;
     }
