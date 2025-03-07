@@ -98,7 +98,7 @@ class PubSubClient
     use ApiHelperTrait;
     use ClientOptionsTrait;
 
-    const VERSION = '2.10.1';
+    const VERSION = '2.11.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
