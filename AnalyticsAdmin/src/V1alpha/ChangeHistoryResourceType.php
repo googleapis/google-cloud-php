@@ -169,6 +169,12 @@ class ChangeHistoryResourceType
      * Generated from protobuf enum <code>CALCULATED_METRIC = 31;</code>
      */
     const CALCULATED_METRIC = 31;
+    /**
+     * KeyEvent resource
+     *
+     * Generated from protobuf enum <code>KEY_EVENT = 32;</code>
+     */
+    const KEY_EVENT = 32;
 
     private static $valueToName = [
         self::CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED => 'CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED',
@@ -197,6 +203,7 @@ class ChangeHistoryResourceType
         self::AUDIENCE => 'AUDIENCE',
         self::EVENT_CREATE_RULE => 'EVENT_CREATE_RULE',
         self::CALCULATED_METRIC => 'CALCULATED_METRIC',
+        self::KEY_EVENT => 'KEY_EVENT',
     ];
 
     public static function name($value)
