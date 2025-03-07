@@ -23,9 +23,9 @@ class OAuthConfig extends \Google\Protobuf\Internal\Message
      */
     protected $client_id = '';
     /**
-     * Required. The client secret provided by the 3rd party platform.
+     * Optional. The client secret provided by the 3rd party platform.
      *
-     * Generated from protobuf field <code>string client_secret = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string client_secret = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $client_secret = '';
     /**
@@ -51,7 +51,7 @@ class OAuthConfig extends \Google\Protobuf\Internal\Message
      *     @type string $client_id
      *           Required. The client ID provided by the 3rd party platform.
      *     @type string $client_secret
-     *           Required. The client secret provided by the 3rd party platform.
+     *           Optional. The client secret provided by the 3rd party platform.
      *     @type string $token_endpoint
      *           Required. The token endpoint provided by the 3rd party platform to
      *           exchange an access token.
@@ -91,9 +91,9 @@ class OAuthConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The client secret provided by the 3rd party platform.
+     * Optional. The client secret provided by the 3rd party platform.
      *
-     * Generated from protobuf field <code>string client_secret = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string client_secret = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getClientSecret()
@@ -102,9 +102,9 @@ class OAuthConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The client secret provided by the 3rd party platform.
+     * Optional. The client secret provided by the 3rd party platform.
      *
-     * Generated from protobuf field <code>string client_secret = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string client_secret = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
