@@ -176,6 +176,27 @@ return [
                     ],
                 ],
             ],
+            'PrepareQuery' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Bigtable\V2\PrepareQueryResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getInstanceName',
+                        ],
+                        'matchers' => [
+                            '/^(?<name>projects\/[^\/]+\/instances\/[^\/]+)$/',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'app_profile_id',
+                        'fieldAccessors' => [
+                            'getAppProfileId',
+                        ],
+                    ],
+                ],
+            ],
             'ReadChangeStream' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'ServerStreaming',

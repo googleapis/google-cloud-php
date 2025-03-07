@@ -40,6 +40,8 @@ use Google\Cloud\Bigtable\V2\MutateRowsRequest;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse;
 use Google\Cloud\Bigtable\V2\PingAndWarmRequest;
 use Google\Cloud\Bigtable\V2\PingAndWarmResponse;
+use Google\Cloud\Bigtable\V2\PrepareQueryRequest;
+use Google\Cloud\Bigtable\V2\PrepareQueryResponse;
 use Google\Cloud\Bigtable\V2\ReadChangeStreamRequest;
 use Google\Cloud\Bigtable\V2\ReadChangeStreamResponse;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest;
@@ -48,6 +50,7 @@ use Google\Cloud\Bigtable\V2\ReadRowsRequest;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse;
 use Google\Cloud\Bigtable\V2\SampleRowKeysRequest;
 use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
+use Google\Cloud\Bigtable\V2\Type;
 use Google\Cloud\Bigtable\V2\Value;
 use Google\Rpc\Code;
 use stdClass;
@@ -521,6 +524,88 @@ class BigtableClientTest extends GeneratedTest
             ->setName($formattedName);
         try {
             $gapicClient->pingAndWarm($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function prepareQueryTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $preparedQuery = '70';
+        $expectedResponse = new PrepareQueryResponse();
+        $expectedResponse->setPreparedQuery($preparedQuery);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedInstanceName = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $query = 'query107944136';
+        $paramTypesValue = new Type();
+        $paramTypes = [
+            'paramTypesKey' => $paramTypesValue,
+        ];
+        $request = (new PrepareQueryRequest())
+            ->setInstanceName($formattedInstanceName)
+            ->setQuery($query)
+            ->setParamTypes($paramTypes);
+        $response = $gapicClient->prepareQuery($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.bigtable.v2.Bigtable/PrepareQuery', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstanceName();
+        $this->assertProtobufEquals($formattedInstanceName, $actualValue);
+        $actualValue = $actualRequestObject->getQuery();
+        $this->assertProtobufEquals($query, $actualValue);
+        $actualValue = $actualRequestObject->getParamTypes();
+        $this->assertProtobufEquals($paramTypes, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function prepareQueryExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedInstanceName = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $query = 'query107944136';
+        $paramTypesValue = new Type();
+        $paramTypes = [
+            'paramTypesKey' => $paramTypesValue,
+        ];
+        $request = (new PrepareQueryRequest())
+            ->setInstanceName($formattedInstanceName)
+            ->setQuery($query)
+            ->setParamTypes($paramTypes);
+        try {
+            $gapicClient->prepareQuery($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
