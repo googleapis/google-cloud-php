@@ -25,6 +25,7 @@ use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\PgNumeric;
+use Google\Cloud\Spanner\Proto;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\StructValue;
@@ -33,6 +34,8 @@ use Google\Cloud\Spanner\ValueMapper;
 use Google\Cloud\Spanner\V1\TypeAnnotationCode;
 use Google\Cloud\Spanner\V1\TypeCode;
 use PHPUnit\Framework\TestCase;
+use Testing\Data\Book;
+use Testing\Data\User;
 
 /**
  * @group spanner
@@ -284,6 +287,52 @@ class ValueMapperTest extends TestCase
         ], $res['paramTypes']);
     }
 
+    /**
+     * @dataProvider provideProtoType
+     */
+    public function testFormatParamsForExecuteSqlForProtoTypes(
+        Proto|User|array $param,
+        array|string $value,
+        $type = null
+    ) {
+        $res = $this->mapper->formatParamsForExecuteSql(['foo' => $param], ['foo' => $type]);
+        $this->assertEquals(['foo' => $value], $res['params']);
+
+        if (is_array($param)) {
+            $this->assertEquals(Database::TYPE_ARRAY, $res['paramTypes']['foo']['code']);
+            $this->assertEquals(Database::TYPE_PROTO, $res['paramTypes']['foo']['arrayElementType']['code']);
+            $this->assertEquals('testing.data.User', $res['paramTypes']['foo']['arrayElementType']['protoTypeFqn']);
+        } else {
+            $this->assertEquals(Database::TYPE_PROTO, $res['paramTypes']['foo']['code']);
+            $this->assertEquals('testing.data.User', $res['paramTypes']['foo']['protoTypeFqn']);
+        }
+    }
+
+    public function provideProtoType()
+    {
+        $protoTypeFqn = 'testing.data.User';
+        $user1 = new User(['name' => 'John']);
+        $user2 = new User(['name' => 'Jane']);
+        $proto1 = new Proto(base64_encode($user1->serializeToString()), $protoTypeFqn);
+        $proto2 = new Proto(base64_encode($user2->serializeToString()), $protoTypeFqn);
+        $value1 = $proto1->getValue();
+        $value2 = [$proto1->getValue(), $proto2->getValue()];
+        return [
+            // raw proto
+            [$user1, $value1],
+            // Proto object
+            [$proto1, $value1],
+            // array of raw protos
+            [[$user1, $user2], $value2],
+            // array of proto objects
+            [[$proto1, $proto2], $value2],
+            // array of raw protos with type
+            [[$user1, $user2], $value2, new ArrayType(Database::TYPE_PROTO)],
+            // array of proto objects with type
+            [[$proto1, $proto2], $value2, new ArrayType(Database::TYPE_PROTO)],
+        ];
+    }
+
     public function testFormatParamsForExecuteSqlNullArray()
     {
         $params = [
@@ -442,6 +491,60 @@ class ValueMapperTest extends TestCase
                 ]
             ]
         ], $res['paramTypes']);
+    }
+
+    /**
+     * @dataProvider provideStructWithMessage
+     */
+    public function testFormatParamsForExecuteSqlStructWithMessage(User|Proto $user, array $books)
+    {
+        $params = [
+            'foo' => [
+                'id' => 1,
+                'user' => $user,
+                'books' => $books
+            ]
+        ];
+
+        $types = [
+            'foo' => (new StructType())
+                ->add('id', Database::TYPE_STRING)
+                ->add('user', Database::TYPE_PROTO)
+                ->add('books', new ArrayType(Database::TYPE_PROTO))
+        ];
+
+        $res = $this->mapper->formatParamsForExecuteSql($params, $types);
+
+        $params = $res['paramTypes']['foo'];
+        $userParam = $params['structType']['fields'][1]['type'];
+        $booksParam = $params['structType']['fields'][2]['type'];
+
+        $this->assertEquals(Database::TYPE_PROTO, $userParam['code']);
+        $this->assertEquals('testing.data.User', $userParam['protoTypeFqn']);
+
+        $this->assertEquals(Database::TYPE_ARRAY, $booksParam['code']);
+        $this->assertEquals(Database::TYPE_PROTO, $booksParam['arrayElementType']['code']);
+        $this->assertEquals('testing.data.Book', $booksParam['arrayElementType']['protoTypeFqn']);
+    }
+
+    public function provideStructWithMessage()
+    {
+        $user = new User(['name' => 'John']);
+        $book1 = new Book(['title' => 'Book 1']);
+        $book2 = new Book(['title' => 'Book 2']);
+
+        return [
+            // As raw protos
+            [$user, [$book1, $book2]],
+            // As Proto objects
+            [
+                new Proto(base64_encode($user->serializeToString()), 'testing.data.User'),
+                [
+                    new Proto(base64_encode($book1->serializeToString()), 'testing.data.Book'),
+                    new Proto(base64_encode($book2->serializeToString()), 'testing.data.Book'),
+                ]
+            ]
+        ];
     }
 
     /**
@@ -752,6 +855,7 @@ class ValueMapperTest extends TestCase
             [new Date($dt), $dt->format(Date::FORMAT)],
             ['foo'],
             [new Bytes('hello world'), base64_encode('hello world')],
+            [new Proto('hello world', 'foo'), 'hello world'],
             [['foo', 'bar']],
             ['{\"rating\":9,\"open\":true}']
         ];
@@ -1083,6 +1187,113 @@ class ValueMapperTest extends TestCase
 
         $this->assertEquals('1337', $res['ID']);
         $this->assertEquals('John', $res[1]);
+    }
+
+    public function testDecodeValuesProto()
+    {
+        $user = new User(['name' => 'John']);
+        $protoTypeFqn = 'testing.data.User';
+        $userData = base64_encode($user->serializeToString());
+        $res = $this->mapper->decodeValues(
+            [[
+                'name' => 'rowName',
+                'type' => ['code' => Database::TYPE_PROTO, 'protoTypeFqn' => $protoTypeFqn]
+            ]],
+            [$userData],
+            Result::RETURN_ASSOCIATIVE
+        );
+
+        $this->assertInstanceOf(Proto::class, $res['rowName']);
+        $this->assertEquals($user, $res['rowName']->get());
+        $this->assertEquals($protoTypeFqn, $res['rowName']->getProtoTypeFqn());
+        $this->assertEquals($userData, $res['rowName']->getValue());
+    }
+
+    public function testDecodeValuesProtoArray()
+    {
+        $user = new User(['name' => 'John']);
+        $protoTypeFqn = 'testing.data.User';
+        $userData = base64_encode($user->serializeToString());
+        $res = $this->mapper->decodeValues(
+            [[
+                'name' => 'rowName',
+                'type' => [
+                    'code' => Database::TYPE_ARRAY,
+                    'arrayElementType' => [
+                        'code' => Database::TYPE_PROTO,
+                        'protoTypeFqn' => $protoTypeFqn
+                    ]
+                ]
+            ]],
+            [[$userData]],
+            Result::RETURN_ASSOCIATIVE
+        );
+
+        $this->assertIsArray($res['rowName']);
+        $this->assertEquals($user, $res['rowName'][0]->get());
+        $this->assertEquals($protoTypeFqn, $res['rowName'][0]->getProtoTypeFqn());
+        $this->assertEquals($userData, $res['rowName'][0]->getValue());
+    }
+
+    public function testDecodeValuesProtoStruct()
+    {
+        $field = [
+            'name' => 'structTest',
+            'type' => [
+                'code' => Database::TYPE_STRUCT,
+                'structType' => [
+                    'fields' => [
+                        [
+                            'name' => 'id',
+                            'type' => [
+                                'code' => Database::TYPE_STRING
+                            ],
+                        ], [
+                            'name' => 'user',
+                            'type' => [
+                                'code' => Database::TYPE_PROTO,
+                                'protoTypeFqn' => 'testing.data.User'
+                            ]
+                        ], [
+                            'name' => 'books',
+                            'type' => [
+                                'code' => Database::TYPE_ARRAY,
+                                'arrayElementType' => [
+                                    'code' => Database::TYPE_PROTO,
+                                    'protoTypeFqn' => 'testing.data.Book'
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $user = new User(['name' => 'John']);
+        $book1 = new Book(['title' => 'Book 1']);
+        $book2 = new Book(['title' => 'Book 2']);
+
+        $row = [
+            1,
+            base64_encode($user->serializeToString()),
+            [
+                base64_encode($book1->serializeToString()),
+                base64_encode($book2->serializeToString())
+            ]
+        ];
+
+        $res = $this->mapper->decodeValues(
+            [$field],
+            [$row],
+            Result::RETURN_ASSOCIATIVE
+        );
+
+        $this->assertIsArray($res['structTest']);
+        $this->assertEquals($user, $res['structTest']['user']->get());
+        $this->assertEquals('testing.data.User', $res['structTest']['user']->getProtoTypeFqn());
+        $this->assertIsArray($res['structTest']['books']);
+        $this->assertEquals($book1, $res['structTest']['books'][0]->get());
+        $this->assertEquals($book2, $res['structTest']['books'][1]->get());
     }
 
     private function createField($code, $typeAnnotationCode = null, $type = null, array $typeObj = [])
