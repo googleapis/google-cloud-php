@@ -345,10 +345,12 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -905,10 +907,12 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
         $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
@@ -1398,10 +1402,12 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1947,10 +1953,12 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $displayName2 = 'displayName21615000987';
         $satisfiesPzs2 = true;
+        $satisfiesPzi2 = true;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName2);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs2);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi2);
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';

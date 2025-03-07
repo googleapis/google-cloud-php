@@ -40,8 +40,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     protected $state = 0;
     /**
-     * The number of nodes allocated to this cluster. More nodes enable higher
-     * throughput and more consistent performance.
+     * The number of nodes in the cluster. If no value is set,
+     * Cloud Bigtable automatically allocates nodes based on your data footprint
+     * and optimized for 50% storage utilization.
      *
      * Generated from protobuf field <code>int32 serve_nodes = 4;</code>
      */
@@ -84,8 +85,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. The current state of the cluster.
      *     @type int $serve_nodes
-     *           The number of nodes allocated to this cluster. More nodes enable higher
-     *           throughput and more consistent performance.
+     *           The number of nodes in the cluster. If no value is set,
+     *           Cloud Bigtable automatically allocates nodes based on your data footprint
+     *           and optimized for 50% storage utilization.
      *     @type int $node_scaling_factor
      *           Immutable. The node scaling factor of this cluster.
      *     @type \Google\Cloud\Bigtable\Admin\V2\Cluster\ClusterConfig $cluster_config
@@ -189,8 +191,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of nodes allocated to this cluster. More nodes enable higher
-     * throughput and more consistent performance.
+     * The number of nodes in the cluster. If no value is set,
+     * Cloud Bigtable automatically allocates nodes based on your data footprint
+     * and optimized for 50% storage utilization.
      *
      * Generated from protobuf field <code>int32 serve_nodes = 4;</code>
      * @return int
@@ -201,8 +204,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of nodes allocated to this cluster. More nodes enable higher
-     * throughput and more consistent performance.
+     * The number of nodes in the cluster. If no value is set,
+     * Cloud Bigtable automatically allocates nodes based on your data footprint
+     * and optimized for 50% storage utilization.
      *
      * Generated from protobuf field <code>int32 serve_nodes = 4;</code>
      * @param int $var

@@ -45,6 +45,8 @@ use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry;
 use Google\Cloud\Bigtable\V2\Mutation;
 use Google\Cloud\Bigtable\V2\PingAndWarmRequest;
 use Google\Cloud\Bigtable\V2\PingAndWarmResponse;
+use Google\Cloud\Bigtable\V2\PrepareQueryRequest;
+use Google\Cloud\Bigtable\V2\PrepareQueryResponse;
 use Google\Cloud\Bigtable\V2\ReadChangeStreamRequest;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse;
@@ -68,6 +70,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<CheckAndMutateRowResponse> checkAndMutateRowAsync(CheckAndMutateRowRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<MutateRowResponse> mutateRowAsync(MutateRowRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PingAndWarmResponse> pingAndWarmAsync(PingAndWarmRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PrepareQueryResponse> prepareQueryAsync(PrepareQueryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ReadModifyWriteRowResponse> readModifyWriteRowAsync(ReadModifyWriteRowRequest $request, array $optionalArgs = [])
  */
 final class BigtableClient
@@ -318,7 +321,7 @@ final class BigtableClient
     }
 
     /**
-     * Executes a BTQL query against a particular Cloud Bigtable instance.
+     * Executes a SQL query against a particular Bigtable instance.
      *
      * @example samples/V2/BigtableClient/execute_query.php
      *
@@ -440,6 +443,32 @@ final class BigtableClient
     public function pingAndWarm(PingAndWarmRequest $request, array $callOptions = []): PingAndWarmResponse
     {
         return $this->startApiCall('PingAndWarm', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Prepares a GoogleSQL query for execution on a particular Bigtable instance.
+     *
+     * The async variant is {@see BigtableClient::prepareQueryAsync()} .
+     *
+     * @example samples/V2/BigtableClient/prepare_query.php
+     *
+     * @param PrepareQueryRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PrepareQueryResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function prepareQuery(PrepareQueryRequest $request, array $callOptions = []): PrepareQueryResponse
+    {
+        return $this->startApiCall('PrepareQuery', $request, $callOptions)->wait();
     }
 
     /**

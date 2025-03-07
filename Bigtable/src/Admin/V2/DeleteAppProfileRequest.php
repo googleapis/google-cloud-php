@@ -47,6 +47,24 @@ class DeleteAppProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * @param string $name           Required. The unique name of the app profile to be deleted. Values are of
+     *                               the form
+     *                               `projects/{project}/instances/{instance}/appProfiles/{app_profile}`. Please see
+     *                               {@see BigtableInstanceAdminClient::appProfileName()} for help formatting this field.
+     * @param bool   $ignoreWarnings Required. If true, ignore safety checks when deleting the app profile.
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\DeleteAppProfileRequest
+     *
+     * @experimental
+     */
+    public static function buildFromNameIgnoreWarnings(string $name, bool $ignoreWarnings): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setIgnoreWarnings($ignoreWarnings);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

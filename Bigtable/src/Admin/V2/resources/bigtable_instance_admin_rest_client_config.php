@@ -127,6 +127,18 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{resource=projects/*/instances/*}:getIamPolicy',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{resource=projects/*/instances/*/materializedViews/*}:getIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{resource=projects/*/instances/*/logicalViews/*}:getIamPolicy',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
@@ -226,6 +238,18 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{resource=projects/*/instances/*}:setIamPolicy',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{resource=projects/*/instances/*/materializedViews/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{resource=projects/*/instances/*/logicalViews/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
@@ -238,6 +262,18 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{resource=projects/*/instances/*}:testIamPermissions',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{resource=projects/*/instances/*/materializedViews/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{resource=projects/*/instances/*/logicalViews/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [

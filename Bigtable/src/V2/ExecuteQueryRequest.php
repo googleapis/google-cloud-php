@@ -32,10 +32,25 @@ class ExecuteQueryRequest extends \Google\Protobuf\Internal\Message
     protected $app_profile_id = '';
     /**
      * Required. The query string.
+     * Exactly one of `query` and `prepared_query` is required. Setting both
+     * or neither is an `INVALID_ARGUMENT`.
      *
-     * Generated from protobuf field <code>string query = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string query = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * @deprecated
      */
     protected $query = '';
+    /**
+     * A prepared query that was returned from `PrepareQueryResponse`.
+     * Exactly one of `query` and `prepared_query` is required. Setting both
+     * or neither is an `INVALID_ARGUMENT`.
+     * Setting this field also places restrictions on several other fields:
+     * - `data_format` must be empty.
+     * - `validate_only` must be false.
+     * - `params` must match the `param_types` set in the `PrepareQueryRequest`.
+     *
+     * Generated from protobuf field <code>bytes prepared_query = 9;</code>
+     */
+    protected $prepared_query = '';
     /**
      * Optional. If this request is resuming a previously interrupted query
      * execution, `resume_token` should be copied from the last
@@ -56,15 +71,18 @@ class ExecuteQueryRequest extends \Google\Protobuf\Internal\Message
      * the query string.
      * For example, if
      * `params["firstName"] = bytes_value: "foo" type {bytes_type {}}`
-     *  then `&#64;firstName` will be replaced with googlesql bytes value "foo" in the
-     *  query string during query evaluation.
-     * In case of Value.kind is not set, it will be set to corresponding null
-     * value in googlesql.
-     *  `params["firstName"] =  type {string_type {}}`
-     *  then `&#64;firstName` will be replaced with googlesql null string.
-     * Value.type should always be set and no inference of type will be made from
-     * Value.kind. If Value.type is not set, we will return INVALID_ARGUMENT
-     * error.
+     * then `&#64;firstName` will be replaced with googlesql bytes value "foo" in the
+     * query string during query evaluation.
+     * If `Value.kind` is not set, the value is treated as a NULL value of the
+     * given type. For example, if
+     * `params["firstName"] = type {string_type {}}`
+     * then `&#64;firstName` will be replaced with googlesql null string.
+     * If `query` is set, any empty `Value.type` in the map will be rejected with
+     * `INVALID_ARGUMENT`.
+     * If `prepared_query` is set, any empty `Value.type` in the map will be
+     * inferred from the `param_types` in the `PrepareQueryRequest`. Any non-empty
+     * `Value.type` must match the corresponding `param_types` entry, or be
+     * rejected with `INVALID_ARGUMENT`.
      *
      * Generated from protobuf field <code>map<string, .google.bigtable.v2.Value> params = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -77,6 +95,9 @@ class ExecuteQueryRequest extends \Google\Protobuf\Internal\Message
      *                             Values are of the form `projects/<project>/instances/<instance>`
      *                             Please see {@see BigtableClient::instanceName()} for help formatting this field.
      * @param string $query        Required. The query string.
+     *
+     *                             Exactly one of `query` and `prepared_query` is required. Setting both
+     *                             or neither is an `INVALID_ARGUMENT`.
      *
      * @return \Google\Cloud\Bigtable\V2\ExecuteQueryRequest
      *
@@ -95,6 +116,9 @@ class ExecuteQueryRequest extends \Google\Protobuf\Internal\Message
      *                             Values are of the form `projects/<project>/instances/<instance>`
      *                             Please see {@see BigtableClient::instanceName()} for help formatting this field.
      * @param string $query        Required. The query string.
+     *
+     *                             Exactly one of `query` and `prepared_query` is required. Setting both
+     *                             or neither is an `INVALID_ARGUMENT`.
      * @param string $appProfileId Optional. This value specifies routing for replication. If not specified,
      *                             the `default` application profile will be used.
      *
@@ -125,6 +149,16 @@ class ExecuteQueryRequest extends \Google\Protobuf\Internal\Message
      *           the `default` application profile will be used.
      *     @type string $query
      *           Required. The query string.
+     *           Exactly one of `query` and `prepared_query` is required. Setting both
+     *           or neither is an `INVALID_ARGUMENT`.
+     *     @type string $prepared_query
+     *           A prepared query that was returned from `PrepareQueryResponse`.
+     *           Exactly one of `query` and `prepared_query` is required. Setting both
+     *           or neither is an `INVALID_ARGUMENT`.
+     *           Setting this field also places restrictions on several other fields:
+     *           - `data_format` must be empty.
+     *           - `validate_only` must be false.
+     *           - `params` must match the `param_types` set in the `PrepareQueryRequest`.
      *     @type \Google\Cloud\Bigtable\V2\ProtoFormat $proto_format
      *           Protocol buffer format as described by ProtoSchema and ProtoRows
      *           messages.
@@ -144,15 +178,18 @@ class ExecuteQueryRequest extends \Google\Protobuf\Internal\Message
      *           the query string.
      *           For example, if
      *           `params["firstName"] = bytes_value: "foo" type {bytes_type {}}`
-     *            then `&#64;firstName` will be replaced with googlesql bytes value "foo" in the
-     *            query string during query evaluation.
-     *           In case of Value.kind is not set, it will be set to corresponding null
-     *           value in googlesql.
-     *            `params["firstName"] =  type {string_type {}}`
-     *            then `&#64;firstName` will be replaced with googlesql null string.
-     *           Value.type should always be set and no inference of type will be made from
-     *           Value.kind. If Value.type is not set, we will return INVALID_ARGUMENT
-     *           error.
+     *           then `&#64;firstName` will be replaced with googlesql bytes value "foo" in the
+     *           query string during query evaluation.
+     *           If `Value.kind` is not set, the value is treated as a NULL value of the
+     *           given type. For example, if
+     *           `params["firstName"] = type {string_type {}}`
+     *           then `&#64;firstName` will be replaced with googlesql null string.
+     *           If `query` is set, any empty `Value.type` in the map will be rejected with
+     *           `INVALID_ARGUMENT`.
+     *           If `prepared_query` is set, any empty `Value.type` in the map will be
+     *           inferred from the `param_types` in the `PrepareQueryRequest`. Any non-empty
+     *           `Value.type` must match the corresponding `param_types` entry, or be
+     *           rejected with `INVALID_ARGUMENT`.
      * }
      */
     public function __construct($data = NULL) {
@@ -220,26 +257,72 @@ class ExecuteQueryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The query string.
+     * Exactly one of `query` and `prepared_query` is required. Setting both
+     * or neither is an `INVALID_ARGUMENT`.
      *
-     * Generated from protobuf field <code>string query = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string query = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
+     * @deprecated
      */
     public function getQuery()
     {
+        @trigger_error('query is deprecated.', E_USER_DEPRECATED);
         return $this->query;
     }
 
     /**
      * Required. The query string.
+     * Exactly one of `query` and `prepared_query` is required. Setting both
+     * or neither is an `INVALID_ARGUMENT`.
      *
-     * Generated from protobuf field <code>string query = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string query = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setQuery($var)
     {
+        @trigger_error('query is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->query = $var;
+
+        return $this;
+    }
+
+    /**
+     * A prepared query that was returned from `PrepareQueryResponse`.
+     * Exactly one of `query` and `prepared_query` is required. Setting both
+     * or neither is an `INVALID_ARGUMENT`.
+     * Setting this field also places restrictions on several other fields:
+     * - `data_format` must be empty.
+     * - `validate_only` must be false.
+     * - `params` must match the `param_types` set in the `PrepareQueryRequest`.
+     *
+     * Generated from protobuf field <code>bytes prepared_query = 9;</code>
+     * @return string
+     */
+    public function getPreparedQuery()
+    {
+        return $this->prepared_query;
+    }
+
+    /**
+     * A prepared query that was returned from `PrepareQueryResponse`.
+     * Exactly one of `query` and `prepared_query` is required. Setting both
+     * or neither is an `INVALID_ARGUMENT`.
+     * Setting this field also places restrictions on several other fields:
+     * - `data_format` must be empty.
+     * - `validate_only` must be false.
+     * - `params` must match the `param_types` set in the `PrepareQueryRequest`.
+     *
+     * Generated from protobuf field <code>bytes prepared_query = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPreparedQuery($var)
+    {
+        GPBUtil::checkString($var, False);
+        $this->prepared_query = $var;
 
         return $this;
     }
@@ -248,16 +331,19 @@ class ExecuteQueryRequest extends \Google\Protobuf\Internal\Message
      * Protocol buffer format as described by ProtoSchema and ProtoRows
      * messages.
      *
-     * Generated from protobuf field <code>.google.bigtable.v2.ProtoFormat proto_format = 4;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.ProtoFormat proto_format = 4 [deprecated = true];</code>
      * @return \Google\Cloud\Bigtable\V2\ProtoFormat|null
+     * @deprecated
      */
     public function getProtoFormat()
     {
+        @trigger_error('proto_format is deprecated.', E_USER_DEPRECATED);
         return $this->readOneof(4);
     }
 
     public function hasProtoFormat()
     {
+        @trigger_error('proto_format is deprecated.', E_USER_DEPRECATED);
         return $this->hasOneof(4);
     }
 
@@ -265,12 +351,14 @@ class ExecuteQueryRequest extends \Google\Protobuf\Internal\Message
      * Protocol buffer format as described by ProtoSchema and ProtoRows
      * messages.
      *
-     * Generated from protobuf field <code>.google.bigtable.v2.ProtoFormat proto_format = 4;</code>
+     * Generated from protobuf field <code>.google.bigtable.v2.ProtoFormat proto_format = 4 [deprecated = true];</code>
      * @param \Google\Cloud\Bigtable\V2\ProtoFormat $var
      * @return $this
+     * @deprecated
      */
     public function setProtoFormat($var)
     {
+        @trigger_error('proto_format is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\ProtoFormat::class);
         $this->writeOneof(4, $var);
 
@@ -323,15 +411,18 @@ class ExecuteQueryRequest extends \Google\Protobuf\Internal\Message
      * the query string.
      * For example, if
      * `params["firstName"] = bytes_value: "foo" type {bytes_type {}}`
-     *  then `&#64;firstName` will be replaced with googlesql bytes value "foo" in the
-     *  query string during query evaluation.
-     * In case of Value.kind is not set, it will be set to corresponding null
-     * value in googlesql.
-     *  `params["firstName"] =  type {string_type {}}`
-     *  then `&#64;firstName` will be replaced with googlesql null string.
-     * Value.type should always be set and no inference of type will be made from
-     * Value.kind. If Value.type is not set, we will return INVALID_ARGUMENT
-     * error.
+     * then `&#64;firstName` will be replaced with googlesql bytes value "foo" in the
+     * query string during query evaluation.
+     * If `Value.kind` is not set, the value is treated as a NULL value of the
+     * given type. For example, if
+     * `params["firstName"] = type {string_type {}}`
+     * then `&#64;firstName` will be replaced with googlesql null string.
+     * If `query` is set, any empty `Value.type` in the map will be rejected with
+     * `INVALID_ARGUMENT`.
+     * If `prepared_query` is set, any empty `Value.type` in the map will be
+     * inferred from the `param_types` in the `PrepareQueryRequest`. Any non-empty
+     * `Value.type` must match the corresponding `param_types` entry, or be
+     * rejected with `INVALID_ARGUMENT`.
      *
      * Generated from protobuf field <code>map<string, .google.bigtable.v2.Value> params = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -349,15 +440,18 @@ class ExecuteQueryRequest extends \Google\Protobuf\Internal\Message
      * the query string.
      * For example, if
      * `params["firstName"] = bytes_value: "foo" type {bytes_type {}}`
-     *  then `&#64;firstName` will be replaced with googlesql bytes value "foo" in the
-     *  query string during query evaluation.
-     * In case of Value.kind is not set, it will be set to corresponding null
-     * value in googlesql.
-     *  `params["firstName"] =  type {string_type {}}`
-     *  then `&#64;firstName` will be replaced with googlesql null string.
-     * Value.type should always be set and no inference of type will be made from
-     * Value.kind. If Value.type is not set, we will return INVALID_ARGUMENT
-     * error.
+     * then `&#64;firstName` will be replaced with googlesql bytes value "foo" in the
+     * query string during query evaluation.
+     * If `Value.kind` is not set, the value is treated as a NULL value of the
+     * given type. For example, if
+     * `params["firstName"] = type {string_type {}}`
+     * then `&#64;firstName` will be replaced with googlesql null string.
+     * If `query` is set, any empty `Value.type` in the map will be rejected with
+     * `INVALID_ARGUMENT`.
+     * If `prepared_query` is set, any empty `Value.type` in the map will be
+     * inferred from the `param_types` in the `PrepareQueryRequest`. Any non-empty
+     * `Value.type` must match the corresponding `param_types` entry, or be
+     * rejected with `INVALID_ARGUMENT`.
      *
      * Generated from protobuf field <code>map<string, .google.bigtable.v2.Value> params = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
