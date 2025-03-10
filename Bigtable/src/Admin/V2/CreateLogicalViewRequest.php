@@ -37,6 +37,26 @@ class CreateLogicalViewRequest extends \Google\Protobuf\Internal\Message
     protected $logical_view = null;
 
     /**
+     * @param string                                      $parent        Required. The parent instance where this logical view will be created.
+     *                                                                   Format: `projects/{project}/instances/{instance}`. Please see
+     *                                                                   {@see BigtableInstanceAdminClient::instanceName()} for help formatting this field.
+     * @param \Google\Cloud\Bigtable\Admin\V2\LogicalView $logicalView   Required. The logical view to create.
+     * @param string                                      $logicalViewId Required. The ID to use for the logical view, which will become the final
+     *                                                                   component of the logical view's resource name.
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\CreateLogicalViewRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Bigtable\Admin\V2\LogicalView $logicalView, string $logicalViewId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setLogicalView($logicalView)
+            ->setLogicalViewId($logicalViewId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

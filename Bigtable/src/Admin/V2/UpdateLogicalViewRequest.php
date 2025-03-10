@@ -32,6 +32,25 @@ class UpdateLogicalViewRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Cloud\Bigtable\Admin\V2\LogicalView $logicalView Required. The logical view to update.
+     *
+     *                                                                 The logical view's `name` field is used to identify the view to update.
+     *                                                                 Format:
+     *                                                                 `projects/{project}/instances/{instance}/logicalViews/{logical_view}`.
+     * @param \Google\Protobuf\FieldMask                  $updateMask  Optional. The list of fields to update.
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\UpdateLogicalViewRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Bigtable\Admin\V2\LogicalView $logicalView, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setLogicalView($logicalView)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

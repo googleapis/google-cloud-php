@@ -37,6 +37,26 @@ class CreateMaterializedViewRequest extends \Google\Protobuf\Internal\Message
     protected $materialized_view = null;
 
     /**
+     * @param string                                           $parent             Required. The parent instance where this materialized view will be created.
+     *                                                                             Format: `projects/{project}/instances/{instance}`. Please see
+     *                                                                             {@see BigtableInstanceAdminClient::instanceName()} for help formatting this field.
+     * @param \Google\Cloud\Bigtable\Admin\V2\MaterializedView $materializedView   Required. The materialized view to create.
+     * @param string                                           $materializedViewId Required. The ID to use for the materialized view, which will become the
+     *                                                                             final component of the materialized view's resource name.
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\CreateMaterializedViewRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\Bigtable\Admin\V2\MaterializedView $materializedView, string $materializedViewId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setMaterializedView($materializedView)
+            ->setMaterializedViewId($materializedViewId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
