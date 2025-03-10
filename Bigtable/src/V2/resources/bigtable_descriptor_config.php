@@ -311,6 +311,7 @@ return [
             'templateMap' => [
                 'authorizedView' => 'projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}',
                 'instance' => 'projects/{project}/instances/{instance}',
+                'materializedView' => 'projects/{project}/instances/{instance}/materializedViews/{materialized_view}',
                 'table' => 'projects/{project}/instances/{instance}/tables/{table}',
             ],
         ],

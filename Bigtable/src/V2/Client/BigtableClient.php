@@ -165,6 +165,25 @@ final class BigtableClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * materialized_view resource.
+     *
+     * @param string $project
+     * @param string $instance
+     * @param string $materializedView
+     *
+     * @return string The formatted materialized_view resource.
+     */
+    public static function materializedViewName(string $project, string $instance, string $materializedView): string
+    {
+        return self::getPathTemplate('materializedView')->render([
+            'project' => $project,
+            'instance' => $instance,
+            'materialized_view' => $materializedView,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a table
      * resource.
      *
@@ -189,6 +208,7 @@ final class BigtableClient
      * Template: Pattern
      * - authorizedView: projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}
      * - instance: projects/{project}/instances/{instance}
+     * - materializedView: projects/{project}/instances/{instance}/materializedViews/{materialized_view}
      * - table: projects/{project}/instances/{instance}/tables/{table}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
