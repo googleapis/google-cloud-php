@@ -17,8 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class QuotaAdjusterSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. Name of the config would be of the format:
-     *   projects/12345/locations/global/quotaAdjusterSettings
+     * Identifier. Name of the configuration, in the following format:
+     *   `projects/PROJECT_NUMBER/locations/global/quotaAdjusterSettings`.
+     * Replace PROJECT_NUMBER with the project number for your project.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -30,17 +31,17 @@ class QuotaAdjusterSettings extends \Google\Protobuf\Internal\Message
      */
     protected $enablement = 0;
     /**
-     * Output only. The timestamp when the QuotaAdjusterSettings was last updated.
+     * Output only. The timestamp when the QuotaAdjusterSettings resource was last
+     * updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $update_time = null;
     /**
-     * Optional. The current etag of the QuotaAdjusterSettings. If an etag is
-     * provided on update and does not match the current server's etag of the
-     * QuotaAdjusterSettings, the request will be blocked and an ABORTED error
-     * will be returned. See https://google.aip.dev/134#etags for more details on
-     * etags.
+     * Optional. The current ETag of the QuotaAdjusterSettings. If an ETag is
+     * provided on update and does not match the current server's ETag in the
+     * QuotaAdjusterSettings, the request is blocked and returns an ABORTED error.
+     * See https://google.aip.dev/134#etags for more details on ETags.
      *
      * Generated from protobuf field <code>string etag = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -53,18 +54,19 @@ class QuotaAdjusterSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Identifier. Name of the config would be of the format:
-     *             projects/12345/locations/global/quotaAdjusterSettings
+     *           Identifier. Name of the configuration, in the following format:
+     *             `projects/PROJECT_NUMBER/locations/global/quotaAdjusterSettings`.
+     *           Replace PROJECT_NUMBER with the project number for your project.
      *     @type int $enablement
      *           Required. The configured value of the enablement at the given resource.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           Output only. The timestamp when the QuotaAdjusterSettings was last updated.
+     *           Output only. The timestamp when the QuotaAdjusterSettings resource was last
+     *           updated.
      *     @type string $etag
-     *           Optional. The current etag of the QuotaAdjusterSettings. If an etag is
-     *           provided on update and does not match the current server's etag of the
-     *           QuotaAdjusterSettings, the request will be blocked and an ABORTED error
-     *           will be returned. See https://google.aip.dev/134#etags for more details on
-     *           etags.
+     *           Optional. The current ETag of the QuotaAdjusterSettings. If an ETag is
+     *           provided on update and does not match the current server's ETag in the
+     *           QuotaAdjusterSettings, the request is blocked and returns an ABORTED error.
+     *           See https://google.aip.dev/134#etags for more details on ETags.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,8 +75,9 @@ class QuotaAdjusterSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. Name of the config would be of the format:
-     *   projects/12345/locations/global/quotaAdjusterSettings
+     * Identifier. Name of the configuration, in the following format:
+     *   `projects/PROJECT_NUMBER/locations/global/quotaAdjusterSettings`.
+     * Replace PROJECT_NUMBER with the project number for your project.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -85,8 +88,9 @@ class QuotaAdjusterSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. Name of the config would be of the format:
-     *   projects/12345/locations/global/quotaAdjusterSettings
+     * Identifier. Name of the configuration, in the following format:
+     *   `projects/PROJECT_NUMBER/locations/global/quotaAdjusterSettings`.
+     * Replace PROJECT_NUMBER with the project number for your project.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -127,7 +131,8 @@ class QuotaAdjusterSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The timestamp when the QuotaAdjusterSettings was last updated.
+     * Output only. The timestamp when the QuotaAdjusterSettings resource was last
+     * updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -148,7 +153,8 @@ class QuotaAdjusterSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The timestamp when the QuotaAdjusterSettings was last updated.
+     * Output only. The timestamp when the QuotaAdjusterSettings resource was last
+     * updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -163,11 +169,10 @@ class QuotaAdjusterSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The current etag of the QuotaAdjusterSettings. If an etag is
-     * provided on update and does not match the current server's etag of the
-     * QuotaAdjusterSettings, the request will be blocked and an ABORTED error
-     * will be returned. See https://google.aip.dev/134#etags for more details on
-     * etags.
+     * Optional. The current ETag of the QuotaAdjusterSettings. If an ETag is
+     * provided on update and does not match the current server's ETag in the
+     * QuotaAdjusterSettings, the request is blocked and returns an ABORTED error.
+     * See https://google.aip.dev/134#etags for more details on ETags.
      *
      * Generated from protobuf field <code>string etag = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -178,11 +183,10 @@ class QuotaAdjusterSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The current etag of the QuotaAdjusterSettings. If an etag is
-     * provided on update and does not match the current server's etag of the
-     * QuotaAdjusterSettings, the request will be blocked and an ABORTED error
-     * will be returned. See https://google.aip.dev/134#etags for more details on
-     * etags.
+     * Optional. The current ETag of the QuotaAdjusterSettings. If an ETag is
+     * provided on update and does not match the current server's ETag in the
+     * QuotaAdjusterSettings, the request is blocked and returns an ABORTED error.
+     * See https://google.aip.dev/134#etags for more details on ETags.
      *
      * Generated from protobuf field <code>string etag = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
