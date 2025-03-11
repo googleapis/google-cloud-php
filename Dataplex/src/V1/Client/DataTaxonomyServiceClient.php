@@ -77,6 +77,8 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @deprecated This class will be removed in the next major version update.
+ *
  * @method PromiseInterface<OperationResponse> createDataAttributeAsync(CreateDataAttributeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createDataAttributeBindingAsync(CreateDataAttributeBindingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createDataTaxonomyAsync(CreateDataTaxonomyRequest $request, array $optionalArgs = [])
@@ -408,6 +410,8 @@ final class DataTaxonomyServiceClient
      * @return OperationResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function createDataAttribute(CreateDataAttributeRequest $request, array $callOptions = []): OperationResponse
     {
@@ -435,6 +439,8 @@ final class DataTaxonomyServiceClient
      * @return OperationResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function createDataAttributeBinding(
         CreateDataAttributeBindingRequest $request,
@@ -464,6 +470,8 @@ final class DataTaxonomyServiceClient
      * @return OperationResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function createDataTaxonomy(CreateDataTaxonomyRequest $request, array $callOptions = []): OperationResponse
     {
@@ -491,6 +499,8 @@ final class DataTaxonomyServiceClient
      * @return OperationResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function deleteDataAttribute(DeleteDataAttributeRequest $request, array $callOptions = []): OperationResponse
     {
@@ -520,6 +530,8 @@ final class DataTaxonomyServiceClient
      * @return OperationResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function deleteDataAttributeBinding(
         DeleteDataAttributeBindingRequest $request,
@@ -550,6 +562,8 @@ final class DataTaxonomyServiceClient
      * @return OperationResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function deleteDataTaxonomy(DeleteDataTaxonomyRequest $request, array $callOptions = []): OperationResponse
     {
@@ -576,6 +590,8 @@ final class DataTaxonomyServiceClient
      * @return DataAttribute
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getDataAttribute(GetDataAttributeRequest $request, array $callOptions = []): DataAttribute
     {
@@ -603,6 +619,8 @@ final class DataTaxonomyServiceClient
      * @return DataAttributeBinding
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getDataAttributeBinding(
         GetDataAttributeBindingRequest $request,
@@ -631,6 +649,8 @@ final class DataTaxonomyServiceClient
      * @return DataTaxonomy
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getDataTaxonomy(GetDataTaxonomyRequest $request, array $callOptions = []): DataTaxonomy
     {
@@ -658,6 +678,8 @@ final class DataTaxonomyServiceClient
      * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function listDataAttributeBindings(
         ListDataAttributeBindingsRequest $request,
@@ -687,6 +709,8 @@ final class DataTaxonomyServiceClient
      * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function listDataAttributes(ListDataAttributesRequest $request, array $callOptions = []): PagedListResponse
     {
@@ -714,6 +738,8 @@ final class DataTaxonomyServiceClient
      * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function listDataTaxonomies(ListDataTaxonomiesRequest $request, array $callOptions = []): PagedListResponse
     {
@@ -741,6 +767,8 @@ final class DataTaxonomyServiceClient
      * @return OperationResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function updateDataAttribute(UpdateDataAttributeRequest $request, array $callOptions = []): OperationResponse
     {
@@ -768,6 +796,8 @@ final class DataTaxonomyServiceClient
      * @return OperationResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function updateDataAttributeBinding(
         UpdateDataAttributeBindingRequest $request,
@@ -797,6 +827,8 @@ final class DataTaxonomyServiceClient
      * @return OperationResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function updateDataTaxonomy(UpdateDataTaxonomyRequest $request, array $callOptions = []): OperationResponse
     {

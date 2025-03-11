@@ -13,6 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * grouped with a common theme Eg: 'SensitiveDataTaxonomy' can have attributes
  * to manage PII data. It is defined at project level.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DataTaxonomy</code>
  */
 class DataTaxonomy extends \Google\Protobuf\Internal\Message

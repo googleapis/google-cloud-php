@@ -12,6 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * DataAttributeBinding represents binding of attributes to resources. Eg: Bind
  * 'CustomerInfo' entity with 'PII' attribute.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DataAttributeBinding</code>
  */
 class DataAttributeBinding extends \Google\Protobuf\Internal\Message

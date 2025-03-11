@@ -31,11 +31,6 @@ use Google\Cloud\Dataplex\V1\GetEntryRequest;
 /**
  * Gets an Entry.
  *
- * **Caution**: The BigQuery metadata that is stored in Dataplex Catalog is
- * changing. For more information, see [Changes to BigQuery metadata stored in
- * Dataplex
- * Catalog](https://cloud.google.com/dataplex/docs/biqquery-metadata-changes).
- *
  * @param string $formattedName The resource name of the Entry:
  *                              `projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}`. Please see
  *                              {@see CatalogServiceClient::entryName()} for help formatting this field.

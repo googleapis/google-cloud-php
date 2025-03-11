@@ -31,9 +31,7 @@ use Google\Cloud\Dataplex\V1\GetDataTaxonomyRequest;
 /**
  * Retrieves a DataTaxonomy resource.
  *
- * @param string $formattedName The resource name of the DataTaxonomy:
- *                              projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}
- *                              Please see {@see DataTaxonomyServiceClient::dataTaxonomyName()} for help formatting this field.
+ * @param string $formattedName Please see {@see DataTaxonomyServiceClient::dataTaxonomyName()} for help formatting this field.
  */
 function get_data_taxonomy_sample(string $formattedName): void
 {

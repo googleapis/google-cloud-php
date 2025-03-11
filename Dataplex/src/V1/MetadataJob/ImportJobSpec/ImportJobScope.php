@@ -19,8 +19,8 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      * Required. The entry group that is in scope for the import job,
      * specified as a relative resource name in the format
      * `projects/{project_number_or_id}/locations/{location_id}/entryGroups/{entry_group_id}`.
-     * Only entries that belong to the specified entry group are affected by
-     * the job.
+     * Only entries and aspects that belong to the specified entry group are
+     * affected by the job.
      * Must contain exactly one element. The entry group and the job
      * must be in the same location.
      *
@@ -31,7 +31,8 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      * Required. The entry types that are in scope for the import job,
      * specified as relative resource names in the format
      * `projects/{project_number_or_id}/locations/{location_id}/entryTypes/{entry_type_id}`.
-     * The job modifies only the entries that belong to these entry types.
+     * The job modifies only the entries and aspects that belong to these
+     * entry types.
      * If the metadata import file attempts to modify an entry whose type
      * isn't included in this list, the import job is halted before modifying
      * any entries or aspects.
@@ -46,6 +47,7 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      * specified as relative resource names in the format
      * `projects/{project_number_or_id}/locations/{location_id}/aspectTypes/{aspect_type_id}`.
      * The job modifies only the aspects that belong to these aspect types.
+     * This field is required when creating an aspect-only import job.
      * If the metadata import file attempts to modify an aspect whose type
      * isn't included in this list, the import job is halted before modifying
      * any entries or aspects.
@@ -66,15 +68,16 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      *           Required. The entry group that is in scope for the import job,
      *           specified as a relative resource name in the format
      *           `projects/{project_number_or_id}/locations/{location_id}/entryGroups/{entry_group_id}`.
-     *           Only entries that belong to the specified entry group are affected by
-     *           the job.
+     *           Only entries and aspects that belong to the specified entry group are
+     *           affected by the job.
      *           Must contain exactly one element. The entry group and the job
      *           must be in the same location.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entry_types
      *           Required. The entry types that are in scope for the import job,
      *           specified as relative resource names in the format
      *           `projects/{project_number_or_id}/locations/{location_id}/entryTypes/{entry_type_id}`.
-     *           The job modifies only the entries that belong to these entry types.
+     *           The job modifies only the entries and aspects that belong to these
+     *           entry types.
      *           If the metadata import file attempts to modify an entry whose type
      *           isn't included in this list, the import job is halted before modifying
      *           any entries or aspects.
@@ -85,6 +88,7 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      *           specified as relative resource names in the format
      *           `projects/{project_number_or_id}/locations/{location_id}/aspectTypes/{aspect_type_id}`.
      *           The job modifies only the aspects that belong to these aspect types.
+     *           This field is required when creating an aspect-only import job.
      *           If the metadata import file attempts to modify an aspect whose type
      *           isn't included in this list, the import job is halted before modifying
      *           any entries or aspects.
@@ -101,8 +105,8 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      * Required. The entry group that is in scope for the import job,
      * specified as a relative resource name in the format
      * `projects/{project_number_or_id}/locations/{location_id}/entryGroups/{entry_group_id}`.
-     * Only entries that belong to the specified entry group are affected by
-     * the job.
+     * Only entries and aspects that belong to the specified entry group are
+     * affected by the job.
      * Must contain exactly one element. The entry group and the job
      * must be in the same location.
      *
@@ -118,8 +122,8 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      * Required. The entry group that is in scope for the import job,
      * specified as a relative resource name in the format
      * `projects/{project_number_or_id}/locations/{location_id}/entryGroups/{entry_group_id}`.
-     * Only entries that belong to the specified entry group are affected by
-     * the job.
+     * Only entries and aspects that belong to the specified entry group are
+     * affected by the job.
      * Must contain exactly one element. The entry group and the job
      * must be in the same location.
      *
@@ -139,7 +143,8 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      * Required. The entry types that are in scope for the import job,
      * specified as relative resource names in the format
      * `projects/{project_number_or_id}/locations/{location_id}/entryTypes/{entry_type_id}`.
-     * The job modifies only the entries that belong to these entry types.
+     * The job modifies only the entries and aspects that belong to these
+     * entry types.
      * If the metadata import file attempts to modify an entry whose type
      * isn't included in this list, the import job is halted before modifying
      * any entries or aspects.
@@ -158,7 +163,8 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      * Required. The entry types that are in scope for the import job,
      * specified as relative resource names in the format
      * `projects/{project_number_or_id}/locations/{location_id}/entryTypes/{entry_type_id}`.
-     * The job modifies only the entries that belong to these entry types.
+     * The job modifies only the entries and aspects that belong to these
+     * entry types.
      * If the metadata import file attempts to modify an entry whose type
      * isn't included in this list, the import job is halted before modifying
      * any entries or aspects.
@@ -182,6 +188,7 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      * specified as relative resource names in the format
      * `projects/{project_number_or_id}/locations/{location_id}/aspectTypes/{aspect_type_id}`.
      * The job modifies only the aspects that belong to these aspect types.
+     * This field is required when creating an aspect-only import job.
      * If the metadata import file attempts to modify an aspect whose type
      * isn't included in this list, the import job is halted before modifying
      * any entries or aspects.
@@ -201,6 +208,7 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      * specified as relative resource names in the format
      * `projects/{project_number_or_id}/locations/{location_id}/aspectTypes/{aspect_type_id}`.
      * The job modifies only the aspects that belong to these aspect types.
+     * This field is required when creating an aspect-only import job.
      * If the metadata import file attempts to modify an aspect whose type
      * isn't included in this list, the import job is halted before modifying
      * any entries or aspects.

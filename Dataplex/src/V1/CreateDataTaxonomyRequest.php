@@ -11,15 +11,12 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Create DataTaxonomy request.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.dataplex.v1.CreateDataTaxonomyRequest</code>
  */
 class CreateDataTaxonomyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the data taxonomy location, of the form:
-     * projects/{project_number}/locations/{location_id}
-     * where `location_id` refers to a GCP region.
-     *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
@@ -49,10 +46,7 @@ class CreateDataTaxonomyRequest extends \Google\Protobuf\Internal\Message
     protected $validate_only = false;
 
     /**
-     * @param string                                 $parent         Required. The resource name of the data taxonomy location, of the form:
-     *                                                               projects/{project_number}/locations/{location_id}
-     *                                                               where `location_id` refers to a GCP region. Please see
-     *                                                               {@see DataTaxonomyServiceClient::locationName()} for help formatting this field.
+     * @param string                                 $parent         Please see {@see DataTaxonomyServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Dataplex\V1\DataTaxonomy $dataTaxonomy   Required. DataTaxonomy resource.
      * @param string                                 $dataTaxonomyId Required. DataTaxonomy identifier.
      *                                                               * Must contain only lowercase letters, numbers and hyphens.
@@ -80,9 +74,6 @@ class CreateDataTaxonomyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the data taxonomy location, of the form:
-     *           projects/{project_number}/locations/{location_id}
-     *           where `location_id` refers to a GCP region.
      *     @type string $data_taxonomy_id
      *           Required. DataTaxonomy identifier.
      *           * Must contain only lowercase letters, numbers and hyphens.
@@ -103,10 +94,6 @@ class CreateDataTaxonomyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the data taxonomy location, of the form:
-     * projects/{project_number}/locations/{location_id}
-     * where `location_id` refers to a GCP region.
-     *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
@@ -116,10 +103,6 @@ class CreateDataTaxonomyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the data taxonomy location, of the form:
-     * projects/{project_number}/locations/{location_id}
-     * where `location_id` refers to a GCP region.
-     *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this

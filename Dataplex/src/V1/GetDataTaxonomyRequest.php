@@ -11,22 +11,18 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Get DataTaxonomy request.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.dataplex.v1.GetDataTaxonomyRequest</code>
  */
 class GetDataTaxonomyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the DataTaxonomy:
-     * projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}
-     *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
 
     /**
-     * @param string $name Required. The resource name of the DataTaxonomy:
-     *                     projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}
-     *                     Please see {@see DataTaxonomyServiceClient::dataTaxonomyName()} for help formatting this field.
+     * @param string $name Please see {@see DataTaxonomyServiceClient::dataTaxonomyName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataplex\V1\GetDataTaxonomyRequest
      *
@@ -45,8 +41,6 @@ class GetDataTaxonomyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the DataTaxonomy:
-     *           projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}
      * }
      */
     public function __construct($data = NULL) {
@@ -55,9 +49,6 @@ class GetDataTaxonomyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the DataTaxonomy:
-     * projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}
-     *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
@@ -67,9 +58,6 @@ class GetDataTaxonomyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the DataTaxonomy:
-     * projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}
-     *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
