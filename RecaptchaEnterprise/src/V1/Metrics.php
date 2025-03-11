@@ -23,7 +23,8 @@ class Metrics extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Inclusive start time aligned to a day (UTC).
+     * Inclusive start time aligned to a day in the America/Los_Angeles (Pacific)
+     * timezone.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
@@ -54,7 +55,8 @@ class Metrics extends \Google\Protobuf\Internal\Message
      *           Output only. Identifier. The name of the metrics, in the format
      *           `projects/{project}/keys/{key}/metrics`.
      *     @type \Google\Protobuf\Timestamp $start_time
-     *           Inclusive start time aligned to a day (UTC).
+     *           Inclusive start time aligned to a day in the America/Los_Angeles (Pacific)
+     *           timezone.
      *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\ScoreMetrics>|\Google\Protobuf\Internal\RepeatedField $score_metrics
      *           Metrics are continuous and in order by dates, and in the granularity
      *           of day. All Key types should have score-based data.
@@ -98,7 +100,8 @@ class Metrics extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Inclusive start time aligned to a day (UTC).
+     * Inclusive start time aligned to a day in the America/Los_Angeles (Pacific)
+     * timezone.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -119,7 +122,8 @@ class Metrics extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Inclusive start time aligned to a day (UTC).
+     * Inclusive start time aligned to a day in the America/Los_Angeles (Pacific)
+     * timezone.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      * @param \Google\Protobuf\Timestamp $var
