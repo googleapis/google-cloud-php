@@ -1,0 +1,103 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.storage.control.v2",
+    "libraryPackage": "Google\\Cloud\\Storage\\Control\\V2",
+    "services": {
+        "StorageControl": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "StorageControlGapicClient",
+                    "rpcs": {
+                        "CreateAnywhereCache": {
+                            "methods": [
+                                "createAnywhereCache"
+                            ]
+                        },
+                        "CreateFolder": {
+                            "methods": [
+                                "createFolder"
+                            ]
+                        },
+                        "CreateManagedFolder": {
+                            "methods": [
+                                "createManagedFolder"
+                            ]
+                        },
+                        "DeleteFolder": {
+                            "methods": [
+                                "deleteFolder"
+                            ]
+                        },
+                        "DeleteManagedFolder": {
+                            "methods": [
+                                "deleteManagedFolder"
+                            ]
+                        },
+                        "DisableAnywhereCache": {
+                            "methods": [
+                                "disableAnywhereCache"
+                            ]
+                        },
+                        "GetAnywhereCache": {
+                            "methods": [
+                                "getAnywhereCache"
+                            ]
+                        },
+                        "GetFolder": {
+                            "methods": [
+                                "getFolder"
+                            ]
+                        },
+                        "GetManagedFolder": {
+                            "methods": [
+                                "getManagedFolder"
+                            ]
+                        },
+                        "GetStorageLayout": {
+                            "methods": [
+                                "getStorageLayout"
+                            ]
+                        },
+                        "ListAnywhereCaches": {
+                            "methods": [
+                                "listAnywhereCaches"
+                            ]
+                        },
+                        "ListFolders": {
+                            "methods": [
+                                "listFolders"
+                            ]
+                        },
+                        "ListManagedFolders": {
+                            "methods": [
+                                "listManagedFolders"
+                            ]
+                        },
+                        "PauseAnywhereCache": {
+                            "methods": [
+                                "pauseAnywhereCache"
+                            ]
+                        },
+                        "RenameFolder": {
+                            "methods": [
+                                "renameFolder"
+                            ]
+                        },
+                        "ResumeAnywhereCache": {
+                            "methods": [
+                                "resumeAnywhereCache"
+                            ]
+                        },
+                        "UpdateAnywhereCache": {
+                            "methods": [
+                                "updateAnywhereCache"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
