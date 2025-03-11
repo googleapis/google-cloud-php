@@ -31,8 +31,8 @@ use Google\Cloud\CloudQuotas\V1beta\QuotaAdjusterSettings;
 /**
  * RPC Method for getting QuotaAdjusterSettings based on the request
  *
- * @param string $formattedName Name of the config. Required to be “settings”, as only a single
- *                              setting per container will be supported initially. Please see
+ * @param string $formattedName Name of the `quotaAdjusterSettings` configuration. Only a single
+ *                              setting per project is supported. Please see
  *                              {@see QuotaAdjusterSettingsManagerClient::quotaAdjusterSettingsName()} for help formatting this field.
  */
 function get_quota_adjuster_settings_sample(string $formattedName): void
