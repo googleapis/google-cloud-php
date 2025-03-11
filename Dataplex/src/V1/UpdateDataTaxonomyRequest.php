@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Update DataTaxonomy request.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.dataplex.v1.UpdateDataTaxonomyRequest</code>
  */
 class UpdateDataTaxonomyRequest extends \Google\Protobuf\Internal\Message

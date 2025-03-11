@@ -7,7 +7,9 @@ namespace Google\Cloud\Dataplex\V1\MetadataJob\ImportJobSpec;
 use UnexpectedValueException;
 
 /**
- * Specifies how the entries and aspects in a metadata job are updated.
+ * Specifies how the entries and aspects in a metadata job are updated. For
+ * more information, see [Sync
+ * mode](https://cloud.google.com/dataplex/docs/import-metadata#sync-mode).
  *
  * Protobuf type <code>google.cloud.dataplex.v1.MetadataJob.ImportJobSpec.SyncMode</code>
  */
@@ -24,22 +26,25 @@ class SyncMode
      * Dataplex but isn't included in the metadata import file, the resource
      * is deleted when you run the metadata job. Use this mode to perform a
      * full sync of the set of entries in the job scope.
+     * This sync mode is supported for entries.
      *
      * Generated from protobuf enum <code>FULL = 1;</code>
      */
     const FULL = 1;
     /**
-     * Only the entries and aspects that are explicitly included in the
+     * Only the resources that are explicitly included in the
      * metadata import file are modified. Use this mode to modify a subset of
      * resources while leaving unreferenced resources unchanged.
+     * This sync mode is supported for aspects.
      *
      * Generated from protobuf enum <code>INCREMENTAL = 2;</code>
      */
     const INCREMENTAL = 2;
     /**
-     * If entry sync mode is NONE, then the entry-specific fields (apart from
-     * aspects) are not modified and the aspects are modified according to the
-     * aspect_sync_mode
+     * If entry sync mode is `NONE`, then aspects are modified according
+     * to the aspect sync mode. Other metadata that belongs to entries in the
+     * job's scope isn't modified.
+     * This sync mode is supported for entries.
      *
      * Generated from protobuf enum <code>NONE = 3;</code>
      */

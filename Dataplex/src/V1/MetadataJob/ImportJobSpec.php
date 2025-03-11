@@ -9,7 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Job specification for a metadata import job
+ * Job specification for a metadata import job.
+ * You can run the following kinds of metadata import jobs:
+ * * Full sync of entries with incremental import of their aspects.
+ * Supported for custom entries.
+ * * Incremental import of aspects only. Supported for aspects that belong
+ * to custom entries and system entries. For custom entries, you can modify
+ * both optional aspects and required aspects. For system entries, you can
+ * modify optional aspects.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.MetadataJob.ImportJobSpec</code>
  */
@@ -50,18 +57,12 @@ class ImportJobSpec extends \Google\Protobuf\Internal\Message
     protected $scope = null;
     /**
      * Required. The sync mode for entries.
-     * Only `FULL` mode is supported for entries. All entries in the job's scope
-     * are modified. If an entry exists in Dataplex but isn't included in the
-     * metadata import file, the entry is deleted when you run the metadata job.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.MetadataJob.ImportJobSpec.SyncMode entry_sync_mode = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $entry_sync_mode = 0;
     /**
      * Required. The sync mode for aspects.
-     * Only `INCREMENTAL` mode is supported for aspects. An aspect is modified
-     * only if the metadata import file includes a reference to the aspect in
-     * the `update_mask` field and the `aspect_keys` field.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.MetadataJob.ImportJobSpec.SyncMode aspect_sync_mode = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -107,14 +108,8 @@ class ImportJobSpec extends \Google\Protobuf\Internal\Message
      *           can have.
      *     @type int $entry_sync_mode
      *           Required. The sync mode for entries.
-     *           Only `FULL` mode is supported for entries. All entries in the job's scope
-     *           are modified. If an entry exists in Dataplex but isn't included in the
-     *           metadata import file, the entry is deleted when you run the metadata job.
      *     @type int $aspect_sync_mode
      *           Required. The sync mode for aspects.
-     *           Only `INCREMENTAL` mode is supported for aspects. An aspect is modified
-     *           only if the metadata import file includes a reference to the aspect in
-     *           the `update_mask` field and the `aspect_keys` field.
      *     @type int $log_level
      *           Optional. The level of logs to write to Cloud Logging for this job.
      *           Debug-level logs provide highly-detailed information for
@@ -259,9 +254,6 @@ class ImportJobSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The sync mode for entries.
-     * Only `FULL` mode is supported for entries. All entries in the job's scope
-     * are modified. If an entry exists in Dataplex but isn't included in the
-     * metadata import file, the entry is deleted when you run the metadata job.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.MetadataJob.ImportJobSpec.SyncMode entry_sync_mode = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -273,9 +265,6 @@ class ImportJobSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The sync mode for entries.
-     * Only `FULL` mode is supported for entries. All entries in the job's scope
-     * are modified. If an entry exists in Dataplex but isn't included in the
-     * metadata import file, the entry is deleted when you run the metadata job.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.MetadataJob.ImportJobSpec.SyncMode entry_sync_mode = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -291,9 +280,6 @@ class ImportJobSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The sync mode for aspects.
-     * Only `INCREMENTAL` mode is supported for aspects. An aspect is modified
-     * only if the metadata import file includes a reference to the aspect in
-     * the `update_mask` field and the `aspect_keys` field.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.MetadataJob.ImportJobSpec.SyncMode aspect_sync_mode = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -305,9 +291,6 @@ class ImportJobSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The sync mode for aspects.
-     * Only `INCREMENTAL` mode is supported for aspects. An aspect is modified
-     * only if the metadata import file includes a reference to the aspect in
-     * the `update_mask` field and the `aspect_keys` field.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.MetadataJob.ImportJobSpec.SyncMode aspect_sync_mode = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
