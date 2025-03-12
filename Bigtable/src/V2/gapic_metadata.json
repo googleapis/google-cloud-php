@@ -40,6 +40,11 @@
                                 "pingAndWarm"
                             ]
                         },
+                        "PrepareQuery": {
+                            "methods": [
+                                "prepareQuery"
+                            ]
+                        },
                         "ReadChangeStream": {
                             "methods": [
                                 "readChangeStream"

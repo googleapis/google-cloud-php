@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,46 +22,38 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START bigtable_v2_generated_Bigtable_ExecuteQuery_sync]
+// [START bigtable_v2_generated_Bigtable_PrepareQuery_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\V2\Client\BigtableClient;
-use Google\Cloud\Bigtable\V2\ExecuteQueryRequest;
-use Google\Cloud\Bigtable\V2\ExecuteQueryResponse;
+use Google\Cloud\Bigtable\V2\PrepareQueryRequest;
+use Google\Cloud\Bigtable\V2\PrepareQueryResponse;
 
 /**
- * Executes a SQL query against a particular Bigtable instance.
+ * Prepares a GoogleSQL query for execution on a particular Bigtable instance.
  *
  * @param string $formattedInstanceName The unique name of the instance against which the query should be
  *                                      executed.
  *                                      Values are of the form `projects/<project>/instances/<instance>`
  *                                      Please see {@see BigtableClient::instanceName()} for help formatting this field.
  * @param string $query                 The query string.
- *
- *                                      Exactly one of `query` and `prepared_query` is required. Setting both
- *                                      or neither is an `INVALID_ARGUMENT`.
  */
-function execute_query_sample(string $formattedInstanceName, string $query): void
+function prepare_query_sample(string $formattedInstanceName, string $query): void
 {
     // Create a client.
     $bigtableClient = new BigtableClient();
 
     // Prepare the request message.
-    $params = [];
-    $request = (new ExecuteQueryRequest())
+    $paramTypes = [];
+    $request = (new PrepareQueryRequest())
         ->setInstanceName($formattedInstanceName)
         ->setQuery($query)
-        ->setParams($params);
+        ->setParamTypes($paramTypes);
 
     // Call the API and handle any network failures.
     try {
-        /** @var ServerStream $stream */
-        $stream = $bigtableClient->executeQuery($request);
-
-        /** @var ExecuteQueryResponse $element */
-        foreach ($stream->readAll() as $element) {
-            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
-        }
+        /** @var PrepareQueryResponse $response */
+        $response = $bigtableClient->prepareQuery($request);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -81,6 +73,6 @@ function callSample(): void
     $formattedInstanceName = BigtableClient::instanceName('[PROJECT]', '[INSTANCE]');
     $query = '[QUERY]';
 
-    execute_query_sample($formattedInstanceName, $query);
+    prepare_query_sample($formattedInstanceName, $query);
 }
-// [END bigtable_v2_generated_Bigtable_ExecuteQuery_sync]
+// [END bigtable_v2_generated_Bigtable_PrepareQuery_sync]

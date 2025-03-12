@@ -42,7 +42,6 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      * cluster ID, e.g., just `mycluster` rather than
      * `projects/myproject/instances/myinstance/clusters/mycluster`.
      * Fields marked `OutputOnly` must be left blank.
-     * Currently, at most four clusters can be specified.
      *
      * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.Cluster> clusters = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -61,7 +60,6 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      *                                                             cluster ID, e.g., just `mycluster` rather than
      *                                                             `projects/myproject/instances/myinstance/clusters/mycluster`.
      *                                                             Fields marked `OutputOnly` must be left blank.
-     *                                                             Currently, at most four clusters can be specified.
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\CreateInstanceRequest
      *
@@ -97,7 +95,6 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      *           cluster ID, e.g., just `mycluster` rather than
      *           `projects/myproject/instances/myinstance/clusters/mycluster`.
      *           Fields marked `OutputOnly` must be left blank.
-     *           Currently, at most four clusters can be specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -206,7 +203,6 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      * cluster ID, e.g., just `mycluster` rather than
      * `projects/myproject/instances/myinstance/clusters/mycluster`.
      * Fields marked `OutputOnly` must be left blank.
-     * Currently, at most four clusters can be specified.
      *
      * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.Cluster> clusters = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -221,7 +217,6 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      * cluster ID, e.g., just `mycluster` rather than
      * `projects/myproject/instances/myinstance/clusters/mycluster`.
      * Fields marked `OutputOnly` must be left blank.
-     * Currently, at most four clusters can be specified.
      *
      * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.Cluster> clusters = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

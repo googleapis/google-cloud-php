@@ -32,6 +32,14 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      */
     protected $authorized_view_name = '';
     /**
+     * Optional. The unique name of the MaterializedView from which to read.
+     * Values are of the form
+     * `projects/<project>/instances/<instance>/materializedViews/<materialized_view>`.
+     *
+     * Generated from protobuf field <code>string materialized_view_name = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $materialized_view_name = '';
+    /**
      * This value specifies routing for replication. If not specified, the
      * "default" application profile will be used.
      *
@@ -131,6 +139,10 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The unique name of the AuthorizedView from which to read.
      *           Values are of the form
      *           `projects/<project>/instances/<instance>/tables/<table>/authorizedViews/<authorized_view>`.
+     *     @type string $materialized_view_name
+     *           Optional. The unique name of the MaterializedView from which to read.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/materializedViews/<materialized_view>`.
      *     @type string $app_profile_id
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
@@ -218,6 +230,36 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->authorized_view_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The unique name of the MaterializedView from which to read.
+     * Values are of the form
+     * `projects/<project>/instances/<instance>/materializedViews/<materialized_view>`.
+     *
+     * Generated from protobuf field <code>string materialized_view_name = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getMaterializedViewName()
+    {
+        return $this->materialized_view_name;
+    }
+
+    /**
+     * Optional. The unique name of the MaterializedView from which to read.
+     * Values are of the form
+     * `projects/<project>/instances/<instance>/materializedViews/<materialized_view>`.
+     *
+     * Generated from protobuf field <code>string materialized_view_name = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMaterializedViewName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->materialized_view_name = $var;
 
         return $this;
     }

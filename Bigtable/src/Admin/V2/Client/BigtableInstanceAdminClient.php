@@ -40,12 +40,18 @@ use Google\Cloud\Bigtable\Admin\V2\Cluster;
 use Google\Cloud\Bigtable\Admin\V2\CreateAppProfileRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateClusterRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateInstanceRequest;
+use Google\Cloud\Bigtable\Admin\V2\CreateLogicalViewRequest;
+use Google\Cloud\Bigtable\Admin\V2\CreateMaterializedViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteAppProfileRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteClusterRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteInstanceRequest;
+use Google\Cloud\Bigtable\Admin\V2\DeleteLogicalViewRequest;
+use Google\Cloud\Bigtable\Admin\V2\DeleteMaterializedViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetAppProfileRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetClusterRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetInstanceRequest;
+use Google\Cloud\Bigtable\Admin\V2\GetLogicalViewRequest;
+use Google\Cloud\Bigtable\Admin\V2\GetMaterializedViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
 use Google\Cloud\Bigtable\Admin\V2\ListAppProfilesRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListClustersRequest;
@@ -53,9 +59,15 @@ use Google\Cloud\Bigtable\Admin\V2\ListClustersResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListHotTabletsRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListInstancesRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListInstancesResponse;
+use Google\Cloud\Bigtable\Admin\V2\ListLogicalViewsRequest;
+use Google\Cloud\Bigtable\Admin\V2\ListMaterializedViewsRequest;
+use Google\Cloud\Bigtable\Admin\V2\LogicalView;
+use Google\Cloud\Bigtable\Admin\V2\MaterializedView;
 use Google\Cloud\Bigtable\Admin\V2\PartialUpdateClusterRequest;
 use Google\Cloud\Bigtable\Admin\V2\PartialUpdateInstanceRequest;
 use Google\Cloud\Bigtable\Admin\V2\UpdateAppProfileRequest;
+use Google\Cloud\Bigtable\Admin\V2\UpdateLogicalViewRequest;
+use Google\Cloud\Bigtable\Admin\V2\UpdateMaterializedViewRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -83,17 +95,25 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<AppProfile> createAppProfileAsync(CreateAppProfileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createClusterAsync(CreateClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createLogicalViewAsync(CreateLogicalViewRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createMaterializedViewAsync(CreateMaterializedViewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteAppProfileAsync(DeleteAppProfileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteClusterAsync(DeleteClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteLogicalViewAsync(DeleteLogicalViewRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteMaterializedViewAsync(DeleteMaterializedViewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AppProfile> getAppProfileAsync(GetAppProfileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Cluster> getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Instance> getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LogicalView> getLogicalViewAsync(GetLogicalViewRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MaterializedView> getMaterializedViewAsync(GetMaterializedViewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAppProfilesAsync(ListAppProfilesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ListClustersResponse> listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listHotTabletsAsync(ListHotTabletsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ListInstancesResponse> listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLogicalViewsAsync(ListLogicalViewsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMaterializedViewsAsync(ListMaterializedViewsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> partialUpdateClusterAsync(PartialUpdateClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> partialUpdateInstanceAsync(PartialUpdateInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
@@ -101,6 +121,8 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> updateAppProfileAsync(UpdateAppProfileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateClusterAsync(Cluster $request, array $optionalArgs = [])
  * @method PromiseInterface<Instance> updateInstanceAsync(Instance $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateLogicalViewAsync(UpdateLogicalViewRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateMaterializedViewAsync(UpdateMaterializedViewRequest $request, array $optionalArgs = [])
  */
 final class BigtableInstanceAdminClient
 {
@@ -300,6 +322,44 @@ final class BigtableInstanceAdminClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a logical_view
+     * resource.
+     *
+     * @param string $project
+     * @param string $instance
+     * @param string $logicalView
+     *
+     * @return string The formatted logical_view resource.
+     */
+    public static function logicalViewName(string $project, string $instance, string $logicalView): string
+    {
+        return self::getPathTemplate('logicalView')->render([
+            'project' => $project,
+            'instance' => $instance,
+            'logical_view' => $logicalView,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * materialized_view resource.
+     *
+     * @param string $project
+     * @param string $instance
+     * @param string $materializedView
+     *
+     * @return string The formatted materialized_view resource.
+     */
+    public static function materializedViewName(string $project, string $instance, string $materializedView): string
+    {
+        return self::getPathTemplate('materializedView')->render([
+            'project' => $project,
+            'instance' => $instance,
+            'materialized_view' => $materializedView,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project
      * resource.
      *
@@ -323,6 +383,8 @@ final class BigtableInstanceAdminClient
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - instance: projects/{project}/instances/{instance}
      * - location: projects/{project}/locations/{location}
+     * - logicalView: projects/{project}/instances/{instance}/logicalViews/{logical_view}
+     * - materializedView: projects/{project}/instances/{instance}/materializedViews/{materialized_view}
      * - project: projects/{project}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -521,6 +583,60 @@ final class BigtableInstanceAdminClient
     }
 
     /**
+     * Creates a logical view within an instance.
+     *
+     * The async variant is
+     * {@see BigtableInstanceAdminClient::createLogicalViewAsync()} .
+     *
+     * @example samples/V2/BigtableInstanceAdminClient/create_logical_view.php
+     *
+     * @param CreateLogicalViewRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createLogicalView(CreateLogicalViewRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateLogicalView', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a materialized view within an instance.
+     *
+     * The async variant is
+     * {@see BigtableInstanceAdminClient::createMaterializedViewAsync()} .
+     *
+     * @example samples/V2/BigtableInstanceAdminClient/create_materialized_view.php
+     *
+     * @param CreateMaterializedViewRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createMaterializedView(CreateMaterializedViewRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateMaterializedView', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes an app profile from an instance.
      *
      * The async variant is {@see BigtableInstanceAdminClient::deleteAppProfileAsync()}
@@ -591,6 +707,56 @@ final class BigtableInstanceAdminClient
     public function deleteInstance(DeleteInstanceRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteInstance', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a logical view from an instance.
+     *
+     * The async variant is
+     * {@see BigtableInstanceAdminClient::deleteLogicalViewAsync()} .
+     *
+     * @example samples/V2/BigtableInstanceAdminClient/delete_logical_view.php
+     *
+     * @param DeleteLogicalViewRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteLogicalView(DeleteLogicalViewRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteLogicalView', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a materialized view from an instance.
+     *
+     * The async variant is
+     * {@see BigtableInstanceAdminClient::deleteMaterializedViewAsync()} .
+     *
+     * @example samples/V2/BigtableInstanceAdminClient/delete_materialized_view.php
+     *
+     * @param DeleteMaterializedViewRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteMaterializedView(DeleteMaterializedViewRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteMaterializedView', $request, $callOptions)->wait();
     }
 
     /**
@@ -699,6 +865,59 @@ final class BigtableInstanceAdminClient
     }
 
     /**
+     * Gets information about a logical view.
+     *
+     * The async variant is {@see BigtableInstanceAdminClient::getLogicalViewAsync()} .
+     *
+     * @example samples/V2/BigtableInstanceAdminClient/get_logical_view.php
+     *
+     * @param GetLogicalViewRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return LogicalView
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getLogicalView(GetLogicalViewRequest $request, array $callOptions = []): LogicalView
+    {
+        return $this->startApiCall('GetLogicalView', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets information about a materialized view.
+     *
+     * The async variant is
+     * {@see BigtableInstanceAdminClient::getMaterializedViewAsync()} .
+     *
+     * @example samples/V2/BigtableInstanceAdminClient/get_materialized_view.php
+     *
+     * @param GetMaterializedViewRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return MaterializedView
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getMaterializedView(GetMaterializedViewRequest $request, array $callOptions = []): MaterializedView
+    {
+        return $this->startApiCall('GetMaterializedView', $request, $callOptions)->wait();
+    }
+
+    /**
      * Lists information about app profiles in an instance.
      *
      * The async variant is {@see BigtableInstanceAdminClient::listAppProfilesAsync()}
@@ -802,6 +1021,60 @@ final class BigtableInstanceAdminClient
     public function listInstances(ListInstancesRequest $request, array $callOptions = []): ListInstancesResponse
     {
         return $this->startApiCall('ListInstances', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists information about logical views in an instance.
+     *
+     * The async variant is {@see BigtableInstanceAdminClient::listLogicalViewsAsync()}
+     * .
+     *
+     * @example samples/V2/BigtableInstanceAdminClient/list_logical_views.php
+     *
+     * @param ListLogicalViewsRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listLogicalViews(ListLogicalViewsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListLogicalViews', $request, $callOptions);
+    }
+
+    /**
+     * Lists information about materialized views in an instance.
+     *
+     * The async variant is
+     * {@see BigtableInstanceAdminClient::listMaterializedViewsAsync()} .
+     *
+     * @example samples/V2/BigtableInstanceAdminClient/list_materialized_views.php
+     *
+     * @param ListMaterializedViewsRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listMaterializedViews(ListMaterializedViewsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListMaterializedViews', $request, $callOptions);
     }
 
     /**
@@ -1007,6 +1280,60 @@ final class BigtableInstanceAdminClient
     public function updateInstance(Instance $request, array $callOptions = []): Instance
     {
         return $this->startApiCall('UpdateInstance', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a logical view within an instance.
+     *
+     * The async variant is
+     * {@see BigtableInstanceAdminClient::updateLogicalViewAsync()} .
+     *
+     * @example samples/V2/BigtableInstanceAdminClient/update_logical_view.php
+     *
+     * @param UpdateLogicalViewRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateLogicalView(UpdateLogicalViewRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateLogicalView', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a materialized view within an instance.
+     *
+     * The async variant is
+     * {@see BigtableInstanceAdminClient::updateMaterializedViewAsync()} .
+     *
+     * @example samples/V2/BigtableInstanceAdminClient/update_materialized_view.php
+     *
+     * @param UpdateMaterializedViewRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateMaterializedView(UpdateMaterializedViewRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateMaterializedView', $request, $callOptions)->wait();
     }
 
     /** Configure the gapic configuration to use a service emulator. */
