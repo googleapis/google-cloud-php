@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.280.0
+
+<details><summary>google/cloud-bigtable 2.9.0</summary>
+
+
+
+### Features
+
+* [Bigtable] add MaterializedViews and LogicalViews APIs ([#8129](https://github.com/googleapis/google-cloud-php/issues/8129)) ([2b3e098](https://github.com/googleapis/google-cloud-php/commit/2b3e0983409786fa36f195b898ee974d7526028a))
+* Add MaterializedViewName to ReadRows and SampleRowKeys ([2b3e098](https://github.com/googleapis/google-cloud-php/commit/2b3e0983409786fa36f195b898ee974d7526028a))
+* Add PrepareQuery api and update ExecuteQuery to support it ([2b3e098](https://github.com/googleapis/google-cloud-php/commit/2b3e0983409786fa36f195b898ee974d7526028a))
+
+
+### Documentation
+
+* Fixed formatting of resource path strings ([2b3e098](https://github.com/googleapis/google-cloud-php/commit/2b3e0983409786fa36f195b898ee974d7526028a))
+* Update ExecuteQuery API docs to reflect changes ([2b3e098](https://github.com/googleapis/google-cloud-php/commit/2b3e0983409786fa36f195b898ee974d7526028a))
+
+</details>
+
 ## 0.279.0
 
 <details><summary>google/cloud-ai-platform 1.20.0</summary>
