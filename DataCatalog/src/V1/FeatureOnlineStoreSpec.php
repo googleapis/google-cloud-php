@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class FeatureOnlineStoreSpec extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Type of underelaying storage for the FeatureOnlineStore.
+     * Output only. Type of underlying storage for the FeatureOnlineStore.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.FeatureOnlineStoreSpec.StorageType storage_type = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -30,7 +30,7 @@ class FeatureOnlineStoreSpec extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $storage_type
-     *           Output only. Type of underelaying storage for the FeatureOnlineStore.
+     *           Output only. Type of underlying storage for the FeatureOnlineStore.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,7 +39,7 @@ class FeatureOnlineStoreSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Type of underelaying storage for the FeatureOnlineStore.
+     * Output only. Type of underlying storage for the FeatureOnlineStore.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.FeatureOnlineStoreSpec.StorageType storage_type = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -50,7 +50,7 @@ class FeatureOnlineStoreSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Type of underelaying storage for the FeatureOnlineStore.
+     * Output only. Type of underlying storage for the FeatureOnlineStore.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.FeatureOnlineStoreSpec.StorageType storage_type = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
