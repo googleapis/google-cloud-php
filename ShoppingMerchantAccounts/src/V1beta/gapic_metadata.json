@@ -135,6 +135,25 @@
                 }
             }
         },
+        "AutomaticImprovementsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AutomaticImprovementsServiceGapicClient",
+                    "rpcs": {
+                        "GetAutomaticImprovements": {
+                            "methods": [
+                                "getAutomaticImprovements"
+                            ]
+                        },
+                        "UpdateAutomaticImprovements": {
+                            "methods": [
+                                "updateAutomaticImprovements"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "BusinessIdentityService": {
             "clients": {
                 "grpc": {
