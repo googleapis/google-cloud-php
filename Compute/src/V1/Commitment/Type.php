@@ -100,6 +100,10 @@ class Type
      */
     const MEMORY_OPTIMIZED_M3 = 276301372;
     /**
+     * Generated from protobuf enum <code>MEMORY_OPTIMIZED_M4 = 276301373;</code>
+     */
+    const MEMORY_OPTIMIZED_M4 = 276301373;
+    /**
      * Generated from protobuf enum <code>MEMORY_OPTIMIZED_X4_16TB = 183089120;</code>
      */
     const MEMORY_OPTIMIZED_X4_16TB = 183089120;
@@ -144,6 +148,7 @@ class Type
         self::GRAPHICS_OPTIMIZED => 'GRAPHICS_OPTIMIZED',
         self::MEMORY_OPTIMIZED => 'MEMORY_OPTIMIZED',
         self::MEMORY_OPTIMIZED_M3 => 'MEMORY_OPTIMIZED_M3',
+        self::MEMORY_OPTIMIZED_M4 => 'MEMORY_OPTIMIZED_M4',
         self::MEMORY_OPTIMIZED_X4_16TB => 'MEMORY_OPTIMIZED_X4_16TB',
         self::MEMORY_OPTIMIZED_X4_24TB => 'MEMORY_OPTIMIZED_X4_24TB',
         self::MEMORY_OPTIMIZED_X4_32TB => 'MEMORY_OPTIMIZED_X4_32TB',

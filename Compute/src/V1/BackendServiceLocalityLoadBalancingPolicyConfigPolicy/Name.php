@@ -65,6 +65,12 @@ class Name
      * Generated from protobuf enum <code>WEIGHTED_MAGLEV = 254930962;</code>
      */
     const WEIGHTED_MAGLEV = 254930962;
+    /**
+     * Per-endpoint weighted round-robin Load Balancing using weights computed from Backend reported Custom Metrics. If set, the Backend Service responses are expected to contain non-standard HTTP response header field X-Endpoint-Load-Metrics. The reported metrics to use for computing the weights are specified via the backends[].customMetrics fields.
+     *
+     * Generated from protobuf enum <code>WEIGHTED_ROUND_ROBIN = 5584977;</code>
+     */
+    const WEIGHTED_ROUND_ROBIN = 5584977;
 
     private static $valueToName = [
         self::UNDEFINED_NAME => 'UNDEFINED_NAME',
@@ -76,6 +82,7 @@ class Name
         self::RING_HASH => 'RING_HASH',
         self::ROUND_ROBIN => 'ROUND_ROBIN',
         self::WEIGHTED_MAGLEV => 'WEIGHTED_MAGLEV',
+        self::WEIGHTED_ROUND_ROBIN => 'WEIGHTED_ROUND_ROBIN',
     ];
 
     public static function name($value)

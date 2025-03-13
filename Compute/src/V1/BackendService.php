@@ -67,6 +67,12 @@ class BackendService extends \Google\Protobuf\Internal\Message
      */
     private $creation_timestamp = null;
     /**
+     * List of custom metrics that are used for the WEIGHTED_ROUND_ROBIN locality_lb_policy.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendServiceCustomMetric custom_metrics = 429453813;</code>
+     */
+    private $custom_metrics;
+    /**
      * Headers that the load balancer adds to proxied requests. See [Creating custom headers](https://cloud.google.com/load-balancing/docs/custom-headers).
      *
      * Generated from protobuf field <code>repeated string custom_request_headers = 27977992;</code>
@@ -303,6 +309,8 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *           Consistent Hash-based load balancing can be used to provide soft session affinity based on HTTP headers, cookies or other properties. This load balancing policy is applicable only for HTTP connections. The affinity to a particular destination host will be lost when one or more hosts are added/removed from the destination service. This field specifies parameters that control consistent hashing. This field is only applicable when localityLbPolicy is set to MAGLEV or RING_HASH. This field is applicable to either: - A regional backend service with the service_protocol set to HTTP, HTTPS, or HTTP2, and load_balancing_scheme set to INTERNAL_MANAGED. - A global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED. 
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
+     *     @type array<\Google\Cloud\Compute\V1\BackendServiceCustomMetric>|\Google\Protobuf\Internal\RepeatedField $custom_metrics
+     *           List of custom metrics that are used for the WEIGHTED_ROUND_ROBIN locality_lb_policy.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_request_headers
      *           Headers that the load balancer adds to proxied requests. See [Creating custom headers](https://cloud.google.com/load-balancing/docs/custom-headers).
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_response_headers
@@ -688,6 +696,32 @@ class BackendService extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->creation_timestamp = $var;
+
+        return $this;
+    }
+
+    /**
+     * List of custom metrics that are used for the WEIGHTED_ROUND_ROBIN locality_lb_policy.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendServiceCustomMetric custom_metrics = 429453813;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCustomMetrics()
+    {
+        return $this->custom_metrics;
+    }
+
+    /**
+     * List of custom metrics that are used for the WEIGHTED_ROUND_ROBIN locality_lb_policy.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendServiceCustomMetric custom_metrics = 429453813;</code>
+     * @param array<\Google\Cloud\Compute\V1\BackendServiceCustomMetric>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCustomMetrics($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\BackendServiceCustomMetric::class);
+        $this->custom_metrics = $arr;
 
         return $this;
     }

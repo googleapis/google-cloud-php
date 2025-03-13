@@ -34,6 +34,8 @@ class BalancingMode
 
     const CONNECTION = 'CONNECTION';
 
+    const CUSTOM_METRICS = 'CUSTOM_METRICS';
+
     const RATE = 'RATE';
 
     const UTILIZATION = 'UTILIZATION';

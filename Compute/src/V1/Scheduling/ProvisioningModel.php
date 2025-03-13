@@ -20,6 +20,12 @@ class ProvisioningModel
      */
     const UNDEFINED_PROVISIONING_MODEL = 0;
     /**
+     * Bound to the lifecycle of the reservation in which it is provisioned.
+     *
+     * Generated from protobuf enum <code>RESERVATION_BOUND = 293538571;</code>
+     */
+    const RESERVATION_BOUND = 293538571;
+    /**
      * Heavily discounted, no guaranteed runtime.
      *
      * Generated from protobuf enum <code>SPOT = 2552066;</code>
@@ -34,6 +40,7 @@ class ProvisioningModel
 
     private static $valueToName = [
         self::UNDEFINED_PROVISIONING_MODEL => 'UNDEFINED_PROVISIONING_MODEL',
+        self::RESERVATION_BOUND => 'RESERVATION_BOUND',
         self::SPOT => 'SPOT',
         self::STANDARD => 'STANDARD',
     ];

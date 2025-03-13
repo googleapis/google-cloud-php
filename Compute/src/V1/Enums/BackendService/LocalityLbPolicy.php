@@ -47,4 +47,6 @@ class LocalityLbPolicy
     const ROUND_ROBIN = 'ROUND_ROBIN';
 
     const WEIGHTED_MAGLEV = 'WEIGHTED_MAGLEV';
+
+    const WEIGHTED_ROUND_ROBIN = 'WEIGHTED_ROUND_ROBIN';
 }

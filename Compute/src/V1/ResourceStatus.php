@@ -22,6 +22,12 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
      */
     private $physical_host = null;
     /**
+     * [Output Only] A series of fields containing the global name of the Compute Engine cluster, as well as the ID of the block, sub-block, and host on which the running instance is located.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatusPhysicalHostTopology physical_host_topology = 390842814;</code>
+     */
+    private $physical_host_topology = null;
+    /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatusScheduling scheduling = 386688404;</code>
      */
     private $scheduling = null;
@@ -38,6 +44,8 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
      *
      *     @type string $physical_host
      *           [Output Only] The precise location of your instance within the zone's data center, including the block, sub-block, and host. The field is formatted as follows: blockId/subBlockId/hostId.
+     *     @type \Google\Cloud\Compute\V1\ResourceStatusPhysicalHostTopology $physical_host_topology
+     *           [Output Only] A series of fields containing the global name of the Compute Engine cluster, as well as the ID of the block, sub-block, and host on which the running instance is located.
      *     @type \Google\Cloud\Compute\V1\ResourceStatusScheduling $scheduling
      *     @type \Google\Cloud\Compute\V1\UpcomingMaintenance $upcoming_maintenance
      * }
@@ -79,6 +87,42 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->physical_host = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] A series of fields containing the global name of the Compute Engine cluster, as well as the ID of the block, sub-block, and host on which the running instance is located.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatusPhysicalHostTopology physical_host_topology = 390842814;</code>
+     * @return \Google\Cloud\Compute\V1\ResourceStatusPhysicalHostTopology|null
+     */
+    public function getPhysicalHostTopology()
+    {
+        return $this->physical_host_topology;
+    }
+
+    public function hasPhysicalHostTopology()
+    {
+        return isset($this->physical_host_topology);
+    }
+
+    public function clearPhysicalHostTopology()
+    {
+        unset($this->physical_host_topology);
+    }
+
+    /**
+     * [Output Only] A series of fields containing the global name of the Compute Engine cluster, as well as the ID of the block, sub-block, and host on which the running instance is located.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatusPhysicalHostTopology physical_host_topology = 390842814;</code>
+     * @param \Google\Cloud\Compute\V1\ResourceStatusPhysicalHostTopology $var
+     * @return $this
+     */
+    public function setPhysicalHostTopology($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ResourceStatusPhysicalHostTopology::class);
+        $this->physical_host_topology = $var;
 
         return $this;
     }

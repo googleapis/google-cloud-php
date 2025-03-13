@@ -31,11 +31,18 @@ class Mode
      * Generated from protobuf enum <code>EXTERNAL_IPV6_FORWARDING_RULE_CREATION = 398684356;</code>
      */
     const EXTERNAL_IPV6_FORWARDING_RULE_CREATION = 398684356;
+    /**
+     * The public delegated prefix is used for creating dual-mode subnetworks only. Such prefixes cannot set publicDelegatedSubPrefixes.
+     *
+     * Generated from protobuf enum <code>EXTERNAL_IPV6_SUBNETWORK_CREATION = 61198284;</code>
+     */
+    const EXTERNAL_IPV6_SUBNETWORK_CREATION = 61198284;
 
     private static $valueToName = [
         self::UNDEFINED_MODE => 'UNDEFINED_MODE',
         self::DELEGATION => 'DELEGATION',
         self::EXTERNAL_IPV6_FORWARDING_RULE_CREATION => 'EXTERNAL_IPV6_FORWARDING_RULE_CREATION',
+        self::EXTERNAL_IPV6_SUBNETWORK_CREATION => 'EXTERNAL_IPV6_SUBNETWORK_CREATION',
     ];
 
     public static function name($value)
