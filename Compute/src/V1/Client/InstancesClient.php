@@ -57,6 +57,7 @@ use Google\Cloud\Compute\V1\ListReferrersInstancesRequest;
 use Google\Cloud\Compute\V1\PerformMaintenanceInstanceRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RemoveResourcePoliciesInstanceRequest;
+use Google\Cloud\Compute\V1\ReportHostAsFaultyInstanceRequest;
 use Google\Cloud\Compute\V1\ResetInstanceRequest;
 use Google\Cloud\Compute\V1\ResumeInstanceRequest;
 use Google\Cloud\Compute\V1\Screenshot;
@@ -120,6 +121,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listReferrersAsync(ListReferrersInstancesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> performMaintenanceAsync(PerformMaintenanceInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> removeResourcePoliciesAsync(RemoveResourcePoliciesInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> reportHostAsFaultyAsync(ReportHostAsFaultyInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> resetAsync(ResetInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> resumeAsync(ResumeInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SendDiagnosticInterruptInstanceResponse> sendDiagnosticInterruptAsync(SendDiagnosticInterruptInstanceRequest $request, array $optionalArgs = [])
@@ -862,6 +864,32 @@ final class InstancesClient
     public function removeResourcePolicies(RemoveResourcePoliciesInstanceRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('RemoveResourcePolicies', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Mark the host as faulty and try to restart the instance on a new host.
+     *
+     * The async variant is {@see InstancesClient::reportHostAsFaultyAsync()} .
+     *
+     * @example samples/V1/InstancesClient/report_host_as_faulty.php
+     *
+     * @param ReportHostAsFaultyInstanceRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function reportHostAsFaulty(ReportHostAsFaultyInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ReportHostAsFaulty', $request, $callOptions)->wait();
     }
 
     /**
