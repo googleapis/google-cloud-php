@@ -29,6 +29,12 @@ class Backend extends \Google\Protobuf\Internal\Message
      */
     private $capacity_scaler = null;
     /**
+     * List of custom metrics that are used for CUSTOM_METRICS BalancingMode.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendCustomMetric custom_metrics = 429453813;</code>
+     */
+    private $custom_metrics;
+    /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
@@ -107,6 +113,8 @@ class Backend extends \Google\Protobuf\Internal\Message
      *           Check the BalancingMode enum for the list of possible values.
      *     @type float $capacity_scaler
      *           A multiplier applied to the backend's target capacity of its balancing mode. The default value is 1, which means the group serves up to 100% of its configured capacity (depending on balancingMode). A setting of 0 means the group is completely drained, offering 0% of its available capacity. The valid ranges are 0.0 and [0.1,1.0]. You cannot configure a setting larger than 0 and smaller than 0.1. You cannot configure a setting of 0 when there is only one backend attached to the backend service. Not available with backends that don't support using a balancingMode. This includes backends such as global internet NEGs, regional serverless NEGs, and PSC NEGs.
+     *     @type array<\Google\Cloud\Compute\V1\BackendCustomMetric>|\Google\Protobuf\Internal\RepeatedField $custom_metrics
+     *           List of custom metrics that are used for CUSTOM_METRICS BalancingMode.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type bool $failover
@@ -207,6 +215,32 @@ class Backend extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkFloat($var);
         $this->capacity_scaler = $var;
+
+        return $this;
+    }
+
+    /**
+     * List of custom metrics that are used for CUSTOM_METRICS BalancingMode.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendCustomMetric custom_metrics = 429453813;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCustomMetrics()
+    {
+        return $this->custom_metrics;
+    }
+
+    /**
+     * List of custom metrics that are used for CUSTOM_METRICS BalancingMode.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendCustomMetric custom_metrics = 429453813;</code>
+     * @param array<\Google\Cloud\Compute\V1\BackendCustomMetric>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCustomMetrics($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\BackendCustomMetric::class);
+        $this->custom_metrics = $arr;
 
         return $this;
     }

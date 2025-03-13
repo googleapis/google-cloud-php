@@ -1355,6 +1355,11 @@
                                 "removeResourcePolicies"
                             ]
                         },
+                        "ReportHostAsFaulty": {
+                            "methods": [
+                                "reportHostAsFaulty"
+                            ]
+                        },
                         "Reset": {
                             "methods": [
                                 "reset"
