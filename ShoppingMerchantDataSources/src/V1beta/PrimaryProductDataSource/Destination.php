@@ -104,6 +104,4 @@ class Destination extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Destination::class, \Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource_Destination::class);
 

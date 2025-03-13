@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class PrimaryProductDataSource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Immutable. Specifies the type of data source channel.
+     * Optional. Immutable. Specifies the type of data source channel.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.PrimaryProductDataSource.Channel channel = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.PrimaryProductDataSource.Channel channel = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $channel = 0;
     /**
@@ -65,6 +65,23 @@ class PrimaryProductDataSource extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.PrimaryProductDataSource.DefaultRule default_rule = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $default_rule = null;
+    /**
+     * Optional. A list of destinations describing where products of the data
+     * source can be shown.
+     * When retrieving the data source, the list contains all the destinations
+     * that can be used for the data source, including the ones that are disabled
+     * for the data source but enabled for the account.
+     * Only destinations that are enabled on the account, for example through
+     * program participation, can be enabled on the data source.
+     * If unset, during creation, the destinations will be inherited based on the
+     * account level program participation.
+     * If set, during creation or update, the data source will be set only for the
+     * specified destinations.
+     * Updating this field requires at least one destination.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.datasources.v1beta.PrimaryProductDataSource.Destination destinations = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $destinations;
 
     /**
      * Constructor.
@@ -73,7 +90,7 @@ class PrimaryProductDataSource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $channel
-     *           Required. Immutable. Specifies the type of data source channel.
+     *           Optional. Immutable. Specifies the type of data source channel.
      *     @type string $feed_label
      *           Optional. Immutable. The feed label that is specified on the data source
      *           level.
@@ -102,6 +119,19 @@ class PrimaryProductDataSource extends \Google\Protobuf\Internal\Message
      *     @type \Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource\DefaultRule $default_rule
      *           Optional. Default rule management of the data source. If set, the linked
      *           data sources will be replaced.
+     *     @type array<\Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource\Destination>|\Google\Protobuf\Internal\RepeatedField $destinations
+     *           Optional. A list of destinations describing where products of the data
+     *           source can be shown.
+     *           When retrieving the data source, the list contains all the destinations
+     *           that can be used for the data source, including the ones that are disabled
+     *           for the data source but enabled for the account.
+     *           Only destinations that are enabled on the account, for example through
+     *           program participation, can be enabled on the data source.
+     *           If unset, during creation, the destinations will be inherited based on the
+     *           account level program participation.
+     *           If set, during creation or update, the data source will be set only for the
+     *           specified destinations.
+     *           Updating this field requires at least one destination.
      * }
      */
     public function __construct($data = NULL) {
@@ -110,9 +140,9 @@ class PrimaryProductDataSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. Specifies the type of data source channel.
+     * Optional. Immutable. Specifies the type of data source channel.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.PrimaryProductDataSource.Channel channel = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.PrimaryProductDataSource.Channel channel = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
      */
     public function getChannel()
@@ -121,9 +151,9 @@ class PrimaryProductDataSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. Specifies the type of data source channel.
+     * Optional. Immutable. Specifies the type of data source channel.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.PrimaryProductDataSource.Channel channel = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.PrimaryProductDataSource.Channel channel = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
      * @return $this
      */
@@ -305,6 +335,54 @@ class PrimaryProductDataSource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource\DefaultRule::class);
         $this->default_rule = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of destinations describing where products of the data
+     * source can be shown.
+     * When retrieving the data source, the list contains all the destinations
+     * that can be used for the data source, including the ones that are disabled
+     * for the data source but enabled for the account.
+     * Only destinations that are enabled on the account, for example through
+     * program participation, can be enabled on the data source.
+     * If unset, during creation, the destinations will be inherited based on the
+     * account level program participation.
+     * If set, during creation or update, the data source will be set only for the
+     * specified destinations.
+     * Updating this field requires at least one destination.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.datasources.v1beta.PrimaryProductDataSource.Destination destinations = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDestinations()
+    {
+        return $this->destinations;
+    }
+
+    /**
+     * Optional. A list of destinations describing where products of the data
+     * source can be shown.
+     * When retrieving the data source, the list contains all the destinations
+     * that can be used for the data source, including the ones that are disabled
+     * for the data source but enabled for the account.
+     * Only destinations that are enabled on the account, for example through
+     * program participation, can be enabled on the data source.
+     * If unset, during creation, the destinations will be inherited based on the
+     * account level program participation.
+     * If set, during creation or update, the data source will be set only for the
+     * specified destinations.
+     * Updating this field requires at least one destination.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.datasources.v1beta.PrimaryProductDataSource.Destination destinations = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource\Destination>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDestinations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource\Destination::class);
+        $this->destinations = $arr;
 
         return $this;
     }
