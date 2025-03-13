@@ -94,7 +94,9 @@ use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: Data Catalog API service allows you to discover, understand, and manage
+ * Service Description: Deprecated: Please use Dataplex Catalog instead.
+ *
+ * Data Catalog API service allows you to discover, understand, and manage
  * your data.
  *
  * This class provides the ability to make remote calls to the backing service through method
@@ -104,6 +106,8 @@ use Psr\Log\LoggerInterface;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * @deprecated This class will be removed in the next major version update.
  *
  * @method PromiseInterface<Entry> createEntryAsync(CreateEntryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<EntryGroup> createEntryGroupAsync(CreateEntryGroupRequest $request, array $optionalArgs = [])
@@ -539,6 +543,8 @@ final class DataCatalogClient
      * @return Entry
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function createEntry(CreateEntryRequest $request, array $callOptions = []): Entry
     {
@@ -591,6 +597,8 @@ final class DataCatalogClient
      * @return EntryGroup
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function createEntryGroup(CreateEntryGroupRequest $request, array $callOptions = []): EntryGroup
     {
@@ -628,6 +636,8 @@ final class DataCatalogClient
      * @return Tag
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function createTag(CreateTagRequest $request, array $callOptions = []): Tag
     {
@@ -659,6 +669,8 @@ final class DataCatalogClient
      * @return TagTemplate
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function createTagTemplate(CreateTagTemplateRequest $request, array $callOptions = []): TagTemplate
     {
@@ -689,6 +701,8 @@ final class DataCatalogClient
      * @return TagTemplateField
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function createTagTemplateField(
         CreateTagTemplateFieldRequest $request,
@@ -724,6 +738,8 @@ final class DataCatalogClient
      * }
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function deleteEntry(DeleteEntryRequest $request, array $callOptions = []): void
     {
@@ -753,6 +769,8 @@ final class DataCatalogClient
      * }
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function deleteEntryGroup(DeleteEntryGroupRequest $request, array $callOptions = []): void
     {
@@ -777,6 +795,8 @@ final class DataCatalogClient
      * }
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function deleteTag(DeleteTagRequest $request, array $callOptions = []): void
     {
@@ -805,6 +825,8 @@ final class DataCatalogClient
      * }
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function deleteTagTemplate(DeleteTagTemplateRequest $request, array $callOptions = []): void
     {
@@ -834,6 +856,8 @@ final class DataCatalogClient
      * }
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function deleteTagTemplateField(DeleteTagTemplateFieldRequest $request, array $callOptions = []): void
     {
@@ -860,6 +884,8 @@ final class DataCatalogClient
      * @return Entry
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getEntry(GetEntryRequest $request, array $callOptions = []): Entry
     {
@@ -886,6 +912,8 @@ final class DataCatalogClient
      * @return EntryGroup
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getEntryGroup(GetEntryGroupRequest $request, array $callOptions = []): EntryGroup
     {
@@ -932,6 +960,8 @@ final class DataCatalogClient
      * @return Policy
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getIamPolicy(GetIamPolicyRequest $request, array $callOptions = []): Policy
     {
@@ -958,6 +988,8 @@ final class DataCatalogClient
      * @return TagTemplate
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getTagTemplate(GetTagTemplateRequest $request, array $callOptions = []): TagTemplate
     {
@@ -1001,6 +1033,8 @@ final class DataCatalogClient
      * @return OperationResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function importEntries(ImportEntriesRequest $request, array $callOptions = []): OperationResponse
     {
@@ -1031,6 +1065,8 @@ final class DataCatalogClient
      * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function listEntries(ListEntriesRequest $request, array $callOptions = []): PagedListResponse
     {
@@ -1057,6 +1093,8 @@ final class DataCatalogClient
      * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function listEntryGroups(ListEntryGroupsRequest $request, array $callOptions = []): PagedListResponse
     {
@@ -1085,6 +1123,8 @@ final class DataCatalogClient
      * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function listTags(ListTagsRequest $request, array $callOptions = []): PagedListResponse
     {
@@ -1113,6 +1153,8 @@ final class DataCatalogClient
      * @return Entry
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function lookupEntry(LookupEntryRequest $request, array $callOptions = []): Entry
     {
@@ -1143,6 +1185,8 @@ final class DataCatalogClient
      * @return Contacts
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function modifyEntryContacts(ModifyEntryContactsRequest $request, array $callOptions = []): Contacts
     {
@@ -1173,6 +1217,8 @@ final class DataCatalogClient
      * @return EntryOverview
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function modifyEntryOverview(ModifyEntryOverviewRequest $request, array $callOptions = []): EntryOverview
     {
@@ -1211,6 +1257,8 @@ final class DataCatalogClient
      * @return OperationResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function reconcileTags(ReconcileTagsRequest $request, array $callOptions = []): OperationResponse
     {
@@ -1241,6 +1289,8 @@ final class DataCatalogClient
      * @return TagTemplateField
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function renameTagTemplateField(
         RenameTagTemplateFieldRequest $request,
@@ -1272,6 +1322,8 @@ final class DataCatalogClient
      * @return TagTemplateField
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function renameTagTemplateFieldEnumValue(
         RenameTagTemplateFieldEnumValueRequest $request,
@@ -1302,6 +1354,8 @@ final class DataCatalogClient
      * @return OrganizationConfig
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function retrieveConfig(RetrieveConfigRequest $request, array $callOptions = []): OrganizationConfig
     {
@@ -1332,6 +1386,8 @@ final class DataCatalogClient
      * @return MigrationConfig
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function retrieveEffectiveConfig(
         RetrieveEffectiveConfigRequest $request,
@@ -1374,6 +1430,8 @@ final class DataCatalogClient
      * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function searchCatalog(SearchCatalogRequest $request, array $callOptions = []): PagedListResponse
     {
@@ -1401,6 +1459,8 @@ final class DataCatalogClient
      * @return MigrationConfig
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function setConfig(SetConfigRequest $request, array $callOptions = []): MigrationConfig
     {
@@ -1443,6 +1503,8 @@ final class DataCatalogClient
      * @return Policy
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function setIamPolicy(SetIamPolicyRequest $request, array $callOptions = []): Policy
     {
@@ -1470,6 +1532,8 @@ final class DataCatalogClient
      * @return StarEntryResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function starEntry(StarEntryRequest $request, array $callOptions = []): StarEntryResponse
     {
@@ -1509,6 +1573,8 @@ final class DataCatalogClient
      * @return TestIamPermissionsResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function testIamPermissions(
         TestIamPermissionsRequest $request,
@@ -1538,6 +1604,8 @@ final class DataCatalogClient
      * @return UnstarEntryResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function unstarEntry(UnstarEntryRequest $request, array $callOptions = []): UnstarEntryResponse
     {
@@ -1569,6 +1637,8 @@ final class DataCatalogClient
      * @return Entry
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function updateEntry(UpdateEntryRequest $request, array $callOptions = []): Entry
     {
@@ -1600,6 +1670,8 @@ final class DataCatalogClient
      * @return EntryGroup
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function updateEntryGroup(UpdateEntryGroupRequest $request, array $callOptions = []): EntryGroup
     {
@@ -1626,6 +1698,8 @@ final class DataCatalogClient
      * @return Tag
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function updateTag(UpdateTagRequest $request, array $callOptions = []): Tag
     {
@@ -1660,6 +1734,8 @@ final class DataCatalogClient
      * @return TagTemplate
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function updateTagTemplate(UpdateTagTemplateRequest $request, array $callOptions = []): TagTemplate
     {
@@ -1693,6 +1769,8 @@ final class DataCatalogClient
      * @return TagTemplateField
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function updateTagTemplateField(
         UpdateTagTemplateFieldRequest $request,

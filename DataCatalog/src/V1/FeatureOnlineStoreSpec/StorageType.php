@@ -7,7 +7,7 @@ namespace Google\Cloud\DataCatalog\V1\FeatureOnlineStoreSpec;
 use UnexpectedValueException;
 
 /**
- * Type of underlaying storage type.
+ * Type of underlying storage type.
  *
  * Protobuf type <code>google.cloud.datacatalog.v1.FeatureOnlineStoreSpec.StorageType</code>
  */
@@ -26,7 +26,7 @@ class StorageType
      */
     const BIGTABLE = 1;
     /**
-     * Underlaying is optimized online server (Lightning).
+     * Underlying is optimized online server (Lightning).
      *
      * Generated from protobuf enum <code>OPTIMIZED = 2;</code>
      */

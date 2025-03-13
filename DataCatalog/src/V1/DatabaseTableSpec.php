@@ -30,7 +30,7 @@ class DatabaseTableSpec extends \Google\Protobuf\Internal\Message
      */
     protected $dataplex_table = null;
     /**
-     * Spec what aplies to tables that are actually views.
+     * Spec what applies to tables that are actually views.
      * Not set for "real" tables.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DatabaseTableSpec.DatabaseViewSpec database_view_spec = 3;</code>
@@ -49,7 +49,7 @@ class DatabaseTableSpec extends \Google\Protobuf\Internal\Message
      *           Output only. Fields specific to a Dataplex table and present only in the
      *           Dataplex table entries.
      *     @type \Google\Cloud\DataCatalog\V1\DatabaseTableSpec\DatabaseViewSpec $database_view_spec
-     *           Spec what aplies to tables that are actually views.
+     *           Spec what applies to tables that are actually views.
      *           Not set for "real" tables.
      * }
      */
@@ -123,7 +123,7 @@ class DatabaseTableSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Spec what aplies to tables that are actually views.
+     * Spec what applies to tables that are actually views.
      * Not set for "real" tables.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DatabaseTableSpec.DatabaseViewSpec database_view_spec = 3;</code>
@@ -145,7 +145,7 @@ class DatabaseTableSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Spec what aplies to tables that are actually views.
+     * Spec what applies to tables that are actually views.
      * Not set for "real" tables.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DatabaseTableSpec.DatabaseViewSpec database_view_spec = 3;</code>
