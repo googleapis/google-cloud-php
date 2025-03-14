@@ -44,7 +44,7 @@ class WorkloadsConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Resources used by Airflow DAG processors.
      * This field is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.WorkloadsConfig.DagProcessorResource dag_processor = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -67,7 +67,7 @@ class WorkloadsConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\WorkloadsConfig\DagProcessorResource $dag_processor
      *           Optional. Resources used by Airflow DAG processors.
      *           This field is supported for Cloud Composer environments in versions
-     *           composer-3.*.*-airflow-*.*.* and newer.
+     *           composer-3-airflow-*.*.*-build.* and newer.
      * }
      */
     public function __construct($data = NULL) {
@@ -222,7 +222,7 @@ class WorkloadsConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Resources used by Airflow DAG processors.
      * This field is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.WorkloadsConfig.DagProcessorResource dag_processor = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Orchestration\Airflow\Service\V1\WorkloadsConfig\DagProcessorResource|null
@@ -245,7 +245,7 @@ class WorkloadsConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Resources used by Airflow DAG processors.
      * This field is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.WorkloadsConfig.DagProcessorResource dag_processor = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Orchestration\Airflow\Service\V1\WorkloadsConfig\DagProcessorResource $var

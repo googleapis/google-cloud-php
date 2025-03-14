@@ -32,7 +32,7 @@ use Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsSecret;
  * Updates a user workloads Secret.
  *
  * This method is supported for Cloud Composer environments in versions
- * composer-3.*.*-airflow-*.*.* and newer.
+ * composer-3-airflow-*.*.*-build.* and newer.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

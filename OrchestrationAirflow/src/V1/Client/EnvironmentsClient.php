@@ -438,7 +438,7 @@ final class EnvironmentsClient
      * Creates a user workloads ConfigMap.
      *
      * This method is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * The async variant is
      * {@see EnvironmentsClient::createUserWorkloadsConfigMapAsync()} .
@@ -470,7 +470,7 @@ final class EnvironmentsClient
      * Creates a user workloads Secret.
      *
      * This method is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * The async variant is {@see EnvironmentsClient::createUserWorkloadsSecretAsync()}
      * .
@@ -554,7 +554,7 @@ final class EnvironmentsClient
      * Deletes a user workloads ConfigMap.
      *
      * This method is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * The async variant is
      * {@see EnvironmentsClient::deleteUserWorkloadsConfigMapAsync()} .
@@ -584,7 +584,7 @@ final class EnvironmentsClient
      * Deletes a user workloads Secret.
      *
      * This method is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * The async variant is {@see EnvironmentsClient::deleteUserWorkloadsSecretAsync()}
      * .
@@ -694,7 +694,7 @@ final class EnvironmentsClient
      * Gets an existing user workloads ConfigMap.
      *
      * This method is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * The async variant is {@see EnvironmentsClient::getUserWorkloadsConfigMapAsync()}
      * .
@@ -727,7 +727,7 @@ final class EnvironmentsClient
      * Values of the "data" field in the response are cleared.
      *
      * This method is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * The async variant is {@see EnvironmentsClient::getUserWorkloadsSecretAsync()} .
      *
@@ -784,7 +784,7 @@ final class EnvironmentsClient
      * Lists user workloads ConfigMaps.
      *
      * This method is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * The async variant is
      * {@see EnvironmentsClient::listUserWorkloadsConfigMapsAsync()} .
@@ -816,7 +816,7 @@ final class EnvironmentsClient
      * Lists user workloads Secrets.
      *
      * This method is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * The async variant is {@see EnvironmentsClient::listUserWorkloadsSecretsAsync()}
      * .
@@ -1018,7 +1018,7 @@ final class EnvironmentsClient
      * Updates a user workloads ConfigMap.
      *
      * This method is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * The async variant is
      * {@see EnvironmentsClient::updateUserWorkloadsConfigMapAsync()} .
@@ -1050,7 +1050,7 @@ final class EnvironmentsClient
      * Updates a user workloads Secret.
      *
      * This method is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * The async variant is {@see EnvironmentsClient::updateUserWorkloadsSecretAsync()}
      * .

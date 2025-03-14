@@ -33,7 +33,7 @@ use Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsSecret;
  * Values of the "data" field in the response are cleared.
  *
  * This method is supported for Cloud Composer environments in versions
- * composer-3.*.*-airflow-*.*.* and newer.
+ * composer-3-airflow-*.*.*-build.* and newer.
  *
  * @param string $formattedName The resource name of the Secret to get, in the form:
  *                              "projects/{projectId}/locations/{locationId}/environments/{environmentId}/userWorkloadsSecrets/{userWorkloadsSecretId}"
