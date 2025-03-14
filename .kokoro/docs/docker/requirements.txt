@@ -139,18 +139,16 @@ proto-plus==1.25.0 \
     # via
     #   -r requirements.in
     #   google-api-core
-protobuf==4.25.4 \
-    --hash=sha256:051e97ce9fa6067a4546e75cb14f90cf0232dcb3e3d508c448b8d0e4265b61c1 \
-    --hash=sha256:0dc4a62cc4052a036ee2204d26fe4d835c62827c855c8a03f29fe6da146b380d \
-    --hash=sha256:3319e073562e2515c6ddc643eb92ce20809f5d8f10fead3332f71c63be6a7040 \
-    --hash=sha256:4c8a70fdcb995dcf6c8966cfa3a29101916f7225e9afe3ced4395359955d3835 \
-    --hash=sha256:7e372cbbda66a63ebca18f8ffaa6948455dfecc4e9c1029312f6c2edcd86c4e1 \
-    --hash=sha256:90bf6fd378494eb698805bbbe7afe6c5d12c8e17fca817a646cd6a1818c696ca \
-    --hash=sha256:ac79a48d6b99dfed2729ccccee547b34a1d3d63289c71cef056653a846a2240f \
-    --hash=sha256:ba3d8504116a921af46499471c63a85260c1a5fc23333154a427a310e015d26d \
-    --hash=sha256:bfbebc1c8e4793cfd58589acfb8a1026be0003e852b9da7db5a4285bde996978 \
-    --hash=sha256:db9fd45183e1a67722cafa5c1da3e85c6492a5383f127c86c4c4aa4845867dc4 \
-    --hash=sha256:eecd41bfc0e4b1bd3fa7909ed93dd14dd5567b98c941d6c1ad08fdcab3d6884b
+protobuf==6.30.1 \
+    --hash=sha256:3c25e51e1359f1f5fa3b298faa6016e650d148f214db2e47671131b9063c53be \
+    --hash=sha256:47cd320b7db63e8c9ac35f5596ea1c1e61491d8a8eb6d8b45edc44760b53a4f6 \
+    --hash=sha256:535fb4e44d0236893d5cf1263a0f706f1160b689a7ab962e9da8a9ce4050b780 \
+    --hash=sha256:554d7e61cce2aa4c63ca27328f757a9f3867bce8ec213bf09096a8d16bcdcb6a \
+    --hash=sha256:aa4f7dfaed0d840b03d08d14bfdb41348feaee06a828a8c455698234135b4075 \
+    --hash=sha256:b510f55ce60f84dc7febc619b47215b900466e3555ab8cb1ba42deb4496d6cc0 \
+    --hash=sha256:ba0706f948d0195f5cac504da156d88174e03218d9364ab40d903788c1903d7e \
+    --hash=sha256:e3083660225fa94748ac2e407f09a899e6a28bf9c0e70c75def8d15706bf85fc \
+    --hash=sha256:ed484f9ddd47f0f1bf0648806cccdb4fe2fb6b19820f9b79a5adf5dcfd1b8c5f
     # via
     #   gcp-docuploader
     #   google-api-core
