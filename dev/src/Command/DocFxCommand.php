@@ -94,11 +94,11 @@ class DocFxCommand extends Command
             $output->writeln('Generating <options=bold;fg=white>product neutral guides</>');
             $tocItems = [];
             foreach (self::$productNeutralGuides as $file => $name) {
+                $href = $file === 'README.md' ? 'getting-started.md' : strtolower($file);
                 file_put_contents(
-                    $outDir . '/' . strtolower($file),
+                    $outDir . '/' . $href,
                     file_get_contents(Component::ROOT_DIR . '/' . $file)
                 );
-                $href = $file === 'README.md' ? 'getting-started' : strtolower($file);
                 $tocItems[] = ['name' => $name, 'href' => $href];
             }
             // Write the TOC to a file
