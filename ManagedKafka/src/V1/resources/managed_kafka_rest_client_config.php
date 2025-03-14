@@ -90,7 +90,7 @@ return [
             ],
             'DeleteConsumerGroup' => [
                 'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/consumerGroups/*}',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/consumerGroups/**}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -123,7 +123,7 @@ return [
             ],
             'GetConsumerGroup' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/consumerGroups/*}',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/consumerGroups/**}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -194,7 +194,7 @@ return [
             ],
             'UpdateConsumerGroup' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v1/{consumer_group.name=projects/*/locations/*/clusters/*/consumerGroups/*}',
+                'uriTemplate' => '/v1/{consumer_group.name=projects/*/locations/*/clusters/*/consumerGroups/**}',
                 'body' => 'consumer_group',
                 'placeholders' => [
                     'consumer_group.name' => [

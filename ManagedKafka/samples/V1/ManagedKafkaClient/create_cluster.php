@@ -53,9 +53,6 @@ use Google\Rpc\Status;
  *                                                                 The subnet must be located in the same region as the Kafka cluster. The
  *                                                                 project may differ. Multiple subnets from the same parent network must not
  *                                                                 be specified.
- *
- *                                                                 The CIDR range of the subnet must be within the IPv4 address ranges for
- *                                                                 private networks, as specified in RFC 1918.
  * @param int    $clusterCapacityConfigVcpuCount                   The number of vCPUs to provision for the cluster. Minimum: 3.
  * @param int    $clusterCapacityConfigMemoryBytes                 The memory to provision for the cluster in bytes.
  *                                                                 The CPU:memory ratio (vCPU:GiB) must be between 1:1 and 1:8.
