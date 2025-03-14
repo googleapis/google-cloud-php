@@ -27,6 +27,12 @@ class RagRetrievalConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RagRetrievalConfig.Filter filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $filter = null;
+    /**
+     * Optional. Config for ranking and reranking.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RagRetrievalConfig.Ranking ranking = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ranking = null;
 
     /**
      * Constructor.
@@ -38,6 +44,8 @@ class RagRetrievalConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The number of contexts to retrieve.
      *     @type \Google\Cloud\AIPlatform\V1\RagRetrievalConfig\Filter $filter
      *           Optional. Config for filters.
+     *     @type \Google\Cloud\AIPlatform\V1\RagRetrievalConfig\Ranking $ranking
+     *           Optional. Config for ranking and reranking.
      * }
      */
     public function __construct($data = NULL) {
@@ -103,6 +111,42 @@ class RagRetrievalConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\RagRetrievalConfig\Filter::class);
         $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Config for ranking and reranking.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RagRetrievalConfig.Ranking ranking = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\RagRetrievalConfig\Ranking|null
+     */
+    public function getRanking()
+    {
+        return $this->ranking;
+    }
+
+    public function hasRanking()
+    {
+        return isset($this->ranking);
+    }
+
+    public function clearRanking()
+    {
+        unset($this->ranking);
+    }
+
+    /**
+     * Optional. Config for ranking and reranking.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RagRetrievalConfig.Ranking ranking = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\RagRetrievalConfig\Ranking $var
+     * @return $this
+     */
+    public function setRanking($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\RagRetrievalConfig\Ranking::class);
+        $this->ranking = $var;
 
         return $this;
     }
