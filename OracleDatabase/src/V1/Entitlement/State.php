@@ -43,6 +43,12 @@ class State
      * Generated from protobuf enum <code>ACCOUNT_SUSPENDED = 4;</code>
      */
     const ACCOUNT_SUSPENDED = 4;
+    /**
+     * Entitlement is not approved in private marketplace.
+     *
+     * Generated from protobuf enum <code>NOT_APPROVED_IN_PRIVATE_MARKETPLACE = 5;</code>
+     */
+    const NOT_APPROVED_IN_PRIVATE_MARKETPLACE = 5;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -50,6 +56,7 @@ class State
         self::ACCOUNT_NOT_ACTIVE => 'ACCOUNT_NOT_ACTIVE',
         self::ACTIVE => 'ACTIVE',
         self::ACCOUNT_SUSPENDED => 'ACCOUNT_SUSPENDED',
+        self::NOT_APPROVED_IN_PRIVATE_MARKETPLACE => 'NOT_APPROVED_IN_PRIVATE_MARKETPLACE',
     ];
 
     public static function name($value)

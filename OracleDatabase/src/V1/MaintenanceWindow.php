@@ -65,8 +65,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
     protected $lead_time_week = 0;
     /**
      * Optional. Cloud CloudExadataInfrastructure node patching method, either
-     * "ROLLING"
-     *  or "NONROLLING". Default value is ROLLING.
+     * "ROLLING" or "NONROLLING". Default value is ROLLING.
      *
      * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.MaintenanceWindow.PatchingMode patching_mode = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -118,8 +117,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      *           down time. The lead time is in weeks and valid value is between 1 to 4.
      *     @type int $patching_mode
      *           Optional. Cloud CloudExadataInfrastructure node patching method, either
-     *           "ROLLING"
-     *            or "NONROLLING". Default value is ROLLING.
+     *           "ROLLING" or "NONROLLING". Default value is ROLLING.
      *     @type int $custom_action_timeout_mins
      *           Optional. Determines the amount of time the system will wait before the
      *           start of each database server patching operation. Custom action timeout is
@@ -314,8 +312,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Cloud CloudExadataInfrastructure node patching method, either
-     * "ROLLING"
-     *  or "NONROLLING". Default value is ROLLING.
+     * "ROLLING" or "NONROLLING". Default value is ROLLING.
      *
      * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.MaintenanceWindow.PatchingMode patching_mode = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -327,8 +324,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Cloud CloudExadataInfrastructure node patching method, either
-     * "ROLLING"
-     *  or "NONROLLING". Default value is ROLLING.
+     * "ROLLING" or "NONROLLING". Default value is ROLLING.
      *
      * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.MaintenanceWindow.PatchingMode patching_mode = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
