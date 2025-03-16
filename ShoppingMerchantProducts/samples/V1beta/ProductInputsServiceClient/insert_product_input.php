@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Shopping\Merchant\Products\V1beta\Client\ProductInputsServiceClient;
 use Google\Shopping\Merchant\Products\V1beta\InsertProductInputRequest;
 use Google\Shopping\Merchant\Products\V1beta\ProductInput;
-use Google\Shopping\Type\Channel\ChannelEnum;
 
 /**
  * Uploads a product input to your Merchant Center account. If an input
@@ -40,9 +39,6 @@ use Google\Shopping\Type\Channel\ChannelEnum;
  * @param string $formattedParent             The account where this product will be inserted.
  *                                            Format: accounts/{account}
  *                                            Please see {@see ProductInputsServiceClient::accountName()} for help formatting this field.
- * @param int    $productInputChannel         Immutable. The
- *                                            [channel](https://support.google.com/merchants/answer/7361332) of the
- *                                            product.
  * @param string $productInputOfferId         Immutable. Your unique identifier for the product. This is the
  *                                            same for the product input and processed product. Leading and trailing
  *                                            whitespaces are stripped and multiple whitespaces are replaced by a single
@@ -57,12 +53,14 @@ use Google\Shopping\Type\Channel\ChannelEnum;
  *                                            for the product.
  * @param string $dataSource                  The primary or supplemental product data source name. If the
  *                                            product already exists and data source provided is different, then the
- *                                            product will be moved to a new data source. Format:
- *                                            `accounts/{account}/dataSources/{datasource}`.
+ *                                            product will be moved to a new data source.
+ *
+ *                                            Only API data sources are supported.
+ *
+ *                                            Format: `accounts/{account}/dataSources/{datasource}`.
  */
 function insert_product_input_sample(
     string $formattedParent,
-    int $productInputChannel,
     string $productInputOfferId,
     string $productInputContentLanguage,
     string $productInputFeedLabel,
@@ -73,7 +71,6 @@ function insert_product_input_sample(
 
     // Prepare the request message.
     $productInput = (new ProductInput())
-        ->setChannel($productInputChannel)
         ->setOfferId($productInputOfferId)
         ->setContentLanguage($productInputContentLanguage)
         ->setFeedLabel($productInputFeedLabel);
@@ -104,7 +101,6 @@ function insert_product_input_sample(
 function callSample(): void
 {
     $formattedParent = ProductInputsServiceClient::accountName('[ACCOUNT]');
-    $productInputChannel = ChannelEnum::CHANNEL_ENUM_UNSPECIFIED;
     $productInputOfferId = '[OFFER_ID]';
     $productInputContentLanguage = '[CONTENT_LANGUAGE]';
     $productInputFeedLabel = '[FEED_LABEL]';
@@ -112,7 +108,6 @@ function callSample(): void
 
     insert_product_input_sample(
         $formattedParent,
-        $productInputChannel,
         $productInputOfferId,
         $productInputContentLanguage,
         $productInputFeedLabel,

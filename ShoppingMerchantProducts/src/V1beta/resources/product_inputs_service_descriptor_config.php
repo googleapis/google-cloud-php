@@ -47,6 +47,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateProductInput' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Shopping\Merchant\Products\V1beta\ProductInput',
+                'headerParams' => [
+                    [
+                        'keyName' => 'product_input.name',
+                        'fieldAccessors' => [
+                            'getProductInput',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
                 'account' => 'accounts/{account}',
                 'productInput' => 'accounts/{account}/productInputs/{productinput}',

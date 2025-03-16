@@ -634,6 +634,12 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.shopping.type.Price auto_pricing_min_price = 124;</code>
      */
     protected $auto_pricing_min_price = null;
+    /**
+     * The list of sustainability incentive programs.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1beta.ProductSustainabilityIncentive sustainability_incentives = 138;</code>
+     */
+    private $sustainability_incentives;
 
     /**
      * Constructor.
@@ -892,6 +898,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *           (https://support.google.com/merchants/answer/13949249) projects,
      *           ensuring that discounts on merchants' offers do not fall below this value,
      *           thereby preserving the offer's value and profitability.
+     *     @type array<\Google\Shopping\Merchant\Products\V1beta\ProductSustainabilityIncentive>|\Google\Protobuf\Internal\RepeatedField $sustainability_incentives
+     *           The list of sustainability incentive programs.
      * }
      */
     public function __construct($data = NULL) {
@@ -4151,6 +4159,32 @@ class Attributes extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Shopping\Type\Price::class);
         $this->auto_pricing_min_price = $var;
+
+        return $this;
+    }
+
+    /**
+     * The list of sustainability incentive programs.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1beta.ProductSustainabilityIncentive sustainability_incentives = 138;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSustainabilityIncentives()
+    {
+        return $this->sustainability_incentives;
+    }
+
+    /**
+     * The list of sustainability incentive programs.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1beta.ProductSustainabilityIncentive sustainability_incentives = 138;</code>
+     * @param array<\Google\Shopping\Merchant\Products\V1beta\ProductSustainabilityIncentive>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSustainabilityIncentives($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Products\V1beta\ProductSustainabilityIncentive::class);
+        $this->sustainability_incentives = $arr;
 
         return $this;
     }
