@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,32 +22,21 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-namespace Google\Cloud\Compute\V1\Enums\BackendServiceLocalityLoadBalancingPolicyConfigPolicy;
+namespace Google\Cloud\Compute\V1\Enums\InstancesReportHostAsFaultyRequest;
 
 /**
- * Name contains string constants that represent the names of each value in the
- * google.cloud.compute.v1.BackendServiceLocalityLoadBalancingPolicyConfigPolicy.Name
+ * DisruptionSchedule contains string constants that represent the names of each
+ * value in the
+ * google.cloud.compute.v1.InstancesReportHostAsFaultyRequest.DisruptionSchedule
  * descriptor.
  */
-class Name
+class DisruptionSchedule
 {
-    const UNDEFINED_NAME = 'UNDEFINED_NAME';
+    const UNDEFINED_DISRUPTION_SCHEDULE = 'UNDEFINED_DISRUPTION_SCHEDULE';
 
-    const INVALID_LB_POLICY = 'INVALID_LB_POLICY';
+    const DISRUPTION_SCHEDULE_UNSPECIFIED = 'DISRUPTION_SCHEDULE_UNSPECIFIED';
 
-    const LEAST_REQUEST = 'LEAST_REQUEST';
+    const FUTURE = 'FUTURE';
 
-    const MAGLEV = 'MAGLEV';
-
-    const ORIGINAL_DESTINATION = 'ORIGINAL_DESTINATION';
-
-    const RANDOM = 'RANDOM';
-
-    const RING_HASH = 'RING_HASH';
-
-    const ROUND_ROBIN = 'ROUND_ROBIN';
-
-    const WEIGHTED_MAGLEV = 'WEIGHTED_MAGLEV';
-
-    const WEIGHTED_ROUND_ROBIN = 'WEIGHTED_ROUND_ROBIN';
+    const IMMEDIATE = 'IMMEDIATE';
 }

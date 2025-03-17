@@ -125,6 +125,12 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     private $region = null;
     /**
+     * Resource policies for this managed instance group.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerResourcePolicies resource_policies = 22220385;</code>
+     */
+    private $resource_policies = null;
+    /**
      * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
@@ -246,6 +252,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *           [Output Only] Named ports configured on the Instance Groups complementary to this Instance Group Manager.
      *     @type string $region
      *           [Output Only] The URL of the region where the managed instance group resides (for regional resources).
+     *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerResourcePolicies $resource_policies
+     *           Resource policies for this managed instance group.
      *     @type bool $satisfies_pzi
      *           [Output Only] Reserved for future use.
      *     @type bool $satisfies_pzs
@@ -905,6 +913,42 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->region = $var;
+
+        return $this;
+    }
+
+    /**
+     * Resource policies for this managed instance group.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerResourcePolicies resource_policies = 22220385;</code>
+     * @return \Google\Cloud\Compute\V1\InstanceGroupManagerResourcePolicies|null
+     */
+    public function getResourcePolicies()
+    {
+        return $this->resource_policies;
+    }
+
+    public function hasResourcePolicies()
+    {
+        return isset($this->resource_policies);
+    }
+
+    public function clearResourcePolicies()
+    {
+        unset($this->resource_policies);
+    }
+
+    /**
+     * Resource policies for this managed instance group.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerResourcePolicies resource_policies = 22220385;</code>
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManagerResourcePolicies $var
+     * @return $this
+     */
+    public function setResourcePolicies($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InstanceGroupManagerResourcePolicies::class);
+        $this->resource_policies = $var;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,32 +22,21 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-namespace Google\Cloud\Compute\V1\Enums\BackendServiceLocalityLoadBalancingPolicyConfigPolicy;
+namespace Google\Cloud\Compute\V1\Enums\AllocationReservationSharingPolicy;
 
 /**
- * Name contains string constants that represent the names of each value in the
- * google.cloud.compute.v1.BackendServiceLocalityLoadBalancingPolicyConfigPolicy.Name
+ * ServiceShareType contains string constants that represent the names of each
+ * value in the
+ * google.cloud.compute.v1.AllocationReservationSharingPolicy.ServiceShareType
  * descriptor.
  */
-class Name
+class ServiceShareType
 {
-    const UNDEFINED_NAME = 'UNDEFINED_NAME';
+    const UNDEFINED_SERVICE_SHARE_TYPE = 'UNDEFINED_SERVICE_SHARE_TYPE';
 
-    const INVALID_LB_POLICY = 'INVALID_LB_POLICY';
+    const ALLOW_ALL = 'ALLOW_ALL';
 
-    const LEAST_REQUEST = 'LEAST_REQUEST';
+    const DISALLOW_ALL = 'DISALLOW_ALL';
 
-    const MAGLEV = 'MAGLEV';
-
-    const ORIGINAL_DESTINATION = 'ORIGINAL_DESTINATION';
-
-    const RANDOM = 'RANDOM';
-
-    const RING_HASH = 'RING_HASH';
-
-    const ROUND_ROBIN = 'ROUND_ROBIN';
-
-    const WEIGHTED_MAGLEV = 'WEIGHTED_MAGLEV';
-
-    const WEIGHTED_ROUND_ROBIN = 'WEIGHTED_ROUND_ROBIN';
+    const SERVICE_SHARE_TYPE_UNSPECIFIED = 'SERVICE_SHARE_TYPE_UNSPECIFIED';
 }
