@@ -75,9 +75,8 @@ class DataSource extends \Google\Protobuf\Internal\Message
      *           inventory](https://support.google.com/merchants/answer/7439058) data
      *           source.
      *     @type \Google\Shopping\Merchant\DataSources\V1beta\PromotionDataSource $promotion_data_source
-     *           The
-     *           [promotion](https://support.google.com/merchants/answer/2906014) data
-     *           source.
+     *           The [promotion](https://support.google.com/merchants/answer/2906014)
+     *           data source.
      *     @type \Google\Shopping\Merchant\DataSources\V1beta\ProductReviewDataSource $product_review_data_source
      *           The [product
      *           review](https://support.google.com/merchants/answer/7045996)
@@ -248,9 +247,8 @@ class DataSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The
-     * [promotion](https://support.google.com/merchants/answer/2906014) data
-     * source.
+     * The [promotion](https://support.google.com/merchants/answer/2906014)
+     * data source.
      *
      * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.PromotionDataSource promotion_data_source = 8;</code>
      * @return \Google\Shopping\Merchant\DataSources\V1beta\PromotionDataSource|null
@@ -266,9 +264,8 @@ class DataSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The
-     * [promotion](https://support.google.com/merchants/answer/2906014) data
-     * source.
+     * The [promotion](https://support.google.com/merchants/answer/2906014)
+     * data source.
      *
      * Generated from protobuf field <code>.google.shopping.merchant.datasources.v1beta.PromotionDataSource promotion_data_source = 8;</code>
      * @param \Google\Shopping\Merchant\DataSources\V1beta\PromotionDataSource $var
