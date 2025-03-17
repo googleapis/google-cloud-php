@@ -30,6 +30,31 @@ class BigQueryPublishingConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string connection = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $connection = '';
+    /**
+     * Optional. The location of the BigQuery dataset to publish BigLake
+     * external or non-BigLake external tables to.
+     * 1. If the Cloud Storage bucket is located in a multi-region bucket, then
+     * BigQuery dataset can be in the same multi-region bucket or any single
+     * region that is included in the same multi-region bucket. The datascan can
+     * be created in any single region that is included in the same multi-region
+     * bucket
+     * 2. If the Cloud Storage bucket is located in a dual-region bucket, then
+     * BigQuery dataset can be located in regions that are included in the
+     * dual-region bucket, or in a multi-region that includes the dual-region.
+     * The datascan can be created in any single region that is included in the
+     * same dual-region bucket.
+     * 3. If the Cloud Storage bucket is located in a single region, then
+     * BigQuery dataset can be in the same single region or any multi-region
+     * bucket that includes the same single region. The datascan will be created
+     * in the same single region as the bucket.
+     * 4. If the BigQuery dataset is in single region, it must be in the same
+     * single region as the datascan.
+     * For supported values, refer to
+     * https://cloud.google.com/bigquery/docs/locations#supported_locations.
+     *
+     * Generated from protobuf field <code>string location = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $location = '';
 
     /**
      * Constructor.
@@ -44,6 +69,27 @@ class BigQueryPublishingConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The BigQuery connection used to create BigLake tables.
      *           Must be in the form
      *           `projects/{project_id}/locations/{location_id}/connections/{connection_id}`
+     *     @type string $location
+     *           Optional. The location of the BigQuery dataset to publish BigLake
+     *           external or non-BigLake external tables to.
+     *           1. If the Cloud Storage bucket is located in a multi-region bucket, then
+     *           BigQuery dataset can be in the same multi-region bucket or any single
+     *           region that is included in the same multi-region bucket. The datascan can
+     *           be created in any single region that is included in the same multi-region
+     *           bucket
+     *           2. If the Cloud Storage bucket is located in a dual-region bucket, then
+     *           BigQuery dataset can be located in regions that are included in the
+     *           dual-region bucket, or in a multi-region that includes the dual-region.
+     *           The datascan can be created in any single region that is included in the
+     *           same dual-region bucket.
+     *           3. If the Cloud Storage bucket is located in a single region, then
+     *           BigQuery dataset can be in the same single region or any multi-region
+     *           bucket that includes the same single region. The datascan will be created
+     *           in the same single region as the bucket.
+     *           4. If the BigQuery dataset is in single region, it must be in the same
+     *           single region as the datascan.
+     *           For supported values, refer to
+     *           https://cloud.google.com/bigquery/docs/locations#supported_locations.
      * }
      */
     public function __construct($data = NULL) {
@@ -105,6 +151,70 @@ class BigQueryPublishingConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->connection = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The location of the BigQuery dataset to publish BigLake
+     * external or non-BigLake external tables to.
+     * 1. If the Cloud Storage bucket is located in a multi-region bucket, then
+     * BigQuery dataset can be in the same multi-region bucket or any single
+     * region that is included in the same multi-region bucket. The datascan can
+     * be created in any single region that is included in the same multi-region
+     * bucket
+     * 2. If the Cloud Storage bucket is located in a dual-region bucket, then
+     * BigQuery dataset can be located in regions that are included in the
+     * dual-region bucket, or in a multi-region that includes the dual-region.
+     * The datascan can be created in any single region that is included in the
+     * same dual-region bucket.
+     * 3. If the Cloud Storage bucket is located in a single region, then
+     * BigQuery dataset can be in the same single region or any multi-region
+     * bucket that includes the same single region. The datascan will be created
+     * in the same single region as the bucket.
+     * 4. If the BigQuery dataset is in single region, it must be in the same
+     * single region as the datascan.
+     * For supported values, refer to
+     * https://cloud.google.com/bigquery/docs/locations#supported_locations.
+     *
+     * Generated from protobuf field <code>string location = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Optional. The location of the BigQuery dataset to publish BigLake
+     * external or non-BigLake external tables to.
+     * 1. If the Cloud Storage bucket is located in a multi-region bucket, then
+     * BigQuery dataset can be in the same multi-region bucket or any single
+     * region that is included in the same multi-region bucket. The datascan can
+     * be created in any single region that is included in the same multi-region
+     * bucket
+     * 2. If the Cloud Storage bucket is located in a dual-region bucket, then
+     * BigQuery dataset can be located in regions that are included in the
+     * dual-region bucket, or in a multi-region that includes the dual-region.
+     * The datascan can be created in any single region that is included in the
+     * same dual-region bucket.
+     * 3. If the Cloud Storage bucket is located in a single region, then
+     * BigQuery dataset can be in the same single region or any multi-region
+     * bucket that includes the same single region. The datascan will be created
+     * in the same single region as the bucket.
+     * 4. If the BigQuery dataset is in single region, it must be in the same
+     * single region as the datascan.
+     * For supported values, refer to
+     * https://cloud.google.com/bigquery/docs/locations#supported_locations.
+     *
+     * Generated from protobuf field <code>string location = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location = $var;
 
         return $this;
     }
