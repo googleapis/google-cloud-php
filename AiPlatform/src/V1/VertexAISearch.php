@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Retrieve from Vertex AI Search datastore for grounding.
+ * Retrieve from Vertex AI Search datastore or engine for grounding.
+ * datastore and engine are mutually exclusive.
  * See https://cloud.google.com/products/agent-builder
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.VertexAISearch</code>
@@ -17,13 +18,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class VertexAISearch extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Fully-qualified Vertex AI Search data store resource ID.
+     * Optional. Fully-qualified Vertex AI Search data store resource ID.
      * Format:
      * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}`
      *
-     * Generated from protobuf field <code>string datastore = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string datastore = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $datastore = '';
+    /**
+     * Optional. Fully-qualified Vertex AI Search engine resource ID.
+     * Format:
+     * `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`
+     *
+     * Generated from protobuf field <code>string engine = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $engine = '';
 
     /**
      * Constructor.
@@ -32,9 +41,13 @@ class VertexAISearch extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $datastore
-     *           Required. Fully-qualified Vertex AI Search data store resource ID.
+     *           Optional. Fully-qualified Vertex AI Search data store resource ID.
      *           Format:
      *           `projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}`
+     *     @type string $engine
+     *           Optional. Fully-qualified Vertex AI Search engine resource ID.
+     *           Format:
+     *           `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`
      * }
      */
     public function __construct($data = NULL) {
@@ -43,11 +56,11 @@ class VertexAISearch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Fully-qualified Vertex AI Search data store resource ID.
+     * Optional. Fully-qualified Vertex AI Search data store resource ID.
      * Format:
      * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}`
      *
-     * Generated from protobuf field <code>string datastore = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string datastore = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDatastore()
@@ -56,11 +69,11 @@ class VertexAISearch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Fully-qualified Vertex AI Search data store resource ID.
+     * Optional. Fully-qualified Vertex AI Search data store resource ID.
      * Format:
      * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}`
      *
-     * Generated from protobuf field <code>string datastore = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string datastore = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -68,6 +81,36 @@ class VertexAISearch extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->datastore = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Fully-qualified Vertex AI Search engine resource ID.
+     * Format:
+     * `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`
+     *
+     * Generated from protobuf field <code>string engine = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getEngine()
+    {
+        return $this->engine;
+    }
+
+    /**
+     * Optional. Fully-qualified Vertex AI Search engine resource ID.
+     * Format:
+     * `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`
+     *
+     * Generated from protobuf field <code>string engine = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEngine($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->engine = $var;
 
         return $this;
     }
