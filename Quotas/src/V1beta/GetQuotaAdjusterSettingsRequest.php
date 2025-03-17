@@ -16,16 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetQuotaAdjusterSettingsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the config. Required to be “settings”, as only a single
-     * setting per container will be supported initially.
+     * Required. Name of the `quotaAdjusterSettings` configuration. Only a single
+     * setting per project is supported.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
 
     /**
-     * @param string $name Required. Name of the config. Required to be “settings”, as only a single
-     *                     setting per container will be supported initially. Please see
+     * @param string $name Required. Name of the `quotaAdjusterSettings` configuration. Only a single
+     *                     setting per project is supported. Please see
      *                     {@see QuotaAdjusterSettingsManagerClient::quotaAdjusterSettingsName()} for help formatting this field.
      *
      * @return \Google\Cloud\CloudQuotas\V1beta\GetQuotaAdjusterSettingsRequest
@@ -45,8 +45,8 @@ class GetQuotaAdjusterSettingsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Name of the config. Required to be “settings”, as only a single
-     *           setting per container will be supported initially.
+     *           Required. Name of the `quotaAdjusterSettings` configuration. Only a single
+     *           setting per project is supported.
      * }
      */
     public function __construct($data = NULL) {
@@ -55,8 +55,8 @@ class GetQuotaAdjusterSettingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the config. Required to be “settings”, as only a single
-     * setting per container will be supported initially.
+     * Required. Name of the `quotaAdjusterSettings` configuration. Only a single
+     * setting per project is supported.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -67,8 +67,8 @@ class GetQuotaAdjusterSettingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the config. Required to be “settings”, as only a single
-     * setting per container will be supported initially.
+     * Required. Name of the `quotaAdjusterSettings` configuration. Only a single
+     * setting per project is supported.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
