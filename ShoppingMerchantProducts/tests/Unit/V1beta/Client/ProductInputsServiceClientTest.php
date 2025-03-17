@@ -32,7 +32,7 @@ use Google\Shopping\Merchant\Products\V1beta\Client\ProductInputsServiceClient;
 use Google\Shopping\Merchant\Products\V1beta\DeleteProductInputRequest;
 use Google\Shopping\Merchant\Products\V1beta\InsertProductInputRequest;
 use Google\Shopping\Merchant\Products\V1beta\ProductInput;
-use Google\Shopping\Type\Channel\ChannelEnum;
+use Google\Shopping\Merchant\Products\V1beta\UpdateProductInputRequest;
 use stdClass;
 
 /**
@@ -160,8 +160,6 @@ class ProductInputsServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->accountName('[ACCOUNT]');
         $productInput = new ProductInput();
-        $productInputChannel = ChannelEnum::CHANNEL_ENUM_UNSPECIFIED;
-        $productInput->setChannel($productInputChannel);
         $productInputOfferId = 'productInputOfferId-2885636';
         $productInput->setOfferId($productInputOfferId);
         $productInputContentLanguage = 'productInputContentLanguage-1069389482';
@@ -216,8 +214,6 @@ class ProductInputsServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->accountName('[ACCOUNT]');
         $productInput = new ProductInput();
-        $productInputChannel = ChannelEnum::CHANNEL_ENUM_UNSPECIFIED;
-        $productInput->setChannel($productInputChannel);
         $productInputOfferId = 'productInputOfferId-2885636';
         $productInput->setOfferId($productInputOfferId);
         $productInputContentLanguage = 'productInputContentLanguage-1069389482';
@@ -231,6 +227,100 @@ class ProductInputsServiceClientTest extends GeneratedTest
             ->setDataSource($dataSource);
         try {
             $gapicClient->insertProductInput($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateProductInputTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $product = 'product-309474065';
+        $offerId = 'offerId-768546338';
+        $contentLanguage = 'contentLanguage-1408137122';
+        $feedLabel = 'feedLabel574920979';
+        $versionNumber = 135927952;
+        $expectedResponse = new ProductInput();
+        $expectedResponse->setName($name);
+        $expectedResponse->setProduct($product);
+        $expectedResponse->setOfferId($offerId);
+        $expectedResponse->setContentLanguage($contentLanguage);
+        $expectedResponse->setFeedLabel($feedLabel);
+        $expectedResponse->setVersionNumber($versionNumber);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $productInput = new ProductInput();
+        $productInputOfferId = 'productInputOfferId-2885636';
+        $productInput->setOfferId($productInputOfferId);
+        $productInputContentLanguage = 'productInputContentLanguage-1069389482';
+        $productInput->setContentLanguage($productInputContentLanguage);
+        $productInputFeedLabel = 'productInputFeedLabel-2084228581';
+        $productInput->setFeedLabel($productInputFeedLabel);
+        $dataSource = 'dataSource-1333894576';
+        $request = (new UpdateProductInputRequest())->setProductInput($productInput)->setDataSource($dataSource);
+        $response = $gapicClient->updateProductInput($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.shopping.merchant.products.v1beta.ProductInputsService/UpdateProductInput',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getProductInput();
+        $this->assertProtobufEquals($productInput, $actualValue);
+        $actualValue = $actualRequestObject->getDataSource();
+        $this->assertProtobufEquals($dataSource, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateProductInputExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $productInput = new ProductInput();
+        $productInputOfferId = 'productInputOfferId-2885636';
+        $productInput->setOfferId($productInputOfferId);
+        $productInputContentLanguage = 'productInputContentLanguage-1069389482';
+        $productInput->setContentLanguage($productInputContentLanguage);
+        $productInputFeedLabel = 'productInputFeedLabel-2084228581';
+        $productInput->setFeedLabel($productInputFeedLabel);
+        $dataSource = 'dataSource-1333894576';
+        $request = (new UpdateProductInputRequest())->setProductInput($productInput)->setDataSource($dataSource);
+        try {
+            $gapicClient->updateProductInput($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

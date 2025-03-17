@@ -37,6 +37,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Shopping\Merchant\Products\V1beta\DeleteProductInputRequest;
 use Google\Shopping\Merchant\Products\V1beta\InsertProductInputRequest;
 use Google\Shopping\Merchant\Products\V1beta\ProductInput;
+use Google\Shopping\Merchant\Products\V1beta\UpdateProductInputRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -56,6 +57,7 @@ use Psr\Log\LoggerInterface;
  *
  * @method PromiseInterface<void> deleteProductInputAsync(DeleteProductInputRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ProductInput> insertProductInputAsync(InsertProductInputRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ProductInput> updateProductInputAsync(UpdateProductInputRequest $request, array $optionalArgs = [])
  */
 final class ProductInputsServiceClient
 {
@@ -310,5 +312,37 @@ final class ProductInputsServiceClient
     public function insertProductInput(InsertProductInputRequest $request, array $callOptions = []): ProductInput
     {
         return $this->startApiCall('InsertProductInput', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the existing product input in your Merchant Center account.
+     *
+     * After inserting, updating, or deleting a product input, it may take several
+     * minutes before the processed product can be retrieved.
+     *
+     * The async variant is
+     * {@see ProductInputsServiceClient::updateProductInputAsync()} .
+     *
+     * @example samples/V1beta/ProductInputsServiceClient/update_product_input.php
+     *
+     * @param UpdateProductInputRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ProductInput
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateProductInput(UpdateProductInputRequest $request, array $callOptions = []): ProductInput
+    {
+        return $this->startApiCall('UpdateProductInput', $request, $callOptions)->wait();
     }
 }

@@ -49,6 +49,22 @@ return [
                     ],
                 ],
             ],
+            'UpdateProductInput' => [
+                'method' => 'patch',
+                'uriTemplate' => '/products/v1beta/{product_input.name=accounts/*/productInputs/*}',
+                'body' => 'product_input',
+                'placeholders' => [
+                    'product_input.name' => [
+                        'getters' => [
+                            'getProductInput',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'data_source',
+                ],
+            ],
         ],
     ],
     'numericEnums' => true,

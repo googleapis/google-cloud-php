@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,23 +22,18 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START merchantapi_v1beta_generated_ProductInputsService_InsertProductInput_sync]
+// [START merchantapi_v1beta_generated_ProductInputsService_UpdateProductInput_sync]
 use Google\ApiCore\ApiException;
 use Google\Shopping\Merchant\Products\V1beta\Client\ProductInputsServiceClient;
-use Google\Shopping\Merchant\Products\V1beta\InsertProductInputRequest;
 use Google\Shopping\Merchant\Products\V1beta\ProductInput;
+use Google\Shopping\Merchant\Products\V1beta\UpdateProductInputRequest;
 
 /**
- * Uploads a product input to your Merchant Center account. If an input
- * with the same contentLanguage, offerId, and dataSource already exists,
- * this method replaces that entry.
+ * Updates the existing product input in your Merchant Center account.
  *
  * After inserting, updating, or deleting a product input, it may take several
  * minutes before the processed product can be retrieved.
  *
- * @param string $formattedParent             The account where this product will be inserted.
- *                                            Format: accounts/{account}
- *                                            Please see {@see ProductInputsServiceClient::accountName()} for help formatting this field.
  * @param string $productInputOfferId         Immutable. Your unique identifier for the product. This is the
  *                                            same for the product input and processed product. Leading and trailing
  *                                            whitespaces are stripped and multiple whitespaces are replaced by a single
@@ -51,16 +46,14 @@ use Google\Shopping\Merchant\Products\V1beta\ProductInput;
  * @param string $productInputFeedLabel       Immutable. The [feed
  *                                            label](https://developers.google.com/shopping-content/guides/products/feed-labels)
  *                                            for the product.
- * @param string $dataSource                  The primary or supplemental product data source name. If the
- *                                            product already exists and data source provided is different, then the
- *                                            product will be moved to a new data source.
+ * @param string $dataSource                  The primary or supplemental product data source where
+ *                                            `data_source` name identifies the product input to be updated.
  *
  *                                            Only API data sources are supported.
  *
  *                                            Format: `accounts/{account}/dataSources/{datasource}`.
  */
-function insert_product_input_sample(
-    string $formattedParent,
+function update_product_input_sample(
     string $productInputOfferId,
     string $productInputContentLanguage,
     string $productInputFeedLabel,
@@ -74,15 +67,14 @@ function insert_product_input_sample(
         ->setOfferId($productInputOfferId)
         ->setContentLanguage($productInputContentLanguage)
         ->setFeedLabel($productInputFeedLabel);
-    $request = (new InsertProductInputRequest())
-        ->setParent($formattedParent)
+    $request = (new UpdateProductInputRequest())
         ->setProductInput($productInput)
         ->setDataSource($dataSource);
 
     // Call the API and handle any network failures.
     try {
         /** @var ProductInput $response */
-        $response = $productInputsServiceClient->insertProductInput($request);
+        $response = $productInputsServiceClient->updateProductInput($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -100,18 +92,16 @@ function insert_product_input_sample(
  */
 function callSample(): void
 {
-    $formattedParent = ProductInputsServiceClient::accountName('[ACCOUNT]');
     $productInputOfferId = '[OFFER_ID]';
     $productInputContentLanguage = '[CONTENT_LANGUAGE]';
     $productInputFeedLabel = '[FEED_LABEL]';
     $dataSource = '[DATA_SOURCE]';
 
-    insert_product_input_sample(
-        $formattedParent,
+    update_product_input_sample(
         $productInputOfferId,
         $productInputContentLanguage,
         $productInputFeedLabel,
         $dataSource
     );
 }
-// [END merchantapi_v1beta_generated_ProductInputsService_InsertProductInput_sync]
+// [END merchantapi_v1beta_generated_ProductInputsService_UpdateProductInput_sync]
