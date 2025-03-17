@@ -82,11 +82,19 @@ class Event extends \Google\Protobuf\Internal\Message
      */
     protected $waf_token_assessment = false;
     /**
-     * Optional. JA3 fingerprint for SSL clients.
+     * Optional. JA3 fingerprint for SSL clients. To learn how to compute this
+     * fingerprint, please refer to https://github.com/salesforce/ja3.
      *
      * Generated from protobuf field <code>string ja3 = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $ja3 = '';
+    /**
+     * Optional. JA4 fingerprint for SSL clients. To learn how to compute this
+     * fingerprint, please refer to https://github.com/FoxIO-LLC/ja4.
+     *
+     * Generated from protobuf field <code>string ja4 = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ja4 = '';
     /**
      * Optional. HTTP header information about the request.
      *
@@ -161,7 +169,11 @@ class Event extends \Google\Protobuf\Internal\Message
      *           If enabled, the token must be specified, and have been created by a
      *           WAF-enabled key.
      *     @type string $ja3
-     *           Optional. JA3 fingerprint for SSL clients.
+     *           Optional. JA3 fingerprint for SSL clients. To learn how to compute this
+     *           fingerprint, please refer to https://github.com/salesforce/ja3.
+     *     @type string $ja4
+     *           Optional. JA4 fingerprint for SSL clients. To learn how to compute this
+     *           fingerprint, please refer to https://github.com/FoxIO-LLC/ja4.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $headers
      *           Optional. HTTP header information about the request.
      *     @type bool $firewall_policy_evaluation
@@ -447,7 +459,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. JA3 fingerprint for SSL clients.
+     * Optional. JA3 fingerprint for SSL clients. To learn how to compute this
+     * fingerprint, please refer to https://github.com/salesforce/ja3.
      *
      * Generated from protobuf field <code>string ja3 = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -458,7 +471,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. JA3 fingerprint for SSL clients.
+     * Optional. JA3 fingerprint for SSL clients. To learn how to compute this
+     * fingerprint, please refer to https://github.com/salesforce/ja3.
      *
      * Generated from protobuf field <code>string ja3 = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -468,6 +482,34 @@ class Event extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->ja3 = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. JA4 fingerprint for SSL clients. To learn how to compute this
+     * fingerprint, please refer to https://github.com/FoxIO-LLC/ja4.
+     *
+     * Generated from protobuf field <code>string ja4 = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getJa4()
+    {
+        return $this->ja4;
+    }
+
+    /**
+     * Optional. JA4 fingerprint for SSL clients. To learn how to compute this
+     * fingerprint, please refer to https://github.com/FoxIO-LLC/ja4.
+     *
+     * Generated from protobuf field <code>string ja4 = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setJa4($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ja4 = $var;
 
         return $this;
     }

@@ -25,7 +25,7 @@ class ManagedKafka
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ñ+
+ô+
 0google/cloud/managedkafka/v1/managed_kafka.protogoogle.cloud.managedkafka.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/field_info.protogoogle/api/resource.proto,google/cloud/managedkafka/v1/resources.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"¯
 ListClustersRequest;
 parent (	B+àAúA%#managedkafka.googleapis.com/Cluster
@@ -95,7 +95,7 @@ page_token (	BàA"{
 consumer_group (2+.google.cloud.managedkafka.v1.ConsumerGroupBàA"]
 DeleteConsumerGroupRequest?
 name (	B1àAúA+
-)managedkafka.googleapis.com/ConsumerGroup2²
+)managedkafka.googleapis.com/ConsumerGroup2µ
 ManagedKafka´
 ListClusters1.google.cloud.managedkafka.v1.ListClustersRequest2.google.cloud.managedkafka.v1.ListClustersResponse"=ÚAparent‚Óä“.,/v1/{parent=projects/*/locations/*}/clusters¡
 
@@ -112,10 +112,10 @@ ListTopics/.google.cloud.managedkafka.v1.ListTopicsRequest0.google.cloud.manag
 CreateTopic0.google.cloud.managedkafka.v1.CreateTopicRequest#.google.cloud.managedkafka.v1.Topic"\\ÚAparent,topic,topic_id‚Óä“>"5/v1/{parent=projects/*/locations/*/clusters/*}/topics:topicÄ
 UpdateTopic0.google.cloud.managedkafka.v1.UpdateTopicRequest#.google.cloud.managedkafka.v1.Topic"^ÚAtopic,update_mask‚Óä“D2;/v1/{topic.name=projects/*/locations/*/clusters/*/topics/*}:topic
 DeleteTopic0.google.cloud.managedkafka.v1.DeleteTopicRequest.google.protobuf.Empty"DÚAname‚Óä“7*5/v1/{name=projects/*/locations/*/clusters/*/topics/*}×
-ListConsumerGroups7.google.cloud.managedkafka.v1.ListConsumerGroupsRequest8.google.cloud.managedkafka.v1.ListConsumerGroupsResponse"NÚAparent‚Óä“?=/v1/{parent=projects/*/locations/*/clusters/*}/consumerGroupsÄ
-GetConsumerGroup5.google.cloud.managedkafka.v1.GetConsumerGroupRequest+.google.cloud.managedkafka.v1.ConsumerGroup"LÚAname‚Óä“?=/v1/{name=projects/*/locations/*/clusters/*/consumerGroups/*}€
-UpdateConsumerGroup8.google.cloud.managedkafka.v1.UpdateConsumerGroupRequest+.google.cloud.managedkafka.v1.ConsumerGroup"ÚAconsumer_group,update_mask‚Óä“^2L/v1/{consumer_group.name=projects/*/locations/*/clusters/*/consumerGroups/*}:consumer_groupµ
-DeleteConsumerGroup8.google.cloud.managedkafka.v1.DeleteConsumerGroupRequest.google.protobuf.Empty"LÚAname‚Óä“?*=/v1/{name=projects/*/locations/*/clusters/*/consumerGroups/*}OÊAmanagedkafka.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÝ
+ListConsumerGroups7.google.cloud.managedkafka.v1.ListConsumerGroupsRequest8.google.cloud.managedkafka.v1.ListConsumerGroupsResponse"NÚAparent‚Óä“?=/v1/{parent=projects/*/locations/*/clusters/*}/consumerGroupsÅ
+GetConsumerGroup5.google.cloud.managedkafka.v1.GetConsumerGroupRequest+.google.cloud.managedkafka.v1.ConsumerGroup"MÚAname‚Óä“@>/v1/{name=projects/*/locations/*/clusters/*/consumerGroups/**}
+UpdateConsumerGroup8.google.cloud.managedkafka.v1.UpdateConsumerGroupRequest+.google.cloud.managedkafka.v1.ConsumerGroup"‚ÚAconsumer_group,update_mask‚Óä“_2M/v1/{consumer_group.name=projects/*/locations/*/clusters/*/consumerGroups/**}:consumer_group¶
+DeleteConsumerGroup8.google.cloud.managedkafka.v1.DeleteConsumerGroupRequest.google.protobuf.Empty"MÚAname‚Óä“@*>/v1/{name=projects/*/locations/*/clusters/*/consumerGroups/**}OÊAmanagedkafka.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÝ
  com.google.cloud.managedkafka.v1BManagedKafkaProtoPZDcloud.google.com/go/managedkafka/apiv1/managedkafkapb;managedkafkapbªGoogle.Cloud.ManagedKafka.V1ÊGoogle\\Cloud\\ManagedKafka\\V1êGoogle::Cloud::ManagedKafka::V1bproto3'
         , true);
 

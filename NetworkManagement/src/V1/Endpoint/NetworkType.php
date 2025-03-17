@@ -30,8 +30,8 @@ class NetworkType
     const GCP_NETWORK = 1;
     /**
      * A network hosted outside of Google Cloud.
-     * This can be an on-premises network, or a network hosted by another cloud
-     * provider.
+     * This can be an on-premises network, an internet resource or a network
+     * hosted by another cloud provider.
      *
      * Generated from protobuf enum <code>NON_GCP_NETWORK = 2;</code>
      */

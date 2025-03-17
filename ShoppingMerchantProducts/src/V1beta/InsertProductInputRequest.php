@@ -31,8 +31,9 @@ class InsertProductInputRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The primary or supplemental product data source name. If the
      * product already exists and data source provided is different, then the
-     * product will be moved to a new data source. Format:
-     * `accounts/{account}/dataSources/{datasource}`.
+     * product will be moved to a new data source.
+     * Only API data sources are supported.
+     * Format: `accounts/{account}/dataSources/{datasource}`.
      *
      * Generated from protobuf field <code>string data_source = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -52,8 +53,9 @@ class InsertProductInputRequest extends \Google\Protobuf\Internal\Message
      *     @type string $data_source
      *           Required. The primary or supplemental product data source name. If the
      *           product already exists and data source provided is different, then the
-     *           product will be moved to a new data source. Format:
-     *           `accounts/{account}/dataSources/{datasource}`.
+     *           product will be moved to a new data source.
+     *           Only API data sources are supported.
+     *           Format: `accounts/{account}/dataSources/{datasource}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -128,8 +130,9 @@ class InsertProductInputRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The primary or supplemental product data source name. If the
      * product already exists and data source provided is different, then the
-     * product will be moved to a new data source. Format:
-     * `accounts/{account}/dataSources/{datasource}`.
+     * product will be moved to a new data source.
+     * Only API data sources are supported.
+     * Format: `accounts/{account}/dataSources/{datasource}`.
      *
      * Generated from protobuf field <code>string data_source = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -142,8 +145,9 @@ class InsertProductInputRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The primary or supplemental product data source name. If the
      * product already exists and data source provided is different, then the
-     * product will be moved to a new data source. Format:
-     * `accounts/{account}/dataSources/{datasource}`.
+     * product will be moved to a new data source.
+     * Only API data sources are supported.
+     * Format: `accounts/{account}/dataSources/{datasource}`.
      *
      * Generated from protobuf field <code>string data_source = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

@@ -25,6 +25,16 @@
                                 "createInstance"
                             ]
                         },
+                        "CreateLogicalView": {
+                            "methods": [
+                                "createLogicalView"
+                            ]
+                        },
+                        "CreateMaterializedView": {
+                            "methods": [
+                                "createMaterializedView"
+                            ]
+                        },
                         "DeleteAppProfile": {
                             "methods": [
                                 "deleteAppProfile"
@@ -38,6 +48,16 @@
                         "DeleteInstance": {
                             "methods": [
                                 "deleteInstance"
+                            ]
+                        },
+                        "DeleteLogicalView": {
+                            "methods": [
+                                "deleteLogicalView"
+                            ]
+                        },
+                        "DeleteMaterializedView": {
+                            "methods": [
+                                "deleteMaterializedView"
                             ]
                         },
                         "GetAppProfile": {
@@ -60,6 +80,16 @@
                                 "getInstance"
                             ]
                         },
+                        "GetLogicalView": {
+                            "methods": [
+                                "getLogicalView"
+                            ]
+                        },
+                        "GetMaterializedView": {
+                            "methods": [
+                                "getMaterializedView"
+                            ]
+                        },
                         "ListAppProfiles": {
                             "methods": [
                                 "listAppProfiles"
@@ -78,6 +108,16 @@
                         "ListInstances": {
                             "methods": [
                                 "listInstances"
+                            ]
+                        },
+                        "ListLogicalViews": {
+                            "methods": [
+                                "listLogicalViews"
+                            ]
+                        },
+                        "ListMaterializedViews": {
+                            "methods": [
+                                "listMaterializedViews"
                             ]
                         },
                         "PartialUpdateCluster": {
@@ -113,6 +153,16 @@
                         "UpdateInstance": {
                             "methods": [
                                 "updateInstance"
+                            ]
+                        },
+                        "UpdateLogicalView": {
+                            "methods": [
+                                "updateLogicalView"
+                            ]
+                        },
+                        "UpdateMaterializedView": {
+                            "methods": [
+                                "updateMaterializedView"
                             ]
                         }
                     }
