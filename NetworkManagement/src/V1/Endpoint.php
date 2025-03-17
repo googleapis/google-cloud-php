@@ -38,7 +38,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * A forwarding rule and its corresponding IP address represent the frontend
      * configuration of a Google Cloud load balancer. Forwarding rules are also
      * used for protocol forwarding, Private Service Connect and other network
-     * services to provide forwarding information in the control plane. Format:
+     * services to provide forwarding information in the control plane. Applicable
+     * only to destination endpoint. Format:
      *  projects/{project}/global/forwardingRules/{id} or
      *  projects/{project}/regions/{region}/forwardingRules/{id}
      *
@@ -87,21 +88,22 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      */
     protected $cloud_sql_instance = '';
     /**
-     * A [Redis Instance](https://cloud.google.com/memorystore/docs/redis)
-     * URI.
+     * A [Redis Instance](https://cloud.google.com/memorystore/docs/redis) URI.
+     * Applicable only to destination endpoint.
      *
      * Generated from protobuf field <code>string redis_instance = 17;</code>
      */
     protected $redis_instance = '';
     /**
-     * A [Redis Cluster](https://cloud.google.com/memorystore/docs/cluster)
-     * URI.
+     * A [Redis Cluster](https://cloud.google.com/memorystore/docs/cluster) URI.
+     * Applicable only to destination endpoint.
      *
      * Generated from protobuf field <code>string redis_cluster = 18;</code>
      */
     protected $redis_cluster = '';
     /**
-     * A [Cloud Function](https://cloud.google.com/functions).
+     * A [Cloud Function](https://cloud.google.com/functions). Applicable only to
+     * source endpoint.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.CloudFunctionEndpoint cloud_function = 10;</code>
      */
@@ -109,6 +111,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     /**
      * An [App Engine](https://cloud.google.com/appengine) [service
      * version](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions).
+     * Applicable only to source endpoint.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.AppEngineVersionEndpoint app_engine_version = 11;</code>
      */
@@ -116,12 +119,13 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     /**
      * A [Cloud Run](https://cloud.google.com/run)
      * [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get)
+     * Applicable only to source endpoint.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.CloudRunRevisionEndpoint cloud_run_revision = 12;</code>
      */
     protected $cloud_run_revision = null;
     /**
-     * A Compute Engine network URI.
+     * A VPC network URI.
      *
      * Generated from protobuf field <code>string network = 4;</code>
      */
@@ -136,9 +140,9 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     protected $network_type = 0;
     /**
      * Project ID where the endpoint is located.
-     * The Project ID can be derived from the URI if you provide a VM instance or
+     * The project ID can be derived from the URI if you provide a endpoint or
      * network URI.
-     * The following are two cases where you must provide the project ID:
+     * The following are two cases where you may need to provide the project ID:
      * 1. Only the IP address is specified, and the IP address is within a Google
      * Cloud project.
      * 2. When you are using Shared VPC and the IP address that you provide is
@@ -166,7 +170,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           A forwarding rule and its corresponding IP address represent the frontend
      *           configuration of a Google Cloud load balancer. Forwarding rules are also
      *           used for protocol forwarding, Private Service Connect and other network
-     *           services to provide forwarding information in the control plane. Format:
+     *           services to provide forwarding information in the control plane. Applicable
+     *           only to destination endpoint. Format:
      *            projects/{project}/global/forwardingRules/{id} or
      *            projects/{project}/regions/{region}/forwardingRules/{id}
      *     @type int $forwarding_rule_target
@@ -187,30 +192,33 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *     @type string $cloud_sql_instance
      *           A [Cloud SQL](https://cloud.google.com/sql) instance URI.
      *     @type string $redis_instance
-     *           A [Redis Instance](https://cloud.google.com/memorystore/docs/redis)
-     *           URI.
+     *           A [Redis Instance](https://cloud.google.com/memorystore/docs/redis) URI.
+     *           Applicable only to destination endpoint.
      *     @type string $redis_cluster
-     *           A [Redis Cluster](https://cloud.google.com/memorystore/docs/cluster)
-     *           URI.
+     *           A [Redis Cluster](https://cloud.google.com/memorystore/docs/cluster) URI.
+     *           Applicable only to destination endpoint.
      *     @type \Google\Cloud\NetworkManagement\V1\Endpoint\CloudFunctionEndpoint $cloud_function
-     *           A [Cloud Function](https://cloud.google.com/functions).
+     *           A [Cloud Function](https://cloud.google.com/functions). Applicable only to
+     *           source endpoint.
      *     @type \Google\Cloud\NetworkManagement\V1\Endpoint\AppEngineVersionEndpoint $app_engine_version
      *           An [App Engine](https://cloud.google.com/appengine) [service
      *           version](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions).
+     *           Applicable only to source endpoint.
      *     @type \Google\Cloud\NetworkManagement\V1\Endpoint\CloudRunRevisionEndpoint $cloud_run_revision
      *           A [Cloud Run](https://cloud.google.com/run)
      *           [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get)
+     *           Applicable only to source endpoint.
      *     @type string $network
-     *           A Compute Engine network URI.
+     *           A VPC network URI.
      *     @type int $network_type
      *           Type of the network where the endpoint is located.
      *           Applicable only to source endpoint, as destination network type can be
      *           inferred from the source.
      *     @type string $project_id
      *           Project ID where the endpoint is located.
-     *           The Project ID can be derived from the URI if you provide a VM instance or
+     *           The project ID can be derived from the URI if you provide a endpoint or
      *           network URI.
-     *           The following are two cases where you must provide the project ID:
+     *           The following are two cases where you may need to provide the project ID:
      *           1. Only the IP address is specified, and the IP address is within a Google
      *           Cloud project.
      *           2. When you are using Shared VPC and the IP address that you provide is
@@ -307,7 +315,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * A forwarding rule and its corresponding IP address represent the frontend
      * configuration of a Google Cloud load balancer. Forwarding rules are also
      * used for protocol forwarding, Private Service Connect and other network
-     * services to provide forwarding information in the control plane. Format:
+     * services to provide forwarding information in the control plane. Applicable
+     * only to destination endpoint. Format:
      *  projects/{project}/global/forwardingRules/{id} or
      *  projects/{project}/regions/{region}/forwardingRules/{id}
      *
@@ -323,7 +332,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * A forwarding rule and its corresponding IP address represent the frontend
      * configuration of a Google Cloud load balancer. Forwarding rules are also
      * used for protocol forwarding, Private Service Connect and other network
-     * services to provide forwarding information in the control plane. Format:
+     * services to provide forwarding information in the control plane. Applicable
+     * only to destination endpoint. Format:
      *  projects/{project}/global/forwardingRules/{id} or
      *  projects/{project}/regions/{region}/forwardingRules/{id}
      *
@@ -536,8 +546,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [Redis Instance](https://cloud.google.com/memorystore/docs/redis)
-     * URI.
+     * A [Redis Instance](https://cloud.google.com/memorystore/docs/redis) URI.
+     * Applicable only to destination endpoint.
      *
      * Generated from protobuf field <code>string redis_instance = 17;</code>
      * @return string
@@ -548,8 +558,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [Redis Instance](https://cloud.google.com/memorystore/docs/redis)
-     * URI.
+     * A [Redis Instance](https://cloud.google.com/memorystore/docs/redis) URI.
+     * Applicable only to destination endpoint.
      *
      * Generated from protobuf field <code>string redis_instance = 17;</code>
      * @param string $var
@@ -564,8 +574,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [Redis Cluster](https://cloud.google.com/memorystore/docs/cluster)
-     * URI.
+     * A [Redis Cluster](https://cloud.google.com/memorystore/docs/cluster) URI.
+     * Applicable only to destination endpoint.
      *
      * Generated from protobuf field <code>string redis_cluster = 18;</code>
      * @return string
@@ -576,8 +586,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [Redis Cluster](https://cloud.google.com/memorystore/docs/cluster)
-     * URI.
+     * A [Redis Cluster](https://cloud.google.com/memorystore/docs/cluster) URI.
+     * Applicable only to destination endpoint.
      *
      * Generated from protobuf field <code>string redis_cluster = 18;</code>
      * @param string $var
@@ -592,7 +602,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [Cloud Function](https://cloud.google.com/functions).
+     * A [Cloud Function](https://cloud.google.com/functions). Applicable only to
+     * source endpoint.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.CloudFunctionEndpoint cloud_function = 10;</code>
      * @return \Google\Cloud\NetworkManagement\V1\Endpoint\CloudFunctionEndpoint|null
@@ -613,7 +624,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [Cloud Function](https://cloud.google.com/functions).
+     * A [Cloud Function](https://cloud.google.com/functions). Applicable only to
+     * source endpoint.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.CloudFunctionEndpoint cloud_function = 10;</code>
      * @param \Google\Cloud\NetworkManagement\V1\Endpoint\CloudFunctionEndpoint $var
@@ -630,6 +642,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     /**
      * An [App Engine](https://cloud.google.com/appengine) [service
      * version](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions).
+     * Applicable only to source endpoint.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.AppEngineVersionEndpoint app_engine_version = 11;</code>
      * @return \Google\Cloud\NetworkManagement\V1\Endpoint\AppEngineVersionEndpoint|null
@@ -652,6 +665,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     /**
      * An [App Engine](https://cloud.google.com/appengine) [service
      * version](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions).
+     * Applicable only to source endpoint.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.AppEngineVersionEndpoint app_engine_version = 11;</code>
      * @param \Google\Cloud\NetworkManagement\V1\Endpoint\AppEngineVersionEndpoint $var
@@ -668,6 +682,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     /**
      * A [Cloud Run](https://cloud.google.com/run)
      * [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get)
+     * Applicable only to source endpoint.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.CloudRunRevisionEndpoint cloud_run_revision = 12;</code>
      * @return \Google\Cloud\NetworkManagement\V1\Endpoint\CloudRunRevisionEndpoint|null
@@ -690,6 +705,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     /**
      * A [Cloud Run](https://cloud.google.com/run)
      * [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get)
+     * Applicable only to source endpoint.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.CloudRunRevisionEndpoint cloud_run_revision = 12;</code>
      * @param \Google\Cloud\NetworkManagement\V1\Endpoint\CloudRunRevisionEndpoint $var
@@ -704,7 +720,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A Compute Engine network URI.
+     * A VPC network URI.
      *
      * Generated from protobuf field <code>string network = 4;</code>
      * @return string
@@ -715,7 +731,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A Compute Engine network URI.
+     * A VPC network URI.
      *
      * Generated from protobuf field <code>string network = 4;</code>
      * @param string $var
@@ -761,9 +777,9 @@ class Endpoint extends \Google\Protobuf\Internal\Message
 
     /**
      * Project ID where the endpoint is located.
-     * The Project ID can be derived from the URI if you provide a VM instance or
+     * The project ID can be derived from the URI if you provide a endpoint or
      * network URI.
-     * The following are two cases where you must provide the project ID:
+     * The following are two cases where you may need to provide the project ID:
      * 1. Only the IP address is specified, and the IP address is within a Google
      * Cloud project.
      * 2. When you are using Shared VPC and the IP address that you provide is
@@ -780,9 +796,9 @@ class Endpoint extends \Google\Protobuf\Internal\Message
 
     /**
      * Project ID where the endpoint is located.
-     * The Project ID can be derived from the URI if you provide a VM instance or
+     * The project ID can be derived from the URI if you provide a endpoint or
      * network URI.
-     * The following are two cases where you must provide the project ID:
+     * The following are two cases where you may need to provide the project ID:
      * 1. Only the IP address is specified, and the IP address is within a Google
      * Cloud project.
      * 2. When you are using Shared VPC and the IP address that you provide is
