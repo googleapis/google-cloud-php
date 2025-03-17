@@ -1,5 +1,177 @@
 # Changelog
 
+## 0.280.0
+
+<details><summary>google/cloud-ai-platform 1.21.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add VertexAISearch.engine option ([#8150](https://github.com/googleapis/google-cloud-php/issues/8150)) ([504fd58](https://github.com/googleapis/google-cloud-php/commit/504fd5884e330c6ba73b2073d9895fc88d1e3979))
+* Add reranker config to RAG v1 API ([504fd58](https://github.com/googleapis/google-cloud-php/commit/504fd5884e330c6ba73b2073d9895fc88d1e3979))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.9.0</summary>
+
+
+
+### Features
+
+* [Bigtable] add MaterializedViews and LogicalViews APIs ([#8129](https://github.com/googleapis/google-cloud-php/issues/8129)) ([2b3e098](https://github.com/googleapis/google-cloud-php/commit/2b3e0983409786fa36f195b898ee974d7526028a))
+* Add MaterializedViewName to ReadRows and SampleRowKeys ([2b3e098](https://github.com/googleapis/google-cloud-php/commit/2b3e0983409786fa36f195b898ee974d7526028a))
+* Add PrepareQuery api and update ExecuteQuery to support it ([2b3e098](https://github.com/googleapis/google-cloud-php/commit/2b3e0983409786fa36f195b898ee974d7526028a))
+
+
+### Documentation
+
+* Fixed formatting of resource path strings ([2b3e098](https://github.com/googleapis/google-cloud-php/commit/2b3e0983409786fa36f195b898ee974d7526028a))
+* Update ExecuteQuery API docs to reflect changes ([2b3e098](https://github.com/googleapis/google-cloud-php/commit/2b3e0983409786fa36f195b898ee974d7526028a))
+
+</details>
+
+<details><summary>google/cloud-compute 1.27.0</summary>
+
+
+
+### Features
+
+* [Compute] Update Compute Engine API to revision 20250302 ([#987](https://github.com/googleapis/google-cloud-php/issues/987)) ([#8157](https://github.com/googleapis/google-cloud-php/issues/8157)) ([b36b130](https://github.com/googleapis/google-cloud-php/commit/b36b13058c239bff4ad0b452863a1c70830c3b4e))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 2.2.4</summary>
+
+
+
+### Documentation
+
+* [DataCatalog] mark DataCatalog service deprecated, use Dataplex Catalog instead ([#8158](https://github.com/googleapis/google-cloud-php/issues/8158)) ([ebd1120](https://github.com/googleapis/google-cloud-php/commit/ebd11200a540effbc75e7aa442a2e0c7582020ab))
+
+</details>
+
+<details><summary>google/cloud-dataplex 1.4.0</summary>
+
+
+
+### Features
+
+* [Dataplex] Add custom BigQuery dataset location support in Auto Discovery ([#8142](https://github.com/googleapis/google-cloud-php/issues/8142)) ([74fc2d3](https://github.com/googleapis/google-cloud-php/commit/74fc2d3dce199e46483c013c6c7fab2374e44c0f))
+
+</details>
+
+<details><summary>google/cloud-dialogflow-cx 0.7.1</summary>
+
+
+
+### Documentation
+
+* [DialogflowCx] Change client_secret in OAuthConfig from required to optional ([#8140](https://github.com/googleapis/google-cloud-php/issues/8140)) ([8c4f9dc](https://github.com/googleapis/google-cloud-php/commit/8c4f9dce27ac860452dbeb3ff125b2d4a73f5d8c))
+* A comment for field `client_secret` in message `.google.cloud.dialogflow.cx.v3.Webhook` is changed ([8c4f9dc](https://github.com/googleapis/google-cloud-php/commit/8c4f9dce27ac860452dbeb3ff125b2d4a73f5d8c))
+
+</details>
+
+<details><summary>google/cloud-eventarc-publishing 1.1.5</summary>
+
+
+
+### Documentation
+
+* [EventarcPublishing] Minor documentation improvements ([#8149](https://github.com/googleapis/google-cloud-php/issues/8149)) ([9b4bb46](https://github.com/googleapis/google-cloud-php/commit/9b4bb46c2f663646ed88583bbbd4fb5559bc00b3))
+
+</details>
+
+<details><summary>google/cloud-managedkafka 0.3.1</summary>
+
+
+
+### Bug Fixes
+
+* [ManagedKafka] An existing google.api.http annotation `http_uri` is changed for method `GetConsumerGroup` in service `ManagedKafka` ([#8147](https://github.com/googleapis/google-cloud-php/issues/8147)) ([343bbba](https://github.com/googleapis/google-cloud-php/commit/343bbba415016d4100418bfb384ac0045e7cd4e2))
+
+</details>
+
+<details><summary>google/cloud-network-management 2.3.2</summary>
+
+
+
+### Documentation
+
+* [NetworkManagement] Update comments for Connectivity Test ([#8162](https://github.com/googleapis/google-cloud-php/issues/8162)) ([9dcdc0c](https://github.com/googleapis/google-cloud-php/commit/9dcdc0cd2c288a6bee251540ef50bf448ef80ff3))
+
+</details>
+
+<details><summary>google/cloud-oracledatabase 0.4.0</summary>
+
+
+
+### Features
+
+* [OracleDatabase] add enum value `State::NOT_APPROVED_IN_PRIVATE_MARKETPLACE` ([#8160](https://github.com/googleapis/google-cloud-php/issues/8160)) ([f8e143d](https://github.com/googleapis/google-cloud-php/commit/f8e143d54d4f066bb929bf3a0a14865a7e0c8200))
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 2.1.5</summary>
+
+
+
+### Documentation
+
+* [OrchestrationAirflow] fix Composer 3 image version format in API docs ([#8148](https://github.com/googleapis/google-cloud-php/issues/8148)) ([5dbdd1b](https://github.com/googleapis/google-cloud-php/commit/5dbdd1b87b7e4702e7782e10c5a63e9560ed8e95))
+
+</details>
+
+<details><summary>google/cloud-quotas 1.3.1</summary>
+
+
+
+### Documentation
+
+* [Quotas] improved comment clarity ([#8146](https://github.com/googleapis/google-cloud-php/issues/8146)) ([82c2eb6](https://github.com/googleapis/google-cloud-php/commit/82c2eb666b2ffaced7b257c9b3fac3249685e57b))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 2.1.0</summary>
+
+
+
+### Features
+
+* [RecaptchaEnterprise] A new field `ja4` is added to message `Event` ([#8144](https://github.com/googleapis/google-cloud-php/issues/8144)) ([68218d9](https://github.com/googleapis/google-cloud-php/commit/68218d9b26b5f0c13399a8b506d609e37389b951))
+
+</details>
+
+<details><summary>google/shopping-merchant-accounts 0.6.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantAccounts] Add AutomaticImprovements service ([#8155](https://github.com/googleapis/google-cloud-php/issues/8155)) ([c5c7779](https://github.com/googleapis/google-cloud-php/commit/c5c7779322cd5541a4d620387b689e57d2674faf))
+
+</details>
+
+<details><summary>google/shopping-merchant-datasources 0.5.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantDataSources] Add a new destinations field ([#8156](https://github.com/googleapis/google-cloud-php/issues/8156)) ([923b96f](https://github.com/googleapis/google-cloud-php/commit/923b96f27e1a66d87dcf00c94c1315b2e54225e9))
+
+</details>
+
+<details><summary>google/shopping-merchant-products 0.4.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantProducts] add an update method ([#8161](https://github.com/googleapis/google-cloud-php/issues/8161)) ([952fb85](https://github.com/googleapis/google-cloud-php/commit/952fb85f86e4d562b0c8f66746514749e25cb0ec))
+
+</details>
+
 ## 0.279.0
 
 <details><summary>google/cloud-ai-platform 1.20.0</summary>
