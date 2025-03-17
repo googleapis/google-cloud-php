@@ -10,15 +10,15 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Response for the
- * [ListWorkflows][google.cloud.workflows.v1.Workflows.ListWorkflows]
+ * [ListWorkflowRevisions][google.cloud.workflows.v1.Workflows.ListWorkflowRevisions]
  * method.
  *
- * Generated from protobuf message <code>google.cloud.workflows.v1.ListWorkflowsResponse</code>
+ * Generated from protobuf message <code>google.cloud.workflows.v1.ListWorkflowRevisionsResponse</code>
  */
-class ListWorkflowsResponse extends \Google\Protobuf\Internal\Message
+class ListWorkflowRevisionsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The workflows that match the request.
+     * The revisions of the workflow, ordered in reverse chronological order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workflows.v1.Workflow workflows = 1;</code>
      */
@@ -29,13 +29,7 @@ class ListWorkflowsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
-    protected $next_page_token = '';
-    /**
-     * Unreachable resources.
-     *
-     * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     */
-    private $unreachable;
+    private $next_page_token = '';
 
     /**
      * Constructor.
@@ -44,12 +38,10 @@ class ListWorkflowsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Workflows\V1\Workflow>|\Google\Protobuf\Internal\RepeatedField $workflows
-     *           The workflows that match the request.
+     *           The revisions of the workflow, ordered in reverse chronological order.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
-     *           Unreachable resources.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,7 +50,7 @@ class ListWorkflowsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The workflows that match the request.
+     * The revisions of the workflow, ordered in reverse chronological order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workflows.v1.Workflow workflows = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -69,7 +61,7 @@ class ListWorkflowsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The workflows that match the request.
+     * The revisions of the workflow, ordered in reverse chronological order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workflows.v1.Workflow workflows = 1;</code>
      * @param array<\Google\Cloud\Workflows\V1\Workflow>|\Google\Protobuf\Internal\RepeatedField $var
@@ -107,32 +99,6 @@ class ListWorkflowsResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->next_page_token = $var;
-
-        return $this;
-    }
-
-    /**
-     * Unreachable resources.
-     *
-     * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getUnreachable()
-    {
-        return $this->unreachable;
-    }
-
-    /**
-     * Unreachable resources.
-     *
-     * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setUnreachable($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->unreachable = $arr;
 
         return $this;
     }

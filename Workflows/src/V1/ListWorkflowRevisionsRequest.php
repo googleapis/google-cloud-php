@@ -23,7 +23,7 @@ class ListWorkflowRevisionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $name = '';
+    private $name = '';
     /**
      * The maximum number of revisions to return per page. If a value is not
      * specified, a default value of 20 is used. The maximum permitted value is
@@ -31,14 +31,14 @@ class ListWorkflowRevisionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    protected $page_size = 0;
+    private $page_size = 0;
     /**
      * The page token, received from a previous ListWorkflowRevisions call.
      * Provide this to retrieve the subsequent page.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    protected $page_token = '';
+    private $page_token = '';
 
     /**
      * Constructor.
