@@ -125,7 +125,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * Optional. Whether or not the web server uses custom plugins.
      * If unspecified, the field defaults to `PLUGINS_ENABLED`.
      * This field is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.SoftwareConfig.WebServerPluginsMode web_server_plugins_mode = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -219,7 +219,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Whether or not the web server uses custom plugins.
      *           If unspecified, the field defaults to `PLUGINS_ENABLED`.
      *           This field is supported for Cloud Composer environments in versions
-     *           composer-3.*.*-airflow-*.*.* and newer.
+     *           composer-3-airflow-*.*.*-build.* and newer.
      * }
      */
     public function __construct($data = NULL) {
@@ -551,7 +551,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * Optional. Whether or not the web server uses custom plugins.
      * If unspecified, the field defaults to `PLUGINS_ENABLED`.
      * This field is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.SoftwareConfig.WebServerPluginsMode web_server_plugins_mode = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -565,7 +565,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * Optional. Whether or not the web server uses custom plugins.
      * If unspecified, the field defaults to `PLUGINS_ENABLED`.
      * This field is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.SoftwareConfig.WebServerPluginsMode web_server_plugins_mode = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
