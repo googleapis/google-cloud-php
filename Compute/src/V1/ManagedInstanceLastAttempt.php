@@ -17,7 +17,7 @@ class ManagedInstanceLastAttempt extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Encountered errors during the last attempt to create or delete the instance.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Errors errors = 315977579;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceLastAttemptErrors errors = 315977579;</code>
      */
     private $errors = null;
 
@@ -27,7 +27,7 @@ class ManagedInstanceLastAttempt extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\Errors $errors
+     *     @type \Google\Cloud\Compute\V1\ManagedInstanceLastAttemptErrors $errors
      *           [Output Only] Encountered errors during the last attempt to create or delete the instance.
      * }
      */
@@ -39,8 +39,8 @@ class ManagedInstanceLastAttempt extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Encountered errors during the last attempt to create or delete the instance.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Errors errors = 315977579;</code>
-     * @return \Google\Cloud\Compute\V1\Errors|null
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceLastAttemptErrors errors = 315977579;</code>
+     * @return \Google\Cloud\Compute\V1\ManagedInstanceLastAttemptErrors|null
      */
     public function getErrors()
     {
@@ -60,13 +60,13 @@ class ManagedInstanceLastAttempt extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Encountered errors during the last attempt to create or delete the instance.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Errors errors = 315977579;</code>
-     * @param \Google\Cloud\Compute\V1\Errors $var
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceLastAttemptErrors errors = 315977579;</code>
+     * @param \Google\Cloud\Compute\V1\ManagedInstanceLastAttemptErrors $var
      * @return $this
      */
     public function setErrors($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\Errors::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ManagedInstanceLastAttemptErrors::class);
         $this->errors = $var;
 
         return $this;
