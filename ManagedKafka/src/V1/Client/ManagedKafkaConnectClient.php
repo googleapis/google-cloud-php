@@ -116,9 +116,7 @@ final class ManagedKafkaConnectClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -164,7 +162,9 @@ final class ManagedKafkaConnectClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -219,8 +219,12 @@ final class ManagedKafkaConnectClient
      *
      * @return string The formatted connector resource.
      */
-    public static function connectorName(string $project, string $location, string $connectCluster, string $connector): string
-    {
+    public static function connectorName(
+        string $project,
+        string $location,
+        string $connectCluster,
+        string $connector
+    ): string {
         return self::getPathTemplate('connector')->render([
             'project' => $project,
             'location' => $location,
@@ -395,8 +399,10 @@ final class ManagedKafkaConnectClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createConnectCluster(CreateConnectClusterRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createConnectCluster(
+        CreateConnectClusterRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateConnectCluster', $request, $callOptions)->wait();
     }
 
@@ -448,8 +454,10 @@ final class ManagedKafkaConnectClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteConnectCluster(DeleteConnectClusterRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteConnectCluster(
+        DeleteConnectClusterRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteConnectCluster', $request, $callOptions)->wait();
     }
 
@@ -630,8 +638,10 @@ final class ManagedKafkaConnectClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function restartConnector(RestartConnectorRequest $request, array $callOptions = []): RestartConnectorResponse
-    {
+    public function restartConnector(
+        RestartConnectorRequest $request,
+        array $callOptions = []
+    ): RestartConnectorResponse {
         return $this->startApiCall('RestartConnector', $request, $callOptions)->wait();
     }
 
@@ -709,8 +719,10 @@ final class ManagedKafkaConnectClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateConnectCluster(UpdateConnectClusterRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateConnectCluster(
+        UpdateConnectClusterRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateConnectCluster', $request, $callOptions)->wait();
     }
 

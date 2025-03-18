@@ -93,6 +93,95 @@
                     }
                 }
             }
+        },
+        "ManagedKafkaConnect": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ManagedKafkaConnectGapicClient",
+                    "rpcs": {
+                        "CreateConnectCluster": {
+                            "methods": [
+                                "createConnectCluster"
+                            ]
+                        },
+                        "CreateConnector": {
+                            "methods": [
+                                "createConnector"
+                            ]
+                        },
+                        "DeleteConnectCluster": {
+                            "methods": [
+                                "deleteConnectCluster"
+                            ]
+                        },
+                        "DeleteConnector": {
+                            "methods": [
+                                "deleteConnector"
+                            ]
+                        },
+                        "GetConnectCluster": {
+                            "methods": [
+                                "getConnectCluster"
+                            ]
+                        },
+                        "GetConnector": {
+                            "methods": [
+                                "getConnector"
+                            ]
+                        },
+                        "ListConnectClusters": {
+                            "methods": [
+                                "listConnectClusters"
+                            ]
+                        },
+                        "ListConnectors": {
+                            "methods": [
+                                "listConnectors"
+                            ]
+                        },
+                        "PauseConnector": {
+                            "methods": [
+                                "pauseConnector"
+                            ]
+                        },
+                        "RestartConnector": {
+                            "methods": [
+                                "restartConnector"
+                            ]
+                        },
+                        "ResumeConnector": {
+                            "methods": [
+                                "resumeConnector"
+                            ]
+                        },
+                        "StopConnector": {
+                            "methods": [
+                                "stopConnector"
+                            ]
+                        },
+                        "UpdateConnectCluster": {
+                            "methods": [
+                                "updateConnectCluster"
+                            ]
+                        },
+                        "UpdateConnector": {
+                            "methods": [
+                                "updateConnector"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
         }
     }
 }

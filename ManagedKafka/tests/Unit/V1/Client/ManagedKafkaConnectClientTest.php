@@ -30,30 +30,32 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
-use Google\Cloud\ManagedKafka\V1\AccessConfig;
 use Google\Cloud\ManagedKafka\V1\CapacityConfig;
-use Google\Cloud\ManagedKafka\V1\Client\ManagedKafkaClient;
-use Google\Cloud\ManagedKafka\V1\Cluster;
-use Google\Cloud\ManagedKafka\V1\ConsumerGroup;
-use Google\Cloud\ManagedKafka\V1\CreateClusterRequest;
-use Google\Cloud\ManagedKafka\V1\CreateTopicRequest;
-use Google\Cloud\ManagedKafka\V1\DeleteClusterRequest;
-use Google\Cloud\ManagedKafka\V1\DeleteConsumerGroupRequest;
-use Google\Cloud\ManagedKafka\V1\DeleteTopicRequest;
-use Google\Cloud\ManagedKafka\V1\GcpConfig;
-use Google\Cloud\ManagedKafka\V1\GetClusterRequest;
-use Google\Cloud\ManagedKafka\V1\GetConsumerGroupRequest;
-use Google\Cloud\ManagedKafka\V1\GetTopicRequest;
-use Google\Cloud\ManagedKafka\V1\ListClustersRequest;
-use Google\Cloud\ManagedKafka\V1\ListClustersResponse;
-use Google\Cloud\ManagedKafka\V1\ListConsumerGroupsRequest;
-use Google\Cloud\ManagedKafka\V1\ListConsumerGroupsResponse;
-use Google\Cloud\ManagedKafka\V1\ListTopicsRequest;
-use Google\Cloud\ManagedKafka\V1\ListTopicsResponse;
-use Google\Cloud\ManagedKafka\V1\Topic;
-use Google\Cloud\ManagedKafka\V1\UpdateClusterRequest;
-use Google\Cloud\ManagedKafka\V1\UpdateConsumerGroupRequest;
-use Google\Cloud\ManagedKafka\V1\UpdateTopicRequest;
+use Google\Cloud\ManagedKafka\V1\Client\ManagedKafkaConnectClient;
+use Google\Cloud\ManagedKafka\V1\ConnectAccessConfig;
+use Google\Cloud\ManagedKafka\V1\ConnectCluster;
+use Google\Cloud\ManagedKafka\V1\ConnectGcpConfig;
+use Google\Cloud\ManagedKafka\V1\Connector;
+use Google\Cloud\ManagedKafka\V1\CreateConnectClusterRequest;
+use Google\Cloud\ManagedKafka\V1\CreateConnectorRequest;
+use Google\Cloud\ManagedKafka\V1\DeleteConnectClusterRequest;
+use Google\Cloud\ManagedKafka\V1\DeleteConnectorRequest;
+use Google\Cloud\ManagedKafka\V1\GetConnectClusterRequest;
+use Google\Cloud\ManagedKafka\V1\GetConnectorRequest;
+use Google\Cloud\ManagedKafka\V1\ListConnectClustersRequest;
+use Google\Cloud\ManagedKafka\V1\ListConnectClustersResponse;
+use Google\Cloud\ManagedKafka\V1\ListConnectorsRequest;
+use Google\Cloud\ManagedKafka\V1\ListConnectorsResponse;
+use Google\Cloud\ManagedKafka\V1\PauseConnectorRequest;
+use Google\Cloud\ManagedKafka\V1\PauseConnectorResponse;
+use Google\Cloud\ManagedKafka\V1\RestartConnectorRequest;
+use Google\Cloud\ManagedKafka\V1\RestartConnectorResponse;
+use Google\Cloud\ManagedKafka\V1\ResumeConnectorRequest;
+use Google\Cloud\ManagedKafka\V1\ResumeConnectorResponse;
+use Google\Cloud\ManagedKafka\V1\StopConnectorRequest;
+use Google\Cloud\ManagedKafka\V1\StopConnectorResponse;
+use Google\Cloud\ManagedKafka\V1\UpdateConnectClusterRequest;
+use Google\Cloud\ManagedKafka\V1\UpdateConnectorRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -68,7 +70,7 @@ use stdClass;
  *
  * @group gapic
  */
-class ManagedKafkaClientTest extends GeneratedTest
+class ManagedKafkaConnectClientTest extends GeneratedTest
 {
     /** @return TransportInterface */
     private function createTransport($deserialize = null)
@@ -79,20 +81,22 @@ class ManagedKafkaClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
-    /** @return ManagedKafkaClient */
+    /** @return ManagedKafkaConnectClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-        return new ManagedKafkaClient($options);
+        return new ManagedKafkaConnectClient($options);
     }
 
     /** @test */
-    public function createClusterTest()
+    public function createConnectClusterTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -109,44 +113,44 @@ class ManagedKafkaClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createClusterTest');
+        $incompleteOperation->setName('operations/createConnectClusterTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
-        $satisfiesPzi = false;
-        $satisfiesPzs = false;
-        $expectedResponse = new Cluster();
+        $kafkaCluster = 'kafkaCluster-144856607';
+        $expectedResponse = new ConnectCluster();
         $expectedResponse->setName($name);
-        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
-        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setKafkaCluster($kafkaCluster);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/createClusterTest');
+        $completeOperation->setName('operations/createConnectClusterTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $clusterId = 'clusterId240280960';
-        $cluster = new Cluster();
-        $clusterCapacityConfig = new CapacityConfig();
+        $connectClusterId = 'connectClusterId-1411224587';
+        $connectCluster = new ConnectCluster();
+        $connectClusterKafkaCluster = 'connectClusterKafkaCluster64912836';
+        $connectCluster->setKafkaCluster($connectClusterKafkaCluster);
+        $connectClusterCapacityConfig = new CapacityConfig();
         $capacityConfigVcpuCount = 1944563327;
-        $clusterCapacityConfig->setVcpuCount($capacityConfigVcpuCount);
+        $connectClusterCapacityConfig->setVcpuCount($capacityConfigVcpuCount);
         $capacityConfigMemoryBytes = 743041454;
-        $clusterCapacityConfig->setMemoryBytes($capacityConfigMemoryBytes);
-        $cluster->setCapacityConfig($clusterCapacityConfig);
-        $clusterGcpConfig = new GcpConfig();
-        $gcpConfigAccessConfig = new AccessConfig();
+        $connectClusterCapacityConfig->setMemoryBytes($capacityConfigMemoryBytes);
+        $connectCluster->setCapacityConfig($connectClusterCapacityConfig);
+        $connectClusterGcpConfig = new ConnectGcpConfig();
+        $gcpConfigAccessConfig = new ConnectAccessConfig();
         $accessConfigNetworkConfigs = [];
         $gcpConfigAccessConfig->setNetworkConfigs($accessConfigNetworkConfigs);
-        $clusterGcpConfig->setAccessConfig($gcpConfigAccessConfig);
-        $cluster->setGcpConfig($clusterGcpConfig);
-        $request = (new CreateClusterRequest())
+        $connectClusterGcpConfig->setAccessConfig($gcpConfigAccessConfig);
+        $connectCluster->setGcpConfig($connectClusterGcpConfig);
+        $request = (new CreateConnectClusterRequest())
             ->setParent($formattedParent)
-            ->setClusterId($clusterId)
-            ->setCluster($cluster);
-        $response = $gapicClient->createCluster($request);
+            ->setConnectClusterId($connectClusterId)
+            ->setConnectCluster($connectCluster);
+        $response = $gapicClient->createConnectCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -155,15 +159,15 @@ class ManagedKafkaClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafka/CreateCluster', $actualApiFuncCall);
+        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafkaConnect/CreateConnectCluster', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getClusterId();
-        $this->assertProtobufEquals($clusterId, $actualValue);
-        $actualValue = $actualApiRequestObject->getCluster();
-        $this->assertProtobufEquals($cluster, $actualValue);
+        $actualValue = $actualApiRequestObject->getConnectClusterId();
+        $this->assertProtobufEquals($connectClusterId, $actualValue);
+        $actualValue = $actualApiRequestObject->getConnectCluster();
+        $this->assertProtobufEquals($connectCluster, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createClusterTest');
+        $expectedOperationsRequestObject->setName('operations/createConnectClusterTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -182,7 +186,7 @@ class ManagedKafkaClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createClusterExceptionTest()
+    public function createConnectClusterExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -199,44 +203,49 @@ class ManagedKafkaClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createClusterTest');
+        $incompleteOperation->setName('operations/createConnectClusterTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $clusterId = 'clusterId240280960';
-        $cluster = new Cluster();
-        $clusterCapacityConfig = new CapacityConfig();
+        $connectClusterId = 'connectClusterId-1411224587';
+        $connectCluster = new ConnectCluster();
+        $connectClusterKafkaCluster = 'connectClusterKafkaCluster64912836';
+        $connectCluster->setKafkaCluster($connectClusterKafkaCluster);
+        $connectClusterCapacityConfig = new CapacityConfig();
         $capacityConfigVcpuCount = 1944563327;
-        $clusterCapacityConfig->setVcpuCount($capacityConfigVcpuCount);
+        $connectClusterCapacityConfig->setVcpuCount($capacityConfigVcpuCount);
         $capacityConfigMemoryBytes = 743041454;
-        $clusterCapacityConfig->setMemoryBytes($capacityConfigMemoryBytes);
-        $cluster->setCapacityConfig($clusterCapacityConfig);
-        $clusterGcpConfig = new GcpConfig();
-        $gcpConfigAccessConfig = new AccessConfig();
+        $connectClusterCapacityConfig->setMemoryBytes($capacityConfigMemoryBytes);
+        $connectCluster->setCapacityConfig($connectClusterCapacityConfig);
+        $connectClusterGcpConfig = new ConnectGcpConfig();
+        $gcpConfigAccessConfig = new ConnectAccessConfig();
         $accessConfigNetworkConfigs = [];
         $gcpConfigAccessConfig->setNetworkConfigs($accessConfigNetworkConfigs);
-        $clusterGcpConfig->setAccessConfig($gcpConfigAccessConfig);
-        $cluster->setGcpConfig($clusterGcpConfig);
-        $request = (new CreateClusterRequest())
+        $connectClusterGcpConfig->setAccessConfig($gcpConfigAccessConfig);
+        $connectCluster->setGcpConfig($connectClusterGcpConfig);
+        $request = (new CreateConnectClusterRequest())
             ->setParent($formattedParent)
-            ->setClusterId($clusterId)
-            ->setCluster($cluster);
-        $response = $gapicClient->createCluster($request);
+            ->setConnectClusterId($connectClusterId)
+            ->setConnectCluster($connectCluster);
+        $response = $gapicClient->createConnectCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createClusterTest');
+        $expectedOperationsRequestObject->setName('operations/createConnectClusterTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -255,7 +264,7 @@ class ManagedKafkaClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createTopicTest()
+    public function createConnectorTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -264,43 +273,35 @@ class ManagedKafkaClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
-        $partitionCount = 1738969222;
-        $replicationFactor = 1434332894;
-        $expectedResponse = new Topic();
+        $expectedResponse = new Connector();
         $expectedResponse->setName($name);
-        $expectedResponse->setPartitionCount($partitionCount);
-        $expectedResponse->setReplicationFactor($replicationFactor);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $topicId = 'topicId-957291989';
-        $topic = new Topic();
-        $topicPartitionCount = 2129663148;
-        $topic->setPartitionCount($topicPartitionCount);
-        $topicReplicationFactor = 1954252084;
-        $topic->setReplicationFactor($topicReplicationFactor);
-        $request = (new CreateTopicRequest())
+        $formattedParent = $gapicClient->connectClusterName('[PROJECT]', '[LOCATION]', '[CONNECT_CLUSTER]');
+        $connectorId = 'connectorId1928724045';
+        $connector = new Connector();
+        $request = (new CreateConnectorRequest())
             ->setParent($formattedParent)
-            ->setTopicId($topicId)
-            ->setTopic($topic);
-        $response = $gapicClient->createTopic($request);
+            ->setConnectorId($connectorId)
+            ->setConnector($connector);
+        $response = $gapicClient->createConnector($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafka/CreateTopic', $actualFuncCall);
+        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafkaConnect/CreateConnector', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getTopicId();
-        $this->assertProtobufEquals($topicId, $actualValue);
-        $actualValue = $actualRequestObject->getTopic();
-        $this->assertProtobufEquals($topic, $actualValue);
+        $actualValue = $actualRequestObject->getConnectorId();
+        $this->assertProtobufEquals($connectorId, $actualValue);
+        $actualValue = $actualRequestObject->getConnector();
+        $this->assertProtobufEquals($connector, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function createTopicExceptionTest()
+    public function createConnectorExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -310,27 +311,26 @@ class ManagedKafkaClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $topicId = 'topicId-957291989';
-        $topic = new Topic();
-        $topicPartitionCount = 2129663148;
-        $topic->setPartitionCount($topicPartitionCount);
-        $topicReplicationFactor = 1954252084;
-        $topic->setReplicationFactor($topicReplicationFactor);
-        $request = (new CreateTopicRequest())
+        $formattedParent = $gapicClient->connectClusterName('[PROJECT]', '[LOCATION]', '[CONNECT_CLUSTER]');
+        $connectorId = 'connectorId1928724045';
+        $connector = new Connector();
+        $request = (new CreateConnectorRequest())
             ->setParent($formattedParent)
-            ->setTopicId($topicId)
-            ->setTopic($topic);
+            ->setConnectorId($connectorId)
+            ->setConnector($connector);
         try {
-            $gapicClient->createTopic($request);
+            $gapicClient->createConnector($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -343,7 +343,7 @@ class ManagedKafkaClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function deleteClusterTest()
+    public function deleteConnectClusterTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -360,22 +360,21 @@ class ManagedKafkaClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/deleteClusterTest');
+        $incompleteOperation->setName('operations/deleteConnectClusterTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $expectedResponse = new GPBEmpty();
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/deleteClusterTest');
+        $completeOperation->setName('operations/deleteConnectClusterTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new DeleteClusterRequest())
-            ->setName($formattedName);
-        $response = $gapicClient->deleteCluster($request);
+        $formattedName = $gapicClient->connectClusterName('[PROJECT]', '[LOCATION]', '[CONNECT_CLUSTER]');
+        $request = (new DeleteConnectClusterRequest())->setName($formattedName);
+        $response = $gapicClient->deleteConnectCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -384,11 +383,11 @@ class ManagedKafkaClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafka/DeleteCluster', $actualApiFuncCall);
+        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafkaConnect/DeleteConnectCluster', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/deleteClusterTest');
+        $expectedOperationsRequestObject->setName('operations/deleteConnectClusterTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -407,7 +406,7 @@ class ManagedKafkaClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function deleteClusterExceptionTest()
+    public function deleteConnectClusterExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -424,28 +423,30 @@ class ManagedKafkaClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/deleteClusterTest');
+        $incompleteOperation->setName('operations/deleteConnectClusterTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new DeleteClusterRequest())
-            ->setName($formattedName);
-        $response = $gapicClient->deleteCluster($request);
+        $formattedName = $gapicClient->connectClusterName('[PROJECT]', '[LOCATION]', '[CONNECT_CLUSTER]');
+        $request = (new DeleteConnectClusterRequest())->setName($formattedName);
+        $response = $gapicClient->deleteConnectCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/deleteClusterTest');
+        $expectedOperationsRequestObject->setName('operations/deleteConnectClusterTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -464,7 +465,7 @@ class ManagedKafkaClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function deleteConsumerGroupTest()
+    public function deleteConnectorTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -475,22 +476,21 @@ class ManagedKafkaClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->consumerGroupName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[CONSUMER_GROUP]');
-        $request = (new DeleteConsumerGroupRequest())
-            ->setName($formattedName);
-        $gapicClient->deleteConsumerGroup($request);
+        $formattedName = $gapicClient->connectorName('[PROJECT]', '[LOCATION]', '[CONNECT_CLUSTER]', '[CONNECTOR]');
+        $request = (new DeleteConnectorRequest())->setName($formattedName);
+        $gapicClient->deleteConnector($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafka/DeleteConsumerGroup', $actualFuncCall);
+        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafkaConnect/DeleteConnector', $actualFuncCall);
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function deleteConsumerGroupExceptionTest()
+    public function deleteConnectorExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -500,19 +500,21 @@ class ManagedKafkaClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->consumerGroupName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[CONSUMER_GROUP]');
-        $request = (new DeleteConsumerGroupRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->connectorName('[PROJECT]', '[LOCATION]', '[CONNECT_CLUSTER]', '[CONNECTOR]');
+        $request = (new DeleteConnectorRequest())->setName($formattedName);
         try {
-            $gapicClient->deleteConsumerGroup($request);
+            $gapicClient->deleteConnector($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -525,68 +527,7 @@ class ManagedKafkaClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function deleteTopicTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $expectedResponse = new GPBEmpty();
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->topicName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[TOPIC]');
-        $request = (new DeleteTopicRequest())
-            ->setName($formattedName);
-        $gapicClient->deleteTopic($request);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafka/DeleteTopic', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function deleteTopicExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->topicName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[TOPIC]');
-        $request = (new DeleteTopicRequest())
-            ->setName($formattedName);
-        try {
-            $gapicClient->deleteTopic($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function getClusterTest()
+    public function getConnectClusterTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -595,31 +536,28 @@ class ManagedKafkaClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
-        $satisfiesPzi = false;
-        $satisfiesPzs = false;
-        $expectedResponse = new Cluster();
+        $kafkaCluster = 'kafkaCluster-144856607';
+        $expectedResponse = new ConnectCluster();
         $expectedResponse->setName($name2);
-        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
-        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setKafkaCluster($kafkaCluster);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new GetClusterRequest())
-            ->setName($formattedName);
-        $response = $gapicClient->getCluster($request);
+        $formattedName = $gapicClient->connectClusterName('[PROJECT]', '[LOCATION]', '[CONNECT_CLUSTER]');
+        $request = (new GetConnectClusterRequest())->setName($formattedName);
+        $response = $gapicClient->getConnectCluster($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafka/GetCluster', $actualFuncCall);
+        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafkaConnect/GetConnectCluster', $actualFuncCall);
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function getClusterExceptionTest()
+    public function getConnectClusterExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -629,19 +567,21 @@ class ManagedKafkaClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new GetClusterRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->connectClusterName('[PROJECT]', '[LOCATION]', '[CONNECT_CLUSTER]');
+        $request = (new GetConnectClusterRequest())->setName($formattedName);
         try {
-            $gapicClient->getCluster($request);
+            $gapicClient->getConnectCluster($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -654,7 +594,7 @@ class ManagedKafkaClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function getConsumerGroupTest()
+    public function getConnectorTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -663,27 +603,26 @@ class ManagedKafkaClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
-        $expectedResponse = new ConsumerGroup();
+        $expectedResponse = new Connector();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->consumerGroupName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[CONSUMER_GROUP]');
-        $request = (new GetConsumerGroupRequest())
-            ->setName($formattedName);
-        $response = $gapicClient->getConsumerGroup($request);
+        $formattedName = $gapicClient->connectorName('[PROJECT]', '[LOCATION]', '[CONNECT_CLUSTER]', '[CONNECTOR]');
+        $request = (new GetConnectorRequest())->setName($formattedName);
+        $response = $gapicClient->getConnector($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafka/GetConsumerGroup', $actualFuncCall);
+        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafkaConnect/GetConnector', $actualFuncCall);
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function getConsumerGroupExceptionTest()
+    public function getConnectorExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -693,19 +632,21 @@ class ManagedKafkaClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->consumerGroupName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[CONSUMER_GROUP]');
-        $request = (new GetConsumerGroupRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->connectorName('[PROJECT]', '[LOCATION]', '[CONNECT_CLUSTER]', '[CONNECTOR]');
+        $request = (new GetConnectorRequest())->setName($formattedName);
         try {
-            $gapicClient->getConsumerGroup($request);
+            $gapicClient->getConnector($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -718,75 +659,7 @@ class ManagedKafkaClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function getTopicTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $name2 = 'name2-1052831874';
-        $partitionCount = 1738969222;
-        $replicationFactor = 1434332894;
-        $expectedResponse = new Topic();
-        $expectedResponse->setName($name2);
-        $expectedResponse->setPartitionCount($partitionCount);
-        $expectedResponse->setReplicationFactor($replicationFactor);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->topicName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[TOPIC]');
-        $request = (new GetTopicRequest())
-            ->setName($formattedName);
-        $response = $gapicClient->getTopic($request);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafka/GetTopic', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function getTopicExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->topicName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[TOPIC]');
-        $request = (new GetTopicRequest())
-            ->setName($formattedName);
-        try {
-            $gapicClient->getTopic($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function listClustersTest()
+    public function listConnectClustersTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -795,35 +668,32 @@ class ManagedKafkaClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $nextPageToken = '';
-        $clustersElement = new Cluster();
-        $clusters = [
-            $clustersElement,
-        ];
-        $expectedResponse = new ListClustersResponse();
+        $connectClustersElement = new ConnectCluster();
+        $connectClusters = [$connectClustersElement];
+        $expectedResponse = new ListConnectClustersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setClusters($clusters);
+        $expectedResponse->setConnectClusters($connectClusters);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListClustersRequest())
-            ->setParent($formattedParent);
-        $response = $gapicClient->listClusters($request);
+        $request = (new ListConnectClustersRequest())->setParent($formattedParent);
+        $response = $gapicClient->listConnectClusters($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getClusters()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getConnectClusters()[0], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafka/ListClusters', $actualFuncCall);
+        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafkaConnect/ListConnectClusters', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function listClustersExceptionTest()
+    public function listConnectClustersExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -833,19 +703,21 @@ class ManagedKafkaClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListClustersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListConnectClustersRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listClusters($request);
+            $gapicClient->listConnectClusters($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -858,7 +730,7 @@ class ManagedKafkaClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function listConsumerGroupsTest()
+    public function listConnectorsTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -867,35 +739,32 @@ class ManagedKafkaClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $nextPageToken = '';
-        $consumerGroupsElement = new ConsumerGroup();
-        $consumerGroups = [
-            $consumerGroupsElement,
-        ];
-        $expectedResponse = new ListConsumerGroupsResponse();
+        $connectorsElement = new Connector();
+        $connectors = [$connectorsElement];
+        $expectedResponse = new ListConnectorsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setConsumerGroups($consumerGroups);
+        $expectedResponse->setConnectors($connectors);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new ListConsumerGroupsRequest())
-            ->setParent($formattedParent);
-        $response = $gapicClient->listConsumerGroups($request);
+        $formattedParent = $gapicClient->connectClusterName('[PROJECT]', '[LOCATION]', '[CONNECT_CLUSTER]');
+        $request = (new ListConnectorsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listConnectors($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getConsumerGroups()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getConnectors()[0], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafka/ListConsumerGroups', $actualFuncCall);
+        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafkaConnect/ListConnectors', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function listConsumerGroupsExceptionTest()
+    public function listConnectorsExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -905,19 +774,21 @@ class ManagedKafkaClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new ListConsumerGroupsRequest())
-            ->setParent($formattedParent);
+        $formattedParent = $gapicClient->connectClusterName('[PROJECT]', '[LOCATION]', '[CONNECT_CLUSTER]');
+        $request = (new ListConnectorsRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listConsumerGroups($request);
+            $gapicClient->listConnectors($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -930,7 +801,7 @@ class ManagedKafkaClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function listTopicsTest()
+    public function pauseConnectorTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -938,36 +809,25 @@ class ManagedKafkaClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $nextPageToken = '';
-        $topicsElement = new Topic();
-        $topics = [
-            $topicsElement,
-        ];
-        $expectedResponse = new ListTopicsResponse();
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setTopics($topics);
+        $expectedResponse = new PauseConnectorResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new ListTopicsRequest())
-            ->setParent($formattedParent);
-        $response = $gapicClient->listTopics($request);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getTopics()[0], $resources[0]);
+        $formattedName = $gapicClient->connectorName('[PROJECT]', '[LOCATION]', '[CONNECT_CLUSTER]', '[CONNECTOR]');
+        $request = (new PauseConnectorRequest())->setName($formattedName);
+        $response = $gapicClient->pauseConnector($request);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafka/ListTopics', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafkaConnect/PauseConnector', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function listTopicsExceptionTest()
+    public function pauseConnectorExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -977,19 +837,21 @@ class ManagedKafkaClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new ListTopicsRequest())
-            ->setParent($formattedParent);
+        $formattedName = $gapicClient->connectorName('[PROJECT]', '[LOCATION]', '[CONNECT_CLUSTER]', '[CONNECTOR]');
+        $request = (new PauseConnectorRequest())->setName($formattedName);
         try {
-            $gapicClient->listTopics($request);
+            $gapicClient->pauseConnector($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1002,7 +864,196 @@ class ManagedKafkaClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function updateClusterTest()
+    public function restartConnectorTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new RestartConnectorResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->connectorName('[PROJECT]', '[LOCATION]', '[CONNECT_CLUSTER]', '[CONNECTOR]');
+        $request = (new RestartConnectorRequest())->setName($formattedName);
+        $response = $gapicClient->restartConnector($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafkaConnect/RestartConnector', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function restartConnectorExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->connectorName('[PROJECT]', '[LOCATION]', '[CONNECT_CLUSTER]', '[CONNECTOR]');
+        $request = (new RestartConnectorRequest())->setName($formattedName);
+        try {
+            $gapicClient->restartConnector($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function resumeConnectorTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new ResumeConnectorResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->connectorName('[PROJECT]', '[LOCATION]', '[CONNECT_CLUSTER]', '[CONNECTOR]');
+        $request = (new ResumeConnectorRequest())->setName($formattedName);
+        $response = $gapicClient->resumeConnector($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafkaConnect/ResumeConnector', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function resumeConnectorExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->connectorName('[PROJECT]', '[LOCATION]', '[CONNECT_CLUSTER]', '[CONNECTOR]');
+        $request = (new ResumeConnectorRequest())->setName($formattedName);
+        try {
+            $gapicClient->resumeConnector($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function stopConnectorTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new StopConnectorResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->connectorName('[PROJECT]', '[LOCATION]', '[CONNECT_CLUSTER]', '[CONNECTOR]');
+        $request = (new StopConnectorRequest())->setName($formattedName);
+        $response = $gapicClient->stopConnector($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafkaConnect/StopConnector', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function stopConnectorExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->connectorName('[PROJECT]', '[LOCATION]', '[CONNECT_CLUSTER]', '[CONNECTOR]');
+        $request = (new StopConnectorRequest())->setName($formattedName);
+        try {
+            $gapicClient->stopConnector($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateConnectClusterTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -1019,42 +1070,40 @@ class ManagedKafkaClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/updateClusterTest');
+        $incompleteOperation->setName('operations/updateConnectClusterTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
-        $satisfiesPzi = false;
-        $satisfiesPzs = false;
-        $expectedResponse = new Cluster();
+        $kafkaCluster = 'kafkaCluster-144856607';
+        $expectedResponse = new ConnectCluster();
         $expectedResponse->setName($name);
-        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
-        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setKafkaCluster($kafkaCluster);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/updateClusterTest');
+        $completeOperation->setName('operations/updateConnectClusterTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $updateMask = new FieldMask();
-        $cluster = new Cluster();
-        $clusterCapacityConfig = new CapacityConfig();
+        $connectCluster = new ConnectCluster();
+        $connectClusterKafkaCluster = 'connectClusterKafkaCluster64912836';
+        $connectCluster->setKafkaCluster($connectClusterKafkaCluster);
+        $connectClusterCapacityConfig = new CapacityConfig();
         $capacityConfigVcpuCount = 1944563327;
-        $clusterCapacityConfig->setVcpuCount($capacityConfigVcpuCount);
+        $connectClusterCapacityConfig->setVcpuCount($capacityConfigVcpuCount);
         $capacityConfigMemoryBytes = 743041454;
-        $clusterCapacityConfig->setMemoryBytes($capacityConfigMemoryBytes);
-        $cluster->setCapacityConfig($clusterCapacityConfig);
-        $clusterGcpConfig = new GcpConfig();
-        $gcpConfigAccessConfig = new AccessConfig();
+        $connectClusterCapacityConfig->setMemoryBytes($capacityConfigMemoryBytes);
+        $connectCluster->setCapacityConfig($connectClusterCapacityConfig);
+        $connectClusterGcpConfig = new ConnectGcpConfig();
+        $gcpConfigAccessConfig = new ConnectAccessConfig();
         $accessConfigNetworkConfigs = [];
         $gcpConfigAccessConfig->setNetworkConfigs($accessConfigNetworkConfigs);
-        $clusterGcpConfig->setAccessConfig($gcpConfigAccessConfig);
-        $cluster->setGcpConfig($clusterGcpConfig);
-        $request = (new UpdateClusterRequest())
-            ->setUpdateMask($updateMask)
-            ->setCluster($cluster);
-        $response = $gapicClient->updateCluster($request);
+        $connectClusterGcpConfig->setAccessConfig($gcpConfigAccessConfig);
+        $connectCluster->setGcpConfig($connectClusterGcpConfig);
+        $request = (new UpdateConnectClusterRequest())->setUpdateMask($updateMask)->setConnectCluster($connectCluster);
+        $response = $gapicClient->updateConnectCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1063,13 +1112,13 @@ class ManagedKafkaClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafka/UpdateCluster', $actualApiFuncCall);
+        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafkaConnect/UpdateConnectCluster', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getUpdateMask();
         $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getCluster();
-        $this->assertProtobufEquals($cluster, $actualValue);
+        $actualValue = $actualApiRequestObject->getConnectCluster();
+        $this->assertProtobufEquals($connectCluster, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/updateClusterTest');
+        $expectedOperationsRequestObject->setName('operations/updateConnectClusterTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1088,7 +1137,7 @@ class ManagedKafkaClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function updateClusterExceptionTest()
+    public function updateConnectClusterExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -1105,42 +1154,45 @@ class ManagedKafkaClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/updateClusterTest');
+        $incompleteOperation->setName('operations/updateConnectClusterTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
-        $cluster = new Cluster();
-        $clusterCapacityConfig = new CapacityConfig();
+        $connectCluster = new ConnectCluster();
+        $connectClusterKafkaCluster = 'connectClusterKafkaCluster64912836';
+        $connectCluster->setKafkaCluster($connectClusterKafkaCluster);
+        $connectClusterCapacityConfig = new CapacityConfig();
         $capacityConfigVcpuCount = 1944563327;
-        $clusterCapacityConfig->setVcpuCount($capacityConfigVcpuCount);
+        $connectClusterCapacityConfig->setVcpuCount($capacityConfigVcpuCount);
         $capacityConfigMemoryBytes = 743041454;
-        $clusterCapacityConfig->setMemoryBytes($capacityConfigMemoryBytes);
-        $cluster->setCapacityConfig($clusterCapacityConfig);
-        $clusterGcpConfig = new GcpConfig();
-        $gcpConfigAccessConfig = new AccessConfig();
+        $connectClusterCapacityConfig->setMemoryBytes($capacityConfigMemoryBytes);
+        $connectCluster->setCapacityConfig($connectClusterCapacityConfig);
+        $connectClusterGcpConfig = new ConnectGcpConfig();
+        $gcpConfigAccessConfig = new ConnectAccessConfig();
         $accessConfigNetworkConfigs = [];
         $gcpConfigAccessConfig->setNetworkConfigs($accessConfigNetworkConfigs);
-        $clusterGcpConfig->setAccessConfig($gcpConfigAccessConfig);
-        $cluster->setGcpConfig($clusterGcpConfig);
-        $request = (new UpdateClusterRequest())
-            ->setUpdateMask($updateMask)
-            ->setCluster($cluster);
-        $response = $gapicClient->updateCluster($request);
+        $connectClusterGcpConfig->setAccessConfig($gcpConfigAccessConfig);
+        $connectCluster->setGcpConfig($connectClusterGcpConfig);
+        $request = (new UpdateConnectClusterRequest())->setUpdateMask($updateMask)->setConnectCluster($connectCluster);
+        $response = $gapicClient->updateConnectCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/updateClusterTest');
+        $expectedOperationsRequestObject->setName('operations/updateConnectClusterTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -1159,7 +1211,7 @@ class ManagedKafkaClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function updateConsumerGroupTest()
+    public function updateConnectorTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -1168,31 +1220,29 @@ class ManagedKafkaClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
-        $expectedResponse = new ConsumerGroup();
+        $expectedResponse = new Connector();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
         // Mock request
         $updateMask = new FieldMask();
-        $consumerGroup = new ConsumerGroup();
-        $request = (new UpdateConsumerGroupRequest())
-            ->setUpdateMask($updateMask)
-            ->setConsumerGroup($consumerGroup);
-        $response = $gapicClient->updateConsumerGroup($request);
+        $connector = new Connector();
+        $request = (new UpdateConnectorRequest())->setUpdateMask($updateMask)->setConnector($connector);
+        $response = $gapicClient->updateConnector($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafka/UpdateConsumerGroup', $actualFuncCall);
+        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafkaConnect/UpdateConnector', $actualFuncCall);
         $actualValue = $actualRequestObject->getUpdateMask();
         $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualRequestObject->getConsumerGroup();
-        $this->assertProtobufEquals($consumerGroup, $actualValue);
+        $actualValue = $actualRequestObject->getConnector();
+        $this->assertProtobufEquals($connector, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function updateConsumerGroupExceptionTest()
+    public function updateConnectorExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -1202,103 +1252,22 @@ class ManagedKafkaClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
-        $consumerGroup = new ConsumerGroup();
-        $request = (new UpdateConsumerGroupRequest())
-            ->setUpdateMask($updateMask)
-            ->setConsumerGroup($consumerGroup);
+        $connector = new Connector();
+        $request = (new UpdateConnectorRequest())->setUpdateMask($updateMask)->setConnector($connector);
         try {
-            $gapicClient->updateConsumerGroup($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function updateTopicTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $name = 'name3373707';
-        $partitionCount = 1738969222;
-        $replicationFactor = 1434332894;
-        $expectedResponse = new Topic();
-        $expectedResponse->setName($name);
-        $expectedResponse->setPartitionCount($partitionCount);
-        $expectedResponse->setReplicationFactor($replicationFactor);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $updateMask = new FieldMask();
-        $topic = new Topic();
-        $topicPartitionCount = 2129663148;
-        $topic->setPartitionCount($topicPartitionCount);
-        $topicReplicationFactor = 1954252084;
-        $topic->setReplicationFactor($topicReplicationFactor);
-        $request = (new UpdateTopicRequest())
-            ->setUpdateMask($updateMask)
-            ->setTopic($topic);
-        $response = $gapicClient->updateTopic($request);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafka/UpdateTopic', $actualFuncCall);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualRequestObject->getTopic();
-        $this->assertProtobufEquals($topic, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function updateTopicExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $topic = new Topic();
-        $topicPartitionCount = 2129663148;
-        $topic->setPartitionCount($topicPartitionCount);
-        $topicReplicationFactor = 1954252084;
-        $topic->setReplicationFactor($topicReplicationFactor);
-        $request = (new UpdateTopicRequest())
-            ->setUpdateMask($updateMask)
-            ->setTopic($topic);
-        try {
-            $gapicClient->updateTopic($request);
+            $gapicClient->updateConnector($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1349,12 +1318,15 @@ class ManagedKafkaClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -1381,9 +1353,7 @@ class ManagedKafkaClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -1413,12 +1383,15 @@ class ManagedKafkaClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -1435,7 +1408,7 @@ class ManagedKafkaClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createClusterAsyncTest()
+    public function createConnectClusterAsyncTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -1452,44 +1425,44 @@ class ManagedKafkaClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createClusterTest');
+        $incompleteOperation->setName('operations/createConnectClusterTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
-        $satisfiesPzi = false;
-        $satisfiesPzs = false;
-        $expectedResponse = new Cluster();
+        $kafkaCluster = 'kafkaCluster-144856607';
+        $expectedResponse = new ConnectCluster();
         $expectedResponse->setName($name);
-        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
-        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setKafkaCluster($kafkaCluster);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/createClusterTest');
+        $completeOperation->setName('operations/createConnectClusterTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $clusterId = 'clusterId240280960';
-        $cluster = new Cluster();
-        $clusterCapacityConfig = new CapacityConfig();
+        $connectClusterId = 'connectClusterId-1411224587';
+        $connectCluster = new ConnectCluster();
+        $connectClusterKafkaCluster = 'connectClusterKafkaCluster64912836';
+        $connectCluster->setKafkaCluster($connectClusterKafkaCluster);
+        $connectClusterCapacityConfig = new CapacityConfig();
         $capacityConfigVcpuCount = 1944563327;
-        $clusterCapacityConfig->setVcpuCount($capacityConfigVcpuCount);
+        $connectClusterCapacityConfig->setVcpuCount($capacityConfigVcpuCount);
         $capacityConfigMemoryBytes = 743041454;
-        $clusterCapacityConfig->setMemoryBytes($capacityConfigMemoryBytes);
-        $cluster->setCapacityConfig($clusterCapacityConfig);
-        $clusterGcpConfig = new GcpConfig();
-        $gcpConfigAccessConfig = new AccessConfig();
+        $connectClusterCapacityConfig->setMemoryBytes($capacityConfigMemoryBytes);
+        $connectCluster->setCapacityConfig($connectClusterCapacityConfig);
+        $connectClusterGcpConfig = new ConnectGcpConfig();
+        $gcpConfigAccessConfig = new ConnectAccessConfig();
         $accessConfigNetworkConfigs = [];
         $gcpConfigAccessConfig->setNetworkConfigs($accessConfigNetworkConfigs);
-        $clusterGcpConfig->setAccessConfig($gcpConfigAccessConfig);
-        $cluster->setGcpConfig($clusterGcpConfig);
-        $request = (new CreateClusterRequest())
+        $connectClusterGcpConfig->setAccessConfig($gcpConfigAccessConfig);
+        $connectCluster->setGcpConfig($connectClusterGcpConfig);
+        $request = (new CreateConnectClusterRequest())
             ->setParent($formattedParent)
-            ->setClusterId($clusterId)
-            ->setCluster($cluster);
-        $response = $gapicClient->createClusterAsync($request)->wait();
+            ->setConnectClusterId($connectClusterId)
+            ->setConnectCluster($connectCluster);
+        $response = $gapicClient->createConnectClusterAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1498,15 +1471,15 @@ class ManagedKafkaClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafka/CreateCluster', $actualApiFuncCall);
+        $this->assertSame('/google.cloud.managedkafka.v1.ManagedKafkaConnect/CreateConnectCluster', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getClusterId();
-        $this->assertProtobufEquals($clusterId, $actualValue);
-        $actualValue = $actualApiRequestObject->getCluster();
-        $this->assertProtobufEquals($cluster, $actualValue);
+        $actualValue = $actualApiRequestObject->getConnectClusterId();
+        $this->assertProtobufEquals($connectClusterId, $actualValue);
+        $actualValue = $actualApiRequestObject->getConnectCluster();
+        $this->assertProtobufEquals($connectCluster, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createClusterTest');
+        $expectedOperationsRequestObject->setName('operations/createConnectClusterTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
