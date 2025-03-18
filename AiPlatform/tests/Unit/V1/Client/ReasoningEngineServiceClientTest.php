@@ -33,8 +33,6 @@ use Google\Cloud\AIPlatform\V1\GetReasoningEngineRequest;
 use Google\Cloud\AIPlatform\V1\ListReasoningEnginesRequest;
 use Google\Cloud\AIPlatform\V1\ListReasoningEnginesResponse;
 use Google\Cloud\AIPlatform\V1\ReasoningEngine;
-use Google\Cloud\AIPlatform\V1\ReasoningEngineSpec;
-use Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\PackageSpec;
 use Google\Cloud\AIPlatform\V1\UpdateReasoningEngineRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
@@ -125,10 +123,6 @@ class ReasoningEngineServiceClientTest extends GeneratedTest
         $reasoningEngine = new ReasoningEngine();
         $reasoningEngineDisplayName = 'reasoningEngineDisplayName-1000286387';
         $reasoningEngine->setDisplayName($reasoningEngineDisplayName);
-        $reasoningEngineSpec = new ReasoningEngineSpec();
-        $specPackageSpec = new PackageSpec();
-        $reasoningEngineSpec->setPackageSpec($specPackageSpec);
-        $reasoningEngine->setSpec($reasoningEngineSpec);
         $request = (new CreateReasoningEngineRequest())
             ->setParent($formattedParent)
             ->setReasoningEngine($reasoningEngine);
@@ -207,10 +201,6 @@ class ReasoningEngineServiceClientTest extends GeneratedTest
         $reasoningEngine = new ReasoningEngine();
         $reasoningEngineDisplayName = 'reasoningEngineDisplayName-1000286387';
         $reasoningEngine->setDisplayName($reasoningEngineDisplayName);
-        $reasoningEngineSpec = new ReasoningEngineSpec();
-        $specPackageSpec = new PackageSpec();
-        $reasoningEngineSpec->setPackageSpec($specPackageSpec);
-        $reasoningEngine->setSpec($reasoningEngineSpec);
         $request = (new CreateReasoningEngineRequest())
             ->setParent($formattedParent)
             ->setReasoningEngine($reasoningEngine);
@@ -544,10 +534,6 @@ class ReasoningEngineServiceClientTest extends GeneratedTest
         $reasoningEngine = new ReasoningEngine();
         $reasoningEngineDisplayName = 'reasoningEngineDisplayName-1000286387';
         $reasoningEngine->setDisplayName($reasoningEngineDisplayName);
-        $reasoningEngineSpec = new ReasoningEngineSpec();
-        $specPackageSpec = new PackageSpec();
-        $reasoningEngineSpec->setPackageSpec($specPackageSpec);
-        $reasoningEngine->setSpec($reasoningEngineSpec);
         $request = (new UpdateReasoningEngineRequest())->setReasoningEngine($reasoningEngine);
         $response = $gapicClient->updateReasoningEngine($request);
         $this->assertFalse($response->isDone());
@@ -621,10 +607,6 @@ class ReasoningEngineServiceClientTest extends GeneratedTest
         $reasoningEngine = new ReasoningEngine();
         $reasoningEngineDisplayName = 'reasoningEngineDisplayName-1000286387';
         $reasoningEngine->setDisplayName($reasoningEngineDisplayName);
-        $reasoningEngineSpec = new ReasoningEngineSpec();
-        $specPackageSpec = new PackageSpec();
-        $reasoningEngineSpec->setPackageSpec($specPackageSpec);
-        $reasoningEngine->setSpec($reasoningEngineSpec);
         $request = (new UpdateReasoningEngineRequest())->setReasoningEngine($reasoningEngine);
         $response = $gapicClient->updateReasoningEngine($request);
         $this->assertFalse($response->isDone());
@@ -1023,10 +1005,6 @@ class ReasoningEngineServiceClientTest extends GeneratedTest
         $reasoningEngine = new ReasoningEngine();
         $reasoningEngineDisplayName = 'reasoningEngineDisplayName-1000286387';
         $reasoningEngine->setDisplayName($reasoningEngineDisplayName);
-        $reasoningEngineSpec = new ReasoningEngineSpec();
-        $specPackageSpec = new PackageSpec();
-        $reasoningEngineSpec->setPackageSpec($specPackageSpec);
-        $reasoningEngine->setSpec($reasoningEngineSpec);
         $request = (new CreateReasoningEngineRequest())
             ->setParent($formattedParent)
             ->setReasoningEngine($reasoningEngine);

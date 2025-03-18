@@ -16,25 +16,32 @@ class ReasoningEngine
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Cloud\Aiplatform\V1\EnvVar::initOnce();
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-á	
-1google/cloud/aiplatform/v1/reasoning_engine.protogoogle.cloud.aiplatform.v1google/api/resource.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"Ω
+π
+1google/cloud/aiplatform/v1/reasoning_engine.protogoogle.cloud.aiplatform.v1google/api/resource.proto(google/cloud/aiplatform/v1/env_var.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"≈
 ReasoningEngineSpecV
-package_spec (2;.google.cloud.aiplatform.v1.ReasoningEngineSpec.PackageSpecB‡A3
-class_methods (2.google.protobuf.StructB‡Aò
+package_spec (2;.google.cloud.aiplatform.v1.ReasoningEngineSpec.PackageSpecB‡A\\
+deployment_spec (2>.google.cloud.aiplatform.v1.ReasoningEngineSpec.DeploymentSpecB‡A3
+class_methods (2.google.protobuf.StructB‡A
+agent_framework (	B‡Aò
 PackageSpec"
 pickle_object_gcs_uri (	B‡A%
 dependency_files_gcs_uri (	B‡A!
 requirements_gcs_uri (	B‡A
-python_version (	B‡A"æ
+python_version (	B‡Aâ
+DeploymentSpec4
+env (2".google.cloud.aiplatform.v1.EnvVarB‡AA
+
+secret_env (2(.google.cloud.aiplatform.v1.SecretEnvVarB‡A"æ
 ReasoningEngine
 name (	B‡A
 display_name (	B‡A
 description (	B‡AB
-spec (2/.google.cloud.aiplatform.v1.ReasoningEngineSpecB‡A4
+spec (2/.google.cloud.aiplatform.v1.ReasoningEngineSpecB‡A4
 create_time (2.google.protobuf.TimestampB‡A4
 update_time (2.google.protobuf.TimestampB‡A
 etag (	B‡A:üÍAõ
