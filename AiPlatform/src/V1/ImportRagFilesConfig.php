@@ -40,6 +40,7 @@ class ImportRagFilesConfig extends \Google\Protobuf\Internal\Message
     protected $max_embedding_requests_per_min = 0;
     protected $import_source;
     protected $partial_failure_sink;
+    protected $import_result_sink;
 
     /**
      * Constructor.
@@ -72,6 +73,15 @@ class ImportRagFilesConfig extends \Google\Protobuf\Internal\Message
      *           table exists, the schema will be validated and data will be added to this
      *           existing table.
      *           Deprecated. Prefer to use `import_result_bq_sink`.
+     *     @type \Google\Cloud\AIPlatform\V1\GcsDestination $import_result_gcs_sink
+     *           The Cloud Storage path to write import result to.
+     *     @type \Google\Cloud\AIPlatform\V1\BigQueryDestination $import_result_bigquery_sink
+     *           The BigQuery destination to write import result to. It should be a
+     *           bigquery table resource name (e.g.
+     *           "bq://projectId.bqDatasetId.bqTableId"). The dataset must exist. If the
+     *           table does not exist, it will be created with the expected schema. If the
+     *           table exists, the schema will be validated and data will be added to this
+     *           existing table.
      *     @type \Google\Cloud\AIPlatform\V1\RagFileTransformationConfig $rag_file_transformation_config
      *           Specifies the transformation config for RagFiles.
      *     @type \Google\Cloud\AIPlatform\V1\RagFileParsingConfig $rag_file_parsing_config
@@ -340,6 +350,78 @@ class ImportRagFilesConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The Cloud Storage path to write import result to.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GcsDestination import_result_gcs_sink = 14;</code>
+     * @return \Google\Cloud\AIPlatform\V1\GcsDestination|null
+     */
+    public function getImportResultGcsSink()
+    {
+        return $this->readOneof(14);
+    }
+
+    public function hasImportResultGcsSink()
+    {
+        return $this->hasOneof(14);
+    }
+
+    /**
+     * The Cloud Storage path to write import result to.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GcsDestination import_result_gcs_sink = 14;</code>
+     * @param \Google\Cloud\AIPlatform\V1\GcsDestination $var
+     * @return $this
+     */
+    public function setImportResultGcsSink($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GcsDestination::class);
+        $this->writeOneof(14, $var);
+
+        return $this;
+    }
+
+    /**
+     * The BigQuery destination to write import result to. It should be a
+     * bigquery table resource name (e.g.
+     * "bq://projectId.bqDatasetId.bqTableId"). The dataset must exist. If the
+     * table does not exist, it will be created with the expected schema. If the
+     * table exists, the schema will be validated and data will be added to this
+     * existing table.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.BigQueryDestination import_result_bigquery_sink = 15;</code>
+     * @return \Google\Cloud\AIPlatform\V1\BigQueryDestination|null
+     */
+    public function getImportResultBigquerySink()
+    {
+        return $this->readOneof(15);
+    }
+
+    public function hasImportResultBigquerySink()
+    {
+        return $this->hasOneof(15);
+    }
+
+    /**
+     * The BigQuery destination to write import result to. It should be a
+     * bigquery table resource name (e.g.
+     * "bq://projectId.bqDatasetId.bqTableId"). The dataset must exist. If the
+     * table does not exist, it will be created with the expected schema. If the
+     * table exists, the schema will be validated and data will be added to this
+     * existing table.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.BigQueryDestination import_result_bigquery_sink = 15;</code>
+     * @param \Google\Cloud\AIPlatform\V1\BigQueryDestination $var
+     * @return $this
+     */
+    public function setImportResultBigquerySink($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\BigQueryDestination::class);
+        $this->writeOneof(15, $var);
+
+        return $this;
+    }
+
+    /**
      * Specifies the transformation config for RagFiles.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RagFileTransformationConfig rag_file_transformation_config = 16;</code>
@@ -461,6 +543,14 @@ class ImportRagFilesConfig extends \Google\Protobuf\Internal\Message
     public function getPartialFailureSink()
     {
         return $this->whichOneof("partial_failure_sink");
+    }
+
+    /**
+     * @return string
+     */
+    public function getImportResultSink()
+    {
+        return $this->whichOneof("import_result_sink");
     }
 
 }
