@@ -53,6 +53,16 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.iam.v1.ResourcePolicyMember policy_member = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $policy_member = null;
+    /**
+     * Optional. Customer managed encryption key (CMEK) to use for encrypting the
+     * Parameter Versions. If not set, the default Google-managed encryption key
+     * will be used. Cloud KMS CryptoKeys must reside in the same location as the
+     * Parameter. The expected format is
+     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     *
+     * Generated from protobuf field <code>optional string kms_key = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $kms_key = null;
 
     /**
      * Constructor.
@@ -74,6 +84,12 @@ class Parameter extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Iam\V1\ResourcePolicyMember $policy_member
      *           Output only. [Output-only] policy member strings of a Google Cloud
      *           resource.
+     *     @type string $kms_key
+     *           Optional. Customer managed encryption key (CMEK) to use for encrypting the
+     *           Parameter Versions. If not set, the default Google-managed encryption key
+     *           will be used. Cloud KMS CryptoKeys must reside in the same location as the
+     *           Parameter. The expected format is
+     *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
      * }
      */
     public function __construct($data = NULL) {
@@ -267,6 +283,50 @@ class Parameter extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Iam\V1\ResourcePolicyMember::class);
         $this->policy_member = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Customer managed encryption key (CMEK) to use for encrypting the
+     * Parameter Versions. If not set, the default Google-managed encryption key
+     * will be used. Cloud KMS CryptoKeys must reside in the same location as the
+     * Parameter. The expected format is
+     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     *
+     * Generated from protobuf field <code>optional string kms_key = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getKmsKey()
+    {
+        return isset($this->kms_key) ? $this->kms_key : '';
+    }
+
+    public function hasKmsKey()
+    {
+        return isset($this->kms_key);
+    }
+
+    public function clearKmsKey()
+    {
+        unset($this->kms_key);
+    }
+
+    /**
+     * Optional. Customer managed encryption key (CMEK) to use for encrypting the
+     * Parameter Versions. If not set, the default Google-managed encryption key
+     * will be used. Cloud KMS CryptoKeys must reside in the same location as the
+     * Parameter. The expected format is
+     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     *
+     * Generated from protobuf field <code>optional string kms_key = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKmsKey($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->kms_key = $var;
 
         return $this;
     }
