@@ -10,6 +10,8 @@ use UnexpectedValueException;
  * The type of data being sent for inspection. To learn more, see
  * [Supported file
  * types](https://cloud.google.com/sensitive-data-protection/docs/supported-file-types).
+ * Only the first frame of each multiframe image is inspected. Metadata and
+ * other frames aren't inspected.
  *
  * Protobuf type <code>google.privacy.dlp.v2.ByteContentItem.BytesType</code>
  */
