@@ -17,14 +17,16 @@ class Workflow extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the workflow.
-     * Format: projects/{project}/locations/{location}/workflows/{workflow}
+     * Format: projects/{project}/locations/{location}/workflows/{workflow}.
+     * This is a workflow-wide field and is not tied to a specific revision.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
      * Description of the workflow provided by the user.
-     * Must be at most 1000 unicode characters long.
+     * Must be at most 1000 Unicode characters long.
+     * This is a workflow-wide field and is not tied to a specific revision.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
@@ -51,12 +53,14 @@ class Workflow extends \Google\Protobuf\Internal\Message
     private $revision_id = '';
     /**
      * Output only. The timestamp for when the workflow was created.
+     * This is a workflow-wide field and is not tied to a specific revision.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
     /**
      * Output only. The timestamp for when the workflow was last updated.
+     * This is a workflow-wide field and is not tied to a specific revision.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -74,6 +78,7 @@ class Workflow extends \Google\Protobuf\Internal\Message
      * than 63 characters and can only contain lowercase letters, numeric
      * characters, underscores, and dashes. Label keys must start with a letter.
      * International characters are allowed.
+     * This is a workflow-wide field and is not tied to a specific revision.
      *
      * Generated from protobuf field <code>map<string, string> labels = 8;</code>
      */
@@ -126,12 +131,47 @@ class Workflow extends \Google\Protobuf\Internal\Message
     /**
      * Optional. User-defined environment variables associated with this workflow
      * revision. This map has a maximum length of 20. Each string can take up to
-     * 40KiB. Keys cannot be empty strings and cannot start with “GOOGLE” or
-     * “WORKFLOWS".
+     * 4KiB. Keys cannot be empty strings and cannot start with "GOOGLE" or
+     * "WORKFLOWS".
      *
      * Generated from protobuf field <code>map<string, string> user_env_vars = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $user_env_vars;
+    /**
+     * Optional. Describes the execution history level to apply to this workflow.
+     *
+     * Generated from protobuf field <code>.google.cloud.workflows.v1.ExecutionHistoryLevel execution_history_level = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $execution_history_level = 0;
+    /**
+     * Output only. A list of all KMS crypto keys used to encrypt or decrypt the
+     * data associated with the workflow.
+     *
+     * Generated from protobuf field <code>repeated string all_kms_keys = 16 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    private $all_kms_keys;
+    /**
+     * Output only. A list of all KMS crypto key versions used to encrypt or
+     * decrypt the data associated with the workflow.
+     *
+     * Generated from protobuf field <code>repeated string all_kms_keys_versions = 17 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    private $all_kms_keys_versions;
+    /**
+     * Output only. The resource name of a KMS crypto key version used to encrypt
+     * or decrypt the data associated with the workflow.
+     * Format:
+     * projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{cryptoKey}/cryptoKeyVersions/{cryptoKeyVersion}
+     *
+     * Generated from protobuf field <code>string crypto_key_version = 18 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    private $crypto_key_version = '';
+    /**
+     * Optional. Input only. Immutable. Tags associated with this workflow.
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 19 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tags;
     protected $source_code;
 
     /**
@@ -142,10 +182,12 @@ class Workflow extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name of the workflow.
-     *           Format: projects/{project}/locations/{location}/workflows/{workflow}
+     *           Format: projects/{project}/locations/{location}/workflows/{workflow}.
+     *           This is a workflow-wide field and is not tied to a specific revision.
      *     @type string $description
      *           Description of the workflow provided by the user.
-     *           Must be at most 1000 unicode characters long.
+     *           Must be at most 1000 Unicode characters long.
+     *           This is a workflow-wide field and is not tied to a specific revision.
      *     @type int $state
      *           Output only. State of the workflow deployment.
      *     @type string $revision_id
@@ -160,8 +202,10 @@ class Workflow extends \Google\Protobuf\Internal\Message
      *           three hexadecimal random characters.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The timestamp for when the workflow was created.
+     *           This is a workflow-wide field and is not tied to a specific revision.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The timestamp for when the workflow was last updated.
+     *           This is a workflow-wide field and is not tied to a specific revision.
      *     @type \Google\Protobuf\Timestamp $revision_create_time
      *           Output only. The timestamp for the latest revision of the workflow's
      *           creation.
@@ -171,6 +215,7 @@ class Workflow extends \Google\Protobuf\Internal\Message
      *           than 63 characters and can only contain lowercase letters, numeric
      *           characters, underscores, and dashes. Label keys must start with a letter.
      *           International characters are allowed.
+     *           This is a workflow-wide field and is not tied to a specific revision.
      *     @type string $service_account
      *           The service account associated with the latest workflow version.
      *           This service account represents the identity of the workflow and determines
@@ -205,8 +250,23 @@ class Workflow extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $user_env_vars
      *           Optional. User-defined environment variables associated with this workflow
      *           revision. This map has a maximum length of 20. Each string can take up to
-     *           40KiB. Keys cannot be empty strings and cannot start with “GOOGLE” or
-     *           “WORKFLOWS".
+     *           4KiB. Keys cannot be empty strings and cannot start with "GOOGLE" or
+     *           "WORKFLOWS".
+     *     @type int $execution_history_level
+     *           Optional. Describes the execution history level to apply to this workflow.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $all_kms_keys
+     *           Output only. A list of all KMS crypto keys used to encrypt or decrypt the
+     *           data associated with the workflow.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $all_kms_keys_versions
+     *           Output only. A list of all KMS crypto key versions used to encrypt or
+     *           decrypt the data associated with the workflow.
+     *     @type string $crypto_key_version
+     *           Output only. The resource name of a KMS crypto key version used to encrypt
+     *           or decrypt the data associated with the workflow.
+     *           Format:
+     *           projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{cryptoKey}/cryptoKeyVersions/{cryptoKeyVersion}
+     *     @type array|\Google\Protobuf\Internal\MapField $tags
+     *           Optional. Input only. Immutable. Tags associated with this workflow.
      * }
      */
     public function __construct($data = NULL) {
@@ -216,7 +276,8 @@ class Workflow extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the workflow.
-     * Format: projects/{project}/locations/{location}/workflows/{workflow}
+     * Format: projects/{project}/locations/{location}/workflows/{workflow}.
+     * This is a workflow-wide field and is not tied to a specific revision.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -228,7 +289,8 @@ class Workflow extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the workflow.
-     * Format: projects/{project}/locations/{location}/workflows/{workflow}
+     * Format: projects/{project}/locations/{location}/workflows/{workflow}.
+     * This is a workflow-wide field and is not tied to a specific revision.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -244,7 +306,8 @@ class Workflow extends \Google\Protobuf\Internal\Message
 
     /**
      * Description of the workflow provided by the user.
-     * Must be at most 1000 unicode characters long.
+     * Must be at most 1000 Unicode characters long.
+     * This is a workflow-wide field and is not tied to a specific revision.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      * @return string
@@ -256,7 +319,8 @@ class Workflow extends \Google\Protobuf\Internal\Message
 
     /**
      * Description of the workflow provided by the user.
-     * Must be at most 1000 unicode characters long.
+     * Must be at most 1000 Unicode characters long.
+     * This is a workflow-wide field and is not tied to a specific revision.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      * @param string $var
@@ -340,6 +404,7 @@ class Workflow extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The timestamp for when the workflow was created.
+     * This is a workflow-wide field and is not tied to a specific revision.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -361,6 +426,7 @@ class Workflow extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The timestamp for when the workflow was created.
+     * This is a workflow-wide field and is not tied to a specific revision.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -376,6 +442,7 @@ class Workflow extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The timestamp for when the workflow was last updated.
+     * This is a workflow-wide field and is not tied to a specific revision.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -397,6 +464,7 @@ class Workflow extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The timestamp for when the workflow was last updated.
+     * This is a workflow-wide field and is not tied to a specific revision.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -454,6 +522,7 @@ class Workflow extends \Google\Protobuf\Internal\Message
      * than 63 characters and can only contain lowercase letters, numeric
      * characters, underscores, and dashes. Label keys must start with a letter.
      * International characters are allowed.
+     * This is a workflow-wide field and is not tied to a specific revision.
      *
      * Generated from protobuf field <code>map<string, string> labels = 8;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -469,6 +538,7 @@ class Workflow extends \Google\Protobuf\Internal\Message
      * than 63 characters and can only contain lowercase letters, numeric
      * characters, underscores, and dashes. Label keys must start with a letter.
      * International characters are allowed.
+     * This is a workflow-wide field and is not tied to a specific revision.
      *
      * Generated from protobuf field <code>map<string, string> labels = 8;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -672,8 +742,8 @@ class Workflow extends \Google\Protobuf\Internal\Message
     /**
      * Optional. User-defined environment variables associated with this workflow
      * revision. This map has a maximum length of 20. Each string can take up to
-     * 40KiB. Keys cannot be empty strings and cannot start with “GOOGLE” or
-     * “WORKFLOWS".
+     * 4KiB. Keys cannot be empty strings and cannot start with "GOOGLE" or
+     * "WORKFLOWS".
      *
      * Generated from protobuf field <code>map<string, string> user_env_vars = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -686,8 +756,8 @@ class Workflow extends \Google\Protobuf\Internal\Message
     /**
      * Optional. User-defined environment variables associated with this workflow
      * revision. This map has a maximum length of 20. Each string can take up to
-     * 40KiB. Keys cannot be empty strings and cannot start with “GOOGLE” or
-     * “WORKFLOWS".
+     * 4KiB. Keys cannot be empty strings and cannot start with "GOOGLE" or
+     * "WORKFLOWS".
      *
      * Generated from protobuf field <code>map<string, string> user_env_vars = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -697,6 +767,146 @@ class Workflow extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->user_env_vars = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Describes the execution history level to apply to this workflow.
+     *
+     * Generated from protobuf field <code>.google.cloud.workflows.v1.ExecutionHistoryLevel execution_history_level = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getExecutionHistoryLevel()
+    {
+        return $this->execution_history_level;
+    }
+
+    /**
+     * Optional. Describes the execution history level to apply to this workflow.
+     *
+     * Generated from protobuf field <code>.google.cloud.workflows.v1.ExecutionHistoryLevel execution_history_level = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setExecutionHistoryLevel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Workflows\V1\ExecutionHistoryLevel::class);
+        $this->execution_history_level = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A list of all KMS crypto keys used to encrypt or decrypt the
+     * data associated with the workflow.
+     *
+     * Generated from protobuf field <code>repeated string all_kms_keys = 16 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAllKmsKeys()
+    {
+        return $this->all_kms_keys;
+    }
+
+    /**
+     * Output only. A list of all KMS crypto keys used to encrypt or decrypt the
+     * data associated with the workflow.
+     *
+     * Generated from protobuf field <code>repeated string all_kms_keys = 16 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAllKmsKeys($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->all_kms_keys = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A list of all KMS crypto key versions used to encrypt or
+     * decrypt the data associated with the workflow.
+     *
+     * Generated from protobuf field <code>repeated string all_kms_keys_versions = 17 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAllKmsKeysVersions()
+    {
+        return $this->all_kms_keys_versions;
+    }
+
+    /**
+     * Output only. A list of all KMS crypto key versions used to encrypt or
+     * decrypt the data associated with the workflow.
+     *
+     * Generated from protobuf field <code>repeated string all_kms_keys_versions = 17 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAllKmsKeysVersions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->all_kms_keys_versions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The resource name of a KMS crypto key version used to encrypt
+     * or decrypt the data associated with the workflow.
+     * Format:
+     * projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{cryptoKey}/cryptoKeyVersions/{cryptoKeyVersion}
+     *
+     * Generated from protobuf field <code>string crypto_key_version = 18 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getCryptoKeyVersion()
+    {
+        return $this->crypto_key_version;
+    }
+
+    /**
+     * Output only. The resource name of a KMS crypto key version used to encrypt
+     * or decrypt the data associated with the workflow.
+     * Format:
+     * projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{cryptoKey}/cryptoKeyVersions/{cryptoKeyVersion}
+     *
+     * Generated from protobuf field <code>string crypto_key_version = 18 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCryptoKeyVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->crypto_key_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tags associated with this workflow.
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 19 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tags associated with this workflow.
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 19 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setTags($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->tags = $arr;
 
         return $this;
     }
