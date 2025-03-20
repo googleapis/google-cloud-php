@@ -162,10 +162,6 @@ class OracleDatabaseClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $autonomousDatabaseId = 'autonomousDatabaseId-1188134896';
         $autonomousDatabase = new AutonomousDatabase();
-        $autonomousDatabaseNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
-        $autonomousDatabase->setNetwork($autonomousDatabaseNetwork);
-        $autonomousDatabaseCidr = 'autonomousDatabaseCidr-1677675745';
-        $autonomousDatabase->setCidr($autonomousDatabaseCidr);
         $request = (new CreateAutonomousDatabaseRequest())
             ->setParent($formattedParent)
             ->setAutonomousDatabaseId($autonomousDatabaseId)
@@ -246,10 +242,6 @@ class OracleDatabaseClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $autonomousDatabaseId = 'autonomousDatabaseId-1188134896';
         $autonomousDatabase = new AutonomousDatabase();
-        $autonomousDatabaseNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
-        $autonomousDatabase->setNetwork($autonomousDatabaseNetwork);
-        $autonomousDatabaseCidr = 'autonomousDatabaseCidr-1677675745';
-        $autonomousDatabase->setCidr($autonomousDatabaseCidr);
         $request = (new CreateAutonomousDatabaseRequest())
             ->setParent($formattedParent)
             ->setAutonomousDatabaseId($autonomousDatabaseId)
@@ -2401,10 +2393,6 @@ class OracleDatabaseClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $autonomousDatabaseId = 'autonomousDatabaseId-1188134896';
         $autonomousDatabase = new AutonomousDatabase();
-        $autonomousDatabaseNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
-        $autonomousDatabase->setNetwork($autonomousDatabaseNetwork);
-        $autonomousDatabaseCidr = 'autonomousDatabaseCidr-1677675745';
-        $autonomousDatabase->setCidr($autonomousDatabaseCidr);
         $request = (new CreateAutonomousDatabaseRequest())
             ->setParent($formattedParent)
             ->setAutonomousDatabaseId($autonomousDatabaseId)
