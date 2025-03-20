@@ -27,8 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\AIPlatform\V1\Client\ReasoningEngineServiceClient;
 use Google\Cloud\AIPlatform\V1\ReasoningEngine;
-use Google\Cloud\AIPlatform\V1\ReasoningEngineSpec;
-use Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\PackageSpec;
 use Google\Cloud\AIPlatform\V1\UpdateReasoningEngineRequest;
 use Google\Rpc\Status;
 
@@ -43,12 +41,8 @@ function update_reasoning_engine_sample(string $reasoningEngineDisplayName): voi
     $reasoningEngineServiceClient = new ReasoningEngineServiceClient();
 
     // Prepare the request message.
-    $reasoningEngineSpecPackageSpec = new PackageSpec();
-    $reasoningEngineSpec = (new ReasoningEngineSpec())
-        ->setPackageSpec($reasoningEngineSpecPackageSpec);
     $reasoningEngine = (new ReasoningEngine())
-        ->setDisplayName($reasoningEngineDisplayName)
-        ->setSpec($reasoningEngineSpec);
+        ->setDisplayName($reasoningEngineDisplayName);
     $request = (new UpdateReasoningEngineRequest())
         ->setReasoningEngine($reasoningEngine);
 

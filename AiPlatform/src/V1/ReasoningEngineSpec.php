@@ -16,11 +16,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. User provided package spec of the ReasoningEngine.
+     * Optional. User provided package spec of the ReasoningEngine.
+     * Ignored when users directly specify a deployment image through
+     * `deployment_spec.first_party_image_override`, but keeping the
+     * field_behavior to avoid introducing breaking changes.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.PackageSpec package_spec = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.PackageSpec package_spec = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $package_spec = null;
+    /**
+     * Optional. The specification of a Reasoning Engine deployment.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.DeploymentSpec deployment_spec = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $deployment_spec = null;
     /**
      * Optional. Declarations for object class methods in OpenAPI specification
      * format.
@@ -28,6 +37,13 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.protobuf.Struct class_methods = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $class_methods;
+    /**
+     * Optional. The OSS agent framework used to develop the agent.
+     * Currently supported values: "langchain", "langgraph", "ag2", "custom".
+     *
+     * Generated from protobuf field <code>string agent_framework = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $agent_framework = '';
 
     /**
      * Constructor.
@@ -36,10 +52,18 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\PackageSpec $package_spec
-     *           Required. User provided package spec of the ReasoningEngine.
+     *           Optional. User provided package spec of the ReasoningEngine.
+     *           Ignored when users directly specify a deployment image through
+     *           `deployment_spec.first_party_image_override`, but keeping the
+     *           field_behavior to avoid introducing breaking changes.
+     *     @type \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\DeploymentSpec $deployment_spec
+     *           Optional. The specification of a Reasoning Engine deployment.
      *     @type array<\Google\Protobuf\Struct>|\Google\Protobuf\Internal\RepeatedField $class_methods
      *           Optional. Declarations for object class methods in OpenAPI specification
      *           format.
+     *     @type string $agent_framework
+     *           Optional. The OSS agent framework used to develop the agent.
+     *           Currently supported values: "langchain", "langgraph", "ag2", "custom".
      * }
      */
     public function __construct($data = NULL) {
@@ -48,9 +72,12 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. User provided package spec of the ReasoningEngine.
+     * Optional. User provided package spec of the ReasoningEngine.
+     * Ignored when users directly specify a deployment image through
+     * `deployment_spec.first_party_image_override`, but keeping the
+     * field_behavior to avoid introducing breaking changes.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.PackageSpec package_spec = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.PackageSpec package_spec = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\PackageSpec|null
      */
     public function getPackageSpec()
@@ -69,9 +96,12 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. User provided package spec of the ReasoningEngine.
+     * Optional. User provided package spec of the ReasoningEngine.
+     * Ignored when users directly specify a deployment image through
+     * `deployment_spec.first_party_image_override`, but keeping the
+     * field_behavior to avoid introducing breaking changes.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.PackageSpec package_spec = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.PackageSpec package_spec = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\PackageSpec $var
      * @return $this
      */
@@ -79,6 +109,42 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\PackageSpec::class);
         $this->package_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The specification of a Reasoning Engine deployment.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.DeploymentSpec deployment_spec = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\DeploymentSpec|null
+     */
+    public function getDeploymentSpec()
+    {
+        return $this->deployment_spec;
+    }
+
+    public function hasDeploymentSpec()
+    {
+        return isset($this->deployment_spec);
+    }
+
+    public function clearDeploymentSpec()
+    {
+        unset($this->deployment_spec);
+    }
+
+    /**
+     * Optional. The specification of a Reasoning Engine deployment.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.DeploymentSpec deployment_spec = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\DeploymentSpec $var
+     * @return $this
+     */
+    public function setDeploymentSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\DeploymentSpec::class);
+        $this->deployment_spec = $var;
 
         return $this;
     }
@@ -107,6 +173,34 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Protobuf\Struct::class);
         $this->class_methods = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The OSS agent framework used to develop the agent.
+     * Currently supported values: "langchain", "langgraph", "ag2", "custom".
+     *
+     * Generated from protobuf field <code>string agent_framework = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getAgentFramework()
+    {
+        return $this->agent_framework;
+    }
+
+    /**
+     * Optional. The OSS agent framework used to develop the agent.
+     * Currently supported values: "langchain", "langgraph", "ag2", "custom".
+     *
+     * Generated from protobuf field <code>string agent_framework = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAgentFramework($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->agent_framework = $var;
 
         return $this;
     }

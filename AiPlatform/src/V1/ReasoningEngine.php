@@ -35,9 +35,9 @@ class ReasoningEngine extends \Google\Protobuf\Internal\Message
      */
     protected $description = '';
     /**
-     * Required. Configurations of the ReasoningEngine
+     * Optional. Configurations of the ReasoningEngine
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec spec = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec spec = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $spec = null;
     /**
@@ -73,7 +73,7 @@ class ReasoningEngine extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Optional. The description of the ReasoningEngine.
      *     @type \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec $spec
-     *           Required. Configurations of the ReasoningEngine
+     *           Optional. Configurations of the ReasoningEngine
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when this ReasoningEngine was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -167,9 +167,9 @@ class ReasoningEngine extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Configurations of the ReasoningEngine
+     * Optional. Configurations of the ReasoningEngine
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec spec = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec spec = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec|null
      */
     public function getSpec()
@@ -188,9 +188,9 @@ class ReasoningEngine extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Configurations of the ReasoningEngine
+     * Optional. Configurations of the ReasoningEngine
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec spec = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec spec = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec $var
      * @return $this
      */

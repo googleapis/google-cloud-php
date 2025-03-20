@@ -15,14 +15,20 @@ class EnvVar
           return;
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
-        \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-æ
-(google/cloud/aiplatform/v1/env_var.protogoogle.cloud.aiplatform.v1google/api/resource.proto"/
+á
+(google/cloud/aiplatform/v1/env_var.protogoogle.cloud.aiplatform.v1"/
 EnvVar
 name (	BàA
-value (	BàABÉ
+value (	BàA"1
+	SecretRef
+secret (	BàA
+version (	"a
+SecretEnvVar
+name (	BàA>
+
+secret_ref (2%.google.cloud.aiplatform.v1.SecretRefBàABÉ
 com.google.cloud.aiplatform.v1BEnvVarProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 

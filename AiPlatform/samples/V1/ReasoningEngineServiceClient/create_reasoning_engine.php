@@ -28,8 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\AIPlatform\V1\Client\ReasoningEngineServiceClient;
 use Google\Cloud\AIPlatform\V1\CreateReasoningEngineRequest;
 use Google\Cloud\AIPlatform\V1\ReasoningEngine;
-use Google\Cloud\AIPlatform\V1\ReasoningEngineSpec;
-use Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\PackageSpec;
 use Google\Rpc\Status;
 
 /**
@@ -48,12 +46,8 @@ function create_reasoning_engine_sample(
     $reasoningEngineServiceClient = new ReasoningEngineServiceClient();
 
     // Prepare the request message.
-    $reasoningEngineSpecPackageSpec = new PackageSpec();
-    $reasoningEngineSpec = (new ReasoningEngineSpec())
-        ->setPackageSpec($reasoningEngineSpecPackageSpec);
     $reasoningEngine = (new ReasoningEngine())
-        ->setDisplayName($reasoningEngineDisplayName)
-        ->setSpec($reasoningEngineSpec);
+        ->setDisplayName($reasoningEngineDisplayName);
     $request = (new CreateReasoningEngineRequest())
         ->setParent($formattedParent)
         ->setReasoningEngine($reasoningEngine);
