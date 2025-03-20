@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class NetworkingConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Indicates the user requested specifc connection type between
+     * Optional. Indicates the user requested specific connection type between
      * Tenant and Customer projects. You cannot set networking connection type in
      * public IP environment.
      *
@@ -32,7 +32,7 @@ class NetworkingConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $connection_type
-     *           Optional. Indicates the user requested specifc connection type between
+     *           Optional. Indicates the user requested specific connection type between
      *           Tenant and Customer projects. You cannot set networking connection type in
      *           public IP environment.
      * }
@@ -43,7 +43,7 @@ class NetworkingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicates the user requested specifc connection type between
+     * Optional. Indicates the user requested specific connection type between
      * Tenant and Customer projects. You cannot set networking connection type in
      * public IP environment.
      *
@@ -56,7 +56,7 @@ class NetworkingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicates the user requested specifc connection type between
+     * Optional. Indicates the user requested specific connection type between
      * Tenant and Customer projects. You cannot set networking connection type in
      * public IP environment.
      *
