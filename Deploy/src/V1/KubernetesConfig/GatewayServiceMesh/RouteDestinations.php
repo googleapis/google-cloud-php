@@ -28,8 +28,8 @@ class RouteDestinations extends \Google\Protobuf\Internal\Message
      * Optional. Whether to propagate the Kubernetes Service to the route
      * destination clusters. The Service will always be deployed to the Target
      * cluster even if the HTTPRoute is not. This option may be used to
-     * facilitiate successful DNS lookup in the route destination clusters.
-     * Can only be set to true if destinations are specified.
+     * facilitate successful DNS lookup in the route destination clusters. Can
+     * only be set to true if destinations are specified.
      *
      * Generated from protobuf field <code>bool propagate_service = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -50,8 +50,8 @@ class RouteDestinations extends \Google\Protobuf\Internal\Message
      *           Optional. Whether to propagate the Kubernetes Service to the route
      *           destination clusters. The Service will always be deployed to the Target
      *           cluster even if the HTTPRoute is not. This option may be used to
-     *           facilitiate successful DNS lookup in the route destination clusters.
-     *           Can only be set to true if destinations are specified.
+     *           facilitate successful DNS lookup in the route destination clusters. Can
+     *           only be set to true if destinations are specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -95,8 +95,8 @@ class RouteDestinations extends \Google\Protobuf\Internal\Message
      * Optional. Whether to propagate the Kubernetes Service to the route
      * destination clusters. The Service will always be deployed to the Target
      * cluster even if the HTTPRoute is not. This option may be used to
-     * facilitiate successful DNS lookup in the route destination clusters.
-     * Can only be set to true if destinations are specified.
+     * facilitate successful DNS lookup in the route destination clusters. Can
+     * only be set to true if destinations are specified.
      *
      * Generated from protobuf field <code>bool propagate_service = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -110,8 +110,8 @@ class RouteDestinations extends \Google\Protobuf\Internal\Message
      * Optional. Whether to propagate the Kubernetes Service to the route
      * destination clusters. The Service will always be deployed to the Target
      * cluster even if the HTTPRoute is not. This option may be used to
-     * facilitiate successful DNS lookup in the route destination clusters.
-     * Can only be set to true if destinations are specified.
+     * facilitate successful DNS lookup in the route destination clusters. Can
+     * only be set to true if destinations are specified.
      *
      * Generated from protobuf field <code>bool propagate_service = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
