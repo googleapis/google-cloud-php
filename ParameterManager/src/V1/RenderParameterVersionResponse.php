@@ -31,7 +31,7 @@ class RenderParameterVersionResponse extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Server generated rendered version of the user provided payload
      * data (ParameterVersionPayload) which has substitutions of all (if any)
-     * references to a SecretManager SecretVersion resources. This substituion
+     * references to a SecretManager SecretVersion resources. This substitution
      * only works for a Parameter which is in JSON or YAML format.
      *
      * Generated from protobuf field <code>bytes rendered_payload = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -52,7 +52,7 @@ class RenderParameterVersionResponse extends \Google\Protobuf\Internal\Message
      *     @type string $rendered_payload
      *           Output only. Server generated rendered version of the user provided payload
      *           data (ParameterVersionPayload) which has substitutions of all (if any)
-     *           references to a SecretManager SecretVersion resources. This substituion
+     *           references to a SecretManager SecretVersion resources. This substitution
      *           only works for a Parameter which is in JSON or YAML format.
      * }
      */
@@ -128,7 +128,7 @@ class RenderParameterVersionResponse extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Server generated rendered version of the user provided payload
      * data (ParameterVersionPayload) which has substitutions of all (if any)
-     * references to a SecretManager SecretVersion resources. This substituion
+     * references to a SecretManager SecretVersion resources. This substitution
      * only works for a Parameter which is in JSON or YAML format.
      *
      * Generated from protobuf field <code>bytes rendered_payload = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -142,7 +142,7 @@ class RenderParameterVersionResponse extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Server generated rendered version of the user provided payload
      * data (ParameterVersionPayload) which has substitutions of all (if any)
-     * references to a SecretManager SecretVersion resources. This substituion
+     * references to a SecretManager SecretVersion resources. This substitution
      * only works for a Parameter which is in JSON or YAML format.
      *
      * Generated from protobuf field <code>bytes rendered_payload = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

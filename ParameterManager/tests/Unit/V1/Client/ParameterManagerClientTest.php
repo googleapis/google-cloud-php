@@ -92,8 +92,10 @@ class ParameterManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $kmsKey = 'kmsKey-591635343';
         $expectedResponse = new Parameter();
         $expectedResponse->setName($name);
+        $expectedResponse->setKmsKey($kmsKey);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -172,9 +174,11 @@ class ParameterManagerClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $disabled = true;
+        $kmsKeyVersion = 'kmsKeyVersion207232778';
         $expectedResponse = new ParameterVersion();
         $expectedResponse->setName($name);
         $expectedResponse->setDisabled($disabled);
+        $expectedResponse->setKmsKeyVersion($kmsKeyVersion);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->parameterName('[PROJECT]', '[LOCATION]', '[PARAMETER]');
@@ -394,8 +398,10 @@ class ParameterManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $kmsKey = 'kmsKey-591635343';
         $expectedResponse = new Parameter();
         $expectedResponse->setName($name2);
+        $expectedResponse->setKmsKey($kmsKey);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->parameterName('[PROJECT]', '[LOCATION]', '[PARAMETER]');
@@ -460,9 +466,11 @@ class ParameterManagerClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $disabled = true;
+        $kmsKeyVersion = 'kmsKeyVersion207232778';
         $expectedResponse = new ParameterVersion();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisabled($disabled);
+        $expectedResponse->setKmsKeyVersion($kmsKeyVersion);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->parameterVersionName(
@@ -755,8 +763,10 @@ class ParameterManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $kmsKey = 'kmsKey-591635343';
         $expectedResponse = new Parameter();
         $expectedResponse->setName($name);
+        $expectedResponse->setKmsKey($kmsKey);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parameter = new Parameter();
@@ -821,9 +831,11 @@ class ParameterManagerClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $disabled = true;
+        $kmsKeyVersion = 'kmsKeyVersion207232778';
         $expectedResponse = new ParameterVersion();
         $expectedResponse->setName($name);
         $expectedResponse->setDisabled($disabled);
+        $expectedResponse->setKmsKeyVersion($kmsKeyVersion);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parameterVersion = new ParameterVersion();
@@ -1023,8 +1035,10 @@ class ParameterManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $kmsKey = 'kmsKey-591635343';
         $expectedResponse = new Parameter();
         $expectedResponse->setName($name);
+        $expectedResponse->setKmsKey($kmsKey);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');

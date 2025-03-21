@@ -52,6 +52,15 @@ class ParameterVersion extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.parametermanager.v1.ParameterVersionPayload payload = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $payload = null;
+    /**
+     * Optional. Output only. [Output only] The resource name of the KMS key
+     * version used to encrypt the ParameterVersion payload. This field is
+     * populated only if the Parameter resource has customer managed encryption
+     * key (CMEK) configured.
+     *
+     * Generated from protobuf field <code>optional string kms_key_version = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $kms_key_version = null;
 
     /**
      * Constructor.
@@ -76,6 +85,11 @@ class ParameterVersion extends \Google\Protobuf\Internal\Message
      *           Required. Immutable. Payload content of a ParameterVersion resource.  This
      *           is only returned when the request provides the View value of FULL (default
      *           for GET request).
+     *     @type string $kms_key_version
+     *           Optional. Output only. [Output only] The resource name of the KMS key
+     *           version used to encrypt the ParameterVersion payload. This field is
+     *           populated only if the Parameter resource has customer managed encryption
+     *           key (CMEK) configured.
      * }
      */
     public function __construct($data = NULL) {
@@ -253,6 +267,48 @@ class ParameterVersion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ParameterManager\V1\ParameterVersionPayload::class);
         $this->payload = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Output only. [Output only] The resource name of the KMS key
+     * version used to encrypt the ParameterVersion payload. This field is
+     * populated only if the Parameter resource has customer managed encryption
+     * key (CMEK) configured.
+     *
+     * Generated from protobuf field <code>optional string kms_key_version = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getKmsKeyVersion()
+    {
+        return isset($this->kms_key_version) ? $this->kms_key_version : '';
+    }
+
+    public function hasKmsKeyVersion()
+    {
+        return isset($this->kms_key_version);
+    }
+
+    public function clearKmsKeyVersion()
+    {
+        unset($this->kms_key_version);
+    }
+
+    /**
+     * Optional. Output only. [Output only] The resource name of the KMS key
+     * version used to encrypt the ParameterVersion payload. This field is
+     * populated only if the Parameter resource has customer managed encryption
+     * key (CMEK) configured.
+     *
+     * Generated from protobuf field <code>optional string kms_key_version = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKmsKeyVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->kms_key_version = $var;
 
         return $this;
     }
