@@ -33,31 +33,23 @@ use Google\Rpc\Status;
 /**
  * Creates a new Autonomous Database in a given project and location.
  *
- * @param string $formattedParent                    The name of the parent in the following format:
- *                                                   projects/{project}/locations/{location}. Please see
- *                                                   {@see OracleDatabaseClient::locationName()} for help formatting this field.
- * @param string $autonomousDatabaseId               The ID of the Autonomous Database to create. This value is
- *                                                   restricted to (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$) and must be a maximum of
- *                                                   63 characters in length. The value must start with a letter and end with a
- *                                                   letter or a number.
- * @param string $formattedAutonomousDatabaseNetwork The name of the VPC network used by the Autonomous Database in
- *                                                   the following format: projects/{project}/global/networks/{network}
- *                                                   Please see {@see OracleDatabaseClient::networkName()} for help formatting this field.
- * @param string $autonomousDatabaseCidr             The subnet CIDR range for the Autonmous Database.
+ * @param string $formattedParent      The name of the parent in the following format:
+ *                                     projects/{project}/locations/{location}. Please see
+ *                                     {@see OracleDatabaseClient::locationName()} for help formatting this field.
+ * @param string $autonomousDatabaseId The ID of the Autonomous Database to create. This value is
+ *                                     restricted to (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$) and must be a maximum of
+ *                                     63 characters in length. The value must start with a letter and end with a
+ *                                     letter or a number.
  */
 function create_autonomous_database_sample(
     string $formattedParent,
-    string $autonomousDatabaseId,
-    string $formattedAutonomousDatabaseNetwork,
-    string $autonomousDatabaseCidr
+    string $autonomousDatabaseId
 ): void {
     // Create a client.
     $oracleDatabaseClient = new OracleDatabaseClient();
 
     // Prepare the request message.
-    $autonomousDatabase = (new AutonomousDatabase())
-        ->setNetwork($formattedAutonomousDatabaseNetwork)
-        ->setCidr($autonomousDatabaseCidr);
+    $autonomousDatabase = new AutonomousDatabase();
     $request = (new CreateAutonomousDatabaseRequest())
         ->setParent($formattedParent)
         ->setAutonomousDatabaseId($autonomousDatabaseId)
@@ -96,14 +88,7 @@ function callSample(): void
 {
     $formattedParent = OracleDatabaseClient::locationName('[PROJECT]', '[LOCATION]');
     $autonomousDatabaseId = '[AUTONOMOUS_DATABASE_ID]';
-    $formattedAutonomousDatabaseNetwork = OracleDatabaseClient::networkName('[PROJECT]', '[NETWORK]');
-    $autonomousDatabaseCidr = '[CIDR]';
 
-    create_autonomous_database_sample(
-        $formattedParent,
-        $autonomousDatabaseId,
-        $formattedAutonomousDatabaseNetwork,
-        $autonomousDatabaseCidr
-    );
+    create_autonomous_database_sample($formattedParent, $autonomousDatabaseId);
 }
 // [END oracledatabase_v1_generated_OracleDatabase_CreateAutonomousDatabase_sync]

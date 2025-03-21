@@ -65,16 +65,16 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Required. The name of the VPC network used by the Autonomous Database in
+     * Optional. The name of the VPC network used by the Autonomous Database in
      * the following format: projects/{project}/global/networks/{network}
      *
-     * Generated from protobuf field <code>string network = 9 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $network = '';
     /**
-     * Required. The subnet CIDR range for the Autonmous Database.
+     * Optional. The subnet CIDR range for the Autonmous Database.
      *
-     * Generated from protobuf field <code>string cidr = 10 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string cidr = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $cidr = '';
     /**
@@ -111,10 +111,10 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The labels or tags associated with the Autonomous Database.
      *     @type string $network
-     *           Required. The name of the VPC network used by the Autonomous Database in
+     *           Optional. The name of the VPC network used by the Autonomous Database in
      *           the following format: projects/{project}/global/networks/{network}
      *     @type string $cidr
-     *           Required. The subnet CIDR range for the Autonmous Database.
+     *           Optional. The subnet CIDR range for the Autonmous Database.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The date and time that the Autonomous Database was created.
      * }
@@ -329,10 +329,10 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the VPC network used by the Autonomous Database in
+     * Optional. The name of the VPC network used by the Autonomous Database in
      * the following format: projects/{project}/global/networks/{network}
      *
-     * Generated from protobuf field <code>string network = 9 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getNetwork()
@@ -341,10 +341,10 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the VPC network used by the Autonomous Database in
+     * Optional. The name of the VPC network used by the Autonomous Database in
      * the following format: projects/{project}/global/networks/{network}
      *
-     * Generated from protobuf field <code>string network = 9 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -357,9 +357,9 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The subnet CIDR range for the Autonmous Database.
+     * Optional. The subnet CIDR range for the Autonmous Database.
      *
-     * Generated from protobuf field <code>string cidr = 10 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string cidr = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getCidr()
@@ -368,9 +368,9 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The subnet CIDR range for the Autonmous Database.
+     * Optional. The subnet CIDR range for the Autonmous Database.
      *
-     * Generated from protobuf field <code>string cidr = 10 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string cidr = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
