@@ -52,6 +52,20 @@ class LinkedProducerVpcNetwork extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string include_export_ranges = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $include_export_ranges;
+    /**
+     * Optional. The proposed include export IP ranges waiting for hub
+     * administration's approval.
+     *
+     * Generated from protobuf field <code>repeated string proposed_include_export_ranges = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $proposed_include_export_ranges;
+    /**
+     * Output only. The proposed exclude export IP ranges waiting for hub
+     * administration's approval.
+     *
+     * Generated from protobuf field <code>repeated string proposed_exclude_export_ranges = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $proposed_exclude_export_ranges;
 
     /**
      * Constructor.
@@ -74,6 +88,12 @@ class LinkedProducerVpcNetwork extends \Google\Protobuf\Internal\Message
      *           Optional. IP ranges encompassing the subnets to be excluded from peering.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $include_export_ranges
      *           Optional. IP ranges allowed to be included from peering.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $proposed_include_export_ranges
+     *           Optional. The proposed include export IP ranges waiting for hub
+     *           administration's approval.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $proposed_exclude_export_ranges
+     *           Output only. The proposed exclude export IP ranges waiting for hub
+     *           administration's approval.
      * }
      */
     public function __construct($data = NULL) {
@@ -239,6 +259,62 @@ class LinkedProducerVpcNetwork extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->include_export_ranges = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The proposed include export IP ranges waiting for hub
+     * administration's approval.
+     *
+     * Generated from protobuf field <code>repeated string proposed_include_export_ranges = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getProposedIncludeExportRanges()
+    {
+        return $this->proposed_include_export_ranges;
+    }
+
+    /**
+     * Optional. The proposed include export IP ranges waiting for hub
+     * administration's approval.
+     *
+     * Generated from protobuf field <code>repeated string proposed_include_export_ranges = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setProposedIncludeExportRanges($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->proposed_include_export_ranges = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The proposed exclude export IP ranges waiting for hub
+     * administration's approval.
+     *
+     * Generated from protobuf field <code>repeated string proposed_exclude_export_ranges = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getProposedExcludeExportRanges()
+    {
+        return $this->proposed_exclude_export_ranges;
+    }
+
+    /**
+     * Output only. The proposed exclude export IP ranges waiting for hub
+     * administration's approval.
+     *
+     * Generated from protobuf field <code>repeated string proposed_exclude_export_ranges = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setProposedExcludeExportRanges($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->proposed_exclude_export_ranges = $arr;
 
         return $this;
     }

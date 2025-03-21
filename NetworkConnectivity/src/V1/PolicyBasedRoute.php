@@ -9,11 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Policy Based Routes (PBR) are more powerful routes that allows GCP customers
- * to route their L4 network traffic based on not just destination IP, but also
- * source IP, protocol and more. A PBR always take precedence when it conflicts
- * with other types of routes.
- * Next id: 22
+ * Policy-based routes route L4 network traffic based on not just destination IP
+ * address, but also source IP address, protocol, and more. If a policy-based
+ * route conflicts with other types of routes, the policy-based route always
+ * takes precedence.
  *
  * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.PolicyBasedRoute</code>
  */
@@ -27,13 +26,13 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Output only. Time when the PolicyBasedRoute was created.
+     * Output only. Time when the policy-based route was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $create_time = null;
     /**
-     * Output only. Time when the PolicyBasedRoute was updated.
+     * Output only. Time when the policy-based route was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -52,8 +51,8 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
      */
     protected $description = '';
     /**
-     * Required. Fully-qualified URL of the network that this route applies to.
-     * e.g. projects/my-project/global/networks/my-network.
+     * Required. Fully-qualified URL of the network that this route applies to,
+     * for example: projects/my-project/global/networks/my-network.
      *
      * Generated from protobuf field <code>string network = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -65,9 +64,9 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
      */
     protected $filter = null;
     /**
-     * Optional. The priority of this policy based route. Priority is used to
-     * break ties in cases where there are more than one matching policy based
-     * routes found. In cases where multiple policy based routes are matched, the
+     * Optional. The priority of this policy-based route. Priority is used to
+     * break ties in cases where there are more than one matching policy-based
+     * routes found. In cases where multiple policy-based routes are matched, the
      * one with the lowest-numbered priority value wins. The default value is
      * 1000. The priority value must be from 1 to 65535, inclusive.
      *
@@ -89,7 +88,7 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     protected $self_link = '';
     /**
      * Output only. Type of this resource. Always
-     * networkconnectivity#policyBasedRoute for Policy Based Route resources.
+     * networkconnectivity#policyBasedRoute for policy-based Route resources.
      *
      * Generated from protobuf field <code>string kind = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -104,13 +103,14 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\VirtualMachine $virtual_machine
-     *           Optional. VM instances to which this policy based route applies to.
+     *           Optional. VM instances that this policy-based route applies to.
      *     @type \Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\InterconnectAttachment $interconnect_attachment
-     *           Optional. The interconnect attachments to which this route applies to.
+     *           Optional. The interconnect attachments that this policy-based route
+     *           applies to.
      *     @type string $next_hop_ilb_ip
-     *           Optional. The IP of a global access enabled L4 ILB that should be the
-     *           next hop to handle matching packets. For this version, only
-     *           next_hop_ilb_ip is supported.
+     *           Optional. The IP address of a global-access-enabled L4 ILB that is the
+     *           next hop for matching packets. For this version, only nextHopIlbIp is
+     *           supported.
      *     @type int $next_hop_other_routes
      *           Optional. Other routes that will be referenced to determine the next hop
      *           of the packet.
@@ -118,23 +118,23 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
      *           Immutable. A unique name of the resource in the form of
      *           `projects/{project_number}/locations/global/PolicyBasedRoutes/{policy_based_route_id}`
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. Time when the PolicyBasedRoute was created.
+     *           Output only. Time when the policy-based route was created.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           Output only. Time when the PolicyBasedRoute was updated.
+     *           Output only. Time when the policy-based route was updated.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           User-defined labels.
      *     @type string $description
      *           Optional. An optional description of this resource. Provide this field when
      *           you create the resource.
      *     @type string $network
-     *           Required. Fully-qualified URL of the network that this route applies to.
-     *           e.g. projects/my-project/global/networks/my-network.
+     *           Required. Fully-qualified URL of the network that this route applies to,
+     *           for example: projects/my-project/global/networks/my-network.
      *     @type \Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\Filter $filter
      *           Required. The filter to match L4 traffic.
      *     @type int $priority
-     *           Optional. The priority of this policy based route. Priority is used to
-     *           break ties in cases where there are more than one matching policy based
-     *           routes found. In cases where multiple policy based routes are matched, the
+     *           Optional. The priority of this policy-based route. Priority is used to
+     *           break ties in cases where there are more than one matching policy-based
+     *           routes found. In cases where multiple policy-based routes are matched, the
      *           one with the lowest-numbered priority value wins. The default value is
      *           1000. The priority value must be from 1 to 65535, inclusive.
      *     @type array<\Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\Warnings>|\Google\Protobuf\Internal\RepeatedField $warnings
@@ -144,7 +144,7 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
      *           Output only. Server-defined fully-qualified URL for this resource.
      *     @type string $kind
      *           Output only. Type of this resource. Always
-     *           networkconnectivity#policyBasedRoute for Policy Based Route resources.
+     *           networkconnectivity#policyBasedRoute for policy-based Route resources.
      * }
      */
     public function __construct($data = NULL) {
@@ -153,7 +153,7 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. VM instances to which this policy based route applies to.
+     * Optional. VM instances that this policy-based route applies to.
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.PolicyBasedRoute.VirtualMachine virtual_machine = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\VirtualMachine|null
@@ -169,7 +169,7 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. VM instances to which this policy based route applies to.
+     * Optional. VM instances that this policy-based route applies to.
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.PolicyBasedRoute.VirtualMachine virtual_machine = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\VirtualMachine $var
@@ -184,7 +184,8 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The interconnect attachments to which this route applies to.
+     * Optional. The interconnect attachments that this policy-based route
+     * applies to.
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.PolicyBasedRoute.InterconnectAttachment interconnect_attachment = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\InterconnectAttachment|null
@@ -200,7 +201,8 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The interconnect attachments to which this route applies to.
+     * Optional. The interconnect attachments that this policy-based route
+     * applies to.
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.PolicyBasedRoute.InterconnectAttachment interconnect_attachment = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\InterconnectAttachment $var
@@ -215,9 +217,9 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The IP of a global access enabled L4 ILB that should be the
-     * next hop to handle matching packets. For this version, only
-     * next_hop_ilb_ip is supported.
+     * Optional. The IP address of a global-access-enabled L4 ILB that is the
+     * next hop for matching packets. For this version, only nextHopIlbIp is
+     * supported.
      *
      * Generated from protobuf field <code>string next_hop_ilb_ip = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -233,9 +235,9 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The IP of a global access enabled L4 ILB that should be the
-     * next hop to handle matching packets. For this version, only
-     * next_hop_ilb_ip is supported.
+     * Optional. The IP address of a global-access-enabled L4 ILB that is the
+     * next hop for matching packets. For this version, only nextHopIlbIp is
+     * supported.
      *
      * Generated from protobuf field <code>string next_hop_ilb_ip = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -311,7 +313,7 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time when the PolicyBasedRoute was created.
+     * Output only. Time when the policy-based route was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -332,7 +334,7 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time when the PolicyBasedRoute was created.
+     * Output only. Time when the policy-based route was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -347,7 +349,7 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time when the PolicyBasedRoute was updated.
+     * Output only. Time when the policy-based route was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -368,7 +370,7 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time when the PolicyBasedRoute was updated.
+     * Output only. Time when the policy-based route was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -437,8 +439,8 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Fully-qualified URL of the network that this route applies to.
-     * e.g. projects/my-project/global/networks/my-network.
+     * Required. Fully-qualified URL of the network that this route applies to,
+     * for example: projects/my-project/global/networks/my-network.
      *
      * Generated from protobuf field <code>string network = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -449,8 +451,8 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Fully-qualified URL of the network that this route applies to.
-     * e.g. projects/my-project/global/networks/my-network.
+     * Required. Fully-qualified URL of the network that this route applies to,
+     * for example: projects/my-project/global/networks/my-network.
      *
      * Generated from protobuf field <code>string network = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -501,9 +503,9 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The priority of this policy based route. Priority is used to
-     * break ties in cases where there are more than one matching policy based
-     * routes found. In cases where multiple policy based routes are matched, the
+     * Optional. The priority of this policy-based route. Priority is used to
+     * break ties in cases where there are more than one matching policy-based
+     * routes found. In cases where multiple policy-based routes are matched, the
      * one with the lowest-numbered priority value wins. The default value is
      * 1000. The priority value must be from 1 to 65535, inclusive.
      *
@@ -516,9 +518,9 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The priority of this policy based route. Priority is used to
-     * break ties in cases where there are more than one matching policy based
-     * routes found. In cases where multiple policy based routes are matched, the
+     * Optional. The priority of this policy-based route. Priority is used to
+     * break ties in cases where there are more than one matching policy-based
+     * routes found. In cases where multiple policy-based routes are matched, the
      * one with the lowest-numbered priority value wins. The default value is
      * 1000. The priority value must be from 1 to 65535, inclusive.
      *
@@ -590,7 +592,7 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Type of this resource. Always
-     * networkconnectivity#policyBasedRoute for Policy Based Route resources.
+     * networkconnectivity#policyBasedRoute for policy-based Route resources.
      *
      * Generated from protobuf field <code>string kind = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -602,7 +604,7 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Type of this resource. Always
-     * networkconnectivity#policyBasedRoute for Policy Based Route resources.
+     * networkconnectivity#policyBasedRoute for policy-based Route resources.
      *
      * Generated from protobuf field <code>string kind = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

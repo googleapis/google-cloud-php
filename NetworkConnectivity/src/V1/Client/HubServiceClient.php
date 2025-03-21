@@ -43,6 +43,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use Google\Cloud\NetworkConnectivity\V1\AcceptHubSpokeRequest;
+use Google\Cloud\NetworkConnectivity\V1\AcceptSpokeUpdateRequest;
 use Google\Cloud\NetworkConnectivity\V1\CreateHubRequest;
 use Google\Cloud\NetworkConnectivity\V1\CreateSpokeRequest;
 use Google\Cloud\NetworkConnectivity\V1\DeleteHubRequest;
@@ -62,6 +63,7 @@ use Google\Cloud\NetworkConnectivity\V1\ListRoutesRequest;
 use Google\Cloud\NetworkConnectivity\V1\ListSpokesRequest;
 use Google\Cloud\NetworkConnectivity\V1\QueryHubStatusRequest;
 use Google\Cloud\NetworkConnectivity\V1\RejectHubSpokeRequest;
+use Google\Cloud\NetworkConnectivity\V1\RejectSpokeUpdateRequest;
 use Google\Cloud\NetworkConnectivity\V1\Route;
 use Google\Cloud\NetworkConnectivity\V1\RouteTable;
 use Google\Cloud\NetworkConnectivity\V1\Spoke;
@@ -87,6 +89,7 @@ use Psr\Log\LoggerInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface<OperationResponse> acceptHubSpokeAsync(AcceptHubSpokeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> acceptSpokeUpdateAsync(AcceptSpokeUpdateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createHubAsync(CreateHubRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createSpokeAsync(CreateSpokeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteHubAsync(DeleteHubRequest $request, array $optionalArgs = [])
@@ -104,6 +107,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listSpokesAsync(ListSpokesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> queryHubStatusAsync(QueryHubStatusRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> rejectHubSpokeAsync(RejectHubSpokeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> rejectSpokeUpdateAsync(RejectSpokeUpdateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateGroupAsync(UpdateGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateHubAsync(UpdateHubRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateSpokeAsync(UpdateSpokeRequest $request, array $optionalArgs = [])
@@ -536,6 +540,32 @@ final class HubServiceClient
     public function acceptHubSpoke(AcceptHubSpokeRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('AcceptHubSpoke', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Accepts a proposal to update a Network Connectivity Center spoke in a hub.
+     *
+     * The async variant is {@see HubServiceClient::acceptSpokeUpdateAsync()} .
+     *
+     * @example samples/V1/HubServiceClient/accept_spoke_update.php
+     *
+     * @param AcceptSpokeUpdateRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function acceptSpokeUpdate(AcceptSpokeUpdateRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('AcceptSpokeUpdate', $request, $callOptions)->wait();
     }
 
     /**
@@ -985,6 +1015,32 @@ final class HubServiceClient
     public function rejectHubSpoke(RejectHubSpokeRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('RejectHubSpoke', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Rejects a proposal to update a Network Connectivity Center spoke in a hub.
+     *
+     * The async variant is {@see HubServiceClient::rejectSpokeUpdateAsync()} .
+     *
+     * @example samples/V1/HubServiceClient/reject_spoke_update.php
+     *
+     * @param RejectSpokeUpdateRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function rejectSpokeUpdate(RejectSpokeUpdateRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('RejectSpokeUpdate', $request, $callOptions)->wait();
     }
 
     /**

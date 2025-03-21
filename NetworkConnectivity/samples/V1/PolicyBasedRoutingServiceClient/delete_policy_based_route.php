@@ -30,9 +30,9 @@ use Google\Cloud\NetworkConnectivity\V1\DeletePolicyBasedRouteRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes a single PolicyBasedRoute.
+ * Deletes a single policy-based route.
  *
- * @param string $formattedName Name of the PolicyBasedRoute resource to delete. Please see
+ * @param string $formattedName Name of the policy-based route resource to delete. Please see
  *                              {@see PolicyBasedRoutingServiceClient::policyBasedRouteName()} for help formatting this field.
  */
 function delete_policy_based_route_sample(string $formattedName): void

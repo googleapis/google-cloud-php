@@ -30,7 +30,7 @@ use Google\Cloud\NetworkConnectivity\V1\ListPolicyBasedRoutesRequest;
 use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute;
 
 /**
- * Lists PolicyBasedRoutes in a given project and location.
+ * Lists policy-based routes in a given project and location.
  *
  * @param string $formattedParent The parent resource's name. Please see
  *                                {@see PolicyBasedRoutingServiceClient::locationName()} for help formatting this field.

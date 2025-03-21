@@ -44,6 +44,25 @@ class Code
      * Generated from protobuf enum <code>FAILED = 4;</code>
      */
     const FAILED = 4;
+    /**
+     * The proposed spoke update is pending review.
+     *
+     * Generated from protobuf enum <code>UPDATE_PENDING_REVIEW = 5;</code>
+     */
+    const UPDATE_PENDING_REVIEW = 5;
+    /**
+     * The proposed spoke update has been rejected by the hub administrator.
+     *
+     * Generated from protobuf enum <code>UPDATE_REJECTED = 6;</code>
+     */
+    const UPDATE_REJECTED = 6;
+    /**
+     * Network Connectivity Center encountered errors while accepting
+     * the spoke update.
+     *
+     * Generated from protobuf enum <code>UPDATE_FAILED = 7;</code>
+     */
+    const UPDATE_FAILED = 7;
 
     private static $valueToName = [
         self::CODE_UNSPECIFIED => 'CODE_UNSPECIFIED',
@@ -51,6 +70,9 @@ class Code
         self::REJECTED => 'REJECTED',
         self::PAUSED => 'PAUSED',
         self::FAILED => 'FAILED',
+        self::UPDATE_PENDING_REVIEW => 'UPDATE_PENDING_REVIEW',
+        self::UPDATE_REJECTED => 'UPDATE_REJECTED',
+        self::UPDATE_FAILED => 'UPDATE_FAILED',
     ];
 
     public static function name($value)

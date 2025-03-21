@@ -332,7 +332,7 @@ final class PolicyBasedRoutingServiceClient
     }
 
     /**
-     * Creates a new PolicyBasedRoute in a given project and location.
+     * Creates a new policy-based route in a given project and location.
      *
      * The async variant is
      * {@see PolicyBasedRoutingServiceClient::createPolicyBasedRouteAsync()} .
@@ -361,7 +361,7 @@ final class PolicyBasedRoutingServiceClient
     }
 
     /**
-     * Deletes a single PolicyBasedRoute.
+     * Deletes a single policy-based route.
      *
      * The async variant is
      * {@see PolicyBasedRoutingServiceClient::deletePolicyBasedRouteAsync()} .
@@ -390,7 +390,7 @@ final class PolicyBasedRoutingServiceClient
     }
 
     /**
-     * Gets details of a single PolicyBasedRoute.
+     * Gets details of a single policy-based route.
      *
      * The async variant is
      * {@see PolicyBasedRoutingServiceClient::getPolicyBasedRouteAsync()} .
@@ -417,7 +417,7 @@ final class PolicyBasedRoutingServiceClient
     }
 
     /**
-     * Lists PolicyBasedRoutes in a given project and location.
+     * Lists policy-based routes in a given project and location.
      *
      * The async variant is
      * {@see PolicyBasedRoutingServiceClient::listPolicyBasedRoutesAsync()} .

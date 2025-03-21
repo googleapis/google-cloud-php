@@ -22,11 +22,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class AutoAccept extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A list of project ids or project numbers for which you want
+     * Optional. A list of project ids or project numbers for which you want
      * to enable auto-accept. The auto-accept setting is applied to
      * spokes being created or updated in these projects.
      *
-     * Generated from protobuf field <code>repeated string auto_accept_projects = 1;</code>
+     * Generated from protobuf field <code>repeated string auto_accept_projects = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $auto_accept_projects;
 
@@ -37,7 +37,7 @@ class AutoAccept extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $auto_accept_projects
-     *           A list of project ids or project numbers for which you want
+     *           Optional. A list of project ids or project numbers for which you want
      *           to enable auto-accept. The auto-accept setting is applied to
      *           spokes being created or updated in these projects.
      * }
@@ -48,11 +48,11 @@ class AutoAccept extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of project ids or project numbers for which you want
+     * Optional. A list of project ids or project numbers for which you want
      * to enable auto-accept. The auto-accept setting is applied to
      * spokes being created or updated in these projects.
      *
-     * Generated from protobuf field <code>repeated string auto_accept_projects = 1;</code>
+     * Generated from protobuf field <code>repeated string auto_accept_projects = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAutoAcceptProjects()
@@ -61,11 +61,11 @@ class AutoAccept extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of project ids or project numbers for which you want
+     * Optional. A list of project ids or project numbers for which you want
      * to enable auto-accept. The auto-accept setting is applied to
      * spokes being created or updated in these projects.
      *
-     * Generated from protobuf field <code>repeated string auto_accept_projects = 1;</code>
+     * Generated from protobuf field <code>repeated string auto_accept_projects = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

@@ -21,9 +21,9 @@ class OtherRoutes
     const OTHER_ROUTES_UNSPECIFIED = 0;
     /**
      * Use the routes from the default routing tables (system-generated routes,
-     * custom routes, peering route) to determine the next hop. This will
-     * effectively exclude matching packets being applied on other PBRs with a
-     * lower priority.
+     * custom routes, peering route) to determine the next hop. This effectively
+     * excludes matching packets being applied on other PBRs with a lower
+     * priority.
      *
      * Generated from protobuf enum <code>DEFAULT_ROUTING = 1;</code>
      */

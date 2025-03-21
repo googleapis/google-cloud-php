@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * InterconnectAttachment to which this route applies to.
+ * InterconnectAttachment that this route applies to.
  *
  * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.PolicyBasedRoute.InterconnectAttachment</code>
  */
 class InterconnectAttachment extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Cloud region to install this policy based route on interconnect
+     * Optional. Cloud region to install this policy-based route on interconnect
      * attachment. Use `all` to install it on all interconnect attachments.
      *
      * Generated from protobuf field <code>string region = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -30,7 +30,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $region
-     *           Optional. Cloud region to install this policy based route on interconnect
+     *           Optional. Cloud region to install this policy-based route on interconnect
      *           attachment. Use `all` to install it on all interconnect attachments.
      * }
      */
@@ -40,7 +40,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Cloud region to install this policy based route on interconnect
+     * Optional. Cloud region to install this policy-based route on interconnect
      * attachment. Use `all` to install it on all interconnect attachments.
      *
      * Generated from protobuf field <code>string region = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -52,7 +52,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Cloud region to install this policy based route on interconnect
+     * Optional. Cloud region to install this policy-based route on interconnect
      * attachment. Use `all` to install it on all interconnect attachments.
      *
      * Generated from protobuf field <code>string region = 1 [(.google.api.field_behavior) = OPTIONAL];</code>

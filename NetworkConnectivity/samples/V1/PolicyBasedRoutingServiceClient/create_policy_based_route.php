@@ -33,16 +33,23 @@ use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\Filter\ProtocolVersion;
 use Google\Rpc\Status;
 
 /**
- * Creates a new PolicyBasedRoute in a given project and location.
+ * Creates a new policy-based route in a given project and location.
  *
  * @param string $formattedParent                       The parent resource's name of the PolicyBasedRoute. Please see
  *                                                      {@see PolicyBasedRoutingServiceClient::locationName()} for help formatting this field.
- * @param string $policyBasedRouteId                    Unique id for the Policy Based Route to create.
- * @param string $formattedPolicyBasedRouteNetwork      Fully-qualified URL of the network that this route applies to.
- *                                                      e.g. projects/my-project/global/networks/my-network. Please see
+ * @param string $policyBasedRouteId                    Unique id for the policy-based route to create. Provided by the
+ *                                                      client when the resource is created. The name must comply with
+ *                                                      https://google.aip.dev/122#resource-id-segments. Specifically, the name
+ *                                                      must be 1-63 characters long and match the regular expression
+ *                                                      [a-z]([a-z0-9-]*[a-z0-9])?. The first character must be a lowercase letter,
+ *                                                      and all following characters (except for the last character) must be a
+ *                                                      dash, lowercase letter, or digit. The last character must be a lowercase
+ *                                                      letter or digit.
+ * @param string $formattedPolicyBasedRouteNetwork      Fully-qualified URL of the network that this route applies to,
+ *                                                      for example: projects/my-project/global/networks/my-network. Please see
  *                                                      {@see PolicyBasedRoutingServiceClient::networkName()} for help formatting this field.
- * @param int    $policyBasedRouteFilterProtocolVersion Internet protocol versions this policy based route applies to.
- *                                                      For this version, only IPV4 is supported.
+ * @param int    $policyBasedRouteFilterProtocolVersion Internet protocol versions this policy-based route applies to.
+ *                                                      For this version, only IPV4 is supported. IPV6 is supported in preview.
  */
 function create_policy_based_route_sample(
     string $formattedParent,

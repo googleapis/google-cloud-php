@@ -9,16 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * VM instances to which this policy based route applies to.
+ * VM instances that this policy-based route applies to.
  *
  * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.PolicyBasedRoute.VirtualMachine</code>
  */
 class VirtualMachine extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. A list of VM instance tags to which this policy based route
-     * applies to. VM instances that have ANY of tags specified here will
-     * install this PBR.
+     * Optional. A list of VM instance tags that this policy-based route applies
+     * to. VM instances that have ANY of tags specified here installs this PBR.
      *
      * Generated from protobuf field <code>repeated string tags = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -31,9 +30,8 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
-     *           Optional. A list of VM instance tags to which this policy based route
-     *           applies to. VM instances that have ANY of tags specified here will
-     *           install this PBR.
+     *           Optional. A list of VM instance tags that this policy-based route applies
+     *           to. VM instances that have ANY of tags specified here installs this PBR.
      * }
      */
     public function __construct($data = NULL) {
@@ -42,9 +40,8 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A list of VM instance tags to which this policy based route
-     * applies to. VM instances that have ANY of tags specified here will
-     * install this PBR.
+     * Optional. A list of VM instance tags that this policy-based route applies
+     * to. VM instances that have ANY of tags specified here installs this PBR.
      *
      * Generated from protobuf field <code>repeated string tags = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -55,9 +52,8 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A list of VM instance tags to which this policy based route
-     * applies to. VM instances that have ANY of tags specified here will
-     * install this PBR.
+     * Optional. A list of VM instance tags that this policy-based route applies
+     * to. VM instances that have ANY of tags specified here installs this PBR.
      *
      * Generated from protobuf field <code>repeated string tags = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
