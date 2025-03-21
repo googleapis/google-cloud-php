@@ -1,5 +1,77 @@
 # Changelog
 
+## 0.281.0
+
+<details><summary>google/cloud-ai-platform 1.22.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add import result gcs sink to the import files API ([#8166](https://github.com/googleapis/google-cloud-php/issues/8166)) ([ee8b9ea](https://github.com/googleapis/google-cloud-php/commit/ee8b9ea8bfb8978b22c16f705705b6fc04fd5a02))
+
+</details>
+
+<details><summary>google/cloud-compute 1.28.0</summary>
+
+
+
+### Features
+
+* [Compute] Update Compute Engine API to revision 20250302 ([#995](https://github.com/googleapis/google-cloud-php/issues/995)) ([#8168](https://github.com/googleapis/google-cloud-php/issues/8168)) ([40f4cf6](https://github.com/googleapis/google-cloud-php/commit/40f4cf64a69328848bb1cfa74ec81265f2347538))
+
+</details>
+
+<details><summary>google/cloud-managedkafka 0.4.0</summary>
+
+
+
+### Features
+
+* [ManagedKafka] add Managed Kafka Connect API ([#8167](https://github.com/googleapis/google-cloud-php/issues/8167)) ([c2aecf9](https://github.com/googleapis/google-cloud-php/commit/c2aecf9969f369e8b1e686d6ea7db1793fd8347f))
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 2.1.6</summary>
+
+
+
+### Documentation
+
+* [OrchestrationAirflow] A comment for field `connection_type` in message `.google.cloud.orchestration.airflow.service.v1.NetworkingConfig` is changed ([#8169](https://github.com/googleapis/google-cloud-php/issues/8169)) ([36ebf2b](https://github.com/googleapis/google-cloud-php/commit/36ebf2b27f8cdb6bdf65c8f70f2520f3681bc126))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.97.0</summary>
+
+
+
+### Features
+
+* **Spanner:** Proto Columns ([#8108](https://github.com/googleapis/google-cloud-php/issues/8108)) ([e9c1f9d](https://github.com/googleapis/google-cloud-php/commit/e9c1f9d6e9cfdbe2d653d74c4deb359088865f1f))
+
+</details>
+
+<details><summary>google/cloud-storage 1.47.0</summary>
+
+
+
+### Features
+
+* **Spanner:** Proto Columns ([#8108](https://github.com/googleapis/google-cloud-php/issues/8108)) ([e9c1f9d](https://github.com/googleapis/google-cloud-php/commit/e9c1f9d6e9cfdbe2d653d74c4deb359088865f1f))
+
+</details>
+
+<details><summary>google/cloud-workflows 1.1.0</summary>
+
+
+
+### Features
+
+* [Workflows] add ListWorkflowRevisions method ([#8163](https://github.com/googleapis/google-cloud-php/issues/8163)) ([e21a156](https://github.com/googleapis/google-cloud-php/commit/e21a156a142a158749628b31718797ebe28a4c71))
+
+</details>
+
 ## 0.280.0
 
 <details><summary>google/cloud-ai-platform 1.21.0</summary>
