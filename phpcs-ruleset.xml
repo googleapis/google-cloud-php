@@ -36,6 +36,7 @@
   <exclude-pattern>Firestore/tests/Conformance</exclude-pattern>
   <exclude-pattern>tests/Component/TestComposerInstall.php</exclude-pattern>
   <exclude-pattern>CommonProtos</exclude-pattern>
+  <exclude-pattern>Spanner/tests/data/generated</exclude-pattern>
   <exclude-pattern>Translate/src/TranslateClient.php</exclude-pattern>
   <exclude-pattern>Translate/src/Connection/*</exclude-pattern>
   <arg name="extensions" value="php"/>
