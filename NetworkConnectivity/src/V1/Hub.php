@@ -49,9 +49,9 @@ class Hub extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * An optional description of the hub.
+     * Optional. An optional description of the hub.
      *
-     * Generated from protobuf field <code>string description = 5;</code>
+     * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $description = '';
     /**
@@ -115,10 +115,10 @@ class Hub extends \Google\Protobuf\Internal\Message
      */
     protected $preset_topology = 0;
     /**
-     * Optional. Whether Private Service Connect transitivity is enabled for the
-     * hub. If true, Private Service Connect endpoints in VPC spokes attached to
-     * the hub are made accessible to other VPC spokes attached to the hub.
-     * The default value is false.
+     * Optional. Whether Private Service Connect connection propagation is enabled
+     * for the hub. If true, Private Service Connect endpoints in VPC spokes
+     * attached to the hub are made accessible to other VPC spokes attached to the
+     * hub. The default value is false.
      *
      * Generated from protobuf field <code>optional bool export_psc = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -143,7 +143,7 @@ class Hub extends \Google\Protobuf\Internal\Message
      *           labels, see [Requirements for
      *           labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).
      *     @type string $description
-     *           An optional description of the hub.
+     *           Optional. An optional description of the hub.
      *     @type string $unique_id
      *           Output only. The Google-generated UUID for the hub. This value is unique
      *           across all hub resources. If a hub is deleted and another with the same
@@ -177,10 +177,10 @@ class Hub extends \Google\Protobuf\Internal\Message
      *           the preset_topology defaults to MESH. When policy_mode = CUSTOM,
      *           the preset_topology is set to PRESET_TOPOLOGY_UNSPECIFIED.
      *     @type bool $export_psc
-     *           Optional. Whether Private Service Connect transitivity is enabled for the
-     *           hub. If true, Private Service Connect endpoints in VPC spokes attached to
-     *           the hub are made accessible to other VPC spokes attached to the hub.
-     *           The default value is false.
+     *           Optional. Whether Private Service Connect connection propagation is enabled
+     *           for the hub. If true, Private Service Connect endpoints in VPC spokes
+     *           attached to the hub are made accessible to other VPC spokes attached to the
+     *           hub. The default value is false.
      * }
      */
     public function __construct($data = NULL) {
@@ -321,9 +321,9 @@ class Hub extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of the hub.
+     * Optional. An optional description of the hub.
      *
-     * Generated from protobuf field <code>string description = 5;</code>
+     * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -332,9 +332,9 @@ class Hub extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of the hub.
+     * Optional. An optional description of the hub.
      *
-     * Generated from protobuf field <code>string description = 5;</code>
+     * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -575,10 +575,10 @@ class Hub extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Whether Private Service Connect transitivity is enabled for the
-     * hub. If true, Private Service Connect endpoints in VPC spokes attached to
-     * the hub are made accessible to other VPC spokes attached to the hub.
-     * The default value is false.
+     * Optional. Whether Private Service Connect connection propagation is enabled
+     * for the hub. If true, Private Service Connect endpoints in VPC spokes
+     * attached to the hub are made accessible to other VPC spokes attached to the
+     * hub. The default value is false.
      *
      * Generated from protobuf field <code>optional bool export_psc = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -599,10 +599,10 @@ class Hub extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Whether Private Service Connect transitivity is enabled for the
-     * hub. If true, Private Service Connect endpoints in VPC spokes attached to
-     * the hub are made accessible to other VPC spokes attached to the hub.
-     * The default value is false.
+     * Optional. Whether Private Service Connect connection propagation is enabled
+     * for the hub. If true, Private Service Connect endpoints in VPC spokes
+     * attached to the hub are made accessible to other VPC spokes attached to the
+     * hub. The default value is false.
      *
      * Generated from protobuf field <code>optional bool export_psc = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

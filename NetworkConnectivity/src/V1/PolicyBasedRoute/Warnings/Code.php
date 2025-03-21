@@ -7,7 +7,7 @@ namespace Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\Warnings;
 use UnexpectedValueException;
 
 /**
- * Warning code for Policy Based Routing. Expect to add values in the
+ * Warning code for policy-based routing. Expect to add values in the
  * future.
  *
  * Protobuf type <code>google.cloud.networkconnectivity.v1.PolicyBasedRoute.Warnings.Code</code>
@@ -21,15 +21,15 @@ class Code
      */
     const WARNING_UNSPECIFIED = 0;
     /**
-     * The policy based route is not active and functioning. Common causes are
-     * the dependent network was deleted or the resource project was turned
-     * off.
+     * The policy-based route is not active and functioning. Common causes are
+     * that the dependent network was deleted or the resource project was
+     * turned off.
      *
      * Generated from protobuf enum <code>RESOURCE_NOT_ACTIVE = 1;</code>
      */
     const RESOURCE_NOT_ACTIVE = 1;
     /**
-     * The policy based route is being modified (e.g. created/deleted) at this
+     * The policy-based route is being modified (e.g. created/deleted) at this
      * time.
      *
      * Generated from protobuf enum <code>RESOURCE_BEING_MODIFIED = 2;</code>
