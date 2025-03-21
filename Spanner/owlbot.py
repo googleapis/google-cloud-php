@@ -70,55 +70,14 @@ s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin/Instance', merge=php._me
 # copy GPBMetadata file to metadata
 s.move(admin_library / f'proto/src/GPBMetadata/Google/Spanner', f'metadata/', merge=php._merge)
 
-
-# Fix test namespaces
+# remove class_alias code
 s.replace(
-    'tests/Unit/Admin/Database/*/*.php',
-    r'namespace Google\\Cloud\\Spanner\\Admin\\Database\\Tests\\Unit',
-    r'namespace Google\\Cloud\\Spanner\\Tests\\Unit\\Admin\\Database')
-s.replace(
-    'tests/Unit/Admin/Instance/*/*.php',
-    r'namespace Google\\Cloud\\Spanner\\Admin\\Instance\\Tests\\Unit',
-    r'namespace Google\\Cloud\\Spanner\\Tests\\Unit\\Admin\\Instance')
-
-# fix test group
-s.replace(
-    'tests/**/Admin/Database/V1/*Test.php',
-    '@group database',
-    '@group spanner-admin-database')
-
-s.replace(
-    'tests/**/Admin/Instance/V1/*Test.php',
-    '@group instance',
-    '@group spanner-admin-instance')
-
-# remove ReadOnly class_alias code
-s.replace(
-    "src/V*/**/PBReadOnly.php",
-    r"^// Adding a class alias for backwards compatibility with the \"readonly\" keyword.$"
+    "src/V*/**/*.php",
+    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
     + "\n"
-    + r"^class_alias\(PBReadOnly::class, __NAMESPACE__ . '\\ReadOnly'\);$"
+    + r"^class_alias\(.*\);$"
     + "\n",
     '')
-
-### [START] protoc backwards compatibility fixes
-
-# roll back to private properties.
-s.replace(
-    "src/**/V*/**/*.php",
-    r"Generated from protobuf field ([^\n]{0,})\n\s{5}\*/\n\s{4}protected \$",
-    r"""Generated from protobuf field \1
-     */
-    private $""")
-
-# Replace "Unwrapped" with "Value" for method names.
-s.replace(
-    "src/**/V*/**/*.php",
-    r"public function ([s|g]\w{3,})Unwrapped",
-    r"public function \1Value"
-)
-
-### [END] protoc backwards compatibility fixes
 
 # fix relative cloud.google.com links
 s.replace(

@@ -23,14 +23,14 @@ class UpdateDatabaseRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.Database database = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $database = null;
+    protected $database = null;
     /**
      * Required. The list of fields to update. Currently, only
      * `enable_drop_protection` field can be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Spanner\Admin\Database\V1\Database $database   Required. The database to update.

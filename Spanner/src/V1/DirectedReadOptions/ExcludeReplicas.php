@@ -66,6 +66,4 @@ class ExcludeReplicas extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ExcludeReplicas::class, \Google\Cloud\Spanner\V1\DirectedReadOptions_ExcludeReplicas::class);
 
