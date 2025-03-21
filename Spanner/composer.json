@@ -38,7 +38,9 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Google\\Cloud\\Spanner\\Tests\\": "tests"
+            "Google\\Cloud\\Spanner\\Tests\\": "tests",
+            "Testing\\Data\\": "tests/data/generated/Testing/Data",
+            "GPBMetadata\\Data\\": "tests/data/generated/GPBMetadata/Data"
         }
     }
 }

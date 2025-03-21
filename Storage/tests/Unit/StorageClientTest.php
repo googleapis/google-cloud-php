@@ -80,7 +80,7 @@ class StorageClientTest extends TestCase
             'hardDeleteTime' => '2024-09-17T01:01:01.045123456Z'
         ]);
         $this->client->___setProperty('connection', $this->connection->reveal());
-        $bucket = $this->client->bucket('bucket1', true, ['softDeleted' => true, 'generation' => 123456789]);
+        $bucket = $this->client->bucket('bucket1', options: ['softDeleted' => true, 'generation' => 123456789]);
 
         $bucket->reload(['softDeleted' => true, 'generation' => 123456789]);
 

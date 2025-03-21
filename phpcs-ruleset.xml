@@ -19,6 +19,7 @@
   <exclude-pattern>*/src/*/*/V[0-9]+</exclude-pattern>
   <exclude-pattern>*/tests/*/V[0-9]+</exclude-pattern>
   <exclude-pattern>*/tests/*/*/V[0-9]+</exclude-pattern>
+  <exclude-pattern>*/tests/*/*/generated</exclude-pattern>
   <exclude-pattern>AccessContextManager/src/Type</exclude-pattern>
   <exclude-pattern>Asset/external</exclude-pattern>
   <exclude-pattern>BigQueryDataExchange/src/Common</exclude-pattern>
@@ -35,6 +36,7 @@
   <exclude-pattern>Firestore/tests/Conformance</exclude-pattern>
   <exclude-pattern>tests/Component/TestComposerInstall.php</exclude-pattern>
   <exclude-pattern>CommonProtos</exclude-pattern>
+  <exclude-pattern>Spanner/tests/data/generated</exclude-pattern>
   <exclude-pattern>Translate/src/TranslateClient.php</exclude-pattern>
   <exclude-pattern>Translate/src/Connection/*</exclude-pattern>
   <arg name="extensions" value="php"/>
