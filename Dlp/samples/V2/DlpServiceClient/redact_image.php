@@ -39,6 +39,9 @@ use Google\Cloud\Dlp\V2\RedactImageResponse;
  * system will automatically choose what detectors to run. By default this may
  * be all types, but may change over time as detectors are updated.
  *
+ * Only the first frame of each multiframe image is redacted. Metadata and
+ * other frames are omitted in the response.
+ *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.

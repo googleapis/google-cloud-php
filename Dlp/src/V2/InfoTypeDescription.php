@@ -64,6 +64,16 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.privacy.dlp.v2.SensitivityScore sensitivity_score = 11;</code>
      */
     protected $sensitivity_score = null;
+    /**
+     * If this field is set, this infoType is a general infoType and these
+     * specific infoTypes are contained within it.
+     * General infoTypes are infoTypes that encompass multiple specific infoTypes.
+     * For example, the "GEOGRAPHIC_DATA" general infoType would have set for this
+     * field "LOCATION", "LOCATION_COORDINATES", and "STREET_ADDRESS".
+     *
+     * Generated from protobuf field <code>repeated string specific_info_types = 12;</code>
+     */
+    private $specific_info_types;
 
     /**
      * Constructor.
@@ -88,6 +98,12 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
      *           The category of the infoType.
      *     @type \Google\Cloud\Dlp\V2\SensitivityScore $sensitivity_score
      *           The default sensitivity of the infoType.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $specific_info_types
+     *           If this field is set, this infoType is a general infoType and these
+     *           specific infoTypes are contained within it.
+     *           General infoTypes are infoTypes that encompass multiple specific infoTypes.
+     *           For example, the "GEOGRAPHIC_DATA" general infoType would have set for this
+     *           field "LOCATION", "LOCATION_COORDINATES", and "STREET_ADDRESS".
      * }
      */
     public function __construct($data = NULL) {
@@ -311,6 +327,40 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\SensitivityScore::class);
         $this->sensitivity_score = $var;
+
+        return $this;
+    }
+
+    /**
+     * If this field is set, this infoType is a general infoType and these
+     * specific infoTypes are contained within it.
+     * General infoTypes are infoTypes that encompass multiple specific infoTypes.
+     * For example, the "GEOGRAPHIC_DATA" general infoType would have set for this
+     * field "LOCATION", "LOCATION_COORDINATES", and "STREET_ADDRESS".
+     *
+     * Generated from protobuf field <code>repeated string specific_info_types = 12;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSpecificInfoTypes()
+    {
+        return $this->specific_info_types;
+    }
+
+    /**
+     * If this field is set, this infoType is a general infoType and these
+     * specific infoTypes are contained within it.
+     * General infoTypes are infoTypes that encompass multiple specific infoTypes.
+     * For example, the "GEOGRAPHIC_DATA" general infoType would have set for this
+     * field "LOCATION", "LOCATION_COORDINATES", and "STREET_ADDRESS".
+     *
+     * Generated from protobuf field <code>repeated string specific_info_types = 12;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSpecificInfoTypes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->specific_info_types = $arr;
 
         return $this;
     }

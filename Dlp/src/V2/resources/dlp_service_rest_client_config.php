@@ -821,6 +821,14 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{parent=locations/*}/infoTypes',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/infoTypes',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/infoTypes',
+                    ],
                 ],
                 'placeholders' => [
                     'parent' => [
