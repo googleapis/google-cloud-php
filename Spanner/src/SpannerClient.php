@@ -199,6 +199,8 @@ class SpannerClient
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
      *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
      *           **Defaults to** `true` (enabled).
+     *     @type string $universeDomain The expected universe of the credentials. Defaults to
+     *            "googleapis.com"
      * }
      * @throws GoogleException If the gRPC extension is not enabled.
      */
