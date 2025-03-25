@@ -32,6 +32,4 @@ class CloudStorageLocation extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CloudStorageLocation::class, \Google\Cloud\ContainerAnalysis\V1\ExportSBOMRequest_CloudStorageLocation::class);
 

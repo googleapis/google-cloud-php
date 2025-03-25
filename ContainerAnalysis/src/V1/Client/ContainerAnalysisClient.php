@@ -32,6 +32,8 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\ContainerAnalysis\V1\ExportSBOMRequest;
+use Google\Cloud\ContainerAnalysis\V1\ExportSBOMResponse;
 use Google\Cloud\ContainerAnalysis\V1\GetVulnerabilityOccurrencesSummaryRequest;
 use Google\Cloud\ContainerAnalysis\V1\VulnerabilityOccurrencesSummary;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -65,6 +67,7 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<ExportSBOMResponse> exportSBOMAsync(ExportSBOMRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<VulnerabilityOccurrencesSummary> getVulnerabilityOccurrencesSummaryAsync(GetVulnerabilityOccurrencesSummaryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
@@ -233,6 +236,32 @@ final class ContainerAnalysisClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Generates an SBOM for the given resource.
+     *
+     * The async variant is {@see ContainerAnalysisClient::exportSBOMAsync()} .
+     *
+     * @example samples/V1/ContainerAnalysisClient/export_sbom.php
+     *
+     * @param ExportSBOMRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ExportSBOMResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function exportSBOM(ExportSBOMRequest $request, array $callOptions = []): ExportSBOMResponse
+    {
+        return $this->startApiCall('ExportSBOM', $request, $callOptions)->wait();
     }
 
     /**
