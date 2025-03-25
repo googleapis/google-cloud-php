@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Response for the `GenerateGroundedContent` method.
+ *
  * Generated from protobuf message <code>google.cloud.discoveryengine.v1.GenerateGroundedContentResponse</code>
  */
 class GenerateGroundedContentResponse extends \Google\Protobuf\Internal\Message

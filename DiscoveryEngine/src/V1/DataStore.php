@@ -51,7 +51,7 @@ class DataStore extends \Google\Protobuf\Internal\Message
     private $solution_types;
     /**
      * Output only. The id of the default
-     * [Schema][google.cloud.discoveryengine.v1.Schema] asscociated to this data
+     * [Schema][google.cloud.discoveryengine.v1.Schema] associated to this data
      * store.
      *
      * Generated from protobuf field <code>string default_schema_id = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -72,6 +72,12 @@ class DataStore extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $create_time = null;
+    /**
+     * Optional. Configuration for advanced site search.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AdvancedSiteSearchConfig advanced_site_search_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $advanced_site_search_config = null;
     /**
      * Output only. Data size estimation for billing.
      *
@@ -98,9 +104,12 @@ class DataStore extends \Google\Protobuf\Internal\Message
      * The start schema to use for this
      * [DataStore][google.cloud.discoveryengine.v1.DataStore] when provisioning
      * it. If unset, a default vertical specialized schema will be used.
-     * This field is only used by [CreateDataStore][] API, and will be ignored if
-     * used in other APIs. This field will be omitted from all API responses
-     * including [CreateDataStore][] API. To retrieve a schema of a
+     * This field is only used by
+     * [CreateDataStore][google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]
+     * API, and will be ignored if used in other APIs. This field will be omitted
+     * from all API responses including
+     * [CreateDataStore][google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]
+     * API. To retrieve a schema of a
      * [DataStore][google.cloud.discoveryengine.v1.DataStore], use
      * [SchemaService.GetSchema][google.cloud.discoveryengine.v1.SchemaService.GetSchema]
      * API instead.
@@ -138,7 +147,7 @@ class DataStore extends \Google\Protobuf\Internal\Message
      *             solutions cannot be enrolled.
      *     @type string $default_schema_id
      *           Output only. The id of the default
-     *           [Schema][google.cloud.discoveryengine.v1.Schema] asscociated to this data
+     *           [Schema][google.cloud.discoveryengine.v1.Schema] associated to this data
      *           store.
      *     @type int $content_config
      *           Immutable. The content config of the data store. If this field is unset,
@@ -147,6 +156,8 @@ class DataStore extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp the
      *           [DataStore][google.cloud.discoveryengine.v1.DataStore] was created at.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\AdvancedSiteSearchConfig $advanced_site_search_config
+     *           Optional. Configuration for advanced site search.
      *     @type \Google\Cloud\DiscoveryEngine\V1\DataStore\BillingEstimation $billing_estimation
      *           Output only. Data size estimation for billing.
      *     @type \Google\Cloud\DiscoveryEngine\V1\WorkspaceConfig $workspace_config
@@ -161,9 +172,12 @@ class DataStore extends \Google\Protobuf\Internal\Message
      *           The start schema to use for this
      *           [DataStore][google.cloud.discoveryengine.v1.DataStore] when provisioning
      *           it. If unset, a default vertical specialized schema will be used.
-     *           This field is only used by [CreateDataStore][] API, and will be ignored if
-     *           used in other APIs. This field will be omitted from all API responses
-     *           including [CreateDataStore][] API. To retrieve a schema of a
+     *           This field is only used by
+     *           [CreateDataStore][google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]
+     *           API, and will be ignored if used in other APIs. This field will be omitted
+     *           from all API responses including
+     *           [CreateDataStore][google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]
+     *           API. To retrieve a schema of a
      *           [DataStore][google.cloud.discoveryengine.v1.DataStore], use
      *           [SchemaService.GetSchema][google.cloud.discoveryengine.v1.SchemaService.GetSchema]
      *           API instead.
@@ -303,7 +317,7 @@ class DataStore extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The id of the default
-     * [Schema][google.cloud.discoveryengine.v1.Schema] asscociated to this data
+     * [Schema][google.cloud.discoveryengine.v1.Schema] associated to this data
      * store.
      *
      * Generated from protobuf field <code>string default_schema_id = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -316,7 +330,7 @@ class DataStore extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The id of the default
-     * [Schema][google.cloud.discoveryengine.v1.Schema] asscociated to this data
+     * [Schema][google.cloud.discoveryengine.v1.Schema] associated to this data
      * store.
      *
      * Generated from protobuf field <code>string default_schema_id = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -395,6 +409,42 @@ class DataStore extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for advanced site search.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AdvancedSiteSearchConfig advanced_site_search_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\AdvancedSiteSearchConfig|null
+     */
+    public function getAdvancedSiteSearchConfig()
+    {
+        return $this->advanced_site_search_config;
+    }
+
+    public function hasAdvancedSiteSearchConfig()
+    {
+        return isset($this->advanced_site_search_config);
+    }
+
+    public function clearAdvancedSiteSearchConfig()
+    {
+        unset($this->advanced_site_search_config);
+    }
+
+    /**
+     * Optional. Configuration for advanced site search.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AdvancedSiteSearchConfig advanced_site_search_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\AdvancedSiteSearchConfig $var
+     * @return $this
+     */
+    public function setAdvancedSiteSearchConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\AdvancedSiteSearchConfig::class);
+        $this->advanced_site_search_config = $var;
 
         return $this;
     }
@@ -519,9 +569,12 @@ class DataStore extends \Google\Protobuf\Internal\Message
      * The start schema to use for this
      * [DataStore][google.cloud.discoveryengine.v1.DataStore] when provisioning
      * it. If unset, a default vertical specialized schema will be used.
-     * This field is only used by [CreateDataStore][] API, and will be ignored if
-     * used in other APIs. This field will be omitted from all API responses
-     * including [CreateDataStore][] API. To retrieve a schema of a
+     * This field is only used by
+     * [CreateDataStore][google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]
+     * API, and will be ignored if used in other APIs. This field will be omitted
+     * from all API responses including
+     * [CreateDataStore][google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]
+     * API. To retrieve a schema of a
      * [DataStore][google.cloud.discoveryengine.v1.DataStore], use
      * [SchemaService.GetSchema][google.cloud.discoveryengine.v1.SchemaService.GetSchema]
      * API instead.
@@ -551,9 +604,12 @@ class DataStore extends \Google\Protobuf\Internal\Message
      * The start schema to use for this
      * [DataStore][google.cloud.discoveryengine.v1.DataStore] when provisioning
      * it. If unset, a default vertical specialized schema will be used.
-     * This field is only used by [CreateDataStore][] API, and will be ignored if
-     * used in other APIs. This field will be omitted from all API responses
-     * including [CreateDataStore][] API. To retrieve a schema of a
+     * This field is only used by
+     * [CreateDataStore][google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]
+     * API, and will be ignored if used in other APIs. This field will be omitted
+     * from all API responses including
+     * [CreateDataStore][google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]
+     * API. To retrieve a schema of a
      * [DataStore][google.cloud.discoveryengine.v1.DataStore], use
      * [SchemaService.GetSchema][google.cloud.discoveryengine.v1.SchemaService.GetSchema]
      * API instead.

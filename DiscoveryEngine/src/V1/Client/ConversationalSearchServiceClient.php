@@ -30,6 +30,7 @@ use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
+use Google\ApiCore\ServerStream;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
@@ -1239,6 +1240,34 @@ final class ConversationalSearchServiceClient
     public function listSessions(ListSessionsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListSessions', $request, $callOptions);
+    }
+
+    /**
+     * Answer query method (streaming).
+     *
+     * It takes one
+     * [AnswerQueryRequest][google.cloud.discoveryengine.v1.AnswerQueryRequest]
+     * and returns multiple
+     * [AnswerQueryResponse][google.cloud.discoveryengine.v1.AnswerQueryResponse]
+     * messages in a stream.
+     *
+     * @example samples/V1/ConversationalSearchServiceClient/stream_answer_query.php
+     *
+     * @param AnswerQueryRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return ServerStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function streamAnswerQuery(AnswerQueryRequest $request, array $callOptions = []): ServerStream
+    {
+        return $this->startApiCall('StreamAnswerQuery', $request, $callOptions);
     }
 
     /**

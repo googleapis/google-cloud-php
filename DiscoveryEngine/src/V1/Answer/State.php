@@ -37,12 +37,19 @@ class State
      * Generated from protobuf enum <code>SUCCEEDED = 3;</code>
      */
     const SUCCEEDED = 3;
+    /**
+     * Answer generation is currently in progress.
+     *
+     * Generated from protobuf enum <code>STREAMING = 4;</code>
+     */
+    const STREAMING = 4;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
         self::IN_PROGRESS => 'IN_PROGRESS',
         self::FAILED => 'FAILED',
         self::SUCCEEDED => 'SUCCEEDED',
+        self::STREAMING => 'STREAMING',
     ];
 
     public static function name($value)

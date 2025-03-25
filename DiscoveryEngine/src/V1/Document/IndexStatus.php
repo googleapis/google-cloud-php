@@ -29,6 +29,13 @@ class IndexStatus extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.rpc.Status error_samples = 2;</code>
      */
     private $error_samples;
+    /**
+     * Immutable. The message indicates the document index is in progress.
+     * If this field is populated, the document index is pending.
+     *
+     * Generated from protobuf field <code>string pending_message = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $pending_message = '';
 
     /**
      * Constructor.
@@ -42,6 +49,9 @@ class IndexStatus extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $error_samples
      *           A sample of errors encountered while indexing the document.
      *           If this field is populated, the document is not indexed due to errors.
+     *     @type string $pending_message
+     *           Immutable. The message indicates the document index is in progress.
+     *           If this field is populated, the document index is pending.
      * }
      */
     public function __construct($data = NULL) {
@@ -111,6 +121,34 @@ class IndexStatus extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Rpc\Status::class);
         $this->error_samples = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The message indicates the document index is in progress.
+     * If this field is populated, the document index is pending.
+     *
+     * Generated from protobuf field <code>string pending_message = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return string
+     */
+    public function getPendingMessage()
+    {
+        return $this->pending_message;
+    }
+
+    /**
+     * Immutable. The message indicates the document index is in progress.
+     * If this field is populated, the document index is pending.
+     *
+     * Generated from protobuf field <code>string pending_message = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPendingMessage($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->pending_message = $var;
 
         return $this;
     }

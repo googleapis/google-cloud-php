@@ -32,13 +32,44 @@ class RecrawlUrisMetadata extends \Google\Protobuf\Internal\Message
      */
     protected $update_time = null;
     /**
-     * Unique URIs in the request that don't match any TargetSite in the
-     * DataStore, only match TargetSites that haven't been fully indexed, or match
-     * a TargetSite with type EXCLUDE.
+     * Unique URIs in the request that have invalid format. Sample limited to
+     * 1000.
      *
      * Generated from protobuf field <code>repeated string invalid_uris = 3;</code>
      */
     private $invalid_uris;
+    /**
+     * Total number of unique URIs in the request that have invalid format.
+     *
+     * Generated from protobuf field <code>int32 invalid_uris_count = 8;</code>
+     */
+    protected $invalid_uris_count = 0;
+    /**
+     * URIs that have no index meta tag. Sample limited to 1000.
+     *
+     * Generated from protobuf field <code>repeated string noindex_uris = 11;</code>
+     */
+    private $noindex_uris;
+    /**
+     * Total number of URIs that have no index meta tag.
+     *
+     * Generated from protobuf field <code>int32 noindex_uris_count = 12;</code>
+     */
+    protected $noindex_uris_count = 0;
+    /**
+     * Unique URIs in the request that don't match any TargetSite in the
+     * DataStore, only match TargetSites that haven't been fully indexed, or match
+     * a TargetSite with type EXCLUDE. Sample limited to 1000.
+     *
+     * Generated from protobuf field <code>repeated string uris_not_matching_target_sites = 9;</code>
+     */
+    private $uris_not_matching_target_sites;
+    /**
+     * Total number of URIs that don't match any TargetSites.
+     *
+     * Generated from protobuf field <code>int32 uris_not_matching_target_sites_count = 10;</code>
+     */
+    protected $uris_not_matching_target_sites_count = 0;
     /**
      * Total number of unique URIs in the request that are not in invalid_uris.
      *
@@ -77,9 +108,20 @@ class RecrawlUrisMetadata extends \Google\Protobuf\Internal\Message
      *           Operation last update time. If the operation is done, this is also the
      *           finish time.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $invalid_uris
+     *           Unique URIs in the request that have invalid format. Sample limited to
+     *           1000.
+     *     @type int $invalid_uris_count
+     *           Total number of unique URIs in the request that have invalid format.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $noindex_uris
+     *           URIs that have no index meta tag. Sample limited to 1000.
+     *     @type int $noindex_uris_count
+     *           Total number of URIs that have no index meta tag.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $uris_not_matching_target_sites
      *           Unique URIs in the request that don't match any TargetSite in the
      *           DataStore, only match TargetSites that haven't been fully indexed, or match
-     *           a TargetSite with type EXCLUDE.
+     *           a TargetSite with type EXCLUDE. Sample limited to 1000.
+     *     @type int $uris_not_matching_target_sites_count
+     *           Total number of URIs that don't match any TargetSites.
      *     @type int $valid_uris_count
      *           Total number of unique URIs in the request that are not in invalid_uris.
      *     @type int $success_count
@@ -171,9 +213,8 @@ class RecrawlUrisMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unique URIs in the request that don't match any TargetSite in the
-     * DataStore, only match TargetSites that haven't been fully indexed, or match
-     * a TargetSite with type EXCLUDE.
+     * Unique URIs in the request that have invalid format. Sample limited to
+     * 1000.
      *
      * Generated from protobuf field <code>repeated string invalid_uris = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -184,9 +225,8 @@ class RecrawlUrisMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unique URIs in the request that don't match any TargetSite in the
-     * DataStore, only match TargetSites that haven't been fully indexed, or match
-     * a TargetSite with type EXCLUDE.
+     * Unique URIs in the request that have invalid format. Sample limited to
+     * 1000.
      *
      * Generated from protobuf field <code>repeated string invalid_uris = 3;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -196,6 +236,140 @@ class RecrawlUrisMetadata extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->invalid_uris = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Total number of unique URIs in the request that have invalid format.
+     *
+     * Generated from protobuf field <code>int32 invalid_uris_count = 8;</code>
+     * @return int
+     */
+    public function getInvalidUrisCount()
+    {
+        return $this->invalid_uris_count;
+    }
+
+    /**
+     * Total number of unique URIs in the request that have invalid format.
+     *
+     * Generated from protobuf field <code>int32 invalid_uris_count = 8;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setInvalidUrisCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->invalid_uris_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * URIs that have no index meta tag. Sample limited to 1000.
+     *
+     * Generated from protobuf field <code>repeated string noindex_uris = 11;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNoindexUris()
+    {
+        return $this->noindex_uris;
+    }
+
+    /**
+     * URIs that have no index meta tag. Sample limited to 1000.
+     *
+     * Generated from protobuf field <code>repeated string noindex_uris = 11;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNoindexUris($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->noindex_uris = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Total number of URIs that have no index meta tag.
+     *
+     * Generated from protobuf field <code>int32 noindex_uris_count = 12;</code>
+     * @return int
+     */
+    public function getNoindexUrisCount()
+    {
+        return $this->noindex_uris_count;
+    }
+
+    /**
+     * Total number of URIs that have no index meta tag.
+     *
+     * Generated from protobuf field <code>int32 noindex_uris_count = 12;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setNoindexUrisCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->noindex_uris_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Unique URIs in the request that don't match any TargetSite in the
+     * DataStore, only match TargetSites that haven't been fully indexed, or match
+     * a TargetSite with type EXCLUDE. Sample limited to 1000.
+     *
+     * Generated from protobuf field <code>repeated string uris_not_matching_target_sites = 9;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getUrisNotMatchingTargetSites()
+    {
+        return $this->uris_not_matching_target_sites;
+    }
+
+    /**
+     * Unique URIs in the request that don't match any TargetSite in the
+     * DataStore, only match TargetSites that haven't been fully indexed, or match
+     * a TargetSite with type EXCLUDE. Sample limited to 1000.
+     *
+     * Generated from protobuf field <code>repeated string uris_not_matching_target_sites = 9;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setUrisNotMatchingTargetSites($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->uris_not_matching_target_sites = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Total number of URIs that don't match any TargetSites.
+     *
+     * Generated from protobuf field <code>int32 uris_not_matching_target_sites_count = 10;</code>
+     * @return int
+     */
+    public function getUrisNotMatchingTargetSitesCount()
+    {
+        return $this->uris_not_matching_target_sites_count;
+    }
+
+    /**
+     * Total number of URIs that don't match any TargetSites.
+     *
+     * Generated from protobuf field <code>int32 uris_not_matching_target_sites_count = 10;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setUrisNotMatchingTargetSitesCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->uris_not_matching_target_sites_count = $var;
 
         return $this;
     }

@@ -10,6 +10,11 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Safety specification.
+ * There are two use cases:
+ * 1. when only safety_spec.enable is set, the BLOCK_LOW_AND_ABOVE threshold
+ * will be applied for all categories.
+ * 2. when safety_spec.enable is set and some safety_settings are set, only
+ * specified safety_settings are applied.
  *
  * Generated from protobuf message <code>google.cloud.discoveryengine.v1.AnswerQueryRequest.SafetySpec</code>
  */
@@ -22,6 +27,13 @@ class SafetySpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable = 1;</code>
      */
     protected $enable = false;
+    /**
+     * Optional. Safety settings.
+     * This settings are effective only when the safety_spec.enable is true.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AnswerQueryRequest.SafetySpec.SafetySetting safety_settings = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $safety_settings;
 
     /**
      * Constructor.
@@ -32,6 +44,9 @@ class SafetySpec extends \Google\Protobuf\Internal\Message
      *     @type bool $enable
      *           Enable the safety filtering on the answer response. It is false by
      *           default.
+     *     @type array<\Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SafetySpec\SafetySetting>|\Google\Protobuf\Internal\RepeatedField $safety_settings
+     *           Optional. Safety settings.
+     *           This settings are effective only when the safety_spec.enable is true.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +78,34 @@ class SafetySpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Safety settings.
+     * This settings are effective only when the safety_spec.enable is true.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AnswerQueryRequest.SafetySpec.SafetySetting safety_settings = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSafetySettings()
+    {
+        return $this->safety_settings;
+    }
+
+    /**
+     * Optional. Safety settings.
+     * This settings are effective only when the safety_spec.enable is true.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AnswerQueryRequest.SafetySpec.SafetySetting safety_settings = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SafetySpec\SafetySetting>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSafetySettings($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SafetySpec\SafetySetting::class);
+        $this->safety_settings = $arr;
 
         return $this;
     }

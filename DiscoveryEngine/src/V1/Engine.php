@@ -76,9 +76,8 @@ class Engine extends \Google\Protobuf\Internal\Message
     /**
      * The industry vertical that the engine registers.
      * The restriction of the Engine industry vertical is based on
-     * [DataStore][google.cloud.discoveryengine.v1.DataStore]: If unspecified,
-     * default to `GENERIC`. Vertical on Engine has to match vertical of the
-     * DataStore linked to the engine.
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore]: Vertical on Engine
+     * has to match vertical of the DataStore linked to the engine.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.IndustryVertical industry_vertical = 16;</code>
      */
@@ -154,9 +153,8 @@ class Engine extends \Google\Protobuf\Internal\Message
      *     @type int $industry_vertical
      *           The industry vertical that the engine registers.
      *           The restriction of the Engine industry vertical is based on
-     *           [DataStore][google.cloud.discoveryengine.v1.DataStore]: If unspecified,
-     *           default to `GENERIC`. Vertical on Engine has to match vertical of the
-     *           DataStore linked to the engine.
+     *           [DataStore][google.cloud.discoveryengine.v1.DataStore]: Vertical on Engine
+     *           has to match vertical of the DataStore linked to the engine.
      *     @type \Google\Cloud\DiscoveryEngine\V1\Engine\CommonConfig $common_config
      *           Common config spec that specifies the metadata of the engine.
      *     @type bool $disable_analytics
@@ -497,9 +495,8 @@ class Engine extends \Google\Protobuf\Internal\Message
     /**
      * The industry vertical that the engine registers.
      * The restriction of the Engine industry vertical is based on
-     * [DataStore][google.cloud.discoveryengine.v1.DataStore]: If unspecified,
-     * default to `GENERIC`. Vertical on Engine has to match vertical of the
-     * DataStore linked to the engine.
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore]: Vertical on Engine
+     * has to match vertical of the DataStore linked to the engine.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.IndustryVertical industry_vertical = 16;</code>
      * @return int
@@ -512,9 +509,8 @@ class Engine extends \Google\Protobuf\Internal\Message
     /**
      * The industry vertical that the engine registers.
      * The restriction of the Engine industry vertical is based on
-     * [DataStore][google.cloud.discoveryengine.v1.DataStore]: If unspecified,
-     * default to `GENERIC`. Vertical on Engine has to match vertical of the
-     * DataStore linked to the engine.
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore]: Vertical on Engine
+     * has to match vertical of the DataStore linked to the engine.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.IndustryVertical industry_vertical = 16;</code>
      * @param int $var

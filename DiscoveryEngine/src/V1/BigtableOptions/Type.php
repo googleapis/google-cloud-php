@@ -10,7 +10,7 @@ use UnexpectedValueException;
  * The type of values in a Bigtable column or column family.
  * The values are expected to be encoded using
  * [HBase
- * Bytes.toBytes](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/util/Bytes.html)
+ * Bytes.toBytes](https://hbase.apache.org/1.4/apidocs/org/apache/hadoop/hbase/util/Bytes.html)
  * function when the encoding value is set to `BINARY`.
  *
  * Protobuf type <code>google.cloud.discoveryengine.v1.BigtableOptions.Type</code>

@@ -44,7 +44,7 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
      * [parent][google.cloud.discoveryengine.v1.CreateDocumentRequest.parent].
      * Otherwise, an `ALREADY_EXISTS` error is returned.
      * This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034)
-     * standard with a length limit of 63 characters. Otherwise, an
+     * standard with a length limit of 128 characters. Otherwise, an
      * `INVALID_ARGUMENT` error is returned.
      *
      * Generated from protobuf field <code>string document_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -72,7 +72,7 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
      *                                                              Otherwise, an `ALREADY_EXISTS` error is returned.
      *
      *                                                              This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034)
-     *                                                              standard with a length limit of 63 characters. Otherwise, an
+     *                                                              standard with a length limit of 128 characters. Otherwise, an
      *                                                              `INVALID_ARGUMENT` error is returned.
      *
      * @return \Google\Cloud\DiscoveryEngine\V1\CreateDocumentRequest
@@ -112,7 +112,7 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
      *           [parent][google.cloud.discoveryengine.v1.CreateDocumentRequest.parent].
      *           Otherwise, an `ALREADY_EXISTS` error is returned.
      *           This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034)
-     *           standard with a length limit of 63 characters. Otherwise, an
+     *           standard with a length limit of 128 characters. Otherwise, an
      *           `INVALID_ARGUMENT` error is returned.
      * }
      */
@@ -200,7 +200,7 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
      * [parent][google.cloud.discoveryengine.v1.CreateDocumentRequest.parent].
      * Otherwise, an `ALREADY_EXISTS` error is returned.
      * This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034)
-     * standard with a length limit of 63 characters. Otherwise, an
+     * standard with a length limit of 128 characters. Otherwise, an
      * `INVALID_ARGUMENT` error is returned.
      *
      * Generated from protobuf field <code>string document_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -224,7 +224,7 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
      * [parent][google.cloud.discoveryengine.v1.CreateDocumentRequest.parent].
      * Otherwise, an `ALREADY_EXISTS` error is returned.
      * This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034)
-     * standard with a length limit of 63 characters. Otherwise, an
+     * standard with a length limit of 128 characters. Otherwise, an
      * `INVALID_ARGUMENT` error is returned.
      *
      * Generated from protobuf field <code>string document_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
