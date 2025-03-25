@@ -22,8 +22,8 @@ use IntervalParsingState;
 use InvalidArgumentException;
 use Kreait\Firebase\Exception\Messaging\InvalidArgument;
 
- class Interval
- {
+class Interval
+{
     private const NANOSECONDSINASECOND = 1000000000;
     private const NANOSECONDSINAMINUTE = Interval::NANOSECONDSINASECOND * 60;
     private const NANOSECONDSINANHOUR = Interval::NANOSECONDSINAMINUTE * 60;
@@ -47,17 +47,35 @@ use Kreait\Firebase\Exception\Messaging\InvalidArgument;
     public function __construct(int $months, int $days, float $nanoseconds)
     {
         if ($months > Interval::MAXMONTHS || $months < Interval::MINMONTHS) {
-            throw new InvalidArgumentException('The interval type supports a range from ' . Interval::MAXMONTHS . 'to ' . Interval::MINMONTHS . 'months');
+            throw new InvalidArgumentException(
+                'The interval type supports a range from '
+                . Interval::MAXMONTHS
+                . 'to '
+                . Interval::MINMONTHS
+                . 'months'
+            );
         }
         $this->months = $months;
 
         if ($days > Interval::MAXDAYS || $days < Interval::MINDAYS) {
-            throw new InvalidArgumentException('The interval type supports a range from ' . Interval::MAXDAYS . 'to ' . Interval::MINDAYS . 'days');
+            throw new InvalidArgumentException(
+                'The interval type supports a range from '
+                . Interval::MAXDAYS
+                . 'to '
+                . Interval::MINDAYS
+                . 'days'
+            );
         }
         $this->days = $days;
 
         if ($nanoseconds > Interval::MAXNANOSECONDS || $nanoseconds < Interval::MINNANOSECONDS) {
-            throw new InvalidArgumentException('The interval type supports a range from ' . Interval::MAXNANOSECONDS . 'to ' . Interval::MINNANOSECONDS . 'nanoseconds');
+            throw new InvalidArgumentException(
+                'The interval type supports a range from '
+                . Interval::MAXNANOSECONDS
+                . 'to '
+                . Interval::MINNANOSECONDS
+                . 'nanoseconds'
+            );
         }
         $this->nanoseconds = $nanoseconds;
     }
@@ -71,26 +89,6 @@ use Kreait\Firebase\Exception\Messaging\InvalidArgument;
 
         $state = new SpannerIntervalParsingState();
         $end = -1;
-
-        $isValidResolution = function() use ($state, $end, $text) {
-            $splitText = substr($state->start, $end - $state->start);
-            $splitText = str_replace($splitText, ',', '.');
-            $splitText = explode('.', $splitText);
-
-            // If we have an int number, it is valid
-            if (count($splitText) < 2)
-            {
-                return true;
-            }
-
-            // If we have more than 9 digits after the decimal, it is not valid
-            if (strlen($splitText[1]) > 9)
-            {
-                return false;
-            }
-
-            return true;
-        };
 
         do
         {
@@ -115,7 +113,9 @@ use Kreait\Firebase\Exception\Messaging\InvalidArgument;
                     $state->mayBeTerminal = true;
                     $state->isTerminal = false;
                     $state->isValidResolution = true;
-                    $state->years = Interval::parseInt(substr($text, $state->start, $end - $state->start));
+                    $state->years = Interval::parseInt(
+                        substr($text, $state->start, $end - $state->start)
+                    );
                     $state->nextAllowed = $state->afterY;
                     break;
                 case 'M':
@@ -123,13 +123,17 @@ use Kreait\Firebase\Exception\Messaging\InvalidArgument;
                         $state->mayBeTerminal = true;
                         $state->isTerminal = false;
                         $state->isValidResolution = true;
-                        $state->months = Interval::parseInt(substr($text, $state->start, $end - $state->start));
+                        $state->months = Interval::parseInt(
+                            substr($text, $state->start, $end - $state->start)
+                        );
                         $state->nextAllowed = $state->afterMonth;
                     } else {
                         $state->mayBeTerminal = true;
                         $state->isTerminal = false;
                         $state->isValidResolution = true;
-                        $state->minutes = Interval::parseInt(substr($text, $state->start, $end - $state->start));
+                        $state->minutes = Interval::parseInt(
+                            substr($text, $state->start, $end - $state->start)
+                        );
                         $state->nextAllowed = $state->afterMins;
                     }
                     break;
@@ -137,7 +141,9 @@ use Kreait\Firebase\Exception\Messaging\InvalidArgument;
                     $state->mayBeTerminal = true;
                     $state->isTerminal = false;
                     $state->isValidResolution = true;
-                    $state->days = Interval::parseInt(substr($text, $state->start, $end - $state->start));
+                    $state->days = Interval::parseInt(
+                        substr($text, $state->start, $end - $state->start)
+                    );
                     $state->nextAllowed = $state->afterD;
                     break;
                 case 'T':
@@ -151,14 +157,20 @@ use Kreait\Firebase\Exception\Messaging\InvalidArgument;
                     $state->mayBeTerminal = true;
                     $state->isTerminal = false;
                     $state->isValidResolution = true;
-                    $state->hours = Interval::parseInt(substr($text, $state->start, $end - $state->start));
+                    $state->hours = Interval::parseInt(
+                        substr($text, $state->start, $end - $state->start)
+                    );
                     $state->nextAllowed = $state->afterH;
                     break;
                 case 'S':
                     $state->mayBeTerminal = true;
                     $state->isTerminal = true;
-                    $state->isValidResolution = $isValidResolution();
-                    $state->seconds = Interval::parseFloat(substr($text, $state->start, $end - $state->start));
+                    $state->isValidResolution = Interval::isValidResolution(
+                        substr($text, $state->start, $end - $state->start)
+                    );
+                    $state->seconds = Interval::parseFloat(
+                        substr($text, $state->start, $end - $state->start)
+                    );
                     $state->nextAllowed = null;
                     break;
                 default:
@@ -387,4 +399,24 @@ use Kreait\Firebase\Exception\Messaging\InvalidArgument;
         }
         return floatval($valueString);
     }
- }
+
+    private static function isValidResolution(string $textValue) : bool
+    {
+        $splitText = str_replace($textValue, ',', '.');
+        $splitText = explode('.', $splitText);
+
+        // If we have an int number, it is valid
+        if (count($splitText) < 2)
+        {
+            return true;
+        }
+
+        // If we have more than 9 digits after the decimal, it is not valid
+        if (strlen($splitText[1]) > 9)
+        {
+            return false;
+        }
+
+        return true;
+    }
+}

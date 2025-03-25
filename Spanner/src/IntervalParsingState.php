@@ -75,7 +75,7 @@ class IntervalParsingState
     public static function indexOfAny(string $text, array $nextAllowed, int $start = 0) : int
     {
         $splitString = str_split($text);
-        foreach(array_splice($splitString, $start) as $index=>$letter) {
+        foreach (array_splice($splitString, $start) as $index => $letter) {
             if (array_key_exists($letter, $nextAllowed)) {
                 return $index + $start;
             }
