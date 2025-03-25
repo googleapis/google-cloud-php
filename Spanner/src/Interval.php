@@ -80,28 +80,25 @@ class Interval
         $this->nanoseconds = $nanoseconds;
     }
 
-    public static function parse(string $text) : Interval
+    public static function parse(string $text): Interval
     {
-        if (empty($text))
-        {
+        if (empty($text)) {
             throw new InvalidArgumentException("The given interval is empty.");
         }
 
         $state = new SpannerIntervalParsingState();
         $end = -1;
 
-        do
-        {
-            $end = $state->IndexofAny($text, $state->nextAllowed, $state->start); //$text.(state.NextAllowed, state.Start);
+        do {
+            $end = $state->IndexofAny($text, $state->nextAllowed, $state->start);
 
             // We couldn't find any of the allowed characters of which we needed to find one.
-            if ($end === -1)
-            {
+            if ($end === -1) {
                 throw new InvalidArgumentException('Unsupported format');
             }
+
             // P[n]Y[n]M[n]DT[n]H[n]M[n[.fraction]]S
-            switch ($text[$end])
-            {
+            switch ($text[$end]) {
                 case 'P':
                     $state->mayBeTerminal = false;
                     $state->isTerminal = false;
@@ -182,20 +179,17 @@ class Interval
         } while ($state->start < strlen($text) && !$state->isTerminal);
 
         // We are at a terminal state but we haven't parsed the whole string yet.
-        if ($state->isTerminal && $state->start < strlen($text))
-        {
+        if ($state->isTerminal && $state->start < strlen($text)) {
             throw new InvalidArgumentException("The interval given is not in the correct format.");
         }
 
         // We parsed the whole string but we ended up at a state that's not terminal.
-        if (!$state->mayBeTerminal)
-        {
+        if (!$state->mayBeTerminal) {
             throw new InvalidArgumentException("The interval given is not in the correct format.");
         }
 
         // We do not have a valid precision for the fractional seconds
-        if (!$state->isValidResolution)
-        {
+        if (!$state->isValidResolution) {
             throw new InvalidArgumentException('Invalid interval');
         }
 
@@ -205,7 +199,7 @@ class Interval
         return new Interval($totalMonths, $state->days, $totalNanoseconds);
     }
 
-    public function __toString() : string
+    public function __toString(): string
     {
         // I consider that the string conversion is a bit heavy, memoizing it might be useful
         if (is_null($this->stringRepresentation)) {
@@ -224,7 +218,7 @@ class Interval
      *
      * @return Interval
      */
-    public static function fromMonthsDaysNanos(int $months, int $days, float $nanoseconds) : Interval
+    public static function fromMonthsDaysNanos(int $months, int $days, float $nanoseconds): Interval
     {
         return new Interval($months, $days, $nanoseconds);
     }
@@ -236,7 +230,7 @@ class Interval
      *
      * @return Interval
      */
-    public static function fromMonths(int $months) : Interval
+    public static function fromMonths(int $months): Interval
     {
         return new Interval($months, 0, 0);
     }
@@ -248,7 +242,7 @@ class Interval
      *
      * @return Interval
      */
-    public static function fromDays(int $days) : Interval
+    public static function fromDays(int $days): Interval
     {
         return new Interval(0, $days, 0);
     }
@@ -260,7 +254,7 @@ class Interval
      *
      * @return Interval
      */
-    public static function fromSeconds(float $seconds) : Interval
+    public static function fromSeconds(float $seconds): Interval
     {
         return new Interval(0, 0, $seconds * Interval::NANOSECONDSINASECOND);
     }
@@ -272,7 +266,7 @@ class Interval
      *
      * @return Interval
      */
-    public static function fromMilliseconds(float $milliseconds) : Interval
+    public static function fromMilliseconds(float $milliseconds): Interval
     {
         return new Interval(0, 0, $milliseconds * Interval::NANOSECONDSINAMILLISECOND);
     }
@@ -284,7 +278,7 @@ class Interval
      *
      * @return Interval
      */
-    public static function fromMicroseconds(float $microseconds) : Interval
+    public static function fromMicroseconds(float $microseconds): Interval
     {
         return new Interval(0, 0, $microseconds * Interval::NANOSECONDSINAMICROSECOND);
     }
@@ -296,12 +290,12 @@ class Interval
      *
      * @return Interval
      */
-    public static function fromNanoseconds(float $nanoseconds) : Interval
+    public static function fromNanoseconds(float $nanoseconds): Interval
     {
         return new Interval(0, 0, $nanoseconds);
     }
 
-    private function intervalToString() : string
+    private function intervalToString(): string
     {
         $years = 0;
         $months = 0;
@@ -321,70 +315,62 @@ class Interval
 
         $intervalString = "P";
 
-        if ($years != 0)
-        {
+        if ($years != 0) {
             $intervalString .= "{$years}Y";
         }
 
-        if ($months != 0)
-        {
+        if ($months != 0) {
             $intervalString .= "{$months}M";
         }
 
-        if ($days != 0)
-        {
+        if ($days != 0) {
             $intervalString .= "{$days}D";
         }
 
-        if ($hours != 0 || $minutes != 0 || $seconds != 0)
-        {
+        if ($hours != 0 || $minutes != 0 || $seconds != 0) {
             $intervalString .= "T";
 
-            if ($hours != 0)
-            {
+            if ($hours != 0) {
                 $intervalString .= "{$hours}H";
             }
 
-            if ($minutes != 0)
-            {
+            if ($minutes != 0) {
                 $intervalString .= "{$minutes}M";
             }
 
-            if ($seconds != 0)
-            {
+            if ($seconds != 0) {
                 $intervalString .= "{$seconds}S";
             }
         }
 
-        if ($intervalString == "P")
-        {
+        if ($intervalString == "P") {
             return "P0Y";
         }
 
         return $intervalString;
     }
 
-    private static function yearsToMonths(int $years) : int
+    private static function yearsToMonths(int $years): int
     {
         return $years * 12;
     }
 
-    private static function hoursTonanoseconds(int $hours) : float
+    private static function hoursTonanoseconds(int $hours): float
     {
         return $hours * Interval::NANOSECONDSINANHOUR;
     }
 
-    private static function minutesToNanoseconds(int $minutes) : float
+    private static function minutesToNanoseconds(int $minutes): float
     {
         return $minutes * Interval::NANOSECONDSINAMINUTE;
     }
 
-    private static function secondsToNanoseconds(float $seconds) : float
+    private static function secondsToNanoseconds(float $seconds): float
     {
         return $seconds * Interval::NANOSECONDSINASECOND;
     }
 
-    private static function parseInt(string $valueString) : int
+    private static function parseInt(string $valueString): int
     {
         if (str_contains($valueString, '.') || !is_numeric($valueString)) {
             throw new InvalidArgumentException("Invalid format");
@@ -392,7 +378,7 @@ class Interval
         return intval($valueString);
     }
 
-    private static function parseFloat(string $valueString) : float
+    private static function parseFloat(string $valueString): float
     {
         if (!is_numeric($valueString)) {
             throw new InvalidArgumentException("Invalid format");
@@ -400,20 +386,18 @@ class Interval
         return floatval($valueString);
     }
 
-    private static function isValidResolution(string $textValue) : bool
+    private static function isValidResolution(string $textValue): bool
     {
         $splitText = str_replace($textValue, ',', '.');
         $splitText = explode('.', $splitText);
 
         // If we have an int number, it is valid
-        if (count($splitText) < 2)
-        {
+        if (count($splitText) < 2) {
             return true;
         }
 
         // If we have more than 9 digits after the decimal, it is not valid
-        if (strlen($splitText[1]) > 9)
-        {
+        if (strlen($splitText[1]) > 9) {
             return false;
         }
 
