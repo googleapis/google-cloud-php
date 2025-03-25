@@ -18,9 +18,7 @@
 namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Spanner\IntervalParsingState as SpannerIntervalParsingState;
-use IntervalParsingState;
 use InvalidArgumentException;
-use Kreait\Firebase\Exception\Messaging\InvalidArgument;
 
 class Interval
 {
