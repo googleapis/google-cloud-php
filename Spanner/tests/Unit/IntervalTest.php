@@ -17,11 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
-use Exception;
-use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Interval;
-
-;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 

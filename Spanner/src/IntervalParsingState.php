@@ -72,7 +72,7 @@ class IntervalParsingState
     /**
      * Returns the index of the first occurrence of needles on the string
      */
-    public static function indexOfAny(string $text, array $nextAllowed, int $start = 0) : int
+    public static function indexOfAny(string $text, array $nextAllowed, int $start = 0): int
     {
         $splitString = str_split($text);
         foreach (array_splice($splitString, $start) as $index => $letter) {

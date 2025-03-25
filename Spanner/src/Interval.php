@@ -83,7 +83,7 @@ class Interval
     public static function parse(string $text): Interval
     {
         if (empty($text)) {
-            throw new InvalidArgumentException("The given interval is empty.");
+            throw new InvalidArgumentException('The given interval is empty.');
         }
 
         $state = new SpannerIntervalParsingState();
@@ -175,17 +175,16 @@ class Interval
             }
 
             $state->start = $end + 1;
-
         } while ($state->start < strlen($text) && !$state->isTerminal);
 
         // We are at a terminal state but we haven't parsed the whole string yet.
         if ($state->isTerminal && $state->start < strlen($text)) {
-            throw new InvalidArgumentException("The interval given is not in the correct format.");
+            throw new InvalidArgumentException('The interval given is not in the correct format.');
         }
 
         // We parsed the whole string but we ended up at a state that's not terminal.
         if (!$state->mayBeTerminal) {
-            throw new InvalidArgumentException("The interval given is not in the correct format.");
+            throw new InvalidArgumentException('The interval given is not in the correct format.');
         }
 
         // We do not have a valid precision for the fractional seconds
@@ -194,7 +193,9 @@ class Interval
         }
 
         $totalMonths = Interval::yearsToMonths($state->years) + $state->months;
-        $totalNanoseconds = Interval::hoursToNanoseconds($state->hours) + Interval::minutesToNanoseconds($state->minutes) + Interval::SecondsToNanoseconds($state->seconds);
+        $totalNanoseconds = Interval::hoursToNanoseconds($state->hours) +
+            Interval::minutesToNanoseconds($state->minutes) +
+            Interval::SecondsToNanoseconds($state->seconds);
 
         return new Interval($totalMonths, $state->days, $totalNanoseconds);
     }
@@ -313,7 +314,7 @@ class Interval
         $remainingNanoseconds = fmod($remainingNanoseconds, Interval::NANOSECONDSINAMINUTE);
         $seconds = $remainingNanoseconds / Interval::NANOSECONDSINASECOND;
 
-        $intervalString = "P";
+        $intervalString = 'P';
 
         if ($years != 0) {
             $intervalString .= "{$years}Y";
@@ -328,7 +329,7 @@ class Interval
         }
 
         if ($hours != 0 || $minutes != 0 || $seconds != 0) {
-            $intervalString .= "T";
+            $intervalString .= 'T';
 
             if ($hours != 0) {
                 $intervalString .= "{$hours}H";
@@ -343,8 +344,8 @@ class Interval
             }
         }
 
-        if ($intervalString == "P") {
-            return "P0Y";
+        if ($intervalString == 'P') {
+            return 'P0Y';
         }
 
         return $intervalString;
@@ -373,7 +374,7 @@ class Interval
     private static function parseInt(string $valueString): int
     {
         if (str_contains($valueString, '.') || !is_numeric($valueString)) {
-            throw new InvalidArgumentException("Invalid format");
+            throw new InvalidArgumentException('Invalid format');
         }
         return intval($valueString);
     }
@@ -381,7 +382,7 @@ class Interval
     private static function parseFloat(string $valueString): float
     {
         if (!is_numeric($valueString)) {
-            throw new InvalidArgumentException("Invalid format");
+            throw new InvalidArgumentException('Invalid format');
         }
         return floatval($valueString);
     }

@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Spanner;
 
-use DateInterval;
-use DateTime;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\TimeTrait;
