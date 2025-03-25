@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Application defines the governance boundary for App Hub Entities that
+ * Application defines the governance boundary for App Hub entities that
  * perform a logical end-to-end business function.
  * App Hub supports application level IAM permission to align with governance
  * requirements.
@@ -20,7 +20,7 @@ class Application extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. The resource name of an Application. Format:
-     * "projects/{host-project-id}/locations/{location}/applications/{application-id}"
+     * `"projects/{host-project-id}/locations/{location}/applications/{application-id}"`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -86,7 +86,7 @@ class Application extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. The resource name of an Application. Format:
-     *           "projects/{host-project-id}/locations/{location}/applications/{application-id}"
+     *           `"projects/{host-project-id}/locations/{location}/applications/{application-id}"`
      *     @type string $display_name
      *           Optional. User-defined name for the Application.
      *           Can have a maximum length of 63 characters.
@@ -116,7 +116,7 @@ class Application extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The resource name of an Application. Format:
-     * "projects/{host-project-id}/locations/{location}/applications/{application-id}"
+     * `"projects/{host-project-id}/locations/{location}/applications/{application-id}"`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -128,7 +128,7 @@ class Application extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The resource name of an Application. Format:
-     * "projects/{host-project-id}/locations/{location}/applications/{application-id}"
+     * `"projects/{host-project-id}/locations/{location}/applications/{application-id}"`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var

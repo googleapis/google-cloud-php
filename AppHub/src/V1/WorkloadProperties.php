@@ -17,21 +17,21 @@ class WorkloadProperties extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The service project identifier that the underlying cloud
-     * resource resides in. Empty for non cloud resources.
+     * resource resides in. Empty for non-cloud resources.
      *
      * Generated from protobuf field <code>string gcp_project = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $gcp_project = '';
     /**
      * Output only. The location that the underlying compute resource resides in
-     * (e.g us-west1).
+     * (for example, us-west1).
      *
      * Generated from protobuf field <code>string location = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $location = '';
     /**
      * Output only. The location that the underlying compute resource resides in
-     * if it is zonal (e.g us-west1-a).
+     * if it is zonal (for example, us-west1-a).
      *
      * Generated from protobuf field <code>string zone = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -45,13 +45,13 @@ class WorkloadProperties extends \Google\Protobuf\Internal\Message
      *
      *     @type string $gcp_project
      *           Output only. The service project identifier that the underlying cloud
-     *           resource resides in. Empty for non cloud resources.
+     *           resource resides in. Empty for non-cloud resources.
      *     @type string $location
      *           Output only. The location that the underlying compute resource resides in
-     *           (e.g us-west1).
+     *           (for example, us-west1).
      *     @type string $zone
      *           Output only. The location that the underlying compute resource resides in
-     *           if it is zonal (e.g us-west1-a).
+     *           if it is zonal (for example, us-west1-a).
      * }
      */
     public function __construct($data = NULL) {
@@ -61,7 +61,7 @@ class WorkloadProperties extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The service project identifier that the underlying cloud
-     * resource resides in. Empty for non cloud resources.
+     * resource resides in. Empty for non-cloud resources.
      *
      * Generated from protobuf field <code>string gcp_project = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -73,7 +73,7 @@ class WorkloadProperties extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The service project identifier that the underlying cloud
-     * resource resides in. Empty for non cloud resources.
+     * resource resides in. Empty for non-cloud resources.
      *
      * Generated from protobuf field <code>string gcp_project = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -89,7 +89,7 @@ class WorkloadProperties extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The location that the underlying compute resource resides in
-     * (e.g us-west1).
+     * (for example, us-west1).
      *
      * Generated from protobuf field <code>string location = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -101,7 +101,7 @@ class WorkloadProperties extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The location that the underlying compute resource resides in
-     * (e.g us-west1).
+     * (for example, us-west1).
      *
      * Generated from protobuf field <code>string location = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -117,7 +117,7 @@ class WorkloadProperties extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The location that the underlying compute resource resides in
-     * if it is zonal (e.g us-west1-a).
+     * if it is zonal (for example, us-west1-a).
      *
      * Generated from protobuf field <code>string zone = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -129,7 +129,7 @@ class WorkloadProperties extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The location that the underlying compute resource resides in
-     * if it is zonal (e.g us-west1-a).
+     * if it is zonal (for example, us-west1-a).
      *
      * Generated from protobuf field <code>string zone = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
