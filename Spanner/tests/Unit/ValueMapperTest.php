@@ -24,6 +24,7 @@ use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
+use Google\Cloud\Spanner\Interval;
 use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\Proto;
@@ -34,6 +35,7 @@ use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\ValueMapper;
 use Google\Cloud\Spanner\V1\TypeAnnotationCode;
 use Google\Cloud\Spanner\V1\TypeCode;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Testing\Data\Book;
 use Testing\Data\User;
@@ -1308,7 +1310,7 @@ class ValueMapperTest extends TestCase
             Result::RETURN_ASSOCIATIVE
         );
 
-        $expectedValue = new DateInterval($interval);
+        $expectedValue = Interval::parse($interval);
         $this->assertEquals($expectedValue, $res['rowName']);
     }
 
@@ -1322,22 +1324,16 @@ class ValueMapperTest extends TestCase
             Result::RETURN_ASSOCIATIVE
         );
 
-        $nonFractionalInterval = 'P1Y2M3DT4H5M6S';
-        $expectedFraction = 0.5;
-        $expectedValue = new DateInterval($nonFractionalInterval);
-        $this->assertEquals($expectedValue->y, $res['rowName']->y);
-        $this->assertEquals($expectedValue->m, $res['rowName']->m);
-        $this->assertEquals($expectedValue->d, $res['rowName']->d);
-        $this->assertEquals($expectedValue->h, $res['rowName']->h);
-        $this->assertEquals($expectedValue->m, $res['rowName']->m);
-        $this->assertEquals($expectedValue->s, $res['rowName']->s);
-        $this->assertEquals($expectedFraction, $res['rowName']->f);
+        $expectedValue = Interval::parse($interval);
+
+        $this->assertEquals($res['rowName'], $expectedValue);
+        $this->assertEquals($res['rowName']->__toString(), $interval);
     }
 
     /** @dataProvider invalidIntervals */
     public function testIntervalWithInvalidFormatThrowsException(string $interval)
     {
-        $this->expectException(RuntimeException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         $res = $this->mapper->decodeValues(
             $this->createField(Database::TYPE_INTERVAL),
