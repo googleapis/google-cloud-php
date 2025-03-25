@@ -379,16 +379,14 @@ class ValueMapper
                 $value = new Proto($value, $type['protoTypeFqn']);
                 break;
             case self::TYPE_INTERVAL:
-                $value = $this->parseInterval($value);
-
-                if (is_null($value)) {
+                if (!is_string($value)) {
                     throw new \RuntimeException(sprintf(
-                        'Invalid format %s for %s',
+                        'Unexpected value %s in %s field.',
                         $value,
                         TypeCode::name($type['code'])
                     ));
                 }
-
+                $value = Interval::parse($value);
                 break;
         }
 
@@ -922,43 +920,5 @@ class ValueMapper
         }
 
         return $mismatch;
-    }
-
-    /**
-     * Parses an interval type ISO8601 to PHP DateInterval
-     *
-     * @param string $interval
-     * @return null|DateInterval
-     */
-    private function parseInterval(string $interval): null|DateInterval
-    {
-        if (!str_contains($interval, '.')) {
-            return new DateInterval($interval);
-        }
-
-        // DateInterval does not support fractionals on its constructor
-        // so we handle the decimal separately
-        $matches = [];
-        $fractionalSecondsReg = '/^P([^.]*)\.(\d+)S$/';
-
-        if (!preg_match($fractionalSecondsReg, $interval, $matches)) {
-            return null;
-        }
-
-        // Format for fractionals:
-        // P[n]Y[n]M[n]DT[n]H[n]M[n[.fraction]]S
-        // where n is an int
-        $intervalInt = $matches[1] . 'S'; // Add the S for the ISO8601
-        $microseconds = $matches[2] * 100000; // Turn the fractional into microseconds
-
-        // Picked at random, we just need any date
-        $startString = '1989-12-27';
-        $start = new DateTime($startString);
-        $end = new DateTime($startString);
-        $end->setTime(0, 0, 0, $microseconds);
-        $end->add(new DateInterval($intervalInt));
-
-        // This does return a DateInterval with fractions
-        return $start->diff($end);
     }
 }
