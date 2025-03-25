@@ -30,11 +30,18 @@ class AvailableLinkTypes
      * Generated from protobuf enum <code>LINK_TYPE_ETHERNET_10G_LR = 236739749;</code>
      */
     const LINK_TYPE_ETHERNET_10G_LR = 236739749;
+    /**
+     * 400G Ethernet, LR4 Optics.
+     *
+     * Generated from protobuf enum <code>LINK_TYPE_ETHERNET_400G_LR4 = 127023690;</code>
+     */
+    const LINK_TYPE_ETHERNET_400G_LR4 = 127023690;
 
     private static $valueToName = [
         self::UNDEFINED_AVAILABLE_LINK_TYPES => 'UNDEFINED_AVAILABLE_LINK_TYPES',
         self::LINK_TYPE_ETHERNET_100G_LR => 'LINK_TYPE_ETHERNET_100G_LR',
         self::LINK_TYPE_ETHERNET_10G_LR => 'LINK_TYPE_ETHERNET_10G_LR',
+        self::LINK_TYPE_ETHERNET_400G_LR4 => 'LINK_TYPE_ETHERNET_400G_LR4',
     ];
 
     public static function name($value)
