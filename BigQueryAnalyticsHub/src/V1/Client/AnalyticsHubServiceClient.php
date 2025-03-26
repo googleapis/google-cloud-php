@@ -321,6 +321,23 @@ final class AnalyticsHubServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a topic
+     * resource.
+     *
+     * @param string $project
+     * @param string $topic
+     *
+     * @return string The formatted topic resource.
+     */
+    public static function topicName(string $project, string $topic): string
+    {
+        return self::getPathTemplate('topic')->render([
+            'project' => $project,
+            'topic' => $topic,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -330,6 +347,7 @@ final class AnalyticsHubServiceClient
      * - location: projects/{project}/locations/{location}
      * - subscription: projects/{project}/locations/{location}/subscriptions/{subscription}
      * - table: projects/{project}/datasets/{dataset}/tables/{table}
+     * - topic: projects/{project}/topics/{topic}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -887,8 +905,8 @@ final class AnalyticsHubServiceClient
     }
 
     /**
-     * Creates a Subscription to a Data Exchange. This is a long-running operation
-     * as it will create one or more linked datasets.
+     * Creates a Subscription to a Data Clean Room. This is a long-running
+     * operation as it will create one or more linked datasets.
      *
      * The async variant is
      * {@see AnalyticsHubServiceClient::subscribeDataExchangeAsync()} .

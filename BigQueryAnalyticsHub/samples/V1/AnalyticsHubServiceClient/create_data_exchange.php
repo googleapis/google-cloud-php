@@ -35,9 +35,7 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\DataExchange;
  *                                        e.g. `projects/myproject/locations/US`. Please see
  *                                        {@see AnalyticsHubServiceClient::locationName()} for help formatting this field.
  * @param string $dataExchangeId          The ID of the data exchange.
- *                                        Must contain only Unicode letters, numbers (0-9), underscores (_).
- *                                        Should not use characters that require URL-escaping, or characters
- *                                        outside of ASCII, spaces.
+ *                                        Must contain only ASCII letters, numbers (0-9), underscores (_).
  *                                        Max length: 100 bytes.
  * @param string $dataExchangeDisplayName Human-readable display name of the data exchange. The display
  *                                        name must contain only Unicode letters, numbers (0-9), underscores (_),

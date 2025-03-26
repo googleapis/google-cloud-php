@@ -71,6 +71,27 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string subscriber_contact = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $subscriber_contact = '';
+    /**
+     * Output only. Linked resources created in the subscription. Only contains
+     * values if state = STATE_ACTIVE.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Subscription.LinkedResource linked_resources = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $linked_resources;
+    /**
+     * Output only. Listing shared asset type.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.SharedResourceType resource_type = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $resource_type = 0;
+    /**
+     * Output only. By default, false.
+     * If true, the Subscriber agreed to the email sharing mandate
+     * that is enabled for DataExchange/Listing.
+     *
+     * Generated from protobuf field <code>optional bool log_linked_dataset_query_user_email = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $log_linked_dataset_query_user_email = null;
     protected $resource_name;
 
     /**
@@ -107,6 +128,15 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           Only contains values if state == STATE_ACTIVE.
      *     @type string $subscriber_contact
      *           Output only. Email of the subscriber.
+     *     @type array<\Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription\LinkedResource>|\Google\Protobuf\Internal\RepeatedField $linked_resources
+     *           Output only. Linked resources created in the subscription. Only contains
+     *           values if state = STATE_ACTIVE.
+     *     @type int $resource_type
+     *           Output only. Listing shared asset type.
+     *     @type bool $log_linked_dataset_query_user_email
+     *           Output only. By default, false.
+     *           If true, the Subscriber agreed to the email sharing mandate
+     *           that is enabled for DataExchange/Listing.
      * }
      */
     public function __construct($data = NULL) {
@@ -416,6 +446,100 @@ class Subscription extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->subscriber_contact = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Linked resources created in the subscription. Only contains
+     * values if state = STATE_ACTIVE.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Subscription.LinkedResource linked_resources = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getLinkedResources()
+    {
+        return $this->linked_resources;
+    }
+
+    /**
+     * Output only. Linked resources created in the subscription. Only contains
+     * values if state = STATE_ACTIVE.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Subscription.LinkedResource linked_resources = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription\LinkedResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setLinkedResources($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription\LinkedResource::class);
+        $this->linked_resources = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Listing shared asset type.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.SharedResourceType resource_type = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getResourceType()
+    {
+        return $this->resource_type;
+    }
+
+    /**
+     * Output only. Listing shared asset type.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.SharedResourceType resource_type = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setResourceType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\SharedResourceType::class);
+        $this->resource_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. By default, false.
+     * If true, the Subscriber agreed to the email sharing mandate
+     * that is enabled for DataExchange/Listing.
+     *
+     * Generated from protobuf field <code>optional bool log_linked_dataset_query_user_email = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getLogLinkedDatasetQueryUserEmail()
+    {
+        return isset($this->log_linked_dataset_query_user_email) ? $this->log_linked_dataset_query_user_email : false;
+    }
+
+    public function hasLogLinkedDatasetQueryUserEmail()
+    {
+        return isset($this->log_linked_dataset_query_user_email);
+    }
+
+    public function clearLogLinkedDatasetQueryUserEmail()
+    {
+        unset($this->log_linked_dataset_query_user_email);
+    }
+
+    /**
+     * Output only. By default, false.
+     * If true, the Subscriber agreed to the email sharing mandate
+     * that is enabled for DataExchange/Listing.
+     *
+     * Generated from protobuf field <code>optional bool log_linked_dataset_query_user_email = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setLogLinkedDatasetQueryUserEmail($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->log_linked_dataset_query_user_email = $var;
 
         return $this;
     }

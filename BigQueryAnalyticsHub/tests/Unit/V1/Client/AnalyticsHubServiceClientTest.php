@@ -47,7 +47,6 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\ListSharedResourceSubscriptionsRespons
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListSubscriptionsRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListSubscriptionsResponse;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing;
-use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\RefreshSubscriptionRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\RefreshSubscriptionResponse;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\RevokeSubscriptionRequest;
@@ -119,6 +118,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $documentation = 'documentation1587405498';
         $listingCount = 1101038700;
         $icon = '121';
+        $logLinkedDatasetQueryUserEmail = false;
         $expectedResponse = new DataExchange();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -127,6 +127,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $expectedResponse->setDocumentation($documentation);
         $expectedResponse->setListingCount($listingCount);
         $expectedResponse->setIcon($icon);
+        $expectedResponse->setLogLinkedDatasetQueryUserEmail($logLinkedDatasetQueryUserEmail);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -217,6 +218,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $documentation = 'documentation1587405498';
         $icon = '121';
         $requestAccess = 'requestAccess2059178260';
+        $logLinkedDatasetQueryUserEmail = false;
         $expectedResponse = new Listing();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -225,6 +227,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $expectedResponse->setDocumentation($documentation);
         $expectedResponse->setIcon($icon);
         $expectedResponse->setRequestAccess($requestAccess);
+        $expectedResponse->setLogLinkedDatasetQueryUserEmail($logLinkedDatasetQueryUserEmail);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->dataExchangeName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]');
@@ -232,8 +235,6 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $listing = new Listing();
         $listingDisplayName = 'listingDisplayName293456201';
         $listing->setDisplayName($listingDisplayName);
-        $listingBigqueryDataset = new BigQueryDatasetSource();
-        $listing->setBigqueryDataset($listingBigqueryDataset);
         $request = (new CreateListingRequest())
             ->setParent($formattedParent)
             ->setListingId($listingId)
@@ -281,8 +282,6 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $listing = new Listing();
         $listingDisplayName = 'listingDisplayName293456201';
         $listing->setDisplayName($listingDisplayName);
-        $listingBigqueryDataset = new BigQueryDatasetSource();
-        $listing->setBigqueryDataset($listingBigqueryDataset);
         $request = (new CreateListingRequest())
             ->setParent($formattedParent)
             ->setListingId($listingId)
@@ -568,6 +567,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $documentation = 'documentation1587405498';
         $listingCount = 1101038700;
         $icon = '121';
+        $logLinkedDatasetQueryUserEmail = false;
         $expectedResponse = new DataExchange();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -576,6 +576,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $expectedResponse->setDocumentation($documentation);
         $expectedResponse->setListingCount($listingCount);
         $expectedResponse->setIcon($icon);
+        $expectedResponse->setLogLinkedDatasetQueryUserEmail($logLinkedDatasetQueryUserEmail);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->dataExchangeName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]');
@@ -715,6 +716,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $documentation = 'documentation1587405498';
         $icon = '121';
         $requestAccess = 'requestAccess2059178260';
+        $logLinkedDatasetQueryUserEmail = false;
         $expectedResponse = new Listing();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -723,6 +725,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $expectedResponse->setDocumentation($documentation);
         $expectedResponse->setIcon($icon);
         $expectedResponse->setRequestAccess($requestAccess);
+        $expectedResponse->setLogLinkedDatasetQueryUserEmail($logLinkedDatasetQueryUserEmail);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->listingName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]', '[LISTING]');
@@ -790,12 +793,14 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $organizationId = 'organizationId1326486439';
         $organizationDisplayName = 'organizationDisplayName1039600500';
         $subscriberContact = 'subscriberContact-975982775';
+        $logLinkedDatasetQueryUserEmail = false;
         $expectedResponse = new Subscription();
         $expectedResponse->setListing($listing);
         $expectedResponse->setName($name2);
         $expectedResponse->setOrganizationId($organizationId);
         $expectedResponse->setOrganizationDisplayName($organizationDisplayName);
         $expectedResponse->setSubscriberContact($subscriberContact);
+        $expectedResponse->setLogLinkedDatasetQueryUserEmail($logLinkedDatasetQueryUserEmail);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->subscriptionName('[PROJECT]', '[LOCATION]', '[SUBSCRIPTION]');
@@ -1772,6 +1777,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $documentation = 'documentation1587405498';
         $listingCount = 1101038700;
         $icon = '121';
+        $logLinkedDatasetQueryUserEmail = false;
         $expectedResponse = new DataExchange();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -1780,6 +1786,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $expectedResponse->setDocumentation($documentation);
         $expectedResponse->setListingCount($listingCount);
         $expectedResponse->setIcon($icon);
+        $expectedResponse->setLogLinkedDatasetQueryUserEmail($logLinkedDatasetQueryUserEmail);
         $transport->addResponse($expectedResponse);
         // Mock request
         $updateMask = new FieldMask();
@@ -1860,6 +1867,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $documentation = 'documentation1587405498';
         $icon = '121';
         $requestAccess = 'requestAccess2059178260';
+        $logLinkedDatasetQueryUserEmail = false;
         $expectedResponse = new Listing();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -1868,14 +1876,13 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $expectedResponse->setDocumentation($documentation);
         $expectedResponse->setIcon($icon);
         $expectedResponse->setRequestAccess($requestAccess);
+        $expectedResponse->setLogLinkedDatasetQueryUserEmail($logLinkedDatasetQueryUserEmail);
         $transport->addResponse($expectedResponse);
         // Mock request
         $updateMask = new FieldMask();
         $listing = new Listing();
         $listingDisplayName = 'listingDisplayName293456201';
         $listing->setDisplayName($listingDisplayName);
-        $listingBigqueryDataset = new BigQueryDatasetSource();
-        $listing->setBigqueryDataset($listingBigqueryDataset);
         $request = (new UpdateListingRequest())->setUpdateMask($updateMask)->setListing($listing);
         $response = $gapicClient->updateListing($request);
         $this->assertEquals($expectedResponse, $response);
@@ -1917,8 +1924,6 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $listing = new Listing();
         $listingDisplayName = 'listingDisplayName293456201';
         $listing->setDisplayName($listingDisplayName);
-        $listingBigqueryDataset = new BigQueryDatasetSource();
-        $listing->setBigqueryDataset($listingBigqueryDataset);
         $request = (new UpdateListingRequest())->setUpdateMask($updateMask)->setListing($listing);
         try {
             $gapicClient->updateListing($request);
@@ -1949,6 +1954,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $documentation = 'documentation1587405498';
         $listingCount = 1101038700;
         $icon = '121';
+        $logLinkedDatasetQueryUserEmail = false;
         $expectedResponse = new DataExchange();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -1957,6 +1963,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $expectedResponse->setDocumentation($documentation);
         $expectedResponse->setListingCount($listingCount);
         $expectedResponse->setIcon($icon);
+        $expectedResponse->setLogLinkedDatasetQueryUserEmail($logLinkedDatasetQueryUserEmail);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');

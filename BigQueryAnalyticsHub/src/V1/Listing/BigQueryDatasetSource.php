@@ -22,16 +22,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource name of the dataset source for this listing.
+     * Optional. Resource name of the dataset source for this listing.
      * e.g. `projects/myproject/datasets/123`
      *
-     * Generated from protobuf field <code>string dataset = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $dataset = '';
     /**
-     * Optional. Resources in this dataset that are selectively shared.
-     * If this field is empty, then the entire dataset (all resources) are
-     * shared. This field is only valid for data clean room exchanges.
+     * Optional. Resource in this dataset that is selectively shared.
+     * This field is required for data clean room exchanges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.SelectedResource selected_resources = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -51,12 +50,11 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $dataset
-     *           Resource name of the dataset source for this listing.
+     *           Optional. Resource name of the dataset source for this listing.
      *           e.g. `projects/myproject/datasets/123`
      *     @type array<\Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\SelectedResource>|\Google\Protobuf\Internal\RepeatedField $selected_resources
-     *           Optional. Resources in this dataset that are selectively shared.
-     *           If this field is empty, then the entire dataset (all resources) are
-     *           shared. This field is only valid for data clean room exchanges.
+     *           Optional. Resource in this dataset that is selectively shared.
+     *           This field is required for data clean room exchanges.
      *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\RestrictedExportPolicy $restricted_export_policy
      *           Optional. If set, restricted export policy will be propagated and
      *           enforced on the linked dataset.
@@ -68,10 +66,10 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the dataset source for this listing.
+     * Optional. Resource name of the dataset source for this listing.
      * e.g. `projects/myproject/datasets/123`
      *
-     * Generated from protobuf field <code>string dataset = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getDataset()
@@ -80,10 +78,10 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the dataset source for this listing.
+     * Optional. Resource name of the dataset source for this listing.
      * e.g. `projects/myproject/datasets/123`
      *
-     * Generated from protobuf field <code>string dataset = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -96,9 +94,8 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Resources in this dataset that are selectively shared.
-     * If this field is empty, then the entire dataset (all resources) are
-     * shared. This field is only valid for data clean room exchanges.
+     * Optional. Resource in this dataset that is selectively shared.
+     * This field is required for data clean room exchanges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.SelectedResource selected_resources = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -109,9 +106,8 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Resources in this dataset that are selectively shared.
-     * If this field is empty, then the entire dataset (all resources) are
-     * shared. This field is only valid for data clean room exchanges.
+     * Optional. Resource in this dataset that is selectively shared.
+     * This field is required for data clean room exchanges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.SelectedResource selected_resources = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\SelectedResource>|\Google\Protobuf\Internal\RepeatedField $var

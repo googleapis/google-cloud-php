@@ -24,9 +24,7 @@ class CreateListingRequest extends \Google\Protobuf\Internal\Message
     protected $parent = '';
     /**
      * Required. The ID of the listing to create.
-     * Must contain only Unicode letters, numbers (0-9), underscores (_).
-     * Should not use characters that require URL-escaping, or characters
-     * outside of ASCII, spaces.
+     * Must contain only ASCII letters, numbers (0-9), underscores (_).
      * Max length: 100 bytes.
      *
      * Generated from protobuf field <code>string listing_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -67,9 +65,7 @@ class CreateListingRequest extends \Google\Protobuf\Internal\Message
      *           e.g. `projects/myproject/locations/US/dataExchanges/123`.
      *     @type string $listing_id
      *           Required. The ID of the listing to create.
-     *           Must contain only Unicode letters, numbers (0-9), underscores (_).
-     *           Should not use characters that require URL-escaping, or characters
-     *           outside of ASCII, spaces.
+     *           Must contain only ASCII letters, numbers (0-9), underscores (_).
      *           Max length: 100 bytes.
      *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing $listing
      *           Required. The listing to create.
@@ -110,9 +106,7 @@ class CreateListingRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The ID of the listing to create.
-     * Must contain only Unicode letters, numbers (0-9), underscores (_).
-     * Should not use characters that require URL-escaping, or characters
-     * outside of ASCII, spaces.
+     * Must contain only ASCII letters, numbers (0-9), underscores (_).
      * Max length: 100 bytes.
      *
      * Generated from protobuf field <code>string listing_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -125,9 +119,7 @@ class CreateListingRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The ID of the listing to create.
-     * Must contain only Unicode letters, numbers (0-9), underscores (_).
-     * Should not use characters that require URL-escaping, or characters
-     * outside of ASCII, spaces.
+     * Must contain only ASCII letters, numbers (0-9), underscores (_).
      * Max length: 100 bytes.
      *
      * Generated from protobuf field <code>string listing_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>

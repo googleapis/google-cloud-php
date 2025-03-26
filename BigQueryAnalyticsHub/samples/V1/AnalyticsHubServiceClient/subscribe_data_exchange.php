@@ -31,8 +31,8 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeDataExchangeResponse;
 use Google\Rpc\Status;
 
 /**
- * Creates a Subscription to a Data Exchange. This is a long-running operation
- * as it will create one or more linked datasets.
+ * Creates a Subscription to a Data Clean Room. This is a long-running
+ * operation as it will create one or more linked datasets.
  *
  * @param string $formattedName        Resource name of the Data Exchange.
  *                                     e.g. `projects/publisherproject/locations/US/dataExchanges/123`

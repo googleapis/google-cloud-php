@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\Client\AnalyticsHubServiceClient;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing;
-use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\UpdateListingRequest;
 use Google\Protobuf\FieldMask;
 
@@ -45,9 +44,7 @@ function update_listing_sample(string $listingDisplayName): void
 
     // Prepare the request message.
     $updateMask = new FieldMask();
-    $listingBigqueryDataset = new BigQueryDatasetSource();
     $listing = (new Listing())
-        ->setBigqueryDataset($listingBigqueryDataset)
         ->setDisplayName($listingDisplayName);
     $request = (new UpdateListingRequest())
         ->setUpdateMask($updateMask)

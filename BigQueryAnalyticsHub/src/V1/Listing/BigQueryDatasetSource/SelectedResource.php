@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Resource in this dataset that are selectively shared.
+ * Resource in this dataset that is selectively shared.
  *
  * Generated from protobuf message <code>google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.SelectedResource</code>
  */

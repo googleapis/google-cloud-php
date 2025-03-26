@@ -124,6 +124,4 @@ class AvroConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AvroConfig::class, \Google\Cloud\BigQuery\AnalyticsHub\V1\CloudStorageConfig_AvroConfig::class);
 

@@ -112,6 +112,19 @@ class Listing extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.bigquery.analyticshub.v1.DiscoveryType discovery_type = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $discovery_type = null;
+    /**
+     * Output only. Listing shared asset type.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.SharedResourceType resource_type = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $resource_type = 0;
+    /**
+     * Optional. By default, false.
+     * If true, the Listing has an email sharing mandate enabled.
+     *
+     * Generated from protobuf field <code>optional bool log_linked_dataset_query_user_email = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $log_linked_dataset_query_user_email = null;
     protected $source;
 
     /**
@@ -121,7 +134,9 @@ class Listing extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource $bigquery_dataset
-     *           Required. Shared dataset i.e. BigQuery dataset source.
+     *           Shared dataset i.e. BigQuery dataset source.
+     *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\PubSubTopicSource $pubsub_topic
+     *           Pub/Sub topic source.
      *     @type string $name
      *           Output only. The resource name of the listing.
      *           e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`
@@ -164,6 +179,11 @@ class Listing extends \Google\Protobuf\Internal\Message
      *           enforced on the linked dataset.
      *     @type int $discovery_type
      *           Optional. Type of discovery of the listing on the discovery page.
+     *     @type int $resource_type
+     *           Output only. Listing shared asset type.
+     *     @type bool $log_linked_dataset_query_user_email
+     *           Optional. By default, false.
+     *           If true, the Listing has an email sharing mandate enabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -172,9 +192,9 @@ class Listing extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Shared dataset i.e. BigQuery dataset source.
+     * Shared dataset i.e. BigQuery dataset source.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource bigquery_dataset = 6 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource bigquery_dataset = 6;</code>
      * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource|null
      */
     public function getBigqueryDataset()
@@ -188,9 +208,9 @@ class Listing extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Shared dataset i.e. BigQuery dataset source.
+     * Shared dataset i.e. BigQuery dataset source.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource bigquery_dataset = 6 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource bigquery_dataset = 6;</code>
      * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource $var
      * @return $this
      */
@@ -198,6 +218,37 @@ class Listing extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource::class);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Pub/Sub topic source.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Listing.PubSubTopicSource pubsub_topic = 16;</code>
+     * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\PubSubTopicSource|null
+     */
+    public function getPubsubTopic()
+    {
+        return $this->readOneof(16);
+    }
+
+    public function hasPubsubTopic()
+    {
+        return $this->hasOneof(16);
+    }
+
+    /**
+     * Pub/Sub topic source.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Listing.PubSubTopicSource pubsub_topic = 16;</code>
+     * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\PubSubTopicSource $var
+     * @return $this
+     */
+    public function setPubsubTopic($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\PubSubTopicSource::class);
+        $this->writeOneof(16, $var);
 
         return $this;
     }
@@ -608,6 +659,70 @@ class Listing extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\DiscoveryType::class);
         $this->discovery_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Listing shared asset type.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.SharedResourceType resource_type = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getResourceType()
+    {
+        return $this->resource_type;
+    }
+
+    /**
+     * Output only. Listing shared asset type.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.SharedResourceType resource_type = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setResourceType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\SharedResourceType::class);
+        $this->resource_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. By default, false.
+     * If true, the Listing has an email sharing mandate enabled.
+     *
+     * Generated from protobuf field <code>optional bool log_linked_dataset_query_user_email = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getLogLinkedDatasetQueryUserEmail()
+    {
+        return isset($this->log_linked_dataset_query_user_email) ? $this->log_linked_dataset_query_user_email : false;
+    }
+
+    public function hasLogLinkedDatasetQueryUserEmail()
+    {
+        return isset($this->log_linked_dataset_query_user_email);
+    }
+
+    public function clearLogLinkedDatasetQueryUserEmail()
+    {
+        unset($this->log_linked_dataset_query_user_email);
+    }
+
+    /**
+     * Optional. By default, false.
+     * If true, the Listing has an email sharing mandate enabled.
+     *
+     * Generated from protobuf field <code>optional bool log_linked_dataset_query_user_email = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setLogLinkedDatasetQueryUserEmail($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->log_linked_dataset_query_user_email = $var;
 
         return $this;
     }

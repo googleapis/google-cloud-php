@@ -33,6 +33,4 @@ class TextConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TextConfig::class, \Google\Cloud\BigQuery\AnalyticsHub\V1\CloudStorageConfig_TextConfig::class);
 
