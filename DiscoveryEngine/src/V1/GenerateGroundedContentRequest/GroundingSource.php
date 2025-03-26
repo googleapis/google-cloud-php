@@ -29,6 +29,8 @@ class GroundingSource extends \Google\Protobuf\Internal\Message
      *           If set, grounding is performed with Vertex AI Search.
      *     @type \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentRequest\GroundingSource\GoogleSearchSource $google_search_source
      *           If set, grounding is performed with Google Search.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentRequest\GroundingSource\EnterpriseWebRetrievalSource $enterprise_web_retrieval_source
+     *           If set, grounding is performed with enterprise web retrieval.
      * }
      */
     public function __construct($data = NULL) {
@@ -125,6 +127,37 @@ class GroundingSource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentRequest\GroundingSource\GoogleSearchSource::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * If set, grounding is performed with enterprise web retrieval.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSource.EnterpriseWebRetrievalSource enterprise_web_retrieval_source = 8;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentRequest\GroundingSource\EnterpriseWebRetrievalSource|null
+     */
+    public function getEnterpriseWebRetrievalSource()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasEnterpriseWebRetrievalSource()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * If set, grounding is performed with enterprise web retrieval.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSource.EnterpriseWebRetrievalSource enterprise_web_retrieval_source = 8;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentRequest\GroundingSource\EnterpriseWebRetrievalSource $var
+     * @return $this
+     */
+    public function setEnterpriseWebRetrievalSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentRequest\GroundingSource\EnterpriseWebRetrievalSource::class);
+        $this->writeOneof(8, $var);
 
         return $this;
     }

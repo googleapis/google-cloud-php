@@ -42,7 +42,8 @@ class Chunk extends \Google\Protobuf\Internal\Message
      * Output only. Represents the relevance score based on similarity.
      * Higher score indicates higher chunk relevance.
      * The score is in range [-1.0, 1.0].
-     * Only populated on [SearchService.SearchResponse][].
+     * Only populated on
+     * [SearchResponse][google.cloud.discoveryengine.v1.SearchResponse].
      *
      * Generated from protobuf field <code>optional double relevance_score = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -93,7 +94,8 @@ class Chunk extends \Google\Protobuf\Internal\Message
      *           Output only. Represents the relevance score based on similarity.
      *           Higher score indicates higher chunk relevance.
      *           The score is in range [-1.0, 1.0].
-     *           Only populated on [SearchService.SearchResponse][].
+     *           Only populated on
+     *           [SearchResponse][google.cloud.discoveryengine.v1.SearchResponse].
      *     @type \Google\Cloud\DiscoveryEngine\V1\Chunk\DocumentMetadata $document_metadata
      *           Metadata of the document from the current chunk.
      *     @type \Google\Protobuf\Struct $derived_struct_data
@@ -200,7 +202,8 @@ class Chunk extends \Google\Protobuf\Internal\Message
      * Output only. Represents the relevance score based on similarity.
      * Higher score indicates higher chunk relevance.
      * The score is in range [-1.0, 1.0].
-     * Only populated on [SearchService.SearchResponse][].
+     * Only populated on
+     * [SearchResponse][google.cloud.discoveryengine.v1.SearchResponse].
      *
      * Generated from protobuf field <code>optional double relevance_score = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return float
@@ -224,7 +227,8 @@ class Chunk extends \Google\Protobuf\Internal\Message
      * Output only. Represents the relevance score based on similarity.
      * Higher score indicates higher chunk relevance.
      * The score is in range [-1.0, 1.0].
-     * Only populated on [SearchService.SearchResponse][].
+     * Only populated on
+     * [SearchResponse][google.cloud.discoveryengine.v1.SearchResponse].
      *
      * Generated from protobuf field <code>optional double relevance_score = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param float $var

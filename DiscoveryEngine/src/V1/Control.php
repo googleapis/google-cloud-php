@@ -87,6 +87,9 @@ class Control extends \Google\Protobuf\Internal\Message
      *           Defines a redirect-type control.
      *     @type \Google\Cloud\DiscoveryEngine\V1\Control\SynonymsAction $synonyms_action
      *           Treats a group of terms as synonyms of one another.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Control\PromoteAction $promote_action
+     *           Promote certain links based on predefined trigger queries.
+     *           This now only supports basic site search.
      *     @type string $name
      *           Immutable. Fully qualified name
      *           `projects/&#42;&#47;locations/global/dataStore/&#42;&#47;controls/&#42;`
@@ -244,6 +247,39 @@ class Control extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\Control\SynonymsAction::class);
         $this->writeOneof(10, $var);
+
+        return $this;
+    }
+
+    /**
+     * Promote certain links based on predefined trigger queries.
+     * This now only supports basic site search.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Control.PromoteAction promote_action = 15;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\Control\PromoteAction|null
+     */
+    public function getPromoteAction()
+    {
+        return $this->readOneof(15);
+    }
+
+    public function hasPromoteAction()
+    {
+        return $this->hasOneof(15);
+    }
+
+    /**
+     * Promote certain links based on predefined trigger queries.
+     * This now only supports basic site search.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Control.PromoteAction promote_action = 15;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\Control\PromoteAction $var
+     * @return $this
+     */
+    public function setPromoteAction($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\Control\PromoteAction::class);
+        $this->writeOneof(15, $var);
 
         return $this;
     }

@@ -54,6 +54,11 @@ return [
                         'uriTemplate' => '/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/userEvents:import',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/userEvents:import',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'parent' => [

@@ -53,6 +53,12 @@ class GenerationSpec extends \Google\Protobuf\Internal\Message
      */
     protected $frequency_penalty = null;
     /**
+     * If specified, custom value for the seed will be used.
+     *
+     * Generated from protobuf field <code>optional int32 seed = 12;</code>
+     */
+    protected $seed = null;
+    /**
      * If specified, custom value for presence penalty will be used.
      *
      * Generated from protobuf field <code>optional float presence_penalty = 9;</code>
@@ -84,6 +90,8 @@ class GenerationSpec extends \Google\Protobuf\Internal\Message
      *           If specified, custom value for top-k sampling will be used.
      *     @type float $frequency_penalty
      *           If specified, custom value for frequency penalty will be used.
+     *     @type int $seed
+     *           If specified, custom value for the seed will be used.
      *     @type float $presence_penalty
      *           If specified, custom value for presence penalty will be used.
      *     @type int $max_output_tokens
@@ -289,6 +297,42 @@ class GenerationSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkFloat($var);
         $this->frequency_penalty = $var;
+
+        return $this;
+    }
+
+    /**
+     * If specified, custom value for the seed will be used.
+     *
+     * Generated from protobuf field <code>optional int32 seed = 12;</code>
+     * @return int
+     */
+    public function getSeed()
+    {
+        return isset($this->seed) ? $this->seed : 0;
+    }
+
+    public function hasSeed()
+    {
+        return isset($this->seed);
+    }
+
+    public function clearSeed()
+    {
+        unset($this->seed);
+    }
+
+    /**
+     * If specified, custom value for the seed will be used.
+     *
+     * Generated from protobuf field <code>optional int32 seed = 12;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSeed($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->seed = $var;
 
         return $this;
     }

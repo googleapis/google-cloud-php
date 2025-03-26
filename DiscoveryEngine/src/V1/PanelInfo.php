@@ -45,6 +45,12 @@ class PanelInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional int32 total_panels = 5;</code>
      */
     protected $total_panels = null;
+    /**
+     * Optional. The document IDs associated with this panel.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.DocumentInfo documents = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $documents;
 
     /**
      * Constructor.
@@ -66,6 +72,8 @@ class PanelInfo extends \Google\Protobuf\Internal\Message
      *           Must be set if
      *           [panel_position][google.cloud.discoveryengine.v1.PanelInfo.panel_position]
      *           is set.
+     *     @type array<\Google\Cloud\DiscoveryEngine\V1\DocumentInfo>|\Google\Protobuf\Internal\RepeatedField $documents
+     *           Optional. The document IDs associated with this panel.
      * }
      */
     public function __construct($data = NULL) {
@@ -205,6 +213,32 @@ class PanelInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->total_panels = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The document IDs associated with this panel.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.DocumentInfo documents = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDocuments()
+    {
+        return $this->documents;
+    }
+
+    /**
+     * Optional. The document IDs associated with this panel.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.DocumentInfo documents = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\DiscoveryEngine\V1\DocumentInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDocuments($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\DocumentInfo::class);
+        $this->documents = $arr;
 
         return $this;
     }

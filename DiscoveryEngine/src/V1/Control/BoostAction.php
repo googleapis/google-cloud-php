@@ -16,10 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class BoostAction extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Strength of the boost, which should be in [-1, 1]. Negative
+     * Strength of the boost, which should be in [-1, 1]. Negative
      * boost means demotion. Default is 0.0 (No-op).
      *
-     * Generated from protobuf field <code>float boost = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>float boost = 1 [deprecated = true];</code>
+     * @deprecated
      */
     protected $boost = 0.0;
     /**
@@ -41,6 +42,7 @@ class BoostAction extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string data_store = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $data_store = '';
+    protected $boost_spec;
 
     /**
      * Constructor.
@@ -48,8 +50,14 @@ class BoostAction extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type float $fixed_boost
+     *           Optional. Strength of the boost, which should be in [-1, 1]. Negative
+     *           boost means demotion. Default is 0.0 (No-op).
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Control\BoostAction\InterpolationBoostSpec $interpolation_boost_spec
+     *           Optional. Complex specification for custom ranking based on customer
+     *           defined attribute value.
      *     @type float $boost
-     *           Required. Strength of the boost, which should be in [-1, 1]. Negative
+     *           Strength of the boost, which should be in [-1, 1]. Negative
      *           boost means demotion. Default is 0.0 (No-op).
      *     @type string $filter
      *           Required. Specifies which products to apply the boost to.
@@ -70,27 +78,97 @@ class BoostAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Strength of the boost, which should be in [-1, 1]. Negative
+     * Optional. Strength of the boost, which should be in [-1, 1]. Negative
      * boost means demotion. Default is 0.0 (No-op).
      *
-     * Generated from protobuf field <code>float boost = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>float fixed_boost = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
+     */
+    public function getFixedBoost()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasFixedBoost()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Optional. Strength of the boost, which should be in [-1, 1]. Negative
+     * boost means demotion. Default is 0.0 (No-op).
+     *
+     * Generated from protobuf field <code>float fixed_boost = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setFixedBoost($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Complex specification for custom ranking based on customer
+     * defined attribute value.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Control.BoostAction.InterpolationBoostSpec interpolation_boost_spec = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\Control\BoostAction\InterpolationBoostSpec|null
+     */
+    public function getInterpolationBoostSpec()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasInterpolationBoostSpec()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Optional. Complex specification for custom ranking based on customer
+     * defined attribute value.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Control.BoostAction.InterpolationBoostSpec interpolation_boost_spec = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\Control\BoostAction\InterpolationBoostSpec $var
+     * @return $this
+     */
+    public function setInterpolationBoostSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\Control\BoostAction\InterpolationBoostSpec::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Strength of the boost, which should be in [-1, 1]. Negative
+     * boost means demotion. Default is 0.0 (No-op).
+     *
+     * Generated from protobuf field <code>float boost = 1 [deprecated = true];</code>
+     * @return float
+     * @deprecated
      */
     public function getBoost()
     {
+        @trigger_error('boost is deprecated.', E_USER_DEPRECATED);
         return $this->boost;
     }
 
     /**
-     * Required. Strength of the boost, which should be in [-1, 1]. Negative
+     * Strength of the boost, which should be in [-1, 1]. Negative
      * boost means demotion. Default is 0.0 (No-op).
      *
-     * Generated from protobuf field <code>float boost = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>float boost = 1 [deprecated = true];</code>
      * @param float $var
      * @return $this
+     * @deprecated
      */
     public function setBoost($var)
     {
+        @trigger_error('boost is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkFloat($var);
         $this->boost = $var;
 
@@ -161,6 +239,14 @@ class BoostAction extends \Google\Protobuf\Internal\Message
         $this->data_store = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBoostSpec()
+    {
+        return $this->whichOneof("boost_spec");
     }
 
 }

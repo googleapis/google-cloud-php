@@ -24,6 +24,7 @@ namespace Google\Cloud\DiscoveryEngine\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\DiscoveryEngine\V1\Answer;
@@ -316,10 +317,14 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $displayName = 'displayName1615086568';
         $userPseudoId = 'userPseudoId-1850666040';
+        $isPinned = false;
         $expectedResponse = new Session();
         $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setUserPseudoId($userPseudoId);
+        $expectedResponse->setIsPinned($isPinned);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
@@ -521,9 +526,11 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $answerText = 'answerText-311499506';
+        $groundingScore = 1.98110164e8;
         $expectedResponse = new Answer();
         $expectedResponse->setName($name2);
         $expectedResponse->setAnswerText($answerText);
+        $expectedResponse->setGroundingScore($groundingScore);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->answerName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[SESSION]', '[ANSWER]');
@@ -657,10 +664,14 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
         $userPseudoId = 'userPseudoId-1850666040';
+        $isPinned = false;
         $expectedResponse = new Session();
         $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setUserPseudoId($userPseudoId);
+        $expectedResponse->setIsPinned($isPinned);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->sessionName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[SESSION]');
@@ -860,6 +871,104 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function streamAnswerQueryTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $answerQueryToken = 'answerQueryToken886927553';
+        $expectedResponse = new AnswerQueryResponse();
+        $expectedResponse->setAnswerQueryToken($answerQueryToken);
+        $transport->addResponse($expectedResponse);
+        $answerQueryToken2 = 'answerQueryToken21933856820';
+        $expectedResponse2 = new AnswerQueryResponse();
+        $expectedResponse2->setAnswerQueryToken($answerQueryToken2);
+        $transport->addResponse($expectedResponse2);
+        $answerQueryToken3 = 'answerQueryToken31933856821';
+        $expectedResponse3 = new AnswerQueryResponse();
+        $expectedResponse3->setAnswerQueryToken($answerQueryToken3);
+        $transport->addResponse($expectedResponse3);
+        // Mock request
+        $formattedServingConfig = $gapicClient->servingConfigName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[DATA_STORE]',
+            '[SERVING_CONFIG]'
+        );
+        $query = new Query();
+        $request = (new AnswerQueryRequest())->setServingConfig($formattedServingConfig)->setQuery($query);
+        $serverStream = $gapicClient->streamAnswerQuery($request);
+        $this->assertInstanceOf(ServerStream::class, $serverStream);
+        $responses = iterator_to_array($serverStream->readAll());
+        $expectedResponses = [];
+        $expectedResponses[] = $expectedResponse;
+        $expectedResponses[] = $expectedResponse2;
+        $expectedResponses[] = $expectedResponse3;
+        $this->assertEquals($expectedResponses, $responses);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.discoveryengine.v1.ConversationalSearchService/StreamAnswerQuery',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getServingConfig();
+        $this->assertProtobufEquals($formattedServingConfig, $actualValue);
+        $actualValue = $actualRequestObject->getQuery();
+        $this->assertProtobufEquals($query, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function streamAnswerQueryExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->setStreamingStatus($status);
+        $this->assertTrue($transport->isExhausted());
+        // Mock request
+        $formattedServingConfig = $gapicClient->servingConfigName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[DATA_STORE]',
+            '[SERVING_CONFIG]'
+        );
+        $query = new Query();
+        $request = (new AnswerQueryRequest())->setServingConfig($formattedServingConfig)->setQuery($query);
+        $serverStream = $gapicClient->streamAnswerQuery($request);
+        $results = $serverStream->readAll();
+        try {
+            iterator_to_array($results);
+            // If the close stream method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function updateConversationTest()
     {
         $transport = $this->createTransport();
@@ -939,10 +1048,14 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $displayName = 'displayName1615086568';
         $userPseudoId = 'userPseudoId-1850666040';
+        $isPinned = false;
         $expectedResponse = new Session();
         $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setUserPseudoId($userPseudoId);
+        $expectedResponse->setIsPinned($isPinned);
         $transport->addResponse($expectedResponse);
         // Mock request
         $session = new Session();

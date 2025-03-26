@@ -21,9 +21,9 @@ class WriteUserEventRequest extends \Google\Protobuf\Internal\Message
      * [DataStore][google.cloud.discoveryengine.v1.DataStore] level, the format
      * is:
      * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.
-     * If the write user event action is applied in [Location][] level, for
-     * example, the event with
-     * [Document][google.cloud.discoveryengine.v1.Document] across multiple
+     * If the write user event action is applied in
+     * [Location][google.cloud.location.Location] level, for example, the event
+     * with [Document][google.cloud.discoveryengine.v1.Document] across multiple
      * [DataStore][google.cloud.discoveryengine.v1.DataStore], the format is:
      * `projects/{project}/locations/{location}`.
      *
@@ -56,9 +56,9 @@ class WriteUserEventRequest extends \Google\Protobuf\Internal\Message
      *           [DataStore][google.cloud.discoveryengine.v1.DataStore] level, the format
      *           is:
      *           `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.
-     *           If the write user event action is applied in [Location][] level, for
-     *           example, the event with
-     *           [Document][google.cloud.discoveryengine.v1.Document] across multiple
+     *           If the write user event action is applied in
+     *           [Location][google.cloud.location.Location] level, for example, the event
+     *           with [Document][google.cloud.discoveryengine.v1.Document] across multiple
      *           [DataStore][google.cloud.discoveryengine.v1.DataStore], the format is:
      *           `projects/{project}/locations/{location}`.
      *     @type \Google\Cloud\DiscoveryEngine\V1\UserEvent $user_event
@@ -79,9 +79,9 @@ class WriteUserEventRequest extends \Google\Protobuf\Internal\Message
      * [DataStore][google.cloud.discoveryengine.v1.DataStore] level, the format
      * is:
      * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.
-     * If the write user event action is applied in [Location][] level, for
-     * example, the event with
-     * [Document][google.cloud.discoveryengine.v1.Document] across multiple
+     * If the write user event action is applied in
+     * [Location][google.cloud.location.Location] level, for example, the event
+     * with [Document][google.cloud.discoveryengine.v1.Document] across multiple
      * [DataStore][google.cloud.discoveryengine.v1.DataStore], the format is:
      * `projects/{project}/locations/{location}`.
      *
@@ -99,9 +99,9 @@ class WriteUserEventRequest extends \Google\Protobuf\Internal\Message
      * [DataStore][google.cloud.discoveryengine.v1.DataStore] level, the format
      * is:
      * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.
-     * If the write user event action is applied in [Location][] level, for
-     * example, the event with
-     * [Document][google.cloud.discoveryengine.v1.Document] across multiple
+     * If the write user event action is applied in
+     * [Location][google.cloud.location.Location] level, for example, the event
+     * with [Document][google.cloud.discoveryengine.v1.Document] across multiple
      * [DataStore][google.cloud.discoveryengine.v1.DataStore], the format is:
      * `projects/{project}/locations/{location}`.
      *

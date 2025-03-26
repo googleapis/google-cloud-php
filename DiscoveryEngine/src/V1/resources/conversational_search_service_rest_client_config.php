@@ -266,6 +266,30 @@ return [
                     ],
                 ],
             ],
+            'StreamAnswerQuery' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{serving_config=projects/*/locations/*/dataStores/*/servingConfigs/*}:streamAnswer',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{serving_config=projects/*/locations/*/collections/*/dataStores/*/servingConfigs/*}:streamAnswer',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{serving_config=projects/*/locations/*/collections/*/engines/*/servingConfigs/*}:streamAnswer',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'serving_config' => [
+                        'getters' => [
+                            'getServingConfig',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateConversation' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{conversation.name=projects/*/locations/*/dataStores/*/conversations/*}',

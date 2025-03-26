@@ -35,9 +35,7 @@ class RecrawlUrisRequest extends \Google\Protobuf\Internal\Message
      */
     private $uris;
     /**
-     * Optional. Full resource name of the [SiteCredential][], such as
-     * `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;siteSearchEngine/siteCredentials/&#42;`.
-     * Only set to crawl private URIs.
+     * Optional. Credential id to use for crawling.
      *
      * Generated from protobuf field <code>string site_credential = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -59,9 +57,7 @@ class RecrawlUrisRequest extends \Google\Protobuf\Internal\Message
      *           [TargetSite][google.cloud.discoveryengine.v1.TargetSite] in
      *           `site_search_engine`.
      *     @type string $site_credential
-     *           Optional. Full resource name of the [SiteCredential][], such as
-     *           `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;siteSearchEngine/siteCredentials/&#42;`.
-     *           Only set to crawl private URIs.
+     *           Optional. Credential id to use for crawling.
      * }
      */
     public function __construct($data = NULL) {
@@ -132,9 +128,7 @@ class RecrawlUrisRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Full resource name of the [SiteCredential][], such as
-     * `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;siteSearchEngine/siteCredentials/&#42;`.
-     * Only set to crawl private URIs.
+     * Optional. Credential id to use for crawling.
      *
      * Generated from protobuf field <code>string site_credential = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -145,9 +139,7 @@ class RecrawlUrisRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Full resource name of the [SiteCredential][], such as
-     * `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;siteSearchEngine/siteCredentials/&#42;`.
-     * Only set to crawl private URIs.
+     * Optional. Credential id to use for crawling.
      *
      * Generated from protobuf field <code>string site_credential = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

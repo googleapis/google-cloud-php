@@ -152,6 +152,11 @@
                                 "listSessions"
                             ]
                         },
+                        "StreamAnswerQuery": {
+                            "methods": [
+                                "streamAnswerQuery"
+                            ]
+                        },
                         "UpdateConversation": {
                             "methods": [
                                 "updateConversation"
@@ -417,9 +422,19 @@
                                 "batchVerifyTargetSites"
                             ]
                         },
+                        "CreateSitemap": {
+                            "methods": [
+                                "createSitemap"
+                            ]
+                        },
                         "CreateTargetSite": {
                             "methods": [
                                 "createTargetSite"
+                            ]
+                        },
+                        "DeleteSitemap": {
+                            "methods": [
+                                "deleteSitemap"
                             ]
                         },
                         "DeleteTargetSite": {
@@ -440,6 +455,11 @@
                         "FetchDomainVerificationStatus": {
                             "methods": [
                                 "fetchDomainVerificationStatus"
+                            ]
+                        },
+                        "FetchSitemaps": {
+                            "methods": [
+                                "fetchSitemaps"
                             ]
                         },
                         "GetSiteSearchEngine": {

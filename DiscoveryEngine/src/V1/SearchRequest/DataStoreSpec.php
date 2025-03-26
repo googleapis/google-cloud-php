@@ -33,6 +33,14 @@ class DataStoreSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $filter = '';
+    /**
+     * Optional. Boost specification to boost certain documents.
+     * For more information on boosting, see
+     * [Boosting](https://cloud.google.com/generative-ai-app-builder/docs/boost-search-results)
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.BoostSpec boost_spec = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $boost_spec = null;
 
     /**
      * Constructor.
@@ -48,6 +56,10 @@ class DataStoreSpec extends \Google\Protobuf\Internal\Message
      *           Optional. Filter specification to filter documents in the data store
      *           specified by data_store field. For more information on filtering, see
      *           [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\BoostSpec $boost_spec
+     *           Optional. Boost specification to boost certain documents.
+     *           For more information on boosting, see
+     *           [Boosting](https://cloud.google.com/generative-ai-app-builder/docs/boost-search-results)
      * }
      */
     public function __construct($data = NULL) {
@@ -111,6 +123,46 @@ class DataStoreSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Boost specification to boost certain documents.
+     * For more information on boosting, see
+     * [Boosting](https://cloud.google.com/generative-ai-app-builder/docs/boost-search-results)
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.BoostSpec boost_spec = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchRequest\BoostSpec|null
+     */
+    public function getBoostSpec()
+    {
+        return $this->boost_spec;
+    }
+
+    public function hasBoostSpec()
+    {
+        return isset($this->boost_spec);
+    }
+
+    public function clearBoostSpec()
+    {
+        unset($this->boost_spec);
+    }
+
+    /**
+     * Optional. Boost specification to boost certain documents.
+     * For more information on boosting, see
+     * [Boosting](https://cloud.google.com/generative-ai-app-builder/docs/boost-search-results)
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.BoostSpec boost_spec = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\BoostSpec $var
+     * @return $this
+     */
+    public function setBoostSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\BoostSpec::class);
+        $this->boost_spec = $var;
 
         return $this;
     }

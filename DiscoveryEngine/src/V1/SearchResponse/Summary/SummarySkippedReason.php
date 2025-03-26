@@ -98,6 +98,13 @@ class SummarySkippedReason
      * Generated from protobuf enum <code>NON_SUMMARY_SEEKING_QUERY_IGNORED_V2 = 9;</code>
      */
     const NON_SUMMARY_SEEKING_QUERY_IGNORED_V2 = 9;
+    /**
+     * The time out case.
+     * Google skips the summary if the time out.
+     *
+     * Generated from protobuf enum <code>TIME_OUT = 10;</code>
+     */
+    const TIME_OUT = 10;
 
     private static $valueToName = [
         self::SUMMARY_SKIPPED_REASON_UNSPECIFIED => 'SUMMARY_SKIPPED_REASON_UNSPECIFIED',
@@ -110,6 +117,7 @@ class SummarySkippedReason
         self::JAIL_BREAKING_QUERY_IGNORED => 'JAIL_BREAKING_QUERY_IGNORED',
         self::CUSTOMER_POLICY_VIOLATION => 'CUSTOMER_POLICY_VIOLATION',
         self::NON_SUMMARY_SEEKING_QUERY_IGNORED_V2 => 'NON_SUMMARY_SEEKING_QUERY_IGNORED_V2',
+        self::TIME_OUT => 'TIME_OUT',
     ];
 
     public static function name($value)

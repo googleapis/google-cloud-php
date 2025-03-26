@@ -104,6 +104,15 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string id_field = 9;</code>
      */
     protected $id_field = '';
+    /**
+     * Optional. Whether to force refresh the unstructured content of the
+     * documents.
+     * If set to `true`, the content part of the documents will be refreshed
+     * regardless of the update status of the referencing content.
+     *
+     * Generated from protobuf field <code>bool force_refresh_content = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $force_refresh_content = false;
     protected $source;
 
     /**
@@ -195,6 +204,11 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
      *           * [CloudSqlSource][google.cloud.discoveryengine.v1.CloudSqlSource].
      *           * [FirestoreSource][google.cloud.discoveryengine.v1.FirestoreSource].
      *           * [BigtableSource][google.cloud.discoveryengine.v1.BigtableSource].
+     *     @type bool $force_refresh_content
+     *           Optional. Whether to force refresh the unstructured content of the
+     *           documents.
+     *           If set to `true`, the content part of the documents will be refreshed
+     *           regardless of the update status of the referencing content.
      * }
      */
     public function __construct($data = NULL) {
@@ -759,6 +773,38 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->id_field = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether to force refresh the unstructured content of the
+     * documents.
+     * If set to `true`, the content part of the documents will be refreshed
+     * regardless of the update status of the referencing content.
+     *
+     * Generated from protobuf field <code>bool force_refresh_content = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getForceRefreshContent()
+    {
+        return $this->force_refresh_content;
+    }
+
+    /**
+     * Optional. Whether to force refresh the unstructured content of the
+     * documents.
+     * If set to `true`, the content part of the documents will be refreshed
+     * regardless of the update status of the referencing content.
+     *
+     * Generated from protobuf field <code>bool force_refresh_content = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setForceRefreshContent($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->force_refresh_content = $var;
 
         return $this;
     }

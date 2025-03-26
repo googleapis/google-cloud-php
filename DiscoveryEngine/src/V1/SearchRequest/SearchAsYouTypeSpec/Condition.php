@@ -32,11 +32,19 @@ class Condition
      * Generated from protobuf enum <code>ENABLED = 2;</code>
      */
     const ENABLED = 2;
+    /**
+     * Automatic switching between search-as-you-type and standard search
+     * modes, ideal for single-API implementations (e.g., debouncing).
+     *
+     * Generated from protobuf enum <code>AUTO = 3;</code>
+     */
+    const AUTO = 3;
 
     private static $valueToName = [
         self::CONDITION_UNSPECIFIED => 'CONDITION_UNSPECIFIED',
         self::DISABLED => 'DISABLED',
         self::ENABLED => 'ENABLED',
+        self::AUTO => 'AUTO',
     ];
 
     public static function name($value)

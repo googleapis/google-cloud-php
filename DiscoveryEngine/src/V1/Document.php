@@ -29,7 +29,7 @@ class Document extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. The identifier of the document.
      * Id should conform to [RFC-1034](https://tools.ietf.org/html/rfc1034)
-     * standard with a length limit of 63 characters.
+     * standard with a length limit of 128 characters.
      *
      * Generated from protobuf field <code>string id = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -78,7 +78,8 @@ class Document extends \Google\Protobuf\Internal\Message
      * * If document is indexed successfully, the index_time field is populated.
      * * Otherwise, if document is not indexed due to errors, the error_samples
      *   field is populated.
-     * * Otherwise, index_status is unset.
+     * * Otherwise, if document's index is in progress, the pending_message field
+     *   is populated.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Document.IndexStatus index_status = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -108,7 +109,7 @@ class Document extends \Google\Protobuf\Internal\Message
      *     @type string $id
      *           Immutable. The identifier of the document.
      *           Id should conform to [RFC-1034](https://tools.ietf.org/html/rfc1034)
-     *           standard with a length limit of 63 characters.
+     *           standard with a length limit of 128 characters.
      *     @type string $schema_id
      *           The identifier of the schema located in the same data store.
      *     @type \Google\Cloud\DiscoveryEngine\V1\Document\Content $content
@@ -133,7 +134,8 @@ class Document extends \Google\Protobuf\Internal\Message
      *           * If document is indexed successfully, the index_time field is populated.
      *           * Otherwise, if document is not indexed due to errors, the error_samples
      *             field is populated.
-     *           * Otherwise, index_status is unset.
+     *           * Otherwise, if document's index is in progress, the pending_message field
+     *             is populated.
      * }
      */
     public function __construct($data = NULL) {
@@ -248,7 +250,7 @@ class Document extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. The identifier of the document.
      * Id should conform to [RFC-1034](https://tools.ietf.org/html/rfc1034)
-     * standard with a length limit of 63 characters.
+     * standard with a length limit of 128 characters.
      *
      * Generated from protobuf field <code>string id = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -261,7 +263,7 @@ class Document extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. The identifier of the document.
      * Id should conform to [RFC-1034](https://tools.ietf.org/html/rfc1034)
-     * standard with a length limit of 63 characters.
+     * standard with a length limit of 128 characters.
      *
      * Generated from protobuf field <code>string id = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -458,7 +460,8 @@ class Document extends \Google\Protobuf\Internal\Message
      * * If document is indexed successfully, the index_time field is populated.
      * * Otherwise, if document is not indexed due to errors, the error_samples
      *   field is populated.
-     * * Otherwise, index_status is unset.
+     * * Otherwise, if document's index is in progress, the pending_message field
+     *   is populated.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Document.IndexStatus index_status = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\DiscoveryEngine\V1\Document\IndexStatus|null
@@ -483,7 +486,8 @@ class Document extends \Google\Protobuf\Internal\Message
      * * If document is indexed successfully, the index_time field is populated.
      * * Otherwise, if document is not indexed due to errors, the error_samples
      *   field is populated.
-     * * Otherwise, index_status is unset.
+     * * Otherwise, if document's index is in progress, the pending_message field
+     *   is populated.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Document.IndexStatus index_status = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\DiscoveryEngine\V1\Document\IndexStatus $var

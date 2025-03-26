@@ -27,6 +27,18 @@ class StructuredDocumentInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Struct struct_data = 2;</code>
      */
     protected $struct_data = null;
+    /**
+     * Output only. The title of the document.
+     *
+     * Generated from protobuf field <code>string title = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $title = '';
+    /**
+     * Output only. The URI of the document.
+     *
+     * Generated from protobuf field <code>string uri = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $uri = '';
 
     /**
      * Constructor.
@@ -38,6 +50,10 @@ class StructuredDocumentInfo extends \Google\Protobuf\Internal\Message
      *           Document resource name.
      *     @type \Google\Protobuf\Struct $struct_data
      *           Structured search data.
+     *     @type string $title
+     *           Output only. The title of the document.
+     *     @type string $uri
+     *           Output only. The URI of the document.
      * }
      */
     public function __construct($data = NULL) {
@@ -103,6 +119,58 @@ class StructuredDocumentInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
         $this->struct_data = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The title of the document.
+     *
+     * Generated from protobuf field <code>string title = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Output only. The title of the document.
+     *
+     * Generated from protobuf field <code>string title = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTitle($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->title = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The URI of the document.
+     *
+     * Generated from protobuf field <code>string uri = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getUri()
+    {
+        return $this->uri;
+    }
+
+    /**
+     * Output only. The URI of the document.
+     *
+     * Generated from protobuf field <code>string uri = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->uri = $var;
 
         return $this;
     }
