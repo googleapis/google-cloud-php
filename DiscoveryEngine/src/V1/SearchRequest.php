@@ -94,9 +94,10 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      */
     protected $one_box_page_size = 0;
     /**
-     * Specifications that define the specific [DataStore]s to be searched, along
-     * with configurations for those data stores. This is only considered for
-     * [Engine][google.cloud.discoveryengine.v1.Engine]s with multiple data
+     * Specifications that define the specific
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore]s to be searched,
+     * along with configurations for those data stores. This is only considered
+     * for [Engine][google.cloud.discoveryengine.v1.Engine]s with multiple data
      * stores. For engines with a single data store, the specs directly under
      * [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] should be
      * used.
@@ -382,9 +383,10 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           This applies to each OneBox type individually.
      *           Default number is 10.
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $data_store_specs
-     *           Specifications that define the specific [DataStore]s to be searched, along
-     *           with configurations for those data stores. This is only considered for
-     *           [Engine][google.cloud.discoveryengine.v1.Engine]s with multiple data
+     *           Specifications that define the specific
+     *           [DataStore][google.cloud.discoveryengine.v1.DataStore]s to be searched,
+     *           along with configurations for those data stores. This is only considered
+     *           for [Engine][google.cloud.discoveryengine.v1.Engine]s with multiple data
      *           stores. For engines with a single data store, the specs directly under
      *           [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] should be
      *           used.
@@ -816,9 +818,10 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifications that define the specific [DataStore]s to be searched, along
-     * with configurations for those data stores. This is only considered for
-     * [Engine][google.cloud.discoveryengine.v1.Engine]s with multiple data
+     * Specifications that define the specific
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore]s to be searched,
+     * along with configurations for those data stores. This is only considered
+     * for [Engine][google.cloud.discoveryengine.v1.Engine]s with multiple data
      * stores. For engines with a single data store, the specs directly under
      * [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] should be
      * used.
@@ -832,9 +835,10 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifications that define the specific [DataStore]s to be searched, along
-     * with configurations for those data stores. This is only considered for
-     * [Engine][google.cloud.discoveryengine.v1.Engine]s with multiple data
+     * Specifications that define the specific
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore]s to be searched,
+     * along with configurations for those data stores. This is only considered
+     * for [Engine][google.cloud.discoveryengine.v1.Engine]s with multiple data
      * stores. For engines with a single data store, the specs directly under
      * [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] should be
      * used.

@@ -42,6 +42,12 @@ class UserInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string user_agent = 2;</code>
      */
     protected $user_agent = '';
+    /**
+     * Optional. IANA time zone, e.g. Europe/Budapest.
+     *
+     * Generated from protobuf field <code>string time_zone = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $time_zone = '';
 
     /**
      * Constructor.
@@ -68,6 +74,8 @@ class UserInfo extends \Google\Protobuf\Internal\Message
      *           or if
      *           [UserEvent.direct_user_request][google.cloud.discoveryengine.v1.UserEvent.direct_user_request]
      *           is set.
+     *     @type string $time_zone
+     *           Optional. IANA time zone, e.g. Europe/Budapest.
      * }
      */
     public function __construct($data = NULL) {
@@ -153,6 +161,32 @@ class UserInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->user_agent = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. IANA time zone, e.g. Europe/Budapest.
+     *
+     * Generated from protobuf field <code>string time_zone = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getTimeZone()
+    {
+        return $this->time_zone;
+    }
+
+    /**
+     * Optional. IANA time zone, e.g. Europe/Budapest.
+     *
+     * Generated from protobuf field <code>string time_zone = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTimeZone($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->time_zone = $var;
 
         return $this;
     }
