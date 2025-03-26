@@ -10,7 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * MySQL database profile.
- * Next ID: 7.
  *
  * Generated from protobuf message <code>google.cloud.datastream.v1.MysqlProfile</code>
  */
@@ -47,6 +46,13 @@ class MysqlProfile extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlSslConfig ssl_config = 5;</code>
      */
     protected $ssl_config = null;
+    /**
+     * Optional. A reference to a Secret Manager resource name storing the MySQL
+     * connection password. Mutually exclusive with the `password` field.
+     *
+     * Generated from protobuf field <code>string secret_manager_stored_password = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $secret_manager_stored_password = '';
 
     /**
      * Constructor.
@@ -65,6 +71,9 @@ class MysqlProfile extends \Google\Protobuf\Internal\Message
      *           with the `secret_manager_stored_password` field.
      *     @type \Google\Cloud\Datastream\V1\MysqlSslConfig $ssl_config
      *           SSL configuration for the MySQL connection.
+     *     @type string $secret_manager_stored_password
+     *           Optional. A reference to a Secret Manager resource name storing the MySQL
+     *           connection password. Mutually exclusive with the `password` field.
      * }
      */
     public function __construct($data = NULL) {
@@ -210,6 +219,34 @@ class MysqlProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\MysqlSslConfig::class);
         $this->ssl_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A reference to a Secret Manager resource name storing the MySQL
+     * connection password. Mutually exclusive with the `password` field.
+     *
+     * Generated from protobuf field <code>string secret_manager_stored_password = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getSecretManagerStoredPassword()
+    {
+        return $this->secret_manager_stored_password;
+    }
+
+    /**
+     * Optional. A reference to a Secret Manager resource name storing the MySQL
+     * connection password. Mutually exclusive with the `password` field.
+     *
+     * Generated from protobuf field <code>string secret_manager_stored_password = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSecretManagerStoredPassword($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->secret_manager_stored_password = $var;
 
         return $this;
     }

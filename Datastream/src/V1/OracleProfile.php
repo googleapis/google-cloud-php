@@ -10,7 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Oracle database profile.
- * Next ID: 10.
  *
  * Generated from protobuf message <code>google.cloud.datastream.v1.OracleProfile</code>
  */

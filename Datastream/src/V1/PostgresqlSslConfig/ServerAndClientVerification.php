@@ -30,12 +30,12 @@ class ServerAndClientVerification extends \Google\Protobuf\Internal\Message
      */
     protected $client_certificate = '';
     /**
-     * Required. Input only. PEM-encoded private key associated with the client
+     * Optional. Input only. PEM-encoded private key associated with the client
      * certificate. This value will be used during the SSL/TLS handshake,
      * allowing the PostgreSQL server to authenticate the client's identity,
      * i.e. identity of the Datastream.
      *
-     * Generated from protobuf field <code>string client_key = 2 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string client_key = 2 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $client_key = '';
     /**
@@ -59,7 +59,7 @@ class ServerAndClientVerification extends \Google\Protobuf\Internal\Message
      *           leaf certificate) to link the this certificate to the trusted root
      *           certificate.
      *     @type string $client_key
-     *           Required. Input only. PEM-encoded private key associated with the client
+     *           Optional. Input only. PEM-encoded private key associated with the client
      *           certificate. This value will be used during the SSL/TLS handshake,
      *           allowing the PostgreSQL server to authenticate the client's identity,
      *           i.e. identity of the Datastream.
@@ -109,12 +109,12 @@ class ServerAndClientVerification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input only. PEM-encoded private key associated with the client
+     * Optional. Input only. PEM-encoded private key associated with the client
      * certificate. This value will be used during the SSL/TLS handshake,
      * allowing the PostgreSQL server to authenticate the client's identity,
      * i.e. identity of the Datastream.
      *
-     * Generated from protobuf field <code>string client_key = 2 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string client_key = 2 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getClientKey()
@@ -123,12 +123,12 @@ class ServerAndClientVerification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input only. PEM-encoded private key associated with the client
+     * Optional. Input only. PEM-encoded private key associated with the client
      * certificate. This value will be used during the SSL/TLS handshake,
      * allowing the PostgreSQL server to authenticate the client's identity,
      * i.e. identity of the Datastream.
      *
-     * Generated from protobuf field <code>string client_key = 2 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string client_key = 2 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

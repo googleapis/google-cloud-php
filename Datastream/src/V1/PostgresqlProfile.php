@@ -47,6 +47,14 @@ class PostgresqlProfile extends \Google\Protobuf\Internal\Message
      */
     protected $database = '';
     /**
+     * Optional. A reference to a Secret Manager resource name storing the
+     * PostgreSQL connection password. Mutually exclusive with the `password`
+     * field.
+     *
+     * Generated from protobuf field <code>string secret_manager_stored_password = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $secret_manager_stored_password = '';
+    /**
      * Optional. SSL configuration for the PostgreSQL connection.
      * In case PostgresqlSslConfig is not set, the connection will use the default
      * SSL mode, which is `prefer` (i.e. this mode will only use encryption if
@@ -73,6 +81,10 @@ class PostgresqlProfile extends \Google\Protobuf\Internal\Message
      *           the `secret_manager_stored_password` field.
      *     @type string $database
      *           Required. Database for the PostgreSQL connection.
+     *     @type string $secret_manager_stored_password
+     *           Optional. A reference to a Secret Manager resource name storing the
+     *           PostgreSQL connection password. Mutually exclusive with the `password`
+     *           field.
      *     @type \Google\Cloud\Datastream\V1\PostgresqlSslConfig $ssl_config
      *           Optional. SSL configuration for the PostgreSQL connection.
      *           In case PostgresqlSslConfig is not set, the connection will use the default
@@ -213,6 +225,36 @@ class PostgresqlProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->database = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A reference to a Secret Manager resource name storing the
+     * PostgreSQL connection password. Mutually exclusive with the `password`
+     * field.
+     *
+     * Generated from protobuf field <code>string secret_manager_stored_password = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getSecretManagerStoredPassword()
+    {
+        return $this->secret_manager_stored_password;
+    }
+
+    /**
+     * Optional. A reference to a Secret Manager resource name storing the
+     * PostgreSQL connection password. Mutually exclusive with the `password`
+     * field.
+     *
+     * Generated from protobuf field <code>string secret_manager_stored_password = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSecretManagerStoredPassword($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->secret_manager_stored_password = $var;
 
         return $this;
     }

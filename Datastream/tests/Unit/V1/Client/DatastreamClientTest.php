@@ -135,9 +135,13 @@ class DatastreamClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new ConnectionProfile();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -279,9 +283,13 @@ class DatastreamClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new PrivateConnection();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -576,10 +584,14 @@ class DatastreamClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $customerManagedEncryptionKey = 'customerManagedEncryptionKey1016600004';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Stream();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setCustomerManagedEncryptionKey($customerManagedEncryptionKey);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1363,9 +1375,13 @@ class DatastreamClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new ConnectionProfile();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
@@ -1430,9 +1446,13 @@ class DatastreamClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new PrivateConnection();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
@@ -1569,10 +1589,14 @@ class DatastreamClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
         $customerManagedEncryptionKey = 'customerManagedEncryptionKey1016600004';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Stream();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setCustomerManagedEncryptionKey($customerManagedEncryptionKey);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
@@ -2147,10 +2171,14 @@ class DatastreamClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
         $customerManagedEncryptionKey = 'customerManagedEncryptionKey1016600004';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Stream();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setCustomerManagedEncryptionKey($customerManagedEncryptionKey);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2400,9 +2428,13 @@ class DatastreamClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new ConnectionProfile();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2531,10 +2563,14 @@ class DatastreamClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $customerManagedEncryptionKey = 'customerManagedEncryptionKey1016600004';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Stream();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setCustomerManagedEncryptionKey($customerManagedEncryptionKey);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2822,9 +2858,13 @@ class DatastreamClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new ConnectionProfile();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

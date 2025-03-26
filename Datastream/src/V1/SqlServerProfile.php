@@ -10,7 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * SQLServer database profile.
- * Next ID: 8.
  *
  * Generated from protobuf message <code>google.cloud.datastream.v1.SqlServerProfile</code>
  */
@@ -47,6 +46,14 @@ class SqlServerProfile extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string database = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $database = '';
+    /**
+     * Optional. A reference to a Secret Manager resource name storing the
+     * SQLServer connection password. Mutually exclusive with the `password`
+     * field.
+     *
+     * Generated from protobuf field <code>string secret_manager_stored_password = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $secret_manager_stored_password = '';
 
     /**
      * Constructor.
@@ -65,6 +72,10 @@ class SqlServerProfile extends \Google\Protobuf\Internal\Message
      *           the `secret_manager_stored_password` field.
      *     @type string $database
      *           Required. Database for the SQLServer connection.
+     *     @type string $secret_manager_stored_password
+     *           Optional. A reference to a Secret Manager resource name storing the
+     *           SQLServer connection password. Mutually exclusive with the `password`
+     *           field.
      * }
      */
     public function __construct($data = NULL) {
@@ -200,6 +211,36 @@ class SqlServerProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->database = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A reference to a Secret Manager resource name storing the
+     * SQLServer connection password. Mutually exclusive with the `password`
+     * field.
+     *
+     * Generated from protobuf field <code>string secret_manager_stored_password = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getSecretManagerStoredPassword()
+    {
+        return $this->secret_manager_stored_password;
+    }
+
+    /**
+     * Optional. A reference to a Secret Manager resource name storing the
+     * SQLServer connection password. Mutually exclusive with the `password`
+     * field.
+     *
+     * Generated from protobuf field <code>string secret_manager_stored_password = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSecretManagerStoredPassword($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->secret_manager_stored_password = $var;
 
         return $this;
     }

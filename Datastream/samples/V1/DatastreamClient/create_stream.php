@@ -39,7 +39,7 @@ use Google\Rpc\Status;
  *                                                                             {@see DatastreamClient::locationName()} for help formatting this field.
  * @param string $streamId                                                     The stream identifier.
  * @param string $streamDisplayName                                            Display name.
- * @param string $formattedStreamSourceConfigSourceConnectionProfile           Source connection profile resoource.
+ * @param string $formattedStreamSourceConfigSourceConnectionProfile           Source connection profile resource.
  *                                                                             Format: `projects/{project}/locations/{location}/connectionProfiles/{name}`
  *                                                                             Please see {@see DatastreamClient::connectionProfileName()} for help formatting this field.
  * @param string $formattedStreamDestinationConfigDestinationConnectionProfile Destination connection profile resource.

@@ -46,6 +46,18 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $display_name = '';
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = null;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = null;
     protected $profile;
     protected $connectivity;
 
@@ -65,6 +77,10 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
      *           Labels.
      *     @type string $display_name
      *           Required. Display name.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use.
      *     @type \Google\Cloud\Datastream\V1\OracleProfile $oracle_profile
      *           Oracle ConnectionProfile configuration.
      *     @type \Google\Cloud\Datastream\V1\GcsProfile $gcs_profile
@@ -77,6 +93,8 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
      *           PostgreSQL Connection Profile configuration.
      *     @type \Google\Cloud\Datastream\V1\SqlServerProfile $sql_server_profile
      *           SQLServer Connection Profile configuration.
+     *     @type \Google\Cloud\Datastream\V1\SalesforceProfile $salesforce_profile
+     *           Salesforce Connection Profile configuration.
      *     @type \Google\Cloud\Datastream\V1\StaticServiceIpConnectivity $static_service_ip_connectivity
      *           Static Service IP connectivity.
      *     @type \Google\Cloud\Datastream\V1\ForwardSshTunnelConnectivity $forward_ssh_connectivity
@@ -236,6 +254,78 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs) ? $this->satisfies_pzs : false;
+    }
+
+    public function hasSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs);
+    }
+
+    public function clearSatisfiesPzs()
+    {
+        unset($this->satisfies_pzs);
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi) ? $this->satisfies_pzi : false;
+    }
+
+    public function hasSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi);
+    }
+
+    public function clearSatisfiesPzi()
+    {
+        unset($this->satisfies_pzi);
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }
@@ -422,6 +512,37 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SqlServerProfile::class);
         $this->writeOneof(105, $var);
+
+        return $this;
+    }
+
+    /**
+     * Salesforce Connection Profile configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceProfile salesforce_profile = 107;</code>
+     * @return \Google\Cloud\Datastream\V1\SalesforceProfile|null
+     */
+    public function getSalesforceProfile()
+    {
+        return $this->readOneof(107);
+    }
+
+    public function hasSalesforceProfile()
+    {
+        return $this->hasOneof(107);
+    }
+
+    /**
+     * Salesforce Connection Profile configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceProfile salesforce_profile = 107;</code>
+     * @param \Google\Cloud\Datastream\V1\SalesforceProfile $var
+     * @return $this
+     */
+    public function setSalesforceProfile($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SalesforceProfile::class);
+        $this->writeOneof(107, $var);
 
         return $this;
     }
