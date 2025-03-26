@@ -357,6 +357,7 @@ return [
                 'location' => 'projects/{project}/locations/{location}',
                 'subscription' => 'projects/{project}/locations/{location}/subscriptions/{subscription}',
                 'table' => 'projects/{project}/datasets/{dataset}/tables/{table}',
+                'topic' => 'projects/{project}/topics/{topic}',
             ],
         ],
     ],

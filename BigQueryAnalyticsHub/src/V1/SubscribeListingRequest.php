@@ -47,6 +47,9 @@ class SubscribeListingRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\DestinationDataset $destination_dataset
      *           Input only. BigQuery destination dataset to create for the subscriber.
+     *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\DestinationPubSubSubscription $destination_pubsub_subscription
+     *           Input only. Destination Pub/Sub subscription to create for the
+     *           subscriber.
      *     @type string $name
      *           Required. Resource name of the listing that you want to subscribe to.
      *           e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.
@@ -84,6 +87,39 @@ class SubscribeListingRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\DestinationDataset::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Input only. Destination Pub/Sub subscription to create for the
+     * subscriber.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.DestinationPubSubSubscription destination_pubsub_subscription = 5 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\DestinationPubSubSubscription|null
+     */
+    public function getDestinationPubsubSubscription()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasDestinationPubsubSubscription()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Input only. Destination Pub/Sub subscription to create for the
+     * subscriber.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.DestinationPubSubSubscription destination_pubsub_subscription = 5 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\DestinationPubSubSubscription $var
+     * @return $this
+     */
+    public function setDestinationPubsubSubscription($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\DestinationPubSubSubscription::class);
+        $this->writeOneof(5, $var);
 
         return $this;
     }

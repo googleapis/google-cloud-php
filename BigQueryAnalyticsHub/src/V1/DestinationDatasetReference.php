@@ -9,8 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Contains the reference that identifies a destination bigquery dataset.
- *
  * Generated from protobuf message <code>google.cloud.bigquery.analyticshub.v1.DestinationDatasetReference</code>
  */
 class DestinationDatasetReference extends \Google\Protobuf\Internal\Message
