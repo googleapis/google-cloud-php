@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,20 +22,17 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-namespace Google\Cloud\Compute\V1\Enums\InterconnectLocation;
+namespace Google\Cloud\Compute\V1\Enums\BackendServiceHAPolicy;
 
 /**
- * AvailableLinkTypes contains string constants that represent the names of each
- * value in the google.cloud.compute.v1.InterconnectLocation.AvailableLinkTypes
- * descriptor.
+ * FastIPMove contains string constants that represent the names of each value in
+ * the google.cloud.compute.v1.BackendServiceHAPolicy.FastIPMove descriptor.
  */
-class AvailableLinkTypes
+class FastIPMove
 {
-    const UNDEFINED_AVAILABLE_LINK_TYPES = 'UNDEFINED_AVAILABLE_LINK_TYPES';
+    const UNDEFINED_FAST_I_P_MOVE = 'UNDEFINED_FAST_I_P_MOVE';
 
-    const LINK_TYPE_ETHERNET_100G_LR = 'LINK_TYPE_ETHERNET_100G_LR';
+    const DISABLED = 'DISABLED';
 
-    const LINK_TYPE_ETHERNET_10G_LR = 'LINK_TYPE_ETHERNET_10G_LR';
-
-    const LINK_TYPE_ETHERNET_400G_LR4 = 'LINK_TYPE_ETHERNET_400G_LR4';
+    const GARP_RA = 'GARP_RA';
 }
