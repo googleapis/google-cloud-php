@@ -78,6 +78,8 @@ class RagCorpus extends \Google\Protobuf\Internal\Message
      *           Output only. RagCorpus state.
      *     @type \Google\Cloud\AIPlatform\V1\RagVectorDbConfig $vector_db_config
      *           Optional. Immutable. The config for the Vector DBs.
+     *     @type \Google\Cloud\AIPlatform\V1\VertexAiSearchConfig $vertex_ai_search_config
+     *           Optional. Immutable. The config for the Vertex AI Search.
      * }
      */
     public function __construct($data = NULL) {
@@ -302,6 +304,37 @@ class RagCorpus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\RagVectorDbConfig::class);
         $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. The config for the Vertex AI Search.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.VertexAiSearchConfig vertex_ai_search_config = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Cloud\AIPlatform\V1\VertexAiSearchConfig|null
+     */
+    public function getVertexAiSearchConfig()
+    {
+        return $this->readOneof(10);
+    }
+
+    public function hasVertexAiSearchConfig()
+    {
+        return $this->hasOneof(10);
+    }
+
+    /**
+     * Optional. Immutable. The config for the Vertex AI Search.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.VertexAiSearchConfig vertex_ai_search_config = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param \Google\Cloud\AIPlatform\V1\VertexAiSearchConfig $var
+     * @return $this
+     */
+    public function setVertexAiSearchConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\VertexAiSearchConfig::class);
+        $this->writeOneof(10, $var);
 
         return $this;
     }
