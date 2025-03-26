@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,32 +22,31 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START containeranalysis_v1_generated_ContainerAnalysis_GetVulnerabilityOccurrencesSummary_sync]
+// [START containeranalysis_v1_generated_ContainerAnalysis_ExportSBOM_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\ContainerAnalysis\V1\Client\ContainerAnalysisClient;
-use Google\Cloud\ContainerAnalysis\V1\GetVulnerabilityOccurrencesSummaryRequest;
-use Google\Cloud\ContainerAnalysis\V1\VulnerabilityOccurrencesSummary;
+use Google\Cloud\ContainerAnalysis\V1\ExportSBOMRequest;
+use Google\Cloud\ContainerAnalysis\V1\ExportSBOMResponse;
 
 /**
- * Gets a summary of the number and severity of occurrences.
+ * Generates an SBOM for the given resource.
  *
- * @param string $formattedParent The name of the project to get a vulnerability summary for in the
- *                                form of `projects/[PROJECT_ID]`. Please see
- *                                {@see ContainerAnalysisClient::projectName()} for help formatting this field.
+ * @param string $name The name of the resource in the form of
+ *                     `projects/[PROJECT_ID]/resources/[RESOURCE_URL]`.
  */
-function get_vulnerability_occurrences_summary_sample(string $formattedParent): void
+function export_sbom_sample(string $name): void
 {
     // Create a client.
     $containerAnalysisClient = new ContainerAnalysisClient();
 
     // Prepare the request message.
-    $request = (new GetVulnerabilityOccurrencesSummaryRequest())
-        ->setParent($formattedParent);
+    $request = (new ExportSBOMRequest())
+        ->setName($name);
 
     // Call the API and handle any network failures.
     try {
-        /** @var VulnerabilityOccurrencesSummary $response */
-        $response = $containerAnalysisClient->getVulnerabilityOccurrencesSummary($request);
+        /** @var ExportSBOMResponse $response */
+        $response = $containerAnalysisClient->exportSBOM($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -65,8 +64,8 @@ function get_vulnerability_occurrences_summary_sample(string $formattedParent): 
  */
 function callSample(): void
 {
-    $formattedParent = ContainerAnalysisClient::projectName('[PROJECT]');
+    $name = '[NAME]';
 
-    get_vulnerability_occurrences_summary_sample($formattedParent);
+    export_sbom_sample($name);
 }
-// [END containeranalysis_v1_generated_ContainerAnalysis_GetVulnerabilityOccurrencesSummary_sync]
+// [END containeranalysis_v1_generated_ContainerAnalysis_ExportSBOM_sync]
