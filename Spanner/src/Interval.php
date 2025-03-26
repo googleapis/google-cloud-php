@@ -200,7 +200,7 @@ class Interval
 
     public function __toString(): string
     {
-        // I consider that the string conversion is a bit heavy, memoizing it might be useful
+        // The string conversion is a bit heavy, memoizing it might be useful
         if (is_null($this->stringRepresentation)) {
             $this->stringRepresentation = Interval::intervalToString();
         }
