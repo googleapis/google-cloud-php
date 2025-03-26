@@ -96,7 +96,7 @@ class UniverseDomainTest extends SystemTestCase
         $formattedParent = self::$instanceAdminClient->projectName(self::$projectId);
         $instance = new Instance();
         $instance->setDisplayName(self::$instanceId);
-        
+
         $cluster = new Cluster();
         $cluster->setLocation(
             self::$instanceAdminClient->locationName(
@@ -105,7 +105,7 @@ class UniverseDomainTest extends SystemTestCase
             )
         );
         $cluster->setServeNodes(1);
-        
+
         $request = new CreateInstanceRequest([
             'parent' => $formattedParent,
             'instance_id' => self::$instanceId,
@@ -114,12 +114,12 @@ class UniverseDomainTest extends SystemTestCase
                 self::$clusterId => $cluster
             ]
         ]);
-        
+
         $operationResponse = self::$instanceAdminClient->createInstance($request);
         $operationResponse->pollUntilComplete();
-        
+
         $this->assertTrue($operationResponse->operationSucceeded(), 'Failed to create instance');
-        
+
         // Get the result to verify the instance was created
         $result = $operationResponse->getResult();
         $this->assertNotNull($result);
@@ -128,7 +128,7 @@ class UniverseDomainTest extends SystemTestCase
 
     /**
      * Test creating a table with universe domain credentials
-     * 
+     *
      * @depends testCreateInstanceWithUniverseDomain
      */
     public function testCreateTableWithUniverseDomain()
@@ -149,7 +149,7 @@ class UniverseDomainTest extends SystemTestCase
             ->setTable($table);
 
         $response = self::$tableAdminClient->createTable($createTableRequest);
-        
+
         $this->assertNotNull($response);
         $this->assertEquals($tableName, $response->getName());
     }
@@ -174,22 +174,22 @@ class UniverseDomainTest extends SystemTestCase
             $entries[$rowKey] = $rowMutation;
         }
         $table->mutateRows($entries);
-        
+
         $key = 'greeting0';
-        
+
         // Only retrieve the most recent version of the cell.
         $rowFilter = (new RowFilter())->setCellsPerColumnLimitFilter(1);
-        
+
         $column = 'greeting';
         $columnFamilyId = 'cf1';
-        
+
         $row = $table->readRow($key, [
             'filter' => $rowFilter
         ]);
-        
+
         $columnFamilyId = 'cf1';
         $column = 'greeting';
-        
+
         $partialRows = iterator_to_array($table->readRows([])->readAll());
         $this->assertCount(3, $partialRows);
         $this->assertEquals('Hello World!', $partialRows['greeting0'][$columnFamilyId][$column][0]['value']);
@@ -204,16 +204,16 @@ class UniverseDomainTest extends SystemTestCase
     public function testDeleteTableWithUniverseDomain()
     {
         $tableName = self::$tableAdminClient->tableName(self::$projectId, self::$instanceId, self::$tableId);
-        
+
         $deleteTableRequest = (new DeleteTableRequest())
             ->setName($tableName);
-        
+
         self::$tableAdminClient->deleteTable($deleteTableRequest);
-        
+
         // Verify the table was deleted by trying to get it (should throw an exception)
         $getTableRequest = (new GetTableRequest())
             ->setName($tableName);
-        
+
         try {
             self::$tableAdminClient->getTable($getTableRequest);
             $this->fail('Expected exception was not thrown');
@@ -221,7 +221,7 @@ class UniverseDomainTest extends SystemTestCase
             $this->assertEquals('NOT_FOUND', $e->getStatus());
         }
     }
-    
+
     /**
      * Test deleting a Bigtable instance with universe domain credentials.
      *
@@ -230,13 +230,13 @@ class UniverseDomainTest extends SystemTestCase
     public function testDeleteInstanceWithUniverseDomain()
     {
         $instanceName = self::$instanceAdminClient->instanceName(self::$projectId, self::$instanceId);
-        
+
         $deleteRequest = new DeleteInstanceRequest([
             'name' => $instanceName
         ]);
-        
+
         self::$instanceAdminClient->deleteInstance($deleteRequest);
-        
+
         // Verify the instance was deleted by trying to get it (should throw an exception)
         $getRequest = new GetInstanceRequest([
             'name' => $instanceName
