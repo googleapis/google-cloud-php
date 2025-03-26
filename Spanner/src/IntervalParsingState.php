@@ -83,7 +83,4 @@ class IntervalParsingState
 
         return -1;
     }
-
-    // public override string ToString() =>
-    //     $"Years: {Years}, Months: {Months}, Days: {Days}, Hours: {Hours}, Minutes: {Minutes}, Seconds: {Seconds}";
 }

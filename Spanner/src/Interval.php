@@ -22,20 +22,20 @@ use InvalidArgumentException;
 
 class Interval
 {
-    private const NANOSECONDSINASECOND = 1000000000;
-    private const NANOSECONDSINAMINUTE = Interval::NANOSECONDSINASECOND * 60;
-    private const NANOSECONDSINANHOUR = Interval::NANOSECONDSINAMINUTE * 60;
-    private const NANOSECONDSINADAY = Interval::NANOSECONDSINANHOUR * 24;
-    private const NANOSECONDSINAMONTH = Interval::NANOSECONDSINADAY * 30;
-    private const NANOSECONDSINAYEAR = Interval::NANOSECONDSINAMONTH * 12;
-    private const NANOSECONDSINAMILLISECOND = 1000000;
-    private const NANOSECONDSINAMICROSECOND = 1000;
-    private const MAXMONTHS = 120000;
-    private const MINMONTHS = -Interval::MAXMONTHS;
-    private const MAXDAYS = 3660000;
-    private const MINDAYS = -Interval::MAXDAYS;
-    private const MAXNANOSECONDS = 316224000000000000000;
-    private const MINNANOSECONDS = -316224000000000000000;
+    private const NANOSECONDS_IN_A_SECOND = 1000000000;
+    private const NANOSECONDS_IN_A_MINUTE = Interval::NANOSECONDS_IN_A_SECOND * 60;
+    private const NANOSECONDS_IN_AN_HOUR = Interval::NANOSECONDS_IN_A_MINUTE * 60;
+    private const NANOSECONDS_IN_A_DAY = Interval::NANOSECONDS_IN_AN_HOUR * 24;
+    private const NANOSECONDS_IN_A_MONTH = Interval::NANOSECONDS_IN_A_DAY * 30;
+    private const NANOSECONDS_IN_A_YEAR = Interval::NANOSECONDS_IN_A_MONTH * 12;
+    private const NANOSECONDS_IN_A_MILLISECOND = 1000000;
+    private const NANOSECONDS_IN_A_MICROSECOND = 1000;
+    private const MAX_MONTHS = 120000;
+    private const MIN_MONTHS = -Interval::MAX_MONTHS;
+    private const MAX_DAYS = 3660000;
+    private const MIN_DAYS = -Interval::MAX_DAYS;
+    private const MAX_NANOSECONDS = 316224000000000000000;
+    private const MIN_NANOSECONDS = -316224000000000000000;
 
     private int $months;
     private int $days;
@@ -44,35 +44,35 @@ class Interval
 
     public function __construct(int $months, int $days, float $nanoseconds)
     {
-        if ($months > Interval::MAXMONTHS || $months < Interval::MINMONTHS) {
+        if ($months > Interval::MAX_MONTHS || $months < Interval::MIN_MONTHS) {
             throw new InvalidArgumentException(
-                'The interval type supports a range from '
-                . Interval::MAXMONTHS
-                . 'to '
-                . Interval::MINMONTHS
-                . 'months'
+                sprintf(
+                    'The interval type supports a range from %s to %s months',
+                    Interval::MAX_MONTHS,
+                    Interval::MIN_MONTHS
+                )
             );
         }
         $this->months = $months;
 
-        if ($days > Interval::MAXDAYS || $days < Interval::MINDAYS) {
+        if ($days > Interval::MAX_DAYS || $days < Interval::MIN_DAYS) {
             throw new InvalidArgumentException(
-                'The interval type supports a range from '
-                . Interval::MAXDAYS
-                . 'to '
-                . Interval::MINDAYS
-                . 'days'
+                sprintf(
+                    'The interval type supports a range from %s to %s days',
+                    Interval::MAX_DAYS,
+                    Interval::MIN_DAYS
+                )
             );
         }
         $this->days = $days;
 
-        if ($nanoseconds > Interval::MAXNANOSECONDS || $nanoseconds < Interval::MINNANOSECONDS) {
+        if ($nanoseconds > Interval::MAX_NANOSECONDS || $nanoseconds < Interval::MIN_NANOSECONDS) {
             throw new InvalidArgumentException(
-                'The interval type supports a range from '
-                . Interval::MAXNANOSECONDS
-                . 'to '
-                . Interval::MINNANOSECONDS
-                . 'nanoseconds'
+                sprintf(
+                    'The interval type supports a range from %s to %s nanoseconds',
+                    Interval::MAX_NANOSECONDS,
+                    Interval::MIN_NANOSECONDS
+                )
             );
         }
         $this->nanoseconds = $nanoseconds;
@@ -255,7 +255,7 @@ class Interval
      */
     public static function fromSeconds(float $seconds): Interval
     {
-        return new Interval(0, 0, $seconds * Interval::NANOSECONDSINASECOND);
+        return new Interval(0, 0, $seconds * Interval::NANOSECONDS_IN_A_SECOND);
     }
 
     /**
@@ -267,7 +267,7 @@ class Interval
      */
     public static function fromMilliseconds(float $milliseconds): Interval
     {
-        return new Interval(0, 0, $milliseconds * Interval::NANOSECONDSINAMILLISECOND);
+        return new Interval(0, 0, $milliseconds * Interval::NANOSECONDS_IN_A_MILLISECOND);
     }
 
     /**
@@ -279,7 +279,7 @@ class Interval
      */
     public static function fromMicroseconds(float $microseconds): Interval
     {
-        return new Interval(0, 0, $microseconds * Interval::NANOSECONDSINAMICROSECOND);
+        return new Interval(0, 0, $microseconds * Interval::NANOSECONDS_IN_A_MICROSECOND);
     }
 
     /**
@@ -306,11 +306,11 @@ class Interval
 
         $years = (int) ($this->months / 12);
         $months = $this->months % 12;
-        $hours = (int) ($remainingNanoseconds / Interval::NANOSECONDSINANHOUR);
-        $remainingNanoseconds = fmod($remainingNanoseconds, Interval::NANOSECONDSINANHOUR);
-        $minutes = (int) ($remainingNanoseconds / Interval::NANOSECONDSINAMINUTE);
-        $remainingNanoseconds = fmod($remainingNanoseconds, Interval::NANOSECONDSINAMINUTE);
-        $seconds = $remainingNanoseconds / Interval::NANOSECONDSINASECOND;
+        $hours = (int) ($remainingNanoseconds / Interval::NANOSECONDS_IN_AN_HOUR);
+        $remainingNanoseconds = fmod($remainingNanoseconds, Interval::NANOSECONDS_IN_AN_HOUR);
+        $minutes = (int) ($remainingNanoseconds / Interval::NANOSECONDS_IN_A_MINUTE);
+        $remainingNanoseconds = fmod($remainingNanoseconds, Interval::NANOSECONDS_IN_A_MINUTE);
+        $seconds = $remainingNanoseconds / Interval::NANOSECONDS_IN_A_SECOND;
 
         $intervalString = 'P';
 
@@ -354,19 +354,19 @@ class Interval
         return $years * 12;
     }
 
-    private static function hoursTonanoseconds(int $hours): float
+    private static function hoursToNanoseconds(int $hours): float
     {
-        return $hours * Interval::NANOSECONDSINANHOUR;
+        return $hours * Interval::NANOSECONDS_IN_AN_HOUR;
     }
 
     private static function minutesToNanoseconds(int $minutes): float
     {
-        return $minutes * Interval::NANOSECONDSINAMINUTE;
+        return $minutes * Interval::NANOSECONDS_IN_A_MINUTE;
     }
 
     private static function secondsToNanoseconds(float $seconds): float
     {
-        return $seconds * Interval::NANOSECONDSINASECOND;
+        return $seconds * Interval::NANOSECONDS_IN_A_SECOND;
     }
 
     private static function parseInt(string $valueString): int
