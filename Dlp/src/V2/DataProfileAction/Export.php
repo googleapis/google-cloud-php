@@ -46,6 +46,18 @@ class Export extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable profile_table = 1;</code>
      */
     protected $profile_table = null;
+    /**
+     * Store sample [data profile
+     * findings][google.privacy.dlp.v2.DataProfileFinding] in an existing table
+     * or a new table in an existing dataset. Each regeneration will result in
+     * new rows in BigQuery. Data is inserted using [streaming
+     * insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert)
+     * and so data may be in the buffer for a period of time after the profile
+     * has finished.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable sample_findings_table = 2;</code>
+     */
+    protected $sample_findings_table = null;
 
     /**
      * Constructor.
@@ -79,6 +91,14 @@ class Export extends \Google\Protobuf\Internal\Message
      *              reports](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#use_a_premade_report).
      *              If you use VPC Service Controls to define security perimeters, then
      *              you must use a separate table for each boundary.
+     *     @type \Google\Cloud\Dlp\V2\BigQueryTable $sample_findings_table
+     *           Store sample [data profile
+     *           findings][google.privacy.dlp.v2.DataProfileFinding] in an existing table
+     *           or a new table in an existing dataset. Each regeneration will result in
+     *           new rows in BigQuery. Data is inserted using [streaming
+     *           insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert)
+     *           and so data may be in the buffer for a period of time after the profile
+     *           has finished.
      * }
      */
     public function __construct($data = NULL) {
@@ -166,6 +186,54 @@ class Export extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\BigQueryTable::class);
         $this->profile_table = $var;
+
+        return $this;
+    }
+
+    /**
+     * Store sample [data profile
+     * findings][google.privacy.dlp.v2.DataProfileFinding] in an existing table
+     * or a new table in an existing dataset. Each regeneration will result in
+     * new rows in BigQuery. Data is inserted using [streaming
+     * insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert)
+     * and so data may be in the buffer for a period of time after the profile
+     * has finished.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable sample_findings_table = 2;</code>
+     * @return \Google\Cloud\Dlp\V2\BigQueryTable|null
+     */
+    public function getSampleFindingsTable()
+    {
+        return $this->sample_findings_table;
+    }
+
+    public function hasSampleFindingsTable()
+    {
+        return isset($this->sample_findings_table);
+    }
+
+    public function clearSampleFindingsTable()
+    {
+        unset($this->sample_findings_table);
+    }
+
+    /**
+     * Store sample [data profile
+     * findings][google.privacy.dlp.v2.DataProfileFinding] in an existing table
+     * or a new table in an existing dataset. Each regeneration will result in
+     * new rows in BigQuery. Data is inserted using [streaming
+     * insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert)
+     * and so data may be in the buffer for a period of time after the profile
+     * has finished.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable sample_findings_table = 2;</code>
+     * @param \Google\Cloud\Dlp\V2\BigQueryTable $var
+     * @return $this
+     */
+    public function setSampleFindingsTable($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\BigQueryTable::class);
+        $this->sample_findings_table = $var;
 
         return $this;
     }

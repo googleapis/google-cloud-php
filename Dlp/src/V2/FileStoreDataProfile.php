@@ -173,11 +173,24 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      */
     private $file_store_info_type_summaries;
     /**
+     * The BigQuery table to which the sample findings are written.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable sample_findings_table = 22;</code>
+     */
+    protected $sample_findings_table = null;
+    /**
      * The file store does not have any files.
      *
      * Generated from protobuf field <code>bool file_store_is_empty = 23;</code>
      */
     protected $file_store_is_empty = false;
+    /**
+     * The tags attached to the resource, including any tags attached during
+     * profiling.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Tag tags = 25;</code>
+     */
+    private $tags;
     /**
      * Resources related to this profile.
      *
@@ -258,8 +271,13 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      *           The labels applied to the resource at the time the profile was generated.
      *     @type array<\Google\Cloud\Dlp\V2\FileStoreInfoTypeSummary>|\Google\Protobuf\Internal\RepeatedField $file_store_info_type_summaries
      *           InfoTypes detected in this file store.
+     *     @type \Google\Cloud\Dlp\V2\BigQueryTable $sample_findings_table
+     *           The BigQuery table to which the sample findings are written.
      *     @type bool $file_store_is_empty
      *           The file store does not have any files.
+     *     @type array<\Google\Cloud\Dlp\V2\Tag>|\Google\Protobuf\Internal\RepeatedField $tags
+     *           The tags attached to the resource, including any tags attached during
+     *           profiling.
      *     @type array<\Google\Cloud\Dlp\V2\RelatedResource>|\Google\Protobuf\Internal\RepeatedField $related_resources
      *           Resources related to this profile.
      * }
@@ -968,6 +986,42 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The BigQuery table to which the sample findings are written.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable sample_findings_table = 22;</code>
+     * @return \Google\Cloud\Dlp\V2\BigQueryTable|null
+     */
+    public function getSampleFindingsTable()
+    {
+        return $this->sample_findings_table;
+    }
+
+    public function hasSampleFindingsTable()
+    {
+        return isset($this->sample_findings_table);
+    }
+
+    public function clearSampleFindingsTable()
+    {
+        unset($this->sample_findings_table);
+    }
+
+    /**
+     * The BigQuery table to which the sample findings are written.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable sample_findings_table = 22;</code>
+     * @param \Google\Cloud\Dlp\V2\BigQueryTable $var
+     * @return $this
+     */
+    public function setSampleFindingsTable($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\BigQueryTable::class);
+        $this->sample_findings_table = $var;
+
+        return $this;
+    }
+
+    /**
      * The file store does not have any files.
      *
      * Generated from protobuf field <code>bool file_store_is_empty = 23;</code>
@@ -989,6 +1043,34 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->file_store_is_empty = $var;
+
+        return $this;
+    }
+
+    /**
+     * The tags attached to the resource, including any tags attached during
+     * profiling.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Tag tags = 25;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * The tags attached to the resource, including any tags attached during
+     * profiling.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Tag tags = 25;</code>
+     * @param array<\Google\Cloud\Dlp\V2\Tag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTags($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\Tag::class);
+        $this->tags = $arr;
 
         return $this;
     }
