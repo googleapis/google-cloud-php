@@ -9,9 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * DiscoveredService is a network/api interface that exposes some functionality
- * to clients for consumption over the network. A discovered service can be
- * registered to a App Hub service.
+ * DiscoveredService is a network or API interface that exposes some
+ * functionality to clients for consumption over the network. A discovered
+ * service can be registered to a App Hub service.
  *
  * Generated from protobuf message <code>google.cloud.apphub.v1.DiscoveredService</code>
  */
@@ -19,7 +19,7 @@ class DiscoveredService extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. The resource name of the discovered service. Format:
-     * "projects/{host-project-id}/locations/{location}/discoveredServices/{uuid}""
+     * `"projects/{host-project-id}/locations/{location}/discoveredServices/{uuid}"`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -47,7 +47,7 @@ class DiscoveredService extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. The resource name of the discovered service. Format:
-     *           "projects/{host-project-id}/locations/{location}/discoveredServices/{uuid}""
+     *           `"projects/{host-project-id}/locations/{location}/discoveredServices/{uuid}"`
      *     @type \Google\Cloud\AppHub\V1\ServiceReference $service_reference
      *           Output only. Reference to an underlying networking resource that can
      *           comprise a Service. These are immutable.
@@ -63,7 +63,7 @@ class DiscoveredService extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The resource name of the discovered service. Format:
-     * "projects/{host-project-id}/locations/{location}/discoveredServices/{uuid}""
+     * `"projects/{host-project-id}/locations/{location}/discoveredServices/{uuid}"`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -75,7 +75,7 @@ class DiscoveredService extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The resource name of the discovered service. Format:
-     * "projects/{host-project-id}/locations/{location}/discoveredServices/{uuid}""
+     * `"projects/{host-project-id}/locations/{location}/discoveredServices/{uuid}"`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var

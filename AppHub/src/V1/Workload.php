@@ -20,7 +20,7 @@ class Workload extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. The resource name of the Workload. Format:
-     * "projects/{host-project-id}/locations/{location}/applications/{application-id}/workloads/{workload-id}"
+     * `"projects/{host-project-id}/locations/{location}/applications/{application-id}/workloads/{workload-id}"`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -99,7 +99,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. The resource name of the Workload. Format:
-     *           "projects/{host-project-id}/locations/{location}/applications/{application-id}/workloads/{workload-id}"
+     *           `"projects/{host-project-id}/locations/{location}/applications/{application-id}/workloads/{workload-id}"`
      *     @type string $display_name
      *           Optional. User-defined name for the Workload.
      *           Can have a maximum length of 63 characters.
@@ -134,7 +134,7 @@ class Workload extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The resource name of the Workload. Format:
-     * "projects/{host-project-id}/locations/{location}/applications/{application-id}/workloads/{workload-id}"
+     * `"projects/{host-project-id}/locations/{location}/applications/{application-id}/workloads/{workload-id}"`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -146,7 +146,7 @@ class Workload extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The resource name of the Workload. Format:
-     * "projects/{host-project-id}/locations/{location}/applications/{application-id}/workloads/{workload-id}"
+     * `"projects/{host-project-id}/locations/{location}/applications/{application-id}/workloads/{workload-id}"`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var

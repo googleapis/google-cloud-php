@@ -20,7 +20,7 @@ class DiscoveredWorkload extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. The resource name of the discovered workload. Format:
-     * "projects/{host-project-id}/locations/{location}/discoveredWorkloads/{uuid}"
+     * `"projects/{host-project-id}/locations/{location}/discoveredWorkloads/{uuid}"`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -48,7 +48,7 @@ class DiscoveredWorkload extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. The resource name of the discovered workload. Format:
-     *           "projects/{host-project-id}/locations/{location}/discoveredWorkloads/{uuid}"
+     *           `"projects/{host-project-id}/locations/{location}/discoveredWorkloads/{uuid}"`
      *     @type \Google\Cloud\AppHub\V1\WorkloadReference $workload_reference
      *           Output only. Reference of an underlying compute resource represented by the
      *           Workload. These are immutable.
@@ -64,7 +64,7 @@ class DiscoveredWorkload extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The resource name of the discovered workload. Format:
-     * "projects/{host-project-id}/locations/{location}/discoveredWorkloads/{uuid}"
+     * `"projects/{host-project-id}/locations/{location}/discoveredWorkloads/{uuid}"`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -76,7 +76,7 @@ class DiscoveredWorkload extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The resource name of the discovered workload. Format:
-     * "projects/{host-project-id}/locations/{location}/discoveredWorkloads/{uuid}"
+     * `"projects/{host-project-id}/locations/{location}/discoveredWorkloads/{uuid}"`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
