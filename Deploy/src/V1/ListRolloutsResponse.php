@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * ListRolloutsResponse is the response object reutrned by `ListRollouts`.
+ * ListRolloutsResponse is the response object returned by `ListRollouts`.
  *
  * Generated from protobuf message <code>google.cloud.deploy.v1.ListRolloutsResponse</code>
  */
