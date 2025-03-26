@@ -29,6 +29,8 @@ class SpecificStartPosition extends \Google\Protobuf\Internal\Message
      *           Oracle SCN to start replicating from.
      *     @type \Google\Cloud\Datastream\V1\SqlServerLsnPosition $sql_server_lsn_position
      *           SqlServer LSN to start replicating from.
+     *     @type \Google\Cloud\Datastream\V1\MysqlGtidPosition $mysql_gtid_position
+     *           MySQL GTID set to start replicating from.
      * }
      */
     public function __construct($data = NULL) {
@@ -125,6 +127,37 @@ class SpecificStartPosition extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SqlServerLsnPosition::class);
         $this->writeOneof(103, $var);
+
+        return $this;
+    }
+
+    /**
+     * MySQL GTID set to start replicating from.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlGtidPosition mysql_gtid_position = 104;</code>
+     * @return \Google\Cloud\Datastream\V1\MysqlGtidPosition|null
+     */
+    public function getMysqlGtidPosition()
+    {
+        return $this->readOneof(104);
+    }
+
+    public function hasMysqlGtidPosition()
+    {
+        return $this->hasOneof(104);
+    }
+
+    /**
+     * MySQL GTID set to start replicating from.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlGtidPosition mysql_gtid_position = 104;</code>
+     * @param \Google\Cloud\Datastream\V1\MysqlGtidPosition $var
+     * @return $this
+     */
+    public function setMysqlGtidPosition($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\MysqlGtidPosition::class);
+        $this->writeOneof(104, $var);
 
         return $this;
     }
