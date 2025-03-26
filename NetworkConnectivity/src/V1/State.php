@@ -69,6 +69,14 @@ class State
      * Generated from protobuf enum <code>OBSOLETE = 10;</code>
      */
     const OBSOLETE = 10;
+    /**
+     * The resource is in an undefined state due to resource creation or deletion
+     * failure. You can try to delete the resource later or contact support for
+     * help.
+     *
+     * Generated from protobuf enum <code>FAILED = 11;</code>
+     */
+    const FAILED = 11;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -80,6 +88,7 @@ class State
         self::UPDATING => 'UPDATING',
         self::INACTIVE => 'INACTIVE',
         self::OBSOLETE => 'OBSOLETE',
+        self::FAILED => 'FAILED',
     ];
 
     public static function name($value)

@@ -16,30 +16,30 @@ use Google\Protobuf\Internal\GPBUtil;
 class Filter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The IP protocol that this policy based route applies to. Valid
+     * Optional. The IP protocol that this policy-based route applies to. Valid
      * values are 'TCP', 'UDP', and 'ALL'. Default is 'ALL'.
      *
      * Generated from protobuf field <code>string ip_protocol = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $ip_protocol = '';
     /**
-     * Optional. The source IP range of outgoing packets that this policy based
+     * Optional. The source IP range of outgoing packets that this policy-based
      * route applies to. Default is "0.0.0.0/0" if protocol version is IPv4.
      *
      * Generated from protobuf field <code>string src_range = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $src_range = '';
     /**
-     * Optional. The destination IP range of outgoing packets that this policy
-     * based route applies to. Default is "0.0.0.0/0" if protocol version is
-     * IPv4.
+     * Optional. The destination IP range of outgoing packets that this
+     * policy-based route applies to. Default is "0.0.0.0/0" if protocol version
+     * is IPv4.
      *
      * Generated from protobuf field <code>string dest_range = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $dest_range = '';
     /**
-     * Required. Internet protocol versions this policy based route applies to.
-     * For this version, only IPV4 is supported.
+     * Required. Internet protocol versions this policy-based route applies to.
+     * For this version, only IPV4 is supported. IPV6 is supported in preview.
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.PolicyBasedRoute.Filter.ProtocolVersion protocol_version = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -52,18 +52,18 @@ class Filter extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $ip_protocol
-     *           Optional. The IP protocol that this policy based route applies to. Valid
+     *           Optional. The IP protocol that this policy-based route applies to. Valid
      *           values are 'TCP', 'UDP', and 'ALL'. Default is 'ALL'.
      *     @type string $src_range
-     *           Optional. The source IP range of outgoing packets that this policy based
+     *           Optional. The source IP range of outgoing packets that this policy-based
      *           route applies to. Default is "0.0.0.0/0" if protocol version is IPv4.
      *     @type string $dest_range
-     *           Optional. The destination IP range of outgoing packets that this policy
-     *           based route applies to. Default is "0.0.0.0/0" if protocol version is
-     *           IPv4.
+     *           Optional. The destination IP range of outgoing packets that this
+     *           policy-based route applies to. Default is "0.0.0.0/0" if protocol version
+     *           is IPv4.
      *     @type int $protocol_version
-     *           Required. Internet protocol versions this policy based route applies to.
-     *           For this version, only IPV4 is supported.
+     *           Required. Internet protocol versions this policy-based route applies to.
+     *           For this version, only IPV4 is supported. IPV6 is supported in preview.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,7 +72,7 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The IP protocol that this policy based route applies to. Valid
+     * Optional. The IP protocol that this policy-based route applies to. Valid
      * values are 'TCP', 'UDP', and 'ALL'. Default is 'ALL'.
      *
      * Generated from protobuf field <code>string ip_protocol = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -84,7 +84,7 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The IP protocol that this policy based route applies to. Valid
+     * Optional. The IP protocol that this policy-based route applies to. Valid
      * values are 'TCP', 'UDP', and 'ALL'. Default is 'ALL'.
      *
      * Generated from protobuf field <code>string ip_protocol = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -100,7 +100,7 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The source IP range of outgoing packets that this policy based
+     * Optional. The source IP range of outgoing packets that this policy-based
      * route applies to. Default is "0.0.0.0/0" if protocol version is IPv4.
      *
      * Generated from protobuf field <code>string src_range = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -112,7 +112,7 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The source IP range of outgoing packets that this policy based
+     * Optional. The source IP range of outgoing packets that this policy-based
      * route applies to. Default is "0.0.0.0/0" if protocol version is IPv4.
      *
      * Generated from protobuf field <code>string src_range = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -128,9 +128,9 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The destination IP range of outgoing packets that this policy
-     * based route applies to. Default is "0.0.0.0/0" if protocol version is
-     * IPv4.
+     * Optional. The destination IP range of outgoing packets that this
+     * policy-based route applies to. Default is "0.0.0.0/0" if protocol version
+     * is IPv4.
      *
      * Generated from protobuf field <code>string dest_range = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -141,9 +141,9 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The destination IP range of outgoing packets that this policy
-     * based route applies to. Default is "0.0.0.0/0" if protocol version is
-     * IPv4.
+     * Optional. The destination IP range of outgoing packets that this
+     * policy-based route applies to. Default is "0.0.0.0/0" if protocol version
+     * is IPv4.
      *
      * Generated from protobuf field <code>string dest_range = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -158,8 +158,8 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Internet protocol versions this policy based route applies to.
-     * For this version, only IPV4 is supported.
+     * Required. Internet protocol versions this policy-based route applies to.
+     * For this version, only IPV4 is supported. IPV6 is supported in preview.
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.PolicyBasedRoute.Filter.ProtocolVersion protocol_version = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -170,8 +170,8 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Internet protocol versions this policy based route applies to.
-     * For this version, only IPV4 is supported.
+     * Required. Internet protocol versions this policy-based route applies to.
+     * For this version, only IPV4 is supported. IPV6 is supported in preview.
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.PolicyBasedRoute.Filter.ProtocolVersion protocol_version = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var

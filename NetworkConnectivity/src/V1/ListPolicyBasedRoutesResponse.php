@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response for [PolicyBasedRouting.ListPolicyBasedRoutes][] method.
+ * Response for
+ * [PolicyBasedRoutingService.ListPolicyBasedRoutes][google.cloud.networkconnectivity.v1.PolicyBasedRoutingService.ListPolicyBasedRoutes]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.ListPolicyBasedRoutesResponse</code>
  */
 class ListPolicyBasedRoutesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Policy based routes to be returned.
+     * Policy-based routes to be returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.PolicyBasedRoute policy_based_routes = 1;</code>
      */
@@ -42,7 +44,7 @@ class ListPolicyBasedRoutesResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute>|\Google\Protobuf\Internal\RepeatedField $policy_based_routes
-     *           Policy based routes to be returned.
+     *           Policy-based routes to be returned.
      *     @type string $next_page_token
      *           The next pagination token in the List response. It should be used as
      *           page_token for the following request. An empty value means no more result.
@@ -56,7 +58,7 @@ class ListPolicyBasedRoutesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Policy based routes to be returned.
+     * Policy-based routes to be returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.PolicyBasedRoute policy_based_routes = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -67,7 +69,7 @@ class ListPolicyBasedRoutesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Policy based routes to be returned.
+     * Policy-based routes to be returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.PolicyBasedRoute policy_based_routes = 1;</code>
      * @param array<\Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute>|\Google\Protobuf\Internal\RepeatedField $var
