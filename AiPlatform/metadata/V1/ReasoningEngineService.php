@@ -25,7 +25,7 @@ class ReasoningEngineService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-•
+π
 9google/cloud/aiplatform/v1/reasoning_engine_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto1google/cloud/aiplatform/v1/reasoning_engine.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"•
 CreateReasoningEngineRequest9
 parent (	B)‡A˙A#
@@ -50,10 +50,11 @@ class ReasoningEngineService
 page_token (	B‡A"
 ListReasoningEnginesResponseF
 reasoning_engines (2+.google.cloud.aiplatform.v1.ReasoningEngine
-next_page_token (	"_
+next_page_token (	"s
 DeleteReasoningEngineRequest?
 name (	B1‡A˙A+
-)aiplatform.googleapis.com/ReasoningEngine2Ø
+)aiplatform.googleapis.com/ReasoningEngine
+force (B‡A2Ø
 
 ReasoningEngineServiceó
 CreateReasoningEngine8.google.cloud.aiplatform.v1.CreateReasoningEngineRequest.google.longrunning.Operation"§ A9
