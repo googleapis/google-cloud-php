@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner\Connection;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Serializer;
+use Google\Auth\GetUniverseDomainInterface;
 use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
@@ -278,12 +279,17 @@ class Grpc implements ConnectionInterface
             ManualSpannerClient::VERSION,
             isset($config['authHttpHandler'])
                 ? $config['authHttpHandler']
-                : null
+                : null,
+            $config['universeDomain'] ?? null
         );
 
         $config += [
             'emulatorHost' => null,
-            'queryOptions' => []
+            'queryOptions' => [],
+            // If the user has not supplied a universe domain, use the environment variable if set.
+            // Otherwise, use the default ("googleapis.com").
+            'universeDomain' => getenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN')
+                ?: GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN,
         ];
         if ((bool) $config['emulatorHost']) {
             $grpcConfig = array_merge(
@@ -293,6 +299,12 @@ class Grpc implements ConnectionInterface
         } elseif (isset($config['apiEndpoint'])) {
             $grpcConfig['apiEndpoint'] = $config['apiEndpoint'];
         }
+
+        // configure the universe domain if set
+        if (isset($config['universeDomain'])) {
+            $grpcConfig['universeDomain'] = $config['universeDomain'];
+        }
+
         $this->credentialsWrapper = $grpcConfig['credentials'];
 
         $this->defaultQueryOptions = $config['queryOptions'];
