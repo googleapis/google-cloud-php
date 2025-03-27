@@ -58,6 +58,12 @@ class Fact extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional double score = 6;</code>
      */
     protected $score = null;
+    /**
+     * If present, chunk properties.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.RagChunk chunk = 7;</code>
+     */
+    protected $chunk = null;
 
     /**
      * Constructor.
@@ -83,6 +89,8 @@ class Fact extends \Google\Protobuf\Internal\Message
      *           distance between the query and the fact. The larger the distance, the less
      *           relevant the fact is to the query. The range is [0, 2], while 0 means the
      *           most relevant and 2 means the least relevant.
+     *     @type \Google\Cloud\AIPlatform\V1\RagChunk $chunk
+     *           If present, chunk properties.
      * }
      */
     public function __construct($data = NULL) {
@@ -320,6 +328,42 @@ class Fact extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkDouble($var);
         $this->score = $var;
+
+        return $this;
+    }
+
+    /**
+     * If present, chunk properties.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.RagChunk chunk = 7;</code>
+     * @return \Google\Cloud\AIPlatform\V1\RagChunk|null
+     */
+    public function getChunk()
+    {
+        return $this->chunk;
+    }
+
+    public function hasChunk()
+    {
+        return isset($this->chunk);
+    }
+
+    public function clearChunk()
+    {
+        unset($this->chunk);
+    }
+
+    /**
+     * If present, chunk properties.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.RagChunk chunk = 7;</code>
+     * @param \Google\Cloud\AIPlatform\V1\RagChunk $var
+     * @return $this
+     */
+    public function setChunk($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\RagChunk::class);
+        $this->chunk = $var;
 
         return $this;
     }
