@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/maps/weather/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/GeoWeather/$1/$2
+api-name: GeoWeather
