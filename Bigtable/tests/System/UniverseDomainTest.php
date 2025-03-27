@@ -60,7 +60,9 @@ class UniverseDomainTest extends SystemTestCase
             self::markTestSkipped('Set GOOGLE_CLOUD_PHP_TESTS_UNIVERSE_DOMAIN_LOCATION to run system tests');
         }
 
-        $credentials = json_decode(file_get_contents($keyFilePath), true);
+        if (!$credentials = json_decode(file_get_contents($keyFilePath), true)) {
+            throw new \Exception('unable to decode key file');
+        }
         if (!isset($credentials['universe_domain'])) {
             throw new \Exception('The provided key file does not contain universe domain credentials');
         }
