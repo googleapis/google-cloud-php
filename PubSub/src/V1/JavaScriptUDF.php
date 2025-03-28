@@ -44,7 +44,7 @@ class JavaScriptUDF extends \Google\Protobuf\Internal\Message
      *   *
      *   * &#64;param  {Object<string, any>} metadata - Pub/Sub message metadata.
      *   * Keys:
-     *   *   - (required) 'message_id'  : {string}
+     *   *   - (optional) 'message_id'  : {string}
      *   *   - (optional) 'publish_time': {string} YYYY-MM-DDTHH:MM:SSZ format
      *   *   - (optional) 'ordering_key': {string}
      *   *&#47;
@@ -86,7 +86,7 @@ class JavaScriptUDF extends \Google\Protobuf\Internal\Message
      *             *
      *             * &#64;param  {Object<string, any>} metadata - Pub/Sub message metadata.
      *             * Keys:
-     *             *   - (required) 'message_id'  : {string}
+     *             *   - (optional) 'message_id'  : {string}
      *             *   - (optional) 'publish_time': {string} YYYY-MM-DDTHH:MM:SSZ format
      *             *   - (optional) 'ordering_key': {string}
      *             *&#47;
@@ -149,7 +149,7 @@ class JavaScriptUDF extends \Google\Protobuf\Internal\Message
      *   *
      *   * &#64;param  {Object<string, any>} metadata - Pub/Sub message metadata.
      *   * Keys:
-     *   *   - (required) 'message_id'  : {string}
+     *   *   - (optional) 'message_id'  : {string}
      *   *   - (optional) 'publish_time': {string} YYYY-MM-DDTHH:MM:SSZ format
      *   *   - (optional) 'ordering_key': {string}
      *   *&#47;
@@ -186,7 +186,7 @@ class JavaScriptUDF extends \Google\Protobuf\Internal\Message
      *   *
      *   * &#64;param  {Object<string, any>} metadata - Pub/Sub message metadata.
      *   * Keys:
-     *   *   - (required) 'message_id'  : {string}
+     *   *   - (optional) 'message_id'  : {string}
      *   *   - (optional) 'publish_time': {string} YYYY-MM-DDTHH:MM:SSZ format
      *   *   - (optional) 'ordering_key': {string}
      *   *&#47;
