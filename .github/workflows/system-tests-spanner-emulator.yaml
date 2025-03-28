@@ -30,7 +30,7 @@ jobs:
       - name: Create Spanner instance
         uses: google-github-actions/setup-gcloud@v2
         with:
-          version: '290.0.1'
+          version: '516.0.0'
       - run: gcloud info
       - run: gcloud config configurations create emulator
       - run: gcloud config set auth/disable_credentials true
