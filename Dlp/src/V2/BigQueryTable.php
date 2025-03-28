@@ -20,24 +20,24 @@ use Google\Protobuf\Internal\GPBUtil;
 class BigQueryTable extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Google Cloud Platform project ID of the project containing the table.
+     * The Google Cloud project ID of the project containing the table.
      * If omitted, project ID is inferred from the API call.
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Dataset ID of the table.
      *
      * Generated from protobuf field <code>string dataset_id = 2;</code>
      */
-    private $dataset_id = '';
+    protected $dataset_id = '';
     /**
      * Name of the table.
      *
      * Generated from protobuf field <code>string table_id = 3;</code>
      */
-    private $table_id = '';
+    protected $table_id = '';
 
     /**
      * Constructor.
@@ -46,7 +46,7 @@ class BigQueryTable extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           The Google Cloud Platform project ID of the project containing the table.
+     *           The Google Cloud project ID of the project containing the table.
      *           If omitted, project ID is inferred from the API call.
      *     @type string $dataset_id
      *           Dataset ID of the table.
@@ -60,7 +60,7 @@ class BigQueryTable extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Cloud Platform project ID of the project containing the table.
+     * The Google Cloud project ID of the project containing the table.
      * If omitted, project ID is inferred from the API call.
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
@@ -72,7 +72,7 @@ class BigQueryTable extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Cloud Platform project ID of the project containing the table.
+     * The Google Cloud project ID of the project containing the table.
      * If omitted, project ID is inferred from the API call.
      *
      * Generated from protobuf field <code>string project_id = 1;</code>

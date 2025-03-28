@@ -27,7 +27,7 @@ class AzureProxyConfig extends \Google\Protobuf\Internal\Message
      * The URL the of the proxy setting secret with its version.
      * The secret must be a JSON encoded proxy configuration
      * as described in
-     * https://cloud.google.com/anthos/clusters/docs/multi-cloud/azure/how-to/use-a-proxy#create_a_proxy_configuration_file
+     * https://cloud.google.com/kubernetes-engine/multi-cloud/docs/azure/how-to/use-a-proxy#create_a_proxy_configuration_file
      * Secret ids are formatted as
      * `https://<key-vault-name>.vault.azure.net/secrets/<secret-name>/<secret-version>`.
      *
@@ -49,7 +49,7 @@ class AzureProxyConfig extends \Google\Protobuf\Internal\Message
      *           The URL the of the proxy setting secret with its version.
      *           The secret must be a JSON encoded proxy configuration
      *           as described in
-     *           https://cloud.google.com/anthos/clusters/docs/multi-cloud/azure/how-to/use-a-proxy#create_a_proxy_configuration_file
+     *           https://cloud.google.com/kubernetes-engine/multi-cloud/docs/azure/how-to/use-a-proxy#create_a_proxy_configuration_file
      *           Secret ids are formatted as
      *           `https://<key-vault-name>.vault.azure.net/secrets/<secret-name>/<secret-version>`.
      * }
@@ -93,7 +93,7 @@ class AzureProxyConfig extends \Google\Protobuf\Internal\Message
      * The URL the of the proxy setting secret with its version.
      * The secret must be a JSON encoded proxy configuration
      * as described in
-     * https://cloud.google.com/anthos/clusters/docs/multi-cloud/azure/how-to/use-a-proxy#create_a_proxy_configuration_file
+     * https://cloud.google.com/kubernetes-engine/multi-cloud/docs/azure/how-to/use-a-proxy#create_a_proxy_configuration_file
      * Secret ids are formatted as
      * `https://<key-vault-name>.vault.azure.net/secrets/<secret-name>/<secret-version>`.
      *
@@ -109,7 +109,7 @@ class AzureProxyConfig extends \Google\Protobuf\Internal\Message
      * The URL the of the proxy setting secret with its version.
      * The secret must be a JSON encoded proxy configuration
      * as described in
-     * https://cloud.google.com/anthos/clusters/docs/multi-cloud/azure/how-to/use-a-proxy#create_a_proxy_configuration_file
+     * https://cloud.google.com/kubernetes-engine/multi-cloud/docs/azure/how-to/use-a-proxy#create_a_proxy_configuration_file
      * Secret ids are formatted as
      * `https://<key-vault-name>.vault.azure.net/secrets/<secret-name>/<secret-version>`.
      *

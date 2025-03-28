@@ -24,25 +24,25 @@ class ReviewDocumentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string human_review_config = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $human_review_config = '';
+    protected $human_review_config = '';
     /**
      * Whether the validation should be performed on the ad-hoc review request.
      *
      * Generated from protobuf field <code>bool enable_schema_validation = 3;</code>
      */
-    private $enable_schema_validation = false;
+    protected $enable_schema_validation = false;
     /**
      * The priority of the human review task.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.ReviewDocumentRequest.Priority priority = 5;</code>
      */
-    private $priority = 0;
+    protected $priority = 0;
     /**
      * The document schema of the human review task.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema document_schema = 6;</code>
      */
-    private $document_schema = null;
+    protected $document_schema = null;
     protected $source;
 
     /**

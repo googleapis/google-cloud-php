@@ -107,6 +107,4 @@ class ResponseStatusCode extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ResponseStatusCode::class, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_HttpCheck_ResponseStatusCode::class);
 

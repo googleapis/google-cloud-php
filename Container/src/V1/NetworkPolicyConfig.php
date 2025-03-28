@@ -22,7 +22,7 @@ class NetworkPolicyConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disabled = 1;</code>
      */
-    private $disabled = false;
+    protected $disabled = false;
 
     /**
      * Constructor.

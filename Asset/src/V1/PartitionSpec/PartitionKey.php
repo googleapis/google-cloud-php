@@ -70,6 +70,4 @@ class PartitionKey
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PartitionKey::class, \Google\Cloud\Asset\V1\PartitionSpec_PartitionKey::class);
 

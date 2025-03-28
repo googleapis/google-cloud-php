@@ -25,7 +25,7 @@ class AnalyzeOrgPolicyGovernedAssetsRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string scope = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $scope = '';
+    protected $scope = '';
     /**
      * Required. The name of the constraint to analyze governed assets for. The
      * analysis only contains analyzed organization policies for the provided
@@ -33,7 +33,7 @@ class AnalyzeOrgPolicyGovernedAssetsRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string constraint = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $constraint = '';
+    protected $constraint = '';
     /**
      * The expression to filter
      * [AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets].
@@ -63,7 +63,7 @@ class AnalyzeOrgPolicyGovernedAssetsRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * The maximum number of items to return per page. If unspecified,
      * [AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets]
@@ -71,13 +71,13 @@ class AnalyzeOrgPolicyGovernedAssetsRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>optional int32 page_size = 4;</code>
      */
-    private $page_size = null;
+    protected $page_size = null;
     /**
      * The pagination token to retrieve the next page.
      *
      * Generated from protobuf field <code>string page_token = 5;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $scope      Required. The organization to scope the request. Only organization

@@ -23,7 +23,7 @@ class FrequentlyBoughtTogetherFeaturesConfig extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Model.ContextProductsType context_products_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $context_products_type = 0;
+    protected $context_products_type = 0;
 
     /**
      * Constructor.

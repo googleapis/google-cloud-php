@@ -24,13 +24,13 @@ class CreateAssignmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Assignment resource to create.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Assignment assignment = 2;</code>
      */
-    private $assignment = null;
+    protected $assignment = null;
     /**
      * The optional assignment ID. Assignment name will be generated automatically
      * if this field is empty.
@@ -39,7 +39,7 @@ class CreateAssignmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string assignment_id = 4;</code>
      */
-    private $assignment_id = '';
+    protected $assignment_id = '';
 
     /**
      * @param string                                           $parent     Required. The parent resource name of the assignment

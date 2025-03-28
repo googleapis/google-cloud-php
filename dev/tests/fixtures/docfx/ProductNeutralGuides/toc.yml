@@ -1,0 +1,16 @@
+-
+  uid: product-neutral-guides
+  name: 'Client library help'
+  items:
+    -
+      name: 'Getting Started'
+      href: getting-started.md
+    -
+      name: Authentication
+      href: authentication.md
+    -
+      name: 'Debug Logging'
+      href: debug.md
+    -
+      name: 'Migrating to V2'
+      href: migrating.md

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\WebRisk\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\WebRisk\V1\Client\WebRiskServiceClient;
@@ -39,6 +38,7 @@ use Google\Cloud\WebRisk\V1\SearchUrisResponse;
 use Google\Cloud\WebRisk\V1\Submission;
 use Google\Cloud\WebRisk\V1\SubmitUriRequest;
 use Google\Cloud\WebRisk\V1\ThreatType;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -61,7 +61,9 @@ class WebRiskServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return WebRiskServiceClient */
@@ -89,9 +91,7 @@ class WebRiskServiceClientTest extends GeneratedTest
         // Mock request
         $threatType = ThreatType::THREAT_TYPE_UNSPECIFIED;
         $constraints = new Constraints();
-        $request = (new ComputeThreatListDiffRequest())
-            ->setThreatType($threatType)
-            ->setConstraints($constraints);
+        $request = (new ComputeThreatListDiffRequest())->setThreatType($threatType)->setConstraints($constraints);
         $response = $gapicClient->computeThreatListDiff($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -117,19 +117,20 @@ class WebRiskServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $threatType = ThreatType::THREAT_TYPE_UNSPECIFIED;
         $constraints = new Constraints();
-        $request = (new ComputeThreatListDiffRequest())
-            ->setThreatType($threatType)
-            ->setConstraints($constraints);
+        $request = (new ComputeThreatListDiffRequest())->setThreatType($threatType)->setConstraints($constraints);
         try {
             $gapicClient->computeThreatListDiff($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -161,9 +162,7 @@ class WebRiskServiceClientTest extends GeneratedTest
         $submission = new Submission();
         $submissionUri = 'submissionUri-1560297856';
         $submission->setUri($submissionUri);
-        $request = (new CreateSubmissionRequest())
-            ->setParent($formattedParent)
-            ->setSubmission($submission);
+        $request = (new CreateSubmissionRequest())->setParent($formattedParent)->setSubmission($submission);
         $response = $gapicClient->createSubmission($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -189,21 +188,22 @@ class WebRiskServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $submission = new Submission();
         $submissionUri = 'submissionUri-1560297856';
         $submission->setUri($submissionUri);
-        $request = (new CreateSubmissionRequest())
-            ->setParent($formattedParent)
-            ->setSubmission($submission);
+        $request = (new CreateSubmissionRequest())->setParent($formattedParent)->setSubmission($submission);
         try {
             $gapicClient->createSubmission($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -230,8 +230,7 @@ class WebRiskServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $threatTypes = [];
-        $request = (new SearchHashesRequest())
-            ->setThreatTypes($threatTypes);
+        $request = (new SearchHashesRequest())->setThreatTypes($threatTypes);
         $response = $gapicClient->searchHashes($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -255,17 +254,19 @@ class WebRiskServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $threatTypes = [];
-        $request = (new SearchHashesRequest())
-            ->setThreatTypes($threatTypes);
+        $request = (new SearchHashesRequest())->setThreatTypes($threatTypes);
         try {
             $gapicClient->searchHashes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -293,9 +294,7 @@ class WebRiskServiceClientTest extends GeneratedTest
         // Mock request
         $uri = 'uri116076';
         $threatTypes = [];
-        $request = (new SearchUrisRequest())
-            ->setUri($uri)
-            ->setThreatTypes($threatTypes);
+        $request = (new SearchUrisRequest())->setUri($uri)->setThreatTypes($threatTypes);
         $response = $gapicClient->searchUris($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -321,19 +320,20 @@ class WebRiskServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $uri = 'uri116076';
         $threatTypes = [];
-        $request = (new SearchUrisRequest())
-            ->setUri($uri)
-            ->setThreatTypes($threatTypes);
+        $request = (new SearchUrisRequest())->setUri($uri)->setThreatTypes($threatTypes);
         try {
             $gapicClient->searchUris($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -383,9 +383,7 @@ class WebRiskServiceClientTest extends GeneratedTest
         $submission = new Submission();
         $submissionUri = 'submissionUri-1560297856';
         $submission->setUri($submissionUri);
-        $request = (new SubmitUriRequest())
-            ->setParent($formattedParent)
-            ->setSubmission($submission);
+        $request = (new SubmitUriRequest())->setParent($formattedParent)->setSubmission($submission);
         $response = $gapicClient->submitUri($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -443,21 +441,22 @@ class WebRiskServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $submission = new Submission();
         $submissionUri = 'submissionUri-1560297856';
         $submission->setUri($submissionUri);
-        $request = (new SubmitUriRequest())
-            ->setParent($formattedParent)
-            ->setSubmission($submission);
+        $request = (new SubmitUriRequest())->setParent($formattedParent)->setSubmission($submission);
         $response = $gapicClient->submitUri($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -496,9 +495,7 @@ class WebRiskServiceClientTest extends GeneratedTest
         // Mock request
         $threatType = ThreatType::THREAT_TYPE_UNSPECIFIED;
         $constraints = new Constraints();
-        $request = (new ComputeThreatListDiffRequest())
-            ->setThreatType($threatType)
-            ->setConstraints($constraints);
+        $request = (new ComputeThreatListDiffRequest())->setThreatType($threatType)->setConstraints($constraints);
         $response = $gapicClient->computeThreatListDiffAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

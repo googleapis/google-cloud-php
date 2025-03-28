@@ -23,7 +23,7 @@ class SparkSqlBatch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query_file_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $query_file_uri = '';
+    protected $query_file_uri = '';
     /**
      * Optional. Mapping of query variable names to values (equivalent to the
      * Spark SQL command: `SET name="value";`).

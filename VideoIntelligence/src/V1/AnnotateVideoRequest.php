@@ -30,7 +30,7 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string input_uri = 1;</code>
      */
-    private $input_uri = '';
+    protected $input_uri = '';
     /**
      * The video data bytes.
      * If unset, the input video(s) should be specified via the `input_uri`.
@@ -38,7 +38,7 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes input_content = 6;</code>
      */
-    private $input_content = '';
+    protected $input_content = '';
     /**
      * Required. Requested video annotation features.
      *
@@ -50,7 +50,7 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.VideoContext video_context = 3;</code>
      */
-    private $video_context = null;
+    protected $video_context = null;
     /**
      * Optional. Location where the output (in JSON format) should be stored.
      * Currently, only [Cloud Storage](https://cloud.google.com/storage/)
@@ -62,7 +62,7 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string output_uri = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $output_uri = '';
+    protected $output_uri = '';
     /**
      * Optional. Cloud region where annotation should take place. Supported cloud
      * regions are: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no
@@ -71,7 +71,7 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $location_id = '';
+    protected $location_id = '';
 
     /**
      * @param string $inputUri Input video location. Currently, only

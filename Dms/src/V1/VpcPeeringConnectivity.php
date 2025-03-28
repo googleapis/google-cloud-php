@@ -22,7 +22,7 @@ class VpcPeeringConnectivity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string vpc = 1;</code>
      */
-    private $vpc = '';
+    protected $vpc = '';
 
     /**
      * Constructor.

@@ -21,13 +21,13 @@ class ErrorSummary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Code error_code = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $error_code = 0;
+    protected $error_code = 0;
     /**
      * Required. Count of this type of error.
      *
      * Generated from protobuf field <code>int64 error_count = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $error_count = 0;
+    protected $error_count = 0;
     /**
      * Error samples.
      * At most 5 error log entries are recorded for a given

@@ -17,20 +17,21 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The account resource for which to return change history
-     * resources. Format: accounts/{account} Example: "accounts/100"
+     * resources. Format: accounts/{account}
+     * Example: `accounts/100`
      *
      * Generated from protobuf field <code>string account = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $account = '';
+    protected $account = '';
     /**
      * Optional. Resource name for a child property. If set, only return changes
      * made to this property or its child resources.
      * Format: properties/{propertyId}
-     * Example: "properties/100"
+     * Example: `properties/100`
      *
      * Generated from protobuf field <code>string property = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $property = '';
+    protected $property = '';
     /**
      * Optional. If set, only return changes if they are for a resource that
      * matches at least one of these types.
@@ -57,22 +58,26 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp earliest_change_time = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $earliest_change_time = null;
+    protected $earliest_change_time = null;
     /**
      * Optional. If set, only return changes made before this time (inclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp latest_change_time = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $latest_change_time = null;
+    protected $latest_change_time = null;
     /**
      * Optional. The maximum number of ChangeHistoryEvent items to return.
-     * The service may return fewer than this value, even if there are additional
-     * pages. If unspecified, at most 50 items will be returned.
-     * The maximum value is 200 (higher values will be coerced to the maximum).
+     * If unspecified, at most 50 items will be returned. The maximum value is 200
+     * (higher values will be coerced to the maximum).
+     * Note that the service may return a page with fewer items than this value
+     * specifies (potentially even zero), and that there still may be additional
+     * pages. If you want a particular number of items, you'll need to continue
+     * requesting additional pages using `page_token` until you get the needed
+     * number.
      *
      * Generated from protobuf field <code>int32 page_size = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. A page token, received from a previous
      * `SearchChangeHistoryEvents` call. Provide this to retrieve the subsequent
@@ -82,7 +87,7 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * Constructor.
@@ -92,12 +97,13 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $account
      *           Required. The account resource for which to return change history
-     *           resources. Format: accounts/{account} Example: "accounts/100"
+     *           resources. Format: accounts/{account}
+     *           Example: `accounts/100`
      *     @type string $property
      *           Optional. Resource name for a child property. If set, only return changes
      *           made to this property or its child resources.
      *           Format: properties/{propertyId}
-     *           Example: "properties/100"
+     *           Example: `properties/100`
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $resource_type
      *           Optional. If set, only return changes if they are for a resource that
      *           matches at least one of these types.
@@ -113,9 +119,13 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      *           Optional. If set, only return changes made before this time (inclusive).
      *     @type int $page_size
      *           Optional. The maximum number of ChangeHistoryEvent items to return.
-     *           The service may return fewer than this value, even if there are additional
-     *           pages. If unspecified, at most 50 items will be returned.
-     *           The maximum value is 200 (higher values will be coerced to the maximum).
+     *           If unspecified, at most 50 items will be returned. The maximum value is 200
+     *           (higher values will be coerced to the maximum).
+     *           Note that the service may return a page with fewer items than this value
+     *           specifies (potentially even zero), and that there still may be additional
+     *           pages. If you want a particular number of items, you'll need to continue
+     *           requesting additional pages using `page_token` until you get the needed
+     *           number.
      *     @type string $page_token
      *           Optional. A page token, received from a previous
      *           `SearchChangeHistoryEvents` call. Provide this to retrieve the subsequent
@@ -131,7 +141,8 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The account resource for which to return change history
-     * resources. Format: accounts/{account} Example: "accounts/100"
+     * resources. Format: accounts/{account}
+     * Example: `accounts/100`
      *
      * Generated from protobuf field <code>string account = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -143,7 +154,8 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The account resource for which to return change history
-     * resources. Format: accounts/{account} Example: "accounts/100"
+     * resources. Format: accounts/{account}
+     * Example: `accounts/100`
      *
      * Generated from protobuf field <code>string account = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -161,7 +173,7 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      * Optional. Resource name for a child property. If set, only return changes
      * made to this property or its child resources.
      * Format: properties/{propertyId}
-     * Example: "properties/100"
+     * Example: `properties/100`
      *
      * Generated from protobuf field <code>string property = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -175,7 +187,7 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      * Optional. Resource name for a child property. If set, only return changes
      * made to this property or its child resources.
      * Format: properties/{propertyId}
-     * Example: "properties/100"
+     * Example: `properties/100`
      *
      * Generated from protobuf field <code>string property = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -347,9 +359,13 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The maximum number of ChangeHistoryEvent items to return.
-     * The service may return fewer than this value, even if there are additional
-     * pages. If unspecified, at most 50 items will be returned.
-     * The maximum value is 200 (higher values will be coerced to the maximum).
+     * If unspecified, at most 50 items will be returned. The maximum value is 200
+     * (higher values will be coerced to the maximum).
+     * Note that the service may return a page with fewer items than this value
+     * specifies (potentially even zero), and that there still may be additional
+     * pages. If you want a particular number of items, you'll need to continue
+     * requesting additional pages using `page_token` until you get the needed
+     * number.
      *
      * Generated from protobuf field <code>int32 page_size = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -361,9 +377,13 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The maximum number of ChangeHistoryEvent items to return.
-     * The service may return fewer than this value, even if there are additional
-     * pages. If unspecified, at most 50 items will be returned.
-     * The maximum value is 200 (higher values will be coerced to the maximum).
+     * If unspecified, at most 50 items will be returned. The maximum value is 200
+     * (higher values will be coerced to the maximum).
+     * Note that the service may return a page with fewer items than this value
+     * specifies (potentially even zero), and that there still may be additional
+     * pages. If you want a particular number of items, you'll need to continue
+     * requesting additional pages using `page_token` until you get the needed
+     * number.
      *
      * Generated from protobuf field <code>int32 page_size = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

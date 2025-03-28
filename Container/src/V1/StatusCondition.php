@@ -29,13 +29,13 @@ class StatusCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string message = 2;</code>
      */
-    private $message = '';
+    protected $message = '';
     /**
      * Canonical code of the condition.
      *
      * Generated from protobuf field <code>.google.rpc.Code canonical_code = 3;</code>
      */
-    private $canonical_code = 0;
+    protected $canonical_code = 0;
 
     /**
      * Constructor.

@@ -23,14 +23,14 @@ class RescheduleMaintenanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. If reschedule type is SPECIFIC_TIME, must set up schedule_time as
      * well.
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1.RescheduleMaintenanceRequest.RescheduleType reschedule_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $reschedule_type = 0;
+    protected $reschedule_type = 0;
     /**
      * Optional. Timestamp when the maintenance shall be rescheduled to if
      * reschedule_type=SPECIFIC_TIME, in RFC 3339 format, for
@@ -38,7 +38,7 @@ class RescheduleMaintenanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $schedule_time = null;
+    protected $schedule_time = null;
 
     /**
      * @param string                     $name           Required. Redis instance resource name using the form:

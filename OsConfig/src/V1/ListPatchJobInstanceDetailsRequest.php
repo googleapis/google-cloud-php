@@ -21,20 +21,20 @@ class ListPatchJobInstanceDetailsRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The maximum number of instance details records to return.  Default is 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A pagination token returned from a previous call
      * that indicates where this listing should continue from.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * A filter expression that filters results listed in the response. This
      * field supports filtering results by instance zone, name, state, or
@@ -42,7 +42,7 @@ class ListPatchJobInstanceDetailsRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * @param string $parent Required. The parent for the instances are in the form of

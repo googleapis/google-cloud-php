@@ -21,7 +21,7 @@ class OneTimeSchedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp execute_time = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $execute_time = null;
+    protected $execute_time = null;
 
     /**
      * Constructor.

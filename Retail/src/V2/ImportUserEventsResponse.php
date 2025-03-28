@@ -29,13 +29,13 @@ class ImportUserEventsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.ImportErrorsConfig errors_config = 2;</code>
      */
-    private $errors_config = null;
+    protected $errors_config = null;
     /**
      * Aggregated statistics of user event import status.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.UserEventImportSummary import_summary = 3;</code>
      */
-    private $import_summary = null;
+    protected $import_summary = null;
 
     /**
      * Constructor.

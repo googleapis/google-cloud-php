@@ -23,20 +23,20 @@ class SimulatedResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $resource_type = '';
+    protected $resource_type = '';
     /**
      * Optional. A representation of the Google Cloud resource. Should match the
      * Google Cloud resource JSON format.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct resource_data = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $resource_data = null;
+    protected $resource_data = null;
     /**
      * Optional. A representation of the IAM policy.
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy iam_policy_data = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $iam_policy_data = null;
+    protected $iam_policy_data = null;
 
     /**
      * Constructor.
@@ -163,6 +163,4 @@ class SimulatedResource extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SimulatedResource::class, \Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleRequest_SimulatedResource::class);
 

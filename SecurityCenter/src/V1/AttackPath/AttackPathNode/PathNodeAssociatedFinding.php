@@ -21,19 +21,19 @@ class PathNodeAssociatedFinding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string canonical_finding = 1;</code>
      */
-    private $canonical_finding = '';
+    protected $canonical_finding = '';
     /**
      * The additional taxonomy group within findings from a given source.
      *
      * Generated from protobuf field <code>string finding_category = 2;</code>
      */
-    private $finding_category = '';
+    protected $finding_category = '';
     /**
      * Full resource name of the finding.
      *
      * Generated from protobuf field <code>string name = 3;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * Constructor.
@@ -137,6 +137,4 @@ class PathNodeAssociatedFinding extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PathNodeAssociatedFinding::class, \Google\Cloud\SecurityCenter\V1\AttackPath_AttackPathNode_PathNodeAssociatedFinding::class);
 

@@ -21,14 +21,14 @@ class Application extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string base_uri = 1;</code>
      */
-    private $base_uri = '';
+    protected $base_uri = '';
     /**
      * The full URI with payload that can be used to reproduce the
      * vulnerability. For example, `http://example.com?p=aMmYgI6H`.
      *
      * Generated from protobuf field <code>string full_uri = 2;</code>
      */
-    private $full_uri = '';
+    protected $full_uri = '';
 
     /**
      * Constructor.

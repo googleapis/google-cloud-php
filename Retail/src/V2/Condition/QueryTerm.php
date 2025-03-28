@@ -25,13 +25,13 @@ class QueryTerm extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string value = 1;</code>
      */
-    private $value = '';
+    protected $value = '';
     /**
      * Whether this is supposed to be a full or partial match.
      *
      * Generated from protobuf field <code>bool full_match = 2;</code>
      */
-    private $full_match = false;
+    protected $full_match = false;
 
     /**
      * Constructor.

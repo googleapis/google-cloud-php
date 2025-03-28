@@ -18,8 +18,8 @@ class FlowValidationResult extends \Google\Protobuf\Internal\Message
 {
     /**
      * The unique identifier of the flow validation result.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/validationResult`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/validationResult`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -45,8 +45,8 @@ class FlowValidationResult extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The unique identifier of the flow validation result.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/flows/<Flow ID>/validationResult`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/validationResult`.
      *     @type array<\Google\Cloud\Dialogflow\Cx\V3\ValidationMessage>|\Google\Protobuf\Internal\RepeatedField $validation_messages
      *           Contains all validation messages.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -60,8 +60,8 @@ class FlowValidationResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The unique identifier of the flow validation result.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/validationResult`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/validationResult`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -73,8 +73,8 @@ class FlowValidationResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The unique identifier of the flow validation result.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/validationResult`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/validationResult`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

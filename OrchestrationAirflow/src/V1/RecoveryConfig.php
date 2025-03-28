@@ -20,7 +20,7 @@ class RecoveryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.ScheduledSnapshotsConfig scheduled_snapshots_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $scheduled_snapshots_config = null;
+    protected $scheduled_snapshots_config = null;
 
     /**
      * Constructor.

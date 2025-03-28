@@ -22,14 +22,14 @@ class RestoreInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Name of the file share in the Filestore instance that the backup
      * is being restored to.
      *
      * Generated from protobuf field <code>string file_share = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $file_share = '';
+    protected $file_share = '';
     protected $source;
 
     /**

@@ -34,7 +34,7 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool skip_boost_spec_validation = 2;</code>
      */
-    private $skip_boost_spec_validation = null;
+    protected $skip_boost_spec_validation = null;
 
     /**
      * Constructor.

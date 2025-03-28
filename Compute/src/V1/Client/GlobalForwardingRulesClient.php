@@ -43,6 +43,7 @@ use Google\Cloud\Compute\V1\PatchGlobalForwardingRuleRequest;
 use Google\Cloud\Compute\V1\SetLabelsGlobalForwardingRuleRequest;
 use Google\Cloud\Compute\V1\SetTargetGlobalForwardingRuleRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The GlobalForwardingRules API.
@@ -50,13 +51,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteGlobalForwardingRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetGlobalForwardingRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertGlobalForwardingRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListGlobalForwardingRulesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchGlobalForwardingRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsGlobalForwardingRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setTargetAsync(SetTargetGlobalForwardingRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteGlobalForwardingRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ForwardingRule> getAsync(GetGlobalForwardingRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertGlobalForwardingRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListGlobalForwardingRulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchGlobalForwardingRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsGlobalForwardingRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setTargetAsync(SetTargetGlobalForwardingRuleRequest $request, array $optionalArgs = [])
  */
 final class GlobalForwardingRulesClient
 {
@@ -190,6 +191,12 @@ final class GlobalForwardingRulesClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -220,6 +227,9 @@ final class GlobalForwardingRulesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -247,6 +257,8 @@ final class GlobalForwardingRulesClient
      *
      * The async variant is {@see GlobalForwardingRulesClient::deleteAsync()} .
      *
+     * @example samples/V1/GlobalForwardingRulesClient/delete.php
+     *
      * @param DeleteGlobalForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -270,6 +282,8 @@ final class GlobalForwardingRulesClient
      * Returns the specified GlobalForwardingRule resource. Gets a list of available forwarding rules by making a list() request.
      *
      * The async variant is {@see GlobalForwardingRulesClient::getAsync()} .
+     *
+     * @example samples/V1/GlobalForwardingRulesClient/get.php
      *
      * @param GetGlobalForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -295,6 +309,8 @@ final class GlobalForwardingRulesClient
      *
      * The async variant is {@see GlobalForwardingRulesClient::insertAsync()} .
      *
+     * @example samples/V1/GlobalForwardingRulesClient/insert.php
+     *
      * @param InsertGlobalForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -318,6 +334,8 @@ final class GlobalForwardingRulesClient
      * Retrieves a list of GlobalForwardingRule resources available to the specified project.
      *
      * The async variant is {@see GlobalForwardingRulesClient::listAsync()} .
+     *
+     * @example samples/V1/GlobalForwardingRulesClient/list.php
      *
      * @param ListGlobalForwardingRulesRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -343,6 +361,8 @@ final class GlobalForwardingRulesClient
      *
      * The async variant is {@see GlobalForwardingRulesClient::patchAsync()} .
      *
+     * @example samples/V1/GlobalForwardingRulesClient/patch.php
+     *
      * @param PatchGlobalForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -367,6 +387,8 @@ final class GlobalForwardingRulesClient
      *
      * The async variant is {@see GlobalForwardingRulesClient::setLabelsAsync()} .
      *
+     * @example samples/V1/GlobalForwardingRulesClient/set_labels.php
+     *
      * @param SetLabelsGlobalForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -390,6 +412,8 @@ final class GlobalForwardingRulesClient
      * Changes target URL for the GlobalForwardingRule resource. The new target should be of the same type as the old target.
      *
      * The async variant is {@see GlobalForwardingRulesClient::setTargetAsync()} .
+     *
+     * @example samples/V1/GlobalForwardingRulesClient/set_target.php
      *
      * @param SetTargetGlobalForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {

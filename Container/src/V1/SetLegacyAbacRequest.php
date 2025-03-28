@@ -48,14 +48,14 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enabled = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $enabled = false;
+    protected $enabled = false;
     /**
      * The name (project, location, cluster name) of the cluster to set legacy
      * abac. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string $projectId Deprecated. The Google Developers Console [project ID or project

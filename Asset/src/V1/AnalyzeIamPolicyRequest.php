@@ -21,7 +21,7 @@ class AnalyzeIamPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisQuery analysis_query = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $analysis_query = null;
+    protected $analysis_query = null;
     /**
      * Optional. The name of a saved query, which must be in the format of:
      * * projects/project_number/savedQueries/saved_query_id
@@ -39,7 +39,7 @@ class AnalyzeIamPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string saved_analysis_query = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $saved_analysis_query = '';
+    protected $saved_analysis_query = '';
     /**
      * Optional. Amount of time executable has to complete.  See JSON
      * representation of
@@ -53,7 +53,7 @@ class AnalyzeIamPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration execution_timeout = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $execution_timeout = null;
+    protected $execution_timeout = null;
 
     /**
      * Constructor.

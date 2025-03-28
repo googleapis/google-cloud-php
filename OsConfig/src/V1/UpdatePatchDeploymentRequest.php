@@ -20,14 +20,14 @@ class UpdatePatchDeploymentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchDeployment patch_deployment = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $patch_deployment = null;
+    protected $patch_deployment = null;
     /**
      * Optional. Field mask that controls which fields of the patch deployment
      * should be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\OsConfig\V1\PatchDeployment $patchDeployment Required. The patch deployment to Update.

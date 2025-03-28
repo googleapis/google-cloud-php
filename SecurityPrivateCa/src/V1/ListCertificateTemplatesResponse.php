@@ -30,7 +30,7 @@ class ListCertificateTemplatesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
     /**
      * A list of locations (e.g. "us-west1") that could not be reached.
      *

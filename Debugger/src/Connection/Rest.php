@@ -27,6 +27,7 @@ use Google\Cloud\Debugger\DebuggerClient;
  * [Google Debugger REST API](https://cloud.google.com/debugger/docs/reference/rest/).
  *
  * @internal
+ * @deprecated see https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation
  */
 class Rest implements ConnectionInterface
 {

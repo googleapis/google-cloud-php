@@ -101,6 +101,7 @@ use Google\Cloud\MigrationCenter\V1\ValidateImportJobRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service describing handlers for resources.
@@ -113,56 +114,56 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface addAssetsToGroupAsync(AddAssetsToGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface aggregateAssetsValuesAsync(AggregateAssetsValuesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchDeleteAssetsAsync(BatchDeleteAssetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchUpdateAssetsAsync(BatchUpdateAssetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createGroupAsync(CreateGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createImportDataFileAsync(CreateImportDataFileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createImportJobAsync(CreateImportJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createPreferenceSetAsync(CreatePreferenceSetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createReportAsync(CreateReportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createReportConfigAsync(CreateReportConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSourceAsync(CreateSourceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAssetAsync(DeleteAssetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteGroupAsync(DeleteGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteImportDataFileAsync(DeleteImportDataFileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteImportJobAsync(DeleteImportJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePreferenceSetAsync(DeletePreferenceSetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteReportAsync(DeleteReportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteReportConfigAsync(DeleteReportConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSourceAsync(DeleteSourceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAssetAsync(GetAssetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getErrorFrameAsync(GetErrorFrameRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getGroupAsync(GetGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getImportDataFileAsync(GetImportDataFileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getImportJobAsync(GetImportJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPreferenceSetAsync(GetPreferenceSetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getReportAsync(GetReportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getReportConfigAsync(GetReportConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSettingsAsync(GetSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSourceAsync(GetSourceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAssetsAsync(ListAssetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listErrorFramesAsync(ListErrorFramesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listGroupsAsync(ListGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listImportDataFilesAsync(ListImportDataFilesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listImportJobsAsync(ListImportJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPreferenceSetsAsync(ListPreferenceSetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listReportConfigsAsync(ListReportConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listReportsAsync(ListReportsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSourcesAsync(ListSourcesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeAssetsFromGroupAsync(RemoveAssetsFromGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface reportAssetFramesAsync(ReportAssetFramesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runImportJobAsync(RunImportJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAssetAsync(UpdateAssetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateGroupAsync(UpdateGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateImportJobAsync(UpdateImportJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updatePreferenceSetAsync(UpdatePreferenceSetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSettingsAsync(UpdateSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSourceAsync(UpdateSourceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface validateImportJobAsync(ValidateImportJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addAssetsToGroupAsync(AddAssetsToGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AggregateAssetsValuesResponse> aggregateAssetsValuesAsync(AggregateAssetsValuesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> batchDeleteAssetsAsync(BatchDeleteAssetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchUpdateAssetsResponse> batchUpdateAssetsAsync(BatchUpdateAssetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createGroupAsync(CreateGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createImportDataFileAsync(CreateImportDataFileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createImportJobAsync(CreateImportJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createPreferenceSetAsync(CreatePreferenceSetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createReportAsync(CreateReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createReportConfigAsync(CreateReportConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createSourceAsync(CreateSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAssetAsync(DeleteAssetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteGroupAsync(DeleteGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteImportDataFileAsync(DeleteImportDataFileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteImportJobAsync(DeleteImportJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deletePreferenceSetAsync(DeletePreferenceSetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteReportAsync(DeleteReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteReportConfigAsync(DeleteReportConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteSourceAsync(DeleteSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Asset> getAssetAsync(GetAssetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ErrorFrame> getErrorFrameAsync(GetErrorFrameRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Group> getGroupAsync(GetGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ImportDataFile> getImportDataFileAsync(GetImportDataFileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ImportJob> getImportJobAsync(GetImportJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PreferenceSet> getPreferenceSetAsync(GetPreferenceSetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Report> getReportAsync(GetReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportConfig> getReportConfigAsync(GetReportConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Settings> getSettingsAsync(GetSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Source> getSourceAsync(GetSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAssetsAsync(ListAssetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listErrorFramesAsync(ListErrorFramesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGroupsAsync(ListGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listImportDataFilesAsync(ListImportDataFilesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listImportJobsAsync(ListImportJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPreferenceSetsAsync(ListPreferenceSetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReportConfigsAsync(ListReportConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReportsAsync(ListReportsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSourcesAsync(ListSourcesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeAssetsFromGroupAsync(RemoveAssetsFromGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportAssetFramesResponse> reportAssetFramesAsync(ReportAssetFramesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> runImportJobAsync(RunImportJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Asset> updateAssetAsync(UpdateAssetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateGroupAsync(UpdateGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateImportJobAsync(UpdateImportJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updatePreferenceSetAsync(UpdatePreferenceSetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateSettingsAsync(UpdateSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateSourceAsync(UpdateSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> validateImportJobAsync(ValidateImportJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class MigrationCenterClient
 {
@@ -499,14 +500,14 @@ final class MigrationCenterClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -528,6 +529,12 @@ final class MigrationCenterClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -561,6 +568,9 @@ final class MigrationCenterClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

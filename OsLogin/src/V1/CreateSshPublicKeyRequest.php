@@ -20,13 +20,13 @@ class CreateSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The SSH public key and expiration time.
      *
      * Generated from protobuf field <code>.google.cloud.oslogin.common.SshPublicKey ssh_public_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ssh_public_key = null;
+    protected $ssh_public_key = null;
 
     /**
      * @param string                                    $parent       Required. The unique ID for the user in format `users/{user}`. Please see

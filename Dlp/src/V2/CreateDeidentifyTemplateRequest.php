@@ -35,13 +35,13 @@ class CreateDeidentifyTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The DeidentifyTemplate to create.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DeidentifyTemplate deidentify_template = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $deidentify_template = null;
+    protected $deidentify_template = null;
     /**
      * The template id can contain uppercase and lowercase letters,
      * numbers, and hyphens; that is, it must match the regular
@@ -50,13 +50,13 @@ class CreateDeidentifyTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string template_id = 3;</code>
      */
-    private $template_id = '';
+    protected $template_id = '';
     /**
      * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 4;</code>
      */
-    private $location_id = '';
+    protected $location_id = '';
 
     /**
      * @param string                                  $parent             Required. Parent resource name.

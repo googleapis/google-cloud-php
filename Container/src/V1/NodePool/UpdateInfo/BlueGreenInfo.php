@@ -20,7 +20,7 @@ class BlueGreenInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.NodePool.UpdateInfo.BlueGreenInfo.Phase phase = 1;</code>
      */
-    private $phase = 0;
+    protected $phase = 0;
     /**
      * The resource URLs of the [managed instance groups]
      * (/compute/docs/instance-groups/creating-groups-of-managed-instances)
@@ -43,13 +43,13 @@ class BlueGreenInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string blue_pool_deletion_start_time = 4;</code>
      */
-    private $blue_pool_deletion_start_time = '';
+    protected $blue_pool_deletion_start_time = '';
     /**
      * Version of green pool.
      *
      * Generated from protobuf field <code>string green_pool_version = 5;</code>
      */
-    private $green_pool_version = '';
+    protected $green_pool_version = '';
 
     /**
      * Constructor.
@@ -221,6 +221,4 @@ class BlueGreenInfo extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BlueGreenInfo::class, \Google\Cloud\Container\V1\NodePool_UpdateInfo_BlueGreenInfo::class);
 

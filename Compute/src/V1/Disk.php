@@ -16,6 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class Disk extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The access mode of the disk. - READ_WRITE_SINGLE: The default AccessMode, means the disk can be attached to single instance in RW mode. - READ_WRITE_MANY: The AccessMode means the disk can be attached to multiple instances in RW mode. - READ_ONLY_MANY: The AccessMode means the disk can be attached to multiple instances in RO mode. The AccessMode is only valid for Hyperdisk disk types.
+     * Check the AccessMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string access_mode = 41155486;</code>
+     */
+    private $access_mode = null;
+    /**
      * The architecture of the disk. Valid values are ARM64 or X86_64.
      * Check the Architecture enum for the list of possible values.
      *
@@ -318,6 +325,9 @@ class Disk extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $access_mode
+     *           The access mode of the disk. - READ_WRITE_SINGLE: The default AccessMode, means the disk can be attached to single instance in RW mode. - READ_WRITE_MANY: The AccessMode means the disk can be attached to multiple instances in RW mode. - READ_ONLY_MANY: The AccessMode means the disk can be attached to multiple instances in RO mode. The AccessMode is only valid for Hyperdisk disk types.
+     *           Check the AccessMode enum for the list of possible values.
      *     @type string $architecture
      *           The architecture of the disk. Valid values are ARM64 or X86_64.
      *           Check the Architecture enum for the list of possible values.
@@ -423,6 +433,44 @@ class Disk extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * The access mode of the disk. - READ_WRITE_SINGLE: The default AccessMode, means the disk can be attached to single instance in RW mode. - READ_WRITE_MANY: The AccessMode means the disk can be attached to multiple instances in RW mode. - READ_ONLY_MANY: The AccessMode means the disk can be attached to multiple instances in RO mode. The AccessMode is only valid for Hyperdisk disk types.
+     * Check the AccessMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string access_mode = 41155486;</code>
+     * @return string
+     */
+    public function getAccessMode()
+    {
+        return isset($this->access_mode) ? $this->access_mode : '';
+    }
+
+    public function hasAccessMode()
+    {
+        return isset($this->access_mode);
+    }
+
+    public function clearAccessMode()
+    {
+        unset($this->access_mode);
+    }
+
+    /**
+     * The access mode of the disk. - READ_WRITE_SINGLE: The default AccessMode, means the disk can be attached to single instance in RW mode. - READ_WRITE_MANY: The AccessMode means the disk can be attached to multiple instances in RW mode. - READ_ONLY_MANY: The AccessMode means the disk can be attached to multiple instances in RO mode. The AccessMode is only valid for Hyperdisk disk types.
+     * Check the AccessMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string access_mode = 41155486;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAccessMode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->access_mode = $var;
+
+        return $this;
     }
 
     /**

@@ -21,14 +21,14 @@ class DetectedBarcode extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      */
-    private $layout = null;
+    protected $layout = null;
     /**
      * Detailed barcode information of the
      * [DetectedBarcode][google.cloud.documentai.v1.Document.Page.DetectedBarcode].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Barcode barcode = 2;</code>
      */
-    private $barcode = null;
+    protected $barcode = null;
 
     /**
      * Constructor.

@@ -40,7 +40,7 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 4;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string $projectId Deprecated. The Google Developers Console [project ID or project

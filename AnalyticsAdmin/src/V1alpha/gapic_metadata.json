@@ -75,6 +75,11 @@
                                 "createAudience"
                             ]
                         },
+                        "CreateBigQueryLink": {
+                            "methods": [
+                                "createBigQueryLink"
+                            ]
+                        },
                         "CreateCalculatedMetric": {
                             "methods": [
                                 "createCalculatedMetric"
@@ -125,6 +130,11 @@
                                 "createEventCreateRule"
                             ]
                         },
+                        "CreateEventEditRule": {
+                            "methods": [
+                                "createEventEditRule"
+                            ]
+                        },
                         "CreateExpandedDataSet": {
                             "methods": [
                                 "createExpandedDataSet"
@@ -138,6 +148,11 @@
                         "CreateGoogleAdsLink": {
                             "methods": [
                                 "createGoogleAdsLink"
+                            ]
+                        },
+                        "CreateKeyEvent": {
+                            "methods": [
+                                "createKeyEvent"
                             ]
                         },
                         "CreateMeasurementProtocolSecret": {
@@ -170,11 +185,6 @@
                                 "createSearchAds360Link"
                             ]
                         },
-                        "CreateSubproperty": {
-                            "methods": [
-                                "createSubproperty"
-                            ]
-                        },
                         "CreateSubpropertyEventFilter": {
                             "methods": [
                                 "createSubpropertyEventFilter"
@@ -193,6 +203,11 @@
                         "DeleteAdSenseLink": {
                             "methods": [
                                 "deleteAdSenseLink"
+                            ]
+                        },
+                        "DeleteBigQueryLink": {
+                            "methods": [
+                                "deleteBigQueryLink"
                             ]
                         },
                         "DeleteCalculatedMetric": {
@@ -235,6 +250,11 @@
                                 "deleteEventCreateRule"
                             ]
                         },
+                        "DeleteEventEditRule": {
+                            "methods": [
+                                "deleteEventEditRule"
+                            ]
+                        },
                         "DeleteExpandedDataSet": {
                             "methods": [
                                 "deleteExpandedDataSet"
@@ -248,6 +268,11 @@
                         "DeleteGoogleAdsLink": {
                             "methods": [
                                 "deleteGoogleAdsLink"
+                            ]
+                        },
+                        "DeleteKeyEvent": {
+                            "methods": [
+                                "deleteKeyEvent"
                             ]
                         },
                         "DeleteMeasurementProtocolSecret": {
@@ -385,6 +410,11 @@
                                 "getEventCreateRule"
                             ]
                         },
+                        "GetEventEditRule": {
+                            "methods": [
+                                "getEventEditRule"
+                            ]
+                        },
                         "GetExpandedDataSet": {
                             "methods": [
                                 "getExpandedDataSet"
@@ -398,6 +428,11 @@
                         "GetGoogleSignalsSettings": {
                             "methods": [
                                 "getGoogleSignalsSettings"
+                            ]
+                        },
+                        "GetKeyEvent": {
+                            "methods": [
+                                "getKeyEvent"
                             ]
                         },
                         "GetMeasurementProtocolSecret": {
@@ -510,6 +545,11 @@
                                 "listEventCreateRules"
                             ]
                         },
+                        "ListEventEditRules": {
+                            "methods": [
+                                "listEventEditRules"
+                            ]
+                        },
                         "ListExpandedDataSets": {
                             "methods": [
                                 "listExpandedDataSets"
@@ -523,6 +563,11 @@
                         "ListGoogleAdsLinks": {
                             "methods": [
                                 "listGoogleAdsLinks"
+                            ]
+                        },
+                        "ListKeyEvents": {
+                            "methods": [
+                                "listKeyEvents"
                             ]
                         },
                         "ListMeasurementProtocolSecrets": {
@@ -560,6 +605,16 @@
                                 "provisionAccountTicket"
                             ]
                         },
+                        "ProvisionSubproperty": {
+                            "methods": [
+                                "provisionSubproperty"
+                            ]
+                        },
+                        "ReorderEventEditRules": {
+                            "methods": [
+                                "reorderEventEditRules"
+                            ]
+                        },
                         "RunAccessReport": {
                             "methods": [
                                 "runAccessReport"
@@ -593,6 +648,11 @@
                         "UpdateAudience": {
                             "methods": [
                                 "updateAudience"
+                            ]
+                        },
+                        "UpdateBigQueryLink": {
+                            "methods": [
+                                "updateBigQueryLink"
                             ]
                         },
                         "UpdateCalculatedMetric": {
@@ -650,6 +710,11 @@
                                 "updateEventCreateRule"
                             ]
                         },
+                        "UpdateEventEditRule": {
+                            "methods": [
+                                "updateEventEditRule"
+                            ]
+                        },
                         "UpdateExpandedDataSet": {
                             "methods": [
                                 "updateExpandedDataSet"
@@ -663,6 +728,11 @@
                         "UpdateGoogleSignalsSettings": {
                             "methods": [
                                 "updateGoogleSignalsSettings"
+                            ]
+                        },
+                        "UpdateKeyEvent": {
+                            "methods": [
+                                "updateKeyEvent"
                             ]
                         },
                         "UpdateMeasurementProtocolSecret": {

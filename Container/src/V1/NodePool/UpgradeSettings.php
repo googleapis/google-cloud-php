@@ -58,7 +58,7 @@ class UpgradeSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_surge = 1;</code>
      */
-    private $max_surge = 0;
+    protected $max_surge = 0;
     /**
      * The maximum number of nodes that can be simultaneously unavailable during
      * the upgrade process. A node is considered available if its status is
@@ -66,19 +66,19 @@ class UpgradeSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_unavailable = 2;</code>
      */
-    private $max_unavailable = 0;
+    protected $max_unavailable = 0;
     /**
      * Update strategy of the node pool.
      *
      * Generated from protobuf field <code>optional .google.container.v1.NodePoolUpdateStrategy strategy = 3;</code>
      */
-    private $strategy = null;
+    protected $strategy = null;
     /**
      * Settings for blue-green upgrade strategy.
      *
      * Generated from protobuf field <code>optional .google.container.v1.BlueGreenSettings blue_green_settings = 4;</code>
      */
-    private $blue_green_settings = null;
+    protected $blue_green_settings = null;
 
     /**
      * Constructor.
@@ -236,6 +236,4 @@ class UpgradeSettings extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(UpgradeSettings::class, \Google\Cloud\Container\V1\NodePool_UpgradeSettings::class);
 

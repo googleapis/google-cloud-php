@@ -20,13 +20,13 @@ class NodeInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Output only. Location of the node.
      *
      * Generated from protobuf field <code>string zone = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $zone = '';
+    protected $zone = '';
 
     /**
      * Constructor.

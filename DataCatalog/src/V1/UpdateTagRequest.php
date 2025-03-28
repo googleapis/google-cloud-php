@@ -21,7 +21,7 @@ class UpdateTagRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.Tag tag = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tag = null;
+    protected $tag = null;
     /**
      * Names of fields whose values to overwrite on a tag. Currently, a tag has
      * the only modifiable field with the name `fields`.
@@ -31,7 +31,7 @@ class UpdateTagRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\DataCatalog\V1\Tag $tag Required. The updated tag. The "name" field must be set.

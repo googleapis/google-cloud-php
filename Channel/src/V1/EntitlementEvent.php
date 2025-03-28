@@ -21,13 +21,13 @@ class EntitlementEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entitlement = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $entitlement = '';
+    protected $entitlement = '';
     /**
      * Type of event which happened on the entitlement.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.EntitlementEvent.Type event_type = 2;</code>
      */
-    private $event_type = 0;
+    protected $event_type = 0;
 
     /**
      * Constructor.

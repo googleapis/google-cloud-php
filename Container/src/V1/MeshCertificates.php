@@ -26,7 +26,7 @@ class MeshCertificates extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue enable_certificates = 1;</code>
      */
-    private $enable_certificates = null;
+    protected $enable_certificates = null;
 
     /**
      * Constructor.
@@ -90,7 +90,7 @@ class MeshCertificates extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue enable_certificates = 1;</code>
      * @return bool|null
      */
-    public function getEnableCertificatesValue()
+    public function getEnableCertificatesUnwrapped()
     {
         return $this->readWrapperValue("enable_certificates");
     }
@@ -131,7 +131,7 @@ class MeshCertificates extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setEnableCertificatesValue($var)
+    public function setEnableCertificatesUnwrapped($var)
     {
         $this->writeWrapperValue("enable_certificates", $var);
         return $this;}

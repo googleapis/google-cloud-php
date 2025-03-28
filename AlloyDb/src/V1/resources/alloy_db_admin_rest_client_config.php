@@ -163,6 +163,18 @@ return [
                     ],
                 ],
             ],
+            'ExecuteSql' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{instance=projects/*/locations/*/clusters/*/instances/*}:executeSql',
+                'body' => '*',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                ],
+            ],
             'FailoverInstance' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/instances/*}:failover',
@@ -276,6 +288,17 @@ return [
                     ],
                 ],
             ],
+            'ListDatabases' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/clusters/*}/databases',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListInstances' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/clusters/*}/instances',
@@ -341,6 +364,18 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'SwitchoverCluster' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:switchover',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],

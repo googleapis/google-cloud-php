@@ -56,6 +56,10 @@ class Type
      */
     const SEV_SNP_CAPABLE = 426919;
     /**
+     * Generated from protobuf enum <code>TDX_CAPABLE = 240446133;</code>
+     */
+    const TDX_CAPABLE = 240446133;
+    /**
      * Generated from protobuf enum <code>UEFI_COMPATIBLE = 195865408;</code>
      */
     const UEFI_COMPATIBLE = 195865408;
@@ -79,6 +83,7 @@ class Type
         self::SEV_LIVE_MIGRATABLE => 'SEV_LIVE_MIGRATABLE',
         self::SEV_LIVE_MIGRATABLE_V2 => 'SEV_LIVE_MIGRATABLE_V2',
         self::SEV_SNP_CAPABLE => 'SEV_SNP_CAPABLE',
+        self::TDX_CAPABLE => 'TDX_CAPABLE',
         self::UEFI_COMPATIBLE => 'UEFI_COMPATIBLE',
         self::VIRTIO_SCSI_MULTIQUEUE => 'VIRTIO_SCSI_MULTIQUEUE',
         self::WINDOWS => 'WINDOWS',

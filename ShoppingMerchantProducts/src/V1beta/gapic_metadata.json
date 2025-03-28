@@ -19,6 +19,11 @@
                             "methods": [
                                 "insertProductInput"
                             ]
+                        },
+                        "UpdateProductInput": {
+                            "methods": [
+                                "updateProductInput"
+                            ]
                         }
                     }
                 }

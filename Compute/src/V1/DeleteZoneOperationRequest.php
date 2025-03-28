@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteZoneOperationRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the Operations resource to delete.
+     * Name of the Operations resource to delete, or its unique numeric identifier.
      *
      * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -37,7 +37,7 @@ class DeleteZoneOperationRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $project   Project ID for this request.
      * @param string $zone      Name of the zone for this request.
-     * @param string $operation Name of the Operations resource to delete.
+     * @param string $operation Name of the Operations resource to delete, or its unique numeric identifier.
      *
      * @return \Google\Cloud\Compute\V1\DeleteZoneOperationRequest
      *
@@ -58,7 +58,7 @@ class DeleteZoneOperationRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $operation
-     *           Name of the Operations resource to delete.
+     *           Name of the Operations resource to delete, or its unique numeric identifier.
      *     @type string $project
      *           Project ID for this request.
      *     @type string $zone
@@ -71,7 +71,7 @@ class DeleteZoneOperationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the Operations resource to delete.
+     * Name of the Operations resource to delete, or its unique numeric identifier.
      *
      * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -82,7 +82,7 @@ class DeleteZoneOperationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the Operations resource to delete.
+     * Name of the Operations resource to delete, or its unique numeric identifier.
      *
      * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

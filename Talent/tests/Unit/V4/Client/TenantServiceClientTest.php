@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,7 +54,9 @@ class TenantServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return TenantServiceClient */
@@ -86,9 +88,7 @@ class TenantServiceClientTest extends GeneratedTest
         $tenant = new Tenant();
         $tenantExternalId = 'tenantExternalId-300736880';
         $tenant->setExternalId($tenantExternalId);
-        $request = (new CreateTenantRequest())
-            ->setParent($formattedParent)
-            ->setTenant($tenant);
+        $request = (new CreateTenantRequest())->setParent($formattedParent)->setTenant($tenant);
         $response = $gapicClient->createTenant($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -114,21 +114,22 @@ class TenantServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $tenant = new Tenant();
         $tenantExternalId = 'tenantExternalId-300736880';
         $tenant->setExternalId($tenantExternalId);
-        $request = (new CreateTenantRequest())
-            ->setParent($formattedParent)
-            ->setTenant($tenant);
+        $request = (new CreateTenantRequest())->setParent($formattedParent)->setTenant($tenant);
         try {
             $gapicClient->createTenant($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -155,8 +156,7 @@ class TenantServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $request = (new DeleteTenantRequest())
-            ->setName($formattedName);
+        $request = (new DeleteTenantRequest())->setName($formattedName);
         $gapicClient->deleteTenant($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -179,17 +179,19 @@ class TenantServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $request = (new DeleteTenantRequest())
-            ->setName($formattedName);
+        $request = (new DeleteTenantRequest())->setName($formattedName);
         try {
             $gapicClient->deleteTenant($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -220,8 +222,7 @@ class TenantServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $request = (new GetTenantRequest())
-            ->setName($formattedName);
+        $request = (new GetTenantRequest())->setName($formattedName);
         $response = $gapicClient->getTenant($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -245,17 +246,19 @@ class TenantServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $request = (new GetTenantRequest())
-            ->setName($formattedName);
+        $request = (new GetTenantRequest())->setName($formattedName);
         try {
             $gapicClient->getTenant($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -280,17 +283,14 @@ class TenantServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $tenantsElement = new Tenant();
-        $tenants = [
-            $tenantsElement,
-        ];
+        $tenants = [$tenantsElement];
         $expectedResponse = new ListTenantsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTenants($tenants);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListTenantsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListTenantsRequest())->setParent($formattedParent);
         $response = $gapicClient->listTenants($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -317,17 +317,19 @@ class TenantServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListTenantsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListTenantsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listTenants($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -360,8 +362,7 @@ class TenantServiceClientTest extends GeneratedTest
         $tenant = new Tenant();
         $tenantExternalId = 'tenantExternalId-300736880';
         $tenant->setExternalId($tenantExternalId);
-        $request = (new UpdateTenantRequest())
-            ->setTenant($tenant);
+        $request = (new UpdateTenantRequest())->setTenant($tenant);
         $response = $gapicClient->updateTenant($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -385,19 +386,21 @@ class TenantServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $tenant = new Tenant();
         $tenantExternalId = 'tenantExternalId-300736880';
         $tenant->setExternalId($tenantExternalId);
-        $request = (new UpdateTenantRequest())
-            ->setTenant($tenant);
+        $request = (new UpdateTenantRequest())->setTenant($tenant);
         try {
             $gapicClient->updateTenant($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -431,9 +434,7 @@ class TenantServiceClientTest extends GeneratedTest
         $tenant = new Tenant();
         $tenantExternalId = 'tenantExternalId-300736880';
         $tenant->setExternalId($tenantExternalId);
-        $request = (new CreateTenantRequest())
-            ->setParent($formattedParent)
-            ->setTenant($tenant);
+        $request = (new CreateTenantRequest())->setParent($formattedParent)->setTenant($tenant);
         $response = $gapicClient->createTenantAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

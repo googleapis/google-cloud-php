@@ -22,20 +22,20 @@ class ListServiceConfigsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $service_name = '';
+    protected $service_name = '';
     /**
      * The token of the page to retrieve.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * The max number of items to include in the response list. Page size is 50
      * if not specified. Maximum value is 100.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
 
     /**
      * @param string $serviceName Required. The name of the service.  See the

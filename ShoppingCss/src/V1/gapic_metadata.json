@@ -72,6 +72,11 @@
                             "methods": [
                                 "insertCssProductInput"
                             ]
+                        },
+                        "UpdateCssProductInput": {
+                            "methods": [
+                                "updateCssProductInput"
+                            ]
                         }
                     }
                 }

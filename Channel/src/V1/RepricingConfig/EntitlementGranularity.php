@@ -22,7 +22,7 @@ class EntitlementGranularity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entitlement = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $entitlement = '';
+    protected $entitlement = '';
 
     /**
      * Constructor.

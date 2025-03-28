@@ -20,7 +20,7 @@ class PyPiRepositoryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pypi_repository = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $pypi_repository = '';
+    protected $pypi_repository = '';
 
     /**
      * Constructor.

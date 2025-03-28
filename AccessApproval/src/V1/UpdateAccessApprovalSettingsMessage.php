@@ -20,7 +20,7 @@ class UpdateAccessApprovalSettingsMessage extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>.google.cloud.accessapproval.v1.AccessApprovalSettings settings = 1;</code>
      */
-    private $settings = null;
+    protected $settings = null;
     /**
      * The update mask applies to the settings. Only the top level fields of
      * AccessApprovalSettings (notification_emails & enrolled_services) are
@@ -34,7 +34,7 @@ class UpdateAccessApprovalSettingsMessage extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\AccessApproval\V1\AccessApprovalSettings $settings   The new AccessApprovalSettings.

@@ -20,7 +20,7 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.cloudprofiler.v2.Profile profile = 1;</code>
      */
-    private $profile = null;
+    protected $profile = null;
     /**
      * Field mask used to specify the fields to be overwritten. Currently only
      * profile_bytes and labels fields are supported by UpdateProfile, so only
@@ -29,7 +29,7 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Profiler\V2\Profile $profile    Profile to update.

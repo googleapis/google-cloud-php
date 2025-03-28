@@ -20,38 +20,38 @@ class Connector extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Name of a VPC network.
      *
      * Generated from protobuf field <code>string network = 2;</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * The range of internal addresses that follows RFC 4632 notation.
      * Example: `10.132.0.0/28`.
      *
      * Generated from protobuf field <code>string ip_cidr_range = 3;</code>
      */
-    private $ip_cidr_range = '';
+    protected $ip_cidr_range = '';
     /**
      * Output only. State of the VPC access connector.
      *
      * Generated from protobuf field <code>.google.cloud.vpcaccess.v1.Connector.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Minimum throughput of the connector in Mbps. Default and min is 200.
      *
      * Generated from protobuf field <code>int32 min_throughput = 5;</code>
      */
-    private $min_throughput = 0;
+    protected $min_throughput = 0;
     /**
      * Maximum throughput of the connector in Mbps. Default is 300, max is 1000.
      *
      * Generated from protobuf field <code>int32 max_throughput = 6;</code>
      */
-    private $max_throughput = 0;
+    protected $max_throughput = 0;
     /**
      * Output only. List of projects using the connector.
      *
@@ -63,25 +63,25 @@ class Connector extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vpcaccess.v1.Connector.Subnet subnet = 8;</code>
      */
-    private $subnet = null;
+    protected $subnet = null;
     /**
      * Machine type of VM Instance underlying connector. Default is e2-micro
      *
      * Generated from protobuf field <code>string machine_type = 10;</code>
      */
-    private $machine_type = '';
+    protected $machine_type = '';
     /**
      * Minimum value of instances in autoscaling group underlying the connector.
      *
      * Generated from protobuf field <code>int32 min_instances = 11;</code>
      */
-    private $min_instances = 0;
+    protected $min_instances = 0;
     /**
      * Maximum value of instances in autoscaling group underlying the connector.
      *
      * Generated from protobuf field <code>int32 max_instances = 12;</code>
      */
-    private $max_instances = 0;
+    protected $max_instances = 0;
 
     /**
      * Constructor.

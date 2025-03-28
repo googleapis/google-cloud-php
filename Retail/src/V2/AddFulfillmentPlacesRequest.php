@@ -27,7 +27,7 @@ class AddFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string product = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $product = '';
+    protected $product = '';
     /**
      * Required. The fulfillment type, including commonly used types (such as
      * pickup in store and same day delivery), and custom types.
@@ -48,7 +48,7 @@ class AddFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Required. The IDs for this
      * [type][google.cloud.retail.v2.AddFulfillmentPlacesRequest.type], such as
@@ -74,7 +74,7 @@ class AddFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp add_time = 4;</code>
      */
-    private $add_time = null;
+    protected $add_time = null;
     /**
      * If set to true, and the [Product][google.cloud.retail.v2.Product] is not
      * found, the fulfillment information will still be processed and retained for
@@ -85,7 +85,7 @@ class AddFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_missing = 5;</code>
      */
-    private $allow_missing = false;
+    protected $allow_missing = false;
 
     /**
      * @param string $product Required. Full resource name of [Product][google.cloud.retail.v2.Product],

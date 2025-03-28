@@ -23,7 +23,7 @@ class ListReportsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. Requested page size of the report. The server might return fewer
      * results than requested. If unspecified, returns 20 reports. The maximum
@@ -31,7 +31,7 @@ class ListReportsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. A token that specifies a page of results beyond the first page.
      * Obtained through
@@ -42,7 +42,7 @@ class ListReportsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. The BCP-47 language code, such as "en-US".  If specified, the
      * response is localized to the corresponding language code if the
@@ -51,7 +51,7 @@ class ListReportsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
 
     /**
      * @param string $parent Required. The resource name of the partner account to list available

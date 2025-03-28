@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Metadata about a [ResultSet][google.spanner.v1.ResultSet] or [PartialResultSet][google.spanner.v1.PartialResultSet].
+ * Metadata about a [ResultSet][google.spanner.v1.ResultSet] or
+ * [PartialResultSet][google.spanner.v1.PartialResultSet].
  *
  * Generated from protobuf message <code>google.spanner.v1.ResultSetMetadata</code>
  */
@@ -17,7 +18,7 @@ class ResultSetMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
      * Indicates the field names and types for the rows in the result
-     * set.  For example, a SQL query like `"SELECT UserId, UserName FROM
+     * set. For example, a SQL query like `"SELECT UserId, UserName FROM
      * Users"` could return a `row_type` value like:
      *     "fields": [
      *       { "name": "UserId", "type": { "code": "INT64" } },
@@ -57,7 +58,7 @@ class ResultSetMetadata extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Spanner\V1\StructType $row_type
      *           Indicates the field names and types for the rows in the result
-     *           set.  For example, a SQL query like `"SELECT UserId, UserName FROM
+     *           set. For example, a SQL query like `"SELECT UserId, UserName FROM
      *           Users"` could return a `row_type` value like:
      *               "fields": [
      *                 { "name": "UserId", "type": { "code": "INT64" } },
@@ -85,7 +86,7 @@ class ResultSetMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * Indicates the field names and types for the rows in the result
-     * set.  For example, a SQL query like `"SELECT UserId, UserName FROM
+     * set. For example, a SQL query like `"SELECT UserId, UserName FROM
      * Users"` could return a `row_type` value like:
      *     "fields": [
      *       { "name": "UserId", "type": { "code": "INT64" } },
@@ -112,7 +113,7 @@ class ResultSetMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * Indicates the field names and types for the rows in the result
-     * set.  For example, a SQL query like `"SELECT UserId, UserName FROM
+     * set. For example, a SQL query like `"SELECT UserId, UserName FROM
      * Users"` could return a `row_type` value like:
      *     "fields": [
      *       { "name": "UserId", "type": { "code": "INT64" } },

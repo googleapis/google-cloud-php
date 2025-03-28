@@ -110,11 +110,31 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     protected $encryption_key = '';
     /**
      * Optional. Sets the maximum number of requests that each serving instance
-     * can receive.
+     * can receive. If not specified or 0, concurrency defaults to 80 when
+     * requested `CPU >= 1` and defaults to 1 when requested `CPU < 1`.
      *
      * Generated from protobuf field <code>int32 max_instance_request_concurrency = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $max_instance_request_concurrency = 0;
+    /**
+     * Optional. Enables service mesh connectivity.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.ServiceMesh service_mesh = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $service_mesh = null;
+    /**
+     * Optional. The action to take if the encryption key is revoked.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.EncryptionKeyRevocationAction encryption_key_revocation_action = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $encryption_key_revocation_action = 0;
+    /**
+     * Optional. If encryption_key_revocation_action is SHUTDOWN, the duration
+     * before shutting down all instances. The minimum increment is 1 hour.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration encryption_key_shutdown_duration = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $encryption_key_shutdown_duration = null;
     /**
      * Optional. Enable session affinity.
      *
@@ -127,6 +147,12 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool health_check_disabled = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $health_check_disabled = false;
+    /**
+     * Optional. The node selector for the revision template.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.NodeSelector node_selector = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $node_selector = null;
 
     /**
      * Constructor.
@@ -184,11 +210,21 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/run/docs/securing/using-cmek
      *     @type int $max_instance_request_concurrency
      *           Optional. Sets the maximum number of requests that each serving instance
-     *           can receive.
+     *           can receive. If not specified or 0, concurrency defaults to 80 when
+     *           requested `CPU >= 1` and defaults to 1 when requested `CPU < 1`.
+     *     @type \Google\Cloud\Run\V2\ServiceMesh $service_mesh
+     *           Optional. Enables service mesh connectivity.
+     *     @type int $encryption_key_revocation_action
+     *           Optional. The action to take if the encryption key is revoked.
+     *     @type \Google\Protobuf\Duration $encryption_key_shutdown_duration
+     *           Optional. If encryption_key_revocation_action is SHUTDOWN, the duration
+     *           before shutting down all instances. The minimum increment is 1 hour.
      *     @type bool $session_affinity
      *           Optional. Enable session affinity.
      *     @type bool $health_check_disabled
      *           Optional. Disables health checking containers during deployment.
+     *     @type \Google\Cloud\Run\V2\NodeSelector $node_selector
+     *           Optional. The node selector for the revision template.
      * }
      */
     public function __construct($data = NULL) {
@@ -566,7 +602,8 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Sets the maximum number of requests that each serving instance
-     * can receive.
+     * can receive. If not specified or 0, concurrency defaults to 80 when
+     * requested `CPU >= 1` and defaults to 1 when requested `CPU < 1`.
      *
      * Generated from protobuf field <code>int32 max_instance_request_concurrency = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -578,7 +615,8 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Sets the maximum number of requests that each serving instance
-     * can receive.
+     * can receive. If not specified or 0, concurrency defaults to 80 when
+     * requested `CPU >= 1` and defaults to 1 when requested `CPU < 1`.
      *
      * Generated from protobuf field <code>int32 max_instance_request_concurrency = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -588,6 +626,106 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->max_instance_request_concurrency = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Enables service mesh connectivity.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.ServiceMesh service_mesh = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Run\V2\ServiceMesh|null
+     */
+    public function getServiceMesh()
+    {
+        return $this->service_mesh;
+    }
+
+    public function hasServiceMesh()
+    {
+        return isset($this->service_mesh);
+    }
+
+    public function clearServiceMesh()
+    {
+        unset($this->service_mesh);
+    }
+
+    /**
+     * Optional. Enables service mesh connectivity.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.ServiceMesh service_mesh = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Run\V2\ServiceMesh $var
+     * @return $this
+     */
+    public function setServiceMesh($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\ServiceMesh::class);
+        $this->service_mesh = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The action to take if the encryption key is revoked.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.EncryptionKeyRevocationAction encryption_key_revocation_action = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getEncryptionKeyRevocationAction()
+    {
+        return $this->encryption_key_revocation_action;
+    }
+
+    /**
+     * Optional. The action to take if the encryption key is revoked.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.EncryptionKeyRevocationAction encryption_key_revocation_action = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEncryptionKeyRevocationAction($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Run\V2\EncryptionKeyRevocationAction::class);
+        $this->encryption_key_revocation_action = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If encryption_key_revocation_action is SHUTDOWN, the duration
+     * before shutting down all instances. The minimum increment is 1 hour.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration encryption_key_shutdown_duration = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getEncryptionKeyShutdownDuration()
+    {
+        return $this->encryption_key_shutdown_duration;
+    }
+
+    public function hasEncryptionKeyShutdownDuration()
+    {
+        return isset($this->encryption_key_shutdown_duration);
+    }
+
+    public function clearEncryptionKeyShutdownDuration()
+    {
+        unset($this->encryption_key_shutdown_duration);
+    }
+
+    /**
+     * Optional. If encryption_key_revocation_action is SHUTDOWN, the duration
+     * before shutting down all instances. The minimum increment is 1 hour.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration encryption_key_shutdown_duration = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setEncryptionKeyShutdownDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->encryption_key_shutdown_duration = $var;
 
         return $this;
     }
@@ -640,6 +778,42 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->health_check_disabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The node selector for the revision template.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.NodeSelector node_selector = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Run\V2\NodeSelector|null
+     */
+    public function getNodeSelector()
+    {
+        return $this->node_selector;
+    }
+
+    public function hasNodeSelector()
+    {
+        return isset($this->node_selector);
+    }
+
+    public function clearNodeSelector()
+    {
+        unset($this->node_selector);
+    }
+
+    /**
+     * Optional. The node selector for the revision template.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.NodeSelector node_selector = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Run\V2\NodeSelector $var
+     * @return $this
+     */
+    public function setNodeSelector($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\NodeSelector::class);
+        $this->node_selector = $var;
 
         return $this;
     }

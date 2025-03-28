@@ -31,6 +31,8 @@ use Google\Cloud\Eventarc\Publishing\V1\PublishChannelConnectionEventsRequest;
 use Google\Cloud\Eventarc\Publishing\V1\PublishChannelConnectionEventsResponse;
 use Google\Cloud\Eventarc\Publishing\V1\PublishEventsRequest;
 use Google\Cloud\Eventarc\Publishing\V1\PublishEventsResponse;
+use Google\Cloud\Eventarc\Publishing\V1\PublishRequest;
+use Google\Cloud\Eventarc\Publishing\V1\PublishResponse;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -62,6 +64,69 @@ class PublisherClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new PublisherClient($options);
+    }
+
+    /** @test */
+    public function publishTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new PublishResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $messageBus = 'messageBus-872787384';
+        $request = (new PublishRequest())->setMessageBus($messageBus);
+        $response = $gapicClient->publish($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.eventarc.publishing.v1.Publisher/Publish', $actualFuncCall);
+        $actualValue = $actualRequestObject->getMessageBus();
+        $this->assertProtobufEquals($messageBus, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function publishExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $messageBus = 'messageBus-872787384';
+        $request = (new PublishRequest())->setMessageBus($messageBus);
+        try {
+            $gapicClient->publish($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -182,7 +247,7 @@ class PublisherClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function publishChannelConnectionEventsAsyncTest()
+    public function publishAsyncTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -190,19 +255,20 @@ class PublisherClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new PublishChannelConnectionEventsResponse();
+        $expectedResponse = new PublishResponse();
         $transport->addResponse($expectedResponse);
-        $request = new PublishChannelConnectionEventsRequest();
-        $response = $gapicClient->publishChannelConnectionEventsAsync($request)->wait();
+        // Mock request
+        $messageBus = 'messageBus-872787384';
+        $request = (new PublishRequest())->setMessageBus($messageBus);
+        $response = $gapicClient->publishAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.cloud.eventarc.publishing.v1.Publisher/PublishChannelConnectionEvents',
-            $actualFuncCall
-        );
+        $this->assertSame('/google.cloud.eventarc.publishing.v1.Publisher/Publish', $actualFuncCall);
+        $actualValue = $actualRequestObject->getMessageBus();
+        $this->assertProtobufEquals($messageBus, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

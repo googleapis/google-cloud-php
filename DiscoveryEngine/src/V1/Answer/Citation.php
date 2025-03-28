@@ -17,13 +17,16 @@ class Citation extends \Google\Protobuf\Internal\Message
 {
     /**
      * Index indicates the start of the segment, measured in bytes (UTF-8
-     * unicode).
+     * unicode). If there are multi-byte characters,such as non-ASCII
+     * characters, the index measurement is longer than the string length.
      *
      * Generated from protobuf field <code>int64 start_index = 1;</code>
      */
     protected $start_index = 0;
     /**
-     * End of the attributed segment, exclusive.
+     * End of the attributed segment, exclusive. Measured in bytes (UTF-8
+     * unicode). If there are multi-byte characters,such as non-ASCII
+     * characters, the index measurement is longer than the string length.
      *
      * Generated from protobuf field <code>int64 end_index = 2;</code>
      */
@@ -43,9 +46,12 @@ class Citation extends \Google\Protobuf\Internal\Message
      *
      *     @type int|string $start_index
      *           Index indicates the start of the segment, measured in bytes (UTF-8
-     *           unicode).
+     *           unicode). If there are multi-byte characters,such as non-ASCII
+     *           characters, the index measurement is longer than the string length.
      *     @type int|string $end_index
-     *           End of the attributed segment, exclusive.
+     *           End of the attributed segment, exclusive. Measured in bytes (UTF-8
+     *           unicode). If there are multi-byte characters,such as non-ASCII
+     *           characters, the index measurement is longer than the string length.
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\Answer\CitationSource>|\Google\Protobuf\Internal\RepeatedField $sources
      *           Citation sources for the attributed segment.
      * }
@@ -57,7 +63,8 @@ class Citation extends \Google\Protobuf\Internal\Message
 
     /**
      * Index indicates the start of the segment, measured in bytes (UTF-8
-     * unicode).
+     * unicode). If there are multi-byte characters,such as non-ASCII
+     * characters, the index measurement is longer than the string length.
      *
      * Generated from protobuf field <code>int64 start_index = 1;</code>
      * @return int|string
@@ -69,7 +76,8 @@ class Citation extends \Google\Protobuf\Internal\Message
 
     /**
      * Index indicates the start of the segment, measured in bytes (UTF-8
-     * unicode).
+     * unicode). If there are multi-byte characters,such as non-ASCII
+     * characters, the index measurement is longer than the string length.
      *
      * Generated from protobuf field <code>int64 start_index = 1;</code>
      * @param int|string $var
@@ -84,7 +92,9 @@ class Citation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * End of the attributed segment, exclusive.
+     * End of the attributed segment, exclusive. Measured in bytes (UTF-8
+     * unicode). If there are multi-byte characters,such as non-ASCII
+     * characters, the index measurement is longer than the string length.
      *
      * Generated from protobuf field <code>int64 end_index = 2;</code>
      * @return int|string
@@ -95,7 +105,9 @@ class Citation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * End of the attributed segment, exclusive.
+     * End of the attributed segment, exclusive. Measured in bytes (UTF-8
+     * unicode). If there are multi-byte characters,such as non-ASCII
+     * characters, the index measurement is longer than the string length.
      *
      * Generated from protobuf field <code>int64 end_index = 2;</code>
      * @param int|string $var

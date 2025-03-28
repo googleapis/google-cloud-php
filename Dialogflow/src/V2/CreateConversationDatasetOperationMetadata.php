@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Metadata for [ConversationDatasets][CreateConversationDataset].
+ * Metadata for [CreateConversationDataset][].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.CreateConversationDatasetOperationMetadata</code>
  */
@@ -22,7 +22,7 @@ class CreateConversationDatasetOperationMetadata extends \Google\Protobuf\Intern
      *
      * Generated from protobuf field <code>string conversation_dataset = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $conversation_dataset = '';
+    protected $conversation_dataset = '';
 
     /**
      * Constructor.

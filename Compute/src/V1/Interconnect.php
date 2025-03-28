@@ -22,7 +22,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     private $admin_enabled = null;
     /**
-     * [Output only] List of features available for this Interconnect connection, which can take one of the following values: - MACSEC If present then the Interconnect connection is provisioned on MACsec capable hardware ports. If not present then the Interconnect connection is provisioned on non-MACsec capable ports and MACsec isn't supported and enabling MACsec fails.
+     * [Output only] List of features available for this Interconnect connection, which can take one of the following values: - IF_MACSEC If present then the Interconnect connection is provisioned on MACsec capable hardware ports. If not present then the Interconnect connection is provisioned on non-MACsec capable ports and MACsec isn't supported and enabling MACsec fails.
      * Check the AvailableFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string available_features = 496344307;</code>
@@ -108,7 +108,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
+     * Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. - LINK_TYPE_ETHERNET_400G_LR4: A 400G Ethernet with LR4 optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
      * Check the LinkType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string link_type = 523207775;</code>
@@ -170,7 +170,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     private $remote_location = null;
     /**
-     * Optional. List of features requested for this Interconnect connection, which can take one of the following values: - MACSEC If specified then the connection is created on MACsec capable hardware ports. If not specified, the default value is false, which allocates non-MACsec capable ports first if available. This parameter can be provided only with Interconnect INSERT. It isn't valid for Interconnect PATCH.
+     * Optional. List of features requested for this Interconnect connection, which can take one of the following values: - IF_MACSEC If specified then the connection is created on MACsec capable hardware ports. If not specified, the default value is false, which allocates non-MACsec capable ports first if available. This parameter can be provided only with Interconnect INSERT. It isn't valid for Interconnect PATCH.
      * Check the RequestedFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string requested_features = 461240814;</code>
@@ -211,7 +211,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *     @type bool $admin_enabled
      *           Administrative status of the interconnect. When this is set to true, the Interconnect is functional and can carry traffic. When set to false, no packets can be carried over the interconnect and no BGP routes are exchanged over it. By default, the status is set to true.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $available_features
-     *           [Output only] List of features available for this Interconnect connection, which can take one of the following values: - MACSEC If present then the Interconnect connection is provisioned on MACsec capable hardware ports. If not present then the Interconnect connection is provisioned on non-MACsec capable ports and MACsec isn't supported and enabling MACsec fails.
+     *           [Output only] List of features available for this Interconnect connection, which can take one of the following values: - IF_MACSEC If present then the Interconnect connection is provisioned on MACsec capable hardware ports. If not present then the Interconnect connection is provisioned on non-MACsec capable ports and MACsec isn't supported and enabling MACsec fails.
      *           Check the AvailableFeatures enum for the list of possible values.
      *     @type array<\Google\Cloud\Compute\V1\InterconnectCircuitInfo>|\Google\Protobuf\Internal\RepeatedField $circuit_infos
      *           [Output Only] A list of CircuitInfo objects, that describe the individual circuits in this LAG.
@@ -241,7 +241,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels for this resource. These can only be added or modified by the setLabels method. Each label key/value pair must comply with RFC1035. Label values may be empty.
      *     @type string $link_type
-     *           Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
+     *           Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. - LINK_TYPE_ETHERNET_400G_LR4: A 400G Ethernet with LR4 optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
      *           Check the LinkType enum for the list of possible values.
      *     @type string $location
      *           URL of the InterconnectLocation object that represents where this connection is to be provisioned.
@@ -263,7 +263,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *     @type string $remote_location
      *           Indicates that this is a Cross-Cloud Interconnect. This field specifies the location outside of Google's network that the interconnect is connected to.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $requested_features
-     *           Optional. List of features requested for this Interconnect connection, which can take one of the following values: - MACSEC If specified then the connection is created on MACsec capable hardware ports. If not specified, the default value is false, which allocates non-MACsec capable ports first if available. This parameter can be provided only with Interconnect INSERT. It isn't valid for Interconnect PATCH.
+     *           Optional. List of features requested for this Interconnect connection, which can take one of the following values: - IF_MACSEC If specified then the connection is created on MACsec capable hardware ports. If not specified, the default value is false, which allocates non-MACsec capable ports first if available. This parameter can be provided only with Interconnect INSERT. It isn't valid for Interconnect PATCH.
      *           Check the RequestedFeatures enum for the list of possible values.
      *     @type int $requested_link_count
      *           Target number of physical links in the link bundle, as requested by the customer.
@@ -318,7 +318,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] List of features available for this Interconnect connection, which can take one of the following values: - MACSEC If present then the Interconnect connection is provisioned on MACsec capable hardware ports. If not present then the Interconnect connection is provisioned on non-MACsec capable ports and MACsec isn't supported and enabling MACsec fails.
+     * [Output only] List of features available for this Interconnect connection, which can take one of the following values: - IF_MACSEC If present then the Interconnect connection is provisioned on MACsec capable hardware ports. If not present then the Interconnect connection is provisioned on non-MACsec capable ports and MACsec isn't supported and enabling MACsec fails.
      * Check the AvailableFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string available_features = 496344307;</code>
@@ -330,7 +330,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] List of features available for this Interconnect connection, which can take one of the following values: - MACSEC If present then the Interconnect connection is provisioned on MACsec capable hardware ports. If not present then the Interconnect connection is provisioned on non-MACsec capable ports and MACsec isn't supported and enabling MACsec fails.
+     * [Output only] List of features available for this Interconnect connection, which can take one of the following values: - IF_MACSEC If present then the Interconnect connection is provisioned on MACsec capable hardware ports. If not present then the Interconnect connection is provisioned on non-MACsec capable ports and MACsec isn't supported and enabling MACsec fails.
      * Check the AvailableFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string available_features = 496344307;</code>
@@ -776,7 +776,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
+     * Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. - LINK_TYPE_ETHERNET_400G_LR4: A 400G Ethernet with LR4 optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
      * Check the LinkType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string link_type = 523207775;</code>
@@ -798,7 +798,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
+     * Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. - LINK_TYPE_ETHERNET_400G_LR4: A 400G Ethernet with LR4 optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
      * Check the LinkType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string link_type = 523207775;</code>
@@ -1140,7 +1140,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of features requested for this Interconnect connection, which can take one of the following values: - MACSEC If specified then the connection is created on MACsec capable hardware ports. If not specified, the default value is false, which allocates non-MACsec capable ports first if available. This parameter can be provided only with Interconnect INSERT. It isn't valid for Interconnect PATCH.
+     * Optional. List of features requested for this Interconnect connection, which can take one of the following values: - IF_MACSEC If specified then the connection is created on MACsec capable hardware ports. If not specified, the default value is false, which allocates non-MACsec capable ports first if available. This parameter can be provided only with Interconnect INSERT. It isn't valid for Interconnect PATCH.
      * Check the RequestedFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string requested_features = 461240814;</code>
@@ -1152,7 +1152,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of features requested for this Interconnect connection, which can take one of the following values: - MACSEC If specified then the connection is created on MACsec capable hardware ports. If not specified, the default value is false, which allocates non-MACsec capable ports first if available. This parameter can be provided only with Interconnect INSERT. It isn't valid for Interconnect PATCH.
+     * Optional. List of features requested for this Interconnect connection, which can take one of the following values: - IF_MACSEC If specified then the connection is created on MACsec capable hardware ports. If not specified, the default value is false, which allocates non-MACsec capable ports first if available. This parameter can be provided only with Interconnect INSERT. It isn't valid for Interconnect PATCH.
      * Check the RequestedFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string requested_features = 461240814;</code>

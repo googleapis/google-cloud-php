@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for listing descendant Security Health Analytics custom
- * modules.
+ * Response message for
+ * [SecurityCenterManagement.ListDescendantSecurityHealthAnalyticsCustomModules][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListDescendantSecurityHealthAnalyticsCustomModules].
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.ListDescendantSecurityHealthAnalyticsCustomModulesResponse</code>
  */
@@ -23,7 +23,8 @@ class ListDescendantSecurityHealthAnalyticsCustomModulesResponse extends \Google
      */
     private $security_health_analytics_custom_modules;
     /**
-     * A token identifying a page of results the server should return.
+     * A pagination token. To retrieve the next page of results, call the method
+     * again with this token.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -38,7 +39,8 @@ class ListDescendantSecurityHealthAnalyticsCustomModulesResponse extends \Google
      *     @type array<\Google\Cloud\SecurityCenterManagement\V1\SecurityHealthAnalyticsCustomModule>|\Google\Protobuf\Internal\RepeatedField $security_health_analytics_custom_modules
      *           The list of SecurityHealthAnalyticsCustomModules
      *     @type string $next_page_token
-     *           A token identifying a page of results the server should return.
+     *           A pagination token. To retrieve the next page of results, call the method
+     *           again with this token.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,7 +75,8 @@ class ListDescendantSecurityHealthAnalyticsCustomModulesResponse extends \Google
     }
 
     /**
-     * A token identifying a page of results the server should return.
+     * A pagination token. To retrieve the next page of results, call the method
+     * again with this token.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -84,7 +87,8 @@ class ListDescendantSecurityHealthAnalyticsCustomModulesResponse extends \Google
     }
 
     /**
-     * A token identifying a page of results the server should return.
+     * A pagination token. To retrieve the next page of results, call the method
+     * again with this token.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

@@ -21,7 +21,7 @@ class AdaptiveMtDataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The name of the dataset to show in the interface. The name can be
      * up to 32 characters long and can consist only of ASCII Latin letters A-Z
@@ -29,37 +29,37 @@ class AdaptiveMtDataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The BCP-47 language code of the source language.
      *
      * Generated from protobuf field <code>string source_language_code = 3;</code>
      */
-    private $source_language_code = '';
+    protected $source_language_code = '';
     /**
      * The BCP-47 language code of the target language.
      *
      * Generated from protobuf field <code>string target_language_code = 4;</code>
      */
-    private $target_language_code = '';
+    protected $target_language_code = '';
     /**
      * The number of examples in the dataset.
      *
      * Generated from protobuf field <code>int32 example_count = 5;</code>
      */
-    private $example_count = 0;
+    protected $example_count = 0;
     /**
      * Output only. Timestamp when this dataset was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this dataset was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
 
     /**
      * Constructor.

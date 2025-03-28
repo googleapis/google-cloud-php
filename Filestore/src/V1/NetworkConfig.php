@@ -22,7 +22,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 1;</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * Internet protocol versions for which the instance has IP addresses
      * assigned. For this version, only MODE_IPV4 is supported.
@@ -51,7 +51,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string reserved_ip_range = 4;</code>
      */
-    private $reserved_ip_range = '';
+    protected $reserved_ip_range = '';
     /**
      * Output only. IPv4 addresses in the format
      * `{octet1}.{octet2}.{octet3}.{octet4}` or IPv6 addresses in the format
@@ -66,7 +66,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.filestore.v1.NetworkConfig.ConnectMode connect_mode = 6;</code>
      */
-    private $connect_mode = 0;
+    protected $connect_mode = 0;
 
     /**
      * Constructor.

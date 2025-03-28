@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A resource message representing a GA4 Audience.
+ * A resource message representing an Audience.
  *
  * Generated from protobuf message <code>google.analytics.admin.v1alpha.Audience</code>
  */
@@ -21,40 +21,40 @@ class Audience extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The display name of the Audience.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Required. The description of the Audience.
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. Immutable. The duration a user should stay in an Audience. It
      * cannot be set to more than 540 days.
      *
      * Generated from protobuf field <code>int32 membership_duration_days = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $membership_duration_days = 0;
+    protected $membership_duration_days = 0;
     /**
      * Output only. It is automatically set by GA to false if this is an NPA
      * Audience and is excluded from ads personalization.
      *
      * Generated from protobuf field <code>bool ads_personalization_enabled = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $ads_personalization_enabled = false;
+    protected $ads_personalization_enabled = false;
     /**
      * Optional. Specifies an event to log when a user joins the Audience. If not
      * set, no event is logged when a user joins the Audience.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AudienceEventTrigger event_trigger = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $event_trigger = null;
+    protected $event_trigger = null;
     /**
      * Immutable. Specifies how long an exclusion lasts for users that meet the
      * exclusion filter. It is applied to all EXCLUDE filter clauses and is
@@ -62,7 +62,7 @@ class Audience extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.Audience.AudienceExclusionDurationMode exclusion_duration_mode = 7 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $exclusion_duration_mode = 0;
+    protected $exclusion_duration_mode = 0;
     /**
      * Required. Immutable. Unordered list. Filter clauses that define the
      * Audience. All clauses will be AND’ed together.
@@ -70,6 +70,12 @@ class Audience extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AudienceFilterClause filter_clauses = 8 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = UNORDERED_LIST];</code>
      */
     private $filter_clauses;
+    /**
+     * Output only. Time when the Audience was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $create_time = null;
 
     /**
      * Constructor.
@@ -100,6 +106,8 @@ class Audience extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Analytics\Admin\V1alpha\AudienceFilterClause>|\Google\Protobuf\Internal\RepeatedField $filter_clauses
      *           Required. Immutable. Unordered list. Filter clauses that define the
      *           Audience. All clauses will be AND’ed together.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Output only. Time when the Audience was created.
      * }
      */
     public function __construct($data = NULL) {
@@ -335,6 +343,42 @@ class Audience extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Analytics\Admin\V1alpha\AudienceFilterClause::class);
         $this->filter_clauses = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Time when the Audience was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreateTime()
+    {
+        return $this->create_time;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
+    }
+
+    /**
+     * Output only. Time when the Audience was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->create_time = $var;
 
         return $this;
     }

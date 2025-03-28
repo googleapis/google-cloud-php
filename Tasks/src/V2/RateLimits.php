@@ -31,7 +31,7 @@ class RateLimits extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double max_dispatches_per_second = 1;</code>
      */
-    private $max_dispatches_per_second = 0.0;
+    protected $max_dispatches_per_second = 0.0;
     /**
      * Output only. The max burst size.
      * Max burst size limits how fast tasks in queue are processed when
@@ -64,7 +64,7 @@ class RateLimits extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_burst_size = 2;</code>
      */
-    private $max_burst_size = 0;
+    protected $max_burst_size = 0;
     /**
      * The maximum number of concurrent tasks that Cloud Tasks allows
      * to be dispatched for this queue. After this threshold has been
@@ -79,7 +79,7 @@ class RateLimits extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_concurrent_dispatches = 3;</code>
      */
-    private $max_concurrent_dispatches = 0;
+    protected $max_concurrent_dispatches = 0;
 
     /**
      * Constructor.

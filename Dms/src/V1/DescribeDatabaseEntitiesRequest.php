@@ -22,14 +22,14 @@ class DescribeDatabaseEntitiesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string conversion_workspace = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $conversion_workspace = '';
+    protected $conversion_workspace = '';
     /**
      * Optional. The maximum number of entities to return. The service may return
      * fewer entities than the value specifies.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. The nextPageToken value received in the previous call to
      * conversionWorkspace.describeDatabaseEntities, used in the subsequent
@@ -40,13 +40,13 @@ class DescribeDatabaseEntitiesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Required. The tree to fetch.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.DescribeDatabaseEntitiesRequest.DBTreeType tree = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tree = 0;
+    protected $tree = 0;
     /**
      * Optional. Whether to retrieve the latest committed version of the entities
      * or the latest version. This field is ignored if a specific commit_id is
@@ -54,26 +54,26 @@ class DescribeDatabaseEntitiesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool uncommitted = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $uncommitted = false;
+    protected $uncommitted = false;
     /**
      * Optional. Request a specific commit ID. If not specified, the entities from
      * the latest commit are returned.
      *
      * Generated from protobuf field <code>string commit_id = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $commit_id = '';
+    protected $commit_id = '';
     /**
      * Optional. Filter the returned entities based on AIP-160 standard.
      *
      * Generated from protobuf field <code>string filter = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. Results view based on AIP-157
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.DatabaseEntityView view = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $view = 0;
+    protected $view = 0;
 
     /**
      * Constructor.

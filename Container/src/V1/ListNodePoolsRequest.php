@@ -48,7 +48,7 @@ class ListNodePoolsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 5;</code>
      */
-    private $parent = '';
+    protected $parent = '';
 
     /**
      * @param string $projectId Deprecated. The Google Developers Console [project ID or project

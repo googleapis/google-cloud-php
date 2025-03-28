@@ -17,13 +17,13 @@ class Inline
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ó
+Ð
 *google/cloud/dialogflow/cx/v3/inline.protogoogle.cloud.dialogflow.cx.v3")
 InlineDestination
 content (BàA"
 InlineSource
-content (B±
-!com.google.cloud.dialogflow.cx.v3BInlineProtoPZ1cloud.google.com/go/dialogflow/cx/apiv3/cxpb;cxpbø¢DFªGoogle.Cloud.Dialogflow.Cx.V3ê!Google::Cloud::Dialogflow::CX::V3bproto3'
+content (B®
+!com.google.cloud.dialogflow.cx.v3BInlineProtoPZ1cloud.google.com/go/dialogflow/cx/apiv3/cxpb;cxpb¢DFªGoogle.Cloud.Dialogflow.Cx.V3ê!Google::Cloud::Dialogflow::CX::V3bproto3'
         , true);
 
         static::$is_initialized = true;

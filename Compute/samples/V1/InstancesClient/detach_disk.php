@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Instances_DetachDisk_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\Client\InstancesClient;
+use Google\Cloud\Compute\V1\DetachDiskInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -45,10 +46,17 @@ function detach_disk_sample(
     // Create a client.
     $instancesClient = new InstancesClient();
 
+    // Prepare the request message.
+    $request = (new DetachDiskInstanceRequest())
+        ->setDeviceName($deviceName)
+        ->setInstance($instance)
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->detachDisk($deviceName, $instance, $project, $zone);
+        $response = $instancesClient->detachDisk($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

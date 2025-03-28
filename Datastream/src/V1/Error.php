@@ -20,26 +20,26 @@ class Error extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string reason = 1;</code>
      */
-    private $reason = '';
+    protected $reason = '';
     /**
      * A unique identifier for this specific error,
      * allowing it to be traced throughout the system in logs and API responses.
      *
      * Generated from protobuf field <code>string error_uuid = 2;</code>
      */
-    private $error_uuid = '';
+    protected $error_uuid = '';
     /**
      * A message containing more information about the error that occurred.
      *
      * Generated from protobuf field <code>string message = 3;</code>
      */
-    private $message = '';
+    protected $message = '';
     /**
      * The time when the error occurred.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp error_time = 4;</code>
      */
-    private $error_time = null;
+    protected $error_time = null;
     /**
      * Additional information about the error.
      *

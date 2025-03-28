@@ -43,6 +43,12 @@ class HarmBlockThreshold
      * Generated from protobuf enum <code>BLOCK_NONE = 4;</code>
      */
     const BLOCK_NONE = 4;
+    /**
+     * Turn off the safety filter.
+     *
+     * Generated from protobuf enum <code>OFF = 5;</code>
+     */
+    const OFF = 5;
 
     private static $valueToName = [
         self::HARM_BLOCK_THRESHOLD_UNSPECIFIED => 'HARM_BLOCK_THRESHOLD_UNSPECIFIED',
@@ -50,6 +56,7 @@ class HarmBlockThreshold
         self::BLOCK_MEDIUM_AND_ABOVE => 'BLOCK_MEDIUM_AND_ABOVE',
         self::BLOCK_ONLY_HIGH => 'BLOCK_ONLY_HIGH',
         self::BLOCK_NONE => 'BLOCK_NONE',
+        self::OFF => 'OFF',
     ];
 
     public static function name($value)

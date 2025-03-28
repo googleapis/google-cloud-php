@@ -32,9 +32,9 @@ use Google\Cloud\SecurityCenter\V2\CreateBigQueryExportRequest;
  * Creates a BigQuery export.
  *
  * @param string $formattedParent  The name of the parent resource of the new BigQuery export. Its
- *                                 format is "organizations/[organization_id]/locations/[location_id]",
- *                                 "folders/[folder_id]/locations/[location_id]", or
- *                                 "projects/[project_id]/locations/[location_id]". Please see
+ *                                 format is `organizations/[organization_id]/locations/[location_id]`,
+ *                                 `folders/[folder_id]/locations/[location_id]`, or
+ *                                 `projects/[project_id]/locations/[location_id]`. Please see
  *                                 {@see SecurityCenterClient::organizationLocationName()} for help formatting this field.
  * @param string $bigQueryExportId Unique identifier provided by the client within the parent scope.
  *                                 It must consist of only lowercase letters, numbers, and hyphens, must start

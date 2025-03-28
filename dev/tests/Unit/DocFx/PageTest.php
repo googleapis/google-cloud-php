@@ -43,7 +43,6 @@ class PageTest extends TestCase
             file_get_contents(__DIR__ . '/../../fixtures/phpdoc/service.xml')
         );
         $classNode = new ClassNode(new SimpleXMLElement($serviceXml));
-        $classNode->setProtoPackages([]);
         $componentPath = __DIR__ . '/../../fixtures/component/Vision';
         $page = new Page($classNode, '', $packageDescription, $componentPath);
 
@@ -68,7 +67,17 @@ class PageTest extends TestCase
     {
         $structureXml = __DIR__ . '/../../fixtures/phpdoc/structure.xml';
         $componentPath = __DIR__ . '/../../fixtures/component/Vision';
-        $pageTree = new PageTree($structureXml, 'Google\Cloud\Vision', '', $componentPath);
+        $protoPackages = [
+            'google.longrunning' => 'Google\LongRunning',
+            'google.cloud.vision.v1' => 'Google\Cloud\Vision\V1',
+        ];
+        $pageTree = new PageTree(
+            $structureXml,
+            'Google\Cloud\Vision',
+            '',
+            $componentPath,
+            $protoPackages
+        );
 
         $pages = $pageTree->getPages();
         $this->assertTrue(count($pages) > 0);
@@ -77,12 +86,9 @@ class PageTest extends TestCase
         $classNodeReflection = new \ReflectionClass($classNode);
         $protoPackagesProperty = $classNodeReflection->getProperty('protoPackages');
         $protoPackagesProperty->setAccessible(true);
-        $sharedPackages = [
-            'google.longrunning' => 'Google\LongRunning',
-        ];
 
         $this->assertEquals(
-            ['google.cloud.vision.v1' => 'Google\Cloud\Vision\V1'] + $sharedPackages,
+            $protoPackages,
             $protoPackagesProperty->getValue($classNode)
         );
     }
@@ -108,7 +114,7 @@ class PageTest extends TestCase
     {
         $structureXml = __DIR__ . '/../../fixtures/phpdoc/clientsnippets.xml';
         $componentPath = __DIR__ . '/../../fixtures/component/ClientSnippets';
-        $pageTree = new PageTree($structureXml, 'Google\Cloud\ClientSnippets', '', $componentPath);
+        $pageTree = new PageTree($structureXml, 'Google\Cloud\ClientSnippets', '', $componentPath, []);
 
         $pages = $pageTree->getPages();
         $this->assertCount(1, $pages);

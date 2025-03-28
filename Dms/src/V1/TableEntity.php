@@ -44,13 +44,13 @@ class TableEntity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct custom_features = 5;</code>
      */
-    private $custom_features = null;
+    protected $custom_features = null;
     /**
      * Comment associated with the table.
      *
      * Generated from protobuf field <code>string comment = 6;</code>
      */
-    private $comment = '';
+    protected $comment = '';
 
     /**
      * Constructor.

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_SecurityPolicies_PatchRule_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\SecurityPoliciesClient;
+use Google\Cloud\Compute\V1\Client\SecurityPoliciesClient;
+use Google\Cloud\Compute\V1\PatchRuleSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\SecurityPolicyRule;
 use Google\Rpc\Status;
 
@@ -40,17 +41,17 @@ function patch_rule_sample(string $project, string $securityPolicy): void
     // Create a client.
     $securityPoliciesClient = new SecurityPoliciesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $securityPolicyRuleResource = new SecurityPolicyRule();
+    $request = (new PatchRuleSecurityPolicyRequest())
+        ->setProject($project)
+        ->setSecurityPolicy($securityPolicy)
+        ->setSecurityPolicyRuleResource($securityPolicyRuleResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $securityPoliciesClient->patchRule(
-            $project,
-            $securityPolicy,
-            $securityPolicyRuleResource
-        );
+        $response = $securityPoliciesClient->patchRule($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

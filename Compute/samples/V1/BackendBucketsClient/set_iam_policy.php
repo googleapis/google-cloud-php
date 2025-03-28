@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_BackendBuckets_SetIamPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\BackendBucketsClient;
+use Google\Cloud\Compute\V1\Client\BackendBucketsClient;
 use Google\Cloud\Compute\V1\GlobalSetPolicyRequest;
 use Google\Cloud\Compute\V1\Policy;
+use Google\Cloud\Compute\V1\SetIamPolicyBackendBucketRequest;
 
 /**
  * Sets the access control policy on the specified resource. Replaces any existing policy.
@@ -39,17 +40,17 @@ function set_iam_policy_sample(string $project, string $resource): void
     // Create a client.
     $backendBucketsClient = new BackendBucketsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
+    $request = (new SetIamPolicyBackendBucketRequest())
+        ->setGlobalSetPolicyRequestResource($globalSetPolicyRequestResource)
+        ->setProject($project)
+        ->setResource($resource);
 
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $backendBucketsClient->setIamPolicy(
-            $globalSetPolicyRequestResource,
-            $project,
-            $resource
-        );
+        $response = $backendBucketsClient->setIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

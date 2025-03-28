@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,9 +36,15 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dialogflow\V2\CompleteConversationRequest;
 use Google\Cloud\Dialogflow\V2\Conversation;
 use Google\Cloud\Dialogflow\V2\CreateConversationRequest;
+use Google\Cloud\Dialogflow\V2\GenerateStatelessSuggestionRequest;
+use Google\Cloud\Dialogflow\V2\GenerateStatelessSuggestionResponse;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryRequest;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryResponse;
+use Google\Cloud\Dialogflow\V2\GenerateSuggestionsRequest;
+use Google\Cloud\Dialogflow\V2\GenerateSuggestionsResponse;
 use Google\Cloud\Dialogflow\V2\GetConversationRequest;
+use Google\Cloud\Dialogflow\V2\IngestContextReferencesRequest;
+use Google\Cloud\Dialogflow\V2\IngestContextReferencesResponse;
 use Google\Cloud\Dialogflow\V2\ListConversationsRequest;
 use Google\Cloud\Dialogflow\V2\ListMessagesRequest;
 use Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest;
@@ -49,6 +55,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service for managing
@@ -62,16 +69,19 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface completeConversationAsync(CompleteConversationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createConversationAsync(CreateConversationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateStatelessSummaryAsync(GenerateStatelessSummaryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConversationAsync(GetConversationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConversationsAsync(ListConversationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMessagesAsync(ListMessagesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchKnowledgeAsync(SearchKnowledgeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface suggestConversationSummaryAsync(SuggestConversationSummaryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Conversation> completeConversationAsync(CompleteConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Conversation> createConversationAsync(CreateConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateStatelessSuggestionResponse> generateStatelessSuggestionAsync(GenerateStatelessSuggestionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateStatelessSummaryResponse> generateStatelessSummaryAsync(GenerateStatelessSummaryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateSuggestionsResponse> generateSuggestionsAsync(GenerateSuggestionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Conversation> getConversationAsync(GetConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IngestContextReferencesResponse> ingestContextReferencesAsync(IngestContextReferencesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConversationsAsync(ListConversationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMessagesAsync(ListMessagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SearchKnowledgeResponse> searchKnowledgeAsync(SearchKnowledgeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SuggestConversationSummaryResponse> suggestConversationSummaryAsync(SuggestConversationSummaryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class ConversationsClient
 {
@@ -210,6 +220,31 @@ final class ConversationsClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a data_store
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     *
+     * @return string The formatted data_store resource.
+     */
+    public static function dataStoreName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore
+    ): string {
+        return self::getPathTemplate('dataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a document
      * resource.
      *
@@ -225,6 +260,25 @@ final class ConversationsClient
             'project' => $project,
             'knowledge_base' => $knowledgeBase,
             'document' => $document,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a generator
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $generator
+     *
+     * @return string The formatted generator resource.
+     */
+    public static function generatorName(string $project, string $location, string $generator): string
+    {
+        return self::getPathTemplate('generator')->render([
+            'project' => $project,
+            'location' => $location,
+            'generator' => $generator,
         ]);
     }
 
@@ -278,6 +332,25 @@ final class ConversationsClient
             'project' => $project,
             'conversation' => $conversation,
             'message' => $message,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a phrase_set
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $phraseSet
+     *
+     * @return string The formatted phrase_set resource.
+     */
+    public static function phraseSetName(string $project, string $location, string $phraseSet): string
+    {
+        return self::getPathTemplate('phraseSet')->render([
+            'project' => $project,
+            'location' => $location,
+            'phrase_set' => $phraseSet,
         ]);
     }
 
@@ -338,8 +411,11 @@ final class ConversationsClient
      *
      * @return string The formatted project_conversation_message resource.
      */
-    public static function projectConversationMessageName(string $project, string $conversation, string $message): string
-    {
+    public static function projectConversationMessageName(
+        string $project,
+        string $conversation,
+        string $message
+    ): string {
         return self::getPathTemplate('projectConversationMessage')->render([
             'project' => $project,
             'conversation' => $conversation,
@@ -408,8 +484,11 @@ final class ConversationsClient
      *
      * @return string The formatted project_knowledge_base_document resource.
      */
-    public static function projectKnowledgeBaseDocumentName(string $project, string $knowledgeBase, string $document): string
-    {
+    public static function projectKnowledgeBaseDocumentName(
+        string $project,
+        string $knowledgeBase,
+        string $document
+    ): string {
         return self::getPathTemplate('projectKnowledgeBaseDocument')->render([
             'project' => $project,
             'knowledge_base' => $knowledgeBase,
@@ -436,6 +515,31 @@ final class ConversationsClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_data_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     *
+     * @return string The formatted project_location_collection_data_store resource.
+     */
+    public static function projectLocationCollectionDataStoreName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionDataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_conversation resource.
      *
      * @param string $project
@@ -444,8 +548,11 @@ final class ConversationsClient
      *
      * @return string The formatted project_location_conversation resource.
      */
-    public static function projectLocationConversationName(string $project, string $location, string $conversation): string
-    {
+    public static function projectLocationConversationName(
+        string $project,
+        string $location,
+        string $conversation
+    ): string {
         return self::getPathTemplate('projectLocationConversation')->render([
             'project' => $project,
             'location' => $location,
@@ -464,8 +571,12 @@ final class ConversationsClient
      *
      * @return string The formatted project_location_conversation_message resource.
      */
-    public static function projectLocationConversationMessageName(string $project, string $location, string $conversation, string $message): string
-    {
+    public static function projectLocationConversationMessageName(
+        string $project,
+        string $location,
+        string $conversation,
+        string $message
+    ): string {
         return self::getPathTemplate('projectLocationConversationMessage')->render([
             'project' => $project,
             'location' => $location,
@@ -484,8 +595,11 @@ final class ConversationsClient
      *
      * @return string The formatted project_location_conversation_model resource.
      */
-    public static function projectLocationConversationModelName(string $project, string $location, string $conversationModel): string
-    {
+    public static function projectLocationConversationModelName(
+        string $project,
+        string $location,
+        string $conversationModel
+    ): string {
         return self::getPathTemplate('projectLocationConversationModel')->render([
             'project' => $project,
             'location' => $location,
@@ -503,12 +617,34 @@ final class ConversationsClient
      *
      * @return string The formatted project_location_conversation_profile resource.
      */
-    public static function projectLocationConversationProfileName(string $project, string $location, string $conversationProfile): string
-    {
+    public static function projectLocationConversationProfileName(
+        string $project,
+        string $location,
+        string $conversationProfile
+    ): string {
         return self::getPathTemplate('projectLocationConversationProfile')->render([
             'project' => $project,
             'location' => $location,
             'conversation_profile' => $conversationProfile,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_data_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     *
+     * @return string The formatted project_location_data_store resource.
+     */
+    public static function projectLocationDataStoreName(string $project, string $location, string $dataStore): string
+    {
+        return self::getPathTemplate('projectLocationDataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
         ]);
     }
 
@@ -522,8 +658,11 @@ final class ConversationsClient
      *
      * @return string The formatted project_location_knowledge_base resource.
      */
-    public static function projectLocationKnowledgeBaseName(string $project, string $location, string $knowledgeBase): string
-    {
+    public static function projectLocationKnowledgeBaseName(
+        string $project,
+        string $location,
+        string $knowledgeBase
+    ): string {
         return self::getPathTemplate('projectLocationKnowledgeBase')->render([
             'project' => $project,
             'location' => $location,
@@ -542,8 +681,12 @@ final class ConversationsClient
      *
      * @return string The formatted project_location_knowledge_base_document resource.
      */
-    public static function projectLocationKnowledgeBaseDocumentName(string $project, string $location, string $knowledgeBase, string $document): string
-    {
+    public static function projectLocationKnowledgeBaseDocumentName(
+        string $project,
+        string $location,
+        string $knowledgeBase,
+        string $document
+    ): string {
         return self::getPathTemplate('projectLocationKnowledgeBaseDocument')->render([
             'project' => $project,
             'location' => $location,
@@ -561,10 +704,13 @@ final class ConversationsClient
      * - conversation: projects/{project}/conversations/{conversation}
      * - conversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - conversationProfile: projects/{project}/conversationProfiles/{conversation_profile}
+     * - dataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
      * - document: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
+     * - generator: projects/{project}/locations/{location}/generators/{generator}
      * - knowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
      * - location: projects/{project}/locations/{location}
      * - message: projects/{project}/conversations/{conversation}/messages/{message}
+     * - phraseSet: projects/{project}/locations/{location}/phraseSets/{phrase_set}
      * - project: projects/{project}
      * - projectAgent: projects/{project}/agent
      * - projectConversation: projects/{project}/conversations/{conversation}
@@ -574,10 +720,12 @@ final class ConversationsClient
      * - projectKnowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
      * - projectKnowledgeBaseDocument: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
      * - projectLocationAgent: projects/{project}/locations/{location}/agent
+     * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
      * - projectLocationConversation: projects/{project}/locations/{location}/conversations/{conversation}
      * - projectLocationConversationMessage: projects/{project}/locations/{location}/conversations/{conversation}/messages/{message}
      * - projectLocationConversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - projectLocationConversationProfile: projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}
+     * - projectLocationDataStore: projects/{project}/locations/{location}/dataStores/{data_store}
      * - projectLocationKnowledgeBase: projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}
      * - projectLocationKnowledgeBaseDocument: projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}/documents/{document}
      *
@@ -587,14 +735,14 @@ final class ConversationsClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -616,6 +764,12 @@ final class ConversationsClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -649,6 +803,9 @@ final class ConversationsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -744,6 +901,36 @@ final class ConversationsClient
     }
 
     /**
+     * Generates and returns a suggestion for a conversation that does not have a
+     * resource created for it.
+     *
+     * The async variant is
+     * {@see ConversationsClient::generateStatelessSuggestionAsync()} .
+     *
+     * @example samples/V2/ConversationsClient/generate_stateless_suggestion.php
+     *
+     * @param GenerateStatelessSuggestionRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GenerateStatelessSuggestionResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function generateStatelessSuggestion(
+        GenerateStatelessSuggestionRequest $request,
+        array $callOptions = []
+    ): GenerateStatelessSuggestionResponse {
+        return $this->startApiCall('GenerateStatelessSuggestion', $request, $callOptions)->wait();
+    }
+
+    /**
      * Generates and returns a summary for a conversation that does not have a
      * resource created for it.
      *
@@ -766,9 +953,41 @@ final class ConversationsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateStatelessSummary(GenerateStatelessSummaryRequest $request, array $callOptions = []): GenerateStatelessSummaryResponse
-    {
+    public function generateStatelessSummary(
+        GenerateStatelessSummaryRequest $request,
+        array $callOptions = []
+    ): GenerateStatelessSummaryResponse {
         return $this->startApiCall('GenerateStatelessSummary', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Generates all the suggestions using generators configured in the
+     * conversation profile. A generator is used only if its trigger event is
+     * matched.
+     *
+     * The async variant is {@see ConversationsClient::generateSuggestionsAsync()} .
+     *
+     * @example samples/V2/ConversationsClient/generate_suggestions.php
+     *
+     * @param GenerateSuggestionsRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GenerateSuggestionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function generateSuggestions(
+        GenerateSuggestionsRequest $request,
+        array $callOptions = []
+    ): GenerateSuggestionsResponse {
+        return $this->startApiCall('GenerateSuggestions', $request, $callOptions)->wait();
     }
 
     /**
@@ -795,6 +1014,36 @@ final class ConversationsClient
     public function getConversation(GetConversationRequest $request, array $callOptions = []): Conversation
     {
         return $this->startApiCall('GetConversation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Data ingestion API.
+     * Ingests context references for an existing conversation.
+     *
+     * The async variant is {@see ConversationsClient::ingestContextReferencesAsync()}
+     * .
+     *
+     * @example samples/V2/ConversationsClient/ingest_context_references.php
+     *
+     * @param IngestContextReferencesRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return IngestContextReferencesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function ingestContextReferences(
+        IngestContextReferencesRequest $request,
+        array $callOptions = []
+    ): IngestContextReferencesResponse {
+        return $this->startApiCall('IngestContextReferences', $request, $callOptions)->wait();
     }
 
     /**
@@ -903,8 +1152,10 @@ final class ConversationsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function suggestConversationSummary(SuggestConversationSummaryRequest $request, array $callOptions = []): SuggestConversationSummaryResponse
-    {
+    public function suggestConversationSummary(
+        SuggestConversationSummaryRequest $request,
+        array $callOptions = []
+    ): SuggestConversationSummaryResponse {
         return $this->startApiCall('SuggestConversationSummary', $request, $callOptions)->wait();
     }
 

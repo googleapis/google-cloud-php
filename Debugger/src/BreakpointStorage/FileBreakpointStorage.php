@@ -23,6 +23,7 @@ use Google\Cloud\Debugger\Debuggee;
 
 /**
  * This implementation of BreakpointStorageInterface using a local file.
+ * @deprecated see https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation
  */
 class FileBreakpointStorage implements BreakpointStorageInterface
 {

@@ -20,13 +20,13 @@ class NumericFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AudienceDimensionOrMetricFilter.NumericFilter.Operation operation = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $operation = 0;
+    protected $operation = 0;
     /**
      * Required. The numeric or date value to match against.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AudienceDimensionOrMetricFilter.NumericValue value = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $value = null;
+    protected $value = null;
 
     /**
      * Constructor.
@@ -109,6 +109,4 @@ class NumericFilter extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(NumericFilter::class, \Google\Analytics\Admin\V1alpha\AudienceDimensionOrMetricFilter_NumericFilter::class);
 

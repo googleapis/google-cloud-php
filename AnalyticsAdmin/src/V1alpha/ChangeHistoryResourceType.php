@@ -122,6 +122,12 @@ class ChangeHistoryResourceType
      */
     const CHANNEL_GROUP = 22;
     /**
+     * BigQuery link resource
+     *
+     * Generated from protobuf enum <code>BIGQUERY_LINK = 23;</code>
+     */
+    const BIGQUERY_LINK = 23;
+    /**
      * EnhancedMeasurementSettings resource
      *
      * Generated from protobuf enum <code>ENHANCED_MEASUREMENT_SETTINGS = 24;</code>
@@ -163,6 +169,12 @@ class ChangeHistoryResourceType
      * Generated from protobuf enum <code>CALCULATED_METRIC = 31;</code>
      */
     const CALCULATED_METRIC = 31;
+    /**
+     * KeyEvent resource
+     *
+     * Generated from protobuf enum <code>KEY_EVENT = 32;</code>
+     */
+    const KEY_EVENT = 32;
 
     private static $valueToName = [
         self::CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED => 'CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED',
@@ -183,6 +195,7 @@ class ChangeHistoryResourceType
         self::ATTRIBUTION_SETTINGS => 'ATTRIBUTION_SETTINGS',
         self::EXPANDED_DATA_SET => 'EXPANDED_DATA_SET',
         self::CHANNEL_GROUP => 'CHANNEL_GROUP',
+        self::BIGQUERY_LINK => 'BIGQUERY_LINK',
         self::ENHANCED_MEASUREMENT_SETTINGS => 'ENHANCED_MEASUREMENT_SETTINGS',
         self::DATA_REDACTION_SETTINGS => 'DATA_REDACTION_SETTINGS',
         self::SKADNETWORK_CONVERSION_VALUE_SCHEMA => 'SKADNETWORK_CONVERSION_VALUE_SCHEMA',
@@ -190,6 +203,7 @@ class ChangeHistoryResourceType
         self::AUDIENCE => 'AUDIENCE',
         self::EVENT_CREATE_RULE => 'EVENT_CREATE_RULE',
         self::CALCULATED_METRIC => 'CALCULATED_METRIC',
+        self::KEY_EVENT => 'KEY_EVENT',
     ];
 
     public static function name($value)

@@ -20,13 +20,13 @@ class StoredProcedureEntity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string sql_code = 1;</code>
      */
-    private $sql_code = '';
+    protected $sql_code = '';
     /**
      * Custom engine specific features.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct custom_features = 2;</code>
      */
-    private $custom_features = null;
+    protected $custom_features = null;
 
     /**
      * Constructor.

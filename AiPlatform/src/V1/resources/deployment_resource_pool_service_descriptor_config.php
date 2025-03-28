@@ -210,6 +210,7 @@ return [
                 'deploymentResourcePool' => 'projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}',
                 'location' => 'projects/{project}/locations/{location}',
                 'project' => 'projects/{project}',
+                'reservation' => 'projects/{project_id_or_number}/zones/{zone}/reservations/{reservation_name}',
             ],
         ],
     ],

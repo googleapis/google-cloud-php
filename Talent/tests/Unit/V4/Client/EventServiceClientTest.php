@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,7 +49,9 @@ class EventServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return EventServiceClient */
@@ -85,9 +87,7 @@ class EventServiceClientTest extends GeneratedTest
         $clientEvent->setEventId($clientEventEventId);
         $clientEventCreateTime = new Timestamp();
         $clientEvent->setCreateTime($clientEventCreateTime);
-        $request = (new CreateClientEventRequest())
-            ->setParent($formattedParent)
-            ->setClientEvent($clientEvent);
+        $request = (new CreateClientEventRequest())->setParent($formattedParent)->setClientEvent($clientEvent);
         $response = $gapicClient->createClientEvent($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -113,12 +113,15 @@ class EventServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
@@ -127,9 +130,7 @@ class EventServiceClientTest extends GeneratedTest
         $clientEvent->setEventId($clientEventEventId);
         $clientEventCreateTime = new Timestamp();
         $clientEvent->setCreateTime($clientEventCreateTime);
-        $request = (new CreateClientEventRequest())
-            ->setParent($formattedParent)
-            ->setClientEvent($clientEvent);
+        $request = (new CreateClientEventRequest())->setParent($formattedParent)->setClientEvent($clientEvent);
         try {
             $gapicClient->createClientEvent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -167,9 +168,7 @@ class EventServiceClientTest extends GeneratedTest
         $clientEvent->setEventId($clientEventEventId);
         $clientEventCreateTime = new Timestamp();
         $clientEvent->setCreateTime($clientEventCreateTime);
-        $request = (new CreateClientEventRequest())
-            ->setParent($formattedParent)
-            ->setClientEvent($clientEvent);
+        $request = (new CreateClientEventRequest())->setParent($formattedParent)->setClientEvent($clientEvent);
         $response = $gapicClient->createClientEventAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

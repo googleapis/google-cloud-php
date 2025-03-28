@@ -24,7 +24,7 @@ class PercentageAdjustment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Decimal percentage = 2;</code>
      */
-    private $percentage = null;
+    protected $percentage = null;
 
     /**
      * Constructor.

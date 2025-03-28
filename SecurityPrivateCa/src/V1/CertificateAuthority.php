@@ -27,7 +27,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Immutable. The
      * [Type][google.cloud.security.privateca.v1.CertificateAuthority.Type] of
@@ -36,14 +36,14 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateAuthority.Type type = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Required. Immutable. The config used to create a self-signed X.509
      * certificate or CSR.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateConfig config = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $config = null;
+    protected $config = null;
     /**
      * Required. Immutable. The desired lifetime of the CA certificate. Used to
      * create the "not_before_time" and "not_after_time" fields inside an X.509
@@ -51,7 +51,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration lifetime = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $lifetime = null;
+    protected $lifetime = null;
     /**
      * Required. Immutable. Used when issuing certificates for this
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
@@ -62,7 +62,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateAuthority.KeyVersionSpec key_spec = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $key_spec = null;
+    protected $key_spec = null;
     /**
      * Optional. If this is a subordinate
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority],
@@ -73,7 +73,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.SubordinateConfig subordinate_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $subordinate_config = null;
+    protected $subordinate_config = null;
     /**
      * Output only. The
      * [CaPool.Tier][google.cloud.security.privateca.v1.CaPool.Tier] of the
@@ -82,7 +82,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.Tier tier = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $tier = 0;
+    protected $tier = 0;
     /**
      * Output only. The
      * [State][google.cloud.security.privateca.v1.CertificateAuthority.State] for
@@ -91,7 +91,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateAuthority.State state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. This
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]'s
@@ -125,14 +125,14 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gcs_bucket = 11 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $gcs_bucket = '';
+    protected $gcs_bucket = '';
     /**
      * Output only. URLs for accessing content published by this CA, such as the
      * CA certificate and CRLs.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateAuthority.AccessUrls access_urls = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $access_urls = null;
+    protected $access_urls = null;
     /**
      * Output only. The time at which this
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
@@ -140,7 +140,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time at which this
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
@@ -148,7 +148,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The time at which this
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
@@ -158,7 +158,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $delete_time = null;
+    protected $delete_time = null;
     /**
      * Output only. The time at which this
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
@@ -168,7 +168,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
     /**
      * Optional. Labels with user-defined metadata.
      *

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_HealthChecks_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\HealthChecksClient;
+use Google\Cloud\Compute\V1\Client\HealthChecksClient;
+use Google\Cloud\Compute\V1\DeleteHealthCheckRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,15 @@ function delete_sample(string $healthCheck, string $project): void
     // Create a client.
     $healthChecksClient = new HealthChecksClient();
 
+    // Prepare the request message.
+    $request = (new DeleteHealthCheckRequest())
+        ->setHealthCheck($healthCheck)
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $healthChecksClient->delete($healthCheck, $project);
+        $response = $healthChecksClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

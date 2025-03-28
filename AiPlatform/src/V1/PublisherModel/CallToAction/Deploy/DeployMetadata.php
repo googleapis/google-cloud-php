@@ -23,6 +23,12 @@ class DeployMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> labels = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
+    /**
+     * Optional. Sample request for deployed endpoint.
+     *
+     * Generated from protobuf field <code>string sample_request = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $sample_request = '';
 
     /**
      * Constructor.
@@ -33,6 +39,8 @@ class DeployMetadata extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Labels for the deployment. For managing deployment config
      *           like verifying, source of deployment config, etc.
+     *     @type string $sample_request
+     *           Optional. Sample request for deployed endpoint.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,6 +72,32 @@ class DeployMetadata extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Sample request for deployed endpoint.
+     *
+     * Generated from protobuf field <code>string sample_request = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getSampleRequest()
+    {
+        return $this->sample_request;
+    }
+
+    /**
+     * Optional. Sample request for deployed endpoint.
+     *
+     * Generated from protobuf field <code>string sample_request = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSampleRequest($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->sample_request = $var;
 
         return $this;
     }

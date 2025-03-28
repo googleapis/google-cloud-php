@@ -40,6 +40,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *   * `expire_time`  (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
      *   * `version_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
      *   * `size_bytes`
+     *   * `backup_schedules`
      * You can combine multiple expressions by enclosing each expression in
      * parentheses. By default, expressions are combined with AND logic, but
      * you can specify AND, OR, and NOT logic explicitly.
@@ -55,6 +56,8 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *   * `expire_time < \"2018-03-28T14:50:00Z\"`
      *          - The backup `expire_time` is before 2018-03-28T14:50:00Z.
      *   * `size_bytes > 10000000000` - The backup's size is greater than 10GB
+     *   * `backup_schedules:daily`
+     *          - The backup is created from a schedule with "daily" in its name.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
@@ -118,6 +121,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *             * `expire_time`  (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
      *             * `version_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
      *             * `size_bytes`
+     *             * `backup_schedules`
      *           You can combine multiple expressions by enclosing each expression in
      *           parentheses. By default, expressions are combined with AND logic, but
      *           you can specify AND, OR, and NOT logic explicitly.
@@ -133,6 +137,8 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *             * `expire_time < \"2018-03-28T14:50:00Z\"`
      *                    - The backup `expire_time` is before 2018-03-28T14:50:00Z.
      *             * `size_bytes > 10000000000` - The backup's size is greater than 10GB
+     *             * `backup_schedules:daily`
+     *                    - The backup is created from a schedule with "daily" in its name.
      *     @type int $page_size
      *           Number of backups to be returned in the response. If 0 or
      *           less, defaults to the server's maximum allowed page size.
@@ -194,6 +200,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *   * `expire_time`  (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
      *   * `version_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
      *   * `size_bytes`
+     *   * `backup_schedules`
      * You can combine multiple expressions by enclosing each expression in
      * parentheses. By default, expressions are combined with AND logic, but
      * you can specify AND, OR, and NOT logic explicitly.
@@ -209,6 +216,8 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *   * `expire_time < \"2018-03-28T14:50:00Z\"`
      *          - The backup `expire_time` is before 2018-03-28T14:50:00Z.
      *   * `size_bytes > 10000000000` - The backup's size is greater than 10GB
+     *   * `backup_schedules:daily`
+     *          - The backup is created from a schedule with "daily" in its name.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @return string
@@ -235,6 +244,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *   * `expire_time`  (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
      *   * `version_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
      *   * `size_bytes`
+     *   * `backup_schedules`
      * You can combine multiple expressions by enclosing each expression in
      * parentheses. By default, expressions are combined with AND logic, but
      * you can specify AND, OR, and NOT logic explicitly.
@@ -250,6 +260,8 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *   * `expire_time < \"2018-03-28T14:50:00Z\"`
      *          - The backup `expire_time` is before 2018-03-28T14:50:00Z.
      *   * `size_bytes > 10000000000` - The backup's size is greater than 10GB
+     *   * `backup_schedules:daily`
+     *          - The backup is created from a schedule with "daily" in its name.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @param string $var

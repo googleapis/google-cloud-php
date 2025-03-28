@@ -26,16 +26,16 @@ class CloudStorageBucketAttribute
      */
     const ALL_SUPPORTED_BUCKETS = 1;
     /**
-     * Buckets with autoclass disabled
-     * (https://cloud.google.com/storage/docs/autoclass). Only one of
+     * Buckets with [Autoclass](https://cloud.google.com/storage/docs/autoclass)
+     * disabled. Only one of
      * AUTOCLASS_DISABLED or AUTOCLASS_ENABLED should be set.
      *
      * Generated from protobuf enum <code>AUTOCLASS_DISABLED = 2;</code>
      */
     const AUTOCLASS_DISABLED = 2;
     /**
-     * Buckets with autoclass enabled
-     * (https://cloud.google.com/storage/docs/autoclass). Only one of
+     * Buckets with [Autoclass](https://cloud.google.com/storage/docs/autoclass)
+     * enabled. Only one of
      * AUTOCLASS_DISABLED or AUTOCLASS_ENABLED should be set. Scanning
      * Autoclass-enabled buckets can affect object storage classes.
      *
@@ -71,6 +71,4 @@ class CloudStorageBucketAttribute
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CloudStorageBucketAttribute::class, \Google\Cloud\Dlp\V2\DiscoveryCloudStorageConditions_CloudStorageBucketAttribute::class);
 

@@ -9,7 +9,7 @@ use UnexpectedValueException;
 /**
  * Enumeration of the different conversation stages a conversation can be in.
  * Reference:
- * https://cloud.google.com/dialogflow/priv/docs/contact-center/basics#stages
+ * https://cloud.google.com/agent-assist/docs/basics#conversation_stages
  *
  * Protobuf type <code>google.cloud.dialogflow.v2.Conversation.ConversationStage</code>
  */

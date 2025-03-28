@@ -30,7 +30,7 @@ class BinaryAuthorization extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.BinaryAuthorization.EvaluationMode evaluation_mode = 2;</code>
      */
-    private $evaluation_mode = 0;
+    protected $evaluation_mode = 0;
 
     /**
      * Constructor.

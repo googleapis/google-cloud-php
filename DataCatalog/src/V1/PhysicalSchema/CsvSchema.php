@@ -31,6 +31,4 @@ class CsvSchema extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CsvSchema::class, \Google\Cloud\DataCatalog\V1\PhysicalSchema_CsvSchema::class);
 

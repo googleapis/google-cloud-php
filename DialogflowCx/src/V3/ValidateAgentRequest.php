@@ -18,7 +18,7 @@ class ValidateAgentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The agent to validate.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -38,7 +38,7 @@ class ValidateAgentRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The agent to validate.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     *           Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *     @type string $language_code
      *           If not specified, the agent's default language is used.
      * }
@@ -50,7 +50,7 @@ class ValidateAgentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The agent to validate.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -62,7 +62,7 @@ class ValidateAgentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The agent to validate.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

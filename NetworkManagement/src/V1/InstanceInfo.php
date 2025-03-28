@@ -20,37 +20,37 @@ class InstanceInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * URI of a Compute Engine instance.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Name of the network interface of a Compute Engine instance.
      *
      * Generated from protobuf field <code>string interface = 3;</code>
      */
-    private $interface = '';
+    protected $interface = '';
     /**
      * URI of a Compute Engine network.
      *
      * Generated from protobuf field <code>string network_uri = 4;</code>
      */
-    private $network_uri = '';
+    protected $network_uri = '';
     /**
      * Internal IP address of the network interface.
      *
      * Generated from protobuf field <code>string internal_ip = 5;</code>
      */
-    private $internal_ip = '';
+    protected $internal_ip = '';
     /**
      * External IP address of the network interface.
      *
      * Generated from protobuf field <code>string external_ip = 6;</code>
      */
-    private $external_ip = '';
+    protected $external_ip = '';
     /**
      * Network tags configured on the instance.
      *
@@ -64,6 +64,12 @@ class InstanceInfo extends \Google\Protobuf\Internal\Message
      * @deprecated
      */
     protected $service_account = '';
+    /**
+     * URI of the PSC network attachment the NIC is attached to (if relevant).
+     *
+     * Generated from protobuf field <code>string psc_network_attachment_uri = 9;</code>
+     */
+    protected $psc_network_attachment_uri = '';
 
     /**
      * Constructor.
@@ -87,6 +93,8 @@ class InstanceInfo extends \Google\Protobuf\Internal\Message
      *           Network tags configured on the instance.
      *     @type string $service_account
      *           Service account authorized for the instance.
+     *     @type string $psc_network_attachment_uri
+     *           URI of the PSC network attachment the NIC is attached to (if relevant).
      * }
      */
     public function __construct($data = NULL) {
@@ -302,6 +310,32 @@ class InstanceInfo extends \Google\Protobuf\Internal\Message
         @trigger_error('service_account is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->service_account = $var;
+
+        return $this;
+    }
+
+    /**
+     * URI of the PSC network attachment the NIC is attached to (if relevant).
+     *
+     * Generated from protobuf field <code>string psc_network_attachment_uri = 9;</code>
+     * @return string
+     */
+    public function getPscNetworkAttachmentUri()
+    {
+        return $this->psc_network_attachment_uri;
+    }
+
+    /**
+     * URI of the PSC network attachment the NIC is attached to (if relevant).
+     *
+     * Generated from protobuf field <code>string psc_network_attachment_uri = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPscNetworkAttachmentUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->psc_network_attachment_uri = $var;
 
         return $this;
     }

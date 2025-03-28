@@ -21,13 +21,13 @@ class CreateSubmissionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The submission that contains the content of the phishing report.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.Submission submission = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $submission = null;
+    protected $submission = null;
 
     /**
      * @param string                              $parent     Required. The name of the project that is making the submission. This

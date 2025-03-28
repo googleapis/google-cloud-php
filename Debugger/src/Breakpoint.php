@@ -41,6 +41,7 @@ use Google\Cloud\Debugger\V2\Breakpoint\LogLevel;
  * @codingStandardsIgnoreStart
  * @see https://cloud.google.com/debugger/api/reference/rest/v2/debugger.debuggees.breakpoints#Breakpoint Breakpoint model documentation
  * @codingStandardsIgnoreEnd
+ * @deprecated see https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation
  */
 class Breakpoint
 {
@@ -509,7 +510,7 @@ class Breakpoint
     public function finalize()
     {
         list($usec, $sec) = explode(' ', microtime());
-        $micro = sprintf("%06d", (float) $usec * 1000000);
+        $micro = sprintf('%06d', (float) $usec * 1000000);
         $when = new \DateTime(date('Y-m-d H:i:s.' . $micro));
         $when->setTimezone(new \DateTimeZone('UTC'));
         $this->finalTime = $when->format('Y-m-d\TH:i:s.u\Z');
@@ -649,7 +650,7 @@ class Breakpoint
      *     resolver that uses the current include path.
      * @return bool
      */
-    public function resolveLocation(SourceLocationResolver $resolver = null)
+    public function resolveLocation(?SourceLocationResolver $resolver = null)
     {
         $resolver = $resolver ?: new SourceLocationResolver();
         $this->resolvedLocation = $resolver->resolve($this->location);

@@ -38,6 +38,7 @@ use Google\Shopping\Merchant\Accounts\V1beta\BusinessInfo;
 use Google\Shopping\Merchant\Accounts\V1beta\GetBusinessInfoRequest;
 use Google\Shopping\Merchant\Accounts\V1beta\UpdateBusinessInfoRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service to support business info API.
@@ -52,8 +53,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface getBusinessInfoAsync(GetBusinessInfoRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBusinessInfoAsync(UpdateBusinessInfoRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BusinessInfo> getBusinessInfoAsync(GetBusinessInfoRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BusinessInfo> updateBusinessInfoAsync(UpdateBusinessInfoRequest $request, array $optionalArgs = [])
  */
 final class BusinessInfoServiceClient
 {
@@ -130,8 +131,8 @@ final class BusinessInfoServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
@@ -139,7 +140,7 @@ final class BusinessInfoServiceClient
      *
      * @experimental
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -161,6 +162,12 @@ final class BusinessInfoServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -194,6 +201,9 @@ final class BusinessInfoServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

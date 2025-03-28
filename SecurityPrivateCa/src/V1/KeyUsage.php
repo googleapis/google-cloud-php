@@ -21,13 +21,13 @@ class KeyUsage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.KeyUsage.KeyUsageOptions base_key_usage = 1;</code>
      */
-    private $base_key_usage = null;
+    protected $base_key_usage = null;
     /**
      * Detailed scenarios in which a key may be used.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.KeyUsage.ExtendedKeyUsageOptions extended_key_usage = 2;</code>
      */
-    private $extended_key_usage = null;
+    protected $extended_key_usage = null;
     /**
      * Used to describe extended key usages that are not listed in the
      * [KeyUsage.ExtendedKeyUsageOptions][google.cloud.security.privateca.v1.KeyUsage.ExtendedKeyUsageOptions]

@@ -20,14 +20,14 @@ class OcrConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.OcrConfig.Hints hints = 2;</code>
      */
-    private $hints = null;
+    protected $hints = null;
     /**
      * Enables special handling for PDFs with existing text information. Results
      * in better text extraction quality in such PDF inputs.
      *
      * Generated from protobuf field <code>bool enable_native_pdf_parsing = 3;</code>
      */
-    private $enable_native_pdf_parsing = false;
+    protected $enable_native_pdf_parsing = false;
     /**
      * Enables intelligent document quality scores after OCR. Can help with
      * diagnosing why OCR responses are of poor quality for a given input.
@@ -35,7 +35,7 @@ class OcrConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_image_quality_scores = 4;</code>
      */
-    private $enable_image_quality_scores = false;
+    protected $enable_image_quality_scores = false;
     /**
      * A list of advanced OCR options to further fine-tune OCR behavior. Current
      * valid values are:
@@ -52,7 +52,7 @@ class OcrConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_symbol = 6;</code>
      */
-    private $enable_symbol = false;
+    protected $enable_symbol = false;
     /**
      * Turn on font identification model and return font style information.
      * Deprecated, use
@@ -69,13 +69,13 @@ class OcrConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_character_boxes_detection = 10;</code>
      */
-    private $disable_character_boxes_detection = false;
+    protected $disable_character_boxes_detection = false;
     /**
      * Configurations for premium OCR features.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.OcrConfig.PremiumFeatures premium_features = 11;</code>
      */
-    private $premium_features = null;
+    protected $premium_features = null;
 
     /**
      * Constructor.

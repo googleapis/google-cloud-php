@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\Retail\Tests\Unit\V2\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Retail\V2\BigQuerySource;
@@ -34,6 +33,7 @@ use Google\Cloud\Retail\V2\CompleteQueryResponse;
 use Google\Cloud\Retail\V2\CompletionDataInputConfig;
 use Google\Cloud\Retail\V2\ImportCompletionDataRequest;
 use Google\Cloud\Retail\V2\ImportCompletionDataResponse;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -56,7 +56,9 @@ class CompletionServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return CompletionServiceClient */
@@ -84,9 +86,7 @@ class CompletionServiceClientTest extends GeneratedTest
         // Mock request
         $formattedCatalog = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
         $query = 'query107944136';
-        $request = (new CompleteQueryRequest())
-            ->setCatalog($formattedCatalog)
-            ->setQuery($query);
+        $request = (new CompleteQueryRequest())->setCatalog($formattedCatalog)->setQuery($query);
         $response = $gapicClient->completeQuery($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -112,19 +112,20 @@ class CompletionServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedCatalog = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
         $query = 'query107944136';
-        $request = (new CompleteQueryRequest())
-            ->setCatalog($formattedCatalog)
-            ->setQuery($query);
+        $request = (new CompleteQueryRequest())->setCatalog($formattedCatalog)->setQuery($query);
         try {
             $gapicClient->completeQuery($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -176,9 +177,7 @@ class CompletionServiceClientTest extends GeneratedTest
         $bigQuerySourceTableId = 'bigQuerySourceTableId1074792998';
         $inputConfigBigQuerySource->setTableId($bigQuerySourceTableId);
         $inputConfig->setBigQuerySource($inputConfigBigQuerySource);
-        $request = (new ImportCompletionDataRequest())
-            ->setParent($formattedParent)
-            ->setInputConfig($inputConfig);
+        $request = (new ImportCompletionDataRequest())->setParent($formattedParent)->setInputConfig($inputConfig);
         $response = $gapicClient->importCompletionData($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -236,12 +235,15 @@ class CompletionServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
@@ -252,9 +254,7 @@ class CompletionServiceClientTest extends GeneratedTest
         $bigQuerySourceTableId = 'bigQuerySourceTableId1074792998';
         $inputConfigBigQuerySource->setTableId($bigQuerySourceTableId);
         $inputConfig->setBigQuerySource($inputConfigBigQuerySource);
-        $request = (new ImportCompletionDataRequest())
-            ->setParent($formattedParent)
-            ->setInputConfig($inputConfig);
+        $request = (new ImportCompletionDataRequest())->setParent($formattedParent)->setInputConfig($inputConfig);
         $response = $gapicClient->importCompletionData($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -293,9 +293,7 @@ class CompletionServiceClientTest extends GeneratedTest
         // Mock request
         $formattedCatalog = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
         $query = 'query107944136';
-        $request = (new CompleteQueryRequest())
-            ->setCatalog($formattedCatalog)
-            ->setQuery($query);
+        $request = (new CompleteQueryRequest())->setCatalog($formattedCatalog)->setQuery($query);
         $response = $gapicClient->completeQueryAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

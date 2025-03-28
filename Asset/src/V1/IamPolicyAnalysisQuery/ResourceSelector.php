@@ -25,7 +25,7 @@ class ResourceSelector extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string full_resource_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $full_resource_name = '';
+    protected $full_resource_name = '';
 
     /**
      * Constructor.
@@ -79,6 +79,4 @@ class ResourceSelector extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ResourceSelector::class, \Google\Cloud\Asset\V1\IamPolicyAnalysisQuery_ResourceSelector::class);
 

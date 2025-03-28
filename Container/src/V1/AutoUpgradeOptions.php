@@ -23,14 +23,14 @@ class AutoUpgradeOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string auto_upgrade_start_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $auto_upgrade_start_time = '';
+    protected $auto_upgrade_start_time = '';
     /**
      * Output only. This field is set when upgrades are about to commence
      * with the description of the upgrade.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $description = '';
+    protected $description = '';
 
     /**
      * Constructor.

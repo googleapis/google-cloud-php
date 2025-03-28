@@ -37,20 +37,20 @@ class ListOSPolicyAssignmentReportsRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The maximum number of results to return.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * If provided, this field specifies the criteria that must be met by the
      * `OSPolicyAssignmentReport` API resource that is included in the response.
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * A pagination token returned from a previous call to the
      * `ListOSPolicyAssignmentReports` method that indicates where this listing
@@ -58,7 +58,7 @@ class ListOSPolicyAssignmentReportsRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. The parent resource name.

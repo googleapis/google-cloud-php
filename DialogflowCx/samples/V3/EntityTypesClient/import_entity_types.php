@@ -35,7 +35,7 @@ use Google\Rpc\Status;
  * Imports the specified entitytypes into the agent.
  *
  * @param string $formattedParent The agent to import the entity types into.
- *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                                Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
  *                                {@see EntityTypesClient::agentName()} for help formatting this field.
  * @param int    $mergeOption     Merge option for importing entity types.
  */

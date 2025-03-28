@@ -21,7 +21,7 @@ class AvroSchema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string schema = 1;</code>
      */
-    private $schema = '';
+    protected $schema = '';
 
     /**
      * Constructor.

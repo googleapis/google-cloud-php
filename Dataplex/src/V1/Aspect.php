@@ -41,13 +41,14 @@ class Aspect extends \Google\Protobuf\Internal\Message
     protected $update_time = null;
     /**
      * Required. The content of the aspect, according to its aspect type schema.
-     * This will replace `content`.
      * The maximum size of the field is 120KB (encoded as UTF-8).
      *
      * Generated from protobuf field <code>.google.protobuf.Struct data = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $data = null;
     /**
+     * Optional. Information related to the source system of the aspect.
+     *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.AspectSource aspect_source = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $aspect_source = null;
@@ -68,9 +69,9 @@ class Aspect extends \Google\Protobuf\Internal\Message
      *           Output only. The time when the Aspect was last updated.
      *     @type \Google\Protobuf\Struct $data
      *           Required. The content of the aspect, according to its aspect type schema.
-     *           This will replace `content`.
      *           The maximum size of the field is 120KB (encoded as UTF-8).
      *     @type \Google\Cloud\Dataplex\V1\AspectSource $aspect_source
+     *           Optional. Information related to the source system of the aspect.
      * }
      */
     public function __construct($data = NULL) {
@@ -204,7 +205,6 @@ class Aspect extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The content of the aspect, according to its aspect type schema.
-     * This will replace `content`.
      * The maximum size of the field is 120KB (encoded as UTF-8).
      *
      * Generated from protobuf field <code>.google.protobuf.Struct data = 8 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -227,7 +227,6 @@ class Aspect extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The content of the aspect, according to its aspect type schema.
-     * This will replace `content`.
      * The maximum size of the field is 120KB (encoded as UTF-8).
      *
      * Generated from protobuf field <code>.google.protobuf.Struct data = 8 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -243,6 +242,8 @@ class Aspect extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Information related to the source system of the aspect.
+     *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.AspectSource aspect_source = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataplex\V1\AspectSource|null
      */
@@ -262,6 +263,8 @@ class Aspect extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Information related to the source system of the aspect.
+     *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.AspectSource aspect_source = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataplex\V1\AspectSource $var
      * @return $this

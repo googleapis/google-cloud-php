@@ -21,14 +21,14 @@ class OperationProgress extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Status of an operation stage.
      * Unset for single-stage operations.
      *
      * Generated from protobuf field <code>.google.container.v1.Operation.Status status = 2;</code>
      */
-    private $status = 0;
+    protected $status = 0;
     /**
      * Progress metric bundle, for example:
      *   metrics: [{name: "nodes done",     int_value: 15},

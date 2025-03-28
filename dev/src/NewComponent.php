@@ -18,6 +18,7 @@
 namespace Google\Cloud\Dev;
 
 use RuntimeException;
+use Symfony\Component\Finder\Finder;
 
 /**
  * @internal

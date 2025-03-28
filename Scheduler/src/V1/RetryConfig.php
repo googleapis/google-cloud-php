@@ -24,9 +24,10 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      * exponential backoff procedure described by
      * [max_doublings][google.cloud.scheduler.v1.RetryConfig.max_doublings].
      * The default value of retry_count is zero.
-     * If retry_count is zero, a job attempt will *not* be retried if
+     * If retry_count is 0, a job attempt will not be retried if
      * it fails. Instead the Cloud Scheduler system will wait for the
-     * next scheduled execution time.
+     * next scheduled execution time. Setting retry_count to 0 does not prevent
+     * failed jobs from running according to schedule after the failure.
      * If retry_count is set to a non-zero number then Cloud Scheduler
      * will retry failed attempts, using exponential backoff,
      * retry_count times, or until the next scheduled execution time,
@@ -35,7 +36,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 retry_count = 1;</code>
      */
-    private $retry_count = 0;
+    protected $retry_count = 0;
     /**
      * The time limit for retrying a failed job, measured from time when an
      * execution was first attempted. If specified with
@@ -46,7 +47,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_retry_duration = 2;</code>
      */
-    private $max_retry_duration = null;
+    protected $max_retry_duration = null;
     /**
      * The minimum amount of time to wait before retrying a job after
      * it fails.
@@ -54,7 +55,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration min_backoff_duration = 3;</code>
      */
-    private $min_backoff_duration = null;
+    protected $min_backoff_duration = null;
     /**
      * The maximum amount of time to wait before retrying a job after
      * it fails.
@@ -62,7 +63,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_backoff_duration = 4;</code>
      */
-    private $max_backoff_duration = null;
+    protected $max_backoff_duration = null;
     /**
      * The time between retries will double `max_doublings` times.
      * A job's retry interval starts at
@@ -76,7 +77,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      * [min_backoff_duration][google.cloud.scheduler.v1.RetryConfig.min_backoff_duration]
      * is 10s,
      * [max_backoff_duration][google.cloud.scheduler.v1.RetryConfig.max_backoff_duration]
-     * is 300s, and `max_doublings` is 3, then the a job will first be retried in
+     * is 300s, and `max_doublings` is 3, then the job will first be retried in
      * 10s. The retry interval will double three times, and then increase linearly
      * by 2^3 * 10s.  Finally, the job will retry at intervals of
      * [max_backoff_duration][google.cloud.scheduler.v1.RetryConfig.max_backoff_duration]
@@ -88,7 +89,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_doublings = 5;</code>
      */
-    private $max_doublings = 0;
+    protected $max_doublings = 0;
 
     /**
      * Constructor.
@@ -101,9 +102,10 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      *           exponential backoff procedure described by
      *           [max_doublings][google.cloud.scheduler.v1.RetryConfig.max_doublings].
      *           The default value of retry_count is zero.
-     *           If retry_count is zero, a job attempt will *not* be retried if
+     *           If retry_count is 0, a job attempt will not be retried if
      *           it fails. Instead the Cloud Scheduler system will wait for the
-     *           next scheduled execution time.
+     *           next scheduled execution time. Setting retry_count to 0 does not prevent
+     *           failed jobs from running according to schedule after the failure.
      *           If retry_count is set to a non-zero number then Cloud Scheduler
      *           will retry failed attempts, using exponential backoff,
      *           retry_count times, or until the next scheduled execution time,
@@ -137,7 +139,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      *           [min_backoff_duration][google.cloud.scheduler.v1.RetryConfig.min_backoff_duration]
      *           is 10s,
      *           [max_backoff_duration][google.cloud.scheduler.v1.RetryConfig.max_backoff_duration]
-     *           is 300s, and `max_doublings` is 3, then the a job will first be retried in
+     *           is 300s, and `max_doublings` is 3, then the job will first be retried in
      *           10s. The retry interval will double three times, and then increase linearly
      *           by 2^3 * 10s.  Finally, the job will retry at intervals of
      *           [max_backoff_duration][google.cloud.scheduler.v1.RetryConfig.max_backoff_duration]
@@ -158,9 +160,10 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      * exponential backoff procedure described by
      * [max_doublings][google.cloud.scheduler.v1.RetryConfig.max_doublings].
      * The default value of retry_count is zero.
-     * If retry_count is zero, a job attempt will *not* be retried if
+     * If retry_count is 0, a job attempt will not be retried if
      * it fails. Instead the Cloud Scheduler system will wait for the
-     * next scheduled execution time.
+     * next scheduled execution time. Setting retry_count to 0 does not prevent
+     * failed jobs from running according to schedule after the failure.
      * If retry_count is set to a non-zero number then Cloud Scheduler
      * will retry failed attempts, using exponential backoff,
      * retry_count times, or until the next scheduled execution time,
@@ -180,9 +183,10 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      * exponential backoff procedure described by
      * [max_doublings][google.cloud.scheduler.v1.RetryConfig.max_doublings].
      * The default value of retry_count is zero.
-     * If retry_count is zero, a job attempt will *not* be retried if
+     * If retry_count is 0, a job attempt will not be retried if
      * it fails. Instead the Cloud Scheduler system will wait for the
-     * next scheduled execution time.
+     * next scheduled execution time. Setting retry_count to 0 does not prevent
+     * failed jobs from running according to schedule after the failure.
      * If retry_count is set to a non-zero number then Cloud Scheduler
      * will retry failed attempts, using exponential backoff,
      * retry_count times, or until the next scheduled execution time,
@@ -340,7 +344,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      * [min_backoff_duration][google.cloud.scheduler.v1.RetryConfig.min_backoff_duration]
      * is 10s,
      * [max_backoff_duration][google.cloud.scheduler.v1.RetryConfig.max_backoff_duration]
-     * is 300s, and `max_doublings` is 3, then the a job will first be retried in
+     * is 300s, and `max_doublings` is 3, then the job will first be retried in
      * 10s. The retry interval will double three times, and then increase linearly
      * by 2^3 * 10s.  Finally, the job will retry at intervals of
      * [max_backoff_duration][google.cloud.scheduler.v1.RetryConfig.max_backoff_duration]
@@ -371,7 +375,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      * [min_backoff_duration][google.cloud.scheduler.v1.RetryConfig.min_backoff_duration]
      * is 10s,
      * [max_backoff_duration][google.cloud.scheduler.v1.RetryConfig.max_backoff_duration]
-     * is 300s, and `max_doublings` is 3, then the a job will first be retried in
+     * is 300s, and `max_doublings` is 3, then the job will first be retried in
      * 10s. The retry interval will double three times, and then increase linearly
      * by 2^3 * 10s.  Finally, the job will retry at intervals of
      * [max_backoff_duration][google.cloud.scheduler.v1.RetryConfig.max_backoff_duration]

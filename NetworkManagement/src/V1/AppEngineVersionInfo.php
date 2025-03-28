@@ -20,25 +20,25 @@ class AppEngineVersionInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * URI of an App Engine version.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Runtime of the App Engine version.
      *
      * Generated from protobuf field <code>string runtime = 3;</code>
      */
-    private $runtime = '';
+    protected $runtime = '';
     /**
      * App Engine execution environment for a version.
      *
      * Generated from protobuf field <code>string environment = 4;</code>
      */
-    private $environment = '';
+    protected $environment = '';
 
     /**
      * Constructor.

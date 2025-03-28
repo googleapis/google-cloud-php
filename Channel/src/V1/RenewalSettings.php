@@ -20,27 +20,27 @@ class RenewalSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_renewal = 1;</code>
      */
-    private $enable_renewal = false;
+    protected $enable_renewal = false;
     /**
      * If true and enable_renewal = true, the unit (for example seats or licenses)
      * will be set to the number of active units at renewal time.
      *
      * Generated from protobuf field <code>bool resize_unit_count = 2;</code>
      */
-    private $resize_unit_count = false;
+    protected $resize_unit_count = false;
     /**
      * Describes how a reseller will be billed.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.PaymentPlan payment_plan = 5;</code>
      */
-    private $payment_plan = 0;
+    protected $payment_plan = 0;
     /**
      * Describes how frequently the reseller will be billed, such as
      * once per month.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Period payment_cycle = 6;</code>
      */
-    private $payment_cycle = null;
+    protected $payment_cycle = null;
 
     /**
      * Constructor.

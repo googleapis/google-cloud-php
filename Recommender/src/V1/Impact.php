@@ -20,7 +20,7 @@ class Impact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recommender.v1.Impact.Category category = 1;</code>
      */
-    private $category = 0;
+    protected $category = 0;
     protected $projection;
 
     /**

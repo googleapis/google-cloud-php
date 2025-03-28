@@ -21,7 +21,7 @@ class ValidateEventThreatDetectionCustomModuleResponse extends \Google\Protobuf\
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.CustomModuleValidationErrors errors = 2;</code>
      */
-    private $errors = null;
+    protected $errors = null;
 
     /**
      * Constructor.

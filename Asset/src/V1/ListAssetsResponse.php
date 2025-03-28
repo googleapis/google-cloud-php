@@ -20,7 +20,7 @@ class ListAssetsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 1;</code>
      */
-    private $read_time = null;
+    protected $read_time = null;
     /**
      * Assets.
      *
@@ -34,7 +34,7 @@ class ListAssetsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 3;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
 
     /**
      * Constructor.

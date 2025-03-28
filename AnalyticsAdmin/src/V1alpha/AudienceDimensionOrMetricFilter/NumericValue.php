@@ -106,6 +106,4 @@ class NumericValue extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(NumericValue::class, \Google\Analytics\Admin\V1alpha\AudienceDimensionOrMetricFilter_NumericValue::class);
 

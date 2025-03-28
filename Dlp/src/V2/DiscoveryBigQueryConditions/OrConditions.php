@@ -22,14 +22,14 @@ class OrConditions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 min_row_count = 1;</code>
      */
-    private $min_row_count = 0;
+    protected $min_row_count = 0;
     /**
      * Minimum age a table must have before Cloud DLP can profile it. Value must
      * be 1 hour or greater.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration min_age = 2;</code>
      */
-    private $min_age = null;
+    protected $min_age = null;
 
     /**
      * Constructor.
@@ -118,6 +118,4 @@ class OrConditions extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(OrConditions::class, \Google\Cloud\Dlp\V2\DiscoveryBigQueryConditions_OrConditions::class);
 

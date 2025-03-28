@@ -90,7 +90,7 @@ class Revision extends \Google\Protobuf\Internal\Message
      * [Google Cloud Platform Launch
      * Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
      * `ALPHA`, `BETA`, and `GA`.
-     * <p>Note that this value might not be what was used
+     * Note that this value might not be what was used
      * as input. For example, if ALPHA was provided as input in the parent
      * resource, but only BETA and GA-level features are were, this field will be
      * BETA.
@@ -165,6 +165,12 @@ class Revision extends \Google\Protobuf\Internal\Message
      */
     protected $encryption_key = '';
     /**
+     * Enables service mesh connectivity.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.ServiceMesh service_mesh = 22;</code>
+     */
+    protected $service_mesh = null;
+    /**
      * The action to take if the encryption key is revoked.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.EncryptionKeyRevocationAction encryption_key_revocation_action = 23;</code>
@@ -226,6 +232,12 @@ class Revision extends \Google\Protobuf\Internal\Message
      */
     protected $scaling_status = null;
     /**
+     * The node selector for the revision.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.NodeSelector node_selector = 40;</code>
+     */
+    protected $node_selector = null;
+    /**
      * Output only. A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
      *
@@ -276,7 +288,7 @@ class Revision extends \Google\Protobuf\Internal\Message
      *           [Google Cloud Platform Launch
      *           Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
      *           `ALPHA`, `BETA`, and `GA`.
-     *           <p>Note that this value might not be what was used
+     *           Note that this value might not be what was used
      *           as input. For example, if ALPHA was provided as input in the parent
      *           resource, but only BETA and GA-level features are were, this field will be
      *           BETA.
@@ -306,6 +318,8 @@ class Revision extends \Google\Protobuf\Internal\Message
      *           A reference to a customer managed encryption key (CMEK) to use to encrypt
      *           this container image. For more information, go to
      *           https://cloud.google.com/run/docs/securing/using-cmek
+     *     @type \Google\Cloud\Run\V2\ServiceMesh $service_mesh
+     *           Enables service mesh connectivity.
      *     @type int $encryption_key_revocation_action
      *           The action to take if the encryption key is revoked.
      *     @type \Google\Protobuf\Duration $encryption_key_shutdown_duration
@@ -331,6 +345,8 @@ class Revision extends \Google\Protobuf\Internal\Message
      *           Enable session affinity.
      *     @type \Google\Cloud\Run\V2\RevisionScalingStatus $scaling_status
      *           Output only. The current effective scaling settings for the revision.
+     *     @type \Google\Cloud\Run\V2\NodeSelector $node_selector
+     *           The node selector for the revision.
      *     @type string $etag
      *           Output only. A system-generated fingerprint for this version of the
      *           resource. May be used to detect modification conflict during updates.
@@ -648,7 +664,7 @@ class Revision extends \Google\Protobuf\Internal\Message
      * [Google Cloud Platform Launch
      * Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
      * `ALPHA`, `BETA`, and `GA`.
-     * <p>Note that this value might not be what was used
+     * Note that this value might not be what was used
      * as input. For example, if ALPHA was provided as input in the parent
      * resource, but only BETA and GA-level features are were, this field will be
      * BETA.
@@ -666,7 +682,7 @@ class Revision extends \Google\Protobuf\Internal\Message
      * [Google Cloud Platform Launch
      * Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
      * `ALPHA`, `BETA`, and `GA`.
-     * <p>Note that this value might not be what was used
+     * Note that this value might not be what was used
      * as input. For example, if ALPHA was provided as input in the parent
      * resource, but only BETA and GA-level features are were, this field will be
      * BETA.
@@ -986,6 +1002,42 @@ class Revision extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Enables service mesh connectivity.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.ServiceMesh service_mesh = 22;</code>
+     * @return \Google\Cloud\Run\V2\ServiceMesh|null
+     */
+    public function getServiceMesh()
+    {
+        return $this->service_mesh;
+    }
+
+    public function hasServiceMesh()
+    {
+        return isset($this->service_mesh);
+    }
+
+    public function clearServiceMesh()
+    {
+        unset($this->service_mesh);
+    }
+
+    /**
+     * Enables service mesh connectivity.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.ServiceMesh service_mesh = 22;</code>
+     * @param \Google\Cloud\Run\V2\ServiceMesh $var
+     * @return $this
+     */
+    public function setServiceMesh($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\ServiceMesh::class);
+        $this->service_mesh = $var;
+
+        return $this;
+    }
+
+    /**
      * The action to take if the encryption key is revoked.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.EncryptionKeyRevocationAction encryption_key_revocation_action = 23;</code>
@@ -1249,6 +1301,42 @@ class Revision extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\RevisionScalingStatus::class);
         $this->scaling_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * The node selector for the revision.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.NodeSelector node_selector = 40;</code>
+     * @return \Google\Cloud\Run\V2\NodeSelector|null
+     */
+    public function getNodeSelector()
+    {
+        return $this->node_selector;
+    }
+
+    public function hasNodeSelector()
+    {
+        return isset($this->node_selector);
+    }
+
+    public function clearNodeSelector()
+    {
+        unset($this->node_selector);
+    }
+
+    /**
+     * The node selector for the revision.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.NodeSelector node_selector = 40;</code>
+     * @param \Google\Cloud\Run\V2\NodeSelector $var
+     * @return $this
+     */
+    public function setNodeSelector($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\NodeSelector::class);
+        $this->node_selector = $var;
 
         return $this;
     }

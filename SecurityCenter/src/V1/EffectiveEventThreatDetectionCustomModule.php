@@ -32,38 +32,38 @@ class EffectiveEventThreatDetectionCustomModule extends \Google\Protobuf\Interna
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Config for the effective module.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct config = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $config = null;
+    protected $config = null;
     /**
      * Output only. The effective state of enablement for the module at the given
      * level of the hierarchy.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.EffectiveEventThreatDetectionCustomModule.EnablementState enablement_state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $enablement_state = 0;
+    protected $enablement_state = 0;
     /**
      * Output only. Type for the module. e.g. CONFIGURABLE_BAD_IP.
      *
      * Generated from protobuf field <code>string type = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Output only. The human readable name to be displayed for the module.
      *
      * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. The description for the module.
      *
      * Generated from protobuf field <code>string description = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $description = '';
+    protected $description = '';
 
     /**
      * Constructor.

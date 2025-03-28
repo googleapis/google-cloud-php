@@ -60,6 +60,4 @@ class JobStateMatcher
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(JobStateMatcher::class, \Google\Cloud\Dataproc\V1\ListJobsRequest_JobStateMatcher::class);
 

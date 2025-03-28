@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\BackendService;
 use UnexpectedValueException;
 
 /**
- * Type of session affinity to use. The default is NONE. Only NONE and HEADER_FIELD are supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true. For more details, see: [Session Affinity](https://cloud.google.com/load-balancing/docs/backend-service#session_affinity).
+ * Type of session affinity to use. The default is NONE. Only NONE and HEADER_FIELD are supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true. For more details, see: [Session Affinity](https://cloud.google.com/load-balancing/docs/backend-service#session_affinity). sessionAffinity cannot be specified with haPolicy.
  *
  * Protobuf type <code>google.cloud.compute.v1.BackendService.SessionAffinity</code>
  */
@@ -67,6 +67,12 @@ class SessionAffinity
      * Generated from protobuf enum <code>NONE = 2402104;</code>
      */
     const NONE = 2402104;
+    /**
+     * Strong cookie-based affinity. Connections bearing the same cookie will be served by the same backend VM while that VM remains healthy, as long as the cookie has not expired.
+     *
+     * Generated from protobuf enum <code>STRONG_COOKIE_AFFINITY = 438628091;</code>
+     */
+    const STRONG_COOKIE_AFFINITY = 438628091;
 
     private static $valueToName = [
         self::UNDEFINED_SESSION_AFFINITY => 'UNDEFINED_SESSION_AFFINITY',
@@ -78,6 +84,7 @@ class SessionAffinity
         self::HEADER_FIELD => 'HEADER_FIELD',
         self::HTTP_COOKIE => 'HTTP_COOKIE',
         self::NONE => 'NONE',
+        self::STRONG_COOKIE_AFFINITY => 'STRONG_COOKIE_AFFINITY',
     ];
 
     public static function name($value)

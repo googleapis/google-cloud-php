@@ -29,7 +29,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The full name of the asset. Example:
      * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`
@@ -39,7 +39,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The type of the asset. Example: `compute.googleapis.com/Disk`
      * See [Supported asset
@@ -48,13 +48,13 @@ class Asset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string asset_type = 2;</code>
      */
-    private $asset_type = '';
+    protected $asset_type = '';
     /**
      * A representation of the resource.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.Resource resource = 3;</code>
      */
-    private $resource = null;
+    protected $resource = null;
     /**
      * A representation of the IAM policy set on a Google Cloud resource.
      * There can be a maximum of one IAM policy set on any given resource.
@@ -68,7 +68,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy iam_policy = 4;</code>
      */
-    private $iam_policy = null;
+    protected $iam_policy = null;
     /**
      * A representation of an [organization
      * policy](https://cloud.google.com/resource-manager/docs/organization-policy/overview#organization_policy).
@@ -85,7 +85,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.Inventory os_inventory = 12;</code>
      */
-    private $os_inventory = null;
+    protected $os_inventory = null;
     /**
      * DEPRECATED. This field only presents for the purpose of
      * backward-compatibility. The server will never generate responses with this
@@ -102,7 +102,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.RelatedAsset related_asset = 15;</code>
      */
-    private $related_asset = null;
+    protected $related_asset = null;
     /**
      * The ancestry path of an asset in Google Cloud [resource
      * hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy),

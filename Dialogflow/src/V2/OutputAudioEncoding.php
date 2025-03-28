@@ -53,6 +53,12 @@ class OutputAudioEncoding
      * Generated from protobuf enum <code>OUTPUT_AUDIO_ENCODING_MULAW = 5;</code>
      */
     const OUTPUT_AUDIO_ENCODING_MULAW = 5;
+    /**
+     * 8-bit samples that compand 13-bit audio samples using G.711 PCMU/a-law.
+     *
+     * Generated from protobuf enum <code>OUTPUT_AUDIO_ENCODING_ALAW = 6;</code>
+     */
+    const OUTPUT_AUDIO_ENCODING_ALAW = 6;
 
     private static $valueToName = [
         self::OUTPUT_AUDIO_ENCODING_UNSPECIFIED => 'OUTPUT_AUDIO_ENCODING_UNSPECIFIED',
@@ -61,6 +67,7 @@ class OutputAudioEncoding
         self::OUTPUT_AUDIO_ENCODING_MP3_64_KBPS => 'OUTPUT_AUDIO_ENCODING_MP3_64_KBPS',
         self::OUTPUT_AUDIO_ENCODING_OGG_OPUS => 'OUTPUT_AUDIO_ENCODING_OGG_OPUS',
         self::OUTPUT_AUDIO_ENCODING_MULAW => 'OUTPUT_AUDIO_ENCODING_MULAW',
+        self::OUTPUT_AUDIO_ENCODING_ALAW => 'OUTPUT_AUDIO_ENCODING_ALAW',
     ];
 
     public static function name($value)

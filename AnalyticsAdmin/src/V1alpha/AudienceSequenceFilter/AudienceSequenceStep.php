@@ -21,7 +21,7 @@ class AudienceSequenceStep extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AudienceFilterScope scope = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $scope = 0;
+    protected $scope = 0;
     /**
      * Optional. If true, the event satisfying this step must be the very next
      * event after the event satisfying the last step. If unset or false, this
@@ -31,7 +31,7 @@ class AudienceSequenceStep extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool immediately_follows = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $immediately_follows = false;
+    protected $immediately_follows = false;
     /**
      * Optional. When set, this step must be satisfied within the
      * constraint_duration of the previous step (For example,  t[i] - t[i-1] <=
@@ -40,14 +40,14 @@ class AudienceSequenceStep extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration constraint_duration = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $constraint_duration = null;
+    protected $constraint_duration = null;
     /**
      * Required. Immutable. A logical expression of Audience dimension, metric,
      * or event filters in each step.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AudienceFilterExpression filter_expression = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $filter_expression = null;
+    protected $filter_expression = null;
 
     /**
      * Constructor.
@@ -220,6 +220,4 @@ class AudienceSequenceStep extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AudienceSequenceStep::class, \Google\Analytics\Admin\V1alpha\AudienceSequenceFilter_AudienceSequenceStep::class);
 

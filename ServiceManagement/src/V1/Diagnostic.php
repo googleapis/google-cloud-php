@@ -20,19 +20,19 @@ class Diagnostic extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 1;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * The kind of diagnostic information provided.
      *
      * Generated from protobuf field <code>.google.api.servicemanagement.v1.Diagnostic.Kind kind = 2;</code>
      */
-    private $kind = 0;
+    protected $kind = 0;
     /**
      * Message describing the error or warning.
      *
      * Generated from protobuf field <code>string message = 3;</code>
      */
-    private $message = '';
+    protected $message = '';
 
     /**
      * Constructor.

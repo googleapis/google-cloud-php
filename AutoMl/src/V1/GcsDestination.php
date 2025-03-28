@@ -25,7 +25,7 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string output_uri_prefix = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $output_uri_prefix = '';
+    protected $output_uri_prefix = '';
 
     /**
      * Constructor.

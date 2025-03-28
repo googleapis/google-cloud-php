@@ -33,7 +33,7 @@ class BoostAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float boost = 1;</code>
      */
-    private $boost = 0.0;
+    protected $boost = 0.0;
     /**
      * The filter can have a max size of 5000 characters.
      * An expression which specifies which products to apply an action to.
@@ -50,7 +50,7 @@ class BoostAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string products_filter = 2;</code>
      */
-    private $products_filter = '';
+    protected $products_filter = '';
 
     /**
      * Constructor.

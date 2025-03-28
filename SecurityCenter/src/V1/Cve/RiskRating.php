@@ -78,6 +78,4 @@ class RiskRating
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RiskRating::class, \Google\Cloud\SecurityCenter\V1\Cve_RiskRating::class);
 

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for updating a Security Command Center service.
+ * Request message for
+ * [SecurityCenterManagement.UpdateSecurityCenterService][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.UpdateSecurityCenterService].
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.UpdateSecurityCenterServiceRequest</code>
  */
@@ -22,21 +23,25 @@ class UpdateSecurityCenterServiceRequest extends \Google\Protobuf\Internal\Messa
      */
     protected $security_center_service = null;
     /**
-     * Required. The list of fields to be updated. Possible values:
-     *   * "intended_enablement_state"
-     *   * "modules"
+     * Required. The fields to update. Accepts the following values:
+     * * `intended_enablement_state`
+     * * `modules`
+     * If omitted, then all eligible fields are updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $update_mask = null;
     /**
-     * Optional. When set to true, only validations (including IAM checks) will be
-     * done for the request (service will not be updated). An OK response
-     * indicates that the request is valid, while an error response indicates that
-     * the request is invalid. Note that a subsequent request to actually update
-     * the service could still fail for one of the following reasons:
-     * - The state could have changed (e.g. IAM permission lost).
-     * - A failure occurred while trying to delete the module.
+     * Optional. When set to `true`, the request will be validated (including IAM
+     * checks), but no service will be updated. An `OK` response indicates that
+     * the request is valid, while an error response indicates that the request is
+     * invalid.
+     * If the request is valid, a subsequent request to update the service could
+     * still fail for one of the following reasons:
+     * *  The state of your cloud resources changed; for example, you lost a
+     *    required IAM permission
+     * *  An error occurred during update of the service
+     * Defaults to `false`.
      *
      * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -44,10 +49,12 @@ class UpdateSecurityCenterServiceRequest extends \Google\Protobuf\Internal\Messa
 
     /**
      * @param \Google\Cloud\SecurityCenterManagement\V1\SecurityCenterService $securityCenterService Required. The updated service.
-     * @param \Google\Protobuf\FieldMask                                      $updateMask            Required. The list of fields to be updated. Possible values:
+     * @param \Google\Protobuf\FieldMask                                      $updateMask            Required. The fields to update. Accepts the following values:
      *
-     *                                                                                               * "intended_enablement_state"
-     *                                                                                               * "modules"
+     *                                                                                               * `intended_enablement_state`
+     *                                                                                               * `modules`
+     *
+     *                                                                                               If omitted, then all eligible fields are updated.
      *
      * @return \Google\Cloud\SecurityCenterManagement\V1\UpdateSecurityCenterServiceRequest
      *
@@ -69,17 +76,21 @@ class UpdateSecurityCenterServiceRequest extends \Google\Protobuf\Internal\Messa
      *     @type \Google\Cloud\SecurityCenterManagement\V1\SecurityCenterService $security_center_service
      *           Required. The updated service.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. The list of fields to be updated. Possible values:
-     *             * "intended_enablement_state"
-     *             * "modules"
+     *           Required. The fields to update. Accepts the following values:
+     *           * `intended_enablement_state`
+     *           * `modules`
+     *           If omitted, then all eligible fields are updated.
      *     @type bool $validate_only
-     *           Optional. When set to true, only validations (including IAM checks) will be
-     *           done for the request (service will not be updated). An OK response
-     *           indicates that the request is valid, while an error response indicates that
-     *           the request is invalid. Note that a subsequent request to actually update
-     *           the service could still fail for one of the following reasons:
-     *           - The state could have changed (e.g. IAM permission lost).
-     *           - A failure occurred while trying to delete the module.
+     *           Optional. When set to `true`, the request will be validated (including IAM
+     *           checks), but no service will be updated. An `OK` response indicates that
+     *           the request is valid, while an error response indicates that the request is
+     *           invalid.
+     *           If the request is valid, a subsequent request to update the service could
+     *           still fail for one of the following reasons:
+     *           *  The state of your cloud resources changed; for example, you lost a
+     *              required IAM permission
+     *           *  An error occurred during update of the service
+     *           Defaults to `false`.
      * }
      */
     public function __construct($data = NULL) {
@@ -124,9 +135,10 @@ class UpdateSecurityCenterServiceRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Required. The list of fields to be updated. Possible values:
-     *   * "intended_enablement_state"
-     *   * "modules"
+     * Required. The fields to update. Accepts the following values:
+     * * `intended_enablement_state`
+     * * `modules`
+     * If omitted, then all eligible fields are updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -147,9 +159,10 @@ class UpdateSecurityCenterServiceRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Required. The list of fields to be updated. Possible values:
-     *   * "intended_enablement_state"
-     *   * "modules"
+     * Required. The fields to update. Accepts the following values:
+     * * `intended_enablement_state`
+     * * `modules`
+     * If omitted, then all eligible fields are updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
@@ -164,13 +177,16 @@ class UpdateSecurityCenterServiceRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Optional. When set to true, only validations (including IAM checks) will be
-     * done for the request (service will not be updated). An OK response
-     * indicates that the request is valid, while an error response indicates that
-     * the request is invalid. Note that a subsequent request to actually update
-     * the service could still fail for one of the following reasons:
-     * - The state could have changed (e.g. IAM permission lost).
-     * - A failure occurred while trying to delete the module.
+     * Optional. When set to `true`, the request will be validated (including IAM
+     * checks), but no service will be updated. An `OK` response indicates that
+     * the request is valid, while an error response indicates that the request is
+     * invalid.
+     * If the request is valid, a subsequent request to update the service could
+     * still fail for one of the following reasons:
+     * *  The state of your cloud resources changed; for example, you lost a
+     *    required IAM permission
+     * *  An error occurred during update of the service
+     * Defaults to `false`.
      *
      * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -181,13 +197,16 @@ class UpdateSecurityCenterServiceRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Optional. When set to true, only validations (including IAM checks) will be
-     * done for the request (service will not be updated). An OK response
-     * indicates that the request is valid, while an error response indicates that
-     * the request is invalid. Note that a subsequent request to actually update
-     * the service could still fail for one of the following reasons:
-     * - The state could have changed (e.g. IAM permission lost).
-     * - A failure occurred while trying to delete the module.
+     * Optional. When set to `true`, the request will be validated (including IAM
+     * checks), but no service will be updated. An `OK` response indicates that
+     * the request is valid, while an error response indicates that the request is
+     * invalid.
+     * If the request is valid, a subsequent request to update the service could
+     * still fail for one of the following reasons:
+     * *  The state of your cloud resources changed; for example, you lost a
+     *    required IAM permission
+     * *  An error occurred during update of the service
+     * Defaults to `false`.
      *
      * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

@@ -21,20 +21,20 @@ class DetectedAttribute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Detected attribute confidence. Range [0, 1].
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
     /**
      * Text value of the detection result. For example, the value for "HairColor"
      * can be "black", "blonde", etc.
      *
      * Generated from protobuf field <code>string value = 3;</code>
      */
-    private $value = '';
+    protected $value = '';
 
     /**
      * Constructor.

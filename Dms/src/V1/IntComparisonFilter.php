@@ -21,13 +21,13 @@ class IntComparisonFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.ValueComparison value_comparison = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $value_comparison = 0;
+    protected $value_comparison = 0;
     /**
      * Required. Integer compare value to be used
      *
      * Generated from protobuf field <code>int64 value = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $value = 0;
+    protected $value = 0;
 
     /**
      * Constructor.

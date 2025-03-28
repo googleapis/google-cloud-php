@@ -20,20 +20,20 @@ class CreateDomainMappingRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Domain mapping configuration.
      *
      * Generated from protobuf field <code>.google.appengine.v1.DomainMapping domain_mapping = 2;</code>
      */
-    private $domain_mapping = null;
+    protected $domain_mapping = null;
     /**
      * Whether the domain creation should override any existing mappings for this
      * domain. By default, overrides are rejected.
      *
      * Generated from protobuf field <code>.google.appengine.v1.DomainOverrideStrategy override_strategy = 4;</code>
      */
-    private $override_strategy = 0;
+    protected $override_strategy = 0;
 
     /**
      * Constructor.

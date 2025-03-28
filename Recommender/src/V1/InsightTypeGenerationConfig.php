@@ -23,7 +23,7 @@ class InsightTypeGenerationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 1;</code>
      */
-    private $params = null;
+    protected $params = null;
 
     /**
      * Constructor.

@@ -21,13 +21,13 @@ class UpdateConnectionProfileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. The connection profile parameters to update.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.ConnectionProfile connection_profile = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $connection_profile = null;
+    protected $connection_profile = null;
     /**
      * Optional. A unique ID used to identify the request. If the server receives
      * two requests with the same ID, then the second request is ignored.
@@ -37,7 +37,7 @@ class UpdateConnectionProfileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. Only validate the connection profile, but don't update any
      * resources. The default is false. Only supported for Oracle connection
@@ -45,7 +45,7 @@ class UpdateConnectionProfileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
     /**
      * Optional. Update the connection profile without validating it.
      * The default is false.
@@ -53,7 +53,7 @@ class UpdateConnectionProfileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool skip_validation = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $skip_validation = false;
+    protected $skip_validation = false;
 
     /**
      * @param \Google\Cloud\CloudDms\V1\ConnectionProfile $connectionProfile Required. The connection profile parameters to update.

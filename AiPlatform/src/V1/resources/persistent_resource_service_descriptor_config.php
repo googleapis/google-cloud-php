@@ -209,6 +209,7 @@ return [
                 'location' => 'projects/{project}/locations/{location}',
                 'network' => 'projects/{project}/global/networks/{network}',
                 'persistentResource' => 'projects/{project}/locations/{location}/persistentResources/{persistent_resource}',
+                'reservation' => 'projects/{project_id_or_number}/zones/{zone}/reservations/{reservation_name}',
             ],
         ],
     ],

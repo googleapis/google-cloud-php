@@ -12,8 +12,6 @@ parameters:
     # Ignore Monolog3 for now, as these tests run using Monolog2
     - Logging/src/LogMessageProcessor/MonologV3MessageProcessor.php
     - Logging/src/LogMessageProcessor/MonologV3MessageProcessor.php
-    # Ignore CloudDeployGrpcClient.php because it has a method name conflict
-    - Deploy/src/V1/CloudDeployGrpcClient.php
     ignoreErrors:
     # Problems with legacy namespaces (I'm not sure why these are throwing errors)
     - '#^Class Google\\[A-Za-z1-9\\]+_[A-Za-z1-9_]+ not found\.$#'

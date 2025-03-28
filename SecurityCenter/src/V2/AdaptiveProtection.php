@@ -25,7 +25,7 @@ class AdaptiveProtection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double confidence = 1;</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
 
     /**
      * Constructor.

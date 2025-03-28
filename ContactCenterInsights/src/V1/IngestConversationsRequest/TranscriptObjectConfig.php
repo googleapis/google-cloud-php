@@ -20,7 +20,7 @@ class TranscriptObjectConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.Conversation.Medium medium = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $medium = 0;
+    protected $medium = 0;
 
     /**
      * Constructor.

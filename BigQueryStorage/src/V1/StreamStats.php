@@ -20,7 +20,7 @@ class StreamStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.StreamStats.Progress progress = 2;</code>
      */
-    private $progress = null;
+    protected $progress = null;
 
     /**
      * Constructor.

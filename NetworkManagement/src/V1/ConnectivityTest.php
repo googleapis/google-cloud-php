@@ -16,66 +16,47 @@ use Google\Protobuf\Internal\GPBUtil;
 class ConnectivityTest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Unique name of the resource using the form:
+     * Identifier. Unique name of the resource using the form:
      *     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The user-supplied description of the Connectivity Test.
      * Maximum of 512 characters.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. Source specification of the Connectivity Test.
-     * You can use a combination of source IP address, virtual machine
-     * (VM) instance, or Compute Engine network to uniquely identify
-     * the source location.
-     * Examples:
-     * If the source IP address is an internal IP address within a Google Cloud
-     * Virtual Private Cloud (VPC) network, then you must also specify the VPC
-     * network. Otherwise, specify the VM instance, which already contains its
-     * internal IP address and VPC network information.
-     * If the source of the test is within an on-premises network, then you must
-     * provide the destination VPC network.
-     * If the source endpoint is a Compute Engine VM instance with multiple
-     * network interfaces, the instance itself is not sufficient to identify the
-     * endpoint. So, you must also specify the source IP address or VPC network.
-     * A reachability analysis proceeds even if the source location is
-     * ambiguous. However, the test result may include endpoints that you don't
-     * intend to test.
+     * You can use a combination of source IP address, URI of a supported
+     * endpoint, project ID, or VPC network to identify the source location.
+     * Reachability analysis might proceed even if the source location is
+     * ambiguous. However, the test result might include endpoints or use a source
+     * that you don't intend to test.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint source = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $source = null;
+    protected $source = null;
     /**
      * Required. Destination specification of the Connectivity Test.
-     * You can use a combination of destination IP address, Compute Engine
-     * VM instance, or VPC network to uniquely identify the destination
-     * location.
-     * Even if the destination IP address is not unique, the source IP
-     * location is unique. Usually, the analysis can infer the destination
-     * endpoint from route information.
-     * If the destination you specify is a VM instance and the instance has
-     * multiple network interfaces, then you must also specify either
-     * a destination IP address  or VPC network to identify the destination
-     * interface.
-     * A reachability analysis proceeds even if the destination location is
-     * ambiguous. However, the result can include endpoints that you don't
-     * intend to test.
+     * You can use a combination of destination IP address, URI of a supported
+     * endpoint, project ID, or VPC network to identify the destination location.
+     * Reachability analysis proceeds even if the destination location is
+     * ambiguous. However, the test result might include endpoints or use a
+     * destination that you don't intend to test.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint destination = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $destination = null;
+    protected $destination = null;
     /**
      * IP Protocol of the test. When not provided, "TCP" is assumed.
      *
      * Generated from protobuf field <code>string protocol = 5;</code>
      */
-    private $protocol = '';
+    protected $protocol = '';
     /**
      * Other projects that may be relevant for reachability analysis.
      * This is applicable to scenarios where a test can cross project boundaries.
@@ -88,7 +69,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Resource labels to represent user-provided metadata.
      *
@@ -100,13 +81,13 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time the test's configuration was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The reachability details of this test from the latest run.
      * The details are updated when creating a new test, updating an
@@ -114,7 +95,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ReachabilityDetails reachability_details = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $reachability_details = null;
+    protected $reachability_details = null;
     /**
      * Output only. The probing details of this test from the latest run, present
      * for applicable tests only. The details are updated when creating a new
@@ -123,14 +104,29 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ProbingDetails probing_details = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $probing_details = null;
+    protected $probing_details = null;
     /**
-     * Whether the test should skip firewall checking.
-     * If not provided, we assume false.
+     * Whether run analysis for the return path from destination to source.
+     * Default value is false.
+     *
+     * Generated from protobuf field <code>bool round_trip = 15;</code>
+     */
+    protected $round_trip = false;
+    /**
+     * Output only. The reachability details of this test from the latest run for
+     * the return path. The details are updated when creating a new test,
+     * updating an existing test, or triggering a one-time rerun of an existing
+     * test.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ReachabilityDetails return_reachability_details = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $return_reachability_details = null;
+    /**
+     * Whether the analysis should skip firewall checking. Default value is false.
      *
      * Generated from protobuf field <code>bool bypass_firewall_checks = 17;</code>
      */
-    private $bypass_firewall_checks = false;
+    protected $bypass_firewall_checks = false;
 
     /**
      * Constructor.
@@ -139,44 +135,25 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Unique name of the resource using the form:
+     *           Identifier. Unique name of the resource using the form:
      *               `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      *     @type string $description
      *           The user-supplied description of the Connectivity Test.
      *           Maximum of 512 characters.
      *     @type \Google\Cloud\NetworkManagement\V1\Endpoint $source
      *           Required. Source specification of the Connectivity Test.
-     *           You can use a combination of source IP address, virtual machine
-     *           (VM) instance, or Compute Engine network to uniquely identify
-     *           the source location.
-     *           Examples:
-     *           If the source IP address is an internal IP address within a Google Cloud
-     *           Virtual Private Cloud (VPC) network, then you must also specify the VPC
-     *           network. Otherwise, specify the VM instance, which already contains its
-     *           internal IP address and VPC network information.
-     *           If the source of the test is within an on-premises network, then you must
-     *           provide the destination VPC network.
-     *           If the source endpoint is a Compute Engine VM instance with multiple
-     *           network interfaces, the instance itself is not sufficient to identify the
-     *           endpoint. So, you must also specify the source IP address or VPC network.
-     *           A reachability analysis proceeds even if the source location is
-     *           ambiguous. However, the test result may include endpoints that you don't
-     *           intend to test.
+     *           You can use a combination of source IP address, URI of a supported
+     *           endpoint, project ID, or VPC network to identify the source location.
+     *           Reachability analysis might proceed even if the source location is
+     *           ambiguous. However, the test result might include endpoints or use a source
+     *           that you don't intend to test.
      *     @type \Google\Cloud\NetworkManagement\V1\Endpoint $destination
      *           Required. Destination specification of the Connectivity Test.
-     *           You can use a combination of destination IP address, Compute Engine
-     *           VM instance, or VPC network to uniquely identify the destination
-     *           location.
-     *           Even if the destination IP address is not unique, the source IP
-     *           location is unique. Usually, the analysis can infer the destination
-     *           endpoint from route information.
-     *           If the destination you specify is a VM instance and the instance has
-     *           multiple network interfaces, then you must also specify either
-     *           a destination IP address  or VPC network to identify the destination
-     *           interface.
-     *           A reachability analysis proceeds even if the destination location is
-     *           ambiguous. However, the result can include endpoints that you don't
-     *           intend to test.
+     *           You can use a combination of destination IP address, URI of a supported
+     *           endpoint, project ID, or VPC network to identify the destination location.
+     *           Reachability analysis proceeds even if the destination location is
+     *           ambiguous. However, the test result might include endpoints or use a
+     *           destination that you don't intend to test.
      *     @type string $protocol
      *           IP Protocol of the test. When not provided, "TCP" is assumed.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $related_projects
@@ -199,9 +176,16 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      *           for applicable tests only. The details are updated when creating a new
      *           test, updating an existing test, or triggering a one-time rerun of an
      *           existing test.
+     *     @type bool $round_trip
+     *           Whether run analysis for the return path from destination to source.
+     *           Default value is false.
+     *     @type \Google\Cloud\NetworkManagement\V1\ReachabilityDetails $return_reachability_details
+     *           Output only. The reachability details of this test from the latest run for
+     *           the return path. The details are updated when creating a new test,
+     *           updating an existing test, or triggering a one-time rerun of an existing
+     *           test.
      *     @type bool $bypass_firewall_checks
-     *           Whether the test should skip firewall checking.
-     *           If not provided, we assume false.
+     *           Whether the analysis should skip firewall checking. Default value is false.
      * }
      */
     public function __construct($data = NULL) {
@@ -210,10 +194,10 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Unique name of the resource using the form:
+     * Identifier. Unique name of the resource using the form:
      *     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -222,10 +206,10 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Unique name of the resource using the form:
+     * Identifier. Unique name of the resource using the form:
      *     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -267,22 +251,11 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Source specification of the Connectivity Test.
-     * You can use a combination of source IP address, virtual machine
-     * (VM) instance, or Compute Engine network to uniquely identify
-     * the source location.
-     * Examples:
-     * If the source IP address is an internal IP address within a Google Cloud
-     * Virtual Private Cloud (VPC) network, then you must also specify the VPC
-     * network. Otherwise, specify the VM instance, which already contains its
-     * internal IP address and VPC network information.
-     * If the source of the test is within an on-premises network, then you must
-     * provide the destination VPC network.
-     * If the source endpoint is a Compute Engine VM instance with multiple
-     * network interfaces, the instance itself is not sufficient to identify the
-     * endpoint. So, you must also specify the source IP address or VPC network.
-     * A reachability analysis proceeds even if the source location is
-     * ambiguous. However, the test result may include endpoints that you don't
-     * intend to test.
+     * You can use a combination of source IP address, URI of a supported
+     * endpoint, project ID, or VPC network to identify the source location.
+     * Reachability analysis might proceed even if the source location is
+     * ambiguous. However, the test result might include endpoints or use a source
+     * that you don't intend to test.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint source = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\NetworkManagement\V1\Endpoint|null
@@ -304,22 +277,11 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Source specification of the Connectivity Test.
-     * You can use a combination of source IP address, virtual machine
-     * (VM) instance, or Compute Engine network to uniquely identify
-     * the source location.
-     * Examples:
-     * If the source IP address is an internal IP address within a Google Cloud
-     * Virtual Private Cloud (VPC) network, then you must also specify the VPC
-     * network. Otherwise, specify the VM instance, which already contains its
-     * internal IP address and VPC network information.
-     * If the source of the test is within an on-premises network, then you must
-     * provide the destination VPC network.
-     * If the source endpoint is a Compute Engine VM instance with multiple
-     * network interfaces, the instance itself is not sufficient to identify the
-     * endpoint. So, you must also specify the source IP address or VPC network.
-     * A reachability analysis proceeds even if the source location is
-     * ambiguous. However, the test result may include endpoints that you don't
-     * intend to test.
+     * You can use a combination of source IP address, URI of a supported
+     * endpoint, project ID, or VPC network to identify the source location.
+     * Reachability analysis might proceed even if the source location is
+     * ambiguous. However, the test result might include endpoints or use a source
+     * that you don't intend to test.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint source = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\NetworkManagement\V1\Endpoint $var
@@ -335,19 +297,11 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Destination specification of the Connectivity Test.
-     * You can use a combination of destination IP address, Compute Engine
-     * VM instance, or VPC network to uniquely identify the destination
-     * location.
-     * Even if the destination IP address is not unique, the source IP
-     * location is unique. Usually, the analysis can infer the destination
-     * endpoint from route information.
-     * If the destination you specify is a VM instance and the instance has
-     * multiple network interfaces, then you must also specify either
-     * a destination IP address  or VPC network to identify the destination
-     * interface.
-     * A reachability analysis proceeds even if the destination location is
-     * ambiguous. However, the result can include endpoints that you don't
-     * intend to test.
+     * You can use a combination of destination IP address, URI of a supported
+     * endpoint, project ID, or VPC network to identify the destination location.
+     * Reachability analysis proceeds even if the destination location is
+     * ambiguous. However, the test result might include endpoints or use a
+     * destination that you don't intend to test.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint destination = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\NetworkManagement\V1\Endpoint|null
@@ -369,19 +323,11 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Destination specification of the Connectivity Test.
-     * You can use a combination of destination IP address, Compute Engine
-     * VM instance, or VPC network to uniquely identify the destination
-     * location.
-     * Even if the destination IP address is not unique, the source IP
-     * location is unique. Usually, the analysis can infer the destination
-     * endpoint from route information.
-     * If the destination you specify is a VM instance and the instance has
-     * multiple network interfaces, then you must also specify either
-     * a destination IP address  or VPC network to identify the destination
-     * interface.
-     * A reachability analysis proceeds even if the destination location is
-     * ambiguous. However, the result can include endpoints that you don't
-     * intend to test.
+     * You can use a combination of destination IP address, URI of a supported
+     * endpoint, project ID, or VPC network to identify the destination location.
+     * Reachability analysis proceeds even if the destination location is
+     * ambiguous. However, the test result might include endpoints or use a
+     * destination that you don't intend to test.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint destination = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\NetworkManagement\V1\Endpoint $var
@@ -656,8 +602,77 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the test should skip firewall checking.
-     * If not provided, we assume false.
+     * Whether run analysis for the return path from destination to source.
+     * Default value is false.
+     *
+     * Generated from protobuf field <code>bool round_trip = 15;</code>
+     * @return bool
+     */
+    public function getRoundTrip()
+    {
+        return $this->round_trip;
+    }
+
+    /**
+     * Whether run analysis for the return path from destination to source.
+     * Default value is false.
+     *
+     * Generated from protobuf field <code>bool round_trip = 15;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRoundTrip($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->round_trip = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The reachability details of this test from the latest run for
+     * the return path. The details are updated when creating a new test,
+     * updating an existing test, or triggering a one-time rerun of an existing
+     * test.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ReachabilityDetails return_reachability_details = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\NetworkManagement\V1\ReachabilityDetails|null
+     */
+    public function getReturnReachabilityDetails()
+    {
+        return $this->return_reachability_details;
+    }
+
+    public function hasReturnReachabilityDetails()
+    {
+        return isset($this->return_reachability_details);
+    }
+
+    public function clearReturnReachabilityDetails()
+    {
+        unset($this->return_reachability_details);
+    }
+
+    /**
+     * Output only. The reachability details of this test from the latest run for
+     * the return path. The details are updated when creating a new test,
+     * updating an existing test, or triggering a one-time rerun of an existing
+     * test.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ReachabilityDetails return_reachability_details = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\NetworkManagement\V1\ReachabilityDetails $var
+     * @return $this
+     */
+    public function setReturnReachabilityDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\ReachabilityDetails::class);
+        $this->return_reachability_details = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether the analysis should skip firewall checking. Default value is false.
      *
      * Generated from protobuf field <code>bool bypass_firewall_checks = 17;</code>
      * @return bool
@@ -668,8 +683,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the test should skip firewall checking.
-     * If not provided, we assume false.
+     * Whether the analysis should skip firewall checking. Default value is false.
      *
      * Generated from protobuf field <code>bool bypass_firewall_checks = 17;</code>
      * @param bool $var

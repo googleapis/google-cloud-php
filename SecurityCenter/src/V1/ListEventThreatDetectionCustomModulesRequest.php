@@ -24,7 +24,7 @@ class ListEventThreatDetectionCustomModulesRequest extends \Google\Protobuf\Inte
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * A page token, received from a previous
      * `ListEventThreatDetectionCustomModules` call. Provide this to retrieve the
@@ -35,7 +35,7 @@ class ListEventThreatDetectionCustomModulesRequest extends \Google\Protobuf\Inte
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * The maximum number of modules to return. The service may return fewer than
      * this value.
@@ -44,7 +44,7 @@ class ListEventThreatDetectionCustomModulesRequest extends \Google\Protobuf\Inte
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
 
     /**
      * @param string $parent Required. Name of the parent to list custom modules under.

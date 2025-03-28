@@ -23,13 +23,13 @@ class CreateChannelPartnerRepricingConfigRequest extends \Google\Protobuf\Intern
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ChannelPartnerRepricingConfig object to update.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ChannelPartnerRepricingConfig channel_partner_repricing_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $channel_partner_repricing_config = null;
+    protected $channel_partner_repricing_config = null;
 
     /**
      * @param string                                                 $parent                        Required. The resource name of the ChannelPartner that will receive the

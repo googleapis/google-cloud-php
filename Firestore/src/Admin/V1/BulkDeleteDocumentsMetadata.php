@@ -49,13 +49,13 @@ class BulkDeleteDocumentsMetadata extends \Google\Protobuf\Internal\Message
      */
     private $progress_bytes = null;
     /**
-     * The ids of the collection groups that are being deleted.
+     * The IDs of the collection groups that are being deleted.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 6;</code>
      */
     private $collection_ids;
     /**
-     * Which namespace ids are being deleted.
+     * Which namespace IDs are being deleted.
      *
      * Generated from protobuf field <code>repeated string namespace_ids = 7;</code>
      */
@@ -88,9 +88,9 @@ class BulkDeleteDocumentsMetadata extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Firestore\Admin\V1\Progress $progress_bytes
      *           The progress, in bytes, of this operation.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $collection_ids
-     *           The ids of the collection groups that are being deleted.
+     *           The IDs of the collection groups that are being deleted.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $namespace_ids
-     *           Which namespace ids are being deleted.
+     *           Which namespace IDs are being deleted.
      *     @type \Google\Protobuf\Timestamp $snapshot_time
      *           The timestamp that corresponds to the version of the database that is being
      *           read to get the list of documents to delete. This time can also be used as
@@ -276,7 +276,7 @@ class BulkDeleteDocumentsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ids of the collection groups that are being deleted.
+     * The IDs of the collection groups that are being deleted.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -287,7 +287,7 @@ class BulkDeleteDocumentsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ids of the collection groups that are being deleted.
+     * The IDs of the collection groups that are being deleted.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 6;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -302,7 +302,7 @@ class BulkDeleteDocumentsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which namespace ids are being deleted.
+     * Which namespace IDs are being deleted.
      *
      * Generated from protobuf field <code>repeated string namespace_ids = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -313,7 +313,7 @@ class BulkDeleteDocumentsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which namespace ids are being deleted.
+     * Which namespace IDs are being deleted.
      *
      * Generated from protobuf field <code>repeated string namespace_ids = 7;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

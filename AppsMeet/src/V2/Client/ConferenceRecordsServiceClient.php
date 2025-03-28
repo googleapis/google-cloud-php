@@ -52,6 +52,7 @@ use Google\Apps\Meet\V2\Transcript;
 use Google\Apps\Meet\V2\TranscriptEntry;
 use Google\Auth\FetchAuthTokenInterface;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: REST API for services dealing with conference records.
@@ -64,18 +65,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface getConferenceRecordAsync(GetConferenceRecordRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getParticipantAsync(GetParticipantRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getParticipantSessionAsync(GetParticipantSessionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRecordingAsync(GetRecordingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTranscriptAsync(GetTranscriptRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTranscriptEntryAsync(GetTranscriptEntryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConferenceRecordsAsync(ListConferenceRecordsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listParticipantSessionsAsync(ListParticipantSessionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listParticipantsAsync(ListParticipantsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRecordingsAsync(ListRecordingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTranscriptEntriesAsync(ListTranscriptEntriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTranscriptsAsync(ListTranscriptsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConferenceRecord> getConferenceRecordAsync(GetConferenceRecordRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Participant> getParticipantAsync(GetParticipantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ParticipantSession> getParticipantSessionAsync(GetParticipantSessionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Recording> getRecordingAsync(GetRecordingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Transcript> getTranscriptAsync(GetTranscriptRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TranscriptEntry> getTranscriptEntryAsync(GetTranscriptEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConferenceRecordsAsync(ListConferenceRecordsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listParticipantSessionsAsync(ListParticipantSessionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listParticipantsAsync(ListParticipantsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRecordingsAsync(ListRecordingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTranscriptEntriesAsync(ListTranscriptEntriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTranscriptsAsync(ListTranscriptsRequest $request, array $optionalArgs = [])
  */
 final class ConferenceRecordsServiceClient
 {
@@ -251,14 +252,14 @@ final class ConferenceRecordsServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -280,6 +281,12 @@ final class ConferenceRecordsServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -313,6 +320,9 @@ final class ConferenceRecordsServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

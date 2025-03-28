@@ -397,11 +397,15 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $etag = 'etag3123477';
         $offlineStorageTtlDays = 844678422;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new EntityType();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setOfflineStorageTtlDays($offlineStorageTtlDays);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -678,10 +682,14 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $etag = 'etag3123477';
         $onlineStorageTtlDays = 1491501178;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Featurestore();
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setOnlineStorageTtlDays($onlineStorageTtlDays);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1473,11 +1481,15 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $etag = 'etag3123477';
         $offlineStorageTtlDays = 844678422;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new EntityType();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setOfflineStorageTtlDays($offlineStorageTtlDays);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
@@ -1630,10 +1642,14 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $etag = 'etag3123477';
         $onlineStorageTtlDays = 1491501178;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Featurestore();
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setOnlineStorageTtlDays($onlineStorageTtlDays);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
@@ -2132,11 +2148,15 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $etag = 'etag3123477';
         $offlineStorageTtlDays = 844678422;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new EntityType();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setOfflineStorageTtlDays($offlineStorageTtlDays);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $entityType = new EntityType();
@@ -2289,10 +2309,14 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $etag = 'etag3123477';
         $onlineStorageTtlDays = 1491501178;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Featurestore();
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setOnlineStorageTtlDays($onlineStorageTtlDays);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

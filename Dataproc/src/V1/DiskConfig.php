@@ -24,13 +24,13 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string boot_disk_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $boot_disk_type = '';
+    protected $boot_disk_type = '';
     /**
      * Optional. Size in GB of the boot disk (default is 500GB).
      *
      * Generated from protobuf field <code>int32 boot_disk_size_gb = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $boot_disk_size_gb = 0;
+    protected $boot_disk_size_gb = 0;
     /**
      * Optional. Number of attached SSDs, from 0 to 8 (default is 0).
      * If SSDs are not attached, the boot disk is used to store runtime logs and
@@ -43,7 +43,7 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 num_local_ssds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $num_local_ssds = 0;
+    protected $num_local_ssds = 0;
     /**
      * Optional. Interface type of local SSDs (default is "scsi").
      * Valid values: "scsi" (Small Computer System Interface),
@@ -53,7 +53,24 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string local_ssd_interface = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $local_ssd_interface = '';
+    protected $local_ssd_interface = '';
+    /**
+     * Optional. Indicates how many IOPS to provision for the disk. This sets the
+     * number of I/O operations per second that the disk can handle. Note: This
+     * field is only supported if boot_disk_type is hyperdisk-balanced.
+     *
+     * Generated from protobuf field <code>optional int64 boot_disk_provisioned_iops = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $boot_disk_provisioned_iops = null;
+    /**
+     * Optional. Indicates how much throughput to provision for the disk. This
+     * sets the number of throughput mb per second that the disk can handle.
+     * Values must be greater than or equal to 1. Note: This field is only
+     * supported if boot_disk_type is hyperdisk-balanced.
+     *
+     * Generated from protobuf field <code>optional int64 boot_disk_provisioned_throughput = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $boot_disk_provisioned_throughput = null;
 
     /**
      * Constructor.
@@ -84,6 +101,15 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      *           "nvme" (Non-Volatile Memory Express).
      *           See [local SSD
      *           performance](https://cloud.google.com/compute/docs/disks/local-ssd#performance).
+     *     @type int|string $boot_disk_provisioned_iops
+     *           Optional. Indicates how many IOPS to provision for the disk. This sets the
+     *           number of I/O operations per second that the disk can handle. Note: This
+     *           field is only supported if boot_disk_type is hyperdisk-balanced.
+     *     @type int|string $boot_disk_provisioned_throughput
+     *           Optional. Indicates how much throughput to provision for the disk. This
+     *           sets the number of throughput mb per second that the disk can handle.
+     *           Values must be greater than or equal to 1. Note: This field is only
+     *           supported if boot_disk_type is hyperdisk-balanced.
      * }
      */
     public function __construct($data = NULL) {
@@ -221,6 +247,88 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->local_ssd_interface = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates how many IOPS to provision for the disk. This sets the
+     * number of I/O operations per second that the disk can handle. Note: This
+     * field is only supported if boot_disk_type is hyperdisk-balanced.
+     *
+     * Generated from protobuf field <code>optional int64 boot_disk_provisioned_iops = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getBootDiskProvisionedIops()
+    {
+        return isset($this->boot_disk_provisioned_iops) ? $this->boot_disk_provisioned_iops : 0;
+    }
+
+    public function hasBootDiskProvisionedIops()
+    {
+        return isset($this->boot_disk_provisioned_iops);
+    }
+
+    public function clearBootDiskProvisionedIops()
+    {
+        unset($this->boot_disk_provisioned_iops);
+    }
+
+    /**
+     * Optional. Indicates how many IOPS to provision for the disk. This sets the
+     * number of I/O operations per second that the disk can handle. Note: This
+     * field is only supported if boot_disk_type is hyperdisk-balanced.
+     *
+     * Generated from protobuf field <code>optional int64 boot_disk_provisioned_iops = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setBootDiskProvisionedIops($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->boot_disk_provisioned_iops = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates how much throughput to provision for the disk. This
+     * sets the number of throughput mb per second that the disk can handle.
+     * Values must be greater than or equal to 1. Note: This field is only
+     * supported if boot_disk_type is hyperdisk-balanced.
+     *
+     * Generated from protobuf field <code>optional int64 boot_disk_provisioned_throughput = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getBootDiskProvisionedThroughput()
+    {
+        return isset($this->boot_disk_provisioned_throughput) ? $this->boot_disk_provisioned_throughput : 0;
+    }
+
+    public function hasBootDiskProvisionedThroughput()
+    {
+        return isset($this->boot_disk_provisioned_throughput);
+    }
+
+    public function clearBootDiskProvisionedThroughput()
+    {
+        unset($this->boot_disk_provisioned_throughput);
+    }
+
+    /**
+     * Optional. Indicates how much throughput to provision for the disk. This
+     * sets the number of throughput mb per second that the disk can handle.
+     * Values must be greater than or equal to 1. Note: This field is only
+     * supported if boot_disk_type is hyperdisk-balanced.
+     *
+     * Generated from protobuf field <code>optional int64 boot_disk_provisioned_throughput = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setBootDiskProvisionedThroughput($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->boot_disk_provisioned_throughput = $var;
 
         return $this;
     }

@@ -43,6 +43,7 @@ use Google\Cloud\Compute\V1\ListHealthChecksRequest;
 use Google\Cloud\Compute\V1\PatchHealthCheckRequest;
 use Google\Cloud\Compute\V1\UpdateHealthCheckRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The HealthChecks API.
@@ -50,13 +51,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListHealthChecksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListHealthChecksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(UpdateHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListHealthChecksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HealthCheck> getAsync(GetHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListHealthChecksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateHealthCheckRequest $request, array $optionalArgs = [])
  */
 final class HealthChecksClient
 {
@@ -190,6 +191,12 @@ final class HealthChecksClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -220,6 +227,9 @@ final class HealthChecksClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -247,6 +257,8 @@ final class HealthChecksClient
      *
      * The async variant is {@see HealthChecksClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/HealthChecksClient/aggregated_list.php
+     *
      * @param AggregatedListHealthChecksRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -270,6 +282,8 @@ final class HealthChecksClient
      * Deletes the specified HealthCheck resource.
      *
      * The async variant is {@see HealthChecksClient::deleteAsync()} .
+     *
+     * @example samples/V1/HealthChecksClient/delete.php
      *
      * @param DeleteHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -295,6 +309,8 @@ final class HealthChecksClient
      *
      * The async variant is {@see HealthChecksClient::getAsync()} .
      *
+     * @example samples/V1/HealthChecksClient/get.php
+     *
      * @param GetHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -318,6 +334,8 @@ final class HealthChecksClient
      * Creates a HealthCheck resource in the specified project using the data included in the request.
      *
      * The async variant is {@see HealthChecksClient::insertAsync()} .
+     *
+     * @example samples/V1/HealthChecksClient/insert.php
      *
      * @param InsertHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -343,6 +361,8 @@ final class HealthChecksClient
      *
      * The async variant is {@see HealthChecksClient::listAsync()} .
      *
+     * @example samples/V1/HealthChecksClient/list.php
+     *
      * @param ListHealthChecksRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -367,6 +387,8 @@ final class HealthChecksClient
      *
      * The async variant is {@see HealthChecksClient::patchAsync()} .
      *
+     * @example samples/V1/HealthChecksClient/patch.php
+     *
      * @param PatchHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -390,6 +412,8 @@ final class HealthChecksClient
      * Updates a HealthCheck resource in the specified project using the data included in the request.
      *
      * The async variant is {@see HealthChecksClient::updateAsync()} .
+     *
+     * @example samples/V1/HealthChecksClient/update.php
      *
      * @param UpdateHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

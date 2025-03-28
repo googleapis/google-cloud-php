@@ -20,7 +20,18 @@ class GetFunctionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
+    /**
+     * Optional. The version of the 1st gen function whose details should
+     * be obtained. The version of a 1st gen function is an integer that starts
+     * from 1 and gets incremented on redeployments. GCF may keep historical
+     * configs for old versions of 1st gen function. This field can be specified
+     * to fetch the historical configs. This field is valid only for GCF 1st gen
+     * function.
+     *
+     * Generated from protobuf field <code>string revision = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $revision = '';
 
     /**
      * @param string $name Required. The name of the function which details should be obtained. Please see
@@ -44,6 +55,13 @@ class GetFunctionRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the function which details should be obtained.
+     *     @type string $revision
+     *           Optional. The version of the 1st gen function whose details should
+     *           be obtained. The version of a 1st gen function is an integer that starts
+     *           from 1 and gets incremented on redeployments. GCF may keep historical
+     *           configs for old versions of 1st gen function. This field can be specified
+     *           to fetch the historical configs. This field is valid only for GCF 1st gen
+     *           function.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,6 +91,42 @@ class GetFunctionRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The version of the 1st gen function whose details should
+     * be obtained. The version of a 1st gen function is an integer that starts
+     * from 1 and gets incremented on redeployments. GCF may keep historical
+     * configs for old versions of 1st gen function. This field can be specified
+     * to fetch the historical configs. This field is valid only for GCF 1st gen
+     * function.
+     *
+     * Generated from protobuf field <code>string revision = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getRevision()
+    {
+        return $this->revision;
+    }
+
+    /**
+     * Optional. The version of the 1st gen function whose details should
+     * be obtained. The version of a 1st gen function is an integer that starts
+     * from 1 and gets incremented on redeployments. GCF may keep historical
+     * configs for old versions of 1st gen function. This field can be specified
+     * to fetch the historical configs. This field is valid only for GCF 1st gen
+     * function.
+     *
+     * Generated from protobuf field <code>string revision = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRevision($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->revision = $var;
 
         return $this;
     }

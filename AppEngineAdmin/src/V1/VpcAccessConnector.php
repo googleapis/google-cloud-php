@@ -21,14 +21,14 @@ class VpcAccessConnector extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The egress setting for the connector, controlling what traffic is diverted
      * through it.
      *
      * Generated from protobuf field <code>.google.appengine.v1.VpcAccessConnector.EgressSetting egress_setting = 2;</code>
      */
-    private $egress_setting = 0;
+    protected $egress_setting = 0;
 
     /**
      * Constructor.

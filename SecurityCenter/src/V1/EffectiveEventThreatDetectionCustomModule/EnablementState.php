@@ -59,6 +59,4 @@ class EnablementState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EnablementState::class, \Google\Cloud\SecurityCenter\V1\EffectiveEventThreatDetectionCustomModule_EnablementState::class);
 

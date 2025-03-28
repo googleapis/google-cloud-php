@@ -95,6 +95,20 @@ class Transition extends \Google\Protobuf\Internal\Message
      */
     protected $route_polyline = null;
     /**
+     * Output only. An opaque token that can be passed to [Navigation
+     * SDK](https://developers.google.com/maps/documentation/navigation) to
+     * reconstruct the route during navigation, and, in the event of rerouting,
+     * honor the original intention when the route was created. Treat this token
+     * as an opaque blob.  Don't compare its value across requests as its value
+     * may change even if the service returns the exact same route. This field
+     * is only populated if [populate_transition_polylines]
+     * [google.maps.routeoptimization.v1.OptimizeToursRequest.populate_transition_polylines]
+     * is set to true.
+     *
+     * Generated from protobuf field <code>string route_token = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $route_token = '';
+    /**
      * Vehicle loads during this transition, for each type that either appears
      * in this vehicle's
      * [Vehicle.load_limits][google.maps.routeoptimization.v1.Vehicle.load_limits],
@@ -154,6 +168,16 @@ class Transition extends \Google\Protobuf\Internal\Message
      *           The encoded polyline representation of the route followed during the
      *           transition.
      *           This field is only populated if [populate_transition_polylines]
+     *           [google.maps.routeoptimization.v1.OptimizeToursRequest.populate_transition_polylines]
+     *           is set to true.
+     *     @type string $route_token
+     *           Output only. An opaque token that can be passed to [Navigation
+     *           SDK](https://developers.google.com/maps/documentation/navigation) to
+     *           reconstruct the route during navigation, and, in the event of rerouting,
+     *           honor the original intention when the route was created. Treat this token
+     *           as an opaque blob.  Don't compare its value across requests as its value
+     *           may change even if the service returns the exact same route. This field
+     *           is only populated if [populate_transition_polylines]
      *           [google.maps.routeoptimization.v1.OptimizeToursRequest.populate_transition_polylines]
      *           is set to true.
      *     @type array|\Google\Protobuf\Internal\MapField $vehicle_loads
@@ -518,6 +542,48 @@ class Transition extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Maps\RouteOptimization\V1\ShipmentRoute\EncodedPolyline::class);
         $this->route_polyline = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. An opaque token that can be passed to [Navigation
+     * SDK](https://developers.google.com/maps/documentation/navigation) to
+     * reconstruct the route during navigation, and, in the event of rerouting,
+     * honor the original intention when the route was created. Treat this token
+     * as an opaque blob.  Don't compare its value across requests as its value
+     * may change even if the service returns the exact same route. This field
+     * is only populated if [populate_transition_polylines]
+     * [google.maps.routeoptimization.v1.OptimizeToursRequest.populate_transition_polylines]
+     * is set to true.
+     *
+     * Generated from protobuf field <code>string route_token = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getRouteToken()
+    {
+        return $this->route_token;
+    }
+
+    /**
+     * Output only. An opaque token that can be passed to [Navigation
+     * SDK](https://developers.google.com/maps/documentation/navigation) to
+     * reconstruct the route during navigation, and, in the event of rerouting,
+     * honor the original intention when the route was created. Treat this token
+     * as an opaque blob.  Don't compare its value across requests as its value
+     * may change even if the service returns the exact same route. This field
+     * is only populated if [populate_transition_polylines]
+     * [google.maps.routeoptimization.v1.OptimizeToursRequest.populate_transition_polylines]
+     * is set to true.
+     *
+     * Generated from protobuf field <code>string route_token = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRouteToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->route_token = $var;
 
         return $this;
     }

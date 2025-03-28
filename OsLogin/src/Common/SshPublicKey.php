@@ -22,25 +22,25 @@ class SshPublicKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 1;</code>
      */
-    private $key = '';
+    protected $key = '';
     /**
      * An expiration time in microseconds since epoch.
      *
      * Generated from protobuf field <code>int64 expiration_time_usec = 2;</code>
      */
-    private $expiration_time_usec = 0;
+    protected $expiration_time_usec = 0;
     /**
      * Output only. The SHA-256 fingerprint of the SSH public key.
      *
      * Generated from protobuf field <code>string fingerprint = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $fingerprint = '';
+    protected $fingerprint = '';
     /**
      * Output only. The canonical resource name.
      *
      * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * Constructor.

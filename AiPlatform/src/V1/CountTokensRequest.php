@@ -62,6 +62,13 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Tool tools = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $tools;
+    /**
+     * Optional. Generation config that the model will use to generate the
+     * response.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.GenerationConfig generation_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $generation_config = null;
 
     /**
      * @param string                   $endpoint  Required. The name of the Endpoint requested to perform token counting.
@@ -111,6 +118,9 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
      *           A `Tool` is a piece of code that enables the system to interact with
      *           external systems to perform an action, or set of actions, outside of
      *           knowledge and scope of the model.
+     *     @type \Google\Cloud\AIPlatform\V1\GenerationConfig $generation_config
+     *           Optional. Generation config that the model will use to generate the
+     *           response.
      * }
      */
     public function __construct($data = NULL) {
@@ -302,6 +312,44 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Tool::class);
         $this->tools = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Generation config that the model will use to generate the
+     * response.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.GenerationConfig generation_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\GenerationConfig|null
+     */
+    public function getGenerationConfig()
+    {
+        return $this->generation_config;
+    }
+
+    public function hasGenerationConfig()
+    {
+        return isset($this->generation_config);
+    }
+
+    public function clearGenerationConfig()
+    {
+        unset($this->generation_config);
+    }
+
+    /**
+     * Optional. Generation config that the model will use to generate the
+     * response.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.GenerationConfig generation_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\GenerationConfig $var
+     * @return $this
+     */
+    public function setGenerationConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GenerationConfig::class);
+        $this->generation_config = $var;
 
         return $this;
     }

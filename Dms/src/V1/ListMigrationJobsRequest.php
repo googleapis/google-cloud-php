@@ -20,7 +20,7 @@ class ListMigrationJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The maximum number of migration jobs to return. The service may return
      * fewer than this value. If unspecified, at most 50 migration jobs will be
@@ -29,7 +29,7 @@ class ListMigrationJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The nextPageToken value received in the previous call to
      * migrationJobs.list, used in the subsequent request to retrieve the next
@@ -39,7 +39,7 @@ class ListMigrationJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * A filter expression that filters migration jobs listed in the response.
      * The expression must specify the field name, a comparison operator, and the
@@ -53,14 +53,14 @@ class ListMigrationJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Sort the results based on the migration job name.
      * Valid values are: "name", "name asc", and "name desc".
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
 
     /**
      * @param string $parent Required. The parent which owns this collection of migrationJobs. Please see

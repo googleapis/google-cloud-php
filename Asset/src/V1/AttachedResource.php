@@ -25,7 +25,7 @@ class AttachedResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string asset_type = 1;</code>
      */
-    private $asset_type = '';
+    protected $asset_type = '';
     /**
      * Versioned resource representations of this attached resource. This is
      * repeated because there could be multiple versions of the attached resource

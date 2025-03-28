@@ -24,7 +24,7 @@ class TableSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string grouped_entry = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $grouped_entry = '';
+    protected $grouped_entry = '';
 
     /**
      * Constructor.

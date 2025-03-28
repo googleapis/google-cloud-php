@@ -321,6 +321,20 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.sql.v1.GeminiInstanceConfig gemini_config = 55;</code>
      */
     protected $gemini_config = null;
+    /**
+     * Output only. This status indicates whether the instance satisfies PZI.
+     * The status is reserved for future use.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzi = 56 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = null;
+    /**
+     * Input only. Whether Cloud SQL is enabled to switch storing point-in-time
+     * recovery log files from a data disk to Cloud Storage.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.BoolValue switch_transaction_logs_to_cloud_storage_enabled = 57 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    protected $switch_transaction_logs_to_cloud_storage_enabled = null;
 
     /**
      * Constructor.
@@ -455,6 +469,12 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *           experiences regional failure. Only applicable to MySQL.
      *     @type \Google\Cloud\Sql\V1\GeminiInstanceConfig $gemini_config
      *           Gemini instance configuration.
+     *     @type \Google\Protobuf\BoolValue $satisfies_pzi
+     *           Output only. This status indicates whether the instance satisfies PZI.
+     *           The status is reserved for future use.
+     *     @type \Google\Protobuf\BoolValue $switch_transaction_logs_to_cloud_storage_enabled
+     *           Input only. Whether Cloud SQL is enabled to switch storing point-in-time
+     *           recovery log files from a data disk to Cloud Storage.
      * }
      */
     public function __construct($data = NULL) {
@@ -1998,6 +2018,140 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
 
         return $this;
     }
+
+    /**
+     * Output only. This status indicates whether the instance satisfies PZI.
+     * The status is reserved for future use.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzi = 56 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    public function hasSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi);
+    }
+
+    public function clearSatisfiesPzi()
+    {
+        unset($this->satisfies_pzi);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getSatisfiesPzi()</code>
+
+     * Output only. This status indicates whether the instance satisfies PZI.
+     * The status is reserved for future use.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzi = 56 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool|null
+     */
+    public function getSatisfiesPziUnwrapped()
+    {
+        return $this->readWrapperValue("satisfies_pzi");
+    }
+
+    /**
+     * Output only. This status indicates whether the instance satisfies PZI.
+     * The status is reserved for future use.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzi = 56 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->satisfies_pzi = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Output only. This status indicates whether the instance satisfies PZI.
+     * The status is reserved for future use.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzi = 56 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setSatisfiesPziUnwrapped($var)
+    {
+        $this->writeWrapperValue("satisfies_pzi", $var);
+        return $this;}
+
+    /**
+     * Input only. Whether Cloud SQL is enabled to switch storing point-in-time
+     * recovery log files from a data disk to Cloud Storage.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.BoolValue switch_transaction_logs_to_cloud_storage_enabled = 57 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getSwitchTransactionLogsToCloudStorageEnabled()
+    {
+        return $this->switch_transaction_logs_to_cloud_storage_enabled;
+    }
+
+    public function hasSwitchTransactionLogsToCloudStorageEnabled()
+    {
+        return isset($this->switch_transaction_logs_to_cloud_storage_enabled);
+    }
+
+    public function clearSwitchTransactionLogsToCloudStorageEnabled()
+    {
+        unset($this->switch_transaction_logs_to_cloud_storage_enabled);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getSwitchTransactionLogsToCloudStorageEnabled()</code>
+
+     * Input only. Whether Cloud SQL is enabled to switch storing point-in-time
+     * recovery log files from a data disk to Cloud Storage.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.BoolValue switch_transaction_logs_to_cloud_storage_enabled = 57 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return bool|null
+     */
+    public function getSwitchTransactionLogsToCloudStorageEnabledUnwrapped()
+    {
+        return $this->readWrapperValue("switch_transaction_logs_to_cloud_storage_enabled");
+    }
+
+    /**
+     * Input only. Whether Cloud SQL is enabled to switch storing point-in-time
+     * recovery log files from a data disk to Cloud Storage.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.BoolValue switch_transaction_logs_to_cloud_storage_enabled = 57 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setSwitchTransactionLogsToCloudStorageEnabled($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->switch_transaction_logs_to_cloud_storage_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Input only. Whether Cloud SQL is enabled to switch storing point-in-time
+     * recovery log files from a data disk to Cloud Storage.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.BoolValue switch_transaction_logs_to_cloud_storage_enabled = 57 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setSwitchTransactionLogsToCloudStorageEnabledUnwrapped($var)
+    {
+        $this->writeWrapperValue("switch_transaction_logs_to_cloud_storage_enabled", $var);
+        return $this;}
 
 }
 

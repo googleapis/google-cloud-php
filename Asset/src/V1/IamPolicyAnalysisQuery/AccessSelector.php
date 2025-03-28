@@ -103,6 +103,4 @@ class AccessSelector extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AccessSelector::class, \Google\Cloud\Asset\V1\IamPolicyAnalysisQuery_AccessSelector::class);
 

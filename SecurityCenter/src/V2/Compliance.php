@@ -22,13 +22,13 @@ class Compliance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string standard = 1;</code>
      */
-    private $standard = '';
+    protected $standard = '';
     /**
      * Version of the standard or benchmark, for example, 1.1
      *
      * Generated from protobuf field <code>string version = 2;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * Policies within the standard or benchmark, for example, A.12.4.1
      *

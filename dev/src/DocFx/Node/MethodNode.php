@@ -32,7 +32,8 @@ class MethodNode
 
     public function __construct(
         private SimpleXMLElement $xmlNode,
-        private array $protoPackages = []
+        private string $namespace,
+        private array $protoPackages,
     ) {}
 
     public function getReturnType(): string
@@ -122,7 +123,8 @@ class MethodNode
             $parameter = new ParameterNode(
                 $parameterName,
                 (string) $parameterNode->type,
-                $this->replaceSeeTag($this->replaceProtoRef($description))
+                $this->replaceSeeTag($this->replaceProtoRef($description)),
+                $this->namespace
             );
 
             $parameters[] = $parameter;

@@ -293,6 +293,12 @@ class SqlOperationType
      * Generated from protobuf enum <code>SWITCHOVER_TO_REPLICA = 47;</code>
      */
     const SWITCHOVER_TO_REPLICA = 47;
+    /**
+     * Updates the major version of a Cloud SQL instance.
+     *
+     * Generated from protobuf enum <code>MAJOR_VERSION_UPGRADE = 48;</code>
+     */
+    const MAJOR_VERSION_UPGRADE = 48;
 
     private static $valueToName = [
         self::SQL_OPERATION_TYPE_UNSPECIFIED => 'SQL_OPERATION_TYPE_UNSPECIFIED',
@@ -340,6 +346,7 @@ class SqlOperationType
         self::CLUSTER_MAINTENANCE => 'CLUSTER_MAINTENANCE',
         self::SELF_SERVICE_MAINTENANCE => 'SELF_SERVICE_MAINTENANCE',
         self::SWITCHOVER_TO_REPLICA => 'SWITCHOVER_TO_REPLICA',
+        self::MAJOR_VERSION_UPGRADE => 'MAJOR_VERSION_UPGRADE',
     ];
 
     public static function name($value)

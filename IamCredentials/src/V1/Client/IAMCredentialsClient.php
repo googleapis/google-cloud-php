@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,6 +41,7 @@ use Google\Cloud\Iam\Credentials\V1\SignBlobResponse;
 use Google\Cloud\Iam\Credentials\V1\SignJwtRequest;
 use Google\Cloud\Iam\Credentials\V1\SignJwtResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: A service account is a special type of Google account that belongs to your
@@ -61,10 +62,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface generateAccessTokenAsync(GenerateAccessTokenRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateIdTokenAsync(GenerateIdTokenRequest $request, array $optionalArgs = [])
- * @method PromiseInterface signBlobAsync(SignBlobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface signJwtAsync(SignJwtRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateAccessTokenResponse> generateAccessTokenAsync(GenerateAccessTokenRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateIdTokenResponse> generateIdTokenAsync(GenerateIdTokenRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SignBlobResponse> signBlobAsync(SignBlobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SignJwtResponse> signJwtAsync(SignJwtRequest $request, array $optionalArgs = [])
  */
 final class IAMCredentialsClient
 {
@@ -91,9 +92,7 @@ final class IAMCredentialsClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -143,14 +142,14 @@ final class IAMCredentialsClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -172,6 +171,12 @@ final class IAMCredentialsClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -205,6 +210,9 @@ final class IAMCredentialsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -247,8 +255,10 @@ final class IAMCredentialsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateAccessToken(GenerateAccessTokenRequest $request, array $callOptions = []): GenerateAccessTokenResponse
-    {
+    public function generateAccessToken(
+        GenerateAccessTokenRequest $request,
+        array $callOptions = []
+    ): GenerateAccessTokenResponse {
         return $this->startApiCall('GenerateAccessToken', $request, $callOptions)->wait();
     }
 

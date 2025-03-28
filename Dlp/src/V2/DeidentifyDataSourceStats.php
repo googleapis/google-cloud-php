@@ -20,19 +20,19 @@ class DeidentifyDataSourceStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 transformed_bytes = 1;</code>
      */
-    private $transformed_bytes = 0;
+    protected $transformed_bytes = 0;
     /**
      * Number of successfully applied transformations.
      *
      * Generated from protobuf field <code>int64 transformation_count = 2;</code>
      */
-    private $transformation_count = 0;
+    protected $transformation_count = 0;
     /**
      * Number of errors encountered while trying to apply transformations.
      *
      * Generated from protobuf field <code>int64 transformation_error_count = 3;</code>
      */
-    private $transformation_error_count = 0;
+    protected $transformation_error_count = 0;
 
     /**
      * Constructor.

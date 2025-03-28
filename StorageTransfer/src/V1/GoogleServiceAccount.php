@@ -20,13 +20,13 @@ class GoogleServiceAccount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string account_email = 1;</code>
      */
-    private $account_email = '';
+    protected $account_email = '';
     /**
      * Unique identifier for the service account.
      *
      * Generated from protobuf field <code>string subject_id = 2;</code>
      */
-    private $subject_id = '';
+    protected $subject_id = '';
 
     /**
      * Constructor.

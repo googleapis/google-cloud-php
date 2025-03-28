@@ -23,6 +23,44 @@
 return [
     'interfaces' => [
         'google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService' => [
+            'CancelOrder' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Commerce\Consumer\Procurement\V1\Order',
+                    'metadataReturnType' => '\Google\Cloud\Commerce\Consumer\Procurement\V1\CancelOrderMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ModifyOrder' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Commerce\Consumer\Procurement\V1\Order',
+                    'metadataReturnType' => '\Google\Cloud\Commerce\Consumer\Procurement\V1\ModifyOrderMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'PlaceOrder' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Commerce\Consumer\Procurement\V1\Order',

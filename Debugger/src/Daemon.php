@@ -19,13 +19,11 @@ namespace Google\Cloud\Debugger;
 
 use Google\Cloud\Core\Batch\ClosureSerializerInterface;
 use Google\Cloud\Core\Batch\SimpleJobTrait;
-use Google\Cloud\Core\Batch\SerializableClientTrait;
-use Google\Cloud\Core\SysvTrait;
-use Google\Cloud\Core\Report\MetadataProviderInterface;
-use Google\Cloud\Core\Report\MetadataProviderUtils;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\ExponentialBackoff;
+use Google\Cloud\Core\Report\MetadataProviderInterface;
+use Google\Cloud\Core\Report\MetadataProviderUtils;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Google\Cloud\Debugger\BreakpointStorage\FileBreakpointStorage;
 use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
@@ -43,6 +41,7 @@ use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
  * $daemon = new Daemon();
  * $daemon->run();
  * ```
+ * @deprecated see https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation
  */
 class Daemon
 {
@@ -173,7 +172,7 @@ class Daemon
      * $daemon->run();
      * ```
      */
-    public function run(DebuggerClient $client = null, $asDaemon = true)
+    public function run(?DebuggerClient $client = null, $asDaemon = true)
     {
         $client = $client ?: $this->defaultClient();
         $extSourceContexts = $this->extSourceContext ? [$this->extSourceContext] : [];
@@ -274,7 +273,7 @@ class Daemon
         return new DebuggerClient($this->getUnwrappedClientConfig());
     }
 
-    private function defaultLabels(MetadataProviderInterface $metadataProvider = null)
+    private function defaultLabels(?MetadataProviderInterface $metadataProvider = null)
     {
         $metadataProvider = $metadataProvider ?: MetadataProviderUtils::autoSelect($_SERVER);
         $labels = [];

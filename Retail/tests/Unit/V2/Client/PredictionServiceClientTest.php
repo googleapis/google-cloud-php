@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,7 +49,9 @@ class PredictionServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return PredictionServiceClient */
@@ -83,9 +85,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $userEvent->setEventType($userEventEventType);
         $userEventVisitorId = 'userEventVisitorId-2104193702';
         $userEvent->setVisitorId($userEventVisitorId);
-        $request = (new PredictRequest())
-            ->setPlacement($placement)
-            ->setUserEvent($userEvent);
+        $request = (new PredictRequest())->setPlacement($placement)->setUserEvent($userEvent);
         $response = $gapicClient->predict($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -111,12 +111,15 @@ class PredictionServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $placement = 'placement1792938725';
@@ -125,9 +128,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $userEvent->setEventType($userEventEventType);
         $userEventVisitorId = 'userEventVisitorId-2104193702';
         $userEvent->setVisitorId($userEventVisitorId);
-        $request = (new PredictRequest())
-            ->setPlacement($placement)
-            ->setUserEvent($userEvent);
+        $request = (new PredictRequest())->setPlacement($placement)->setUserEvent($userEvent);
         try {
             $gapicClient->predict($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -163,9 +164,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $userEvent->setEventType($userEventEventType);
         $userEventVisitorId = 'userEventVisitorId-2104193702';
         $userEvent->setVisitorId($userEventVisitorId);
-        $request = (new PredictRequest())
-            ->setPlacement($placement)
-            ->setUserEvent($userEvent);
+        $request = (new PredictRequest())->setPlacement($placement)->setUserEvent($userEvent);
         $response = $gapicClient->predictAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

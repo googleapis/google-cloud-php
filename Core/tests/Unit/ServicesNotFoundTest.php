@@ -32,6 +32,11 @@ class ServicesNotFoundTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
+        if (version_compare(PHP_VERSION, '8.4', '>=')) {
+            // @TODO upgrade to using Laravel/closure instead
+            // @see https://github.com/opis/closure/pull/145
+            self::markTestSkipped('This test is not compatible with PHP 8.4');
+        }
         self::$cloud = new ServiceBuilder;
         foreach (spl_autoload_functions() as $function) {
             if ($function[0] instanceof ClassLoader) {
@@ -65,18 +70,14 @@ class ServicesNotFoundTest extends TestCase
             "Dlp",
             "ErrorReporting",
             "Firestore",
-            "Language",
             "Logging",
             "Monitoring",
             "OsLogin",
             "PubSub",
             "Spanner",
-            "Speech",
             "Storage",
             "Trace",
-            "Translate",
             "VideoIntelligence",
-            "Vision",
         ];
     }
 
@@ -86,14 +87,10 @@ class ServicesNotFoundTest extends TestCase
             ['bigQuery'],
             ['datastore'],
             ['logging'],
-            ['language'],
             ['pubsub'],
             ['spanner'],
-            ['speech'],
             ['storage'],
             ['trace'],
-            ['vision'],
-            ['translate']
         ];
     }
 

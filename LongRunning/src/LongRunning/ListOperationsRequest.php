@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Operations.ListOperations][google.longrunning.Operations.ListOperations].
+ * The request message for
+ * [Operations.ListOperations][google.longrunning.Operations.ListOperations].
  *
  * Generated from protobuf message <code>google.longrunning.ListOperationsRequest</code>
  */

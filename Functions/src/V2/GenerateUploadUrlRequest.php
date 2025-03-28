@@ -21,7 +21,7 @@ class GenerateUploadUrlRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * [Preview] Resource name of a KMS crypto key (managed by the user) used to
      * encrypt/decrypt function source code objects in intermediate Cloud Storage
@@ -39,7 +39,16 @@ class GenerateUploadUrlRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_name = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $kms_key_name = '';
+    protected $kms_key_name = '';
+    /**
+     * The function environment the generated upload url will be used for.
+     * The upload url for 2nd Gen functions can also be used for 1st gen
+     * functions, but not vice versa. If not specified, 2nd generation-style
+     * upload URLs are generated.
+     *
+     * Generated from protobuf field <code>.google.cloud.functions.v2.Environment environment = 3;</code>
+     */
+    protected $environment = 0;
 
     /**
      * Constructor.
@@ -64,6 +73,11 @@ class GenerateUploadUrlRequest extends \Google\Protobuf\Internal\Message
      *           granted the role 'Cloud KMS CryptoKey Encrypter/Decrypter
      *           (roles/cloudkms.cryptoKeyEncrypterDecrypter)' on the
      *           Key/KeyRing/Project/Organization (least access preferred).
+     *     @type int $environment
+     *           The function environment the generated upload url will be used for.
+     *           The upload url for 2nd Gen functions can also be used for 1st gen
+     *           functions, but not vice versa. If not specified, 2nd generation-style
+     *           upload URLs are generated.
      * }
      */
     public function __construct($data = NULL) {
@@ -145,6 +159,38 @@ class GenerateUploadUrlRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->kms_key_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The function environment the generated upload url will be used for.
+     * The upload url for 2nd Gen functions can also be used for 1st gen
+     * functions, but not vice versa. If not specified, 2nd generation-style
+     * upload URLs are generated.
+     *
+     * Generated from protobuf field <code>.google.cloud.functions.v2.Environment environment = 3;</code>
+     * @return int
+     */
+    public function getEnvironment()
+    {
+        return $this->environment;
+    }
+
+    /**
+     * The function environment the generated upload url will be used for.
+     * The upload url for 2nd Gen functions can also be used for 1st gen
+     * functions, but not vice versa. If not specified, 2nd generation-style
+     * upload URLs are generated.
+     *
+     * Generated from protobuf field <code>.google.cloud.functions.v2.Environment environment = 3;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEnvironment($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Functions\V2\Environment::class);
+        $this->environment = $var;
 
         return $this;
     }

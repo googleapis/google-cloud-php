@@ -25,7 +25,7 @@ class OAuthSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.StringValue login_hint = 2;</code>
      */
-    private $login_hint = null;
+    protected $login_hint = null;
     /**
      * List of OAuth client IDs allowed to programmatically authenticate with IAP.
      *
@@ -91,7 +91,7 @@ class OAuthSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.StringValue login_hint = 2;</code>
      * @return string|null
      */
-    public function getLoginHintValue()
+    public function getLoginHintUnwrapped()
     {
         return $this->readWrapperValue("login_hint");
     }
@@ -128,7 +128,7 @@ class OAuthSettings extends \Google\Protobuf\Internal\Message
      * @param string|null $var
      * @return $this
      */
-    public function setLoginHintValue($var)
+    public function setLoginHintUnwrapped($var)
     {
         $this->writeWrapperValue("login_hint", $var);
         return $this;}

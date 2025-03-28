@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Delele EntryType Request
+ * Delele EntryType Request.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DeleteEntryTypeRequest</code>
  */
@@ -24,7 +24,7 @@ class DeleteEntryTypeRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
     /**
      * Optional. If the client provided etag value does not match the current etag
-     * value, the DeleteEntryTypeRequest method returns an ABORTED error response
+     * value, the DeleteEntryTypeRequest method returns an ABORTED error response.
      *
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -56,7 +56,7 @@ class DeleteEntryTypeRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project_number}/locations/{location_id}/entryTypes/{entry_type_id}`.
      *     @type string $etag
      *           Optional. If the client provided etag value does not match the current etag
-     *           value, the DeleteEntryTypeRequest method returns an ABORTED error response
+     *           value, the DeleteEntryTypeRequest method returns an ABORTED error response.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,7 +94,7 @@ class DeleteEntryTypeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. If the client provided etag value does not match the current etag
-     * value, the DeleteEntryTypeRequest method returns an ABORTED error response
+     * value, the DeleteEntryTypeRequest method returns an ABORTED error response.
      *
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -106,7 +106,7 @@ class DeleteEntryTypeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. If the client provided etag value does not match the current etag
-     * value, the DeleteEntryTypeRequest method returns an ABORTED error response
+     * value, the DeleteEntryTypeRequest method returns an ABORTED error response.
      *
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

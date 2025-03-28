@@ -36,7 +36,7 @@ class StreamingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 1;</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * Constructor.
@@ -126,6 +126,4 @@ class StreamingConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(StreamingConfig::class, \Google\Cloud\SecurityCenter\V1\NotificationConfig_StreamingConfig::class);
 

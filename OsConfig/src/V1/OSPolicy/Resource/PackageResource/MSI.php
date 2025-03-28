@@ -20,7 +20,7 @@ class MSI extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.OSPolicy.Resource.File source = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $source = null;
+    protected $source = null;
     /**
      * Additional properties to use during installation.
      * This should be in the format of Property=Setting.

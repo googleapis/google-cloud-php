@@ -24,14 +24,14 @@ class Setting extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Metadata about a setting which is not editable by the end
      * user.
      *
      * Generated from protobuf field <code>.google.cloud.resourcesettings.v1.SettingMetadata metadata = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * The configured value of the setting at the given parent resource (ignoring
      * the resource hierarchy). The data type of
@@ -41,7 +41,7 @@ class Setting extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.resourcesettings.v1.Value local_value = 8;</code>
      */
-    private $local_value = null;
+    protected $local_value = null;
     /**
      * Output only. The computed effective value of the setting at the given
      * parent resource (based on the resource hierarchy).
@@ -60,7 +60,7 @@ class Setting extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.resourcesettings.v1.Value effective_value = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $effective_value = null;
+    protected $effective_value = null;
     /**
      * A fingerprint used for optimistic concurrency. See
      * [UpdateSetting][google.cloud.resourcesettings.v1.ResourceSettingsService.UpdateSetting]
@@ -68,7 +68,7 @@ class Setting extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 10;</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * Constructor.

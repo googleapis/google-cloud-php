@@ -20,14 +20,14 @@ class RelatedResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string asset_type = 1;</code>
      */
-    private $asset_type = '';
+    protected $asset_type = '';
     /**
      * The full resource name of the related resource. Example:
      * `//compute.googleapis.com/projects/my_proj_123/zones/instance/instance123`
      *
      * Generated from protobuf field <code>string full_resource_name = 2;</code>
      */
-    private $full_resource_name = '';
+    protected $full_resource_name = '';
 
     /**
      * Constructor.

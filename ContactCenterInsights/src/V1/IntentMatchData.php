@@ -24,7 +24,7 @@ class IntentMatchData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string intent_unique_id = 1;</code>
      */
-    private $intent_unique_id = '';
+    protected $intent_unique_id = '';
 
     /**
      * Constructor.

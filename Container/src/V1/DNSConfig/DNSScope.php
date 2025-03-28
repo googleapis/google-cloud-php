@@ -59,6 +59,4 @@ class DNSScope
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DNSScope::class, \Google\Cloud\Container\V1\DNSConfig_DNSScope::class);
 

@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A description of the conditions under which some aspect of your system is
  * considered to be "unhealthy" and the ways to notify people or services about
- * this state. For an overview of alert policies, see
+ * this state. For an overview of alerting policies, see
  * [Introduction to Alerting](https://cloud.google.com/monitoring/alerts/).
  *
  * Generated from protobuf message <code>google.monitoring.v3.AlertPolicy</code>
@@ -19,8 +19,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class AlertPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required if the policy exists. The resource name for this policy. The
-     * format is:
+     * Identifier. Required if the policy exists. The resource name for this
+     * policy. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
      * `[ALERT_POLICY_ID]` is assigned by Cloud Monitoring when the policy
      * is created. When calling the
@@ -28,9 +28,9 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * method, do not include the `name` field in the alerting policy passed as
      * part of the request.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A short name or phrase used to identify the policy in dashboards,
      * notifications, and incidents. To avoid confusion, don't use the same
@@ -44,7 +44,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Documentation that is included with notifications and incidents related to
      * this policy. Best practice is for the documentation to include information
@@ -54,7 +54,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Documentation documentation = 13;</code>
      */
-    private $documentation = null;
+    protected $documentation = null;
     /**
      * User-supplied key/value data to be used for organizing and
      * identifying the `AlertPolicy` objects.
@@ -93,7 +93,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.ConditionCombinerType combiner = 6;</code>
      */
-    private $combiner = 0;
+    protected $combiner = 0;
     /**
      * Whether or not the policy is enabled. On write, the default interpretation
      * if unset is that the policy is enabled. On read, clients should not make
@@ -103,15 +103,15 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue enabled = 17;</code>
      */
-    private $enabled = null;
+    protected $enabled = null;
     /**
-     * Read-only description of how the alert policy is invalid. This field is
-     * only set when the alert policy is invalid. An invalid alert policy will not
-     * generate incidents.
+     * Read-only description of how the alerting policy is invalid. This field is
+     * only set when the alerting policy is invalid. An invalid alerting policy
+     * will not generate incidents.
      *
      * Generated from protobuf field <code>.google.rpc.Status validity = 18;</code>
      */
-    private $validity = null;
+    protected $validity = null;
     /**
      * Identifies the notification channels to which notifications should be sent
      * when incidents are opened or closed or when new violations occur on
@@ -132,28 +132,28 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.MutationRecord creation_record = 10;</code>
      */
-    private $creation_record = null;
+    protected $creation_record = null;
     /**
      * A read-only record of the most recent change to the alerting policy. If
      * provided in a call to create or update, this field will be ignored.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.MutationRecord mutation_record = 11;</code>
      */
-    private $mutation_record = null;
+    protected $mutation_record = null;
     /**
-     * Control over how this alert policy's notification channels are notified.
+     * Control over how this alerting policy's notification channels are notified.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.AlertStrategy alert_strategy = 21;</code>
      */
-    private $alert_strategy = null;
+    protected $alert_strategy = null;
     /**
-     * Optional. The severity of an alert policy indicates how important incidents
-     * generated by that policy are. The severity level will be displayed on the
-     * Incident detail page and in notifications.
+     * Optional. The severity of an alerting policy indicates how important
+     * incidents generated by that policy are. The severity level will be
+     * displayed on the Incident detail page and in notifications.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Severity severity = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $severity = 0;
+    protected $severity = 0;
 
     /**
      * Constructor.
@@ -162,8 +162,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required if the policy exists. The resource name for this policy. The
-     *           format is:
+     *           Identifier. Required if the policy exists. The resource name for this
+     *           policy. The format is:
      *               projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
      *           `[ALERT_POLICY_ID]` is assigned by Cloud Monitoring when the policy
      *           is created. When calling the
@@ -220,9 +220,9 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *           field should always be populated on List and Get operations, unless
      *           a field projection has been specified that strips it out.
      *     @type \Google\Rpc\Status $validity
-     *           Read-only description of how the alert policy is invalid. This field is
-     *           only set when the alert policy is invalid. An invalid alert policy will not
-     *           generate incidents.
+     *           Read-only description of how the alerting policy is invalid. This field is
+     *           only set when the alerting policy is invalid. An invalid alerting policy
+     *           will not generate incidents.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $notification_channels
      *           Identifies the notification channels to which notifications should be sent
      *           when incidents are opened or closed or when new violations occur on
@@ -240,11 +240,11 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *           A read-only record of the most recent change to the alerting policy. If
      *           provided in a call to create or update, this field will be ignored.
      *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\AlertStrategy $alert_strategy
-     *           Control over how this alert policy's notification channels are notified.
+     *           Control over how this alerting policy's notification channels are notified.
      *     @type int $severity
-     *           Optional. The severity of an alert policy indicates how important incidents
-     *           generated by that policy are. The severity level will be displayed on the
-     *           Incident detail page and in notifications.
+     *           Optional. The severity of an alerting policy indicates how important
+     *           incidents generated by that policy are. The severity level will be
+     *           displayed on the Incident detail page and in notifications.
      * }
      */
     public function __construct($data = NULL) {
@@ -253,8 +253,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required if the policy exists. The resource name for this policy. The
-     * format is:
+     * Identifier. Required if the policy exists. The resource name for this
+     * policy. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
      * `[ALERT_POLICY_ID]` is assigned by Cloud Monitoring when the policy
      * is created. When calling the
@@ -262,7 +262,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * method, do not include the `name` field in the alerting policy passed as
      * part of the request.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -271,8 +271,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required if the policy exists. The resource name for this policy. The
-     * format is:
+     * Identifier. Required if the policy exists. The resource name for this
+     * policy. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
      * `[ALERT_POLICY_ID]` is assigned by Cloud Monitoring when the policy
      * is created. When calling the
@@ -280,7 +280,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * method, do not include the `name` field in the alerting policy passed as
      * part of the request.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -535,7 +535,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue enabled = 17;</code>
      * @return bool|null
      */
-    public function getEnabledValue()
+    public function getEnabledUnwrapped()
     {
         return $this->readWrapperValue("enabled");
     }
@@ -572,15 +572,15 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setEnabledValue($var)
+    public function setEnabledUnwrapped($var)
     {
         $this->writeWrapperValue("enabled", $var);
         return $this;}
 
     /**
-     * Read-only description of how the alert policy is invalid. This field is
-     * only set when the alert policy is invalid. An invalid alert policy will not
-     * generate incidents.
+     * Read-only description of how the alerting policy is invalid. This field is
+     * only set when the alerting policy is invalid. An invalid alerting policy
+     * will not generate incidents.
      *
      * Generated from protobuf field <code>.google.rpc.Status validity = 18;</code>
      * @return \Google\Rpc\Status|null
@@ -601,9 +601,9 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Read-only description of how the alert policy is invalid. This field is
-     * only set when the alert policy is invalid. An invalid alert policy will not
-     * generate incidents.
+     * Read-only description of how the alerting policy is invalid. This field is
+     * only set when the alerting policy is invalid. An invalid alerting policy
+     * will not generate incidents.
      *
      * Generated from protobuf field <code>.google.rpc.Status validity = 18;</code>
      * @param \Google\Rpc\Status $var
@@ -736,7 +736,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Control over how this alert policy's notification channels are notified.
+     * Control over how this alerting policy's notification channels are notified.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.AlertStrategy alert_strategy = 21;</code>
      * @return \Google\Cloud\Monitoring\V3\AlertPolicy\AlertStrategy|null
@@ -757,7 +757,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Control over how this alert policy's notification channels are notified.
+     * Control over how this alerting policy's notification channels are notified.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.AlertStrategy alert_strategy = 21;</code>
      * @param \Google\Cloud\Monitoring\V3\AlertPolicy\AlertStrategy $var
@@ -772,9 +772,9 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The severity of an alert policy indicates how important incidents
-     * generated by that policy are. The severity level will be displayed on the
-     * Incident detail page and in notifications.
+     * Optional. The severity of an alerting policy indicates how important
+     * incidents generated by that policy are. The severity level will be
+     * displayed on the Incident detail page and in notifications.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Severity severity = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -785,9 +785,9 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The severity of an alert policy indicates how important incidents
-     * generated by that policy are. The severity level will be displayed on the
-     * Incident detail page and in notifications.
+     * Optional. The severity of an alerting policy indicates how important
+     * incidents generated by that policy are. The severity level will be
+     * displayed on the Incident detail page and in notifications.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Severity severity = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

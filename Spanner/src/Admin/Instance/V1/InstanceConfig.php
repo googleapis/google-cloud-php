@@ -20,6 +20,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * A unique identifier for the instance configuration.  Values
      * are of the form
      * `projects/<project>/instanceConfigs/[a-z][-a-z0-9]*`.
+     * User instance configuration must start with `custom-`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -31,8 +32,8 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Output only. Whether this instance config is a Google or User Managed
-     * Configuration.
+     * Output only. Whether this instance configuration is a Google-managed or
+     * user-managed configuration.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.Type config_type = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -40,22 +41,26 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * The geographic placement of nodes in this instance configuration and their
      * replication properties.
+     * To create user-managed configurations, input
+     * `replicas` must include all replicas in `replicas` of the `base_config`
+     * and include one or more replicas in the `optional_replicas` of the
+     * `base_config`.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaInfo replicas = 3;</code>
      */
     private $replicas;
     /**
-     * Output only. The available optional replicas to choose from for user
-     * managed configurations. Populated for Google managed configurations.
+     * Output only. The available optional replicas to choose from for
+     * user-managed configurations. Populated for Google-managed configurations.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaInfo optional_replicas = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $optional_replicas;
     /**
      * Base configuration name, e.g. projects/<project_name>/instanceConfigs/nam3,
-     * based on which this configuration is created. Only set for user managed
+     * based on which this configuration is created. Only set for user-managed
      * configurations. `base_config` must refer to a configuration of type
-     * GOOGLE_MANAGED in the same project as this configuration.
+     * `GOOGLE_MANAGED` in the same project as this configuration.
      *
      * Generated from protobuf field <code>string base_config = 7 [(.google.api.resource_reference) = {</code>
      */
@@ -85,15 +90,16 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     private $labels;
     /**
      * etag is used for optimistic concurrency control as a way
-     * to help prevent simultaneous updates of a instance config from overwriting
-     * each other. It is strongly suggested that systems make use of the etag in
-     * the read-modify-write cycle to perform instance config updates in order to
-     * avoid race conditions: An etag is returned in the response which contains
-     * instance configs, and systems are expected to put that etag in the request
-     * to update instance config to ensure that their change will be applied to
-     * the same version of the instance config.
-     * If no etag is provided in the call to update instance config, then the
-     * existing instance config is overwritten blindly.
+     * to help prevent simultaneous updates of a instance configuration from
+     * overwriting each other. It is strongly suggested that systems make use of
+     * the etag in the read-modify-write cycle to perform instance configuration
+     * updates in order to avoid race conditions: An etag is returned in the
+     * response which contains instance configurations, and systems are expected
+     * to put that etag in the request to update instance configuration to ensure
+     * that their change is applied to the same version of the instance
+     * configuration. If no etag is provided in the call to update the instance
+     * configuration, then the existing instance configuration is overwritten
+     * blindly.
      *
      * Generated from protobuf field <code>string etag = 9;</code>
      */
@@ -106,18 +112,39 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      */
     private $leader_options;
     /**
-     * Output only. If true, the instance config is being created or updated. If
-     * false, there are no ongoing operations for the instance config.
+     * Output only. If true, the instance configuration is being created or
+     * updated. If false, there are no ongoing operations for the instance
+     * configuration.
      *
      * Generated from protobuf field <code>bool reconciling = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $reconciling = false;
     /**
-     * Output only. The current instance config state.
+     * Output only. The current instance configuration state. Applicable only for
+     * `USER_MANAGED` configurations.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.State state = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
+    /**
+     * Output only. Describes whether free instances are available to be created
+     * in this instance configuration.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.FreeInstanceAvailability free_instance_availability = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $free_instance_availability = 0;
+    /**
+     * Output only. The `QuorumType` of the instance configuration.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.QuorumType quorum_type = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $quorum_type = 0;
+    /**
+     * Output only. The storage limit in bytes per processing unit.
+     *
+     * Generated from protobuf field <code>int64 storage_limit_per_processing_unit = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $storage_limit_per_processing_unit = 0;
 
     /**
      * Constructor.
@@ -129,22 +156,27 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *           A unique identifier for the instance configuration.  Values
      *           are of the form
      *           `projects/<project>/instanceConfigs/[a-z][-a-z0-9]*`.
+     *           User instance configuration must start with `custom-`.
      *     @type string $display_name
      *           The name of this instance configuration as it appears in UIs.
      *     @type int $config_type
-     *           Output only. Whether this instance config is a Google or User Managed
-     *           Configuration.
+     *           Output only. Whether this instance configuration is a Google-managed or
+     *           user-managed configuration.
      *     @type array<\Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo>|\Google\Protobuf\Internal\RepeatedField $replicas
      *           The geographic placement of nodes in this instance configuration and their
      *           replication properties.
+     *           To create user-managed configurations, input
+     *           `replicas` must include all replicas in `replicas` of the `base_config`
+     *           and include one or more replicas in the `optional_replicas` of the
+     *           `base_config`.
      *     @type array<\Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo>|\Google\Protobuf\Internal\RepeatedField $optional_replicas
-     *           Output only. The available optional replicas to choose from for user
-     *           managed configurations. Populated for Google managed configurations.
+     *           Output only. The available optional replicas to choose from for
+     *           user-managed configurations. Populated for Google-managed configurations.
      *     @type string $base_config
      *           Base configuration name, e.g. projects/<project_name>/instanceConfigs/nam3,
-     *           based on which this configuration is created. Only set for user managed
+     *           based on which this configuration is created. Only set for user-managed
      *           configurations. `base_config` must refer to a configuration of type
-     *           GOOGLE_MANAGED in the same project as this configuration.
+     *           `GOOGLE_MANAGED` in the same project as this configuration.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Cloud Labels are a flexible and lightweight mechanism for organizing cloud
      *           resources into groups that reflect a customer's organizational needs and
@@ -166,23 +198,33 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *           allow "_" in a future release.
      *     @type string $etag
      *           etag is used for optimistic concurrency control as a way
-     *           to help prevent simultaneous updates of a instance config from overwriting
-     *           each other. It is strongly suggested that systems make use of the etag in
-     *           the read-modify-write cycle to perform instance config updates in order to
-     *           avoid race conditions: An etag is returned in the response which contains
-     *           instance configs, and systems are expected to put that etag in the request
-     *           to update instance config to ensure that their change will be applied to
-     *           the same version of the instance config.
-     *           If no etag is provided in the call to update instance config, then the
-     *           existing instance config is overwritten blindly.
+     *           to help prevent simultaneous updates of a instance configuration from
+     *           overwriting each other. It is strongly suggested that systems make use of
+     *           the etag in the read-modify-write cycle to perform instance configuration
+     *           updates in order to avoid race conditions: An etag is returned in the
+     *           response which contains instance configurations, and systems are expected
+     *           to put that etag in the request to update instance configuration to ensure
+     *           that their change is applied to the same version of the instance
+     *           configuration. If no etag is provided in the call to update the instance
+     *           configuration, then the existing instance configuration is overwritten
+     *           blindly.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $leader_options
      *           Allowed values of the "default_leader" schema option for databases in
      *           instances that use this instance configuration.
      *     @type bool $reconciling
-     *           Output only. If true, the instance config is being created or updated. If
-     *           false, there are no ongoing operations for the instance config.
+     *           Output only. If true, the instance configuration is being created or
+     *           updated. If false, there are no ongoing operations for the instance
+     *           configuration.
      *     @type int $state
-     *           Output only. The current instance config state.
+     *           Output only. The current instance configuration state. Applicable only for
+     *           `USER_MANAGED` configurations.
+     *     @type int $free_instance_availability
+     *           Output only. Describes whether free instances are available to be created
+     *           in this instance configuration.
+     *     @type int $quorum_type
+     *           Output only. The `QuorumType` of the instance configuration.
+     *     @type int|string $storage_limit_per_processing_unit
+     *           Output only. The storage limit in bytes per processing unit.
      * }
      */
     public function __construct($data = NULL) {
@@ -194,6 +236,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * A unique identifier for the instance configuration.  Values
      * are of the form
      * `projects/<project>/instanceConfigs/[a-z][-a-z0-9]*`.
+     * User instance configuration must start with `custom-`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -207,6 +250,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * A unique identifier for the instance configuration.  Values
      * are of the form
      * `projects/<project>/instanceConfigs/[a-z][-a-z0-9]*`.
+     * User instance configuration must start with `custom-`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -247,8 +291,8 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Whether this instance config is a Google or User Managed
-     * Configuration.
+     * Output only. Whether this instance configuration is a Google-managed or
+     * user-managed configuration.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.Type config_type = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -259,8 +303,8 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Whether this instance config is a Google or User Managed
-     * Configuration.
+     * Output only. Whether this instance configuration is a Google-managed or
+     * user-managed configuration.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.Type config_type = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -277,6 +321,10 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * The geographic placement of nodes in this instance configuration and their
      * replication properties.
+     * To create user-managed configurations, input
+     * `replicas` must include all replicas in `replicas` of the `base_config`
+     * and include one or more replicas in the `optional_replicas` of the
+     * `base_config`.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaInfo replicas = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -289,6 +337,10 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * The geographic placement of nodes in this instance configuration and their
      * replication properties.
+     * To create user-managed configurations, input
+     * `replicas` must include all replicas in `replicas` of the `base_config`
+     * and include one or more replicas in the `optional_replicas` of the
+     * `base_config`.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaInfo replicas = 3;</code>
      * @param array<\Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo>|\Google\Protobuf\Internal\RepeatedField $var
@@ -303,8 +355,8 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The available optional replicas to choose from for user
-     * managed configurations. Populated for Google managed configurations.
+     * Output only. The available optional replicas to choose from for
+     * user-managed configurations. Populated for Google-managed configurations.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaInfo optional_replicas = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -315,8 +367,8 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The available optional replicas to choose from for user
-     * managed configurations. Populated for Google managed configurations.
+     * Output only. The available optional replicas to choose from for
+     * user-managed configurations. Populated for Google-managed configurations.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaInfo optional_replicas = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo>|\Google\Protobuf\Internal\RepeatedField $var
@@ -332,9 +384,9 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Base configuration name, e.g. projects/<project_name>/instanceConfigs/nam3,
-     * based on which this configuration is created. Only set for user managed
+     * based on which this configuration is created. Only set for user-managed
      * configurations. `base_config` must refer to a configuration of type
-     * GOOGLE_MANAGED in the same project as this configuration.
+     * `GOOGLE_MANAGED` in the same project as this configuration.
      *
      * Generated from protobuf field <code>string base_config = 7 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -346,9 +398,9 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Base configuration name, e.g. projects/<project_name>/instanceConfigs/nam3,
-     * based on which this configuration is created. Only set for user managed
+     * based on which this configuration is created. Only set for user-managed
      * configurations. `base_config` must refer to a configuration of type
-     * GOOGLE_MANAGED in the same project as this configuration.
+     * `GOOGLE_MANAGED` in the same project as this configuration.
      *
      * Generated from protobuf field <code>string base_config = 7 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -424,15 +476,16 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * etag is used for optimistic concurrency control as a way
-     * to help prevent simultaneous updates of a instance config from overwriting
-     * each other. It is strongly suggested that systems make use of the etag in
-     * the read-modify-write cycle to perform instance config updates in order to
-     * avoid race conditions: An etag is returned in the response which contains
-     * instance configs, and systems are expected to put that etag in the request
-     * to update instance config to ensure that their change will be applied to
-     * the same version of the instance config.
-     * If no etag is provided in the call to update instance config, then the
-     * existing instance config is overwritten blindly.
+     * to help prevent simultaneous updates of a instance configuration from
+     * overwriting each other. It is strongly suggested that systems make use of
+     * the etag in the read-modify-write cycle to perform instance configuration
+     * updates in order to avoid race conditions: An etag is returned in the
+     * response which contains instance configurations, and systems are expected
+     * to put that etag in the request to update instance configuration to ensure
+     * that their change is applied to the same version of the instance
+     * configuration. If no etag is provided in the call to update the instance
+     * configuration, then the existing instance configuration is overwritten
+     * blindly.
      *
      * Generated from protobuf field <code>string etag = 9;</code>
      * @return string
@@ -444,15 +497,16 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * etag is used for optimistic concurrency control as a way
-     * to help prevent simultaneous updates of a instance config from overwriting
-     * each other. It is strongly suggested that systems make use of the etag in
-     * the read-modify-write cycle to perform instance config updates in order to
-     * avoid race conditions: An etag is returned in the response which contains
-     * instance configs, and systems are expected to put that etag in the request
-     * to update instance config to ensure that their change will be applied to
-     * the same version of the instance config.
-     * If no etag is provided in the call to update instance config, then the
-     * existing instance config is overwritten blindly.
+     * to help prevent simultaneous updates of a instance configuration from
+     * overwriting each other. It is strongly suggested that systems make use of
+     * the etag in the read-modify-write cycle to perform instance configuration
+     * updates in order to avoid race conditions: An etag is returned in the
+     * response which contains instance configurations, and systems are expected
+     * to put that etag in the request to update instance configuration to ensure
+     * that their change is applied to the same version of the instance
+     * configuration. If no etag is provided in the call to update the instance
+     * configuration, then the existing instance configuration is overwritten
+     * blindly.
      *
      * Generated from protobuf field <code>string etag = 9;</code>
      * @param string $var
@@ -495,8 +549,9 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If true, the instance config is being created or updated. If
-     * false, there are no ongoing operations for the instance config.
+     * Output only. If true, the instance configuration is being created or
+     * updated. If false, there are no ongoing operations for the instance
+     * configuration.
      *
      * Generated from protobuf field <code>bool reconciling = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -507,8 +562,9 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If true, the instance config is being created or updated. If
-     * false, there are no ongoing operations for the instance config.
+     * Output only. If true, the instance configuration is being created or
+     * updated. If false, there are no ongoing operations for the instance
+     * configuration.
      *
      * Generated from protobuf field <code>bool reconciling = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
@@ -523,7 +579,8 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The current instance config state.
+     * Output only. The current instance configuration state. Applicable only for
+     * `USER_MANAGED` configurations.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.State state = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -534,7 +591,8 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The current instance config state.
+     * Output only. The current instance configuration state. Applicable only for
+     * `USER_MANAGED` configurations.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.State state = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -544,6 +602,86 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Describes whether free instances are available to be created
+     * in this instance configuration.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.FreeInstanceAvailability free_instance_availability = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getFreeInstanceAvailability()
+    {
+        return $this->free_instance_availability;
+    }
+
+    /**
+     * Output only. Describes whether free instances are available to be created
+     * in this instance configuration.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.FreeInstanceAvailability free_instance_availability = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setFreeInstanceAvailability($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\FreeInstanceAvailability::class);
+        $this->free_instance_availability = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The `QuorumType` of the instance configuration.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.QuorumType quorum_type = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getQuorumType()
+    {
+        return $this->quorum_type;
+    }
+
+    /**
+     * Output only. The `QuorumType` of the instance configuration.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.QuorumType quorum_type = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setQuorumType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\QuorumType::class);
+        $this->quorum_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The storage limit in bytes per processing unit.
+     *
+     * Generated from protobuf field <code>int64 storage_limit_per_processing_unit = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getStorageLimitPerProcessingUnit()
+    {
+        return $this->storage_limit_per_processing_unit;
+    }
+
+    /**
+     * Output only. The storage limit in bytes per processing unit.
+     *
+     * Generated from protobuf field <code>int64 storage_limit_per_processing_unit = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setStorageLimitPerProcessingUnit($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->storage_limit_per_processing_unit = $var;
 
         return $this;
     }

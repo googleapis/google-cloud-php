@@ -23,14 +23,14 @@ class ConsumerInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 project_number = 1;</code>
      */
-    private $project_number = 0;
+    protected $project_number = 0;
     /**
      * The type of the consumer which should have been defined in
      * [Google Resource Manager](https://cloud.google.com/resource-manager/).
      *
      * Generated from protobuf field <code>.google.api.servicecontrol.v1.CheckResponse.ConsumerInfo.ConsumerType type = 2;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * The consumer identity number, can be Google cloud project number, folder
      * number or organization number e.g. 1234567890. A value of 0 indicates no
@@ -38,7 +38,7 @@ class ConsumerInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 consumer_number = 3;</code>
      */
-    private $consumer_number = 0;
+    protected $consumer_number = 0;
 
     /**
      * Constructor.

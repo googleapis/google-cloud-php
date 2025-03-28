@@ -58,6 +58,12 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     private $name = null;
     /**
+     * Specify the reservation sharing policy. If unspecified, the reservation will not be shared with Google Cloud managed services.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationReservationSharingPolicy reservation_sharing_policy = 205970120;</code>
+     */
+    private $reservation_sharing_policy = null;
+    /**
      * Resource policies to be added to this reservation. The key is defined by user, and the value is resource policy url. This is to define placement policy with reservation.
      *
      * Generated from protobuf field <code>map<string, string> resource_policies = 22220385;</code>
@@ -100,7 +106,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     private $specific_reservation_required = null;
     /**
-     * [Output Only] The status of the reservation.
+     * [Output Only] The status of the reservation. - CREATING: Reservation resources are being allocated. - READY: Reservation resources have been allocated, and the reservation is ready for use. - DELETING: Reservation deletion is in progress. - UPDATING: Reservation update is in progress.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -133,6 +139,8 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *           [Output Only] Type of the resource. Always compute#reservations for reservations.
      *     @type string $name
      *           The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *     @type \Google\Cloud\Compute\V1\AllocationReservationSharingPolicy $reservation_sharing_policy
+     *           Specify the reservation sharing policy. If unspecified, the reservation will not be shared with Google Cloud managed services.
      *     @type array|\Google\Protobuf\Internal\MapField $resource_policies
      *           Resource policies to be added to this reservation. The key is defined by user, and the value is resource policy url. This is to define placement policy with reservation.
      *     @type \Google\Cloud\Compute\V1\AllocationResourceStatus $resource_status
@@ -148,7 +156,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *     @type bool $specific_reservation_required
      *           Indicates whether the reservation can be consumed by VMs with affinity for "any" reservation. If the field is set, then only VMs that target the reservation by name can consume from this reservation.
      *     @type string $status
-     *           [Output Only] The status of the reservation.
+     *           [Output Only] The status of the reservation. - CREATING: Reservation resources are being allocated. - READY: Reservation resources have been allocated, and the reservation is ready for use. - DELETING: Reservation deletion is in progress. - UPDATING: Reservation update is in progress.
      *           Check the Status enum for the list of possible values.
      *     @type string $zone
      *           Zone in which the reservation resides. A zone must be provided if the reservation is created within a commitment.
@@ -412,6 +420,42 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Specify the reservation sharing policy. If unspecified, the reservation will not be shared with Google Cloud managed services.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationReservationSharingPolicy reservation_sharing_policy = 205970120;</code>
+     * @return \Google\Cloud\Compute\V1\AllocationReservationSharingPolicy|null
+     */
+    public function getReservationSharingPolicy()
+    {
+        return $this->reservation_sharing_policy;
+    }
+
+    public function hasReservationSharingPolicy()
+    {
+        return isset($this->reservation_sharing_policy);
+    }
+
+    public function clearReservationSharingPolicy()
+    {
+        unset($this->reservation_sharing_policy);
+    }
+
+    /**
+     * Specify the reservation sharing policy. If unspecified, the reservation will not be shared with Google Cloud managed services.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationReservationSharingPolicy reservation_sharing_policy = 205970120;</code>
+     * @param \Google\Cloud\Compute\V1\AllocationReservationSharingPolicy $var
+     * @return $this
+     */
+    public function setReservationSharingPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\AllocationReservationSharingPolicy::class);
+        $this->reservation_sharing_policy = $var;
+
+        return $this;
+    }
+
+    /**
      * Resource policies to be added to this reservation. The key is defined by user, and the value is resource policy url. This is to define placement policy with reservation.
      *
      * Generated from protobuf field <code>map<string, string> resource_policies = 22220385;</code>
@@ -654,7 +698,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the reservation.
+     * [Output Only] The status of the reservation. - CREATING: Reservation resources are being allocated. - READY: Reservation resources have been allocated, and the reservation is ready for use. - DELETING: Reservation deletion is in progress. - UPDATING: Reservation update is in progress.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -676,7 +720,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the reservation.
+     * [Output Only] The status of the reservation. - CREATING: Reservation resources are being allocated. - READY: Reservation resources have been allocated, and the reservation is ready for use. - DELETING: Reservation deletion is in progress. - UPDATING: Reservation update is in progress.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>

@@ -21,27 +21,27 @@ class WorkflowInvocationAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target target = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $target = null;
+    protected $target = null;
     /**
      * Output only. The action's identifier if the project had been compiled
      * without any overrides configured. Unique within the compilation result.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target canonical_target = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $canonical_target = null;
+    protected $canonical_target = null;
     /**
      * Output only. This action's current state.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.WorkflowInvocationAction.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. If and only if action's state is FAILED a failure reason is
      * set.
      *
      * Generated from protobuf field <code>string failure_reason = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $failure_reason = '';
+    protected $failure_reason = '';
     /**
      * Output only. This action's timing details.
      * `start_time` will be set if the action is in [RUNNING, SUCCEEDED,
@@ -51,13 +51,16 @@ class WorkflowInvocationAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Interval invocation_timing = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $invocation_timing = null;
+    protected $invocation_timing = null;
     /**
-     * Output only. The workflow action's bigquery action details.
+     * Output only. All the metadata information that is used internally to serve
+     * the resource. For example: timestamps, flags, status fields, etc. The
+     * format of this field is a JSON string.
      *
-     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.WorkflowInvocationAction.BigQueryAction bigquery_action = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string internal_metadata = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $bigquery_action = null;
+    protected $internal_metadata = null;
+    protected $action;
 
     /**
      * Constructor.
@@ -65,6 +68,10 @@ class WorkflowInvocationAction extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Dataform\V1beta1\WorkflowInvocationAction\BigQueryAction $bigquery_action
+     *           Output only. The workflow action's bigquery action details.
+     *     @type \Google\Cloud\Dataform\V1beta1\WorkflowInvocationAction\NotebookAction $notebook_action
+     *           Output only. The workflow action's notebook action details.
      *     @type \Google\Cloud\Dataform\V1beta1\Target $target
      *           Output only. This action's identifier. Unique within the workflow
      *           invocation.
@@ -82,13 +89,77 @@ class WorkflowInvocationAction extends \Google\Protobuf\Internal\Message
      *           CANCELLED, FAILED] state.
      *           `end_time` will be set if the action is in [SUCCEEDED, CANCELLED, FAILED]
      *           state.
-     *     @type \Google\Cloud\Dataform\V1beta1\WorkflowInvocationAction\BigQueryAction $bigquery_action
-     *           Output only. The workflow action's bigquery action details.
+     *     @type string $internal_metadata
+     *           Output only. All the metadata information that is used internally to serve
+     *           the resource. For example: timestamps, flags, status fields, etc. The
+     *           format of this field is a JSON string.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataform\V1Beta1\Dataform::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Output only. The workflow action's bigquery action details.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.WorkflowInvocationAction.BigQueryAction bigquery_action = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataform\V1beta1\WorkflowInvocationAction\BigQueryAction|null
+     */
+    public function getBigqueryAction()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasBigqueryAction()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Output only. The workflow action's bigquery action details.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.WorkflowInvocationAction.BigQueryAction bigquery_action = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataform\V1beta1\WorkflowInvocationAction\BigQueryAction $var
+     * @return $this
+     */
+    public function setBigqueryAction($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\WorkflowInvocationAction\BigQueryAction::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. The workflow action's notebook action details.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.WorkflowInvocationAction.NotebookAction notebook_action = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataform\V1beta1\WorkflowInvocationAction\NotebookAction|null
+     */
+    public function getNotebookAction()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasNotebookAction()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * Output only. The workflow action's notebook action details.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.WorkflowInvocationAction.NotebookAction notebook_action = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataform\V1beta1\WorkflowInvocationAction\NotebookAction $var
+     * @return $this
+     */
+    public function setNotebookAction($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\WorkflowInvocationAction\NotebookAction::class);
+        $this->writeOneof(8, $var);
+
+        return $this;
     }
 
     /**
@@ -266,39 +337,51 @@ class WorkflowInvocationAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The workflow action's bigquery action details.
+     * Output only. All the metadata information that is used internally to serve
+     * the resource. For example: timestamps, flags, status fields, etc. The
+     * format of this field is a JSON string.
      *
-     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.WorkflowInvocationAction.BigQueryAction bigquery_action = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Dataform\V1beta1\WorkflowInvocationAction\BigQueryAction|null
+     * Generated from protobuf field <code>optional string internal_metadata = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
      */
-    public function getBigqueryAction()
+    public function getInternalMetadata()
     {
-        return $this->bigquery_action;
+        return isset($this->internal_metadata) ? $this->internal_metadata : '';
     }
 
-    public function hasBigqueryAction()
+    public function hasInternalMetadata()
     {
-        return isset($this->bigquery_action);
+        return isset($this->internal_metadata);
     }
 
-    public function clearBigqueryAction()
+    public function clearInternalMetadata()
     {
-        unset($this->bigquery_action);
+        unset($this->internal_metadata);
     }
 
     /**
-     * Output only. The workflow action's bigquery action details.
+     * Output only. All the metadata information that is used internally to serve
+     * the resource. For example: timestamps, flags, status fields, etc. The
+     * format of this field is a JSON string.
      *
-     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.WorkflowInvocationAction.BigQueryAction bigquery_action = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Dataform\V1beta1\WorkflowInvocationAction\BigQueryAction $var
+     * Generated from protobuf field <code>optional string internal_metadata = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
      * @return $this
      */
-    public function setBigqueryAction($var)
+    public function setInternalMetadata($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\WorkflowInvocationAction\BigQueryAction::class);
-        $this->bigquery_action = $var;
+        GPBUtil::checkString($var, True);
+        $this->internal_metadata = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAction()
+    {
+        return $this->whichOneof("action");
     }
 
 }

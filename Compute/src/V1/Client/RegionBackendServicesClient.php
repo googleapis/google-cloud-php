@@ -51,6 +51,7 @@ use Google\Cloud\Compute\V1\TestIamPermissionsRegionBackendServiceRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\UpdateRegionBackendServiceRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The RegionBackendServices API.
@@ -58,18 +59,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteRegionBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRegionBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getHealthAsync(GetHealthRegionBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRegionBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRegionBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionBackendServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listUsableAsync(ListUsableRegionBackendServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchRegionBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRegionBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setSecurityPolicyAsync(SetSecurityPolicyRegionBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRegionBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(UpdateRegionBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackendService> getAsync(GetRegionBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackendServiceGroupHealth> getHealthAsync(GetHealthRegionBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRegionBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionBackendServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listUsableAsync(ListUsableRegionBackendServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchRegionBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRegionBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setSecurityPolicyAsync(SetSecurityPolicyRegionBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRegionBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateRegionBackendServiceRequest $request, array $optionalArgs = [])
  */
 final class RegionBackendServicesClient
 {
@@ -204,6 +205,12 @@ final class RegionBackendServicesClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -234,6 +241,9 @@ final class RegionBackendServicesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -261,6 +271,8 @@ final class RegionBackendServicesClient
      *
      * The async variant is {@see RegionBackendServicesClient::deleteAsync()} .
      *
+     * @example samples/V1/RegionBackendServicesClient/delete.php
+     *
      * @param DeleteRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -284,6 +296,8 @@ final class RegionBackendServicesClient
      * Returns the specified regional BackendService resource.
      *
      * The async variant is {@see RegionBackendServicesClient::getAsync()} .
+     *
+     * @example samples/V1/RegionBackendServicesClient/get.php
      *
      * @param GetRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -309,6 +323,8 @@ final class RegionBackendServicesClient
      *
      * The async variant is {@see RegionBackendServicesClient::getHealthAsync()} .
      *
+     * @example samples/V1/RegionBackendServicesClient/get_health.php
+     *
      * @param GetHealthRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -332,6 +348,8 @@ final class RegionBackendServicesClient
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
      * The async variant is {@see RegionBackendServicesClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/RegionBackendServicesClient/get_iam_policy.php
      *
      * @param GetIamPolicyRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -357,6 +375,8 @@ final class RegionBackendServicesClient
      *
      * The async variant is {@see RegionBackendServicesClient::insertAsync()} .
      *
+     * @example samples/V1/RegionBackendServicesClient/insert.php
+     *
      * @param InsertRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -381,6 +401,8 @@ final class RegionBackendServicesClient
      *
      * The async variant is {@see RegionBackendServicesClient::listAsync()} .
      *
+     * @example samples/V1/RegionBackendServicesClient/list.php
+     *
      * @param ListRegionBackendServicesRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -401,9 +423,11 @@ final class RegionBackendServicesClient
     }
 
     /**
-     * Retrieves an aggregated list of all usable backend services in the specified project in the given region.
+     * Retrieves a list of all usable backend services in the specified project in the given region.
      *
      * The async variant is {@see RegionBackendServicesClient::listUsableAsync()} .
+     *
+     * @example samples/V1/RegionBackendServicesClient/list_usable.php
      *
      * @param ListUsableRegionBackendServicesRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -429,6 +453,8 @@ final class RegionBackendServicesClient
      *
      * The async variant is {@see RegionBackendServicesClient::patchAsync()} .
      *
+     * @example samples/V1/RegionBackendServicesClient/patch.php
+     *
      * @param PatchRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -452,6 +478,8 @@ final class RegionBackendServicesClient
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
      * The async variant is {@see RegionBackendServicesClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/RegionBackendServicesClient/set_iam_policy.php
      *
      * @param SetIamPolicyRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -478,6 +506,8 @@ final class RegionBackendServicesClient
      * The async variant is
      * {@see RegionBackendServicesClient::setSecurityPolicyAsync()} .
      *
+     * @example samples/V1/RegionBackendServicesClient/set_security_policy.php
+     *
      * @param SetSecurityPolicyRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                        $callOptions {
      *     Optional.
@@ -503,6 +533,8 @@ final class RegionBackendServicesClient
      * The async variant is
      * {@see RegionBackendServicesClient::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/RegionBackendServicesClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                         $callOptions {
      *     Optional.
@@ -526,6 +558,8 @@ final class RegionBackendServicesClient
      * Updates the specified regional BackendService resource with the data included in the request. For more information, see Backend services overview .
      *
      * The async variant is {@see RegionBackendServicesClient::updateAsync()} .
+     *
+     * @example samples/V1/RegionBackendServicesClient/update.php
      *
      * @param UpdateRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {

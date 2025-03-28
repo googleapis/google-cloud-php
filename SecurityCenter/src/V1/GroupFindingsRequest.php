@@ -26,7 +26,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Expression that defines the filter to apply across findings.
      * The expression is a list of one or more restrictions combined via logical
@@ -76,7 +76,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Required. Expression that defines what assets fields to use for grouping
      * (including `state_change`). The string value should follow SQL syntax:
@@ -86,7 +86,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string group_by = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $group_by = '';
+    protected $group_by = '';
     /**
      * Time used as a reference point when filtering findings. The filter is
      * limited to findings existing at the supplied time and their values are
@@ -95,7 +95,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 4;</code>
      */
-    private $read_time = null;
+    protected $read_time = null;
     /**
      * When compare_duration is set, the GroupResult's "state_change" attribute is
      * updated to indicate whether the finding had its state changed, the
@@ -127,7 +127,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration compare_duration = 5;</code>
      */
-    private $compare_duration = null;
+    protected $compare_duration = null;
     /**
      * The value returned by the last `GroupFindingsResponse`; indicates
      * that this is a continuation of a prior `GroupFindings` call, and
@@ -135,14 +135,14 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 7;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * The maximum number of results to return in a single response. Default is
      * 10, minimum is 1, maximum is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 8;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
 
     /**
      * @param string $parent  Required. Name of the source to groupBy. Its format is

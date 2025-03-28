@@ -128,6 +128,4 @@ class CertificateAuthorityDomainConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CertificateAuthorityDomainConfig::class, \Google\Cloud\Container\V1\ContainerdConfig_PrivateRegistryAccessConfig_CertificateAuthorityDomainConfig::class);
 

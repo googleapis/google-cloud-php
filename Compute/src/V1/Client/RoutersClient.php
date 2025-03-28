@@ -34,22 +34,32 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AggregatedListRoutersRequest;
+use Google\Cloud\Compute\V1\DeleteRoutePolicyRouterRequest;
 use Google\Cloud\Compute\V1\DeleteRouterRequest;
 use Google\Cloud\Compute\V1\GetNatIpInfoRouterRequest;
 use Google\Cloud\Compute\V1\GetNatMappingInfoRoutersRequest;
+use Google\Cloud\Compute\V1\GetRoutePolicyRouterRequest;
 use Google\Cloud\Compute\V1\GetRouterRequest;
 use Google\Cloud\Compute\V1\GetRouterStatusRouterRequest;
 use Google\Cloud\Compute\V1\InsertRouterRequest;
+use Google\Cloud\Compute\V1\ListBgpRoutesRoutersRequest;
+use Google\Cloud\Compute\V1\ListRoutePoliciesRoutersRequest;
 use Google\Cloud\Compute\V1\ListRoutersRequest;
 use Google\Cloud\Compute\V1\NatIpInfoResponse;
+use Google\Cloud\Compute\V1\PatchRoutePolicyRouterRequest;
 use Google\Cloud\Compute\V1\PatchRouterRequest;
 use Google\Cloud\Compute\V1\PreviewRouterRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\Router;
 use Google\Cloud\Compute\V1\RouterStatusResponse;
+use Google\Cloud\Compute\V1\RoutersGetRoutePolicyResponse;
+use Google\Cloud\Compute\V1\RoutersListBgpRoutes;
+use Google\Cloud\Compute\V1\RoutersListRoutePolicies;
 use Google\Cloud\Compute\V1\RoutersPreviewResponse;
+use Google\Cloud\Compute\V1\UpdateRoutePolicyRouterRequest;
 use Google\Cloud\Compute\V1\UpdateRouterRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Routers API.
@@ -57,17 +67,23 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListRoutersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteRouterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRouterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNatIpInfoAsync(GetNatIpInfoRouterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNatMappingInfoAsync(GetNatMappingInfoRoutersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRouterStatusAsync(GetRouterStatusRouterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRouterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRoutersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchRouterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface previewAsync(PreviewRouterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(UpdateRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListRoutersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteRoutePolicyAsync(DeleteRoutePolicyRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Router> getAsync(GetRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NatIpInfoResponse> getNatIpInfoAsync(GetNatIpInfoRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> getNatMappingInfoAsync(GetNatMappingInfoRoutersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RoutersGetRoutePolicyResponse> getRoutePolicyAsync(GetRoutePolicyRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RouterStatusResponse> getRouterStatusAsync(GetRouterStatusRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRoutersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RoutersListBgpRoutes> listBgpRoutesAsync(ListBgpRoutesRoutersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RoutersListRoutePolicies> listRoutePoliciesAsync(ListRoutePoliciesRoutersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchRoutePolicyAsync(PatchRoutePolicyRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RoutersPreviewResponse> previewAsync(PreviewRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateRoutePolicyAsync(UpdateRoutePolicyRouterRequest $request, array $optionalArgs = [])
  */
 final class RoutersClient
 {
@@ -202,6 +218,12 @@ final class RoutersClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -232,6 +254,9 @@ final class RoutersClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -259,6 +284,8 @@ final class RoutersClient
      *
      * The async variant is {@see RoutersClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/RoutersClient/aggregated_list.php
+     *
      * @param AggregatedListRoutersRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -283,6 +310,8 @@ final class RoutersClient
      *
      * The async variant is {@see RoutersClient::deleteAsync()} .
      *
+     * @example samples/V1/RoutersClient/delete.php
+     *
      * @param DeleteRouterRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -303,9 +332,37 @@ final class RoutersClient
     }
 
     /**
+     * Deletes Route Policy
+     *
+     * The async variant is {@see RoutersClient::deleteRoutePolicyAsync()} .
+     *
+     * @example samples/V1/RoutersClient/delete_route_policy.php
+     *
+     * @param DeleteRoutePolicyRouterRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteRoutePolicy(DeleteRoutePolicyRouterRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteRoutePolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Returns the specified Router resource.
      *
      * The async variant is {@see RoutersClient::getAsync()} .
+     *
+     * @example samples/V1/RoutersClient/get.php
      *
      * @param GetRouterRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -331,6 +388,8 @@ final class RoutersClient
      *
      * The async variant is {@see RoutersClient::getNatIpInfoAsync()} .
      *
+     * @example samples/V1/RoutersClient/get_nat_ip_info.php
+     *
      * @param GetNatIpInfoRouterRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -355,6 +414,8 @@ final class RoutersClient
      *
      * The async variant is {@see RoutersClient::getNatMappingInfoAsync()} .
      *
+     * @example samples/V1/RoutersClient/get_nat_mapping_info.php
+     *
      * @param GetNatMappingInfoRoutersRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -375,9 +436,37 @@ final class RoutersClient
     }
 
     /**
+     * Returns specified Route Policy
+     *
+     * The async variant is {@see RoutersClient::getRoutePolicyAsync()} .
+     *
+     * @example samples/V1/RoutersClient/get_route_policy.php
+     *
+     * @param GetRoutePolicyRouterRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RoutersGetRoutePolicyResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getRoutePolicy(GetRoutePolicyRouterRequest $request, array $callOptions = []): RoutersGetRoutePolicyResponse
+    {
+        return $this->startApiCall('GetRoutePolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Retrieves runtime information of the specified router.
      *
      * The async variant is {@see RoutersClient::getRouterStatusAsync()} .
+     *
+     * @example samples/V1/RoutersClient/get_router_status.php
      *
      * @param GetRouterStatusRouterRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -403,6 +492,8 @@ final class RoutersClient
      *
      * The async variant is {@see RoutersClient::insertAsync()} .
      *
+     * @example samples/V1/RoutersClient/insert.php
+     *
      * @param InsertRouterRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -427,6 +518,8 @@ final class RoutersClient
      *
      * The async variant is {@see RoutersClient::listAsync()} .
      *
+     * @example samples/V1/RoutersClient/list.php
+     *
      * @param ListRoutersRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -447,9 +540,63 @@ final class RoutersClient
     }
 
     /**
+     * Retrieves a list of router bgp routes available to the specified project.
+     *
+     * The async variant is {@see RoutersClient::listBgpRoutesAsync()} .
+     *
+     * @example samples/V1/RoutersClient/list_bgp_routes.php
+     *
+     * @param ListBgpRoutesRoutersRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RoutersListBgpRoutes
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listBgpRoutes(ListBgpRoutesRoutersRequest $request, array $callOptions = []): RoutersListBgpRoutes
+    {
+        return $this->startApiCall('ListBgpRoutes', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Retrieves a list of router route policy subresources available to the specified project.
+     *
+     * The async variant is {@see RoutersClient::listRoutePoliciesAsync()} .
+     *
+     * @example samples/V1/RoutersClient/list_route_policies.php
+     *
+     * @param ListRoutePoliciesRoutersRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RoutersListRoutePolicies
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listRoutePolicies(ListRoutePoliciesRoutersRequest $request, array $callOptions = []): RoutersListRoutePolicies
+    {
+        return $this->startApiCall('ListRoutePolicies', $request, $callOptions)->wait();
+    }
+
+    /**
      * Patches the specified Router resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      *
      * The async variant is {@see RoutersClient::patchAsync()} .
+     *
+     * @example samples/V1/RoutersClient/patch.php
      *
      * @param PatchRouterRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -471,9 +618,37 @@ final class RoutersClient
     }
 
     /**
+     * Patches Route Policy
+     *
+     * The async variant is {@see RoutersClient::patchRoutePolicyAsync()} .
+     *
+     * @example samples/V1/RoutersClient/patch_route_policy.php
+     *
+     * @param PatchRoutePolicyRouterRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function patchRoutePolicy(PatchRoutePolicyRouterRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('PatchRoutePolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Preview fields auto-generated during router create and update operations. Calling this method does NOT create or update the router.
      *
      * The async variant is {@see RoutersClient::previewAsync()} .
+     *
+     * @example samples/V1/RoutersClient/preview.php
      *
      * @param PreviewRouterRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -499,6 +674,8 @@ final class RoutersClient
      *
      * The async variant is {@see RoutersClient::updateAsync()} .
      *
+     * @example samples/V1/RoutersClient/update.php
+     *
      * @param UpdateRouterRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -516,5 +693,31 @@ final class RoutersClient
     public function update(UpdateRouterRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Update', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates or creates new Route Policy
+     *
+     * The async variant is {@see RoutersClient::updateRoutePolicyAsync()} .
+     *
+     * @example samples/V1/RoutersClient/update_route_policy.php
+     *
+     * @param UpdateRoutePolicyRouterRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateRoutePolicy(UpdateRoutePolicyRouterRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateRoutePolicy', $request, $callOptions)->wait();
     }
 }

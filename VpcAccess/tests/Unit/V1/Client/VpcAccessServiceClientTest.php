@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\VpcAccess\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Location\ListLocationsRequest;
@@ -37,6 +36,7 @@ use Google\Cloud\VpcAccess\V1\DeleteConnectorRequest;
 use Google\Cloud\VpcAccess\V1\GetConnectorRequest;
 use Google\Cloud\VpcAccess\V1\ListConnectorsRequest;
 use Google\Cloud\VpcAccess\V1\ListConnectorsResponse;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -60,7 +60,9 @@ class VpcAccessServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return VpcAccessServiceClient */
@@ -184,12 +186,15 @@ class VpcAccessServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -252,8 +257,7 @@ class VpcAccessServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->connectorName('[PROJECT]', '[LOCATION]', '[CONNECTOR]');
-        $request = (new DeleteConnectorRequest())
-            ->setName($formattedName);
+        $request = (new DeleteConnectorRequest())->setName($formattedName);
         $response = $gapicClient->deleteConnector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -309,17 +313,19 @@ class VpcAccessServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->connectorName('[PROJECT]', '[LOCATION]', '[CONNECTOR]');
-        $request = (new DeleteConnectorRequest())
-            ->setName($formattedName);
+        $request = (new DeleteConnectorRequest())->setName($formattedName);
         $response = $gapicClient->deleteConnector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -371,8 +377,7 @@ class VpcAccessServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->connectorName('[PROJECT]', '[LOCATION]', '[CONNECTOR]');
-        $request = (new GetConnectorRequest())
-            ->setName($formattedName);
+        $request = (new GetConnectorRequest())->setName($formattedName);
         $response = $gapicClient->getConnector($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -396,17 +401,19 @@ class VpcAccessServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->connectorName('[PROJECT]', '[LOCATION]', '[CONNECTOR]');
-        $request = (new GetConnectorRequest())
-            ->setName($formattedName);
+        $request = (new GetConnectorRequest())->setName($formattedName);
         try {
             $gapicClient->getConnector($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -431,17 +438,14 @@ class VpcAccessServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $connectorsElement = new Connector();
-        $connectors = [
-            $connectorsElement,
-        ];
+        $connectors = [$connectorsElement];
         $expectedResponse = new ListConnectorsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConnectors($connectors);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListConnectorsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListConnectorsRequest())->setParent($formattedParent);
         $response = $gapicClient->listConnectors($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -468,17 +472,19 @@ class VpcAccessServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListConnectorsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListConnectorsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listConnectors($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -503,9 +509,7 @@ class VpcAccessServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -535,12 +539,15 @@ class VpcAccessServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {

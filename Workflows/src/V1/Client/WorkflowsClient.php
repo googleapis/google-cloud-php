@@ -40,12 +40,14 @@ use Google\Cloud\Location\Location;
 use Google\Cloud\Workflows\V1\CreateWorkflowRequest;
 use Google\Cloud\Workflows\V1\DeleteWorkflowRequest;
 use Google\Cloud\Workflows\V1\GetWorkflowRequest;
+use Google\Cloud\Workflows\V1\ListWorkflowRevisionsRequest;
 use Google\Cloud\Workflows\V1\ListWorkflowsRequest;
 use Google\Cloud\Workflows\V1\UpdateWorkflowRequest;
 use Google\Cloud\Workflows\V1\Workflow;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Workflows is used to deploy and execute workflow programs.
@@ -60,13 +62,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createWorkflowAsync(CreateWorkflowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteWorkflowAsync(DeleteWorkflowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getWorkflowAsync(GetWorkflowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listWorkflowsAsync(ListWorkflowsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateWorkflowAsync(UpdateWorkflowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createWorkflowAsync(CreateWorkflowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteWorkflowAsync(DeleteWorkflowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Workflow> getWorkflowAsync(GetWorkflowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listWorkflowRevisionsAsync(ListWorkflowRevisionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listWorkflowsAsync(ListWorkflowsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateWorkflowAsync(UpdateWorkflowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class WorkflowsClient
 {
@@ -188,6 +191,29 @@ final class WorkflowsClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * crypto_key_version resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     * @param string $cryptoKeyVersion
+     *
+     * @return string The formatted crypto_key_version resource.
+     */
+    public static function cryptoKeyVersionName(string $project, string $location, string $keyRing, string $cryptoKey, string $cryptoKeyVersion): string
+    {
+        return self::getPathTemplate('cryptoKeyVersion')->render([
+            'project' => $project,
+            'location' => $location,
+            'keyRing' => $keyRing,
+            'cryptoKey' => $cryptoKey,
+            'cryptoKeyVersion' => $cryptoKeyVersion,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -228,6 +254,7 @@ final class WorkflowsClient
      * The following name formats are supported:
      * Template: Pattern
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{cryptoKey}
+     * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{cryptoKey}/cryptoKeyVersions/{cryptoKeyVersion}
      * - location: projects/{project}/locations/{location}
      * - workflow: projects/{project}/locations/{location}/workflows/{workflow}
      *
@@ -237,14 +264,14 @@ final class WorkflowsClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -266,6 +293,12 @@ final class WorkflowsClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -299,6 +332,9 @@ final class WorkflowsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -401,6 +437,32 @@ final class WorkflowsClient
     public function getWorkflow(GetWorkflowRequest $request, array $callOptions = []): Workflow
     {
         return $this->startApiCall('GetWorkflow', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists revisions for a given workflow.
+     *
+     * The async variant is {@see WorkflowsClient::listWorkflowRevisionsAsync()} .
+     *
+     * @example samples/V1/WorkflowsClient/list_workflow_revisions.php
+     *
+     * @param ListWorkflowRevisionsRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listWorkflowRevisions(ListWorkflowRevisionsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListWorkflowRevisions', $request, $callOptions);
     }
 
     /**

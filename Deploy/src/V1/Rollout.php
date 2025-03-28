@@ -17,11 +17,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class Rollout extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Name of the `Rollout`. Format is
+     * Identifier. Name of the `Rollout`. Format is
      * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      * The `rollout` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -31,18 +31,19 @@ class Rollout extends \Google\Protobuf\Internal\Message
      */
     protected $uid = '';
     /**
-     * Description of the `Rollout` for user purposes. Max length is 255
+     * Optional. Description of the `Rollout` for user purposes. Max length is 255
      * characters.
      *
-     * Generated from protobuf field <code>string description = 3;</code>
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $description = '';
     /**
-     * User annotations. These attributes can only be set and used by the
-     * user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations
-     * for more details such as format and size limitations.
+     * Optional. User annotations. These attributes can only be set and used by
+     * the user, and not by Cloud Deploy. See
+     * https://google.aip.dev/128#annotations for more details such as format and
+     * size limitations.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 4;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $annotations;
     /**
@@ -169,6 +170,12 @@ class Rollout extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string rolled_back_by_rollouts = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $rolled_back_by_rollouts;
+    /**
+     * Output only. The AutomationRun actively repairing the rollout.
+     *
+     * Generated from protobuf field <code>string active_repair_automation_run = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $active_repair_automation_run = '';
 
     /**
      * Constructor.
@@ -177,18 +184,19 @@ class Rollout extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Optional. Name of the `Rollout`. Format is
+     *           Identifier. Name of the `Rollout`. Format is
      *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      *           The `rollout` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *     @type string $uid
      *           Output only. Unique identifier of the `Rollout`.
      *     @type string $description
-     *           Description of the `Rollout` for user purposes. Max length is 255
+     *           Optional. Description of the `Rollout` for user purposes. Max length is 255
      *           characters.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
-     *           User annotations. These attributes can only be set and used by the
-     *           user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations
-     *           for more details such as format and size limitations.
+     *           Optional. User annotations. These attributes can only be set and used by
+     *           the user, and not by Cloud Deploy. See
+     *           https://google.aip.dev/128#annotations for more details such as format and
+     *           size limitations.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels are attributes that can be set and used by both the
      *           user and by Cloud Deploy. Labels must meet the following constraints:
@@ -241,6 +249,8 @@ class Rollout extends \Google\Protobuf\Internal\Message
      *           Empty if this `Rollout` wasn't created as a rollback.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $rolled_back_by_rollouts
      *           Output only. Names of `Rollouts` that rolled back this `Rollout`.
+     *     @type string $active_repair_automation_run
+     *           Output only. The AutomationRun actively repairing the rollout.
      * }
      */
     public function __construct($data = NULL) {
@@ -249,11 +259,11 @@ class Rollout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the `Rollout`. Format is
+     * Identifier. Name of the `Rollout`. Format is
      * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      * The `rollout` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -262,11 +272,11 @@ class Rollout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the `Rollout`. Format is
+     * Identifier. Name of the `Rollout`. Format is
      * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      * The `rollout` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -305,10 +315,10 @@ class Rollout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Description of the `Rollout` for user purposes. Max length is 255
+     * Optional. Description of the `Rollout` for user purposes. Max length is 255
      * characters.
      *
-     * Generated from protobuf field <code>string description = 3;</code>
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -317,10 +327,10 @@ class Rollout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Description of the `Rollout` for user purposes. Max length is 255
+     * Optional. Description of the `Rollout` for user purposes. Max length is 255
      * characters.
      *
-     * Generated from protobuf field <code>string description = 3;</code>
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -333,11 +343,12 @@ class Rollout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User annotations. These attributes can only be set and used by the
-     * user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations
-     * for more details such as format and size limitations.
+     * Optional. User annotations. These attributes can only be set and used by
+     * the user, and not by Cloud Deploy. See
+     * https://google.aip.dev/128#annotations for more details such as format and
+     * size limitations.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 4;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getAnnotations()
@@ -346,11 +357,12 @@ class Rollout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User annotations. These attributes can only be set and used by the
-     * user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations
-     * for more details such as format and size limitations.
+     * Optional. User annotations. These attributes can only be set and used by
+     * the user, and not by Cloud Deploy. See
+     * https://google.aip.dev/128#annotations for more details such as format and
+     * size limitations.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 4;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -918,6 +930,32 @@ class Rollout extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->rolled_back_by_rollouts = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The AutomationRun actively repairing the rollout.
+     *
+     * Generated from protobuf field <code>string active_repair_automation_run = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getActiveRepairAutomationRun()
+    {
+        return $this->active_repair_automation_run;
+    }
+
+    /**
+     * Output only. The AutomationRun actively repairing the rollout.
+     *
+     * Generated from protobuf field <code>string active_repair_automation_run = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setActiveRepairAutomationRun($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->active_repair_automation_run = $var;
 
         return $this;
     }

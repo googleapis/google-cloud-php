@@ -63,6 +63,4 @@ class ConstraintDefault
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConstraintDefault::class, \Google\Cloud\Asset\V1\AnalyzerOrgPolicyConstraint_Constraint_ConstraintDefault::class);
 

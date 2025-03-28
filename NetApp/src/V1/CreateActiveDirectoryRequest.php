@@ -29,9 +29,9 @@ class CreateActiveDirectoryRequest extends \Google\Protobuf\Internal\Message
     protected $active_directory = null;
     /**
      * Required. ID of the active directory to create. Must be unique within the
-     * parent resource. Must contain only letters, numbers, underscore and hyphen,
-     * with the first character a letter or underscore, the last a letter or
-     * underscore or a number, and a 63 character maximum.
+     * parent resource. Must contain only letters, numbers and hyphen, with the
+     * first character a letter , the last a letter or a number, and a 63
+     * character maximum.
      *
      * Generated from protobuf field <code>string active_directory_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -42,9 +42,9 @@ class CreateActiveDirectoryRequest extends \Google\Protobuf\Internal\Message
      *                                                                   {@see NetAppClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\NetApp\V1\ActiveDirectory $activeDirectory   Required. Fields of the to be created active directory.
      * @param string                                  $activeDirectoryId Required. ID of the active directory to create. Must be unique within the
-     *                                                                   parent resource. Must contain only letters, numbers, underscore and hyphen,
-     *                                                                   with the first character a letter or underscore, the last a letter or
-     *                                                                   underscore or a number, and a 63 character maximum.
+     *                                                                   parent resource. Must contain only letters, numbers and hyphen, with the
+     *                                                                   first character a letter , the last a letter or a number, and a 63
+     *                                                                   character maximum.
      *
      * @return \Google\Cloud\NetApp\V1\CreateActiveDirectoryRequest
      *
@@ -70,9 +70,9 @@ class CreateActiveDirectoryRequest extends \Google\Protobuf\Internal\Message
      *           Required. Fields of the to be created active directory.
      *     @type string $active_directory_id
      *           Required. ID of the active directory to create. Must be unique within the
-     *           parent resource. Must contain only letters, numbers, underscore and hyphen,
-     *           with the first character a letter or underscore, the last a letter or
-     *           underscore or a number, and a 63 character maximum.
+     *           parent resource. Must contain only letters, numbers and hyphen, with the
+     *           first character a letter , the last a letter or a number, and a 63
+     *           character maximum.
      * }
      */
     public function __construct($data = NULL) {
@@ -144,9 +144,9 @@ class CreateActiveDirectoryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. ID of the active directory to create. Must be unique within the
-     * parent resource. Must contain only letters, numbers, underscore and hyphen,
-     * with the first character a letter or underscore, the last a letter or
-     * underscore or a number, and a 63 character maximum.
+     * parent resource. Must contain only letters, numbers and hyphen, with the
+     * first character a letter , the last a letter or a number, and a 63
+     * character maximum.
      *
      * Generated from protobuf field <code>string active_directory_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -158,9 +158,9 @@ class CreateActiveDirectoryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. ID of the active directory to create. Must be unique within the
-     * parent resource. Must contain only letters, numbers, underscore and hyphen,
-     * with the first character a letter or underscore, the last a letter or
-     * underscore or a number, and a 63 character maximum.
+     * parent resource. Must contain only letters, numbers and hyphen, with the
+     * first character a letter , the last a letter or a number, and a 63
+     * character maximum.
      *
      * Generated from protobuf field <code>string active_directory_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

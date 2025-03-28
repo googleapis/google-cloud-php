@@ -21,13 +21,13 @@ class CreateVersionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Application deployment configuration.
      *
      * Generated from protobuf field <code>.google.appengine.v1.Version version = 2;</code>
      */
-    private $version = null;
+    protected $version = null;
 
     /**
      * Constructor.

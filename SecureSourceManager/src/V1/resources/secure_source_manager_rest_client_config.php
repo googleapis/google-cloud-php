@@ -47,6 +47,21 @@ return [
             ],
         ],
         'google.cloud.securesourcemanager.v1.SecureSourceManager' => [
+            'CreateBranchRule' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/repositories/*}/branchRules',
+                'body' => 'branch_rule',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'branch_rule_id',
+                ],
+            ],
             'CreateInstance' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/instances',
@@ -77,6 +92,17 @@ return [
                     'repository_id',
                 ],
             ],
+            'DeleteBranchRule' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/repositories/*/branchRules/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteInstance' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}',
@@ -91,6 +117,17 @@ return [
             'DeleteRepository' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/repositories/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBranchRule' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/repositories/*/branchRules/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -128,6 +165,17 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBranchRules' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/repositories/*}/branchRules',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -176,6 +224,22 @@ return [
                             'getResource',
                         ],
                     ],
+                ],
+            ],
+            'UpdateBranchRule' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{branch_rule.name=projects/*/locations/*/repositories/*/branchRules/*}',
+                'body' => 'branch_rule',
+                'placeholders' => [
+                    'branch_rule.name' => [
+                        'getters' => [
+                            'getBranchRule',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],

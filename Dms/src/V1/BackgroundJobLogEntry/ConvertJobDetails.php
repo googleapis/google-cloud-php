@@ -20,7 +20,7 @@ class ConvertJobDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * Constructor.

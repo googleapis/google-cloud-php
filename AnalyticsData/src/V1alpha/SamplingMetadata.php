@@ -27,7 +27,7 @@ class SamplingMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 samples_read_count = 1;</code>
      */
-    private $samples_read_count = 0;
+    protected $samples_read_count = 0;
     /**
      * The total number of events present in this property's data that could
      * have been analyzed in this funnel report for a date range. Sampling
@@ -38,7 +38,7 @@ class SamplingMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 sampling_space_size = 2;</code>
      */
-    private $sampling_space_size = 0;
+    protected $sampling_space_size = 0;
 
     /**
      * Constructor.

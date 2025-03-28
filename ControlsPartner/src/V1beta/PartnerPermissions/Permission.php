@@ -41,6 +41,12 @@ class Permission
      * Generated from protobuf enum <code>ASSURED_WORKLOADS_EKM_CONNECTION_STATUS = 4;</code>
      */
     const ASSURED_WORKLOADS_EKM_CONNECTION_STATUS = 4;
+    /**
+     * Permission for support case details for Access Transparency log entries
+     *
+     * Generated from protobuf enum <code>ACCESS_TRANSPARENCY_LOGS_SUPPORT_CASE_VIEWER = 5;</code>
+     */
+    const ACCESS_TRANSPARENCY_LOGS_SUPPORT_CASE_VIEWER = 5;
 
     private static $valueToName = [
         self::PERMISSION_UNSPECIFIED => 'PERMISSION_UNSPECIFIED',
@@ -48,6 +54,7 @@ class Permission
         self::ASSURED_WORKLOADS_MONITORING => 'ASSURED_WORKLOADS_MONITORING',
         self::ACCESS_APPROVAL_REQUESTS => 'ACCESS_APPROVAL_REQUESTS',
         self::ASSURED_WORKLOADS_EKM_CONNECTION_STATUS => 'ASSURED_WORKLOADS_EKM_CONNECTION_STATUS',
+        self::ACCESS_TRANSPARENCY_LOGS_SUPPORT_CASE_VIEWER => 'ACCESS_TRANSPARENCY_LOGS_SUPPORT_CASE_VIEWER',
     ];
 
     public static function name($value)

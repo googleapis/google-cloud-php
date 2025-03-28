@@ -159,6 +159,9 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *           [PipelineService.CreatePipelineJob][google.cloud.aiplatform.v1.PipelineService.CreatePipelineJob].
      *           CreatePipelineJobRequest.parent field is required (format:
      *           projects/{project}/locations/{location}).
+     *     @type \Google\Cloud\AIPlatform\V1\CreateNotebookExecutionJobRequest $create_notebook_execution_job_request
+     *           Request for
+     *           [NotebookService.CreateNotebookExecutionJob][google.cloud.aiplatform.v1.NotebookService.CreateNotebookExecutionJob].
      *     @type string $name
      *           Immutable. The resource name of the Schedule.
      *     @type string $display_name
@@ -298,6 +301,39 @@ class Schedule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\CreatePipelineJobRequest::class);
         $this->writeOneof(14, $var);
+
+        return $this;
+    }
+
+    /**
+     * Request for
+     * [NotebookService.CreateNotebookExecutionJob][google.cloud.aiplatform.v1.NotebookService.CreateNotebookExecutionJob].
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.CreateNotebookExecutionJobRequest create_notebook_execution_job_request = 20;</code>
+     * @return \Google\Cloud\AIPlatform\V1\CreateNotebookExecutionJobRequest|null
+     */
+    public function getCreateNotebookExecutionJobRequest()
+    {
+        return $this->readOneof(20);
+    }
+
+    public function hasCreateNotebookExecutionJobRequest()
+    {
+        return $this->hasOneof(20);
+    }
+
+    /**
+     * Request for
+     * [NotebookService.CreateNotebookExecutionJob][google.cloud.aiplatform.v1.NotebookService.CreateNotebookExecutionJob].
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.CreateNotebookExecutionJobRequest create_notebook_execution_job_request = 20;</code>
+     * @param \Google\Cloud\AIPlatform\V1\CreateNotebookExecutionJobRequest $var
+     * @return $this
+     */
+    public function setCreateNotebookExecutionJobRequest($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\CreateNotebookExecutionJobRequest::class);
+        $this->writeOneof(20, $var);
 
         return $this;
     }

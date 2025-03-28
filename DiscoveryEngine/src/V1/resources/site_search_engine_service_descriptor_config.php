@@ -61,6 +61,25 @@ return [
                     ],
                 ],
             ],
+            'CreateSitemap' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\DiscoveryEngine\V1\Sitemap',
+                    'metadataReturnType' => '\Google\Cloud\DiscoveryEngine\V1\CreateSitemapMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateTargetSite' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\DiscoveryEngine\V1\TargetSite',
@@ -76,6 +95,25 @@ return [
                         'keyName' => 'parent',
                         'fieldAccessors' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteSitemap' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\DiscoveryEngine\V1\DeleteSitemapMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -196,6 +234,18 @@ return [
                     ],
                 ],
             ],
+            'FetchSitemaps' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\DiscoveryEngine\V1\FetchSitemapsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetSiteSearchEngine' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\DiscoveryEngine\V1\SiteSearchEngine',
@@ -242,10 +292,13 @@ return [
             ],
             'templateMap' => [
                 'projectLocationCollectionDataStoreSiteSearchEngine' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine',
+                'projectLocationCollectionDataStoreSitemap' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine/sitemaps/{sitemap}',
                 'projectLocationCollectionDataStoreTargetSite' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine/targetSites/{target_site}',
                 'projectLocationDataStoreSiteSearchEngine' => 'projects/{project}/locations/{location}/dataStores/{data_store}/siteSearchEngine',
+                'projectLocationDataStoreSitemap' => 'projects/{project}/locations/{location}/dataStores/{data_store}/siteSearchEngine/sitemaps/{sitemap}',
                 'projectLocationDataStoreTargetSite' => 'projects/{project}/locations/{location}/dataStores/{data_store}/siteSearchEngine/targetSites/{target_site}',
                 'siteSearchEngine' => 'projects/{project}/locations/{location}/dataStores/{data_store}/siteSearchEngine',
+                'sitemap' => 'projects/{project}/locations/{location}/dataStores/{data_store}/siteSearchEngine/sitemaps/{sitemap}',
                 'targetSite' => 'projects/{project}/locations/{location}/dataStores/{data_store}/siteSearchEngine/targetSites/{target_site}',
             ],
         ],

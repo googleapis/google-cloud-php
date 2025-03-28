@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * IAM Role bindings that are created after a successful grant.
+ * IAM role bindings that are created after a successful grant.
  *
  * Generated from protobuf message <code>google.cloud.privilegedaccessmanager.v1.PrivilegedAccess.GcpIamAccess.RoleBinding</code>
  */

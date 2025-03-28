@@ -20,7 +20,7 @@ class UpdateUserWorkloadsConfigMapRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.UserWorkloadsConfigMap user_workloads_config_map = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $user_workloads_config_map = null;
+    protected $user_workloads_config_map = null;
 
     /**
      * @param \Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsConfigMap $userWorkloadsConfigMap Optional. User workloads ConfigMap to override.

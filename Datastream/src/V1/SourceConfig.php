@@ -16,12 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class SourceConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Source connection profile resoource.
+     * Required. Source connection profile resource.
      * Format: `projects/{project}/locations/{location}/connectionProfiles/{name}`
      *
      * Generated from protobuf field <code>string source_connection_profile = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $source_connection_profile = '';
+    protected $source_connection_profile = '';
     protected $source_stream_config;
 
     /**
@@ -31,7 +31,7 @@ class SourceConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $source_connection_profile
-     *           Required. Source connection profile resoource.
+     *           Required. Source connection profile resource.
      *           Format: `projects/{project}/locations/{location}/connectionProfiles/{name}`
      *     @type \Google\Cloud\Datastream\V1\OracleSourceConfig $oracle_source_config
      *           Oracle data source configuration.
@@ -39,6 +39,10 @@ class SourceConfig extends \Google\Protobuf\Internal\Message
      *           MySQL data source configuration.
      *     @type \Google\Cloud\Datastream\V1\PostgresqlSourceConfig $postgresql_source_config
      *           PostgreSQL data source configuration.
+     *     @type \Google\Cloud\Datastream\V1\SqlServerSourceConfig $sql_server_source_config
+     *           SQLServer data source configuration.
+     *     @type \Google\Cloud\Datastream\V1\SalesforceSourceConfig $salesforce_source_config
+     *           Salesforce data source configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,7 +51,7 @@ class SourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Source connection profile resoource.
+     * Required. Source connection profile resource.
      * Format: `projects/{project}/locations/{location}/connectionProfiles/{name}`
      *
      * Generated from protobuf field <code>string source_connection_profile = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -59,7 +63,7 @@ class SourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Source connection profile resoource.
+     * Required. Source connection profile resource.
      * Format: `projects/{project}/locations/{location}/connectionProfiles/{name}`
      *
      * Generated from protobuf field <code>string source_connection_profile = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -163,6 +167,68 @@ class SourceConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\PostgresqlSourceConfig::class);
         $this->writeOneof(102, $var);
+
+        return $this;
+    }
+
+    /**
+     * SQLServer data source configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerSourceConfig sql_server_source_config = 103;</code>
+     * @return \Google\Cloud\Datastream\V1\SqlServerSourceConfig|null
+     */
+    public function getSqlServerSourceConfig()
+    {
+        return $this->readOneof(103);
+    }
+
+    public function hasSqlServerSourceConfig()
+    {
+        return $this->hasOneof(103);
+    }
+
+    /**
+     * SQLServer data source configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerSourceConfig sql_server_source_config = 103;</code>
+     * @param \Google\Cloud\Datastream\V1\SqlServerSourceConfig $var
+     * @return $this
+     */
+    public function setSqlServerSourceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SqlServerSourceConfig::class);
+        $this->writeOneof(103, $var);
+
+        return $this;
+    }
+
+    /**
+     * Salesforce data source configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceSourceConfig salesforce_source_config = 104;</code>
+     * @return \Google\Cloud\Datastream\V1\SalesforceSourceConfig|null
+     */
+    public function getSalesforceSourceConfig()
+    {
+        return $this->readOneof(104);
+    }
+
+    public function hasSalesforceSourceConfig()
+    {
+        return $this->hasOneof(104);
+    }
+
+    /**
+     * Salesforce data source configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SalesforceSourceConfig salesforce_source_config = 104;</code>
+     * @param \Google\Cloud\Datastream\V1\SalesforceSourceConfig $var
+     * @return $this
+     */
+    public function setSalesforceSourceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SalesforceSourceConfig::class);
+        $this->writeOneof(104, $var);
 
         return $this;
     }

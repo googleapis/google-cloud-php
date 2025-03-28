@@ -20,14 +20,14 @@ class UpdateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.EventThreatDetectionCustomModule event_threat_detection_custom_module = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $event_threat_detection_custom_module = null;
+    protected $event_threat_detection_custom_module = null;
     /**
      * The list of fields to be updated.
      * If empty all mutable fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\SecurityCenter\V1\EventThreatDetectionCustomModule $eventThreatDetectionCustomModule Required. The module being updated.

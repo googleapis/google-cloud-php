@@ -27,7 +27,6 @@ namespace Google\Cloud\Retail\V2\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -36,8 +35,10 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Retail\V2\ExportAnalyticsMetricsRequest;
 use Google\Cloud\Retail\V2\ExportAnalyticsMetricsResponse;
 use Google\Cloud\Retail\V2\ExportMetadata;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service for managing & accessing retail search business metric.
@@ -46,7 +47,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface exportAnalyticsMetricsAsync(ExportAnalyticsMetricsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportAnalyticsMetricsAsync(ExportAnalyticsMetricsRequest $request, array $optionalArgs = [])
  */
 final class AnalyticsServiceClient
 {
@@ -72,9 +73,7 @@ final class AnalyticsServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -120,10 +119,31 @@ final class AnalyticsServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -143,6 +163,12 @@ final class AnalyticsServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -176,6 +202,9 @@ final class AnalyticsServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -223,8 +252,10 @@ final class AnalyticsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function exportAnalyticsMetrics(ExportAnalyticsMetricsRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function exportAnalyticsMetrics(
+        ExportAnalyticsMetricsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ExportAnalyticsMetrics', $request, $callOptions)->wait();
     }
 }

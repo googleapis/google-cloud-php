@@ -22,31 +22,31 @@ class SubjectDescription extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.Subject subject = 1;</code>
      */
-    private $subject = null;
+    protected $subject = null;
     /**
      * The subject alternative name fields.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.SubjectAltNames subject_alt_name = 2;</code>
      */
-    private $subject_alt_name = null;
+    protected $subject_alt_name = null;
     /**
      * The serial number encoded in lowercase hexadecimal.
      *
      * Generated from protobuf field <code>string hex_serial_number = 3;</code>
      */
-    private $hex_serial_number = '';
+    protected $hex_serial_number = '';
     /**
      * For convenience, the actual lifetime of an issued certificate.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration lifetime = 4;</code>
      */
-    private $lifetime = null;
+    protected $lifetime = null;
     /**
      * The time at which the certificate becomes valid.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp not_before_time = 5;</code>
      */
-    private $not_before_time = null;
+    protected $not_before_time = null;
     /**
      * The time after which the certificate is expired.
      * Per RFC 5280, the validity period for a certificate is the period of time
@@ -55,7 +55,7 @@ class SubjectDescription extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp not_after_time = 6;</code>
      */
-    private $not_after_time = null;
+    protected $not_after_time = null;
 
     /**
      * Constructor.

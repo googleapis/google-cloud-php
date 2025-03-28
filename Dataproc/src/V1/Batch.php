@@ -20,51 +20,51 @@ class Batch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. A batch UUID (Unique Universal Identifier). The service
      * generates this value when it creates the batch.
      *
      * Generated from protobuf field <code>string uuid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uuid = '';
+    protected $uuid = '';
     /**
      * Output only. The time when the batch was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Runtime information about batch execution.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.RuntimeInfo runtime_info = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $runtime_info = null;
+    protected $runtime_info = null;
     /**
      * Output only. The state of the batch.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.Batch.State state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Batch state details, such as a failure
      * description if the state is `FAILED`.
      *
      * Generated from protobuf field <code>string state_message = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_message = '';
+    protected $state_message = '';
     /**
      * Output only. The time when the batch entered a current state.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp state_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_time = null;
+    protected $state_time = null;
     /**
      * Output only. The email address of the user who created the batch.
      *
      * Generated from protobuf field <code>string creator = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $creator = '';
+    protected $creator = '';
     /**
      * Optional. The labels to associate with this batch.
      * Label **keys** must contain 1 to 63 characters, and must conform to
@@ -82,19 +82,19 @@ class Batch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.RuntimeConfig runtime_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $runtime_config = null;
+    protected $runtime_config = null;
     /**
      * Optional. Environment configuration for the batch execution.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.EnvironmentConfig environment_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $environment_config = null;
+    protected $environment_config = null;
     /**
      * Output only. The resource name of the operation associated with this batch.
      *
      * Generated from protobuf field <code>string operation = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $operation = '';
+    protected $operation = '';
     /**
      * Output only. Historical state information for the batch.
      *

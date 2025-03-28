@@ -22,14 +22,14 @@ class ImportEntriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. (Optional) Dataplex task job id, if specified will be used as
      * part of ImportEntries LRO ID
      *
      * Generated from protobuf field <code>string job_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $job_id = '';
+    protected $job_id = '';
     protected $source;
 
     /**

@@ -26,7 +26,7 @@ class ImportRulesJobDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.ImportRulesFileFormat file_format = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $file_format = 0;
+    protected $file_format = 0;
 
     /**
      * Constructor.

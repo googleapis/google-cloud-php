@@ -46,6 +46,22 @@ class ChatEngineConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string dialogflow_agent_to_link = 2;</code>
      */
     protected $dialogflow_agent_to_link = '';
+    /**
+     * Optional. If the flag set to true, we allow the agent and engine are in
+     * different locations, otherwise the agent and engine are required to be in
+     * the same location. The flag is set to false by default.
+     * Note that the `allow_cross_region` are one-time consumed by and
+     * passed to
+     * [EngineService.CreateEngine][google.cloud.discoveryengine.v1.EngineService.CreateEngine].
+     * It means they cannot be retrieved using
+     * [EngineService.GetEngine][google.cloud.discoveryengine.v1.EngineService.GetEngine]
+     * or
+     * [EngineService.ListEngines][google.cloud.discoveryengine.v1.EngineService.ListEngines]
+     * API after engine creation.
+     *
+     * Generated from protobuf field <code>bool allow_cross_region = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $allow_cross_region = false;
 
     /**
      * Constructor.
@@ -76,6 +92,18 @@ class ChatEngineConfig extends \Google\Protobuf\Internal\Message
      *           API after engine creation. Use
      *           [ChatEngineMetadata.dialogflow_agent][google.cloud.discoveryengine.v1.Engine.ChatEngineMetadata.dialogflow_agent]
      *           for actual agent association after Engine is created.
+     *     @type bool $allow_cross_region
+     *           Optional. If the flag set to true, we allow the agent and engine are in
+     *           different locations, otherwise the agent and engine are required to be in
+     *           the same location. The flag is set to false by default.
+     *           Note that the `allow_cross_region` are one-time consumed by and
+     *           passed to
+     *           [EngineService.CreateEngine][google.cloud.discoveryengine.v1.EngineService.CreateEngine].
+     *           It means they cannot be retrieved using
+     *           [EngineService.GetEngine][google.cloud.discoveryengine.v1.EngineService.GetEngine]
+     *           or
+     *           [EngineService.ListEngines][google.cloud.discoveryengine.v1.EngineService.ListEngines]
+     *           API after engine creation.
      * }
      */
     public function __construct($data = NULL) {
@@ -179,6 +207,52 @@ class ChatEngineConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->dialogflow_agent_to_link = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If the flag set to true, we allow the agent and engine are in
+     * different locations, otherwise the agent and engine are required to be in
+     * the same location. The flag is set to false by default.
+     * Note that the `allow_cross_region` are one-time consumed by and
+     * passed to
+     * [EngineService.CreateEngine][google.cloud.discoveryengine.v1.EngineService.CreateEngine].
+     * It means they cannot be retrieved using
+     * [EngineService.GetEngine][google.cloud.discoveryengine.v1.EngineService.GetEngine]
+     * or
+     * [EngineService.ListEngines][google.cloud.discoveryengine.v1.EngineService.ListEngines]
+     * API after engine creation.
+     *
+     * Generated from protobuf field <code>bool allow_cross_region = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getAllowCrossRegion()
+    {
+        return $this->allow_cross_region;
+    }
+
+    /**
+     * Optional. If the flag set to true, we allow the agent and engine are in
+     * different locations, otherwise the agent and engine are required to be in
+     * the same location. The flag is set to false by default.
+     * Note that the `allow_cross_region` are one-time consumed by and
+     * passed to
+     * [EngineService.CreateEngine][google.cloud.discoveryengine.v1.EngineService.CreateEngine].
+     * It means they cannot be retrieved using
+     * [EngineService.GetEngine][google.cloud.discoveryengine.v1.EngineService.GetEngine]
+     * or
+     * [EngineService.ListEngines][google.cloud.discoveryengine.v1.EngineService.ListEngines]
+     * API after engine creation.
+     *
+     * Generated from protobuf field <code>bool allow_cross_region = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAllowCrossRegion($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->allow_cross_region = $var;
 
         return $this;
     }

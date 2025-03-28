@@ -26,7 +26,7 @@ class ExportTestCasesResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $gcs_uri
      *           The URI to a file containing the exported test cases. This field is
-     *           populated only if `gcs_uri` is specified in
+     *            populated only if `gcs_uri` is specified in
      *           [ExportTestCasesRequest][google.cloud.dialogflow.cx.v3.ExportTestCasesRequest].
      *     @type string $content
      *           Uncompressed raw byte content for test cases.
@@ -39,7 +39,7 @@ class ExportTestCasesResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The URI to a file containing the exported test cases. This field is
-     * populated only if `gcs_uri` is specified in
+     *  populated only if `gcs_uri` is specified in
      * [ExportTestCasesRequest][google.cloud.dialogflow.cx.v3.ExportTestCasesRequest].
      *
      * Generated from protobuf field <code>string gcs_uri = 1;</code>
@@ -57,7 +57,7 @@ class ExportTestCasesResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The URI to a file containing the exported test cases. This field is
-     * populated only if `gcs_uri` is specified in
+     *  populated only if `gcs_uri` is specified in
      * [ExportTestCasesRequest][google.cloud.dialogflow.cx.v3.ExportTestCasesRequest].
      *
      * Generated from protobuf field <code>string gcs_uri = 1;</code>

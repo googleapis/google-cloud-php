@@ -28,7 +28,7 @@ class MultiEntityRename extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string new_name_pattern = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $new_name_pattern = '';
+    protected $new_name_pattern = '';
     /**
      * Optional. Additional transformation that can be done on the source entity
      * name before it is being used by the new_name_pattern, for example lower
@@ -36,7 +36,7 @@ class MultiEntityRename extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.EntityNameTransformation source_name_transformation = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $source_name_transformation = 0;
+    protected $source_name_transformation = 0;
 
     /**
      * Constructor.

@@ -21,14 +21,14 @@ class ExportMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Operation last update time. If the operation is done, this is also the
      * finish time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 2;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
 
     /**
      * Constructor.

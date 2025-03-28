@@ -158,6 +158,50 @@ class TableTest extends TestCase
         $this->table->mutateRows($this->rowMutations, $options);
     }
 
+    public function testAppProfileIdInTableConstructor()
+    {
+        $this->serverStream->readAll()
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->arrayAsGenerator([])
+            );
+        $this->bigtableClient->mutateRows(
+            Argument::that(function (MutateRowsRequest $request) {
+                return $request->getAppProfileId() === self::APP_PROFILE;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(
+                $this->serverStream->reveal()
+            );
+
+        $this->table->mutateRows($this->rowMutations);
+    }
+
+    public function testAppProfileIdInMethodOptions()
+    {
+        $this->serverStream->readAll()
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->arrayAsGenerator([])
+            );
+
+        $this->bigtableClient->mutateRows(
+            Argument::that(function (MutateRowsRequest $request) {
+                return $request->getAppProfileId() === 'app-profile-id-2';
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(
+                $this->serverStream->reveal()
+            );
+        $this->table->mutateRows($this->rowMutations, [
+            'appProfileId' => 'app-profile-id-2'
+        ]);
+    }
+
     public function testMutateRowsFailure()
     {
         $statuses = [];
@@ -191,7 +235,8 @@ class TableTest extends TestCase
                 [
                     'rowKey' => 'rk1',
                     'statusCode' => Code::INVALID_ARGUMENT,
-                    'message' => 'Invalid argument'
+                    'message' => 'Invalid argument',
+                    'index' => 0,
                 ]
             ];
             $this->assertEquals('partial failure', $e->getMessage());

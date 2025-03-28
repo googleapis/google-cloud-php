@@ -20,19 +20,19 @@ class RecordTransformation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field_id = 1;</code>
      */
-    private $field_id = null;
+    protected $field_id = null;
     /**
      * Findings container modification timestamp, if applicable.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp container_timestamp = 2;</code>
      */
-    private $container_timestamp = null;
+    protected $container_timestamp = null;
     /**
      * Container version, if available ("generation" for Cloud Storage).
      *
      * Generated from protobuf field <code>string container_version = 3;</code>
      */
-    private $container_version = '';
+    protected $container_version = '';
 
     /**
      * Constructor.

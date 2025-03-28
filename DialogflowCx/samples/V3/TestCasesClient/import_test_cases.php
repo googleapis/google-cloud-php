@@ -45,7 +45,7 @@ use Google\Rpc\Status;
  * [ImportTestCasesResponse][google.cloud.dialogflow.cx.v3.ImportTestCasesResponse]
  *
  * @param string $formattedParent The agent to import test cases to.
- *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                                Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
  *                                {@see TestCasesClient::agentName()} for help formatting this field.
  */
 function import_test_cases_sample(string $formattedParent): void

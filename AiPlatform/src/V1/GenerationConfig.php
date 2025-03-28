@@ -52,6 +52,18 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      */
     private $stop_sequences;
     /**
+     * Optional. If true, export the logprobs results in response.
+     *
+     * Generated from protobuf field <code>optional bool response_logprobs = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $response_logprobs = null;
+    /**
+     * Optional. Logit probabilities.
+     *
+     * Generated from protobuf field <code>optional int32 logprobs = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $logprobs = null;
+    /**
      * Optional. Positive penalties.
      *
      * Generated from protobuf field <code>optional float presence_penalty = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -63,6 +75,12 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional float frequency_penalty = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $frequency_penalty = null;
+    /**
+     * Optional. Seed.
+     *
+     * Generated from protobuf field <code>optional int32 seed = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $seed = null;
     /**
      * Optional. Output response mimetype of the generated candidate text.
      * Supported mimetype:
@@ -87,6 +105,12 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Schema response_schema = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $response_schema = null;
+    /**
+     * Optional. Routing configuration.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.GenerationConfig.RoutingConfig routing_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $routing_config = null;
 
     /**
      * Constructor.
@@ -106,10 +130,16 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The maximum number of output tokens to generate per message.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $stop_sequences
      *           Optional. Stop sequences.
+     *     @type bool $response_logprobs
+     *           Optional. If true, export the logprobs results in response.
+     *     @type int $logprobs
+     *           Optional. Logit probabilities.
      *     @type float $presence_penalty
      *           Optional. Positive penalties.
      *     @type float $frequency_penalty
      *           Optional. Frequency penalties.
+     *     @type int $seed
+     *           Optional. Seed.
      *     @type string $response_mime_type
      *           Optional. Output response mimetype of the generated candidate text.
      *           Supported mimetype:
@@ -126,6 +156,8 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      *           If set, a compatible response_mime_type must also be set.
      *           Compatible mimetypes:
      *           `application/json`: Schema for JSON response.
+     *     @type \Google\Cloud\AIPlatform\V1\GenerationConfig\RoutingConfig $routing_config
+     *           Optional. Routing configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -340,6 +372,78 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. If true, export the logprobs results in response.
+     *
+     * Generated from protobuf field <code>optional bool response_logprobs = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getResponseLogprobs()
+    {
+        return isset($this->response_logprobs) ? $this->response_logprobs : false;
+    }
+
+    public function hasResponseLogprobs()
+    {
+        return isset($this->response_logprobs);
+    }
+
+    public function clearResponseLogprobs()
+    {
+        unset($this->response_logprobs);
+    }
+
+    /**
+     * Optional. If true, export the logprobs results in response.
+     *
+     * Generated from protobuf field <code>optional bool response_logprobs = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setResponseLogprobs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->response_logprobs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Logit probabilities.
+     *
+     * Generated from protobuf field <code>optional int32 logprobs = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getLogprobs()
+    {
+        return isset($this->logprobs) ? $this->logprobs : 0;
+    }
+
+    public function hasLogprobs()
+    {
+        return isset($this->logprobs);
+    }
+
+    public function clearLogprobs()
+    {
+        unset($this->logprobs);
+    }
+
+    /**
+     * Optional. Logit probabilities.
+     *
+     * Generated from protobuf field <code>optional int32 logprobs = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setLogprobs($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->logprobs = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. Positive penalties.
      *
      * Generated from protobuf field <code>optional float presence_penalty = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -407,6 +511,42 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkFloat($var);
         $this->frequency_penalty = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Seed.
+     *
+     * Generated from protobuf field <code>optional int32 seed = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getSeed()
+    {
+        return isset($this->seed) ? $this->seed : 0;
+    }
+
+    public function hasSeed()
+    {
+        return isset($this->seed);
+    }
+
+    public function clearSeed()
+    {
+        unset($this->seed);
+    }
+
+    /**
+     * Optional. Seed.
+     *
+     * Generated from protobuf field <code>optional int32 seed = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSeed($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->seed = $var;
 
         return $this;
     }
@@ -493,6 +633,42 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Schema::class);
         $this->response_schema = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Routing configuration.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.GenerationConfig.RoutingConfig routing_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\GenerationConfig\RoutingConfig|null
+     */
+    public function getRoutingConfig()
+    {
+        return $this->routing_config;
+    }
+
+    public function hasRoutingConfig()
+    {
+        return isset($this->routing_config);
+    }
+
+    public function clearRoutingConfig()
+    {
+        unset($this->routing_config);
+    }
+
+    /**
+     * Optional. Routing configuration.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.GenerationConfig.RoutingConfig routing_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\GenerationConfig\RoutingConfig $var
+     * @return $this
+     */
+    public function setRoutingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GenerationConfig\RoutingConfig::class);
+        $this->routing_config = $var;
 
         return $this;
     }

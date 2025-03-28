@@ -37,6 +37,8 @@ use Google\Maps\FleetEngine\Delivery\V1\BatchCreateTasksRequest;
 use Google\Maps\FleetEngine\Delivery\V1\BatchCreateTasksResponse;
 use Google\Maps\FleetEngine\Delivery\V1\CreateDeliveryVehicleRequest;
 use Google\Maps\FleetEngine\Delivery\V1\CreateTaskRequest;
+use Google\Maps\FleetEngine\Delivery\V1\DeleteDeliveryVehicleRequest;
+use Google\Maps\FleetEngine\Delivery\V1\DeleteTaskRequest;
 use Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicle;
 use Google\Maps\FleetEngine\Delivery\V1\GetDeliveryVehicleRequest;
 use Google\Maps\FleetEngine\Delivery\V1\GetTaskRequest;
@@ -48,6 +50,7 @@ use Google\Maps\FleetEngine\Delivery\V1\TaskTrackingInfo;
 use Google\Maps\FleetEngine\Delivery\V1\UpdateDeliveryVehicleRequest;
 use Google\Maps\FleetEngine\Delivery\V1\UpdateTaskRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Last Mile Delivery service.
@@ -60,16 +63,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchCreateTasksAsync(BatchCreateTasksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createDeliveryVehicleAsync(CreateDeliveryVehicleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTaskAsync(CreateTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDeliveryVehicleAsync(GetDeliveryVehicleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTaskAsync(GetTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTaskTrackingInfoAsync(GetTaskTrackingInfoRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDeliveryVehiclesAsync(ListDeliveryVehiclesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTasksAsync(ListTasksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDeliveryVehicleAsync(UpdateDeliveryVehicleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTaskAsync(UpdateTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreateTasksResponse> batchCreateTasksAsync(BatchCreateTasksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DeliveryVehicle> createDeliveryVehicleAsync(CreateDeliveryVehicleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Task> createTaskAsync(CreateTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteDeliveryVehicleAsync(DeleteDeliveryVehicleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTaskAsync(DeleteTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DeliveryVehicle> getDeliveryVehicleAsync(GetDeliveryVehicleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Task> getTaskAsync(GetTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TaskTrackingInfo> getTaskTrackingInfoAsync(GetTaskTrackingInfoRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDeliveryVehiclesAsync(ListDeliveryVehiclesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTasksAsync(ListTasksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DeliveryVehicle> updateDeliveryVehicleAsync(UpdateDeliveryVehicleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Task> updateTaskAsync(UpdateTaskRequest $request, array $optionalArgs = [])
  */
 final class DeliveryServiceClient
 {
@@ -198,14 +203,14 @@ final class DeliveryServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -227,6 +232,12 @@ final class DeliveryServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -260,6 +271,9 @@ final class DeliveryServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -362,6 +376,61 @@ final class DeliveryServiceClient
     public function createTask(CreateTaskRequest $request, array $callOptions = []): Task
     {
         return $this->startApiCall('CreateTask', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a DeliveryVehicle from the Fleet Engine.
+     *
+     * Returns FAILED_PRECONDITION if the DeliveryVehicle has OPEN Tasks
+     * assigned to it.
+     *
+     * The async variant is {@see DeliveryServiceClient::deleteDeliveryVehicleAsync()}
+     * .
+     *
+     * @example samples/V1/DeliveryServiceClient/delete_delivery_vehicle.php
+     *
+     * @param DeleteDeliveryVehicleRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteDeliveryVehicle(DeleteDeliveryVehicleRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteDeliveryVehicle', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single Task.
+     *
+     * Returns FAILED_PRECONDITION if the Task is OPEN and assigned to a
+     * DeliveryVehicle.
+     *
+     * The async variant is {@see DeliveryServiceClient::deleteTaskAsync()} .
+     *
+     * @example samples/V1/DeliveryServiceClient/delete_task.php
+     *
+     * @param DeleteTaskRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteTask(DeleteTaskRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteTask', $request, $callOptions)->wait();
     }
 
     /**

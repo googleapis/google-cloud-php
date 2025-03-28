@@ -59,14 +59,14 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 6;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Option for rollback to ignore the PodDisruptionBudget.
      * Default value is false.
      *
      * Generated from protobuf field <code>bool respect_pdb = 7;</code>
      */
-    private $respect_pdb = false;
+    protected $respect_pdb = false;
 
     /**
      * @param string $projectId  Deprecated. The Google Developers Console [project ID or project

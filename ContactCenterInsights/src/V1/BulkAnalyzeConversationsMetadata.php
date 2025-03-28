@@ -20,38 +20,38 @@ class BulkAnalyzeConversationsMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The time the operation finished running.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * The original request for bulk analyze.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.BulkAnalyzeConversationsRequest request = 3;</code>
      */
-    private $request = null;
+    protected $request = null;
     /**
      * The number of requested analyses that have completed successfully so far.
      *
      * Generated from protobuf field <code>int32 completed_analyses_count = 4;</code>
      */
-    private $completed_analyses_count = 0;
+    protected $completed_analyses_count = 0;
     /**
      * The number of requested analyses that have failed so far.
      *
      * Generated from protobuf field <code>int32 failed_analyses_count = 5;</code>
      */
-    private $failed_analyses_count = 0;
+    protected $failed_analyses_count = 0;
     /**
      * Total number of analyses requested. Computed by the number of conversations
      * returned by `filter` multiplied by `analysis_percentage` in the request.
      *
      * Generated from protobuf field <code>int32 total_requested_analyses_count = 6;</code>
      */
-    private $total_requested_analyses_count = 0;
+    protected $total_requested_analyses_count = 0;
     /**
      * Output only. Partial errors during bulk analyze operation that might cause
      * the operation output to be incomplete.

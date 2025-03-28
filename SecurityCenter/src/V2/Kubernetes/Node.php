@@ -21,7 +21,7 @@ class Node extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * Constructor.
@@ -69,6 +69,4 @@ class Node extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Node::class, \Google\Cloud\SecurityCenter\V2\Kubernetes_Node::class);
 

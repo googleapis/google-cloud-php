@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_RegionNotificationEndpoints_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\RegionNotificationEndpointsClient;
+use Google\Cloud\Compute\V1\GetRegionNotificationEndpointRequest;
 use Google\Cloud\Compute\V1\NotificationEndpoint;
-use Google\Cloud\Compute\V1\RegionNotificationEndpointsClient;
 
 /**
  * Returns the specified NotificationEndpoint resource in the given region.
@@ -39,10 +40,16 @@ function get_sample(string $notificationEndpoint, string $project, string $regio
     // Create a client.
     $regionNotificationEndpointsClient = new RegionNotificationEndpointsClient();
 
+    // Prepare the request message.
+    $request = (new GetRegionNotificationEndpointRequest())
+        ->setNotificationEndpoint($notificationEndpoint)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var NotificationEndpoint $response */
-        $response = $regionNotificationEndpointsClient->get($notificationEndpoint, $project, $region);
+        $response = $regionNotificationEndpointsClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

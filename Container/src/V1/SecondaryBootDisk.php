@@ -21,13 +21,13 @@ class SecondaryBootDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.SecondaryBootDisk.Mode mode = 1;</code>
      */
-    private $mode = 0;
+    protected $mode = 0;
     /**
      * Fully-qualified resource ID for an existing disk image.
      *
      * Generated from protobuf field <code>string disk_image = 2;</code>
      */
-    private $disk_image = '';
+    protected $disk_image = '';
 
     /**
      * Constructor.

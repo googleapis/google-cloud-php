@@ -22,14 +22,14 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string tenant = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $tenant = '';
+    protected $tenant = '';
     /**
      * Required. The query used to generate suggestions.
      * The maximum number of allowed characters is 255.
      *
      * Generated from protobuf field <code>string query = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $query = '';
+    protected $query = '';
     /**
      * The list of languages of the query. This is
      * the BCP-47 language code, such as "en-US" or "sr-Latn".
@@ -46,7 +46,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * If provided, restricts completion to specified company.
      * The format is
@@ -55,21 +55,21 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string company = 5 [(.google.api.resource_reference) = {</code>
      */
-    private $company = '';
+    protected $company = '';
     /**
      * The scope of the completion. The defaults is
      * [CompletionScope.PUBLIC][google.cloud.talent.v4.CompleteQueryRequest.CompletionScope.PUBLIC].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.CompleteQueryRequest.CompletionScope scope = 6;</code>
      */
-    private $scope = 0;
+    protected $scope = 0;
     /**
      * The completion topic. The default is
      * [CompletionType.COMBINED][google.cloud.talent.v4.CompleteQueryRequest.CompletionType.COMBINED].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.CompleteQueryRequest.CompletionType type = 7;</code>
      */
-    private $type = 0;
+    protected $type = 0;
 
     /**
      * Constructor.

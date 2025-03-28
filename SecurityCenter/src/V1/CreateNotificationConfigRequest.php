@@ -22,7 +22,7 @@ class CreateNotificationConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required.
      * Unique identifier provided by the client within the parent scope.
@@ -31,7 +31,7 @@ class CreateNotificationConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $config_id = '';
+    protected $config_id = '';
     /**
      * Required. The notification config being created. The name and the service
      * account will be ignored as they are both output only fields on this
@@ -39,7 +39,7 @@ class CreateNotificationConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.NotificationConfig notification_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $notification_config = null;
+    protected $notification_config = null;
 
     /**
      * @param string                                             $parent             Required. Resource name of the new notification config's parent. Its format

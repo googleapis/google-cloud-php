@@ -25,7 +25,7 @@ class DatabaseConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string machine_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $machine_type = '';
+    protected $machine_type = '';
     /**
      * Optional. The Compute Engine zone where the Airflow database is created. If
      * zone is provided, it must be in the region selected for the environment. If
@@ -35,7 +35,7 @@ class DatabaseConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string zone = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $zone = '';
+    protected $zone = '';
 
     /**
      * Constructor.

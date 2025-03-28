@@ -24,7 +24,7 @@ class ArrowSchema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes serialized_schema = 1;</code>
      */
-    private $serialized_schema = '';
+    protected $serialized_schema = '';
 
     /**
      * Constructor.

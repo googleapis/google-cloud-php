@@ -43,6 +43,7 @@ use Google\Cloud\Datastore\Admin\V1\ListIndexesRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Google Cloud Datastore Admin API
@@ -96,12 +97,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface createIndexAsync(CreateIndexRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteIndexAsync(DeleteIndexRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportEntitiesAsync(ExportEntitiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIndexAsync(GetIndexRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importEntitiesAsync(ImportEntitiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listIndexesAsync(ListIndexesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createIndexAsync(CreateIndexRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteIndexAsync(DeleteIndexRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportEntitiesAsync(ExportEntitiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Index> getIndexAsync(GetIndexRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importEntitiesAsync(ImportEntitiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listIndexesAsync(ListIndexesRequest $request, array $optionalArgs = [])
  */
 final class DatastoreAdminClient
 {
@@ -220,6 +221,12 @@ final class DatastoreAdminClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -253,6 +260,9 @@ final class DatastoreAdminClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

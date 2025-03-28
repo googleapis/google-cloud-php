@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\NetworkManagement\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -50,8 +49,10 @@ use Google\Cloud\NetworkManagement\V1\GetConnectivityTestRequest;
 use Google\Cloud\NetworkManagement\V1\ListConnectivityTestsRequest;
 use Google\Cloud\NetworkManagement\V1\RerunConnectivityTestRequest;
 use Google\Cloud\NetworkManagement\V1\UpdateConnectivityTestRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Reachability service in the Google Cloud Network Management API provides
@@ -71,17 +72,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createConnectivityTestAsync(CreateConnectivityTestRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteConnectivityTestAsync(DeleteConnectivityTestRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConnectivityTestAsync(GetConnectivityTestRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConnectivityTestsAsync(ListConnectivityTestsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rerunConnectivityTestAsync(RerunConnectivityTestRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateConnectivityTestAsync(UpdateConnectivityTestRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createConnectivityTestAsync(CreateConnectivityTestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteConnectivityTestAsync(DeleteConnectivityTestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConnectivityTest> getConnectivityTestAsync(GetConnectivityTestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConnectivityTestsAsync(ListConnectivityTestsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> rerunConnectivityTestAsync(RerunConnectivityTestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateConnectivityTestAsync(UpdateConnectivityTestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class ReachabilityServiceClient
 {
@@ -108,9 +109,7 @@ final class ReachabilityServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -156,10 +155,31 @@ final class ReachabilityServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -180,10 +200,26 @@ final class ReachabilityServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a project
+     * resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     */
+    public static function projectName(string $project): string
+    {
+        return self::getPathTemplate('project')->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - connectivityTest: projects/{project}/locations/global/connectivityTests/{test}
+     * - project: projects/{project}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -191,14 +227,14 @@ final class ReachabilityServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -220,6 +256,12 @@ final class ReachabilityServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -253,6 +295,9 @@ final class ReachabilityServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -309,8 +354,10 @@ final class ReachabilityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createConnectivityTest(CreateConnectivityTestRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createConnectivityTest(
+        CreateConnectivityTestRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateConnectivityTest', $request, $callOptions)->wait();
     }
 
@@ -336,8 +383,10 @@ final class ReachabilityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteConnectivityTest(DeleteConnectivityTestRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteConnectivityTest(
+        DeleteConnectivityTestRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteConnectivityTest', $request, $callOptions)->wait();
     }
 
@@ -390,8 +439,10 @@ final class ReachabilityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listConnectivityTests(ListConnectivityTestsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listConnectivityTests(
+        ListConnectivityTestsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListConnectivityTests', $request, $callOptions);
     }
 
@@ -428,8 +479,10 @@ final class ReachabilityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function rerunConnectivityTest(RerunConnectivityTestRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function rerunConnectivityTest(
+        RerunConnectivityTestRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RerunConnectivityTest', $request, $callOptions)->wait();
     }
 
@@ -447,7 +500,7 @@ final class ReachabilityServiceClient
      *
      * If the endpoint specifications in `ConnectivityTest` are incomplete, the
      * reachability result returns a value of `AMBIGUOUS`. See the documentation
-     * in `ConnectivityTest` for for more details.
+     * in `ConnectivityTest` for more details.
      *
      * The async variant is
      * {@see ReachabilityServiceClient::updateConnectivityTestAsync()} .
@@ -468,8 +521,10 @@ final class ReachabilityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateConnectivityTest(UpdateConnectivityTestRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateConnectivityTest(
+        UpdateConnectivityTestRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateConnectivityTest', $request, $callOptions)->wait();
     }
 
@@ -610,8 +665,10 @@ final class ReachabilityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

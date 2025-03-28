@@ -22,20 +22,20 @@ class TransferableSku extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.TransferEligibility transfer_eligibility = 9;</code>
      */
-    private $transfer_eligibility = null;
+    protected $transfer_eligibility = null;
     /**
      * The SKU pertaining to the provisioning resource as specified in the Offer.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Sku sku = 11;</code>
      */
-    private $sku = null;
+    protected $sku = null;
     /**
      * Optional. The customer to transfer has an entitlement with the populated
      * legacy SKU.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Sku legacy_sku = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $legacy_sku = null;
+    protected $legacy_sku = null;
 
     /**
      * Constructor.

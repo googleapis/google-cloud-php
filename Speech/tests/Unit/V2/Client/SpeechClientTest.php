@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,6 @@ namespace Google\Cloud\Speech\Tests\Unit\V2\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Location\GetLocationRequest;
@@ -66,6 +65,7 @@ use Google\Cloud\Speech\V2\UpdateConfigRequest;
 use Google\Cloud\Speech\V2\UpdateCustomClassRequest;
 use Google\Cloud\Speech\V2\UpdatePhraseSetRequest;
 use Google\Cloud\Speech\V2\UpdateRecognizerRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -88,7 +88,9 @@ class SpeechClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return SpeechClient */
@@ -131,8 +133,7 @@ class SpeechClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedRecognizer = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-        $request = (new BatchRecognizeRequest())
-            ->setRecognizer($formattedRecognizer);
+        $request = (new BatchRecognizeRequest())->setRecognizer($formattedRecognizer);
         $response = $gapicClient->batchRecognize($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -188,17 +189,19 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedRecognizer = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-        $request = (new BatchRecognizeRequest())
-            ->setRecognizer($formattedRecognizer);
+        $request = (new BatchRecognizeRequest())->setRecognizer($formattedRecognizer);
         $response = $gapicClient->batchRecognize($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -267,9 +270,7 @@ class SpeechClientTest extends GeneratedTest
         // Mock request
         $customClass = new CustomClass();
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new CreateCustomClassRequest())
-            ->setCustomClass($customClass)
-            ->setParent($formattedParent);
+        $request = (new CreateCustomClassRequest())->setCustomClass($customClass)->setParent($formattedParent);
         $response = $gapicClient->createCustomClass($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -327,19 +328,20 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $customClass = new CustomClass();
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new CreateCustomClassRequest())
-            ->setCustomClass($customClass)
-            ->setParent($formattedParent);
+        $request = (new CreateCustomClassRequest())->setCustomClass($customClass)->setParent($formattedParent);
         $response = $gapicClient->createCustomClass($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -410,9 +412,7 @@ class SpeechClientTest extends GeneratedTest
         // Mock request
         $phraseSet = new PhraseSet();
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new CreatePhraseSetRequest())
-            ->setPhraseSet($phraseSet)
-            ->setParent($formattedParent);
+        $request = (new CreatePhraseSetRequest())->setPhraseSet($phraseSet)->setParent($formattedParent);
         $response = $gapicClient->createPhraseSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -470,19 +470,20 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $phraseSet = new PhraseSet();
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new CreatePhraseSetRequest())
-            ->setPhraseSet($phraseSet)
-            ->setParent($formattedParent);
+        $request = (new CreatePhraseSetRequest())->setPhraseSet($phraseSet)->setParent($formattedParent);
         $response = $gapicClient->createPhraseSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -553,9 +554,7 @@ class SpeechClientTest extends GeneratedTest
         // Mock request
         $recognizer = new Recognizer();
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new CreateRecognizerRequest())
-            ->setRecognizer($recognizer)
-            ->setParent($formattedParent);
+        $request = (new CreateRecognizerRequest())->setRecognizer($recognizer)->setParent($formattedParent);
         $response = $gapicClient->createRecognizer($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -613,19 +612,20 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $recognizer = new Recognizer();
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new CreateRecognizerRequest())
-            ->setRecognizer($recognizer)
-            ->setParent($formattedParent);
+        $request = (new CreateRecognizerRequest())->setRecognizer($recognizer)->setParent($formattedParent);
         $response = $gapicClient->createRecognizer($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -693,8 +693,7 @@ class SpeechClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
-        $request = (new DeleteCustomClassRequest())
-            ->setName($formattedName);
+        $request = (new DeleteCustomClassRequest())->setName($formattedName);
         $response = $gapicClient->deleteCustomClass($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -750,17 +749,19 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
-        $request = (new DeleteCustomClassRequest())
-            ->setName($formattedName);
+        $request = (new DeleteCustomClassRequest())->setName($formattedName);
         $response = $gapicClient->deleteCustomClass($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -830,8 +831,7 @@ class SpeechClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
-        $request = (new DeletePhraseSetRequest())
-            ->setName($formattedName);
+        $request = (new DeletePhraseSetRequest())->setName($formattedName);
         $response = $gapicClient->deletePhraseSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -887,17 +887,19 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
-        $request = (new DeletePhraseSetRequest())
-            ->setName($formattedName);
+        $request = (new DeletePhraseSetRequest())->setName($formattedName);
         $response = $gapicClient->deletePhraseSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -967,8 +969,7 @@ class SpeechClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-        $request = (new DeleteRecognizerRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRecognizerRequest())->setName($formattedName);
         $response = $gapicClient->deleteRecognizer($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1024,17 +1025,19 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-        $request = (new DeleteRecognizerRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRecognizerRequest())->setName($formattedName);
         $response = $gapicClient->deleteRecognizer($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1074,8 +1077,7 @@ class SpeechClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->configName('[PROJECT]', '[LOCATION]');
-        $request = (new GetConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetConfigRequest())->setName($formattedName);
         $response = $gapicClient->getConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1099,17 +1101,19 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->configName('[PROJECT]', '[LOCATION]');
-        $request = (new GetConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1150,8 +1154,7 @@ class SpeechClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
-        $request = (new GetCustomClassRequest())
-            ->setName($formattedName);
+        $request = (new GetCustomClassRequest())->setName($formattedName);
         $response = $gapicClient->getCustomClass($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1175,17 +1178,19 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
-        $request = (new GetCustomClassRequest())
-            ->setName($formattedName);
+        $request = (new GetCustomClassRequest())->setName($formattedName);
         try {
             $gapicClient->getCustomClass($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1228,8 +1233,7 @@ class SpeechClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
-        $request = (new GetPhraseSetRequest())
-            ->setName($formattedName);
+        $request = (new GetPhraseSetRequest())->setName($formattedName);
         $response = $gapicClient->getPhraseSet($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1253,17 +1257,19 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
-        $request = (new GetPhraseSetRequest())
-            ->setName($formattedName);
+        $request = (new GetPhraseSetRequest())->setName($formattedName);
         try {
             $gapicClient->getPhraseSet($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1306,8 +1312,7 @@ class SpeechClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-        $request = (new GetRecognizerRequest())
-            ->setName($formattedName);
+        $request = (new GetRecognizerRequest())->setName($formattedName);
         $response = $gapicClient->getRecognizer($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1331,17 +1336,19 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-        $request = (new GetRecognizerRequest())
-            ->setName($formattedName);
+        $request = (new GetRecognizerRequest())->setName($formattedName);
         try {
             $gapicClient->getRecognizer($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1366,17 +1373,14 @@ class SpeechClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $customClassesElement = new CustomClass();
-        $customClasses = [
-            $customClassesElement,
-        ];
+        $customClasses = [$customClassesElement];
         $expectedResponse = new ListCustomClassesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCustomClasses($customClasses);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListCustomClassesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCustomClassesRequest())->setParent($formattedParent);
         $response = $gapicClient->listCustomClasses($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1403,17 +1407,19 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListCustomClassesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCustomClassesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listCustomClasses($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1438,17 +1444,14 @@ class SpeechClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $phraseSetsElement = new PhraseSet();
-        $phraseSets = [
-            $phraseSetsElement,
-        ];
+        $phraseSets = [$phraseSetsElement];
         $expectedResponse = new ListPhraseSetsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPhraseSets($phraseSets);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListPhraseSetsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPhraseSetsRequest())->setParent($formattedParent);
         $response = $gapicClient->listPhraseSets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1475,17 +1478,19 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListPhraseSetsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPhraseSetsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listPhraseSets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1510,17 +1515,14 @@ class SpeechClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $recognizersElement = new Recognizer();
-        $recognizers = [
-            $recognizersElement,
-        ];
+        $recognizers = [$recognizersElement];
         $expectedResponse = new ListRecognizersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRecognizers($recognizers);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListRecognizersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRecognizersRequest())->setParent($formattedParent);
         $response = $gapicClient->listRecognizers($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1547,17 +1549,19 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListRecognizersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRecognizersRequest())->setParent($formattedParent);
         try {
             $gapicClient->listRecognizers($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1584,8 +1588,7 @@ class SpeechClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedRecognizer = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-        $request = (new RecognizeRequest())
-            ->setRecognizer($formattedRecognizer);
+        $request = (new RecognizeRequest())->setRecognizer($formattedRecognizer);
         $response = $gapicClient->recognize($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1609,17 +1612,19 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedRecognizer = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-        $request = (new RecognizeRequest())
-            ->setRecognizer($formattedRecognizer);
+        $request = (new RecognizeRequest())->setRecognizer($formattedRecognizer);
         try {
             $gapicClient->recognize($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1663,10 +1668,7 @@ class SpeechClientTest extends GeneratedTest
         $bidi->write($request);
         $responses = [];
         $responses[] = $bidi->read();
-        $bidi->writeAll([
-            $request2,
-            $request3,
-        ]);
+        $bidi->writeAll([$request2, $request3]);
         foreach ($bidi->closeWriteAndReadAll() as $response) {
             $responses[] = $response;
         }
@@ -1704,12 +1706,15 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         $bidi = $gapicClient->streamingRecognize();
@@ -1772,8 +1777,7 @@ class SpeechClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
-        $request = (new UndeleteCustomClassRequest())
-            ->setName($formattedName);
+        $request = (new UndeleteCustomClassRequest())->setName($formattedName);
         $response = $gapicClient->undeleteCustomClass($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1829,17 +1833,19 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
-        $request = (new UndeleteCustomClassRequest())
-            ->setName($formattedName);
+        $request = (new UndeleteCustomClassRequest())->setName($formattedName);
         $response = $gapicClient->undeleteCustomClass($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1909,8 +1915,7 @@ class SpeechClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
-        $request = (new UndeletePhraseSetRequest())
-            ->setName($formattedName);
+        $request = (new UndeletePhraseSetRequest())->setName($formattedName);
         $response = $gapicClient->undeletePhraseSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1966,17 +1971,19 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
-        $request = (new UndeletePhraseSetRequest())
-            ->setName($formattedName);
+        $request = (new UndeletePhraseSetRequest())->setName($formattedName);
         $response = $gapicClient->undeletePhraseSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2046,8 +2053,7 @@ class SpeechClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-        $request = (new UndeleteRecognizerRequest())
-            ->setName($formattedName);
+        $request = (new UndeleteRecognizerRequest())->setName($formattedName);
         $response = $gapicClient->undeleteRecognizer($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2103,17 +2109,19 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-        $request = (new UndeleteRecognizerRequest())
-            ->setName($formattedName);
+        $request = (new UndeleteRecognizerRequest())->setName($formattedName);
         $response = $gapicClient->undeleteRecognizer($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2153,8 +2161,7 @@ class SpeechClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $config = new Config();
-        $request = (new UpdateConfigRequest())
-            ->setConfig($config);
+        $request = (new UpdateConfigRequest())->setConfig($config);
         $response = $gapicClient->updateConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2178,17 +2185,19 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $config = new Config();
-        $request = (new UpdateConfigRequest())
-            ->setConfig($config);
+        $request = (new UpdateConfigRequest())->setConfig($config);
         try {
             $gapicClient->updateConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2247,8 +2256,7 @@ class SpeechClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $customClass = new CustomClass();
-        $request = (new UpdateCustomClassRequest())
-            ->setCustomClass($customClass);
+        $request = (new UpdateCustomClassRequest())->setCustomClass($customClass);
         $response = $gapicClient->updateCustomClass($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2304,17 +2312,19 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $customClass = new CustomClass();
-        $request = (new UpdateCustomClassRequest())
-            ->setCustomClass($customClass);
+        $request = (new UpdateCustomClassRequest())->setCustomClass($customClass);
         $response = $gapicClient->updateCustomClass($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2384,8 +2394,7 @@ class SpeechClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $phraseSet = new PhraseSet();
-        $request = (new UpdatePhraseSetRequest())
-            ->setPhraseSet($phraseSet);
+        $request = (new UpdatePhraseSetRequest())->setPhraseSet($phraseSet);
         $response = $gapicClient->updatePhraseSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2441,17 +2450,19 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $phraseSet = new PhraseSet();
-        $request = (new UpdatePhraseSetRequest())
-            ->setPhraseSet($phraseSet);
+        $request = (new UpdatePhraseSetRequest())->setPhraseSet($phraseSet);
         $response = $gapicClient->updatePhraseSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2521,8 +2532,7 @@ class SpeechClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $recognizer = new Recognizer();
-        $request = (new UpdateRecognizerRequest())
-            ->setRecognizer($recognizer);
+        $request = (new UpdateRecognizerRequest())->setRecognizer($recognizer);
         $response = $gapicClient->updateRecognizer($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2578,17 +2588,19 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $recognizer = new Recognizer();
-        $request = (new UpdateRecognizerRequest())
-            ->setRecognizer($recognizer);
+        $request = (new UpdateRecognizerRequest())->setRecognizer($recognizer);
         $response = $gapicClient->updateRecognizer($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2650,12 +2662,15 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -2682,9 +2697,7 @@ class SpeechClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -2714,12 +2727,15 @@ class SpeechClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -2766,8 +2782,7 @@ class SpeechClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedRecognizer = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-        $request = (new BatchRecognizeRequest())
-            ->setRecognizer($formattedRecognizer);
+        $request = (new BatchRecognizeRequest())->setRecognizer($formattedRecognizer);
         $response = $gapicClient->batchRecognizeAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

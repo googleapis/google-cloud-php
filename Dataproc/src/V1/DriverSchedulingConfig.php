@@ -20,13 +20,13 @@ class DriverSchedulingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 memory_mb = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $memory_mb = 0;
+    protected $memory_mb = 0;
     /**
      * Required. The number of vCPUs the driver is requesting.
      *
      * Generated from protobuf field <code>int32 vcores = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $vcores = 0;
+    protected $vcores = 0;
 
     /**
      * Constructor.

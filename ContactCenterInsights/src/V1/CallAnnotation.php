@@ -21,19 +21,19 @@ class CallAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 channel_tag = 1;</code>
      */
-    private $channel_tag = 0;
+    protected $channel_tag = 0;
     /**
      * The boundary in the conversation where the annotation starts, inclusive.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotationBoundary annotation_start_boundary = 4;</code>
      */
-    private $annotation_start_boundary = null;
+    protected $annotation_start_boundary = null;
     /**
      * The boundary in the conversation where the annotation ends, inclusive.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotationBoundary annotation_end_boundary = 5;</code>
      */
-    private $annotation_end_boundary = null;
+    protected $annotation_end_boundary = null;
     protected $data;
 
     /**

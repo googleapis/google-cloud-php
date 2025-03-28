@@ -47,7 +47,7 @@ class StorageClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.42.1';
+    const VERSION = '1.47.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
@@ -148,9 +148,19 @@ class StorageClient
      *        will be used. If a string, that string will be used as the
      *        userProject argument, and that project will be billed for the
      *        request. **Defaults to** `false`.
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type bool $softDeleted  If set to true, only soft-deleted bucket versions
+     *           are listed as distinct results in order of bucket name and generation
+     *           number. The default value is false.
+     *     @type string $generation If present, selects a specific soft-deleted version
+     *           of this bucket instead of the live version. This parameter is required if
+     *           softDeleted is set to true.
+     * }
      * @return Bucket
      */
-    public function bucket($name, $userProject = false)
+    public function bucket($name, $userProject = false, array $options = [])
     {
         if (!$userProject) {
             $userProject = null;
@@ -158,7 +168,7 @@ class StorageClient
             $userProject = $this->projectId;
         }
 
-        return new Bucket($this->connection, $name, [
+        return new Bucket($this->connection, $name, $options + [
             'requesterProjectId' => $userProject
         ]);
     }
@@ -200,6 +210,9 @@ class StorageClient
      *           return the specified fields.
      *     @type string $userProject If set, this is the ID of the project which
      *           will be billed for the request.
+     *     @type bool $softDeleted  If set to true, only soft-deleted bucket versions
+     *           are listed as distinct results in order of bucket name and generation
+     *           number. The default value is false.
      *     @type bool $bucketUserProject If true, each returned instance will
      *           have `$userProject` set to the value of `$options.userProject`.
      *           If false, `$options.userProject` will be used ONLY for the
@@ -235,6 +248,38 @@ class StorageClient
                 $options + ['project' => $this->projectId],
                 ['resultLimit' => $resultLimit]
             )
+        );
+    }
+
+    /**
+     * Restores a soft-deleted bucket.
+     *
+     * Example:
+     * ```
+     * $bucket = $storage->bucket->restore('my-bucket');
+     * ```
+     *
+     * @param string $name The name of the bucket to restore.
+     * @param string $generation The specific version of the bucket to be restored.
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type string $projection Determines which properties to return. May
+     *           be either `"full"` or `"noAcl"`. **Defaults to** `"noAcl"`,
+     *           unless the bucket resource specifies acl or defaultObjectAcl
+     *           properties, when it defaults to `"full"`.
+     * }
+     * @return Bucket
+     */
+    public function restore(string $name, string $generation, array $options = [])
+    {
+        $res = $this->connection->restoreBucket([
+            'bucket' => $name,
+            'generation' => $generation,
+        ] + $options);
+        return new Bucket(
+            $this->connection,
+            $name
         );
     }
 

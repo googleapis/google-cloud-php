@@ -28,14 +28,14 @@ class Asset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Security Command Center managed properties. These properties are managed by
      * Security Command Center and cannot be modified by the user.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Asset.SecurityCenterProperties security_center_properties = 2;</code>
      */
-    private $security_center_properties = null;
+    protected $security_center_properties = null;
     /**
      * Resource managed properties. These properties are managed and defined by
      * the Google Cloud resource and cannot be modified by the user.
@@ -49,19 +49,19 @@ class Asset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.SecurityMarks security_marks = 8;</code>
      */
-    private $security_marks = null;
+    protected $security_marks = null;
     /**
      * The time at which the asset was created in Security Command Center.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The time at which the asset was last updated or added in Cloud SCC.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Cloud IAM Policy information associated with the Google Cloud resource
      * described by the Security Command Center asset. This information is managed
@@ -70,7 +70,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Asset.IamPolicy iam_policy = 11;</code>
      */
-    private $iam_policy = null;
+    protected $iam_policy = null;
     /**
      * The canonical name of the resource. It's either
      * "organizations/{organization_id}/assets/{asset_id}",
@@ -80,7 +80,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string canonical_name = 13;</code>
      */
-    private $canonical_name = '';
+    protected $canonical_name = '';
 
     /**
      * Constructor.

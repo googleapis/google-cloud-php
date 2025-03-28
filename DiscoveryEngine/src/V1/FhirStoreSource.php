@@ -31,6 +31,27 @@ class FhirStoreSource extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string gcs_staging_dir = 2;</code>
      */
     protected $gcs_staging_dir = '';
+    /**
+     * The FHIR resource types to import. The resource types should be a subset of
+     * all [supported FHIR resource
+     * types](https://cloud.google.com/generative-ai-app-builder/docs/fhir-schema-reference#resource-level-specification).
+     * Default to all supported FHIR resource types if empty.
+     *
+     * Generated from protobuf field <code>repeated string resource_types = 3;</code>
+     */
+    private $resource_types;
+    /**
+     * Optional. Whether to update the DataStore schema to the latest predefined
+     * schema.
+     * If true, the DataStore schema will be updated to include any FHIR fields
+     * or resource types that have been added since the last import and
+     * corresponding FHIR resources will be imported from the FHIR store.
+     * Note this field cannot be used in conjunction with `resource_types`. It
+     * should be used after initial import.
+     *
+     * Generated from protobuf field <code>bool update_from_latest_predefined_schema = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $update_from_latest_predefined_schema = false;
 
     /**
      * Constructor.
@@ -46,6 +67,19 @@ class FhirStoreSource extends \Google\Protobuf\Internal\Message
      *           Intermediate Cloud Storage directory used for the import with a length
      *           limit of 2,000 characters. Can be specified if one wants to have the
      *           FhirStore export to a specific Cloud Storage directory.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_types
+     *           The FHIR resource types to import. The resource types should be a subset of
+     *           all [supported FHIR resource
+     *           types](https://cloud.google.com/generative-ai-app-builder/docs/fhir-schema-reference#resource-level-specification).
+     *           Default to all supported FHIR resource types if empty.
+     *     @type bool $update_from_latest_predefined_schema
+     *           Optional. Whether to update the DataStore schema to the latest predefined
+     *           schema.
+     *           If true, the DataStore schema will be updated to include any FHIR fields
+     *           or resource types that have been added since the last import and
+     *           corresponding FHIR resources will be imported from the FHIR store.
+     *           Note this field cannot be used in conjunction with `resource_types`. It
+     *           should be used after initial import.
      * }
      */
     public function __construct($data = NULL) {
@@ -109,6 +143,76 @@ class FhirStoreSource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->gcs_staging_dir = $var;
+
+        return $this;
+    }
+
+    /**
+     * The FHIR resource types to import. The resource types should be a subset of
+     * all [supported FHIR resource
+     * types](https://cloud.google.com/generative-ai-app-builder/docs/fhir-schema-reference#resource-level-specification).
+     * Default to all supported FHIR resource types if empty.
+     *
+     * Generated from protobuf field <code>repeated string resource_types = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getResourceTypes()
+    {
+        return $this->resource_types;
+    }
+
+    /**
+     * The FHIR resource types to import. The resource types should be a subset of
+     * all [supported FHIR resource
+     * types](https://cloud.google.com/generative-ai-app-builder/docs/fhir-schema-reference#resource-level-specification).
+     * Default to all supported FHIR resource types if empty.
+     *
+     * Generated from protobuf field <code>repeated string resource_types = 3;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setResourceTypes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->resource_types = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether to update the DataStore schema to the latest predefined
+     * schema.
+     * If true, the DataStore schema will be updated to include any FHIR fields
+     * or resource types that have been added since the last import and
+     * corresponding FHIR resources will be imported from the FHIR store.
+     * Note this field cannot be used in conjunction with `resource_types`. It
+     * should be used after initial import.
+     *
+     * Generated from protobuf field <code>bool update_from_latest_predefined_schema = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getUpdateFromLatestPredefinedSchema()
+    {
+        return $this->update_from_latest_predefined_schema;
+    }
+
+    /**
+     * Optional. Whether to update the DataStore schema to the latest predefined
+     * schema.
+     * If true, the DataStore schema will be updated to include any FHIR fields
+     * or resource types that have been added since the last import and
+     * corresponding FHIR resources will be imported from the FHIR store.
+     * Note this field cannot be used in conjunction with `resource_types`. It
+     * should be used after initial import.
+     *
+     * Generated from protobuf field <code>bool update_from_latest_predefined_schema = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUpdateFromLatestPredefinedSchema($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->update_from_latest_predefined_schema = $var;
 
         return $this;
     }

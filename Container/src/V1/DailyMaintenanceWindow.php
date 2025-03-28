@@ -22,7 +22,7 @@ class DailyMaintenanceWindow extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string start_time = 2;</code>
      */
-    private $start_time = '';
+    protected $start_time = '';
     /**
      * Output only. Duration of the time window, automatically chosen to be
      * smallest possible in the given scenario.
@@ -31,7 +31,7 @@ class DailyMaintenanceWindow extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string duration = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $duration = '';
+    protected $duration = '';
 
     /**
      * Constructor.

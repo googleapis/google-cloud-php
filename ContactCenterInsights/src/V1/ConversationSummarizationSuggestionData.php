@@ -20,7 +20,7 @@ class ConversationSummarizationSuggestionData extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>string text = 1;</code>
      */
-    private $text = '';
+    protected $text = '';
     /**
      * The summarization content that is divided into sections. The key is the
      * section's name and the value is the section's content. There is no
@@ -34,7 +34,7 @@ class ConversationSummarizationSuggestionData extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
     /**
      * A map that contains metadata about the summarization and the document
      * from which it originates.
@@ -49,7 +49,7 @@ class ConversationSummarizationSuggestionData extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>string answer_record = 4;</code>
      */
-    private $answer_record = '';
+    protected $answer_record = '';
     /**
      * The name of the model that generates this summary.
      * Format:
@@ -57,7 +57,7 @@ class ConversationSummarizationSuggestionData extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>string conversation_model = 6;</code>
      */
-    private $conversation_model = '';
+    protected $conversation_model = '';
 
     /**
      * Constructor.

@@ -24,7 +24,7 @@ class ReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_name = 1;</code>
      */
-    private $service_name = '';
+    protected $service_name = '';
     /**
      * Operations to be reported.
      * Typically the service should report one operation per request.
@@ -47,7 +47,7 @@ class ReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_config_id = 3;</code>
      */
-    private $service_config_id = '';
+    protected $service_config_id = '';
 
     /**
      * Constructor.

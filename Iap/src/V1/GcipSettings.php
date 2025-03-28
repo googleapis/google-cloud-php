@@ -33,7 +33,7 @@ class GcipSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.StringValue login_page_uri = 2;</code>
      */
-    private $login_page_uri = null;
+    protected $login_page_uri = null;
 
     /**
      * Constructor.
@@ -128,7 +128,7 @@ class GcipSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.StringValue login_page_uri = 2;</code>
      * @return string|null
      */
-    public function getLoginPageUriValue()
+    public function getLoginPageUriUnwrapped()
     {
         return $this->readWrapperValue("login_page_uri");
     }
@@ -161,7 +161,7 @@ class GcipSettings extends \Google\Protobuf\Internal\Message
      * @param string|null $var
      * @return $this
      */
-    public function setLoginPageUriValue($var)
+    public function setLoginPageUriUnwrapped($var)
     {
         $this->writeWrapperValue("login_page_uri", $var);
         return $this;}

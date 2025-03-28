@@ -19,8 +19,8 @@ class CompareVersionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Name of the base flow version to compare with the target version.
      * Use version ID `0` to indicate the draft version of the specified flow.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/
-     * <Agent ID>/flows/<Flow ID>/versions/<Version ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *
      * Generated from protobuf field <code>string base_version = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -28,8 +28,8 @@ class CompareVersionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Name of the target flow version to compare with the
      * base version. Use version ID `0` to indicate the draft version of the
-     * specified flow. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/flows/<Flow ID>/versions/<Version ID>`.
+     * specified flow. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *
      * Generated from protobuf field <code>string target_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -50,8 +50,8 @@ class CompareVersionsRequest extends \Google\Protobuf\Internal\Message
      * @param string $baseVersion Required. Name of the base flow version to compare with the target version.
      *                            Use version ID `0` to indicate the draft version of the specified flow.
      *
-     *                            Format: `projects/<Project ID>/locations/<Location ID>/agents/
-     *                            <Agent ID>/flows/<Flow ID>/versions/<Version ID>`. Please see
+     *                            Format:
+     *                            `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`. Please see
      *                            {@see VersionsClient::versionName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\CompareVersionsRequest
@@ -73,13 +73,13 @@ class CompareVersionsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $base_version
      *           Required. Name of the base flow version to compare with the target version.
      *           Use version ID `0` to indicate the draft version of the specified flow.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/
-     *           <Agent ID>/flows/<Flow ID>/versions/<Version ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *     @type string $target_version
      *           Required. Name of the target flow version to compare with the
      *           base version. Use version ID `0` to indicate the draft version of the
-     *           specified flow. Format: `projects/<Project ID>/locations/<Location
-     *           ID>/agents/<Agent ID>/flows/<Flow ID>/versions/<Version ID>`.
+     *           specified flow. Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *     @type string $language_code
      *           The language to compare the flow versions for.
      *           If not specified, the agent's default language is used.
@@ -97,8 +97,8 @@ class CompareVersionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Name of the base flow version to compare with the target version.
      * Use version ID `0` to indicate the draft version of the specified flow.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/
-     * <Agent ID>/flows/<Flow ID>/versions/<Version ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *
      * Generated from protobuf field <code>string base_version = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -111,8 +111,8 @@ class CompareVersionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Name of the base flow version to compare with the target version.
      * Use version ID `0` to indicate the draft version of the specified flow.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/
-     * <Agent ID>/flows/<Flow ID>/versions/<Version ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *
      * Generated from protobuf field <code>string base_version = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -129,8 +129,8 @@ class CompareVersionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Name of the target flow version to compare with the
      * base version. Use version ID `0` to indicate the draft version of the
-     * specified flow. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/flows/<Flow ID>/versions/<Version ID>`.
+     * specified flow. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *
      * Generated from protobuf field <code>string target_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -143,8 +143,8 @@ class CompareVersionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Name of the target flow version to compare with the
      * base version. Use version ID `0` to indicate the draft version of the
-     * specified flow. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/flows/<Flow ID>/versions/<Version ID>`.
+     * specified flow. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *
      * Generated from protobuf field <code>string target_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -41,6 +41,8 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Spanner\Admin\Database\V1\AddSplitPointsRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\AddSplitPointsResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup;
 use Google\Cloud\Spanner\Admin\Database\V1\BackupSchedule;
 use Google\Cloud\Spanner\Admin\Database\V1\CopyBackupEncryptionConfig;
@@ -77,6 +79,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\SplitPoints;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateBackupScheduleRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata;
@@ -103,36 +106,9 @@ use Google\Protobuf\Timestamp;
  * ```
  * $databaseAdminClient = new DatabaseAdminClient();
  * try {
- *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
- *     $backupId = 'backup_id';
- *     $formattedSourceBackup = $databaseAdminClient->backupName('[PROJECT]', '[INSTANCE]', '[BACKUP]');
- *     $expireTime = new Timestamp();
- *     $operationResponse = $databaseAdminClient->copyBackup($formattedParent, $backupId, $formattedSourceBackup, $expireTime);
- *     $operationResponse->pollUntilComplete();
- *     if ($operationResponse->operationSucceeded()) {
- *         $result = $operationResponse->getResult();
- *         // doSomethingWith($result)
- *     } else {
- *         $error = $operationResponse->getError();
- *         // handleError($error)
- *     }
- *     // Alternatively:
- *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $databaseAdminClient->copyBackup($formattedParent, $backupId, $formattedSourceBackup, $expireTime);
- *     $operationName = $operationResponse->getName();
- *     // ... do other work
- *     $newOperationResponse = $databaseAdminClient->resumeOperation($operationName, 'copyBackup');
- *     while (!$newOperationResponse->isDone()) {
- *         // ... do other work
- *         $newOperationResponse->reload();
- *     }
- *     if ($newOperationResponse->operationSucceeded()) {
- *         $result = $newOperationResponse->getResult();
- *         // doSomethingWith($result)
- *     } else {
- *         $error = $newOperationResponse->getError();
- *         // handleError($error)
- *     }
+ *     $formattedDatabase = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+ *     $splitPoints = [];
+ *     $response = $databaseAdminClient->addSplitPoints($formattedDatabase, $splitPoints);
  * } finally {
  *     $databaseAdminClient->close();
  * }
@@ -185,6 +161,8 @@ class DatabaseAdminGapicClient
     private static $databaseNameTemplate;
 
     private static $instanceNameTemplate;
+
+    private static $instancePartitionNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -281,6 +259,17 @@ class DatabaseAdminGapicClient
         return self::$instanceNameTemplate;
     }
 
+    private static function getInstancePartitionNameTemplate()
+    {
+        if (self::$instancePartitionNameTemplate == null) {
+            self::$instancePartitionNameTemplate = new PathTemplate(
+                'projects/{project}/instances/{instance}/instancePartitions/{instance_partition}'
+            );
+        }
+
+        return self::$instancePartitionNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -291,6 +280,7 @@ class DatabaseAdminGapicClient
                 'cryptoKeyVersion' => self::getCryptoKeyVersionNameTemplate(),
                 'database' => self::getDatabaseNameTemplate(),
                 'instance' => self::getInstanceNameTemplate(),
+                'instancePartition' => self::getInstancePartitionNameTemplate(),
             ];
         }
 
@@ -431,6 +421,28 @@ class DatabaseAdminGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * instance_partition resource.
+     *
+     * @param string $project
+     * @param string $instance
+     * @param string $instancePartition
+     *
+     * @return string The formatted instance_partition resource.
+     */
+    public static function instancePartitionName(
+        $project,
+        $instance,
+        $instancePartition
+    ) {
+        return self::getInstancePartitionNameTemplate()->render([
+            'project' => $project,
+            'instance' => $instance,
+            'instance_partition' => $instancePartition,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -440,6 +452,7 @@ class DatabaseAdminGapicClient
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
      * - database: projects/{project}/instances/{instance}/databases/{database}
      * - instance: projects/{project}/instances/{instance}
+     * - instancePartition: projects/{project}/instances/{instance}/instancePartitions/{instance_partition}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -574,6 +587,72 @@ class DatabaseAdminGapicClient
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
+    }
+
+    /**
+     * Adds split points to specified tables, indexes of a database.
+     *
+     * Sample code:
+     * ```
+     * $databaseAdminClient = new DatabaseAdminClient();
+     * try {
+     *     $formattedDatabase = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+     *     $splitPoints = [];
+     *     $response = $databaseAdminClient->addSplitPoints($formattedDatabase, $splitPoints);
+     * } finally {
+     *     $databaseAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string        $database     Required. The database on whose tables/indexes split points are to be
+     *                                    added. Values are of the form
+     *                                    `projects/<project>/instances/<instance>/databases/<database>`.
+     * @param SplitPoints[] $splitPoints  Required. The split points to add.
+     * @param array         $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $initiator
+     *           Optional. A user-supplied tag associated with the split points.
+     *           For example, "intital_data_load", "special_event_1".
+     *           Defaults to "CloudAddSplitPointsAPI" if not specified.
+     *           The length of the tag must not exceed 50 characters,else will be trimmed.
+     *           Only valid UTF8 characters are allowed.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\AddSplitPointsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function addSplitPoints(
+        $database,
+        $splitPoints,
+        array $optionalArgs = []
+    ) {
+        $request = new AddSplitPointsRequest();
+        $requestParamHeaders = [];
+        $request->setDatabase($database);
+        $request->setSplitPoints($splitPoints);
+        $requestParamHeaders['database'] = $database;
+        if (isset($optionalArgs['initiator'])) {
+            $request->setInitiator($optionalArgs['initiator']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'AddSplitPoints',
+            AddSplitPointsResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1709,6 +1788,7 @@ class DatabaseAdminGapicClient
      *           * `expire_time`  (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
      *           * `version_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)
      *           * `size_bytes`
+     *           * `backup_schedules`
      *
      *           You can combine multiple expressions by enclosing each expression in
      *           parentheses. By default, expressions are combined with AND logic, but
@@ -1727,6 +1807,8 @@ class DatabaseAdminGapicClient
      *           * `expire_time < \"2018-03-28T14:50:00Z\"`
      *           - The backup `expire_time` is before 2018-03-28T14:50:00Z.
      *           * `size_bytes > 10000000000` - The backup's size is greater than 10GB
+     *           * `backup_schedules:daily`
+     *           - The backup is created from a schedule with "daily" in its name.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if

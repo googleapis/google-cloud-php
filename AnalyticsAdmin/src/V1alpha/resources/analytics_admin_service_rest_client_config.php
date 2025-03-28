@@ -212,6 +212,18 @@ return [
                     ],
                 ],
             ],
+            'CreateBigQueryLink' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/bigQueryLinks',
+                'body' => 'bigquery_link',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateCalculatedMetric' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/calculatedMetrics',
@@ -328,6 +340,18 @@ return [
                     ],
                 ],
             ],
+            'CreateEventEditRule' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*/dataStreams/*}/eventEditRules',
+                'body' => 'event_edit_rule',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateExpandedDataSet' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/expandedDataSets',
@@ -356,6 +380,18 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/googleAdsLinks',
                 'body' => 'google_ads_link',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateKeyEvent' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/keyEvents',
+                'body' => 'key_event',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -422,11 +458,6 @@ return [
                     ],
                 ],
             ],
-            'CreateSubproperty' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha/properties:createSubproperty',
-                'body' => '*',
-            ],
             'CreateSubpropertyEventFilter' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/subpropertyEventFilters',
@@ -470,6 +501,17 @@ return [
             'DeleteAdSenseLink' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=properties/*/adSenseLinks/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteBigQueryLink' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/bigQueryLinks/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -560,6 +602,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteEventEditRule' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*/eventEditRules/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteExpandedDataSet' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=properties/*/expandedDataSets/*}',
@@ -585,6 +638,17 @@ return [
             'DeleteGoogleAdsLink' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=properties/*/googleAdsLinks/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteKeyEvent' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/keyEvents/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -883,6 +947,17 @@ return [
                     ],
                 ],
             ],
+            'GetEventEditRule' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*/eventEditRules/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetExpandedDataSet' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/expandedDataSets/*}',
@@ -908,6 +983,17 @@ return [
             'GetGoogleSignalsSettings' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/googleSignalsSettings}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetKeyEvent' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/keyEvents/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -1144,6 +1230,17 @@ return [
                     ],
                 ],
             ],
+            'ListEventEditRules' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*/dataStreams/*}/eventEditRules',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListExpandedDataSets' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/expandedDataSets',
@@ -1169,6 +1266,17 @@ return [
             'ListGoogleAdsLinks' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/googleAdsLinks',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListKeyEvents' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/keyEvents',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -1243,6 +1351,23 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/accounts:provisionAccountTicket',
                 'body' => '*',
+            ],
+            'ProvisionSubproperty' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/properties:provisionSubproperty',
+                'body' => '*',
+            ],
+            'ReorderEventEditRules' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*/dataStreams/*}/eventEditRules:reorder',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'RunAccessReport' => [
                 'method' => 'post',
@@ -1340,6 +1465,22 @@ return [
                     'audience.name' => [
                         'getters' => [
                             'getAudience',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateBigQueryLink' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{bigquery_link.name=properties/*/bigQueryLinks/*}',
+                'body' => 'bigquery_link',
+                'placeholders' => [
+                    'bigquery_link.name' => [
+                        'getters' => [
+                            'getBigqueryLink',
                             'getName',
                         ],
                     ],
@@ -1524,6 +1665,22 @@ return [
                     'update_mask',
                 ],
             ],
+            'UpdateEventEditRule' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{event_edit_rule.name=properties/*/dataStreams/*/eventEditRules/*}',
+                'body' => 'event_edit_rule',
+                'placeholders' => [
+                    'event_edit_rule.name' => [
+                        'getters' => [
+                            'getEventEditRule',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
             'UpdateExpandedDataSet' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1alpha/{expanded_data_set.name=properties/*/expandedDataSets/*}',
@@ -1564,6 +1721,22 @@ return [
                     'google_signals_settings.name' => [
                         'getters' => [
                             'getGoogleSignalsSettings',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateKeyEvent' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{key_event.name=properties/*/keyEvents/*}',
+                'body' => 'key_event',
+                'placeholders' => [
+                    'key_event.name' => [
+                        'getters' => [
+                            'getKeyEvent',
                             'getName',
                         ],
                     ],

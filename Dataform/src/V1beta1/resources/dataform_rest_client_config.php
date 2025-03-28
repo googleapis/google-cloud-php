@@ -275,6 +275,17 @@ return [
                     ],
                 ],
             ],
+            'GetConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/config}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetReleaseConfig' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*/releaseConfigs/*}',
@@ -570,6 +581,30 @@ return [
                     ],
                 ],
             ],
+            'SearchFiles' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{workspace=projects/*/locations/*/repositories/*/workspaces/*}:searchFiles',
+                'placeholders' => [
+                    'workspace' => [
+                        'getters' => [
+                            'getWorkspace',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1beta1/{config.name=projects/*/locations/*/config}',
+                'body' => 'config',
+                'placeholders' => [
+                    'config.name' => [
+                        'getters' => [
+                            'getConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateReleaseConfig' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1beta1/{release_config.name=projects/*/locations/*/repositories/*/releaseConfigs/*}',
@@ -653,10 +688,6 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/collections/*}:getIamPolicy',
-                    ],
-                    [
-                        'method' => 'get',
                         'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/repositories/*/workspaces/*}:getIamPolicy',
                     ],
                 ],
@@ -678,11 +709,6 @@ return [
                         'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/repositories/*/workspaces/*}:setIamPolicy',
                         'body' => '*',
                     ],
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/collections/*}:setIamPolicy',
-                        'body' => '*',
-                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -697,11 +723,6 @@ return [
                 'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/repositories/*}:testIamPermissions',
                 'body' => '*',
                 'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/collections/*}:testIamPermissions',
-                        'body' => '*',
-                    ],
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/repositories/*/workspaces/*}:testIamPermissions',

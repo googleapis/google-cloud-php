@@ -18,7 +18,7 @@ class GenerateIdTokenResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string token = 1;</code>
      */
-    private $token = '';
+    protected $token = '';
 
     /**
      * Constructor.

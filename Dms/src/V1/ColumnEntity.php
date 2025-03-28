@@ -21,85 +21,85 @@ class ColumnEntity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Column data type.
      *
      * Generated from protobuf field <code>string data_type = 2;</code>
      */
-    private $data_type = '';
+    protected $data_type = '';
     /**
      * Charset override - instead of table level charset.
      *
      * Generated from protobuf field <code>string charset = 3;</code>
      */
-    private $charset = '';
+    protected $charset = '';
     /**
      * Collation override - instead of table level collation.
      *
      * Generated from protobuf field <code>string collation = 4;</code>
      */
-    private $collation = '';
+    protected $collation = '';
     /**
      * Column length - e.g. varchar (50).
      *
      * Generated from protobuf field <code>int64 length = 5;</code>
      */
-    private $length = 0;
+    protected $length = 0;
     /**
      * Column precision - when relevant.
      *
      * Generated from protobuf field <code>int32 precision = 6;</code>
      */
-    private $precision = 0;
+    protected $precision = 0;
     /**
      * Column scale - when relevant.
      *
      * Generated from protobuf field <code>int32 scale = 7;</code>
      */
-    private $scale = 0;
+    protected $scale = 0;
     /**
      * Column fractional second precision - used for timestamp based datatypes.
      *
      * Generated from protobuf field <code>int32 fractional_seconds_precision = 8;</code>
      */
-    private $fractional_seconds_precision = 0;
+    protected $fractional_seconds_precision = 0;
     /**
      * Is the column of array type.
      *
      * Generated from protobuf field <code>bool array = 9;</code>
      */
-    private $array = false;
+    protected $array = false;
     /**
      * If the column is array, of which length.
      *
      * Generated from protobuf field <code>int32 array_length = 10;</code>
      */
-    private $array_length = 0;
+    protected $array_length = 0;
     /**
      * Is the column nullable.
      *
      * Generated from protobuf field <code>bool nullable = 11;</code>
      */
-    private $nullable = false;
+    protected $nullable = false;
     /**
      * Is the column auto-generated/identity.
      *
      * Generated from protobuf field <code>bool auto_generated = 12;</code>
      */
-    private $auto_generated = false;
+    protected $auto_generated = false;
     /**
      * Is the column a UDT.
      *
      * Generated from protobuf field <code>bool udt = 13;</code>
      */
-    private $udt = false;
+    protected $udt = false;
     /**
      * Custom engine specific features.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct custom_features = 14;</code>
      */
-    private $custom_features = null;
+    protected $custom_features = null;
     /**
      * Specifies the list of values allowed in the column.
      * Only used for set data type.
@@ -112,19 +112,19 @@ class ColumnEntity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string comment = 16;</code>
      */
-    private $comment = '';
+    protected $comment = '';
     /**
      * Column order in the table.
      *
      * Generated from protobuf field <code>int32 ordinal_position = 17;</code>
      */
-    private $ordinal_position = 0;
+    protected $ordinal_position = 0;
     /**
      * Default value of the column.
      *
      * Generated from protobuf field <code>string default_value = 18;</code>
      */
-    private $default_value = '';
+    protected $default_value = '';
 
     /**
      * Constructor.

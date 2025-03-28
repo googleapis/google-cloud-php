@@ -66,6 +66,4 @@ class RelayMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RelayMode::class, \Google\Cloud\Container\V1\AdvancedDatapathObservabilityConfig_RelayMode::class);
 

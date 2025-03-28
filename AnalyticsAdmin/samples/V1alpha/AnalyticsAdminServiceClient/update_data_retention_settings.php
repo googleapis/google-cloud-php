@@ -25,6 +25,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_UpdateDataRetentionSettings_sync]
 use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\DataRetentionSettings;
+use Google\Analytics\Admin\V1alpha\DataRetentionSettings\RetentionDuration;
 use Google\Analytics\Admin\V1alpha\UpdateDataRetentionSettingsRequest;
 use Google\ApiCore\ApiException;
 use Google\Protobuf\FieldMask;
@@ -32,19 +33,20 @@ use Google\Protobuf\FieldMask;
 /**
  * Updates the singleton data retention settings for this property.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param int $dataRetentionSettingsEventDataRetention The length of time that event-level data is retained.
+ * @param int $dataRetentionSettingsUserDataRetention  The length of time that user-level data is retained.
  */
-function update_data_retention_settings_sample(): void
-{
+function update_data_retention_settings_sample(
+    int $dataRetentionSettingsEventDataRetention,
+    int $dataRetentionSettingsUserDataRetention
+): void {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $dataRetentionSettings = new DataRetentionSettings();
+    $dataRetentionSettings = (new DataRetentionSettings())
+        ->setEventDataRetention($dataRetentionSettingsEventDataRetention)
+        ->setUserDataRetention($dataRetentionSettingsUserDataRetention);
     $updateMask = new FieldMask();
     $request = (new UpdateDataRetentionSettingsRequest())
         ->setDataRetentionSettings($dataRetentionSettings)
@@ -58,5 +60,25 @@ function update_data_retention_settings_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $dataRetentionSettingsEventDataRetention = RetentionDuration::RETENTION_DURATION_UNSPECIFIED;
+    $dataRetentionSettingsUserDataRetention = RetentionDuration::RETENTION_DURATION_UNSPECIFIED;
+
+    update_data_retention_settings_sample(
+        $dataRetentionSettingsEventDataRetention,
+        $dataRetentionSettingsUserDataRetention
+    );
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_UpdateDataRetentionSettings_sync]

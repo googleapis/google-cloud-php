@@ -22,7 +22,7 @@ class TableFieldSchema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string field = 1;</code>
      */
-    private $field = '';
+    protected $field = '';
     /**
      * The field data type. Possible values include
      * * STRING
@@ -42,14 +42,14 @@ class TableFieldSchema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 2;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * The field mode. Possible values include NULLABLE, REQUIRED and
      * REPEATED. The default value is NULLABLE.
      *
      * Generated from protobuf field <code>string mode = 3;</code>
      */
-    private $mode = '';
+    protected $mode = '';
     /**
      * Describes the nested schema fields if the type property is set
      * to RECORD.

@@ -20,7 +20,7 @@ class AssociationInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string base_entitlement = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $base_entitlement = '';
+    protected $base_entitlement = '';
 
     /**
      * Constructor.

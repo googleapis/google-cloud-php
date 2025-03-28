@@ -21,7 +21,7 @@ class UpdateTagTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.TagTemplate tag_template = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tag_template = null;
+    protected $tag_template = null;
     /**
      * Names of fields whose values to overwrite on a tag template. Currently,
      * only `display_name` and `is_publicly_readable` can be overwritten.
@@ -33,7 +33,7 @@ class UpdateTagTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\DataCatalog\V1\TagTemplate $tagTemplate Required. The template to update. The `name` field must be set.

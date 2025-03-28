@@ -32,7 +32,7 @@ use Google\Cloud\DiscoveryEngine\V1\GetControlRequest;
  * Gets a Control.
  *
  * @param string $formattedName The resource name of the Control to get. Format:
- *                              `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}/controls/{control_id}`
+ *                              `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/controls/{control_id}`
  *                              Please see {@see ControlServiceClient::controlName()} for help formatting this field.
  */
 function get_control_sample(string $formattedName): void

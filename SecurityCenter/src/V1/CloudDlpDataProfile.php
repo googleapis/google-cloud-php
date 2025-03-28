@@ -22,13 +22,13 @@ class CloudDlpDataProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string data_profile = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $data_profile = '';
+    protected $data_profile = '';
     /**
      * The resource hierarchy level at which the data profile was generated.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.CloudDlpDataProfile.ParentType parent_type = 2;</code>
      */
-    private $parent_type = 0;
+    protected $parent_type = 0;
 
     /**
      * Constructor.

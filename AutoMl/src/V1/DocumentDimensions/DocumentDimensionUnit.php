@@ -66,6 +66,4 @@ class DocumentDimensionUnit
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DocumentDimensionUnit::class, \Google\Cloud\AutoMl\V1\DocumentDimensions_DocumentDimensionUnit::class);
 

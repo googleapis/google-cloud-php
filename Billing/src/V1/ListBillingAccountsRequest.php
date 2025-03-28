@@ -21,7 +21,7 @@ class ListBillingAccountsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 1;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A token identifying a page of results to return. This should be a
      * `next_page_token` value returned from a previous `ListBillingAccounts`
@@ -29,7 +29,7 @@ class ListBillingAccountsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Options for how to filter the returned billing accounts.
      * This only supports filtering for
@@ -41,7 +41,7 @@ class ListBillingAccountsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. The parent resource to list billing accounts from.
      * Format:
@@ -52,7 +52,7 @@ class ListBillingAccountsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $parent = '';
+    protected $parent = '';
 
     /**
      * @param string $parent Optional. The parent resource to list billing accounts from.

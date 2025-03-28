@@ -30,6 +30,12 @@ class SubscribeDataExchangeRequest extends \Google\Protobuf\Internal\Message
      */
     protected $destination = '';
     /**
+     * Optional. BigQuery destination dataset to create for the subscriber.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.DestinationDataset destination_dataset = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $destination_dataset = null;
+    /**
      * Required. Name of the subscription to create.
      * e.g. `subscription1`
      *
@@ -70,6 +76,8 @@ class SubscribeDataExchangeRequest extends \Google\Protobuf\Internal\Message
      *     @type string $destination
      *           Required. The parent resource path of the Subscription.
      *           e.g. `projects/subscriberproject/locations/US`
+     *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\DestinationDataset $destination_dataset
+     *           Optional. BigQuery destination dataset to create for the subscriber.
      *     @type string $subscription
      *           Required. Name of the subscription to create.
      *           e.g. `subscription1`
@@ -134,6 +142,42 @@ class SubscribeDataExchangeRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->destination = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. BigQuery destination dataset to create for the subscriber.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.DestinationDataset destination_dataset = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\DestinationDataset|null
+     */
+    public function getDestinationDataset()
+    {
+        return $this->destination_dataset;
+    }
+
+    public function hasDestinationDataset()
+    {
+        return isset($this->destination_dataset);
+    }
+
+    public function clearDestinationDataset()
+    {
+        unset($this->destination_dataset);
+    }
+
+    /**
+     * Optional. BigQuery destination dataset to create for the subscriber.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.DestinationDataset destination_dataset = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\DestinationDataset $var
+     * @return $this
+     */
+    public function setDestinationDataset($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\DestinationDataset::class);
+        $this->destination_dataset = $var;
 
         return $this;
     }

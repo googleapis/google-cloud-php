@@ -24,20 +24,20 @@ class ValidateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\I
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The raw text of the module's contents. Used to generate error
      * messages.
      *
      * Generated from protobuf field <code>string raw_text = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $raw_text = '';
+    protected $raw_text = '';
     /**
      * Required. The type of the module (e.g. CONFIGURABLE_BAD_IP).
      *
      * Generated from protobuf field <code>string type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $type = '';
+    protected $type = '';
 
     /**
      * Constructor.

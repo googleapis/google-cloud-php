@@ -32,7 +32,7 @@ use Google\ApiCore\PagedListResponse;
 /**
  * Returns all accounts accessible by the caller.
  *
- * Note that these accounts might not currently have GA4 properties.
+ * Note that these accounts might not currently have GA properties.
  * Soft-deleted (ie: "trashed") accounts are excluded by default.
  * Returns an empty list if no relevant accounts are found.
  *

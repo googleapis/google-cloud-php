@@ -60,14 +60,14 @@ class SetLabelsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string label_fingerprint = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $label_fingerprint = '';
+    protected $label_fingerprint = '';
     /**
      * The name (project, location, cluster name) of the cluster to set labels.
      * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 7;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * Constructor.

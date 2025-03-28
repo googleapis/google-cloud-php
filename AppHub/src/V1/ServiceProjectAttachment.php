@@ -21,15 +21,15 @@ class ServiceProjectAttachment extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. The resource name of a ServiceProjectAttachment. Format:
-     * "projects/{host-project-id}/locations/global/serviceProjectAttachments/{service-project-id}."
+     * `"projects/{host-project-id}/locations/global/serviceProjectAttachments/{service-project-id}."`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * Required. Immutable. Service project name in the format: "projects/abc" or
-     * "projects/123". As input, project name with either project id or number are
-     * accepted. As output, this field will contain project number.
+     * Required. Immutable. Service project name in the format: `"projects/abc"`
+     * or `"projects/123"`. As input, project name with either project id or
+     * number are accepted. As output, this field will contain project number.
      *
      * Generated from protobuf field <code>string service_project = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
@@ -62,11 +62,11 @@ class ServiceProjectAttachment extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. The resource name of a ServiceProjectAttachment. Format:
-     *           "projects/{host-project-id}/locations/global/serviceProjectAttachments/{service-project-id}."
+     *           `"projects/{host-project-id}/locations/global/serviceProjectAttachments/{service-project-id}."`
      *     @type string $service_project
-     *           Required. Immutable. Service project name in the format: "projects/abc" or
-     *           "projects/123". As input, project name with either project id or number are
-     *           accepted. As output, this field will contain project number.
+     *           Required. Immutable. Service project name in the format: `"projects/abc"`
+     *           or `"projects/123"`. As input, project name with either project id or
+     *           number are accepted. As output, this field will contain project number.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Create time.
      *     @type string $uid
@@ -83,7 +83,7 @@ class ServiceProjectAttachment extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The resource name of a ServiceProjectAttachment. Format:
-     * "projects/{host-project-id}/locations/global/serviceProjectAttachments/{service-project-id}."
+     * `"projects/{host-project-id}/locations/global/serviceProjectAttachments/{service-project-id}."`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -95,7 +95,7 @@ class ServiceProjectAttachment extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The resource name of a ServiceProjectAttachment. Format:
-     * "projects/{host-project-id}/locations/global/serviceProjectAttachments/{service-project-id}."
+     * `"projects/{host-project-id}/locations/global/serviceProjectAttachments/{service-project-id}."`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -110,9 +110,9 @@ class ServiceProjectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. Service project name in the format: "projects/abc" or
-     * "projects/123". As input, project name with either project id or number are
-     * accepted. As output, this field will contain project number.
+     * Required. Immutable. Service project name in the format: `"projects/abc"`
+     * or `"projects/123"`. As input, project name with either project id or
+     * number are accepted. As output, this field will contain project number.
      *
      * Generated from protobuf field <code>string service_project = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
@@ -123,9 +123,9 @@ class ServiceProjectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. Service project name in the format: "projects/abc" or
-     * "projects/123". As input, project name with either project id or number are
-     * accepted. As output, this field will contain project number.
+     * Required. Immutable. Service project name in the format: `"projects/abc"`
+     * or `"projects/123"`. As input, project name with either project id or
+     * number are accepted. As output, this field will contain project number.
      *
      * Generated from protobuf field <code>string service_project = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var

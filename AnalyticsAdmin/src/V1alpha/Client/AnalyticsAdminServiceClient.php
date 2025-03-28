@@ -53,6 +53,7 @@ use Google\Analytics\Admin\V1alpha\ConversionEvent;
 use Google\Analytics\Admin\V1alpha\CreateAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\CreateAdSenseLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateAudienceRequest;
+use Google\Analytics\Admin\V1alpha\CreateBigQueryLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateCalculatedMetricRequest;
 use Google\Analytics\Admin\V1alpha\CreateChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagRequest;
@@ -64,9 +65,11 @@ use Google\Analytics\Admin\V1alpha\CreateDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\CreateDisplayVideo360AdvertiserLinkProposalRequest;
 use Google\Analytics\Admin\V1alpha\CreateDisplayVideo360AdvertiserLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateEventCreateRuleRequest;
+use Google\Analytics\Admin\V1alpha\CreateEventEditRuleRequest;
 use Google\Analytics\Admin\V1alpha\CreateExpandedDataSetRequest;
 use Google\Analytics\Admin\V1alpha\CreateFirebaseLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateGoogleAdsLinkRequest;
+use Google\Analytics\Admin\V1alpha\CreateKeyEventRequest;
 use Google\Analytics\Admin\V1alpha\CreateMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\CreatePropertyRequest;
 use Google\Analytics\Admin\V1alpha\CreateRollupPropertyRequest;
@@ -75,8 +78,6 @@ use Google\Analytics\Admin\V1alpha\CreateRollupPropertySourceLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\CreateSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateSubpropertyEventFilterRequest;
-use Google\Analytics\Admin\V1alpha\CreateSubpropertyRequest;
-use Google\Analytics\Admin\V1alpha\CreateSubpropertyResponse;
 use Google\Analytics\Admin\V1alpha\CustomDimension;
 use Google\Analytics\Admin\V1alpha\CustomMetric;
 use Google\Analytics\Admin\V1alpha\DataRedactionSettings;
@@ -86,6 +87,7 @@ use Google\Analytics\Admin\V1alpha\DataStream;
 use Google\Analytics\Admin\V1alpha\DeleteAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\DeleteAccountRequest;
 use Google\Analytics\Admin\V1alpha\DeleteAdSenseLinkRequest;
+use Google\Analytics\Admin\V1alpha\DeleteBigQueryLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteCalculatedMetricRequest;
 use Google\Analytics\Admin\V1alpha\DeleteChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\DeleteConnectedSiteTagRequest;
@@ -94,9 +96,11 @@ use Google\Analytics\Admin\V1alpha\DeleteDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\DeleteDisplayVideo360AdvertiserLinkProposalRequest;
 use Google\Analytics\Admin\V1alpha\DeleteDisplayVideo360AdvertiserLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteEventCreateRuleRequest;
+use Google\Analytics\Admin\V1alpha\DeleteEventEditRuleRequest;
 use Google\Analytics\Admin\V1alpha\DeleteExpandedDataSetRequest;
 use Google\Analytics\Admin\V1alpha\DeleteFirebaseLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteGoogleAdsLinkRequest;
+use Google\Analytics\Admin\V1alpha\DeleteKeyEventRequest;
 use Google\Analytics\Admin\V1alpha\DeleteMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\DeletePropertyRequest;
 use Google\Analytics\Admin\V1alpha\DeleteRollupPropertySourceLinkRequest;
@@ -107,6 +111,7 @@ use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink;
 use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal;
 use Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings;
 use Google\Analytics\Admin\V1alpha\EventCreateRule;
+use Google\Analytics\Admin\V1alpha\EventEditRule;
 use Google\Analytics\Admin\V1alpha\ExpandedDataSet;
 use Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutRequest;
 use Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutResponse;
@@ -132,9 +137,11 @@ use Google\Analytics\Admin\V1alpha\GetDisplayVideo360AdvertiserLinkProposalReque
 use Google\Analytics\Admin\V1alpha\GetDisplayVideo360AdvertiserLinkRequest;
 use Google\Analytics\Admin\V1alpha\GetEnhancedMeasurementSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetEventCreateRuleRequest;
+use Google\Analytics\Admin\V1alpha\GetEventEditRuleRequest;
 use Google\Analytics\Admin\V1alpha\GetExpandedDataSetRequest;
 use Google\Analytics\Admin\V1alpha\GetGlobalSiteTagRequest;
 use Google\Analytics\Admin\V1alpha\GetGoogleSignalsSettingsRequest;
+use Google\Analytics\Admin\V1alpha\GetKeyEventRequest;
 use Google\Analytics\Admin\V1alpha\GetMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\GetPropertyRequest;
 use Google\Analytics\Admin\V1alpha\GetRollupPropertySourceLinkRequest;
@@ -144,6 +151,7 @@ use Google\Analytics\Admin\V1alpha\GetSubpropertyEventFilterRequest;
 use Google\Analytics\Admin\V1alpha\GlobalSiteTag;
 use Google\Analytics\Admin\V1alpha\GoogleAdsLink;
 use Google\Analytics\Admin\V1alpha\GoogleSignalsSettings;
+use Google\Analytics\Admin\V1alpha\KeyEvent;
 use Google\Analytics\Admin\V1alpha\ListAccessBindingsRequest;
 use Google\Analytics\Admin\V1alpha\ListAccountSummariesRequest;
 use Google\Analytics\Admin\V1alpha\ListAccountsRequest;
@@ -161,9 +169,11 @@ use Google\Analytics\Admin\V1alpha\ListDataStreamsRequest;
 use Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinkProposalsRequest;
 use Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListEventCreateRulesRequest;
+use Google\Analytics\Admin\V1alpha\ListEventEditRulesRequest;
 use Google\Analytics\Admin\V1alpha\ListExpandedDataSetsRequest;
 use Google\Analytics\Admin\V1alpha\ListFirebaseLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListGoogleAdsLinksRequest;
+use Google\Analytics\Admin\V1alpha\ListKeyEventsRequest;
 use Google\Analytics\Admin\V1alpha\ListMeasurementProtocolSecretsRequest;
 use Google\Analytics\Admin\V1alpha\ListPropertiesRequest;
 use Google\Analytics\Admin\V1alpha\ListRollupPropertySourceLinksRequest;
@@ -174,6 +184,9 @@ use Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret;
 use Google\Analytics\Admin\V1alpha\Property;
 use Google\Analytics\Admin\V1alpha\ProvisionAccountTicketRequest;
 use Google\Analytics\Admin\V1alpha\ProvisionAccountTicketResponse;
+use Google\Analytics\Admin\V1alpha\ProvisionSubpropertyRequest;
+use Google\Analytics\Admin\V1alpha\ProvisionSubpropertyResponse;
+use Google\Analytics\Admin\V1alpha\ReorderEventEditRulesRequest;
 use Google\Analytics\Admin\V1alpha\RollupPropertySourceLink;
 use Google\Analytics\Admin\V1alpha\RunAccessReportRequest;
 use Google\Analytics\Admin\V1alpha\RunAccessReportResponse;
@@ -187,6 +200,7 @@ use Google\Analytics\Admin\V1alpha\UpdateAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAccountRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAttributionSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAudienceRequest;
+use Google\Analytics\Admin\V1alpha\UpdateBigQueryLinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateCalculatedMetricRequest;
 use Google\Analytics\Admin\V1alpha\UpdateChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\UpdateConversionEventRequest;
@@ -198,9 +212,11 @@ use Google\Analytics\Admin\V1alpha\UpdateDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\UpdateDisplayVideo360AdvertiserLinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateEnhancedMeasurementSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateEventCreateRuleRequest;
+use Google\Analytics\Admin\V1alpha\UpdateEventEditRuleRequest;
 use Google\Analytics\Admin\V1alpha\UpdateExpandedDataSetRequest;
 use Google\Analytics\Admin\V1alpha\UpdateGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateGoogleSignalsSettingsRequest;
+use Google\Analytics\Admin\V1alpha\UpdateKeyEventRequest;
 use Google\Analytics\Admin\V1alpha\UpdateMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\UpdatePropertyRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSKAdNetworkConversionValueSchemaRequest;
@@ -216,9 +232,10 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: Service Interface for the Analytics Admin API (GA4).
+ * Service Description: Service Interface for the Google Analytics Admin API.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -230,142 +247,156 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface acknowledgeUserDataCollectionAsync(AcknowledgeUserDataCollectionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface approveDisplayVideo360AdvertiserLinkProposalAsync(ApproveDisplayVideo360AdvertiserLinkProposalRequest $request, array $optionalArgs = [])
- * @method PromiseInterface archiveAudienceAsync(ArchiveAudienceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface archiveCustomDimensionAsync(ArchiveCustomDimensionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface archiveCustomMetricAsync(ArchiveCustomMetricRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchCreateAccessBindingsAsync(BatchCreateAccessBindingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchDeleteAccessBindingsAsync(BatchDeleteAccessBindingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchGetAccessBindingsAsync(BatchGetAccessBindingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchUpdateAccessBindingsAsync(BatchUpdateAccessBindingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface cancelDisplayVideo360AdvertiserLinkProposalAsync(CancelDisplayVideo360AdvertiserLinkProposalRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createAccessBindingAsync(CreateAccessBindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createAdSenseLinkAsync(CreateAdSenseLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createAudienceAsync(CreateAudienceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCalculatedMetricAsync(CreateCalculatedMetricRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createChannelGroupAsync(CreateChannelGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createConnectedSiteTagAsync(CreateConnectedSiteTagRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createConversionEventAsync(CreateConversionEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCustomDimensionAsync(CreateCustomDimensionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCustomMetricAsync(CreateCustomMetricRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createDataStreamAsync(CreateDataStreamRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createDisplayVideo360AdvertiserLinkAsync(CreateDisplayVideo360AdvertiserLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createDisplayVideo360AdvertiserLinkProposalAsync(CreateDisplayVideo360AdvertiserLinkProposalRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createEventCreateRuleAsync(CreateEventCreateRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createExpandedDataSetAsync(CreateExpandedDataSetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createFirebaseLinkAsync(CreateFirebaseLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createGoogleAdsLinkAsync(CreateGoogleAdsLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createMeasurementProtocolSecretAsync(CreateMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createPropertyAsync(CreatePropertyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createRollupPropertyAsync(CreateRollupPropertyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createRollupPropertySourceLinkAsync(CreateRollupPropertySourceLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSKAdNetworkConversionValueSchemaAsync(CreateSKAdNetworkConversionValueSchemaRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSearchAds360LinkAsync(CreateSearchAds360LinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSubpropertyAsync(CreateSubpropertyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSubpropertyEventFilterAsync(CreateSubpropertyEventFilterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAccessBindingAsync(DeleteAccessBindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAccountAsync(DeleteAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAdSenseLinkAsync(DeleteAdSenseLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteCalculatedMetricAsync(DeleteCalculatedMetricRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteChannelGroupAsync(DeleteChannelGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteConnectedSiteTagAsync(DeleteConnectedSiteTagRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteConversionEventAsync(DeleteConversionEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDataStreamAsync(DeleteDataStreamRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDisplayVideo360AdvertiserLinkAsync(DeleteDisplayVideo360AdvertiserLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDisplayVideo360AdvertiserLinkProposalAsync(DeleteDisplayVideo360AdvertiserLinkProposalRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteEventCreateRuleAsync(DeleteEventCreateRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteExpandedDataSetAsync(DeleteExpandedDataSetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteFirebaseLinkAsync(DeleteFirebaseLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteGoogleAdsLinkAsync(DeleteGoogleAdsLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteMeasurementProtocolSecretAsync(DeleteMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePropertyAsync(DeletePropertyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteRollupPropertySourceLinkAsync(DeleteRollupPropertySourceLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSKAdNetworkConversionValueSchemaAsync(DeleteSKAdNetworkConversionValueSchemaRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSearchAds360LinkAsync(DeleteSearchAds360LinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSubpropertyEventFilterAsync(DeleteSubpropertyEventFilterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface fetchAutomatedGa4ConfigurationOptOutAsync(FetchAutomatedGa4ConfigurationOptOutRequest $request, array $optionalArgs = [])
- * @method PromiseInterface fetchConnectedGa4PropertyAsync(FetchConnectedGa4PropertyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAccessBindingAsync(GetAccessBindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAccountAsync(GetAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAdSenseLinkAsync(GetAdSenseLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAttributionSettingsAsync(GetAttributionSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAudienceAsync(GetAudienceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBigQueryLinkAsync(GetBigQueryLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCalculatedMetricAsync(GetCalculatedMetricRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getChannelGroupAsync(GetChannelGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConversionEventAsync(GetConversionEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCustomDimensionAsync(GetCustomDimensionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCustomMetricAsync(GetCustomMetricRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataRedactionSettingsAsync(GetDataRedactionSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataRetentionSettingsAsync(GetDataRetentionSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataSharingSettingsAsync(GetDataSharingSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataStreamAsync(GetDataStreamRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDisplayVideo360AdvertiserLinkAsync(GetDisplayVideo360AdvertiserLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDisplayVideo360AdvertiserLinkProposalAsync(GetDisplayVideo360AdvertiserLinkProposalRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEnhancedMeasurementSettingsAsync(GetEnhancedMeasurementSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEventCreateRuleAsync(GetEventCreateRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getExpandedDataSetAsync(GetExpandedDataSetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getGlobalSiteTagAsync(GetGlobalSiteTagRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getGoogleSignalsSettingsAsync(GetGoogleSignalsSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMeasurementProtocolSecretAsync(GetMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPropertyAsync(GetPropertyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRollupPropertySourceLinkAsync(GetRollupPropertySourceLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSKAdNetworkConversionValueSchemaAsync(GetSKAdNetworkConversionValueSchemaRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSearchAds360LinkAsync(GetSearchAds360LinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSubpropertyEventFilterAsync(GetSubpropertyEventFilterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAccessBindingsAsync(ListAccessBindingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAccountSummariesAsync(ListAccountSummariesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAccountsAsync(ListAccountsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAdSenseLinksAsync(ListAdSenseLinksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAudiencesAsync(ListAudiencesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBigQueryLinksAsync(ListBigQueryLinksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCalculatedMetricsAsync(ListCalculatedMetricsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listChannelGroupsAsync(ListChannelGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConnectedSiteTagsAsync(ListConnectedSiteTagsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConversionEventsAsync(ListConversionEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCustomDimensionsAsync(ListCustomDimensionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCustomMetricsAsync(ListCustomMetricsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDataStreamsAsync(ListDataStreamsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDisplayVideo360AdvertiserLinkProposalsAsync(ListDisplayVideo360AdvertiserLinkProposalsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDisplayVideo360AdvertiserLinksAsync(ListDisplayVideo360AdvertiserLinksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEventCreateRulesAsync(ListEventCreateRulesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listExpandedDataSetsAsync(ListExpandedDataSetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFirebaseLinksAsync(ListFirebaseLinksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listGoogleAdsLinksAsync(ListGoogleAdsLinksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMeasurementProtocolSecretsAsync(ListMeasurementProtocolSecretsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPropertiesAsync(ListPropertiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRollupPropertySourceLinksAsync(ListRollupPropertySourceLinksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSKAdNetworkConversionValueSchemasAsync(ListSKAdNetworkConversionValueSchemasRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSearchAds360LinksAsync(ListSearchAds360LinksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSubpropertyEventFiltersAsync(ListSubpropertyEventFiltersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface provisionAccountTicketAsync(ProvisionAccountTicketRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runAccessReportAsync(RunAccessReportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchChangeHistoryEventsAsync(SearchChangeHistoryEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setAutomatedGa4ConfigurationOptOutAsync(SetAutomatedGa4ConfigurationOptOutRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAccessBindingAsync(UpdateAccessBindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAccountAsync(UpdateAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAttributionSettingsAsync(UpdateAttributionSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAudienceAsync(UpdateAudienceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCalculatedMetricAsync(UpdateCalculatedMetricRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateChannelGroupAsync(UpdateChannelGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateConversionEventAsync(UpdateConversionEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCustomDimensionAsync(UpdateCustomDimensionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCustomMetricAsync(UpdateCustomMetricRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDataRedactionSettingsAsync(UpdateDataRedactionSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDataRetentionSettingsAsync(UpdateDataRetentionSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDataStreamAsync(UpdateDataStreamRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDisplayVideo360AdvertiserLinkAsync(UpdateDisplayVideo360AdvertiserLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateEnhancedMeasurementSettingsAsync(UpdateEnhancedMeasurementSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateEventCreateRuleAsync(UpdateEventCreateRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateExpandedDataSetAsync(UpdateExpandedDataSetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateGoogleAdsLinkAsync(UpdateGoogleAdsLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateGoogleSignalsSettingsAsync(UpdateGoogleSignalsSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateMeasurementProtocolSecretAsync(UpdateMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updatePropertyAsync(UpdatePropertyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSKAdNetworkConversionValueSchemaAsync(UpdateSKAdNetworkConversionValueSchemaRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSearchAds360LinkAsync(UpdateSearchAds360LinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSubpropertyEventFilterAsync(UpdateSubpropertyEventFilterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AcknowledgeUserDataCollectionResponse> acknowledgeUserDataCollectionAsync(AcknowledgeUserDataCollectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApproveDisplayVideo360AdvertiserLinkProposalResponse> approveDisplayVideo360AdvertiserLinkProposalAsync(ApproveDisplayVideo360AdvertiserLinkProposalRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> archiveAudienceAsync(ArchiveAudienceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> archiveCustomDimensionAsync(ArchiveCustomDimensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> archiveCustomMetricAsync(ArchiveCustomMetricRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreateAccessBindingsResponse> batchCreateAccessBindingsAsync(BatchCreateAccessBindingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> batchDeleteAccessBindingsAsync(BatchDeleteAccessBindingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchGetAccessBindingsResponse> batchGetAccessBindingsAsync(BatchGetAccessBindingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchUpdateAccessBindingsResponse> batchUpdateAccessBindingsAsync(BatchUpdateAccessBindingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DisplayVideo360AdvertiserLinkProposal> cancelDisplayVideo360AdvertiserLinkProposalAsync(CancelDisplayVideo360AdvertiserLinkProposalRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AccessBinding> createAccessBindingAsync(CreateAccessBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AdSenseLink> createAdSenseLinkAsync(CreateAdSenseLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Audience> createAudienceAsync(CreateAudienceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BigQueryLink> createBigQueryLinkAsync(CreateBigQueryLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CalculatedMetric> createCalculatedMetricAsync(CreateCalculatedMetricRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ChannelGroup> createChannelGroupAsync(CreateChannelGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CreateConnectedSiteTagResponse> createConnectedSiteTagAsync(CreateConnectedSiteTagRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversionEvent> createConversionEventAsync(CreateConversionEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomDimension> createCustomDimensionAsync(CreateCustomDimensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomMetric> createCustomMetricAsync(CreateCustomMetricRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataStream> createDataStreamAsync(CreateDataStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DisplayVideo360AdvertiserLink> createDisplayVideo360AdvertiserLinkAsync(CreateDisplayVideo360AdvertiserLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DisplayVideo360AdvertiserLinkProposal> createDisplayVideo360AdvertiserLinkProposalAsync(CreateDisplayVideo360AdvertiserLinkProposalRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EventCreateRule> createEventCreateRuleAsync(CreateEventCreateRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EventEditRule> createEventEditRuleAsync(CreateEventEditRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExpandedDataSet> createExpandedDataSetAsync(CreateExpandedDataSetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirebaseLink> createFirebaseLinkAsync(CreateFirebaseLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GoogleAdsLink> createGoogleAdsLinkAsync(CreateGoogleAdsLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<KeyEvent> createKeyEventAsync(CreateKeyEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MeasurementProtocolSecret> createMeasurementProtocolSecretAsync(CreateMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Property> createPropertyAsync(CreatePropertyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CreateRollupPropertyResponse> createRollupPropertyAsync(CreateRollupPropertyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RollupPropertySourceLink> createRollupPropertySourceLinkAsync(CreateRollupPropertySourceLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SKAdNetworkConversionValueSchema> createSKAdNetworkConversionValueSchemaAsync(CreateSKAdNetworkConversionValueSchemaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SearchAds360Link> createSearchAds360LinkAsync(CreateSearchAds360LinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SubpropertyEventFilter> createSubpropertyEventFilterAsync(CreateSubpropertyEventFilterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAccessBindingAsync(DeleteAccessBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAccountAsync(DeleteAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAdSenseLinkAsync(DeleteAdSenseLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteBigQueryLinkAsync(DeleteBigQueryLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteCalculatedMetricAsync(DeleteCalculatedMetricRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteChannelGroupAsync(DeleteChannelGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteConnectedSiteTagAsync(DeleteConnectedSiteTagRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteConversionEventAsync(DeleteConversionEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteDataStreamAsync(DeleteDataStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteDisplayVideo360AdvertiserLinkAsync(DeleteDisplayVideo360AdvertiserLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteDisplayVideo360AdvertiserLinkProposalAsync(DeleteDisplayVideo360AdvertiserLinkProposalRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteEventCreateRuleAsync(DeleteEventCreateRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteEventEditRuleAsync(DeleteEventEditRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteExpandedDataSetAsync(DeleteExpandedDataSetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteFirebaseLinkAsync(DeleteFirebaseLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteGoogleAdsLinkAsync(DeleteGoogleAdsLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteKeyEventAsync(DeleteKeyEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteMeasurementProtocolSecretAsync(DeleteMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Property> deletePropertyAsync(DeletePropertyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteRollupPropertySourceLinkAsync(DeleteRollupPropertySourceLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteSKAdNetworkConversionValueSchemaAsync(DeleteSKAdNetworkConversionValueSchemaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteSearchAds360LinkAsync(DeleteSearchAds360LinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteSubpropertyEventFilterAsync(DeleteSubpropertyEventFilterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FetchAutomatedGa4ConfigurationOptOutResponse> fetchAutomatedGa4ConfigurationOptOutAsync(FetchAutomatedGa4ConfigurationOptOutRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FetchConnectedGa4PropertyResponse> fetchConnectedGa4PropertyAsync(FetchConnectedGa4PropertyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AccessBinding> getAccessBindingAsync(GetAccessBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Account> getAccountAsync(GetAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AdSenseLink> getAdSenseLinkAsync(GetAdSenseLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AttributionSettings> getAttributionSettingsAsync(GetAttributionSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Audience> getAudienceAsync(GetAudienceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BigQueryLink> getBigQueryLinkAsync(GetBigQueryLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CalculatedMetric> getCalculatedMetricAsync(GetCalculatedMetricRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ChannelGroup> getChannelGroupAsync(GetChannelGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversionEvent> getConversionEventAsync(GetConversionEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomDimension> getCustomDimensionAsync(GetCustomDimensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomMetric> getCustomMetricAsync(GetCustomMetricRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataRedactionSettings> getDataRedactionSettingsAsync(GetDataRedactionSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataRetentionSettings> getDataRetentionSettingsAsync(GetDataRetentionSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataSharingSettings> getDataSharingSettingsAsync(GetDataSharingSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataStream> getDataStreamAsync(GetDataStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DisplayVideo360AdvertiserLink> getDisplayVideo360AdvertiserLinkAsync(GetDisplayVideo360AdvertiserLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DisplayVideo360AdvertiserLinkProposal> getDisplayVideo360AdvertiserLinkProposalAsync(GetDisplayVideo360AdvertiserLinkProposalRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EnhancedMeasurementSettings> getEnhancedMeasurementSettingsAsync(GetEnhancedMeasurementSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EventCreateRule> getEventCreateRuleAsync(GetEventCreateRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EventEditRule> getEventEditRuleAsync(GetEventEditRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExpandedDataSet> getExpandedDataSetAsync(GetExpandedDataSetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GlobalSiteTag> getGlobalSiteTagAsync(GetGlobalSiteTagRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GoogleSignalsSettings> getGoogleSignalsSettingsAsync(GetGoogleSignalsSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<KeyEvent> getKeyEventAsync(GetKeyEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MeasurementProtocolSecret> getMeasurementProtocolSecretAsync(GetMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Property> getPropertyAsync(GetPropertyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RollupPropertySourceLink> getRollupPropertySourceLinkAsync(GetRollupPropertySourceLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SKAdNetworkConversionValueSchema> getSKAdNetworkConversionValueSchemaAsync(GetSKAdNetworkConversionValueSchemaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SearchAds360Link> getSearchAds360LinkAsync(GetSearchAds360LinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SubpropertyEventFilter> getSubpropertyEventFilterAsync(GetSubpropertyEventFilterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAccessBindingsAsync(ListAccessBindingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAccountSummariesAsync(ListAccountSummariesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAccountsAsync(ListAccountsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAdSenseLinksAsync(ListAdSenseLinksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAudiencesAsync(ListAudiencesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBigQueryLinksAsync(ListBigQueryLinksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCalculatedMetricsAsync(ListCalculatedMetricsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listChannelGroupsAsync(ListChannelGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListConnectedSiteTagsResponse> listConnectedSiteTagsAsync(ListConnectedSiteTagsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConversionEventsAsync(ListConversionEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCustomDimensionsAsync(ListCustomDimensionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCustomMetricsAsync(ListCustomMetricsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDataStreamsAsync(ListDataStreamsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDisplayVideo360AdvertiserLinkProposalsAsync(ListDisplayVideo360AdvertiserLinkProposalsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDisplayVideo360AdvertiserLinksAsync(ListDisplayVideo360AdvertiserLinksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEventCreateRulesAsync(ListEventCreateRulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEventEditRulesAsync(ListEventEditRulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listExpandedDataSetsAsync(ListExpandedDataSetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFirebaseLinksAsync(ListFirebaseLinksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGoogleAdsLinksAsync(ListGoogleAdsLinksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listKeyEventsAsync(ListKeyEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMeasurementProtocolSecretsAsync(ListMeasurementProtocolSecretsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPropertiesAsync(ListPropertiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRollupPropertySourceLinksAsync(ListRollupPropertySourceLinksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSKAdNetworkConversionValueSchemasAsync(ListSKAdNetworkConversionValueSchemasRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSearchAds360LinksAsync(ListSearchAds360LinksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSubpropertyEventFiltersAsync(ListSubpropertyEventFiltersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ProvisionAccountTicketResponse> provisionAccountTicketAsync(ProvisionAccountTicketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ProvisionSubpropertyResponse> provisionSubpropertyAsync(ProvisionSubpropertyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> reorderEventEditRulesAsync(ReorderEventEditRulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RunAccessReportResponse> runAccessReportAsync(RunAccessReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchChangeHistoryEventsAsync(SearchChangeHistoryEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SetAutomatedGa4ConfigurationOptOutResponse> setAutomatedGa4ConfigurationOptOutAsync(SetAutomatedGa4ConfigurationOptOutRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AccessBinding> updateAccessBindingAsync(UpdateAccessBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Account> updateAccountAsync(UpdateAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AttributionSettings> updateAttributionSettingsAsync(UpdateAttributionSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Audience> updateAudienceAsync(UpdateAudienceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BigQueryLink> updateBigQueryLinkAsync(UpdateBigQueryLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CalculatedMetric> updateCalculatedMetricAsync(UpdateCalculatedMetricRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ChannelGroup> updateChannelGroupAsync(UpdateChannelGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversionEvent> updateConversionEventAsync(UpdateConversionEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomDimension> updateCustomDimensionAsync(UpdateCustomDimensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomMetric> updateCustomMetricAsync(UpdateCustomMetricRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataRedactionSettings> updateDataRedactionSettingsAsync(UpdateDataRedactionSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataRetentionSettings> updateDataRetentionSettingsAsync(UpdateDataRetentionSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataStream> updateDataStreamAsync(UpdateDataStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DisplayVideo360AdvertiserLink> updateDisplayVideo360AdvertiserLinkAsync(UpdateDisplayVideo360AdvertiserLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EnhancedMeasurementSettings> updateEnhancedMeasurementSettingsAsync(UpdateEnhancedMeasurementSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EventCreateRule> updateEventCreateRuleAsync(UpdateEventCreateRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EventEditRule> updateEventEditRuleAsync(UpdateEventEditRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExpandedDataSet> updateExpandedDataSetAsync(UpdateExpandedDataSetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GoogleAdsLink> updateGoogleAdsLinkAsync(UpdateGoogleAdsLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GoogleSignalsSettings> updateGoogleSignalsSettingsAsync(UpdateGoogleSignalsSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<KeyEvent> updateKeyEventAsync(UpdateKeyEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MeasurementProtocolSecret> updateMeasurementProtocolSecretAsync(UpdateMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Property> updatePropertyAsync(UpdatePropertyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SKAdNetworkConversionValueSchema> updateSKAdNetworkConversionValueSchemaAsync(UpdateSKAdNetworkConversionValueSchemaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SearchAds360Link> updateSearchAds360LinkAsync(UpdateSearchAds360LinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SubpropertyEventFilter> updateSubpropertyEventFilterAsync(UpdateSubpropertyEventFilterRequest $request, array $optionalArgs = [])
  */
 final class AnalyticsAdminServiceClient
 {
@@ -725,8 +756,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public static function displayVideo360AdvertiserLinkName(string $property, string $displayVideo360AdvertiserLink): string
-    {
+    public static function displayVideo360AdvertiserLinkName(
+        string $property,
+        string $displayVideo360AdvertiserLink
+    ): string {
         return self::getPathTemplate('displayVideo360AdvertiserLink')->render([
             'property' => $property,
             'display_video_360_advertiser_link' => $displayVideo360AdvertiserLink,
@@ -744,8 +777,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public static function displayVideo360AdvertiserLinkProposalName(string $property, string $displayVideo360AdvertiserLinkProposal): string
-    {
+    public static function displayVideo360AdvertiserLinkProposalName(
+        string $property,
+        string $displayVideo360AdvertiserLinkProposal
+    ): string {
         return self::getPathTemplate('displayVideo360AdvertiserLinkProposal')->render([
             'property' => $property,
             'display_video_360_advertiser_link_proposal' => $displayVideo360AdvertiserLinkProposal,
@@ -789,6 +824,27 @@ final class AnalyticsAdminServiceClient
             'property' => $property,
             'data_stream' => $dataStream,
             'event_create_rule' => $eventCreateRule,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * event_edit_rule resource.
+     *
+     * @param string $property
+     * @param string $dataStream
+     * @param string $eventEditRule
+     *
+     * @return string The formatted event_edit_rule resource.
+     *
+     * @experimental
+     */
+    public static function eventEditRuleName(string $property, string $dataStream, string $eventEditRule): string
+    {
+        return self::getPathTemplate('eventEditRule')->render([
+            'property' => $property,
+            'data_stream' => $dataStream,
+            'event_edit_rule' => $eventEditRule,
         ]);
     }
 
@@ -886,6 +942,25 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a key_event
+     * resource.
+     *
+     * @param string $property
+     * @param string $keyEvent
+     *
+     * @return string The formatted key_event resource.
+     *
+     * @experimental
+     */
+    public static function keyEventName(string $property, string $keyEvent): string
+    {
+        return self::getPathTemplate('keyEvent')->render([
+            'property' => $property,
+            'key_event' => $keyEvent,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * measurement_protocol_secret resource.
      *
@@ -897,12 +972,32 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public static function measurementProtocolSecretName(string $property, string $dataStream, string $measurementProtocolSecret): string
-    {
+    public static function measurementProtocolSecretName(
+        string $property,
+        string $dataStream,
+        string $measurementProtocolSecret
+    ): string {
         return self::getPathTemplate('measurementProtocolSecret')->render([
             'property' => $property,
             'data_stream' => $dataStream,
             'measurement_protocol_secret' => $measurementProtocolSecret,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a organization
+     * resource.
+     *
+     * @param string $organization
+     *
+     * @return string The formatted organization resource.
+     *
+     * @experimental
+     */
+    public static function organizationName(string $organization): string
+    {
+        return self::getPathTemplate('organization')->render([
+            'organization' => $organization,
         ]);
     }
 
@@ -973,8 +1068,11 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public static function sKAdNetworkConversionValueSchemaName(string $property, string $dataStream, string $skadnetworkConversionValueSchema): string
-    {
+    public static function sKAdNetworkConversionValueSchemaName(
+        string $property,
+        string $dataStream,
+        string $skadnetworkConversionValueSchema
+    ): string {
         return self::getPathTemplate('sKAdNetworkConversionValueSchema')->render([
             'property' => $property,
             'data_stream' => $dataStream,
@@ -1044,12 +1142,15 @@ final class AnalyticsAdminServiceClient
      * - displayVideo360AdvertiserLinkProposal: properties/{property}/displayVideo360AdvertiserLinkProposals/{display_video_360_advertiser_link_proposal}
      * - enhancedMeasurementSettings: properties/{property}/dataStreams/{data_stream}/enhancedMeasurementSettings
      * - eventCreateRule: properties/{property}/dataStreams/{data_stream}/eventCreateRules/{event_create_rule}
+     * - eventEditRule: properties/{property}/dataStreams/{data_stream}/eventEditRules/{event_edit_rule}
      * - expandedDataSet: properties/{property}/expandedDataSets/{expanded_data_set}
      * - firebaseLink: properties/{property}/firebaseLinks/{firebase_link}
      * - globalSiteTag: properties/{property}/dataStreams/{data_stream}/globalSiteTag
      * - googleAdsLink: properties/{property}/googleAdsLinks/{google_ads_link}
      * - googleSignalsSettings: properties/{property}/googleSignalsSettings
+     * - keyEvent: properties/{property}/keyEvents/{key_event}
      * - measurementProtocolSecret: properties/{property}/dataStreams/{data_stream}/measurementProtocolSecrets/{measurement_protocol_secret}
+     * - organization: organizations/{organization}
      * - property: properties/{property}
      * - propertyAccessBinding: properties/{property}/accessBindings/{access_binding}
      * - rollupPropertySourceLink: properties/{property}/rollupPropertySourceLinks/{rollup_property_source_link}
@@ -1063,8 +1164,8 @@ final class AnalyticsAdminServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
@@ -1072,7 +1173,7 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -1094,6 +1195,12 @@ final class AnalyticsAdminServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -1127,6 +1234,9 @@ final class AnalyticsAdminServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -1178,8 +1288,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function acknowledgeUserDataCollection(AcknowledgeUserDataCollectionRequest $request, array $callOptions = []): AcknowledgeUserDataCollectionResponse
-    {
+    public function acknowledgeUserDataCollection(
+        AcknowledgeUserDataCollectionRequest $request,
+        array $callOptions = []
+    ): AcknowledgeUserDataCollectionResponse {
         return $this->startApiCall('AcknowledgeUserDataCollection', $request, $callOptions)->wait();
     }
 
@@ -1210,8 +1322,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function approveDisplayVideo360AdvertiserLinkProposal(ApproveDisplayVideo360AdvertiserLinkProposalRequest $request, array $callOptions = []): ApproveDisplayVideo360AdvertiserLinkProposalResponse
-    {
+    public function approveDisplayVideo360AdvertiserLinkProposal(
+        ApproveDisplayVideo360AdvertiserLinkProposalRequest $request,
+        array $callOptions = []
+    ): ApproveDisplayVideo360AdvertiserLinkProposalResponse {
         return $this->startApiCall('ApproveDisplayVideo360AdvertiserLinkProposal', $request, $callOptions)->wait();
     }
 
@@ -1324,8 +1438,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function batchCreateAccessBindings(BatchCreateAccessBindingsRequest $request, array $callOptions = []): BatchCreateAccessBindingsResponse
-    {
+    public function batchCreateAccessBindings(
+        BatchCreateAccessBindingsRequest $request,
+        array $callOptions = []
+    ): BatchCreateAccessBindingsResponse {
         return $this->startApiCall('BatchCreateAccessBindings', $request, $callOptions)->wait();
     }
 
@@ -1380,8 +1496,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function batchGetAccessBindings(BatchGetAccessBindingsRequest $request, array $callOptions = []): BatchGetAccessBindingsResponse
-    {
+    public function batchGetAccessBindings(
+        BatchGetAccessBindingsRequest $request,
+        array $callOptions = []
+    ): BatchGetAccessBindingsResponse {
         return $this->startApiCall('BatchGetAccessBindings', $request, $callOptions)->wait();
     }
 
@@ -1410,8 +1528,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function batchUpdateAccessBindings(BatchUpdateAccessBindingsRequest $request, array $callOptions = []): BatchUpdateAccessBindingsResponse
-    {
+    public function batchUpdateAccessBindings(
+        BatchUpdateAccessBindingsRequest $request,
+        array $callOptions = []
+    ): BatchUpdateAccessBindingsResponse {
         return $this->startApiCall('BatchUpdateAccessBindings', $request, $callOptions)->wait();
     }
 
@@ -1444,8 +1564,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function cancelDisplayVideo360AdvertiserLinkProposal(CancelDisplayVideo360AdvertiserLinkProposalRequest $request, array $callOptions = []): DisplayVideo360AdvertiserLinkProposal
-    {
+    public function cancelDisplayVideo360AdvertiserLinkProposal(
+        CancelDisplayVideo360AdvertiserLinkProposalRequest $request,
+        array $callOptions = []
+    ): DisplayVideo360AdvertiserLinkProposal {
         return $this->startApiCall('CancelDisplayVideo360AdvertiserLinkProposal', $request, $callOptions)->wait();
     }
 
@@ -1536,6 +1658,35 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
+     * Creates a BigQueryLink.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::createBigQueryLinkAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/create_big_query_link.php
+     *
+     * @param CreateBigQueryLinkRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BigQueryLink
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createBigQueryLink(CreateBigQueryLinkRequest $request, array $callOptions = []): BigQueryLink
+    {
+        return $this->startApiCall('CreateBigQueryLink', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a CalculatedMetric.
      *
      * The async variant is
@@ -1559,8 +1710,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createCalculatedMetric(CreateCalculatedMetricRequest $request, array $callOptions = []): CalculatedMetric
-    {
+    public function createCalculatedMetric(
+        CreateCalculatedMetricRequest $request,
+        array $callOptions = []
+    ): CalculatedMetric {
         return $this->startApiCall('CreateCalculatedMetric', $request, $callOptions)->wait();
     }
 
@@ -1619,12 +1772,15 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createConnectedSiteTag(CreateConnectedSiteTagRequest $request, array $callOptions = []): CreateConnectedSiteTagResponse
-    {
+    public function createConnectedSiteTag(
+        CreateConnectedSiteTagRequest $request,
+        array $callOptions = []
+    ): CreateConnectedSiteTagResponse {
         return $this->startApiCall('CreateConnectedSiteTag', $request, $callOptions)->wait();
     }
 
     /**
+     * Deprecated: Use `CreateKeyEvent` instead.
      * Creates a conversion event with the specified attributes.
      *
      * The async variant is
@@ -1647,9 +1803,13 @@ final class AnalyticsAdminServiceClient
      * @throws ApiException Thrown if the API call fails.
      *
      * @experimental
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
-    public function createConversionEvent(CreateConversionEventRequest $request, array $callOptions = []): ConversionEvent
-    {
+    public function createConversionEvent(
+        CreateConversionEventRequest $request,
+        array $callOptions = []
+    ): ConversionEvent {
         return $this->startApiCall('CreateConversionEvent', $request, $callOptions)->wait();
     }
 
@@ -1677,8 +1837,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createCustomDimension(CreateCustomDimensionRequest $request, array $callOptions = []): CustomDimension
-    {
+    public function createCustomDimension(
+        CreateCustomDimensionRequest $request,
+        array $callOptions = []
+    ): CustomDimension {
         return $this->startApiCall('CreateCustomDimension', $request, $callOptions)->wait();
     }
 
@@ -1768,8 +1930,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createDisplayVideo360AdvertiserLink(CreateDisplayVideo360AdvertiserLinkRequest $request, array $callOptions = []): DisplayVideo360AdvertiserLink
-    {
+    public function createDisplayVideo360AdvertiserLink(
+        CreateDisplayVideo360AdvertiserLinkRequest $request,
+        array $callOptions = []
+    ): DisplayVideo360AdvertiserLink {
         return $this->startApiCall('CreateDisplayVideo360AdvertiserLink', $request, $callOptions)->wait();
     }
 
@@ -1798,8 +1962,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createDisplayVideo360AdvertiserLinkProposal(CreateDisplayVideo360AdvertiserLinkProposalRequest $request, array $callOptions = []): DisplayVideo360AdvertiserLinkProposal
-    {
+    public function createDisplayVideo360AdvertiserLinkProposal(
+        CreateDisplayVideo360AdvertiserLinkProposalRequest $request,
+        array $callOptions = []
+    ): DisplayVideo360AdvertiserLinkProposal {
         return $this->startApiCall('CreateDisplayVideo360AdvertiserLinkProposal', $request, $callOptions)->wait();
     }
 
@@ -1827,9 +1993,40 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createEventCreateRule(CreateEventCreateRuleRequest $request, array $callOptions = []): EventCreateRule
-    {
+    public function createEventCreateRule(
+        CreateEventCreateRuleRequest $request,
+        array $callOptions = []
+    ): EventCreateRule {
         return $this->startApiCall('CreateEventCreateRule', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates an EventEditRule.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::createEventEditRuleAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/create_event_edit_rule.php
+     *
+     * @param CreateEventEditRuleRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return EventEditRule
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createEventEditRule(CreateEventEditRuleRequest $request, array $callOptions = []): EventEditRule
+    {
+        return $this->startApiCall('CreateEventEditRule', $request, $callOptions)->wait();
     }
 
     /**
@@ -1856,8 +2053,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createExpandedDataSet(CreateExpandedDataSetRequest $request, array $callOptions = []): ExpandedDataSet
-    {
+    public function createExpandedDataSet(
+        CreateExpandedDataSetRequest $request,
+        array $callOptions = []
+    ): ExpandedDataSet {
         return $this->startApiCall('CreateExpandedDataSet', $request, $callOptions)->wait();
     }
 
@@ -1922,6 +2121,34 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
+     * Creates a Key Event.
+     *
+     * The async variant is {@see AnalyticsAdminServiceClient::createKeyEventAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/create_key_event.php
+     *
+     * @param CreateKeyEventRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return KeyEvent
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createKeyEvent(CreateKeyEventRequest $request, array $callOptions = []): KeyEvent
+    {
+        return $this->startApiCall('CreateKeyEvent', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a measurement protocol secret.
      *
      * The async variant is
@@ -1945,13 +2172,16 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createMeasurementProtocolSecret(CreateMeasurementProtocolSecretRequest $request, array $callOptions = []): MeasurementProtocolSecret
-    {
+    public function createMeasurementProtocolSecret(
+        CreateMeasurementProtocolSecretRequest $request,
+        array $callOptions = []
+    ): MeasurementProtocolSecret {
         return $this->startApiCall('CreateMeasurementProtocolSecret', $request, $callOptions)->wait();
     }
 
     /**
-     * Creates an "GA4" property with the specified location and attributes.
+     * Creates a Google Analytics property with the specified location and
+     * attributes.
      *
      * The async variant is {@see AnalyticsAdminServiceClient::createPropertyAsync()} .
      *
@@ -2002,8 +2232,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createRollupProperty(CreateRollupPropertyRequest $request, array $callOptions = []): CreateRollupPropertyResponse
-    {
+    public function createRollupProperty(
+        CreateRollupPropertyRequest $request,
+        array $callOptions = []
+    ): CreateRollupPropertyResponse {
         return $this->startApiCall('CreateRollupProperty', $request, $callOptions)->wait();
     }
 
@@ -2033,8 +2265,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createRollupPropertySourceLink(CreateRollupPropertySourceLinkRequest $request, array $callOptions = []): RollupPropertySourceLink
-    {
+    public function createRollupPropertySourceLink(
+        CreateRollupPropertySourceLinkRequest $request,
+        array $callOptions = []
+    ): RollupPropertySourceLink {
         return $this->startApiCall('CreateRollupPropertySourceLink', $request, $callOptions)->wait();
     }
 
@@ -2063,8 +2297,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createSKAdNetworkConversionValueSchema(CreateSKAdNetworkConversionValueSchemaRequest $request, array $callOptions = []): SKAdNetworkConversionValueSchema
-    {
+    public function createSKAdNetworkConversionValueSchema(
+        CreateSKAdNetworkConversionValueSchemaRequest $request,
+        array $callOptions = []
+    ): SKAdNetworkConversionValueSchema {
         return $this->startApiCall('CreateSKAdNetworkConversionValueSchema', $request, $callOptions)->wait();
     }
 
@@ -2092,39 +2328,11 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createSearchAds360Link(CreateSearchAds360LinkRequest $request, array $callOptions = []): SearchAds360Link
-    {
+    public function createSearchAds360Link(
+        CreateSearchAds360LinkRequest $request,
+        array $callOptions = []
+    ): SearchAds360Link {
         return $this->startApiCall('CreateSearchAds360Link', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Create a subproperty and a subproperty event filter that applies to the
-     * created subproperty.
-     *
-     * The async variant is
-     * {@see AnalyticsAdminServiceClient::createSubpropertyAsync()} .
-     *
-     * @example samples/V1alpha/AnalyticsAdminServiceClient/create_subproperty.php
-     *
-     * @param CreateSubpropertyRequest $request     A request to house fields associated with the call.
-     * @param array                    $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return CreateSubpropertyResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     *
-     * @experimental
-     */
-    public function createSubproperty(CreateSubpropertyRequest $request, array $callOptions = []): CreateSubpropertyResponse
-    {
-        return $this->startApiCall('CreateSubproperty', $request, $callOptions)->wait();
     }
 
     /**
@@ -2151,8 +2359,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createSubpropertyEventFilter(CreateSubpropertyEventFilterRequest $request, array $callOptions = []): SubpropertyEventFilter
-    {
+    public function createSubpropertyEventFilter(
+        CreateSubpropertyEventFilterRequest $request,
+        array $callOptions = []
+    ): SubpropertyEventFilter {
         return $this->startApiCall('CreateSubpropertyEventFilter', $request, $callOptions)->wait();
     }
 
@@ -2247,6 +2457,33 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
+     * Deletes a BigQueryLink on a property.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::deleteBigQueryLinkAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/delete_big_query_link.php
+     *
+     * @param DeleteBigQueryLinkRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteBigQueryLink(DeleteBigQueryLinkRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteBigQueryLink', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a CalculatedMetric on a property.
      *
      * The async variant is
@@ -2329,6 +2566,7 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
+     * Deprecated: Use `DeleteKeyEvent` instead.
      * Deletes a conversion event in a property.
      *
      * The async variant is
@@ -2349,6 +2587,8 @@ final class AnalyticsAdminServiceClient
      * @throws ApiException Thrown if the API call fails.
      *
      * @experimental
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function deleteConversionEvent(DeleteConversionEventRequest $request, array $callOptions = []): void
     {
@@ -2404,8 +2644,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function deleteDisplayVideo360AdvertiserLink(DeleteDisplayVideo360AdvertiserLinkRequest $request, array $callOptions = []): void
-    {
+    public function deleteDisplayVideo360AdvertiserLink(
+        DeleteDisplayVideo360AdvertiserLinkRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('DeleteDisplayVideo360AdvertiserLink', $request, $callOptions)->wait();
     }
 
@@ -2433,8 +2675,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function deleteDisplayVideo360AdvertiserLinkProposal(DeleteDisplayVideo360AdvertiserLinkProposalRequest $request, array $callOptions = []): void
-    {
+    public function deleteDisplayVideo360AdvertiserLinkProposal(
+        DeleteDisplayVideo360AdvertiserLinkProposalRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('DeleteDisplayVideo360AdvertiserLinkProposal', $request, $callOptions)->wait();
     }
 
@@ -2463,6 +2707,33 @@ final class AnalyticsAdminServiceClient
     public function deleteEventCreateRule(DeleteEventCreateRuleRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteEventCreateRule', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes an EventEditRule.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::deleteEventEditRuleAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/delete_event_edit_rule.php
+     *
+     * @param DeleteEventEditRuleRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteEventEditRule(DeleteEventEditRuleRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteEventEditRule', $request, $callOptions)->wait();
     }
 
     /**
@@ -2547,6 +2818,32 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
+     * Deletes a Key Event.
+     *
+     * The async variant is {@see AnalyticsAdminServiceClient::deleteKeyEventAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/delete_key_event.php
+     *
+     * @param DeleteKeyEventRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteKeyEvent(DeleteKeyEventRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteKeyEvent', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes target MeasurementProtocolSecret.
      *
      * The async variant is
@@ -2568,8 +2865,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function deleteMeasurementProtocolSecret(DeleteMeasurementProtocolSecretRequest $request, array $callOptions = []): void
-    {
+    public function deleteMeasurementProtocolSecret(
+        DeleteMeasurementProtocolSecretRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('DeleteMeasurementProtocolSecret', $request, $callOptions)->wait();
     }
 
@@ -2584,7 +2883,7 @@ final class AnalyticsAdminServiceClient
      * will be permanently purged.
      * https://support.google.com/analytics/answer/6154772
      *
-     * Returns an error if the target is not found, or is not a GA4 Property.
+     * Returns an error if the target is not found.
      *
      * The async variant is {@see AnalyticsAdminServiceClient::deletePropertyAsync()} .
      *
@@ -2635,8 +2934,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function deleteRollupPropertySourceLink(DeleteRollupPropertySourceLinkRequest $request, array $callOptions = []): void
-    {
+    public function deleteRollupPropertySourceLink(
+        DeleteRollupPropertySourceLinkRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('DeleteRollupPropertySourceLink', $request, $callOptions)->wait();
     }
 
@@ -2663,8 +2964,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function deleteSKAdNetworkConversionValueSchema(DeleteSKAdNetworkConversionValueSchemaRequest $request, array $callOptions = []): void
-    {
+    public function deleteSKAdNetworkConversionValueSchema(
+        DeleteSKAdNetworkConversionValueSchemaRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('DeleteSKAdNetworkConversionValueSchema', $request, $callOptions)->wait();
     }
 
@@ -2717,8 +3020,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function deleteSubpropertyEventFilter(DeleteSubpropertyEventFilterRequest $request, array $callOptions = []): void
-    {
+    public function deleteSubpropertyEventFilter(
+        DeleteSubpropertyEventFilterRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('DeleteSubpropertyEventFilter', $request, $callOptions)->wait();
     }
 
@@ -2749,8 +3054,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function fetchAutomatedGa4ConfigurationOptOut(FetchAutomatedGa4ConfigurationOptOutRequest $request, array $callOptions = []): FetchAutomatedGa4ConfigurationOptOutResponse
-    {
+    public function fetchAutomatedGa4ConfigurationOptOut(
+        FetchAutomatedGa4ConfigurationOptOutRequest $request,
+        array $callOptions = []
+    ): FetchAutomatedGa4ConfigurationOptOutResponse {
         return $this->startApiCall('FetchAutomatedGa4ConfigurationOptOut', $request, $callOptions)->wait();
     }
 
@@ -2779,8 +3086,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function fetchConnectedGa4Property(FetchConnectedGa4PropertyRequest $request, array $callOptions = []): FetchConnectedGa4PropertyResponse
-    {
+    public function fetchConnectedGa4Property(
+        FetchConnectedGa4PropertyRequest $request,
+        array $callOptions = []
+    ): FetchConnectedGa4PropertyResponse {
         return $this->startApiCall('FetchConnectedGa4Property', $request, $callOptions)->wait();
     }
 
@@ -2893,8 +3202,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getAttributionSettings(GetAttributionSettingsRequest $request, array $callOptions = []): AttributionSettings
-    {
+    public function getAttributionSettings(
+        GetAttributionSettingsRequest $request,
+        array $callOptions = []
+    ): AttributionSettings {
         return $this->startApiCall('GetAttributionSettings', $request, $callOptions)->wait();
     }
 
@@ -3016,6 +3327,7 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
+     * Deprecated: Use `GetKeyEvent` instead.
      * Retrieve a single conversion event.
      *
      * The async variant is
@@ -3038,6 +3350,8 @@ final class AnalyticsAdminServiceClient
      * @throws ApiException Thrown if the API call fails.
      *
      * @experimental
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getConversionEvent(GetConversionEventRequest $request, array $callOptions = []): ConversionEvent
     {
@@ -3126,8 +3440,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getDataRedactionSettings(GetDataRedactionSettingsRequest $request, array $callOptions = []): DataRedactionSettings
-    {
+    public function getDataRedactionSettings(
+        GetDataRedactionSettingsRequest $request,
+        array $callOptions = []
+    ): DataRedactionSettings {
         return $this->startApiCall('GetDataRedactionSettings', $request, $callOptions)->wait();
     }
 
@@ -3155,8 +3471,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getDataRetentionSettings(GetDataRetentionSettingsRequest $request, array $callOptions = []): DataRetentionSettings
-    {
+    public function getDataRetentionSettings(
+        GetDataRetentionSettingsRequest $request,
+        array $callOptions = []
+    ): DataRetentionSettings {
         return $this->startApiCall('GetDataRetentionSettings', $request, $callOptions)->wait();
     }
 
@@ -3185,8 +3503,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getDataSharingSettings(GetDataSharingSettingsRequest $request, array $callOptions = []): DataSharingSettings
-    {
+    public function getDataSharingSettings(
+        GetDataSharingSettingsRequest $request,
+        array $callOptions = []
+    ): DataSharingSettings {
         return $this->startApiCall('GetDataSharingSettings', $request, $callOptions)->wait();
     }
 
@@ -3242,8 +3562,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getDisplayVideo360AdvertiserLink(GetDisplayVideo360AdvertiserLinkRequest $request, array $callOptions = []): DisplayVideo360AdvertiserLink
-    {
+    public function getDisplayVideo360AdvertiserLink(
+        GetDisplayVideo360AdvertiserLinkRequest $request,
+        array $callOptions = []
+    ): DisplayVideo360AdvertiserLink {
         return $this->startApiCall('GetDisplayVideo360AdvertiserLink', $request, $callOptions)->wait();
     }
 
@@ -3272,8 +3594,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getDisplayVideo360AdvertiserLinkProposal(GetDisplayVideo360AdvertiserLinkProposalRequest $request, array $callOptions = []): DisplayVideo360AdvertiserLinkProposal
-    {
+    public function getDisplayVideo360AdvertiserLinkProposal(
+        GetDisplayVideo360AdvertiserLinkProposalRequest $request,
+        array $callOptions = []
+    ): DisplayVideo360AdvertiserLinkProposal {
         return $this->startApiCall('GetDisplayVideo360AdvertiserLinkProposal', $request, $callOptions)->wait();
     }
 
@@ -3303,8 +3627,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getEnhancedMeasurementSettings(GetEnhancedMeasurementSettingsRequest $request, array $callOptions = []): EnhancedMeasurementSettings
-    {
+    public function getEnhancedMeasurementSettings(
+        GetEnhancedMeasurementSettingsRequest $request,
+        array $callOptions = []
+    ): EnhancedMeasurementSettings {
         return $this->startApiCall('GetEnhancedMeasurementSettings', $request, $callOptions)->wait();
     }
 
@@ -3335,6 +3661,35 @@ final class AnalyticsAdminServiceClient
     public function getEventCreateRule(GetEventCreateRuleRequest $request, array $callOptions = []): EventCreateRule
     {
         return $this->startApiCall('GetEventCreateRule', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lookup for a single EventEditRule.
+     *
+     * The async variant is {@see AnalyticsAdminServiceClient::getEventEditRuleAsync()}
+     * .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/get_event_edit_rule.php
+     *
+     * @param GetEventEditRuleRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return EventEditRule
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getEventEditRule(GetEventEditRuleRequest $request, array $callOptions = []): EventEditRule
+    {
+        return $this->startApiCall('GetEventEditRule', $request, $callOptions)->wait();
     }
 
     /**
@@ -3420,13 +3775,43 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getGoogleSignalsSettings(GetGoogleSignalsSettingsRequest $request, array $callOptions = []): GoogleSignalsSettings
-    {
+    public function getGoogleSignalsSettings(
+        GetGoogleSignalsSettingsRequest $request,
+        array $callOptions = []
+    ): GoogleSignalsSettings {
         return $this->startApiCall('GetGoogleSignalsSettings', $request, $callOptions)->wait();
     }
 
     /**
-     * Lookup for a single "GA4" MeasurementProtocolSecret.
+     * Retrieve a single Key Event.
+     *
+     * The async variant is {@see AnalyticsAdminServiceClient::getKeyEventAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/get_key_event.php
+     *
+     * @param GetKeyEventRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return KeyEvent
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getKeyEvent(GetKeyEventRequest $request, array $callOptions = []): KeyEvent
+    {
+        return $this->startApiCall('GetKeyEvent', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lookup for a single MeasurementProtocolSecret.
      *
      * The async variant is
      * {@see AnalyticsAdminServiceClient::getMeasurementProtocolSecretAsync()} .
@@ -3449,13 +3834,15 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getMeasurementProtocolSecret(GetMeasurementProtocolSecretRequest $request, array $callOptions = []): MeasurementProtocolSecret
-    {
+    public function getMeasurementProtocolSecret(
+        GetMeasurementProtocolSecretRequest $request,
+        array $callOptions = []
+    ): MeasurementProtocolSecret {
         return $this->startApiCall('GetMeasurementProtocolSecret', $request, $callOptions)->wait();
     }
 
     /**
-     * Lookup for a single "GA4" Property.
+     * Lookup for a single GA Property.
      *
      * The async variant is {@see AnalyticsAdminServiceClient::getPropertyAsync()} .
      *
@@ -3508,8 +3895,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getRollupPropertySourceLink(GetRollupPropertySourceLinkRequest $request, array $callOptions = []): RollupPropertySourceLink
-    {
+    public function getRollupPropertySourceLink(
+        GetRollupPropertySourceLinkRequest $request,
+        array $callOptions = []
+    ): RollupPropertySourceLink {
         return $this->startApiCall('GetRollupPropertySourceLink', $request, $callOptions)->wait();
     }
 
@@ -3537,8 +3926,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getSKAdNetworkConversionValueSchema(GetSKAdNetworkConversionValueSchemaRequest $request, array $callOptions = []): SKAdNetworkConversionValueSchema
-    {
+    public function getSKAdNetworkConversionValueSchema(
+        GetSKAdNetworkConversionValueSchemaRequest $request,
+        array $callOptions = []
+    ): SKAdNetworkConversionValueSchema {
         return $this->startApiCall('GetSKAdNetworkConversionValueSchema', $request, $callOptions)->wait();
     }
 
@@ -3595,8 +3986,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getSubpropertyEventFilter(GetSubpropertyEventFilterRequest $request, array $callOptions = []): SubpropertyEventFilter
-    {
+    public function getSubpropertyEventFilter(
+        GetSubpropertyEventFilterRequest $request,
+        array $callOptions = []
+    ): SubpropertyEventFilter {
         return $this->startApiCall('GetSubpropertyEventFilter', $request, $callOptions)->wait();
     }
 
@@ -3653,15 +4046,17 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listAccountSummaries(ListAccountSummariesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listAccountSummaries(
+        ListAccountSummariesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListAccountSummaries', $request, $callOptions);
     }
 
     /**
      * Returns all accounts accessible by the caller.
      *
-     * Note that these accounts might not currently have GA4 properties.
+     * Note that these accounts might not currently have GA properties.
      * Soft-deleted (ie: "trashed") accounts are excluded by default.
      * Returns an empty list if no relevant accounts are found.
      *
@@ -3802,8 +4197,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listCalculatedMetrics(ListCalculatedMetricsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listCalculatedMetrics(
+        ListCalculatedMetricsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListCalculatedMetrics', $request, $callOptions);
     }
 
@@ -3862,12 +4259,15 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listConnectedSiteTags(ListConnectedSiteTagsRequest $request, array $callOptions = []): ListConnectedSiteTagsResponse
-    {
+    public function listConnectedSiteTags(
+        ListConnectedSiteTagsRequest $request,
+        array $callOptions = []
+    ): ListConnectedSiteTagsResponse {
         return $this->startApiCall('ListConnectedSiteTags', $request, $callOptions)->wait();
     }
 
     /**
+     * Deprecated: Use `ListKeyEvents` instead.
      * Returns a list of conversion events in the specified parent property.
      *
      * Returns an empty list if no conversion events are found.
@@ -3892,9 +4292,13 @@ final class AnalyticsAdminServiceClient
      * @throws ApiException Thrown if the API call fails.
      *
      * @experimental
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
-    public function listConversionEvents(ListConversionEventsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listConversionEvents(
+        ListConversionEventsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListConversionEvents', $request, $callOptions);
     }
 
@@ -3922,8 +4326,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listCustomDimensions(ListCustomDimensionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listCustomDimensions(
+        ListCustomDimensionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListCustomDimensions', $request, $callOptions);
     }
 
@@ -4010,8 +4416,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listDisplayVideo360AdvertiserLinkProposals(ListDisplayVideo360AdvertiserLinkProposalsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listDisplayVideo360AdvertiserLinkProposals(
+        ListDisplayVideo360AdvertiserLinkProposalsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListDisplayVideo360AdvertiserLinkProposals', $request, $callOptions);
     }
 
@@ -4039,8 +4447,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listDisplayVideo360AdvertiserLinks(ListDisplayVideo360AdvertiserLinksRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listDisplayVideo360AdvertiserLinks(
+        ListDisplayVideo360AdvertiserLinksRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListDisplayVideo360AdvertiserLinks', $request, $callOptions);
     }
 
@@ -4068,9 +4478,40 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listEventCreateRules(ListEventCreateRulesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listEventCreateRules(
+        ListEventCreateRulesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListEventCreateRules', $request, $callOptions);
+    }
+
+    /**
+     * Lists EventEditRules on a web data stream.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::listEventEditRulesAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/list_event_edit_rules.php
+     *
+     * @param ListEventEditRulesRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listEventEditRules(ListEventEditRulesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListEventEditRules', $request, $callOptions);
     }
 
     /**
@@ -4097,8 +4538,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listExpandedDataSets(ListExpandedDataSetsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listExpandedDataSets(
+        ListExpandedDataSetsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListExpandedDataSets', $request, $callOptions);
     }
 
@@ -4162,6 +4605,35 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
+     * Returns a list of Key Events in the specified parent property.
+     * Returns an empty list if no Key Events are found.
+     *
+     * The async variant is {@see AnalyticsAdminServiceClient::listKeyEventsAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/list_key_events.php
+     *
+     * @param ListKeyEventsRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listKeyEvents(ListKeyEventsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListKeyEvents', $request, $callOptions);
+    }
+
+    /**
      * Returns child MeasurementProtocolSecrets under the specified parent
      * Property.
      *
@@ -4186,15 +4658,16 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listMeasurementProtocolSecrets(ListMeasurementProtocolSecretsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listMeasurementProtocolSecrets(
+        ListMeasurementProtocolSecretsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListMeasurementProtocolSecrets', $request, $callOptions);
     }
 
     /**
      * Returns child Properties under the specified parent Account.
      *
-     * Only "GA4" properties will be returned.
      * Properties will be excluded if the caller does not have access.
      * Soft-deleted (ie: "trashed") properties are excluded by default.
      * Returns an empty list if no relevant properties are found.
@@ -4250,8 +4723,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listRollupPropertySourceLinks(ListRollupPropertySourceLinksRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listRollupPropertySourceLinks(
+        ListRollupPropertySourceLinksRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListRollupPropertySourceLinks', $request, $callOptions);
     }
 
@@ -4281,8 +4756,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listSKAdNetworkConversionValueSchemas(ListSKAdNetworkConversionValueSchemasRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listSKAdNetworkConversionValueSchemas(
+        ListSKAdNetworkConversionValueSchemasRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListSKAdNetworkConversionValueSchemas', $request, $callOptions);
     }
 
@@ -4310,8 +4787,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listSearchAds360Links(ListSearchAds360LinksRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listSearchAds360Links(
+        ListSearchAds360LinksRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListSearchAds360Links', $request, $callOptions);
     }
 
@@ -4339,8 +4818,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listSubpropertyEventFilters(ListSubpropertyEventFiltersRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listSubpropertyEventFilters(
+        ListSubpropertyEventFiltersRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListSubpropertyEventFilters', $request, $callOptions);
     }
 
@@ -4368,9 +4849,70 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function provisionAccountTicket(ProvisionAccountTicketRequest $request, array $callOptions = []): ProvisionAccountTicketResponse
-    {
+    public function provisionAccountTicket(
+        ProvisionAccountTicketRequest $request,
+        array $callOptions = []
+    ): ProvisionAccountTicketResponse {
         return $this->startApiCall('ProvisionAccountTicket', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Create a subproperty and a subproperty event filter that applies to the
+     * created subproperty.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::provisionSubpropertyAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/provision_subproperty.php
+     *
+     * @param ProvisionSubpropertyRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ProvisionSubpropertyResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function provisionSubproperty(
+        ProvisionSubpropertyRequest $request,
+        array $callOptions = []
+    ): ProvisionSubpropertyResponse {
+        return $this->startApiCall('ProvisionSubproperty', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Changes the processing order of event edit rules on the specified stream.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::reorderEventEditRulesAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/reorder_event_edit_rules.php
+     *
+     * @param ReorderEventEditRulesRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function reorderEventEditRules(ReorderEventEditRulesRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('ReorderEventEditRules', $request, $callOptions)->wait();
     }
 
     /**
@@ -4383,12 +4925,17 @@ final class AnalyticsAdminServiceClient
      * only be requested on Google Analytics 360 properties. This method is only
      * available to Administrators.
      *
-     * These data access records include GA4 UI Reporting, GA4 UI Explorations,
-     * GA4 Data API, and other products like Firebase & Admob that can retrieve
+     * These data access records include GA UI Reporting, GA UI Explorations,
+     * GA Data API, and other products like Firebase & Admob that can retrieve
      * data from Google Analytics through a linkage. These records don't include
      * property configuration changes like adding a stream or changing a
      * property's time zone. For configuration change history, see
      * [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).
+     *
+     * To give your feedback on this API, complete the [Google Analytics Access
+     * Reports
+     * feedback](https://docs.google.com/forms/d/e/1FAIpQLSdmEBUrMzAEdiEKk5TV5dEHvDUZDRlgWYdQdAeSdtR4hVjEhw/viewform)
+     * form.
      *
      * The async variant is {@see AnalyticsAdminServiceClient::runAccessReportAsync()}
      * .
@@ -4420,6 +4967,9 @@ final class AnalyticsAdminServiceClient
      * Searches through all changes to an account or its children given the
      * specified set of filters.
      *
+     * Only returns the subset of changes supported by the API. The UI may return
+     * additional changes.
+     *
      * The async variant is
      * {@see AnalyticsAdminServiceClient::searchChangeHistoryEventsAsync()} .
      *
@@ -4441,8 +4991,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function searchChangeHistoryEvents(SearchChangeHistoryEventsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function searchChangeHistoryEvents(
+        SearchChangeHistoryEventsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('SearchChangeHistoryEvents', $request, $callOptions);
     }
 
@@ -4472,8 +5024,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function setAutomatedGa4ConfigurationOptOut(SetAutomatedGa4ConfigurationOptOutRequest $request, array $callOptions = []): SetAutomatedGa4ConfigurationOptOutResponse
-    {
+    public function setAutomatedGa4ConfigurationOptOut(
+        SetAutomatedGa4ConfigurationOptOutRequest $request,
+        array $callOptions = []
+    ): SetAutomatedGa4ConfigurationOptOutResponse {
         return $this->startApiCall('SetAutomatedGa4ConfigurationOptOut', $request, $callOptions)->wait();
     }
 
@@ -4558,8 +5112,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateAttributionSettings(UpdateAttributionSettingsRequest $request, array $callOptions = []): AttributionSettings
-    {
+    public function updateAttributionSettings(
+        UpdateAttributionSettingsRequest $request,
+        array $callOptions = []
+    ): AttributionSettings {
         return $this->startApiCall('UpdateAttributionSettings', $request, $callOptions)->wait();
     }
 
@@ -4592,6 +5148,35 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
+     * Updates a BigQueryLink.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::updateBigQueryLinkAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/update_big_query_link.php
+     *
+     * @param UpdateBigQueryLinkRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BigQueryLink
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateBigQueryLink(UpdateBigQueryLinkRequest $request, array $callOptions = []): BigQueryLink
+    {
+        return $this->startApiCall('UpdateBigQueryLink', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates a CalculatedMetric on a property.
      *
      * The async variant is
@@ -4615,8 +5200,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateCalculatedMetric(UpdateCalculatedMetricRequest $request, array $callOptions = []): CalculatedMetric
-    {
+    public function updateCalculatedMetric(
+        UpdateCalculatedMetricRequest $request,
+        array $callOptions = []
+    ): CalculatedMetric {
         return $this->startApiCall('UpdateCalculatedMetric', $request, $callOptions)->wait();
     }
 
@@ -4650,6 +5237,7 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
+     * Deprecated: Use `UpdateKeyEvent` instead.
      * Updates a conversion event with the specified attributes.
      *
      * The async variant is
@@ -4672,9 +5260,13 @@ final class AnalyticsAdminServiceClient
      * @throws ApiException Thrown if the API call fails.
      *
      * @experimental
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
-    public function updateConversionEvent(UpdateConversionEventRequest $request, array $callOptions = []): ConversionEvent
-    {
+    public function updateConversionEvent(
+        UpdateConversionEventRequest $request,
+        array $callOptions = []
+    ): ConversionEvent {
         return $this->startApiCall('UpdateConversionEvent', $request, $callOptions)->wait();
     }
 
@@ -4702,8 +5294,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateCustomDimension(UpdateCustomDimensionRequest $request, array $callOptions = []): CustomDimension
-    {
+    public function updateCustomDimension(
+        UpdateCustomDimensionRequest $request,
+        array $callOptions = []
+    ): CustomDimension {
         return $this->startApiCall('UpdateCustomDimension', $request, $callOptions)->wait();
     }
 
@@ -4760,8 +5354,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateDataRedactionSettings(UpdateDataRedactionSettingsRequest $request, array $callOptions = []): DataRedactionSettings
-    {
+    public function updateDataRedactionSettings(
+        UpdateDataRedactionSettingsRequest $request,
+        array $callOptions = []
+    ): DataRedactionSettings {
         return $this->startApiCall('UpdateDataRedactionSettings', $request, $callOptions)->wait();
     }
 
@@ -4789,8 +5385,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateDataRetentionSettings(UpdateDataRetentionSettingsRequest $request, array $callOptions = []): DataRetentionSettings
-    {
+    public function updateDataRetentionSettings(
+        UpdateDataRetentionSettingsRequest $request,
+        array $callOptions = []
+    ): DataRetentionSettings {
         return $this->startApiCall('UpdateDataRetentionSettings', $request, $callOptions)->wait();
     }
 
@@ -4847,8 +5445,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateDisplayVideo360AdvertiserLink(UpdateDisplayVideo360AdvertiserLinkRequest $request, array $callOptions = []): DisplayVideo360AdvertiserLink
-    {
+    public function updateDisplayVideo360AdvertiserLink(
+        UpdateDisplayVideo360AdvertiserLinkRequest $request,
+        array $callOptions = []
+    ): DisplayVideo360AdvertiserLink {
         return $this->startApiCall('UpdateDisplayVideo360AdvertiserLink', $request, $callOptions)->wait();
     }
 
@@ -4878,8 +5478,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateEnhancedMeasurementSettings(UpdateEnhancedMeasurementSettingsRequest $request, array $callOptions = []): EnhancedMeasurementSettings
-    {
+    public function updateEnhancedMeasurementSettings(
+        UpdateEnhancedMeasurementSettingsRequest $request,
+        array $callOptions = []
+    ): EnhancedMeasurementSettings {
         return $this->startApiCall('UpdateEnhancedMeasurementSettings', $request, $callOptions)->wait();
     }
 
@@ -4907,9 +5509,40 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateEventCreateRule(UpdateEventCreateRuleRequest $request, array $callOptions = []): EventCreateRule
-    {
+    public function updateEventCreateRule(
+        UpdateEventCreateRuleRequest $request,
+        array $callOptions = []
+    ): EventCreateRule {
         return $this->startApiCall('UpdateEventCreateRule', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates an EventEditRule.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::updateEventEditRuleAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/update_event_edit_rule.php
+     *
+     * @param UpdateEventEditRuleRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return EventEditRule
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateEventEditRule(UpdateEventEditRuleRequest $request, array $callOptions = []): EventEditRule
+    {
+        return $this->startApiCall('UpdateEventEditRule', $request, $callOptions)->wait();
     }
 
     /**
@@ -4936,8 +5569,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateExpandedDataSet(UpdateExpandedDataSetRequest $request, array $callOptions = []): ExpandedDataSet
-    {
+    public function updateExpandedDataSet(
+        UpdateExpandedDataSetRequest $request,
+        array $callOptions = []
+    ): ExpandedDataSet {
         return $this->startApiCall('UpdateExpandedDataSet', $request, $callOptions)->wait();
     }
 
@@ -4994,9 +5629,39 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateGoogleSignalsSettings(UpdateGoogleSignalsSettingsRequest $request, array $callOptions = []): GoogleSignalsSettings
-    {
+    public function updateGoogleSignalsSettings(
+        UpdateGoogleSignalsSettingsRequest $request,
+        array $callOptions = []
+    ): GoogleSignalsSettings {
         return $this->startApiCall('UpdateGoogleSignalsSettings', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a Key Event.
+     *
+     * The async variant is {@see AnalyticsAdminServiceClient::updateKeyEventAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/update_key_event.php
+     *
+     * @param UpdateKeyEventRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return KeyEvent
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateKeyEvent(UpdateKeyEventRequest $request, array $callOptions = []): KeyEvent
+    {
+        return $this->startApiCall('UpdateKeyEvent', $request, $callOptions)->wait();
     }
 
     /**
@@ -5023,8 +5688,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateMeasurementProtocolSecret(UpdateMeasurementProtocolSecretRequest $request, array $callOptions = []): MeasurementProtocolSecret
-    {
+    public function updateMeasurementProtocolSecret(
+        UpdateMeasurementProtocolSecretRequest $request,
+        array $callOptions = []
+    ): MeasurementProtocolSecret {
         return $this->startApiCall('UpdateMeasurementProtocolSecret', $request, $callOptions)->wait();
     }
 
@@ -5081,8 +5748,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateSKAdNetworkConversionValueSchema(UpdateSKAdNetworkConversionValueSchemaRequest $request, array $callOptions = []): SKAdNetworkConversionValueSchema
-    {
+    public function updateSKAdNetworkConversionValueSchema(
+        UpdateSKAdNetworkConversionValueSchemaRequest $request,
+        array $callOptions = []
+    ): SKAdNetworkConversionValueSchema {
         return $this->startApiCall('UpdateSKAdNetworkConversionValueSchema', $request, $callOptions)->wait();
     }
 
@@ -5110,8 +5779,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateSearchAds360Link(UpdateSearchAds360LinkRequest $request, array $callOptions = []): SearchAds360Link
-    {
+    public function updateSearchAds360Link(
+        UpdateSearchAds360LinkRequest $request,
+        array $callOptions = []
+    ): SearchAds360Link {
         return $this->startApiCall('UpdateSearchAds360Link', $request, $callOptions)->wait();
     }
 
@@ -5139,8 +5810,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateSubpropertyEventFilter(UpdateSubpropertyEventFilterRequest $request, array $callOptions = []): SubpropertyEventFilter
-    {
+    public function updateSubpropertyEventFilter(
+        UpdateSubpropertyEventFilterRequest $request,
+        array $callOptions = []
+    ): SubpropertyEventFilter {
         return $this->startApiCall('UpdateSubpropertyEventFilter', $request, $callOptions)->wait();
     }
 }

@@ -36,7 +36,7 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ dominant_colors'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\DominantColorsAnnotation">Google\Cloud\Vision\V1\DominantColorsAnnotation</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\DominantColorsAnnotation">DominantColorsAnnotation</xref>'
           description: 'If present, dominant colors completed successfully.'
   -
     uid: '\Google\Cloud\Vision\V1\ImageProperties::getDominantColors()'
@@ -50,7 +50,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\DominantColorsAnnotation">Google\Cloud\Vision\V1\DominantColorsAnnotation</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\DominantColorsAnnotation">DominantColorsAnnotation</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\ImageProperties::hasDominantColors()'
     name: hasDominantColors
@@ -80,7 +80,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\DominantColorsAnnotation">Google\Cloud\Vision\V1\DominantColorsAnnotation</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\DominantColorsAnnotation">DominantColorsAnnotation</xref>'
           description: ''
       returns:
         -

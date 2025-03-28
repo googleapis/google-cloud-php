@@ -100,6 +100,12 @@ class LocationCategory
      */
     const CROATIA = 42;
     /**
+     * The infoType is typically used in Czechia.
+     *
+     * Generated from protobuf enum <code>CZECHIA = 52;</code>
+     */
+    const CZECHIA = 52;
+    /**
      * The infoType is typically used in Denmark.
      *
      * Generated from protobuf enum <code>DENMARK = 10;</code>
@@ -337,6 +343,7 @@ class LocationCategory
         self::CHINA => 'CHINA',
         self::COLOMBIA => 'COLOMBIA',
         self::CROATIA => 'CROATIA',
+        self::CZECHIA => 'CZECHIA',
         self::DENMARK => 'DENMARK',
         self::FRANCE => 'FRANCE',
         self::FINLAND => 'FINLAND',
@@ -401,6 +408,4 @@ class LocationCategory
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LocationCategory::class, \Google\Cloud\Dlp\V2\InfoTypeCategory_LocationCategory::class);
 

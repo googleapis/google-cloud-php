@@ -19,7 +19,7 @@ class ResolveServiceResponse extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>.google.cloud.servicedirectory.v1.Service service = 1;</code>
      */
-    private $service = null;
+    protected $service = null;
 
     /**
      * Constructor.

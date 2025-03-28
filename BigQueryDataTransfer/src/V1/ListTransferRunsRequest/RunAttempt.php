@@ -52,6 +52,4 @@ class RunAttempt
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RunAttempt::class, \Google\Cloud\BigQuery\DataTransfer\V1\ListTransferRunsRequest_RunAttempt::class);
 

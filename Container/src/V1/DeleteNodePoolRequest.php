@@ -57,7 +57,7 @@ class DeleteNodePoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 6;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string $projectId  Deprecated. The Google Developers Console [project ID or project

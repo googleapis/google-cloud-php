@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,6 +47,18 @@ return [
                     ],
                 ],
             ],
+            'GenerateStatelessSuggestion' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dialogflow\V2\GenerateStatelessSuggestionResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GenerateStatelessSummary' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryResponse',
@@ -60,6 +72,18 @@ return [
                     ],
                 ],
             ],
+            'GenerateSuggestions' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dialogflow\V2\GenerateSuggestionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'conversation',
+                        'fieldAccessors' => [
+                            'getConversation',
+                        ],
+                    ],
+                ],
+            ],
             'GetConversation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dialogflow\V2\Conversation',
@@ -68,6 +92,18 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'IngestContextReferences' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dialogflow\V2\IngestContextReferencesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'conversation',
+                        'fieldAccessors' => [
+                            'getConversation',
                         ],
                     ],
                 ],
@@ -182,10 +218,13 @@ return [
                 'conversation' => 'projects/{project}/conversations/{conversation}',
                 'conversationModel' => 'projects/{project}/locations/{location}/conversationModels/{conversation_model}',
                 'conversationProfile' => 'projects/{project}/conversationProfiles/{conversation_profile}',
+                'dataStore' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}',
                 'document' => 'projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}',
+                'generator' => 'projects/{project}/locations/{location}/generators/{generator}',
                 'knowledgeBase' => 'projects/{project}/knowledgeBases/{knowledge_base}',
                 'location' => 'projects/{project}/locations/{location}',
                 'message' => 'projects/{project}/conversations/{conversation}/messages/{message}',
+                'phraseSet' => 'projects/{project}/locations/{location}/phraseSets/{phrase_set}',
                 'project' => 'projects/{project}',
                 'projectAgent' => 'projects/{project}/agent',
                 'projectConversation' => 'projects/{project}/conversations/{conversation}',
@@ -195,10 +234,12 @@ return [
                 'projectKnowledgeBase' => 'projects/{project}/knowledgeBases/{knowledge_base}',
                 'projectKnowledgeBaseDocument' => 'projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}',
                 'projectLocationAgent' => 'projects/{project}/locations/{location}/agent',
+                'projectLocationCollectionDataStore' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}',
                 'projectLocationConversation' => 'projects/{project}/locations/{location}/conversations/{conversation}',
                 'projectLocationConversationMessage' => 'projects/{project}/locations/{location}/conversations/{conversation}/messages/{message}',
                 'projectLocationConversationModel' => 'projects/{project}/locations/{location}/conversationModels/{conversation_model}',
                 'projectLocationConversationProfile' => 'projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}',
+                'projectLocationDataStore' => 'projects/{project}/locations/{location}/dataStores/{data_store}',
                 'projectLocationKnowledgeBase' => 'projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}',
                 'projectLocationKnowledgeBaseDocument' => 'projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}/documents/{document}',
             ],

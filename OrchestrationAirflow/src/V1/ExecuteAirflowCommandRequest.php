@@ -21,19 +21,19 @@ class ExecuteAirflowCommandRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string environment = 1;</code>
      */
-    private $environment = '';
+    protected $environment = '';
     /**
      * Airflow command.
      *
      * Generated from protobuf field <code>string command = 2;</code>
      */
-    private $command = '';
+    protected $command = '';
     /**
      * Airflow subcommand.
      *
      * Generated from protobuf field <code>string subcommand = 3;</code>
      */
-    private $subcommand = '';
+    protected $subcommand = '';
     /**
      * Parameters for the Airflow command/subcommand as an array of arguments.
      * It may contain positional arguments like `["my-dag-id"]`, key-value

@@ -32,7 +32,7 @@ class LayoutTableBlock extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string caption = 3;</code>
      */
-    private $caption = '';
+    protected $caption = '';
 
     /**
      * Constructor.

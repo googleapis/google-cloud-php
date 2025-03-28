@@ -20,7 +20,7 @@ class UpdateControlRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Control control = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $control = null;
+    protected $control = null;
     /**
      * Indicates which fields in the provided
      * [Control][google.cloud.retail.v2.Control] to update. The following are NOT
@@ -30,7 +30,7 @@ class UpdateControlRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Retail\V2\Control $control    Required. The Control to update.

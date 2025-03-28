@@ -21,7 +21,7 @@ class UpdateChannelPartnerRepricingConfigRequest extends \Google\Protobuf\Intern
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ChannelPartnerRepricingConfig channel_partner_repricing_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $channel_partner_repricing_config = null;
+    protected $channel_partner_repricing_config = null;
 
     /**
      * @param \Google\Cloud\Channel\V1\ChannelPartnerRepricingConfig $channelPartnerRepricingConfig Required. The ChannelPartnerRepricingConfig object to update.

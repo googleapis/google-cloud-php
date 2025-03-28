@@ -21,7 +21,7 @@ class StartEnvironmentMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.shell.v1.StartEnvironmentMetadata.State state = 1;</code>
      */
-    private $state = 0;
+    protected $state = 0;
 
     /**
      * Constructor.

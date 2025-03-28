@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,6 +44,7 @@ use Google\Cloud\Iap\V1\ListBrandsResponse;
 use Google\Cloud\Iap\V1\ListIdentityAwareProxyClientsRequest;
 use Google\Cloud\Iap\V1\ResetIdentityAwareProxyClientSecretRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: API to programmatically create, list and retrieve Identity Aware Proxy (IAP)
@@ -53,14 +54,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface createBrandAsync(CreateBrandRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createIdentityAwareProxyClientAsync(CreateIdentityAwareProxyClientRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteIdentityAwareProxyClientAsync(DeleteIdentityAwareProxyClientRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBrandAsync(GetBrandRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIdentityAwareProxyClientAsync(GetIdentityAwareProxyClientRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBrandsAsync(ListBrandsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listIdentityAwareProxyClientsAsync(ListIdentityAwareProxyClientsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resetIdentityAwareProxyClientSecretAsync(ResetIdentityAwareProxyClientSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Brand> createBrandAsync(CreateBrandRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IdentityAwareProxyClient> createIdentityAwareProxyClientAsync(CreateIdentityAwareProxyClientRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteIdentityAwareProxyClientAsync(DeleteIdentityAwareProxyClientRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Brand> getBrandAsync(GetBrandRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IdentityAwareProxyClient> getIdentityAwareProxyClientAsync(GetIdentityAwareProxyClientRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListBrandsResponse> listBrandsAsync(ListBrandsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listIdentityAwareProxyClientsAsync(ListIdentityAwareProxyClientsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IdentityAwareProxyClient> resetIdentityAwareProxyClientSecretAsync(ResetIdentityAwareProxyClientSecretRequest $request, array $optionalArgs = [])
  */
 final class IdentityAwareProxyOAuthServiceClient
 {
@@ -86,9 +87,7 @@ final class IdentityAwareProxyOAuthServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -96,14 +95,16 @@ final class IdentityAwareProxyOAuthServiceClient
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__ . '/../resources/identity_aware_proxy_o_auth_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/identity_aware_proxy_o_auth_service_descriptor_config.php',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/identity_aware_proxy_o_auth_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__ . '/../resources/identity_aware_proxy_o_auth_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/identity_aware_proxy_o_auth_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/identity_aware_proxy_o_auth_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -126,6 +127,12 @@ final class IdentityAwareProxyOAuthServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -159,6 +166,9 @@ final class IdentityAwareProxyOAuthServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -239,8 +249,10 @@ final class IdentityAwareProxyOAuthServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createIdentityAwareProxyClient(CreateIdentityAwareProxyClientRequest $request, array $callOptions = []): IdentityAwareProxyClient
-    {
+    public function createIdentityAwareProxyClient(
+        CreateIdentityAwareProxyClientRequest $request,
+        array $callOptions = []
+    ): IdentityAwareProxyClient {
         return $this->startApiCall('CreateIdentityAwareProxyClient', $request, $callOptions)->wait();
     }
 
@@ -267,8 +279,10 @@ final class IdentityAwareProxyOAuthServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteIdentityAwareProxyClient(DeleteIdentityAwareProxyClientRequest $request, array $callOptions = []): void
-    {
+    public function deleteIdentityAwareProxyClient(
+        DeleteIdentityAwareProxyClientRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('DeleteIdentityAwareProxyClient', $request, $callOptions)->wait();
     }
 
@@ -323,8 +337,10 @@ final class IdentityAwareProxyOAuthServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getIdentityAwareProxyClient(GetIdentityAwareProxyClientRequest $request, array $callOptions = []): IdentityAwareProxyClient
-    {
+    public function getIdentityAwareProxyClient(
+        GetIdentityAwareProxyClientRequest $request,
+        array $callOptions = []
+    ): IdentityAwareProxyClient {
         return $this->startApiCall('GetIdentityAwareProxyClient', $request, $callOptions)->wait();
     }
 
@@ -378,8 +394,10 @@ final class IdentityAwareProxyOAuthServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listIdentityAwareProxyClients(ListIdentityAwareProxyClientsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listIdentityAwareProxyClients(
+        ListIdentityAwareProxyClientsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListIdentityAwareProxyClients', $request, $callOptions);
     }
 
@@ -407,8 +425,10 @@ final class IdentityAwareProxyOAuthServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function resetIdentityAwareProxyClientSecret(ResetIdentityAwareProxyClientSecretRequest $request, array $callOptions = []): IdentityAwareProxyClient
-    {
+    public function resetIdentityAwareProxyClientSecret(
+        ResetIdentityAwareProxyClientSecretRequest $request,
+        array $callOptions = []
+    ): IdentityAwareProxyClient {
         return $this->startApiCall('ResetIdentityAwareProxyClientSecret', $request, $callOptions)->wait();
     }
 }

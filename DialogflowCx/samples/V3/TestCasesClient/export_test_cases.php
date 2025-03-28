@@ -44,7 +44,7 @@ use Google\Rpc\Status;
  * [ExportTestCasesResponse][google.cloud.dialogflow.cx.v3.ExportTestCasesResponse]
  *
  * @param string $formattedParent The agent where to export test cases from.
- *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                                Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
  *                                {@see TestCasesClient::agentName()} for help formatting this field.
  */
 function export_test_cases_sample(string $formattedParent): void

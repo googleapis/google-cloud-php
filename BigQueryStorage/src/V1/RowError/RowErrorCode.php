@@ -52,6 +52,4 @@ class RowErrorCode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RowErrorCode::class, \Google\Cloud\BigQuery\Storage\V1\RowError_RowErrorCode::class);
 

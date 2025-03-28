@@ -25,34 +25,34 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string url_regex = 1;</code>
      */
-    private $url_regex = '';
+    protected $url_regex = '';
     /**
      * Security (HTTPS) enforcement for this URL.
      *
      * Generated from protobuf field <code>.google.appengine.v1.SecurityLevel security_level = 5;</code>
      */
-    private $security_level = 0;
+    protected $security_level = 0;
     /**
      * Level of login required to access this resource. Not supported for Node.js
      * in the App Engine standard environment.
      *
      * Generated from protobuf field <code>.google.appengine.v1.LoginRequirement login = 6;</code>
      */
-    private $login = 0;
+    protected $login = 0;
     /**
      * Action to take when users access resources that require
      * authentication. Defaults to `redirect`.
      *
      * Generated from protobuf field <code>.google.appengine.v1.AuthFailAction auth_fail_action = 7;</code>
      */
-    private $auth_fail_action = 0;
+    protected $auth_fail_action = 0;
     /**
      * `30x` code to use when performing redirects for the `secure` field.
      * Defaults to `302`.
      *
      * Generated from protobuf field <code>.google.appengine.v1.UrlMap.RedirectHttpResponseCode redirect_http_response_code = 8;</code>
      */
-    private $redirect_http_response_code = 0;
+    protected $redirect_http_response_code = 0;
     protected $handler_type;
 
     /**

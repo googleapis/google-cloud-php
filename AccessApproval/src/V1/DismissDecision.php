@@ -20,7 +20,7 @@ class DismissDecision extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp dismiss_time = 1;</code>
      */
-    private $dismiss_time = null;
+    protected $dismiss_time = null;
     /**
      * This field will be true if the ApprovalRequest was implicitly dismissed due
      * to inaction by the access approval approvers (the request is not acted
@@ -28,7 +28,7 @@ class DismissDecision extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool implicit = 2;</code>
      */
-    private $implicit = false;
+    protected $implicit = false;
 
     /**
      * Constructor.

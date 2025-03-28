@@ -160,6 +160,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $ip_address = '';
     /**
+     * Output only. The public IP addresses for the Instance. This is available
+     * ONLY when enable_public_ip is set. This is the connection endpoint for an
+     * end-user application.
+     *
+     * Generated from protobuf field <code>string public_ip_address = 27 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     */
+    protected $public_ip_address = '';
+    /**
      * Output only. Reconciling (https://google.aip.dev/128#reconciliation).
      * Set to true if the current state of Instance does not match the user's
      * intended state, and the service is actively updating the resource to
@@ -189,6 +197,31 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.ClientConnectionConfig client_connection_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $client_connection_config = null;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
+    /**
+     * Optional. The configuration for Private Service Connect (PSC) for the
+     * instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.PscInstanceConfig psc_instance_config = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $psc_instance_config = null;
+    /**
+     * Optional. Instance-level network configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.InstanceNetworkConfig network_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $network_config = null;
+    /**
+     * Output only. All outbound public IP addresses configured for the instance.
+     *
+     * Generated from protobuf field <code>repeated string outbound_public_ip_addresses = 34 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     */
+    private $outbound_public_ip_addresses;
 
     /**
      * Constructor.
@@ -267,6 +300,10 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type string $ip_address
      *           Output only. The IP address for the Instance.
      *           This is the connection endpoint for an end-user application.
+     *     @type string $public_ip_address
+     *           Output only. The public IP addresses for the Instance. This is available
+     *           ONLY when enable_public_ip is set. This is the connection endpoint for an
+     *           end-user application.
      *     @type bool $reconciling
      *           Output only. Reconciling (https://google.aip.dev/128#reconciliation).
      *           Set to true if the current state of Instance does not match the user's
@@ -281,6 +318,15 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           https://google.aip.dev/128
      *     @type \Google\Cloud\AlloyDb\V1\Instance\ClientConnectionConfig $client_connection_config
      *           Optional. Client connection specific configurations
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type \Google\Cloud\AlloyDb\V1\Instance\PscInstanceConfig $psc_instance_config
+     *           Optional. The configuration for Private Service Connect (PSC) for the
+     *           instance.
+     *     @type \Google\Cloud\AlloyDb\V1\Instance\InstanceNetworkConfig $network_config
+     *           Optional. Instance-level network configuration.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $outbound_public_ip_addresses
+     *           Output only. All outbound public IP addresses configured for the instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -897,6 +943,36 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. The public IP addresses for the Instance. This is available
+     * ONLY when enable_public_ip is set. This is the connection endpoint for an
+     * end-user application.
+     *
+     * Generated from protobuf field <code>string public_ip_address = 27 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     * @return string
+     */
+    public function getPublicIpAddress()
+    {
+        return $this->public_ip_address;
+    }
+
+    /**
+     * Output only. The public IP addresses for the Instance. This is available
+     * ONLY when enable_public_ip is set. This is the connection endpoint for an
+     * end-user application.
+     *
+     * Generated from protobuf field <code>string public_ip_address = 27 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPublicIpAddress($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->public_ip_address = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. Reconciling (https://google.aip.dev/128#reconciliation).
      * Set to true if the current state of Instance does not match the user's
      * intended state, and the service is actively updating the resource to
@@ -1018,6 +1094,132 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\Instance\ClientConnectionConfig::class);
         $this->client_connection_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The configuration for Private Service Connect (PSC) for the
+     * instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.PscInstanceConfig psc_instance_config = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AlloyDb\V1\Instance\PscInstanceConfig|null
+     */
+    public function getPscInstanceConfig()
+    {
+        return $this->psc_instance_config;
+    }
+
+    public function hasPscInstanceConfig()
+    {
+        return isset($this->psc_instance_config);
+    }
+
+    public function clearPscInstanceConfig()
+    {
+        unset($this->psc_instance_config);
+    }
+
+    /**
+     * Optional. The configuration for Private Service Connect (PSC) for the
+     * instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.PscInstanceConfig psc_instance_config = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AlloyDb\V1\Instance\PscInstanceConfig $var
+     * @return $this
+     */
+    public function setPscInstanceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\Instance\PscInstanceConfig::class);
+        $this->psc_instance_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Instance-level network configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.InstanceNetworkConfig network_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AlloyDb\V1\Instance\InstanceNetworkConfig|null
+     */
+    public function getNetworkConfig()
+    {
+        return $this->network_config;
+    }
+
+    public function hasNetworkConfig()
+    {
+        return isset($this->network_config);
+    }
+
+    public function clearNetworkConfig()
+    {
+        unset($this->network_config);
+    }
+
+    /**
+     * Optional. Instance-level network configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Instance.InstanceNetworkConfig network_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AlloyDb\V1\Instance\InstanceNetworkConfig $var
+     * @return $this
+     */
+    public function setNetworkConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\Instance\InstanceNetworkConfig::class);
+        $this->network_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. All outbound public IP addresses configured for the instance.
+     *
+     * Generated from protobuf field <code>repeated string outbound_public_ip_addresses = 34 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getOutboundPublicIpAddresses()
+    {
+        return $this->outbound_public_ip_addresses;
+    }
+
+    /**
+     * Output only. All outbound public IP addresses configured for the instance.
+     *
+     * Generated from protobuf field <code>repeated string outbound_public_ip_addresses = 34 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setOutboundPublicIpAddresses($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->outbound_public_ip_addresses = $arr;
 
         return $this;
     }

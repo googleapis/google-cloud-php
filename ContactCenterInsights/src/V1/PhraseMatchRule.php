@@ -20,21 +20,21 @@ class PhraseMatchRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $query = '';
+    protected $query = '';
     /**
      * Specifies whether the phrase must be missing from the transcript segment or
      * present in the transcript segment.
      *
      * Generated from protobuf field <code>bool negated = 2;</code>
      */
-    private $negated = false;
+    protected $negated = false;
     /**
      * Provides additional information about the rule that specifies how to apply
      * the rule.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.PhraseMatchRuleConfig config = 3;</code>
      */
-    private $config = null;
+    protected $config = null;
 
     /**
      * Constructor.

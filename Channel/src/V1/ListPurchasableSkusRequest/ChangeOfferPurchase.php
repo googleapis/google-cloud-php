@@ -24,13 +24,13 @@ class ChangeOfferPurchase extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entitlement = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $entitlement = '';
+    protected $entitlement = '';
     /**
      * Required. Change Type for the entitlement.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ListPurchasableSkusRequest.ChangeOfferPurchase.ChangeType change_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $change_type = 0;
+    protected $change_type = 0;
 
     /**
      * Constructor.

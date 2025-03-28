@@ -409,8 +409,10 @@ class SubnetworksClientTest extends GeneratedTest
         $id = 3355;
         $internalIpv6Prefix = 'internalIpv6Prefix-30600856';
         $ipCidrRange = 'ipCidrRange-2049366326';
+        $ipCollection = 'ipCollection176818358';
         $ipv6AccessType = 'ipv6AccessType-569083171';
         $ipv6CidrRange = 'ipv6CidrRange-1874342390';
+        $ipv6GceEndpoint = 'ipv6GceEndpoint-753359517';
         $kind = 'kind3292052';
         $name = 'name3373707';
         $network = 'network1843485230';
@@ -433,8 +435,10 @@ class SubnetworksClientTest extends GeneratedTest
         $expectedResponse->setId($id);
         $expectedResponse->setInternalIpv6Prefix($internalIpv6Prefix);
         $expectedResponse->setIpCidrRange($ipCidrRange);
+        $expectedResponse->setIpCollection($ipCollection);
         $expectedResponse->setIpv6AccessType($ipv6AccessType);
         $expectedResponse->setIpv6CidrRange($ipv6CidrRange);
+        $expectedResponse->setIpv6GceEndpoint($ipv6GceEndpoint);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
         $expectedResponse->setNetwork($network);

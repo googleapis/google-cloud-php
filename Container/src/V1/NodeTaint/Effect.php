@@ -66,6 +66,4 @@ class Effect
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Effect::class, \Google\Cloud\Container\V1\NodeTaint_Effect::class);
 

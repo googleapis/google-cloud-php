@@ -118,6 +118,8 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $enablePrivateServiceConnect = true;
         $publicEndpointEnabled = false;
         $publicEndpointDomainName = 'publicEndpointDomainName2015998354';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new IndexEndpoint();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -127,6 +129,8 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setEnablePrivateServiceConnect($enablePrivateServiceConnect);
         $expectedResponse->setPublicEndpointEnabled($publicEndpointEnabled);
         $expectedResponse->setPublicEndpointDomainName($publicEndpointDomainName);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -512,6 +516,8 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $enablePrivateServiceConnect = true;
         $publicEndpointEnabled = false;
         $publicEndpointDomainName = 'publicEndpointDomainName2015998354';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new IndexEndpoint();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -521,6 +527,8 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setEnablePrivateServiceConnect($enablePrivateServiceConnect);
         $expectedResponse->setPublicEndpointEnabled($publicEndpointEnabled);
         $expectedResponse->setPublicEndpointDomainName($publicEndpointDomainName);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
@@ -930,6 +938,8 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $enablePrivateServiceConnect = true;
         $publicEndpointEnabled = false;
         $publicEndpointDomainName = 'publicEndpointDomainName2015998354';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new IndexEndpoint();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -939,6 +949,8 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setEnablePrivateServiceConnect($enablePrivateServiceConnect);
         $expectedResponse->setPublicEndpointEnabled($publicEndpointEnabled);
         $expectedResponse->setPublicEndpointDomainName($publicEndpointDomainName);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $indexEndpoint = new IndexEndpoint();
@@ -1362,6 +1374,8 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $enablePrivateServiceConnect = true;
         $publicEndpointEnabled = false;
         $publicEndpointDomainName = 'publicEndpointDomainName2015998354';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new IndexEndpoint();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -1371,6 +1385,8 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setEnablePrivateServiceConnect($enablePrivateServiceConnect);
         $expectedResponse->setPublicEndpointEnabled($publicEndpointEnabled);
         $expectedResponse->setPublicEndpointDomainName($publicEndpointDomainName);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

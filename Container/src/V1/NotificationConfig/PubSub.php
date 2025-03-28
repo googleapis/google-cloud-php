@@ -20,14 +20,14 @@ class PubSub extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      */
-    private $enabled = false;
+    protected $enabled = false;
     /**
      * The desired Pub/Sub topic to which notifications will be
      * sent by GKE. Format is `projects/{project}/topics/{topic}`.
      *
      * Generated from protobuf field <code>string topic = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $topic = '';
+    protected $topic = '';
     /**
      * Allows filtering to one or more specific event types. If no filter is
      * specified, or if a filter is specified with no event types, all event
@@ -35,7 +35,7 @@ class PubSub extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.NotificationConfig.Filter filter = 3;</code>
      */
-    private $filter = null;
+    protected $filter = null;
 
     /**
      * Constructor.
@@ -155,6 +155,4 @@ class PubSub extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PubSub::class, \Google\Cloud\Container\V1\NotificationConfig_PubSub::class);
 

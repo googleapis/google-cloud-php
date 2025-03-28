@@ -61,6 +61,4 @@ class ResponseType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ResponseType::class, \Google\Cloud\WebRisk\V1\ComputeThreatListDiffResponse_ResponseType::class);
 

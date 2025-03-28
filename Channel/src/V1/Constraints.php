@@ -20,7 +20,7 @@ class Constraints extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.CustomerConstraints customer_constraints = 1;</code>
      */
-    private $customer_constraints = null;
+    protected $customer_constraints = null;
 
     /**
      * Constructor.

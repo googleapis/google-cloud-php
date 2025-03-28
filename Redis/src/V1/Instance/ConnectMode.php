@@ -61,6 +61,4 @@ class ConnectMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConnectMode::class, \Google\Cloud\Redis\V1\Instance_ConnectMode::class);
 

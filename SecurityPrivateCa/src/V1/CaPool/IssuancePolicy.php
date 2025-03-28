@@ -37,7 +37,7 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration maximum_lifetime = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $maximum_lifetime = null;
+    protected $maximum_lifetime = null;
     /**
      * Optional. If specified, then only methods allowed in the
      * [IssuanceModes][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.IssuanceModes]
@@ -46,7 +46,7 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.IssuancePolicy.IssuanceModes allowed_issuance_modes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $allowed_issuance_modes = null;
+    protected $allowed_issuance_modes = null;
     /**
      * Optional. A set of X.509 values that will be applied to all certificates
      * issued through this [CaPool][google.cloud.security.privateca.v1.CaPool].
@@ -60,7 +60,7 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.X509Parameters baseline_values = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $baseline_values = null;
+    protected $baseline_values = null;
     /**
      * Optional. Describes constraints on identities that may appear in
      * [Certificates][google.cloud.security.privateca.v1.Certificate] issued
@@ -70,7 +70,7 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateIdentityConstraints identity_constraints = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $identity_constraints = null;
+    protected $identity_constraints = null;
     /**
      * Optional. Describes the set of X.509 extensions that may appear in a
      * [Certificate][google.cloud.security.privateca.v1.Certificate] issued
@@ -91,7 +91,7 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateExtensionConstraints passthrough_extensions = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $passthrough_extensions = null;
+    protected $passthrough_extensions = null;
 
     /**
      * Constructor.

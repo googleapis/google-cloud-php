@@ -24,7 +24,7 @@ class GrpcServiceDefinition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.apigateway.v1.ApiConfig.File file_descriptor_set = 1 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $file_descriptor_set = null;
+    protected $file_descriptor_set = null;
     /**
      * Optional. Uncompiled proto files associated with the descriptor set, used for
      * display purposes (server-side compilation is not supported). These

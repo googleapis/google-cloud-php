@@ -21,14 +21,14 @@ class GetWriteStreamRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Indicates whether to get full or partial view of the WriteStream. If
      * not set, view returned will be basic.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.WriteStreamView view = 3;</code>
      */
-    private $view = 0;
+    protected $view = 0;
 
     /**
      * @param string $name Required. Name of the stream to get, in the form of

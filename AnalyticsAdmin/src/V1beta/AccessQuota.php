@@ -23,7 +23,7 @@ class AccessQuota extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1beta.AccessQuotaStatus tokens_per_day = 1;</code>
      */
-    private $tokens_per_day = null;
+    protected $tokens_per_day = null;
     /**
      * Properties can use 50,000 tokens per hour. An API request consumes a single
      * number of tokens, and that number is deducted from all of the hourly,
@@ -31,20 +31,20 @@ class AccessQuota extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1beta.AccessQuotaStatus tokens_per_hour = 2;</code>
      */
-    private $tokens_per_hour = null;
+    protected $tokens_per_hour = null;
     /**
      * Properties can use up to 50 concurrent requests.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1beta.AccessQuotaStatus concurrent_requests = 3;</code>
      */
-    private $concurrent_requests = null;
+    protected $concurrent_requests = null;
     /**
      * Properties and cloud project pairs can have up to 50 server errors per
      * hour.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1beta.AccessQuotaStatus server_errors_per_project_per_hour = 4;</code>
      */
-    private $server_errors_per_project_per_hour = null;
+    protected $server_errors_per_project_per_hour = null;
     /**
      * Properties can use up to 25% of their tokens per project per hour. This
      * amounts to Analytics 360 Properties can use 12,500 tokens per project per
@@ -53,7 +53,7 @@ class AccessQuota extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1beta.AccessQuotaStatus tokens_per_project_per_hour = 5;</code>
      */
-    private $tokens_per_project_per_hour = null;
+    protected $tokens_per_project_per_hour = null;
 
     /**
      * Constructor.

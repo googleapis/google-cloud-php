@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * AdditionalNotificationTargets includes email addresses to be notified.
+ * `AdditionalNotificationTargets` includes email addresses to be notified.
  *
  * Generated from protobuf message <code>google.cloud.privilegedaccessmanager.v1.Entitlement.AdditionalNotificationTargets</code>
  */

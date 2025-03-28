@@ -18,7 +18,7 @@ class PartialResult extends \Google\Protobuf\Internal\Message
 {
     /**
      * It's the same as the value in
-     * [MigrateResourceRequest.migrate_resource_requests][].
+     * [BatchMigrateResourcesRequest.migrate_resource_requests][google.cloud.aiplatform.v1.BatchMigrateResourcesRequest.migrate_resource_requests].
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MigrateResourceRequest request = 1;</code>
      */
@@ -39,7 +39,7 @@ class PartialResult extends \Google\Protobuf\Internal\Message
      *           Migrated dataset resource name.
      *     @type \Google\Cloud\AIPlatform\V1\MigrateResourceRequest $request
      *           It's the same as the value in
-     *           [MigrateResourceRequest.migrate_resource_requests][].
+     *           [BatchMigrateResourcesRequest.migrate_resource_requests][google.cloud.aiplatform.v1.BatchMigrateResourcesRequest.migrate_resource_requests].
      * }
      */
     public function __construct($data = NULL) {
@@ -142,7 +142,7 @@ class PartialResult extends \Google\Protobuf\Internal\Message
 
     /**
      * It's the same as the value in
-     * [MigrateResourceRequest.migrate_resource_requests][].
+     * [BatchMigrateResourcesRequest.migrate_resource_requests][google.cloud.aiplatform.v1.BatchMigrateResourcesRequest.migrate_resource_requests].
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MigrateResourceRequest request = 1;</code>
      * @return \Google\Cloud\AIPlatform\V1\MigrateResourceRequest|null
@@ -164,7 +164,7 @@ class PartialResult extends \Google\Protobuf\Internal\Message
 
     /**
      * It's the same as the value in
-     * [MigrateResourceRequest.migrate_resource_requests][].
+     * [BatchMigrateResourcesRequest.migrate_resource_requests][google.cloud.aiplatform.v1.BatchMigrateResourcesRequest.migrate_resource_requests].
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MigrateResourceRequest request = 1;</code>
      * @param \Google\Cloud\AIPlatform\V1\MigrateResourceRequest $var

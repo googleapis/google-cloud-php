@@ -25,6 +25,11 @@
                                 "getWorkflow"
                             ]
                         },
+                        "ListWorkflowRevisions": {
+                            "methods": [
+                                "listWorkflowRevisions"
+                            ]
+                        },
                         "ListWorkflows": {
                             "methods": [
                                 "listWorkflows"

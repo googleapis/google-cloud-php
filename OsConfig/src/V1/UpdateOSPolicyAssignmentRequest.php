@@ -20,14 +20,14 @@ class UpdateOSPolicyAssignmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.OSPolicyAssignment os_policy_assignment = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $os_policy_assignment = null;
+    protected $os_policy_assignment = null;
     /**
      * Optional. Field mask that controls which fields of the assignment should be
      * updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\OsConfig\V1\OSPolicyAssignment $osPolicyAssignment Required. The updated OS policy assignment.

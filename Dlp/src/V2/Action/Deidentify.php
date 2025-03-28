@@ -31,7 +31,7 @@ class Deidentify extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationConfig transformation_config = 7;</code>
      */
-    private $transformation_config = null;
+    protected $transformation_config = null;
     /**
      * Config for storing transformation details. This is separate from the
      * de-identified content, and contains metadata about the successful
@@ -43,7 +43,7 @@ class Deidentify extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationDetailsStorageConfig transformation_details_storage_config = 3;</code>
      */
-    private $transformation_details_storage_config = null;
+    protected $transformation_details_storage_config = null;
     /**
      * List of user-specified file type groups to transform. If specified, only
      * the files with these file types will be transformed. If empty, all
@@ -272,6 +272,4 @@ class Deidentify extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Deidentify::class, \Google\Cloud\Dlp\V2\Action_Deidentify::class);
 

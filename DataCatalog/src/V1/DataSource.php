@@ -20,20 +20,20 @@ class DataSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DataSource.Service service = 1;</code>
      */
-    private $service = 0;
+    protected $service = 0;
     /**
      * Full name of a resource as defined by the service. For example:
      * `//bigquery.googleapis.com/projects/{PROJECT_ID}/locations/{LOCATION}/datasets/{DATASET_ID}/tables/{TABLE_ID}`
      *
      * Generated from protobuf field <code>string resource = 2;</code>
      */
-    private $resource = '';
+    protected $resource = '';
     /**
      * Output only. Data Catalog entry name, if applicable.
      *
      * Generated from protobuf field <code>string source_entry = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $source_entry = '';
+    protected $source_entry = '';
     protected $properties;
 
     /**

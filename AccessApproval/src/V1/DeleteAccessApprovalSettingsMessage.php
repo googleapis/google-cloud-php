@@ -20,7 +20,7 @@ class DeleteAccessApprovalSettingsMessage extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string $name Name of the AccessApprovalSettings to delete.

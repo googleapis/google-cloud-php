@@ -21,19 +21,19 @@ class OperationError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key_name = 1;</code>
      */
-    private $key_name = '';
+    protected $key_name = '';
     /**
      * Description of the error seen during the operation.
      *
      * Generated from protobuf field <code>string error_message = 2;</code>
      */
-    private $error_message = '';
+    protected $error_message = '';
     /**
      * Time when the CloudKMS error was seen.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp = 3;</code>
      */
-    private $timestamp = null;
+    protected $timestamp = null;
 
     /**
      * Constructor.
@@ -144,6 +144,4 @@ class OperationError extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(OperationError::class, \Google\Cloud\Container\V1\DatabaseEncryption_OperationError::class);
 

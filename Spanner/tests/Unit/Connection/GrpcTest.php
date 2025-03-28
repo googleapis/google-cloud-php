@@ -109,6 +109,38 @@ class GrpcTest extends TestCase
         $this->assertEquals($expected, $grpc->config['apiEndpoint']);
     }
 
+    /**
+     * @dataProvider clientUniverseDomainConfigProvider
+     */
+    public function testUniverseDomain($config, $expectedUniverseDomain, ?string $envUniverse = null)
+    {
+        if ($envUniverse) {
+            putenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN=' . $envUniverse);
+        }
+
+        $grpc = new GrpcStub($config);
+
+        if ($envUniverse) {
+            // We have to do this instead of using "@runInSeparateProcess" because in the case of
+            // an error, PHPUnit throws a "Serialization of 'ReflectionClass' is not allowed" error.
+            // @TODO: Remove this once we've updated to PHPUnit 10.
+            putenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN');
+        }
+
+        $this->assertEquals($expectedUniverseDomain, $grpc->config['universeDomain']);
+    }
+
+    public function clientUniverseDomainConfigProvider()
+    {
+        return [
+            [[], 'googleapis.com'],
+            [['universeDomain' => 'googleapis.com'], 'googleapis.com'],
+            [['universeDomain' => 'abc.def.ghi'], 'abc.def.ghi'],
+            [[], 'abc.def.ghi', 'abc.def.ghi'],
+            [['universeDomain' => 'googleapis.com'], 'googleapis.com', 'abc.def.ghi'],
+        ];
+    }
+
     public function testListInstanceConfigs()
     {
         $this->assertCallCorrect('listInstanceConfigs', [

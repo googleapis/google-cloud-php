@@ -21,7 +21,7 @@ class ListSkuGroupsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The maximum number of SKU groups to return. The service may
      * return fewer than this value. If unspecified, returns a maximum of 1000 SKU
@@ -30,7 +30,7 @@ class ListSkuGroupsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. A token identifying a page of results beyond the first page.
      * Obtained through
@@ -40,7 +40,7 @@ class ListSkuGroupsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. The resource name of the account from which to list SKU groups.

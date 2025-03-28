@@ -24,7 +24,7 @@ class DataProfilePubSubMessage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TableDataProfile profile = 1;</code>
      */
-    private $profile = null;
+    protected $profile = null;
     /**
      * If `DetailLevel` is `FILE_STORE_PROFILE` this will be fully populated.
      * Otherwise, if `DetailLevel` is `RESOURCE_NAME`, then only `name` and
@@ -32,13 +32,13 @@ class DataProfilePubSubMessage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FileStoreDataProfile file_store_profile = 3;</code>
      */
-    private $file_store_profile = null;
+    protected $file_store_profile = null;
     /**
      * The event that caused the Pub/Sub message to be sent.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileAction.EventType event = 2;</code>
      */
-    private $event = 0;
+    protected $event = 0;
 
     /**
      * Constructor.

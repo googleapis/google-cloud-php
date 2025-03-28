@@ -1,0 +1,126 @@
+name: Backwards Compatibility
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+    branches: ['main']
+jobs:
+  # More info at https://github.com/Roave/BackwardCompatibilityCheck.
+  backwards-compatibility-check:
+    name: Breaking Change Detector
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: "Install PHP"
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.1"
+      - name: "Install dependencies"
+        run: composer global require "roave/backward-compatibility-check:^8.2"
+      - name: "Check for BC breaks"
+        if: github.event.pull_request.user.login != 'release-please[bot]'
+        # Ensure the build still passes by adding BREAKING_CHANGE_REASON=[reason] to the PR description.
+        continue-on-error: ${{ contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=') }}
+        run: |
+          ~/.composer/vendor/bin/roave-backward-compatibility-check --from=origin/main --format=github-actions
+      - name: "Check for BC label"
+        # Ensure the build still passes by adding BREAKING_CHANGE_REASON=[reason] to the PR description.
+        continue-on-error: ${{ contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=') }}
+        run: |
+          if [[ "true" == "${{ contains(github.event.pull_request.title, '!:') }}" ]]; then
+            echo "Breaking change label found in PR title"
+            exit 1
+          fi
+      - name: Get Latest Release
+        if: github.event.pull_request.user.login == 'release-please[bot]'
+        id: latest-release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: ${{ github.repository }}
+      - name: "Check for BC breaks (Next Release)"
+        if: github.event.pull_request.user.login == 'release-please[bot]'
+        # We've already approved and justified the breaking changes. Run the check but continue on error
+        continue-on-error: true
+        run: |
+          ~/.composer/vendor/bin/roave-backward-compatibility-check \
+              --from=${{ steps.latest-release.outputs.release }} \
+              --to=origin/main --format=github-actions
+
+  # Ensure that PRs labeled "feat" actually contain a new feature, PRs labeled
+  # "bug" or "chore" do not.
+  conventional-commit-check:
+    name: Conventional Commit Check
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.user.login == 'gcf-owl-bot[bot]'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: "Install PHP"
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.1"
+      - name: "Install dependencies"
+        run: composer global require "roave/backward-compatibility-check:^8.2"
+      - name: "Check for an incorrect feat label in the PR"
+        id: compatibility-checker
+        continue-on-error: true
+        # OwlBot PRs which are not labelled feat should not add new files or methods
+        run: |
+          ~/.composer/vendor/bin/roave-backward-compatibility-check \
+            --from=origin/${{ github.head_ref || github.ref_name }} \
+            --to=origin/main
+      - name: "Print the action item"
+        run: |
+          if [[ "${{ steps.compatibility-checker.outcome }}" == 'failure' ]]; then
+            if [[ "${{ startsWith(github.event.pull_request.title, 'feat') }}" == "false" ]]; then
+              echo "Action item: Change the conventional commit to use 'feat'"
+              exit 1
+            fi
+          elif [[ "${{ startsWith(github.event.pull_request.title, 'feat') }}" == "true" ]]; then
+            echo "Action item: No features found, do not use 'feat' for the conventional commit"
+            exit 1
+          fi
+
+  # Ensure the release PR does not contain an unexpected (e.g. 2.0.0) major version release
+  # Add "MAJOR_VERSION_ALLOWED=component1,component2" to the PR description to allow major version
+  # releases for those components
+  unexpected-major-version-check:
+    name: Unexpected Major Version Check
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.user.login == 'release-please[bot]'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Parse allowed major versions
+        uses: actions-ecosystem/action-regex-match@v2
+        id: allowed-major-versions
+        with:
+          text: ${{ github.event.pull_request.body }}
+          regex: '^MAJOR_VERSION_ALLOWED=(.*)$'
+          flags: gm
+      - name: "Check for unexpected major version"
+        run: |
+          # parse allowed major versions into an array
+          IFS=', ' read -r -a ALLOWED_MAJOR_VERSIONS <<< "${{ steps.allowed-major-versions.outputs.group1 }}"
+          # get all changed components
+          COMPONENTS=$(git diff origin/main --name-only | grep VERSION | xargs dirname)
+          FAIL=""
+          for COMPONENT in ${COMPONENTS}; do {
+            if [[ "$(cat $COMPONENT/VERSION)" == [123456789].0.0 ]]; then
+              # A new version is being released - make sure it's allowed
+              if [[ ${ALLOWED_MAJOR_VERSIONS[@]} =~ $COMPONENT ]]; then
+                echo "Major version release allowed: $COMPONENT"
+              else
+                echo "Unexpected major version release found: $COMPONENT"
+                FAIL="true"
+              fi
+            fi
+          }; done
+          if [[ "$FAIL" == "true" ]]; then
+            echo "Add \"MAJOR_VERSION_ALLOWED=component1,component2\" to the PR description to allow "
+            echo "major version releases for those components"
+            exit 1
+          fi

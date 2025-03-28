@@ -20,13 +20,13 @@ class PubSubIODetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string topic = 1;</code>
      */
-    private $topic = '';
+    protected $topic = '';
     /**
      * Subscription used in the connection.
      *
      * Generated from protobuf field <code>string subscription = 2;</code>
      */
-    private $subscription = '';
+    protected $subscription = '';
 
     /**
      * Constructor.

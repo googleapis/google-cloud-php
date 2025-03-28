@@ -20,21 +20,21 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string producer_project_id = 1;</code>
      */
-    private $producer_project_id = '';
+    protected $producer_project_id = '';
     /**
      * The max number of items to include in the response list. Page size is 50
      * if not specified. Maximum value is 500.
      *
      * Generated from protobuf field <code>int32 page_size = 5;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Token identifying which result to start with; returned by a previous list
      * call.
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Include services consumed by the specified consumer.
      * The Google Service Management implementation accepts the following

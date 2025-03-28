@@ -59,6 +59,18 @@ return [
                     ],
                 ],
             ],
+            'AcceptSpokeUpdate' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/global/hubs/*}:acceptSpokeUpdate',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateHub' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/global}/hubs',
@@ -232,6 +244,17 @@ return [
                     ],
                 ],
             ],
+            'QueryHubStatus' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/global/hubs/*}:queryStatus',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'RejectHubSpoke' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/global/hubs/*}:rejectSpoke',
@@ -239,6 +262,31 @@ return [
                 'placeholders' => [
                     'name' => [
                         'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'RejectSpokeUpdate' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/global/hubs/*}:rejectSpokeUpdate',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateGroup' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{group.name=projects/*/locations/global/hubs/*/groups/*}',
+                'body' => 'group',
+                'placeholders' => [
+                    'group.name' => [
+                        'getters' => [
+                            'getGroup',
                             'getName',
                         ],
                     ],
@@ -288,6 +336,18 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/global/policyBasedRoutes/*}:getIamPolicy',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/serviceConnectionMaps/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/serviceConnectionPolicies/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/serviceClasses/*}:getIamPolicy',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -317,6 +377,21 @@ return [
                         'uriTemplate' => '/v1/{resource=projects/*/locations/global/policyBasedRoutes/*}:setIamPolicy',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/serviceConnectionMaps/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/serviceConnectionPolicies/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/serviceClasses/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -344,6 +419,21 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/global/policyBasedRoutes/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/serviceConnectionMaps/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/serviceConnectionPolicies/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/serviceClasses/*}:testIamPermissions',
                         'body' => '*',
                     ],
                 ],

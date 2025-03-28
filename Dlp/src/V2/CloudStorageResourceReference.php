@@ -20,14 +20,14 @@ class CloudStorageResourceReference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string bucket_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $bucket_name = '';
+    protected $bucket_name = '';
     /**
      * Required. If within a project-level config, then this must match the
      * config's project id.
      *
      * Generated from protobuf field <code>string project_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
 
     /**
      * Constructor.

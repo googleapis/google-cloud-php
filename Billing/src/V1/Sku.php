@@ -21,27 +21,27 @@ class Sku extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The identifier for the SKU.
      * Example: "D041-B8A1-6E0B"
      *
      * Generated from protobuf field <code>string sku_id = 2;</code>
      */
-    private $sku_id = '';
+    protected $sku_id = '';
     /**
      * A human readable description of the SKU, has a maximum length of 256
      * characters.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * The category hierarchy of this SKU, purely for organizational purpose.
      *
      * Generated from protobuf field <code>.google.cloud.billing.v1.Category category = 4;</code>
      */
-    private $category = null;
+    protected $category = null;
     /**
      * List of service regions this SKU is offered at.
      * Example: "asia-east1"
@@ -62,13 +62,13 @@ class Sku extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_provider_name = 7;</code>
      */
-    private $service_provider_name = '';
+    protected $service_provider_name = '';
     /**
      * The geographic taxonomy for this sku.
      *
      * Generated from protobuf field <code>.google.cloud.billing.v1.GeoTaxonomy geo_taxonomy = 8;</code>
      */
-    private $geo_taxonomy = null;
+    protected $geo_taxonomy = null;
 
     /**
      * Constructor.

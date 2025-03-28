@@ -49,7 +49,7 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      */
     private $progress_bytes = null;
     /**
-     * Which collection ids are being imported.
+     * Which collection IDs are being imported.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 6;</code>
      */
@@ -61,7 +61,7 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      */
     private $input_uri_prefix = '';
     /**
-     * Which namespace ids are being imported.
+     * Which namespace IDs are being imported.
      *
      * Generated from protobuf field <code>repeated string namespace_ids = 8;</code>
      */
@@ -85,11 +85,11 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Firestore\Admin\V1\Progress $progress_bytes
      *           The progress, in bytes, of this operation.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $collection_ids
-     *           Which collection ids are being imported.
+     *           Which collection IDs are being imported.
      *     @type string $input_uri_prefix
      *           The location of the documents being imported.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $namespace_ids
-     *           Which namespace ids are being imported.
+     *           Which namespace IDs are being imported.
      * }
      */
     public function __construct($data = NULL) {
@@ -270,7 +270,7 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which collection ids are being imported.
+     * Which collection IDs are being imported.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -281,7 +281,7 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which collection ids are being imported.
+     * Which collection IDs are being imported.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 6;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -322,7 +322,7 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which namespace ids are being imported.
+     * Which namespace IDs are being imported.
      *
      * Generated from protobuf field <code>repeated string namespace_ids = 8;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -333,7 +333,7 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which namespace ids are being imported.
+     * Which namespace IDs are being imported.
      *
      * Generated from protobuf field <code>repeated string namespace_ids = 8;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

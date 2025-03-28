@@ -28,7 +28,7 @@ class Row extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string partition_key = 2;</code>
      */
-    private $partition_key = '';
+    protected $partition_key = '';
 
     /**
      * Constructor.

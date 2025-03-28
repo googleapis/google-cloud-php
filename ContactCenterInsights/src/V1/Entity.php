@@ -22,13 +22,13 @@ class Entity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The entity type.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.Entity.Type type = 2;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Metadata associated with the entity.
      * For most entity types, the metadata is a Wikipedia URL (`wikipedia_url`)
@@ -47,13 +47,13 @@ class Entity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float salience = 4;</code>
      */
-    private $salience = 0.0;
+    protected $salience = 0.0;
     /**
      * The aggregate sentiment expressed for this entity in the conversation.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.SentimentData sentiment = 5;</code>
      */
-    private $sentiment = null;
+    protected $sentiment = null;
 
     /**
      * Constructor.

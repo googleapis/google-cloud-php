@@ -20,7 +20,7 @@ class UndeleteServiceResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.servicemanagement.v1.ManagedService service = 1;</code>
      */
-    private $service = null;
+    protected $service = null;
 
     /**
      * Constructor.

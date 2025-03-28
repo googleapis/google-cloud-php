@@ -22,7 +22,7 @@ class BatchCommitWriteStreamsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commit_time = 1;</code>
      */
-    private $commit_time = null;
+    protected $commit_time = null;
     /**
      * Stream level error if commit failed. Only streams with error will be in
      * the list.

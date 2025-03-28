@@ -20,8 +20,8 @@ namespace Google\Cloud\Debugger;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Batch\BatchDaemonTrait;
 use Google\Cloud\Core\Batch\BatchTrait;
-use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Google\Cloud\Debugger\BreakpointStorage\FileBreakpointStorage;
@@ -40,6 +40,7 @@ use Psr\Log\LoggerInterface;
  *
  * $agent = new Agent();
  * ```
+ * @deprecated see https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation
  */
 class Agent
 {

@@ -21,35 +21,35 @@ class SourceNumericFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 source_min_scale_filter = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $source_min_scale_filter = 0;
+    protected $source_min_scale_filter = 0;
     /**
      * Optional. The filter will match columns with scale smaller than or equal to
      * this number.
      *
      * Generated from protobuf field <code>int32 source_max_scale_filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $source_max_scale_filter = 0;
+    protected $source_max_scale_filter = 0;
     /**
      * Optional. The filter will match columns with precision greater than or
      * equal to this number.
      *
      * Generated from protobuf field <code>int32 source_min_precision_filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $source_min_precision_filter = 0;
+    protected $source_min_precision_filter = 0;
     /**
      * Optional. The filter will match columns with precision smaller than or
      * equal to this number.
      *
      * Generated from protobuf field <code>int32 source_max_precision_filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $source_max_precision_filter = 0;
+    protected $source_max_precision_filter = 0;
     /**
      * Required. Enum to set the option defining the datatypes numeric filter has
      * to be applied to
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.NumericFilterOption numeric_filter_option = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $numeric_filter_option = 0;
+    protected $numeric_filter_option = 0;
 
     /**
      * Constructor.

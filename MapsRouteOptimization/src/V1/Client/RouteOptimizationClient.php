@@ -39,6 +39,7 @@ use Google\Maps\RouteOptimization\V1\OptimizeToursRequest;
 use Google\Maps\RouteOptimization\V1\OptimizeToursResponse;
 use Google\Maps\RouteOptimization\V1\ShipmentRoute;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: A service for optimizing vehicle tours.
@@ -63,8 +64,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface batchOptimizeToursAsync(BatchOptimizeToursRequest $request, array $optionalArgs = [])
- * @method PromiseInterface optimizeToursAsync(OptimizeToursRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> batchOptimizeToursAsync(BatchOptimizeToursRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OptimizeToursResponse> optimizeToursAsync(OptimizeToursRequest $request, array $optionalArgs = [])
  */
 final class RouteOptimizationClient
 {
@@ -180,6 +181,12 @@ final class RouteOptimizationClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -213,6 +220,9 @@ final class RouteOptimizationClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -241,11 +251,23 @@ final class RouteOptimizationClient
      *
      * This method is a Long Running Operation (LRO). The inputs for optimization
      * (`OptimizeToursRequest` messages) and outputs (`OptimizeToursResponse`
-     * messages) are read/written from/to Cloud Storage in user-specified
+     * messages) are read from and written to Cloud Storage in user-specified
      * format. Like the `OptimizeTours` method, each `OptimizeToursRequest`
      * contains a `ShipmentModel` and returns an `OptimizeToursResponse`
-     * containing `ShipmentRoute`s, which are a set of routes to be performed by
-     * vehicles minimizing the overall cost.
+     * containing `ShipmentRoute` fields, which are a set of routes to be
+     * performed by vehicles minimizing the overall cost.
+     *
+     * The user can poll `operations.get` to check the status of the LRO:
+     *
+     * If the LRO `done` field is false, then at least one request is still
+     * being processed. Other requests may have completed successfully and their
+     * results are available in Cloud Storage.
+     *
+     * If the LRO's `done` field is true, then all requests have been processed.
+     * Any successfully processed requests will have their results available in
+     * Cloud Storage. Any requests that failed will not have their results
+     * available in Cloud Storage. If the LRO's `error` field is set, then it
+     * contains the error from one of the failed requests.
      *
      * The async variant is {@see RouteOptimizationClient::batchOptimizeToursAsync()} .
      *

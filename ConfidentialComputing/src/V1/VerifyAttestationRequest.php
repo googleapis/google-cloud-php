@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A request for an OIDC token, providing all the necessary information needed
- * for this service to verify the plaform state of the requestor.
+ * for this service to verify the platform state of the requestor.
  *
  * Generated from protobuf message <code>google.cloud.confidentialcomputing.v1.VerifyAttestationRequest</code>
  */
@@ -51,6 +51,13 @@ class VerifyAttestationRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.TokenOptions token_options = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $token_options = null;
+    /**
+     * Optional. An optional indicator of the attester, only applies to certain
+     * products.
+     *
+     * Generated from protobuf field <code>string attester = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $attester = '';
     protected $tee_attestation;
 
     /**
@@ -78,6 +85,9 @@ class VerifyAttestationRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\ConfidentialComputing\V1\TokenOptions $token_options
      *           Optional. A collection of optional, workload-specified claims that modify
      *           the token output.
+     *     @type string $attester
+     *           Optional. An optional indicator of the attester, only applies to certain
+     *           products.
      * }
      */
     public function __construct($data = NULL) {
@@ -323,6 +333,34 @@ class VerifyAttestationRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ConfidentialComputing\V1\TokenOptions::class);
         $this->token_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. An optional indicator of the attester, only applies to certain
+     * products.
+     *
+     * Generated from protobuf field <code>string attester = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getAttester()
+    {
+        return $this->attester;
+    }
+
+    /**
+     * Optional. An optional indicator of the attester, only applies to certain
+     * products.
+     *
+     * Generated from protobuf field <code>string attester = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAttester($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->attester = $var;
 
         return $this;
     }

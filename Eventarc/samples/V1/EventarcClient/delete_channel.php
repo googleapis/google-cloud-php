@@ -35,18 +35,15 @@ use Google\Rpc\Status;
  *
  * @param string $formattedName The name of the channel to be deleted. Please see
  *                              {@see EventarcClient::channelName()} for help formatting this field.
- * @param bool   $validateOnly  If set, validate the request and preview the review, but do not
- *                              post it.
  */
-function delete_channel_sample(string $formattedName, bool $validateOnly): void
+function delete_channel_sample(string $formattedName): void
 {
     // Create a client.
     $eventarcClient = new EventarcClient();
 
     // Prepare the request message.
     $request = (new DeleteChannelRequest())
-        ->setName($formattedName)
-        ->setValidateOnly($validateOnly);
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -80,8 +77,7 @@ function delete_channel_sample(string $formattedName, bool $validateOnly): void
 function callSample(): void
 {
     $formattedName = EventarcClient::channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
-    $validateOnly = false;
 
-    delete_channel_sample($formattedName, $validateOnly);
+    delete_channel_sample($formattedName);
 }
 // [END eventarc_v1_generated_Eventarc_DeleteChannel_sync]

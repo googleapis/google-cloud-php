@@ -17,12 +17,19 @@ class SearchConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Boosting configuration for the datastores.
+     * Maps from datastore name to their boost configuration. Do not specify more
+     * than one BoostSpecs for each datastore name. If multiple BoostSpecs are
+     * provided for the same datastore name, the behavior is undefined.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.BoostSpecs boost_specs = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $boost_specs;
     /**
      * Optional. Filter configuration for the datastores.
+     * Maps from datastore name to the filter expression for that datastore. Do
+     * not specify more than one FilterSpecs for each datastore name. If multiple
+     * FilterSpecs are provided for the same datastore name, the behavior is
+     * undefined.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.FilterSpecs filter_specs = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -36,8 +43,15 @@ class SearchConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\Dialogflow\Cx\V3\BoostSpecs>|\Google\Protobuf\Internal\RepeatedField $boost_specs
      *           Optional. Boosting configuration for the datastores.
+     *           Maps from datastore name to their boost configuration. Do not specify more
+     *           than one BoostSpecs for each datastore name. If multiple BoostSpecs are
+     *           provided for the same datastore name, the behavior is undefined.
      *     @type array<\Google\Cloud\Dialogflow\Cx\V3\FilterSpecs>|\Google\Protobuf\Internal\RepeatedField $filter_specs
      *           Optional. Filter configuration for the datastores.
+     *           Maps from datastore name to the filter expression for that datastore. Do
+     *           not specify more than one FilterSpecs for each datastore name. If multiple
+     *           FilterSpecs are provided for the same datastore name, the behavior is
+     *           undefined.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,6 +61,9 @@ class SearchConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Boosting configuration for the datastores.
+     * Maps from datastore name to their boost configuration. Do not specify more
+     * than one BoostSpecs for each datastore name. If multiple BoostSpecs are
+     * provided for the same datastore name, the behavior is undefined.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.BoostSpecs boost_specs = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -58,6 +75,9 @@ class SearchConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Boosting configuration for the datastores.
+     * Maps from datastore name to their boost configuration. Do not specify more
+     * than one BoostSpecs for each datastore name. If multiple BoostSpecs are
+     * provided for the same datastore name, the behavior is undefined.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.BoostSpecs boost_specs = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\Dialogflow\Cx\V3\BoostSpecs>|\Google\Protobuf\Internal\RepeatedField $var
@@ -73,6 +93,10 @@ class SearchConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Filter configuration for the datastores.
+     * Maps from datastore name to the filter expression for that datastore. Do
+     * not specify more than one FilterSpecs for each datastore name. If multiple
+     * FilterSpecs are provided for the same datastore name, the behavior is
+     * undefined.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.FilterSpecs filter_specs = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -84,6 +108,10 @@ class SearchConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Filter configuration for the datastores.
+     * Maps from datastore name to the filter expression for that datastore. Do
+     * not specify more than one FilterSpecs for each datastore name. If multiple
+     * FilterSpecs are provided for the same datastore name, the behavior is
+     * undefined.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.FilterSpecs filter_specs = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\Dialogflow\Cx\V3\FilterSpecs>|\Google\Protobuf\Internal\RepeatedField $var

@@ -20,13 +20,13 @@ class SqlAclEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string value = 1;</code>
      */
-    private $value = '';
+    protected $value = '';
     /**
      * A label to identify this entry.
      *
      * Generated from protobuf field <code>string label = 3;</code>
      */
-    private $label = '';
+    protected $label = '';
     protected $expiration;
 
     /**

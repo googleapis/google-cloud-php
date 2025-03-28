@@ -19,19 +19,19 @@ use Google\Protobuf\Internal\GPBUtil;
 class Conversation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The unique identifier of this conversation.
+     * Output only. Identifier. The unique identifier of this conversation.
      * Format: `projects/<Project ID>/locations/<Location
      * ID>/conversations/<Conversation ID>`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The current state of the Conversation.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.LifecycleState lifecycle_state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $lifecycle_state = 0;
+    protected $lifecycle_state = 0;
     /**
      * Required. The Conversation Profile to be used to configure this
      * Conversation. This field cannot be updated.
@@ -40,29 +40,29 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string conversation_profile = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $conversation_profile = '';
+    protected $conversation_profile = '';
     /**
      * Output only. It will not be empty if the conversation is to be connected
      * over telephony.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ConversationPhoneNumber phone_number = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $phone_number = null;
+    protected $phone_number = null;
     /**
      * Output only. The time the conversation was started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. The time the conversation was finished.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
-     * The stage of a conversation. It indicates whether the virtual agent or a
-     * human agent is handling the conversation.
+     * Optional. The stage of a conversation. It indicates whether the virtual
+     * agent or a human agent is handling the conversation.
      * If the conversation is created with the conversation profile that has
      * Dialogflow config set, defaults to
      * [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE];
@@ -76,9 +76,21 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * stage and directly goes to
      * [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE].
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.ConversationStage conversation_stage = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.ConversationStage conversation_stage = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $conversation_stage = 0;
+    protected $conversation_stage = 0;
+    /**
+     * Output only. The telephony connection information.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.TelephonyConnectionInfo telephony_connection_info = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $telephony_connection_info = null;
+    /**
+     * Output only. The context reference updates provided by external systems.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.dialogflow.v2.Conversation.ContextReference> ingested_context_references = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $ingested_context_references;
 
     /**
      * Constructor.
@@ -87,7 +99,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The unique identifier of this conversation.
+     *           Output only. Identifier. The unique identifier of this conversation.
      *           Format: `projects/<Project ID>/locations/<Location
      *           ID>/conversations/<Conversation ID>`.
      *     @type int $lifecycle_state
@@ -105,8 +117,8 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $end_time
      *           Output only. The time the conversation was finished.
      *     @type int $conversation_stage
-     *           The stage of a conversation. It indicates whether the virtual agent or a
-     *           human agent is handling the conversation.
+     *           Optional. The stage of a conversation. It indicates whether the virtual
+     *           agent or a human agent is handling the conversation.
      *           If the conversation is created with the conversation profile that has
      *           Dialogflow config set, defaults to
      *           [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE];
@@ -119,6 +131,10 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *           [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE]
      *           stage and directly goes to
      *           [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE].
+     *     @type \Google\Cloud\Dialogflow\V2\Conversation\TelephonyConnectionInfo $telephony_connection_info
+     *           Output only. The telephony connection information.
+     *     @type array|\Google\Protobuf\Internal\MapField $ingested_context_references
+     *           Output only. The context reference updates provided by external systems.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,11 +143,11 @@ class Conversation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The unique identifier of this conversation.
+     * Output only. Identifier. The unique identifier of this conversation.
      * Format: `projects/<Project ID>/locations/<Location
      * ID>/conversations/<Conversation ID>`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -140,11 +156,11 @@ class Conversation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The unique identifier of this conversation.
+     * Output only. Identifier. The unique identifier of this conversation.
      * Format: `projects/<Project ID>/locations/<Location
      * ID>/conversations/<Conversation ID>`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -325,8 +341,8 @@ class Conversation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The stage of a conversation. It indicates whether the virtual agent or a
-     * human agent is handling the conversation.
+     * Optional. The stage of a conversation. It indicates whether the virtual
+     * agent or a human agent is handling the conversation.
      * If the conversation is created with the conversation profile that has
      * Dialogflow config set, defaults to
      * [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE];
@@ -340,7 +356,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * stage and directly goes to
      * [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE].
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.ConversationStage conversation_stage = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.ConversationStage conversation_stage = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getConversationStage()
@@ -349,8 +365,8 @@ class Conversation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The stage of a conversation. It indicates whether the virtual agent or a
-     * human agent is handling the conversation.
+     * Optional. The stage of a conversation. It indicates whether the virtual
+     * agent or a human agent is handling the conversation.
      * If the conversation is created with the conversation profile that has
      * Dialogflow config set, defaults to
      * [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE];
@@ -364,7 +380,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * stage and directly goes to
      * [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE].
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.ConversationStage conversation_stage = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.ConversationStage conversation_stage = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -372,6 +388,68 @@ class Conversation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Conversation\ConversationStage::class);
         $this->conversation_stage = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The telephony connection information.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.TelephonyConnectionInfo telephony_connection_info = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dialogflow\V2\Conversation\TelephonyConnectionInfo|null
+     */
+    public function getTelephonyConnectionInfo()
+    {
+        return $this->telephony_connection_info;
+    }
+
+    public function hasTelephonyConnectionInfo()
+    {
+        return isset($this->telephony_connection_info);
+    }
+
+    public function clearTelephonyConnectionInfo()
+    {
+        unset($this->telephony_connection_info);
+    }
+
+    /**
+     * Output only. The telephony connection information.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.TelephonyConnectionInfo telephony_connection_info = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dialogflow\V2\Conversation\TelephonyConnectionInfo $var
+     * @return $this
+     */
+    public function setTelephonyConnectionInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Conversation\TelephonyConnectionInfo::class);
+        $this->telephony_connection_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The context reference updates provided by external systems.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.dialogflow.v2.Conversation.ContextReference> ingested_context_references = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getIngestedContextReferences()
+    {
+        return $this->ingested_context_references;
+    }
+
+    /**
+     * Output only. The context reference updates provided by external systems.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.dialogflow.v2.Conversation.ContextReference> ingested_context_references = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setIngestedContextReferences($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\Conversation\ContextReference::class);
+        $this->ingested_context_references = $arr;
 
         return $this;
     }

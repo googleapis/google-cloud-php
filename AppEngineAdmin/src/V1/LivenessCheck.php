@@ -21,46 +21,46 @@ class LivenessCheck extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string path = 1;</code>
      */
-    private $path = '';
+    protected $path = '';
     /**
      * Host header to send when performing a HTTP Liveness check.
      * Example: "myapp.appspot.com"
      *
      * Generated from protobuf field <code>string host = 2;</code>
      */
-    private $host = '';
+    protected $host = '';
     /**
      * Number of consecutive failed checks required before considering the
      * VM unhealthy.
      *
      * Generated from protobuf field <code>uint32 failure_threshold = 3;</code>
      */
-    private $failure_threshold = 0;
+    protected $failure_threshold = 0;
     /**
      * Number of consecutive successful checks required before considering
      * the VM healthy.
      *
      * Generated from protobuf field <code>uint32 success_threshold = 4;</code>
      */
-    private $success_threshold = 0;
+    protected $success_threshold = 0;
     /**
      * Interval between health checks.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration check_interval = 5;</code>
      */
-    private $check_interval = null;
+    protected $check_interval = null;
     /**
      * Time before the check is considered failed.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 6;</code>
      */
-    private $timeout = null;
+    protected $timeout = null;
     /**
      * The initial delay before starting to execute the checks.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration initial_delay = 7;</code>
      */
-    private $initial_delay = null;
+    protected $initial_delay = null;
 
     /**
      * Constructor.

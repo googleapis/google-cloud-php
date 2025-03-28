@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class RecommendRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Full resource name of a [ServingConfig][]:
+     * Required. Full resource name of a
+     * [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig]:
      * `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/&#42;&#47;servingConfigs/&#42;`, or
      * `projects/&#42;&#47;locations/global/collections/&#42;&#47;dataStores/&#42;&#47;servingConfigs/&#42;`
      * One default serving config is created along with your recommendation engine
@@ -70,9 +71,9 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
      * If `attributeFilteringSyntax` is set to true under the `params` field, then
      * attribute-based expressions are expected instead of the above described
      * tag-based syntax. Examples:
-     *  * (launguage: ANY("en", "es")) AND NOT (categories: ANY("Movie"))
+     *  * (language: ANY("en", "es")) AND NOT (categories: ANY("Movie"))
      *  * (available: true) AND
-     *    (launguage: ANY("en", "es")) OR (categories: ANY("Movie"))
+     *    (language: ANY("en", "es")) OR (categories: ANY("Movie"))
      * If your filter blocks all results, the API returns generic
      * (unfiltered) popular Documents. If you only want results strictly matching
      * the filters, set `strictFiltering` to `true` in
@@ -153,7 +154,8 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $serving_config
-     *           Required. Full resource name of a [ServingConfig][]:
+     *           Required. Full resource name of a
+     *           [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig]:
      *           `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/&#42;&#47;servingConfigs/&#42;`, or
      *           `projects/&#42;&#47;locations/global/collections/&#42;&#47;dataStores/&#42;&#47;servingConfigs/&#42;`
      *           One default serving config is created along with your recommendation engine
@@ -195,9 +197,9 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
      *           If `attributeFilteringSyntax` is set to true under the `params` field, then
      *           attribute-based expressions are expected instead of the above described
      *           tag-based syntax. Examples:
-     *            * (launguage: ANY("en", "es")) AND NOT (categories: ANY("Movie"))
+     *            * (language: ANY("en", "es")) AND NOT (categories: ANY("Movie"))
      *            * (available: true) AND
-     *              (launguage: ANY("en", "es")) OR (categories: ANY("Movie"))
+     *              (language: ANY("en", "es")) OR (categories: ANY("Movie"))
      *           If your filter blocks all results, the API returns generic
      *           (unfiltered) popular Documents. If you only want results strictly matching
      *           the filters, set `strictFiltering` to `true` in
@@ -262,7 +264,8 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Full resource name of a [ServingConfig][]:
+     * Required. Full resource name of a
+     * [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig]:
      * `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/&#42;&#47;servingConfigs/&#42;`, or
      * `projects/&#42;&#47;locations/global/collections/&#42;&#47;dataStores/&#42;&#47;servingConfigs/&#42;`
      * One default serving config is created along with your recommendation engine
@@ -283,7 +286,8 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Full resource name of a [ServingConfig][]:
+     * Required. Full resource name of a
+     * [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig]:
      * `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/&#42;&#47;servingConfigs/&#42;`, or
      * `projects/&#42;&#47;locations/global/collections/&#42;&#47;dataStores/&#42;&#47;servingConfigs/&#42;`
      * One default serving config is created along with your recommendation engine
@@ -413,9 +417,9 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
      * If `attributeFilteringSyntax` is set to true under the `params` field, then
      * attribute-based expressions are expected instead of the above described
      * tag-based syntax. Examples:
-     *  * (launguage: ANY("en", "es")) AND NOT (categories: ANY("Movie"))
+     *  * (language: ANY("en", "es")) AND NOT (categories: ANY("Movie"))
      *  * (available: true) AND
-     *    (launguage: ANY("en", "es")) OR (categories: ANY("Movie"))
+     *    (language: ANY("en", "es")) OR (categories: ANY("Movie"))
      * If your filter blocks all results, the API returns generic
      * (unfiltered) popular Documents. If you only want results strictly matching
      * the filters, set `strictFiltering` to `true` in
@@ -443,9 +447,9 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
      * If `attributeFilteringSyntax` is set to true under the `params` field, then
      * attribute-based expressions are expected instead of the above described
      * tag-based syntax. Examples:
-     *  * (launguage: ANY("en", "es")) AND NOT (categories: ANY("Movie"))
+     *  * (language: ANY("en", "es")) AND NOT (categories: ANY("Movie"))
      *  * (available: true) AND
-     *    (launguage: ANY("en", "es")) OR (categories: ANY("Movie"))
+     *    (language: ANY("en", "es")) OR (categories: ANY("Movie"))
      * If your filter blocks all results, the API returns generic
      * (unfiltered) popular Documents. If you only want results strictly matching
      * the filters, set `strictFiltering` to `true` in

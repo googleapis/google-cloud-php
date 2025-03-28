@@ -21,7 +21,7 @@ class Image extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string thumbnail_uri = 4;</code>
      */
-    private $thumbnail_uri = '';
+    protected $thumbnail_uri = '';
     protected $data;
 
     /**

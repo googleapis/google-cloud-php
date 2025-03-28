@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Gets information about an event that affects a project under an organization.
+ *
  * Generated from protobuf message <code>google.cloud.servicehealth.v1.GetOrganizationImpactRequest</code>
  */
 class GetOrganizationImpactRequest extends \Google\Protobuf\Internal\Message

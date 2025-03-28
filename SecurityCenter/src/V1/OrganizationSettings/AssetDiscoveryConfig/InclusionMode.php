@@ -69,6 +69,4 @@ class InclusionMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(InclusionMode::class, \Google\Cloud\SecurityCenter\V1\OrganizationSettings_AssetDiscoveryConfig_InclusionMode::class);
 

@@ -20,7 +20,7 @@ class AdaptiveMtTranslation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string translated_text = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $translated_text = '';
+    protected $translated_text = '';
 
     /**
      * Constructor.

@@ -229,6 +229,4 @@ class Type
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Type::class, \Google\Cloud\Container\V1\Operation_Type::class);
 

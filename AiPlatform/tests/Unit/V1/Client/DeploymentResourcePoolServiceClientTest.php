@@ -111,10 +111,14 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $serviceAccount = 'serviceAccount-1948028253';
         $disableContainerLogging = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new DeploymentResourcePool();
         $expectedResponse->setName($name);
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setDisableContainerLogging($disableContainerLogging);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -389,10 +393,14 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $serviceAccount = 'serviceAccount-1948028253';
         $disableContainerLogging = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new DeploymentResourcePool();
         $expectedResponse->setName($name2);
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setDisableContainerLogging($disableContainerLogging);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->deploymentResourcePoolName(
@@ -633,10 +641,14 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $serviceAccount = 'serviceAccount-1948028253';
         $disableContainerLogging = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new DeploymentResourcePool();
         $expectedResponse->setName($name);
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setDisableContainerLogging($disableContainerLogging);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1117,10 +1129,14 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $serviceAccount = 'serviceAccount-1948028253';
         $disableContainerLogging = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new DeploymentResourcePool();
         $expectedResponse->setName($name);
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setDisableContainerLogging($disableContainerLogging);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

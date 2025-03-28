@@ -45,7 +45,7 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.FilterExpression dimension_filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $dimension_filter = null;
+    protected $dimension_filter = null;
     /**
      * Optional. The filter clause of metrics. Applied after aggregating the
      * report's rows, similar to SQL having-clause. Dimensions cannot be used in
@@ -53,7 +53,7 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.FilterExpression metric_filter = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $metric_filter = null;
+    protected $metric_filter = null;
     /**
      * Optional. The row count of the start row from Google Analytics Storage.
      * The first row is counted as row 0.
@@ -67,7 +67,7 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 offset = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $offset = 0;
+    protected $offset = 0;
     /**
      * Optional. The number of rows to return in the Report. If unspecified,
      * 10,000 rows are returned. The API returns a maximum of 250,000 rows per
@@ -80,7 +80,7 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 limit = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $limit = 0;
+    protected $limit = 0;
     /**
      * Optional. Aggregation of metrics. Aggregated metric values will be shown
      * in rows where the dimension_values are set to
@@ -101,27 +101,33 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string currency_code = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $currency_code = '';
+    protected $currency_code = '';
     /**
      * Optional. Cohort group associated with this request. If there is a cohort
      * group in the request the 'cohort' dimension must be present.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.CohortSpec cohort_spec = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cohort_spec = null;
+    protected $cohort_spec = null;
     /**
      * Optional. If false or unspecified, each row with all metrics equal to 0
      * will not be returned. If true, these rows will be returned if they are
      * not separately removed by a filter.
      * Regardless of this `keep_empty_rows` setting, only data recorded by the
-     * Google Analytics (GA4) property can be displayed in a report.
+     * Google Analytics property can be displayed in a report.
      * For example if a property never logs a `purchase` event, then a query for
      * the `eventName` dimension and  `eventCount` metric will not have a row
      * containing eventName: "purchase" and eventCount: 0.
      *
      * Generated from protobuf field <code>bool keep_empty_rows = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $keep_empty_rows = false;
+    protected $keep_empty_rows = false;
+    /**
+     * Optional. The report's sampling level.
+     *
+     * Generated from protobuf field <code>optional .google.analytics.data.v1alpha.SamplingLevel sampling_level = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $sampling_level = null;
 
     /**
      * Constructor.
@@ -184,10 +190,12 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      *           will not be returned. If true, these rows will be returned if they are
      *           not separately removed by a filter.
      *           Regardless of this `keep_empty_rows` setting, only data recorded by the
-     *           Google Analytics (GA4) property can be displayed in a report.
+     *           Google Analytics property can be displayed in a report.
      *           For example if a property never logs a `purchase` event, then a query for
      *           the `eventName` dimension and  `eventCount` metric will not have a row
      *           containing eventName: "purchase" and eventCount: 0.
+     *     @type int $sampling_level
+     *           Optional. The report's sampling level.
      * }
      */
     public function __construct($data = NULL) {
@@ -572,7 +580,7 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      * will not be returned. If true, these rows will be returned if they are
      * not separately removed by a filter.
      * Regardless of this `keep_empty_rows` setting, only data recorded by the
-     * Google Analytics (GA4) property can be displayed in a report.
+     * Google Analytics property can be displayed in a report.
      * For example if a property never logs a `purchase` event, then a query for
      * the `eventName` dimension and  `eventCount` metric will not have a row
      * containing eventName: "purchase" and eventCount: 0.
@@ -590,7 +598,7 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      * will not be returned. If true, these rows will be returned if they are
      * not separately removed by a filter.
      * Regardless of this `keep_empty_rows` setting, only data recorded by the
-     * Google Analytics (GA4) property can be displayed in a report.
+     * Google Analytics property can be displayed in a report.
      * For example if a property never logs a `purchase` event, then a query for
      * the `eventName` dimension and  `eventCount` metric will not have a row
      * containing eventName: "purchase" and eventCount: 0.
@@ -603,6 +611,42 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->keep_empty_rows = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The report's sampling level.
+     *
+     * Generated from protobuf field <code>optional .google.analytics.data.v1alpha.SamplingLevel sampling_level = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getSamplingLevel()
+    {
+        return isset($this->sampling_level) ? $this->sampling_level : 0;
+    }
+
+    public function hasSamplingLevel()
+    {
+        return isset($this->sampling_level);
+    }
+
+    public function clearSamplingLevel()
+    {
+        unset($this->sampling_level);
+    }
+
+    /**
+     * Optional. The report's sampling level.
+     *
+     * Generated from protobuf field <code>optional .google.analytics.data.v1alpha.SamplingLevel sampling_level = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSamplingLevel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Analytics\Data\V1alpha\SamplingLevel::class);
+        $this->sampling_level = $var;
 
         return $this;
     }

@@ -21,19 +21,19 @@ class TableReference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The ID of the dataset in the above project.
      *
      * Generated from protobuf field <code>string dataset_id = 2;</code>
      */
-    private $dataset_id = '';
+    protected $dataset_id = '';
     /**
      * The ID of the table in the above dataset.
      *
      * Generated from protobuf field <code>string table_id = 3;</code>
      */
-    private $table_id = '';
+    protected $table_id = '';
 
     /**
      * Constructor.

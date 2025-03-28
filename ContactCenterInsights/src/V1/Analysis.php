@@ -22,34 +22,34 @@ class Analysis extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The time at which the analysis was requested.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp request_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $request_time = null;
+    protected $request_time = null;
     /**
      * Output only. The time at which the analysis was created, which occurs when
      * the long-running operation completes.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The result of the analysis, which is populated when the
      * analysis finishes.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnalysisResult analysis_result = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $analysis_result = null;
+    protected $analysis_result = null;
     /**
      * To select the annotators to run and the phrase matchers to use
      * (if any). If not specified, all annotators will be run.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotatorSelector annotator_selector = 8;</code>
      */
-    private $annotator_selector = null;
+    protected $annotator_selector = null;
 
     /**
      * Constructor.

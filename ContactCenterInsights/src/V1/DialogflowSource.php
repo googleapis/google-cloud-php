@@ -22,14 +22,14 @@ class DialogflowSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dialogflow_conversation = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $dialogflow_conversation = '';
+    protected $dialogflow_conversation = '';
     /**
      * Cloud Storage URI that points to a file that contains the conversation
      * audio.
      *
      * Generated from protobuf field <code>string audio_uri = 3;</code>
      */
-    private $audio_uri = '';
+    protected $audio_uri = '';
 
     /**
      * Constructor.

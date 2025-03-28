@@ -20,7 +20,7 @@ class AvroRows extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes serialized_binary_rows = 1;</code>
      */
-    private $serialized_binary_rows = '';
+    protected $serialized_binary_rows = '';
     /**
      * [Deprecated] The count of rows in the returning block.
      * Please use the format-independent ReadRowsResponse.row_count instead.

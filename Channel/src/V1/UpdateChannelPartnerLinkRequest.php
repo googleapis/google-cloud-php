@@ -23,14 +23,14 @@ class UpdateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The channel partner link to update. Only
      * channel_partner_link.link_state is allowed for updates.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ChannelPartnerLink channel_partner_link = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $channel_partner_link = null;
+    protected $channel_partner_link = null;
     /**
      * Required. The update mask that applies to the resource.
      * The only allowable value for an update mask is
@@ -38,7 +38,7 @@ class UpdateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * Constructor.

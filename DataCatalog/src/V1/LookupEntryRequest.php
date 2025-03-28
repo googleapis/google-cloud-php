@@ -23,7 +23,7 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 6;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Location where the lookup should be performed. Required to lookup
      * entry that is not a part of `DPMS` or `DATAPLEX` `integrated_system`
@@ -31,7 +31,7 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 7;</code>
      */
-    private $location = '';
+    protected $location = '';
     protected $target_name;
 
     /**

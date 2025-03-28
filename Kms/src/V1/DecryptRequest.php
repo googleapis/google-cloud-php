@@ -23,21 +23,21 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The encrypted data originally returned in
      * [EncryptResponse.ciphertext][google.cloud.kms.v1.EncryptResponse.ciphertext].
      *
      * Generated from protobuf field <code>bytes ciphertext = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ciphertext = '';
+    protected $ciphertext = '';
     /**
      * Optional. Optional data that must match the data originally supplied in
      * [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data].
      *
      * Generated from protobuf field <code>bytes additional_authenticated_data = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $additional_authenticated_data = '';
+    protected $additional_authenticated_data = '';
     /**
      * Optional. An optional CRC32C checksum of the
      * [DecryptRequest.ciphertext][google.cloud.kms.v1.DecryptRequest.ciphertext].
@@ -61,7 +61,7 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ciphertext_crc32c = null;
+    protected $ciphertext_crc32c = null;
     /**
      * Optional. An optional CRC32C checksum of the
      * [DecryptRequest.additional_authenticated_data][google.cloud.kms.v1.DecryptRequest.additional_authenticated_data].
@@ -85,7 +85,7 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $additional_authenticated_data_crc32c = null;
+    protected $additional_authenticated_data_crc32c = null;
 
     /**
      * @param string $name       Required. The resource name of the
@@ -320,7 +320,7 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string|null
      */
-    public function getCiphertextCrc32CValue()
+    public function getCiphertextCrc32CUnwrapped()
     {
         return $this->readWrapperValue("ciphertext_crc32c");
     }
@@ -385,7 +385,7 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setCiphertextCrc32CValue($var)
+    public function setCiphertextCrc32CUnwrapped($var)
     {
         $this->writeWrapperValue("ciphertext_crc32c", $var);
         return $this;}
@@ -455,7 +455,7 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string|null
      */
-    public function getAdditionalAuthenticatedDataCrc32CValue()
+    public function getAdditionalAuthenticatedDataCrc32CUnwrapped()
     {
         return $this->readWrapperValue("additional_authenticated_data_crc32c");
     }
@@ -520,7 +520,7 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setAdditionalAuthenticatedDataCrc32CValue($var)
+    public function setAdditionalAuthenticatedDataCrc32CUnwrapped($var)
     {
         $this->writeWrapperValue("additional_authenticated_data_crc32c", $var);
         return $this;}

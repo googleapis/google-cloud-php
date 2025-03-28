@@ -21,7 +21,7 @@ class ListOffersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. Requested page size. Server might return fewer results than
      * requested. If unspecified, returns at most 500 Offers. The maximum value is
@@ -29,13 +29,13 @@ class ListOffersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. A token for a page of results other than the first page.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. The expression to filter results by name (name of
      * the Offer), sku.name (name of the SKU), or sku.product.name (name of the
@@ -45,7 +45,7 @@ class ListOffersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. The BCP-47 language code. For example, "en-US". The
      * response will localize in the corresponding language code, if specified.
@@ -53,7 +53,7 @@ class ListOffersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * Optional. A boolean flag that determines if a response returns future
      * offers 30 days from now. If the show_future_offers is true, the response
@@ -62,7 +62,7 @@ class ListOffersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool show_future_offers = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $show_future_offers = false;
+    protected $show_future_offers = false;
 
     /**
      * Constructor.

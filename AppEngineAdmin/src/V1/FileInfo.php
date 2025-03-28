@@ -23,20 +23,20 @@ class FileInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_url = 1;</code>
      */
-    private $source_url = '';
+    protected $source_url = '';
     /**
      * The SHA1 hash of the file, in hex.
      *
      * Generated from protobuf field <code>string sha1_sum = 2;</code>
      */
-    private $sha1_sum = '';
+    protected $sha1_sum = '';
     /**
      * The MIME type of the file.
      * Defaults to the value from Google Cloud Storage.
      *
      * Generated from protobuf field <code>string mime_type = 3;</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
 
     /**
      * Constructor.

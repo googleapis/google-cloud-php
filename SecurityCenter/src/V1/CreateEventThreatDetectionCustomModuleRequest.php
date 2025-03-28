@@ -24,7 +24,7 @@ class CreateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The module to create. The
      * event_threat_detection_custom_module.name will be ignored and server
@@ -32,7 +32,7 @@ class CreateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.EventThreatDetectionCustomModule event_threat_detection_custom_module = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $event_threat_detection_custom_module = null;
+    protected $event_threat_detection_custom_module = null;
 
     /**
      * @param string                                                           $parent                           Required. The new custom module's parent.

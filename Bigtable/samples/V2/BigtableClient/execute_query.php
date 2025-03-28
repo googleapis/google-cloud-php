@@ -30,13 +30,16 @@ use Google\Cloud\Bigtable\V2\ExecuteQueryRequest;
 use Google\Cloud\Bigtable\V2\ExecuteQueryResponse;
 
 /**
- * Executes a BTQL query against a particular Cloud Bigtable instance.
+ * Executes a SQL query against a particular Bigtable instance.
  *
  * @param string $formattedInstanceName The unique name of the instance against which the query should be
  *                                      executed.
  *                                      Values are of the form `projects/<project>/instances/<instance>`
  *                                      Please see {@see BigtableClient::instanceName()} for help formatting this field.
  * @param string $query                 The query string.
+ *
+ *                                      Exactly one of `query` and `prepared_query` is required. Setting both
+ *                                      or neither is an `INVALID_ARGUMENT`.
  */
 function execute_query_sample(string $formattedInstanceName, string $query): void
 {

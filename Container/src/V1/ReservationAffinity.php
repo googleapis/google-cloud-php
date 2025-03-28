@@ -22,7 +22,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.ReservationAffinity.Type consume_reservation_type = 1;</code>
      */
-    private $consume_reservation_type = 0;
+    protected $consume_reservation_type = 0;
     /**
      * Corresponds to the label key of a reservation resource. To target a
      * SPECIFIC_RESERVATION by name, specify
@@ -31,7 +31,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 2;</code>
      */
-    private $key = '';
+    protected $key = '';
     /**
      * Corresponds to the label value(s) of reservation resource(s).
      *

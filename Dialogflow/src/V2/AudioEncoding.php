@@ -83,6 +83,12 @@ class AudioEncoding
      * Generated from protobuf enum <code>AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE = 7;</code>
      */
     const AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE = 7;
+    /**
+     * 8-bit samples that compand 13-bit audio samples using G.711 PCMU/a-law.
+     *
+     * Generated from protobuf enum <code>AUDIO_ENCODING_ALAW = 8;</code>
+     */
+    const AUDIO_ENCODING_ALAW = 8;
 
     private static $valueToName = [
         self::AUDIO_ENCODING_UNSPECIFIED => 'AUDIO_ENCODING_UNSPECIFIED',
@@ -93,6 +99,7 @@ class AudioEncoding
         self::AUDIO_ENCODING_AMR_WB => 'AUDIO_ENCODING_AMR_WB',
         self::AUDIO_ENCODING_OGG_OPUS => 'AUDIO_ENCODING_OGG_OPUS',
         self::AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE => 'AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE',
+        self::AUDIO_ENCODING_ALAW => 'AUDIO_ENCODING_ALAW',
     ];
 
     public static function name($value)

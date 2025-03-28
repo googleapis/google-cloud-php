@@ -24,13 +24,13 @@ class ExportAssetsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 1;</code>
      */
-    private $read_time = null;
+    protected $read_time = null;
     /**
      * Output configuration indicating where the results were output to.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 2;</code>
      */
-    private $output_config = null;
+    protected $output_config = null;
     /**
      * Output result indicating where the assets were exported to. For example, a
      * set of actual Cloud Storage object URIs where the assets are exported to.
@@ -40,7 +40,7 @@ class ExportAssetsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.OutputResult output_result = 3;</code>
      */
-    private $output_result = null;
+    protected $output_result = null;
 
     /**
      * Constructor.

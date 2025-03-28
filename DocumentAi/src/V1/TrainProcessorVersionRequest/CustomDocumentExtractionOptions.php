@@ -21,7 +21,7 @@ class CustomDocumentExtractionOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.TrainProcessorVersionRequest.CustomDocumentExtractionOptions.TrainingMethod training_method = 3;</code>
      */
-    private $training_method = 0;
+    protected $training_method = 0;
 
     /**
      * Constructor.

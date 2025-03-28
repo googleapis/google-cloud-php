@@ -32,7 +32,7 @@ class AccessLocations extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string principal_office_country = 1;</code>
      */
-    private $principal_office_country = '';
+    protected $principal_office_country = '';
     /**
      * Physical location of the principal at the time of the access. A
      * two-letter country code (ISO 3166-1 alpha-2), such as "US", "DE" or "GB" or
@@ -50,7 +50,7 @@ class AccessLocations extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string principal_physical_location_country = 2;</code>
      */
-    private $principal_physical_location_country = '';
+    protected $principal_physical_location_country = '';
 
     /**
      * Constructor.

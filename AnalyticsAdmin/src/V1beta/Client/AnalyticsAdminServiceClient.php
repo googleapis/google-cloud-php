@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -105,9 +105,10 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: Service Interface for the Analytics Admin API (GA4).
+ * Service Description: Service Interface for the Google Analytics Admin API.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -119,60 +120,60 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface acknowledgeUserDataCollectionAsync(AcknowledgeUserDataCollectionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface archiveCustomDimensionAsync(ArchiveCustomDimensionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface archiveCustomMetricAsync(ArchiveCustomMetricRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createConversionEventAsync(CreateConversionEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCustomDimensionAsync(CreateCustomDimensionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCustomMetricAsync(CreateCustomMetricRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createDataStreamAsync(CreateDataStreamRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createFirebaseLinkAsync(CreateFirebaseLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createGoogleAdsLinkAsync(CreateGoogleAdsLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createKeyEventAsync(CreateKeyEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createMeasurementProtocolSecretAsync(CreateMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createPropertyAsync(CreatePropertyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAccountAsync(DeleteAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteConversionEventAsync(DeleteConversionEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDataStreamAsync(DeleteDataStreamRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteFirebaseLinkAsync(DeleteFirebaseLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteGoogleAdsLinkAsync(DeleteGoogleAdsLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteKeyEventAsync(DeleteKeyEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteMeasurementProtocolSecretAsync(DeleteMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePropertyAsync(DeletePropertyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAccountAsync(GetAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConversionEventAsync(GetConversionEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCustomDimensionAsync(GetCustomDimensionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCustomMetricAsync(GetCustomMetricRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataRetentionSettingsAsync(GetDataRetentionSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataSharingSettingsAsync(GetDataSharingSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataStreamAsync(GetDataStreamRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getKeyEventAsync(GetKeyEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMeasurementProtocolSecretAsync(GetMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPropertyAsync(GetPropertyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAccountSummariesAsync(ListAccountSummariesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAccountsAsync(ListAccountsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConversionEventsAsync(ListConversionEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCustomDimensionsAsync(ListCustomDimensionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCustomMetricsAsync(ListCustomMetricsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDataStreamsAsync(ListDataStreamsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFirebaseLinksAsync(ListFirebaseLinksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listGoogleAdsLinksAsync(ListGoogleAdsLinksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listKeyEventsAsync(ListKeyEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMeasurementProtocolSecretsAsync(ListMeasurementProtocolSecretsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPropertiesAsync(ListPropertiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface provisionAccountTicketAsync(ProvisionAccountTicketRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runAccessReportAsync(RunAccessReportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchChangeHistoryEventsAsync(SearchChangeHistoryEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAccountAsync(UpdateAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateConversionEventAsync(UpdateConversionEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCustomDimensionAsync(UpdateCustomDimensionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCustomMetricAsync(UpdateCustomMetricRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDataRetentionSettingsAsync(UpdateDataRetentionSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDataStreamAsync(UpdateDataStreamRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateGoogleAdsLinkAsync(UpdateGoogleAdsLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateKeyEventAsync(UpdateKeyEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateMeasurementProtocolSecretAsync(UpdateMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updatePropertyAsync(UpdatePropertyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AcknowledgeUserDataCollectionResponse> acknowledgeUserDataCollectionAsync(AcknowledgeUserDataCollectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> archiveCustomDimensionAsync(ArchiveCustomDimensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> archiveCustomMetricAsync(ArchiveCustomMetricRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversionEvent> createConversionEventAsync(CreateConversionEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomDimension> createCustomDimensionAsync(CreateCustomDimensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomMetric> createCustomMetricAsync(CreateCustomMetricRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataStream> createDataStreamAsync(CreateDataStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirebaseLink> createFirebaseLinkAsync(CreateFirebaseLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GoogleAdsLink> createGoogleAdsLinkAsync(CreateGoogleAdsLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<KeyEvent> createKeyEventAsync(CreateKeyEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MeasurementProtocolSecret> createMeasurementProtocolSecretAsync(CreateMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Property> createPropertyAsync(CreatePropertyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAccountAsync(DeleteAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteConversionEventAsync(DeleteConversionEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteDataStreamAsync(DeleteDataStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteFirebaseLinkAsync(DeleteFirebaseLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteGoogleAdsLinkAsync(DeleteGoogleAdsLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteKeyEventAsync(DeleteKeyEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteMeasurementProtocolSecretAsync(DeleteMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Property> deletePropertyAsync(DeletePropertyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Account> getAccountAsync(GetAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversionEvent> getConversionEventAsync(GetConversionEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomDimension> getCustomDimensionAsync(GetCustomDimensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomMetric> getCustomMetricAsync(GetCustomMetricRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataRetentionSettings> getDataRetentionSettingsAsync(GetDataRetentionSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataSharingSettings> getDataSharingSettingsAsync(GetDataSharingSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataStream> getDataStreamAsync(GetDataStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<KeyEvent> getKeyEventAsync(GetKeyEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MeasurementProtocolSecret> getMeasurementProtocolSecretAsync(GetMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Property> getPropertyAsync(GetPropertyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAccountSummariesAsync(ListAccountSummariesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAccountsAsync(ListAccountsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConversionEventsAsync(ListConversionEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCustomDimensionsAsync(ListCustomDimensionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCustomMetricsAsync(ListCustomMetricsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDataStreamsAsync(ListDataStreamsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFirebaseLinksAsync(ListFirebaseLinksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGoogleAdsLinksAsync(ListGoogleAdsLinksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listKeyEventsAsync(ListKeyEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMeasurementProtocolSecretsAsync(ListMeasurementProtocolSecretsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPropertiesAsync(ListPropertiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ProvisionAccountTicketResponse> provisionAccountTicketAsync(ProvisionAccountTicketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RunAccessReportResponse> runAccessReportAsync(RunAccessReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchChangeHistoryEventsAsync(SearchChangeHistoryEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Account> updateAccountAsync(UpdateAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversionEvent> updateConversionEventAsync(UpdateConversionEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomDimension> updateCustomDimensionAsync(UpdateCustomDimensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomMetric> updateCustomMetricAsync(UpdateCustomMetricRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataRetentionSettings> updateDataRetentionSettingsAsync(UpdateDataRetentionSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataStream> updateDataStreamAsync(UpdateDataStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GoogleAdsLink> updateGoogleAdsLinkAsync(UpdateGoogleAdsLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<KeyEvent> updateKeyEventAsync(UpdateKeyEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MeasurementProtocolSecret> updateMeasurementProtocolSecretAsync(UpdateMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Property> updatePropertyAsync(UpdatePropertyRequest $request, array $optionalArgs = [])
  */
 final class AnalyticsAdminServiceClient
 {
@@ -419,8 +420,11 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public static function measurementProtocolSecretName(string $property, string $dataStream, string $measurementProtocolSecret): string
-    {
+    public static function measurementProtocolSecretName(
+        string $property,
+        string $dataStream,
+        string $measurementProtocolSecret
+    ): string {
         return self::getPathTemplate('measurementProtocolSecret')->render([
             'property' => $property,
             'data_stream' => $dataStream,
@@ -486,8 +490,8 @@ final class AnalyticsAdminServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
@@ -495,7 +499,7 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -517,6 +521,12 @@ final class AnalyticsAdminServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -550,6 +560,9 @@ final class AnalyticsAdminServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -601,8 +614,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function acknowledgeUserDataCollection(AcknowledgeUserDataCollectionRequest $request, array $callOptions = []): AcknowledgeUserDataCollectionResponse
-    {
+    public function acknowledgeUserDataCollection(
+        AcknowledgeUserDataCollectionRequest $request,
+        array $callOptions = []
+    ): AcknowledgeUserDataCollectionResponse {
         return $this->startApiCall('AcknowledgeUserDataCollection', $request, $callOptions)->wait();
     }
 
@@ -687,8 +702,10 @@ final class AnalyticsAdminServiceClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function createConversionEvent(CreateConversionEventRequest $request, array $callOptions = []): ConversionEvent
-    {
+    public function createConversionEvent(
+        CreateConversionEventRequest $request,
+        array $callOptions = []
+    ): ConversionEvent {
         return $this->startApiCall('CreateConversionEvent', $request, $callOptions)->wait();
     }
 
@@ -716,8 +733,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createCustomDimension(CreateCustomDimensionRequest $request, array $callOptions = []): CustomDimension
-    {
+    public function createCustomDimension(
+        CreateCustomDimensionRequest $request,
+        array $callOptions = []
+    ): CustomDimension {
         return $this->startApiCall('CreateCustomDimension', $request, $callOptions)->wait();
     }
 
@@ -891,13 +910,16 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createMeasurementProtocolSecret(CreateMeasurementProtocolSecretRequest $request, array $callOptions = []): MeasurementProtocolSecret
-    {
+    public function createMeasurementProtocolSecret(
+        CreateMeasurementProtocolSecretRequest $request,
+        array $callOptions = []
+    ): MeasurementProtocolSecret {
         return $this->startApiCall('CreateMeasurementProtocolSecret', $request, $callOptions)->wait();
     }
 
     /**
-     * Creates an "GA4" property with the specified location and attributes.
+     * Creates a Google Analytics property with the specified location and
+     * attributes.
      *
      * The async variant is {@see AnalyticsAdminServiceClient::createPropertyAsync()} .
      *
@@ -1119,8 +1141,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function deleteMeasurementProtocolSecret(DeleteMeasurementProtocolSecretRequest $request, array $callOptions = []): void
-    {
+    public function deleteMeasurementProtocolSecret(
+        DeleteMeasurementProtocolSecretRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('DeleteMeasurementProtocolSecret', $request, $callOptions)->wait();
     }
 
@@ -1135,7 +1159,7 @@ final class AnalyticsAdminServiceClient
      * will be permanently purged.
      * https://support.google.com/analytics/answer/6154772
      *
-     * Returns an error if the target is not found, or is not a GA4 Property.
+     * Returns an error if the target is not found.
      *
      * The async variant is {@see AnalyticsAdminServiceClient::deletePropertyAsync()} .
      *
@@ -1304,8 +1328,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getDataRetentionSettings(GetDataRetentionSettingsRequest $request, array $callOptions = []): DataRetentionSettings
-    {
+    public function getDataRetentionSettings(
+        GetDataRetentionSettingsRequest $request,
+        array $callOptions = []
+    ): DataRetentionSettings {
         return $this->startApiCall('GetDataRetentionSettings', $request, $callOptions)->wait();
     }
 
@@ -1334,8 +1360,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getDataSharingSettings(GetDataSharingSettingsRequest $request, array $callOptions = []): DataSharingSettings
-    {
+    public function getDataSharingSettings(
+        GetDataSharingSettingsRequest $request,
+        array $callOptions = []
+    ): DataSharingSettings {
         return $this->startApiCall('GetDataSharingSettings', $request, $callOptions)->wait();
     }
 
@@ -1396,7 +1424,7 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
-     * Lookup for a single "GA4" MeasurementProtocolSecret.
+     * Lookup for a single MeasurementProtocolSecret.
      *
      * The async variant is
      * {@see AnalyticsAdminServiceClient::getMeasurementProtocolSecretAsync()} .
@@ -1419,13 +1447,15 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getMeasurementProtocolSecret(GetMeasurementProtocolSecretRequest $request, array $callOptions = []): MeasurementProtocolSecret
-    {
+    public function getMeasurementProtocolSecret(
+        GetMeasurementProtocolSecretRequest $request,
+        array $callOptions = []
+    ): MeasurementProtocolSecret {
         return $this->startApiCall('GetMeasurementProtocolSecret', $request, $callOptions)->wait();
     }
 
     /**
-     * Lookup for a single "GA4" Property.
+     * Lookup for a single GA Property.
      *
      * The async variant is {@see AnalyticsAdminServiceClient::getPropertyAsync()} .
      *
@@ -1476,15 +1506,17 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listAccountSummaries(ListAccountSummariesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listAccountSummaries(
+        ListAccountSummariesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListAccountSummaries', $request, $callOptions);
     }
 
     /**
      * Returns all accounts accessible by the caller.
      *
-     * Note that these accounts might not currently have GA4 properties.
+     * Note that these accounts might not currently have GA properties.
      * Soft-deleted (ie: "trashed") accounts are excluded by default.
      * Returns an empty list if no relevant accounts are found.
      *
@@ -1542,8 +1574,10 @@ final class AnalyticsAdminServiceClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function listConversionEvents(ListConversionEventsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listConversionEvents(
+        ListConversionEventsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListConversionEvents', $request, $callOptions);
     }
 
@@ -1571,8 +1605,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listCustomDimensions(ListCustomDimensionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listCustomDimensions(
+        ListCustomDimensionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListCustomDimensions', $request, $callOptions);
     }
 
@@ -1747,15 +1783,16 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listMeasurementProtocolSecrets(ListMeasurementProtocolSecretsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listMeasurementProtocolSecrets(
+        ListMeasurementProtocolSecretsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListMeasurementProtocolSecrets', $request, $callOptions);
     }
 
     /**
      * Returns child Properties under the specified parent Account.
      *
-     * Only "GA4" properties will be returned.
      * Properties will be excluded if the caller does not have access.
      * Soft-deleted (ie: "trashed") properties are excluded by default.
      * Returns an empty list if no relevant properties are found.
@@ -1809,8 +1846,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function provisionAccountTicket(ProvisionAccountTicketRequest $request, array $callOptions = []): ProvisionAccountTicketResponse
-    {
+    public function provisionAccountTicket(
+        ProvisionAccountTicketRequest $request,
+        array $callOptions = []
+    ): ProvisionAccountTicketResponse {
         return $this->startApiCall('ProvisionAccountTicket', $request, $callOptions)->wait();
     }
 
@@ -1824,12 +1863,17 @@ final class AnalyticsAdminServiceClient
      * only be requested on Google Analytics 360 properties. This method is only
      * available to Administrators.
      *
-     * These data access records include GA4 UI Reporting, GA4 UI Explorations,
-     * GA4 Data API, and other products like Firebase & Admob that can retrieve
+     * These data access records include GA UI Reporting, GA UI Explorations,
+     * GA Data API, and other products like Firebase & Admob that can retrieve
      * data from Google Analytics through a linkage. These records don't include
      * property configuration changes like adding a stream or changing a
      * property's time zone. For configuration change history, see
      * [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).
+     *
+     * To give your feedback on this API, complete the [Google Analytics Access
+     * Reports
+     * feedback](https://docs.google.com/forms/d/e/1FAIpQLSdmEBUrMzAEdiEKk5TV5dEHvDUZDRlgWYdQdAeSdtR4hVjEhw/viewform)
+     * form.
      *
      * The async variant is {@see AnalyticsAdminServiceClient::runAccessReportAsync()}
      * .
@@ -1861,6 +1905,9 @@ final class AnalyticsAdminServiceClient
      * Searches through all changes to an account or its children given the
      * specified set of filters.
      *
+     * Only returns the subset of changes supported by the API. The UI may return
+     * additional changes.
+     *
      * The async variant is
      * {@see AnalyticsAdminServiceClient::searchChangeHistoryEventsAsync()} .
      *
@@ -1882,8 +1929,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function searchChangeHistoryEvents(SearchChangeHistoryEventsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function searchChangeHistoryEvents(
+        SearchChangeHistoryEventsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('SearchChangeHistoryEvents', $request, $callOptions);
     }
 
@@ -1942,8 +1991,10 @@ final class AnalyticsAdminServiceClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function updateConversionEvent(UpdateConversionEventRequest $request, array $callOptions = []): ConversionEvent
-    {
+    public function updateConversionEvent(
+        UpdateConversionEventRequest $request,
+        array $callOptions = []
+    ): ConversionEvent {
         return $this->startApiCall('UpdateConversionEvent', $request, $callOptions)->wait();
     }
 
@@ -1971,8 +2022,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateCustomDimension(UpdateCustomDimensionRequest $request, array $callOptions = []): CustomDimension
-    {
+    public function updateCustomDimension(
+        UpdateCustomDimensionRequest $request,
+        array $callOptions = []
+    ): CustomDimension {
         return $this->startApiCall('UpdateCustomDimension', $request, $callOptions)->wait();
     }
 
@@ -2029,8 +2082,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateDataRetentionSettings(UpdateDataRetentionSettingsRequest $request, array $callOptions = []): DataRetentionSettings
-    {
+    public function updateDataRetentionSettings(
+        UpdateDataRetentionSettingsRequest $request,
+        array $callOptions = []
+    ): DataRetentionSettings {
         return $this->startApiCall('UpdateDataRetentionSettings', $request, $callOptions)->wait();
     }
 
@@ -2144,8 +2199,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateMeasurementProtocolSecret(UpdateMeasurementProtocolSecretRequest $request, array $callOptions = []): MeasurementProtocolSecret
-    {
+    public function updateMeasurementProtocolSecret(
+        UpdateMeasurementProtocolSecretRequest $request,
+        array $callOptions = []
+    ): MeasurementProtocolSecret {
         return $this->startApiCall('UpdateMeasurementProtocolSecret', $request, $callOptions)->wait();
     }
 

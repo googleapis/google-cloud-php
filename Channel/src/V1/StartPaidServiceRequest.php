@@ -23,7 +23,7 @@ class StartPaidServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. You can specify an optional unique request ID, and if you need to
      * retry your request, the server will know to ignore the request if it's
@@ -38,7 +38,7 @@ class StartPaidServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * Constructor.

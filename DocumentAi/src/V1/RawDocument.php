@@ -20,14 +20,14 @@ class RawDocument extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes content = 1;</code>
      */
-    private $content = '';
+    protected $content = '';
     /**
      * An IANA MIME type (RFC6838) indicating the nature and format of the
      * [content][google.cloud.documentai.v1.RawDocument.content].
      *
      * Generated from protobuf field <code>string mime_type = 2;</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
     /**
      * The display name of the document, it supports all Unicode characters except
      * the following:
@@ -37,7 +37,7 @@ class RawDocument extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
 
     /**
      * Constructor.

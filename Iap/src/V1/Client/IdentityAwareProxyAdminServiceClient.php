@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,6 +48,7 @@ use Google\Cloud\Iap\V1\TunnelDestGroup;
 use Google\Cloud\Iap\V1\UpdateIapSettingsRequest;
 use Google\Cloud\Iap\V1\UpdateTunnelDestGroupRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: APIs for Identity-Aware Proxy Admin configurations.
@@ -60,16 +61,16 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createTunnelDestGroupAsync(CreateTunnelDestGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTunnelDestGroupAsync(DeleteTunnelDestGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIapSettingsAsync(GetIapSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTunnelDestGroupAsync(GetTunnelDestGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTunnelDestGroupsAsync(ListTunnelDestGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateIapSettingsAsync(UpdateIapSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTunnelDestGroupAsync(UpdateTunnelDestGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TunnelDestGroup> createTunnelDestGroupAsync(CreateTunnelDestGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTunnelDestGroupAsync(DeleteTunnelDestGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IapSettings> getIapSettingsAsync(GetIapSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TunnelDestGroup> getTunnelDestGroupAsync(GetTunnelDestGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTunnelDestGroupsAsync(ListTunnelDestGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IapSettings> updateIapSettingsAsync(UpdateIapSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TunnelDestGroup> updateTunnelDestGroupAsync(UpdateTunnelDestGroupRequest $request, array $optionalArgs = [])
  */
 final class IdentityAwareProxyAdminServiceClient
 {
@@ -96,9 +97,7 @@ final class IdentityAwareProxyAdminServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -106,14 +105,16 @@ final class IdentityAwareProxyAdminServiceClient
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__ . '/../resources/identity_aware_proxy_admin_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/identity_aware_proxy_admin_service_descriptor_config.php',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/identity_aware_proxy_admin_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__ . '/../resources/identity_aware_proxy_admin_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/identity_aware_proxy_admin_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/identity_aware_proxy_admin_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -168,14 +169,14 @@ final class IdentityAwareProxyAdminServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -197,6 +198,12 @@ final class IdentityAwareProxyAdminServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -230,6 +237,9 @@ final class IdentityAwareProxyAdminServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -273,8 +283,10 @@ final class IdentityAwareProxyAdminServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createTunnelDestGroup(CreateTunnelDestGroupRequest $request, array $callOptions = []): TunnelDestGroup
-    {
+    public function createTunnelDestGroup(
+        CreateTunnelDestGroupRequest $request,
+        array $callOptions = []
+    ): TunnelDestGroup {
         return $this->startApiCall('CreateTunnelDestGroup', $request, $callOptions)->wait();
     }
 
@@ -411,8 +423,10 @@ final class IdentityAwareProxyAdminServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listTunnelDestGroups(ListTunnelDestGroupsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listTunnelDestGroups(
+        ListTunnelDestGroupsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListTunnelDestGroups', $request, $callOptions);
     }
 
@@ -471,8 +485,10 @@ final class IdentityAwareProxyAdminServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
@@ -526,8 +542,10 @@ final class IdentityAwareProxyAdminServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateTunnelDestGroup(UpdateTunnelDestGroupRequest $request, array $callOptions = []): TunnelDestGroup
-    {
+    public function updateTunnelDestGroup(
+        UpdateTunnelDestGroupRequest $request,
+        array $callOptions = []
+    ): TunnelDestGroup {
         return $this->startApiCall('UpdateTunnelDestGroup', $request, $callOptions)->wait();
     }
 }

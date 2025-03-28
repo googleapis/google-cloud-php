@@ -21,32 +21,32 @@ class TemporalAsset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.TimeWindow window = 1;</code>
      */
-    private $window = null;
+    protected $window = null;
     /**
      * Whether the asset has been deleted or not.
      *
      * Generated from protobuf field <code>bool deleted = 2;</code>
      */
-    private $deleted = false;
+    protected $deleted = false;
     /**
      * An asset in Google Cloud.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.Asset asset = 3;</code>
      */
-    private $asset = null;
+    protected $asset = null;
     /**
      * State of prior_asset.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.TemporalAsset.PriorAssetState prior_asset_state = 4;</code>
      */
-    private $prior_asset_state = 0;
+    protected $prior_asset_state = 0;
     /**
      * Prior copy of the asset. Populated if prior_asset_state is PRESENT.
      * Currently this is only set for responses in Real-Time Feed.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.Asset prior_asset = 5;</code>
      */
-    private $prior_asset = null;
+    protected $prior_asset = null;
 
     /**
      * Constructor.

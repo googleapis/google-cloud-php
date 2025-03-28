@@ -21,14 +21,14 @@ class CloudIdentityCustomerAccount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool existing = 1;</code>
      */
-    private $existing = false;
+    protected $existing = false;
     /**
      * Returns true if the Cloud Identity account is associated with a customer
      * of the Channel Services partner.
      *
      * Generated from protobuf field <code>bool owned = 2;</code>
      */
-    private $owned = false;
+    protected $owned = false;
     /**
      * If owned = true, the name of the customer that owns the Cloud Identity
      * account.
@@ -37,13 +37,26 @@ class CloudIdentityCustomerAccount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string customer_name = 3;</code>
      */
-    private $customer_name = '';
+    protected $customer_name = '';
     /**
      * If existing = true, the Cloud Identity ID of the customer.
      *
      * Generated from protobuf field <code>string customer_cloud_identity_id = 4;</code>
      */
-    private $customer_cloud_identity_id = '';
+    protected $customer_cloud_identity_id = '';
+    /**
+     * If existing = true, the type of the customer.
+     *
+     * Generated from protobuf field <code>.google.cloud.channel.v1.CloudIdentityInfo.CustomerType customer_type = 5;</code>
+     */
+    protected $customer_type = 0;
+    /**
+     * If existing = true, and is 2-tier customer, the channel partner of the
+     * customer.
+     *
+     * Generated from protobuf field <code>string channel_partner_cloud_identity_id = 6;</code>
+     */
+    protected $channel_partner_cloud_identity_id = '';
 
     /**
      * Constructor.
@@ -63,6 +76,11 @@ class CloudIdentityCustomerAccount extends \Google\Protobuf\Internal\Message
      *           accounts/{account_id}/customers/{customer_id}
      *     @type string $customer_cloud_identity_id
      *           If existing = true, the Cloud Identity ID of the customer.
+     *     @type int $customer_type
+     *           If existing = true, the type of the customer.
+     *     @type string $channel_partner_cloud_identity_id
+     *           If existing = true, and is 2-tier customer, the channel partner of the
+     *           customer.
      * }
      */
     public function __construct($data = NULL) {
@@ -178,6 +196,60 @@ class CloudIdentityCustomerAccount extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->customer_cloud_identity_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * If existing = true, the type of the customer.
+     *
+     * Generated from protobuf field <code>.google.cloud.channel.v1.CloudIdentityInfo.CustomerType customer_type = 5;</code>
+     * @return int
+     */
+    public function getCustomerType()
+    {
+        return $this->customer_type;
+    }
+
+    /**
+     * If existing = true, the type of the customer.
+     *
+     * Generated from protobuf field <code>.google.cloud.channel.v1.CloudIdentityInfo.CustomerType customer_type = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCustomerType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Channel\V1\CloudIdentityInfo\CustomerType::class);
+        $this->customer_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * If existing = true, and is 2-tier customer, the channel partner of the
+     * customer.
+     *
+     * Generated from protobuf field <code>string channel_partner_cloud_identity_id = 6;</code>
+     * @return string
+     */
+    public function getChannelPartnerCloudIdentityId()
+    {
+        return $this->channel_partner_cloud_identity_id;
+    }
+
+    /**
+     * If existing = true, and is 2-tier customer, the channel partner of the
+     * customer.
+     *
+     * Generated from protobuf field <code>string channel_partner_cloud_identity_id = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setChannelPartnerCloudIdentityId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->channel_partner_cloud_identity_id = $var;
 
         return $this;
     }

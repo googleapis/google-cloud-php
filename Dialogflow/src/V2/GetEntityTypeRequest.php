@@ -22,7 +22,7 @@ class GetEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The language used to access language-specific data.
      * If not specified, the agent's default language is used.
@@ -32,7 +32,7 @@ class GetEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
 
     /**
      * @param string $name Required. The name of the entity type.

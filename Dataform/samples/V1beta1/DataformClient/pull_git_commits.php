@@ -27,6 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
 use Google\Cloud\Dataform\V1beta1\CommitAuthor;
 use Google\Cloud\Dataform\V1beta1\PullGitCommitsRequest;
+use Google\Cloud\Dataform\V1beta1\PullGitCommitsResponse;
 
 /**
  * Pulls Git commits from the Repository's remote into a Workspace.
@@ -54,8 +55,9 @@ function pull_git_commits_sample(
 
     // Call the API and handle any network failures.
     try {
-        $dataformClient->pullGitCommits($request);
-        printf('Call completed successfully.' . PHP_EOL);
+        /** @var PullGitCommitsResponse $response */
+        $response = $dataformClient->pullGitCommits($request);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }

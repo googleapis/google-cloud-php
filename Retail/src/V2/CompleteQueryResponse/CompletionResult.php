@@ -20,7 +20,7 @@ class CompletionResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string suggestion = 1;</code>
      */
-    private $suggestion = '';
+    protected $suggestion = '';
     /**
      * Custom attributes for the suggestion term.
      * * For "user-data", the attributes are additional custom attributes

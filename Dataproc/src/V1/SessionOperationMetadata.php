@@ -20,37 +20,37 @@ class SessionOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string session = 1;</code>
      */
-    private $session = '';
+    protected $session = '';
     /**
      * Session UUID for the operation.
      *
      * Generated from protobuf field <code>string session_uuid = 2;</code>
      */
-    private $session_uuid = '';
+    protected $session_uuid = '';
     /**
      * The time when the operation was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The time when the operation was finished.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp done_time = 4;</code>
      */
-    private $done_time = null;
+    protected $done_time = null;
     /**
      * The operation type.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.SessionOperationMetadata.SessionOperationType operation_type = 6;</code>
      */
-    private $operation_type = 0;
+    protected $operation_type = 0;
     /**
      * Short description of the operation.
      *
      * Generated from protobuf field <code>string description = 7;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Labels associated with the operation.
      *

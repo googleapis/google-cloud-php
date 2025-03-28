@@ -21,7 +21,7 @@ class DebugInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Public SSH key to add to the instance. Examples:
      * * `[USERNAME]:ssh-rsa [KEY_VALUE] [USERNAME]`
@@ -31,7 +31,7 @@ class DebugInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ssh_key = 2;</code>
      */
-    private $ssh_key = '';
+    protected $ssh_key = '';
 
     /**
      * Constructor.

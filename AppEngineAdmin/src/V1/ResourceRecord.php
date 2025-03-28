@@ -21,20 +21,20 @@ class ResourceRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Data for this record. Values vary by record type, as defined in RFC 1035
      * (section 5) and RFC 1034 (section 3.6.1).
      *
      * Generated from protobuf field <code>string rrdata = 2;</code>
      */
-    private $rrdata = '';
+    protected $rrdata = '';
     /**
      * Resource record type. Example: `AAAA`.
      *
      * Generated from protobuf field <code>.google.appengine.v1.ResourceRecord.RecordType type = 3;</code>
      */
-    private $type = 0;
+    protected $type = 0;
 
     /**
      * Constructor.

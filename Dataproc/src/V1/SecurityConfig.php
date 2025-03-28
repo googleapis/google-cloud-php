@@ -20,14 +20,14 @@ class SecurityConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.KerberosConfig kerberos_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $kerberos_config = null;
+    protected $kerberos_config = null;
     /**
      * Optional. Identity related configuration, including service account based
      * secure multi-tenancy user mappings.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.IdentityConfig identity_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $identity_config = null;
+    protected $identity_config = null;
 
     /**
      * Constructor.

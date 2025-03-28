@@ -30,7 +30,9 @@ use Google\Cloud\Sql\V1\SqlInstancesRotateServerCaRequest;
 
 /**
  * Rotates the server certificate to one signed by the Certificate Authority
- * (CA) version previously added with the addServerCA method.
+ * (CA) version previously added with the addServerCA method. For instances
+ * that have enabled Certificate Authority Service (CAS) based server CA,
+ * please use RotateServerCertificate to rotate the server certificate.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

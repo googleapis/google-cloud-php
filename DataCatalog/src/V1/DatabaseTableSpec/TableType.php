@@ -59,6 +59,4 @@ class TableType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TableType::class, \Google\Cloud\DataCatalog\V1\DatabaseTableSpec_TableType::class);
 

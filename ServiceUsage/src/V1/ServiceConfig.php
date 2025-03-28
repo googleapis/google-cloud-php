@@ -22,13 +22,13 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The product title for this service.
      *
      * Generated from protobuf field <code>string title = 2;</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * A list of API interfaces exported by this service. Contains only the names,
      * versions, and method names of the interfaces.
@@ -42,25 +42,25 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.Documentation documentation = 6;</code>
      */
-    private $documentation = null;
+    protected $documentation = null;
     /**
      * Quota configuration.
      *
      * Generated from protobuf field <code>.google.api.Quota quota = 10;</code>
      */
-    private $quota = null;
+    protected $quota = null;
     /**
      * Auth configuration. Contains only the OAuth rules.
      *
      * Generated from protobuf field <code>.google.api.Authentication authentication = 11;</code>
      */
-    private $authentication = null;
+    protected $authentication = null;
     /**
      * Configuration controlling usage of this service.
      *
      * Generated from protobuf field <code>.google.api.Usage usage = 15;</code>
      */
-    private $usage = null;
+    protected $usage = null;
     /**
      * Configuration for network endpoints. Contains only the names and aliases
      * of the endpoints.
@@ -82,7 +82,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.Monitoring monitoring = 28;</code>
      */
-    private $monitoring = null;
+    protected $monitoring = null;
 
     /**
      * Constructor.

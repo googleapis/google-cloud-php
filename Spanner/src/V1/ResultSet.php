@@ -24,11 +24,10 @@ class ResultSet extends \Google\Protobuf\Internal\Message
     private $metadata = null;
     /**
      * Each element in `rows` is a row whose format is defined by
-     * [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. The ith element
-     * in each row matches the ith field in
-     * [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. Elements are
-     * encoded based on type as described
-     * [here][google.spanner.v1.TypeCode].
+     * [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. The ith
+     * element in each row matches the ith field in
+     * [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. Elements
+     * are encoded based on type as described [here][google.spanner.v1.TypeCode].
      *
      * Generated from protobuf field <code>repeated .google.protobuf.ListValue rows = 2;</code>
      */
@@ -39,13 +38,23 @@ class ResultSet extends \Google\Protobuf\Internal\Message
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
      * DML statements always produce stats containing the number of rows
      * modified, unless executed using the
-     * [ExecuteSqlRequest.QueryMode.PLAN][google.spanner.v1.ExecuteSqlRequest.QueryMode.PLAN] [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
-     * Other fields may or may not be populated, based on the
+     * [ExecuteSqlRequest.QueryMode.PLAN][google.spanner.v1.ExecuteSqlRequest.QueryMode.PLAN]
+     * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
+     * Other fields might or might not be populated, based on the
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
      *
      * Generated from protobuf field <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
      */
     private $stats = null;
+    /**
+     * Optional. A precommit token is included if the read-write transaction is on
+     * a multiplexed session. Pass the precommit token with the highest sequence
+     * number from this transaction attempt to the
+     * [Commit][google.spanner.v1.Spanner.Commit] request for this transaction.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $precommit_token = null;
 
     /**
      * Constructor.
@@ -57,20 +66,25 @@ class ResultSet extends \Google\Protobuf\Internal\Message
      *           Metadata about the result set, such as row type information.
      *     @type array<\Google\Protobuf\ListValue>|\Google\Protobuf\Internal\RepeatedField $rows
      *           Each element in `rows` is a row whose format is defined by
-     *           [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. The ith element
-     *           in each row matches the ith field in
-     *           [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. Elements are
-     *           encoded based on type as described
-     *           [here][google.spanner.v1.TypeCode].
+     *           [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. The ith
+     *           element in each row matches the ith field in
+     *           [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. Elements
+     *           are encoded based on type as described [here][google.spanner.v1.TypeCode].
      *     @type \Google\Cloud\Spanner\V1\ResultSetStats $stats
      *           Query plan and execution statistics for the SQL statement that
      *           produced this result set. These can be requested by setting
      *           [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
      *           DML statements always produce stats containing the number of rows
      *           modified, unless executed using the
-     *           [ExecuteSqlRequest.QueryMode.PLAN][google.spanner.v1.ExecuteSqlRequest.QueryMode.PLAN] [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
-     *           Other fields may or may not be populated, based on the
+     *           [ExecuteSqlRequest.QueryMode.PLAN][google.spanner.v1.ExecuteSqlRequest.QueryMode.PLAN]
      *           [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
+     *           Other fields might or might not be populated, based on the
+     *           [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
+     *     @type \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken $precommit_token
+     *           Optional. A precommit token is included if the read-write transaction is on
+     *           a multiplexed session. Pass the precommit token with the highest sequence
+     *           number from this transaction attempt to the
+     *           [Commit][google.spanner.v1.Spanner.Commit] request for this transaction.
      * }
      */
     public function __construct($data = NULL) {
@@ -116,11 +130,10 @@ class ResultSet extends \Google\Protobuf\Internal\Message
 
     /**
      * Each element in `rows` is a row whose format is defined by
-     * [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. The ith element
-     * in each row matches the ith field in
-     * [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. Elements are
-     * encoded based on type as described
-     * [here][google.spanner.v1.TypeCode].
+     * [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. The ith
+     * element in each row matches the ith field in
+     * [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. Elements
+     * are encoded based on type as described [here][google.spanner.v1.TypeCode].
      *
      * Generated from protobuf field <code>repeated .google.protobuf.ListValue rows = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -132,11 +145,10 @@ class ResultSet extends \Google\Protobuf\Internal\Message
 
     /**
      * Each element in `rows` is a row whose format is defined by
-     * [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. The ith element
-     * in each row matches the ith field in
-     * [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. Elements are
-     * encoded based on type as described
-     * [here][google.spanner.v1.TypeCode].
+     * [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. The ith
+     * element in each row matches the ith field in
+     * [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. Elements
+     * are encoded based on type as described [here][google.spanner.v1.TypeCode].
      *
      * Generated from protobuf field <code>repeated .google.protobuf.ListValue rows = 2;</code>
      * @param array<\Google\Protobuf\ListValue>|\Google\Protobuf\Internal\RepeatedField $var
@@ -156,8 +168,9 @@ class ResultSet extends \Google\Protobuf\Internal\Message
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
      * DML statements always produce stats containing the number of rows
      * modified, unless executed using the
-     * [ExecuteSqlRequest.QueryMode.PLAN][google.spanner.v1.ExecuteSqlRequest.QueryMode.PLAN] [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
-     * Other fields may or may not be populated, based on the
+     * [ExecuteSqlRequest.QueryMode.PLAN][google.spanner.v1.ExecuteSqlRequest.QueryMode.PLAN]
+     * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
+     * Other fields might or might not be populated, based on the
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
      *
      * Generated from protobuf field <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
@@ -184,8 +197,9 @@ class ResultSet extends \Google\Protobuf\Internal\Message
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
      * DML statements always produce stats containing the number of rows
      * modified, unless executed using the
-     * [ExecuteSqlRequest.QueryMode.PLAN][google.spanner.v1.ExecuteSqlRequest.QueryMode.PLAN] [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
-     * Other fields may or may not be populated, based on the
+     * [ExecuteSqlRequest.QueryMode.PLAN][google.spanner.v1.ExecuteSqlRequest.QueryMode.PLAN]
+     * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
+     * Other fields might or might not be populated, based on the
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
      *
      * Generated from protobuf field <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
@@ -196,6 +210,48 @@ class ResultSet extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\ResultSetStats::class);
         $this->stats = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A precommit token is included if the read-write transaction is on
+     * a multiplexed session. Pass the precommit token with the highest sequence
+     * number from this transaction attempt to the
+     * [Commit][google.spanner.v1.Spanner.Commit] request for this transaction.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken|null
+     */
+    public function getPrecommitToken()
+    {
+        return $this->precommit_token;
+    }
+
+    public function hasPrecommitToken()
+    {
+        return isset($this->precommit_token);
+    }
+
+    public function clearPrecommitToken()
+    {
+        unset($this->precommit_token);
+    }
+
+    /**
+     * Optional. A precommit token is included if the read-write transaction is on
+     * a multiplexed session. Pass the precommit token with the highest sequence
+     * number from this transaction attempt to the
+     * [Commit][google.spanner.v1.Spanner.Commit] request for this transaction.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken $var
+     * @return $this
+     */
+    public function setPrecommitToken($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken::class);
+        $this->precommit_token = $var;
 
         return $this;
     }

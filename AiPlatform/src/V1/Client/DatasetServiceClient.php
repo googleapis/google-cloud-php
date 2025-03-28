@@ -67,6 +67,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The service that manages Vertex AI Dataset and its child resources.
@@ -79,30 +80,30 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createDatasetAsync(CreateDatasetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createDatasetVersionAsync(CreateDatasetVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDatasetAsync(DeleteDatasetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDatasetVersionAsync(DeleteDatasetVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSavedQueryAsync(DeleteSavedQueryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportDataAsync(ExportDataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAnnotationSpecAsync(GetAnnotationSpecRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDatasetAsync(GetDatasetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDatasetVersionAsync(GetDatasetVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importDataAsync(ImportDataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAnnotationsAsync(ListAnnotationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDataItemsAsync(ListDataItemsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDatasetVersionsAsync(ListDatasetVersionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDatasetsAsync(ListDatasetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSavedQueriesAsync(ListSavedQueriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface restoreDatasetVersionAsync(RestoreDatasetVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchDataItemsAsync(SearchDataItemsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDatasetAsync(UpdateDatasetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDatasetVersionAsync(UpdateDatasetVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createDatasetAsync(CreateDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createDatasetVersionAsync(CreateDatasetVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDatasetAsync(DeleteDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDatasetVersionAsync(DeleteDatasetVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteSavedQueryAsync(DeleteSavedQueryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportDataAsync(ExportDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AnnotationSpec> getAnnotationSpecAsync(GetAnnotationSpecRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Dataset> getDatasetAsync(GetDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DatasetVersion> getDatasetVersionAsync(GetDatasetVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importDataAsync(ImportDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAnnotationsAsync(ListAnnotationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDataItemsAsync(ListDataItemsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDatasetVersionsAsync(ListDatasetVersionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDatasetsAsync(ListDatasetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSavedQueriesAsync(ListSavedQueriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> restoreDatasetVersionAsync(RestoreDatasetVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchDataItemsAsync(SearchDataItemsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Dataset> updateDatasetAsync(UpdateDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DatasetVersion> updateDatasetVersionAsync(UpdateDatasetVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class DatasetServiceClient
 {
@@ -351,14 +352,14 @@ final class DatasetServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -380,6 +381,12 @@ final class DatasetServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -413,6 +420,9 @@ final class DatasetServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -701,6 +711,8 @@ final class DatasetServiceClient
 
     /**
      * Lists Annotations belongs to a dataitem
+     * This RPC is only available in InternalDatasetService. It is only used for
+     * exporting conversation data to CCAI Insights.
      *
      * The async variant is {@see DatasetServiceClient::listAnnotationsAsync()} .
      *

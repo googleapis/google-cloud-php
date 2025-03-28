@@ -22,37 +22,37 @@ class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.BatchOperationMetadata.State state = 1;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * More detailed information about operation state.
      *
      * Generated from protobuf field <code>string state_description = 2;</code>
      */
-    private $state_description = '';
+    protected $state_description = '';
     /**
      * Count of successful item(s) inside an operation.
      *
      * Generated from protobuf field <code>int32 success_count = 3;</code>
      */
-    private $success_count = 0;
+    protected $success_count = 0;
     /**
      * Count of failed item(s) inside an operation.
      *
      * Generated from protobuf field <code>int32 failure_count = 4;</code>
      */
-    private $failure_count = 0;
+    protected $failure_count = 0;
     /**
      * Count of total item(s) inside an operation.
      *
      * Generated from protobuf field <code>int32 total_count = 5;</code>
      */
-    private $total_count = 0;
+    protected $total_count = 0;
     /**
      * The time when the batch operation is created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The time when the batch operation status is updated. The metadata and the
      * [update_time][google.cloud.talent.v4.BatchOperationMetadata.update_time] is
@@ -60,7 +60,7 @@ class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The time when the batch operation is finished and
      * [google.longrunning.Operation.done][google.longrunning.Operation.done] is
@@ -68,7 +68,7 @@ class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 8;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
 
     /**
      * Constructor.

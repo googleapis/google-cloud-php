@@ -21,13 +21,13 @@ class GetDefaultBranchResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string branch = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $branch = '';
+    protected $branch = '';
     /**
      * The time when this branch is set to default.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp set_time = 2;</code>
      */
-    private $set_time = null;
+    protected $set_time = null;
     /**
      * This corresponds to
      * [SetDefaultBranchRequest.note][google.cloud.retail.v2.SetDefaultBranchRequest.note]
@@ -35,7 +35,7 @@ class GetDefaultBranchResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string note = 3;</code>
      */
-    private $note = '';
+    protected $note = '';
 
     /**
      * Constructor.

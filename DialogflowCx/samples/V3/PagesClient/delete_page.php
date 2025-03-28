@@ -35,8 +35,8 @@ use Google\Cloud\Dialogflow\Cx\V3\DeletePageRequest;
  * documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
  *
  * @param string $formattedName The name of the page to delete.
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/Flows/<flow ID>/pages/<Page ID>`. Please see
+ *                              Format:
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/Flows/<flowID>/pages/<PageID>`. Please see
  *                              {@see PagesClient::pageName()} for help formatting this field.
  */
 function delete_page_sample(string $formattedName): void

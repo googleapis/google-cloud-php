@@ -22,6 +22,14 @@ class ListKeyHandlesResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.KeyHandle key_handles = 1;</code>
      */
     private $key_handles;
+    /**
+     * A token to retrieve next page of results. Pass this value in
+     * [ListKeyHandlesRequest.page_token][google.cloud.kms.v1.ListKeyHandlesRequest.page_token]
+     * to retrieve the next page of results.
+     *
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     */
+    protected $next_page_token = '';
 
     /**
      * Constructor.
@@ -31,6 +39,10 @@ class ListKeyHandlesResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\Kms\V1\KeyHandle>|\Google\Protobuf\Internal\RepeatedField $key_handles
      *           Resulting [KeyHandles][google.cloud.kms.v1.KeyHandle].
+     *     @type string $next_page_token
+     *           A token to retrieve next page of results. Pass this value in
+     *           [ListKeyHandlesRequest.page_token][google.cloud.kms.v1.ListKeyHandlesRequest.page_token]
+     *           to retrieve the next page of results.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,6 +72,36 @@ class ListKeyHandlesResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Kms\V1\KeyHandle::class);
         $this->key_handles = $arr;
+
+        return $this;
+    }
+
+    /**
+     * A token to retrieve next page of results. Pass this value in
+     * [ListKeyHandlesRequest.page_token][google.cloud.kms.v1.ListKeyHandlesRequest.page_token]
+     * to retrieve the next page of results.
+     *
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * @return string
+     */
+    public function getNextPageToken()
+    {
+        return $this->next_page_token;
+    }
+
+    /**
+     * A token to retrieve next page of results. Pass this value in
+     * [ListKeyHandlesRequest.page_token][google.cloud.kms.v1.ListKeyHandlesRequest.page_token]
+     * to retrieve the next page of results.
+     *
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNextPageToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->next_page_token = $var;
 
         return $this;
     }

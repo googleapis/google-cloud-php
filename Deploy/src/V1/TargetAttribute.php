@@ -9,20 +9,20 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Contains criteria for selecting Targets.
+ * Contains criteria for selecting Targets. This could be used to select targets
+ * for a Deploy Policy or for an Automation.
  *
  * Generated from protobuf message <code>google.cloud.deploy.v1.TargetAttribute</code>
  */
 class TargetAttribute extends \Google\Protobuf\Internal\Message
 {
     /**
-     * ID of the `Target`. The value of this field could be one of the
+     * Optional. ID of the `Target`. The value of this field could be one of the
      * following:
-     * * The last segment of a target name. It only needs the ID to determine
-     * which target is being referred to
-     * * "*", all targets in a location.
+     * * The last segment of a target name
+     * * "*", all targets in a location
      *
-     * Generated from protobuf field <code>string id = 1;</code>
+     * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $id = '';
     /**
@@ -39,11 +39,10 @@ class TargetAttribute extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $id
-     *           ID of the `Target`. The value of this field could be one of the
+     *           Optional. ID of the `Target`. The value of this field could be one of the
      *           following:
-     *           * The last segment of a target name. It only needs the ID to determine
-     *           which target is being referred to
-     *           * "*", all targets in a location.
+     *           * The last segment of a target name
+     *           * "*", all targets in a location
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Target labels.
      * }
@@ -54,13 +53,12 @@ class TargetAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * ID of the `Target`. The value of this field could be one of the
+     * Optional. ID of the `Target`. The value of this field could be one of the
      * following:
-     * * The last segment of a target name. It only needs the ID to determine
-     * which target is being referred to
-     * * "*", all targets in a location.
+     * * The last segment of a target name
+     * * "*", all targets in a location
      *
-     * Generated from protobuf field <code>string id = 1;</code>
+     * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getId()
@@ -69,13 +67,12 @@ class TargetAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * ID of the `Target`. The value of this field could be one of the
+     * Optional. ID of the `Target`. The value of this field could be one of the
      * following:
-     * * The last segment of a target name. It only needs the ID to determine
-     * which target is being referred to
-     * * "*", all targets in a location.
+     * * The last segment of a target name
+     * * "*", all targets in a location
      *
-     * Generated from protobuf field <code>string id = 1;</code>
+     * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

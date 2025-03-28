@@ -29,7 +29,6 @@ use Google\Apps\Meet\V2beta\GetTranscriptEntryRequest;
 use Google\Apps\Meet\V2beta\TranscriptEntry;
 
 /**
- * [Developer Preview](https://developers.google.com/workspace/preview).
  * Gets a `TranscriptEntry` resource by entry ID.
  *
  * Note: The transcript entries returned by the Google Meet API might not

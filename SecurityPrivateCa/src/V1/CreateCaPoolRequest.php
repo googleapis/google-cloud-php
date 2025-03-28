@@ -23,21 +23,21 @@ class CreateCaPoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. It must be unique within a location and match the regular
      * expression `[a-zA-Z0-9_-]{1,63}`
      *
      * Generated from protobuf field <code>string ca_pool_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ca_pool_id = '';
+    protected $ca_pool_id = '';
     /**
      * Required. A [CaPool][google.cloud.security.privateca.v1.CaPool] with
      * initial field values.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool ca_pool = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ca_pool = null;
+    protected $ca_pool = null;
     /**
      * Optional. An ID to identify requests. Specify a unique request ID so that
      * if you must retry your request, the server will know to ignore the request
@@ -53,7 +53,7 @@ class CreateCaPoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                                     $parent   Required. The resource name of the location associated with the

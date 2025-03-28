@@ -37,14 +37,14 @@ class StreamingAnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.StreamingRecognitionResult recognition_result = 1;</code>
      */
-    private $recognition_result = null;
+    protected $recognition_result = null;
     /**
      * The output text content.
      * This field is set if an automated agent responded with a text for the user.
      *
      * Generated from protobuf field <code>string reply_text = 2;</code>
      */
-    private $reply_text = '';
+    protected $reply_text = '';
     /**
      * The audio data bytes encoded as specified in the request.
      * This field is set if:
@@ -58,24 +58,24 @@ class StreamingAnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudio reply_audio = 3;</code>
      */
-    private $reply_audio = null;
+    protected $reply_audio = null;
     /**
-     * Only set if a Dialogflow automated agent has responded.
-     * Note that: [AutomatedAgentReply.detect_intent_response.output_audio][]
-     * and [AutomatedAgentReply.detect_intent_response.output_audio_config][]
+     * Note that in [AutomatedAgentReply.DetectIntentResponse][],
+     * [Sessions.DetectIntentResponse.output_audio][]
+     * and [Sessions.DetectIntentResponse.output_audio_config][]
      * are always empty, use
      * [reply_audio][google.cloud.dialogflow.v2.StreamingAnalyzeContentResponse.reply_audio]
      * instead.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AutomatedAgentReply automated_agent_reply = 4;</code>
      */
-    private $automated_agent_reply = null;
+    protected $automated_agent_reply = null;
     /**
      * Message analyzed by CCAI.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Message message = 6;</code>
      */
-    private $message = null;
+    protected $message = null;
     /**
      * The suggestions for most recent human agent. The order is the same as
      * [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs]
@@ -99,14 +99,20 @@ class StreamingAnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.DtmfParameters dtmf_parameters = 10;</code>
      */
-    private $dtmf_parameters = null;
+    protected $dtmf_parameters = null;
     /**
      * Debugging info that would get populated when
      * `StreamingAnalyzeContentRequest.enable_debugging_info` is set to true.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.CloudConversationDebuggingInfo debugging_info = 11;</code>
      */
-    private $debugging_info = null;
+    protected $debugging_info = null;
+    /**
+     * The name of the actual Cloud speech model used for speech recognition.
+     *
+     * Generated from protobuf field <code>string speech_model = 13;</code>
+     */
+    protected $speech_model = '';
 
     /**
      * Constructor.
@@ -130,9 +136,9 @@ class StreamingAnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      *           response structure. In these cases, only the top-most-level audio output
      *           has content.
      *     @type \Google\Cloud\Dialogflow\V2\AutomatedAgentReply $automated_agent_reply
-     *           Only set if a Dialogflow automated agent has responded.
-     *           Note that: [AutomatedAgentReply.detect_intent_response.output_audio][]
-     *           and [AutomatedAgentReply.detect_intent_response.output_audio_config][]
+     *           Note that in [AutomatedAgentReply.DetectIntentResponse][],
+     *           [Sessions.DetectIntentResponse.output_audio][]
+     *           and [Sessions.DetectIntentResponse.output_audio_config][]
      *           are always empty, use
      *           [reply_audio][google.cloud.dialogflow.v2.StreamingAnalyzeContentResponse.reply_audio]
      *           instead.
@@ -153,6 +159,8 @@ class StreamingAnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\V2\CloudConversationDebuggingInfo $debugging_info
      *           Debugging info that would get populated when
      *           `StreamingAnalyzeContentRequest.enable_debugging_info` is set to true.
+     *     @type string $speech_model
+     *           The name of the actual Cloud speech model used for speech recognition.
      * }
      */
     public function __construct($data = NULL) {
@@ -277,9 +285,9 @@ class StreamingAnalyzeContentResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only set if a Dialogflow automated agent has responded.
-     * Note that: [AutomatedAgentReply.detect_intent_response.output_audio][]
-     * and [AutomatedAgentReply.detect_intent_response.output_audio_config][]
+     * Note that in [AutomatedAgentReply.DetectIntentResponse][],
+     * [Sessions.DetectIntentResponse.output_audio][]
+     * and [Sessions.DetectIntentResponse.output_audio_config][]
      * are always empty, use
      * [reply_audio][google.cloud.dialogflow.v2.StreamingAnalyzeContentResponse.reply_audio]
      * instead.
@@ -303,9 +311,9 @@ class StreamingAnalyzeContentResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only set if a Dialogflow automated agent has responded.
-     * Note that: [AutomatedAgentReply.detect_intent_response.output_audio][]
-     * and [AutomatedAgentReply.detect_intent_response.output_audio_config][]
+     * Note that in [AutomatedAgentReply.DetectIntentResponse][],
+     * [Sessions.DetectIntentResponse.output_audio][]
+     * and [Sessions.DetectIntentResponse.output_audio_config][]
      * are always empty, use
      * [reply_audio][google.cloud.dialogflow.v2.StreamingAnalyzeContentResponse.reply_audio]
      * instead.
@@ -492,6 +500,32 @@ class StreamingAnalyzeContentResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\CloudConversationDebuggingInfo::class);
         $this->debugging_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * The name of the actual Cloud speech model used for speech recognition.
+     *
+     * Generated from protobuf field <code>string speech_model = 13;</code>
+     * @return string
+     */
+    public function getSpeechModel()
+    {
+        return $this->speech_model;
+    }
+
+    /**
+     * The name of the actual Cloud speech model used for speech recognition.
+     *
+     * Generated from protobuf field <code>string speech_model = 13;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSpeechModel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->speech_model = $var;
 
         return $this;
     }

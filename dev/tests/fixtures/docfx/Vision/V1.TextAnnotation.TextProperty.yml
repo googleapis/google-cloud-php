@@ -38,11 +38,11 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ detected_languages'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage">Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage">DetectedLanguage</xref>&gt;'
           description: 'A list of detected languages together with confidence.'
         -
           id: '↳ detected_break'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak">Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak">DetectedBreak</xref>'
           description: 'Detected start or end of a text segment.'
   -
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\TextProperty::getDetectedLanguages()'
@@ -70,7 +70,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage">Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage">DetectedLanguage</xref>&gt;'
           description: ''
       returns:
         -
@@ -87,7 +87,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak">Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak">DetectedBreak</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\TextProperty::hasDetectedBreak()'
     name: hasDetectedBreak
@@ -117,7 +117,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak">Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak">DetectedBreak</xref>'
           description: ''
       returns:
         -

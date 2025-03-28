@@ -26,7 +26,7 @@ class GovernedAsset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.AnalyzerOrgPolicy consolidated_policy = 3;</code>
      */
-    private $consolidated_policy = null;
+    protected $consolidated_policy = null;
     /**
      * The ordered list of all organization policies from the
      * [AnalyzeOrgPoliciesResponse.OrgPolicyResult.consolidated_policy.attached_resource][]
@@ -230,6 +230,4 @@ class GovernedAsset extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GovernedAsset::class, \Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedAssetsResponse_GovernedAsset::class);
 

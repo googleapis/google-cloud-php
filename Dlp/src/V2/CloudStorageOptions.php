@@ -21,7 +21,7 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStorageOptions.FileSet file_set = 1;</code>
      */
-    private $file_set = null;
+    protected $file_set = null;
     /**
      * Max number of bytes to scan from a file. If a scanned file's size is bigger
      * than this value then the rest of the bytes are omitted. Only one of
@@ -33,7 +33,7 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 bytes_limit_per_file = 4;</code>
      */
-    private $bytes_limit_per_file = 0;
+    protected $bytes_limit_per_file = 0;
     /**
      * Max percentage of bytes to scan from a file. The rest are omitted. The
      * number of bytes scanned is rounded down. Must be between 0 and 100,
@@ -46,7 +46,7 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 bytes_limit_per_file_percent = 8;</code>
      */
-    private $bytes_limit_per_file_percent = 0;
+    protected $bytes_limit_per_file_percent = 0;
     /**
      * List of file type groups to include in the scan.
      * If empty, all files are scanned and available data format processors
@@ -64,7 +64,7 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStorageOptions.SampleMethod sample_method = 6;</code>
      */
-    private $sample_method = 0;
+    protected $sample_method = 0;
     /**
      * Limits the number of files to scan to this percentage of the input FileSet.
      * Number of files scanned is rounded down. Must be between 0 and 100,
@@ -72,7 +72,7 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 files_limit_percent = 7;</code>
      */
-    private $files_limit_percent = 0;
+    protected $files_limit_percent = 0;
 
     /**
      * Constructor.

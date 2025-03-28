@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Update EntryType Request
+ * Update EntryType Request.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.UpdateEntryTypeRequest</code>
  */
 class UpdateEntryTypeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. EntryType Resource
+     * Required. EntryType Resource.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.EntryType entry_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -28,15 +28,15 @@ class UpdateEntryTypeRequest extends \Google\Protobuf\Internal\Message
      */
     protected $update_mask = null;
     /**
-     * Optional. Only validate the request, but do not perform mutations.
-     * The default is false.
+     * Optional. The service validates the request without performing any
+     * mutations. The default is false.
      *
      * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $validate_only = false;
 
     /**
-     * @param \Google\Cloud\Dataplex\V1\EntryType $entryType  Required. EntryType Resource
+     * @param \Google\Cloud\Dataplex\V1\EntryType $entryType  Required. EntryType Resource.
      * @param \Google\Protobuf\FieldMask          $updateMask Required. Mask of fields to update.
      *
      * @return \Google\Cloud\Dataplex\V1\UpdateEntryTypeRequest
@@ -57,12 +57,12 @@ class UpdateEntryTypeRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dataplex\V1\EntryType $entry_type
-     *           Required. EntryType Resource
+     *           Required. EntryType Resource.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. Mask of fields to update.
      *     @type bool $validate_only
-     *           Optional. Only validate the request, but do not perform mutations.
-     *           The default is false.
+     *           Optional. The service validates the request without performing any
+     *           mutations. The default is false.
      * }
      */
     public function __construct($data = NULL) {
@@ -71,7 +71,7 @@ class UpdateEntryTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. EntryType Resource
+     * Required. EntryType Resource.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.EntryType entry_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dataplex\V1\EntryType|null
@@ -92,7 +92,7 @@ class UpdateEntryTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. EntryType Resource
+     * Required. EntryType Resource.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.EntryType entry_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dataplex\V1\EntryType $var
@@ -143,8 +143,8 @@ class UpdateEntryTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Only validate the request, but do not perform mutations.
-     * The default is false.
+     * Optional. The service validates the request without performing any
+     * mutations. The default is false.
      *
      * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -155,8 +155,8 @@ class UpdateEntryTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Only validate the request, but do not perform mutations.
-     * The default is false.
+     * Optional. The service validates the request without performing any
+     * mutations. The default is false.
      *
      * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

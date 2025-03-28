@@ -26,13 +26,13 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string attached_resource = 1;</code>
      */
-    private $attached_resource = '';
+    protected $attached_resource = '';
     /**
      * The IAM policy directly set on the given resource.
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy policy = 2;</code>
      */
-    private $policy = null;
+    protected $policy = null;
     /**
      * The project that this IAM policy belongs to, in the format of
      * projects/{PROJECT_NUMBER}. This field is available when the IAM policy
@@ -40,7 +40,7 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 5;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * The folder(s) that this IAM policy belongs to, in the format of
      * folders/{FOLDER_NUMBER}. This field is available when the IAM policy
@@ -56,7 +56,7 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string organization = 7;</code>
      */
-    private $organization = '';
+    protected $organization = '';
     /**
      * The asset type of the
      * [AnalyzeOrgPolicyGovernedAssetsResponse.GovernedIamPolicy.attached_resource][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.GovernedIamPolicy.attached_resource].
@@ -68,7 +68,7 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string asset_type = 8;</code>
      */
-    private $asset_type = '';
+    protected $asset_type = '';
 
     /**
      * Constructor.
@@ -314,6 +314,4 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GovernedIamPolicy::class, \Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedAssetsResponse_GovernedIamPolicy::class);
 

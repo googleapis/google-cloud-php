@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\StorageTransfer\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\StorageTransfer\V1\AgentPool;
@@ -47,6 +46,7 @@ use Google\Cloud\StorageTransfer\V1\RunTransferJobRequest;
 use Google\Cloud\StorageTransfer\V1\TransferJob;
 use Google\Cloud\StorageTransfer\V1\UpdateAgentPoolRequest;
 use Google\Cloud\StorageTransfer\V1\UpdateTransferJobRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -70,7 +70,9 @@ class StorageTransferServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return StorageTransferServiceClient */
@@ -134,12 +136,15 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $projectId = 'projectId-1969970175';
@@ -185,8 +190,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $transferJob = new TransferJob();
-        $request = (new CreateTransferJobRequest())
-            ->setTransferJob($transferJob);
+        $request = (new CreateTransferJobRequest())->setTransferJob($transferJob);
         $response = $gapicClient->createTransferJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -210,17 +214,19 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $transferJob = new TransferJob();
-        $request = (new CreateTransferJobRequest())
-            ->setTransferJob($transferJob);
+        $request = (new CreateTransferJobRequest())->setTransferJob($transferJob);
         try {
             $gapicClient->createTransferJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -247,8 +253,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new DeleteAgentPoolRequest())
-            ->setName($name);
+        $request = (new DeleteAgentPoolRequest())->setName($name);
         $gapicClient->deleteAgentPool($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -271,17 +276,19 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new DeleteAgentPoolRequest())
-            ->setName($name);
+        $request = (new DeleteAgentPoolRequest())->setName($name);
         try {
             $gapicClient->deleteAgentPool($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -309,9 +316,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         // Mock request
         $jobName = 'jobName-1615239731';
         $projectId = 'projectId-1969970175';
-        $request = (new DeleteTransferJobRequest())
-            ->setJobName($jobName)
-            ->setProjectId($projectId);
+        $request = (new DeleteTransferJobRequest())->setJobName($jobName)->setProjectId($projectId);
         $gapicClient->deleteTransferJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -336,19 +341,20 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $jobName = 'jobName-1615239731';
         $projectId = 'projectId-1969970175';
-        $request = (new DeleteTransferJobRequest())
-            ->setJobName($jobName)
-            ->setProjectId($projectId);
+        $request = (new DeleteTransferJobRequest())->setJobName($jobName)->setProjectId($projectId);
         try {
             $gapicClient->deleteTransferJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -379,8 +385,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new GetAgentPoolRequest())
-            ->setName($name);
+        $request = (new GetAgentPoolRequest())->setName($name);
         $response = $gapicClient->getAgentPool($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -404,17 +409,19 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new GetAgentPoolRequest())
-            ->setName($name);
+        $request = (new GetAgentPoolRequest())->setName($name);
         try {
             $gapicClient->getAgentPool($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -445,8 +452,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $projectId = 'projectId-1969970175';
-        $request = (new GetGoogleServiceAccountRequest())
-            ->setProjectId($projectId);
+        $request = (new GetGoogleServiceAccountRequest())->setProjectId($projectId);
         $response = $gapicClient->getGoogleServiceAccount($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -470,17 +476,19 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $projectId = 'projectId-1969970175';
-        $request = (new GetGoogleServiceAccountRequest())
-            ->setProjectId($projectId);
+        $request = (new GetGoogleServiceAccountRequest())->setProjectId($projectId);
         try {
             $gapicClient->getGoogleServiceAccount($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -516,9 +524,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         // Mock request
         $jobName = 'jobName-1615239731';
         $projectId = 'projectId-1969970175';
-        $request = (new GetTransferJobRequest())
-            ->setJobName($jobName)
-            ->setProjectId($projectId);
+        $request = (new GetTransferJobRequest())->setJobName($jobName)->setProjectId($projectId);
         $response = $gapicClient->getTransferJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -544,19 +550,20 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $jobName = 'jobName-1615239731';
         $projectId = 'projectId-1969970175';
-        $request = (new GetTransferJobRequest())
-            ->setJobName($jobName)
-            ->setProjectId($projectId);
+        $request = (new GetTransferJobRequest())->setJobName($jobName)->setProjectId($projectId);
         try {
             $gapicClient->getTransferJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -581,17 +588,14 @@ class StorageTransferServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $agentPoolsElement = new AgentPool();
-        $agentPools = [
-            $agentPoolsElement,
-        ];
+        $agentPools = [$agentPoolsElement];
         $expectedResponse = new ListAgentPoolsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAgentPools($agentPools);
         $transport->addResponse($expectedResponse);
         // Mock request
         $projectId = 'projectId-1969970175';
-        $request = (new ListAgentPoolsRequest())
-            ->setProjectId($projectId);
+        $request = (new ListAgentPoolsRequest())->setProjectId($projectId);
         $response = $gapicClient->listAgentPools($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -618,17 +622,19 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $projectId = 'projectId-1969970175';
-        $request = (new ListAgentPoolsRequest())
-            ->setProjectId($projectId);
+        $request = (new ListAgentPoolsRequest())->setProjectId($projectId);
         try {
             $gapicClient->listAgentPools($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -653,17 +659,14 @@ class StorageTransferServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $transferJobsElement = new TransferJob();
-        $transferJobs = [
-            $transferJobsElement,
-        ];
+        $transferJobs = [$transferJobsElement];
         $expectedResponse = new ListTransferJobsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTransferJobs($transferJobs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $filter = 'filter-1274492040';
-        $request = (new ListTransferJobsRequest())
-            ->setFilter($filter);
+        $request = (new ListTransferJobsRequest())->setFilter($filter);
         $response = $gapicClient->listTransferJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -690,17 +693,19 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $filter = 'filter-1274492040';
-        $request = (new ListTransferJobsRequest())
-            ->setFilter($filter);
+        $request = (new ListTransferJobsRequest())->setFilter($filter);
         try {
             $gapicClient->listTransferJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -727,8 +732,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new PauseTransferOperationRequest())
-            ->setName($name);
+        $request = (new PauseTransferOperationRequest())->setName($name);
         $gapicClient->pauseTransferOperation($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -751,17 +755,19 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new PauseTransferOperationRequest())
-            ->setName($name);
+        $request = (new PauseTransferOperationRequest())->setName($name);
         try {
             $gapicClient->pauseTransferOperation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -788,8 +794,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new ResumeTransferOperationRequest())
-            ->setName($name);
+        $request = (new ResumeTransferOperationRequest())->setName($name);
         $gapicClient->resumeTransferOperation($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -812,17 +817,19 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new ResumeTransferOperationRequest())
-            ->setName($name);
+        $request = (new ResumeTransferOperationRequest())->setName($name);
         try {
             $gapicClient->resumeTransferOperation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -868,9 +875,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         // Mock request
         $jobName = 'jobName-1615239731';
         $projectId = 'projectId-1969970175';
-        $request = (new RunTransferJobRequest())
-            ->setJobName($jobName)
-            ->setProjectId($projectId);
+        $request = (new RunTransferJobRequest())->setJobName($jobName)->setProjectId($projectId);
         $response = $gapicClient->runTransferJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -928,19 +933,20 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $jobName = 'jobName-1615239731';
         $projectId = 'projectId-1969970175';
-        $request = (new RunTransferJobRequest())
-            ->setJobName($jobName)
-            ->setProjectId($projectId);
+        $request = (new RunTransferJobRequest())->setJobName($jobName)->setProjectId($projectId);
         $response = $gapicClient->runTransferJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -982,8 +988,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $agentPool = new AgentPool();
         $agentPoolName = 'agentPoolName-2036536596';
         $agentPool->setName($agentPoolName);
-        $request = (new UpdateAgentPoolRequest())
-            ->setAgentPool($agentPool);
+        $request = (new UpdateAgentPoolRequest())->setAgentPool($agentPool);
         $response = $gapicClient->updateAgentPool($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1007,19 +1012,21 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $agentPool = new AgentPool();
         $agentPoolName = 'agentPoolName-2036536596';
         $agentPool->setName($agentPoolName);
-        $request = (new UpdateAgentPoolRequest())
-            ->setAgentPool($agentPool);
+        $request = (new UpdateAgentPoolRequest())->setAgentPool($agentPool);
         try {
             $gapicClient->updateAgentPool($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1087,12 +1094,15 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $jobName = 'jobName-1615239731';

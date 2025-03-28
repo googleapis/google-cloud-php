@@ -21,25 +21,31 @@ class GKEMasterInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cluster_uri = 2;</code>
      */
-    private $cluster_uri = '';
+    protected $cluster_uri = '';
     /**
      * URI of a GKE cluster network.
      *
      * Generated from protobuf field <code>string cluster_network_uri = 4;</code>
      */
-    private $cluster_network_uri = '';
+    protected $cluster_network_uri = '';
     /**
-     * Internal IP address of a GKE cluster master.
+     * Internal IP address of a GKE cluster control plane.
      *
      * Generated from protobuf field <code>string internal_ip = 5;</code>
      */
-    private $internal_ip = '';
+    protected $internal_ip = '';
     /**
-     * External IP address of a GKE cluster master.
+     * External IP address of a GKE cluster control plane.
      *
      * Generated from protobuf field <code>string external_ip = 6;</code>
      */
-    private $external_ip = '';
+    protected $external_ip = '';
+    /**
+     * DNS endpoint of a GKE cluster control plane.
+     *
+     * Generated from protobuf field <code>string dns_endpoint = 7;</code>
+     */
+    protected $dns_endpoint = '';
 
     /**
      * Constructor.
@@ -52,9 +58,11 @@ class GKEMasterInfo extends \Google\Protobuf\Internal\Message
      *     @type string $cluster_network_uri
      *           URI of a GKE cluster network.
      *     @type string $internal_ip
-     *           Internal IP address of a GKE cluster master.
+     *           Internal IP address of a GKE cluster control plane.
      *     @type string $external_ip
-     *           External IP address of a GKE cluster master.
+     *           External IP address of a GKE cluster control plane.
+     *     @type string $dns_endpoint
+     *           DNS endpoint of a GKE cluster control plane.
      * }
      */
     public function __construct($data = NULL) {
@@ -115,7 +123,7 @@ class GKEMasterInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Internal IP address of a GKE cluster master.
+     * Internal IP address of a GKE cluster control plane.
      *
      * Generated from protobuf field <code>string internal_ip = 5;</code>
      * @return string
@@ -126,7 +134,7 @@ class GKEMasterInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Internal IP address of a GKE cluster master.
+     * Internal IP address of a GKE cluster control plane.
      *
      * Generated from protobuf field <code>string internal_ip = 5;</code>
      * @param string $var
@@ -141,7 +149,7 @@ class GKEMasterInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * External IP address of a GKE cluster master.
+     * External IP address of a GKE cluster control plane.
      *
      * Generated from protobuf field <code>string external_ip = 6;</code>
      * @return string
@@ -152,7 +160,7 @@ class GKEMasterInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * External IP address of a GKE cluster master.
+     * External IP address of a GKE cluster control plane.
      *
      * Generated from protobuf field <code>string external_ip = 6;</code>
      * @param string $var
@@ -162,6 +170,32 @@ class GKEMasterInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->external_ip = $var;
+
+        return $this;
+    }
+
+    /**
+     * DNS endpoint of a GKE cluster control plane.
+     *
+     * Generated from protobuf field <code>string dns_endpoint = 7;</code>
+     * @return string
+     */
+    public function getDnsEndpoint()
+    {
+        return $this->dns_endpoint;
+    }
+
+    /**
+     * DNS endpoint of a GKE cluster control plane.
+     *
+     * Generated from protobuf field <code>string dns_endpoint = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDnsEndpoint($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->dns_endpoint = $var;
 
         return $this;
     }

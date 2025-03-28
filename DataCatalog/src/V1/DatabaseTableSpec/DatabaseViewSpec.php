@@ -20,7 +20,7 @@ class DatabaseViewSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DatabaseTableSpec.DatabaseViewSpec.ViewType view_type = 1;</code>
      */
-    private $view_type = 0;
+    protected $view_type = 0;
     protected $source_definition;
 
     /**
@@ -140,6 +140,4 @@ class DatabaseViewSpec extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DatabaseViewSpec::class, \Google\Cloud\DataCatalog\V1\DatabaseTableSpec_DatabaseViewSpec::class);
 

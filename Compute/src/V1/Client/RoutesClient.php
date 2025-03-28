@@ -40,6 +40,7 @@ use Google\Cloud\Compute\V1\InsertRouteRequest;
 use Google\Cloud\Compute\V1\ListRoutesRequest;
 use Google\Cloud\Compute\V1\Route;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Routes API.
@@ -47,10 +48,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRoutesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Route> getAsync(GetRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRoutesRequest $request, array $optionalArgs = [])
  */
 final class RoutesClient
 {
@@ -184,6 +185,12 @@ final class RoutesClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -214,6 +221,9 @@ final class RoutesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -241,6 +251,8 @@ final class RoutesClient
      *
      * The async variant is {@see RoutesClient::deleteAsync()} .
      *
+     * @example samples/V1/RoutesClient/delete.php
+     *
      * @param DeleteRouteRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -264,6 +276,8 @@ final class RoutesClient
      * Returns the specified Route resource.
      *
      * The async variant is {@see RoutesClient::getAsync()} .
+     *
+     * @example samples/V1/RoutesClient/get.php
      *
      * @param GetRouteRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -289,6 +303,8 @@ final class RoutesClient
      *
      * The async variant is {@see RoutesClient::insertAsync()} .
      *
+     * @example samples/V1/RoutesClient/insert.php
+     *
      * @param InsertRouteRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -312,6 +328,8 @@ final class RoutesClient
      * Retrieves the list of Route resources available to the specified project.
      *
      * The async variant is {@see RoutesClient::listAsync()} .
+     *
+     * @example samples/V1/RoutesClient/list.php
      *
      * @param ListRoutesRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {

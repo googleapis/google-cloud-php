@@ -21,20 +21,26 @@ class DataRetentionSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
-     * The length of time that event-level data is retained.
+     * Required. The length of time that event-level data is retained.
      *
-     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.DataRetentionSettings.RetentionDuration event_data_retention = 2;</code>
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.DataRetentionSettings.RetentionDuration event_data_retention = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $event_data_retention = 0;
+    protected $event_data_retention = 0;
+    /**
+     * Required. The length of time that user-level data is retained.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.DataRetentionSettings.RetentionDuration user_data_retention = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     */
+    protected $user_data_retention = 0;
     /**
      * If true, reset the retention period for the user identifier with every
      * event from that user.
      *
      * Generated from protobuf field <code>bool reset_user_data_on_new_activity = 3;</code>
      */
-    private $reset_user_data_on_new_activity = false;
+    protected $reset_user_data_on_new_activity = false;
 
     /**
      * Constructor.
@@ -46,7 +52,9 @@ class DataRetentionSettings extends \Google\Protobuf\Internal\Message
      *           Output only. Resource name for this DataRetentionSetting resource.
      *           Format: properties/{property}/dataRetentionSettings
      *     @type int $event_data_retention
-     *           The length of time that event-level data is retained.
+     *           Required. The length of time that event-level data is retained.
+     *     @type int $user_data_retention
+     *           Required. The length of time that user-level data is retained.
      *     @type bool $reset_user_data_on_new_activity
      *           If true, reset the retention period for the user identifier with every
      *           event from that user.
@@ -86,9 +94,9 @@ class DataRetentionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The length of time that event-level data is retained.
+     * Required. The length of time that event-level data is retained.
      *
-     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.DataRetentionSettings.RetentionDuration event_data_retention = 2;</code>
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.DataRetentionSettings.RetentionDuration event_data_retention = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getEventDataRetention()
@@ -97,9 +105,9 @@ class DataRetentionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The length of time that event-level data is retained.
+     * Required. The length of time that event-level data is retained.
      *
-     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.DataRetentionSettings.RetentionDuration event_data_retention = 2;</code>
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.DataRetentionSettings.RetentionDuration event_data_retention = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -107,6 +115,32 @@ class DataRetentionSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Analytics\Admin\V1alpha\DataRetentionSettings\RetentionDuration::class);
         $this->event_data_retention = $var;
+
+        return $this;
+    }
+
+    /**
+     * Required. The length of time that user-level data is retained.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.DataRetentionSettings.RetentionDuration user_data_retention = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return int
+     */
+    public function getUserDataRetention()
+    {
+        return $this->user_data_retention;
+    }
+
+    /**
+     * Required. The length of time that user-level data is retained.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.DataRetentionSettings.RetentionDuration user_data_retention = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setUserDataRetention($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Analytics\Admin\V1alpha\DataRetentionSettings\RetentionDuration::class);
+        $this->user_data_retention = $var;
 
         return $this;
     }

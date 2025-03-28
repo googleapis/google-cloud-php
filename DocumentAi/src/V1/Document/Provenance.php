@@ -42,7 +42,7 @@ class Provenance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance.OperationType type = 4;</code>
      */
-    private $type = 0;
+    protected $type = 0;
 
     /**
      * Constructor.

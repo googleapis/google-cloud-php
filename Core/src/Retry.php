@@ -54,7 +54,7 @@ class Retry
     public function __construct(
         $retries,
         callable $delayFunction,
-        callable $retryFunction = null
+        ?callable $retryFunction = null
     ) {
         $this->retries = $retries !== null ? (int) $retries : 3;
         $this->delayFunction = $delayFunction;

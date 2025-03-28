@@ -22,13 +22,13 @@ class SustainabilityProjection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double kg_c_o2e = 1;</code>
      */
-    private $kg_c_o2e = 0.0;
+    protected $kg_c_o2e = 0.0;
     /**
      * Duration for which this sustainability applies.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 2;</code>
      */
-    private $duration = null;
+    protected $duration = null;
 
     /**
      * Constructor.

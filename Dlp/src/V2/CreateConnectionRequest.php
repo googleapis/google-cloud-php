@@ -26,13 +26,13 @@ class CreateConnectionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The connection resource.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Connection connection = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $connection = null;
+    protected $connection = null;
 
     /**
      * @param string                          $parent     Required. Parent resource name.

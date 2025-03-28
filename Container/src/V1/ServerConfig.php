@@ -20,7 +20,7 @@ class ServerConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string default_cluster_version = 1;</code>
      */
-    private $default_cluster_version = '';
+    protected $default_cluster_version = '';
     /**
      * List of valid node upgrade target versions, in descending order.
      *
@@ -32,7 +32,7 @@ class ServerConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string default_image_type = 4;</code>
      */
-    private $default_image_type = '';
+    protected $default_image_type = '';
     /**
      * List of valid image types.
      *

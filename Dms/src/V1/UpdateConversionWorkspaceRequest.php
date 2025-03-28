@@ -21,13 +21,13 @@ class UpdateConversionWorkspaceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. The conversion workspace parameters to update.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.ConversionWorkspace conversion_workspace = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $conversion_workspace = null;
+    protected $conversion_workspace = null;
     /**
      * A unique ID used to identify the request. If the server receives two
      * requests with the same ID, then the second request is ignored.
@@ -37,7 +37,7 @@ class UpdateConversionWorkspaceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 3;</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param \Google\Cloud\CloudDms\V1\ConversionWorkspace $conversionWorkspace Required. The conversion workspace parameters to update.

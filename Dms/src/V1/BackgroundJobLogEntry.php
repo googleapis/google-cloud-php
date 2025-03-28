@@ -20,46 +20,46 @@ class BackgroundJobLogEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * The type of job that was executed.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.BackgroundJobType job_type = 2;</code>
      */
-    private $job_type = 0;
+    protected $job_type = 0;
     /**
      * The timestamp when the background job was started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * The timestamp when the background job was finished.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp finish_time = 4;</code>
      */
-    private $finish_time = null;
+    protected $finish_time = null;
     /**
      * Output only. Job completion state, i.e. the final state after the job
      * completed.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.BackgroundJobLogEntry.JobCompletionState completion_state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $completion_state = 0;
+    protected $completion_state = 0;
     /**
      * Output only. Job completion comment, such as how many entities were seeded,
      * how many warnings were found during conversion, and similar information.
      *
      * Generated from protobuf field <code>string completion_comment = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $completion_comment = '';
+    protected $completion_comment = '';
     /**
      * Output only. Whether the client requested the conversion workspace to be
      * committed after a successful completion of the job.
      *
      * Generated from protobuf field <code>bool request_autocommit = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $request_autocommit = false;
+    protected $request_autocommit = false;
     protected $job_details;
 
     /**

@@ -21,7 +21,7 @@ class UpdateSettingRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.resourcesettings.v1.Setting setting = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $setting = null;
+    protected $setting = null;
 
     /**
      * Constructor.

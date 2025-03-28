@@ -24,7 +24,7 @@ class TimeRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * End time of the range of transfer runs. For example,
      * `"2017-05-30T00:00:00+00:00"`. The end_time must not be in the future.
@@ -33,7 +33,7 @@ class TimeRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
 
     /**
      * Constructor.
@@ -144,6 +144,4 @@ class TimeRange extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TimeRange::class, \Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsRequest_TimeRange::class);
 

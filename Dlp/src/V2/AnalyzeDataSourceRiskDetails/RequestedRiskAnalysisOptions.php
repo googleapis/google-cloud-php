@@ -20,7 +20,7 @@ class RequestedRiskAnalysisOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RiskAnalysisJobConfig job_config = 1;</code>
      */
-    private $job_config = null;
+    protected $job_config = null;
 
     /**
      * Constructor.
@@ -75,6 +75,4 @@ class RequestedRiskAnalysisOptions extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RequestedRiskAnalysisOptions::class, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_RequestedRiskAnalysisOptions::class);
 

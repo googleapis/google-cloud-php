@@ -21,13 +21,13 @@ class CreateEnvironmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The environment to create.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.Environment environment = 2;</code>
      */
-    private $environment = null;
+    protected $environment = null;
 
     /**
      * @param string                                                     $parent      The parent must be of the form

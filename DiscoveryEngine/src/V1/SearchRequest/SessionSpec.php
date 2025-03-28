@@ -47,7 +47,7 @@ class SessionSpec extends \Google\Protobuf\Internal\Message
     /**
      * The number of top search results to persist. The persisted search results
      * can be used for the subsequent /answer api call.
-     * This field is simliar to the `summary_result_count` field in
+     * This field is similar to the `summary_result_count` field in
      * [SearchRequest.ContentSearchSpec.SummarySpec.summary_result_count][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SummarySpec.summary_result_count].
      * At most 10 results for documents mode, or 50 for chunks mode.
      *
@@ -86,7 +86,7 @@ class SessionSpec extends \Google\Protobuf\Internal\Message
      *     @type int $search_result_persistence_count
      *           The number of top search results to persist. The persisted search results
      *           can be used for the subsequent /answer api call.
-     *           This field is simliar to the `summary_result_count` field in
+     *           This field is similar to the `summary_result_count` field in
      *           [SearchRequest.ContentSearchSpec.SummarySpec.summary_result_count][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SummarySpec.summary_result_count].
      *           At most 10 results for documents mode, or 50 for chunks mode.
      * }
@@ -165,7 +165,7 @@ class SessionSpec extends \Google\Protobuf\Internal\Message
     /**
      * The number of top search results to persist. The persisted search results
      * can be used for the subsequent /answer api call.
-     * This field is simliar to the `summary_result_count` field in
+     * This field is similar to the `summary_result_count` field in
      * [SearchRequest.ContentSearchSpec.SummarySpec.summary_result_count][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SummarySpec.summary_result_count].
      * At most 10 results for documents mode, or 50 for chunks mode.
      *
@@ -190,7 +190,7 @@ class SessionSpec extends \Google\Protobuf\Internal\Message
     /**
      * The number of top search results to persist. The persisted search results
      * can be used for the subsequent /answer api call.
-     * This field is simliar to the `summary_result_count` field in
+     * This field is similar to the `summary_result_count` field in
      * [SearchRequest.ContentSearchSpec.SummarySpec.summary_result_count][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SummarySpec.summary_result_count].
      * At most 10 results for documents mode, or 50 for chunks mode.
      *

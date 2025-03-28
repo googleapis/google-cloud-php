@@ -287,6 +287,12 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool exclude_txn_from_change_streams = 5;</code>
      */
     private $exclude_txn_from_change_streams = false;
+    /**
+     * Isolation level for the transaction.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions.IsolationLevel isolation_level = 6;</code>
+     */
+    private $isolation_level = 0;
     protected $mode;
 
     /**
@@ -324,6 +330,8 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      *           `exclude_txn_from_change_streams` may only be specified for read-write or
      *           partitioned-dml transactions, otherwise the API will return an
      *           `INVALID_ARGUMENT` error.
+     *     @type int $isolation_level
+     *           Isolation level for the transaction.
      * }
      */
     public function __construct($data = NULL) {
@@ -488,6 +496,32 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->exclude_txn_from_change_streams = $var;
+
+        return $this;
+    }
+
+    /**
+     * Isolation level for the transaction.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions.IsolationLevel isolation_level = 6;</code>
+     * @return int
+     */
+    public function getIsolationLevel()
+    {
+        return $this->isolation_level;
+    }
+
+    /**
+     * Isolation level for the transaction.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions.IsolationLevel isolation_level = 6;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setIsolationLevel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel::class);
+        $this->isolation_level = $var;
 
         return $this;
     }

@@ -24,7 +24,7 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.SearchCatalogRequest.Scope scope = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $scope = null;
+    protected $scope = null;
     /**
      * Optional. The query string with a minimum of 3 characters and specific
      * syntax. For more information, see [Data Catalog search
@@ -38,7 +38,7 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $query = '';
+    protected $query = '';
     /**
      * Upper bound on the number of results you can get in a single response.
      * Can't be negative or 0, defaults to 10 in this case.
@@ -47,7 +47,7 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. Pagination token that, if specified, returns the next page of
      * search results. If empty, returns the first page.
@@ -59,7 +59,7 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Specifies the order of results.
      * Currently supported case-sensitive values are:
@@ -76,7 +76,7 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
     /**
      * Optional. If set, use searchAll permission granted on organizations from
      * `include_org_ids` and projects from `include_project_ids` instead of the
@@ -86,7 +86,7 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool admin_search = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $admin_search = false;
+    protected $admin_search = false;
 
     /**
      * @param \Google\Cloud\DataCatalog\V1\SearchCatalogRequest\Scope $scope Required. The scope of this search request.

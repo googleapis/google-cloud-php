@@ -77,6 +77,8 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
      *           A snapshot of an EventCreateRule resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\CalculatedMetric $calculated_metric
      *           A snapshot of a CalculatedMetric resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\KeyEvent $key_event
+     *           A snapshot of a KeyEvent resource in change history.
      * }
      */
     public function __construct($data = NULL) {
@@ -866,6 +868,37 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A snapshot of a KeyEvent resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.KeyEvent key_event = 32;</code>
+     * @return \Google\Analytics\Admin\V1alpha\KeyEvent|null
+     */
+    public function getKeyEvent()
+    {
+        return $this->readOneof(32);
+    }
+
+    public function hasKeyEvent()
+    {
+        return $this->hasOneof(32);
+    }
+
+    /**
+     * A snapshot of a KeyEvent resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.KeyEvent key_event = 32;</code>
+     * @param \Google\Analytics\Admin\V1alpha\KeyEvent $var
+     * @return $this
+     */
+    public function setKeyEvent($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\KeyEvent::class);
+        $this->writeOneof(32, $var);
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getResource()
@@ -875,6 +908,4 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ChangeHistoryResource::class, \Google\Analytics\Admin\V1alpha\ChangeHistoryChange_ChangeHistoryResource::class);
 

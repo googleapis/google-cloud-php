@@ -21,43 +21,43 @@ class Resource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The human readable name of the resource.
      *
      * Generated from protobuf field <code>string display_name = 8;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The full resource type of the resource.
      *
      * Generated from protobuf field <code>string type = 6;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * The full resource name of project that the resource belongs to.
      *
      * Generated from protobuf field <code>string project = 2;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * The project ID that the resource belongs to.
      *
      * Generated from protobuf field <code>string project_display_name = 3;</code>
      */
-    private $project_display_name = '';
+    protected $project_display_name = '';
     /**
      * The full resource name of resource's parent.
      *
      * Generated from protobuf field <code>string parent = 4;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The human readable name of resource's parent.
      *
      * Generated from protobuf field <code>string parent_display_name = 5;</code>
      */
-    private $parent_display_name = '';
+    protected $parent_display_name = '';
     /**
      * Output only. Contains a Folder message for each folder in the assets
      * ancestry. The first folder is the deepest nested folder, and the last
@@ -71,33 +71,33 @@ class Resource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.CloudProvider cloud_provider = 9;</code>
      */
-    private $cloud_provider = 0;
+    protected $cloud_provider = 0;
     /**
      * Indicates which organization or tenant in the cloud provider the finding
      * applies to.
      *
      * Generated from protobuf field <code>string organization = 10;</code>
      */
-    private $organization = '';
+    protected $organization = '';
     /**
      * The parent service or product from which the resource is provided, for
      * example, GKE or SNS.
      *
      * Generated from protobuf field <code>string service = 11;</code>
      */
-    private $service = '';
+    protected $service = '';
     /**
      * The region or location of the service (if applicable).
      *
      * Generated from protobuf field <code>string location = 12;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * Provides the path to the resource within the resource hierarchy.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.ResourcePath resource_path = 18;</code>
      */
-    private $resource_path = null;
+    protected $resource_path = null;
     /**
      * A string representation of the resource path.
      * For Google Cloud, it has the format of
@@ -112,7 +112,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_path_string = 19;</code>
      */
-    private $resource_path_string = '';
+    protected $resource_path_string = '';
     protected $cloud_provider_metadata;
 
     /**

@@ -90,6 +90,4 @@ class CurrentState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CurrentState::class, \Google\Cloud\Container\V1\DatabaseEncryption_CurrentState::class);
 

@@ -21,20 +21,20 @@ class Argument extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Specifies whether the argument is input or output.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.RoutineSpec.Argument.Mode mode = 2;</code>
      */
-    private $mode = 0;
+    protected $mode = 0;
     /**
      * Type of the argument. The exact value depends on the source system and
      * the language.
      *
      * Generated from protobuf field <code>string type = 3;</code>
      */
-    private $type = '';
+    protected $type = '';
 
     /**
      * Constructor.
@@ -141,6 +141,4 @@ class Argument extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Argument::class, \Google\Cloud\DataCatalog\V1\RoutineSpec_Argument::class);
 

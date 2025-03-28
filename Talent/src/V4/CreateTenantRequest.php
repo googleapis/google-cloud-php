@@ -22,13 +22,13 @@ class CreateTenantRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The tenant to be created.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Tenant tenant = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tenant = null;
+    protected $tenant = null;
 
     /**
      * @param string                         $parent Required. Resource name of the project under which the tenant is created.

@@ -30,7 +30,7 @@ class AnalyticsAdmin
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¡¿
+⁄Ê
 4google/analytics/admin/v1alpha/analytics_admin.protogoogle.analytics.admin.v1alpha-google/analytics/admin/v1alpha/audience.proto2google/analytics/admin/v1alpha/channel_group.proto:google/analytics/admin/v1alpha/event_create_and_edit.proto6google/analytics/admin/v1alpha/expanded_data_set.proto.google/analytics/admin/v1alpha/resources.proto=google/analytics/admin/v1alpha/subproperty_event_filter.protogoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"‡
 RunAccessReportRequest
 entity (	C
@@ -227,6 +227,27 @@ $skadnetwork_conversion_value_schemas (2@.google.analytics.admin.v1alpha.SKA
 page_token (	"É
 ListConversionEventsResponseJ
 conversion_events (2/.google.analytics.admin.v1alpha.ConversionEvent
+next_page_token (	"ô
+CreateKeyEventRequest@
+	key_event (2(.google.analytics.admin.v1alpha.KeyEventB‡A>
+parent (	B.‡A˙A(&analyticsadmin.googleapis.com/KeyEvent"è
+UpdateKeyEventRequest@
+	key_event (2(.google.analytics.admin.v1alpha.KeyEventB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"R
+GetKeyEventRequest<
+name (	B.‡A˙A(
+&analyticsadmin.googleapis.com/KeyEvent"U
+DeleteKeyEventRequest<
+name (	B.‡A˙A(
+&analyticsadmin.googleapis.com/KeyEvent"}
+ListKeyEventsRequest>
+parent (	B.‡A˙A(&analyticsadmin.googleapis.com/KeyEvent
+	page_size (
+
+page_token (	"n
+ListKeyEventsResponse<
+
+key_events (2(.google.analytics.admin.v1alpha.KeyEvent
 next_page_token (	"|
 \'GetDisplayVideo360AdvertiserLinkRequestQ
 name (	BC‡A˙A=
@@ -490,7 +511,10 @@ page_token (	"z
 +FetchAutomatedGa4ConfigurationOptOutRequest
 property (	B‡A"?
 ,FetchAutomatedGa4ConfigurationOptOutResponse
-opt_out ("Z
+opt_out ("©
+CreateBigQueryLinkRequestB
+parent (	B2‡A˙A,*analyticsadmin.googleapis.com/BigQueryLinkH
+bigquery_link (2,.google.analytics.admin.v1alpha.BigQueryLinkB‡A"Z
 GetBigQueryLinkRequest@
 name (	B2‡A˙A,
 *analyticsadmin.googleapis.com/BigQueryLink"Ö
@@ -501,7 +525,13 @@ page_token (	"z
 page_token (	"z
 ListBigQueryLinksResponseD
 bigquery_links (2,.google.analytics.admin.v1alpha.BigQueryLink
-next_page_token (	"x
+next_page_token (	"õ
+UpdateBigQueryLinkRequestH
+bigquery_link (2,.google.analytics.admin.v1alpha.BigQueryLinkB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"]
+DeleteBigQueryLinkRequest@
+name (	B2‡A˙A,
+*analyticsadmin.googleapis.com/BigQueryLink"x
 %GetEnhancedMeasurementSettingsRequestO
 name (	BA‡A˙A;
 9analyticsadmin.googleapis.com/EnhancedMeasurementSettings"…
@@ -567,7 +597,30 @@ page_token (	"w
 page_token (	"Ñ
 ListEventCreateRulesResponseK
 event_create_rules (2/.google.analytics.admin.v1alpha.EventCreateRule
-next_page_token (	"Ö
+next_page_token (	"Æ
+CreateEventEditRuleRequestC
+parent (	B3‡A˙A-+analyticsadmin.googleapis.com/EventEditRuleK
+event_edit_rule (2-.google.analytics.admin.v1alpha.EventEditRuleB‡A"ü
+UpdateEventEditRuleRequestK
+event_edit_rule (2-.google.analytics.admin.v1alpha.EventEditRuleB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"_
+DeleteEventEditRuleRequestA
+name (	B3‡A˙A-
++analyticsadmin.googleapis.com/EventEditRule"\\
+GetEventEditRuleRequestA
+name (	B3‡A˙A-
++analyticsadmin.googleapis.com/EventEditRule"ë
+ListEventEditRulesRequestC
+parent (	B3‡A˙A-+analyticsadmin.googleapis.com/EventEditRule
+	page_size (B‡A
+
+page_token (	B‡A"~
+ListEventEditRulesResponseG
+event_edit_rules (2-.google.analytics.admin.v1alpha.EventEditRule
+next_page_token (	"Ç
+ReorderEventEditRulesRequestC
+parent (	B3‡A˙A-+analyticsadmin.googleapis.com/EventEditRule
+event_edit_rules (	B‡A"Ö
 CreateRollupPropertyRequestF
 rollup_property (2(.google.analytics.admin.v1alpha.PropertyB‡A
 source_properties (	B‡A"¡
@@ -590,13 +643,11 @@ page_token (	B‡A"†
 rollup_property_source_link (28.google.analytics.admin.v1alpha.RollupPropertySourceLinkB‡A"u
 %DeleteRollupPropertySourceLinkRequestL
 name (	B>‡A˙A8
-6analyticsadmin.googleapis.com/RollupPropertySourceLink"˝
-CreateSubpropertyRequest>
-parent (	B.‡A˙A(
-&analyticsadmin.googleapis.com/PropertyB
+6analyticsadmin.googleapis.com/RollupPropertySourceLink"¿
+ProvisionSubpropertyRequestB
 subproperty (2(.google.analytics.admin.v1alpha.PropertyB‡A]
-subproperty_event_filter (26.google.analytics.admin.v1alpha.SubpropertyEventFilterB‡A"¥
-CreateSubpropertyResponse=
+subproperty_event_filter (26.google.analytics.admin.v1alpha.SubpropertyEventFilterB‡A"∑
+ProvisionSubpropertyResponse=
 subproperty (2(.google.analytics.admin.v1alpha.PropertyX
 subproperty_event_filter (26.google.analytics.admin.v1alpha.SubpropertyEventFilter"“
 #CreateSubpropertyEventFilterRequestL
@@ -618,7 +669,7 @@ page_token (	B‡A"ô
 update_mask (2.google.protobuf.FieldMaskB‡A"q
 #DeleteSubpropertyEventFilterRequestJ
 name (	B<‡A˙A6
-4analyticsadmin.googleapis.com/SubpropertyEventFilter2„˜
+4analyticsadmin.googleapis.com/SubpropertyEventFilter2öé
 AnalyticsAdminServiceì
 
 GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytics.admin.v1alpha.Account")⁄AnameÇ”‰ì/v1alpha/{name=accounts/*}î
@@ -654,12 +705,17 @@ GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytic
 %ListSKAdNetworkConversionValueSchemasL.google.analytics.admin.v1alpha.ListSKAdNetworkConversionValueSchemasRequestM.google.analytics.admin.v1alpha.ListSKAdNetworkConversionValueSchemasResponse"^⁄AparentÇ”‰ìOM/v1alpha/{parent=properties/*/dataStreams/*}/sKAdNetworkConversionValueSchema‰
 SearchChangeHistoryEvents@.google.analytics.admin.v1alpha.SearchChangeHistoryEventsRequestA.google.analytics.admin.v1alpha.SearchChangeHistoryEventsResponse"BÇ”‰ì<"7/v1alpha/{account=accounts/*}:searchChangeHistoryEvents:*’
 GetGoogleSignalsSettings?.google.analytics.admin.v1alpha.GetGoogleSignalsSettingsRequest5.google.analytics.admin.v1alpha.GoogleSignalsSettings"A⁄AnameÇ”‰ì42/v1alpha/{name=properties/*/googleSignalsSettings}¨
-UpdateGoogleSignalsSettingsB.google.analytics.admin.v1alpha.UpdateGoogleSignalsSettingsRequest5.google.analytics.admin.v1alpha.GoogleSignalsSettings"ë⁄A#google_signals_settings,update_maskÇ”‰ìe2J/v1alpha/{google_signals_settings.name=properties/*/googleSignalsSettings}:google_signals_settingsÎ
-CreateConversionEvent<.google.analytics.admin.v1alpha.CreateConversionEventRequest/.google.analytics.admin.v1alpha.ConversionEvent"c⁄Aparent,conversion_eventÇ”‰ìC"//v1alpha/{parent=properties/*}/conversionEvents:conversion_eventÅ
-UpdateConversionEvent<.google.analytics.admin.v1alpha.UpdateConversionEventRequest/.google.analytics.admin.v1alpha.ConversionEvent"y⁄Aconversion_event,update_maskÇ”‰ìT2@/v1alpha/{conversion_event.name=properties/*/conversionEvents/*}:conversion_event¿
-GetConversionEvent9.google.analytics.admin.v1alpha.GetConversionEventRequest/.google.analytics.admin.v1alpha.ConversionEvent">⁄AnameÇ”‰ì1//v1alpha/{name=properties/*/conversionEvents/*}≠
-DeleteConversionEvent<.google.analytics.admin.v1alpha.DeleteConversionEventRequest.google.protobuf.Empty">⁄AnameÇ”‰ì1*//v1alpha/{name=properties/*/conversionEvents/*}”
-ListConversionEvents;.google.analytics.admin.v1alpha.ListConversionEventsRequest<.google.analytics.admin.v1alpha.ListConversionEventsResponse"@⁄AparentÇ”‰ì1//v1alpha/{parent=properties/*}/conversionEvents¯
+UpdateGoogleSignalsSettingsB.google.analytics.admin.v1alpha.UpdateGoogleSignalsSettingsRequest5.google.analytics.admin.v1alpha.GoogleSignalsSettings"ë⁄A#google_signals_settings,update_maskÇ”‰ìe2J/v1alpha/{google_signals_settings.name=properties/*/googleSignalsSettings}:google_signals_settingsÓ
+CreateConversionEvent<.google.analytics.admin.v1alpha.CreateConversionEventRequest/.google.analytics.admin.v1alpha.ConversionEvent"fà⁄Aparent,conversion_eventÇ”‰ìC"//v1alpha/{parent=properties/*}/conversionEvents:conversion_eventÑ
+UpdateConversionEvent<.google.analytics.admin.v1alpha.UpdateConversionEventRequest/.google.analytics.admin.v1alpha.ConversionEvent"|à⁄Aconversion_event,update_maskÇ”‰ìT2@/v1alpha/{conversion_event.name=properties/*/conversionEvents/*}:conversion_event√
+GetConversionEvent9.google.analytics.admin.v1alpha.GetConversionEventRequest/.google.analytics.admin.v1alpha.ConversionEvent"Aà⁄AnameÇ”‰ì1//v1alpha/{name=properties/*/conversionEvents/*}∞
+DeleteConversionEvent<.google.analytics.admin.v1alpha.DeleteConversionEventRequest.google.protobuf.Empty"Aà⁄AnameÇ”‰ì1*//v1alpha/{name=properties/*/conversionEvents/*}÷
+ListConversionEvents;.google.analytics.admin.v1alpha.ListConversionEventsRequest<.google.analytics.admin.v1alpha.ListConversionEventsResponse"Cà⁄AparentÇ”‰ì1//v1alpha/{parent=properties/*}/conversionEvents¡
+CreateKeyEvent5.google.analytics.admin.v1alpha.CreateKeyEventRequest(.google.analytics.admin.v1alpha.KeyEvent"N⁄Aparent,key_eventÇ”‰ì5"(/v1alpha/{parent=properties/*}/keyEvents:	key_event–
+UpdateKeyEvent5.google.analytics.admin.v1alpha.UpdateKeyEventRequest(.google.analytics.admin.v1alpha.KeyEvent"]⁄Akey_event,update_maskÇ”‰ì?22/v1alpha/{key_event.name=properties/*/keyEvents/*}:	key_event§
+GetKeyEvent2.google.analytics.admin.v1alpha.GetKeyEventRequest(.google.analytics.admin.v1alpha.KeyEvent"7⁄AnameÇ”‰ì*(/v1alpha/{name=properties/*/keyEvents/*}ò
+DeleteKeyEvent5.google.analytics.admin.v1alpha.DeleteKeyEventRequest.google.protobuf.Empty"7⁄AnameÇ”‰ì**(/v1alpha/{name=properties/*/keyEvents/*}∑
+ListKeyEvents4.google.analytics.admin.v1alpha.ListKeyEventsRequest5.google.analytics.admin.v1alpha.ListKeyEventsResponse"9⁄AparentÇ”‰ì*(/v1alpha/{parent=properties/*}/keyEvents¯
  GetDisplayVideo360AdvertiserLinkG.google.analytics.admin.v1alpha.GetDisplayVideo360AdvertiserLinkRequest=.google.analytics.admin.v1alpha.DisplayVideo360AdvertiserLink"L⁄AnameÇ”‰ì?=/v1alpha/{name=properties/*/displayVideo360AdvertiserLinks/*}ã
 "ListDisplayVideo360AdvertiserLinksI.google.analytics.admin.v1alpha.ListDisplayVideo360AdvertiserLinksRequestJ.google.analytics.admin.v1alpha.ListDisplayVideo360AdvertiserLinksResponse"N⁄AparentÇ”‰ì?=/v1alpha/{parent=properties/*}/displayVideo360AdvertiserLinks∆
 #CreateDisplayVideo360AdvertiserLinkJ.google.analytics.admin.v1alpha.CreateDisplayVideo360AdvertiserLinkRequest=.google.analytics.admin.v1alpha.DisplayVideo360AdvertiserLink"ì⁄A(parent,display_video_360_advertiser_linkÇ”‰ìb"=/v1alpha/{parent=properties/*}/displayVideo360AdvertiserLinks:!display_video_360_advertiser_link◊
@@ -721,9 +777,12 @@ GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytic
 UpdateChannelGroup9.google.analytics.admin.v1alpha.UpdateChannelGroupRequest,.google.analytics.admin.v1alpha.ChannelGroup"m⁄Achannel_group,update_maskÇ”‰ìK2:/v1alpha/{channel_group.name=properties/*/channelGroups/*}:channel_group§
 DeleteChannelGroup9.google.analytics.admin.v1alpha.DeleteChannelGroupRequest.google.protobuf.Empty";⁄AnameÇ”‰ì.*,/v1alpha/{name=properties/*/channelGroups/*}˛
 "SetAutomatedGa4ConfigurationOptOutI.google.analytics.admin.v1alpha.SetAutomatedGa4ConfigurationOptOutRequestJ.google.analytics.admin.v1alpha.SetAutomatedGa4ConfigurationOptOutResponse"AÇ”‰ì;"6/v1alpha/properties:setAutomatedGa4ConfigurationOptOut:*Ü
-$FetchAutomatedGa4ConfigurationOptOutK.google.analytics.admin.v1alpha.FetchAutomatedGa4ConfigurationOptOutRequestL.google.analytics.admin.v1alpha.FetchAutomatedGa4ConfigurationOptOutResponse"CÇ”‰ì="8/v1alpha/properties:fetchAutomatedGa4ConfigurationOptOut:*¥
+$FetchAutomatedGa4ConfigurationOptOutK.google.analytics.admin.v1alpha.FetchAutomatedGa4ConfigurationOptOutRequestL.google.analytics.admin.v1alpha.FetchAutomatedGa4ConfigurationOptOutResponse"CÇ”‰ì="8/v1alpha/properties:fetchAutomatedGa4ConfigurationOptOut:*Ÿ
+CreateBigQueryLink9.google.analytics.admin.v1alpha.CreateBigQueryLinkRequest,.google.analytics.admin.v1alpha.BigQueryLink"Z⁄Aparent,bigquery_linkÇ”‰ì=",/v1alpha/{parent=properties/*}/bigQueryLinks:bigquery_link¥
 GetBigQueryLink6.google.analytics.admin.v1alpha.GetBigQueryLinkRequest,.google.analytics.admin.v1alpha.BigQueryLink";⁄AnameÇ”‰ì.,/v1alpha/{name=properties/*/bigQueryLinks/*}«
-ListBigQueryLinks8.google.analytics.admin.v1alpha.ListBigQueryLinksRequest9.google.analytics.admin.v1alpha.ListBigQueryLinksResponse"=⁄AparentÇ”‰ì.,/v1alpha/{parent=properties/*}/bigQueryLinks˚
+ListBigQueryLinks8.google.analytics.admin.v1alpha.ListBigQueryLinksRequest9.google.analytics.admin.v1alpha.ListBigQueryLinksResponse"=⁄AparentÇ”‰ì.,/v1alpha/{parent=properties/*}/bigQueryLinks§
+DeleteBigQueryLink9.google.analytics.admin.v1alpha.DeleteBigQueryLinkRequest.google.protobuf.Empty";⁄AnameÇ”‰ì.*,/v1alpha/{name=properties/*/bigQueryLinks/*}Ï
+UpdateBigQueryLink9.google.analytics.admin.v1alpha.UpdateBigQueryLinkRequest,.google.analytics.admin.v1alpha.BigQueryLink"m⁄Abigquery_link,update_maskÇ”‰ìK2:/v1alpha/{bigquery_link.name=properties/*/bigQueryLinks/*}:bigquery_link˚
 GetEnhancedMeasurementSettingsE.google.analytics.admin.v1alpha.GetEnhancedMeasurementSettingsRequest;.google.analytics.admin.v1alpha.EnhancedMeasurementSettings"U⁄AnameÇ”‰ìHF/v1alpha/{name=properties/*/dataStreams/*/enhancedMeasurementSettings}Â
 !UpdateEnhancedMeasurementSettingsH.google.analytics.admin.v1alpha.UpdateEnhancedMeasurementSettingsRequest;.google.analytics.admin.v1alpha.EnhancedMeasurementSettings"∏⁄A)enhanced_measurement_settings,update_maskÇ”‰ìÖ2d/v1alpha/{enhanced_measurement_settings.name=properties/*/dataStreams/*/enhancedMeasurementSettings}:enhanced_measurement_settingsŒ
 CreateConnectedSiteTag=.google.analytics.admin.v1alpha.CreateConnectedSiteTagRequest>.google.analytics.admin.v1alpha.CreateConnectedSiteTagResponse"5Ç”‰ì/"*/v1alpha/properties:createConnectedSiteTag:*¶
@@ -738,7 +797,13 @@ $FetchAutomatedGa4ConfigurationOptOutK.google.analytics.admin.v1alpha.FetchAuto
 ListEventCreateRules;.google.analytics.admin.v1alpha.ListEventCreateRulesRequest<.google.analytics.admin.v1alpha.ListEventCreateRulesResponse"N⁄AparentÇ”‰ì?=/v1alpha/{parent=properties/*/dataStreams/*}/eventCreateRules˚
 CreateEventCreateRule<.google.analytics.admin.v1alpha.CreateEventCreateRuleRequest/.google.analytics.admin.v1alpha.EventCreateRule"s⁄Aparent,event_create_ruleÇ”‰ìR"=/v1alpha/{parent=properties/*/dataStreams/*}/eventCreateRules:event_create_ruleì
 UpdateEventCreateRule<.google.analytics.admin.v1alpha.UpdateEventCreateRuleRequest/.google.analytics.admin.v1alpha.EventCreateRule"ä⁄Aevent_create_rule,update_maskÇ”‰ìd2O/v1alpha/{event_create_rule.name=properties/*/dataStreams/*/eventCreateRules/*}:event_create_ruleª
-DeleteEventCreateRule<.google.analytics.admin.v1alpha.DeleteEventCreateRuleRequest.google.protobuf.Empty"L⁄AnameÇ”‰ì?*=/v1alpha/{name=properties/*/dataStreams/*/eventCreateRules/*}∫
+DeleteEventCreateRule<.google.analytics.admin.v1alpha.DeleteEventCreateRuleRequest.google.protobuf.Empty"L⁄AnameÇ”‰ì?*=/v1alpha/{name=properties/*/dataStreams/*/eventCreateRules/*}∆
+GetEventEditRule7.google.analytics.admin.v1alpha.GetEventEditRuleRequest-.google.analytics.admin.v1alpha.EventEditRule"J⁄AnameÇ”‰ì=;/v1alpha/{name=properties/*/dataStreams/*/eventEditRules/*}Ÿ
+ListEventEditRules9.google.analytics.admin.v1alpha.ListEventEditRulesRequest:.google.analytics.admin.v1alpha.ListEventEditRulesResponse"L⁄AparentÇ”‰ì=;/v1alpha/{parent=properties/*/dataStreams/*}/eventEditRulesÔ
+CreateEventEditRule:.google.analytics.admin.v1alpha.CreateEventEditRuleRequest-.google.analytics.admin.v1alpha.EventEditRule"m⁄Aparent,event_edit_ruleÇ”‰ìN";/v1alpha/{parent=properties/*/dataStreams/*}/eventEditRules:event_edit_ruleÖ
+UpdateEventEditRule:.google.analytics.admin.v1alpha.UpdateEventEditRuleRequest-.google.analytics.admin.v1alpha.EventEditRule"Ç⁄Aevent_edit_rule,update_maskÇ”‰ì^2K/v1alpha/{event_edit_rule.name=properties/*/dataStreams/*/eventEditRules/*}:event_edit_ruleµ
+DeleteEventEditRule:.google.analytics.admin.v1alpha.DeleteEventEditRuleRequest.google.protobuf.Empty"J⁄AnameÇ”‰ì=*;/v1alpha/{name=properties/*/dataStreams/*/eventEditRules/*}Ω
+ReorderEventEditRules<.google.analytics.admin.v1alpha.ReorderEventEditRulesRequest.google.protobuf.Empty"NÇ”‰ìH"C/v1alpha/{parent=properties/*/dataStreams/*}/eventEditRules:reorder:*∫
 UpdateDataRedactionSettingsB.google.analytics.admin.v1alpha.UpdateDataRedactionSettingsRequest5.google.analytics.admin.v1alpha.DataRedactionSettings"ü⁄A#data_redaction_settings,update_maskÇ”‰ìs2X/v1alpha/{data_redaction_settings.name=properties/*/dataStreams/*/dataRedactionSettings}:data_redaction_settings„
 GetDataRedactionSettings?.google.analytics.admin.v1alpha.GetDataRedactionSettingsRequest5.google.analytics.admin.v1alpha.DataRedactionSettings"O⁄AnameÇ”‰ìB@/v1alpha/{name=properties/*/dataStreams/*/dataRedactionSettings}ƒ
 GetCalculatedMetric:.google.analytics.admin.v1alpha.GetCalculatedMetricRequest0.google.analytics.admin.v1alpha.CalculatedMetric"?⁄AnameÇ”‰ì20/v1alpha/{name=properties/*/calculatedMetrics/*}Ü
@@ -750,8 +815,8 @@ $FetchAutomatedGa4ConfigurationOptOutK.google.analytics.admin.v1alpha.FetchAuto
 GetRollupPropertySourceLinkB.google.analytics.admin.v1alpha.GetRollupPropertySourceLinkRequest8.google.analytics.admin.v1alpha.RollupPropertySourceLink"G⁄AnameÇ”‰ì:8/v1alpha/{name=properties/*/rollupPropertySourceLinks/*}˜
 ListRollupPropertySourceLinksD.google.analytics.admin.v1alpha.ListRollupPropertySourceLinksRequestE.google.analytics.admin.v1alpha.ListRollupPropertySourceLinksResponse"I⁄AparentÇ”‰ì:8/v1alpha/{parent=properties/*}/rollupPropertySourceLinks¶
 CreateRollupPropertySourceLinkE.google.analytics.admin.v1alpha.CreateRollupPropertySourceLinkRequest8.google.analytics.admin.v1alpha.RollupPropertySourceLink"Ç⁄A"parent,rollup_property_source_linkÇ”‰ìW"8/v1alpha/{parent=properties/*}/rollupPropertySourceLinks:rollup_property_source_link»
-DeleteRollupPropertySourceLinkE.google.analytics.admin.v1alpha.DeleteRollupPropertySourceLinkRequest.google.protobuf.Empty"G⁄AnameÇ”‰ì:*8/v1alpha/{name=properties/*/rollupPropertySourceLinks/*}∫
-CreateSubproperty8.google.analytics.admin.v1alpha.CreateSubpropertyRequest9.google.analytics.admin.v1alpha.CreateSubpropertyResponse"0Ç”‰ì*"%/v1alpha/properties:createSubproperty:*ó
+DeleteRollupPropertySourceLinkE.google.analytics.admin.v1alpha.DeleteRollupPropertySourceLinkRequest.google.protobuf.Empty"G⁄AnameÇ”‰ì:*8/v1alpha/{name=properties/*/rollupPropertySourceLinks/*}∆
+ProvisionSubproperty;.google.analytics.admin.v1alpha.ProvisionSubpropertyRequest<.google.analytics.admin.v1alpha.ProvisionSubpropertyResponse"3Ç”‰ì-"(/v1alpha/properties:provisionSubproperty:*ó
 CreateSubpropertyEventFilterC.google.analytics.admin.v1alpha.CreateSubpropertyEventFilterRequest6.google.analytics.admin.v1alpha.SubpropertyEventFilter"z⁄Aparent,subproperty_event_filterÇ”‰ìR"6/v1alpha/{parent=properties/*}/subpropertyEventFilters:subproperty_event_filter‹
 GetSubpropertyEventFilter@.google.analytics.admin.v1alpha.GetSubpropertyEventFilterRequest6.google.analytics.admin.v1alpha.SubpropertyEventFilter"E⁄AnameÇ”‰ì86/v1alpha/{name=properties/*/subpropertyEventFilters/*}Ô
 ListSubpropertyEventFiltersB.google.analytics.admin.v1alpha.ListSubpropertyEventFiltersRequestC.google.analytics.admin.v1alpha.ListSubpropertyEventFiltersResponse"G⁄AparentÇ”‰ì86/v1alpha/{parent=properties/*}/subpropertyEventFilters∂

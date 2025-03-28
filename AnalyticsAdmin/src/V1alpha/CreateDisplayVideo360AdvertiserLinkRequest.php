@@ -20,13 +20,13 @@ class CreateDisplayVideo360AdvertiserLinkRequest extends \Google\Protobuf\Intern
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The DisplayVideo360AdvertiserLink to create.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.DisplayVideo360AdvertiserLink display_video_360_advertiser_link = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_video_360_advertiser_link = null;
+    protected $display_video_360_advertiser_link = null;
 
     /**
      * @param string                                                        $parent                        Required. Example format: properties/1234

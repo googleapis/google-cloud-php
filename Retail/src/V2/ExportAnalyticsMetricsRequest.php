@@ -21,13 +21,13 @@ class ExportAnalyticsMetricsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string catalog = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $catalog = '';
+    protected $catalog = '';
     /**
      * Required. The output location of the data.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.OutputConfig output_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $output_config = null;
+    protected $output_config = null;
     /**
      * A filtering expression to specify restrictions on returned metrics.
      * The expression is a sequence of terms. Each term applies a restriction to
@@ -45,7 +45,7 @@ class ExportAnalyticsMetricsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * Constructor.

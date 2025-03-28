@@ -51,7 +51,9 @@ use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
  *
  * @param string $parent The reseller account's resource name.
  *                       Parent uses the format: accounts/{account_id}
- * @param string $domain Domain to fetch for Cloud Identity account customer.
+ * @param string $domain Domain to fetch for Cloud Identity account customers, including
+ *                       domain and team customers. For team customers, please use the domain for
+ *                       their emails.
  */
 function check_cloud_identity_accounts_exist_sample(string $parent, string $domain): void
 {

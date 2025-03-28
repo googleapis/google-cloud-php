@@ -45,6 +45,13 @@ class JobType
      * Generated from protobuf enum <code>BACKGROUND = 4;</code>
      */
     const BACKGROUND = 4;
+    /**
+     * Continuous SQL jobs will use this reservation. Reservations with
+     * continuous assignments cannot be mixed with non-continuous assignments.
+     *
+     * Generated from protobuf enum <code>CONTINUOUS = 6;</code>
+     */
+    const CONTINUOUS = 6;
 
     private static $valueToName = [
         self::JOB_TYPE_UNSPECIFIED => 'JOB_TYPE_UNSPECIFIED',
@@ -52,6 +59,7 @@ class JobType
         self::QUERY => 'QUERY',
         self::ML_EXTERNAL => 'ML_EXTERNAL',
         self::BACKGROUND => 'BACKGROUND',
+        self::CONTINUOUS => 'CONTINUOUS',
     ];
 
     public static function name($value)

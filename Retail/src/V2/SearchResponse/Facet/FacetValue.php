@@ -20,7 +20,7 @@ class FacetValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 count = 3;</code>
      */
-    private $count = 0;
+    protected $count = 0;
     /**
      * The minimum value in the
      * [FacetValue.interval][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.interval].
@@ -30,7 +30,7 @@ class FacetValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double min_value = 5;</code>
      */
-    private $min_value = 0.0;
+    protected $min_value = 0.0;
     /**
      * The maximum value in the
      * [FacetValue.interval][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.interval].
@@ -40,7 +40,7 @@ class FacetValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double max_value = 6;</code>
      */
-    private $max_value = 0.0;
+    protected $max_value = 0.0;
     protected $facet_value;
 
     /**

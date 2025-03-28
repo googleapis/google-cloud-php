@@ -22,13 +22,13 @@ class AllocateQuotaRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_name = 1;</code>
      */
-    private $service_name = '';
+    protected $service_name = '';
     /**
      * Operation that describes the quota allocation.
      *
      * Generated from protobuf field <code>.google.api.servicecontrol.v1.QuotaOperation allocate_operation = 2;</code>
      */
-    private $allocate_operation = null;
+    protected $allocate_operation = null;
     /**
      * Specifies which version of service configuration should be used to process
      * the request. If unspecified or no matching version can be found, the latest
@@ -36,7 +36,7 @@ class AllocateQuotaRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_config_id = 4;</code>
      */
-    private $service_config_id = '';
+    protected $service_config_id = '';
 
     /**
      * Constructor.

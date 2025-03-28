@@ -27,7 +27,7 @@ class ProtoSchema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.DescriptorProto proto_descriptor = 1;</code>
      */
-    private $proto_descriptor = null;
+    protected $proto_descriptor = null;
 
     /**
      * Constructor.

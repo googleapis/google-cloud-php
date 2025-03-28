@@ -39,6 +39,7 @@ use Google\Cloud\Compute\V1\ListRegionOperationsRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\WaitRegionOperationRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The RegionOperations API.
@@ -46,10 +47,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteRegionOperationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRegionOperationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionOperationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface waitAsync(WaitRegionOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DeleteRegionOperationResponse> deleteAsync(DeleteRegionOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> getAsync(GetRegionOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionOperationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> waitAsync(WaitRegionOperationRequest $request, array $optionalArgs = [])
  */
 final class RegionOperationsClient
 {
@@ -130,6 +131,12 @@ final class RegionOperationsClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -160,6 +167,9 @@ final class RegionOperationsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -186,6 +196,8 @@ final class RegionOperationsClient
      *
      * The async variant is {@see RegionOperationsClient::deleteAsync()} .
      *
+     * @example samples/V1/RegionOperationsClient/delete.php
+     *
      * @param DeleteRegionOperationRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -209,6 +221,8 @@ final class RegionOperationsClient
      * Retrieves the specified region-specific Operations resource.
      *
      * The async variant is {@see RegionOperationsClient::getAsync()} .
+     *
+     * @example samples/V1/RegionOperationsClient/get.php
      *
      * @param GetRegionOperationRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -234,6 +248,8 @@ final class RegionOperationsClient
      *
      * The async variant is {@see RegionOperationsClient::listAsync()} .
      *
+     * @example samples/V1/RegionOperationsClient/list.php
+     *
      * @param ListRegionOperationsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -257,6 +273,8 @@ final class RegionOperationsClient
      * Waits for the specified Operation resource to return as `DONE` or for the request to approach the 2 minute deadline, and retrieves the specified Operation resource. This method differs from the `GET` method in that it waits for no more than the default deadline (2 minutes) and then returns the current state of the operation, which might be `DONE` or still in progress. This method is called on a best-effort basis. Specifically: - In uncommon cases, when the server is overloaded, the request might return before the default deadline is reached, or might return after zero seconds. - If the default deadline is reached, there is no guarantee that the operation is actually done when the method returns. Be prepared to retry if the operation is not `DONE`.
      *
      * The async variant is {@see RegionOperationsClient::waitAsync()} .
+     *
+     * @example samples/V1/RegionOperationsClient/wait.php
      *
      * @param WaitRegionOperationRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

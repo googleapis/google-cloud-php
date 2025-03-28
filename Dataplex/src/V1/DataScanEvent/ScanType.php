@@ -31,11 +31,18 @@ class ScanType
      * Generated from protobuf enum <code>DATA_QUALITY = 2;</code>
      */
     const DATA_QUALITY = 2;
+    /**
+     * Data scan for data discovery.
+     *
+     * Generated from protobuf enum <code>DATA_DISCOVERY = 4;</code>
+     */
+    const DATA_DISCOVERY = 4;
 
     private static $valueToName = [
         self::SCAN_TYPE_UNSPECIFIED => 'SCAN_TYPE_UNSPECIFIED',
         self::DATA_PROFILE => 'DATA_PROFILE',
         self::DATA_QUALITY => 'DATA_QUALITY',
+        self::DATA_DISCOVERY => 'DATA_DISCOVERY',
     ];
 
     public static function name($value)

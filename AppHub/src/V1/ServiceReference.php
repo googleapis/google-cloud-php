@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ServiceReference extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The underlying resource URI (For example, URI of Forwarding
-     * Rule, URL Map, and Backend Service).
+     * Output only. The underlying resource URI. For example, URI of Forwarding
+     * Rule, URL Map, and Backend Service.
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -30,8 +30,8 @@ class ServiceReference extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $uri
-     *           Output only. The underlying resource URI (For example, URI of Forwarding
-     *           Rule, URL Map, and Backend Service).
+     *           Output only. The underlying resource URI. For example, URI of Forwarding
+     *           Rule, URL Map, and Backend Service.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +40,8 @@ class ServiceReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The underlying resource URI (For example, URI of Forwarding
-     * Rule, URL Map, and Backend Service).
+     * Output only. The underlying resource URI. For example, URI of Forwarding
+     * Rule, URL Map, and Backend Service.
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -52,8 +52,8 @@ class ServiceReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The underlying resource URI (For example, URI of Forwarding
-     * Rule, URL Map, and Backend Service).
+     * Output only. The underlying resource URI. For example, URI of Forwarding
+     * Rule, URL Map, and Backend Service.
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

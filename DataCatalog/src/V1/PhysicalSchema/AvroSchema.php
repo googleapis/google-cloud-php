@@ -20,7 +20,7 @@ class AvroSchema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string text = 1;</code>
      */
-    private $text = '';
+    protected $text = '';
 
     /**
      * Constructor.
@@ -65,6 +65,4 @@ class AvroSchema extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AvroSchema::class, \Google\Cloud\DataCatalog\V1\PhysicalSchema_AvroSchema::class);
 

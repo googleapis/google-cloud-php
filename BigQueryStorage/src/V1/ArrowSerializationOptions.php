@@ -21,7 +21,7 @@ class ArrowSerializationOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ArrowSerializationOptions.CompressionCodec buffer_compression = 2;</code>
      */
-    private $buffer_compression = 0;
+    protected $buffer_compression = 0;
 
     /**
      * Constructor.

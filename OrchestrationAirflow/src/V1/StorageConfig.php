@@ -21,7 +21,7 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string bucket = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $bucket = '';
+    protected $bucket = '';
 
     /**
      * Constructor.

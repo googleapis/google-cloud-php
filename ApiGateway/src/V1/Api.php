@@ -21,19 +21,19 @@ class Api extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Created time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Updated time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. Resource labels to represent user-provided metadata.
      * Refer to cloud documentation on labels for more details.
@@ -47,7 +47,7 @@ class Api extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. Immutable. The name of a Google Managed Service (
      * https://cloud.google.com/service-infrastructure/docs/glossary#managed). If
@@ -56,13 +56,13 @@ class Api extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string managed_service = 7 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $managed_service = '';
+    protected $managed_service = '';
     /**
      * Output only. State of the API.
      *
      * Generated from protobuf field <code>.google.cloud.apigateway.v1.Api.State state = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
 
     /**
      * Constructor.

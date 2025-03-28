@@ -10,6 +10,12 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * DLP resources used for redaction while ingesting conversations.
+ * DLP settings are applied to conversations ingested from the
+ * `UploadConversation` and `IngestConversations` endpoints, including
+ * conversation coming from CCAI Platform. They are not applied to conversations
+ * ingested from the `CreateConversation` endpoint or the Dialogflow / Agent
+ * Assist runtime integrations. When using Dialogflow / Agent Assist runtime
+ * integrations, redaction should be performed in Dialogflow / Agent Assist.
  *
  * Generated from protobuf message <code>google.cloud.contactcenterinsights.v1.RedactionConfig</code>
  */
@@ -22,7 +28,7 @@ class RedactionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string deidentify_template = 1;</code>
      */
-    private $deidentify_template = '';
+    protected $deidentify_template = '';
     /**
      * The fully-qualified DLP inspect template resource name.
      * Format:
@@ -30,7 +36,7 @@ class RedactionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string inspect_template = 2;</code>
      */
-    private $inspect_template = '';
+    protected $inspect_template = '';
 
     /**
      * Constructor.

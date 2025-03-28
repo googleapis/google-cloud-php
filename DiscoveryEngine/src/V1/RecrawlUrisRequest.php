@@ -34,6 +34,12 @@ class RecrawlUrisRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string uris = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $uris;
+    /**
+     * Optional. Credential id to use for crawling.
+     *
+     * Generated from protobuf field <code>string site_credential = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $site_credential = '';
 
     /**
      * Constructor.
@@ -50,6 +56,8 @@ class RecrawlUrisRequest extends \Google\Protobuf\Internal\Message
      *           an INVALID_ARGUMENT error is thrown. Each URI should match at least one
      *           [TargetSite][google.cloud.discoveryengine.v1.TargetSite] in
      *           `site_search_engine`.
+     *     @type string $site_credential
+     *           Optional. Credential id to use for crawling.
      * }
      */
     public function __construct($data = NULL) {
@@ -115,6 +123,32 @@ class RecrawlUrisRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->uris = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Credential id to use for crawling.
+     *
+     * Generated from protobuf field <code>string site_credential = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getSiteCredential()
+    {
+        return $this->site_credential;
+    }
+
+    /**
+     * Optional. Credential id to use for crawling.
+     *
+     * Generated from protobuf field <code>string site_credential = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSiteCredential($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->site_credential = $var;
 
         return $this;
     }

@@ -23,7 +23,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. An IPv4 or IPv6 address. Service Directory rejects bad addresses
      * like:
@@ -36,13 +36,13 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string address = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $address = '';
+    protected $address = '';
     /**
      * Optional. Service Directory rejects values outside of `[0, 65535]`.
      *
      * Generated from protobuf field <code>int32 port = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $port = 0;
+    protected $port = 0;
     /**
      * Optional. Annotations for the endpoint. This data can be consumed by
      * service clients.
@@ -75,14 +75,14 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 8 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * Output only. The globally unique identifier of the endpoint in the UUID4
      * format.
      *
      * Generated from protobuf field <code>string uid = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
 
     /**
      * Constructor.

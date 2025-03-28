@@ -23,7 +23,7 @@ class DeleteCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. An ID to identify requests. Specify a unique request ID so that
      * if you must retry your request, the server will know to ignore the request
@@ -39,14 +39,14 @@ class DeleteCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. This field allows the CA to be deleted even if the CA has
      * active certs. Active certs include both unrevoked and unexpired certs.
      *
      * Generated from protobuf field <code>bool ignore_active_certificates = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ignore_active_certificates = false;
+    protected $ignore_active_certificates = false;
     /**
      * Optional. If this flag is set, the Certificate Authority will be deleted as
      * soon as possible without a 30-day grace period where undeletion would have
@@ -54,7 +54,7 @@ class DeleteCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>bool skip_grace_period = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $skip_grace_period = false;
+    protected $skip_grace_period = false;
     /**
      * Optional. This field allows this CA to be deleted even if it's being
      * depended on by another resource. However, doing so may result in unintended
@@ -63,7 +63,7 @@ class DeleteCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>bool ignore_dependent_resources = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ignore_dependent_resources = false;
+    protected $ignore_dependent_resources = false;
 
     /**
      * @param string $name Required. The resource name for this

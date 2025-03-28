@@ -40,9 +40,9 @@ use Google\Rpc\Status;
  * @param string $serviceProjectAttachmentId                      The service project attachment identifier must contain the
  *                                                                project id of the service project specified in the
  *                                                                service_project_attachment.service_project field.
- * @param string $formattedServiceProjectAttachmentServiceProject Immutable. Service project name in the format: "projects/abc" or
- *                                                                "projects/123". As input, project name with either project id or number are
- *                                                                accepted. As output, this field will contain project number. Please see
+ * @param string $formattedServiceProjectAttachmentServiceProject Immutable. Service project name in the format: `"projects/abc"`
+ *                                                                or `"projects/123"`. As input, project name with either project id or
+ *                                                                number are accepted. As output, this field will contain project number. Please see
  *                                                                {@see AppHubClient::projectName()} for help formatting this field.
  */
 function create_service_project_attachment_sample(

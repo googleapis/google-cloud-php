@@ -22,13 +22,13 @@ class SearchBackgroundJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string conversion_workspace = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $conversion_workspace = '';
+    protected $conversion_workspace = '';
     /**
      * Optional. Whether or not to return just the most recent job per job type,
      *
      * Generated from protobuf field <code>bool return_most_recent_per_job_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $return_most_recent_per_job_type = false;
+    protected $return_most_recent_per_job_type = false;
     /**
      * Optional. The maximum number of jobs to return. The service may return
      * fewer than this value. If unspecified, at most 100 jobs are
@@ -37,14 +37,14 @@ class SearchBackgroundJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_size = 0;
+    protected $max_size = 0;
     /**
      * Optional. If provided, only returns jobs that completed until (not
      * including) the given timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp completed_until_time = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $completed_until_time = null;
+    protected $completed_until_time = null;
 
     /**
      * Constructor.

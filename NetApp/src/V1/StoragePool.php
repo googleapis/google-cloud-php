@@ -125,6 +125,14 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      */
     protected $global_access_allowed = null;
     /**
+     * Optional. True if the storage pool supports Auto Tiering enabled volumes.
+     * Default is false. Auto-tiering can be enabled after storage pool creation
+     * but it can't be disabled once enabled.
+     *
+     * Generated from protobuf field <code>bool allow_auto_tiering = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $allow_auto_tiering = false;
+    /**
      * Optional. Specifies the replica zone for regional storagePool.
      *
      * Generated from protobuf field <code>string replica_zone = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -136,6 +144,18 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string zone = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $zone = '';
+    /**
+     * Output only. Reserved for future use
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
+    /**
+     * Output only. Reserved for future use
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = false;
 
     /**
      * Constructor.
@@ -181,10 +201,18 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      *     @type bool $global_access_allowed
      *           Deprecated. Used to allow SO pool to access AD or DNS server from other
      *           regions.
+     *     @type bool $allow_auto_tiering
+     *           Optional. True if the storage pool supports Auto Tiering enabled volumes.
+     *           Default is false. Auto-tiering can be enabled after storage pool creation
+     *           but it can't be disabled once enabled.
      *     @type string $replica_zone
      *           Optional. Specifies the replica zone for regional storagePool.
      *     @type string $zone
      *           Optional. Specifies the active zone for regional storagePool.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use
      * }
      */
     public function __construct($data = NULL) {
@@ -669,6 +697,36 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. True if the storage pool supports Auto Tiering enabled volumes.
+     * Default is false. Auto-tiering can be enabled after storage pool creation
+     * but it can't be disabled once enabled.
+     *
+     * Generated from protobuf field <code>bool allow_auto_tiering = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getAllowAutoTiering()
+    {
+        return $this->allow_auto_tiering;
+    }
+
+    /**
+     * Optional. True if the storage pool supports Auto Tiering enabled volumes.
+     * Default is false. Auto-tiering can be enabled after storage pool creation
+     * but it can't be disabled once enabled.
+     *
+     * Generated from protobuf field <code>bool allow_auto_tiering = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAllowAutoTiering($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->allow_auto_tiering = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. Specifies the replica zone for regional storagePool.
      *
      * Generated from protobuf field <code>string replica_zone = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -716,6 +774,58 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->zone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. Reserved for future use
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

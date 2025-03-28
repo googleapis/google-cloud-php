@@ -18,13 +18,13 @@ class SslCertsCreateEphemeralRequest extends \Google\Protobuf\Internal\Message
     /**
      * PEM encoded public key to include in the signed certificate.
      *
-     * Generated from protobuf field <code>string public_key = 1;</code>
+     * Generated from protobuf field <code>string public_key = 1 [json_name = "public_key"];</code>
      */
     protected $public_key = '';
     /**
      * Access token to include in the signed certificate.
      *
-     * Generated from protobuf field <code>string access_token = 2;</code>
+     * Generated from protobuf field <code>string access_token = 2 [json_name = "access_token"];</code>
      */
     protected $access_token = '';
 
@@ -48,7 +48,7 @@ class SslCertsCreateEphemeralRequest extends \Google\Protobuf\Internal\Message
     /**
      * PEM encoded public key to include in the signed certificate.
      *
-     * Generated from protobuf field <code>string public_key = 1;</code>
+     * Generated from protobuf field <code>string public_key = 1 [json_name = "public_key"];</code>
      * @return string
      */
     public function getPublicKey()
@@ -59,7 +59,7 @@ class SslCertsCreateEphemeralRequest extends \Google\Protobuf\Internal\Message
     /**
      * PEM encoded public key to include in the signed certificate.
      *
-     * Generated from protobuf field <code>string public_key = 1;</code>
+     * Generated from protobuf field <code>string public_key = 1 [json_name = "public_key"];</code>
      * @param string $var
      * @return $this
      */
@@ -74,7 +74,7 @@ class SslCertsCreateEphemeralRequest extends \Google\Protobuf\Internal\Message
     /**
      * Access token to include in the signed certificate.
      *
-     * Generated from protobuf field <code>string access_token = 2;</code>
+     * Generated from protobuf field <code>string access_token = 2 [json_name = "access_token"];</code>
      * @return string
      */
     public function getAccessToken()
@@ -85,7 +85,7 @@ class SslCertsCreateEphemeralRequest extends \Google\Protobuf\Internal\Message
     /**
      * Access token to include in the signed certificate.
      *
-     * Generated from protobuf field <code>string access_token = 2;</code>
+     * Generated from protobuf field <code>string access_token = 2 [json_name = "access_token"];</code>
      * @param string $var
      * @return $this
      */

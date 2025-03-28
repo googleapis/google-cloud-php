@@ -28,7 +28,7 @@ use Google\Auth\Cache\MemoryCacheItemPool;
  * @group spanner
  * @group spanner-postgres
  */
-class SpannerPgTestCase extends SystemTestCase
+abstract class SpannerPgTestCase extends SystemTestCase
 {
     const TESTING_PREFIX = 'gcloud_testing_';
     const INSTANCE_NAME = 'google-cloud-php-system-tests';
@@ -47,13 +47,15 @@ class SpannerPgTestCase extends SystemTestCase
 
     private static $hasSetUp = false;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         if (self::$hasSetUp) {
             return;
         }
 
-        self::skipEmulatorTests();
         self::getClient();
 
         self::$instance = self::$client->instance(self::INSTANCE_NAME);
@@ -83,14 +85,23 @@ class SpannerPgTestCase extends SystemTestCase
                     name varchar(1024) NOT NULL,
                     birthday date
                 )',
-                'CREATE ROLE ' . self::DATABASE_ROLE,
-                'CREATE ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
-                'GRANT SELECT ON TABLE ' . self::TEST_TABLE_NAME .
-                ' TO ' . self::DATABASE_ROLE,
-                'GRANT SELECT(id, name), INSERT(id, name), UPDATE(id, name) ON TABLE '
-                . self::TEST_TABLE_NAME . ' TO ' . self::RESTRICTIVE_DATABASE_ROLE,
             ]
         )->pollUntilComplete();
+
+        // Currently, the emulator doesn't support setting roles for the PG
+        // dialect.
+        if (!getenv("SPANNER_EMULATOR_HOST")) {
+            $db->updateDdlBatch(
+                [
+                    'CREATE ROLE ' . self::DATABASE_ROLE,
+                    'CREATE ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
+                    'GRANT SELECT ON TABLE ' . self::TEST_TABLE_NAME .
+                    ' TO ' . self::DATABASE_ROLE,
+                    'GRANT SELECT(id, name), INSERT(id, name), UPDATE(id, name) ON TABLE '
+                    . self::TEST_TABLE_NAME . ' TO ' . self::RESTRICTIVE_DATABASE_ROLE,
+                ]
+            )->pollUntilComplete();
+        }
 
         self::$hasSetUp = true;
     }

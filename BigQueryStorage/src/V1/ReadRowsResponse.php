@@ -21,20 +21,20 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 row_count = 6;</code>
      */
-    private $row_count = 0;
+    protected $row_count = 0;
     /**
      * Statistics for the stream.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.StreamStats stats = 2;</code>
      */
-    private $stats = null;
+    protected $stats = null;
     /**
      * Throttling state. If unset, the latest response still describes
      * the current throttling status.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ThrottleState throttle_state = 5;</code>
      */
-    private $throttle_state = null;
+    protected $throttle_state = null;
     /**
      * Optional. If the row data in this ReadRowsResponse is compressed, then
      * uncompressed byte size is the original size of the uncompressed row data.
@@ -53,7 +53,7 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int64 uncompressed_byte_size = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $uncompressed_byte_size = null;
+    protected $uncompressed_byte_size = null;
     protected $rows;
     protected $schema;
 

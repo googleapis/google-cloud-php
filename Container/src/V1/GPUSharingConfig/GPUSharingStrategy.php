@@ -59,6 +59,4 @@ class GPUSharingStrategy
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GPUSharingStrategy::class, \Google\Cloud\Container\V1\GPUSharingConfig_GPUSharingStrategy::class);
 

@@ -41,6 +41,8 @@ class RichLinkMetadata extends \Google\Protobuf\Internal\Message
      *           The rich link type.
      *     @type \Google\Apps\Chat\V1\DriveLinkData $drive_link_data
      *           Data for a drive link.
+     *     @type \Google\Apps\Chat\V1\ChatSpaceLinkData $chat_space_link_data
+     *           Data for a chat space link.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +129,37 @@ class RichLinkMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Apps\Chat\V1\DriveLinkData::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Data for a chat space link.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.ChatSpaceLinkData chat_space_link_data = 4;</code>
+     * @return \Google\Apps\Chat\V1\ChatSpaceLinkData|null
+     */
+    public function getChatSpaceLinkData()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasChatSpaceLinkData()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Data for a chat space link.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.ChatSpaceLinkData chat_space_link_data = 4;</code>
+     * @param \Google\Apps\Chat\V1\ChatSpaceLinkData $var
+     * @return $this
+     */
+    public function setChatSpaceLinkData($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Chat\V1\ChatSpaceLinkData::class);
+        $this->writeOneof(4, $var);
 
         return $this;
     }

@@ -67,6 +67,4 @@ class RescheduleType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RescheduleType::class, \Google\Cloud\Redis\V1\RescheduleMaintenanceRequest_RescheduleType::class);
 

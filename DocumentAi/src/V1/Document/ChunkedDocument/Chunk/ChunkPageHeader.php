@@ -20,13 +20,13 @@ class ChunkPageHeader extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string text = 1;</code>
      */
-    private $text = '';
+    protected $text = '';
     /**
      * Page span of the header.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.ChunkedDocument.Chunk.ChunkPageSpan page_span = 2;</code>
      */
-    private $page_span = null;
+    protected $page_span = null;
 
     /**
      * Constructor.

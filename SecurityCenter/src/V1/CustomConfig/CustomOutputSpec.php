@@ -68,6 +68,4 @@ class CustomOutputSpec extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CustomOutputSpec::class, \Google\Cloud\SecurityCenter\V1\CustomConfig_CustomOutputSpec::class);
 

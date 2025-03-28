@@ -22,14 +22,14 @@ class SerializedPolicyTag extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string policy_tag = 1;</code>
      */
-    private $policy_tag = '';
+    protected $policy_tag = '';
     /**
      * Required. Display name of the policy tag. At most 200 bytes when encoded
      * in UTF-8.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Description of the serialized policy tag. At most
      * 2000 bytes when encoded in UTF-8. If not set, defaults to an
@@ -37,7 +37,7 @@ class SerializedPolicyTag extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Children of the policy tag, if any.
      *

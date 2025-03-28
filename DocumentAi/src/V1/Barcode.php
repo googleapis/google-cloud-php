@@ -35,7 +35,7 @@ class Barcode extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string format = 1;</code>
      */
-    private $format = '';
+    protected $format = '';
     /**
      * Value format describes the format of the value that a barcode
      * encodes.
@@ -55,14 +55,14 @@ class Barcode extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string value_format = 2;</code>
      */
-    private $value_format = '';
+    protected $value_format = '';
     /**
      * Raw value encoded in the barcode.
      * For example: `'MEBKM:TITLE:Google;URL:https://www.google.com;;'`.
      *
      * Generated from protobuf field <code>string raw_value = 3;</code>
      */
-    private $raw_value = '';
+    protected $raw_value = '';
 
     /**
      * Constructor.

@@ -31,11 +31,25 @@ class DatabaseVersion
      * Generated from protobuf enum <code>POSTGRES_14 = 2;</code>
      */
     const POSTGRES_14 = 2;
+    /**
+     * The database version is Postgres 15.
+     *
+     * Generated from protobuf enum <code>POSTGRES_15 = 3;</code>
+     */
+    const POSTGRES_15 = 3;
+    /**
+     * The database version is Postgres 16.
+     *
+     * Generated from protobuf enum <code>POSTGRES_16 = 4;</code>
+     */
+    const POSTGRES_16 = 4;
 
     private static $valueToName = [
         self::DATABASE_VERSION_UNSPECIFIED => 'DATABASE_VERSION_UNSPECIFIED',
         self::POSTGRES_13 => 'POSTGRES_13',
         self::POSTGRES_14 => 'POSTGRES_14',
+        self::POSTGRES_15 => 'POSTGRES_15',
+        self::POSTGRES_16 => 'POSTGRES_16',
     ];
 
     public static function name($value)

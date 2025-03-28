@@ -20,7 +20,7 @@ class MaintenancePolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.MaintenanceWindow window = 1;</code>
      */
-    private $window = null;
+    protected $window = null;
     /**
      * A hash identifying the version of this policy, so that updates to fields of
      * the policy won't accidentally undo intermediate changes (and so that users
@@ -30,7 +30,7 @@ class MaintenancePolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_version = 3;</code>
      */
-    private $resource_version = '';
+    protected $resource_version = '';
 
     /**
      * Constructor.

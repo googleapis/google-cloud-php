@@ -23,7 +23,7 @@ class ListTunnelDestGroupsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The maximum number of groups to return. The service might return fewer than
      * this value.
@@ -32,7 +32,7 @@ class ListTunnelDestGroupsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A page token, received from a previous `ListTunnelDestGroups`
      * call. Provide this to retrieve the subsequent page.
@@ -42,7 +42,7 @@ class ListTunnelDestGroupsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. Google Cloud Project ID and location.

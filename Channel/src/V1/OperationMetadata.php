@@ -21,7 +21,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.OperationMetadata.OperationType operation_type = 1;</code>
      */
-    private $operation_type = 0;
+    protected $operation_type = 0;
 
     /**
      * Constructor.

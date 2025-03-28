@@ -32,7 +32,9 @@ use Google\Protobuf\FieldMask;
 /**
  * Updates the specified conversation profile.
  *
- * [ConversationProfile.CreateTime][] and [ConversationProfile.UpdateTime][]
+ * [ConversationProfile.create_time][google.cloud.dialogflow.v2.ConversationProfile.create_time]
+ * and
+ * [ConversationProfile.update_time][google.cloud.dialogflow.v2.ConversationProfile.update_time]
  * aren't populated in the response. You can retrieve them via
  * [GetConversationProfile][google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]
  * API.

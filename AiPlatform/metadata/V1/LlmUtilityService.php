@@ -23,7 +23,7 @@ class LlmUtilityService
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         $pool->internalAddGeneratedFile(
             '
-£
+ï
 4google/cloud/aiplatform/v1/llm_utility_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto(google/cloud/aiplatform/v1/content.proto3google/cloud/aiplatform/v1/prediction_service.protogoogle/protobuf/struct.proto"Ô
 ComputeTokensRequest<
 endpoint (	B*àAúA$
@@ -37,10 +37,10 @@ TokensInfo
 	token_ids (
 role (	BàA"T
 ComputeTokensResponse;
-tokens_info (2&.google.cloud.aiplatform.v1.TokensInfo2¬
-LlmUtilityService
-CountTokens..google.cloud.aiplatform.v1.CountTokensRequest/.google.cloud.aiplatform.v1.CountTokensResponse"¬ÚAendpoint,instances‚Óä“"=/v1/{endpoint=projects/*/locations/*/endpoints/*}:countTokens:*ZL"G/v1/{endpoint=projects/*/locations/*/publishers/*/models/*}:countTokens:*§
-ComputeTokens0.google.cloud.aiplatform.v1.ComputeTokensRequest1.google.cloud.aiplatform.v1.ComputeTokensResponse"°ÚAendpoint,instances‚Óä“”"?/v1/{endpoint=projects/*/locations/*/endpoints/*}:computeTokens:*ZN"I/v1/{endpoint=projects/*/locations/*/publishers/*/models/*}:computeTokens:*MÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÔ
+tokens_info (2&.google.cloud.aiplatform.v1.TokensInfo2ø
+LlmUtilityService
+CountTokens..google.cloud.aiplatform.v1.CountTokensRequest/.google.cloud.aiplatform.v1.CountTokensResponse"ÚAendpoint,instances‚Óä“ô"=/v1/{endpoint=projects/*/locations/*/endpoints/*}:countTokens:*ZL"G/v1/{endpoint=projects/*/locations/*/publishers/*/models/*}:countTokens:*Z+"&/v1/{endpoint=endpoints/*}:countTokens:*Z5"0/v1/{endpoint=publishers/*/models/*}:countTokens:*
+ComputeTokens0.google.cloud.aiplatform.v1.ComputeTokensRequest1.google.cloud.aiplatform.v1.ComputeTokensResponse"˜ÚAendpoint,instances‚Óä“ü"?/v1/{endpoint=projects/*/locations/*/endpoints/*}:computeTokens:*ZN"I/v1/{endpoint=projects/*/locations/*/publishers/*/models/*}:computeTokens:*Z-"(/v1/{endpoint=endpoints/*}:computeTokens:*Z7"2/v1/{endpoint=publishers/*/models/*}:computeTokens:*MÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÔ
 com.google.cloud.aiplatform.v1BLlmUtilityServiceProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 

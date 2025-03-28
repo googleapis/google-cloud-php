@@ -23,7 +23,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Node group roles.
      *
@@ -35,7 +35,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig node_group_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $node_group_config = null;
+    protected $node_group_config = null;
     /**
      * Optional. Node group labels.
      * * Label **keys** must consist of from 1 to 63 characters and conform to

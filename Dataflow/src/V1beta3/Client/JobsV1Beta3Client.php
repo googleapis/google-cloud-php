@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,6 +44,7 @@ use Google\Cloud\Dataflow\V1beta3\Snapshot;
 use Google\Cloud\Dataflow\V1beta3\SnapshotJobRequest;
 use Google\Cloud\Dataflow\V1beta3\UpdateJobRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Provides a method to create and modify Google Cloud Dataflow jobs.
@@ -54,13 +55,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface aggregatedListJobsAsync(ListJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface checkActiveJobsAsync(CheckActiveJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createJobAsync(CreateJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getJobAsync(GetJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listJobsAsync(ListJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface snapshotJobAsync(SnapshotJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateJobAsync(UpdateJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListJobsAsync(ListJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CheckActiveJobsResponse> checkActiveJobsAsync(CheckActiveJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Job> createJobAsync(CreateJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Job> getJobAsync(GetJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listJobsAsync(ListJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Snapshot> snapshotJobAsync(SnapshotJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Job> updateJobAsync(UpdateJobRequest $request, array $optionalArgs = [])
  */
 final class JobsV1Beta3Client
 {
@@ -129,6 +130,12 @@ final class JobsV1Beta3Client
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -162,6 +169,9 @@ final class JobsV1Beta3Client
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

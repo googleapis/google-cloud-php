@@ -22,13 +22,13 @@ class GetSettingRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The SettingView for this request.
      *
      * Generated from protobuf field <code>.google.cloud.resourcesettings.v1.SettingView view = 2;</code>
      */
-    private $view = 0;
+    protected $view = 0;
 
     /**
      * @param string $name Required. The name of the setting to get. See

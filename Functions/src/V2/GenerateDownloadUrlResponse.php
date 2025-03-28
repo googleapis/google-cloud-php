@@ -21,7 +21,7 @@ class GenerateDownloadUrlResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string download_url = 1;</code>
      */
-    private $download_url = '';
+    protected $download_url = '';
 
     /**
      * Constructor.

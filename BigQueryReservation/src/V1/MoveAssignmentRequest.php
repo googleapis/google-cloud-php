@@ -28,14 +28,14 @@ class MoveAssignmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The new reservation ID, e.g.:
      *   `projects/myotherproject/locations/US/reservations/team2-prod`
      *
      * Generated from protobuf field <code>string destination_id = 3 [(.google.api.resource_reference) = {</code>
      */
-    private $destination_id = '';
+    protected $destination_id = '';
     /**
      * The optional assignment ID. A new assignment name is generated if this
      * field is empty.
@@ -44,7 +44,7 @@ class MoveAssignmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string assignment_id = 5;</code>
      */
-    private $assignment_id = '';
+    protected $assignment_id = '';
 
     /**
      * @param string $name          Required. The resource name of the assignment,

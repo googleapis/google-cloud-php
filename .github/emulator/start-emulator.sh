@@ -18,3 +18,4 @@ CONTAINER=`docker run \
   $IMAGE gcloud beta emulators $1 start --host-port=0.0.0.0:8085 --project=emulator-project`
 sleep 10
 docker logs $CONTAINER
+

@@ -34,6 +34,8 @@ use Google\Cloud\Workflows\V1\Client\WorkflowsClient;
 use Google\Cloud\Workflows\V1\CreateWorkflowRequest;
 use Google\Cloud\Workflows\V1\DeleteWorkflowRequest;
 use Google\Cloud\Workflows\V1\GetWorkflowRequest;
+use Google\Cloud\Workflows\V1\ListWorkflowRevisionsRequest;
+use Google\Cloud\Workflows\V1\ListWorkflowRevisionsResponse;
 use Google\Cloud\Workflows\V1\ListWorkflowsRequest;
 use Google\Cloud\Workflows\V1\ListWorkflowsResponse;
 use Google\Cloud\Workflows\V1\UpdateWorkflowRequest;
@@ -101,6 +103,7 @@ class WorkflowsClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $sourceContents = 'sourceContents-1799875906';
         $cryptoKeyName = 'cryptoKeyName-184663511';
+        $cryptoKeyVersion = 'cryptoKeyVersion-827799430';
         $expectedResponse = new Workflow();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -108,6 +111,7 @@ class WorkflowsClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setSourceContents($sourceContents);
         $expectedResponse->setCryptoKeyName($cryptoKeyName);
+        $expectedResponse->setCryptoKeyVersion($cryptoKeyVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -355,6 +359,7 @@ class WorkflowsClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $sourceContents = 'sourceContents-1799875906';
         $cryptoKeyName = 'cryptoKeyName-184663511';
+        $cryptoKeyVersion = 'cryptoKeyVersion-827799430';
         $expectedResponse = new Workflow();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
@@ -362,6 +367,7 @@ class WorkflowsClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setSourceContents($sourceContents);
         $expectedResponse->setCryptoKeyName($cryptoKeyName);
+        $expectedResponse->setCryptoKeyVersion($cryptoKeyVersion);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
@@ -403,6 +409,78 @@ class WorkflowsClientTest extends GeneratedTest
             ->setName($formattedName);
         try {
             $gapicClient->getWorkflow($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listWorkflowRevisionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $workflowsElement = new Workflow();
+        $workflows = [
+            $workflowsElement,
+        ];
+        $expectedResponse = new ListWorkflowRevisionsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setWorkflows($workflows);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
+        $request = (new ListWorkflowRevisionsRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->listWorkflowRevisions($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getWorkflows()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.workflows.v1.Workflows/ListWorkflowRevisions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listWorkflowRevisionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
+        $request = (new ListWorkflowRevisionsRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->listWorkflowRevisions($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -513,6 +591,7 @@ class WorkflowsClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $sourceContents = 'sourceContents-1799875906';
         $cryptoKeyName = 'cryptoKeyName-184663511';
+        $cryptoKeyVersion = 'cryptoKeyVersion-827799430';
         $expectedResponse = new Workflow();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -520,6 +599,7 @@ class WorkflowsClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setSourceContents($sourceContents);
         $expectedResponse->setCryptoKeyName($cryptoKeyName);
+        $expectedResponse->setCryptoKeyVersion($cryptoKeyVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -770,6 +850,7 @@ class WorkflowsClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $sourceContents = 'sourceContents-1799875906';
         $cryptoKeyName = 'cryptoKeyName-184663511';
+        $cryptoKeyVersion = 'cryptoKeyVersion-827799430';
         $expectedResponse = new Workflow();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -777,6 +858,7 @@ class WorkflowsClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setSourceContents($sourceContents);
         $expectedResponse->setCryptoKeyName($cryptoKeyName);
+        $expectedResponse->setCryptoKeyVersion($cryptoKeyVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

@@ -32,9 +32,9 @@ class EvaluationConfig extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Dialogflow\V2\InputDataset>|\Google\Protobuf\Internal\RepeatedField $datasets
      *           Required. Datasets used for evaluation.
      *     @type \Google\Cloud\Dialogflow\V2\EvaluationConfig\SmartReplyConfig $smart_reply_config
-     *           Configuration for smart reply model evalution.
+     *           Configuration for smart reply model evaluation.
      *     @type \Google\Cloud\Dialogflow\V2\EvaluationConfig\SmartComposeConfig $smart_compose_config
-     *           Configuration for smart compose model evalution.
+     *           Configuration for smart compose model evaluation.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,7 +69,7 @@ class EvaluationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration for smart reply model evalution.
+     * Configuration for smart reply model evaluation.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EvaluationConfig.SmartReplyConfig smart_reply_config = 2;</code>
      * @return \Google\Cloud\Dialogflow\V2\EvaluationConfig\SmartReplyConfig|null
@@ -85,7 +85,7 @@ class EvaluationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration for smart reply model evalution.
+     * Configuration for smart reply model evaluation.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EvaluationConfig.SmartReplyConfig smart_reply_config = 2;</code>
      * @param \Google\Cloud\Dialogflow\V2\EvaluationConfig\SmartReplyConfig $var
@@ -100,7 +100,7 @@ class EvaluationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration for smart compose model evalution.
+     * Configuration for smart compose model evaluation.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EvaluationConfig.SmartComposeConfig smart_compose_config = 4;</code>
      * @return \Google\Cloud\Dialogflow\V2\EvaluationConfig\SmartComposeConfig|null
@@ -116,7 +116,7 @@ class EvaluationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration for smart compose model evalution.
+     * Configuration for smart compose model evaluation.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EvaluationConfig.SmartComposeConfig smart_compose_config = 4;</code>
      * @param \Google\Cloud\Dialogflow\V2\EvaluationConfig\SmartComposeConfig $var

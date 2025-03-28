@@ -21,55 +21,55 @@ class FinishReason
      */
     const FINISH_REASON_UNSPECIFIED = 0;
     /**
-     * Natural stop point of the model or provided stop sequence.
+     * Token generation reached a natural stopping point or a configured stop
+     * sequence.
      *
      * Generated from protobuf enum <code>STOP = 1;</code>
      */
     const STOP = 1;
     /**
-     * The maximum number of tokens as specified in the request was reached.
+     * Token generation reached the configured maximum output tokens.
      *
      * Generated from protobuf enum <code>MAX_TOKENS = 2;</code>
      */
     const MAX_TOKENS = 2;
     /**
-     * The token generation was stopped as the response was flagged for safety
-     * reasons. NOTE: When streaming the Candidate.content will be empty if
-     * content filters blocked the output.
+     * Token generation stopped because the content potentially contains safety
+     * violations. NOTE: When streaming,
+     * [content][google.cloud.aiplatform.v1.Candidate.content] is empty if
+     * content filters blocks the output.
      *
      * Generated from protobuf enum <code>SAFETY = 3;</code>
      */
     const SAFETY = 3;
     /**
-     * The token generation was stopped as the response was flagged for
-     * unauthorized citations.
+     * Token generation stopped because the content potentially contains
+     * copyright violations.
      *
      * Generated from protobuf enum <code>RECITATION = 4;</code>
      */
     const RECITATION = 4;
     /**
-     * All other reasons that stopped the token generation
+     * All other reasons that stopped the token generation.
      *
      * Generated from protobuf enum <code>OTHER = 5;</code>
      */
     const OTHER = 5;
     /**
-     * The token generation was stopped as the response was flagged for the
-     * terms which are included from the terminology blocklist.
+     * Token generation stopped because the content contains forbidden terms.
      *
      * Generated from protobuf enum <code>BLOCKLIST = 6;</code>
      */
     const BLOCKLIST = 6;
     /**
-     * The token generation was stopped as the response was flagged for
-     * the prohibited contents.
+     * Token generation stopped for potentially containing prohibited content.
      *
      * Generated from protobuf enum <code>PROHIBITED_CONTENT = 7;</code>
      */
     const PROHIBITED_CONTENT = 7;
     /**
-     * The token generation was stopped as the response was flagged for
-     * Sensitive Personally Identifiable Information (SPII) contents.
+     * Token generation stopped because the content potentially contains
+     * Sensitive Personally Identifiable Information (SPII).
      *
      * Generated from protobuf enum <code>SPII = 8;</code>
      */

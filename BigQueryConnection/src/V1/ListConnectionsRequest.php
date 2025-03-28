@@ -22,19 +22,19 @@ class ListConnectionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Page size.
      *
      * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Page token.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. Parent resource name.

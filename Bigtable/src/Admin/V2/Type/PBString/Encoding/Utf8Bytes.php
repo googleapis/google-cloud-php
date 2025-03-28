@@ -9,13 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * UTF-8 encoding
- * * Order-preserving? Yes (code point order)
- * * Self-delimiting? No
- * * Compatibility?
- *    - BigQuery Federation `TEXT` encoding
- *    - HBase `Bytes.toBytes`
- *    - Java `String#getBytes(StandardCharsets.UTF_8)`
+ * UTF-8 encoding.
+ * Sorted mode:
+ *  - All values are supported.
+ *  - Code point order is preserved.
+ * Distinct mode: all values are supported.
+ * Compatible with:
+ *  - BigQuery `TEXT` encoding
+ *  - HBase `Bytes.toBytes`
+ *  - Java `String#getBytes(StandardCharsets.UTF_8)`
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.Type.String.Encoding.Utf8Bytes</code>
  */

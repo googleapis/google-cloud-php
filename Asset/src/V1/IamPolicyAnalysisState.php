@@ -26,13 +26,13 @@ class IamPolicyAnalysisState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Code code = 1;</code>
      */
-    private $code = 0;
+    protected $code = 0;
     /**
      * The human-readable description of the cause of failure.
      *
      * Generated from protobuf field <code>string cause = 2;</code>
      */
-    private $cause = '';
+    protected $cause = '';
 
     /**
      * Constructor.

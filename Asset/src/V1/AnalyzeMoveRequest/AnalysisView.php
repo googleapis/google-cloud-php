@@ -62,6 +62,4 @@ class AnalysisView
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AnalysisView::class, \Google\Cloud\Asset\V1\AnalyzeMoveRequest_AnalysisView::class);
 

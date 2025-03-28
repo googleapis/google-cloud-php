@@ -20,20 +20,20 @@ class TriggererResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 count = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $count = 0;
+    protected $count = 0;
     /**
      * Optional. CPU request and limit for a single Airflow triggerer replica.
      *
      * Generated from protobuf field <code>float cpu = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cpu = 0.0;
+    protected $cpu = 0.0;
     /**
      * Optional. Memory (GB) request and limit for a single Airflow triggerer
      * replica.
      *
      * Generated from protobuf field <code>float memory_gb = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $memory_gb = 0.0;
+    protected $memory_gb = 0.0;
 
     /**
      * Constructor.

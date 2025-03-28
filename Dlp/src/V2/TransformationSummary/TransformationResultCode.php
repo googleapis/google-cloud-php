@@ -59,6 +59,4 @@ class TransformationResultCode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TransformationResultCode::class, \Google\Cloud\Dlp\V2\TransformationSummary_TransformationResultCode::class);
 

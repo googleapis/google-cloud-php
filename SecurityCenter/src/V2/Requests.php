@@ -22,25 +22,25 @@ class Requests extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double ratio = 1;</code>
      */
-    private $ratio = 0.0;
+    protected $ratio = 0.0;
     /**
      * Allowed RPS (requests per second) in the short term.
      *
      * Generated from protobuf field <code>int32 short_term_allowed = 2;</code>
      */
-    private $short_term_allowed = 0;
+    protected $short_term_allowed = 0;
     /**
      * Allowed RPS (requests per second) over the long term.
      *
      * Generated from protobuf field <code>int32 long_term_allowed = 3;</code>
      */
-    private $long_term_allowed = 0;
+    protected $long_term_allowed = 0;
     /**
      * Denied RPS (requests per second) over the long term.
      *
      * Generated from protobuf field <code>int32 long_term_denied = 4;</code>
      */
-    private $long_term_denied = 0;
+    protected $long_term_denied = 0;
 
     /**
      * Constructor.

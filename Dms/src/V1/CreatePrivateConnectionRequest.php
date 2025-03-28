@@ -21,19 +21,19 @@ class CreatePrivateConnectionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The private connection identifier.
      *
      * Generated from protobuf field <code>string private_connection_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $private_connection_id = '';
+    protected $private_connection_id = '';
     /**
      * Required. The private connection resource to create.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.PrivateConnection private_connection = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $private_connection = null;
+    protected $private_connection = null;
     /**
      * Optional. A unique ID used to identify the request. If the server receives
      * two requests with the same ID, then the second request is ignored.
@@ -43,13 +43,13 @@ class CreatePrivateConnectionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. If set to true, will skip validations.
      *
      * Generated from protobuf field <code>bool skip_validation = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $skip_validation = false;
+    protected $skip_validation = false;
 
     /**
      * @param string                                      $parent              Required. The parent that owns the collection of PrivateConnections. Please see

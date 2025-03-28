@@ -32,7 +32,8 @@ use Google\Cloud\DiscoveryEngine\V1\UserEvent;
 /**
  * Makes a recommendation, which requires a contextual user event.
  *
- * @param string $formattedServingConfig Full resource name of a [ServingConfig][]:
+ * @param string $formattedServingConfig Full resource name of a
+ *                                       [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig]:
  *                                       `projects/&#42;/locations/global/collections/&#42;/engines/&#42;/servingConfigs/*`, or
  *                                       `projects/&#42;/locations/global/collections/&#42;/dataStores/&#42;/servingConfigs/*`
  *
@@ -54,6 +55,7 @@ use Google\Cloud\DiscoveryEngine\V1\UserEvent;
  *                                       * `view-item-list`: View of a panel or ordered list of Documents.
  *                                       * `view-home-page`: View of the home page.
  *                                       * `view-category-page`: View of a category page, e.g. Home > Men > Jeans
+ *                                       * `add-feedback`: Add a user feedback.
  *
  *                                       Retail-related values:
  *
@@ -64,6 +66,10 @@ use Google\Cloud\DiscoveryEngine\V1\UserEvent;
  *
  *                                       * `media-play`: Start/resume watching a video, playing a song, etc.
  *                                       * `media-complete`: Finished or stopped midway through a video, song, etc.
+ *
+ *                                       Custom conversion value:
+ *
+ *                                       * `conversion`: Customer defined conversion event.
  * @param string $userEventUserPseudoId  A unique identifier for tracking visitors.
  *
  *                                       For example, this could be implemented with an HTTP cookie, which should be

@@ -26,8 +26,10 @@ class MutateDeployedIndexRequest extends \Google\Protobuf\Internal\Message
     protected $index_endpoint = '';
     /**
      * Required. The DeployedIndex to be updated within the IndexEndpoint.
-     * Currently, the updatable fields are [DeployedIndex][automatic_resources]
-     * and [DeployedIndex][dedicated_resources]
+     * Currently, the updatable fields are
+     * [DeployedIndex.automatic_resources][google.cloud.aiplatform.v1.DeployedIndex.automatic_resources]
+     * and
+     * [DeployedIndex.dedicated_resources][google.cloud.aiplatform.v1.DeployedIndex.dedicated_resources]
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedIndex deployed_index = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -39,8 +41,10 @@ class MutateDeployedIndexRequest extends \Google\Protobuf\Internal\Message
      *                                                                 `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
      *                                                                 Please see {@see IndexEndpointServiceClient::indexEndpointName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\DeployedIndex $deployedIndex Required. The DeployedIndex to be updated within the IndexEndpoint.
-     *                                                                 Currently, the updatable fields are [DeployedIndex][automatic_resources]
-     *                                                                 and [DeployedIndex][dedicated_resources]
+     *                                                                 Currently, the updatable fields are
+     *                                                                 [DeployedIndex.automatic_resources][google.cloud.aiplatform.v1.DeployedIndex.automatic_resources]
+     *                                                                 and
+     *                                                                 [DeployedIndex.dedicated_resources][google.cloud.aiplatform.v1.DeployedIndex.dedicated_resources]
      *
      * @return \Google\Cloud\AIPlatform\V1\MutateDeployedIndexRequest
      *
@@ -65,8 +69,10 @@ class MutateDeployedIndexRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
      *     @type \Google\Cloud\AIPlatform\V1\DeployedIndex $deployed_index
      *           Required. The DeployedIndex to be updated within the IndexEndpoint.
-     *           Currently, the updatable fields are [DeployedIndex][automatic_resources]
-     *           and [DeployedIndex][dedicated_resources]
+     *           Currently, the updatable fields are
+     *           [DeployedIndex.automatic_resources][google.cloud.aiplatform.v1.DeployedIndex.automatic_resources]
+     *           and
+     *           [DeployedIndex.dedicated_resources][google.cloud.aiplatform.v1.DeployedIndex.dedicated_resources]
      * }
      */
     public function __construct($data = NULL) {
@@ -106,8 +112,10 @@ class MutateDeployedIndexRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The DeployedIndex to be updated within the IndexEndpoint.
-     * Currently, the updatable fields are [DeployedIndex][automatic_resources]
-     * and [DeployedIndex][dedicated_resources]
+     * Currently, the updatable fields are
+     * [DeployedIndex.automatic_resources][google.cloud.aiplatform.v1.DeployedIndex.automatic_resources]
+     * and
+     * [DeployedIndex.dedicated_resources][google.cloud.aiplatform.v1.DeployedIndex.dedicated_resources]
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedIndex deployed_index = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\AIPlatform\V1\DeployedIndex|null
@@ -129,8 +137,10 @@ class MutateDeployedIndexRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The DeployedIndex to be updated within the IndexEndpoint.
-     * Currently, the updatable fields are [DeployedIndex][automatic_resources]
-     * and [DeployedIndex][dedicated_resources]
+     * Currently, the updatable fields are
+     * [DeployedIndex.automatic_resources][google.cloud.aiplatform.v1.DeployedIndex.automatic_resources]
+     * and
+     * [DeployedIndex.dedicated_resources][google.cloud.aiplatform.v1.DeployedIndex.dedicated_resources]
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedIndex deployed_index = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\AIPlatform\V1\DeployedIndex $var

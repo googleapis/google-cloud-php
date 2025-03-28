@@ -29,7 +29,7 @@ class Feed extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A list of the full names of the assets to receive updates. You must specify
      * either or both of asset_names and asset_types. Only asset updates matching
@@ -37,7 +37,7 @@ class Feed extends \Google\Protobuf\Internal\Message
      * Example:
      * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
      * For a list of the full names for supported asset types, see [Resource
-     * name format](https://cloud.google.com/asset-inventory/docs/resource-name-format).
+     * name format](/asset-inventory/docs/resource-name-format).
      *
      * Generated from protobuf field <code>repeated string asset_names = 2;</code>
      */
@@ -48,7 +48,7 @@ class Feed extends \Google\Protobuf\Internal\Message
      * specified asset_names or asset_types are exported to the feed.
      * Example: `"compute.googleapis.com/Disk"`
      * For a list of all supported asset types, see
-     * [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
+     * [Supported asset types](/asset-inventory/docs/supported-asset-types).
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
      */
@@ -59,14 +59,14 @@ class Feed extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.ContentType content_type = 4;</code>
      */
-    private $content_type = 0;
+    protected $content_type = 0;
     /**
      * Required. Feed output configuration defining where the asset updates are
      * published to.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.FeedOutputConfig feed_output_config = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $feed_output_config = null;
+    protected $feed_output_config = null;
     /**
      * A condition which determines whether an asset update should be published.
      * If specified, an asset will be returned only when the expression evaluates
@@ -82,7 +82,7 @@ class Feed extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Expr condition = 6;</code>
      */
-    private $condition = null;
+    protected $condition = null;
     /**
      * A list of relationship types to output, for example:
      * `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
@@ -125,14 +125,14 @@ class Feed extends \Google\Protobuf\Internal\Message
      *           Example:
      *           `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
      *           For a list of the full names for supported asset types, see [Resource
-     *           name format](https://cloud.google.com/asset-inventory/docs/resource-name-format).
+     *           name format](/asset-inventory/docs/resource-name-format).
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $asset_types
      *           A list of types of the assets to receive updates. You must specify either
      *           or both of asset_names and asset_types. Only asset updates matching
      *           specified asset_names or asset_types are exported to the feed.
      *           Example: `"compute.googleapis.com/Disk"`
      *           For a list of all supported asset types, see
-     *           [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
+     *           [Supported asset types](/asset-inventory/docs/supported-asset-types).
      *     @type int $content_type
      *           Asset content type. If not specified, no content but the asset name and
      *           type will be returned.
@@ -218,7 +218,7 @@ class Feed extends \Google\Protobuf\Internal\Message
      * Example:
      * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
      * For a list of the full names for supported asset types, see [Resource
-     * name format](https://cloud.google.com/asset-inventory/docs/resource-name-format).
+     * name format](/asset-inventory/docs/resource-name-format).
      *
      * Generated from protobuf field <code>repeated string asset_names = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -235,7 +235,7 @@ class Feed extends \Google\Protobuf\Internal\Message
      * Example:
      * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
      * For a list of the full names for supported asset types, see [Resource
-     * name format](https://cloud.google.com/asset-inventory/docs/resource-name-format).
+     * name format](/asset-inventory/docs/resource-name-format).
      *
      * Generated from protobuf field <code>repeated string asset_names = 2;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -255,7 +255,7 @@ class Feed extends \Google\Protobuf\Internal\Message
      * specified asset_names or asset_types are exported to the feed.
      * Example: `"compute.googleapis.com/Disk"`
      * For a list of all supported asset types, see
-     * [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
+     * [Supported asset types](/asset-inventory/docs/supported-asset-types).
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -271,7 +271,7 @@ class Feed extends \Google\Protobuf\Internal\Message
      * specified asset_names or asset_types are exported to the feed.
      * Example: `"compute.googleapis.com/Disk"`
      * For a list of all supported asset types, see
-     * [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
+     * [Supported asset types](/asset-inventory/docs/supported-asset-types).
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

@@ -23,13 +23,13 @@ class RouterApplianceInstance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string virtual_machine = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $virtual_machine = '';
+    protected $virtual_machine = '';
     /**
      * The IP address on the VM to use for peering.
      *
      * Generated from protobuf field <code>string ip_address = 3;</code>
      */
-    private $ip_address = '';
+    protected $ip_address = '';
 
     /**
      * Constructor.

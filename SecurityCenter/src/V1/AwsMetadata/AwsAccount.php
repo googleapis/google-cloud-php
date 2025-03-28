@@ -20,13 +20,13 @@ class AwsAccount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * The friendly name of this account.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * Constructor.
@@ -99,6 +99,4 @@ class AwsAccount extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AwsAccount::class, \Google\Cloud\SecurityCenter\V1\AwsMetadata_AwsAccount::class);
 

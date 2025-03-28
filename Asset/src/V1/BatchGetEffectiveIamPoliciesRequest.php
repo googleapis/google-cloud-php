@@ -28,7 +28,7 @@ class BatchGetEffectiveIamPoliciesRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string scope = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $scope = '';
+    protected $scope = '';
     /**
      * Required. The names refer to the [full_resource_names]
      * (https://cloud.google.com/asset-inventory/docs/resource-name-format)

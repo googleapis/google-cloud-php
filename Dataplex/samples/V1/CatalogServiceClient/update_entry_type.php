@@ -32,7 +32,7 @@ use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
- * Updates a EntryType resource.
+ * Updates an EntryType.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

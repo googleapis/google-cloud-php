@@ -21,7 +21,7 @@ class AnnotationBoundary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 transcript_index = 1;</code>
      */
-    private $transcript_index = 0;
+    protected $transcript_index = 0;
     protected $detailed_boundary;
 
     /**

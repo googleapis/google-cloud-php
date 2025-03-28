@@ -23,7 +23,7 @@ class SearchCatalogResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.SearchResultType search_result_type = 1;</code>
      */
-    private $search_result_type = 0;
+    protected $search_result_type = 0;
     /**
      * Sub-type of the search result.
      * A dot-delimited full type of the resource. The same type you
@@ -32,7 +32,7 @@ class SearchCatalogResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string search_result_subtype = 2;</code>
      */
-    private $search_result_subtype = '';
+    protected $search_result_subtype = '';
     /**
      * The relative name of the resource in URL format.
      * Examples:
@@ -41,7 +41,7 @@ class SearchCatalogResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string relative_resource_name = 3;</code>
      */
-    private $relative_resource_name = '';
+    protected $relative_resource_name = '';
     /**
      * The full name of the Google Cloud resource the entry belongs to.
      * For more information, see [Full Resource Name]
@@ -51,13 +51,13 @@ class SearchCatalogResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string linked_resource = 4;</code>
      */
-    private $linked_resource = '';
+    protected $linked_resource = '';
     /**
      * The last modification timestamp of the entry in the source system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp modify_time = 7;</code>
      */
-    private $modify_time = null;
+    protected $modify_time = null;
     /**
      * Fully qualified name (FQN) of the resource.
      * FQNs take two forms:
@@ -70,20 +70,20 @@ class SearchCatalogResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string fully_qualified_name = 10;</code>
      */
-    private $fully_qualified_name = '';
+    protected $fully_qualified_name = '';
     /**
      * The display name of the result.
      *
      * Generated from protobuf field <code>string display_name = 12;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Entry description that can consist of several sentences or paragraphs that
      * describe entry contents.
      *
      * Generated from protobuf field <code>string description = 13;</code>
      */
-    private $description = '';
+    protected $description = '';
     protected $system;
 
     /**

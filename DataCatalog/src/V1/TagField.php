@@ -21,7 +21,7 @@ class TagField extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. The order of this field with respect to other fields in this
      * tag. Can be set by
@@ -32,7 +32,7 @@ class TagField extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 order = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $order = 0;
+    protected $order = 0;
     protected $kind;
 
     /**

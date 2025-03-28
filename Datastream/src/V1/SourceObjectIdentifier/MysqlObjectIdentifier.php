@@ -20,13 +20,13 @@ class MysqlObjectIdentifier extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $database = '';
+    protected $database = '';
     /**
      * Required. The table name.
      *
      * Generated from protobuf field <code>string table = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $table = '';
+    protected $table = '';
 
     /**
      * Constructor.

@@ -29,19 +29,19 @@ class SparkProperties extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $service_account_id = '';
+    protected $service_account_id = '';
     /**
      * Optional. Dataproc Metastore Service configuration for the connection.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.MetastoreServiceConfig metastore_service_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $metastore_service_config = null;
+    protected $metastore_service_config = null;
     /**
      * Optional. Spark History Server configuration for the connection.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.SparkHistoryServerConfig spark_history_server_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $spark_history_server_config = null;
+    protected $spark_history_server_config = null;
 
     /**
      * Constructor.

@@ -29,14 +29,14 @@ class ListEkmConnectionsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
     /**
      * The total number of [EkmConnections][google.cloud.kms.v1.EkmConnection]
      * that matched the query.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      */
-    private $total_size = 0;
+    protected $total_size = 0;
 
     /**
      * Constructor.

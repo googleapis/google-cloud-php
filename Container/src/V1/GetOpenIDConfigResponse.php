@@ -21,13 +21,13 @@ class GetOpenIDConfigResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string issuer = 1;</code>
      */
-    private $issuer = '';
+    protected $issuer = '';
     /**
      * JSON Web Key uri.
      *
      * Generated from protobuf field <code>string jwks_uri = 2;</code>
      */
-    private $jwks_uri = '';
+    protected $jwks_uri = '';
     /**
      * Supported response types.
      *

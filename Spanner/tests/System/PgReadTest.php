@@ -34,9 +34,12 @@ class PgReadTest extends SpannerPgTestCase
     private static $indexes = [];
     private static $dataset;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
 
         self::$readTableName = "read_table";
         self::$rangeTableName = "range_table";
@@ -420,6 +423,7 @@ class PgReadTest extends SpannerPgTestCase
     {
         $this->expectException(DeadlineExceededException::class);
 
+        // The equiavalent test for the GSQL dialect is also skipped.
         $this->skipEmulatorTests();
         $db = self::$database;
         $keyset = new KeySet(['all' => true]);

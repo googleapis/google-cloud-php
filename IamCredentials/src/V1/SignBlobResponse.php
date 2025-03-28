@@ -18,13 +18,13 @@ class SignBlobResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key_id = 1;</code>
      */
-    private $key_id = '';
+    protected $key_id = '';
     /**
      * The signed blob.
      *
      * Generated from protobuf field <code>bytes signed_blob = 4;</code>
      */
-    private $signed_blob = '';
+    protected $signed_blob = '';
 
     /**
      * Constructor.

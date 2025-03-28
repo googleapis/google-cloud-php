@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\BulkInsertInstanceResource;
-use Google\Cloud\Compute\V1\RegionInstancesClient;
+use Google\Cloud\Compute\V1\BulkInsertRegionInstanceRequest;
+use Google\Cloud\Compute\V1\Client\RegionInstancesClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,17 +41,17 @@ function bulk_insert_sample(string $project, string $region): void
     // Create a client.
     $regionInstancesClient = new RegionInstancesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $bulkInsertInstanceResourceResource = new BulkInsertInstanceResource();
+    $request = (new BulkInsertRegionInstanceRequest())
+        ->setBulkInsertInstanceResourceResource($bulkInsertInstanceResourceResource)
+        ->setProject($project)
+        ->setRegion($region);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionInstancesClient->bulkInsert(
-            $bulkInsertInstanceResourceResource,
-            $project,
-            $region
-        );
+        $response = $regionInstancesClient->bulkInsert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

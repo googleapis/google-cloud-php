@@ -46,6 +46,7 @@ use Google\Cloud\NetApp\V1\CreateBackupPolicyRequest;
 use Google\Cloud\NetApp\V1\CreateBackupRequest;
 use Google\Cloud\NetApp\V1\CreateBackupVaultRequest;
 use Google\Cloud\NetApp\V1\CreateKmsConfigRequest;
+use Google\Cloud\NetApp\V1\CreateQuotaRuleRequest;
 use Google\Cloud\NetApp\V1\CreateReplicationRequest;
 use Google\Cloud\NetApp\V1\CreateSnapshotRequest;
 use Google\Cloud\NetApp\V1\CreateStoragePoolRequest;
@@ -55,16 +56,19 @@ use Google\Cloud\NetApp\V1\DeleteBackupPolicyRequest;
 use Google\Cloud\NetApp\V1\DeleteBackupRequest;
 use Google\Cloud\NetApp\V1\DeleteBackupVaultRequest;
 use Google\Cloud\NetApp\V1\DeleteKmsConfigRequest;
+use Google\Cloud\NetApp\V1\DeleteQuotaRuleRequest;
 use Google\Cloud\NetApp\V1\DeleteReplicationRequest;
 use Google\Cloud\NetApp\V1\DeleteSnapshotRequest;
 use Google\Cloud\NetApp\V1\DeleteStoragePoolRequest;
 use Google\Cloud\NetApp\V1\DeleteVolumeRequest;
 use Google\Cloud\NetApp\V1\EncryptVolumesRequest;
+use Google\Cloud\NetApp\V1\EstablishPeeringRequest;
 use Google\Cloud\NetApp\V1\GetActiveDirectoryRequest;
 use Google\Cloud\NetApp\V1\GetBackupPolicyRequest;
 use Google\Cloud\NetApp\V1\GetBackupRequest;
 use Google\Cloud\NetApp\V1\GetBackupVaultRequest;
 use Google\Cloud\NetApp\V1\GetKmsConfigRequest;
+use Google\Cloud\NetApp\V1\GetQuotaRuleRequest;
 use Google\Cloud\NetApp\V1\GetReplicationRequest;
 use Google\Cloud\NetApp\V1\GetSnapshotRequest;
 use Google\Cloud\NetApp\V1\GetStoragePoolRequest;
@@ -75,10 +79,12 @@ use Google\Cloud\NetApp\V1\ListBackupPoliciesRequest;
 use Google\Cloud\NetApp\V1\ListBackupVaultsRequest;
 use Google\Cloud\NetApp\V1\ListBackupsRequest;
 use Google\Cloud\NetApp\V1\ListKmsConfigsRequest;
+use Google\Cloud\NetApp\V1\ListQuotaRulesRequest;
 use Google\Cloud\NetApp\V1\ListReplicationsRequest;
 use Google\Cloud\NetApp\V1\ListSnapshotsRequest;
 use Google\Cloud\NetApp\V1\ListStoragePoolsRequest;
 use Google\Cloud\NetApp\V1\ListVolumesRequest;
+use Google\Cloud\NetApp\V1\QuotaRule;
 use Google\Cloud\NetApp\V1\Replication;
 use Google\Cloud\NetApp\V1\ResumeReplicationRequest;
 use Google\Cloud\NetApp\V1\ReverseReplicationDirectionRequest;
@@ -86,21 +92,26 @@ use Google\Cloud\NetApp\V1\RevertVolumeRequest;
 use Google\Cloud\NetApp\V1\Snapshot;
 use Google\Cloud\NetApp\V1\StopReplicationRequest;
 use Google\Cloud\NetApp\V1\StoragePool;
+use Google\Cloud\NetApp\V1\SwitchActiveReplicaZoneRequest;
+use Google\Cloud\NetApp\V1\SyncReplicationRequest;
 use Google\Cloud\NetApp\V1\UpdateActiveDirectoryRequest;
 use Google\Cloud\NetApp\V1\UpdateBackupPolicyRequest;
 use Google\Cloud\NetApp\V1\UpdateBackupRequest;
 use Google\Cloud\NetApp\V1\UpdateBackupVaultRequest;
 use Google\Cloud\NetApp\V1\UpdateKmsConfigRequest;
+use Google\Cloud\NetApp\V1\UpdateQuotaRuleRequest;
 use Google\Cloud\NetApp\V1\UpdateReplicationRequest;
 use Google\Cloud\NetApp\V1\UpdateSnapshotRequest;
 use Google\Cloud\NetApp\V1\UpdateStoragePoolRequest;
 use Google\Cloud\NetApp\V1\UpdateVolumeRequest;
+use Google\Cloud\NetApp\V1\ValidateDirectoryServiceRequest;
 use Google\Cloud\NetApp\V1\VerifyKmsConfigRequest;
 use Google\Cloud\NetApp\V1\VerifyKmsConfigResponse;
 use Google\Cloud\NetApp\V1\Volume;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: NetApp Files Google Cloud Service
@@ -113,59 +124,68 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createActiveDirectoryAsync(CreateActiveDirectoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createBackupPolicyAsync(CreateBackupPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createBackupVaultAsync(CreateBackupVaultRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createKmsConfigAsync(CreateKmsConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createReplicationAsync(CreateReplicationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSnapshotAsync(CreateSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createStoragePoolAsync(CreateStoragePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createVolumeAsync(CreateVolumeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteActiveDirectoryAsync(DeleteActiveDirectoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBackupPolicyAsync(DeleteBackupPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBackupVaultAsync(DeleteBackupVaultRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteKmsConfigAsync(DeleteKmsConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteReplicationAsync(DeleteReplicationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSnapshotAsync(DeleteSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteStoragePoolAsync(DeleteStoragePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteVolumeAsync(DeleteVolumeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface encryptVolumesAsync(EncryptVolumesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getActiveDirectoryAsync(GetActiveDirectoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBackupPolicyAsync(GetBackupPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBackupVaultAsync(GetBackupVaultRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getKmsConfigAsync(GetKmsConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getReplicationAsync(GetReplicationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSnapshotAsync(GetSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getStoragePoolAsync(GetStoragePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getVolumeAsync(GetVolumeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listActiveDirectoriesAsync(ListActiveDirectoriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBackupPoliciesAsync(ListBackupPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBackupVaultsAsync(ListBackupVaultsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listKmsConfigsAsync(ListKmsConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listReplicationsAsync(ListReplicationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSnapshotsAsync(ListSnapshotsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listStoragePoolsAsync(ListStoragePoolsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listVolumesAsync(ListVolumesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resumeReplicationAsync(ResumeReplicationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface reverseReplicationDirectionAsync(ReverseReplicationDirectionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface revertVolumeAsync(RevertVolumeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface stopReplicationAsync(StopReplicationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateActiveDirectoryAsync(UpdateActiveDirectoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBackupPolicyAsync(UpdateBackupPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBackupVaultAsync(UpdateBackupVaultRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateKmsConfigAsync(UpdateKmsConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateReplicationAsync(UpdateReplicationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSnapshotAsync(UpdateSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateStoragePoolAsync(UpdateStoragePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateVolumeAsync(UpdateVolumeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface verifyKmsConfigAsync(VerifyKmsConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createActiveDirectoryAsync(CreateActiveDirectoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createBackupPolicyAsync(CreateBackupPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createBackupVaultAsync(CreateBackupVaultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createKmsConfigAsync(CreateKmsConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createQuotaRuleAsync(CreateQuotaRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createReplicationAsync(CreateReplicationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createSnapshotAsync(CreateSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createStoragePoolAsync(CreateStoragePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createVolumeAsync(CreateVolumeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteActiveDirectoryAsync(DeleteActiveDirectoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteBackupPolicyAsync(DeleteBackupPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteBackupVaultAsync(DeleteBackupVaultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteKmsConfigAsync(DeleteKmsConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteQuotaRuleAsync(DeleteQuotaRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteReplicationAsync(DeleteReplicationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteSnapshotAsync(DeleteSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteStoragePoolAsync(DeleteStoragePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteVolumeAsync(DeleteVolumeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> encryptVolumesAsync(EncryptVolumesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> establishPeeringAsync(EstablishPeeringRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ActiveDirectory> getActiveDirectoryAsync(GetActiveDirectoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupPolicy> getBackupPolicyAsync(GetBackupPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupVault> getBackupVaultAsync(GetBackupVaultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<KmsConfig> getKmsConfigAsync(GetKmsConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QuotaRule> getQuotaRuleAsync(GetQuotaRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Replication> getReplicationAsync(GetReplicationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Snapshot> getSnapshotAsync(GetSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<StoragePool> getStoragePoolAsync(GetStoragePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Volume> getVolumeAsync(GetVolumeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listActiveDirectoriesAsync(ListActiveDirectoriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupPoliciesAsync(ListBackupPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupVaultsAsync(ListBackupVaultsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listKmsConfigsAsync(ListKmsConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listQuotaRulesAsync(ListQuotaRulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReplicationsAsync(ListReplicationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSnapshotsAsync(ListSnapshotsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listStoragePoolsAsync(ListStoragePoolsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listVolumesAsync(ListVolumesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> resumeReplicationAsync(ResumeReplicationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> reverseReplicationDirectionAsync(ReverseReplicationDirectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> revertVolumeAsync(RevertVolumeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> stopReplicationAsync(StopReplicationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> switchActiveReplicaZoneAsync(SwitchActiveReplicaZoneRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> syncReplicationAsync(SyncReplicationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateActiveDirectoryAsync(UpdateActiveDirectoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateBackupPolicyAsync(UpdateBackupPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateBackupVaultAsync(UpdateBackupVaultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateKmsConfigAsync(UpdateKmsConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateQuotaRuleAsync(UpdateQuotaRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateReplicationAsync(UpdateReplicationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateSnapshotAsync(UpdateSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateStoragePoolAsync(UpdateStoragePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateVolumeAsync(UpdateVolumeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> validateDirectoryServiceAsync(ValidateDirectoryServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<VerifyKmsConfigResponse> verifyKmsConfigAsync(VerifyKmsConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class NetAppClient
 {
@@ -397,6 +417,27 @@ final class NetAppClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a quota_rule
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $volume
+     * @param string $quotaRule
+     *
+     * @return string The formatted quota_rule resource.
+     */
+    public static function quotaRuleName(string $project, string $location, string $volume, string $quotaRule): string
+    {
+        return self::getPathTemplate('quotaRule')->render([
+            'project' => $project,
+            'location' => $location,
+            'volume' => $volume,
+            'quota_rule' => $quotaRule,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a replication
      * resource.
      *
@@ -491,6 +532,7 @@ final class NetAppClient
      * - kmsConfig: projects/{project}/locations/{location}/kmsConfigs/{kms_config}
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{network}
+     * - quotaRule: projects/{project}/locations/{location}/volumes/{volume}/quotaRules/{quota_rule}
      * - replication: projects/{project}/locations/{location}/volumes/{volume}/replications/{replication}
      * - snapshot: projects/{project}/locations/{location}/volumes/{volume}/snapshots/{snapshot}
      * - storagePool: projects/{project}/locations/{location}/storagePools/{storage_pool}
@@ -502,14 +544,14 @@ final class NetAppClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -531,6 +573,12 @@ final class NetAppClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -564,6 +612,9 @@ final class NetAppClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -720,6 +771,32 @@ final class NetAppClient
     public function createKmsConfig(CreateKmsConfigRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('CreateKmsConfig', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new quota rule.
+     *
+     * The async variant is {@see NetAppClient::createQuotaRuleAsync()} .
+     *
+     * @example samples/V1/NetAppClient/create_quota_rule.php
+     *
+     * @param CreateQuotaRuleRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createQuotaRule(CreateQuotaRuleRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateQuotaRule', $request, $callOptions)->wait();
     }
 
     /**
@@ -959,6 +1036,32 @@ final class NetAppClient
     }
 
     /**
+     * Deletes a quota rule.
+     *
+     * The async variant is {@see NetAppClient::deleteQuotaRuleAsync()} .
+     *
+     * @example samples/V1/NetAppClient/delete_quota_rule.php
+     *
+     * @param DeleteQuotaRuleRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteQuotaRule(DeleteQuotaRuleRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteQuotaRule', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a replication.
      *
      * The async variant is {@see NetAppClient::deleteReplicationAsync()} .
@@ -1090,6 +1193,32 @@ final class NetAppClient
     }
 
     /**
+     * Establish replication peering.
+     *
+     * The async variant is {@see NetAppClient::establishPeeringAsync()} .
+     *
+     * @example samples/V1/NetAppClient/establish_peering.php
+     *
+     * @param EstablishPeeringRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function establishPeering(EstablishPeeringRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('EstablishPeering', $request, $callOptions)->wait();
+    }
+
+    /**
      * Describes a specified active directory.
      *
      * The async variant is {@see NetAppClient::getActiveDirectoryAsync()} .
@@ -1217,6 +1346,32 @@ final class NetAppClient
     public function getKmsConfig(GetKmsConfigRequest $request, array $callOptions = []): KmsConfig
     {
         return $this->startApiCall('GetKmsConfig', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns details of the specified quota rule.
+     *
+     * The async variant is {@see NetAppClient::getQuotaRuleAsync()} .
+     *
+     * @example samples/V1/NetAppClient/get_quota_rule.php
+     *
+     * @param GetQuotaRuleRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return QuotaRule
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getQuotaRule(GetQuotaRuleRequest $request, array $callOptions = []): QuotaRule
+    {
+        return $this->startApiCall('GetQuotaRule', $request, $callOptions)->wait();
     }
 
     /**
@@ -1456,6 +1611,32 @@ final class NetAppClient
     }
 
     /**
+     * Returns list of all quota rules in a location.
+     *
+     * The async variant is {@see NetAppClient::listQuotaRulesAsync()} .
+     *
+     * @example samples/V1/NetAppClient/list_quota_rules.php
+     *
+     * @param ListQuotaRulesRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listQuotaRules(ListQuotaRulesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListQuotaRules', $request, $callOptions);
+    }
+
+    /**
      * Returns descriptions of all replications for a volume.
      *
      * The async variant is {@see NetAppClient::listReplicationsAsync()} .
@@ -1669,6 +1850,62 @@ final class NetAppClient
     }
 
     /**
+     * This operation will switch the active/replica zone for a regional
+     * storagePool.
+     *
+     * The async variant is {@see NetAppClient::switchActiveReplicaZoneAsync()} .
+     *
+     * @example samples/V1/NetAppClient/switch_active_replica_zone.php
+     *
+     * @param SwitchActiveReplicaZoneRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function switchActiveReplicaZone(
+        SwitchActiveReplicaZoneRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('SwitchActiveReplicaZone', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Syncs the replication. This will invoke one time volume data transfer from
+     * source to destination.
+     *
+     * The async variant is {@see NetAppClient::syncReplicationAsync()} .
+     *
+     * @example samples/V1/NetAppClient/sync_replication.php
+     *
+     * @param SyncReplicationRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function syncReplication(SyncReplicationRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('SyncReplication', $request, $callOptions)->wait();
+    }
+
+    /**
      * Update the parameters of an active directories.
      *
      * The async variant is {@see NetAppClient::updateActiveDirectoryAsync()} .
@@ -1801,6 +2038,32 @@ final class NetAppClient
     }
 
     /**
+     * Updates a quota rule.
+     *
+     * The async variant is {@see NetAppClient::updateQuotaRuleAsync()} .
+     *
+     * @example samples/V1/NetAppClient/update_quota_rule.php
+     *
+     * @param UpdateQuotaRuleRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateQuotaRule(UpdateQuotaRuleRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateQuotaRule', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates the settings of a specific replication.
      *
      * The async variant is {@see NetAppClient::updateReplicationAsync()} .
@@ -1902,6 +2165,35 @@ final class NetAppClient
     public function updateVolume(UpdateVolumeRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateVolume', $request, $callOptions)->wait();
+    }
+
+    /**
+     * ValidateDirectoryService does a connectivity check for a directory service
+     * policy attached to the storage pool.
+     *
+     * The async variant is {@see NetAppClient::validateDirectoryServiceAsync()} .
+     *
+     * @example samples/V1/NetAppClient/validate_directory_service.php
+     *
+     * @param ValidateDirectoryServiceRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function validateDirectoryService(
+        ValidateDirectoryServiceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('ValidateDirectoryService', $request, $callOptions)->wait();
     }
 
     /**

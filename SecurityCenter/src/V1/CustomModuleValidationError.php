@@ -21,14 +21,14 @@ class CustomModuleValidationError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 1;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * The path, in RFC 8901 JSON Pointer format, to the field that failed
      * validation. This may be left empty if no specific field is affected.
      *
      * Generated from protobuf field <code>string field_path = 2;</code>
      */
-    private $field_path = '';
+    protected $field_path = '';
     /**
      * The initial position of the error in the uploaded text version of the
      * module. This field may be omitted if no specific position applies, or if
@@ -36,7 +36,7 @@ class CustomModuleValidationError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.securitycenter.v1.Position start = 3;</code>
      */
-    private $start = null;
+    protected $start = null;
     /**
      * The end position of the error in the uploaded text version of the
      * module. This field may be omitted if no specific position applies, or if
@@ -44,7 +44,7 @@ class CustomModuleValidationError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.securitycenter.v1.Position end = 4;</code>
      */
-    private $end = null;
+    protected $end = null;
 
     /**
      * Constructor.

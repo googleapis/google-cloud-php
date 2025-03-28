@@ -187,6 +187,18 @@ return [
                     ],
                 ],
             ],
+            'GetSpaceNotificationSetting' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\SpaceNotificationSetting',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetSpaceReadState' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\SpaceReadState',
@@ -303,6 +315,18 @@ return [
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\ListSpacesResponse',
             ],
+            'SearchSpaces' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSpaces',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\SearchSpacesResponse',
+            ],
             'SetUpSpace' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\Space',
@@ -346,6 +370,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateSpaceNotificationSetting' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\SpaceNotificationSetting',
+                'headerParams' => [
+                    [
+                        'keyName' => 'space_notification_setting.name',
+                        'fieldAccessors' => [
+                            'getSpaceNotificationSetting',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateSpaceReadState' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\SpaceReadState',
@@ -379,6 +416,7 @@ return [
                 'reaction' => 'spaces/{space}/messages/{message}/reactions/{reaction}',
                 'space' => 'spaces/{space}',
                 'spaceEvent' => 'spaces/{space}/spaceEvents/{space_event}',
+                'spaceNotificationSetting' => 'users/{user}/spaces/{space}/spaceNotificationSetting',
                 'spaceReadState' => 'users/{user}/spaces/{space}/spaceReadState',
                 'thread' => 'spaces/{space}/threads/{thread}',
                 'threadReadState' => 'users/{user}/spaces/{space}/threads/{thread}/threadReadState',

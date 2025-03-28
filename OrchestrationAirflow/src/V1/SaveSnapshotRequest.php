@@ -21,14 +21,14 @@ class SaveSnapshotRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string environment = 1;</code>
      */
-    private $environment = '';
+    protected $environment = '';
     /**
      * Location in a Cloud Storage where the snapshot is going to be stored, e.g.:
      * "gs://my-bucket/snapshots".
      *
      * Generated from protobuf field <code>string snapshot_location = 2;</code>
      */
-    private $snapshot_location = '';
+    protected $snapshot_location = '';
 
     /**
      * Constructor.

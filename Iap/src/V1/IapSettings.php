@@ -20,19 +20,19 @@ class IapSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Top level wrapper for all access related setting in IAP
      *
      * Generated from protobuf field <code>.google.cloud.iap.v1.AccessSettings access_settings = 5;</code>
      */
-    private $access_settings = null;
+    protected $access_settings = null;
     /**
      * Top level wrapper for all application related settings in IAP
      *
      * Generated from protobuf field <code>.google.cloud.iap.v1.ApplicationSettings application_settings = 6;</code>
      */
-    private $application_settings = null;
+    protected $application_settings = null;
 
     /**
      * Constructor.

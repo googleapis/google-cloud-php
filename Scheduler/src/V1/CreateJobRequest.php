@@ -22,7 +22,7 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The job to add. The user can optionally specify a name for the
      * job in [name][google.cloud.scheduler.v1.Job.name].
@@ -33,7 +33,7 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.scheduler.v1.Job job = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $job = null;
+    protected $job = null;
 
     /**
      * @param string                         $parent Required. The location name. For example:

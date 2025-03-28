@@ -243,8 +243,10 @@ return [
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
             'templateMap' => [
+                'connection' => 'projects/{project}/locations/{location}/connections/{connection}',
                 'dataScan' => 'projects/{project}/locations/{location}/dataScans/{dataScan}',
                 'dataScanJob' => 'projects/{project}/locations/{location}/dataScans/{dataScan}/jobs/{job}',
+                'dataset' => 'projects/{project}/datasets/{dataset}',
                 'entity' => 'projects/{project}/locations/{location}/lakes/{lake}/zones/{zone}/entities/{entity}',
                 'location' => 'projects/{project}/locations/{location}',
             ],

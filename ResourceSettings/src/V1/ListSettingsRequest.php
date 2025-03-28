@@ -25,25 +25,25 @@ class ListSettingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Unused. The size of the page to be returned.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Unused. A page token used to retrieve the next page.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * The SettingView for this request.
      *
      * Generated from protobuf field <code>.google.cloud.resourcesettings.v1.SettingView view = 4;</code>
      */
-    private $view = 0;
+    protected $view = 0;
 
     /**
      * @param string $parent Required. The Cloud resource that parents the setting. Must be in one of

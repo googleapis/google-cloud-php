@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_SnapshotSettingsService_Patch_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\SnapshotSettingsServiceClient;
+use Google\Cloud\Compute\V1\PatchSnapshotSettingRequest;
 use Google\Cloud\Compute\V1\SnapshotSettings;
-use Google\Cloud\Compute\V1\SnapshotSettingsServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -39,13 +40,16 @@ function patch_sample(string $project): void
     // Create a client.
     $snapshotSettingsServiceClient = new SnapshotSettingsServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $snapshotSettingsResource = new SnapshotSettings();
+    $request = (new PatchSnapshotSettingRequest())
+        ->setProject($project)
+        ->setSnapshotSettingsResource($snapshotSettingsResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $snapshotSettingsServiceClient->patch($project, $snapshotSettingsResource);
+        $response = $snapshotSettingsServiceClient->patch($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

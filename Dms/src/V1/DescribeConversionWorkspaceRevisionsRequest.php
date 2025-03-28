@@ -22,13 +22,13 @@ class DescribeConversionWorkspaceRevisionsRequest extends \Google\Protobuf\Inter
      *
      * Generated from protobuf field <code>string conversion_workspace = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $conversion_workspace = '';
+    protected $conversion_workspace = '';
     /**
      * Optional. Optional filter to request a specific commit ID.
      *
      * Generated from protobuf field <code>string commit_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $commit_id = '';
+    protected $commit_id = '';
 
     /**
      * Constructor.

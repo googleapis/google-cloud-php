@@ -20,13 +20,13 @@ class JsonFileFormat extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.JsonFileFormat.SchemaFileFormat schema_file_format = 1;</code>
      */
-    private $schema_file_format = 0;
+    protected $schema_file_format = 0;
     /**
      * Compression of the loaded JSON file.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.JsonFileFormat.JsonCompression compression = 2;</code>
      */
-    private $compression = 0;
+    protected $compression = 0;
 
     /**
      * Constructor.

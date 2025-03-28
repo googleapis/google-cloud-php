@@ -21,14 +21,14 @@ class ProcessOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.OcrConfig ocr_config = 1;</code>
      */
-    private $ocr_config = null;
+    protected $ocr_config = null;
     /**
      * Optional. Only applicable to `LAYOUT_PARSER_PROCESSOR`.
      * Returns error if set on other processor types.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessOptions.LayoutConfig layout_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $layout_config = null;
+    protected $layout_config = null;
     /**
      * Optional. Override the schema of the
      * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]. Will
@@ -38,7 +38,7 @@ class ProcessOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema schema_override = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $schema_override = null;
+    protected $schema_override = null;
     protected $page_range;
 
     /**

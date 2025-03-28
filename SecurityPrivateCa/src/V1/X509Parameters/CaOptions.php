@@ -22,7 +22,7 @@ class CaOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool is_ca = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $is_ca = null;
+    protected $is_ca = null;
     /**
      * Optional. Refers to the path length restriction X.509 extension. For a CA
      * certificate, this value describes the depth of subordinate CA
@@ -33,7 +33,7 @@ class CaOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 max_issuer_path_length = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_issuer_path_length = null;
+    protected $max_issuer_path_length = null;
 
     /**
      * Constructor.

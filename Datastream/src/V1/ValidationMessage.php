@@ -20,13 +20,13 @@ class ValidationMessage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string message = 1;</code>
      */
-    private $message = '';
+    protected $message = '';
     /**
      * Message severity level (warning or error).
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.ValidationMessage.Level level = 2;</code>
      */
-    private $level = 0;
+    protected $level = 0;
     /**
      * Additional metadata related to the result.
      *
@@ -38,7 +38,7 @@ class ValidationMessage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string code = 4;</code>
      */
-    private $code = '';
+    protected $code = '';
 
     /**
      * Constructor.

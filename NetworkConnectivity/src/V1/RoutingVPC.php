@@ -21,7 +21,7 @@ class RoutingVPC extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Output only. If true, indicates that this VPC network is currently
      * associated with spokes that use the data transfer feature (spokes where the
@@ -31,7 +31,7 @@ class RoutingVPC extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool required_for_new_site_to_site_data_transfer_spokes = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $required_for_new_site_to_site_data_transfer_spokes = false;
+    protected $required_for_new_site_to_site_data_transfer_spokes = false;
 
     /**
      * Constructor.

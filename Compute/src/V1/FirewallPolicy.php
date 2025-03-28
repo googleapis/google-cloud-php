@@ -64,6 +64,12 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      */
     private $name = null;
     /**
+     * A list of packet mirroring rules that belong to this policy.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule packet_mirroring_rules = 531644356;</code>
+     */
+    private $packet_mirroring_rules;
+    /**
      * [Output Only] The parent of the firewall policy. This field is not applicable to network firewall policies.
      *
      * Generated from protobuf field <code>optional string parent = 78317738;</code>
@@ -128,6 +134,8 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      *           [Output only] Type of the resource. Always compute#firewallPolicyfor firewall policies
      *     @type string $name
      *           Name of the resource. For Organization Firewall Policies it's a [Output Only] numeric ID allocated by Google Cloud which uniquely identifies the Organization Firewall Policy.
+     *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $packet_mirroring_rules
+     *           A list of packet mirroring rules that belong to this policy.
      *     @type string $parent
      *           [Output Only] The parent of the firewall policy. This field is not applicable to network firewall policies.
      *     @type string $region
@@ -423,6 +431,32 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * A list of packet mirroring rules that belong to this policy.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule packet_mirroring_rules = 531644356;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPacketMirroringRules()
+    {
+        return $this->packet_mirroring_rules;
+    }
+
+    /**
+     * A list of packet mirroring rules that belong to this policy.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule packet_mirroring_rules = 531644356;</code>
+     * @param array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPacketMirroringRules($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\FirewallPolicyRule::class);
+        $this->packet_mirroring_rules = $arr;
 
         return $this;
     }

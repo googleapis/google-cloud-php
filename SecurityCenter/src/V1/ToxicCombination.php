@@ -26,7 +26,7 @@ class ToxicCombination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double attack_exposure_score = 1;</code>
      */
-    private $attack_exposure_score = 0.0;
+    protected $attack_exposure_score = 0.0;
     /**
      * List of resource names of findings associated with this toxic combination.
      * For example, `organizations/123/sources/456/findings/789`.

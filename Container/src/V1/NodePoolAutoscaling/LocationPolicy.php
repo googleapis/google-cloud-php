@@ -61,6 +61,4 @@ class LocationPolicy
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LocationPolicy::class, \Google\Cloud\Container\V1\NodePoolAutoscaling_LocationPolicy::class);
 

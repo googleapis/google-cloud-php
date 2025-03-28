@@ -54,14 +54,14 @@ class UpdateMasterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string master_version = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $master_version = '';
+    protected $master_version = '';
     /**
      * The name (project, location, cluster) of the cluster to update.
      * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 7;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string $projectId     Deprecated. The Google Developers Console [project ID or project

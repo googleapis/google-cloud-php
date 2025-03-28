@@ -26,6 +26,12 @@ class BalancingMode
      */
     const CONNECTION = 246311646;
     /**
+     * Based on custom defined and reported metrics.
+     *
+     * Generated from protobuf enum <code>CUSTOM_METRICS = 331575765;</code>
+     */
+    const CUSTOM_METRICS = 331575765;
+    /**
      * Balance based on requests per second (RPS).
      *
      * Generated from protobuf enum <code>RATE = 2508000;</code>
@@ -41,6 +47,7 @@ class BalancingMode
     private static $valueToName = [
         self::UNDEFINED_BALANCING_MODE => 'UNDEFINED_BALANCING_MODE',
         self::CONNECTION => 'CONNECTION',
+        self::CUSTOM_METRICS => 'CUSTOM_METRICS',
         self::RATE => 'RATE',
         self::UTILIZATION => 'UTILIZATION',
     ];

@@ -73,6 +73,4 @@ class SnapshotPeriod
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SnapshotPeriod::class, \Google\Cloud\Redis\V1\PersistenceConfig_SnapshotPeriod::class);
 

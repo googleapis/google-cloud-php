@@ -25,13 +25,13 @@ class DiscoveryBigQueryConditions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp created_after = 1;</code>
      */
-    private $created_after = null;
+    protected $created_after = null;
     /**
      * At least one of the conditions must be true for a table to be scanned.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryBigQueryConditions.OrConditions or_conditions = 4;</code>
      */
-    private $or_conditions = null;
+    protected $or_conditions = null;
     protected $included_types;
 
     /**

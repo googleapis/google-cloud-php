@@ -8,8 +8,8 @@ use UnexpectedValueException;
 
 /**
  * Optional. This determines which type of scheduling strategy to use. Right
- * now users have two options such as ON_DEMAND which will use regular on
- * demand resources to schedule the job, the other is LOW_COST which would
+ * now users have two options such as STANDARD which will use regular on
+ * demand resources to schedule the job, the other is SPOT which would
  * leverage spot resources alongwith regular resources to schedule
  * the job.
  *
@@ -18,28 +18,49 @@ use UnexpectedValueException;
 class Strategy
 {
     /**
-     * Strategy will default to ON_DEMAND.
+     * Strategy will default to STANDARD.
      *
      * Generated from protobuf enum <code>STRATEGY_UNSPECIFIED = 0;</code>
      */
     const STRATEGY_UNSPECIFIED = 0;
     /**
-     * Regular on-demand provisioning strategy.
+     * Deprecated. Regular on-demand provisioning strategy.
      *
-     * Generated from protobuf enum <code>ON_DEMAND = 1;</code>
+     * Generated from protobuf enum <code>ON_DEMAND = 1 [deprecated = true];</code>
      */
     const ON_DEMAND = 1;
     /**
-     * Low cost by making potential use of spot resources.
+     * Deprecated. Low cost by making potential use of spot resources.
      *
-     * Generated from protobuf enum <code>LOW_COST = 2;</code>
+     * Generated from protobuf enum <code>LOW_COST = 2 [deprecated = true];</code>
      */
     const LOW_COST = 2;
+    /**
+     * Standard provisioning strategy uses regular on-demand resources.
+     *
+     * Generated from protobuf enum <code>STANDARD = 3;</code>
+     */
+    const STANDARD = 3;
+    /**
+     * Spot provisioning strategy uses spot resources.
+     *
+     * Generated from protobuf enum <code>SPOT = 4;</code>
+     */
+    const SPOT = 4;
+    /**
+     * Flex Start strategy uses DWS to queue for resources.
+     *
+     * Generated from protobuf enum <code>FLEX_START = 6;</code>
+     */
+    const FLEX_START = 6;
 
     private static $valueToName = [
         self::STRATEGY_UNSPECIFIED => 'STRATEGY_UNSPECIFIED',
         self::ON_DEMAND => 'ON_DEMAND',
         self::LOW_COST => 'LOW_COST',
+        self::STANDARD => 'STANDARD',
+        self::SPOT => 'SPOT',
+        self::FLEX_START => 'FLEX_START',
     ];
 
     public static function name($value)

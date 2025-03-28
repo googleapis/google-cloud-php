@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\VpnGateway;
 use UnexpectedValueException;
 
 /**
- * The stack type for this VPN gateway to identify the IP protocols that are enabled. Possible values are: IPV4_ONLY, IPV4_IPV6. If not specified, IPV4_ONLY will be used.
+ * The stack type for this VPN gateway to identify the IP protocols that are enabled. Possible values are: IPV4_ONLY, IPV4_IPV6, IPV6_ONLY. If not specified, IPV4_ONLY is used if the gateway IP version is IPV4, or IPV4_IPV6 if the gateway IP version is IPV6.
  *
  * Protobuf type <code>google.cloud.compute.v1.VpnGateway.StackType</code>
  */
@@ -31,11 +31,18 @@ class StackType
      * Generated from protobuf enum <code>IPV4_ONLY = 22373798;</code>
      */
     const IPV4_ONLY = 22373798;
+    /**
+     * Enable VPN gateway with only IPv6 protocol.
+     *
+     * Generated from protobuf enum <code>IPV6_ONLY = 79632100;</code>
+     */
+    const IPV6_ONLY = 79632100;
 
     private static $valueToName = [
         self::UNDEFINED_STACK_TYPE => 'UNDEFINED_STACK_TYPE',
         self::IPV4_IPV6 => 'IPV4_IPV6',
         self::IPV4_ONLY => 'IPV4_ONLY',
+        self::IPV6_ONLY => 'IPV6_ONLY',
     ];
 
     public static function name($value)

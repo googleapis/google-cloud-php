@@ -20,7 +20,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Type of profile.
      * For offline mode, this must be specified when creating the profile. For
@@ -28,13 +28,13 @@ class Profile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.cloudprofiler.v2.ProfileType profile_type = 2;</code>
      */
-    private $profile_type = 0;
+    protected $profile_type = 0;
     /**
      * Deployment this profile corresponds to.
      *
      * Generated from protobuf field <code>.google.devtools.cloudprofiler.v2.Deployment deployment = 3;</code>
      */
-    private $deployment = null;
+    protected $deployment = null;
     /**
      * Duration of the profiling session.
      * Input (for the offline mode) or output (for the online mode).
@@ -45,14 +45,14 @@ class Profile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 4;</code>
      */
-    private $duration = null;
+    protected $duration = null;
     /**
      * Input only. Profile bytes, as a gzip compressed serialized proto, the
      * format is https://github.com/google/pprof/blob/master/proto/profile.proto.
      *
      * Generated from protobuf field <code>bytes profile_bytes = 5 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $profile_bytes = '';
+    protected $profile_bytes = '';
     /**
      * Input only. Labels associated to this specific profile. These labels will
      * get merged with the deployment labels for the final data set. See
@@ -67,7 +67,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
 
     /**
      * Constructor.

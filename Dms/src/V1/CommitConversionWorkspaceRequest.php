@@ -20,13 +20,13 @@ class CommitConversionWorkspaceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Optional name of the commit.
      *
      * Generated from protobuf field <code>string commit_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $commit_name = '';
+    protected $commit_name = '';
 
     /**
      * Constructor.

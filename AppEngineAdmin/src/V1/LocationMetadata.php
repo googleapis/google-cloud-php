@@ -21,21 +21,21 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool standard_environment_available = 2;</code>
      */
-    private $standard_environment_available = false;
+    protected $standard_environment_available = false;
     /**
      * App Engine flexible environment is available in the given location.
      * &#64;OutputOnly
      *
      * Generated from protobuf field <code>bool flexible_environment_available = 4;</code>
      */
-    private $flexible_environment_available = false;
+    protected $flexible_environment_available = false;
     /**
      * Output only. [Search API](https://cloud.google.com/appengine/docs/standard/python/search)
      * is available in the given location.
      *
      * Generated from protobuf field <code>bool search_api_available = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $search_api_available = false;
+    protected $search_api_available = false;
 
     /**
      * Constructor.

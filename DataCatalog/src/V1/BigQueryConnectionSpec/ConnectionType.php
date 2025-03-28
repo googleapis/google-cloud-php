@@ -52,6 +52,4 @@ class ConnectionType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConnectionType::class, \Google\Cloud\DataCatalog\V1\BigQueryConnectionSpec_ConnectionType::class);
 

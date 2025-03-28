@@ -39,12 +39,15 @@ class TransactionTest extends SpannerTestCase
     private static $id1;
     private static $isSetup = false;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         if (self::$isSetup) {
             return;
         }
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
 
         self::$tableName = uniqid(self::TABLE_NAME);
         self::$id1 = rand(1000, 9999);

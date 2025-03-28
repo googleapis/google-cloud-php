@@ -32,6 +32,10 @@ class AutomationRule extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Deploy\V1\RepairRolloutRule $repair_rollout_rule
      *           Optional. The `RepairRolloutRule` will automatically repair a failed
      *           rollout.
+     *     @type \Google\Cloud\Deploy\V1\TimedPromoteReleaseRule $timed_promote_release_rule
+     *           Optional. The `TimedPromoteReleaseRule` will automatically promote a
+     *           release from the current target(s) to the specified target(s) on a
+     *           configured schedule.
      * }
      */
     public function __construct($data = NULL) {
@@ -134,6 +138,41 @@ class AutomationRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\RepairRolloutRule::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. The `TimedPromoteReleaseRule` will automatically promote a
+     * release from the current target(s) to the specified target(s) on a
+     * configured schedule.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.TimedPromoteReleaseRule timed_promote_release_rule = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Deploy\V1\TimedPromoteReleaseRule|null
+     */
+    public function getTimedPromoteReleaseRule()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasTimedPromoteReleaseRule()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Optional. The `TimedPromoteReleaseRule` will automatically promote a
+     * release from the current target(s) to the specified target(s) on a
+     * configured schedule.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.TimedPromoteReleaseRule timed_promote_release_rule = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Deploy\V1\TimedPromoteReleaseRule $var
+     * @return $this
+     */
+    public function setTimedPromoteReleaseRule($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\TimedPromoteReleaseRule::class);
+        $this->writeOneof(4, $var);
 
         return $this;
     }

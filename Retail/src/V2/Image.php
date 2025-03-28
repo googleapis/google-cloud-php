@@ -28,7 +28,7 @@ class Image extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Height of the image in number of pixels.
      * This field must be nonnegative. Otherwise, an INVALID_ARGUMENT error is
@@ -36,7 +36,7 @@ class Image extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 height = 2;</code>
      */
-    private $height = 0;
+    protected $height = 0;
     /**
      * Width of the image in number of pixels.
      * This field must be nonnegative. Otherwise, an INVALID_ARGUMENT error is
@@ -44,7 +44,7 @@ class Image extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 width = 3;</code>
      */
-    private $width = 0;
+    protected $width = 0;
 
     /**
      * Constructor.

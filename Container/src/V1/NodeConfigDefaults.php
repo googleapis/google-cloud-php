@@ -20,26 +20,26 @@ class NodeConfigDefaults extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.GcfsConfig gcfs_config = 1;</code>
      */
-    private $gcfs_config = null;
+    protected $gcfs_config = null;
     /**
      * Logging configuration for node pools.
      *
      * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig logging_config = 3;</code>
      */
-    private $logging_config = null;
+    protected $logging_config = null;
     /**
      * Parameters for containerd customization.
      *
      * Generated from protobuf field <code>.google.container.v1.ContainerdConfig containerd_config = 4;</code>
      */
-    private $containerd_config = null;
+    protected $containerd_config = null;
     /**
      * NodeKubeletConfig controls the defaults for new node-pools.
      * Currently only `insecure_kubelet_readonly_port_enabled` can be set here.
      *
      * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig node_kubelet_config = 6;</code>
      */
-    private $node_kubelet_config = null;
+    protected $node_kubelet_config = null;
 
     /**
      * Constructor.

@@ -46,7 +46,7 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model_format = 4;</code>
      */
-    private $model_format = '';
+    protected $model_format = '';
     /**
      * Additional model-type and format specific parameters describing the
      * requirements for the to be exported model files, any string must be up to
@@ -67,8 +67,9 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\AutoMl\V1\GcsDestination $gcs_destination
-     *           Required. The Google Cloud Storage location where the model is to be written to.
-     *           This location may only be set for the following model formats:
+     *           Required. The Google Cloud Storage location where the model is to be
+     *           written to. This location may only be set for the following model
+     *           formats:
      *             "tflite", "edgetpu_tflite", "tf_saved_model", "tf_js", "core_ml".
      *            Under the directory given as the destination a new one with name
      *            "model-export-<model-display-name>-<timestamp-of-export-call>",
@@ -118,8 +119,9 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Google Cloud Storage location where the model is to be written to.
-     * This location may only be set for the following model formats:
+     * Required. The Google Cloud Storage location where the model is to be
+     * written to. This location may only be set for the following model
+     * formats:
      *   "tflite", "edgetpu_tflite", "tf_saved_model", "tf_js", "core_ml".
      *  Under the directory given as the destination a new one with name
      *  "model-export-<model-display-name>-<timestamp-of-export-call>",
@@ -141,8 +143,9 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Google Cloud Storage location where the model is to be written to.
-     * This location may only be set for the following model formats:
+     * Required. The Google Cloud Storage location where the model is to be
+     * written to. This location may only be set for the following model
+     * formats:
      *   "tflite", "edgetpu_tflite", "tf_saved_model", "tf_js", "core_ml".
      *  Under the directory given as the destination a new one with name
      *  "model-export-<model-display-name>-<timestamp-of-export-call>",

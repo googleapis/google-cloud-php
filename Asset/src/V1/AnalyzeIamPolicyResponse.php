@@ -21,7 +21,7 @@ class AnalyzeIamPolicyResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.AnalyzeIamPolicyResponse.IamPolicyAnalysis main_analysis = 1;</code>
      */
-    private $main_analysis = null;
+    protected $main_analysis = null;
     /**
      * The service account impersonation analysis if
      * [AnalyzeIamPolicyRequest.analyze_service_account_impersonation][] is
@@ -39,7 +39,7 @@ class AnalyzeIamPolicyResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool fully_explored = 3;</code>
      */
-    private $fully_explored = false;
+    protected $fully_explored = false;
 
     /**
      * Constructor.

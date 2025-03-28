@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NodeGroups_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\NodeGroupsClient;
+use Google\Cloud\Compute\V1\Client\NodeGroupsClient;
+use Google\Cloud\Compute\V1\DeleteNodeGroupRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $nodeGroup, string $project, string $zone): void
     // Create a client.
     $nodeGroupsClient = new NodeGroupsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteNodeGroupRequest())
+        ->setNodeGroup($nodeGroup)
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $nodeGroupsClient->delete($nodeGroup, $project, $zone);
+        $response = $nodeGroupsClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

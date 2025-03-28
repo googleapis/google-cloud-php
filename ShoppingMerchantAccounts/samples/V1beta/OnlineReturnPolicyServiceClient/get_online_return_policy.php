@@ -29,7 +29,7 @@ use Google\Shopping\Merchant\Accounts\V1beta\GetOnlineReturnPolicyRequest;
 use Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy;
 
 /**
- * Gets an existing return policy.
+ * Gets an existing return policy for a given business.
  *
  * @param string $formattedName The name of the return policy to retrieve.
  *                              Format: `accounts/{account}/onlineReturnPolicies/{return_policy}`

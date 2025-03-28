@@ -34,6 +34,4 @@ class BooleanConstraint extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BooleanConstraint::class, \Google\Cloud\Asset\V1\AnalyzerOrgPolicyConstraint_Constraint_BooleanConstraint::class);
 

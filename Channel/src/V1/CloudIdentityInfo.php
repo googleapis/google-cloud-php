@@ -20,13 +20,13 @@ class CloudIdentityInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.CloudIdentityInfo.CustomerType customer_type = 1;</code>
      */
-    private $customer_type = 0;
+    protected $customer_type = 0;
     /**
      * Output only. The primary domain name.
      *
      * Generated from protobuf field <code>string primary_domain = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $primary_domain = '';
+    protected $primary_domain = '';
     /**
      * Output only. Whether the domain is verified.
      * This field is not returned for a Customer's cloud_identity_info resource.
@@ -36,37 +36,37 @@ class CloudIdentityInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool is_domain_verified = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $is_domain_verified = false;
+    protected $is_domain_verified = false;
     /**
      * The alternate email.
      *
      * Generated from protobuf field <code>string alternate_email = 6;</code>
      */
-    private $alternate_email = '';
+    protected $alternate_email = '';
     /**
      * Phone number associated with the Cloud Identity.
      *
      * Generated from protobuf field <code>string phone_number = 7;</code>
      */
-    private $phone_number = '';
+    protected $phone_number = '';
     /**
      * Language code.
      *
      * Generated from protobuf field <code>string language_code = 8;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * Output only. URI of Customer's Admin console dashboard.
      *
      * Generated from protobuf field <code>string admin_console_uri = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $admin_console_uri = '';
+    protected $admin_console_uri = '';
     /**
      * Edu information about the customer.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.EduData edu_data = 22;</code>
      */
-    private $edu_data = null;
+    protected $edu_data = null;
 
     /**
      * Constructor.

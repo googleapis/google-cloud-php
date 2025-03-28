@@ -17,8 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class RunContinuousTestRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/environments/<Environment ID>`.
+     * Required. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *
      * Generated from protobuf field <code>string environment = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -31,8 +31,8 @@ class RunContinuousTestRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $environment
-     *           Required. Format: `projects/<Project ID>/locations/<Location
-     *           ID>/agents/<Agent ID>/environments/<Environment ID>`.
+     *           Required. Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,8 +41,8 @@ class RunContinuousTestRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/environments/<Environment ID>`.
+     * Required. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *
      * Generated from protobuf field <code>string environment = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -53,8 +53,8 @@ class RunContinuousTestRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/environments/<Environment ID>`.
+     * Required. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *
      * Generated from protobuf field <code>string environment = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

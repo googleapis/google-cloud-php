@@ -21,6 +21,12 @@ class Product extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string product_name = 1;</code>
      */
     protected $product_name = '';
+    /**
+     * Unique identifier for the product.
+     *
+     * Generated from protobuf field <code>string id = 2;</code>
+     */
+    protected $id = '';
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class Product extends \Google\Protobuf\Internal\Message
      *
      *     @type string $product_name
      *           Google Cloud product impacted by the event. Example: `"Google Cloud SQL"`
+     *     @type string $id
+     *           Unique identifier for the product.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +67,32 @@ class Product extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->product_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Unique identifier for the product.
+     *
+     * Generated from protobuf field <code>string id = 2;</code>
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Unique identifier for the product.
+     *
+     * Generated from protobuf field <code>string id = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->id = $var;
 
         return $this;
     }

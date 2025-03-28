@@ -23,6 +23,25 @@
 return [
     'interfaces' => [
         'google.cloud.aiplatform.v1.GenAiTuningService' => [
+            'RebaseTunedModel' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AIPlatform\V1\TuningJob',
+                    'metadataReturnType' => '\Google\Cloud\AIPlatform\V1\RebaseTunedModelOperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CancelTuningJob' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
@@ -157,6 +176,7 @@ return [
                 'endpoint' => 'projects/{project}/locations/{location}/endpoints/{endpoint}',
                 'location' => 'projects/{project}/locations/{location}',
                 'model' => 'projects/{project}/locations/{location}/models/{model}',
+                'pipelineJob' => 'projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}',
                 'projectLocationEndpoint' => 'projects/{project}/locations/{location}/endpoints/{endpoint}',
                 'projectLocationPublisherModel' => 'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}',
                 'tuningJob' => 'projects/{project}/locations/{location}/tuningJobs/{tuning_job}',

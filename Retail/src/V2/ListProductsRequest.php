@@ -28,7 +28,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Maximum number of [Product][google.cloud.retail.v2.Product]s to return. If
      * unspecified, defaults to 100. The maximum allowed value is 1000. Values
@@ -37,7 +37,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A page token
      * [ListProductsResponse.next_page_token][google.cloud.retail.v2.ListProductsResponse.next_page_token],
@@ -51,7 +51,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * A filter to apply on the list results. Supported features:
      * * List all the products under the parent branch if
@@ -81,7 +81,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * The fields of [Product][google.cloud.retail.v2.Product] to return in the
      * responses. If not set or empty, the following fields are returned:
@@ -100,7 +100,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 5;</code>
      */
-    private $read_mask = null;
+    protected $read_mask = null;
 
     /**
      * @param string $parent Required. The parent branch resource name, such as

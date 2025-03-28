@@ -22,21 +22,21 @@ class ListEntriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The maximum number of items to return. Default is 10. Maximum limit is
      * 1000. Throws an invalid argument if `page_size` is more than 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Pagination token that specifies the next page to return. If empty, the
      * first page is returned.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * The fields to return for each entry. If empty or omitted, all
      * fields are returned.
@@ -45,7 +45,7 @@ class ListEntriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 4;</code>
      */
-    private $read_mask = null;
+    protected $read_mask = null;
 
     /**
      * @param string $parent Required. The name of the entry group that contains the entries to list.

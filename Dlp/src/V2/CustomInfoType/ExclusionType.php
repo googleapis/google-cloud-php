@@ -53,6 +53,4 @@ class ExclusionType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ExclusionType::class, \Google\Cloud\Dlp\V2\CustomInfoType_ExclusionType::class);
 

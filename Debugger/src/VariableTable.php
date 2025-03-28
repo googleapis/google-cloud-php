@@ -13,6 +13,7 @@ namespace Google\Cloud\Debugger;
  *
  * $variableTable = new VariableTable();
  * ```
+ * @deprecated see https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation
  */
 class VariableTable
 {
@@ -273,7 +274,7 @@ class VariableTable
 
     private function truncatedStringValue($value)
     {
-        $ret = (string)$value;
+        $ret = (string) $value;
         if (strlen($ret) > $this->maxValueLength) {
             $ret = substr($ret, 0, $this->maxValueLength - 3) . '...';
         }

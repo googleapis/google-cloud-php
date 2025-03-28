@@ -16,8 +16,7 @@ use UnexpectedValueException;
 class Code
 {
     /**
-     * This should never be used. If we are unable to understand why a
-     * shipment was skipped, we simply return an empty set of reasons.
+     * This should never be used.
      *
      * Generated from protobuf enum <code>CODE_UNSPECIFIED = 0;</code>
      */

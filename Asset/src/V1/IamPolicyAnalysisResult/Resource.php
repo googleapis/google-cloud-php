@@ -21,13 +21,13 @@ class Resource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string full_resource_name = 1;</code>
      */
-    private $full_resource_name = '';
+    protected $full_resource_name = '';
     /**
      * The analysis state of this resource.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisState analysis_state = 2;</code>
      */
-    private $analysis_state = null;
+    protected $analysis_state = null;
 
     /**
      * Constructor.
@@ -113,6 +113,4 @@ class Resource extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Resource::class, \Google\Cloud\Asset\V1\IamPolicyAnalysisResult_Resource::class);
 

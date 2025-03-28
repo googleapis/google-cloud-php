@@ -24,7 +24,7 @@ class CertificateTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The maximum lifetime allowed for issued
      * [Certificates][google.cloud.security.privateca.v1.Certificate] that use
@@ -44,7 +44,7 @@ class CertificateTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration maximum_lifetime = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $maximum_lifetime = null;
+    protected $maximum_lifetime = null;
     /**
      * Optional. A set of X.509 values that will be applied to all issued
      * certificates that use this template. If the certificate request includes
@@ -58,7 +58,7 @@ class CertificateTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.X509Parameters predefined_values = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $predefined_values = null;
+    protected $predefined_values = null;
     /**
      * Optional. Describes constraints on identities that may be appear in
      * [Certificates][google.cloud.security.privateca.v1.Certificate] issued using
@@ -67,7 +67,7 @@ class CertificateTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateIdentityConstraints identity_constraints = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $identity_constraints = null;
+    protected $identity_constraints = null;
     /**
      * Optional. Describes the set of X.509 extensions that may appear in a
      * [Certificate][google.cloud.security.privateca.v1.Certificate] issued using
@@ -89,14 +89,14 @@ class CertificateTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateExtensionConstraints passthrough_extensions = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $passthrough_extensions = null;
+    protected $passthrough_extensions = null;
     /**
      * Optional. A human-readable description of scenarios this template is
      * intended for.
      *
      * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The time at which this
      * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
@@ -104,7 +104,7 @@ class CertificateTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time at which this
      * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
@@ -112,7 +112,7 @@ class CertificateTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. Labels with user-defined metadata.
      *

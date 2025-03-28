@@ -62,6 +62,4 @@ class CryptoKeyVersionView
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CryptoKeyVersionView::class, \Google\Cloud\Kms\V1\CryptoKeyVersion_CryptoKeyVersionView::class);
 

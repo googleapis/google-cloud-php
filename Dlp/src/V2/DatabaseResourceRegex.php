@@ -24,19 +24,19 @@ class DatabaseResourceRegex extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id_regex = 1;</code>
      */
-    private $project_id_regex = '';
+    protected $project_id_regex = '';
     /**
      * Regex to test the instance name against. If empty, all instances match.
      *
      * Generated from protobuf field <code>string instance_regex = 2;</code>
      */
-    private $instance_regex = '';
+    protected $instance_regex = '';
     /**
      * Regex to test the database name against. If empty, all databases match.
      *
      * Generated from protobuf field <code>string database_regex = 3;</code>
      */
-    private $database_regex = '';
+    protected $database_regex = '';
     /**
      * Regex to test the database resource's name against. An example of a
      * database resource name is a table's name. Other database resource names
@@ -45,7 +45,7 @@ class DatabaseResourceRegex extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database_resource_name_regex = 4;</code>
      */
-    private $database_resource_name_regex = '';
+    protected $database_resource_name_regex = '';
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class CreateDataExchangeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ID of the data exchange.
      * Must contain only Unicode letters, numbers (0-9), underscores (_).
@@ -31,13 +31,13 @@ class CreateDataExchangeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string data_exchange_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $data_exchange_id = '';
+    protected $data_exchange_id = '';
     /**
      * Required. The data exchange to create.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.dataexchange.v1beta1.DataExchange data_exchange = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $data_exchange = null;
+    protected $data_exchange = null;
 
     /**
      * @param string                                                   $parent       Required. The parent resource path of the data exchange.

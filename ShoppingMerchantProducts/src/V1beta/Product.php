@@ -10,10 +10,10 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The processed product, built from multiple [product
- * inputs][[google.shopping.content.bundles.Products.ProductInput] after
- * applying rules and supplemental data sources. This processed product matches
- * what is shown in your Merchant Center account and in Shopping ads and other
- * surfaces across Google. Each product is built from exactly one primary
+ * inputs][google.shopping.merchant.products.v1main.ProductInput]
+ * after applying rules and supplemental data sources. This processed product
+ * matches what is shown in your Merchant Center account and in Shopping ads and
+ * other surfaces across Google. Each product is built from exactly one primary
  * data source product input, and multiple supplemental data source inputs.
  * After inserting, updating, or deleting a product input, it may take
  * several minutes before the updated processed product can be retrieved.
@@ -29,7 +29,10 @@ class Product extends \Google\Protobuf\Internal\Message
     /**
      * The name of the product.
      * Format:
-     * `"{product.name=accounts/{account}/products/{product}}"`
+     * `"{product.name=accounts/{account}/products/{product}}"` where the last
+     * section `product` consists of 4 parts:
+     * channel~content_language~feed_label~offer_id
+     * example for product name is "accounts/123/products/online~en~US~sku123"
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -122,7 +125,10 @@ class Product extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name of the product.
      *           Format:
-     *           `"{product.name=accounts/{account}/products/{product}}"`
+     *           `"{product.name=accounts/{account}/products/{product}}"` where the last
+     *           section `product` consists of 4 parts:
+     *           channel~content_language~feed_label~offer_id
+     *           example for product name is "accounts/123/products/online~en~US~sku123"
      *     @type int $channel
      *           Output only. The
      *           [channel](https://support.google.com/merchants/answer/7361332) of the
@@ -175,7 +181,10 @@ class Product extends \Google\Protobuf\Internal\Message
     /**
      * The name of the product.
      * Format:
-     * `"{product.name=accounts/{account}/products/{product}}"`
+     * `"{product.name=accounts/{account}/products/{product}}"` where the last
+     * section `product` consists of 4 parts:
+     * channel~content_language~feed_label~offer_id
+     * example for product name is "accounts/123/products/online~en~US~sku123"
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -188,7 +197,10 @@ class Product extends \Google\Protobuf\Internal\Message
     /**
      * The name of the product.
      * Format:
-     * `"{product.name=accounts/{account}/products/{product}}"`
+     * `"{product.name=accounts/{account}/products/{product}}"` where the last
+     * section `product` consists of 4 parts:
+     * channel~content_language~feed_label~offer_id
+     * example for product name is "accounts/123/products/online~en~US~sku123"
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

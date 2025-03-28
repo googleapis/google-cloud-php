@@ -16,11 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class DataRetentionConfig extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Optional. The retention policy for airflow metadata database.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.AirflowMetadataRetentionPolicyConfig airflow_metadata_retention_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $airflow_metadata_retention_config = null;
+    /**
      * Optional. The configuration settings for task logs retention
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.TaskLogsRetentionConfig task_logs_retention_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $task_logs_retention_config = null;
+    protected $task_logs_retention_config = null;
 
     /**
      * Constructor.
@@ -28,6 +34,8 @@ class DataRetentionConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\AirflowMetadataRetentionPolicyConfig $airflow_metadata_retention_config
+     *           Optional. The retention policy for airflow metadata database.
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\TaskLogsRetentionConfig $task_logs_retention_config
      *           Optional. The configuration settings for task logs retention
      * }
@@ -35,6 +43,42 @@ class DataRetentionConfig extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Orchestration\Airflow\Service\V1\Environments::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. The retention policy for airflow metadata database.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.AirflowMetadataRetentionPolicyConfig airflow_metadata_retention_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Orchestration\Airflow\Service\V1\AirflowMetadataRetentionPolicyConfig|null
+     */
+    public function getAirflowMetadataRetentionConfig()
+    {
+        return $this->airflow_metadata_retention_config;
+    }
+
+    public function hasAirflowMetadataRetentionConfig()
+    {
+        return isset($this->airflow_metadata_retention_config);
+    }
+
+    public function clearAirflowMetadataRetentionConfig()
+    {
+        unset($this->airflow_metadata_retention_config);
+    }
+
+    /**
+     * Optional. The retention policy for airflow metadata database.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.AirflowMetadataRetentionPolicyConfig airflow_metadata_retention_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Orchestration\Airflow\Service\V1\AirflowMetadataRetentionPolicyConfig $var
+     * @return $this
+     */
+    public function setAirflowMetadataRetentionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Orchestration\Airflow\Service\V1\AirflowMetadataRetentionPolicyConfig::class);
+        $this->airflow_metadata_retention_config = $var;
+
+        return $this;
     }
 
     /**

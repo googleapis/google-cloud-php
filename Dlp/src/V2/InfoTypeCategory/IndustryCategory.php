@@ -67,6 +67,4 @@ class IndustryCategory
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IndustryCategory::class, \Google\Cloud\Dlp\V2\InfoTypeCategory_IndustryCategory::class);
 

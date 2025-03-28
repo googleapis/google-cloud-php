@@ -23,7 +23,7 @@ class CreateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. SecurityHealthAnalytics custom module to create. The provided
      * name is ignored and reset with provided parent information and
@@ -31,7 +31,7 @@ class CreateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.SecurityHealthAnalyticsCustomModule security_health_analytics_custom_module = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $security_health_analytics_custom_module = null;
+    protected $security_health_analytics_custom_module = null;
 
     /**
      * @param string                                                              $parent                              Required. Resource name of the new custom module's parent. Its format is

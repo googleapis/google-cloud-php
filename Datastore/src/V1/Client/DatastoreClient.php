@@ -49,6 +49,7 @@ use Google\Cloud\Datastore\V1\RunAggregationQueryResponse;
 use Google\Cloud\Datastore\V1\RunQueryRequest;
 use Google\Cloud\Datastore\V1\RunQueryResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Each RPC normalizes the partition IDs of the keys in its input entities,
@@ -62,14 +63,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface allocateIdsAsync(AllocateIdsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface beginTransactionAsync(BeginTransactionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface commitAsync(CommitRequest $request, array $optionalArgs = [])
- * @method PromiseInterface lookupAsync(LookupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface reserveIdsAsync(ReserveIdsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rollbackAsync(RollbackRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runAggregationQueryAsync(RunAggregationQueryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runQueryAsync(RunQueryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AllocateIdsResponse> allocateIdsAsync(AllocateIdsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BeginTransactionResponse> beginTransactionAsync(BeginTransactionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CommitResponse> commitAsync(CommitRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LookupResponse> lookupAsync(LookupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReserveIdsResponse> reserveIdsAsync(ReserveIdsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RollbackResponse> rollbackAsync(RollbackRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RunAggregationQueryResponse> runAggregationQueryAsync(RunAggregationQueryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RunQueryResponse> runQueryAsync(RunQueryRequest $request, array $optionalArgs = [])
  */
 final class DatastoreClient
 {
@@ -136,6 +137,12 @@ final class DatastoreClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -169,6 +176,9 @@ final class DatastoreClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

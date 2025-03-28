@@ -23,7 +23,7 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Deprecated. This field has no effect.
      *
@@ -36,13 +36,13 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.ProductInputConfig input_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $input_config = null;
+    protected $input_config = null;
     /**
      * The desired location of errors incurred during the Import.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.ImportErrorsConfig errors_config = 3;</code>
      */
-    private $errors_config = null;
+    protected $errors_config = null;
     /**
      * Indicates which fields in the provided imported `products` to update. If
      * not set, all fields are updated. If provided, only the existing product
@@ -50,7 +50,7 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * The mode of reconciliation between existing products and the products to be
      * imported. Defaults to
@@ -58,7 +58,7 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.ImportProductsRequest.ReconciliationMode reconciliation_mode = 5;</code>
      */
-    private $reconciliation_mode = 0;
+    protected $reconciliation_mode = 0;
     /**
      * Full Pub/Sub topic name for receiving notification. If this field is set,
      * when the import is finished, a notification is sent to
@@ -77,7 +77,7 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string notification_pubsub_topic = 7;</code>
      */
-    private $notification_pubsub_topic = '';
+    protected $notification_pubsub_topic = '';
 
     /**
      * Constructor.

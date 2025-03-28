@@ -22,7 +22,7 @@ class BestEffortProvisioning extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      */
-    private $enabled = false;
+    protected $enabled = false;
     /**
      * Minimum number of nodes to be provisioned to be considered as succeeded,
      * and the rest of nodes will be provisioned gradually and eventually when
@@ -30,7 +30,7 @@ class BestEffortProvisioning extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 min_provision_nodes = 2;</code>
      */
-    private $min_provision_nodes = 0;
+    protected $min_provision_nodes = 0;
 
     /**
      * Constructor.

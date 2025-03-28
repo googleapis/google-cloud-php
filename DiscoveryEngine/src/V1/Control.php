@@ -10,8 +10,9 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Defines a conditioned behavior to employ during serving.
- * Must be attached to a [ServingConfig][] to be considered at serving time.
- * Permitted actions dependent on `SolutionType`.
+ * Must be attached to a
+ * [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig] to be
+ * considered at serving time. Permitted actions dependent on `SolutionType`.
  *
  * Generated from protobuf message <code>google.cloud.discoveryengine.v1.Control</code>
  */
@@ -33,8 +34,9 @@ class Control extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * Output only. List of all [ServingConfig][] ids this control is attached to.
-     * May take up to 10 minutes to update after changes.
+     * Output only. List of all
+     * [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig] IDs this
+     * control is attached to. May take up to 10 minutes to update after changes.
      *
      * Generated from protobuf field <code>repeated string associated_serving_config_ids = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -85,6 +87,9 @@ class Control extends \Google\Protobuf\Internal\Message
      *           Defines a redirect-type control.
      *     @type \Google\Cloud\DiscoveryEngine\V1\Control\SynonymsAction $synonyms_action
      *           Treats a group of terms as synonyms of one another.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Control\PromoteAction $promote_action
+     *           Promote certain links based on predefined trigger queries.
+     *           This now only supports basic site search.
      *     @type string $name
      *           Immutable. Fully qualified name
      *           `projects/&#42;&#47;locations/global/dataStore/&#42;&#47;controls/&#42;`
@@ -93,8 +98,9 @@ class Control extends \Google\Protobuf\Internal\Message
      *           Must be UTF-8 encoded string. Length limit is 128 characters.
      *           Otherwise an INVALID ARGUMENT error is thrown.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $associated_serving_config_ids
-     *           Output only. List of all [ServingConfig][] ids this control is attached to.
-     *           May take up to 10 minutes to update after changes.
+     *           Output only. List of all
+     *           [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig] IDs this
+     *           control is attached to. May take up to 10 minutes to update after changes.
      *     @type int $solution_type
      *           Required. Immutable. What solution the control belongs to.
      *           Must be compatible with vertical of resource.
@@ -246,6 +252,39 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Promote certain links based on predefined trigger queries.
+     * This now only supports basic site search.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Control.PromoteAction promote_action = 15;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\Control\PromoteAction|null
+     */
+    public function getPromoteAction()
+    {
+        return $this->readOneof(15);
+    }
+
+    public function hasPromoteAction()
+    {
+        return $this->hasOneof(15);
+    }
+
+    /**
+     * Promote certain links based on predefined trigger queries.
+     * This now only supports basic site search.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Control.PromoteAction promote_action = 15;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\Control\PromoteAction $var
+     * @return $this
+     */
+    public function setPromoteAction($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\Control\PromoteAction::class);
+        $this->writeOneof(15, $var);
+
+        return $this;
+    }
+
+    /**
      * Immutable. Fully qualified name
      * `projects/&#42;&#47;locations/global/dataStore/&#42;&#47;controls/&#42;`
      *
@@ -304,8 +343,9 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. List of all [ServingConfig][] ids this control is attached to.
-     * May take up to 10 minutes to update after changes.
+     * Output only. List of all
+     * [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig] IDs this
+     * control is attached to. May take up to 10 minutes to update after changes.
      *
      * Generated from protobuf field <code>repeated string associated_serving_config_ids = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -316,8 +356,9 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. List of all [ServingConfig][] ids this control is attached to.
-     * May take up to 10 minutes to update after changes.
+     * Output only. List of all
+     * [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig] IDs this
+     * control is attached to. May take up to 10 minutes to update after changes.
      *
      * Generated from protobuf field <code>repeated string associated_serving_config_ids = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

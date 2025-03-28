@@ -40,14 +40,14 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.Cluster cluster = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $cluster = null;
+    protected $cluster = null;
     /**
      * The parent (project and location) where the cluster will be created.
      * Specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 5;</code>
      */
-    private $parent = '';
+    protected $parent = '';
 
     /**
      * @param string                             $projectId Deprecated. The Google Developers Console [project ID or project

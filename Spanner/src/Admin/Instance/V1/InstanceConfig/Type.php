@@ -20,13 +20,13 @@ class Type
      */
     const TYPE_UNSPECIFIED = 0;
     /**
-     * Google managed configuration.
+     * Google-managed configuration.
      *
      * Generated from protobuf enum <code>GOOGLE_MANAGED = 1;</code>
      */
     const GOOGLE_MANAGED = 1;
     /**
-     * User managed configuration.
+     * User-managed configuration.
      *
      * Generated from protobuf enum <code>USER_MANAGED = 2;</code>
      */

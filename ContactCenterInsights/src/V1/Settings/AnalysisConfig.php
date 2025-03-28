@@ -21,21 +21,21 @@ class AnalysisConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double runtime_integration_analysis_percentage = 1;</code>
      */
-    private $runtime_integration_analysis_percentage = 0.0;
+    protected $runtime_integration_analysis_percentage = 0.0;
     /**
      * Percentage of conversations created using the UploadConversation endpoint
      * to analyze automatically, between [0, 100].
      *
      * Generated from protobuf field <code>double upload_conversation_analysis_percentage = 6;</code>
      */
-    private $upload_conversation_analysis_percentage = 0.0;
+    protected $upload_conversation_analysis_percentage = 0.0;
     /**
      * To select the annotators to run and the phrase matchers to use
      * (if any). If not specified, all annotators will be run.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotatorSelector annotator_selector = 5;</code>
      */
-    private $annotator_selector = null;
+    protected $annotator_selector = null;
 
     /**
      * Constructor.

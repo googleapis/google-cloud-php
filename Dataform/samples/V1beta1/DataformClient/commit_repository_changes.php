@@ -28,6 +28,7 @@ use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
 use Google\Cloud\Dataform\V1beta1\CommitAuthor;
 use Google\Cloud\Dataform\V1beta1\CommitMetadata;
 use Google\Cloud\Dataform\V1beta1\CommitRepositoryChangesRequest;
+use Google\Cloud\Dataform\V1beta1\CommitRepositoryChangesResponse;
 
 /**
  * Applies a Git commit to a Repository. The Repository must not have a value
@@ -58,8 +59,9 @@ function commit_repository_changes_sample(
 
     // Call the API and handle any network failures.
     try {
-        $dataformClient->commitRepositoryChanges($request);
-        printf('Call completed successfully.' . PHP_EOL);
+        /** @var CommitRepositoryChangesResponse $response */
+        $response = $dataformClient->commitRepositoryChanges($request);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }

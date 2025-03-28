@@ -25,7 +25,7 @@ class Tier extends \Google\Protobuf\Internal\Message
     /**
      * The maximum RAM usage of this tier in bytes.
      *
-     * Generated from protobuf field <code>int64 RAM = 2;</code>
+     * Generated from protobuf field <code>int64 RAM = 2 [json_name = "RAM"];</code>
      */
     protected $RAM = 0;
     /**
@@ -37,7 +37,7 @@ class Tier extends \Google\Protobuf\Internal\Message
     /**
      * The maximum disk size of this tier in bytes.
      *
-     * Generated from protobuf field <code>int64 Disk_Quota = 4;</code>
+     * Generated from protobuf field <code>int64 Disk_Quota = 4 [json_name = "DiskQuota"];</code>
      */
     protected $Disk_Quota = 0;
     /**
@@ -102,7 +102,7 @@ class Tier extends \Google\Protobuf\Internal\Message
     /**
      * The maximum RAM usage of this tier in bytes.
      *
-     * Generated from protobuf field <code>int64 RAM = 2;</code>
+     * Generated from protobuf field <code>int64 RAM = 2 [json_name = "RAM"];</code>
      * @return int|string
      */
     public function getRAM()
@@ -113,7 +113,7 @@ class Tier extends \Google\Protobuf\Internal\Message
     /**
      * The maximum RAM usage of this tier in bytes.
      *
-     * Generated from protobuf field <code>int64 RAM = 2;</code>
+     * Generated from protobuf field <code>int64 RAM = 2 [json_name = "RAM"];</code>
      * @param int|string $var
      * @return $this
      */
@@ -154,7 +154,7 @@ class Tier extends \Google\Protobuf\Internal\Message
     /**
      * The maximum disk size of this tier in bytes.
      *
-     * Generated from protobuf field <code>int64 Disk_Quota = 4;</code>
+     * Generated from protobuf field <code>int64 Disk_Quota = 4 [json_name = "DiskQuota"];</code>
      * @return int|string
      */
     public function getDiskQuota()
@@ -165,7 +165,7 @@ class Tier extends \Google\Protobuf\Internal\Message
     /**
      * The maximum disk size of this tier in bytes.
      *
-     * Generated from protobuf field <code>int64 Disk_Quota = 4;</code>
+     * Generated from protobuf field <code>int64 Disk_Quota = 4 [json_name = "DiskQuota"];</code>
      * @param int|string $var
      * @return $this
      */

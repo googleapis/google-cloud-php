@@ -26,19 +26,19 @@ class Column extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string column_id = 1;</code>
      */
-    private $column_id = '';
+    protected $column_id = '';
     /**
      * The column's display name.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The type of the values for this column.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Column.DataType data_type = 3;</code>
      */
-    private $data_type = 0;
+    protected $data_type = 0;
 
     /**
      * Constructor.

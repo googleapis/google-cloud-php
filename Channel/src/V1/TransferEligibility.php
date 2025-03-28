@@ -20,19 +20,19 @@ class TransferEligibility extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool is_eligible = 1;</code>
      */
-    private $is_eligible = false;
+    protected $is_eligible = false;
     /**
      * Localized description if reseller is not eligible to transfer the SKU.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Specified the reason for ineligibility.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.TransferEligibility.Reason ineligibility_reason = 3;</code>
      */
-    private $ineligibility_reason = 0;
+    protected $ineligibility_reason = 0;
 
     /**
      * Constructor.

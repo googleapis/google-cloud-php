@@ -82,6 +82,11 @@
                             "methods": [
                                 "search"
                             ]
+                        },
+                        "SearchLite": {
+                            "methods": [
+                                "searchLite"
+                            ]
                         }
                     }
                 }
@@ -147,6 +152,11 @@
                                 "listSessions"
                             ]
                         },
+                        "StreamAnswerQuery": {
+                            "methods": [
+                                "streamAnswerQuery"
+                            ]
+                        },
                         "UpdateConversation": {
                             "methods": [
                                 "updateConversation"
@@ -200,6 +210,11 @@
                 "grpc": {
                     "libraryClient": "DocumentServiceGapicClient",
                     "rpcs": {
+                        "BatchGetDocumentsMetadata": {
+                            "methods": [
+                                "batchGetDocumentsMetadata"
+                            ]
+                        },
                         "CreateDocument": {
                             "methods": [
                                 "createDocument"
@@ -282,6 +297,16 @@
                             "methods": [
                                 "checkGrounding"
                             ]
+                        },
+                        "GenerateGroundedContent": {
+                            "methods": [
+                                "generateGroundedContent"
+                            ]
+                        },
+                        "StreamGenerateGroundedContent": {
+                            "methods": [
+                                "streamGenerateGroundedContent"
+                            ]
                         }
                     }
                 }
@@ -363,6 +388,39 @@
                 }
             }
         },
+        "SearchTuningService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SearchTuningServiceGapicClient",
+                    "rpcs": {
+                        "ListCustomModels": {
+                            "methods": [
+                                "listCustomModels"
+                            ]
+                        },
+                        "TrainCustomModel": {
+                            "methods": [
+                                "trainCustomModel"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ServingConfigService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ServingConfigServiceGapicClient",
+                    "rpcs": {
+                        "UpdateServingConfig": {
+                            "methods": [
+                                "updateServingConfig"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "SiteSearchEngineService": {
             "clients": {
                 "grpc": {
@@ -378,9 +436,19 @@
                                 "batchVerifyTargetSites"
                             ]
                         },
+                        "CreateSitemap": {
+                            "methods": [
+                                "createSitemap"
+                            ]
+                        },
                         "CreateTargetSite": {
                             "methods": [
                                 "createTargetSite"
+                            ]
+                        },
+                        "DeleteSitemap": {
+                            "methods": [
+                                "deleteSitemap"
                             ]
                         },
                         "DeleteTargetSite": {
@@ -401,6 +469,11 @@
                         "FetchDomainVerificationStatus": {
                             "methods": [
                                 "fetchDomainVerificationStatus"
+                            ]
+                        },
+                        "FetchSitemaps": {
+                            "methods": [
+                                "fetchSitemaps"
                             ]
                         },
                         "GetSiteSearchEngine": {
@@ -445,6 +518,11 @@
                         "ImportUserEvents": {
                             "methods": [
                                 "importUserEvents"
+                            ]
+                        },
+                        "PurgeUserEvents": {
+                            "methods": [
+                                "purgeUserEvents"
                             ]
                         },
                         "WriteUserEvent": {

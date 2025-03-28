@@ -32,8 +32,8 @@ use Google\Cloud\Dialogflow\Cx\V3\Page;
  * Retrieves the specified page.
  *
  * @param string $formattedName The name of the page.
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/flows/<Flow ID>/pages/<Page ID>`. Please see
+ *                              Format:
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`. Please see
  *                              {@see PagesClient::pageName()} for help formatting this field.
  */
 function get_page_sample(string $formattedName): void

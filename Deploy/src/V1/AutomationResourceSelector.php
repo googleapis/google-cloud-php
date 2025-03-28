@@ -17,9 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class AutomationResourceSelector extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Contains attributes about a target.
+     * Optional. Contains attributes about a target.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.TargetAttribute targets = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.TargetAttribute targets = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $targets;
 
@@ -30,7 +30,7 @@ class AutomationResourceSelector extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Deploy\V1\TargetAttribute>|\Google\Protobuf\Internal\RepeatedField $targets
-     *           Contains attributes about a target.
+     *           Optional. Contains attributes about a target.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,9 +39,9 @@ class AutomationResourceSelector extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Contains attributes about a target.
+     * Optional. Contains attributes about a target.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.TargetAttribute targets = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.TargetAttribute targets = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTargets()
@@ -50,9 +50,9 @@ class AutomationResourceSelector extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Contains attributes about a target.
+     * Optional. Contains attributes about a target.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.TargetAttribute targets = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.TargetAttribute targets = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\Deploy\V1\TargetAttribute>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

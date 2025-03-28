@@ -10,8 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Service is an App Hub data model that contains a discovered service, which
- * represents a network/api interface that exposes some functionality to clients
- * for consumption over the network.
+ * represents a network or API interface that exposes some functionality to
+ * clients for consumption over the network.
  *
  * Generated from protobuf message <code>google.cloud.apphub.v1.Service</code>
  */
@@ -19,7 +19,7 @@ class Service extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. The resource name of a Service. Format:
-     * "projects/{host-project-id}/locations/{location}/applications/{application-id}/services/{service-id}"
+     * `"projects/{host-project-id}/locations/{location}/applications/{application-id}/services/{service-id}"`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -98,7 +98,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. The resource name of a Service. Format:
-     *           "projects/{host-project-id}/locations/{location}/applications/{application-id}/services/{service-id}"
+     *           `"projects/{host-project-id}/locations/{location}/applications/{application-id}/services/{service-id}"`
      *     @type string $display_name
      *           Optional. User-defined name for the Service.
      *           Can have a maximum length of 63 characters.
@@ -133,7 +133,7 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The resource name of a Service. Format:
-     * "projects/{host-project-id}/locations/{location}/applications/{application-id}/services/{service-id}"
+     * `"projects/{host-project-id}/locations/{location}/applications/{application-id}/services/{service-id}"`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -145,7 +145,7 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The resource name of a Service. Format:
-     * "projects/{host-project-id}/locations/{location}/applications/{application-id}/services/{service-id}"
+     * `"projects/{host-project-id}/locations/{location}/applications/{application-id}/services/{service-id}"`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var

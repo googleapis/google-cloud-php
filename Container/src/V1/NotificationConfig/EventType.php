@@ -67,6 +67,4 @@ class EventType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EventType::class, \Google\Cloud\Container\V1\NotificationConfig_EventType::class);
 

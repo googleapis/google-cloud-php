@@ -27,7 +27,7 @@ class Scope extends \Google\Protobuf\Internal\Message
     /**
      * The list of project IDs to search within.
      * For more information on the distinction between project names, IDs, and
-     * numbers, see [Projects](https://cloud.google.com/docs/overview/#projects).
+     * numbers, see [Projects](/docs/overview/#projects).
      *
      * Generated from protobuf field <code>repeated string include_project_ids = 3;</code>
      */
@@ -35,12 +35,12 @@ class Scope extends \Google\Protobuf\Internal\Message
     /**
      * If `true`, include Google Cloud public datasets in
      * search results. By default, they are excluded.
-     * See [Google Cloud Public Datasets](https://cloud.google.com/public-datasets) for more
+     * See [Google Cloud Public Datasets](/public-datasets) for more
      * information.
      *
      * Generated from protobuf field <code>bool include_gcp_public_datasets = 7;</code>
      */
-    private $include_gcp_public_datasets = false;
+    protected $include_gcp_public_datasets = false;
     /**
      * Optional. The list of locations to search within. If empty, all locations
      * are searched.
@@ -60,7 +60,7 @@ class Scope extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool starred_only = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $starred_only = false;
+    protected $starred_only = false;
     /**
      * Optional. This field is deprecated. The search mechanism for public and
      * private tag templates is the same.
@@ -84,11 +84,11 @@ class Scope extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $include_project_ids
      *           The list of project IDs to search within.
      *           For more information on the distinction between project names, IDs, and
-     *           numbers, see [Projects](https://cloud.google.com/docs/overview/#projects).
+     *           numbers, see [Projects](/docs/overview/#projects).
      *     @type bool $include_gcp_public_datasets
      *           If `true`, include Google Cloud public datasets in
      *           search results. By default, they are excluded.
-     *           See [Google Cloud Public Datasets](https://cloud.google.com/public-datasets) for more
+     *           See [Google Cloud Public Datasets](/public-datasets) for more
      *           information.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $restricted_locations
      *           Optional. The list of locations to search within. If empty, all locations
@@ -147,7 +147,7 @@ class Scope extends \Google\Protobuf\Internal\Message
     /**
      * The list of project IDs to search within.
      * For more information on the distinction between project names, IDs, and
-     * numbers, see [Projects](https://cloud.google.com/docs/overview/#projects).
+     * numbers, see [Projects](/docs/overview/#projects).
      *
      * Generated from protobuf field <code>repeated string include_project_ids = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -160,7 +160,7 @@ class Scope extends \Google\Protobuf\Internal\Message
     /**
      * The list of project IDs to search within.
      * For more information on the distinction between project names, IDs, and
-     * numbers, see [Projects](https://cloud.google.com/docs/overview/#projects).
+     * numbers, see [Projects](/docs/overview/#projects).
      *
      * Generated from protobuf field <code>repeated string include_project_ids = 3;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -177,7 +177,7 @@ class Scope extends \Google\Protobuf\Internal\Message
     /**
      * If `true`, include Google Cloud public datasets in
      * search results. By default, they are excluded.
-     * See [Google Cloud Public Datasets](https://cloud.google.com/public-datasets) for more
+     * See [Google Cloud Public Datasets](/public-datasets) for more
      * information.
      *
      * Generated from protobuf field <code>bool include_gcp_public_datasets = 7;</code>
@@ -191,7 +191,7 @@ class Scope extends \Google\Protobuf\Internal\Message
     /**
      * If `true`, include Google Cloud public datasets in
      * search results. By default, they are excluded.
-     * See [Google Cloud Public Datasets](https://cloud.google.com/public-datasets) for more
+     * See [Google Cloud Public Datasets](/public-datasets) for more
      * information.
      *
      * Generated from protobuf field <code>bool include_gcp_public_datasets = 7;</code>
@@ -308,6 +308,4 @@ class Scope extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Scope::class, \Google\Cloud\DataCatalog\V1\SearchCatalogRequest_Scope::class);
 

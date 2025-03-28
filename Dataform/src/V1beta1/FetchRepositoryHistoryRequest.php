@@ -20,7 +20,7 @@ class FetchRepositoryHistoryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Maximum number of commits to return. The server may return fewer
      * items than requested. If unspecified, the server will pick an appropriate
@@ -28,16 +28,17 @@ class FetchRepositoryHistoryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. Page token received from a previous `FetchRepositoryHistory`
      * call. Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `FetchRepositoryHistory`
-     * must match the call that provided the page token.
+     * When paginating, all other parameters provided to `FetchRepositoryHistory`,
+     * with the exception of `page_size`, must match the call that provided the
+     * page token.
      *
      * Generated from protobuf field <code>string page_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * Constructor.
@@ -54,8 +55,9 @@ class FetchRepositoryHistoryRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           Optional. Page token received from a previous `FetchRepositoryHistory`
      *           call. Provide this to retrieve the subsequent page.
-     *           When paginating, all other parameters provided to `FetchRepositoryHistory`
-     *           must match the call that provided the page token.
+     *           When paginating, all other parameters provided to `FetchRepositoryHistory`,
+     *           with the exception of `page_size`, must match the call that provided the
+     *           page token.
      * }
      */
     public function __construct($data = NULL) {
@@ -122,8 +124,9 @@ class FetchRepositoryHistoryRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Page token received from a previous `FetchRepositoryHistory`
      * call. Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `FetchRepositoryHistory`
-     * must match the call that provided the page token.
+     * When paginating, all other parameters provided to `FetchRepositoryHistory`,
+     * with the exception of `page_size`, must match the call that provided the
+     * page token.
      *
      * Generated from protobuf field <code>string page_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -136,8 +139,9 @@ class FetchRepositoryHistoryRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Page token received from a previous `FetchRepositoryHistory`
      * call. Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `FetchRepositoryHistory`
-     * must match the call that provided the page token.
+     * When paginating, all other parameters provided to `FetchRepositoryHistory`,
+     * with the exception of `page_size`, must match the call that provided the
+     * page token.
      *
      * Generated from protobuf field <code>string page_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

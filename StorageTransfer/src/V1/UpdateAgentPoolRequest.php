@@ -26,7 +26,7 @@ class UpdateAgentPoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.AgentPool agent_pool = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $agent_pool = null;
+    protected $agent_pool = null;
     /**
      * The [field mask]
      * (https://developers.google.com/protocol-buffers/docs/reference/google.protobuf)
@@ -37,7 +37,7 @@ class UpdateAgentPoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\StorageTransfer\V1\AgentPool $agentPool  Required. The agent pool to update. `agent_pool` is expected to specify

@@ -65,6 +65,4 @@ class Permissions extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Permissions::class, \Google\Cloud\Asset\V1\IamPolicySearchResult_Explanation_Permissions::class);
 

@@ -99,6 +99,4 @@ class CryptoKeyPurpose
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CryptoKeyPurpose::class, \Google\Cloud\Kms\V1\CryptoKey_CryptoKeyPurpose::class);
 

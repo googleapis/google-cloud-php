@@ -71,6 +71,7 @@ use Google\Identity\AccessContextManager\V1\UpdateServicePerimeterRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: API for setting [access levels]
@@ -93,32 +94,32 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface commitServicePerimetersAsync(CommitServicePerimetersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createAccessLevelAsync(CreateAccessLevelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createAccessPolicyAsync(AccessPolicy $request, array $optionalArgs = [])
- * @method PromiseInterface createGcpUserAccessBindingAsync(CreateGcpUserAccessBindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createServicePerimeterAsync(CreateServicePerimeterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAccessLevelAsync(DeleteAccessLevelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAccessPolicyAsync(DeleteAccessPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteGcpUserAccessBindingAsync(DeleteGcpUserAccessBindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteServicePerimeterAsync(DeleteServicePerimeterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAccessLevelAsync(GetAccessLevelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAccessPolicyAsync(GetAccessPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getGcpUserAccessBindingAsync(GetGcpUserAccessBindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getServicePerimeterAsync(GetServicePerimeterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAccessLevelsAsync(ListAccessLevelsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAccessPoliciesAsync(ListAccessPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listGcpUserAccessBindingsAsync(ListGcpUserAccessBindingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listServicePerimetersAsync(ListServicePerimetersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface replaceAccessLevelsAsync(ReplaceAccessLevelsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface replaceServicePerimetersAsync(ReplaceServicePerimetersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAccessLevelAsync(UpdateAccessLevelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAccessPolicyAsync(UpdateAccessPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateGcpUserAccessBindingAsync(UpdateGcpUserAccessBindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateServicePerimeterAsync(UpdateServicePerimeterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> commitServicePerimetersAsync(CommitServicePerimetersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAccessLevelAsync(CreateAccessLevelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAccessPolicyAsync(AccessPolicy $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createGcpUserAccessBindingAsync(CreateGcpUserAccessBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createServicePerimeterAsync(CreateServicePerimeterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAccessLevelAsync(DeleteAccessLevelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAccessPolicyAsync(DeleteAccessPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteGcpUserAccessBindingAsync(DeleteGcpUserAccessBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteServicePerimeterAsync(DeleteServicePerimeterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AccessLevel> getAccessLevelAsync(GetAccessLevelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AccessPolicy> getAccessPolicyAsync(GetAccessPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GcpUserAccessBinding> getGcpUserAccessBindingAsync(GetGcpUserAccessBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServicePerimeter> getServicePerimeterAsync(GetServicePerimeterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAccessLevelsAsync(ListAccessLevelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAccessPoliciesAsync(ListAccessPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGcpUserAccessBindingsAsync(ListGcpUserAccessBindingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listServicePerimetersAsync(ListServicePerimetersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> replaceAccessLevelsAsync(ReplaceAccessLevelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> replaceServicePerimetersAsync(ReplaceServicePerimetersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAccessLevelAsync(UpdateAccessLevelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAccessPolicyAsync(UpdateAccessPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateGcpUserAccessBindingAsync(UpdateGcpUserAccessBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateServicePerimeterAsync(UpdateServicePerimeterRequest $request, array $optionalArgs = [])
  */
 final class AccessContextManagerClient
 {
@@ -315,14 +316,14 @@ final class AccessContextManagerClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -344,6 +345,12 @@ final class AccessContextManagerClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -377,6 +384,9 @@ final class AccessContextManagerClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

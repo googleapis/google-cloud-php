@@ -555,7 +555,7 @@ class RegionCommitmentsGapicClient
     }
 
     /**
-     * Updates the specified commitment with the data included in the request. Update is performed only on selected fields included as part of update-mask. Only the following fields can be modified: auto_renew.
+     * Updates the specified commitment with the data included in the request. Update is performed only on selected fields included as part of update-mask. Only the following fields can be updated: auto_renew and plan.
      *
      * Sample code:
      * ```
@@ -594,7 +594,7 @@ class RegionCommitmentsGapicClient
      * }
      * ```
      *
-     * @param string     $commitment         Name of the commitment for which auto renew is being updated.
+     * @param string     $commitment         Name of the commitment that you want to update.
      * @param Commitment $commitmentResource The body resource for this request
      * @param string     $project            Project ID for this request.
      * @param string     $region             Name of the region for this request.

@@ -22,19 +22,19 @@ class ReconcileTagsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 created_tags_count = 1;</code>
      */
-    private $created_tags_count = 0;
+    protected $created_tags_count = 0;
     /**
      * Number of tags updated in the request.
      *
      * Generated from protobuf field <code>int64 updated_tags_count = 2;</code>
      */
-    private $updated_tags_count = 0;
+    protected $updated_tags_count = 0;
     /**
      * Number of tags deleted in the request.
      *
      * Generated from protobuf field <code>int64 deleted_tags_count = 3;</code>
      */
-    private $deleted_tags_count = 0;
+    protected $deleted_tags_count = 0;
 
     /**
      * Constructor.

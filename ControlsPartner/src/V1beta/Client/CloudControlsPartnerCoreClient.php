@@ -35,7 +35,9 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\CloudControlsPartner\V1beta\CreateCustomerRequest;
 use Google\Cloud\CloudControlsPartner\V1beta\Customer;
+use Google\Cloud\CloudControlsPartner\V1beta\DeleteCustomerRequest;
 use Google\Cloud\CloudControlsPartner\V1beta\EkmConnections;
 use Google\Cloud\CloudControlsPartner\V1beta\GetCustomerRequest;
 use Google\Cloud\CloudControlsPartner\V1beta\GetEkmConnectionsRequest;
@@ -47,8 +49,10 @@ use Google\Cloud\CloudControlsPartner\V1beta\ListCustomersRequest;
 use Google\Cloud\CloudControlsPartner\V1beta\ListWorkloadsRequest;
 use Google\Cloud\CloudControlsPartner\V1beta\Partner;
 use Google\Cloud\CloudControlsPartner\V1beta\PartnerPermissions;
+use Google\Cloud\CloudControlsPartner\V1beta\UpdateCustomerRequest;
 use Google\Cloud\CloudControlsPartner\V1beta\Workload;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service describing handlers for resources
@@ -63,14 +67,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface getCustomerAsync(GetCustomerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEkmConnectionsAsync(GetEkmConnectionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPartnerAsync(GetPartnerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPartnerPermissionsAsync(GetPartnerPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getWorkloadAsync(GetWorkloadRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAccessApprovalRequestsAsync(ListAccessApprovalRequestsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCustomersAsync(ListCustomersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listWorkloadsAsync(ListWorkloadsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Customer> createCustomerAsync(CreateCustomerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteCustomerAsync(DeleteCustomerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Customer> getCustomerAsync(GetCustomerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EkmConnections> getEkmConnectionsAsync(GetEkmConnectionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Partner> getPartnerAsync(GetPartnerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PartnerPermissions> getPartnerPermissionsAsync(GetPartnerPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Workload> getWorkloadAsync(GetWorkloadRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAccessApprovalRequestsAsync(ListAccessApprovalRequestsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCustomersAsync(ListCustomersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listWorkloadsAsync(ListWorkloadsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Customer> updateCustomerAsync(UpdateCustomerRequest $request, array $optionalArgs = [])
  */
 final class CloudControlsPartnerCoreClient
 {
@@ -276,8 +283,8 @@ final class CloudControlsPartnerCoreClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
@@ -285,7 +292,7 @@ final class CloudControlsPartnerCoreClient
      *
      * @experimental
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -307,6 +314,12 @@ final class CloudControlsPartnerCoreClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -340,6 +353,9 @@ final class CloudControlsPartnerCoreClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -361,6 +377,62 @@ final class CloudControlsPartnerCoreClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Creates a new customer.
+     *
+     * The async variant is
+     * {@see CloudControlsPartnerCoreClient::createCustomerAsync()} .
+     *
+     * @example samples/V1beta/CloudControlsPartnerCoreClient/create_customer.php
+     *
+     * @param CreateCustomerRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Customer
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createCustomer(CreateCustomerRequest $request, array $callOptions = []): Customer
+    {
+        return $this->startApiCall('CreateCustomer', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Delete details of a single customer
+     *
+     * The async variant is
+     * {@see CloudControlsPartnerCoreClient::deleteCustomerAsync()} .
+     *
+     * @example samples/V1beta/CloudControlsPartnerCoreClient/delete_customer.php
+     *
+     * @param DeleteCustomerRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteCustomer(DeleteCustomerRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteCustomer', $request, $callOptions)->wait();
     }
 
     /**
@@ -597,5 +669,34 @@ final class CloudControlsPartnerCoreClient
     public function listWorkloads(ListWorkloadsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListWorkloads', $request, $callOptions);
+    }
+
+    /**
+     * Update details of a single customer
+     *
+     * The async variant is
+     * {@see CloudControlsPartnerCoreClient::updateCustomerAsync()} .
+     *
+     * @example samples/V1beta/CloudControlsPartnerCoreClient/update_customer.php
+     *
+     * @param UpdateCustomerRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Customer
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateCustomer(UpdateCustomerRequest $request, array $callOptions = []): Customer
+    {
+        return $this->startApiCall('UpdateCustomer', $request, $callOptions)->wait();
     }
 }

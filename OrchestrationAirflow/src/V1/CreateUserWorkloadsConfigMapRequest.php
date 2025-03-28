@@ -21,13 +21,13 @@ class CreateUserWorkloadsConfigMapRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. User workloads ConfigMap to create.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.UserWorkloadsConfigMap user_workloads_config_map = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $user_workloads_config_map = null;
+    protected $user_workloads_config_map = null;
 
     /**
      * @param string                                                                $parent                 Required. The environment name to create a ConfigMap for, in the form:

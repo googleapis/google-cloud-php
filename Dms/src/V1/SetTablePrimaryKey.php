@@ -30,7 +30,7 @@ class SetTablePrimaryKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string primary_key = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $primary_key = '';
+    protected $primary_key = '';
 
     /**
      * Constructor.

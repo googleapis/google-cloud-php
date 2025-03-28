@@ -64,7 +64,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Local traffic selector to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges must be disjoint. Only IPv4 is supported.
+     * Local traffic selector to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges must be disjoint. Only IPv4 is supported for Classic VPN tunnels. This field is output only for HA VPN tunnels.
      *
      * Generated from protobuf field <code>repeated string local_traffic_selector = 317314613;</code>
      */
@@ -94,7 +94,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      */
     private $peer_gcp_gateway = null;
     /**
-     * IP address of the peer VPN gateway. Only IPv4 is supported.
+     * IP address of the peer VPN gateway. Only IPv4 is supported. This field can be set only for Classic VPN tunnels.
      *
      * Generated from protobuf field <code>optional string peer_ip = 383249700;</code>
      */
@@ -106,7 +106,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      */
     private $region = null;
     /**
-     * Remote traffic selectors to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is supported.
+     * Remote traffic selectors to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is supported for Classic VPN tunnels. This field is output only for HA VPN tunnels.
      *
      * Generated from protobuf field <code>repeated string remote_traffic_selector = 358887098;</code>
      */
@@ -143,7 +143,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      */
     private $status = null;
     /**
-     * URL of the Target VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created.
+     * URL of the Target VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created. This field can be set only for Classic VPN tunnels.
      *
      * Generated from protobuf field <code>optional string target_vpn_gateway = 532512843;</code>
      */
@@ -184,7 +184,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels for this resource. These can only be added or modified by the setLabels method. Each label key/value pair must comply with RFC1035. Label values may be empty.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $local_traffic_selector
-     *           Local traffic selector to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges must be disjoint. Only IPv4 is supported.
+     *           Local traffic selector to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges must be disjoint. Only IPv4 is supported for Classic VPN tunnels. This field is output only for HA VPN tunnels.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type string $peer_external_gateway
@@ -194,11 +194,11 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      *     @type string $peer_gcp_gateway
      *           URL of the peer side HA VPN gateway to which this VPN tunnel is connected. Provided by the client when the VPN tunnel is created. This field can be used when creating highly available VPN from VPC network to VPC network, the field is exclusive with the field peerExternalGateway. If provided, the VPN tunnel will automatically use the same vpnGatewayInterface ID in the peer Google Cloud VPN gateway.
      *     @type string $peer_ip
-     *           IP address of the peer VPN gateway. Only IPv4 is supported.
+     *           IP address of the peer VPN gateway. Only IPv4 is supported. This field can be set only for Classic VPN tunnels.
      *     @type string $region
      *           [Output Only] URL of the region where the VPN tunnel resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $remote_traffic_selector
-     *           Remote traffic selectors to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is supported.
+     *           Remote traffic selectors to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is supported for Classic VPN tunnels. This field is output only for HA VPN tunnels.
      *     @type string $router
      *           URL of the router resource to be used for dynamic routing.
      *     @type string $self_link
@@ -211,7 +211,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      *           [Output Only] The status of the VPN tunnel, which can be one of the following: - PROVISIONING: Resource is being allocated for the VPN tunnel. - WAITING_FOR_FULL_CONFIG: Waiting to receive all VPN-related configs from the user. Network, TargetVpnGateway, VpnTunnel, ForwardingRule, and Route resources are needed to setup the VPN tunnel. - FIRST_HANDSHAKE: Successful first handshake with the peer VPN. - ESTABLISHED: Secure session is successfully established with the peer VPN. - NETWORK_ERROR: Deprecated, replaced by NO_INCOMING_PACKETS - AUTHORIZATION_ERROR: Auth error (for example, bad shared secret). - NEGOTIATION_FAILURE: Handshake failed. - DEPROVISIONING: Resources are being deallocated for the VPN tunnel. - FAILED: Tunnel creation has failed and the tunnel is not ready to be used. - NO_INCOMING_PACKETS: No incoming packets from peer. - REJECTED: Tunnel configuration was rejected, can be result of being denied access. - ALLOCATING_RESOURCES: Cloud VPN is in the process of allocating all required resources. - STOPPED: Tunnel is stopped due to its Forwarding Rules being deleted for Classic VPN tunnels or the project is in frozen state. - PEER_IDENTITY_MISMATCH: Peer identity does not match peer IP, probably behind NAT. - TS_NARROWING_NOT_ALLOWED: Traffic selector narrowing not allowed for an HA-VPN tunnel.
      *           Check the Status enum for the list of possible values.
      *     @type string $target_vpn_gateway
-     *           URL of the Target VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created.
+     *           URL of the Target VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created. This field can be set only for Classic VPN tunnels.
      *     @type string $vpn_gateway
      *           URL of the VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created. This must be used (instead of target_vpn_gateway) if a High Availability VPN gateway resource is created.
      *     @type int $vpn_gateway_interface
@@ -502,7 +502,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Local traffic selector to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges must be disjoint. Only IPv4 is supported.
+     * Local traffic selector to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges must be disjoint. Only IPv4 is supported for Classic VPN tunnels. This field is output only for HA VPN tunnels.
      *
      * Generated from protobuf field <code>repeated string local_traffic_selector = 317314613;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -513,7 +513,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Local traffic selector to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges must be disjoint. Only IPv4 is supported.
+     * Local traffic selector to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges must be disjoint. Only IPv4 is supported for Classic VPN tunnels. This field is output only for HA VPN tunnels.
      *
      * Generated from protobuf field <code>repeated string local_traffic_selector = 317314613;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -672,7 +672,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * IP address of the peer VPN gateway. Only IPv4 is supported.
+     * IP address of the peer VPN gateway. Only IPv4 is supported. This field can be set only for Classic VPN tunnels.
      *
      * Generated from protobuf field <code>optional string peer_ip = 383249700;</code>
      * @return string
@@ -693,7 +693,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * IP address of the peer VPN gateway. Only IPv4 is supported.
+     * IP address of the peer VPN gateway. Only IPv4 is supported. This field can be set only for Classic VPN tunnels.
      *
      * Generated from protobuf field <code>optional string peer_ip = 383249700;</code>
      * @param string $var
@@ -744,7 +744,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Remote traffic selectors to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is supported.
+     * Remote traffic selectors to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is supported for Classic VPN tunnels. This field is output only for HA VPN tunnels.
      *
      * Generated from protobuf field <code>repeated string remote_traffic_selector = 358887098;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -755,7 +755,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Remote traffic selectors to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is supported.
+     * Remote traffic selectors to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is supported for Classic VPN tunnels. This field is output only for HA VPN tunnels.
      *
      * Generated from protobuf field <code>repeated string remote_traffic_selector = 358887098;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -952,7 +952,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of the Target VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created.
+     * URL of the Target VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created. This field can be set only for Classic VPN tunnels.
      *
      * Generated from protobuf field <code>optional string target_vpn_gateway = 532512843;</code>
      * @return string
@@ -973,7 +973,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of the Target VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created.
+     * URL of the Target VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created. This field can be set only for Classic VPN tunnels.
      *
      * Generated from protobuf field <code>optional string target_vpn_gateway = 532512843;</code>
      * @param string $var

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Input configuration for [AutoMl.ImportData][google.cloud.automl.v1.AutoMl.ImportData] action.
+ * Input configuration for
+ * [AutoMl.ImportData][google.cloud.automl.v1.AutoMl.ImportData] action.
  * The format of input depends on dataset_metadata the Dataset into which
  * the import is happening has. As input source the
  * [gcs_source][google.cloud.automl.v1.InputConfig.gcs_source]
@@ -22,8 +23,8 @@ use Google\Protobuf\Internal\GPBUtil;
  * these values are nondeterministically selected from the given ones.
  * The formats are represented in EBNF with commas being literal and with
  * non-terminal symbols defined near the end of this comment. The formats are:
- * <h4>AutoML Vision</h4>
- * <div class="ds-selector-tabs"><section><h5>Classification</h5>
+ * #### AutoML Vision
+ * ##### Classification
  * See [Preparing your training
  * data](https://cloud.google.com/vision/automl/docs/prepare) for more
  * information.
@@ -49,7 +50,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *     TEST,gs://folder/image2.jpg,dandelion,tulip,rose
  *     UNASSIGNED,gs://folder/image3.jpg,daisy
  *     UNASSIGNED,gs://folder/image4.jpg
- * </section><section><h5>Object Detection</h5>
+ * ##### Object Detection
  * See [Preparing your training
  * data](https://cloud.google.com/vision/automl/object-detection/docs/prepare)
  * for more information.
@@ -81,8 +82,8 @@ use Google\Protobuf\Internal\GPBUtil;
  *     TEST,gs://folder/im3.png,,,,,,,,,
  *   </section>
  * </div>
- * <h4>AutoML Video Intelligence</h4>
- * <div class="ds-selector-tabs"><section><h5>Classification</h5>
+ * #### AutoML Video Intelligence
+ * ##### Classification
  * See [Preparing your training
  * data](https://cloud.google.com/video-intelligence/automl/docs/prepare) for
  * more information.
@@ -110,9 +111,9 @@ use Google\Protobuf\Internal\GPBUtil;
  *     gs://folder/video1.avi,bike,150,180.000021
  *     gs://folder/vid2.avi,car,0,60.5
  *     gs://folder/vid3.avi,,,
- * </section><section><h5>Object Tracking</h5>
+ * ##### Object Tracking
  * See [Preparing your training
- * data](https://cloud.google.com/video-intelligence/automl/object-tracking/docs/prepare) for more
+ * data](/video-intelligence/automl/object-tracking/docs/prepare) for more
  * information.
  * CSV file(s) with each line in format:
  *     ML_USE,GCS_FILE_PATH
@@ -147,12 +148,10 @@ use Google\Protobuf\Internal\GPBUtil;
  *      gs://folder/video1.avi,bike,,12.50,.45,.45,,,.55,.55,,
  *      gs://folder/video2.avi,car,1,0,.1,.9,,,.9,.1,,
  *      gs://folder/video2.avi,,,,,,,,,,,
- *   </section>
- * </div>
- * <h4>AutoML Natural Language</h4>
- * <div class="ds-selector-tabs"><section><h5>Entity Extraction</h5>
+ * #### AutoML Natural Language
+ * ##### Entity Extraction
  * See [Preparing your training
- * data](https://cloud.google.com/natural-language/automl/entity-analysis/docs/prepare) for more
+ * data](/natural-language/automl/entity-analysis/docs/prepare) for more
  * information.
  * One or more CSV file(s) with each line in the following format:
  *     ML_USE,GCS_FILE_PATH
@@ -305,7 +304,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *                 }
  *               },
  *             ],
- * </section><section><h5>Classification</h5>
+ * ##### Classification
  * See [Preparing your training
  * data](https://cloud.google.com/natural-language/automl/docs/prepare) for more
  * information.
@@ -339,7 +338,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *     gs://folder/content.txt,SlowService
  *     TEST,gs://folder/document.pdf
  *     VALIDATE,gs://folder/text_files.zip,BadFood
- * </section><section><h5>Sentiment Analysis</h5>
+ * ##### Sentiment Analysis
  * See [Preparing your training
  * data](https://cloud.google.com/natural-language/automl/docs/prepare) for more
  * information.
@@ -387,10 +386,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *     gs://folder/content.txt,3
  *     TEST,gs://folder/document.pdf
  *     VALIDATE,gs://folder/text_files.zip,2
- *   </section>
- * </div>
- * <h4>AutoML Tables</h4><div class="ui-datasection-main"><section
- * class="selected">
+ * #### AutoML Tables
  * See [Preparing your training
  * data](https://cloud.google.com/automl-tables/docs/prepare) for more
  * information.
@@ -420,8 +416,6 @@ use Google\Protobuf\Internal\GPBUtil;
  * An imported table must have between 2 and 1,000 columns, inclusive,
  * and between 1000 and 100,000,000 rows, inclusive. There are at most 5
  * import data running in parallel.
- *   </section>
- * </div>
  * **Input field definitions:**
  * `ML_USE`
  * : ("TRAIN" | "VALIDATE" | "TEST" | "UNASSIGNED")
@@ -489,7 +483,7 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      * Additional domain-specific parameters describing the semantic of the
      * imported data, any string must be up to 25000
      * characters long.
-     * <h4>AutoML Tables</h4>
+     * #### AutoML Tables
      * `schema_inference_version`
      * : (integer) This value must be supplied.
      *   The version of the
@@ -509,13 +503,14 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AutoMl\V1\GcsSource $gcs_source
      *           The Google Cloud Storage location for the input content.
-     *           For [AutoMl.ImportData][google.cloud.automl.v1.AutoMl.ImportData], `gcs_source` points to a CSV file with
-     *           a structure described in [InputConfig][google.cloud.automl.v1.InputConfig].
+     *           For [AutoMl.ImportData][google.cloud.automl.v1.AutoMl.ImportData],
+     *           `gcs_source` points to a CSV file with a structure described in
+     *           [InputConfig][google.cloud.automl.v1.InputConfig].
      *     @type array|\Google\Protobuf\Internal\MapField $params
      *           Additional domain-specific parameters describing the semantic of the
      *           imported data, any string must be up to 25000
      *           characters long.
-     *           <h4>AutoML Tables</h4>
+     *           #### AutoML Tables
      *           `schema_inference_version`
      *           : (integer) This value must be supplied.
      *             The version of the
@@ -530,8 +525,9 @@ class InputConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The Google Cloud Storage location for the input content.
-     * For [AutoMl.ImportData][google.cloud.automl.v1.AutoMl.ImportData], `gcs_source` points to a CSV file with
-     * a structure described in [InputConfig][google.cloud.automl.v1.InputConfig].
+     * For [AutoMl.ImportData][google.cloud.automl.v1.AutoMl.ImportData],
+     * `gcs_source` points to a CSV file with a structure described in
+     * [InputConfig][google.cloud.automl.v1.InputConfig].
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.GcsSource gcs_source = 1;</code>
      * @return \Google\Cloud\AutoMl\V1\GcsSource|null
@@ -548,8 +544,9 @@ class InputConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The Google Cloud Storage location for the input content.
-     * For [AutoMl.ImportData][google.cloud.automl.v1.AutoMl.ImportData], `gcs_source` points to a CSV file with
-     * a structure described in [InputConfig][google.cloud.automl.v1.InputConfig].
+     * For [AutoMl.ImportData][google.cloud.automl.v1.AutoMl.ImportData],
+     * `gcs_source` points to a CSV file with a structure described in
+     * [InputConfig][google.cloud.automl.v1.InputConfig].
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.GcsSource gcs_source = 1;</code>
      * @param \Google\Cloud\AutoMl\V1\GcsSource $var
@@ -567,7 +564,7 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      * Additional domain-specific parameters describing the semantic of the
      * imported data, any string must be up to 25000
      * characters long.
-     * <h4>AutoML Tables</h4>
+     * #### AutoML Tables
      * `schema_inference_version`
      * : (integer) This value must be supplied.
      *   The version of the
@@ -586,7 +583,7 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      * Additional domain-specific parameters describing the semantic of the
      * imported data, any string must be up to 25000
      * characters long.
-     * <h4>AutoML Tables</h4>
+     * #### AutoML Tables
      * `schema_inference_version`
      * : (integer) This value must be supplied.
      *   The version of the

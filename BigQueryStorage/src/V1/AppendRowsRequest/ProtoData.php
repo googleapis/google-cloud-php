@@ -25,7 +25,7 @@ class ProtoData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ProtoSchema writer_schema = 1;</code>
      */
-    private $writer_schema = null;
+    protected $writer_schema = null;
     /**
      * Serialized row data in protobuf message format.
      * Currently, the backend expects the serialized rows to adhere to
@@ -34,7 +34,7 @@ class ProtoData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ProtoRows rows = 2;</code>
      */
-    private $rows = null;
+    protected $rows = null;
 
     /**
      * Constructor.
@@ -148,6 +148,4 @@ class ProtoData extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ProtoData::class, \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest_ProtoData::class);
 

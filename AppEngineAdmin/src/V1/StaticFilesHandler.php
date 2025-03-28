@@ -25,14 +25,14 @@ class StaticFilesHandler extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string path = 1;</code>
      */
-    private $path = '';
+    protected $path = '';
     /**
      * Regular expression that matches the file paths for all files that should be
      * referenced by this handler.
      *
      * Generated from protobuf field <code>string upload_path_regex = 2;</code>
      */
-    private $upload_path_regex = '';
+    protected $upload_path_regex = '';
     /**
      * HTTP headers to use for all responses from these URLs.
      *
@@ -46,21 +46,21 @@ class StaticFilesHandler extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mime_type = 4;</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
     /**
      * Time a static file served by this handler should be cached
      * by web proxies and browsers.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration expiration = 5;</code>
      */
-    private $expiration = null;
+    protected $expiration = null;
     /**
      * Whether this handler should match the request if the file
      * referenced by the handler does not exist.
      *
      * Generated from protobuf field <code>bool require_matching_file = 6;</code>
      */
-    private $require_matching_file = false;
+    protected $require_matching_file = false;
     /**
      * Whether files should also be uploaded as code data. By default, files
      * declared in static file handlers are uploaded as static
@@ -70,7 +70,7 @@ class StaticFilesHandler extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool application_readable = 7;</code>
      */
-    private $application_readable = false;
+    protected $application_readable = false;
 
     /**
      * Constructor.

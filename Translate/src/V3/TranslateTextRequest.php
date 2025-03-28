@@ -29,7 +29,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mime_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
     /**
      * Optional. The ISO-639 language code of the input text if
      * known, for example, "en-US" or "sr-Latn". Supported language codes are
@@ -39,14 +39,14 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_language_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $source_language_code = '';
+    protected $source_language_code = '';
     /**
      * Required. The ISO-639 language code to use for translation of the input
      * text, set to one of the language codes listed in Language Support.
      *
      * Generated from protobuf field <code>string target_language_code = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $target_language_code = '';
+    protected $target_language_code = '';
     /**
      * Required. Project or location to make a call. Must refer to a caller's
      * project.
@@ -61,7 +61,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The `model` type requested for this translation.
      * The format depends on model type:
@@ -69,6 +69,8 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
      * - General (built-in) models:
      *   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
+     * - Translation LLM models:
+     *   `projects/{project-number-or-id}/locations/{location-id}/models/general/translation-llm`,
      * For global (non-regionalized) requests, use `location-id` `global`.
      * For example,
      * `projects/{project-number-or-id}/locations/global/models/general/nmt`.
@@ -76,7 +78,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * Optional. Glossary to be applied. The glossary must be
      * within the same region (have the same location-id) as the model, otherwise
@@ -84,7 +86,13 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.TranslateTextGlossaryConfig glossary_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $glossary_config = null;
+    protected $glossary_config = null;
+    /**
+     * Optional. Transliteration to be applied.
+     *
+     * Generated from protobuf field <code>.google.cloud.translation.v3.TransliterationConfig transliteration_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $transliteration_config = null;
     /**
      * Optional. The labels with user-defined metadata for the request.
      * Label keys and values can be no longer than 63 characters
@@ -158,6 +166,8 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *                                     - General (built-in) models:
      *                                     `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
      *
+     *                                     - Translation LLM models:
+     *                                     `projects/{project-number-or-id}/locations/{location-id}/models/general/translation-llm`,
      *
      *                                     For global (non-regionalized) requests, use `location-id` `global`.
      *                                     For example,
@@ -232,6 +242,8 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *             `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
      *           - General (built-in) models:
      *             `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
+     *           - Translation LLM models:
+     *             `projects/{project-number-or-id}/locations/{location-id}/models/general/translation-llm`,
      *           For global (non-regionalized) requests, use `location-id` `global`.
      *           For example,
      *           `projects/{project-number-or-id}/locations/global/models/general/nmt`.
@@ -240,6 +252,8 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *           Optional. Glossary to be applied. The glossary must be
      *           within the same region (have the same location-id) as the model, otherwise
      *           an INVALID_ARGUMENT (400) error is returned.
+     *     @type \Google\Cloud\Translate\V3\TransliterationConfig $transliteration_config
+     *           Optional. Transliteration to be applied.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The labels with user-defined metadata for the request.
      *           Label keys and values can be no longer than 63 characters
@@ -426,6 +440,8 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
      * - General (built-in) models:
      *   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
+     * - Translation LLM models:
+     *   `projects/{project-number-or-id}/locations/{location-id}/models/general/translation-llm`,
      * For global (non-regionalized) requests, use `location-id` `global`.
      * For example,
      * `projects/{project-number-or-id}/locations/global/models/general/nmt`.
@@ -446,6 +462,8 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      *   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
      * - General (built-in) models:
      *   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
+     * - Translation LLM models:
+     *   `projects/{project-number-or-id}/locations/{location-id}/models/general/translation-llm`,
      * For global (non-regionalized) requests, use `location-id` `global`.
      * For example,
      * `projects/{project-number-or-id}/locations/global/models/general/nmt`.
@@ -499,6 +517,42 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Translate\V3\TranslateTextGlossaryConfig::class);
         $this->glossary_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Transliteration to be applied.
+     *
+     * Generated from protobuf field <code>.google.cloud.translation.v3.TransliterationConfig transliteration_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Translate\V3\TransliterationConfig|null
+     */
+    public function getTransliterationConfig()
+    {
+        return $this->transliteration_config;
+    }
+
+    public function hasTransliterationConfig()
+    {
+        return isset($this->transliteration_config);
+    }
+
+    public function clearTransliterationConfig()
+    {
+        unset($this->transliteration_config);
+    }
+
+    /**
+     * Optional. Transliteration to be applied.
+     *
+     * Generated from protobuf field <code>.google.cloud.translation.v3.TransliterationConfig transliteration_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Translate\V3\TransliterationConfig $var
+     * @return $this
+     */
+    public function setTransliterationConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Translate\V3\TransliterationConfig::class);
+        $this->transliteration_config = $var;
 
         return $this;
     }

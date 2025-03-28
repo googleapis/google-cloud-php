@@ -21,13 +21,13 @@ class ModifyEntryOverviewRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The new value for the Entry Overview.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.EntryOverview entry_overview = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $entry_overview = null;
+    protected $entry_overview = null;
 
     /**
      * Constructor.

@@ -8,11 +8,7 @@ use UnexpectedValueException;
 
 /**
  * Specifies the search result mode. If unspecified, the
- * search result mode is based on
- * [DataStore.DocumentProcessingConfig.chunking_config][]:
- * * If [DataStore.DocumentProcessingConfig.chunking_config][] is specified,
- *   it defaults to `CHUNKS`.
- * * Otherwise, it defaults to `DOCUMENTS`.
+ * search result mode defaults to `DOCUMENTS`.
  *
  * Protobuf type <code>google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode</code>
  */
@@ -32,7 +28,8 @@ class SearchResultMode
     const DOCUMENTS = 1;
     /**
      * Returns chunks in the search result. Only available if the
-     * [DataStore.DocumentProcessingConfig.chunking_config][] is specified.
+     * [DocumentProcessingConfig.chunking_config][google.cloud.discoveryengine.v1.DocumentProcessingConfig.chunking_config]
+     * is specified.
      *
      * Generated from protobuf enum <code>CHUNKS = 2;</code>
      */

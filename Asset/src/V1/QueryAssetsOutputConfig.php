@@ -20,7 +20,7 @@ class QueryAssetsOutputConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.QueryAssetsOutputConfig.BigQueryDestination bigquery_destination = 1;</code>
      */
-    private $bigquery_destination = null;
+    protected $bigquery_destination = null;
 
     /**
      * Constructor.

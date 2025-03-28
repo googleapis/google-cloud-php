@@ -27,6 +27,18 @@ class IneligibilityReason
      */
     const NO_VALID_BILLING_ACCOUNT = 1;
     /**
+     * Quota increase is not supported for the quota.
+     *
+     * Generated from protobuf enum <code>NOT_SUPPORTED = 3;</code>
+     */
+    const NOT_SUPPORTED = 3;
+    /**
+     * There is not enough usage history to determine the eligibility.
+     *
+     * Generated from protobuf enum <code>NOT_ENOUGH_USAGE_HISTORY = 4;</code>
+     */
+    const NOT_ENOUGH_USAGE_HISTORY = 4;
+    /**
      * Other reasons.
      *
      * Generated from protobuf enum <code>OTHER = 2;</code>
@@ -36,6 +48,8 @@ class IneligibilityReason
     private static $valueToName = [
         self::INELIGIBILITY_REASON_UNSPECIFIED => 'INELIGIBILITY_REASON_UNSPECIFIED',
         self::NO_VALID_BILLING_ACCOUNT => 'NO_VALID_BILLING_ACCOUNT',
+        self::NOT_SUPPORTED => 'NOT_SUPPORTED',
+        self::NOT_ENOUGH_USAGE_HISTORY => 'NOT_ENOUGH_USAGE_HISTORY',
         self::OTHER => 'OTHER',
     ];
 

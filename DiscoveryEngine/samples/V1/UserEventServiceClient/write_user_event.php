@@ -36,9 +36,9 @@ use Google\Cloud\DiscoveryEngine\V1\WriteUserEventRequest;
  *                                      [DataStore][google.cloud.discoveryengine.v1.DataStore] level, the format
  *                                      is:
  *                                      `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.
- *                                      If the write user event action is applied in [Location][] level, for
- *                                      example, the event with
- *                                      [Document][google.cloud.discoveryengine.v1.Document] across multiple
+ *                                      If the write user event action is applied in
+ *                                      [Location][google.cloud.location.Location] level, for example, the event
+ *                                      with [Document][google.cloud.discoveryengine.v1.Document] across multiple
  *                                      [DataStore][google.cloud.discoveryengine.v1.DataStore], the format is:
  *                                      `projects/{project}/locations/{location}`. Please see
  *                                      {@see UserEventServiceClient::dataStoreName()} for help formatting this field.
@@ -51,6 +51,7 @@ use Google\Cloud\DiscoveryEngine\V1\WriteUserEventRequest;
  *                                      * `view-item-list`: View of a panel or ordered list of Documents.
  *                                      * `view-home-page`: View of the home page.
  *                                      * `view-category-page`: View of a category page, e.g. Home > Men > Jeans
+ *                                      * `add-feedback`: Add a user feedback.
  *
  *                                      Retail-related values:
  *
@@ -61,6 +62,10 @@ use Google\Cloud\DiscoveryEngine\V1\WriteUserEventRequest;
  *
  *                                      * `media-play`: Start/resume watching a video, playing a song, etc.
  *                                      * `media-complete`: Finished or stopped midway through a video, song, etc.
+ *
+ *                                      Custom conversion value:
+ *
+ *                                      * `conversion`: Customer defined conversion event.
  * @param string $userEventUserPseudoId A unique identifier for tracking visitors.
  *
  *                                      For example, this could be implemented with an HTTP cookie, which should be

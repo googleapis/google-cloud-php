@@ -10,14 +10,39 @@
                 "grpc": {
                     "libraryClient": "CloudRedisClusterGapicClient",
                     "rpcs": {
+                        "BackupCluster": {
+                            "methods": [
+                                "backupCluster"
+                            ]
+                        },
                         "CreateCluster": {
                             "methods": [
                                 "createCluster"
                             ]
                         },
+                        "DeleteBackup": {
+                            "methods": [
+                                "deleteBackup"
+                            ]
+                        },
                         "DeleteCluster": {
                             "methods": [
                                 "deleteCluster"
+                            ]
+                        },
+                        "ExportBackup": {
+                            "methods": [
+                                "exportBackup"
+                            ]
+                        },
+                        "GetBackup": {
+                            "methods": [
+                                "getBackup"
+                            ]
+                        },
+                        "GetBackupCollection": {
+                            "methods": [
+                                "getBackupCollection"
                             ]
                         },
                         "GetCluster": {
@@ -30,9 +55,24 @@
                                 "getClusterCertificateAuthority"
                             ]
                         },
+                        "ListBackupCollections": {
+                            "methods": [
+                                "listBackupCollections"
+                            ]
+                        },
+                        "ListBackups": {
+                            "methods": [
+                                "listBackups"
+                            ]
+                        },
                         "ListClusters": {
                             "methods": [
                                 "listClusters"
+                            ]
+                        },
+                        "RescheduleClusterMaintenance": {
+                            "methods": [
+                                "rescheduleClusterMaintenance"
                             ]
                         },
                         "UpdateCluster": {

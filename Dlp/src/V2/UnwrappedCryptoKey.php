@@ -21,7 +21,7 @@ class UnwrappedCryptoKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key = '';
+    protected $key = '';
 
     /**
      * Constructor.

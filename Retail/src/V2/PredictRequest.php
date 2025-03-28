@@ -32,7 +32,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string placement = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $placement = '';
+    protected $placement = '';
     /**
      * Required. Context about the user, what they are looking at and what action
      * they took to trigger the predict request. Note that this user event detail
@@ -50,7 +50,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.UserEvent user_event = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $user_event = null;
+    protected $user_event = null;
     /**
      * Maximum number of results to return. Set this property to the number of
      * prediction results needed. If zero, the service will choose a reasonable
@@ -59,7 +59,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * This field is not used; leave it unset.
      *
@@ -101,7 +101,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 5;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Use validate only mode for this prediction query. If set to true, a
      * dummy model will be used that returns arbitrary products.
@@ -110,7 +110,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool validate_only = 6;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
     /**
      * Additional domain specific parameters for the predictions.
      * Allowed values:

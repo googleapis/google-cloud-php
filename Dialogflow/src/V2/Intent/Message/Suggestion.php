@@ -21,7 +21,7 @@ class Suggestion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string title = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $title = '';
+    protected $title = '';
 
     /**
      * Constructor.

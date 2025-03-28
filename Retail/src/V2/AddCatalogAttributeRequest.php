@@ -23,14 +23,14 @@ class AddCatalogAttributeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string attributes_config = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $attributes_config = '';
+    protected $attributes_config = '';
     /**
      * Required. The [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute]
      * to add.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute catalog_attribute = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $catalog_attribute = null;
+    protected $catalog_attribute = null;
 
     /**
      * Constructor.

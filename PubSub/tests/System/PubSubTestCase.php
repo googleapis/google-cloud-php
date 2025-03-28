@@ -32,32 +32,38 @@ class PubSubTestCase extends SystemTestCase
 
     public function clientProvider()
     {
-        self::setUpBeforeClass();
+        self::setUpTestFixtures();
 
-        $result = [
-            'grpc' => [self::$grpcClient],
-        ];
-        if (!self::isEmulatorUsed()) {
-            $result['rest'] = [self::$restClient];
+        if (is_null(self::$grpcClient)) {
+            return ['rest' => [self::$restClient]];
         }
-        return $result;
+
+        return [
+            'grpc' => [self::$grpcClient, 'grpc'],
+            'rest' => [self::$restClient, 'rest'],
+        ];
     }
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         if (self::$hasSetUp) {
             return;
         }
 
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-        self::$restClient = new PubSubClientRest([
+        self::$restClient = new PubSubClient([
             'credentials' => $keyFilePath,
             'transport' => 'rest',
         ]);
-        self::$grpcClient = new PubSubClientGrpc([
-            'credentials' => $keyFilePath,
-            'transport' => 'grpc',
-        ]);
+        if (extension_loaded('grpc')) {
+            self::$grpcClient = new PubSubClient([
+                'credentials' => $keyFilePath,
+                'transport' => 'grpc',
+            ]);
+        }
         self::setUsingEmulatorForClassPrefix((bool) getenv('PUBSUB_EMULATOR_HOST'));
         self::setupQueue();
         self::$hasSetUp = true;
@@ -101,8 +107,3 @@ class PubSubTestCase extends SystemTestCase
         return [$topic, $sub];
     }
 }
-
-//@codingStandardsIgnoreStart
-class PubSubClientRest extends PubSubClient {}
-class PubSubClientGrpc extends PubSubClient {}
-//@codingStandardsIgnoreEnd

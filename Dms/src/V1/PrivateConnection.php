@@ -21,19 +21,19 @@ class PrivateConnection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The create time of the resource.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The last update time of the resource.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The resource labels for private connections to use to annotate any related
      * underlying resources such as Compute Engine VMs. An object containing a
@@ -48,19 +48,19 @@ class PrivateConnection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 5;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. The state of the private connection.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.PrivateConnection.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The error details in case of state FAILED.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error = null;
+    protected $error = null;
     protected $connectivity;
 
     /**

@@ -20,13 +20,13 @@ class SequentialSegment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 start = 1;</code>
      */
-    private $start = 0;
+    protected $start = 0;
     /**
      * End position (exclusive).
      *
      * Generated from protobuf field <code>int32 end = 2;</code>
      */
-    private $end = 0;
+    protected $end = 0;
 
     /**
      * Constructor.

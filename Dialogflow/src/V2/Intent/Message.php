@@ -24,7 +24,7 @@ class Message extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Platform platform = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $platform = 0;
+    protected $platform = 0;
     protected $message;
 
     /**

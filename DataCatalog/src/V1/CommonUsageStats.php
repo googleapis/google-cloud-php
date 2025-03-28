@@ -21,7 +21,7 @@ class CommonUsageStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int64 view_count = 1;</code>
      */
-    private $view_count = null;
+    protected $view_count = null;
 
     /**
      * Constructor.

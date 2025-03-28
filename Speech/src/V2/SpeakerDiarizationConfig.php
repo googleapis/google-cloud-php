@@ -24,7 +24,7 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 min_speaker_count = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $min_speaker_count = 0;
+    protected $min_speaker_count = 0;
     /**
      * Required. Maximum number of speakers in the conversation. Valid values are:
      * 1-6. Must be >= `min_speaker_count`. This range gives you more flexibility
@@ -33,7 +33,7 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_speaker_count = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $max_speaker_count = 0;
+    protected $max_speaker_count = 0;
 
     /**
      * Constructor.

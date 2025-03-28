@@ -53,6 +53,17 @@ class CreateDataStoreRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool create_advanced_site_search = 4;</code>
      */
     protected $create_advanced_site_search = false;
+    /**
+     * A boolean flag indicating whether to skip the default schema creation for
+     * the data store. Only enable this flag if you are certain that the default
+     * schema is incompatible with your use case.
+     * If set to true, you must manually create a schema for the data store before
+     * any documents can be ingested.
+     * This flag cannot be specified if `data_store.starting_schema` is specified.
+     *
+     * Generated from protobuf field <code>bool skip_default_schema_creation = 7;</code>
+     */
+    protected $skip_default_schema_creation = false;
 
     /**
      * @param string                                     $parent      Required. The parent resource name, such as
@@ -107,6 +118,13 @@ class CreateDataStoreRequest extends \Google\Protobuf\Internal\Message
      *           If the data store is not configured as site
      *           search (GENERIC vertical and PUBLIC_WEBSITE content_config), this flag will
      *           be ignored.
+     *     @type bool $skip_default_schema_creation
+     *           A boolean flag indicating whether to skip the default schema creation for
+     *           the data store. Only enable this flag if you are certain that the default
+     *           schema is incompatible with your use case.
+     *           If set to true, you must manually create a schema for the data store before
+     *           any documents can be ingested.
+     *           This flag cannot be specified if `data_store.starting_schema` is specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -248,6 +266,42 @@ class CreateDataStoreRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->create_advanced_site_search = $var;
+
+        return $this;
+    }
+
+    /**
+     * A boolean flag indicating whether to skip the default schema creation for
+     * the data store. Only enable this flag if you are certain that the default
+     * schema is incompatible with your use case.
+     * If set to true, you must manually create a schema for the data store before
+     * any documents can be ingested.
+     * This flag cannot be specified if `data_store.starting_schema` is specified.
+     *
+     * Generated from protobuf field <code>bool skip_default_schema_creation = 7;</code>
+     * @return bool
+     */
+    public function getSkipDefaultSchemaCreation()
+    {
+        return $this->skip_default_schema_creation;
+    }
+
+    /**
+     * A boolean flag indicating whether to skip the default schema creation for
+     * the data store. Only enable this flag if you are certain that the default
+     * schema is incompatible with your use case.
+     * If set to true, you must manually create a schema for the data store before
+     * any documents can be ingested.
+     * This flag cannot be specified if `data_store.starting_schema` is specified.
+     *
+     * Generated from protobuf field <code>bool skip_default_schema_creation = 7;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSkipDefaultSchemaCreation($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->skip_default_schema_creation = $var;
 
         return $this;
     }

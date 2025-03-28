@@ -70,6 +70,4 @@ class GPUDriverVersion
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GPUDriverVersion::class, \Google\Cloud\Container\V1\GPUDriverInstallationConfig_GPUDriverVersion::class);
 

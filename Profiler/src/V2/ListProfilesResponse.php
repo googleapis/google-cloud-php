@@ -28,7 +28,7 @@ class ListProfilesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
     /**
      * Number of profiles that were skipped in the current page since they were
      * not able to be fetched successfully. This should typically be zero. A
@@ -37,7 +37,7 @@ class ListProfilesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 skipped_profiles = 3;</code>
      */
-    private $skipped_profiles = 0;
+    protected $skipped_profiles = 0;
 
     /**
      * Constructor.

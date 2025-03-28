@@ -63,6 +63,4 @@ class PubSubLogicalOperator
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PubSubLogicalOperator::class, \Google\Cloud\Dlp\V2\DataProfilePubSubCondition_PubSubExpressions_PubSubLogicalOperator::class);
 

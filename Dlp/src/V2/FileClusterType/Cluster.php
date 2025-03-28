@@ -74,6 +74,12 @@ class Cluster
      * Generated from protobuf enum <code>CLUSTER_EXECUTABLE = 9;</code>
      */
     const CLUSTER_EXECUTABLE = 9;
+    /**
+     * AI models like .tflite etc.
+     *
+     * Generated from protobuf enum <code>CLUSTER_AI_MODEL = 10;</code>
+     */
+    const CLUSTER_AI_MODEL = 10;
 
     private static $valueToName = [
         self::CLUSTER_UNSPECIFIED => 'CLUSTER_UNSPECIFIED',
@@ -86,6 +92,7 @@ class Cluster
         self::CLUSTER_ARCHIVE => 'CLUSTER_ARCHIVE',
         self::CLUSTER_MULTIMEDIA => 'CLUSTER_MULTIMEDIA',
         self::CLUSTER_EXECUTABLE => 'CLUSTER_EXECUTABLE',
+        self::CLUSTER_AI_MODEL => 'CLUSTER_AI_MODEL',
     ];
 
     public static function name($value)
@@ -109,6 +116,4 @@ class Cluster
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Cluster::class, \Google\Cloud\Dlp\V2\FileClusterType_Cluster::class);
 

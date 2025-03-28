@@ -59,6 +59,4 @@ class CloudSqlSchemaModification
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CloudSqlSchemaModification::class, \Google\Cloud\Dlp\V2\DiscoveryCloudSqlGenerationCadence_SchemaModifiedCadence_CloudSqlSchemaModification::class);
 

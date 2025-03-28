@@ -20,13 +20,13 @@ class ListAssetsResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Asset asset = 1;</code>
      */
-    private $asset = null;
+    protected $asset = null;
     /**
      * State change of the asset between the points in time.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.ListAssetsResponse.ListAssetsResult.StateChange state_change = 2;</code>
      */
-    private $state_change = 0;
+    protected $state_change = 0;
 
     /**
      * Constructor.
@@ -109,6 +109,4 @@ class ListAssetsResult extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ListAssetsResult::class, \Google\Cloud\SecurityCenter\V1\ListAssetsResponse_ListAssetsResult::class);
 

@@ -23,7 +23,7 @@ class RevocationDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.RevocationReason revocation_state = 1;</code>
      */
-    private $revocation_state = 0;
+    protected $revocation_state = 0;
     /**
      * The time at which this
      * [Certificate][google.cloud.security.privateca.v1.Certificate] was
@@ -31,7 +31,7 @@ class RevocationDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp revocation_time = 2;</code>
      */
-    private $revocation_time = null;
+    protected $revocation_time = null;
 
     /**
      * Constructor.

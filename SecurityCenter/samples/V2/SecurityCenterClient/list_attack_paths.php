@@ -36,10 +36,10 @@ use Google\Cloud\SecurityCenter\V2\ListAttackPathsRequest;
  * @param string $formattedParent Name of parent to list attack paths.
  *
  *                                Valid formats:
- *                                "organizations/{organization}",
- *                                "organizations/{organization}/simulations/{simulation}"
- *                                "organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}"
- *                                "organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}"
+ *                                `organizations/{organization}`,
+ *                                `organizations/{organization}/simulations/{simulation}`
+ *                                `organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}`
+ *                                `organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}`
  *                                Please see {@see SecurityCenterClient::organizationValuedResourceName()} for help formatting this field.
  */
 function list_attack_paths_sample(string $formattedParent): void

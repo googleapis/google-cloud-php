@@ -103,7 +103,7 @@ class Service extends \Google\Protobuf\Internal\Message
     protected $delete_time = null;
     /**
      * Output only. For a deleted resource, the time after which it will be
-     * permamently deleted.
+     * permanently deleted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -148,7 +148,6 @@ class Service extends \Google\Protobuf\Internal\Message
      * Set the launch stage to a preview stage on input to allow use of preview
      * features in that stage. On read (or output), describes whether the resource
      * uses preview features.
-     * <p>
      * For example, if ALPHA is provided as input, but only BETA and GA-level
      * features are used, this field will be BETA on output.
      *
@@ -182,11 +181,36 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     protected $scaling = null;
     /**
+     * Optional. Disables IAM permission check for run.routes.invoke for callers
+     * of this service. This feature is available by invitation only. For more
+     * information, visit
+     * https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
+     *
+     * Generated from protobuf field <code>bool invoker_iam_disabled = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $invoker_iam_disabled = false;
+    /**
      * Optional. Disables public resolution of the default URI of this service.
      *
      * Generated from protobuf field <code>bool default_uri_disabled = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $default_uri_disabled = false;
+    /**
+     * Output only. All URLs serving traffic for this Service.
+     *
+     * Generated from protobuf field <code>repeated string urls = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $urls;
+    /**
+     * One or more custom audiences that you want this service to support. Specify
+     * each custom audience as the full URL in a string. The custom audiences are
+     * encoded in the token and used to authenticate requests. For more
+     * information, see
+     * https://cloud.google.com/run/docs/configuring/custom-audiences.
+     *
+     * Generated from protobuf field <code>repeated string custom_audiences = 37;</code>
+     */
+    private $custom_audiences;
     /**
      * Output only. The generation of this Service currently serving traffic. See
      * comments in `reconciling` for additional information on reconciliation
@@ -246,21 +270,17 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     protected $uri = '';
     /**
-     * One or more custom audiences that you want this service to support. Specify
-     * each custom audience as the full URL in a string. The custom audiences are
-     * encoded in the token and used to authenticate requests. For more
-     * information, see
-     * https://cloud.google.com/run/docs/configuring/custom-audiences.
-     *
-     * Generated from protobuf field <code>repeated string custom_audiences = 37;</code>
-     */
-    private $custom_audiences;
-    /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>bool satisfies_pzs = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $satisfies_pzs = false;
+    /**
+     * Optional. Configuration for building a Cloud Run function.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.BuildConfig build_config = 41 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $build_config = null;
     /**
      * Output only. Returns true if the Service is currently being acted upon by
      * the system to bring it into the desired state.
@@ -268,7 +288,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * will asynchronously perform all necessary steps to bring the Service to the
      * desired serving state. This process is called reconciliation.
      * While reconciliation is in process, `observed_generation`,
-     * `latest_ready_revison`, `traffic_statuses`, and `uri` will have transient
+     * `latest_ready_revision`, `traffic_statuses`, and `uri` will have transient
      * values that might mismatch the intended state: Once reconciliation is over
      * (and this field is false), there are two possible outcomes: reconciliation
      * succeeded and the serving state matches the Service, or there was an error,
@@ -347,7 +367,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Delete request.
      *     @type \Google\Protobuf\Timestamp $expire_time
      *           Output only. For a deleted resource, the time after which it will be
-     *           permamently deleted.
+     *           permanently deleted.
      *     @type string $creator
      *           Output only. Email address of the authenticated creator.
      *     @type string $last_modifier
@@ -368,7 +388,6 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Set the launch stage to a preview stage on input to allow use of preview
      *           features in that stage. On read (or output), describes whether the resource
      *           uses preview features.
-     *           <p>
      *           For example, if ALPHA is provided as input, but only BETA and GA-level
      *           features are used, this field will be BETA on output.
      *     @type \Google\Cloud\Run\V2\BinaryAuthorization $binary_authorization
@@ -381,8 +400,21 @@ class Service extends \Google\Protobuf\Internal\Message
      *           defaults to 100% traffic to the latest `Ready` Revision.
      *     @type \Google\Cloud\Run\V2\ServiceScaling $scaling
      *           Optional. Specifies service-level scaling settings
+     *     @type bool $invoker_iam_disabled
+     *           Optional. Disables IAM permission check for run.routes.invoke for callers
+     *           of this service. This feature is available by invitation only. For more
+     *           information, visit
+     *           https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
      *     @type bool $default_uri_disabled
      *           Optional. Disables public resolution of the default URI of this service.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $urls
+     *           Output only. All URLs serving traffic for this Service.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_audiences
+     *           One or more custom audiences that you want this service to support. Specify
+     *           each custom audience as the full URL in a string. The custom audiences are
+     *           encoded in the token and used to authenticate requests. For more
+     *           information, see
+     *           https://cloud.google.com/run/docs/configuring/custom-audiences.
      *     @type int|string $observed_generation
      *           Output only. The generation of this Service currently serving traffic. See
      *           comments in `reconciling` for additional information on reconciliation
@@ -413,14 +445,10 @@ class Service extends \Google\Protobuf\Internal\Message
      *           process in Cloud Run.
      *     @type string $uri
      *           Output only. The main URI in which this Service is serving traffic.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_audiences
-     *           One or more custom audiences that you want this service to support. Specify
-     *           each custom audience as the full URL in a string. The custom audiences are
-     *           encoded in the token and used to authenticate requests. For more
-     *           information, see
-     *           https://cloud.google.com/run/docs/configuring/custom-audiences.
      *     @type bool $satisfies_pzs
      *           Output only. Reserved for future use.
+     *     @type \Google\Cloud\Run\V2\BuildConfig $build_config
+     *           Optional. Configuration for building a Cloud Run function.
      *     @type bool $reconciling
      *           Output only. Returns true if the Service is currently being acted upon by
      *           the system to bring it into the desired state.
@@ -428,7 +456,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *           will asynchronously perform all necessary steps to bring the Service to the
      *           desired serving state. This process is called reconciliation.
      *           While reconciliation is in process, `observed_generation`,
-     *           `latest_ready_revison`, `traffic_statuses`, and `uri` will have transient
+     *           `latest_ready_revision`, `traffic_statuses`, and `uri` will have transient
      *           values that might mismatch the intended state: Once reconciliation is over
      *           (and this field is false), there are two possible outcomes: reconciliation
      *           succeeded and the serving state matches the Service, or there was an error,
@@ -773,7 +801,7 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. For a deleted resource, the time after which it will be
-     * permamently deleted.
+     * permanently deleted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -795,7 +823,7 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. For a deleted resource, the time after which it will be
-     * permamently deleted.
+     * permanently deleted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -951,7 +979,6 @@ class Service extends \Google\Protobuf\Internal\Message
      * Set the launch stage to a preview stage on input to allow use of preview
      * features in that stage. On read (or output), describes whether the resource
      * uses preview features.
-     * <p>
      * For example, if ALPHA is provided as input, but only BETA and GA-level
      * features are used, this field will be BETA on output.
      *
@@ -971,7 +998,6 @@ class Service extends \Google\Protobuf\Internal\Message
      * Set the launch stage to a preview stage on input to allow use of preview
      * features in that stage. On read (or output), describes whether the resource
      * uses preview features.
-     * <p>
      * For example, if ALPHA is provided as input, but only BETA and GA-level
      * features are used, this field will be BETA on output.
      *
@@ -1126,6 +1152,38 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Disables IAM permission check for run.routes.invoke for callers
+     * of this service. This feature is available by invitation only. For more
+     * information, visit
+     * https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
+     *
+     * Generated from protobuf field <code>bool invoker_iam_disabled = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getInvokerIamDisabled()
+    {
+        return $this->invoker_iam_disabled;
+    }
+
+    /**
+     * Optional. Disables IAM permission check for run.routes.invoke for callers
+     * of this service. This feature is available by invitation only. For more
+     * information, visit
+     * https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
+     *
+     * Generated from protobuf field <code>bool invoker_iam_disabled = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setInvokerIamDisabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->invoker_iam_disabled = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. Disables public resolution of the default URI of this service.
      *
      * Generated from protobuf field <code>bool default_uri_disabled = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -1147,6 +1205,66 @@ class Service extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->default_uri_disabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. All URLs serving traffic for this Service.
+     *
+     * Generated from protobuf field <code>repeated string urls = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getUrls()
+    {
+        return $this->urls;
+    }
+
+    /**
+     * Output only. All URLs serving traffic for this Service.
+     *
+     * Generated from protobuf field <code>repeated string urls = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setUrls($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->urls = $arr;
+
+        return $this;
+    }
+
+    /**
+     * One or more custom audiences that you want this service to support. Specify
+     * each custom audience as the full URL in a string. The custom audiences are
+     * encoded in the token and used to authenticate requests. For more
+     * information, see
+     * https://cloud.google.com/run/docs/configuring/custom-audiences.
+     *
+     * Generated from protobuf field <code>repeated string custom_audiences = 37;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCustomAudiences()
+    {
+        return $this->custom_audiences;
+    }
+
+    /**
+     * One or more custom audiences that you want this service to support. Specify
+     * each custom audience as the full URL in a string. The custom audiences are
+     * encoded in the token and used to authenticate requests. For more
+     * information, see
+     * https://cloud.google.com/run/docs/configuring/custom-audiences.
+     *
+     * Generated from protobuf field <code>repeated string custom_audiences = 37;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCustomAudiences($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->custom_audiences = $arr;
 
         return $this;
     }
@@ -1376,40 +1494,6 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * One or more custom audiences that you want this service to support. Specify
-     * each custom audience as the full URL in a string. The custom audiences are
-     * encoded in the token and used to authenticate requests. For more
-     * information, see
-     * https://cloud.google.com/run/docs/configuring/custom-audiences.
-     *
-     * Generated from protobuf field <code>repeated string custom_audiences = 37;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getCustomAudiences()
-    {
-        return $this->custom_audiences;
-    }
-
-    /**
-     * One or more custom audiences that you want this service to support. Specify
-     * each custom audience as the full URL in a string. The custom audiences are
-     * encoded in the token and used to authenticate requests. For more
-     * information, see
-     * https://cloud.google.com/run/docs/configuring/custom-audiences.
-     *
-     * Generated from protobuf field <code>repeated string custom_audiences = 37;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setCustomAudiences($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->custom_audiences = $arr;
-
-        return $this;
-    }
-
-    /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>bool satisfies_pzs = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -1436,13 +1520,49 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Configuration for building a Cloud Run function.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.BuildConfig build_config = 41 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Run\V2\BuildConfig|null
+     */
+    public function getBuildConfig()
+    {
+        return $this->build_config;
+    }
+
+    public function hasBuildConfig()
+    {
+        return isset($this->build_config);
+    }
+
+    public function clearBuildConfig()
+    {
+        unset($this->build_config);
+    }
+
+    /**
+     * Optional. Configuration for building a Cloud Run function.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.BuildConfig build_config = 41 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Run\V2\BuildConfig $var
+     * @return $this
+     */
+    public function setBuildConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\BuildConfig::class);
+        $this->build_config = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. Returns true if the Service is currently being acted upon by
      * the system to bring it into the desired state.
      * When a new Service is created, or an existing one is updated, Cloud Run
      * will asynchronously perform all necessary steps to bring the Service to the
      * desired serving state. This process is called reconciliation.
      * While reconciliation is in process, `observed_generation`,
-     * `latest_ready_revison`, `traffic_statuses`, and `uri` will have transient
+     * `latest_ready_revision`, `traffic_statuses`, and `uri` will have transient
      * values that might mismatch the intended state: Once reconciliation is over
      * (and this field is false), there are two possible outcomes: reconciliation
      * succeeded and the serving state matches the Service, or there was an error,
@@ -1471,7 +1591,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * will asynchronously perform all necessary steps to bring the Service to the
      * desired serving state. This process is called reconciliation.
      * While reconciliation is in process, `observed_generation`,
-     * `latest_ready_revison`, `traffic_statuses`, and `uri` will have transient
+     * `latest_ready_revision`, `traffic_statuses`, and `uri` will have transient
      * values that might mismatch the intended state: Once reconciliation is over
      * (and this field is false), there are two possible outcomes: reconciliation
      * succeeded and the serving state matches the Service, or there was an error,

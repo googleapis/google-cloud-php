@@ -20,13 +20,13 @@ class CidrBlock extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * cidr_block must be specified in CIDR notation.
      *
      * Generated from protobuf field <code>string cidr_block = 2;</code>
      */
-    private $cidr_block = '';
+    protected $cidr_block = '';
 
     /**
      * Constructor.
@@ -99,6 +99,4 @@ class CidrBlock extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CidrBlock::class, \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig_CidrBlock::class);
 

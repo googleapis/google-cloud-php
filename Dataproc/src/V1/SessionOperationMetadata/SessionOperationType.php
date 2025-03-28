@@ -66,6 +66,4 @@ class SessionOperationType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SessionOperationType::class, \Google\Cloud\Dataproc\V1\SessionOperationMetadata_SessionOperationType::class);
 

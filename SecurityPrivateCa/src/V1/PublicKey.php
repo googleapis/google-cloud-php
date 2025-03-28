@@ -22,13 +22,13 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key = '';
+    protected $key = '';
     /**
      * Required. The format of the public key.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.PublicKey.KeyFormat format = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $format = 0;
+    protected $format = 0;
 
     /**
      * Constructor.

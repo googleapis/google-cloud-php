@@ -159,6 +159,12 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     protected $expiry_quantity = null;
     /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
+    /**
      * Output only. The database engine major version of the cluster this backup
      * was created from. Any restored cluster created from this backup will have
      * the same database version.
@@ -166,6 +172,17 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.DatabaseVersion database_version = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $database_version = 0;
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     * ```
+     * "123/environment": "production",
+     * "123/costCenter": "marketing"
+     * ```
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 25 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tags;
 
     /**
      * Constructor.
@@ -236,10 +253,19 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Output only. The QuantityBasedExpiry of the backup, specified by the
      *           backup's retention policy. Once the expiry quantity is over retention, the
      *           backup is eligible to be garbage collected.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
      *     @type int $database_version
      *           Output only. The database engine major version of the cluster this backup
      *           was created from. Any restored cluster created from this backup will have
      *           the same database version.
+     *     @type array|\Google\Protobuf\Internal\MapField $tags
+     *           Optional. Input only. Immutable. Tag keys/values directly bound to this
+     *           resource. For example:
+     *           ```
+     *           "123/environment": "production",
+     *           "123/costCenter": "marketing"
+     *           ```
      * }
      */
     public function __construct($data = NULL) {
@@ -884,6 +910,32 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. The database engine major version of the cluster this backup
      * was created from. Any restored cluster created from this backup will have
      * the same database version.
@@ -909,6 +961,42 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\AlloyDb\V1\DatabaseVersion::class);
         $this->database_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     * ```
+     * "123/environment": "production",
+     * "123/costCenter": "marketing"
+     * ```
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 25 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     * ```
+     * "123/environment": "production",
+     * "123/costCenter": "marketing"
+     * ```
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 25 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setTags($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->tags = $arr;
 
         return $this;
     }

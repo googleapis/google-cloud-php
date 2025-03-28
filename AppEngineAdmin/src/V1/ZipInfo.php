@@ -22,7 +22,7 @@ class ZipInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_url = 3;</code>
      */
-    private $source_url = '';
+    protected $source_url = '';
     /**
      * An estimate of the number of files in a zip for a zip deployment.
      * If set, must be greater than or equal to the actual number of files.
@@ -30,7 +30,7 @@ class ZipInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 files_count = 4;</code>
      */
-    private $files_count = 0;
+    protected $files_count = 0;
 
     /**
      * Constructor.

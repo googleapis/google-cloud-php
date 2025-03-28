@@ -23,14 +23,14 @@ class DiscoveryFileStoreConditions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp created_after = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $created_after = null;
+    protected $created_after = null;
     /**
      * Optional. Minimum age a file store must have. If set, the value must be 1
      * hour or greater.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration min_age = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $min_age = null;
+    protected $min_age = null;
     protected $conditions;
 
     /**

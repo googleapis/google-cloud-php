@@ -24,7 +24,7 @@ class CsmSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.StringValue rctoken_aud = 1;</code>
      */
-    private $rctoken_aud = null;
+    protected $rctoken_aud = null;
 
     /**
      * Constructor.
@@ -73,7 +73,7 @@ class CsmSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.StringValue rctoken_aud = 1;</code>
      * @return string|null
      */
-    public function getRctokenAudValue()
+    public function getRctokenAudUnwrapped()
     {
         return $this->readWrapperValue("rctoken_aud");
     }
@@ -104,7 +104,7 @@ class CsmSettings extends \Google\Protobuf\Internal\Message
      * @param string|null $var
      * @return $this
      */
-    public function setRctokenAudValue($var)
+    public function setRctokenAudUnwrapped($var)
     {
         $this->writeWrapperValue("rctoken_aud", $var);
         return $this;}

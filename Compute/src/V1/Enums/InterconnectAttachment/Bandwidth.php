@@ -32,6 +32,8 @@ class Bandwidth
 {
     const UNDEFINED_BANDWIDTH = 'UNDEFINED_BANDWIDTH';
 
+    const BPS_100G = 'BPS_100G';
+
     const BPS_100M = 'BPS_100M';
 
     const BPS_10G = 'BPS_10G';

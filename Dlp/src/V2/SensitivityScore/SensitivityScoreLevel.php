@@ -80,6 +80,4 @@ class SensitivityScoreLevel
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SensitivityScoreLevel::class, \Google\Cloud\Dlp\V2\SensitivityScore_SensitivityScoreLevel::class);
 

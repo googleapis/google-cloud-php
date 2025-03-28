@@ -27,6 +27,13 @@ class RetrievedContext extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string title = 2;</code>
      */
     protected $title = null;
+    /**
+     * Text of the attribution.
+     *
+     * Generated from protobuf field <code>optional string text = 3;</code>
+     */
+    protected $text = null;
+    protected $context_details;
 
     /**
      * Constructor.
@@ -34,15 +41,53 @@ class RetrievedContext extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\AIPlatform\V1\RagChunk $rag_chunk
+     *           Additional context for the RAG retrieval result. This is only populated
+     *           when using the RAG retrieval tool.
      *     @type string $uri
      *           URI reference of the attribution.
      *     @type string $title
      *           Title of the attribution.
+     *     @type string $text
+     *           Text of the attribution.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Aiplatform\V1\Content::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Additional context for the RAG retrieval result. This is only populated
+     * when using the RAG retrieval tool.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RagChunk rag_chunk = 4;</code>
+     * @return \Google\Cloud\AIPlatform\V1\RagChunk|null
+     */
+    public function getRagChunk()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasRagChunk()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Additional context for the RAG retrieval result. This is only populated
+     * when using the RAG retrieval tool.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RagChunk rag_chunk = 4;</code>
+     * @param \Google\Cloud\AIPlatform\V1\RagChunk $var
+     * @return $this
+     */
+    public function setRagChunk($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\RagChunk::class);
+        $this->writeOneof(4, $var);
+
+        return $this;
     }
 
     /**
@@ -115,6 +160,50 @@ class RetrievedContext extends \Google\Protobuf\Internal\Message
         $this->title = $var;
 
         return $this;
+    }
+
+    /**
+     * Text of the attribution.
+     *
+     * Generated from protobuf field <code>optional string text = 3;</code>
+     * @return string
+     */
+    public function getText()
+    {
+        return isset($this->text) ? $this->text : '';
+    }
+
+    public function hasText()
+    {
+        return isset($this->text);
+    }
+
+    public function clearText()
+    {
+        unset($this->text);
+    }
+
+    /**
+     * Text of the attribution.
+     *
+     * Generated from protobuf field <code>optional string text = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setText($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->text = $var;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContextDetails()
+    {
+        return $this->whichOneof("context_details");
     }
 
 }

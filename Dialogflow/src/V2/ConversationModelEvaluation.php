@@ -22,28 +22,28 @@ class ConversationModelEvaluation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The display name of the model evaluation. At most 64 bytes long.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. The configuration of the evaluation task.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EvaluationConfig evaluation_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $evaluation_config = null;
+    protected $evaluation_config = null;
     /**
      * Output only. Creation time of this model.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Human eval template in csv format.
-     * It tooks real-world conversations provided through input dataset, generates
+     * It takes real-world conversations provided through input dataset, generates
      * example suggestions for customer to verify quality of the model.
      * For Smart Reply, the generated csv file contains columns of
      * Context, (Suggestions,Q1,Q2)*3, Actual reply.
@@ -60,7 +60,7 @@ class ConversationModelEvaluation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string raw_human_eval_template_csv = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $raw_human_eval_template_csv = '';
+    protected $raw_human_eval_template_csv = '';
     protected $metrics;
 
     /**
@@ -83,7 +83,7 @@ class ConversationModelEvaluation extends \Google\Protobuf\Internal\Message
      *           Output only. Only available when model is for smart reply.
      *     @type string $raw_human_eval_template_csv
      *           Output only. Human eval template in csv format.
-     *           It tooks real-world conversations provided through input dataset, generates
+     *           It takes real-world conversations provided through input dataset, generates
      *           example suggestions for customer to verify quality of the model.
      *           For Smart Reply, the generated csv file contains columns of
      *           Context, (Suggestions,Q1,Q2)*3, Actual reply.
@@ -265,7 +265,7 @@ class ConversationModelEvaluation extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Human eval template in csv format.
-     * It tooks real-world conversations provided through input dataset, generates
+     * It takes real-world conversations provided through input dataset, generates
      * example suggestions for customer to verify quality of the model.
      * For Smart Reply, the generated csv file contains columns of
      * Context, (Suggestions,Q1,Q2)*3, Actual reply.
@@ -290,7 +290,7 @@ class ConversationModelEvaluation extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Human eval template in csv format.
-     * It tooks real-world conversations provided through input dataset, generates
+     * It takes real-world conversations provided through input dataset, generates
      * example suggestions for customer to verify quality of the model.
      * For Smart Reply, the generated csv file contains columns of
      * Context, (Suggestions,Q1,Q2)*3, Actual reply.

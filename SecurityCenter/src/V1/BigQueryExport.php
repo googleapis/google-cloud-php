@@ -27,13 +27,13 @@ class BigQueryExport extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The description of the export (max of 1024 characters).
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Expression that defines the filter to apply across create/update events
      * of findings. The expression is a list of zero or more restrictions combined
@@ -53,7 +53,7 @@ class BigQueryExport extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * The dataset to write findings' updates to. Its format is
      * "projects/[project_id]/datasets/[bigquery_dataset_id]".
@@ -62,7 +62,7 @@ class BigQueryExport extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataset = 4;</code>
      */
-    private $dataset = '';
+    protected $dataset = '';
     /**
      * Output only. The time at which the BigQuery export was created.
      * This field is set by the server and will be ignored if provided on export
@@ -70,7 +70,7 @@ class BigQueryExport extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The most recent time at which the BigQuery export was updated.
      * This field is set by the server and will be ignored if provided on export
@@ -78,7 +78,7 @@ class BigQueryExport extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. Email address of the user who last edited the BigQuery export.
      * This field is set by the server and will be ignored if provided on export
@@ -86,14 +86,14 @@ class BigQueryExport extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string most_recent_editor = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $most_recent_editor = '';
+    protected $most_recent_editor = '';
     /**
      * Output only. The service account that needs permission to create table and
      * upload data to the BigQuery dataset.
      *
      * Generated from protobuf field <code>string principal = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $principal = '';
+    protected $principal = '';
 
     /**
      * Constructor.

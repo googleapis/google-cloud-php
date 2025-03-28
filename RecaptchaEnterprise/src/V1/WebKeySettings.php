@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class WebKeySettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. If set to true, it means allowed_domains will not be enforced.
+     * Optional. If set to true, it means allowed_domains are not enforced.
      *
      * Generated from protobuf field <code>bool allow_all_domains = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $allow_all_domains = false;
+    protected $allow_all_domains = false;
     /**
      * Optional. Domains or subdomains of websites allowed to use the key. All
      * subdomains of an allowed domain are automatically allowed. A valid domain
@@ -36,21 +36,21 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_amp_traffic = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $allow_amp_traffic = false;
+    protected $allow_amp_traffic = false;
     /**
      * Required. Describes how this key is integrated with the website.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WebKeySettings.IntegrationType integration_type = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $integration_type = 0;
+    protected $integration_type = 0;
     /**
      * Optional. Settings for the frequency and difficulty at which this key
      * triggers captcha challenges. This should only be specified for
-     * IntegrationTypes CHECKBOX and INVISIBLE.
+     * IntegrationTypes CHECKBOX and INVISIBLE and SCORE_AND_CHALLENGE.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WebKeySettings.ChallengeSecurityPreference challenge_security_preference = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $challenge_security_preference = 0;
+    protected $challenge_security_preference = 0;
 
     /**
      * Constructor.
@@ -59,7 +59,7 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $allow_all_domains
-     *           Optional. If set to true, it means allowed_domains will not be enforced.
+     *           Optional. If set to true, it means allowed_domains are not enforced.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_domains
      *           Optional. Domains or subdomains of websites allowed to use the key. All
      *           subdomains of an allowed domain are automatically allowed. A valid domain
@@ -73,7 +73,7 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
      *     @type int $challenge_security_preference
      *           Optional. Settings for the frequency and difficulty at which this key
      *           triggers captcha challenges. This should only be specified for
-     *           IntegrationTypes CHECKBOX and INVISIBLE.
+     *           IntegrationTypes CHECKBOX and INVISIBLE and SCORE_AND_CHALLENGE.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,7 +82,7 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, it means allowed_domains will not be enforced.
+     * Optional. If set to true, it means allowed_domains are not enforced.
      *
      * Generated from protobuf field <code>bool allow_all_domains = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -93,7 +93,7 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true, it means allowed_domains will not be enforced.
+     * Optional. If set to true, it means allowed_domains are not enforced.
      *
      * Generated from protobuf field <code>bool allow_all_domains = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -196,7 +196,7 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Settings for the frequency and difficulty at which this key
      * triggers captcha challenges. This should only be specified for
-     * IntegrationTypes CHECKBOX and INVISIBLE.
+     * IntegrationTypes CHECKBOX and INVISIBLE and SCORE_AND_CHALLENGE.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WebKeySettings.ChallengeSecurityPreference challenge_security_preference = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -209,7 +209,7 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Settings for the frequency and difficulty at which this key
      * triggers captcha challenges. This should only be specified for
-     * IntegrationTypes CHECKBOX and INVISIBLE.
+     * IntegrationTypes CHECKBOX and INVISIBLE and SCORE_AND_CHALLENGE.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WebKeySettings.ChallengeSecurityPreference challenge_security_preference = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

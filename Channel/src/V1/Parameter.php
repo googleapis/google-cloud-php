@@ -20,13 +20,13 @@ class Parameter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Value of the parameter.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Value value = 2;</code>
      */
-    private $value = null;
+    protected $value = null;
     /**
      * Output only. Specifies whether this parameter is allowed to be changed. For
      * example, for a Google Workspace Business Starter entitlement in commitment
@@ -34,7 +34,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool editable = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $editable = false;
+    protected $editable = false;
 
     /**
      * Constructor.

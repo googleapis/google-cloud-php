@@ -21,13 +21,13 @@ class RepricingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Date effective_invoice_month = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $effective_invoice_month = null;
+    protected $effective_invoice_month = null;
     /**
      * Required. Information about the adjustment.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.RepricingAdjustment adjustment = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $adjustment = null;
+    protected $adjustment = null;
     /**
      * Required. The [RebillingBasis][google.cloud.channel.v1.RebillingBasis] to
      * use for this bill. Specifies the relative cost based on repricing costs you
@@ -35,7 +35,7 @@ class RepricingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.RebillingBasis rebilling_basis = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $rebilling_basis = 0;
+    protected $rebilling_basis = 0;
     /**
      * The conditional overrides to apply for this configuration. If you list
      * multiple overrides, only the first valid override is used.  If you don't

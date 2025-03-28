@@ -95,10 +95,46 @@ return [
                     ],
                 ],
             ],
+            'CreateDataset' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{parent=projects/*/locations/*}/datasets',
+                'body' => 'dataset',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateGlossary' => [
                 'method' => 'post',
                 'uriTemplate' => '/v3/{parent=projects/*/locations/*}/glossaries',
                 'body' => 'glossary',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateGlossaryEntry' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{parent=projects/*/locations/*/glossaries/*}/glossaryEntries',
+                'body' => 'glossary_entry',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateModel' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{parent=projects/*/locations/*}/models',
+                'body' => 'model',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -129,9 +165,42 @@ return [
                     ],
                 ],
             ],
+            'DeleteDataset' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v3/{name=projects/*/locations/*/datasets/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteGlossary' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v3/{name=projects/*/locations/*/glossaries/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteGlossaryEntry' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v3/{name=projects/*/locations/*/glossaries/*/glossaryEntries/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteModel' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v3/{name=projects/*/locations/*/models/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -159,6 +228,18 @@ return [
                     ],
                 ],
             ],
+            'ExportData' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{dataset=projects/*/locations/*/datasets/*}:exportData',
+                'body' => '*',
+                'placeholders' => [
+                    'dataset' => [
+                        'getters' => [
+                            'getDataset',
+                        ],
+                    ],
+                ],
+            ],
             'GetAdaptiveMtDataset' => [
                 'method' => 'get',
                 'uriTemplate' => '/v3/{name=projects/*/locations/*/adaptiveMtDatasets/*}',
@@ -181,9 +262,42 @@ return [
                     ],
                 ],
             ],
+            'GetDataset' => [
+                'method' => 'get',
+                'uriTemplate' => '/v3/{name=projects/*/locations/*/datasets/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetGlossary' => [
                 'method' => 'get',
                 'uriTemplate' => '/v3/{name=projects/*/locations/*/glossaries/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetGlossaryEntry' => [
+                'method' => 'get',
+                'uriTemplate' => '/v3/{name=projects/*/locations/*/glossaries/*/glossaryEntries/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetModel' => [
+                'method' => 'get',
+                'uriTemplate' => '/v3/{name=projects/*/locations/*/models/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -217,6 +331,18 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ImportData' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{dataset=projects/*/locations/*/datasets/*}:importData',
+                'body' => '*',
+                'placeholders' => [
+                    'dataset' => [
+                        'getters' => [
+                            'getDataset',
                         ],
                     ],
                 ],
@@ -260,9 +386,72 @@ return [
                     ],
                 ],
             ],
+            'ListDatasets' => [
+                'method' => 'get',
+                'uriTemplate' => '/v3/{parent=projects/*/locations/*}/datasets',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListExamples' => [
+                'method' => 'get',
+                'uriTemplate' => '/v3/{parent=projects/*/locations/*/datasets/*}/examples',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListGlossaries' => [
                 'method' => 'get',
                 'uriTemplate' => '/v3/{parent=projects/*/locations/*}/glossaries',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListGlossaryEntries' => [
+                'method' => 'get',
+                'uriTemplate' => '/v3/{parent=projects/*/locations/*/glossaries/*}/glossaryEntries',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListModels' => [
+                'method' => 'get',
+                'uriTemplate' => '/v3/{parent=projects/*/locations/*}/models',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RomanizeText' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{parent=projects/*/locations/*}:romanizeText',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v3/{parent=projects/*}:romanizeText',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -298,6 +487,32 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateGlossary' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v3/{glossary.name=projects/*/locations/*/glossaries/*}',
+                'body' => 'glossary',
+                'placeholders' => [
+                    'glossary.name' => [
+                        'getters' => [
+                            'getGlossary',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateGlossaryEntry' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v3/{glossary_entry.name=projects/*/locations/*/glossaries/*/glossaryEntries/*}',
+                'body' => 'glossary_entry',
+                'placeholders' => [
+                    'glossary_entry.name' => [
+                        'getters' => [
+                            'getGlossaryEntry',
+                            'getName',
                         ],
                     ],
                 ],

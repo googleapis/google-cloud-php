@@ -315,6 +315,13 @@ class SqlExternalSyncSettingErrorType
      * Generated from protobuf enum <code>EXTENSIONS_NOT_ENABLED_IN_REPLICA = 48;</code>
      */
     const EXTENSIONS_NOT_ENABLED_IN_REPLICA = 48;
+    /**
+     * The source database has generated columns that can't be migrated. Please
+     * change them to regular columns before migration.
+     *
+     * Generated from protobuf enum <code>UNSUPPORTED_COLUMNS = 49;</code>
+     */
+    const UNSUPPORTED_COLUMNS = 49;
 
     private static $valueToName = [
         self::SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED => 'SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED',
@@ -366,6 +373,7 @@ class SqlExternalSyncSettingErrorType
         self::EXTENSIONS_NOT_MIGRATED => 'EXTENSIONS_NOT_MIGRATED',
         self::PG_CRON_FLAG_ENABLED_IN_REPLICA => 'PG_CRON_FLAG_ENABLED_IN_REPLICA',
         self::EXTENSIONS_NOT_ENABLED_IN_REPLICA => 'EXTENSIONS_NOT_ENABLED_IN_REPLICA',
+        self::UNSUPPORTED_COLUMNS => 'UNSUPPORTED_COLUMNS',
     ];
 
     public static function name($value)

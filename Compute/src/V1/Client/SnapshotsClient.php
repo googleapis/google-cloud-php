@@ -46,6 +46,7 @@ use Google\Cloud\Compute\V1\Snapshot;
 use Google\Cloud\Compute\V1\TestIamPermissionsSnapshotRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Snapshots API.
@@ -53,14 +54,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicySnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListSnapshotsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicySnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Snapshot> getAsync(GetSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicySnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListSnapshotsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicySnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsSnapshotRequest $request, array $optionalArgs = [])
  */
 final class SnapshotsClient
 {
@@ -194,6 +195,12 @@ final class SnapshotsClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -224,6 +231,9 @@ final class SnapshotsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -251,6 +261,8 @@ final class SnapshotsClient
      *
      * The async variant is {@see SnapshotsClient::deleteAsync()} .
      *
+     * @example samples/V1/SnapshotsClient/delete.php
+     *
      * @param DeleteSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -274,6 +286,8 @@ final class SnapshotsClient
      * Returns the specified Snapshot resource.
      *
      * The async variant is {@see SnapshotsClient::getAsync()} .
+     *
+     * @example samples/V1/SnapshotsClient/get.php
      *
      * @param GetSnapshotRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -299,6 +313,8 @@ final class SnapshotsClient
      *
      * The async variant is {@see SnapshotsClient::getIamPolicyAsync()} .
      *
+     * @example samples/V1/SnapshotsClient/get_iam_policy.php
+     *
      * @param GetIamPolicySnapshotRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -322,6 +338,8 @@ final class SnapshotsClient
      * Creates a snapshot in the specified project using the data included in the request. For regular snapshot creation, consider using this method instead of disks.createSnapshot, as this method supports more features, such as creating snapshots in a project different from the source disk project.
      *
      * The async variant is {@see SnapshotsClient::insertAsync()} .
+     *
+     * @example samples/V1/SnapshotsClient/insert.php
      *
      * @param InsertSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -347,6 +365,8 @@ final class SnapshotsClient
      *
      * The async variant is {@see SnapshotsClient::listAsync()} .
      *
+     * @example samples/V1/SnapshotsClient/list.php
+     *
      * @param ListSnapshotsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -370,6 +390,8 @@ final class SnapshotsClient
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
      * The async variant is {@see SnapshotsClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/SnapshotsClient/set_iam_policy.php
      *
      * @param SetIamPolicySnapshotRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -395,6 +417,8 @@ final class SnapshotsClient
      *
      * The async variant is {@see SnapshotsClient::setLabelsAsync()} .
      *
+     * @example samples/V1/SnapshotsClient/set_labels.php
+     *
      * @param SetLabelsSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -418,6 +442,8 @@ final class SnapshotsClient
      * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is {@see SnapshotsClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/SnapshotsClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {

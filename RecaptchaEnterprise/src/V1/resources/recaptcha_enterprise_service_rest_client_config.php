@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,18 @@
 return [
     'interfaces' => [
         'google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService' => [
+            'AddIpOverride' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/keys/*}:addIpOverride',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'AnnotateAssessment' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/assessments/*}:annotate',
@@ -137,6 +149,17 @@ return [
                     ],
                 ],
             ],
+            'ListIpOverrides' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/keys/*}:listIpOverrides',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListKeys' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*}/keys',
@@ -173,6 +196,18 @@ return [
             'MigrateKey' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/keys/*}:migrate',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'RemoveIpOverride' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/keys/*}:removeIpOverride',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [

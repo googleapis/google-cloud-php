@@ -21,14 +21,14 @@ class ConstraintEntity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Type of constraint, for example unique, primary key, foreign key (currently
      * only primary key is supported).
      *
      * Generated from protobuf field <code>string type = 2;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Table columns used as part of the Constraint, for example primary key
      * constraint should list the columns which constitutes the key.
@@ -41,7 +41,7 @@ class ConstraintEntity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct custom_features = 4;</code>
      */
-    private $custom_features = null;
+    protected $custom_features = null;
     /**
      * Reference columns which may be associated with the constraint. For example,
      * if the constraint is a FOREIGN_KEY, this represents the list of full names
@@ -57,7 +57,7 @@ class ConstraintEntity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string reference_table = 6;</code>
      */
-    private $reference_table = '';
+    protected $reference_table = '';
     /**
      * Table which is associated with the constraint. In case the constraint
      * is defined on a table, this field is left empty as this information is
@@ -66,7 +66,7 @@ class ConstraintEntity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string table_name = 7;</code>
      */
-    private $table_name = '';
+    protected $table_name = '';
 
     /**
      * Constructor.

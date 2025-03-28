@@ -21,7 +21,7 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes signature = 1;</code>
      */
-    private $signature = '';
+    protected $signature = '';
     /**
      * Integrity verification field. A CRC32C checksum of the returned
      * [AsymmetricSignResponse.signature][google.cloud.kms.v1.AsymmetricSignResponse.signature].
@@ -39,7 +39,7 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value signature_crc32c = 2;</code>
      */
-    private $signature_crc32c = null;
+    protected $signature_crc32c = null;
     /**
      * Integrity verification field. A flag indicating whether
      * [AsymmetricSignRequest.digest_crc32c][google.cloud.kms.v1.AsymmetricSignRequest.digest_crc32c]
@@ -58,7 +58,7 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool verified_digest_crc32c = 3;</code>
      */
-    private $verified_digest_crc32c = false;
+    protected $verified_digest_crc32c = false;
     /**
      * The resource name of the
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing.
@@ -66,7 +66,7 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 4;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Integrity verification field. A flag indicating whether
      * [AsymmetricSignRequest.data_crc32c][google.cloud.kms.v1.AsymmetricSignRequest.data_crc32c]
@@ -85,14 +85,14 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool verified_data_crc32c = 5;</code>
      */
-    private $verified_data_crc32c = false;
+    protected $verified_data_crc32c = false;
     /**
      * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 6;</code>
      */
-    private $protection_level = 0;
+    protected $protection_level = 0;
 
     /**
      * Constructor.
@@ -239,7 +239,7 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value signature_crc32c = 2;</code>
      * @return int|string|null
      */
-    public function getSignatureCrc32CValue()
+    public function getSignatureCrc32CUnwrapped()
     {
         return $this->readWrapperValue("signature_crc32c");
     }
@@ -292,7 +292,7 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setSignatureCrc32CValue($var)
+    public function setSignatureCrc32CUnwrapped($var)
     {
         $this->writeWrapperValue("signature_crc32c", $var);
         return $this;}

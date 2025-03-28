@@ -21,25 +21,25 @@ class GcpMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 1;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * The project ID that the resource belongs to.
      *
      * Generated from protobuf field <code>string project_display_name = 2;</code>
      */
-    private $project_display_name = '';
+    protected $project_display_name = '';
     /**
      * The full resource name of resource's parent.
      *
      * Generated from protobuf field <code>string parent = 3;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The human readable name of resource's parent.
      *
      * Generated from protobuf field <code>string parent_display_name = 4;</code>
      */
-    private $parent_display_name = '';
+    protected $parent_display_name = '';
     /**
      * Output only. Contains a Folder message for each folder in the assets
      * ancestry. The first folder is the deepest nested folder, and the last
@@ -53,7 +53,7 @@ class GcpMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string organization = 6;</code>
      */
-    private $organization = '';
+    protected $organization = '';
 
     /**
      * Constructor.

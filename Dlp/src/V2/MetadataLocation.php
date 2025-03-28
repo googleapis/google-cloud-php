@@ -20,7 +20,7 @@ class MetadataLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.MetadataType type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     protected $label;
 
     /**

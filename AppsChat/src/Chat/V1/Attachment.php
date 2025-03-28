@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class Attachment extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource name of the attachment, in the form
+     * Optional. Resource name of the attachment, in the form
      * `spaces/{space}/messages/{message}/attachments/{attachment}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $name = '';
     /**
@@ -65,15 +65,16 @@ class Attachment extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Resource name of the attachment, in the form
+     *           Optional. Resource name of the attachment, in the form
      *           `spaces/{space}/messages/{message}/attachments/{attachment}`.
      *     @type string $content_name
      *           Output only. The original file name for the content, not the full path.
      *     @type string $content_type
      *           Output only. The content type (MIME type) of the file.
      *     @type \Google\Apps\Chat\V1\AttachmentDataRef $attachment_data_ref
-     *           A reference to the attachment data. This field is used with the media API
-     *           to download the attachment data.
+     *           Optional. A reference to the attachment data. This field is used to
+     *           create or update messages with attachments, or with the media API to
+     *           download the attachment data.
      *     @type \Google\Apps\Chat\V1\DriveDataRef $drive_data_ref
      *           Output only. A reference to the Google Drive attachment. This field is
      *           used with the Google Drive API.
@@ -95,10 +96,10 @@ class Attachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the attachment, in the form
+     * Optional. Resource name of the attachment, in the form
      * `spaces/{space}/messages/{message}/attachments/{attachment}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getName()
@@ -107,10 +108,10 @@ class Attachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the attachment, in the form
+     * Optional. Resource name of the attachment, in the form
      * `spaces/{space}/messages/{message}/attachments/{attachment}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -175,10 +176,11 @@ class Attachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A reference to the attachment data. This field is used with the media API
-     * to download the attachment data.
+     * Optional. A reference to the attachment data. This field is used to
+     * create or update messages with attachments, or with the media API to
+     * download the attachment data.
      *
-     * Generated from protobuf field <code>.google.chat.v1.AttachmentDataRef attachment_data_ref = 4;</code>
+     * Generated from protobuf field <code>.google.chat.v1.AttachmentDataRef attachment_data_ref = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Apps\Chat\V1\AttachmentDataRef|null
      */
     public function getAttachmentDataRef()
@@ -192,10 +194,11 @@ class Attachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A reference to the attachment data. This field is used with the media API
-     * to download the attachment data.
+     * Optional. A reference to the attachment data. This field is used to
+     * create or update messages with attachments, or with the media API to
+     * download the attachment data.
      *
-     * Generated from protobuf field <code>.google.chat.v1.AttachmentDataRef attachment_data_ref = 4;</code>
+     * Generated from protobuf field <code>.google.chat.v1.AttachmentDataRef attachment_data_ref = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Apps\Chat\V1\AttachmentDataRef $var
      * @return $this
      */

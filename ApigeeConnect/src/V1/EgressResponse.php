@@ -20,46 +20,46 @@ class EgressResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * HttpResponse.
      *
      * Generated from protobuf field <code>.google.cloud.apigeeconnect.v1.HttpResponse http_response = 2;</code>
      */
-    private $http_response = null;
+    protected $http_response = null;
     /**
      * Errors from application when handling the http request.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 3;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * GCP Project.
      * Format: `projects/{project_number}`.
      *
      * Generated from protobuf field <code>string project = 4;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Unique identifier for clients to trace their request/response. Matches the
      * EgressRequest's trace id
      *
      * Generated from protobuf field <code>string trace_id = 5;</code>
      */
-    private $trace_id = '';
+    protected $trace_id = '';
     /**
      * Tether Endpoint.
      *
      * Generated from protobuf field <code>.google.cloud.apigeeconnect.v1.TetherEndpoint endpoint = 6;</code>
      */
-    private $endpoint = 0;
+    protected $endpoint = 0;
     /**
      * Name is the full resource path of endpoint.
      * Format: `projects/{project_number or project_id}/endpoints/{endpoint}`
      *
      * Generated from protobuf field <code>string name = 7;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * Constructor.

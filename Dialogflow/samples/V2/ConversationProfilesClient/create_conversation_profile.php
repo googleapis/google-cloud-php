@@ -31,7 +31,9 @@ use Google\Cloud\Dialogflow\V2\CreateConversationProfileRequest;
 /**
  * Creates a conversation profile in the specified project.
  *
- * [ConversationProfile.CreateTime][] and [ConversationProfile.UpdateTime][]
+ * [ConversationProfile.create_time][google.cloud.dialogflow.v2.ConversationProfile.create_time]
+ * and
+ * [ConversationProfile.update_time][google.cloud.dialogflow.v2.ConversationProfile.update_time]
  * aren't populated in the response. You can retrieve them via
  * [GetConversationProfile][google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]
  * API.

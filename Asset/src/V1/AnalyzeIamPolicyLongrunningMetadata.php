@@ -21,7 +21,7 @@ class AnalyzeIamPolicyLongrunningMetadata extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
 
     /**
      * Constructor.

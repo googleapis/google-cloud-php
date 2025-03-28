@@ -22,7 +22,7 @@ class UpdatePolicyTagRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.PolicyTag policy_tag = 1;</code>
      */
-    private $policy_tag = null;
+    protected $policy_tag = null;
     /**
      * Specifies the fields to update.
      * You can update only display name, description, and parent policy tag.
@@ -32,7 +32,7 @@ class UpdatePolicyTagRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\DataCatalog\V1\PolicyTag $policyTag The policy tag to update. You can update only its description, display

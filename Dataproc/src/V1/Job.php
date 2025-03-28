@@ -23,22 +23,22 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.JobReference reference = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $reference = null;
+    protected $reference = null;
     /**
      * Required. Job information, including how, when, and where to
      * run the job.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.JobPlacement placement = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $placement = null;
+    protected $placement = null;
     /**
      * Output only. The job status. Additional application-specific
-     * status information may be contained in the <code>type_job</code>
+     * status information might be contained in the <code>type_job</code>
      * and <code>yarn_applications</code> fields.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.JobStatus status = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * Output only. The previous job status.
      *
@@ -48,7 +48,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The collection of YARN applications spun up by this job.
      * **Beta** Feature: This report is available for testing purposes only. It
-     * may be changed before final release.
+     * might be changed before final release.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.YarnApplication yarn_applications = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -59,20 +59,20 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string driver_output_resource_uri = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $driver_output_resource_uri = '';
+    protected $driver_output_resource_uri = '';
     /**
      * Output only. If present, the location of miscellaneous control files
-     * which may be used as part of job setup and handling. If not present,
-     * control files may be placed in the same location as `driver_output_uri`.
+     * which can be used as part of job setup and handling. If not present,
+     * control files might be placed in the same location as `driver_output_uri`.
      *
      * Generated from protobuf field <code>string driver_control_files_uri = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $driver_control_files_uri = '';
+    protected $driver_control_files_uri = '';
     /**
      * Optional. The labels to associate with this job.
      * Label **keys** must contain 1 to 63 characters, and must conform to
      * [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
-     * Label **values** may be empty, but, if present, must contain 1 to 63
+     * Label **values** can be empty, but, if present, must contain 1 to 63
      * characters, and must conform to [RFC
      * 1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
      * associated with a job.
@@ -85,15 +85,15 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.JobScheduling scheduling = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $scheduling = null;
+    protected $scheduling = null;
     /**
      * Output only. A UUID that uniquely identifies a job within the project
      * over time. This is in contrast to a user-settable reference.job_id that
-     * may be reused over time.
+     * might be reused over time.
      *
      * Generated from protobuf field <code>string job_uuid = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $job_uuid = '';
+    protected $job_uuid = '';
     /**
      * Output only. Indicates whether the job is completed. If the value is
      * `false`, the job is still in progress. If `true`, the job is completed, and
@@ -102,13 +102,13 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool done = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $done = false;
+    protected $done = false;
     /**
      * Optional. Driver scheduling configuration.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.DriverSchedulingConfig driver_scheduling_config = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $driver_scheduling_config = null;
+    protected $driver_scheduling_config = null;
     protected $type_job;
 
     /**
@@ -143,28 +143,30 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Optional. Job is a Presto job.
      *     @type \Google\Cloud\Dataproc\V1\TrinoJob $trino_job
      *           Optional. Job is a Trino job.
+     *     @type \Google\Cloud\Dataproc\V1\FlinkJob $flink_job
+     *           Optional. Job is a Flink job.
      *     @type \Google\Cloud\Dataproc\V1\JobStatus $status
      *           Output only. The job status. Additional application-specific
-     *           status information may be contained in the <code>type_job</code>
+     *           status information might be contained in the <code>type_job</code>
      *           and <code>yarn_applications</code> fields.
      *     @type array<\Google\Cloud\Dataproc\V1\JobStatus>|\Google\Protobuf\Internal\RepeatedField $status_history
      *           Output only. The previous job status.
      *     @type array<\Google\Cloud\Dataproc\V1\YarnApplication>|\Google\Protobuf\Internal\RepeatedField $yarn_applications
      *           Output only. The collection of YARN applications spun up by this job.
      *           **Beta** Feature: This report is available for testing purposes only. It
-     *           may be changed before final release.
+     *           might be changed before final release.
      *     @type string $driver_output_resource_uri
      *           Output only. A URI pointing to the location of the stdout of the job's
      *           driver program.
      *     @type string $driver_control_files_uri
      *           Output only. If present, the location of miscellaneous control files
-     *           which may be used as part of job setup and handling. If not present,
-     *           control files may be placed in the same location as `driver_output_uri`.
+     *           which can be used as part of job setup and handling. If not present,
+     *           control files might be placed in the same location as `driver_output_uri`.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The labels to associate with this job.
      *           Label **keys** must contain 1 to 63 characters, and must conform to
      *           [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
-     *           Label **values** may be empty, but, if present, must contain 1 to 63
+     *           Label **values** can be empty, but, if present, must contain 1 to 63
      *           characters, and must conform to [RFC
      *           1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
      *           associated with a job.
@@ -173,7 +175,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *     @type string $job_uuid
      *           Output only. A UUID that uniquely identifies a job within the project
      *           over time. This is in contrast to a user-settable reference.job_id that
-     *           may be reused over time.
+     *           might be reused over time.
      *     @type bool $done
      *           Output only. Indicates whether the job is completed. If the value is
      *           `false`, the job is still in progress. If `true`, the job is completed, and
@@ -548,8 +550,39 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Job is a Flink job.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.FlinkJob flink_job = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\FlinkJob|null
+     */
+    public function getFlinkJob()
+    {
+        return $this->readOneof(29);
+    }
+
+    public function hasFlinkJob()
+    {
+        return $this->hasOneof(29);
+    }
+
+    /**
+     * Optional. Job is a Flink job.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.FlinkJob flink_job = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\FlinkJob $var
+     * @return $this
+     */
+    public function setFlinkJob($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\FlinkJob::class);
+        $this->writeOneof(29, $var);
+
+        return $this;
+    }
+
+    /**
      * Output only. The job status. Additional application-specific
-     * status information may be contained in the <code>type_job</code>
+     * status information might be contained in the <code>type_job</code>
      * and <code>yarn_applications</code> fields.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.JobStatus status = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -572,7 +605,7 @@ class Job extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The job status. Additional application-specific
-     * status information may be contained in the <code>type_job</code>
+     * status information might be contained in the <code>type_job</code>
      * and <code>yarn_applications</code> fields.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.JobStatus status = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -616,7 +649,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The collection of YARN applications spun up by this job.
      * **Beta** Feature: This report is available for testing purposes only. It
-     * may be changed before final release.
+     * might be changed before final release.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.YarnApplication yarn_applications = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -629,7 +662,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The collection of YARN applications spun up by this job.
      * **Beta** Feature: This report is available for testing purposes only. It
-     * may be changed before final release.
+     * might be changed before final release.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.YarnApplication yarn_applications = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\Dataproc\V1\YarnApplication>|\Google\Protobuf\Internal\RepeatedField $var
@@ -673,8 +706,8 @@ class Job extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. If present, the location of miscellaneous control files
-     * which may be used as part of job setup and handling. If not present,
-     * control files may be placed in the same location as `driver_output_uri`.
+     * which can be used as part of job setup and handling. If not present,
+     * control files might be placed in the same location as `driver_output_uri`.
      *
      * Generated from protobuf field <code>string driver_control_files_uri = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -686,8 +719,8 @@ class Job extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. If present, the location of miscellaneous control files
-     * which may be used as part of job setup and handling. If not present,
-     * control files may be placed in the same location as `driver_output_uri`.
+     * which can be used as part of job setup and handling. If not present,
+     * control files might be placed in the same location as `driver_output_uri`.
      *
      * Generated from protobuf field <code>string driver_control_files_uri = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -705,7 +738,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Optional. The labels to associate with this job.
      * Label **keys** must contain 1 to 63 characters, and must conform to
      * [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
-     * Label **values** may be empty, but, if present, must contain 1 to 63
+     * Label **values** can be empty, but, if present, must contain 1 to 63
      * characters, and must conform to [RFC
      * 1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
      * associated with a job.
@@ -722,7 +755,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Optional. The labels to associate with this job.
      * Label **keys** must contain 1 to 63 characters, and must conform to
      * [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
-     * Label **values** may be empty, but, if present, must contain 1 to 63
+     * Label **values** can be empty, but, if present, must contain 1 to 63
      * characters, and must conform to [RFC
      * 1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
      * associated with a job.
@@ -778,7 +811,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Output only. A UUID that uniquely identifies a job within the project
      * over time. This is in contrast to a user-settable reference.job_id that
-     * may be reused over time.
+     * might be reused over time.
      *
      * Generated from protobuf field <code>string job_uuid = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -791,7 +824,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Output only. A UUID that uniquely identifies a job within the project
      * over time. This is in contrast to a user-settable reference.job_id that
-     * may be reused over time.
+     * might be reused over time.
      *
      * Generated from protobuf field <code>string job_uuid = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

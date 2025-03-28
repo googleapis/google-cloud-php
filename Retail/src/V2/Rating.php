@@ -23,7 +23,7 @@ class Rating extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 rating_count = 1;</code>
      */
-    private $rating_count = 0;
+    protected $rating_count = 0;
     /**
      * The average rating of the [Product][google.cloud.retail.v2.Product].
      * The rating is scaled at 1-5. Otherwise, an INVALID_ARGUMENT error is
@@ -31,7 +31,7 @@ class Rating extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float average_rating = 2;</code>
      */
-    private $average_rating = 0.0;
+    protected $average_rating = 0.0;
     /**
      * List of rating counts per rating value (index = rating - 1). The list is
      * empty if there is no rating. If the list is non-empty, its size is

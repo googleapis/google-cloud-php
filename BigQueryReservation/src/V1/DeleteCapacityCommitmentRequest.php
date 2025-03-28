@@ -22,7 +22,7 @@ class DeleteCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Can be used to force delete commitments even if assignments exist. Deleting
      * commitments with assignments may cause queries to fail if they no longer
@@ -30,7 +30,7 @@ class DeleteCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool force = 3;</code>
      */
-    private $force = false;
+    protected $force = false;
 
     /**
      * @param string $name Required. Resource name of the capacity commitment to delete. E.g.,

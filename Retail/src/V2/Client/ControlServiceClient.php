@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,6 +40,7 @@ use Google\Cloud\Retail\V2\GetControlRequest;
 use Google\Cloud\Retail\V2\ListControlsRequest;
 use Google\Cloud\Retail\V2\UpdateControlRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service for modifying Control.
@@ -52,11 +53,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createControlAsync(CreateControlRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteControlAsync(DeleteControlRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getControlAsync(GetControlRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listControlsAsync(ListControlsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateControlAsync(UpdateControlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Control> createControlAsync(CreateControlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteControlAsync(DeleteControlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Control> getControlAsync(GetControlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listControlsAsync(ListControlsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Control> updateControlAsync(UpdateControlRequest $request, array $optionalArgs = [])
  */
 final class ControlServiceClient
 {
@@ -83,9 +84,7 @@ final class ControlServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -159,14 +158,14 @@ final class ControlServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -188,6 +187,12 @@ final class ControlServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -221,6 +226,9 @@ final class ControlServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

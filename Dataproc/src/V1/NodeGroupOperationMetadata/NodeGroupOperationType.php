@@ -73,6 +73,4 @@ class NodeGroupOperationType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(NodeGroupOperationType::class, \Google\Cloud\Dataproc\V1\NodeGroupOperationMetadata_NodeGroupOperationType::class);
 

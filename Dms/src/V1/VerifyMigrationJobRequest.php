@@ -20,21 +20,21 @@ class VerifyMigrationJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Field mask is used to specify the changed fields to be verified.
      * It will not update the migration job.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Optional. The changed migration job parameters to verify.
      * It will not update the migration job.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.MigrationJob migration_job = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $migration_job = null;
+    protected $migration_job = null;
 
     /**
      * Constructor.

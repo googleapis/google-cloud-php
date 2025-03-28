@@ -32,12 +32,13 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * [metadata.row_type.fields][google.spanner.v1.StructType.fields].
      * Most values are encoded based on type as described
      * [here][google.spanner.v1.TypeCode].
-     * It is possible that the last value in values is "chunked",
+     * It's possible that the last value in values is "chunked",
      * meaning that the rest of the value is sent in subsequent
-     * `PartialResultSet`(s). This is denoted by the [chunked_value][google.spanner.v1.PartialResultSet.chunked_value]
-     * field. Two or more chunked values can be merged to form a
-     * complete value as follows:
-     *   * `bool/number/null`: cannot be chunked
+     * `PartialResultSet`(s). This is denoted by the
+     * [chunked_value][google.spanner.v1.PartialResultSet.chunked_value] field.
+     * Two or more chunked values can be merged to form a complete value as
+     * follows:
+     *   * `bool/number/null`: can't be chunked
      *   * `string`: concatenate the strings
      *   * `list`: concatenate the lists. If the last element in a list is a
      *     `string`, `list`, or `object`, merge it with the first element in
@@ -46,22 +47,22 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *     field name is duplicated, then apply these rules recursively
      *     to merge the field values.
      * Some examples of merging:
-     *     # Strings are concatenated.
+     *     Strings are concatenated.
      *     "foo", "bar" => "foobar"
-     *     # Lists of non-strings are concatenated.
+     *     Lists of non-strings are concatenated.
      *     [2, 3], [4] => [2, 3, 4]
-     *     # Lists are concatenated, but the last and first elements are merged
-     *     # because they are strings.
+     *     Lists are concatenated, but the last and first elements are merged
+     *     because they are strings.
      *     ["a", "b"], ["c", "d"] => ["a", "bc", "d"]
-     *     # Lists are concatenated, but the last and first elements are merged
-     *     # because they are lists. Recursively, the last and first elements
-     *     # of the inner lists are merged because they are strings.
+     *     Lists are concatenated, but the last and first elements are merged
+     *     because they are lists. Recursively, the last and first elements
+     *     of the inner lists are merged because they are strings.
      *     ["a", ["b", "c"]], [["d"], "e"] => ["a", ["b", "cd"], "e"]
-     *     # Non-overlapping object fields are combined.
+     *     Non-overlapping object fields are combined.
      *     {"a": "1"}, {"b": "2"} => {"a": "1", "b": 2"}
-     *     # Overlapping object fields are merged.
+     *     Overlapping object fields are merged.
      *     {"a": "1"}, {"a": "2"} => {"a": "12"}
-     *     # Examples of merging objects containing lists of strings.
+     *     Examples of merging objects containing lists of strings.
      *     {"a": ["1"]}, {"a": ["2"]} => {"a": ["12"]}
      * For a more complete example, suppose a streaming SQL query is
      * yielding a result set whose rows contain a single string
@@ -75,7 +76,6 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *     {
      *       "values": ["orl"]
      *       "chunked_value": true
-     *       "resume_token": "Bqp2..."
      *     }
      *     {
      *       "values": ["d"]
@@ -84,14 +84,19 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * This sequence of `PartialResultSet`s encodes two rows, one
      * containing the field value `"Hello"`, and a second containing the
      * field value `"World" = "W" + "orl" + "d"`.
+     * Not all `PartialResultSet`s contain a `resume_token`. Execution can only be
+     * resumed from a previously yielded `resume_token`. For the above sequence of
+     * `PartialResultSet`s, resuming the query with `"resume_token": "Af65..."`
+     * yields results from the `PartialResultSet` with value "orl".
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Value values = 2;</code>
      */
     private $values;
     /**
-     * If true, then the final value in [values][google.spanner.v1.PartialResultSet.values] is chunked, and must
-     * be combined with more values from subsequent `PartialResultSet`s
-     * to obtain a complete field value.
+     * If true, then the final value in
+     * [values][google.spanner.v1.PartialResultSet.values] is chunked, and must be
+     * combined with more values from subsequent `PartialResultSet`s to obtain a
+     * complete field value.
      *
      * Generated from protobuf field <code>bool chunked_value = 3;</code>
      */
@@ -109,14 +114,30 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
     /**
      * Query plan and execution statistics for the statement that produced this
      * streaming result set. These can be requested by setting
-     * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] and are sent
-     * only once with the last response in the stream.
-     * This field will also be present in the last response for DML
-     * statements.
+     * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode]
+     * and are sent only once with the last response in the stream. This field is
+     * also present in the last response for DML statements.
      *
      * Generated from protobuf field <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
      */
     private $stats = null;
+    /**
+     * Optional. A precommit token is included if the read-write transaction
+     * has multiplexed sessions enabled. Pass the precommit token with the highest
+     * sequence number from this transaction attempt to the
+     * [Commit][google.spanner.v1.Spanner.Commit] request for this transaction.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $precommit_token = null;
+    /**
+     * Optional. Indicates whether this is the last `PartialResultSet` in the
+     * stream. The server might optionally set this field. Clients shouldn't rely
+     * on this field being set in all cases.
+     *
+     * Generated from protobuf field <code>bool last = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $last = false;
 
     /**
      * Constructor.
@@ -135,12 +156,13 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *           [metadata.row_type.fields][google.spanner.v1.StructType.fields].
      *           Most values are encoded based on type as described
      *           [here][google.spanner.v1.TypeCode].
-     *           It is possible that the last value in values is "chunked",
+     *           It's possible that the last value in values is "chunked",
      *           meaning that the rest of the value is sent in subsequent
-     *           `PartialResultSet`(s). This is denoted by the [chunked_value][google.spanner.v1.PartialResultSet.chunked_value]
-     *           field. Two or more chunked values can be merged to form a
-     *           complete value as follows:
-     *             * `bool/number/null`: cannot be chunked
+     *           `PartialResultSet`(s). This is denoted by the
+     *           [chunked_value][google.spanner.v1.PartialResultSet.chunked_value] field.
+     *           Two or more chunked values can be merged to form a complete value as
+     *           follows:
+     *             * `bool/number/null`: can't be chunked
      *             * `string`: concatenate the strings
      *             * `list`: concatenate the lists. If the last element in a list is a
      *               `string`, `list`, or `object`, merge it with the first element in
@@ -149,22 +171,22 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *               field name is duplicated, then apply these rules recursively
      *               to merge the field values.
      *           Some examples of merging:
-     *               # Strings are concatenated.
+     *               Strings are concatenated.
      *               "foo", "bar" => "foobar"
-     *               # Lists of non-strings are concatenated.
+     *               Lists of non-strings are concatenated.
      *               [2, 3], [4] => [2, 3, 4]
-     *               # Lists are concatenated, but the last and first elements are merged
-     *               # because they are strings.
+     *               Lists are concatenated, but the last and first elements are merged
+     *               because they are strings.
      *               ["a", "b"], ["c", "d"] => ["a", "bc", "d"]
-     *               # Lists are concatenated, but the last and first elements are merged
-     *               # because they are lists. Recursively, the last and first elements
-     *               # of the inner lists are merged because they are strings.
+     *               Lists are concatenated, but the last and first elements are merged
+     *               because they are lists. Recursively, the last and first elements
+     *               of the inner lists are merged because they are strings.
      *               ["a", ["b", "c"]], [["d"], "e"] => ["a", ["b", "cd"], "e"]
-     *               # Non-overlapping object fields are combined.
+     *               Non-overlapping object fields are combined.
      *               {"a": "1"}, {"b": "2"} => {"a": "1", "b": 2"}
-     *               # Overlapping object fields are merged.
+     *               Overlapping object fields are merged.
      *               {"a": "1"}, {"a": "2"} => {"a": "12"}
-     *               # Examples of merging objects containing lists of strings.
+     *               Examples of merging objects containing lists of strings.
      *               {"a": ["1"]}, {"a": ["2"]} => {"a": ["12"]}
      *           For a more complete example, suppose a streaming SQL query is
      *           yielding a result set whose rows contain a single string
@@ -178,7 +200,6 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *               {
      *                 "values": ["orl"]
      *                 "chunked_value": true
-     *                 "resume_token": "Bqp2..."
      *               }
      *               {
      *                 "values": ["d"]
@@ -187,10 +208,15 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *           This sequence of `PartialResultSet`s encodes two rows, one
      *           containing the field value `"Hello"`, and a second containing the
      *           field value `"World" = "W" + "orl" + "d"`.
+     *           Not all `PartialResultSet`s contain a `resume_token`. Execution can only be
+     *           resumed from a previously yielded `resume_token`. For the above sequence of
+     *           `PartialResultSet`s, resuming the query with `"resume_token": "Af65..."`
+     *           yields results from the `PartialResultSet` with value "orl".
      *     @type bool $chunked_value
-     *           If true, then the final value in [values][google.spanner.v1.PartialResultSet.values] is chunked, and must
-     *           be combined with more values from subsequent `PartialResultSet`s
-     *           to obtain a complete field value.
+     *           If true, then the final value in
+     *           [values][google.spanner.v1.PartialResultSet.values] is chunked, and must be
+     *           combined with more values from subsequent `PartialResultSet`s to obtain a
+     *           complete field value.
      *     @type string $resume_token
      *           Streaming calls might be interrupted for a variety of reasons, such
      *           as TCP connection loss. If this occurs, the stream of results can
@@ -200,10 +226,18 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Spanner\V1\ResultSetStats $stats
      *           Query plan and execution statistics for the statement that produced this
      *           streaming result set. These can be requested by setting
-     *           [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] and are sent
-     *           only once with the last response in the stream.
-     *           This field will also be present in the last response for DML
-     *           statements.
+     *           [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode]
+     *           and are sent only once with the last response in the stream. This field is
+     *           also present in the last response for DML statements.
+     *     @type \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken $precommit_token
+     *           Optional. A precommit token is included if the read-write transaction
+     *           has multiplexed sessions enabled. Pass the precommit token with the highest
+     *           sequence number from this transaction attempt to the
+     *           [Commit][google.spanner.v1.Spanner.Commit] request for this transaction.
+     *     @type bool $last
+     *           Optional. Indicates whether this is the last `PartialResultSet` in the
+     *           stream. The server might optionally set this field. Clients shouldn't rely
+     *           on this field being set in all cases.
      * }
      */
     public function __construct($data = NULL) {
@@ -257,12 +291,13 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * [metadata.row_type.fields][google.spanner.v1.StructType.fields].
      * Most values are encoded based on type as described
      * [here][google.spanner.v1.TypeCode].
-     * It is possible that the last value in values is "chunked",
+     * It's possible that the last value in values is "chunked",
      * meaning that the rest of the value is sent in subsequent
-     * `PartialResultSet`(s). This is denoted by the [chunked_value][google.spanner.v1.PartialResultSet.chunked_value]
-     * field. Two or more chunked values can be merged to form a
-     * complete value as follows:
-     *   * `bool/number/null`: cannot be chunked
+     * `PartialResultSet`(s). This is denoted by the
+     * [chunked_value][google.spanner.v1.PartialResultSet.chunked_value] field.
+     * Two or more chunked values can be merged to form a complete value as
+     * follows:
+     *   * `bool/number/null`: can't be chunked
      *   * `string`: concatenate the strings
      *   * `list`: concatenate the lists. If the last element in a list is a
      *     `string`, `list`, or `object`, merge it with the first element in
@@ -271,22 +306,22 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *     field name is duplicated, then apply these rules recursively
      *     to merge the field values.
      * Some examples of merging:
-     *     # Strings are concatenated.
+     *     Strings are concatenated.
      *     "foo", "bar" => "foobar"
-     *     # Lists of non-strings are concatenated.
+     *     Lists of non-strings are concatenated.
      *     [2, 3], [4] => [2, 3, 4]
-     *     # Lists are concatenated, but the last and first elements are merged
-     *     # because they are strings.
+     *     Lists are concatenated, but the last and first elements are merged
+     *     because they are strings.
      *     ["a", "b"], ["c", "d"] => ["a", "bc", "d"]
-     *     # Lists are concatenated, but the last and first elements are merged
-     *     # because they are lists. Recursively, the last and first elements
-     *     # of the inner lists are merged because they are strings.
+     *     Lists are concatenated, but the last and first elements are merged
+     *     because they are lists. Recursively, the last and first elements
+     *     of the inner lists are merged because they are strings.
      *     ["a", ["b", "c"]], [["d"], "e"] => ["a", ["b", "cd"], "e"]
-     *     # Non-overlapping object fields are combined.
+     *     Non-overlapping object fields are combined.
      *     {"a": "1"}, {"b": "2"} => {"a": "1", "b": 2"}
-     *     # Overlapping object fields are merged.
+     *     Overlapping object fields are merged.
      *     {"a": "1"}, {"a": "2"} => {"a": "12"}
-     *     # Examples of merging objects containing lists of strings.
+     *     Examples of merging objects containing lists of strings.
      *     {"a": ["1"]}, {"a": ["2"]} => {"a": ["12"]}
      * For a more complete example, suppose a streaming SQL query is
      * yielding a result set whose rows contain a single string
@@ -300,7 +335,6 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *     {
      *       "values": ["orl"]
      *       "chunked_value": true
-     *       "resume_token": "Bqp2..."
      *     }
      *     {
      *       "values": ["d"]
@@ -309,6 +343,10 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * This sequence of `PartialResultSet`s encodes two rows, one
      * containing the field value `"Hello"`, and a second containing the
      * field value `"World" = "W" + "orl" + "d"`.
+     * Not all `PartialResultSet`s contain a `resume_token`. Execution can only be
+     * resumed from a previously yielded `resume_token`. For the above sequence of
+     * `PartialResultSet`s, resuming the query with `"resume_token": "Af65..."`
+     * yields results from the `PartialResultSet` with value "orl".
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Value values = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -326,12 +364,13 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * [metadata.row_type.fields][google.spanner.v1.StructType.fields].
      * Most values are encoded based on type as described
      * [here][google.spanner.v1.TypeCode].
-     * It is possible that the last value in values is "chunked",
+     * It's possible that the last value in values is "chunked",
      * meaning that the rest of the value is sent in subsequent
-     * `PartialResultSet`(s). This is denoted by the [chunked_value][google.spanner.v1.PartialResultSet.chunked_value]
-     * field. Two or more chunked values can be merged to form a
-     * complete value as follows:
-     *   * `bool/number/null`: cannot be chunked
+     * `PartialResultSet`(s). This is denoted by the
+     * [chunked_value][google.spanner.v1.PartialResultSet.chunked_value] field.
+     * Two or more chunked values can be merged to form a complete value as
+     * follows:
+     *   * `bool/number/null`: can't be chunked
      *   * `string`: concatenate the strings
      *   * `list`: concatenate the lists. If the last element in a list is a
      *     `string`, `list`, or `object`, merge it with the first element in
@@ -340,22 +379,22 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *     field name is duplicated, then apply these rules recursively
      *     to merge the field values.
      * Some examples of merging:
-     *     # Strings are concatenated.
+     *     Strings are concatenated.
      *     "foo", "bar" => "foobar"
-     *     # Lists of non-strings are concatenated.
+     *     Lists of non-strings are concatenated.
      *     [2, 3], [4] => [2, 3, 4]
-     *     # Lists are concatenated, but the last and first elements are merged
-     *     # because they are strings.
+     *     Lists are concatenated, but the last and first elements are merged
+     *     because they are strings.
      *     ["a", "b"], ["c", "d"] => ["a", "bc", "d"]
-     *     # Lists are concatenated, but the last and first elements are merged
-     *     # because they are lists. Recursively, the last and first elements
-     *     # of the inner lists are merged because they are strings.
+     *     Lists are concatenated, but the last and first elements are merged
+     *     because they are lists. Recursively, the last and first elements
+     *     of the inner lists are merged because they are strings.
      *     ["a", ["b", "c"]], [["d"], "e"] => ["a", ["b", "cd"], "e"]
-     *     # Non-overlapping object fields are combined.
+     *     Non-overlapping object fields are combined.
      *     {"a": "1"}, {"b": "2"} => {"a": "1", "b": 2"}
-     *     # Overlapping object fields are merged.
+     *     Overlapping object fields are merged.
      *     {"a": "1"}, {"a": "2"} => {"a": "12"}
-     *     # Examples of merging objects containing lists of strings.
+     *     Examples of merging objects containing lists of strings.
      *     {"a": ["1"]}, {"a": ["2"]} => {"a": ["12"]}
      * For a more complete example, suppose a streaming SQL query is
      * yielding a result set whose rows contain a single string
@@ -369,7 +408,6 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *     {
      *       "values": ["orl"]
      *       "chunked_value": true
-     *       "resume_token": "Bqp2..."
      *     }
      *     {
      *       "values": ["d"]
@@ -378,6 +416,10 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * This sequence of `PartialResultSet`s encodes two rows, one
      * containing the field value `"Hello"`, and a second containing the
      * field value `"World" = "W" + "orl" + "d"`.
+     * Not all `PartialResultSet`s contain a `resume_token`. Execution can only be
+     * resumed from a previously yielded `resume_token`. For the above sequence of
+     * `PartialResultSet`s, resuming the query with `"resume_token": "Af65..."`
+     * yields results from the `PartialResultSet` with value "orl".
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Value values = 2;</code>
      * @param array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $var
@@ -392,9 +434,10 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, then the final value in [values][google.spanner.v1.PartialResultSet.values] is chunked, and must
-     * be combined with more values from subsequent `PartialResultSet`s
-     * to obtain a complete field value.
+     * If true, then the final value in
+     * [values][google.spanner.v1.PartialResultSet.values] is chunked, and must be
+     * combined with more values from subsequent `PartialResultSet`s to obtain a
+     * complete field value.
      *
      * Generated from protobuf field <code>bool chunked_value = 3;</code>
      * @return bool
@@ -405,9 +448,10 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, then the final value in [values][google.spanner.v1.PartialResultSet.values] is chunked, and must
-     * be combined with more values from subsequent `PartialResultSet`s
-     * to obtain a complete field value.
+     * If true, then the final value in
+     * [values][google.spanner.v1.PartialResultSet.values] is chunked, and must be
+     * combined with more values from subsequent `PartialResultSet`s to obtain a
+     * complete field value.
      *
      * Generated from protobuf field <code>bool chunked_value = 3;</code>
      * @param bool $var
@@ -458,10 +502,9 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
     /**
      * Query plan and execution statistics for the statement that produced this
      * streaming result set. These can be requested by setting
-     * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] and are sent
-     * only once with the last response in the stream.
-     * This field will also be present in the last response for DML
-     * statements.
+     * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode]
+     * and are sent only once with the last response in the stream. This field is
+     * also present in the last response for DML statements.
      *
      * Generated from protobuf field <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
      * @return \Google\Cloud\Spanner\V1\ResultSetStats|null
@@ -484,10 +527,9 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
     /**
      * Query plan and execution statistics for the statement that produced this
      * streaming result set. These can be requested by setting
-     * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] and are sent
-     * only once with the last response in the stream.
-     * This field will also be present in the last response for DML
-     * statements.
+     * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode]
+     * and are sent only once with the last response in the stream. This field is
+     * also present in the last response for DML statements.
      *
      * Generated from protobuf field <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
      * @param \Google\Cloud\Spanner\V1\ResultSetStats $var
@@ -497,6 +539,78 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\ResultSetStats::class);
         $this->stats = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A precommit token is included if the read-write transaction
+     * has multiplexed sessions enabled. Pass the precommit token with the highest
+     * sequence number from this transaction attempt to the
+     * [Commit][google.spanner.v1.Spanner.Commit] request for this transaction.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken|null
+     */
+    public function getPrecommitToken()
+    {
+        return $this->precommit_token;
+    }
+
+    public function hasPrecommitToken()
+    {
+        return isset($this->precommit_token);
+    }
+
+    public function clearPrecommitToken()
+    {
+        unset($this->precommit_token);
+    }
+
+    /**
+     * Optional. A precommit token is included if the read-write transaction
+     * has multiplexed sessions enabled. Pass the precommit token with the highest
+     * sequence number from this transaction attempt to the
+     * [Commit][google.spanner.v1.Spanner.Commit] request for this transaction.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken $var
+     * @return $this
+     */
+    public function setPrecommitToken($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken::class);
+        $this->precommit_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates whether this is the last `PartialResultSet` in the
+     * stream. The server might optionally set this field. Clients shouldn't rely
+     * on this field being set in all cases.
+     *
+     * Generated from protobuf field <code>bool last = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getLast()
+    {
+        return $this->last;
+    }
+
+    /**
+     * Optional. Indicates whether this is the last `PartialResultSet` in the
+     * stream. The server might optionally set this field. Clients shouldn't rely
+     * on this field being set in all cases.
+     *
+     * Generated from protobuf field <code>bool last = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setLast($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->last = $var;
 
         return $this;
     }

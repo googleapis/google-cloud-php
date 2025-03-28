@@ -20,7 +20,7 @@ class ListSubscribersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string account = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $account = '';
+    protected $account = '';
     /**
      * Optional. The maximum number of service accounts to return. The service may
      * return fewer than this value. If unspecified, returns at most 100 service
@@ -29,7 +29,7 @@ class ListSubscribersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. A page token, received from a previous `ListSubscribers` call.
      * Provide this to retrieve the subsequent page.
@@ -38,7 +38,7 @@ class ListSubscribersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * Constructor.

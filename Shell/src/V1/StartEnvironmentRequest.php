@@ -23,7 +23,7 @@ class StartEnvironmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The initial access token passed to the environment. If this is present and
      * valid, the environment will be pre-authenticated with gcloud so that the
@@ -32,7 +32,7 @@ class StartEnvironmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string access_token = 2;</code>
      */
-    private $access_token = '';
+    protected $access_token = '';
     /**
      * Public keys that should be added to the environment before it is started.
      *

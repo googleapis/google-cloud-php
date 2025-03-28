@@ -62,12 +62,7 @@ class SearchParams extends \Google\Protobuf\Internal\Message
     protected $order_by = '';
     /**
      * Specifies the search result mode. If unspecified, the
-     * search result mode is based on
-     * [DataStore.DocumentProcessingConfig.chunking_config][]:
-     * * If [DataStore.DocumentProcessingConfig.chunking_config][] is
-     * specified,
-     *   it defaults to `CHUNKS`.
-     * * Otherwise, it defaults to `DOCUMENTS`.
+     * search result mode defaults to `DOCUMENTS`.
      * See [parse and chunk
      * documents](https://cloud.google.com/generative-ai-app-builder/docs/parse-chunk-documents)
      *
@@ -121,12 +116,7 @@ class SearchParams extends \Google\Protobuf\Internal\Message
      *           If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      *     @type int $search_result_mode
      *           Specifies the search result mode. If unspecified, the
-     *           search result mode is based on
-     *           [DataStore.DocumentProcessingConfig.chunking_config][]:
-     *           * If [DataStore.DocumentProcessingConfig.chunking_config][] is
-     *           specified,
-     *             it defaults to `CHUNKS`.
-     *           * Otherwise, it defaults to `DOCUMENTS`.
+     *           search result mode defaults to `DOCUMENTS`.
      *           See [parse and chunk
      *           documents](https://cloud.google.com/generative-ai-app-builder/docs/parse-chunk-documents)
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $data_store_specs
@@ -299,12 +289,7 @@ class SearchParams extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies the search result mode. If unspecified, the
-     * search result mode is based on
-     * [DataStore.DocumentProcessingConfig.chunking_config][]:
-     * * If [DataStore.DocumentProcessingConfig.chunking_config][] is
-     * specified,
-     *   it defaults to `CHUNKS`.
-     * * Otherwise, it defaults to `DOCUMENTS`.
+     * search result mode defaults to `DOCUMENTS`.
      * See [parse and chunk
      * documents](https://cloud.google.com/generative-ai-app-builder/docs/parse-chunk-documents)
      *
@@ -318,12 +303,7 @@ class SearchParams extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies the search result mode. If unspecified, the
-     * search result mode is based on
-     * [DataStore.DocumentProcessingConfig.chunking_config][]:
-     * * If [DataStore.DocumentProcessingConfig.chunking_config][] is
-     * specified,
-     *   it defaults to `CHUNKS`.
-     * * Otherwise, it defaults to `DOCUMENTS`.
+     * search result mode defaults to `DOCUMENTS`.
      * See [parse and chunk
      * documents](https://cloud.google.com/generative-ai-app-builder/docs/parse-chunk-documents)
      *

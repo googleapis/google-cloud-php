@@ -71,7 +71,7 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string row_restriction = 2;</code>
      */
-    private $row_restriction = '';
+    protected $row_restriction = '';
     /**
      * Optional. Specifies a table sampling percentage. Specifically, the query
      * planner will use TABLESAMPLE SYSTEM (sample_percentage PERCENT). The
@@ -82,14 +82,14 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional double sample_percentage = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $sample_percentage = null;
+    protected $sample_percentage = null;
     /**
      * Optional. Set response_compression_codec when creating a read session to
      * enable application-level compression of ReadRows responses.
      *
      * Generated from protobuf field <code>optional .google.cloud.bigquery.storage.v1.ReadSession.TableReadOptions.ResponseCompressionCodec response_compression_codec = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $response_compression_codec = null;
+    protected $response_compression_codec = null;
     protected $output_format_serialization_options;
 
     /**
@@ -466,6 +466,4 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TableReadOptions::class, \Google\Cloud\BigQuery\Storage\V1\ReadSession_TableReadOptions::class);
 

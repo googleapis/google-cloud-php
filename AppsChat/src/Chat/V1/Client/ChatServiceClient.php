@@ -48,6 +48,7 @@ use Google\Apps\Chat\V1\GetAttachmentRequest;
 use Google\Apps\Chat\V1\GetMembershipRequest;
 use Google\Apps\Chat\V1\GetMessageRequest;
 use Google\Apps\Chat\V1\GetSpaceEventRequest;
+use Google\Apps\Chat\V1\GetSpaceNotificationSettingRequest;
 use Google\Apps\Chat\V1\GetSpaceReadStateRequest;
 use Google\Apps\Chat\V1\GetSpaceRequest;
 use Google\Apps\Chat\V1\GetThreadReadStateRequest;
@@ -59,19 +60,23 @@ use Google\Apps\Chat\V1\ListSpacesRequest;
 use Google\Apps\Chat\V1\Membership;
 use Google\Apps\Chat\V1\Message;
 use Google\Apps\Chat\V1\Reaction;
+use Google\Apps\Chat\V1\SearchSpacesRequest;
 use Google\Apps\Chat\V1\SetUpSpaceRequest;
 use Google\Apps\Chat\V1\Space;
 use Google\Apps\Chat\V1\SpaceEvent;
+use Google\Apps\Chat\V1\SpaceNotificationSetting;
 use Google\Apps\Chat\V1\SpaceReadState;
 use Google\Apps\Chat\V1\ThreadReadState;
 use Google\Apps\Chat\V1\UpdateMembershipRequest;
 use Google\Apps\Chat\V1\UpdateMessageRequest;
+use Google\Apps\Chat\V1\UpdateSpaceNotificationSettingRequest;
 use Google\Apps\Chat\V1\UpdateSpaceReadStateRequest;
 use Google\Apps\Chat\V1\UpdateSpaceRequest;
 use Google\Apps\Chat\V1\UploadAttachmentRequest;
 use Google\Apps\Chat\V1\UploadAttachmentResponse;
 use Google\Auth\FetchAuthTokenInterface;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Enables developers to build Chat apps and
@@ -85,34 +90,37 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface completeImportSpaceAsync(CompleteImportSpaceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createMembershipAsync(CreateMembershipRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createMessageAsync(CreateMessageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createReactionAsync(CreateReactionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSpaceAsync(CreateSpaceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteMembershipAsync(DeleteMembershipRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteMessageAsync(DeleteMessageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteReactionAsync(DeleteReactionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSpaceAsync(DeleteSpaceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface findDirectMessageAsync(FindDirectMessageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAttachmentAsync(GetAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMembershipAsync(GetMembershipRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMessageAsync(GetMessageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSpaceAsync(GetSpaceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSpaceEventAsync(GetSpaceEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSpaceReadStateAsync(GetSpaceReadStateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getThreadReadStateAsync(GetThreadReadStateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMembershipsAsync(ListMembershipsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMessagesAsync(ListMessagesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listReactionsAsync(ListReactionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSpaceEventsAsync(ListSpaceEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSpacesAsync(ListSpacesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setUpSpaceAsync(SetUpSpaceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateMembershipAsync(UpdateMembershipRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateMessageAsync(UpdateMessageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSpaceAsync(UpdateSpaceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSpaceReadStateAsync(UpdateSpaceReadStateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface uploadAttachmentAsync(UploadAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CompleteImportSpaceResponse> completeImportSpaceAsync(CompleteImportSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Membership> createMembershipAsync(CreateMembershipRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Message> createMessageAsync(CreateMessageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Reaction> createReactionAsync(CreateReactionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Space> createSpaceAsync(CreateSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Membership> deleteMembershipAsync(DeleteMembershipRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteMessageAsync(DeleteMessageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteReactionAsync(DeleteReactionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteSpaceAsync(DeleteSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Space> findDirectMessageAsync(FindDirectMessageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Attachment> getAttachmentAsync(GetAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Membership> getMembershipAsync(GetMembershipRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Message> getMessageAsync(GetMessageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Space> getSpaceAsync(GetSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SpaceEvent> getSpaceEventAsync(GetSpaceEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SpaceNotificationSetting> getSpaceNotificationSettingAsync(GetSpaceNotificationSettingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SpaceReadState> getSpaceReadStateAsync(GetSpaceReadStateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ThreadReadState> getThreadReadStateAsync(GetThreadReadStateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMembershipsAsync(ListMembershipsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMessagesAsync(ListMessagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReactionsAsync(ListReactionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSpaceEventsAsync(ListSpaceEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSpacesAsync(ListSpacesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchSpacesAsync(SearchSpacesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Space> setUpSpaceAsync(SetUpSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Membership> updateMembershipAsync(UpdateMembershipRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Message> updateMessageAsync(UpdateMessageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Space> updateSpaceAsync(UpdateSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SpaceNotificationSetting> updateSpaceNotificationSettingAsync(UpdateSpaceNotificationSettingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SpaceReadState> updateSpaceReadStateAsync(UpdateSpaceReadStateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UploadAttachmentResponse> uploadAttachmentAsync(UploadAttachmentRequest $request, array $optionalArgs = [])
  */
 final class ChatServiceClient
 {
@@ -162,6 +170,7 @@ final class ChatServiceClient
         'https://www.googleapis.com/auth/chat.spaces.readonly',
         'https://www.googleapis.com/auth/chat.users.readstate',
         'https://www.googleapis.com/auth/chat.users.readstate.readonly',
+        'https://www.googleapis.com/auth/chat.users.spacesettings',
     ];
 
     private static function getClientDefaults()
@@ -311,6 +320,23 @@ final class ChatServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * space_notification_setting resource.
+     *
+     * @param string $user
+     * @param string $space
+     *
+     * @return string The formatted space_notification_setting resource.
+     */
+    public static function spaceNotificationSettingName(string $user, string $space): string
+    {
+        return self::getPathTemplate('spaceNotificationSetting')->render([
+            'user' => $user,
+            'space' => $space,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * space_read_state resource.
      *
      * @param string $user
@@ -373,6 +399,7 @@ final class ChatServiceClient
      * - reaction: spaces/{space}/messages/{message}/reactions/{reaction}
      * - space: spaces/{space}
      * - spaceEvent: spaces/{space}/spaceEvents/{space_event}
+     * - spaceNotificationSetting: users/{user}/spaces/{space}/spaceNotificationSetting
      * - spaceReadState: users/{user}/spaces/{space}/spaceReadState
      * - thread: spaces/{space}/threads/{thread}
      * - threadReadState: users/{user}/spaces/{space}/threads/{thread}/threadReadState
@@ -383,14 +410,14 @@ final class ChatServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -412,6 +439,12 @@ final class ChatServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -445,6 +478,9 @@ final class ChatServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -470,8 +506,11 @@ final class ChatServiceClient
      * Completes the
      * [import process](https://developers.google.com/workspace/chat/import-data)
      * for the specified space and makes it visible to users.
-     * Requires app authentication and domain-wide delegation. For more
-     * information, see [Authorize Google Chat apps to import
+     *
+     * Requires [app
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     * and domain-wide delegation. For more information, see [Authorize Google
+     * Chat apps to import
      * data](https://developers.google.com/workspace/chat/authorize-import).
      *
      * The async variant is {@see ChatServiceClient::completeImportSpaceAsync()} .
@@ -500,40 +539,36 @@ final class ChatServiceClient
     }
 
     /**
-     * Creates a human membership or app membership for the calling app. Creating
-     * memberships for other apps isn't supported. For an example, see
-     * [Invite or add a user or a Google Chat app to a
-     * space](https://developers.google.com/workspace/chat/create-members).
+     * Creates a membership for the calling Chat app, a user, or a Google Group.
+     * Creating memberships for other Chat apps isn't supported.
      * When creating a membership, if the specified member has their auto-accept
      * policy turned off, then they're invited, and must accept the space
      * invitation before joining. Otherwise, creating a membership adds the member
-     * directly to the specified space. Requires [user
-     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     * directly to the specified space.
      *
-     * To specify the member to add, set the `membership.member.name` for the
-     * human or app member, or set the `membership.group_member.name` for the
-     * group member.
+     * Supports the following types of
+     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
      *
-     * - To add the calling app to a space or a direct message between two human
-     * users, use `users/app`. Unable to add other
-     * apps to the space.
+     * - [App
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     * with [administrator approval](https://support.google.com/a?p=chat-app-auth)
+     * in [Developer Preview](https://developers.google.com/workspace/preview)
      *
-     * - To add a human user, use `users/{user}`, where `{user}` can be the email
-     * address for the user. For users in the same Workspace organization `{user}`
-     * can also be the `id` for the person from the People API, or the `id` for
-     * the user in the Directory API. For example, if the People API Person
-     * profile ID for `user&#64;example.com` is `123456789`, you can add the user to
-     * the space by setting the `membership.member.name` to
-     * `users/user&#64;example.com` or `users/123456789`.
+     * - [User
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * You can authenticate and authorize this method with administrator
+     * privileges by setting the `use_admin_access` field in the request.
      *
-     * - To add or invite a Google group in a named space, use
-     * `groups/{group}`, where `{group}` is the `id` for the group from the Cloud
-     * Identity Groups API. For example, you can use [Cloud Identity Groups lookup
-     * API](https://cloud.google.com/identity/docs/reference/rest/v1/groups/lookup)
-     * to retrieve the ID `123456789` for group email `group&#64;example.com`, then
-     * you can add or invite the group to a named space by setting the
-     * `membership.group_member.name` to `groups/123456789`. Group email is not
-     * supported, and Google groups can only be added as members in named spaces.
+     * For example usage, see:
+     *
+     * - [Invite or add a user to a
+     * space](https://developers.google.com/workspace/chat/create-members#create-user-membership).
+     *
+     * - [Invite or add a Google Group to a
+     * space](https://developers.google.com/workspace/chat/create-members#create-group-membership).
+     *
+     * - [Add the Chat app to a
+     * space](https://developers.google.com/workspace/chat/create-members#create-membership-calling-api).
      *
      * The async variant is {@see ChatServiceClient::createMembershipAsync()} .
      *
@@ -559,18 +594,39 @@ final class ChatServiceClient
     }
 
     /**
-     * Creates a message in a Google Chat space. The maximum message size,
-     * including text and cards, is 32,000 bytes. For an example, see [Send a
+     * Creates a message in a Google Chat space. For an example, see [Send a
      * message](https://developers.google.com/workspace/chat/create-messages).
      *
-     * Calling this method requires
-     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize)
-     * and supports the following authentication types:
+     * The `create()` method requires either [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * or [app
+     * authentication](https://developers.google.com/workspace/chat/authorize-import).
+     * Chat attributes the message sender differently depending on the type of
+     * authentication that you use in your request.
      *
-     * - For text messages, user authentication or app authentication are
-     * supported.
-     * - For card messages, only app authentication is supported. (Only Chat apps
-     * can create card messages.)
+     * The following image shows how Chat attributes a message when you use app
+     * authentication. Chat displays the Chat app as the message
+     * sender. The content of the message can contain text (`text`), cards
+     * (`cardsV2`), and accessory widgets (`accessoryWidgets`).
+     *
+     * ![Message sent with app
+     * authentication](https://developers.google.com/workspace/chat/images/message-app-auth.svg)
+     *
+     * The following image shows how Chat attributes a message when you use user
+     * authentication. Chat displays the user as the message sender and attributes
+     * the Chat app to the message by displaying its name. The content of message
+     * can only contain text (`text`).
+     *
+     * ![Message sent with user
+     * authentication](https://developers.google.com/workspace/chat/images/message-user-auth.svg)
+     *
+     * The maximum message size, including the message contents, is 32,000 bytes.
+     *
+     * For
+     * [webhook](https://developers.google.com/workspace/chat/quickstart/webhooks)
+     * requests, the response doesn't contain the full message. The response only
+     * populates the `name` and `thread.name` fields in addition to the
+     * information that was in the request.
      *
      * The async variant is {@see ChatServiceClient::createMessageAsync()} .
      *
@@ -596,10 +652,10 @@ final class ChatServiceClient
     }
 
     /**
-     * Creates a reaction and adds it to a message. Only unicode emojis are
-     * supported. For an example, see
+     * Creates a reaction and adds it to a message. For an example, see
      * [Add a reaction to a
      * message](https://developers.google.com/workspace/chat/create-reactions).
+     *
      * Requires [user
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *
@@ -627,16 +683,27 @@ final class ChatServiceClient
     }
 
     /**
-     * Creates a named space. Spaces grouped by topics aren't supported. For an
-     * example, see [Create a
+     * Creates a space with no members. Can be used to create a named space, or a
+     * group chat in `Import mode`. For an example, see [Create a
      * space](https://developers.google.com/workspace/chat/create-spaces).
      *
      * If you receive the error message `ALREADY_EXISTS` when creating
      * a space, try a different `displayName`. An existing space within
      * the Google Workspace organization might already use this display name.
      *
-     * Requires [user
-     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     * Supports the following types of
+     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+     *
+     * - [App
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     * with [administrator approval](https://support.google.com/a?p=chat-app-auth)
+     * in [Developer Preview](https://developers.google.com/workspace/preview)
+     *
+     * - [User
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     *
+     * When authenticating as an app, the `space.customer` field must be set in
+     * the request.
      *
      * The async variant is {@see ChatServiceClient::createSpaceAsync()} .
      *
@@ -666,8 +733,18 @@ final class ChatServiceClient
      * [Remove a user or a Google Chat app from a
      * space](https://developers.google.com/workspace/chat/delete-members).
      *
-     * Requires [user
-     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     * Supports the following types of
+     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+     *
+     * - [App
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     * with [administrator approval](https://support.google.com/a?p=chat-app-auth)
+     * in [Developer Preview](https://developers.google.com/workspace/preview)
+     *
+     * - [User
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * You can authenticate and authorize this method with administrator
+     * privileges by setting the `use_admin_access` field in the request.
      *
      * The async variant is {@see ChatServiceClient::deleteMembershipAsync()} .
      *
@@ -697,13 +774,15 @@ final class ChatServiceClient
      * For an example, see [Delete a
      * message](https://developers.google.com/workspace/chat/delete-messages).
      *
-     * Requires
-     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
-     * Supports
-     * [app
+     * Supports the following types of
+     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+     *
+     * - [App
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
-     * and [user
-     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     *
+     * - [User
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     *
      * When using app authentication, requests can only delete messages
      * created by the calling Chat app.
      *
@@ -729,10 +808,10 @@ final class ChatServiceClient
     }
 
     /**
-     * Deletes a reaction to a message. Only unicode emojis are supported.
-     * For an example, see
+     * Deletes a reaction to a message. For an example, see
      * [Delete a
      * reaction](https://developers.google.com/workspace/chat/delete-reactions).
+     *
      * Requires [user
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *
@@ -763,9 +842,19 @@ final class ChatServiceClient
      * memberships in the space—are also deleted. For an example, see
      * [Delete a
      * space](https://developers.google.com/workspace/chat/delete-spaces).
-     * Requires [user
+     *
+     * Supports the following types of
+     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+     *
+     * - [App
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     * with [administrator approval](https://support.google.com/a?p=chat-app-auth)
+     * in [Developer Preview](https://developers.google.com/workspace/preview)
+     *
+     * - [User
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
-     * from a user who has permission to delete the space.
+     * You can authenticate and authorize this method with administrator
+     * privileges by setting the `use_admin_access` field in the request.
      *
      * The async variant is {@see ChatServiceClient::deleteSpaceAsync()} .
      *
@@ -794,20 +883,24 @@ final class ChatServiceClient
      * see
      * [Find a direct message](/chat/api/guides/v1/spaces/find-direct-message).
      *
-     * With [user
-     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
-     * returns the direct message space between the specified user and the
-     * authenticated user.
-     *
      * With [app
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app),
      * returns the direct message space between the specified user and the calling
      * Chat app.
      *
-     * Requires [user
+     * With [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     * returns the direct message space between the specified user and the
+     * authenticated user.
+     *
+     * // Supports the following types of
+     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+     *
+     * - [App
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     *
+     * - [User
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
-     * or [app
-     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
      *
      * The async variant is {@see ChatServiceClient::findDirectMessageAsync()} .
      *
@@ -870,13 +963,16 @@ final class ChatServiceClient
      * [Get details about a user's or Google Chat app's
      * membership](https://developers.google.com/workspace/chat/get-members).
      *
-     * Requires
-     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
-     * Supports
-     * [app
+     * Supports the following types of
+     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+     *
+     * - [App
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
-     * and [user
-     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     *
+     * - [User
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * You can authenticate and authorize this method with administrator
+     * privileges by setting the `use_admin_access` field in the request.
      *
      * The async variant is {@see ChatServiceClient::getMembershipAsync()} .
      *
@@ -906,13 +1002,14 @@ final class ChatServiceClient
      * For an example, see [Get details about a
      * message](https://developers.google.com/workspace/chat/get-messages).
      *
-     * Requires
-     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
-     * Supports
-     * [app
+     * Supports the following types of
+     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+     *
+     * - [App
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
-     * and [user
-     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     *
+     * - [User
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
      *
      * Note: Might return a message from a blocked member or space.
      *
@@ -944,13 +1041,16 @@ final class ChatServiceClient
      * [Get details about a
      * space](https://developers.google.com/workspace/chat/get-spaces).
      *
-     * Requires
-     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
-     * Supports
-     * [app
+     * Supports the following types of
+     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+     *
+     * - [App
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
-     * and [user
-     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     *
+     * - [User
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * You can authenticate and authorize this method with administrator
+     * privileges by setting the `use_admin_access` field in the request.
      *
      * The async variant is {@see ChatServiceClient::getSpaceAsync()} .
      *
@@ -983,6 +1083,9 @@ final class ChatServiceClient
      * updated, the server returns the updated `Message` resource in the event
      * payload.
      *
+     * Note: The `permissionSettings` field is not returned in the Space
+     * object of the Space event data for this request.
+     *
      * Requires [user
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      * To get an event, the authenticated user must be a member of the space.
@@ -1012,6 +1115,40 @@ final class ChatServiceClient
     public function getSpaceEvent(GetSpaceEventRequest $request, array $callOptions = []): SpaceEvent
     {
         return $this->startApiCall('GetSpaceEvent', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the space notification setting. For an example, see [Get the
+     * caller's space notification
+     * setting](https://developers.google.com/workspace/chat/get-space-notification-setting).
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     *
+     * The async variant is
+     * {@see ChatServiceClient::getSpaceNotificationSettingAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/get_space_notification_setting.php
+     *
+     * @param GetSpaceNotificationSettingRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SpaceNotificationSetting
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getSpaceNotificationSetting(
+        GetSpaceNotificationSettingRequest $request,
+        array $callOptions = []
+    ): SpaceNotificationSetting {
+        return $this->startApiCall('GetSpaceNotificationSetting', $request, $callOptions)->wait();
     }
 
     /**
@@ -1091,13 +1228,16 @@ final class ChatServiceClient
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
      * lists memberships in spaces that the authenticated user has access to.
      *
-     * Requires
-     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
-     * Supports
-     * [app
+     * Supports the following types of
+     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+     *
+     * - [App
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
-     * and [user
-     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     *
+     * - [User
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * You can authenticate and authorize this method with administrator
+     * privileges by setting the `use_admin_access` field in the request.
      *
      * The async variant is {@see ChatServiceClient::listMembershipsAsync()} .
      *
@@ -1124,8 +1264,13 @@ final class ChatServiceClient
 
     /**
      * Lists messages in a space that the caller is a member of, including
-     * messages from blocked members and spaces. For an example, see
-     * [List messages](/chat/api/guides/v1/messages/list).
+     * messages from blocked members and spaces. If you list messages from a
+     * space with no messages, the response is an empty object. When using a
+     * REST/HTTP interface, the response contains an empty JSON object, `{}`.
+     * For an example, see
+     * [List
+     * messages](https://developers.google.com/workspace/chat/api/guides/v1/messages/list).
+     *
      * Requires [user
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *
@@ -1156,6 +1301,7 @@ final class ChatServiceClient
      * Lists reactions to a message. For an example, see
      * [List reactions for a
      * message](https://developers.google.com/workspace/chat/list-reactions).
+     *
      * Requires [user
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *
@@ -1227,16 +1373,14 @@ final class ChatServiceClient
      * [List
      * spaces](https://developers.google.com/workspace/chat/list-spaces).
      *
-     * Requires
-     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
-     * Supports
-     * [app
-     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
-     * and [user
-     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     * Supports the following types of
+     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
      *
-     * Lists spaces visible to the caller or authenticated user. Group chats
-     * and DMs aren't listed until the first message is sent.
+     * - [App
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     *
+     * - [User
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
      *
      * To list all named spaces by Google Workspace organization, use the
      * [`spaces.search()`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces/search)
@@ -1263,6 +1407,38 @@ final class ChatServiceClient
     public function listSpaces(ListSpacesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListSpaces', $request, $callOptions);
+    }
+
+    /**
+     * Returns a list of spaces in a Google Workspace organization based on an
+     * administrator's search.
+     *
+     * Requires [user
+     * authentication with administrator
+     * privileges](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user#admin-privileges).
+     * In the request, set `use_admin_access` to `true`.
+     *
+     * The async variant is {@see ChatServiceClient::searchSpacesAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/search_spaces.php
+     *
+     * @param SearchSpacesRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function searchSpaces(SearchSpacesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('SearchSpaces', $request, $callOptions);
     }
 
     /**
@@ -1346,8 +1522,18 @@ final class ChatServiceClient
      * Updates a membership. For an example, see [Update a user's membership in
      * a space](https://developers.google.com/workspace/chat/update-members).
      *
-     * Requires [user
-     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     * Supports the following types of
+     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+     *
+     * - [App
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     * with [administrator approval](https://support.google.com/a?p=chat-app-auth)
+     * in [Developer Preview](https://developers.google.com/workspace/preview)
+     *
+     * - [User
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * You can authenticate and authorize this method with administrator
+     * privileges by setting the `use_admin_access` field in the request.
      *
      * The async variant is {@see ChatServiceClient::updateMembershipAsync()} .
      *
@@ -1380,13 +1566,15 @@ final class ChatServiceClient
      * [Update a
      * message](https://developers.google.com/workspace/chat/update-messages).
      *
-     * Requires
-     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
-     * Supports
-     * [app
+     * Supports the following types of
+     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+     *
+     * - [App
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
-     * and [user
-     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     *
+     * - [User
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     *
      * When using app authentication, requests can only update messages
      * created by the calling Chat app.
      *
@@ -1422,8 +1610,18 @@ final class ChatServiceClient
      * `ALREADY_EXISTS`, try a different display name.. An existing space within
      * the Google Workspace organization might already use this display name.
      *
-     * Requires [user
-     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     * Supports the following types of
+     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+     *
+     * - [App
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     * with [administrator approval](https://support.google.com/a?p=chat-app-auth)
+     * in [Developer Preview](https://developers.google.com/workspace/preview)
+     *
+     * - [User
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * You can authenticate and authorize this method with administrator
+     * privileges by setting the `use_admin_access` field in the request.
      *
      * The async variant is {@see ChatServiceClient::updateSpaceAsync()} .
      *
@@ -1446,6 +1644,40 @@ final class ChatServiceClient
     public function updateSpace(UpdateSpaceRequest $request, array $callOptions = []): Space
     {
         return $this->startApiCall('UpdateSpace', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the space notification setting. For an example, see [Update
+     * the caller's space notification
+     * setting](https://developers.google.com/workspace/chat/update-space-notification-setting).
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     *
+     * The async variant is
+     * {@see ChatServiceClient::updateSpaceNotificationSettingAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/update_space_notification_setting.php
+     *
+     * @param UpdateSpaceNotificationSettingRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SpaceNotificationSetting
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateSpaceNotificationSetting(
+        UpdateSpaceNotificationSettingRequest $request,
+        array $callOptions = []
+    ): SpaceNotificationSetting {
+        return $this->startApiCall('UpdateSpaceNotificationSetting', $request, $callOptions)->wait();
     }
 
     /**
@@ -1483,6 +1715,7 @@ final class ChatServiceClient
      * Uploads an attachment. For an example, see
      * [Upload media as a file
      * attachment](https://developers.google.com/workspace/chat/upload-media-attachments).
+     *
      * Requires user
      * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *

@@ -80,6 +80,4 @@ class Protocol
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Protocol::class, \Google\Cloud\SecurityCenter\V1\Connection_Protocol::class);
 

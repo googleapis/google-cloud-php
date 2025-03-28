@@ -24,13 +24,13 @@ class InfoTypeLimit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 1;</code>
      */
-    private $info_type = null;
+    protected $info_type = null;
     /**
      * Max findings limit for the given infoType.
      *
      * Generated from protobuf field <code>int32 max_findings = 2;</code>
      */
-    private $max_findings = 0;
+    protected $max_findings = 0;
 
     /**
      * Constructor.
@@ -122,6 +122,4 @@ class InfoTypeLimit extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(InfoTypeLimit::class, \Google\Cloud\Dlp\V2\InspectConfig_FindingLimits_InfoTypeLimit::class);
 

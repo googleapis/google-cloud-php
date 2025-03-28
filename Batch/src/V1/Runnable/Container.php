@@ -16,43 +16,47 @@ use Google\Protobuf\Internal\GPBUtil;
 class Container extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The URI to pull the container image from.
+     * Required. The URI to pull the container image from.
      *
      * Generated from protobuf field <code>string image_uri = 1;</code>
      */
     protected $image_uri = '';
     /**
-     * Overrides the `CMD` specified in the container. If there is an ENTRYPOINT
-     * (either in the container image or with the entrypoint field below) then
-     * commands are appended as arguments to the ENTRYPOINT.
+     * Required for some container images. Overrides the `CMD` specified in the
+     * container. If there is an `ENTRYPOINT` (either in the container image or
+     * with the `entrypoint` field below) then these commands are appended as
+     * arguments to the `ENTRYPOINT`.
      *
      * Generated from protobuf field <code>repeated string commands = 2;</code>
      */
     private $commands;
     /**
-     * Overrides the `ENTRYPOINT` specified in the container.
+     * Required for some container images. Overrides the `ENTRYPOINT` specified
+     * in the container.
      *
      * Generated from protobuf field <code>string entrypoint = 3;</code>
      */
     protected $entrypoint = '';
     /**
      * Volumes to mount (bind mount) from the host machine files or directories
-     * into the container, formatted to match docker run's --volume option,
-     * e.g. /foo:/bar, or /foo:/bar:ro
+     * into the container, formatted to match `--volume` option for the
+     * `docker run` command&mdash;for example, `/foo:/bar` or `/foo:/bar:ro`.
      * If the `TaskSpec.Volumes` field is specified but this field is not, Batch
      * will mount each volume from the host machine to the container with the
      * same mount path by default. In this case, the default mount option for
-     * containers will be read-only (ro) for existing persistent disks and
-     * read-write (rw) for other volume types, regardless of the original mount
-     * options specified in `TaskSpec.Volumes`. If you need different mount
-     * settings, you can explicitly configure them in this field.
+     * containers will be read-only (`ro`) for existing persistent disks and
+     * read-write (`rw`) for other volume types, regardless of the original
+     * mount options specified in `TaskSpec.Volumes`. If you need different
+     * mount settings, you can explicitly configure them in this field.
      *
      * Generated from protobuf field <code>repeated string volumes = 7;</code>
      */
     private $volumes;
     /**
-     * Arbitrary additional options to include in the "docker run" command when
-     * running this container, e.g. "--network host".
+     * Required for some container images. Arbitrary additional options to
+     * include in the `docker run` command when running this container&mdash;for
+     * example, `--network host`. For the `--volume` option, use the `volumes`
+     * field for the container.
      *
      * Generated from protobuf field <code>string options = 8;</code>
      */
@@ -128,27 +132,31 @@ class Container extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $image_uri
-     *           The URI to pull the container image from.
+     *           Required. The URI to pull the container image from.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $commands
-     *           Overrides the `CMD` specified in the container. If there is an ENTRYPOINT
-     *           (either in the container image or with the entrypoint field below) then
-     *           commands are appended as arguments to the ENTRYPOINT.
+     *           Required for some container images. Overrides the `CMD` specified in the
+     *           container. If there is an `ENTRYPOINT` (either in the container image or
+     *           with the `entrypoint` field below) then these commands are appended as
+     *           arguments to the `ENTRYPOINT`.
      *     @type string $entrypoint
-     *           Overrides the `ENTRYPOINT` specified in the container.
+     *           Required for some container images. Overrides the `ENTRYPOINT` specified
+     *           in the container.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $volumes
      *           Volumes to mount (bind mount) from the host machine files or directories
-     *           into the container, formatted to match docker run's --volume option,
-     *           e.g. /foo:/bar, or /foo:/bar:ro
+     *           into the container, formatted to match `--volume` option for the
+     *           `docker run` command&mdash;for example, `/foo:/bar` or `/foo:/bar:ro`.
      *           If the `TaskSpec.Volumes` field is specified but this field is not, Batch
      *           will mount each volume from the host machine to the container with the
      *           same mount path by default. In this case, the default mount option for
-     *           containers will be read-only (ro) for existing persistent disks and
-     *           read-write (rw) for other volume types, regardless of the original mount
-     *           options specified in `TaskSpec.Volumes`. If you need different mount
-     *           settings, you can explicitly configure them in this field.
+     *           containers will be read-only (`ro`) for existing persistent disks and
+     *           read-write (`rw`) for other volume types, regardless of the original
+     *           mount options specified in `TaskSpec.Volumes`. If you need different
+     *           mount settings, you can explicitly configure them in this field.
      *     @type string $options
-     *           Arbitrary additional options to include in the "docker run" command when
-     *           running this container, e.g. "--network host".
+     *           Required for some container images. Arbitrary additional options to
+     *           include in the `docker run` command when running this container&mdash;for
+     *           example, `--network host`. For the `--volume` option, use the `volumes`
+     *           field for the container.
      *     @type bool $block_external_network
      *           If set to true, external network access to and from container will be
      *           blocked, containers that are with block_external_network as true can
@@ -204,7 +212,7 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URI to pull the container image from.
+     * Required. The URI to pull the container image from.
      *
      * Generated from protobuf field <code>string image_uri = 1;</code>
      * @return string
@@ -215,7 +223,7 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URI to pull the container image from.
+     * Required. The URI to pull the container image from.
      *
      * Generated from protobuf field <code>string image_uri = 1;</code>
      * @param string $var
@@ -230,9 +238,10 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Overrides the `CMD` specified in the container. If there is an ENTRYPOINT
-     * (either in the container image or with the entrypoint field below) then
-     * commands are appended as arguments to the ENTRYPOINT.
+     * Required for some container images. Overrides the `CMD` specified in the
+     * container. If there is an `ENTRYPOINT` (either in the container image or
+     * with the `entrypoint` field below) then these commands are appended as
+     * arguments to the `ENTRYPOINT`.
      *
      * Generated from protobuf field <code>repeated string commands = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -243,9 +252,10 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Overrides the `CMD` specified in the container. If there is an ENTRYPOINT
-     * (either in the container image or with the entrypoint field below) then
-     * commands are appended as arguments to the ENTRYPOINT.
+     * Required for some container images. Overrides the `CMD` specified in the
+     * container. If there is an `ENTRYPOINT` (either in the container image or
+     * with the `entrypoint` field below) then these commands are appended as
+     * arguments to the `ENTRYPOINT`.
      *
      * Generated from protobuf field <code>repeated string commands = 2;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -260,7 +270,8 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Overrides the `ENTRYPOINT` specified in the container.
+     * Required for some container images. Overrides the `ENTRYPOINT` specified
+     * in the container.
      *
      * Generated from protobuf field <code>string entrypoint = 3;</code>
      * @return string
@@ -271,7 +282,8 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Overrides the `ENTRYPOINT` specified in the container.
+     * Required for some container images. Overrides the `ENTRYPOINT` specified
+     * in the container.
      *
      * Generated from protobuf field <code>string entrypoint = 3;</code>
      * @param string $var
@@ -287,15 +299,15 @@ class Container extends \Google\Protobuf\Internal\Message
 
     /**
      * Volumes to mount (bind mount) from the host machine files or directories
-     * into the container, formatted to match docker run's --volume option,
-     * e.g. /foo:/bar, or /foo:/bar:ro
+     * into the container, formatted to match `--volume` option for the
+     * `docker run` command&mdash;for example, `/foo:/bar` or `/foo:/bar:ro`.
      * If the `TaskSpec.Volumes` field is specified but this field is not, Batch
      * will mount each volume from the host machine to the container with the
      * same mount path by default. In this case, the default mount option for
-     * containers will be read-only (ro) for existing persistent disks and
-     * read-write (rw) for other volume types, regardless of the original mount
-     * options specified in `TaskSpec.Volumes`. If you need different mount
-     * settings, you can explicitly configure them in this field.
+     * containers will be read-only (`ro`) for existing persistent disks and
+     * read-write (`rw`) for other volume types, regardless of the original
+     * mount options specified in `TaskSpec.Volumes`. If you need different
+     * mount settings, you can explicitly configure them in this field.
      *
      * Generated from protobuf field <code>repeated string volumes = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -307,15 +319,15 @@ class Container extends \Google\Protobuf\Internal\Message
 
     /**
      * Volumes to mount (bind mount) from the host machine files or directories
-     * into the container, formatted to match docker run's --volume option,
-     * e.g. /foo:/bar, or /foo:/bar:ro
+     * into the container, formatted to match `--volume` option for the
+     * `docker run` command&mdash;for example, `/foo:/bar` or `/foo:/bar:ro`.
      * If the `TaskSpec.Volumes` field is specified but this field is not, Batch
      * will mount each volume from the host machine to the container with the
      * same mount path by default. In this case, the default mount option for
-     * containers will be read-only (ro) for existing persistent disks and
-     * read-write (rw) for other volume types, regardless of the original mount
-     * options specified in `TaskSpec.Volumes`. If you need different mount
-     * settings, you can explicitly configure them in this field.
+     * containers will be read-only (`ro`) for existing persistent disks and
+     * read-write (`rw`) for other volume types, regardless of the original
+     * mount options specified in `TaskSpec.Volumes`. If you need different
+     * mount settings, you can explicitly configure them in this field.
      *
      * Generated from protobuf field <code>repeated string volumes = 7;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -330,8 +342,10 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Arbitrary additional options to include in the "docker run" command when
-     * running this container, e.g. "--network host".
+     * Required for some container images. Arbitrary additional options to
+     * include in the `docker run` command when running this container&mdash;for
+     * example, `--network host`. For the `--volume` option, use the `volumes`
+     * field for the container.
      *
      * Generated from protobuf field <code>string options = 8;</code>
      * @return string
@@ -342,8 +356,10 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Arbitrary additional options to include in the "docker run" command when
-     * running this container, e.g. "--network host".
+     * Required for some container images. Arbitrary additional options to
+     * include in the `docker run` command when running this container&mdash;for
+     * example, `--network host`. For the `--volume` option, use the `volumes`
+     * field for the container.
      *
      * Generated from protobuf field <code>string options = 8;</code>
      * @param string $var

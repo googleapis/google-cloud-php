@@ -36,7 +36,7 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.CompensationInfo.CompensationType type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Frequency of the specified amount.
      * Default is
@@ -44,7 +44,7 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.CompensationInfo.CompensationUnit unit = 2;</code>
      */
-    private $unit = 0;
+    protected $unit = 0;
     /**
      * Compensation description.  For example, could
      * indicate equity terms or provide additional context to an estimated
@@ -52,7 +52,7 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 5;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Expected number of units paid each year. If not specified, when
      * [Job.employment_types][google.cloud.talent.v4.Job.employment_types] is
@@ -67,7 +67,7 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue expected_units_per_year = 6;</code>
      */
-    private $expected_units_per_year = null;
+    protected $expected_units_per_year = null;
     protected $compensation_amount;
 
     /**
@@ -309,7 +309,7 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.DoubleValue expected_units_per_year = 6;</code>
      * @return float|null
      */
-    public function getExpectedUnitsPerYearValue()
+    public function getExpectedUnitsPerYearUnwrapped()
     {
         return $this->readWrapperValue("expected_units_per_year");
     }
@@ -356,7 +356,7 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      * @param float|null $var
      * @return $this
      */
-    public function setExpectedUnitsPerYearValue($var)
+    public function setExpectedUnitsPerYearUnwrapped($var)
     {
         $this->writeWrapperValue("expected_units_per_year", $var);
         return $this;}

@@ -21,7 +21,7 @@ class RoutineSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.RoutineSpec.RoutineType routine_type = 1;</code>
      */
-    private $routine_type = 0;
+    protected $routine_type = 0;
     /**
      * The language the routine is written in. The exact value depends on the
      * source system. For BigQuery routines, possible values are:
@@ -30,7 +30,7 @@ class RoutineSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language = 2;</code>
      */
-    private $language = '';
+    protected $language = '';
     /**
      * Arguments of the routine.
      *
@@ -43,13 +43,13 @@ class RoutineSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string return_type = 4;</code>
      */
-    private $return_type = '';
+    protected $return_type = '';
     /**
      * The body of the routine.
      *
      * Generated from protobuf field <code>string definition_body = 5;</code>
      */
-    private $definition_body = '';
+    protected $definition_body = '';
     protected $system_spec;
 
     /**

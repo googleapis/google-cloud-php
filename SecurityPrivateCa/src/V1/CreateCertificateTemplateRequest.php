@@ -23,14 +23,14 @@ class CreateCertificateTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. It must be unique within a location and match the regular
      * expression `[a-zA-Z0-9_-]{1,63}`
      *
      * Generated from protobuf field <code>string certificate_template_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $certificate_template_id = '';
+    protected $certificate_template_id = '';
     /**
      * Required. A
      * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
@@ -38,7 +38,7 @@ class CreateCertificateTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateTemplate certificate_template = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $certificate_template = null;
+    protected $certificate_template = null;
     /**
      * Optional. An ID to identify requests. Specify a unique request ID so that
      * if you must retry your request, the server will know to ignore the request
@@ -54,7 +54,7 @@ class CreateCertificateTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                                                  $parent                Required. The resource name of the location associated with the

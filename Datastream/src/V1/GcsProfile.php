@@ -20,13 +20,13 @@ class GcsProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string bucket = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $bucket = '';
+    protected $bucket = '';
     /**
      * The root path inside the Cloud Storage bucket.
      *
      * Generated from protobuf field <code>string root_path = 2;</code>
      */
-    private $root_path = '';
+    protected $root_path = '';
 
     /**
      * Constructor.

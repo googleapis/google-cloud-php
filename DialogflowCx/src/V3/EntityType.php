@@ -41,8 +41,8 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * The unique identifier of the entity type.
      * Required for
      * [EntityTypes.UpdateEntityType][google.cloud.dialogflow.cx.v3.EntityTypes.UpdateEntityType].
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/entityTypes/<Entity Type ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entityTypes/<EntityTypeID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -107,8 +107,8 @@ class EntityType extends \Google\Protobuf\Internal\Message
      *           The unique identifier of the entity type.
      *           Required for
      *           [EntityTypes.UpdateEntityType][google.cloud.dialogflow.cx.v3.EntityTypes.UpdateEntityType].
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/entityTypes/<Entity Type ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entityTypes/<EntityTypeID>`.
      *     @type string $display_name
      *           Required. The human-readable name of the entity type, unique within the
      *           agent.
@@ -141,8 +141,8 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * The unique identifier of the entity type.
      * Required for
      * [EntityTypes.UpdateEntityType][google.cloud.dialogflow.cx.v3.EntityTypes.UpdateEntityType].
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/entityTypes/<Entity Type ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entityTypes/<EntityTypeID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -156,8 +156,8 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * The unique identifier of the entity type.
      * Required for
      * [EntityTypes.UpdateEntityType][google.cloud.dialogflow.cx.v3.EntityTypes.UpdateEntityType].
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/entityTypes/<Entity Type ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entityTypes/<EntityTypeID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

@@ -33,7 +33,7 @@ use Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsConfigMap;
  * Lists user workloads ConfigMaps.
  *
  * This method is supported for Cloud Composer environments in versions
- * composer-3.*.*-airflow-*.*.* and newer.
+ * composer-3-airflow-*.*.*-build.* and newer.
  *
  * @param string $formattedParent List ConfigMaps in the given environment, in the form:
  *                                "projects/{projectId}/locations/{locationId}/environments/{environmentId}"

@@ -27,7 +27,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 /**
  * @group spanner
  */
-class SpannerTestCase extends SystemTestCase
+abstract class SpannerTestCase extends SystemTestCase
 {
     const TESTING_PREFIX = 'gcloud_testing_';
     const INSTANCE_NAME = 'google-cloud-php-system-tests';
@@ -46,7 +46,10 @@ class SpannerTestCase extends SystemTestCase
 
     private static $hasSetUp = false;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         if (self::$hasSetUp) {
             return;

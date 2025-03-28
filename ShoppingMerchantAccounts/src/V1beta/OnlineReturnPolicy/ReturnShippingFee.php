@@ -17,9 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReturnShippingFee extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Type of return shipping fee.
+     * Required. Type of return shipping fee.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnShippingFee.Type type = 1;</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnShippingFee.Type type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $type = 0;
     /**
@@ -38,7 +38,7 @@ class ReturnShippingFee extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $type
-     *           Type of return shipping fee.
+     *           Required. Type of return shipping fee.
      *     @type \Google\Shopping\Type\Price $fixed_fee
      *           Fixed return shipping fee amount. This value is only applicable when type
      *           is `FIXED`. We will treat the return shipping fee as free if type is
@@ -51,9 +51,9 @@ class ReturnShippingFee extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of return shipping fee.
+     * Required. Type of return shipping fee.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnShippingFee.Type type = 1;</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnShippingFee.Type type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getType()
@@ -62,9 +62,9 @@ class ReturnShippingFee extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of return shipping fee.
+     * Required. Type of return shipping fee.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnShippingFee.Type type = 1;</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnShippingFee.Type type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */

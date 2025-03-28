@@ -27,28 +27,28 @@ class MappingRuleFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent_entity = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $parent_entity = '';
+    protected $parent_entity = '';
     /**
      * Optional. The rule should be applied to entities whose non-qualified name
      * starts with the given prefix.
      *
      * Generated from protobuf field <code>string entity_name_prefix = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $entity_name_prefix = '';
+    protected $entity_name_prefix = '';
     /**
      * Optional. The rule should be applied to entities whose non-qualified name
      * ends with the given suffix.
      *
      * Generated from protobuf field <code>string entity_name_suffix = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $entity_name_suffix = '';
+    protected $entity_name_suffix = '';
     /**
      * Optional. The rule should be applied to entities whose non-qualified name
      * contains the given string.
      *
      * Generated from protobuf field <code>string entity_name_contains = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $entity_name_contains = '';
+    protected $entity_name_contains = '';
     /**
      * Optional. The rule should be applied to specific entities defined by their
      * fully qualified names.

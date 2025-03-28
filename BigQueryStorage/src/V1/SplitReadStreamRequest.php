@@ -20,7 +20,7 @@ class SplitReadStreamRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A value in the range (0.0, 1.0) that specifies the fractional point at
      * which the original stream should be split. The actual split point is
@@ -32,7 +32,7 @@ class SplitReadStreamRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double fraction = 2;</code>
      */
-    private $fraction = 0.0;
+    protected $fraction = 0.0;
 
     /**
      * Constructor.

@@ -21,13 +21,13 @@ class SentimentData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float magnitude = 1;</code>
      */
-    private $magnitude = 0.0;
+    protected $magnitude = 0.0;
     /**
      * The sentiment score between -1.0 (negative) and 1.0 (positive).
      *
      * Generated from protobuf field <code>float score = 2;</code>
      */
-    private $score = 0.0;
+    protected $score = 0.0;
 
     /**
      * Constructor.

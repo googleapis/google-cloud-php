@@ -20,7 +20,7 @@ class FieldElementType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.TableFieldSchema.Type type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $type = 0;
+    protected $type = 0;
 
     /**
      * Constructor.
@@ -65,6 +65,4 @@ class FieldElementType extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FieldElementType::class, \Google\Cloud\BigQuery\Storage\V1\TableFieldSchema_FieldElementType::class);
 

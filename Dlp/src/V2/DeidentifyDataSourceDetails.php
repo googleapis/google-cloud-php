@@ -21,13 +21,13 @@ class DeidentifyDataSourceDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DeidentifyDataSourceDetails.RequestedDeidentifyOptions requested_options = 1;</code>
      */
-    private $requested_options = null;
+    protected $requested_options = null;
     /**
      * Stats about the de-identification operation.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DeidentifyDataSourceStats deidentify_stats = 2;</code>
      */
-    private $deidentify_stats = null;
+    protected $deidentify_stats = null;
 
     /**
      * Constructor.

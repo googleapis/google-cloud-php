@@ -20,13 +20,13 @@ class ListFindingsResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Finding finding = 1;</code>
      */
-    private $finding = null;
+    protected $finding = null;
     /**
      * Output only. Resource that is associated with this finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.ListFindingsResponse.ListFindingsResult.Resource resource = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $resource = null;
+    protected $resource = null;
 
     /**
      * Constructor.
@@ -119,6 +119,4 @@ class ListFindingsResult extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ListFindingsResult::class, \Google\Cloud\SecurityCenter\V2\ListFindingsResponse_ListFindingsResult::class);
 

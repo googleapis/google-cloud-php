@@ -47,20 +47,20 @@ class SetMasterAuthRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.SetMasterAuthRequest.Action action = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $action = 0;
+    protected $action = 0;
     /**
      * Required. A description of the update.
      *
      * Generated from protobuf field <code>.google.container.v1.MasterAuth update = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update = null;
+    protected $update = null;
     /**
      * The name (project, location, cluster) of the cluster to set auth.
      * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 7;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * Constructor.

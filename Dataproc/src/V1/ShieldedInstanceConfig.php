@@ -21,19 +21,19 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool enable_secure_boot = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_secure_boot = null;
+    protected $enable_secure_boot = null;
     /**
      * Optional. Defines whether instances have the vTPM enabled.
      *
      * Generated from protobuf field <code>optional bool enable_vtpm = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_vtpm = null;
+    protected $enable_vtpm = null;
     /**
      * Optional. Defines whether instances have integrity monitoring enabled.
      *
      * Generated from protobuf field <code>optional bool enable_integrity_monitoring = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_integrity_monitoring = null;
+    protected $enable_integrity_monitoring = null;
 
     /**
      * Constructor.

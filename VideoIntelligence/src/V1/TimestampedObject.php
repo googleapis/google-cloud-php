@@ -22,14 +22,14 @@ class TimestampedObject extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.NormalizedBoundingBox normalized_bounding_box = 1;</code>
      */
-    private $normalized_bounding_box = null;
+    protected $normalized_bounding_box = null;
     /**
      * Time-offset, relative to the beginning of the video,
      * corresponding to the video frame for this object.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration time_offset = 2;</code>
      */
-    private $time_offset = null;
+    protected $time_offset = null;
     /**
      * Optional. The attributes of the object in the bounding box.
      *

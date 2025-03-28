@@ -24,11 +24,12 @@ class Tool extends \Google\Protobuf\Internal\Message
      * Optional. Function tool type.
      * One or more function declarations to be passed to the model along with the
      * current user query. Model may decide to call a subset of these functions
-     * by populating [FunctionCall][content.part.function_call] in the response.
-     * User should provide a [FunctionResponse][content.part.function_response]
-     * for each function call in the next turn. Based on the function responses,
-     * Model will generate the final response back to the user.
-     * Maximum 64 function declarations can be provided.
+     * by populating [FunctionCall][google.cloud.aiplatform.v1.Part.function_call]
+     * in the response. User should provide a
+     * [FunctionResponse][google.cloud.aiplatform.v1.Part.function_response] for
+     * each function call in the next turn. Based on the function responses, Model
+     * will generate the final response back to the user. Maximum 128 function
+     * declarations can be provided.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FunctionDeclaration function_declarations = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -43,12 +44,33 @@ class Tool extends \Google\Protobuf\Internal\Message
      */
     protected $retrieval = null;
     /**
+     * Optional. GoogleSearch tool type.
+     * Tool to support Google Search in Model. Powered by Google.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tool.GoogleSearch google_search = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $google_search = null;
+    /**
      * Optional. GoogleSearchRetrieval tool type.
      * Specialized retrieval tool that is powered by Google search.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GoogleSearchRetrieval google_search_retrieval = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $google_search_retrieval = null;
+    /**
+     * Optional. Tool to support searching public web data, powered by Vertex AI
+     * Search and Sec4 compliance.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EnterpriseWebSearch enterprise_web_search = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enterprise_web_search = null;
+    /**
+     * Optional. CodeExecution tool type.
+     * Enables the model to execute code as part of generation.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tool.CodeExecution code_execution = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $code_execution = null;
 
     /**
      * Constructor.
@@ -60,19 +82,29 @@ class Tool extends \Google\Protobuf\Internal\Message
      *           Optional. Function tool type.
      *           One or more function declarations to be passed to the model along with the
      *           current user query. Model may decide to call a subset of these functions
-     *           by populating [FunctionCall][content.part.function_call] in the response.
-     *           User should provide a [FunctionResponse][content.part.function_response]
-     *           for each function call in the next turn. Based on the function responses,
-     *           Model will generate the final response back to the user.
-     *           Maximum 64 function declarations can be provided.
+     *           by populating [FunctionCall][google.cloud.aiplatform.v1.Part.function_call]
+     *           in the response. User should provide a
+     *           [FunctionResponse][google.cloud.aiplatform.v1.Part.function_response] for
+     *           each function call in the next turn. Based on the function responses, Model
+     *           will generate the final response back to the user. Maximum 128 function
+     *           declarations can be provided.
      *     @type \Google\Cloud\AIPlatform\V1\Retrieval $retrieval
      *           Optional. Retrieval tool type.
      *           System will always execute the provided retrieval tool(s) to get external
      *           knowledge to answer the prompt. Retrieval results are presented to the
      *           model for generation.
+     *     @type \Google\Cloud\AIPlatform\V1\Tool\GoogleSearch $google_search
+     *           Optional. GoogleSearch tool type.
+     *           Tool to support Google Search in Model. Powered by Google.
      *     @type \Google\Cloud\AIPlatform\V1\GoogleSearchRetrieval $google_search_retrieval
      *           Optional. GoogleSearchRetrieval tool type.
      *           Specialized retrieval tool that is powered by Google search.
+     *     @type \Google\Cloud\AIPlatform\V1\EnterpriseWebSearch $enterprise_web_search
+     *           Optional. Tool to support searching public web data, powered by Vertex AI
+     *           Search and Sec4 compliance.
+     *     @type \Google\Cloud\AIPlatform\V1\Tool\CodeExecution $code_execution
+     *           Optional. CodeExecution tool type.
+     *           Enables the model to execute code as part of generation.
      * }
      */
     public function __construct($data = NULL) {
@@ -84,11 +116,12 @@ class Tool extends \Google\Protobuf\Internal\Message
      * Optional. Function tool type.
      * One or more function declarations to be passed to the model along with the
      * current user query. Model may decide to call a subset of these functions
-     * by populating [FunctionCall][content.part.function_call] in the response.
-     * User should provide a [FunctionResponse][content.part.function_response]
-     * for each function call in the next turn. Based on the function responses,
-     * Model will generate the final response back to the user.
-     * Maximum 64 function declarations can be provided.
+     * by populating [FunctionCall][google.cloud.aiplatform.v1.Part.function_call]
+     * in the response. User should provide a
+     * [FunctionResponse][google.cloud.aiplatform.v1.Part.function_response] for
+     * each function call in the next turn. Based on the function responses, Model
+     * will generate the final response back to the user. Maximum 128 function
+     * declarations can be provided.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FunctionDeclaration function_declarations = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -102,11 +135,12 @@ class Tool extends \Google\Protobuf\Internal\Message
      * Optional. Function tool type.
      * One or more function declarations to be passed to the model along with the
      * current user query. Model may decide to call a subset of these functions
-     * by populating [FunctionCall][content.part.function_call] in the response.
-     * User should provide a [FunctionResponse][content.part.function_response]
-     * for each function call in the next turn. Based on the function responses,
-     * Model will generate the final response back to the user.
-     * Maximum 64 function declarations can be provided.
+     * by populating [FunctionCall][google.cloud.aiplatform.v1.Part.function_call]
+     * in the response. User should provide a
+     * [FunctionResponse][google.cloud.aiplatform.v1.Part.function_response] for
+     * each function call in the next turn. Based on the function responses, Model
+     * will generate the final response back to the user. Maximum 128 function
+     * declarations can be provided.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FunctionDeclaration function_declarations = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\AIPlatform\V1\FunctionDeclaration>|\Google\Protobuf\Internal\RepeatedField $var
@@ -163,6 +197,44 @@ class Tool extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. GoogleSearch tool type.
+     * Tool to support Google Search in Model. Powered by Google.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tool.GoogleSearch google_search = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\Tool\GoogleSearch|null
+     */
+    public function getGoogleSearch()
+    {
+        return $this->google_search;
+    }
+
+    public function hasGoogleSearch()
+    {
+        return isset($this->google_search);
+    }
+
+    public function clearGoogleSearch()
+    {
+        unset($this->google_search);
+    }
+
+    /**
+     * Optional. GoogleSearch tool type.
+     * Tool to support Google Search in Model. Powered by Google.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tool.GoogleSearch google_search = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\Tool\GoogleSearch $var
+     * @return $this
+     */
+    public function setGoogleSearch($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Tool\GoogleSearch::class);
+        $this->google_search = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. GoogleSearchRetrieval tool type.
      * Specialized retrieval tool that is powered by Google search.
      *
@@ -196,6 +268,82 @@ class Tool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GoogleSearchRetrieval::class);
         $this->google_search_retrieval = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Tool to support searching public web data, powered by Vertex AI
+     * Search and Sec4 compliance.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EnterpriseWebSearch enterprise_web_search = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\EnterpriseWebSearch|null
+     */
+    public function getEnterpriseWebSearch()
+    {
+        return $this->enterprise_web_search;
+    }
+
+    public function hasEnterpriseWebSearch()
+    {
+        return isset($this->enterprise_web_search);
+    }
+
+    public function clearEnterpriseWebSearch()
+    {
+        unset($this->enterprise_web_search);
+    }
+
+    /**
+     * Optional. Tool to support searching public web data, powered by Vertex AI
+     * Search and Sec4 compliance.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EnterpriseWebSearch enterprise_web_search = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\EnterpriseWebSearch $var
+     * @return $this
+     */
+    public function setEnterpriseWebSearch($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EnterpriseWebSearch::class);
+        $this->enterprise_web_search = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. CodeExecution tool type.
+     * Enables the model to execute code as part of generation.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tool.CodeExecution code_execution = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\Tool\CodeExecution|null
+     */
+    public function getCodeExecution()
+    {
+        return $this->code_execution;
+    }
+
+    public function hasCodeExecution()
+    {
+        return isset($this->code_execution);
+    }
+
+    public function clearCodeExecution()
+    {
+        unset($this->code_execution);
+    }
+
+    /**
+     * Optional. CodeExecution tool type.
+     * Enables the model to execute code as part of generation.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tool.CodeExecution code_execution = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\Tool\CodeExecution $var
+     * @return $this
+     */
+    public function setCodeExecution($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Tool\CodeExecution::class);
+        $this->code_execution = $var;
 
         return $this;
     }

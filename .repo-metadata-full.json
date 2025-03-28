@@ -15,6 +15,22 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "accesscontextmanager"
     },
+    "AdsAdManager": {
+        "language": "php",
+        "distribution_name": "googleads/ad-manager",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/googleads/ad-manager/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "admanager"
+    },
+    "AdsMarketingPlatformAdmin": {
+        "language": "php",
+        "distribution_name": "googleads/marketingplatform-admin",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/googleads/marketingplatform-admin/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "marketingplatformadmin"
+    },
     "AdvisoryNotifications": {
         "language": "php",
         "distribution_name": "google/cloud-advisorynotifications",
@@ -62,6 +78,14 @@
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-api-gateway/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "apigateway"
+    },
+    "ApiHub": {
+        "language": "php",
+        "distribution_name": "google/cloud-apihub",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-apihub/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "apihub"
     },
     "ApiKeys": {
         "language": "php",
@@ -363,6 +387,13 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "cloudchannel"
     },
+    "CloudCommonProtos": {
+        "language": "php",
+        "distribution_name": "google/cloud-common-protos",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-common-protos/latest",
+        "library_type": "CORE"
+    },
     "CommerceConsumerProcurement": {
         "language": "php",
         "distribution_name": "google/cloud-commerce-consumer-procurement",
@@ -373,10 +404,10 @@
     },
     "CommonProtos": {
         "language": "php",
-        "distribution_name": "google/cloud-common-protos",
-        "release_level": "preview",
-        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-common-protos/latest",
-        "library_type": "CORE"
+        "distribution_name": "google/common-protos",
+        "release_level": "stable",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/common-protos/latest",
+        "library_type": "GAPIC_AUTO"
     },
     "Compute": {
         "language": "php",
@@ -695,14 +726,6 @@
         "issue_tracker": "https://github.com/googleapis/google-cloud-php/issues",
         "api_shortname": "gsuiteaddons"
     },
-    "Gaming": {
-        "language": "php",
-        "distribution_name": "google/cloud-game-servers",
-        "release_level": "stable",
-        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-game-servers/latest",
-        "library_type": "GAPIC_AUTO",
-        "api_shortname": "gameservices"
-    },
     "GeoCommonProtos": {
         "distribution_name": "google/geo-common-protos",
         "release_level": "preview",
@@ -720,7 +743,7 @@
     "GkeConnectGateway": {
         "language": "php",
         "distribution_name": "google/cloud-gke-connect-gateway",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-gke-connect-gateway/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "connectgateway"
@@ -783,14 +806,6 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "ids"
     },
-    "Iot": {
-        "language": "php",
-        "distribution_name": "google/cloud-iot",
-        "release_level": "stable",
-        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-iot/latest",
-        "library_type": "GAPIC_AUTO",
-        "api_shortname": "cloudiot"
-    },
     "Kms": {
         "language": "php",
         "distribution_name": "google/cloud-kms",
@@ -810,7 +825,7 @@
     "Language": {
         "language": "php",
         "distribution_name": "google/cloud-language",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-language/latest",
         "library_type": "GAPIC_COMBO",
         "api_shortname": "language"
@@ -882,7 +897,7 @@
     "MediaTranslation": {
         "language": "php",
         "distribution_name": "google/cloud-media-translation",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-media-translation/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "mediatranslation"
@@ -894,6 +909,14 @@
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-memcache/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "memcache"
+    },
+    "Memorystore": {
+        "language": "php",
+        "distribution_name": "google/cloud-memorystore",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-memorystore/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "memorystore"
     },
     "MigrationCenter": {
         "language": "php",
@@ -967,6 +990,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "cloudoptimization"
     },
+    "OracleDatabase": {
+        "language": "php",
+        "distribution_name": "google/cloud-oracledatabase",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-oracledatabase/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "oracledatabase"
+    },
     "OrchestrationAirflow": {
         "language": "php",
         "distribution_name": "google/cloud-orchestration-airflow",
@@ -1006,6 +1037,14 @@
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-parallelstore/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "parallelstore"
+    },
+    "ParameterManager": {
+        "language": "php",
+        "distribution_name": "google/cloud-parametermanager",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-parametermanager/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "parametermanager"
     },
     "PolicySimulator": {
         "language": "php",
@@ -1287,7 +1326,7 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "merchantapi"
     },
-    "ShoppingMerchantDatasources": {
+    "ShoppingMerchantDataSources": {
         "language": "php",
         "distribution_name": "google/shopping-merchant-datasources",
         "release_level": "preview",
@@ -1347,6 +1386,14 @@
         "distribution_name": "google/shopping-merchant-reports",
         "release_level": "preview",
         "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-reports/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "merchantapi"
+    },
+    "ShoppingMerchantReviews": {
+        "language": "php",
+        "distribution_name": "google/shopping-merchant-reviews",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-reviews/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "merchantapi"
     },

@@ -21,7 +21,7 @@ class AnalyzeIamPolicyLongrunningRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisQuery analysis_query = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $analysis_query = null;
+    protected $analysis_query = null;
     /**
      * Optional. The name of a saved query, which must be in the format of:
      * * projects/project_number/savedQueries/saved_query_id
@@ -39,14 +39,14 @@ class AnalyzeIamPolicyLongrunningRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string saved_analysis_query = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $saved_analysis_query = '';
+    protected $saved_analysis_query = '';
     /**
      * Required. Output configuration indicating where the results will be output
      * to.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisOutputConfig output_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $output_config = null;
+    protected $output_config = null;
 
     /**
      * Constructor.

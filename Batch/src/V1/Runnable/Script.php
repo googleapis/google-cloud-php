@@ -24,21 +24,23 @@ class Script extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $path
-     *           Script file path on the host VM.
-     *           To specify an interpreter, please add a `#!<interpreter>`(also known as
-     *           [shebang line](https://en.wikipedia.org/wiki/Shebang_(Unix))) as the
-     *           first line of the file.(For example, to execute the script using bash,
-     *           `#!/bin/bash` should be the first line of the file. To execute the
-     *           script using`Python3`, `#!/usr/bin/env python3` should be the first
-     *           line of the file.) Otherwise, the file will by default be executed by
-     *           `/bin/sh`.
+     *           The path to a script file that is accessible from the host VM(s).
+     *           Unless the script file supports the default `#!/bin/sh` shell
+     *           interpreter, you must specify an interpreter by including a
+     *           [shebang line](https://en.wikipedia.org/wiki/Shebang_(Unix) as the
+     *           first line of the file. For example, to execute the script using bash,
+     *           include `#!/bin/bash` as the first line of the file. Alternatively,
+     *           to execute the script using Python3, include `#!/usr/bin/env python3`
+     *           as the first line of the file.
      *     @type string $text
-     *           Shell script text.
-     *           To specify an interpreter, please add a `#!<interpreter>\n` at the
-     *           beginning of the text.(For example, to execute the script using bash,
-     *           `#!/bin/bash\n` should be added. To execute the script using`Python3`,
-     *           `#!/usr/bin/env python3\n` should be added.) Otherwise, the script will
-     *           by default be executed by `/bin/sh`.
+     *           The text for a script.
+     *           Unless the script text supports the default `#!/bin/sh` shell
+     *           interpreter, you must specify an interpreter by including a
+     *           [shebang line](https://en.wikipedia.org/wiki/Shebang_(Unix) at the
+     *           beginning of the text. For example, to execute the script using bash,
+     *           include `#!/bin/bash\n` at the beginning of the text. Alternatively,
+     *           to execute the script using Python3, include `#!/usr/bin/env python3\n`
+     *           at the beginning of the text.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,14 +49,14 @@ class Script extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Script file path on the host VM.
-     * To specify an interpreter, please add a `#!<interpreter>`(also known as
-     * [shebang line](https://en.wikipedia.org/wiki/Shebang_(Unix))) as the
-     * first line of the file.(For example, to execute the script using bash,
-     * `#!/bin/bash` should be the first line of the file. To execute the
-     * script using`Python3`, `#!/usr/bin/env python3` should be the first
-     * line of the file.) Otherwise, the file will by default be executed by
-     * `/bin/sh`.
+     * The path to a script file that is accessible from the host VM(s).
+     * Unless the script file supports the default `#!/bin/sh` shell
+     * interpreter, you must specify an interpreter by including a
+     * [shebang line](https://en.wikipedia.org/wiki/Shebang_(Unix) as the
+     * first line of the file. For example, to execute the script using bash,
+     * include `#!/bin/bash` as the first line of the file. Alternatively,
+     * to execute the script using Python3, include `#!/usr/bin/env python3`
+     * as the first line of the file.
      *
      * Generated from protobuf field <code>string path = 1;</code>
      * @return string
@@ -70,14 +72,14 @@ class Script extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Script file path on the host VM.
-     * To specify an interpreter, please add a `#!<interpreter>`(also known as
-     * [shebang line](https://en.wikipedia.org/wiki/Shebang_(Unix))) as the
-     * first line of the file.(For example, to execute the script using bash,
-     * `#!/bin/bash` should be the first line of the file. To execute the
-     * script using`Python3`, `#!/usr/bin/env python3` should be the first
-     * line of the file.) Otherwise, the file will by default be executed by
-     * `/bin/sh`.
+     * The path to a script file that is accessible from the host VM(s).
+     * Unless the script file supports the default `#!/bin/sh` shell
+     * interpreter, you must specify an interpreter by including a
+     * [shebang line](https://en.wikipedia.org/wiki/Shebang_(Unix) as the
+     * first line of the file. For example, to execute the script using bash,
+     * include `#!/bin/bash` as the first line of the file. Alternatively,
+     * to execute the script using Python3, include `#!/usr/bin/env python3`
+     * as the first line of the file.
      *
      * Generated from protobuf field <code>string path = 1;</code>
      * @param string $var
@@ -92,12 +94,14 @@ class Script extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Shell script text.
-     * To specify an interpreter, please add a `#!<interpreter>\n` at the
-     * beginning of the text.(For example, to execute the script using bash,
-     * `#!/bin/bash\n` should be added. To execute the script using`Python3`,
-     * `#!/usr/bin/env python3\n` should be added.) Otherwise, the script will
-     * by default be executed by `/bin/sh`.
+     * The text for a script.
+     * Unless the script text supports the default `#!/bin/sh` shell
+     * interpreter, you must specify an interpreter by including a
+     * [shebang line](https://en.wikipedia.org/wiki/Shebang_(Unix) at the
+     * beginning of the text. For example, to execute the script using bash,
+     * include `#!/bin/bash\n` at the beginning of the text. Alternatively,
+     * to execute the script using Python3, include `#!/usr/bin/env python3\n`
+     * at the beginning of the text.
      *
      * Generated from protobuf field <code>string text = 2;</code>
      * @return string
@@ -113,12 +117,14 @@ class Script extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Shell script text.
-     * To specify an interpreter, please add a `#!<interpreter>\n` at the
-     * beginning of the text.(For example, to execute the script using bash,
-     * `#!/bin/bash\n` should be added. To execute the script using`Python3`,
-     * `#!/usr/bin/env python3\n` should be added.) Otherwise, the script will
-     * by default be executed by `/bin/sh`.
+     * The text for a script.
+     * Unless the script text supports the default `#!/bin/sh` shell
+     * interpreter, you must specify an interpreter by including a
+     * [shebang line](https://en.wikipedia.org/wiki/Shebang_(Unix) at the
+     * beginning of the text. For example, to execute the script using bash,
+     * include `#!/bin/bash\n` at the beginning of the text. Alternatively,
+     * to execute the script using Python3, include `#!/usr/bin/env python3\n`
+     * at the beginning of the text.
      *
      * Generated from protobuf field <code>string text = 2;</code>
      * @param string $var

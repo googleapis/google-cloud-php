@@ -20,19 +20,19 @@ class AttackStepNode extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uuid = 1;</code>
      */
-    private $uuid = '';
+    protected $uuid = '';
     /**
      * Attack step type. Can be either AND, OR or DEFENSE
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AttackPath.AttackPathNode.NodeType type = 2;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * User friendly name of the attack step
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Attack step labels for metadata
      *
@@ -44,7 +44,7 @@ class AttackStepNode extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 5;</code>
      */
-    private $description = '';
+    protected $description = '';
 
     /**
      * Constructor.
@@ -201,6 +201,4 @@ class AttackStepNode extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AttackStepNode::class, \Google\Cloud\SecurityCenter\V2\AttackPath_AttackPathNode_AttackStepNode::class);
 

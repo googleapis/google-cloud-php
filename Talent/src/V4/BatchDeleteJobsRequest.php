@@ -23,7 +23,7 @@ class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The names of the jobs to delete.
      * The format is "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}".

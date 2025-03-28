@@ -24,7 +24,7 @@ class OrgPolicyResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.AnalyzerOrgPolicy consolidated_policy = 1;</code>
      */
-    private $consolidated_policy = null;
+    protected $consolidated_policy = null;
     /**
      * The ordered list of all organization policies from the
      * [AnalyzeOrgPoliciesResponse.OrgPolicyResult.consolidated_policy.attached_resource][].
@@ -42,7 +42,7 @@ class OrgPolicyResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 3;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * The folder(s) that this consolidated policy belongs to, in the format of
      * folders/{FOLDER_NUMBER}. This field is available when the consolidated
@@ -58,7 +58,7 @@ class OrgPolicyResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string organization = 5;</code>
      */
-    private $organization = '';
+    protected $organization = '';
 
     /**
      * Constructor.
@@ -267,6 +267,4 @@ class OrgPolicyResult extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(OrgPolicyResult::class, \Google\Cloud\Asset\V1\AnalyzeOrgPoliciesResponse_OrgPolicyResult::class);
 

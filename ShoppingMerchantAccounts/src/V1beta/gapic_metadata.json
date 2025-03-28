@@ -116,6 +116,44 @@
                 }
             }
         },
+        "AutofeedSettingsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AutofeedSettingsServiceGapicClient",
+                    "rpcs": {
+                        "GetAutofeedSettings": {
+                            "methods": [
+                                "getAutofeedSettings"
+                            ]
+                        },
+                        "UpdateAutofeedSettings": {
+                            "methods": [
+                                "updateAutofeedSettings"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "AutomaticImprovementsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AutomaticImprovementsServiceGapicClient",
+                    "rpcs": {
+                        "GetAutomaticImprovements": {
+                            "methods": [
+                                "getAutomaticImprovements"
+                            ]
+                        },
+                        "UpdateAutomaticImprovements": {
+                            "methods": [
+                                "updateAutomaticImprovements"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "BusinessIdentityService": {
             "clients": {
                 "grpc": {

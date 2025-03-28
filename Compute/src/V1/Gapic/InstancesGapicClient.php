@@ -61,6 +61,7 @@ use Google\Cloud\Compute\V1\InstanceListReferrers;
 use Google\Cloud\Compute\V1\InstancesAddResourcePoliciesRequest;
 use Google\Cloud\Compute\V1\InstancesGetEffectiveFirewallsResponse;
 use Google\Cloud\Compute\V1\InstancesRemoveResourcePoliciesRequest;
+use Google\Cloud\Compute\V1\InstancesReportHostAsFaultyRequest;
 use Google\Cloud\Compute\V1\InstancesSetLabelsRequest;
 use Google\Cloud\Compute\V1\InstancesSetMachineResourcesRequest;
 use Google\Cloud\Compute\V1\InstancesSetMachineTypeRequest;
@@ -77,6 +78,7 @@ use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\PerformMaintenanceInstanceRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RemoveResourcePoliciesInstanceRequest;
+use Google\Cloud\Compute\V1\ReportHostAsFaultyInstanceRequest;
 use Google\Cloud\Compute\V1\ResetInstanceRequest;
 use Google\Cloud\Compute\V1\ResumeInstanceRequest;
 use Google\Cloud\Compute\V1\Scheduling;
@@ -1272,7 +1274,7 @@ class InstancesGapicClient
      *     @type int $port
      *           Specifies which COM or serial port to retrieve data from.
      *     @type int $start
-     *           Specifies the starting byte position of the output to return. To start with the first byte of output to the specified port, omit this field or set it to `0`. If the output for that byte position is available, this field matches the `start` parameter sent with the request. If the amount of serial console output exceeds the size of the buffer (1 MB), the oldest output is discarded and is no longer available. If the requested start position refers to discarded output, the start position is adjusted to the oldest output still available, and the adjusted start position is returned as the `start` property value. You can also provide a negative start position, which translates to the most recent number of bytes written to the serial port. For example, -3 is interpreted as the most recent 3 bytes written to the serial console.
+     *           Specifies the starting byte position of the output to return. To start with the first byte of output to the specified port, omit this field or set it to `0`. If the output for that byte position is available, this field matches the `start` parameter sent with the request. If the amount of serial console output exceeds the size of the buffer (1 MB), the oldest output is discarded and is no longer available. If the requested start position refers to discarded output, the start position is adjusted to the oldest output still available, and the adjusted start position is returned as the `start` property value. You can also provide a negative start position, which translates to the most recent number of bytes written to the serial port. For example, -3 is interpreted as the most recent 3 bytes written to the serial console. Note that the negative start is bounded by the retained buffer size, and the returned serial console output will not exceed the max buffer size.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1773,6 +1775,85 @@ class InstancesGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('RemoveResourcePolicies', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
+     * Mark the host as faulty and try to restart the instance on a new host.
+     *
+     * Sample code:
+     * ```
+     * $instancesClient = new InstancesClient();
+     * try {
+     *     $instance = 'instance';
+     *     $instancesReportHostAsFaultyRequestResource = new InstancesReportHostAsFaultyRequest();
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->reportHostAsFaulty($instance, $instancesReportHostAsFaultyRequestResource, $project, $zone);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $instancesClient->reportHostAsFaulty($instance, $instancesReportHostAsFaultyRequestResource, $project, $zone);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'reportHostAsFaulty');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $instancesClient->close();
+     * }
+     * ```
+     *
+     * @param string                             $instance                                   Name of the instance scoping this request.
+     * @param InstancesReportHostAsFaultyRequest $instancesReportHostAsFaultyRequestResource The body resource for this request
+     * @param string                             $project                                    Project ID for this request.
+     * @param string                             $zone                                       The name of the zone for this request.
+     * @param array                              $optionalArgs                               {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function reportHostAsFaulty($instance, $instancesReportHostAsFaultyRequestResource, $project, $zone, array $optionalArgs = [])
+    {
+        $request = new ReportHostAsFaultyInstanceRequest();
+        $requestParamHeaders = [];
+        $request->setInstance($instance);
+        $request->setInstancesReportHostAsFaultyRequestResource($instancesReportHostAsFaultyRequestResource);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('ReportHostAsFaulty', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
     }
 
     /**

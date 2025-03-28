@@ -38,6 +38,17 @@ return [
                     'trip_id',
                 ],
             ],
+            'DeleteTrip' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=providers/*/trips/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetTrip' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=providers/*/trips/*}',

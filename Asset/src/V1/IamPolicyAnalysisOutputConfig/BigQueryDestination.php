@@ -23,7 +23,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $dataset = '';
+    protected $dataset = '';
     /**
      * Required. The prefix of the BigQuery tables to which the analysis results
      * will be written. Tables will be created based on this table_prefix if not
@@ -36,13 +36,13 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string table_prefix = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $table_prefix = '';
+    protected $table_prefix = '';
     /**
      * The partition key for BigQuery partitioned table.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisOutputConfig.BigQueryDestination.PartitionKey partition_key = 3;</code>
      */
-    private $partition_key = 0;
+    protected $partition_key = 0;
     /**
      * Optional. Specifies the action that occurs if the destination table or
      * partition already exists. The following values are supported:
@@ -58,7 +58,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string write_disposition = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $write_disposition = '';
+    protected $write_disposition = '';
 
     /**
      * Constructor.
@@ -247,6 +247,4 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BigQueryDestination::class, \Google\Cloud\Asset\V1\IamPolicyAnalysisOutputConfig_BigQueryDestination::class);
 

@@ -26,13 +26,13 @@ class AutomaticScaling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration cool_down_period = 1;</code>
      */
-    private $cool_down_period = null;
+    protected $cool_down_period = null;
     /**
      * Target scaling by CPU usage.
      *
      * Generated from protobuf field <code>.google.appengine.v1.CpuUtilization cpu_utilization = 2;</code>
      */
-    private $cpu_utilization = null;
+    protected $cpu_utilization = null;
     /**
      * Number of concurrent requests an automatic scaling instance can accept
      * before the scheduler spawns a new instance.
@@ -40,73 +40,73 @@ class AutomaticScaling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_concurrent_requests = 3;</code>
      */
-    private $max_concurrent_requests = 0;
+    protected $max_concurrent_requests = 0;
     /**
      * Maximum number of idle instances that should be maintained for this
      * version.
      *
      * Generated from protobuf field <code>int32 max_idle_instances = 4;</code>
      */
-    private $max_idle_instances = 0;
+    protected $max_idle_instances = 0;
     /**
      * Maximum number of instances that should be started to handle requests for
      * this version.
      *
      * Generated from protobuf field <code>int32 max_total_instances = 5;</code>
      */
-    private $max_total_instances = 0;
+    protected $max_total_instances = 0;
     /**
      * Maximum amount of time that a request should wait in the pending queue
      * before starting a new instance to handle it.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_pending_latency = 6;</code>
      */
-    private $max_pending_latency = null;
+    protected $max_pending_latency = null;
     /**
      * Minimum number of idle instances that should be maintained for
      * this version. Only applicable for the default version of a service.
      *
      * Generated from protobuf field <code>int32 min_idle_instances = 7;</code>
      */
-    private $min_idle_instances = 0;
+    protected $min_idle_instances = 0;
     /**
      * Minimum number of running instances that should be maintained for this
      * version.
      *
      * Generated from protobuf field <code>int32 min_total_instances = 8;</code>
      */
-    private $min_total_instances = 0;
+    protected $min_total_instances = 0;
     /**
      * Minimum amount of time a request should wait in the pending queue before
      * starting a new instance to handle it.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration min_pending_latency = 9;</code>
      */
-    private $min_pending_latency = null;
+    protected $min_pending_latency = null;
     /**
      * Target scaling by request utilization.
      *
      * Generated from protobuf field <code>.google.appengine.v1.RequestUtilization request_utilization = 10;</code>
      */
-    private $request_utilization = null;
+    protected $request_utilization = null;
     /**
      * Target scaling by disk usage.
      *
      * Generated from protobuf field <code>.google.appengine.v1.DiskUtilization disk_utilization = 11;</code>
      */
-    private $disk_utilization = null;
+    protected $disk_utilization = null;
     /**
      * Target scaling by network usage.
      *
      * Generated from protobuf field <code>.google.appengine.v1.NetworkUtilization network_utilization = 12;</code>
      */
-    private $network_utilization = null;
+    protected $network_utilization = null;
     /**
      * Scheduler settings for standard environment.
      *
      * Generated from protobuf field <code>.google.appengine.v1.StandardSchedulerSettings standard_scheduler_settings = 20;</code>
      */
-    private $standard_scheduler_settings = null;
+    protected $standard_scheduler_settings = null;
 
     /**
      * Constructor.

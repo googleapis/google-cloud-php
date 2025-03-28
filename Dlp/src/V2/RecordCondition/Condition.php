@@ -36,19 +36,19 @@ class Condition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $field = null;
+    protected $field = null;
     /**
      * Required. Operator used to compare the field or infoType to the value.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RelationalOperator operator = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $operator = 0;
+    protected $operator = 0;
     /**
      * Value to compare against. [Mandatory, except for `EXISTS` tests.]
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Value value = 4;</code>
      */
-    private $value = null;
+    protected $value = null;
 
     /**
      * Constructor.
@@ -169,6 +169,4 @@ class Condition extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Condition::class, \Google\Cloud\Dlp\V2\RecordCondition_Condition::class);
 

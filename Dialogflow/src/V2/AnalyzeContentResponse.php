@@ -23,7 +23,7 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string reply_text = 1;</code>
      */
-    private $reply_text = '';
+    protected $reply_text = '';
     /**
      * The audio data bytes encoded as specified in the request.
      * This field is set if:
@@ -37,24 +37,25 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudio reply_audio = 2;</code>
      */
-    private $reply_audio = null;
+    protected $reply_audio = null;
     /**
      * Only set if a Dialogflow automated agent has responded.
-     * Note that: [AutomatedAgentReply.detect_intent_response.output_audio][]
-     * and [AutomatedAgentReply.detect_intent_response.output_audio_config][]
+     * Note that in [AutomatedAgentReply.DetectIntentResponse][],
+     * [Sessions.DetectIntentResponse.output_audio][]
+     * and [Sessions.DetectIntentResponse.output_audio_config][]
      * are always empty, use
      * [reply_audio][google.cloud.dialogflow.v2.AnalyzeContentResponse.reply_audio]
      * instead.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AutomatedAgentReply automated_agent_reply = 3;</code>
      */
-    private $automated_agent_reply = null;
+    protected $automated_agent_reply = null;
     /**
      * Message analyzed by CCAI.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Message message = 5;</code>
      */
-    private $message = null;
+    protected $message = null;
     /**
      * The suggestions for most recent human agent. The order is the same as
      * [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs]
@@ -86,7 +87,7 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.DtmfParameters dtmf_parameters = 9;</code>
      */
-    private $dtmf_parameters = null;
+    protected $dtmf_parameters = null;
 
     /**
      * Constructor.
@@ -110,8 +111,9 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      *           has content.
      *     @type \Google\Cloud\Dialogflow\V2\AutomatedAgentReply $automated_agent_reply
      *           Only set if a Dialogflow automated agent has responded.
-     *           Note that: [AutomatedAgentReply.detect_intent_response.output_audio][]
-     *           and [AutomatedAgentReply.detect_intent_response.output_audio_config][]
+     *           Note that in [AutomatedAgentReply.DetectIntentResponse][],
+     *           [Sessions.DetectIntentResponse.output_audio][]
+     *           and [Sessions.DetectIntentResponse.output_audio_config][]
      *           are always empty, use
      *           [reply_audio][google.cloud.dialogflow.v2.AnalyzeContentResponse.reply_audio]
      *           instead.
@@ -228,8 +230,9 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Only set if a Dialogflow automated agent has responded.
-     * Note that: [AutomatedAgentReply.detect_intent_response.output_audio][]
-     * and [AutomatedAgentReply.detect_intent_response.output_audio_config][]
+     * Note that in [AutomatedAgentReply.DetectIntentResponse][],
+     * [Sessions.DetectIntentResponse.output_audio][]
+     * and [Sessions.DetectIntentResponse.output_audio_config][]
      * are always empty, use
      * [reply_audio][google.cloud.dialogflow.v2.AnalyzeContentResponse.reply_audio]
      * instead.
@@ -254,8 +257,9 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Only set if a Dialogflow automated agent has responded.
-     * Note that: [AutomatedAgentReply.detect_intent_response.output_audio][]
-     * and [AutomatedAgentReply.detect_intent_response.output_audio_config][]
+     * Note that in [AutomatedAgentReply.DetectIntentResponse][],
+     * [Sessions.DetectIntentResponse.output_audio][]
+     * and [Sessions.DetectIntentResponse.output_audio_config][]
      * are always empty, use
      * [reply_audio][google.cloud.dialogflow.v2.AnalyzeContentResponse.reply_audio]
      * instead.

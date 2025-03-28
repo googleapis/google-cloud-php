@@ -21,19 +21,19 @@ class ResourcePathNode extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.ResourcePath.ResourcePathNodeType node_type = 1;</code>
      */
-    private $node_type = 0;
+    protected $node_type = 0;
     /**
      * The ID of the resource this node represents.
      *
      * Generated from protobuf field <code>string id = 2;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * The display name of the resource this node represents.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
 
     /**
      * Constructor.
@@ -134,6 +134,4 @@ class ResourcePathNode extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ResourcePathNode::class, \Google\Cloud\SecurityCenter\V1\ResourcePath_ResourcePathNode::class);
 

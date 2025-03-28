@@ -20,13 +20,13 @@ class Pod extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ns = 1;</code>
      */
-    private $ns = '';
+    protected $ns = '';
     /**
      * Kubernetes Pod name.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Pod labels.  For Kubernetes containers, these are applied to the
      * container.
@@ -171,6 +171,4 @@ class Pod extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Pod::class, \Google\Cloud\SecurityCenter\V2\Kubernetes_Pod::class);
 

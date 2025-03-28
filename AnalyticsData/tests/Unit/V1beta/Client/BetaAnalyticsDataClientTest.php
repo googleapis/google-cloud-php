@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,9 +46,9 @@ use Google\Analytics\Data\V1beta\RunReportRequest;
 use Google\Analytics\Data\V1beta\RunReportResponse;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -71,7 +71,9 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return BetaAnalyticsDataClient */
@@ -118,12 +120,15 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new BatchRunPivotReportsRequest();
         try {
@@ -174,12 +179,15 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new BatchRunReportsRequest();
         try {
@@ -228,12 +236,15 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new CheckCompatibilityRequest();
         try {
@@ -276,7 +287,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $creationQuotaTokensCharged = 1232901266;
         $rowCount = 1340416618;
         $errorMessage = 'errorMessage-1938755376';
-        $percentageCompleted = -1.29204764E8;
+        $percentageCompleted = -1.29204764e8;
         $expectedResponse = new AudienceExport();
         $expectedResponse->setName($name);
         $expectedResponse->setAudience($audience);
@@ -299,9 +310,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $audienceExport->setAudience($audienceExportAudience);
         $audienceExportDimensions = [];
         $audienceExport->setDimensions($audienceExportDimensions);
-        $request = (new CreateAudienceExportRequest())
-            ->setParent($formattedParent)
-            ->setAudienceExport($audienceExport);
+        $request = (new CreateAudienceExportRequest())->setParent($formattedParent)->setAudienceExport($audienceExport);
         $response = $gapicClient->createAudienceExport($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -359,12 +368,15 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->propertyName('[PROPERTY]');
@@ -373,9 +385,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $audienceExport->setAudience($audienceExportAudience);
         $audienceExportDimensions = [];
         $audienceExport->setDimensions($audienceExportDimensions);
-        $request = (new CreateAudienceExportRequest())
-            ->setParent($formattedParent)
-            ->setAudienceExport($audienceExport);
+        $request = (new CreateAudienceExportRequest())->setParent($formattedParent)->setAudienceExport($audienceExport);
         $response = $gapicClient->createAudienceExport($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -413,7 +423,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $creationQuotaTokensCharged = 1232901266;
         $rowCount = 1340416618;
         $errorMessage = 'errorMessage-1938755376';
-        $percentageCompleted = -1.29204764E8;
+        $percentageCompleted = -1.29204764e8;
         $expectedResponse = new AudienceExport();
         $expectedResponse->setName($name2);
         $expectedResponse->setAudience($audience);
@@ -425,8 +435,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->audienceExportName('[PROPERTY]', '[AUDIENCE_EXPORT]');
-        $request = (new GetAudienceExportRequest())
-            ->setName($formattedName);
+        $request = (new GetAudienceExportRequest())->setName($formattedName);
         $response = $gapicClient->getAudienceExport($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -450,17 +459,19 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->audienceExportName('[PROPERTY]', '[AUDIENCE_EXPORT]');
-        $request = (new GetAudienceExportRequest())
-            ->setName($formattedName);
+        $request = (new GetAudienceExportRequest())->setName($formattedName);
         try {
             $gapicClient->getAudienceExport($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -489,8 +500,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->metadataName('[PROPERTY]');
-        $request = (new GetMetadataRequest())
-            ->setName($formattedName);
+        $request = (new GetMetadataRequest())->setName($formattedName);
         $response = $gapicClient->getMetadata($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -514,17 +524,19 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->metadataName('[PROPERTY]');
-        $request = (new GetMetadataRequest())
-            ->setName($formattedName);
+        $request = (new GetMetadataRequest())->setName($formattedName);
         try {
             $gapicClient->getMetadata($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -549,17 +561,14 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $audienceExportsElement = new AudienceExport();
-        $audienceExports = [
-            $audienceExportsElement,
-        ];
+        $audienceExports = [$audienceExportsElement];
         $expectedResponse = new ListAudienceExportsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAudienceExports($audienceExports);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $request = (new ListAudienceExportsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAudienceExportsRequest())->setParent($formattedParent);
         $response = $gapicClient->listAudienceExports($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -586,17 +595,19 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $request = (new ListAudienceExportsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAudienceExportsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAudienceExports($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -625,8 +636,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new QueryAudienceExportRequest())
-            ->setName($name);
+        $request = (new QueryAudienceExportRequest())->setName($name);
         $response = $gapicClient->queryAudienceExport($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -650,17 +660,19 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new QueryAudienceExportRequest())
-            ->setName($name);
+        $request = (new QueryAudienceExportRequest())->setName($name);
         try {
             $gapicClient->queryAudienceExport($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -709,12 +721,15 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new RunPivotReportRequest();
         try {
@@ -767,12 +782,15 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new RunRealtimeReportRequest();
         try {
@@ -825,12 +843,15 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new RunReportRequest();
         try {

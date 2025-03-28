@@ -20,7 +20,7 @@ class AuxiliaryNodeGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.NodeGroup node_group = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $node_group = null;
+    protected $node_group = null;
     /**
      * Optional. A node group ID. Generated if not specified.
      * The ID must contain only letters (a-z, A-Z), numbers (0-9),
@@ -29,7 +29,7 @@ class AuxiliaryNodeGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string node_group_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $node_group_id = '';
+    protected $node_group_id = '';
 
     /**
      * Constructor.

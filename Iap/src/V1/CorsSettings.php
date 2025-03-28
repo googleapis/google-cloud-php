@@ -22,7 +22,7 @@ class CorsSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue allow_http_options = 1;</code>
      */
-    private $allow_http_options = null;
+    protected $allow_http_options = null;
 
     /**
      * Constructor.
@@ -71,7 +71,7 @@ class CorsSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue allow_http_options = 1;</code>
      * @return bool|null
      */
-    public function getAllowHttpOptionsValue()
+    public function getAllowHttpOptionsUnwrapped()
     {
         return $this->readWrapperValue("allow_http_options");
     }
@@ -102,7 +102,7 @@ class CorsSettings extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setAllowHttpOptionsValue($var)
+    public function setAllowHttpOptionsUnwrapped($var)
     {
         $this->writeWrapperValue("allow_http_options", $var);
         return $this;}

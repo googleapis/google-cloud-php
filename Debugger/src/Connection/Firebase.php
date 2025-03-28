@@ -18,13 +18,14 @@
 namespace Google\Cloud\Debugger\Connection;
 
 use Google\Cloud\Core\ArrayTrait;
-use Kreait\Firebase\Factory;
 use Kreait\Firebase\Database;
+use Kreait\Firebase\Factory;
 
 /**
  * Implementation of the Firebase connection
  *
  * @internal
+ * @deprecated see https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation
  */
 class Firebase implements ConnectionInterface
 {
@@ -110,9 +111,9 @@ class Firebase implements ConnectionInterface
         $descriptionData = explode(':', $debuggee['description']);
         $debuggee['labels']['module'] = $descriptionData[0];
         $debuggee['labels']['version'] = $descriptionData[1];
-        $debuggee['registrationTimeUnixMsec'] = $debuggee['lastUpdateTimeUnixMsec'] = round(microtime(true)*1000);
+        $debuggee['registrationTimeUnixMsec'] = $debuggee['lastUpdateTimeUnixMsec'] = round(microtime(true) * 1000);
         $reference->set($debuggee);
-        $args['debuggee']=$existingDebuggee;
+        $args['debuggee'] = $existingDebuggee;
         return $args;
     }
 
@@ -153,7 +154,7 @@ class Firebase implements ConnectionInterface
         // we remove the breakpoint from the active list
         $reference = $this->database->getReference('cdbg/breakpoints/' . $debuggeeId . '/active/' . $breakpointId);
         $reference->remove();
-        $breakpoint['finalTimeUnixMsec'] = round(microtime(true)*1000);
+        $breakpoint['finalTimeUnixMsec'] = round(microtime(true) * 1000);
         // then we add it to the snapshot list
         $reference = $this->database->getReference('cdbg/breakpoints/' . $debuggeeId . '/snapshot/' . $breakpointId);
         $reference->set($breakpoint);

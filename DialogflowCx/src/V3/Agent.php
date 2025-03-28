@@ -33,7 +33,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * method.
      * [Agents.CreateAgent][google.cloud.dialogflow.cx.v3.Agents.CreateAgent]
      * populates the name automatically.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -96,8 +96,8 @@ class Agent extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. Name of the start flow in this agent. A start flow will be
      * automatically created when the agent is created, and can only be deleted by
-     * deleting the agent. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/flows/<Flow ID>`.
+     * deleting the agent. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string start_flow = 16 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
@@ -105,8 +105,8 @@ class Agent extends \Google\Protobuf\Internal\Message
     /**
      * Name of the
      * [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings]
-     * reference for the agent. Format: `projects/<Project ID>/locations/<Location
-     * ID>/securitySettings/<Security Settings ID>`.
+     * reference for the agent. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/securitySettings/<SecuritySettingsID>`.
      *
      * Generated from protobuf field <code>string security_settings = 17 [(.google.api.resource_reference) = {</code>
      */
@@ -180,6 +180,26 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Agent.PersonalizationSettings personalization_settings = 42 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $personalization_settings = null;
+    /**
+     * Optional. Settings for custom client certificates.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Agent.ClientCertificateSettings client_certificate_settings = 43 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $client_certificate_settings = null;
+    /**
+     * Optional. Output only. A read only boolean field reflecting Zone Separation
+     * status of the agent.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 45 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = null;
+    /**
+     * Optional. Output only. A read only boolean field reflecting Zone Isolation
+     * status of the agent.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 46 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = null;
 
     /**
      * Constructor.
@@ -194,7 +214,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      *           method.
      *           [Agents.CreateAgent][google.cloud.dialogflow.cx.v3.Agents.CreateAgent]
      *           populates the name automatically.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     *           Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *     @type string $display_name
      *           Required. The human-readable name of the agent, unique within the location.
      *     @type string $default_language_code
@@ -225,13 +245,13 @@ class Agent extends \Google\Protobuf\Internal\Message
      *     @type string $start_flow
      *           Immutable. Name of the start flow in this agent. A start flow will be
      *           automatically created when the agent is created, and can only be deleted by
-     *           deleting the agent. Format: `projects/<Project ID>/locations/<Location
-     *           ID>/agents/<Agent ID>/flows/<Flow ID>`.
+     *           deleting the agent. Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *     @type string $security_settings
      *           Name of the
      *           [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings]
-     *           reference for the agent. Format: `projects/<Project ID>/locations/<Location
-     *           ID>/securitySettings/<Security Settings ID>`.
+     *           reference for the agent. Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/securitySettings/<SecuritySettingsID>`.
      *     @type bool $enable_stackdriver_logging
      *           Indicates if stackdriver logging is enabled for the agent.
      *           Please use
@@ -260,6 +280,14 @@ class Agent extends \Google\Protobuf\Internal\Message
      *           Optional. Answer feedback collection settings.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Agent\PersonalizationSettings $personalization_settings
      *           Optional. Settings for end user personalization.
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Agent\ClientCertificateSettings $client_certificate_settings
+     *           Optional. Settings for custom client certificates.
+     *     @type bool $satisfies_pzs
+     *           Optional. Output only. A read only boolean field reflecting Zone Separation
+     *           status of the agent.
+     *     @type bool $satisfies_pzi
+     *           Optional. Output only. A read only boolean field reflecting Zone Isolation
+     *           status of the agent.
      * }
      */
     public function __construct($data = NULL) {
@@ -274,7 +302,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * method.
      * [Agents.CreateAgent][google.cloud.dialogflow.cx.v3.Agents.CreateAgent]
      * populates the name automatically.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -291,7 +319,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * method.
      * [Agents.CreateAgent][google.cloud.dialogflow.cx.v3.Agents.CreateAgent]
      * populates the name automatically.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -526,8 +554,8 @@ class Agent extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. Name of the start flow in this agent. A start flow will be
      * automatically created when the agent is created, and can only be deleted by
-     * deleting the agent. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/flows/<Flow ID>`.
+     * deleting the agent. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string start_flow = 16 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
@@ -540,8 +568,8 @@ class Agent extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. Name of the start flow in this agent. A start flow will be
      * automatically created when the agent is created, and can only be deleted by
-     * deleting the agent. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/flows/<Flow ID>`.
+     * deleting the agent. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string start_flow = 16 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -558,8 +586,8 @@ class Agent extends \Google\Protobuf\Internal\Message
     /**
      * Name of the
      * [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings]
-     * reference for the agent. Format: `projects/<Project ID>/locations/<Location
-     * ID>/securitySettings/<Security Settings ID>`.
+     * reference for the agent. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/securitySettings/<SecuritySettingsID>`.
      *
      * Generated from protobuf field <code>string security_settings = 17 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -572,8 +600,8 @@ class Agent extends \Google\Protobuf\Internal\Message
     /**
      * Name of the
      * [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings]
-     * reference for the agent. Format: `projects/<Project ID>/locations/<Location
-     * ID>/securitySettings/<Security Settings ID>`.
+     * reference for the agent. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/securitySettings/<SecuritySettingsID>`.
      *
      * Generated from protobuf field <code>string security_settings = 17 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -923,6 +951,118 @@ class Agent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\Agent\PersonalizationSettings::class);
         $this->personalization_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Settings for custom client certificates.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Agent.ClientCertificateSettings client_certificate_settings = 43 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\Cx\V3\Agent\ClientCertificateSettings|null
+     */
+    public function getClientCertificateSettings()
+    {
+        return $this->client_certificate_settings;
+    }
+
+    public function hasClientCertificateSettings()
+    {
+        return isset($this->client_certificate_settings);
+    }
+
+    public function clearClientCertificateSettings()
+    {
+        unset($this->client_certificate_settings);
+    }
+
+    /**
+     * Optional. Settings for custom client certificates.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Agent.ClientCertificateSettings client_certificate_settings = 43 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Agent\ClientCertificateSettings $var
+     * @return $this
+     */
+    public function setClientCertificateSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\Agent\ClientCertificateSettings::class);
+        $this->client_certificate_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Output only. A read only boolean field reflecting Zone Separation
+     * status of the agent.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 45 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs) ? $this->satisfies_pzs : false;
+    }
+
+    public function hasSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs);
+    }
+
+    public function clearSatisfiesPzs()
+    {
+        unset($this->satisfies_pzs);
+    }
+
+    /**
+     * Optional. Output only. A read only boolean field reflecting Zone Separation
+     * status of the agent.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 45 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Output only. A read only boolean field reflecting Zone Isolation
+     * status of the agent.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 46 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi) ? $this->satisfies_pzi : false;
+    }
+
+    public function hasSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi);
+    }
+
+    public function clearSatisfiesPzi()
+    {
+        unset($this->satisfies_pzi);
+    }
+
+    /**
+     * Optional. Output only. A read only boolean field reflecting Zone Isolation
+     * status of the agent.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 46 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

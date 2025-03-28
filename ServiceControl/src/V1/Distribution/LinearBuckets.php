@@ -22,7 +22,7 @@ class LinearBuckets extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 num_finite_buckets = 1;</code>
      */
-    private $num_finite_buckets = 0;
+    protected $num_finite_buckets = 0;
     /**
      * The i'th linear bucket covers the interval
      *   [offset + (i-1) * width, offset + i * width)
@@ -31,7 +31,7 @@ class LinearBuckets extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double width = 2;</code>
      */
-    private $width = 0.0;
+    protected $width = 0.0;
     /**
      * The i'th linear bucket covers the interval
      *   [offset + (i-1) * width, offset + i * width)
@@ -39,7 +39,7 @@ class LinearBuckets extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double offset = 3;</code>
      */
-    private $offset = 0.0;
+    protected $offset = 0.0;
 
     /**
      * Constructor.

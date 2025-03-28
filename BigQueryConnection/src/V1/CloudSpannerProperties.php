@@ -20,13 +20,13 @@ class CloudSpannerProperties extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database = 1;</code>
      */
-    private $database = '';
+    protected $database = '';
     /**
      * If parallelism should be used when reading from Cloud Spanner
      *
      * Generated from protobuf field <code>bool use_parallelism = 2;</code>
      */
-    private $use_parallelism = false;
+    protected $use_parallelism = false;
     /**
      * Allows setting max parallelism per query when executing on Spanner
      * independent compute resources. If unspecified, default values of
@@ -38,7 +38,7 @@ class CloudSpannerProperties extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_parallelism = 5;</code>
      */
-    private $max_parallelism = 0;
+    protected $max_parallelism = 0;
     /**
      * If the serverless analytics service should be used to read data from Cloud
      * Spanner.
@@ -46,7 +46,7 @@ class CloudSpannerProperties extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool use_serverless_analytics = 3;</code>
      */
-    private $use_serverless_analytics = false;
+    protected $use_serverless_analytics = false;
     /**
      * If set, the request will be executed via Spanner independent compute
      * resources.
@@ -56,7 +56,7 @@ class CloudSpannerProperties extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool use_data_boost = 6;</code>
      */
-    private $use_data_boost = false;
+    protected $use_data_boost = false;
     /**
      * Optional. Cloud Spanner database role for fine-grained access control.
      * The Cloud Spanner admin should have provisioned the database role with
@@ -69,7 +69,7 @@ class CloudSpannerProperties extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database_role = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $database_role = '';
+    protected $database_role = '';
 
     /**
      * Constructor.

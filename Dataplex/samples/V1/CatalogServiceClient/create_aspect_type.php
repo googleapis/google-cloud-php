@@ -32,19 +32,31 @@ use Google\Cloud\Dataplex\V1\CreateAspectTypeRequest;
 use Google\Rpc\Status;
 
 /**
- * Creates an AspectType
+ * Creates an AspectType.
  *
  * @param string $formattedParent                The resource name of the AspectType, of the form:
  *                                               projects/{project_number}/locations/{location_id}
- *                                               where `location_id` refers to a GCP region. Please see
+ *                                               where `location_id` refers to a Google Cloud region. Please see
  *                                               {@see CatalogServiceClient::locationName()} for help formatting this field.
  * @param string $aspectTypeId                   AspectType identifier.
  * @param string $aspectTypeMetadataTemplateName The name of the field.
  * @param string $aspectTypeMetadataTemplateType The datatype of this field. The following values are supported:
- *                                               Primitive types (string, integer, boolean, double, datetime); datetime
- *                                               must be of the format RFC3339 UTC "Zulu" (Examples:
- *                                               "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z"). Complex
- *                                               types (enum, array, map, record).
+ *
+ *                                               Primitive types:
+ *
+ *                                               * string
+ *                                               * integer
+ *                                               * boolean
+ *                                               * double
+ *                                               * datetime. Must be of the format RFC3339 UTC "Zulu" (Examples:
+ *                                               "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z").
+ *
+ *                                               Complex types:
+ *
+ *                                               * enum
+ *                                               * array
+ *                                               * map
+ *                                               * record
  */
 function create_aspect_type_sample(
     string $formattedParent,
