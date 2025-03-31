@@ -1,5 +1,186 @@
 # Changelog
 
+## 0.282.0
+
+<details><summary>google/cloud-ai-platform 1.23.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add page spans in retrieved contexts from Vertex RAG Engine in aiplatform v1 ([#8192](https://github.com/googleapis/google-cloud-php/issues/8192)) ([0c1c94a](https://github.com/googleapis/google-cloud-php/commit/0c1c94aa85f3cfae6b243f1d5e5b68f5e360bb49))
+* [AiPlatform] Enable force deletion in ReasoningEngine ([#8187](https://github.com/googleapis/google-cloud-php/issues/8187)) ([329266d](https://github.com/googleapis/google-cloud-php/commit/329266d66ded905f24c2356c70ee2b3c55e73ae8))
+* Add support for Vertex AI Search engine ([0c1c94a](https://github.com/googleapis/google-cloud-php/commit/0c1c94aa85f3cfae6b243f1d5e5b68f5e360bb49))
+
+</details>
+
+<details><summary>google/cloud-apphub 0.3.0</summary>
+
+
+
+### Features
+
+* [AppHub] add enum `Type.GLOBAL` ([#8183](https://github.com/googleapis/google-cloud-php/issues/8183)) ([bdb1d9a](https://github.com/googleapis/google-cloud-php/commit/bdb1d9a1bd670cf914888f9342be25ed72756207))
+
+</details>
+
+<details><summary>google/cloud-bigquery-analyticshub 1.1.0</summary>
+
+
+
+### Features
+
+* [BigQueryAnalyticsHub] Support new feature Sharing Cloud Pubsub Streams via AH (GA) and Subscriber Email logging feature ([#8188](https://github.com/googleapis/google-cloud-php/issues/8188)) ([905547d](https://github.com/googleapis/google-cloud-php/commit/905547dd963949f009276fe839b0f35fdc7b5eb3))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.9.1</summary>
+
+
+
+### Documentation
+
+* **Bigtable:** Document universe domain client option ([#8178](https://github.com/googleapis/google-cloud-php/issues/8178)) ([345e2e7](https://github.com/googleapis/google-cloud-php/commit/345e2e7afbf1e987c65f80097748e59ad1abd063))
+
+</details>
+
+<details><summary>google/cloud-compute 1.29.0</summary>
+
+
+
+### Features
+
+* [Compute] Update Compute Engine API to revision 20250320 ([#8184](https://github.com/googleapis/google-cloud-php/issues/8184)) ([f0fee23](https://github.com/googleapis/google-cloud-php/commit/f0fee23edb9ce1f725fcc19c7153f532af3a39db))
+
+</details>
+
+<details><summary>google/cloud-container-analysis 1.1.0</summary>
+
+
+
+### Features
+
+* [ContainerAnalysis] add ExportSBOM API method for v1 ([#8179](https://github.com/googleapis/google-cloud-php/issues/8179)) ([a1f9a51](https://github.com/googleapis/google-cloud-php/commit/a1f9a51d3271ad1c78b9796e97ae502f13329d1b))
+
+</details>
+
+<details><summary>google/cloud-datastream 2.3.0</summary>
+
+
+
+### Features
+
+* [Datastream] A new field `secret_manager_stored_password` is added to multiple messages ([#8186](https://github.com/googleapis/google-cloud-php/issues/8186)) ([d1ad0b8](https://github.com/googleapis/google-cloud-php/commit/d1ad0b80b89290542a4126cf08af665e1b2810f7))
+
+</details>
+
+<details><summary>google/cloud-deploy 1.5.4</summary>
+
+
+
+### Documentation
+
+* [Deploy] fix typo in comments ([#8171](https://github.com/googleapis/google-cloud-php/issues/8171)) ([6985148](https://github.com/googleapis/google-cloud-php/commit/6985148c1dbb708e40bb2e0b138eab29da15f9a5))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 1.5.0</summary>
+
+
+
+### Features
+
+* [DiscoveryEngine] add stream answer API ([#8180](https://github.com/googleapis/google-cloud-php/issues/8180)) ([0304752](https://github.com/googleapis/google-cloud-php/commit/03047523825333e1b0fb0a36b0fb77d8282ec651))
+* [DiscoveryEngine] move serving config update API to GA ([#8189](https://github.com/googleapis/google-cloud-php/issues/8189)) ([1aa8494](https://github.com/googleapis/google-cloud-php/commit/1aa84942b793b53c72262c06cc1f39fbf01363d9))
+
+</details>
+
+<details><summary>google/cloud-dlp 2.4.0</summary>
+
+
+
+### Features
+
+* [Dlp] add sample findings for data profiles ([#8170](https://github.com/googleapis/google-cloud-php/issues/8170)) ([c89679e](https://github.com/googleapis/google-cloud-php/commit/c89679e7f96768a85a2d65d4c1f4b2396993ca5e))
+* List tags on resources for data profiles ([c89679e](https://github.com/googleapis/google-cloud-php/commit/c89679e7f96768a85a2d65d4c1f4b2396993ca5e))
+
+
+### Documentation
+
+* Updated documentation for various fields and messages ([c89679e](https://github.com/googleapis/google-cloud-php/commit/c89679e7f96768a85a2d65d4c1f4b2396993ca5e))
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 2.2.0</summary>
+
+
+
+### Features
+
+* [NetworkConnectivity] add Network Connectivity Center APIs for PSC service automation ([#8176](https://github.com/googleapis/google-cloud-php/issues/8176)) ([aa2361f](https://github.com/googleapis/google-cloud-php/commit/aa2361f0fd9f636a11da09b31945208867a26f24))
+
+</details>
+
+<details><summary>google/cloud-oracledatabase 0.4.1</summary>
+
+
+
+### Documentation
+
+* [OracleDatabase] the network and cidr fields of AutonomousDatabase are now marked optional ([#8174](https://github.com/googleapis/google-cloud-php/issues/8174)) ([7d023c2](https://github.com/googleapis/google-cloud-php/commit/7d023c2d96993cae28a70263beb06381f9f75a22))
+
+</details>
+
+<details><summary>google/cloud-parametermanager 0.2.0</summary>
+
+
+
+### Features
+
+* [ParameterManager] add CMEK support ([#8172](https://github.com/googleapis/google-cloud-php/issues/8172)) ([bc6b592](https://github.com/googleapis/google-cloud-php/commit/bc6b592d1442cc25b79b86ee7c344ccd203dace4))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.11.1</summary>
+
+
+
+### Documentation
+
+* Indicate that `JavaScriptUDF.message_id` field is optional instead of required ([#8195](https://github.com/googleapis/google-cloud-php/issues/8195)) ([bb843db](https://github.com/googleapis/google-cloud-php/commit/bb843dbeaad8ec9d98cb94620bc11e64dda33bb8))
+
+</details>
+
+<details><summary>google/cloud-rapidmigrationassessment 1.1.1</summary>
+
+
+
+### Documentation
+
+* [RapidMigrationAssessment] fix typo in comment ([#8185](https://github.com/googleapis/google-cloud-php/issues/8185)) ([14d8f1a](https://github.com/googleapis/google-cloud-php/commit/14d8f1a5394c462b9ca725edfcd1eb7f0e25cfe1))
+
+</details>
+
+<details><summary>google/shopping-css 0.5.1</summary>
+
+
+
+### Documentation
+
+* [ShoppingCss] added a clarifying note to the description of the parent field in the Account resource ([#8173](https://github.com/googleapis/google-cloud-php/issues/8173)) ([8827d73](https://github.com/googleapis/google-cloud-php/commit/8827d73c71d3d451e854c6bba7058bb989a648a2))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.98.0</summary>
+
+
+
+### Features
+
+* **Spanner:** Add universe domain support ([#8177](https://github.com/googleapis/google-cloud-php/issues/8177)) ([d11f8a6](https://github.com/googleapis/google-cloud-php/commit/d11f8a631cb5fa7a8020fcf4bf5f0bb9be370ea8))
+
+</details>
+
 ## 0.281.0
 
 <details><summary>google/cloud-ai-platform 1.22.0</summary>
