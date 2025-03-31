@@ -17,8 +17,8 @@ class StreamingAudioConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The format of the audio byte stream.
-     * For now, streaming only supports PCM and OGG_OPUS. All other encodings
-     * will return an error.
+     * Streaming supports PCM, ALAW, MULAW and OGG_OPUS. All other encodings
+     * return an error.
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.AudioEncoding audio_encoding = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -29,6 +29,15 @@ class StreamingAudioConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $sample_rate_hertz = 0;
+    /**
+     * Optional. Input only. Speaking rate/speed, in the range [0.25, 2.0]. 1.0 is
+     * the normal native speed supported by the specific voice. 2.0 is twice as
+     * fast, and 0.5 is half as fast. If unset(0.0), defaults to the native 1.0
+     * speed. Any other values < 0.25 or > 2.0 will return an error.
+     *
+     * Generated from protobuf field <code>double speaking_rate = 3 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $speaking_rate = 0.0;
 
     /**
      * Constructor.
@@ -38,10 +47,15 @@ class StreamingAudioConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type int $audio_encoding
      *           Required. The format of the audio byte stream.
-     *           For now, streaming only supports PCM and OGG_OPUS. All other encodings
-     *           will return an error.
+     *           Streaming supports PCM, ALAW, MULAW and OGG_OPUS. All other encodings
+     *           return an error.
      *     @type int $sample_rate_hertz
      *           Optional. The synthesis sample rate (in hertz) for this audio.
+     *     @type float $speaking_rate
+     *           Optional. Input only. Speaking rate/speed, in the range [0.25, 2.0]. 1.0 is
+     *           the normal native speed supported by the specific voice. 2.0 is twice as
+     *           fast, and 0.5 is half as fast. If unset(0.0), defaults to the native 1.0
+     *           speed. Any other values < 0.25 or > 2.0 will return an error.
      * }
      */
     public function __construct($data = NULL) {
@@ -51,8 +65,8 @@ class StreamingAudioConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The format of the audio byte stream.
-     * For now, streaming only supports PCM and OGG_OPUS. All other encodings
-     * will return an error.
+     * Streaming supports PCM, ALAW, MULAW and OGG_OPUS. All other encodings
+     * return an error.
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.AudioEncoding audio_encoding = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -64,8 +78,8 @@ class StreamingAudioConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The format of the audio byte stream.
-     * For now, streaming only supports PCM and OGG_OPUS. All other encodings
-     * will return an error.
+     * Streaming supports PCM, ALAW, MULAW and OGG_OPUS. All other encodings
+     * return an error.
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.AudioEncoding audio_encoding = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -101,6 +115,38 @@ class StreamingAudioConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->sample_rate_hertz = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Speaking rate/speed, in the range [0.25, 2.0]. 1.0 is
+     * the normal native speed supported by the specific voice. 2.0 is twice as
+     * fast, and 0.5 is half as fast. If unset(0.0), defaults to the native 1.0
+     * speed. Any other values < 0.25 or > 2.0 will return an error.
+     *
+     * Generated from protobuf field <code>double speaking_rate = 3 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return float
+     */
+    public function getSpeakingRate()
+    {
+        return $this->speaking_rate;
+    }
+
+    /**
+     * Optional. Input only. Speaking rate/speed, in the range [0.25, 2.0]. 1.0 is
+     * the normal native speed supported by the specific voice. 2.0 is twice as
+     * fast, and 0.5 is half as fast. If unset(0.0), defaults to the native 1.0
+     * speed. Any other values < 0.25 or > 2.0 will return an error.
+     *
+     * Generated from protobuf field <code>double speaking_rate = 3 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setSpeakingRate($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->speaking_rate = $var;
 
         return $this;
     }

@@ -59,8 +59,8 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
     protected $custom_voice = null;
     /**
      * Optional. The configuration for a voice clone. If
-     * [VoiceCloneParams.voice_clone_key] is set, the service will choose the
-     * voice clone matching the specified configuration.
+     * [VoiceCloneParams.voice_clone_key] is set, the service chooses the voice
+     * clone matching the specified configuration.
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.VoiceCloneParams voice_clone = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -100,8 +100,8 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
      *           configuration.
      *     @type \Google\Cloud\TextToSpeech\V1\VoiceCloneParams $voice_clone
      *           Optional. The configuration for a voice clone. If
-     *           [VoiceCloneParams.voice_clone_key] is set, the service will choose the
-     *           voice clone matching the specified configuration.
+     *           [VoiceCloneParams.voice_clone_key] is set, the service chooses the voice
+     *           clone matching the specified configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -261,8 +261,8 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The configuration for a voice clone. If
-     * [VoiceCloneParams.voice_clone_key] is set, the service will choose the
-     * voice clone matching the specified configuration.
+     * [VoiceCloneParams.voice_clone_key] is set, the service chooses the voice
+     * clone matching the specified configuration.
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.VoiceCloneParams voice_clone = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\TextToSpeech\V1\VoiceCloneParams|null
@@ -284,8 +284,8 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The configuration for a voice clone. If
-     * [VoiceCloneParams.voice_clone_key] is set, the service will choose the
-     * voice clone matching the specified configuration.
+     * [VoiceCloneParams.voice_clone_key] is set, the service chooses the voice
+     * clone matching the specified configuration.
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.VoiceCloneParams voice_clone = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\TextToSpeech\V1\VoiceCloneParams $var

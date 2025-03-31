@@ -35,7 +35,7 @@ class AudioEncoding
      */
     const MP3 = 2;
     /**
-     * Opus encoded audio wrapped in an ogg container. The result will be a
+     * Opus encoded audio wrapped in an ogg container. The result is a
      * file which can be played natively on Android, and in browsers (at least
      * Chrome and Firefox). The quality of the encoding is considerably higher
      * than MP3 while using approximately the same bitrate.
@@ -59,7 +59,7 @@ class AudioEncoding
     const ALAW = 6;
     /**
      * Uncompressed 16-bit signed little-endian samples (Linear PCM).
-     * Note that as opposed to LINEAR16, audio will not be wrapped in a WAV (or
+     * Note that as opposed to LINEAR16, audio won't be wrapped in a WAV (or
      * any other) header.
      *
      * Generated from protobuf enum <code>PCM = 7;</code>

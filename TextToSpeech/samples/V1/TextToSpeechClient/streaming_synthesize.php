@@ -30,7 +30,7 @@ use Google\Cloud\TextToSpeech\V1\StreamingSynthesizeRequest;
 use Google\Cloud\TextToSpeech\V1\StreamingSynthesizeResponse;
 
 /**
- * Performs bidirectional streaming speech synthesis: receive audio while
+ * Performs bidirectional streaming speech synthesis: receives audio while
  * sending text.
  *
  * This sample has been automatically generated and should be regarded as a code
