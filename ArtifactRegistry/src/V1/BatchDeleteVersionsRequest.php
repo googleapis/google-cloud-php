@@ -23,7 +23,8 @@ class BatchDeleteVersionsRequest extends \Google\Protobuf\Internal\Message
     protected $parent = '';
     /**
      * Required. The names of the versions to delete.
-     * A maximum of 10000 versions can be deleted in a batch.
+     * The maximum number of versions deleted per batch is determined by the
+     * service and is dependent on the available resources in the region.
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -38,7 +39,8 @@ class BatchDeleteVersionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string   $parent The name of the repository holding all requested versions.
      * @param string[] $names  Required. The names of the versions to delete.
-     *                         A maximum of 10000 versions can be deleted in a batch. Please see
+     *                         The maximum number of versions deleted per batch is determined by the
+     *                         service and is dependent on the available resources in the region. Please see
      *                         {@see ArtifactRegistryClient::versionName()} for help formatting this field.
      *
      * @return \Google\Cloud\ArtifactRegistry\V1\BatchDeleteVersionsRequest
@@ -62,7 +64,8 @@ class BatchDeleteVersionsRequest extends \Google\Protobuf\Internal\Message
      *           The name of the repository holding all requested versions.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $names
      *           Required. The names of the versions to delete.
-     *           A maximum of 10000 versions can be deleted in a batch.
+     *           The maximum number of versions deleted per batch is determined by the
+     *           service and is dependent on the available resources in the region.
      *     @type bool $validate_only
      *           If true, the request is performed without deleting data, following AIP-163.
      * }
@@ -100,7 +103,8 @@ class BatchDeleteVersionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The names of the versions to delete.
-     * A maximum of 10000 versions can be deleted in a batch.
+     * The maximum number of versions deleted per batch is determined by the
+     * service and is dependent on the available resources in the region.
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -112,7 +116,8 @@ class BatchDeleteVersionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The names of the versions to delete.
-     * A maximum of 10000 versions can be deleted in a batch.
+     * The maximum number of versions deleted per batch is determined by the
+     * service and is dependent on the available resources in the region.
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
