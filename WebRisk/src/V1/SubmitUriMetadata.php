@@ -10,7 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Metadata for the Submit URI long-running operation.
- * option (google.api.message_visibility).restriction = "TRUSTED_TESTER";
  *
  * Generated from protobuf message <code>google.cloud.webrisk.v1.SubmitUriMetadata</code>
  */
