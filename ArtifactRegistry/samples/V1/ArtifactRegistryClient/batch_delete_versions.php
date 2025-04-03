@@ -34,7 +34,8 @@ use Google\Rpc\Status;
  * complete once the versions have been deleted.
  *
  * @param string $formattedNamesElement The names of the versions to delete.
- *                                      A maximum of 10000 versions can be deleted in a batch. Please see
+ *                                      The maximum number of versions deleted per batch is determined by the
+ *                                      service and is dependent on the available resources in the region. Please see
  *                                      {@see ArtifactRegistryClient::versionName()} for help formatting this field.
  */
 function batch_delete_versions_sample(string $formattedNamesElement): void
