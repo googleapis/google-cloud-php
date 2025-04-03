@@ -74,6 +74,21 @@ return [
                     ],
                 ],
             ],
+            'CreateUserCreds' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/databases/*}/userCreds',
+                'body' => 'user_creds',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'user_creds_id',
+                ],
+            ],
             'DeleteBackup' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/backups/*}',
@@ -110,6 +125,41 @@ return [
             'DeleteIndex' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/databases/*/collectionGroups/*/indexes/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteUserCreds' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*/userCreds/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DisableUserCreds' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*/userCreds/*}:disable',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'EnableUserCreds' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*/userCreds/*}:enable',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -185,6 +235,17 @@ return [
                     ],
                 ],
             ],
+            'GetUserCreds' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*/userCreds/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ImportDocuments' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/databases/*}:importDocuments',
@@ -248,6 +309,29 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListUserCreds' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/databases/*}/userCreds',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ResetUserPassword' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*/userCreds/*}:resetPassword',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],

@@ -41,11 +41,15 @@ use Google\Cloud\Firestore\Admin\V1\BulkDeleteDocumentsRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateBackupScheduleRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateIndexRequest;
+use Google\Cloud\Firestore\Admin\V1\CreateUserCredsRequest;
 use Google\Cloud\Firestore\Admin\V1\Database;
 use Google\Cloud\Firestore\Admin\V1\DeleteBackupRequest;
 use Google\Cloud\Firestore\Admin\V1\DeleteBackupScheduleRequest;
 use Google\Cloud\Firestore\Admin\V1\DeleteDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\DeleteIndexRequest;
+use Google\Cloud\Firestore\Admin\V1\DeleteUserCredsRequest;
+use Google\Cloud\Firestore\Admin\V1\DisableUserCredsRequest;
+use Google\Cloud\Firestore\Admin\V1\EnableUserCredsRequest;
 use Google\Cloud\Firestore\Admin\V1\ExportDocumentsRequest;
 use Google\Cloud\Firestore\Admin\V1\Field;
 use Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata;
@@ -54,6 +58,7 @@ use Google\Cloud\Firestore\Admin\V1\GetBackupScheduleRequest;
 use Google\Cloud\Firestore\Admin\V1\GetDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\GetFieldRequest;
 use Google\Cloud\Firestore\Admin\V1\GetIndexRequest;
+use Google\Cloud\Firestore\Admin\V1\GetUserCredsRequest;
 use Google\Cloud\Firestore\Admin\V1\ImportDocumentsRequest;
 use Google\Cloud\Firestore\Admin\V1\Index;
 use Google\Cloud\Firestore\Admin\V1\IndexOperationMetadata;
@@ -65,11 +70,15 @@ use Google\Cloud\Firestore\Admin\V1\ListDatabasesRequest;
 use Google\Cloud\Firestore\Admin\V1\ListDatabasesResponse;
 use Google\Cloud\Firestore\Admin\V1\ListFieldsRequest;
 use Google\Cloud\Firestore\Admin\V1\ListIndexesRequest;
+use Google\Cloud\Firestore\Admin\V1\ListUserCredsRequest;
+use Google\Cloud\Firestore\Admin\V1\ListUserCredsResponse;
+use Google\Cloud\Firestore\Admin\V1\ResetUserPasswordRequest;
 use Google\Cloud\Firestore\Admin\V1\RestoreDatabaseMetadata;
 use Google\Cloud\Firestore\Admin\V1\RestoreDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\UpdateBackupScheduleRequest;
 use Google\Cloud\Firestore\Admin\V1\UpdateDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\UpdateFieldRequest;
+use Google\Cloud\Firestore\Admin\V1\UserCreds;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
@@ -116,22 +125,29 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<BackupSchedule> createBackupScheduleAsync(CreateBackupScheduleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createDatabaseAsync(CreateDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createIndexAsync(CreateIndexRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UserCreds> createUserCredsAsync(CreateUserCredsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteBackupScheduleAsync(DeleteBackupScheduleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteDatabaseAsync(DeleteDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteIndexAsync(DeleteIndexRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteUserCredsAsync(DeleteUserCredsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UserCreds> disableUserCredsAsync(DisableUserCredsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UserCreds> enableUserCredsAsync(EnableUserCredsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> exportDocumentsAsync(ExportDocumentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BackupSchedule> getBackupScheduleAsync(GetBackupScheduleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Database> getDatabaseAsync(GetDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Field> getFieldAsync(GetFieldRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Index> getIndexAsync(GetIndexRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UserCreds> getUserCredsAsync(GetUserCredsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> importDocumentsAsync(ImportDocumentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ListBackupSchedulesResponse> listBackupSchedulesAsync(ListBackupSchedulesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ListBackupsResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ListDatabasesResponse> listDatabasesAsync(ListDatabasesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listFieldsAsync(ListFieldsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listIndexesAsync(ListIndexesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListUserCredsResponse> listUserCredsAsync(ListUserCredsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UserCreds> resetUserPasswordAsync(ResetUserPasswordRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> restoreDatabaseAsync(RestoreDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BackupSchedule> updateBackupScheduleAsync(UpdateBackupScheduleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateDatabaseAsync(UpdateDatabaseRequest $request, array $optionalArgs = [])
@@ -385,6 +401,25 @@ final class FirestoreAdminClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a user_creds
+     * resource.
+     *
+     * @param string $project
+     * @param string $database
+     * @param string $userCreds
+     *
+     * @return string The formatted user_creds resource.
+     */
+    public static function userCredsName(string $project, string $database, string $userCreds): string
+    {
+        return self::getPathTemplate('userCreds')->render([
+            'project' => $project,
+            'database' => $database,
+            'user_creds' => $userCreds,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -397,6 +432,7 @@ final class FirestoreAdminClient
      * - location: projects/{project}/locations/{location}
      * - operation: projects/{project}/databases/{database}/operations/{operation}
      * - project: projects/{project}
+     * - userCreds: projects/{project}/databases/{database}/userCreds/{user_creds}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -615,6 +651,32 @@ final class FirestoreAdminClient
     }
 
     /**
+     * Create a user creds.
+     *
+     * The async variant is {@see FirestoreAdminClient::createUserCredsAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/create_user_creds.php
+     *
+     * @param CreateUserCredsRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return UserCreds
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createUserCreds(CreateUserCredsRequest $request, array $callOptions = []): UserCreds
+    {
+        return $this->startApiCall('CreateUserCreds', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a backup.
      *
      * The async variant is {@see FirestoreAdminClient::deleteBackupAsync()} .
@@ -710,6 +772,82 @@ final class FirestoreAdminClient
     public function deleteIndex(DeleteIndexRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteIndex', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a user creds.
+     *
+     * The async variant is {@see FirestoreAdminClient::deleteUserCredsAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/delete_user_creds.php
+     *
+     * @param DeleteUserCredsRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteUserCreds(DeleteUserCredsRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteUserCreds', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Disables a user creds. No-op if the user creds are already disabled.
+     *
+     * The async variant is {@see FirestoreAdminClient::disableUserCredsAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/disable_user_creds.php
+     *
+     * @param DisableUserCredsRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return UserCreds
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function disableUserCreds(DisableUserCredsRequest $request, array $callOptions = []): UserCreds
+    {
+        return $this->startApiCall('DisableUserCreds', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Enables a user creds. No-op if the user creds are already enabled.
+     *
+     * The async variant is {@see FirestoreAdminClient::enableUserCredsAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/enable_user_creds.php
+     *
+     * @param EnableUserCredsRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return UserCreds
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function enableUserCreds(EnableUserCredsRequest $request, array $callOptions = []): UserCreds
+    {
+        return $this->startApiCall('EnableUserCreds', $request, $callOptions)->wait();
     }
 
     /**
@@ -879,6 +1017,33 @@ final class FirestoreAdminClient
     }
 
     /**
+     * Gets a user creds resource. Note that the returned resource does not
+     * contain the secret value itself.
+     *
+     * The async variant is {@see FirestoreAdminClient::getUserCredsAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/get_user_creds.php
+     *
+     * @param GetUserCredsRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return UserCreds
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getUserCreds(GetUserCredsRequest $request, array $callOptions = []): UserCreds
+    {
+        return $this->startApiCall('GetUserCreds', $request, $callOptions)->wait();
+    }
+
+    /**
      * Imports documents into Google Cloud Firestore. Existing documents with the
      * same name are overwritten. The import occurs in the background and its
      * progress can be monitored and managed via the Operation resource that is
@@ -1044,6 +1209,59 @@ final class FirestoreAdminClient
     public function listIndexes(ListIndexesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListIndexes', $request, $callOptions);
+    }
+
+    /**
+     * List all user creds in the database. Note that the returned resource
+     * does not contain the secret value itself.
+     *
+     * The async variant is {@see FirestoreAdminClient::listUserCredsAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/list_user_creds.php
+     *
+     * @param ListUserCredsRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ListUserCredsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listUserCreds(ListUserCredsRequest $request, array $callOptions = []): ListUserCredsResponse
+    {
+        return $this->startApiCall('ListUserCreds', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Resets the password of a user creds.
+     *
+     * The async variant is {@see FirestoreAdminClient::resetUserPasswordAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/reset_user_password.php
+     *
+     * @param ResetUserPasswordRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return UserCreds
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function resetUserPassword(ResetUserPasswordRequest $request, array $callOptions = []): UserCreds
+    {
+        return $this->startApiCall('ResetUserPassword', $request, $callOptions)->wait();
     }
 
     /**
