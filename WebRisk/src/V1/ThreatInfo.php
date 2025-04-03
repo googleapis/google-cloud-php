@@ -11,7 +11,6 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Context about the submission including the type of abuse found on the URI and
  * supporting details.
- * option (google.api.message_visibility).restriction = "TRUSTED_TESTER";
  *
  * Generated from protobuf message <code>google.cloud.webrisk.v1.ThreatInfo</code>
  */
