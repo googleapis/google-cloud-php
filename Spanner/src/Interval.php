@@ -42,7 +42,7 @@ class Interval
     private float $nanoseconds;
     private string|null $stringRepresentation = null;
 
-    public function __construct(int $months, int $days, float $nanoseconds)
+    private function __construct(int $months, int $days, float $nanoseconds)
     {
         if ($months > Interval::MAX_MONTHS || $months < Interval::MIN_MONTHS) {
             throw new InvalidArgumentException(
@@ -88,7 +88,7 @@ class Interval
         $end = -1;
 
         do {
-            $end = $state->IndexofAny($text, $state->nextAllowed, $state->start);
+            $end = $state->indexofAny($text, $state->nextAllowed, $state->start);
 
             // We couldn't find any of the allowed characters of which we needed to find one.
             if ($end === -1) {
@@ -187,7 +187,7 @@ class Interval
 
         // We do not have a valid precision for the fractional seconds
         if (!$state->isValidResolution) {
-            throw new InvalidArgumentException('Invalid interval');
+            throw new InvalidArgumentException('The interval class only supports a resolution up to nanoseconds');
         }
 
         $totalMonths = Interval::yearsToMonths($state->years) + $state->months;
