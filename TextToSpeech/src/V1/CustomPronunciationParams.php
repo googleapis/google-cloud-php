@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CustomPronunciationParams extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The phrase to which the customization will be applied.
-     * The phrase can be multiple words (in the case of proper nouns etc), but
-     * should not span to a whole sentence.
+     * The phrase to which the customization is applied.
+     * The phrase can be multiple words, such as proper nouns, but shouldn't span
+     * the length of the sentence.
      *
      * Generated from protobuf field <code>optional string phrase = 1;</code>
      */
@@ -44,9 +44,9 @@ class CustomPronunciationParams extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $phrase
-     *           The phrase to which the customization will be applied.
-     *           The phrase can be multiple words (in the case of proper nouns etc), but
-     *           should not span to a whole sentence.
+     *           The phrase to which the customization is applied.
+     *           The phrase can be multiple words, such as proper nouns, but shouldn't span
+     *           the length of the sentence.
      *     @type int $phonetic_encoding
      *           The phonetic encoding of the phrase.
      *     @type string $pronunciation
@@ -60,9 +60,9 @@ class CustomPronunciationParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The phrase to which the customization will be applied.
-     * The phrase can be multiple words (in the case of proper nouns etc), but
-     * should not span to a whole sentence.
+     * The phrase to which the customization is applied.
+     * The phrase can be multiple words, such as proper nouns, but shouldn't span
+     * the length of the sentence.
      *
      * Generated from protobuf field <code>optional string phrase = 1;</code>
      * @return string
@@ -83,9 +83,9 @@ class CustomPronunciationParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The phrase to which the customization will be applied.
-     * The phrase can be multiple words (in the case of proper nouns etc), but
-     * should not span to a whole sentence.
+     * The phrase to which the customization is applied.
+     * The phrase can be multiple words, such as proper nouns, but shouldn't span
+     * the length of the sentence.
      *
      * Generated from protobuf field <code>optional string phrase = 1;</code>
      * @param string $var

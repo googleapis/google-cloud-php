@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A Multi-speaker turn.
+ * A multi-speaker turn.
  *
  * Generated from protobuf message <code>google.cloud.texttospeech.v1.MultiSpeakerMarkup.Turn</code>
  */

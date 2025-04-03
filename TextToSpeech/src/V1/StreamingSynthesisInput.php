@@ -25,9 +25,8 @@ class StreamingSynthesisInput extends \Google\Protobuf\Internal\Message
      *
      *     @type string $text
      *           The raw text to be synthesized. It is recommended that each input
-     *           contains complete, terminating sentences, as this will likely result in
-     *           better prosody in the output audio. That being said, users are free to
-     *           input text however they please.
+     *           contains complete, terminating sentences, which results in better prosody
+     *           in the output audio.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,9 +36,8 @@ class StreamingSynthesisInput extends \Google\Protobuf\Internal\Message
 
     /**
      * The raw text to be synthesized. It is recommended that each input
-     * contains complete, terminating sentences, as this will likely result in
-     * better prosody in the output audio. That being said, users are free to
-     * input text however they please.
+     * contains complete, terminating sentences, which results in better prosody
+     * in the output audio.
      *
      * Generated from protobuf field <code>string text = 1;</code>
      * @return string
@@ -56,9 +54,8 @@ class StreamingSynthesisInput extends \Google\Protobuf\Internal\Message
 
     /**
      * The raw text to be synthesized. It is recommended that each input
-     * contains complete, terminating sentences, as this will likely result in
-     * better prosody in the output audio. That being said, users are free to
-     * input text however they please.
+     * contains complete, terminating sentences, which results in better prosody
+     * in the output audio.
      *
      * Generated from protobuf field <code>string text = 1;</code>
      * @param string $var

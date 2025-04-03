@@ -20,14 +20,14 @@ class PhoneticEncoding
      */
     const PHONETIC_ENCODING_UNSPECIFIED = 0;
     /**
-     * IPA. (e.g. apple -> ˈæpəl )
+     * IPA, such as apple -> ˈæpəl.
      * https://en.wikipedia.org/wiki/International_Phonetic_Alphabet
      *
      * Generated from protobuf enum <code>PHONETIC_ENCODING_IPA = 1;</code>
      */
     const PHONETIC_ENCODING_IPA = 1;
     /**
-     * X-SAMPA (e.g. apple -> "{p&#64;l" )
+     * X-SAMPA, such as apple -> "{p&#64;l".
      * https://en.wikipedia.org/wiki/X-SAMPA
      *
      * Generated from protobuf enum <code>PHONETIC_ENCODING_X_SAMPA = 2;</code>

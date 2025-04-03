@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class CustomPronunciations extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The pronunciation customizations to be applied.
+     * The pronunciation customizations are applied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.texttospeech.v1.CustomPronunciationParams pronunciations = 1;</code>
      */
@@ -29,7 +29,7 @@ class CustomPronunciations extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\TextToSpeech\V1\CustomPronunciationParams>|\Google\Protobuf\Internal\RepeatedField $pronunciations
-     *           The pronunciation customizations to be applied.
+     *           The pronunciation customizations are applied.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class CustomPronunciations extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The pronunciation customizations to be applied.
+     * The pronunciation customizations are applied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.texttospeech.v1.CustomPronunciationParams pronunciations = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -49,7 +49,7 @@ class CustomPronunciations extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The pronunciation customizations to be applied.
+     * The pronunciation customizations are applied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.texttospeech.v1.CustomPronunciationParams pronunciations = 1;</code>
      * @param array<\Google\Cloud\TextToSpeech\V1\CustomPronunciationParams>|\Google\Protobuf\Internal\RepeatedField $var
