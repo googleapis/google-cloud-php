@@ -1,5 +1,77 @@
 # Changelog
 
+## 0.283.0
+
+<details><summary>google/cloud-artifact-registry 1.2.0</summary>
+
+
+
+### Features
+
+* [ArtifactRegistry] add the GoModule and KfpArtifact resources ([#8201](https://github.com/googleapis/google-cloud-php/issues/8201)) ([3f37787](https://github.com/googleapis/google-cloud-php/commit/3f3778742faf309835c7c2134cb4041945269246))
+
+</details>
+
+<details><summary>google/cloud-dataplex 1.5.0</summary>
+
+
+
+### Features
+
+* [Dataplex] Add Data Discovery result statistics ([#8203](https://github.com/googleapis/google-cloud-php/issues/8203)) ([c935acd](https://github.com/googleapis/google-cloud-php/commit/c935acd6a4872deae5e0257b19add6fda89a1d03))
+
+</details>
+
+<details><summary>google/cloud-deploy 1.5.5</summary>
+
+
+
+### Documentation
+
+* [Deploy] Add resource definition for Revision ([#8202](https://github.com/googleapis/google-cloud-php/issues/8202)) ([6fc672b](https://github.com/googleapis/google-cloud-php/commit/6fc672bba6cd3f8fdc9b7800d84580c9dc74accc))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.49.0</summary>
+
+
+
+### Features
+
+* [Firestore] add the UserCreds API ([#8199](https://github.com/googleapis/google-cloud-php/issues/8199)) ([5f81dfb](https://github.com/googleapis/google-cloud-php/commit/5f81dfb614a7e5153886c23b27d19a252a4dc1d9))
+
+</details>
+
+<details><summary>google/cloud-functions 2.0.4</summary>
+
+
+
+### Documentation
+
+* [Functions] updated `docker_registry` proto to reflect its deprecated status ([#8207](https://github.com/googleapis/google-cloud-php/issues/8207)) ([868c392](https://github.com/googleapis/google-cloud-php/commit/868c3927d293cc45162b575d1de6dbbc7cd52735))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 2.1.0</summary>
+
+
+
+### Features
+
+* [TextToSpeech] Support HD voice custom pronunciations ([#8198](https://github.com/googleapis/google-cloud-php/issues/8198)) ([a11a738](https://github.com/googleapis/google-cloud-php/commit/a11a738a8d8315a885635ad7ea4a5299f2a407c3))
+
+</details>
+
+<details><summary>google/cloud-web-risk 2.1.0</summary>
+
+
+
+### Features
+
+* [WebRisk] A new method_signature `parent,submission` is added to method `SubmitUri` in service `WebRiskService` ([#8204](https://github.com/googleapis/google-cloud-php/issues/8204)) ([80edb81](https://github.com/googleapis/google-cloud-php/commit/80edb81ef16e6af6b0b70081775932bb8bd25316))
+
+</details>
+
 ## 0.282.0
 
 <details><summary>google/cloud-ai-platform 1.23.0</summary>
