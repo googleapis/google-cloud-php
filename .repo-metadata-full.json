@@ -1421,6 +1421,14 @@
         "library_type": "GAPIC_MANUAL",
         "api_shortname": "storage"
     },
+    "StorageBatchOperations": {
+        "language": "php",
+        "distribution_name": "google/cloud-storagebatchoperations",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-storagebatchoperations/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "storagebatchoperations"
+    },
     "StorageControl": {
         "language": "php",
         "distribution_name": "google/cloud-storage-control",
