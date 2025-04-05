@@ -23,7 +23,7 @@ class AutoscalingTargets extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 high_priority_cpu_utilization_percent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $high_priority_cpu_utilization_percent = 0;
+    protected $high_priority_cpu_utilization_percent = 0;
     /**
      * Required. The target storage utilization percentage that the autoscaler
      * should be trying to achieve for the instance. This number is on a scale
@@ -32,7 +32,7 @@ class AutoscalingTargets extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 storage_utilization_percent = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $storage_utilization_percent = 0;
+    protected $storage_utilization_percent = 0;
 
     /**
      * Constructor.
