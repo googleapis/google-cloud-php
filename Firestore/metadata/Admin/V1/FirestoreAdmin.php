@@ -24,14 +24,15 @@ class FirestoreAdmin
         \GPBMetadata\Google\Firestore\Admin\V1\Index::initOnce();
         \GPBMetadata\Google\Firestore\Admin\V1\Operation::initOnce();
         \GPBMetadata\Google\Firestore\Admin\V1\Schedule::initOnce();
+        \GPBMetadata\Google\Firestore\Admin\V1\UserCreds::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-I
-/google/firestore/admin/v1/firestore_admin.protogoogle.firestore.admin.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/firestore/admin/v1/backup.proto(google/firestore/admin/v1/database.proto%google/firestore/admin/v1/field.proto%google/firestore/admin/v1/index.proto)google/firestore/admin/v1/operation.proto(google/firestore/admin/v1/schedule.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"g
+®Y
+/google/firestore/admin/v1/firestore_admin.protogoogle.firestore.admin.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/firestore/admin/v1/backup.proto(google/firestore/admin/v1/database.proto%google/firestore/admin/v1/field.proto%google/firestore/admin/v1/index.proto)google/firestore/admin/v1/operation.proto(google/firestore/admin/v1/schedule.proto*google/firestore/admin/v1/user_creds.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"g
 ListDatabasesRequest9
 parent (	B)àAúA#!firestore.googleapis.com/Database
 show_deleted ("¨
@@ -54,7 +55,32 @@ class FirestoreAdmin
 name (	B)àAúA#
 !firestore.googleapis.com/Database
 etag (	"
-DeleteDatabaseMetadata"¡
+DeleteDatabaseMetadata"¯
+CreateUserCredsRequest:
+parent (	B*àAúA$"firestore.googleapis.com/UserCreds=
+
+user_creds (2$.google.firestore.admin.v1.UserCredsBàA
+user_creds_id (	BàA"O
+GetUserCredsRequest8
+name (	B*àAúA$
+"firestore.googleapis.com/UserCreds"R
+ListUserCredsRequest:
+parent (	B*àAúA$"firestore.googleapis.com/UserCreds"Q
+ListUserCredsResponse8
+
+user_creds (2$.google.firestore.admin.v1.UserCreds"R
+EnableUserCredsRequest8
+name (	B*àAúA$
+"firestore.googleapis.com/UserCreds"S
+DisableUserCredsRequest8
+name (	B*àAúA$
+"firestore.googleapis.com/UserCreds"T
+ResetUserPasswordRequest8
+name (	B*àAúA$
+"firestore.googleapis.com/UserCreds"R
+DeleteUserCredsRequest8
+name (	B*àAúA$
+"firestore.googleapis.com/UserCreds"¡
 CreateBackupScheduleRequest9
 parent (	B)àAúA#
 !firestore.googleapis.com/DatabaseG
@@ -146,7 +172,7 @@ page_token (	"_
 database_id (	BàA7
 backup (	B\'àAúA!
 firestore.googleapis.com/BackupT
-encryption_config	 (24.google.firestore.admin.v1.Database.EncryptionConfigBàA2Ë%
+encryption_config	 (24.google.firestore.admin.v1.Database.EncryptionConfigBàA2Á/
 FirestoreAdminÛ
 CreateIndex-.google.firestore.admin.v1.CreateIndexRequest.google.longrunning.Operation"~ÊA
 IndexIndexOperationMetadataÚAparent,index‚Óä“G">/v1/{parent=projects/*/databases/*/collectionGroups/*}/indexes:index½
@@ -171,7 +197,15 @@ ListFields,.google.firestore.admin.v1.ListFieldsRequest-.google.firestore.admi
 UpdateDatabase0.google.firestore.admin.v1.UpdateDatabaseRequest.google.longrunning.Operation"xÊA"
 DatabaseUpdateDatabaseMetadataÚAdatabase,update_mask‚Óä“62*/v1/{database.name=projects/*/databases/*}:database¸
 DeleteDatabase0.google.firestore.admin.v1.DeleteDatabaseRequest.google.longrunning.Operation"UÊA"
-DatabaseDeleteDatabaseMetadataÚAname‚Óä“#*!/v1/{name=projects/*/databases/*}—
+DatabaseDeleteDatabaseMetadataÚAname‚Óä“#*!/v1/{name=projects/*/databases/*}Ï
+CreateUserCreds1.google.firestore.admin.v1.CreateUserCredsRequest$.google.firestore.admin.v1.UserCreds"cÚAparent,user_creds,user_creds_id‚Óä“;"-/v1/{parent=projects/*/databases/*}/userCreds:
+user_creds¢
+GetUserCreds..google.firestore.admin.v1.GetUserCredsRequest$.google.firestore.admin.v1.UserCreds"<ÚAname‚Óä“/-/v1/{name=projects/*/databases/*/userCreds/*}²
+ListUserCreds/.google.firestore.admin.v1.ListUserCredsRequest0.google.firestore.admin.v1.ListUserCredsResponse">ÚAparent‚Óä“/-/v1/{parent=projects/*/databases/*}/userCreds²
+EnableUserCreds1.google.firestore.admin.v1.EnableUserCredsRequest$.google.firestore.admin.v1.UserCreds"FÚAname‚Óä“9"4/v1/{name=projects/*/databases/*/userCreds/*}:enable:*µ
+DisableUserCreds2.google.firestore.admin.v1.DisableUserCredsRequest$.google.firestore.admin.v1.UserCreds"GÚAname‚Óä“:"5/v1/{name=projects/*/databases/*/userCreds/*}:disable:*½
+ResetUserPassword3.google.firestore.admin.v1.ResetUserPasswordRequest$.google.firestore.admin.v1.UserCreds"MÚAname‚Óä“@";/v1/{name=projects/*/databases/*/userCreds/*}:resetPassword:*š
+DeleteUserCreds1.google.firestore.admin.v1.DeleteUserCredsRequest.google.protobuf.Empty"<ÚAname‚Óä“/*-/v1/{name=projects/*/databases/*/userCreds/*}—
 	GetBackup+.google.firestore.admin.v1.GetBackupRequest!.google.firestore.admin.v1.Backup":ÚAname‚Óä“-+/v1/{name=projects/*/locations/*/backups/*}ª
 ListBackups-.google.firestore.admin.v1.ListBackupsRequest..google.firestore.admin.v1.ListBackupsResponse"<ÚAparent‚Óä“-+/v1/{parent=projects/*/locations/*}/backups’
 DeleteBackup..google.firestore.admin.v1.DeleteBackupRequest.google.protobuf.Empty":ÚAname‚Óä“-*+/v1/{name=projects/*/locations/*/backups/*}¿

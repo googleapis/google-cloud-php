@@ -122,6 +122,13 @@ class Repository extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool satisfies_pzi = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $satisfies_pzi = false;
+    /**
+     * Output only. The repository endpoint, for example:
+     * `us-docker.pkg.dev/my-proj/my-repo`.
+     *
+     * Generated from protobuf field <code>string registry_uri = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $registry_uri = '';
     protected $format_config;
     protected $mode_config;
 
@@ -188,6 +195,9 @@ class Repository extends \Google\Protobuf\Internal\Message
      *           error rather than defaulting to standard.
      *     @type bool $satisfies_pzi
      *           Output only. If set, the repository satisfies physical zone isolation.
+     *     @type string $registry_uri
+     *           Output only. The repository endpoint, for example:
+     *           `us-docker.pkg.dev/my-proj/my-repo`.
      * }
      */
     public function __construct($data = NULL) {
@@ -773,6 +783,34 @@ class Repository extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzi = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The repository endpoint, for example:
+     * `us-docker.pkg.dev/my-proj/my-repo`.
+     *
+     * Generated from protobuf field <code>string registry_uri = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getRegistryUri()
+    {
+        return $this->registry_uri;
+    }
+
+    /**
+     * Output only. The repository endpoint, for example:
+     * `us-docker.pkg.dev/my-proj/my-repo`.
+     *
+     * Generated from protobuf field <code>string registry_uri = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRegistryUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->registry_uri = $var;
 
         return $this;
     }

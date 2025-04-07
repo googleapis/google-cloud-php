@@ -42,6 +42,23 @@ class SubmitUriRequest extends \Google\Protobuf\Internal\Message
     protected $threat_discovery = null;
 
     /**
+     * @param string                              $parent     Required. The name of the project that is making the submission. This
+     *                                                        string is in the format "projects/{project_number}". Please see
+     *                                                        {@see WebRiskServiceClient::projectName()} for help formatting this field.
+     * @param \Google\Cloud\WebRisk\V1\Submission $submission Required. The submission that contains the URI to be scanned.
+     *
+     * @return \Google\Cloud\WebRisk\V1\SubmitUriRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\WebRisk\V1\Submission $submission): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSubmission($submission);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

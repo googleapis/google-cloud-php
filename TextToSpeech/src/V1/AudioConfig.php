@@ -22,10 +22,10 @@ class AudioConfig extends \Google\Protobuf\Internal\Message
      */
     protected $audio_encoding = 0;
     /**
-     * Optional. Input only. Speaking rate/speed, in the range [0.25, 4.0]. 1.0 is
+     * Optional. Input only. Speaking rate/speed, in the range [0.25, 2.0]. 1.0 is
      * the normal native speed supported by the specific voice. 2.0 is twice as
      * fast, and 0.5 is half as fast. If unset(0.0), defaults to the native 1.0
-     * speed. Any other values < 0.25 or > 4.0 will return an error.
+     * speed. Any other values < 0.25 or > 2.0 will return an error.
      *
      * Generated from protobuf field <code>double speaking_rate = 2 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -84,10 +84,10 @@ class AudioConfig extends \Google\Protobuf\Internal\Message
      *     @type int $audio_encoding
      *           Required. The format of the audio byte stream.
      *     @type float $speaking_rate
-     *           Optional. Input only. Speaking rate/speed, in the range [0.25, 4.0]. 1.0 is
+     *           Optional. Input only. Speaking rate/speed, in the range [0.25, 2.0]. 1.0 is
      *           the normal native speed supported by the specific voice. 2.0 is twice as
      *           fast, and 0.5 is half as fast. If unset(0.0), defaults to the native 1.0
-     *           speed. Any other values < 0.25 or > 4.0 will return an error.
+     *           speed. Any other values < 0.25 or > 2.0 will return an error.
      *     @type float $pitch
      *           Optional. Input only. Speaking pitch, in the range [-20.0, 20.0]. 20 means
      *           increase 20 semitones from the original pitch. -20 means decrease 20
@@ -150,10 +150,10 @@ class AudioConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Input only. Speaking rate/speed, in the range [0.25, 4.0]. 1.0 is
+     * Optional. Input only. Speaking rate/speed, in the range [0.25, 2.0]. 1.0 is
      * the normal native speed supported by the specific voice. 2.0 is twice as
      * fast, and 0.5 is half as fast. If unset(0.0), defaults to the native 1.0
-     * speed. Any other values < 0.25 or > 4.0 will return an error.
+     * speed. Any other values < 0.25 or > 2.0 will return an error.
      *
      * Generated from protobuf field <code>double speaking_rate = 2 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
@@ -164,10 +164,10 @@ class AudioConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Input only. Speaking rate/speed, in the range [0.25, 4.0]. 1.0 is
+     * Optional. Input only. Speaking rate/speed, in the range [0.25, 2.0]. 1.0 is
      * the normal native speed supported by the specific voice. 2.0 is twice as
      * fast, and 0.5 is half as fast. If unset(0.0), defaults to the native 1.0
-     * speed. Any other values < 0.25 or > 4.0 will return an error.
+     * speed. Any other values < 0.25 or > 2.0 will return an error.
      *
      * Generated from protobuf field <code>double speaking_rate = 2 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var

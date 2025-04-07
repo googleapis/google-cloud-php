@@ -53,7 +53,7 @@ class ListFunctionsRequest extends \Google\Protobuf\Internal\Message
     protected $filter = '';
     /**
      * The sorting order of the resources returned. Value should be a comma
-     * separated list of fields. The default sorting oder is ascending.
+     * separated list of fields. The default sorting order is ascending.
      * See https://google.aip.dev/132#ordering.
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
@@ -107,7 +107,7 @@ class ListFunctionsRequest extends \Google\Protobuf\Internal\Message
      *           following the syntax outlined in https://google.aip.dev/160.
      *     @type string $order_by
      *           The sorting order of the resources returned. Value should be a comma
-     *           separated list of fields. The default sorting oder is ascending.
+     *           separated list of fields. The default sorting order is ascending.
      *           See https://google.aip.dev/132#ordering.
      * }
      */
@@ -246,7 +246,7 @@ class ListFunctionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The sorting order of the resources returned. Value should be a comma
-     * separated list of fields. The default sorting oder is ascending.
+     * separated list of fields. The default sorting order is ascending.
      * See https://google.aip.dev/132#ordering.
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
@@ -259,7 +259,7 @@ class ListFunctionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The sorting order of the resources returned. Value should be a comma
-     * separated list of fields. The default sorting oder is ascending.
+     * separated list of fields. The default sorting order is ascending.
      * See https://google.aip.dev/132#ordering.
      *
      * Generated from protobuf field <code>string order_by = 5;</code>

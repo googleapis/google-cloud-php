@@ -87,7 +87,7 @@ class PBFunction extends \Google\Protobuf\Internal\Message
      */
     protected $url = '';
     /**
-     * [Preview] Resource name of a KMS crypto key (managed by the user) used to
+     * Resource name of a KMS crypto key (managed by the user) used to
      * encrypt/decrypt function resources.
      * It must match the pattern
      * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
@@ -142,7 +142,7 @@ class PBFunction extends \Google\Protobuf\Internal\Message
      *     @type string $url
      *           Output only. The deployed url for the function.
      *     @type string $kms_key_name
-     *           [Preview] Resource name of a KMS crypto key (managed by the user) used to
+     *           Resource name of a KMS crypto key (managed by the user) used to
      *           encrypt/decrypt function resources.
      *           It must match the pattern
      *           `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
@@ -493,7 +493,7 @@ class PBFunction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Preview] Resource name of a KMS crypto key (managed by the user) used to
+     * Resource name of a KMS crypto key (managed by the user) used to
      * encrypt/decrypt function resources.
      * It must match the pattern
      * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
@@ -507,7 +507,7 @@ class PBFunction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Preview] Resource name of a KMS crypto key (managed by the user) used to
+     * Resource name of a KMS crypto key (managed by the user) used to
      * encrypt/decrypt function resources.
      * It must match the pattern
      * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
