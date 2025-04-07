@@ -7,35 +7,35 @@ namespace Google\Cloud\Parallelstore\V1beta\TransferMetadataOptions;
 use UnexpectedValueException;
 
 /**
- * The mode preservation behavior.
+ * The UID perservation behavior.
  *
- * Protobuf type <code>google.cloud.parallelstore.v1beta.TransferMetadataOptions.Mode</code>
+ * Protobuf type <code>google.cloud.parallelstore.v1beta.TransferMetadataOptions.Uid</code>
  */
-class Mode
+class Uid
 {
     /**
-     * default is MODE_PRESERVE.
+     * default is UID_NUMBER_PRESERVE.
      *
-     * Generated from protobuf enum <code>MODE_UNSPECIFIED = 0;</code>
+     * Generated from protobuf enum <code>UID_UNSPECIFIED = 0;</code>
      */
-    const MODE_UNSPECIFIED = 0;
+    const UID_UNSPECIFIED = 0;
     /**
-     * Do not preserve mode during a transfer job.
+     * Do not preserve UID during a transfer job.
      *
-     * Generated from protobuf enum <code>MODE_SKIP = 1;</code>
+     * Generated from protobuf enum <code>UID_SKIP = 1;</code>
      */
-    const MODE_SKIP = 1;
+    const UID_SKIP = 1;
     /**
-     * Preserve mode during a transfer job.
+     * Preserve UID that is in number format during a transfer job.
      *
-     * Generated from protobuf enum <code>MODE_PRESERVE = 2;</code>
+     * Generated from protobuf enum <code>UID_NUMBER_PRESERVE = 2;</code>
      */
-    const MODE_PRESERVE = 2;
+    const UID_NUMBER_PRESERVE = 2;
 
     private static $valueToName = [
-        self::MODE_UNSPECIFIED => 'MODE_UNSPECIFIED',
-        self::MODE_SKIP => 'MODE_SKIP',
-        self::MODE_PRESERVE => 'MODE_PRESERVE',
+        self::UID_UNSPECIFIED => 'UID_UNSPECIFIED',
+        self::UID_SKIP => 'UID_SKIP',
+        self::UID_NUMBER_PRESERVE => 'UID_NUMBER_PRESERVE',
     ];
 
     public static function name($value)
@@ -59,6 +59,4 @@ class Mode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Mode::class, \Google\Cloud\Parallelstore\V1beta\TransferMetadataOptions_Mode::class);
 
