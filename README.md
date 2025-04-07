@@ -1,8 +1,6 @@
 # Google Cloud PHP Client
 > Idiomatic PHP client for [Google Cloud Platform](https://cloud.google.com/) services.
 
-## CI Status
-
 View the [list of supported APIs and Services](https://cloud.google.com/php/docs/reference).
 
 If you need support for other Google APIs, please check out the
