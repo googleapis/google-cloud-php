@@ -43,7 +43,6 @@ use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service to use Product resource.
- * This service works for products with online channel only.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -282,8 +281,8 @@ final class ProductsServiceClient
 
     /**
      * Lists the processed products in your Merchant Center account. The response
-     * might contain fewer items than specified by pageSize. Rely on pageToken to
-     * determine if there are more items to be requested.
+     * might contain fewer items than specified by `pageSize`. Rely on `pageToken`
+     * to determine if there are more items to be requested.
      *
      * After inserting, updating, or deleting a product input, it may take several
      * minutes before the updated processed product can be retrieved.

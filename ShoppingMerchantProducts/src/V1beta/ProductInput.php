@@ -33,8 +33,7 @@ class ProductInput extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. The name of the product input.
-     * Format:
-     * `"{productinput.name=accounts/{account}/productInputs/{productinput}}"`
+     * Format: accounts/{account}/productInputs/{productinput}
      * where the last section `productinput` consists of 4 parts:
      * channel~content_language~feed_label~offer_id
      * example for product input name is
@@ -132,8 +131,7 @@ class ProductInput extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. The name of the product input.
-     *           Format:
-     *           `"{productinput.name=accounts/{account}/productInputs/{productinput}}"`
+     *           Format: accounts/{account}/productInputs/{productinput}
      *           where the last section `productinput` consists of 4 parts:
      *           channel~content_language~feed_label~offer_id
      *           example for product input name is
@@ -195,8 +193,7 @@ class ProductInput extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The name of the product input.
-     * Format:
-     * `"{productinput.name=accounts/{account}/productInputs/{productinput}}"`
+     * Format: accounts/{account}/productInputs/{productinput}
      * where the last section `productinput` consists of 4 parts:
      * channel~content_language~feed_label~offer_id
      * example for product input name is
@@ -212,8 +209,7 @@ class ProductInput extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The name of the product input.
-     * Format:
-     * `"{productinput.name=accounts/{account}/productInputs/{productinput}}"`
+     * Format: accounts/{account}/productInputs/{productinput}
      * where the last section `productinput` consists of 4 parts:
      * channel~content_language~feed_label~offer_id
      * example for product input name is
