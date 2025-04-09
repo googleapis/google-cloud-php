@@ -137,6 +137,25 @@ return [
                     ],
                 ],
             ],
+            'RestartAutonomousDatabase' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\AutonomousDatabase',
+                    'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'RestoreAutonomousDatabase' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\AutonomousDatabase',
@@ -145,6 +164,44 @@ return [
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '600000',
                     'totalPollTimeoutMillis' => '432000000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'StartAutonomousDatabase' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\AutonomousDatabase',
+                    'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'StopAutonomousDatabase' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\AutonomousDatabase',
+                    'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
                 ],
                 'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
                 'headerParams' => [
