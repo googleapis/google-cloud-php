@@ -100,6 +100,20 @@
                     }
                 }
             }
+        },
+        "QuotaService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "QuotaServiceGapicClient",
+                    "rpcs": {
+                        "ListQuotaGroups": {
+                            "methods": [
+                                "listQuotaGroups"
+                            ]
+                        }
+                    }
+                }
+            }
         }
     }
 }
