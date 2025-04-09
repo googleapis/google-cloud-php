@@ -64,6 +64,13 @@ class GoogleServiceType
      * Generated from protobuf enum <code>GOOGLE_API_VPC_SC = 6;</code>
      */
     const GOOGLE_API_VPC_SC = 6;
+    /**
+     * Google API via Serverless VPC Access.
+     * https://cloud.google.com/vpc/docs/serverless-vpc-access
+     *
+     * Generated from protobuf enum <code>SERVERLESS_VPC_ACCESS = 7;</code>
+     */
+    const SERVERLESS_VPC_ACCESS = 7;
 
     private static $valueToName = [
         self::GOOGLE_SERVICE_TYPE_UNSPECIFIED => 'GOOGLE_SERVICE_TYPE_UNSPECIFIED',
@@ -73,6 +80,7 @@ class GoogleServiceType
         self::GOOGLE_API => 'GOOGLE_API',
         self::GOOGLE_API_PSC => 'GOOGLE_API_PSC',
         self::GOOGLE_API_VPC_SC => 'GOOGLE_API_VPC_SC',
+        self::SERVERLESS_VPC_ACCESS => 'SERVERLESS_VPC_ACCESS',
     ];
 
     public static function name($value)

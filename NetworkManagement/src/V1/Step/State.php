@@ -167,12 +167,16 @@ class State
     const ARRIVE_AT_INSTANCE = 9;
     /**
      * Forwarding state: arriving at a Compute Engine internal load balancer.
+     * Deprecated in favor of the `ANALYZE_LOAD_BALANCER_BACKEND` state, not
+     * used in new tests.
      *
      * Generated from protobuf enum <code>ARRIVE_AT_INTERNAL_LOAD_BALANCER = 10 [deprecated = true];</code>
      */
     const ARRIVE_AT_INTERNAL_LOAD_BALANCER = 10;
     /**
      * Forwarding state: arriving at a Compute Engine external load balancer.
+     * Deprecated in favor of the `ANALYZE_LOAD_BALANCER_BACKEND` state, not
+     * used in new tests.
      *
      * Generated from protobuf enum <code>ARRIVE_AT_EXTERNAL_LOAD_BALANCER = 11 [deprecated = true];</code>
      */
@@ -195,6 +199,20 @@ class State
      * Generated from protobuf enum <code>ARRIVE_AT_VPC_CONNECTOR = 24;</code>
      */
     const ARRIVE_AT_VPC_CONNECTOR = 24;
+    /**
+     * Forwarding state: for packets originating from a serverless endpoint
+     * forwarded through Direct VPC egress.
+     *
+     * Generated from protobuf enum <code>DIRECT_VPC_EGRESS_CONNECTION = 35;</code>
+     */
+    const DIRECT_VPC_EGRESS_CONNECTION = 35;
+    /**
+     * Forwarding state: for packets originating from a serverless endpoint
+     * forwarded through public (external) connectivity.
+     *
+     * Generated from protobuf enum <code>SERVERLESS_EXTERNAL_CONNECTION = 36;</code>
+     */
+    const SERVERLESS_EXTERNAL_CONNECTION = 36;
     /**
      * Transition state: packet header translated.
      *
@@ -269,6 +287,8 @@ class State
         self::ARRIVE_AT_VPN_GATEWAY => 'ARRIVE_AT_VPN_GATEWAY',
         self::ARRIVE_AT_VPN_TUNNEL => 'ARRIVE_AT_VPN_TUNNEL',
         self::ARRIVE_AT_VPC_CONNECTOR => 'ARRIVE_AT_VPC_CONNECTOR',
+        self::DIRECT_VPC_EGRESS_CONNECTION => 'DIRECT_VPC_EGRESS_CONNECTION',
+        self::SERVERLESS_EXTERNAL_CONNECTION => 'SERVERLESS_EXTERNAL_CONNECTION',
         self::NAT => 'NAT',
         self::PROXY_CONNECTION => 'PROXY_CONNECTION',
         self::DELIVER => 'DELIVER',
