@@ -31,14 +31,14 @@ use Google\Shopping\Merchant\Products\V1beta\Product;
 
 /**
  * Lists the processed products in your Merchant Center account. The response
- * might contain fewer items than specified by pageSize. Rely on pageToken to
- * determine if there are more items to be requested.
+ * might contain fewer items than specified by `pageSize`. Rely on `pageToken`
+ * to determine if there are more items to be requested.
  *
  * After inserting, updating, or deleting a product input, it may take several
  * minutes before the updated processed product can be retrieved.
  *
  * @param string $formattedParent The account to list processed products for.
- *                                Format: accounts/{account}
+ *                                Format: `accounts/{account}`
  *                                Please see {@see ProductsServiceClient::accountName()} for help formatting this field.
  */
 function list_products_sample(string $formattedParent): void
