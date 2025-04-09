@@ -16,35 +16,50 @@ use Google\Protobuf\Internal\GPBUtil;
 class AccessSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * GCIP claims and endpoint configurations for 3p identity providers.
+     * Optional. GCIP claims and endpoint configurations for 3p identity
+     * providers.
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.GcipSettings gcip_settings = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.GcipSettings gcip_settings = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $gcip_settings = null;
     /**
-     * Configuration to allow cross-origin requests via IAP.
+     * Optional. Configuration to allow cross-origin requests via IAP.
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.CorsSettings cors_settings = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.CorsSettings cors_settings = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $cors_settings = null;
     /**
-     * Settings to configure IAP's OAuth behavior.
+     * Optional. Settings to configure IAP's OAuth behavior.
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.OAuthSettings oauth_settings = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.OAuthSettings oauth_settings = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $oauth_settings = null;
     /**
-     * Settings to configure reauthentication policies in IAP.
+     * Optional. Settings to configure reauthentication policies in IAP.
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings reauth_settings = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings reauth_settings = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $reauth_settings = null;
     /**
-     * Settings to configure and enable allowed domains.
+     * Optional. Settings to configure and enable allowed domains.
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.AllowedDomainsSettings allowed_domains_settings = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.AllowedDomainsSettings allowed_domains_settings = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $allowed_domains_settings = null;
+    /**
+     * Optional. Settings to configure the workforce identity federation,
+     * including workforce pools and OAuth 2.0 settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.iap.v1.WorkforceIdentitySettings workforce_identity_settings = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $workforce_identity_settings = null;
+    /**
+     * Optional. Identity sources that IAP can use to authenticate the end user.
+     * Only one identity source can be configured.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.iap.v1.AccessSettings.IdentitySource identity_sources = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $identity_sources;
 
     /**
      * Constructor.
@@ -53,15 +68,22 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Iap\V1\GcipSettings $gcip_settings
-     *           GCIP claims and endpoint configurations for 3p identity providers.
+     *           Optional. GCIP claims and endpoint configurations for 3p identity
+     *           providers.
      *     @type \Google\Cloud\Iap\V1\CorsSettings $cors_settings
-     *           Configuration to allow cross-origin requests via IAP.
+     *           Optional. Configuration to allow cross-origin requests via IAP.
      *     @type \Google\Cloud\Iap\V1\OAuthSettings $oauth_settings
-     *           Settings to configure IAP's OAuth behavior.
+     *           Optional. Settings to configure IAP's OAuth behavior.
      *     @type \Google\Cloud\Iap\V1\ReauthSettings $reauth_settings
-     *           Settings to configure reauthentication policies in IAP.
+     *           Optional. Settings to configure reauthentication policies in IAP.
      *     @type \Google\Cloud\Iap\V1\AllowedDomainsSettings $allowed_domains_settings
-     *           Settings to configure and enable allowed domains.
+     *           Optional. Settings to configure and enable allowed domains.
+     *     @type \Google\Cloud\Iap\V1\WorkforceIdentitySettings $workforce_identity_settings
+     *           Optional. Settings to configure the workforce identity federation,
+     *           including workforce pools and OAuth 2.0 settings.
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $identity_sources
+     *           Optional. Identity sources that IAP can use to authenticate the end user.
+     *           Only one identity source can be configured.
      * }
      */
     public function __construct($data = NULL) {
@@ -70,9 +92,10 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * GCIP claims and endpoint configurations for 3p identity providers.
+     * Optional. GCIP claims and endpoint configurations for 3p identity
+     * providers.
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.GcipSettings gcip_settings = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.GcipSettings gcip_settings = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Iap\V1\GcipSettings|null
      */
     public function getGcipSettings()
@@ -91,9 +114,10 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * GCIP claims and endpoint configurations for 3p identity providers.
+     * Optional. GCIP claims and endpoint configurations for 3p identity
+     * providers.
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.GcipSettings gcip_settings = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.GcipSettings gcip_settings = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Iap\V1\GcipSettings $var
      * @return $this
      */
@@ -106,9 +130,9 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration to allow cross-origin requests via IAP.
+     * Optional. Configuration to allow cross-origin requests via IAP.
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.CorsSettings cors_settings = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.CorsSettings cors_settings = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Iap\V1\CorsSettings|null
      */
     public function getCorsSettings()
@@ -127,9 +151,9 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration to allow cross-origin requests via IAP.
+     * Optional. Configuration to allow cross-origin requests via IAP.
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.CorsSettings cors_settings = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.CorsSettings cors_settings = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Iap\V1\CorsSettings $var
      * @return $this
      */
@@ -142,9 +166,9 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Settings to configure IAP's OAuth behavior.
+     * Optional. Settings to configure IAP's OAuth behavior.
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.OAuthSettings oauth_settings = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.OAuthSettings oauth_settings = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Iap\V1\OAuthSettings|null
      */
     public function getOauthSettings()
@@ -163,9 +187,9 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Settings to configure IAP's OAuth behavior.
+     * Optional. Settings to configure IAP's OAuth behavior.
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.OAuthSettings oauth_settings = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.OAuthSettings oauth_settings = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Iap\V1\OAuthSettings $var
      * @return $this
      */
@@ -178,9 +202,9 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Settings to configure reauthentication policies in IAP.
+     * Optional. Settings to configure reauthentication policies in IAP.
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings reauth_settings = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings reauth_settings = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Iap\V1\ReauthSettings|null
      */
     public function getReauthSettings()
@@ -199,9 +223,9 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Settings to configure reauthentication policies in IAP.
+     * Optional. Settings to configure reauthentication policies in IAP.
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings reauth_settings = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings reauth_settings = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Iap\V1\ReauthSettings $var
      * @return $this
      */
@@ -214,9 +238,9 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Settings to configure and enable allowed domains.
+     * Optional. Settings to configure and enable allowed domains.
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.AllowedDomainsSettings allowed_domains_settings = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.AllowedDomainsSettings allowed_domains_settings = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Iap\V1\AllowedDomainsSettings|null
      */
     public function getAllowedDomainsSettings()
@@ -235,9 +259,9 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Settings to configure and enable allowed domains.
+     * Optional. Settings to configure and enable allowed domains.
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.AllowedDomainsSettings allowed_domains_settings = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.AllowedDomainsSettings allowed_domains_settings = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Iap\V1\AllowedDomainsSettings $var
      * @return $this
      */
@@ -245,6 +269,72 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Iap\V1\AllowedDomainsSettings::class);
         $this->allowed_domains_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Settings to configure the workforce identity federation,
+     * including workforce pools and OAuth 2.0 settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.iap.v1.WorkforceIdentitySettings workforce_identity_settings = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Iap\V1\WorkforceIdentitySettings|null
+     */
+    public function getWorkforceIdentitySettings()
+    {
+        return $this->workforce_identity_settings;
+    }
+
+    public function hasWorkforceIdentitySettings()
+    {
+        return isset($this->workforce_identity_settings);
+    }
+
+    public function clearWorkforceIdentitySettings()
+    {
+        unset($this->workforce_identity_settings);
+    }
+
+    /**
+     * Optional. Settings to configure the workforce identity federation,
+     * including workforce pools and OAuth 2.0 settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.iap.v1.WorkforceIdentitySettings workforce_identity_settings = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Iap\V1\WorkforceIdentitySettings $var
+     * @return $this
+     */
+    public function setWorkforceIdentitySettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Iap\V1\WorkforceIdentitySettings::class);
+        $this->workforce_identity_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Identity sources that IAP can use to authenticate the end user.
+     * Only one identity source can be configured.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.iap.v1.AccessSettings.IdentitySource identity_sources = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getIdentitySources()
+    {
+        return $this->identity_sources;
+    }
+
+    /**
+     * Optional. Identity sources that IAP can use to authenticate the end user.
+     * Only one identity source can be configured.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.iap.v1.AccessSettings.IdentitySource identity_sources = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setIdentitySources($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Iap\V1\AccessSettings\IdentitySource::class);
+        $this->identity_sources = $arr;
 
         return $this;
     }

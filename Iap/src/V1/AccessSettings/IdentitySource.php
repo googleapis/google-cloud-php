@@ -57,6 +57,4 @@ class IdentitySource
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IdentitySource::class, \Google\Cloud\Iap\V1\AccessSettings_IdentitySource::class);
 

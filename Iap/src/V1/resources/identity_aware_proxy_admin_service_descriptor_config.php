@@ -153,6 +153,18 @@ return [
                     ],
                 ],
             ],
+            'ValidateIapAttributeExpression' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Iap\V1\ValidateIapAttributeExpressionResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
                 'tunnelDestGroup' => 'projects/{project}/iap_tunnel/locations/{location}/destGroups/{dest_group}',
                 'tunnelLocation' => 'projects/{project}/iap_tunnel/locations/{location}',

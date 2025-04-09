@@ -47,6 +47,8 @@ use Google\Cloud\Iap\V1\ListTunnelDestGroupsRequest;
 use Google\Cloud\Iap\V1\TunnelDestGroup;
 use Google\Cloud\Iap\V1\UpdateIapSettingsRequest;
 use Google\Cloud\Iap\V1\UpdateTunnelDestGroupRequest;
+use Google\Cloud\Iap\V1\ValidateIapAttributeExpressionRequest;
+use Google\Cloud\Iap\V1\ValidateIapAttributeExpressionResponse;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -71,6 +73,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IapSettings> updateIapSettingsAsync(UpdateIapSettingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TunnelDestGroup> updateTunnelDestGroupAsync(UpdateTunnelDestGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ValidateIapAttributeExpressionResponse> validateIapAttributeExpressionAsync(ValidateIapAttributeExpressionRequest $request, array $optionalArgs = [])
  */
 final class IdentityAwareProxyAdminServiceClient
 {
@@ -547,5 +550,35 @@ final class IdentityAwareProxyAdminServiceClient
         array $callOptions = []
     ): TunnelDestGroup {
         return $this->startApiCall('UpdateTunnelDestGroup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Validates that a given CEL expression conforms to IAP restrictions.
+     *
+     * The async variant is
+     * {@see IdentityAwareProxyAdminServiceClient::validateIapAttributeExpressionAsync()}
+     * .
+     *
+     * @example samples/V1/IdentityAwareProxyAdminServiceClient/validate_iap_attribute_expression.php
+     *
+     * @param ValidateIapAttributeExpressionRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ValidateIapAttributeExpressionResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function validateIapAttributeExpression(
+        ValidateIapAttributeExpressionRequest $request,
+        array $callOptions = []
+    ): ValidateIapAttributeExpressionResponse {
+        return $this->startApiCall('ValidateIapAttributeExpression', $request, $callOptions)->wait();
     }
 }

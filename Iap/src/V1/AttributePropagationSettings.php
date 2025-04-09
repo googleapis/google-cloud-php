@@ -17,9 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class AttributePropagationSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Raw string CEL expression. Must return a list of attributes. A maximum of
-     * 45 attributes can be selected. Expressions can select different attribute
-     * types from `attributes`: `attributes.saml_attributes`,
+     * Optional. Raw string CEL expression. Must return a list of attributes. A
+     * maximum of 45 attributes can be selected. Expressions can select different
+     * attribute types from `attributes`: `attributes.saml_attributes`,
      * `attributes.iap_attributes`. The following functions are supported:
      *  - filter `<list>.filter(<iter_var>, <predicate>)`: Returns a subset of
      *  `<list>` where `<predicate>` is true for every item.
@@ -39,23 +39,23 @@ class AttributePropagationSettings extends \Google\Protobuf\Internal\Message
      * Example expression: `attributes.saml_attributes.filter(x, x.name in
      * ['test']).append(attributes.iap_attributes.selectByName('exact').emitAs('custom').strict())`
      *
-     * Generated from protobuf field <code>optional string expression = 1;</code>
+     * Generated from protobuf field <code>optional string expression = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $expression = null;
     /**
-     * Which output credentials attributes selected by the CEL expression should
-     * be propagated in. All attributes will be fully duplicated in each selected
-     * output credential.
+     * Optional. Which output credentials attributes selected by the CEL
+     * expression should be propagated in. All attributes will be fully duplicated
+     * in each selected output credential.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.iap.v1.AttributePropagationSettings.OutputCredentials output_credentials = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.iap.v1.AttributePropagationSettings.OutputCredentials output_credentials = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $output_credentials;
     /**
-     * Whether the provided attribute propagation settings should be evaluated on
-     * user requests. If set to true, attributes returned from the expression will
-     * be propagated in the set output credentials.
+     * Optional. Whether the provided attribute propagation settings should be
+     * evaluated on user requests. If set to true, attributes returned from the
+     * expression will be propagated in the set output credentials.
      *
-     * Generated from protobuf field <code>optional bool enable = 3;</code>
+     * Generated from protobuf field <code>optional bool enable = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $enable = null;
 
@@ -66,9 +66,9 @@ class AttributePropagationSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $expression
-     *           Raw string CEL expression. Must return a list of attributes. A maximum of
-     *           45 attributes can be selected. Expressions can select different attribute
-     *           types from `attributes`: `attributes.saml_attributes`,
+     *           Optional. Raw string CEL expression. Must return a list of attributes. A
+     *           maximum of 45 attributes can be selected. Expressions can select different
+     *           attribute types from `attributes`: `attributes.saml_attributes`,
      *           `attributes.iap_attributes`. The following functions are supported:
      *            - filter `<list>.filter(<iter_var>, <predicate>)`: Returns a subset of
      *            `<list>` where `<predicate>` is true for every item.
@@ -88,13 +88,13 @@ class AttributePropagationSettings extends \Google\Protobuf\Internal\Message
      *           Example expression: `attributes.saml_attributes.filter(x, x.name in
      *           ['test']).append(attributes.iap_attributes.selectByName('exact').emitAs('custom').strict())`
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $output_credentials
-     *           Which output credentials attributes selected by the CEL expression should
-     *           be propagated in. All attributes will be fully duplicated in each selected
-     *           output credential.
+     *           Optional. Which output credentials attributes selected by the CEL
+     *           expression should be propagated in. All attributes will be fully duplicated
+     *           in each selected output credential.
      *     @type bool $enable
-     *           Whether the provided attribute propagation settings should be evaluated on
-     *           user requests. If set to true, attributes returned from the expression will
-     *           be propagated in the set output credentials.
+     *           Optional. Whether the provided attribute propagation settings should be
+     *           evaluated on user requests. If set to true, attributes returned from the
+     *           expression will be propagated in the set output credentials.
      * }
      */
     public function __construct($data = NULL) {
@@ -103,9 +103,9 @@ class AttributePropagationSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Raw string CEL expression. Must return a list of attributes. A maximum of
-     * 45 attributes can be selected. Expressions can select different attribute
-     * types from `attributes`: `attributes.saml_attributes`,
+     * Optional. Raw string CEL expression. Must return a list of attributes. A
+     * maximum of 45 attributes can be selected. Expressions can select different
+     * attribute types from `attributes`: `attributes.saml_attributes`,
      * `attributes.iap_attributes`. The following functions are supported:
      *  - filter `<list>.filter(<iter_var>, <predicate>)`: Returns a subset of
      *  `<list>` where `<predicate>` is true for every item.
@@ -125,7 +125,7 @@ class AttributePropagationSettings extends \Google\Protobuf\Internal\Message
      * Example expression: `attributes.saml_attributes.filter(x, x.name in
      * ['test']).append(attributes.iap_attributes.selectByName('exact').emitAs('custom').strict())`
      *
-     * Generated from protobuf field <code>optional string expression = 1;</code>
+     * Generated from protobuf field <code>optional string expression = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getExpression()
@@ -144,9 +144,9 @@ class AttributePropagationSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Raw string CEL expression. Must return a list of attributes. A maximum of
-     * 45 attributes can be selected. Expressions can select different attribute
-     * types from `attributes`: `attributes.saml_attributes`,
+     * Optional. Raw string CEL expression. Must return a list of attributes. A
+     * maximum of 45 attributes can be selected. Expressions can select different
+     * attribute types from `attributes`: `attributes.saml_attributes`,
      * `attributes.iap_attributes`. The following functions are supported:
      *  - filter `<list>.filter(<iter_var>, <predicate>)`: Returns a subset of
      *  `<list>` where `<predicate>` is true for every item.
@@ -166,7 +166,7 @@ class AttributePropagationSettings extends \Google\Protobuf\Internal\Message
      * Example expression: `attributes.saml_attributes.filter(x, x.name in
      * ['test']).append(attributes.iap_attributes.selectByName('exact').emitAs('custom').strict())`
      *
-     * Generated from protobuf field <code>optional string expression = 1;</code>
+     * Generated from protobuf field <code>optional string expression = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -179,11 +179,11 @@ class AttributePropagationSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which output credentials attributes selected by the CEL expression should
-     * be propagated in. All attributes will be fully duplicated in each selected
-     * output credential.
+     * Optional. Which output credentials attributes selected by the CEL
+     * expression should be propagated in. All attributes will be fully duplicated
+     * in each selected output credential.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.iap.v1.AttributePropagationSettings.OutputCredentials output_credentials = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.iap.v1.AttributePropagationSettings.OutputCredentials output_credentials = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getOutputCredentials()
@@ -192,11 +192,11 @@ class AttributePropagationSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which output credentials attributes selected by the CEL expression should
-     * be propagated in. All attributes will be fully duplicated in each selected
-     * output credential.
+     * Optional. Which output credentials attributes selected by the CEL
+     * expression should be propagated in. All attributes will be fully duplicated
+     * in each selected output credential.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.iap.v1.AttributePropagationSettings.OutputCredentials output_credentials = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.iap.v1.AttributePropagationSettings.OutputCredentials output_credentials = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -209,11 +209,11 @@ class AttributePropagationSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the provided attribute propagation settings should be evaluated on
-     * user requests. If set to true, attributes returned from the expression will
-     * be propagated in the set output credentials.
+     * Optional. Whether the provided attribute propagation settings should be
+     * evaluated on user requests. If set to true, attributes returned from the
+     * expression will be propagated in the set output credentials.
      *
-     * Generated from protobuf field <code>optional bool enable = 3;</code>
+     * Generated from protobuf field <code>optional bool enable = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getEnable()
@@ -232,11 +232,11 @@ class AttributePropagationSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the provided attribute propagation settings should be evaluated on
-     * user requests. If set to true, attributes returned from the expression will
-     * be propagated in the set output credentials.
+     * Optional. Whether the provided attribute propagation settings should be
+     * evaluated on user requests. If set to true, attributes returned from the
+     * expression will be propagated in the set output credentials.
      *
-     * Generated from protobuf field <code>optional bool enable = 3;</code>
+     * Generated from protobuf field <code>optional bool enable = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
