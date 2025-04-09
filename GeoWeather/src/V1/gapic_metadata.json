@@ -1,0 +1,38 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.maps.weather.v1",
+    "libraryPackage": "Google\\Geo\\Weather\\V1",
+    "services": {
+        "Weather": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "WeatherGapicClient",
+                    "rpcs": {
+                        "LookupCurrentConditions": {
+                            "methods": [
+                                "lookupCurrentConditions"
+                            ]
+                        },
+                        "LookupForecastDays": {
+                            "methods": [
+                                "lookupForecastDays"
+                            ]
+                        },
+                        "LookupForecastHours": {
+                            "methods": [
+                                "lookupForecastHours"
+                            ]
+                        },
+                        "LookupHistoryHours": {
+                            "methods": [
+                                "lookupHistoryHours"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
