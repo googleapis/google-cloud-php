@@ -34,7 +34,10 @@ use Google\Shopping\Css\V1\DeleteCssProductInputRequest;
  * available.
  *
  * @param string $formattedName The name of the CSS product input resource to delete.
- *                              Format: accounts/{account}/cssProductInputs/{css_product_input}
+ *                              Format: accounts/{account}/cssProductInputs/{css_product_input}, where the
+ *                              last section `css_product_input` consists of 3 parts:
+ *                              contentLanguage~feedLabel~offerId. Example:
+ *                              accounts/123/cssProductInputs/de~DE~rawProvidedId123
  *                              Please see {@see CssProductInputsServiceClient::cssProductInputName()} for help formatting this field.
  */
 function delete_css_product_input_sample(string $formattedName): void

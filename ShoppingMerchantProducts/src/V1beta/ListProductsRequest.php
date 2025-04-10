@@ -17,7 +17,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The account to list processed products for.
-     * Format: accounts/{account}
+     * Format: `accounts/{account}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -43,7 +43,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The account to list processed products for.
-     *                       Format: accounts/{account}
+     *                       Format: `accounts/{account}`
      *                       Please see {@see ProductsServiceClient::accountName()} for help formatting this field.
      *
      * @return \Google\Shopping\Merchant\Products\V1beta\ListProductsRequest
@@ -64,7 +64,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The account to list processed products for.
-     *           Format: accounts/{account}
+     *           Format: `accounts/{account}`
      *     @type int $page_size
      *           The maximum number of products to return. The service may return fewer than
      *           this value.
@@ -84,7 +84,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The account to list processed products for.
-     * Format: accounts/{account}
+     * Format: `accounts/{account}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -96,7 +96,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The account to list processed products for.
-     * Format: accounts/{account}
+     * Format: `accounts/{account}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

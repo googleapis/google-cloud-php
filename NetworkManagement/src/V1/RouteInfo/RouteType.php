@@ -39,7 +39,7 @@ class RouteType
      */
     const DYNAMIC = 3;
     /**
-     * A subnet route received from peering network.
+     * A subnet route received from peering network or NCC Hub.
      *
      * Generated from protobuf enum <code>PEERING_SUBNET = 4;</code>
      */
@@ -51,7 +51,7 @@ class RouteType
      */
     const PEERING_STATIC = 5;
     /**
-     * A dynamic route received from peering network.
+     * A dynamic route received from peering network or NCC Hub.
      *
      * Generated from protobuf enum <code>PEERING_DYNAMIC = 6;</code>
      */

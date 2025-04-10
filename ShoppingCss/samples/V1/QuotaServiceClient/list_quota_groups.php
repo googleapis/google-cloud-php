@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,40 +22,36 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START merchantapi_v1beta_generated_ProductsService_ListProducts_sync]
+// [START css_v1_generated_QuotaService_ListQuotaGroups_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Shopping\Merchant\Products\V1beta\Client\ProductsServiceClient;
-use Google\Shopping\Merchant\Products\V1beta\ListProductsRequest;
-use Google\Shopping\Merchant\Products\V1beta\Product;
+use Google\Shopping\Css\V1\Client\QuotaServiceClient;
+use Google\Shopping\Css\V1\ListQuotaGroupsRequest;
+use Google\Shopping\Css\V1\QuotaGroup;
 
 /**
- * Lists the processed products in your Merchant Center account. The response
- * might contain fewer items than specified by `pageSize`. Rely on `pageToken`
- * to determine if there are more items to be requested.
+ * Lists the daily call quota and usage per group for your CSS Center account.
  *
- * After inserting, updating, or deleting a product input, it may take several
- * minutes before the updated processed product can be retrieved.
- *
- * @param string $formattedParent The account to list processed products for.
- *                                Format: `accounts/{account}`
- *                                Please see {@see ProductsServiceClient::accountName()} for help formatting this field.
+ * @param string $formattedParent The CSS account that owns the collection of method quotas and
+ *                                resources. In most cases, this is the CSS domain. Format:
+ *                                accounts/{account}
+ *                                Please see {@see QuotaServiceClient::accountName()} for help formatting this field.
  */
-function list_products_sample(string $formattedParent): void
+function list_quota_groups_sample(string $formattedParent): void
 {
     // Create a client.
-    $productsServiceClient = new ProductsServiceClient();
+    $quotaServiceClient = new QuotaServiceClient();
 
     // Prepare the request message.
-    $request = (new ListProductsRequest())
+    $request = (new ListQuotaGroupsRequest())
         ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $productsServiceClient->listProducts($request);
+        $response = $quotaServiceClient->listQuotaGroups($request);
 
-        /** @var Product $element */
+        /** @var QuotaGroup $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }
@@ -75,8 +71,8 @@ function list_products_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = ProductsServiceClient::accountName('[ACCOUNT]');
+    $formattedParent = QuotaServiceClient::accountName('[ACCOUNT]');
 
-    list_products_sample($formattedParent);
+    list_quota_groups_sample($formattedParent);
 }
-// [END merchantapi_v1beta_generated_ProductsService_ListProducts_sync]
+// [END css_v1_generated_QuotaService_ListQuotaGroups_sync]

@@ -57,6 +57,18 @@ class TransferCounters extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 bytes_copied = 6;</code>
      */
     protected $bytes_copied = 0;
+    /**
+     * Objects that are failed to write to the data destination.
+     *
+     * Generated from protobuf field <code>int64 objects_failed = 7;</code>
+     */
+    protected $objects_failed = 0;
+    /**
+     * Bytes that are failed to write to the data destination.
+     *
+     * Generated from protobuf field <code>int64 bytes_failed = 8;</code>
+     */
+    protected $bytes_failed = 0;
 
     /**
      * Constructor.
@@ -82,6 +94,10 @@ class TransferCounters extends \Google\Protobuf\Internal\Message
      *           Objects that are copied to the data destination.
      *     @type int|string $bytes_copied
      *           Bytes that are copied to the data destination.
+     *     @type int|string $objects_failed
+     *           Objects that are failed to write to the data destination.
+     *     @type int|string $bytes_failed
+     *           Bytes that are failed to write to the data destination.
      * }
      */
     public function __construct($data = NULL) {
@@ -253,6 +269,58 @@ class TransferCounters extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->bytes_copied = $var;
+
+        return $this;
+    }
+
+    /**
+     * Objects that are failed to write to the data destination.
+     *
+     * Generated from protobuf field <code>int64 objects_failed = 7;</code>
+     * @return int|string
+     */
+    public function getObjectsFailed()
+    {
+        return $this->objects_failed;
+    }
+
+    /**
+     * Objects that are failed to write to the data destination.
+     *
+     * Generated from protobuf field <code>int64 objects_failed = 7;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setObjectsFailed($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->objects_failed = $var;
+
+        return $this;
+    }
+
+    /**
+     * Bytes that are failed to write to the data destination.
+     *
+     * Generated from protobuf field <code>int64 bytes_failed = 8;</code>
+     * @return int|string
+     */
+    public function getBytesFailed()
+    {
+        return $this->bytes_failed;
+    }
+
+    /**
+     * Bytes that are failed to write to the data destination.
+     *
+     * Generated from protobuf field <code>int64 bytes_failed = 8;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setBytesFailed($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->bytes_failed = $var;
 
         return $this;
     }

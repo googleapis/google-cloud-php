@@ -145,6 +145,20 @@ class Database extends \Google\Protobuf\Internal\Message
      */
     private $source_info = null;
     /**
+     * Output only. Background: Free tier is the ability of a Firestore database
+     * to use a small amount of resources every day without being charged. Once
+     * usage exceeds the free tier limit further usage is charged.
+     * Whether this database can make use of the free tier. Only one database
+     * per project can be eligible for the free tier.
+     * The first (or next) database that is created in a project without a free
+     * tier database will be marked as eligible for the free tier. Databases that
+     * are created while there is a free tier database will not be eligible for
+     * the free tier.
+     *
+     * Generated from protobuf field <code>optional bool free_tier = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $free_tier = null;
+    /**
      * This checksum is computed by the server based on the value of other
      * fields, and may be sent on update and delete requests to ensure the
      * client has an up-to-date value before proceeding.
@@ -152,6 +166,12 @@ class Database extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string etag = 99;</code>
      */
     private $etag = '';
+    /**
+     * Immutable. The edition of the database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.DatabaseEdition database_edition = 28 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $database_edition = 0;
 
     /**
      * Constructor.
@@ -220,10 +240,22 @@ class Database extends \Google\Protobuf\Internal\Message
      *           populated for deleted databases.
      *     @type \Google\Cloud\Firestore\Admin\V1\Database\SourceInfo $source_info
      *           Output only. Information about the provenance of this database.
+     *     @type bool $free_tier
+     *           Output only. Background: Free tier is the ability of a Firestore database
+     *           to use a small amount of resources every day without being charged. Once
+     *           usage exceeds the free tier limit further usage is charged.
+     *           Whether this database can make use of the free tier. Only one database
+     *           per project can be eligible for the free tier.
+     *           The first (or next) database that is created in a project without a free
+     *           tier database will be marked as eligible for the free tier. Databases that
+     *           are created while there is a free tier database will not be eligible for
+     *           the free tier.
      *     @type string $etag
      *           This checksum is computed by the server based on the value of other
      *           fields, and may be sent on update and delete requests to ensure the
      *           client has an up-to-date value before proceeding.
+     *     @type int $database_edition
+     *           Immutable. The edition of the database.
      * }
      */
     public function __construct($data = NULL) {
@@ -798,6 +830,58 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. Background: Free tier is the ability of a Firestore database
+     * to use a small amount of resources every day without being charged. Once
+     * usage exceeds the free tier limit further usage is charged.
+     * Whether this database can make use of the free tier. Only one database
+     * per project can be eligible for the free tier.
+     * The first (or next) database that is created in a project without a free
+     * tier database will be marked as eligible for the free tier. Databases that
+     * are created while there is a free tier database will not be eligible for
+     * the free tier.
+     *
+     * Generated from protobuf field <code>optional bool free_tier = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getFreeTier()
+    {
+        return isset($this->free_tier) ? $this->free_tier : false;
+    }
+
+    public function hasFreeTier()
+    {
+        return isset($this->free_tier);
+    }
+
+    public function clearFreeTier()
+    {
+        unset($this->free_tier);
+    }
+
+    /**
+     * Output only. Background: Free tier is the ability of a Firestore database
+     * to use a small amount of resources every day without being charged. Once
+     * usage exceeds the free tier limit further usage is charged.
+     * Whether this database can make use of the free tier. Only one database
+     * per project can be eligible for the free tier.
+     * The first (or next) database that is created in a project without a free
+     * tier database will be marked as eligible for the free tier. Databases that
+     * are created while there is a free tier database will not be eligible for
+     * the free tier.
+     *
+     * Generated from protobuf field <code>optional bool free_tier = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setFreeTier($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->free_tier = $var;
+
+        return $this;
+    }
+
+    /**
      * This checksum is computed by the server based on the value of other
      * fields, and may be sent on update and delete requests to ensure the
      * client has an up-to-date value before proceeding.
@@ -823,6 +907,32 @@ class Database extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The edition of the database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.DatabaseEdition database_edition = 28 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return int
+     */
+    public function getDatabaseEdition()
+    {
+        return $this->database_edition;
+    }
+
+    /**
+     * Immutable. The edition of the database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.DatabaseEdition database_edition = 28 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDatabaseEdition($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\Database\DatabaseEdition::class);
+        $this->database_edition = $var;
 
         return $this;
     }
