@@ -195,6 +195,7 @@ class ChunkFormatter implements \IteratorAggregate
         //   are to be discarded.
 
         foreach ($this->stream as $readRowsResponse) {
+            $this->prevRowKey = $readRowsResponse->getLastScannedRowKey();
             foreach ($readRowsResponse->getChunks() as $chunk) {
                 switch ($this->state) {
                     case self::$rowStateEnum['NEW_ROW']:
@@ -232,7 +233,6 @@ class ChunkFormatter implements \IteratorAggregate
                 $options['requestCompleted'] = true;
             }
         }
-
         if ($request->hasRows()) {
             $rowSet = $request->getRows();
             if (count($rowSet->getRowKeys()) > 0) {
@@ -250,9 +250,11 @@ class ChunkFormatter implements \IteratorAggregate
                     if (($range->getEndKeyOpen() && $prevRowKey > $range->getEndKeyOpen())
                         || ($range->getEndKeyClosed() && $prevRowKey >= $range->getEndKeyClosed())) {
                         continue;
-                    } elseif ((!$range->getStartKeyOpen() || $prevRowKey > $range->getStartKeyOpen())
+                    }
+                    if ((!$range->getStartKeyOpen() || $prevRowKey > $range->getStartKeyOpen())
                         && (!$range->getStartKeyClosed() || $prevRowKey >= $range->getStartKeyClosed())) {
-                        $range->setStartKeyOpen($prevRowKey);
+                        $rowKeySetter = $request->getReversed() ? 'setEndKeyOpen' : 'setStartKeyOpen';
+                        $range->$rowKeySetter($prevRowKey);
                     }
                     $ranges[] = $range;
                 }
@@ -268,7 +270,9 @@ class ChunkFormatter implements \IteratorAggregate
                 $options['requestCompleted'] = true;
             }
         } else {
-            $range = (new RowRange())->setStartKeyOpen($prevRowKey);
+            $range = (new RowRange());
+            $rowKeySetter = $request->getReversed() ? 'setEndKeyOpen' : 'setStartKeyOpen';
+            $range->$rowKeySetter($prevRowKey);
             $rowset = (new RowSet())->setRowRanges([$range]);
             $request->setRows($rowset);
         }
