@@ -27,7 +27,7 @@ class Catalog
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Öç
+≥í
 &google/cloud/dataplex/v1/catalog.protogoogle.cloud.dataplex.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/field_info.protogoogle/api/resource.proto&google/cloud/dataplex/v1/service.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"”
 
 AspectType8
@@ -342,7 +342,7 @@ page_token (	B‡A
 unreachable_locations (	"U
 CancelMetadataJobRequest9
 name (	B+‡A˙A%
-#dataplex.googleapis.com/MetadataJob"’
+#dataplex.googleapis.com/MetadataJob"É
 MetadataJob
 name (	B‡A‡A
 uid (	B‡A‚åœ◊4
@@ -350,8 +350,10 @@ page_token (	B‡A
 update_time (2.google.protobuf.TimestampB‡AF
 labels (21.google.cloud.dataplex.v1.MetadataJob.LabelsEntryB‡A=
 type (2*.google.cloud.dataplex.v1.MetadataJob.TypeB‡AJ
-import_specd (23.google.cloud.dataplex.v1.MetadataJob.ImportJobSpecH T
-import_result» (25.google.cloud.dataplex.v1.MetadataJob.ImportJobResultB‡AHA
+import_specd (23.google.cloud.dataplex.v1.MetadataJob.ImportJobSpecH J
+export_spece (23.google.cloud.dataplex.v1.MetadataJob.ExportJobSpecH T
+import_result» (25.google.cloud.dataplex.v1.MetadataJob.ImportJobResultB‡AHT
+export_result… (25.google.cloud.dataplex.v1.MetadataJob.ExportJobResultB‡AHA
 status (2,.google.cloud.dataplex.v1.MetadataJob.StatusB‡A·
 ImportJobResult
 deleted_entries (B‡A
@@ -359,7 +361,10 @@ page_token (	B‡A
 created_entries (B‡A
 unchanged_entries (B‡A
 recreated_entries (B‡A4
-update_time (2.google.protobuf.TimestampB‡A≥
+update_time (2.google.protobuf.TimestampB‡AL
+ExportJobResult
+exported_entries (B‡A
+error_message (	B‡A≥
 ImportJobSpec
 source_storage_uri (	B‡A;
 source_create_time (2.google.protobuf.TimestampB‡AV
@@ -382,7 +387,20 @@ page_token (	B‡A
 LogLevel
 LOG_LEVEL_UNSPECIFIED 	
 DEBUG
-INFO 
+INFOØ
+ExportJobSpecV
+scope (2B.google.cloud.dataplex.v1.MetadataJob.ExportJobSpec.ExportJobScopeB‡A
+output_path (	B‡A´
+ExportJobScope
+organization_level (B
+projects (	B0˙A-
++cloudresourcemanager.googleapis.com/Project=
+entry_groups (	B\'˙A$
+"dataplex.googleapis.com/EntryGroup;
+entry_types (	B&˙A#
+!dataplex.googleapis.com/EntryType=
+aspect_types (	B\'˙A$
+"dataplex.googleapis.com/AspectType 
 StatusF
 state (22.google.cloud.dataplex.v1.MetadataJob.Status.StateB‡A
 message (	B‡A
@@ -401,11 +419,13 @@ page_token (	B‡A
 SUCCEEDED_WITH_ERRORS-
 LabelsEntry
 key (	
-value (	:8"(
+value (	:8"4
 Type
 TYPE_UNSPECIFIED 
 
-IMPORT:lÍAi
+IMPORT
+
+EXPORT:lÍAi
 #dataplex.googleapis.com/MetadataJobBprojects/{project}/locations/{location}/metadataJobs/{metadataJob}B
 specB
 result*Q
