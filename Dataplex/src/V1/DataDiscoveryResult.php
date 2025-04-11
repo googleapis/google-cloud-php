@@ -21,6 +21,12 @@ class DataDiscoveryResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDiscoveryResult.BigQueryPublishing bigquery_publishing = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $bigquery_publishing = null;
+    /**
+     * Output only. Statistics of the DataDiscoveryScan.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDiscoveryResult.ScanStatistics scan_statistics = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $scan_statistics = null;
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class DataDiscoveryResult extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Dataplex\V1\DataDiscoveryResult\BigQueryPublishing $bigquery_publishing
      *           Output only. Configuration for metadata publishing.
+     *     @type \Google\Cloud\Dataplex\V1\DataDiscoveryResult\ScanStatistics $scan_statistics
+     *           Output only. Statistics of the DataDiscoveryScan.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +77,42 @@ class DataDiscoveryResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataDiscoveryResult\BigQueryPublishing::class);
         $this->bigquery_publishing = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Statistics of the DataDiscoveryScan.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDiscoveryResult.ScanStatistics scan_statistics = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataplex\V1\DataDiscoveryResult\ScanStatistics|null
+     */
+    public function getScanStatistics()
+    {
+        return $this->scan_statistics;
+    }
+
+    public function hasScanStatistics()
+    {
+        return isset($this->scan_statistics);
+    }
+
+    public function clearScanStatistics()
+    {
+        unset($this->scan_statistics);
+    }
+
+    /**
+     * Output only. Statistics of the DataDiscoveryScan.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDiscoveryResult.ScanStatistics scan_statistics = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataplex\V1\DataDiscoveryResult\ScanStatistics $var
+     * @return $this
+     */
+    public function setScanStatistics($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataDiscoveryResult\ScanStatistics::class);
+        $this->scan_statistics = $var;
 
         return $this;
     }

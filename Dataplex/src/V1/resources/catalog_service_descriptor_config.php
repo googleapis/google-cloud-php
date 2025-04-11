@@ -537,6 +537,7 @@ return [
                 'entryType' => 'projects/{project}/locations/{location}/entryTypes/{entry_type}',
                 'location' => 'projects/{project}/locations/{location}',
                 'metadataJob' => 'projects/{project}/locations/{location}/metadataJobs/{metadataJob}',
+                'project' => 'projects/{project}',
             ],
         ],
     ],
