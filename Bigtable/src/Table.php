@@ -120,7 +120,16 @@ class Table
      * @param array $rowMutations An associative array with the key being the
      *        row key and the value being the
      *        {@see \Google\Cloud\Bigtable\Mutations} to perform.
-     * @param array $options [optional] Configuration options.
+     * @param array $options {
+     *     Configuration options.
+     *
+     *     @option RetrySettings|array $retrySettings {
+     *         Only $maxRetries and $totalTimeoutMillis work for RetrySettings in this API.
+     *
+     *         @option int $maxRetries Number of times to retry. **Defaults to** `3`.
+     *         @option int $totalTimeoutMillis The max accumulative timeout in total.
+     *     }
+     * }
      * @return void
      * @throws ApiException|BigtableDataOperationException If the remote call fails or operation fails.
      * @throws \InvalidArgumentException If rowMutations is a list instead of associative array indexed by row key.
@@ -155,13 +164,15 @@ class Table
      *
      * @param string $rowKey The row key of the row to mutate.
      * @param Mutations $mutations Mutations to apply on row.
-     * @param array $options [optional] {
+     * @param array $options {
      *     Configuration options.
      *
-     *        @param RetrySettings|array $retrySettings {
-     *               @option int $maxRetries Number of times to retry. **Defaults to** `3`.
-     *                  Only maxRetries works for RetrySettings in this API.
-     *               }
+     *     @option RetrySettings|array $retrySettings {
+     *         Only $maxRetries and $totalTimeoutMillis work for RetrySettings in this API.
+     *
+     *         @option int $maxRetries Number of times to retry. **Defaults to** `3`.
+     *         @option int $totalTimeoutMillis The max accumulative timeout in total.
+     *     }
      * }
      * @return void
      * @throws ApiException If the remote call fails.
@@ -201,10 +212,12 @@ class Table
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @param RetrySettings|array $retrySettings {
-     *            @option int $maxRetries Number of times to retry. **Defaults to** `3`.
-     *                Only maxRetries works for RetrySettings in this API.
-     *            }
+     *     @type RetrySettings|array $retrySettings {
+     *         Only $maxRetries and $totalTimeoutMillis work for RetrySettings in this API.
+     *
+     *         @type int $maxRetries Number of times to retry. **Defaults to** `3`.
+     *         @type int $totalTimeoutMillis The max accumulative timeout in total for the operation.
+     *     }
      * }
      * @return void
      * @throws ApiException|BigtableDataOperationException If the remote call fails or operation fails
@@ -274,10 +287,12 @@ class Table
      *           To learn more please see {@see \Google\Cloud\Bigtable\Filter} which
      *           provides static factory methods for the various filter types.
      *     @type int $rowsLimit The number of rows to scan.
-     * @param RetrySettings|array $retrySettings {
-     *        @option int $maxRetries Number of times to retry. **Defaults to** `3`.
-     *                Only maxRetries works for RetrySettings in this API.
-     *        }
+     *     @type RetrySettings|array $retrySettings {
+     *         Only $maxRetries and $totalTimeoutMillis work for RetrySettings in this API.
+     *
+     *         @type int $maxRetries Number of times to retry. **Defaults to** `3`.
+     *         @type int $totalTimeoutMillis The max accumulative timeout in total for the operation.
+     *     }
      * }
      * @return ChunkFormatter
      */
