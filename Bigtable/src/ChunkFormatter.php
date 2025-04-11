@@ -269,7 +269,8 @@ class ChunkFormatter implements \IteratorAggregate
             }
         } else {
             $range = (new RowRange())->setStartKeyOpen($prevRowKey);
-            $options['rows'] = (new RowSet())->setRowRanges([$range]);
+            $rowset = (new RowSet())->setRowRanges([$range]);
+            $request->setRows($rowset);
         }
 
         return [$request, $options];
