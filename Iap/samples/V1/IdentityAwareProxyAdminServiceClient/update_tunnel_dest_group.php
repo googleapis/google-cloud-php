@@ -31,18 +31,19 @@ use Google\Cloud\Iap\V1\UpdateTunnelDestGroupRequest;
 /**
  * Updates a TunnelDestGroup.
  *
- * @param string $tunnelDestGroupName Immutable. Identifier for the TunnelDestGroup. Must be unique
- *                                    within the project and contain only lower case letters (a-z) and dashes
- *                                    (-).
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_tunnel_dest_group_sample(string $tunnelDestGroupName): void
+function update_tunnel_dest_group_sample(): void
 {
     // Create a client.
     $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
 
     // Prepare the request message.
-    $tunnelDestGroup = (new TunnelDestGroup())
-        ->setName($tunnelDestGroupName);
+    $tunnelDestGroup = new TunnelDestGroup();
     $request = (new UpdateTunnelDestGroupRequest())
         ->setTunnelDestGroup($tunnelDestGroup);
 
@@ -54,21 +55,5 @@ function update_tunnel_dest_group_sample(string $tunnelDestGroupName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $tunnelDestGroupName = '[NAME]';
-
-    update_tunnel_dest_group_sample($tunnelDestGroupName);
 }
 // [END iap_v1_generated_IdentityAwareProxyAdminService_UpdateTunnelDestGroup_sync]

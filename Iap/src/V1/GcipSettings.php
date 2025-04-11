@@ -16,14 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class GcipSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * GCIP tenant ids that are linked to the IAP resource.
+     * Optional. GCIP tenant ids that are linked to the IAP resource.
      * tenant_ids could be a string beginning with a number character to indicate
      * authenticating with GCIP tenant flow, or in the format of _<ProjectNumber>
      * to indicate authenticating with GCIP agent flow.
      * If agent flow is used, tenant_ids should only contain one single element,
      * while for tenant flow, tenant_ids can contain multiple elements.
      *
-     * Generated from protobuf field <code>repeated string tenant_ids = 1;</code>
+     * Generated from protobuf field <code>repeated string tenant_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $tenant_ids;
     /**
@@ -42,7 +42,7 @@ class GcipSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tenant_ids
-     *           GCIP tenant ids that are linked to the IAP resource.
+     *           Optional. GCIP tenant ids that are linked to the IAP resource.
      *           tenant_ids could be a string beginning with a number character to indicate
      *           authenticating with GCIP tenant flow, or in the format of _<ProjectNumber>
      *           to indicate authenticating with GCIP agent flow.
@@ -60,14 +60,14 @@ class GcipSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * GCIP tenant ids that are linked to the IAP resource.
+     * Optional. GCIP tenant ids that are linked to the IAP resource.
      * tenant_ids could be a string beginning with a number character to indicate
      * authenticating with GCIP tenant flow, or in the format of _<ProjectNumber>
      * to indicate authenticating with GCIP agent flow.
      * If agent flow is used, tenant_ids should only contain one single element,
      * while for tenant flow, tenant_ids can contain multiple elements.
      *
-     * Generated from protobuf field <code>repeated string tenant_ids = 1;</code>
+     * Generated from protobuf field <code>repeated string tenant_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTenantIds()
@@ -76,14 +76,14 @@ class GcipSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * GCIP tenant ids that are linked to the IAP resource.
+     * Optional. GCIP tenant ids that are linked to the IAP resource.
      * tenant_ids could be a string beginning with a number character to indicate
      * authenticating with GCIP tenant flow, or in the format of _<ProjectNumber>
      * to indicate authenticating with GCIP agent flow.
      * If agent flow is used, tenant_ids should only contain one single element,
      * while for tenant flow, tenant_ids can contain multiple elements.
      *
-     * Generated from protobuf field <code>repeated string tenant_ids = 1;</code>
+     * Generated from protobuf field <code>repeated string tenant_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
