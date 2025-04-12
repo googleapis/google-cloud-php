@@ -1,0 +1,158 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.edgenetwork.v1",
+    "libraryPackage": "Google\\Cloud\\EdgeNetwork\\V1",
+    "services": {
+        "EdgeNetwork": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "EdgeNetworkGapicClient",
+                    "rpcs": {
+                        "CreateInterconnectAttachment": {
+                            "methods": [
+                                "createInterconnectAttachment"
+                            ]
+                        },
+                        "CreateNetwork": {
+                            "methods": [
+                                "createNetwork"
+                            ]
+                        },
+                        "CreateRouter": {
+                            "methods": [
+                                "createRouter"
+                            ]
+                        },
+                        "CreateSubnet": {
+                            "methods": [
+                                "createSubnet"
+                            ]
+                        },
+                        "DeleteInterconnectAttachment": {
+                            "methods": [
+                                "deleteInterconnectAttachment"
+                            ]
+                        },
+                        "DeleteNetwork": {
+                            "methods": [
+                                "deleteNetwork"
+                            ]
+                        },
+                        "DeleteRouter": {
+                            "methods": [
+                                "deleteRouter"
+                            ]
+                        },
+                        "DeleteSubnet": {
+                            "methods": [
+                                "deleteSubnet"
+                            ]
+                        },
+                        "DiagnoseInterconnect": {
+                            "methods": [
+                                "diagnoseInterconnect"
+                            ]
+                        },
+                        "DiagnoseNetwork": {
+                            "methods": [
+                                "diagnoseNetwork"
+                            ]
+                        },
+                        "DiagnoseRouter": {
+                            "methods": [
+                                "diagnoseRouter"
+                            ]
+                        },
+                        "GetInterconnect": {
+                            "methods": [
+                                "getInterconnect"
+                            ]
+                        },
+                        "GetInterconnectAttachment": {
+                            "methods": [
+                                "getInterconnectAttachment"
+                            ]
+                        },
+                        "GetNetwork": {
+                            "methods": [
+                                "getNetwork"
+                            ]
+                        },
+                        "GetRouter": {
+                            "methods": [
+                                "getRouter"
+                            ]
+                        },
+                        "GetSubnet": {
+                            "methods": [
+                                "getSubnet"
+                            ]
+                        },
+                        "GetZone": {
+                            "methods": [
+                                "getZone"
+                            ]
+                        },
+                        "InitializeZone": {
+                            "methods": [
+                                "initializeZone"
+                            ]
+                        },
+                        "ListInterconnectAttachments": {
+                            "methods": [
+                                "listInterconnectAttachments"
+                            ]
+                        },
+                        "ListInterconnects": {
+                            "methods": [
+                                "listInterconnects"
+                            ]
+                        },
+                        "ListNetworks": {
+                            "methods": [
+                                "listNetworks"
+                            ]
+                        },
+                        "ListRouters": {
+                            "methods": [
+                                "listRouters"
+                            ]
+                        },
+                        "ListSubnets": {
+                            "methods": [
+                                "listSubnets"
+                            ]
+                        },
+                        "ListZones": {
+                            "methods": [
+                                "listZones"
+                            ]
+                        },
+                        "UpdateRouter": {
+                            "methods": [
+                                "updateRouter"
+                            ]
+                        },
+                        "UpdateSubnet": {
+                            "methods": [
+                                "updateSubnet"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
