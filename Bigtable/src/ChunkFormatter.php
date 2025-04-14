@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Bigtable;
 
+use Google\ApiCore\ApiException;
 use Google\ApiCore\ArrayTrait;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\V2\Client\BigtableClient as GapicClient;
@@ -25,6 +26,7 @@ use Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Protobuf\Internal\Message;
+use Google\Rpc\Code;
 
 /**
  * Converts cell chunks into an easily digestable format. Please note this class
@@ -370,6 +372,13 @@ class ChunkFormatter implements \IteratorAggregate
     private function commit()
     {
         $rowKey = $this->rowKey;
+        // Validate that row keys are in ascending order
+        if ($this->prevRowKey && strcmp($this->prevRowKey, $rowKey) >= 0)  {
+            throw new ApiException(sprintf(
+                'last scanned key must be strictly increasing. New last scanned key=%s',
+                $rowKey
+            ), Code::INTERNAL);
+        }
         $this->reset();
         $this->prevRowKey = $rowKey;
     }
