@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\Cloud\Spanner\IntervalParsingState as SpannerIntervalParsingState;
+use Google\Cloud\Spanner\IntervalParsingState;
 use InvalidArgumentException;
 
 class Interval
@@ -84,7 +84,7 @@ class Interval
             throw new InvalidArgumentException('The given interval is empty.');
         }
 
-        $state = new SpannerIntervalParsingState();
+        $state = new IntervalParsingState();
         $end = -1;
 
         do {

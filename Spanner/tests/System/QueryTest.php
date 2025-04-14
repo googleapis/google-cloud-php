@@ -23,6 +23,7 @@ use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
+use Google\Cloud\Spanner\Interval;
 use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\StructType;
@@ -362,6 +363,43 @@ class QueryTest extends SpannerTestCase
             ],
             'types' => [
                 'param' => Database::TYPE_JSON
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+        $this->assertNull($row['foo']);
+    }
+
+    public function testBindIntervalParameter()
+    {
+        $this->skipEmulatorTests();
+        $db = self::$database;
+
+        $interval = Interval::parse('P1Y');
+        $res = $db->execute('SELECT @param as foo', [
+            'parameters' => [
+                'param' => $interval
+            ],
+            'types' => [
+                'param' => Database::TYPE_INTERVAL
+            ]
+        ]);
+
+        $row = $res->row()->current();
+        $this->assertEquals($interval, $row['foo']);
+    }
+
+    public function testBindIntervalParameterNull()
+    {
+        $this->skipEmulatorTests();
+        $db = self::$database;
+
+        $res = $db->execute('SELECT @param as foo', [
+            'parameters' => [
+                'param' => null
+            ],
+            'types' => [
+                'param' => Database::TYPE_INTERVAL
             ]
         ]);
 
