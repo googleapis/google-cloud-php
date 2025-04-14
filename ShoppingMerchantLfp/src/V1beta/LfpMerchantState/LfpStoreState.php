@@ -137,6 +137,4 @@ class LfpStoreState extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LfpStoreState::class, \Google\Shopping\Merchant\Lfp\V1beta\LfpMerchantState_LfpStoreState::class);
 

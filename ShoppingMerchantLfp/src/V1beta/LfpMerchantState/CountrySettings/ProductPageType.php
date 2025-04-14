@@ -68,6 +68,4 @@ class ProductPageType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ProductPageType::class, \Google\Shopping\Merchant\Lfp\V1beta\LfpMerchantState_CountrySettings_ProductPageType::class);
 

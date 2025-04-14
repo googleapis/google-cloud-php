@@ -285,6 +285,4 @@ class CountrySettings extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CountrySettings::class, \Google\Shopping\Merchant\Lfp\V1beta\LfpMerchantState_CountrySettings::class);
 
