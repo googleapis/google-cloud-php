@@ -138,7 +138,6 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
         try {
             $rowData = $table->readRow($in->getRowKey(), [
                 'filter' => $in->getFilter(),
-                'timeoutMillis' => $timeoutMillis,
                 'retrySettings' => [
                     // set total timeout for the operation (including retries)
                     'totalTimeoutMillis' => $timeoutMillis,
@@ -216,7 +215,6 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
             'rowRanges' => $ranges,
             'filter' => $request->getFilter(),
             'rowsLimit' => $request->getRowsLimit(),
-            'timeoutMillis' => $timeoutMillis,
             'retrySettings' => [
                 'totalTimeoutMillis' => $timeoutMillis,
             ],
@@ -331,7 +329,6 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
 
         try {
             $table->mutateRows($mutations, [
-                'timeoutMillis' => $timeoutMillis,
                 'retrySettings' => [
                     'totalTimeoutMillis' => $timeoutMillis,
                 ]

@@ -158,9 +158,7 @@ class ResumableStream implements \IteratorAggregate
         $currentAttempt = $totalAttempt = 0;
         $startTimeMillis = floor(microtime(true) * 1000);
         do {
-            if ($totalAttempt > 0) {
-                $this->checkTotalTimeout($startTimeMillis);
-            }
+            $this->checkTotalTimeout($startTimeMillis);
             $ex = null;
             list($this->request, $this->callOptions) =
                 ($this->argumentFunction)($this->request, $this->callOptions);
@@ -246,9 +244,16 @@ class ResumableStream implements \IteratorAggregate
     private function checkTotalTimeout(int $startTimeMillis): void
     {
         if ($this->totalTimeoutMillis > 0) {
-            $currentTimeMillis = floor(microtime(true) * 1000);
-            if (($currentTimeMillis - $startTimeMillis) > $this->totalTimeoutMillis) {
+            $elapsedTimeMillis = floor(microtime(true) * 1000) - $startTimeMillis;
+            if ($elapsedTimeMillis > $this->totalTimeoutMillis) {
                 throw new ApiException('Operation timeout exceeeded ', Code::DEADLINE_EXCEEDED);
+            }
+            $remainingTimeMillis = $this->totalTimeoutMillis - $elapsedTimeMillis;
+            // Set timeoutMillis if it's unset or less than the remaining time
+            // in order to preempt requests from exceeding total timeout
+            if (!isset($this->callOptions['timeoutMillis'])
+                || $this->callOptions['timeoutMillis'] > $remainingTimeMillis) {
+                $this->callOptions['timeoutMillis'] = $remainingTimeMillis;
             }
         }
     }
