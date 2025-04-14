@@ -74,7 +74,7 @@ class BigtableClientTest extends TestCase
             'pingAndWarm' => true, // this would throw an auth error if it was called
         ]);
 
-        $pingAndWarmResponse = $this->prophesize(PingAndWarmResponse::class);
+        $pingAndWarmResponse = new PingAndWarmResponse();
         $gapicClient = $this->prophesize(BigtableGapicClient::class);
         $gapicClient->pingAndWarm(
             Argument::that(function (PingAndWarmRequest $request) {
@@ -83,7 +83,7 @@ class BigtableClientTest extends TestCase
             []
         )
             ->shouldBeCalledOnce()
-            ->willReturn($pingAndWarmResponse->reveal());
+            ->willReturn($pingAndWarmResponse);
         $gapicClient->pingAndWarm(
             Argument::that(function (PingAndWarmRequest $request) {
                 return $request->getName() === 'projects/my-project/instances/my-instance-2';
@@ -91,7 +91,7 @@ class BigtableClientTest extends TestCase
             []
         )
             ->shouldBeCalledOnce()
-            ->willReturn($pingAndWarmResponse->reveal());
+            ->willReturn($pingAndWarmResponse);
 
         // calling "::table" with the option should call pingandwarm
         $bigtable = new BigtableClient([

@@ -26,8 +26,8 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Bigtable\V2\Client\BigtableClient as GapicClient;
 use Google\Cloud\Bigtable\V2\PingAndWarmRequest;
-use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\DetectProjectIdTrait;
 
 /**
  * Google Cloud Bigtable is Google's NoSQL Big Data database service.
