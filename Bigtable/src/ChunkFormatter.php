@@ -372,12 +372,22 @@ class ChunkFormatter implements \IteratorAggregate
     private function commit()
     {
         $rowKey = $this->rowKey;
-        // Validate that row keys are in ascending order
-        if ($this->prevRowKey && strcmp($this->prevRowKey, $rowKey) >= 0)  {
-            throw new ApiException(sprintf(
-                'last scanned key must be strictly increasing. New last scanned key=%s',
-                $rowKey
-            ), Code::INTERNAL);
+        if ($this->prevRowKey) {
+            // Validate that row keys are in ascending order
+            $cmp = strcmp($this->prevRowKey, $rowKey);
+            if ($this->request->getReversed()) {
+                $cmp *= -1;
+            }
+            if ($cmp >= 0)  {
+                throw new ApiException(
+                    sprintf(
+                        'last scanned key must be strictly %s. New last scanned key=%s',
+                        $this->request->getReversed() ? 'decreasing' : 'increasing',
+                        $rowKey
+                    ),
+                    Code::INTERNAL
+                );
+            }
         }
         $this->reset();
         $this->prevRowKey = $rowKey;
