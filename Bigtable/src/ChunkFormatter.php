@@ -378,7 +378,7 @@ class ChunkFormatter implements \IteratorAggregate
             if ($this->request->getReversed()) {
                 $cmp *= -1;
             }
-            if ($cmp >= 0)  {
+            if ($cmp >= 0) {
                 throw new ApiException(
                     sprintf(
                         'last scanned key must be strictly %s. New last scanned key=%s',
