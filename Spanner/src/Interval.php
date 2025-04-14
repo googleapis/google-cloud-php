@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\Cloud\Spanner\IntervalParsingState;
 use InvalidArgumentException;
 
 class Interval
