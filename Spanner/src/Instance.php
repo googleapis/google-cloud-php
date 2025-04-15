@@ -539,7 +539,7 @@ class Instance
             $this->returnInt64AsObject,
             isset($options['database']) ? $options['database'] : [],
             isset($options['databaseRole']) ? $options['databaseRole'] : '',
-            isset($options['isolationLevel']) ? $options['isolationLevel'] : $this->isolationLevel,
+            $options['isolationLevel'] ?? $this->isolationLevel,
         );
     }
 
