@@ -37,6 +37,7 @@ use Google\Cloud\Spanner\Connection\IamDatabase;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
+use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\Cloud\Spanner\V1\TypeCode;
 use Google\Rpc\Code;
 
@@ -193,6 +194,11 @@ class Database
     private $returnInt64AsObject;
 
     /**
+     * @var int
+     */
+    private int $isolationLevel;
+
+    /**
      * Create an object representing a Database.
      *
      * @param ConnectionInterface $connection The connection to the
@@ -210,6 +216,8 @@ class Database
      *        be returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility. **Defaults to** false.
      * @param string $databaseRole The user created database role which creates the session.
+     * @param int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
+     *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -221,7 +229,8 @@ class Database
         ?SessionPoolInterface $sessionPool = null,
         $returnInt64AsObject = false,
         array $info = [],
-        $databaseRole = ''
+        $databaseRole = '',
+        $isolationLevel = IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
     ) {
         $this->connection = $connection;
         $this->instance = $instance;
@@ -239,6 +248,7 @@ class Database
         $this->databaseRole = $databaseRole;
         $this->directedReadOptions = $instance->directedReadOptions();
         $this->returnInt64AsObject = $returnInt64AsObject;
+        $this->isolationLevel = $isolationLevel;
     }
 
     /**
@@ -813,7 +823,9 @@ class Database
         }
 
         // There isn't anything configurable here.
-        $options['transactionOptions'] = $this->configureTransactionOptions();
+        $options['transactionOptions'] = $this->configureTransactionOptions([
+            'isolationLevel' => $this->isolationLevel
+        ]);
 
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READWRITE,

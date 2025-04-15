@@ -1111,6 +1111,8 @@ class Grpc implements ConnectionInterface
             $pdml = new PartitionedDml();
             $options->setPartitionedDml($pdml);
             $args = $this->addLarHeader($args, $this->larEnabled);
+        } elseif (isset($transactionOptions['isolationLevel'])) {
+            $options->setIsolationLevel($transactionOptions['isolationLevel']);
         }
 
         // NOTE: if set for read-only actions, will throw exception
