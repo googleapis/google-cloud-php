@@ -810,6 +810,8 @@ class Database
      *           Session labels may be applied using the `labels` key.
      *     @type string $tag A transaction tag. Requests made using this transaction will
      *           use this as the transaction tag.
+     *     @type int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
+     *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
      * }
      * @return Transaction
      * @throws \BadMethodCallException If attempting to call this method within
@@ -821,9 +823,8 @@ class Database
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
         }
 
-        // There isn't anything configurable here.
         $options['transactionOptions'] = $this->configureTransactionOptions([
-            'isolationLevel' => $this->isolationLevel
+            'isolationLevel' => $options['isolationLevel'] ?? $this->isolationLevel
         ]);
 
         $session = $this->selectSession(
@@ -947,6 +948,10 @@ class Database
                 // Partitioned DML does not support ILB.
                 if (!isset($options['transactionOptions']['partitionedDml'])) {
                     $options['begin'] = $options['transactionOptions'];
+                }
+
+                if (!isset($options['transactionOptions']['isolationLevel'])) {
+                    $options['transactionOptions']['isolationLevel'] = IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED;
                 }
             } else {
                 $options['isRetry'] = true;
