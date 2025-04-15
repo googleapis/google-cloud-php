@@ -127,6 +127,11 @@ class Instance
     private $directedReadOptions;
 
     /**
+     * @var int
+     */
+    private $isolationLevel;
+
+    /**
      * Create an object representing a Cloud Spanner instance.
      *
      * @param ConnectionInterface $connection The connection to the
@@ -148,6 +153,8 @@ class Instance
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
+     * @param int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
+     *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
      * }
      */
     public function __construct(
@@ -168,6 +175,7 @@ class Instance
 
         $this->setLroProperties($lroConnection, $lroCallables, $this->name);
         $this->directedReadOptions = $options['directedReadOptions'] ?? [];
+        $this->isolationLevel = $options['isolationLevel'];
     }
 
     /**
@@ -530,7 +538,8 @@ class Instance
             isset($options['sessionPool']) ? $options['sessionPool'] : null,
             $this->returnInt64AsObject,
             isset($options['database']) ? $options['database'] : [],
-            isset($options['databaseRole']) ? $options['databaseRole'] : ''
+            isset($options['databaseRole']) ? $options['databaseRole'] : '',
+            isset($options['isolationLevel']) ? $options['isolationLevel'] : $this->isolationLevel,
         );
     }
 
