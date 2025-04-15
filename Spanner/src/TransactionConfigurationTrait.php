@@ -152,6 +152,10 @@ trait TransactionConfigurationTrait
             $transactionOptions['excludeTxnFromChangeStreams'] = $options['excludeTxnFromChangeStreams'];
         }
 
+        if (isset($options['isolationLevel'])) {
+            $transactionOptions['isolationLevel'] = $options['isolationLevel'];
+        }
+
         return $transactionOptions;
     }
 
