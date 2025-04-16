@@ -248,6 +248,18 @@ class Transaction implements TransactionalReadInterface
                 . ' This option should be set at the transaction level.'
             );
         }
+
+        if (
+            $this->type() === self::TYPE_SINGLE_USE &&
+            isset($options['transaction']['begin']['isolationLevel']) ||
+            isset($options['transaction']['single_use']['isolationLevel'])
+        ) {
+            throw new ValidationException(
+                'The isolation level can only be applied to read/write transactions.'.
+                'Single use transactions are not read/write',
+            );
+        }
+
         $options = $this->buildUpdateOptions($options);
         return $this->operation
             ->executeUpdate($this->session, $this, $sql, $options);

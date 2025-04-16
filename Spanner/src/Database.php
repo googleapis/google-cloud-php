@@ -1647,11 +1647,12 @@ class Database
      *           timestamp.
      *     @type Duration $exactStaleness Represents a number of seconds. Executes
      *           all reads at a timestamp that is $exactStaleness old.
-     *     @type bool $begin If true, will begin a new transaction. If a
+     *     @type bool|array $begin If true, will begin a new transaction. If a
      *           read/write transaction is desired, set the value of
      *           $transactionType. If a transaction or snapshot is created, it
      *           will be returned as `$result->transaction()` or
      *           `$result->snapshot()`. **Defaults to** `false`.
+     *           If $begin is an array {@see TransactionOptions}
      *     @type string $transactionType One of `SessionPoolInterface::CONTEXT_READ`
      *           or `SessionPoolInterface::CONTEXT_READWRITE`. If read/write is
      *           chosen, any snapshot options will be disregarded. If `$begin`
@@ -1696,11 +1697,15 @@ class Database
                 $this->pluck('sessionOptions', $options, false) ?: []
             );
 
-        list(
+        [
             $options['transaction'],
             $options['transactionContext']
-        ) = $this->transactionSelector($options);
+        ] = $this->transactionSelector($options);
         $options = $this->addLarHeader($options, true, $options['transactionContext']);
+
+        if ($options['transactionType'] === SessionPoolInterface::CONTEXT_READWRITE && $this->isolationLevel) {
+            $options['transaction']['begin']['isolationLevel'] ??= $this->isolationLevel;
+        }
 
         $options['directedReadOptions'] = $this->configureDirectedReadOptions(
             $options,
@@ -1766,7 +1771,7 @@ class Database
      *           transactions.
      * }
      *
-     * @retur \Generator {@see \Google\Cloud\Spanner\V1\BatchWriteResponse}
+     * @return \Generator {@see \Google\Cloud\Spanner\V1\BatchWriteResponse}
      *
      * @throws ApiException if the remote call fails
      */
@@ -1910,6 +1915,8 @@ class Database
      *           Please note, if using the `priority` setting you may utilize the constants available
      *           on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *           Please note, the `transactionTag` setting will be ignored as it is not supported for partitioned DML.
+     *     @type array $transactionOptions Transaction options.
+     *           {@see V1\TransactionOptions}
      * }
      * @return int The number of rows modified.
      */
@@ -1923,10 +1930,16 @@ class Database
                 'partitionedDml' => [],
             ]
         ];
+
         if (isset($options['transactionOptions']['excludeTxnFromChangeStreams'])) {
             $beginTransactionOptions['transactionOptions']['excludeTxnFromChangeStreams'] =
                 $options['transactionOptions']['excludeTxnFromChangeStreams'];
         }
+
+        if (isset($options['transactionOptions']['isolationLevel']) || $this->isolationLevel) {
+            $options['transactionOptions']['isolationLevel'] ??= $this->isolationLevel;
+        }
+
         $transaction = $this->operation->transaction($session, $beginTransactionOptions);
 
         $options = $this->addLarHeader($options);
