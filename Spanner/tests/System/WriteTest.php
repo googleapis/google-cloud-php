@@ -70,7 +70,7 @@ class WriteTest extends SpannerTestCase
                 arrayDateField ARRAY<DATE>,
                 arrayNumericField ARRAY<NUMERIC>,
                 arrayIntervalField ARRAY<INTERVAL>,
-                arrayProtoField ARRAY<`testing.data.User`>
+                arrayProtoField ARRAY<`testing.data.User`>,
                 boolField BOOL,
                 bytesField BYTES(MAX),
                 dateField DATE,
@@ -81,7 +81,7 @@ class WriteTest extends SpannerTestCase
                 timestampField TIMESTAMP,
                 numericField NUMERIC,
                 intervalField INTERVAL,
-                protoField `testing.data.User`
+                protoField `testing.data.User`,
             ) PRIMARY KEY (id)',
             'CREATE TABLE ' . self::COMMIT_TIMESTAMP_TABLE_NAME . ' (
                 id INT64 NOT NULL,
