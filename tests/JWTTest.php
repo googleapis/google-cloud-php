@@ -546,4 +546,31 @@ class JWTTest extends TestCase
         $this->assertEquals('my_key_id', $headers->kid, 'key param not overridden');
         $this->assertEquals('HS256', $headers->alg, 'alg param not overridden');
     }
+
+    public function testDecodeExpectsIntegerIat()
+    {
+        $this->expectException(UnexpectedValueException::class);
+        $this->expectExceptionMessage('Payload iat must be a number');
+
+        $payload = JWT::encode(['iat' => 'not-an-int'], 'secret', 'HS256');
+        JWT::decode($payload, new Key('secret', 'HS256'));
+    }
+
+    public function testDecodeExpectsIntegerNbf()
+    {
+        $this->expectException(UnexpectedValueException::class);
+        $this->expectExceptionMessage('Payload nbf must be a number');
+
+        $payload = JWT::encode(['nbf' => 'not-an-int'], 'secret', 'HS256');
+        JWT::decode($payload, new Key('secret', 'HS256'));
+    }
+
+    public function testDecodeExpectsIntegerExp()
+    {
+        $this->expectException(UnexpectedValueException::class);
+        $this->expectExceptionMessage('Payload exp must be a number');
+
+        $payload = JWT::encode(['exp' => 'not-an-int'], 'secret', 'HS256');
+        JWT::decode($payload, new Key('secret', 'HS256'));
+    }
 }
