@@ -206,6 +206,8 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $edgeSecurityPolicy = 'edgeSecurityPolicy-1032704881';
         $enableCDN = false;
+        $externalManagedMigrationState = 'externalManagedMigrationState-469923892';
+        $externalManagedMigrationTestingPercentage = 3747041;
         $fingerprint = 'fingerprint-1375934236';
         $id = 3355;
         $ipAddressSelectionPolicy = 'ipAddressSelectionPolicy614471752';
@@ -230,6 +232,8 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setEdgeSecurityPolicy($edgeSecurityPolicy);
         $expectedResponse->setEnableCDN($enableCDN);
+        $expectedResponse->setExternalManagedMigrationState($externalManagedMigrationState);
+        $expectedResponse->setExternalManagedMigrationTestingPercentage($externalManagedMigrationTestingPercentage);
         $expectedResponse->setFingerprint($fingerprint);
         $expectedResponse->setId($id);
         $expectedResponse->setIpAddressSelectionPolicy($ipAddressSelectionPolicy);

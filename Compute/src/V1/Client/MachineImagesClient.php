@@ -42,6 +42,7 @@ use Google\Cloud\Compute\V1\ListMachineImagesRequest;
 use Google\Cloud\Compute\V1\MachineImage;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\SetIamPolicyMachineImageRequest;
+use Google\Cloud\Compute\V1\SetLabelsMachineImageRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsMachineImageRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -59,6 +60,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> insertAsync(InsertMachineImageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAsync(ListMachineImagesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyMachineImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsMachineImageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsMachineImageRequest $request, array $optionalArgs = [])
  */
 final class MachineImagesClient
@@ -408,6 +410,32 @@ final class MachineImagesClient
     public function setIamPolicy(SetIamPolicyMachineImageRequest $request, array $callOptions = []): Policy
     {
         return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Sets the labels on a machine image. To learn more about labels, read the Labeling Resources documentation.
+     *
+     * The async variant is {@see MachineImagesClient::setLabelsAsync()} .
+     *
+     * @example samples/V1/MachineImagesClient/set_labels.php
+     *
+     * @param SetLabelsMachineImageRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setLabels(SetLabelsMachineImageRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('SetLabels', $request, $callOptions)->wait();
     }
 
     /**
