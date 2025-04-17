@@ -58,6 +58,8 @@ use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
+use InvalidArgumentException;
+use Kreait\Firebase\Exception\Messaging\InvalidArgument;
 
 /**
  * @group spanner
@@ -1393,31 +1395,13 @@ class DatabaseTest extends TestCase
         $this->assertEquals(1, $res);
     }
 
-    public function testExecutePartitionedUpdateWithIsolationLevel()
+    public function testExecutePartitionedUpdateWithIsolationLevelShouldRaise()
     {
         $sql = 'UPDATE foo SET bar = @bar';
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('transactionOptions', [
-                'partitionedDml' => [],
-                'isolationLevel' => IsolationLevel::REPEATABLE_READ,
-            ]),
-            Argument::withEntry('singleUse', false)
-        ))->shouldBeCalled()->willReturn([
-            'id' => self::TRANSACTION
-        ]);
-
-        $this->connection->executeStreamingSql(Argument::allOf(
-            Argument::withEntry('sql', $sql),
-            Argument::withEntry('transaction', [
-                'id' => self::TRANSACTION,
-            ]),
-            Argument::withEntry('transactionOptions', [
-                'isolationLevel' => IsolationLevel::REPEATABLE_READ
-            ]),
-            Argument::withEntry('headers', ['x-goog-spanner-route-to-leader' => ['true']])
-        ))->shouldBeCalled()->willReturn($this->resultGenerator(true));
 
         $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->expectException(InvalidArgumentException::class);
+
         $res = $this->database->executePartitionedUpdate($sql, [
             'transactionOptions' => [
                 'isolationLevel' => IsolationLevel::REPEATABLE_READ
