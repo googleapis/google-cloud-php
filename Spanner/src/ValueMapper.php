@@ -261,7 +261,7 @@ class ValueMapper
                 2 => null
             ];
 
-            $definition = new ArrayType($type[1], $type[2]);
+            $definition = new ArrayType($type[1]);
             $type = Database::TYPE_ARRAY;
         } elseif ($type instanceof ArrayType) {
             $definition = $type;
@@ -383,7 +383,7 @@ class ValueMapper
      * Create a spanner parameter type value object from a PHP value type.
      *
      * @param mixed $value The PHP value
-     * @param int|null $givenType If set, this type will be used in place of an
+     * @param int|string|null $givenType If set, this type will be used in place of an
      *        inferred type.
      * @param ArrayType|StructType|null $definition Defines the structured value
      *        type for non-primitive values.
@@ -449,7 +449,7 @@ class ValueMapper
 
             case 'resource':
                 $type = $this->typeObject($givenType ?: self::TYPE_BYTES, $typeAnnotation);
-                $value = base64_encode(stream_get_contents($value));
+                $value = base64_encode((string) stream_get_contents($value));
                 break;
 
             case 'object':
@@ -493,7 +493,6 @@ class ValueMapper
                     'Please ensure you are using the latest version of google/cloud or google/cloud-spanner.',
                     get_class($value)
                 ));
-                break;
         }
 
         return [$value, $type];
@@ -504,7 +503,7 @@ class ValueMapper
      *
      * @param StructValue|array|null $value The struct value.
      * @param StructType $type The struct type.
-     * @return array{0: array, 1: array} An array containing the value and type.
+     * @return array{0: array|null, 1: array} An array containing the value and type.
      */
     private function structParam($value, StructType $type)
     {
@@ -645,7 +644,7 @@ class ValueMapper
      * @param bool $allowMixedArrayType [optional] If true, array values may be of mixed type.
      *        This is useful when reading against complex keys containing multiple
      *        elements of differing types.
-     * @return array{0: array, 1: array} An array containing the value and type.
+     * @return array{0: array|null, 1: array} An array containing the value and type.
      */
     private function arrayParam($value, ArrayType $arrayObj, $allowMixedArrayType = false)
     {
@@ -669,7 +668,7 @@ class ValueMapper
 
                 if ($arrayObj->type() === Database::TYPE_STRUCT) {
                     $givenType = $arrayObj->type();
-                } elseif (self::isCustomType($arrayObj->type())) {
+                } elseif (self::isCustomType((string) $arrayObj->type())) {
                     $givenType = $arrayObj->type();
                 }
 
@@ -704,20 +703,20 @@ class ValueMapper
         }
 
         // get typeCode either from the array type or the first element's inferred type
-        $typeCode = self::isCustomType($arrayObj->type())
-            ? self::getTypeCodeFromString($arrayObj->type())
+        $typeCode = self::isCustomType((string) $arrayObj->type())
+            ? self::getTypeCodeFromString((string) $arrayObj->type())
             : $arrayObj->type();
 
         // get typeAnnotationCode either from the array type or the first element's inferred type
-        $typeAnnotationCode = self::isCustomType($arrayObj->type())
-            ? self::getTypeAnnotationFromString($arrayObj->type())
+        $typeAnnotationCode = self::isCustomType((string) $arrayObj->type())
+            ? self::getTypeAnnotationFromString((string) $arrayObj->type())
             : null;
 
         if ($this->arrayDataMismatch($value, $typeCode, $typeAnnotationCode, $inferredTypes)) {
             throw new \InvalidArgumentException('Array data does not match given array parameter type.');
         }
 
-        if (is_null($typeCode) && count($inferredTypes) > 0 && isset($inferredTypes[0]['code'])) {
+        if (is_null($typeCode) && count($inferredTypes) > 0) {
             $typeCode = $inferredTypes[0]['code'];
         }
 
@@ -753,7 +752,7 @@ class ValueMapper
      * Handle query parameter mappings for various types of objects.
      *
      * @param mixed $value The parameter value.
-     * @return array{0: array, 1: array} An array containing the value and type.
+     * @return array{0: array, 1: string} An array containing the value and type.
      */
     private function objectParam($value)
     {
@@ -808,13 +807,13 @@ class ValueMapper
     /**
      * Create a type object with a code and definition, if provided.
      *
-     * @param int $type The type code.
+     * @param int|string $type The type code.
      * @param int $typeAnnotation The type annotation code
      * @param array $nestedDefinition [optional] A nested definition, to define
      *        the structure of an array or struct type.
      * @param string $nestedDefinitionType [optional] Either `arrayElementType`
      *        or `structType`.
-     * @return array{0: array, 1: array}
+     * @return array<string, int|string|array>
      */
     private function typeObject(
         $type,
@@ -887,6 +886,10 @@ class ValueMapper
     /**
      * Checks if the data type of elements is the same as data type of array
      *
+     * @param mixed $value
+     * @param int|string|null $arrayTypeCode
+     * @param int|null $arrayTypeAnnotation
+     * @param array $inferredTypes
      * @return bool
      */
     private function arrayDataMismatch($value, $arrayTypeCode, $arrayTypeAnnotation, $inferredTypes)
