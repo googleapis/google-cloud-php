@@ -201,6 +201,7 @@ class SnapshotsClientTest extends GeneratedTest
         $diskSizeGb = 757478089;
         $downloadBytes = 971924980;
         $enableConfidentialCompute = true;
+        $guestFlush = false;
         $id = 3355;
         $kind = 'kind3292052';
         $labelFingerprint = 'labelFingerprint714995737';
@@ -230,6 +231,7 @@ class SnapshotsClientTest extends GeneratedTest
         $expectedResponse->setDiskSizeGb($diskSizeGb);
         $expectedResponse->setDownloadBytes($downloadBytes);
         $expectedResponse->setEnableConfidentialCompute($enableConfidentialCompute);
+        $expectedResponse->setGuestFlush($guestFlush);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setLabelFingerprint($labelFingerprint);
