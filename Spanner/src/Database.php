@@ -1698,13 +1698,13 @@ class Database
                 $this->pluck('sessionOptions', $options, false) ?: []
             );
 
-        [
+        list(
             $options['transaction'],
             $options['transactionContext']
-        ] = $this->transactionSelector($options);
+        ) = $this->transactionSelector($options);
         $options = $this->addLarHeader($options, true, $options['transactionContext']);
 
-        if ($options['transactionType'] === SessionPoolInterface::CONTEXT_READWRITE && $this->isolationLevel) {
+        if (isset($options['transaction']['readWrite'])) {
             $options['transaction']['begin']['isolationLevel'] ??= $this->isolationLevel;
         }
 
@@ -1938,7 +1938,8 @@ class Database
         }
 
         if (isset($options['transactionOptions']['isolationLevel']) || $this->isolationLevel) {
-            $options['transactionOptions']['isolationLevel'] ??= $this->isolationLevel;
+            $beginTransactionOptions['transactionOptions']['isolationLevel'] =
+                $options['transactionOptions']['isolationLevel'] ?? $this->isolationLevel;
         }
 
         $transaction = $this->operation->transaction($session, $beginTransactionOptions);
