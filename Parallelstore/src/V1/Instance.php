@@ -64,7 +64,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $capacity_gib = 0;
     /**
-     * Deprecated 'daos_version' field.
+     * Output only. Deprecated 'daos_version' field.
      * Output only. The version of DAOS software running in the instance.
      *
      * Generated from protobuf field <code>string daos_version = 9 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -162,7 +162,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Allowed values are between 12000 and 100000, in multiples of 4000; e.g.,
      *           12000, 16000, 20000, ...
      *     @type string $daos_version
-     *           Deprecated 'daos_version' field.
+     *           Output only. Deprecated 'daos_version' field.
      *           Output only. The version of DAOS software running in the instance.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $access_points
      *           Output only. A list of IPv4 addresses used for client side configuration.
@@ -421,7 +421,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated 'daos_version' field.
+     * Output only. Deprecated 'daos_version' field.
      * Output only. The version of DAOS software running in the instance.
      *
      * Generated from protobuf field <code>string daos_version = 9 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -435,7 +435,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated 'daos_version' field.
+     * Output only. Deprecated 'daos_version' field.
      * Output only. The version of DAOS software running in the instance.
      *
      * Generated from protobuf field <code>string daos_version = 9 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
