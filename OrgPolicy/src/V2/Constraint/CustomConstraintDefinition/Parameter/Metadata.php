@@ -69,6 +69,4 @@ class Metadata extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Metadata::class, \Google\Cloud\OrgPolicy\V2\Constraint_CustomConstraintDefinition_Parameter_Metadata::class);
 

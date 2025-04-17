@@ -233,6 +233,4 @@ class CustomConstraintDefinition extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CustomConstraintDefinition::class, \Google\Cloud\OrgPolicy\V2\Constraint_CustomConstraintDefinition::class);
 

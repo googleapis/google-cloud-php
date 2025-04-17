@@ -11,15 +11,16 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * The response returned from the [ListCustomConstraints]
  * [google.cloud.orgpolicy.v2.OrgPolicy.ListCustomConstraints] method. It will
- * be empty if no custom constraints are set on the organization resource.
+ * be empty if no custom or managed constraints are set on the organization
+ * resource.
  *
  * Generated from protobuf message <code>google.cloud.orgpolicy.v2.ListCustomConstraintsResponse</code>
  */
 class ListCustomConstraintsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * All custom constraints that exist on the organization resource. It will be
-     * empty if no custom constraints are set.
+     * All custom and managed constraints that exist on the organization resource.
+     * It will be empty if no custom constraints are set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v2.CustomConstraint custom_constraints = 1;</code>
      */
@@ -39,8 +40,8 @@ class ListCustomConstraintsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\OrgPolicy\V2\CustomConstraint>|\Google\Protobuf\Internal\RepeatedField $custom_constraints
-     *           All custom constraints that exist on the organization resource. It will be
-     *           empty if no custom constraints are set.
+     *           All custom and managed constraints that exist on the organization resource.
+     *           It will be empty if no custom constraints are set.
      *     @type string $next_page_token
      *           Page token used to retrieve the next page. This is currently not used, but
      *           the server may at any point start supplying a valid token.
@@ -52,8 +53,8 @@ class ListCustomConstraintsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * All custom constraints that exist on the organization resource. It will be
-     * empty if no custom constraints are set.
+     * All custom and managed constraints that exist on the organization resource.
+     * It will be empty if no custom constraints are set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v2.CustomConstraint custom_constraints = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -64,8 +65,8 @@ class ListCustomConstraintsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * All custom constraints that exist on the organization resource. It will be
-     * empty if no custom constraints are set.
+     * All custom and managed constraints that exist on the organization resource.
+     * It will be empty if no custom constraints are set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v2.CustomConstraint custom_constraints = 1;</code>
      * @param array<\Google\Cloud\OrgPolicy\V2\CustomConstraint>|\Google\Protobuf\Internal\RepeatedField $var

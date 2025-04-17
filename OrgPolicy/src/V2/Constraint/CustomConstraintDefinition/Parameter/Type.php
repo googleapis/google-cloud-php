@@ -71,6 +71,4 @@ class Type
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Type::class, \Google\Cloud\OrgPolicy\V2\Constraint_CustomConstraintDefinition_Parameter_Type::class);
 
