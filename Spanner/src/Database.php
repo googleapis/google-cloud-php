@@ -40,6 +40,7 @@ use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\Cloud\Spanner\V1\TypeCode;
 use Google\Rpc\Code;
+use InvalidArgumentException;
 
 /**
  * Represents a Cloud Spanner Database.
@@ -1924,6 +1925,11 @@ class Database
     public function executePartitionedUpdate($statement, array $options = [])
     {
         unset($options['requestOptions']['transactionTag']);
+
+        if (isset($options['transactionOptions']['isolationLevel'])) {
+            throw new InvalidArgumentException('Partitioned DML cannot be configured with an isolation level');
+        }
+
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
 
         $beginTransactionOptions = [
@@ -1935,11 +1941,6 @@ class Database
         if (isset($options['transactionOptions']['excludeTxnFromChangeStreams'])) {
             $beginTransactionOptions['transactionOptions']['excludeTxnFromChangeStreams'] =
                 $options['transactionOptions']['excludeTxnFromChangeStreams'];
-        }
-
-        if (isset($options['transactionOptions']['isolationLevel']) || $this->isolationLevel) {
-            $beginTransactionOptions['transactionOptions']['isolationLevel'] =
-                $options['transactionOptions']['isolationLevel'] ?? $this->isolationLevel;
         }
 
         $transaction = $this->operation->transaction($session, $beginTransactionOptions);
