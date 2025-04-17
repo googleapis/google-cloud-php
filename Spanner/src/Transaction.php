@@ -249,13 +249,12 @@ class Transaction implements TransactionalReadInterface
             );
         }
 
-        if (
-            $this->type() === self::TYPE_SINGLE_USE &&
+        if ($this->type() === self::TYPE_SINGLE_USE &&
             isset($options['transaction']['begin']['isolationLevel']) ||
             isset($options['transaction']['single_use']['isolationLevel'])
         ) {
             throw new ValidationException(
-                'The isolation level can only be applied to read/write transactions.'.
+                'The isolation level can only be applied to read/write transactions.' .
                 'Single use transactions are not read/write',
             );
         }
