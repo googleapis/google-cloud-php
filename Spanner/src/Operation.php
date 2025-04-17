@@ -60,7 +60,7 @@ class Operation
     /**
      * @var ValueMapper
      */
-    private $mapper;
+    private ValueMapper $mapper;
 
     /**
      * @param ConnectionInterface $connection A connection to Google Cloud
@@ -82,7 +82,12 @@ class Operation
      * @codingStandardsIgnoreStart
      * @param Session $session The session ID to use for the commit.
      * @param array $mutations A list of mutations to apply.
-     * @param array $options [optional] {
+     * @param array{
+     *     transactionId?: string,
+     *     returnCommitStats?: bool,
+     *     maxCommitDelay?: Duration,
+     *     requestOptions?: array,
+     * } $options {
      *     Configuration options.
      *
      *     @type string $transactionId The ID of the transaction.
@@ -112,7 +117,12 @@ class Operation
      * @codingStandardsIgnoreStart
      * @param Session $session The session ID to use for the commit.
      * @param array $mutations A list of mutations to apply.
-     * @param array $options [optional] {
+          * @param array{
+     *     transactionId?: string,
+     *     returnCommitStats?: bool,
+     *     maxCommitDelay?: Duration,
+     *     requestOptions?: array,
+     * } $options {
      *     Configuration options.
      *
      *     @type string $transactionId The ID of the transaction.
@@ -152,8 +162,8 @@ class Operation
      * @param Session $session The session to use for the rollback.
      *        Note that the session MUST be the same one in which the
      *        transaction was created.
-     * @param string $transactionId The transaction to roll back.
-     * @param array $options [optional] Configuration Options.
+     * @param string|null $transactionId The transaction to roll back.
+     * @param array $options Configuration Options.
      * @return void
      * @throws InvalidArgumentException If the transaction is not yet initialized.
      */
@@ -174,7 +184,11 @@ class Operation
      *
      * @param Session $session The session to use to execute the SQL.
      * @param string $sql The query string.
-     * @param array $options [optional] {
+     * @param array{
+     *     requestOptions?: array,
+     *     transaction?: Transaction|array{begin?:array},
+     *     directedReadOptions?: array,
+     * } $options {
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
@@ -237,7 +251,12 @@ class Operation
      * @param Session $session The session in which the update operation should be executed.
      * @param Transaction $transaction The transaction in which the operation should be executed.
      * @param string $sql The SQL string to execute.
-     * @param array $options [optional] {
+     * @param array{
+     *     requestOptions?: array,
+     *     transaction?: array{begin?: array},
+     *     directedReadOptions?: array,
+     *     statsItem?: string,
+     * } $options {
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
@@ -248,6 +267,7 @@ class Operation
      *     @type array $transaction Transaction selector options.
      *     @type array $transaction.begin The begin transaction options.
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
+     *     @type string $statsItem
      * }
      * @return int
      * @throws InvalidArgumentException If the SQL string isn't an update operation.
@@ -307,7 +327,11 @@ class Operation
      *        {@see \Google\Cloud\Spanner\ArrayType} to declare the array
      *        parameter types. Likewise, for structs, use
      *        {@see \Google\Cloud\Spanner\StructType}.
-     * @param array $options [optional] {
+     * @param array{
+     *     requestOptions?: array,
+     *     transaction?: array{begin?:array},
+     *     directedReadOptions?: array,
+     * } $options {
      *     Configuration Options.
      *
      *     @type array $requestOptions Request options.
@@ -374,7 +398,14 @@ class Operation
      * @param string $table The table name.
      * @param KeySet $keySet The KeySet to select rows.
      * @param array $columns A list of column names to return.
-     * @param array $options [optional] {
+     * @param array{
+     *     index?: string,
+     *     offset?: int,
+     *     limit?: int,
+     *     requestOptions?: array,
+     *     transaction?: array{begin?: array},
+     *     directedReadOptions?: array,
+     * } $options {
      *     Configuration Options.
      *
      *     @type string $index The name of an index on the table.
@@ -443,7 +474,13 @@ class Operation
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
      *
      * @param Session $session The session to start the transaction in.
-     * @param array $options [optional] {
+     * @param array{
+     *     singleUse?: bool,
+     *     isRetry?: bool,
+     *     tag?: string,
+     *     begin?: array,
+     *     requestOptions?: array,
+     * } $options {
      *     Configuration Options.
      *
      *     @type bool $singleUse If true, a Transaction ID will not be allocated
@@ -453,8 +490,10 @@ class Operation
      *     @type bool $isRetry If true, the resulting transaction will indicate
      *           that it is the result of a retry operation. **Defaults to**
      *           `false`.
-     *     @type array $begin The begin transaction options.
+     *     @type string $tag the transaction tag.
+     *     @type array $begin The transaction options to pass to beginTransaction.
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
+     *     @type array $requestOptions The request options to pass to beginTransaction
      * }
      * @return Transaction
      */
@@ -494,9 +533,19 @@ class Operation
      *
      * @param Session $session The session the transaction belongs to.
      * @param array $res [optional] The createTransaction response.
-     * @param array $options [optional] Options for the transaction object.
-     *     @type array $begin The begin transaction options.
-     *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
+     * @param array{
+     *     isRetry?: bool,
+     *     tag?: string,
+     *     transactionOptions?: array{begin?:array},
+     * } $options {
+     *     Options for the transaction object.
+     *
+     *     @type bool   $isRetry Whether the transaction will automatically retry or not.
+     *     @type string $tag A transaction tag. Requests made using this transaction will
+     *     @type array  $transactionOptions {
+     *           @type array $begin the begin transaction options. See {@see V1\TransactionOptions}.
+     *     }
+     * }
      * @return Transaction
      */
     public function createTransaction(Session $session, array $res = [], array $options = [])
@@ -506,7 +555,7 @@ class Operation
         ];
         $options += [
             'tag' => null,
-            'transactionOptions' => null
+            'transactionOptions' => [],
         ];
 
         $options['isRetry'] = $options['isRetry'] ?? false;
@@ -528,7 +577,11 @@ class Operation
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
      *
      * @param Session $session The session to start the snapshot in.
-     * @param array $options [optional] {
+     * @param array{
+     *     singleUse?: bool,
+     *     className?: string,
+     *     directedReadOptions?: array,
+     * } $options {
      *     Configuration Options.
      *
      *     @type bool $singleUse If true, a Transaction ID will not be allocated
@@ -599,7 +652,10 @@ class Operation
      * be called directly.
      *
      * @param string $databaseName The database name
-     * @param array $options [optional] {
+     * @param array{
+     *     labels?: string[],
+     *     creator_role?: string,
+     * } $options [optional] {
      *     Configuration options.
      *
      *     @type array $labels Labels to be applied to each session created in
@@ -655,7 +711,7 @@ class Operation
      * Begin a partitioned SQL query.
      *
      * @param Session $session The session to run in.
-     * @param string $transactionId The transaction to run in.
+     * @param string|null $transactionId The transaction to run in.
      * @param string $sql The query string to execute.
      * @param array $options {
      *     Configuration Options
@@ -722,11 +778,15 @@ class Operation
      * Begin a partitioned read.
      *
      * @param Session $session The session to run in.
-     * @param string $transactionId The transaction to run in.
+     * @param string|null $transactionId The transaction to run in.
      * @param string $table The table name.
      * @param KeySet $keySet The KeySet to select rows.
      * @param array $columns A list of column names to return.
-     * @param array $options {
+     * @param array{
+     *     maxPartitions?: int,
+     *     partitionSizeBytes?: int,
+     *     index?: string,
+     * } $options {
      *     Configuration Options
      *
      *     @type int $maxPartitions The desired maximum number of partitions to
@@ -800,7 +860,7 @@ class Operation
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
      *
      * @param Session $session The session to start the snapshot in.
-     * @param array $options [optional] Configuration options.
+     * @param array $options Configuration options.
      *
      * @return array
      */
@@ -843,6 +903,9 @@ class Operation
         return $this->arrayFilterRemoveNull($keys);
     }
 
+    /**
+     * @return string
+     */
     private function getDatabaseNameFromSession(Session $session)
     {
         return $session->info()['databaseName'];

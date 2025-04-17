@@ -69,14 +69,9 @@ class Transaction implements TransactionalReadInterface
     use TransactionalReadTrait;
 
     /**
-     * @var CommitStats
-     */
-    private $commitStats = [];
-
-    /**
      * @var array
      */
-    private $mutations = [];
+    private $commitStats = [];
 
     /**
      * @var bool
@@ -93,11 +88,12 @@ class Transaction implements TransactionalReadInterface
      * @param bool $isRetry Whether the transaction will automatically retry or not.
      * @param string $tag A transaction tag. Requests made using this transaction will
      *        use this as the transaction tag.
-     * @param array $options [optional] {
+     * @param array{
+     *     begin?: array
+     * } $options {
      *     Configuration Options.
      *
-     *     @type array $begin The begin Transaction options.
-     *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
+     *     @type array $begin The begin transaction options. See {@see V1\TransactionOptions}.
      * }
      * @param ValueMapper $mapper Consumed internally for properly map mutation data.
      * @throws \InvalidArgumentException if a tag is specified on a single-use transaction.
@@ -209,7 +205,12 @@ class Transaction implements TransactionalReadInterface
      * @codingStandardsIgnoreEnd
      *
      * @param string $sql The query string to execute.
-     * @param array $options [optional] {
+     * @param array{
+     *     parameters?: array,
+     *     types?: array<string, string>,
+     *     requestOptions?: array,
+     *     transaction?: array,
+     * } $options {
      *     Configuration Options.
      *
      *     @type array $parameters A key/value array of Query Parameters, where
@@ -320,7 +321,9 @@ class Transaction implements TransactionalReadInterface
      *        {@see \Google\Cloud\Spanner\ArrayType} to declare the array
      *        parameter types. Likewise, for structs, use
      *        {@see \Google\Cloud\Spanner\StructType}.
-     * @param array $options [optional] {
+     * @param array{
+     *     requestOptions?: array
+     * } $options {
      *     Configuration Options.
      *
      *     @type array $requestOptions Request options.
@@ -362,7 +365,7 @@ class Transaction implements TransactionalReadInterface
      * $transaction->rollback();
      * ```
      *
-     * @param array $options [optional] Configuration Options.
+     * @param array $options Configuration Options.
      * @return void
      */
     public function rollback(array $options = [])
@@ -393,7 +396,12 @@ class Transaction implements TransactionalReadInterface
      * $transaction->commit();
      * ```
      *
-     * @param array $options [optional] {
+     * @param array{
+     *     mutations?: array,
+     *     returnCommitStats?: bool,
+     *     maxCommitDelay?: Duration,
+     *     requestOptions?: array,
+     * } $options {
      *     Configuration Options.
      *
      *     @type array $mutations An array of mutations to commit. May be used
@@ -412,7 +420,7 @@ class Transaction implements TransactionalReadInterface
      *         Please note, the `requestTag` setting will be ignored as it is not supported for commit requests.
      * }
      * @return Timestamp The commit timestamp.
-     * @throws \BadMethodCall If the transaction is not active or already used.
+     * @throws \BadMethodCallException If the transaction is not active or already used.
      * @throws AbortedException If the commit is aborted for any reason.
      */
     public function commit(array $options = [])

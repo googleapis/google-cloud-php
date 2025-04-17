@@ -32,6 +32,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamInstance;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Protobuf\Internal\FileDescriptorSet;
 
 /**
  * Represents a Cloud Spanner instance
@@ -45,7 +46,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  * $instance = $spanner->instance('my-instance');
  * ```
  *
- * @method resumeOperation() {
+ * @method resumeOperation($operationName, array $info = []) {
  *     Resume a Long Running Operation
  *
  *     Example:
@@ -141,7 +142,9 @@ class Instance
      *        returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit platform
      *        compatibility. **Defaults to** false.
      * @param array $info [optional] A representation of the instance object.
-     * @param array $options [optional]{
+     * @param array{
+     *   directedReadOptions?: array
+     * } $options {
      *     Instance options
      *
      *     @type array $directedReadOptions Directed read options.
@@ -196,7 +199,9 @@ class Instance
      * echo $info['nodeCount'];
      * ```
      *
-     * @param array $options [optional] {
+     * @param array{
+     *     fieldMask?: string|string[]
+     * } $options {
      *     Configuration options
      *
      *     @type string|string[] $fieldMask One or a list of `Instance` fields that should be returned.
@@ -264,7 +269,9 @@ class Instance
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.instance.v1#google.spanner.admin.instance.v1.GetInstanceRequest GetInstanceRequest
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options [optional] {
+     * @param array{
+     *     fieldMask?: string|string[]
+     * } $options {
      *     Configuration options
      *
      *     @type string|string[] $fieldMask One or a list of `Instance` fields that should be returned.
@@ -295,7 +302,12 @@ class Instance
      * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#createinstancerequest CreateInstanceRequest
      *
      * @param InstanceConfiguration $config The configuration to use
-     * @param array $options [optional] {
+     * @param array{
+     *     displayName?: string,
+     *     nodeCount?: int,
+     *     processingUnits?: int,
+     *     labels?: string[],
+     * } $options {
      *     Configuration options
      *
      *     @type string $displayName **Defaults to** the value of $name.
@@ -352,7 +364,7 @@ class Instance
      * }
      * ```
      *
-     * @param array $options [optional] Configuration options.
+     * @param array $options Configuration options.
      * @return int|null
      */
     public function state(array $options = [])
@@ -379,7 +391,12 @@ class Instance
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.instance.v1#updateinstancerequest UpdateInstanceRequest
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options [optional] {
+     * @param array{
+     *   displayName?: string,
+     *   nodeCount?: int,
+     *   processingUnits?: int,
+     *   labels?: string[],
+     * } $options {
      *     Configuration options
      *
      *     @type string $displayName The descriptive name for this instance as
@@ -390,7 +407,7 @@ class Instance
      *     @type array $labels For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://goo.gl/xmQnxf).
      * }
-     * @return LongRunningOperation
+     * @return LongRunningOperation<Instance>
      * @throws \InvalidArgumentException
      */
     public function update(array $options = [])
@@ -441,11 +458,15 @@ class Instance
      * @codingStandardsIgnoreEnd
      *
      * @param string $name The database name.
-     * @param array $options [optional] {
+     * @param array{
+     *     statements?: array,
+     *     protoDescriptors?: FileDescriptorSet|string,
+     *     sessionPool?: SessionPoolInterface
+     * } $options {
      *     Configuration Options
      *
      *     @type array $statements Additional DDL statements.
-     *     @type \Google\Protobuf\FileDescriptorSet|string $protoDescriptors The file
+     *     @type FileDescriptorSet|string $protoDescriptors The file
      *         descriptor set object to be used in the update, or alternatively, an absolute
      *         path to the generated file descriptor set. The descriptor set is only used
      *         during DDL statements, such as `CREATE PROTO BUNDLE`.
@@ -509,7 +530,7 @@ class Instance
      * ```
      *
      * @param string $name The database name
-     * @param array $options [optional] {
+     * @param array{sessionPool?: SessionPoolInterface, databaseRole?: string} $options {
      *     Configuration options.
      *
      *     @type SessionPoolInterface $sessionPool A pool used to manage
@@ -546,7 +567,11 @@ class Instance
      * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.database.v1#listdatabasesrequest ListDatabasesRequest
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options [optional] {
+     * @param array{
+     *     pageSize?: int,
+     *     resultLimit?: int,
+     *     pageToken?: string,
+     * } $options {
      *     Configuration options.
      *
      *     @type int $pageSize Maximum number of results to return per
@@ -613,7 +638,12 @@ class Instance
      * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.database.v1#listbackupsrequest ListBackupsRequest
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options [optional] {
+     * @param array{
+     *     filter?: string,
+     *     pageSize?: int,
+     *     resultLimit?: int,
+     *     pageToken?: string,
+     * } $options {
      *     Configuration options.
      *
      *     @type string $filter The standard list filter.
@@ -661,7 +691,11 @@ class Instance
      * $backupOperations = $instance->backupOperations();
      * ```
      *
-     * @param array $options [optional] {
+     * @param array{
+     *     pageSize?: int,
+     *     resultLimit?: int,
+     *     pageToken?: string,
+     * } $options {
      *     Configuration options.
      *
      *     @type int $pageSize
@@ -677,7 +711,7 @@ class Instance
      *          been generated by a previous call to the API.
      * }
      *
-     * @return ItemIterator<LongRunningOperation>
+     * @return ItemIterator<LongRunningOperation<Backup>>
      */
     public function backupOperations(array $options = [])
     {
@@ -705,7 +739,11 @@ class Instance
      * $databaseOperations = $instance->databaseOperations();
      * ```
      *
-     * @param array $options [optional] {
+     * @param array{
+     *     pageSize?: int,
+     *     resultLimit?: int,
+     *     pageToken?: string,
+     * } $options {
      *     Configuration options.
      *
      *     @type int $pageSize
@@ -721,7 +759,7 @@ class Instance
      *          been generated by a previous call to the API.
      * }
      *
-     * @return ItemIterator<LongRunningOperation>
+     * @return ItemIterator<LongRunningOperation<Database>>
      */
     public function databaseOperations(array $options = [])
     {

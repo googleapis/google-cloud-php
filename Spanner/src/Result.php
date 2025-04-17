@@ -37,6 +37,7 @@ use Grpc;
  * $result = $database->execute('SELECT * FROM Posts');
  * ```
  *
+ * @implements \IteratorAggregate<array>
  * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.ResultSet ResultSet
  */
 class Result implements \IteratorAggregate
@@ -374,7 +375,7 @@ class Result implements \IteratorAggregate
 
     /**
      * @access private
-     * @return \Generator
+     * @return \Generator<array>
      */
     #[\ReturnTypeWillChange]
     public function getIterator()

@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ValidationException;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
@@ -38,6 +39,7 @@ use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TypeCode;
+use Google\Protobuf\Internal\FileDescriptorSet;
 use Google\Rpc\Code;
 
 /**
@@ -62,7 +64,7 @@ use Google\Rpc\Code;
  * $database = $instance->database('my-database');
  * ```
  *
- * @method resumeOperation() {
+ * @method resumeOperation($operationName, array $info = []) {
  *     Resume a Long Running Operation
  *
  *     Example:
@@ -276,7 +278,12 @@ class Database
      * $backups = $database->backups();
      * ```
      *
-     * @param array $options [optional] {
+     * @param array{
+     *     filter?: string,
+     *     pageSize?: int,
+     *     resultLimit?: int,
+     *     pageToken?: string,
+     * } $options {
      *     Configuration options.
      *     @type string $filter The standard list filter.
      *           **NOTE**: This method always sets the database filter as a name of this database.
@@ -424,14 +431,19 @@ class Database
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.database.v1#createdatabaserequest CreateDatabaseRequest
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options [optional] {
+     * @param array{
+     *     statements?: string[],
+     *     protoDescriptors?: FileDescriptorSet|string,
+     *     databaseDialect?: string
+     * } $options {
      *     Configuration Options
      *
      *     @type string[] $statements Additional DDL statements.
-     *     @type \Google\Protobuf\FileDescriptorSet|string $protoDescriptors The file
+     *     @type FileDescriptorSet|string $protoDescriptors The file
      *         descriptor set object to be used in the update, or alternatively, an absolute
      *         path to the generated file descriptor set. The descriptor set is only used
      *         during DDL statements, such as `CREATE PROTO BUNDLE`.
+     *     @type string $databaseDialect
      * }
      * @return LongRunningOperation<Database>
      */
@@ -484,13 +496,15 @@ class Database
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.database.v1#updatedatabaserequest UpdateDatabaseRequest
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options [optional] {
+     * @param array{
+     *     enableDropProtection?: bool,
+     * } $options [optional] {
      *     Configuration Options
      *
      *     @type bool $enableDropProtection If `true`, delete operations for Database
      *           and Instance will be blocked. **Defaults to** `false`.
      * }
-     * @return LongRunningOperation<Database>
+     * @return OperationResponse
      */
     public function updateDatabase(array $options = [])
     {
@@ -532,7 +546,7 @@ class Database
      *
      * @param string $statement A DDL statements to run against a database.
      * @param array $options [optional] Configuration options.
-     * @return LongRunningOperation
+     * @return LongRunningOperation<null>
      */
     public function updateDdl($statement, array $options = [])
     {
@@ -567,7 +581,7 @@ class Database
      *
      * @param string[] $statements A list of DDL statements to run against a database.
      * @param array $options [optional] Configuration options.
-     * @return LongRunningOperation
+     * @return LongRunningOperation<null>
      */
     public function updateDdlBatch(array $statements, array $options = [])
     {
@@ -695,7 +709,17 @@ class Database
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
      * @see https://cloud.google.com/spanner/docs/transactions Transactions
      *
-     * @param array $options [optional] {
+     * @param array{
+     *     returnReadTimestamp?: bool,
+     *     strong?: bool,
+     *     readTimestamp?: Timestamp,
+     *     exactStaleness?: Duration,
+     *     minReadTimestamp?: Timestamp,
+     *     maxStaleness?: Duration,
+     *     singlueUse?: bool,
+     *     sessionOptions?: array,
+     *     directedReadOptions?: array,
+     * } $options {
      *     Configuration Options
      *
      *     See [ReadOnly](https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.TransactionOptions.ReadOnly)
@@ -749,7 +773,7 @@ class Database
         $options['transactionOptions'] = $this->configureSnapshotOptions($options);
         $options['directedReadOptions'] = $this->configureDirectedReadOptions(
             $options,
-            $this->directedReadOptions ?? []
+            $this->directedReadOptions
         );
 
         $session = $this->selectSession(
@@ -789,7 +813,11 @@ class Database
      * @see https://cloud.google.com/spanner/docs/transactions Transactions
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options [optional] {
+     * @param array{
+     *     singleUse?: bool,
+     *     sessionOptions?: array,
+     *     tag?: string,
+     * } $options {
      *     Configuration Options.
      *
      *     @type bool $singleUse If true, a Transaction ID will not be allocated
@@ -888,7 +916,12 @@ class Database
      *
      * @param callable $operation The operations to run in the transaction.
      *        **Signature:** `function (Transaction $transaction)`.
-     * @param array $options [optional] {
+     * @param array{
+     *     maxRetries?: int,
+     *     singleUse?: bool,
+     *     sessionOptions?: array,
+     *     tag?: string,
+     * } $options {
      *     Configuration Options
      *
      *     @type int $maxRetries The number of times to attempt to apply the
@@ -1017,7 +1050,7 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param array $data The row data to insert.
-     * @param array $options [optional] {
+     * @param array{requestOptions?: array} $options {
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
@@ -1066,7 +1099,7 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param array $dataSet The row data to insert.
-     * @param array $options [optional] {
+     * @param array{requestOptions?: array} $options {
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
@@ -1112,7 +1145,7 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param array $data The row data to update.
-     * @param array $options [optional] {
+     * @param array{requestOptions?:array} $options {
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
@@ -1158,7 +1191,7 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param array $dataSet The row data to update.
-     * @param array $options [optional] {
+     * @param array{requestOptions?:array} $options {
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
@@ -1205,7 +1238,7 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param array $data The row data to insert or update.
-     * @param array $options [optional] {
+     * @param array{requestOptions?:array} $options {
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
@@ -1253,7 +1286,7 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param array $dataSet The row data to insert or update.
-     * @param array $options [optional] {
+     * @param array{requestOptions?:array} $options {
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
@@ -1300,7 +1333,7 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param array $data The row data to replace.
-     * @param array $options [optional] {
+     * @param array{requestOptions?:array} $options {
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
@@ -1348,7 +1381,7 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param array $dataSet The row data to replace.
-     * @param array $options [optional] {
+     * @param array{requestOptions?:array} $options {
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
@@ -1398,7 +1431,7 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param KeySet $keySet The KeySet to identify rows to delete.
-     * @param array $options [optional] {
+     * @param array{requestOptions?:array} $options {
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
@@ -1594,7 +1627,22 @@ class Database
      *
      * @codingStandardsIgnoreStart
      * @param string $sql The query string to execute.
-     * @param array $options [optional] {
+     * @param array{
+     *     parameters?: array,
+     *     types?: array,
+     *     returnReadTimestamp?: bool,
+     *     strong?: bool,
+     *     minReadTimestamp?: Timestamp,
+     *     maxStaleness?: Duration,
+     *     readTimestamp?: Timestamp,
+     *     exactStaleness?: Duration,
+     *     begin?: bool|array,
+     *     transactionType?: string,
+     *     sessionOptions?: array,
+     *     queryOptions?: array{optimizerVersion?: string},
+     *     requestOptions?: array,
+     *     directedReadOptions?: array,
+     * } $options {
      *     Configuration Options.
      *     See {@see V1\TransactionOptions\PBReadOnly} for detailed description of
      *     available transaction options. Please note that only one of
@@ -1630,11 +1678,13 @@ class Database
      *           timestamp.
      *     @type Duration $exactStaleness Represents a number of seconds. Executes
      *           all reads at a timestamp that is $exactStaleness old.
-     *     @type bool $begin If true, will begin a new transaction. If a
-     *           read/write transaction is desired, set the value of
+     *     @type bool|array $begin If true or a non-empty array, will begin a
+     *           new transaction. An array represents {@see V1\TransactionOptions}.
+     *           If a read/write transaction is desired, set the value of
      *           $transactionType. If a transaction or snapshot is created, it
      *           will be returned as `$result->transaction()` or
-     *           `$result->snapshot()`. **Defaults to** `false`.
+     *           `$result->snapshot()`.
+     *           **Defaults to** `false`.
      *     @type string $transactionType One of `SessionPoolInterface::CONTEXT_READ`
      *           or `SessionPoolInterface::CONTEXT_READWRITE`. If read/write is
      *           chosen, any snapshot options will be disregarded. If `$begin`
@@ -1687,7 +1737,7 @@ class Database
 
         $options['directedReadOptions'] = $this->configureDirectedReadOptions(
             $options,
-            $this->directedReadOptions ?? []
+            $this->directedReadOptions
         );
 
         try {
@@ -1868,7 +1918,12 @@ class Database
      * @codingStandardsIgnoreEnd
      *
      * @param string $statement The DML statement to execute.
-     * @param array $options [optional] {
+     * @param array{
+     *     parameters?: array,
+     *     types?: array,
+     *     requestOptions?: array,
+     *     transactionOptions?: array{excludeTxnFromChangeStreams?: bool},
+     * } $options {
      *     Configuration Options.
      *
      *     @type array $parameters A key/value array of Query Parameters, where
@@ -1893,6 +1948,7 @@ class Database
      *           Please note, if using the `priority` setting you may utilize the constants available
      *           on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *           Please note, the `transactionTag` setting will be ignored as it is not supported for partitioned DML.
+     *     @type array $transactionOptions
      * }
      * @return int The number of rows modified.
      */
@@ -1989,7 +2045,19 @@ class Database
      * @param string $table The table name.
      * @param KeySet $keySet The KeySet to select rows.
      * @param array $columns A list of column names to return.
-     * @param array $options [optional] {
+     * @param array{
+     *     index?: string,
+     *     limit?: int,
+     *     returnReadTimestamp?: bool,
+     *     strong?: bool,
+     *     minReadTimestamp?: Timestamp,
+     *     maxStaleness?: Duration,
+     *     begin?: true,
+     *     transactionType?: string,
+     *     sessionOptions?: array,
+     *     requestOptions?: array,
+     *     directedReadOptions?: array,
+     * } $options {
      *     Configuration Options.
      *
      *     See [TransactionOptions](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.TransactionOptions)
@@ -2054,7 +2122,7 @@ class Database
 
         $options['directedReadOptions'] = $this->configureDirectedReadOptions(
             $options,
-            $this->directedReadOptions ?? []
+            $this->directedReadOptions
         );
 
         $options = $this->addLarHeader($options, true, $context);
@@ -2233,7 +2301,11 @@ class Database
      * Common method to run mutations within a single-use transaction.
      *
      * @param array $mutations A list of mutations to execute.
-     * @param array $options [optional] {
+     * @param array{
+     *     requestOptions?: array,
+     *     returnCommitStats?: bool,
+     *     maxCommitDelay?: Duration,
+     * } $options {
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
@@ -2260,6 +2332,7 @@ class Database
     /**
      * Convert the simple database name to a fully qualified name.
      *
+     * @param string $name
      * @return string
      */
     private function fullyQualifiedDatabaseName($name)
@@ -2282,7 +2355,7 @@ class Database
     /**
      * Returns the 'CREATE DATABASE' statement as per the given database dialect
      *
-     * @param string $dialect The dialect of the database to be created
+     * @param int $dialect The dialect of the database to be created
      * @return string The specific 'CREATE DATABASE' statement
      */
     private function getCreateDbStatement($dialect)

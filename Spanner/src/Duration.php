@@ -101,7 +101,7 @@ class Duration implements ValueInterface
      * echo $duration->formatAsString();
      * ```
      *
-     * @return string
+     * @return string|false
      */
     public function formatAsString()
     {
@@ -116,6 +116,6 @@ class Duration implements ValueInterface
      */
     public function __toString()
     {
-        return $this->formatAsString();
+        return (string) $this->formatAsString();
     }
 }

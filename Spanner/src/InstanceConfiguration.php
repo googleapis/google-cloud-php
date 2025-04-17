@@ -232,7 +232,12 @@ class InstanceConfiguration
      * @param ReplicaInfo[]|array $replicas The replica information for the new instance configuration. This array must
      *           contain all the replicas from the base configuration, plus at least one from list of optional replicas
      *           of the base configuration. One of the replicas must be set as the default leader location.
-     * @param array $options [optional] {
+     * @param array{
+     *     displayName?: string,
+     *     leaderOptions?: array,
+     *     labels?: array,
+     *     validateOnly?: bool,
+     * } $options {
      *     Configuration options
      *
      *     @type string $displayName **Defaults to** the name of this instance configuration.
@@ -292,7 +297,11 @@ class InstanceConfiguration
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.instance.v1#updateinstanceconfigrequest UpdateInstanceConfigRequest
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options [optional] {
+     * @param array{
+     *     displayName?: string,
+     *     labels?: array,
+     *     validateOnly?: bool,
+     * } $options {
      *     Configuration options
      *
      *     @type string $displayName The descriptive name for this instance as

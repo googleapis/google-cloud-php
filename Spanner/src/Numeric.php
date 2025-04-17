@@ -75,7 +75,7 @@ class Numeric implements ValueInterface
     /**
      * Get the type.
      *
-     * @return string
+     * @return int
      */
     public function type()
     {

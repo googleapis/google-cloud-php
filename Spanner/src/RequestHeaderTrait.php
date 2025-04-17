@@ -26,8 +26,8 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  */
 trait RequestHeaderTrait
 {
-    private static $larHeader = 'x-goog-spanner-route-to-leader';
-    private static $resourcePrefixHeader = 'google-cloud-resource-prefix';
+    private static string $larHeader = 'x-goog-spanner-route-to-leader';
+    private static string $resourcePrefixHeader = 'google-cloud-resource-prefix';
 
     /**
      * Add the `x-goog-spanner-route-to-leader` header value to the request.

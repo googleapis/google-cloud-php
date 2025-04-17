@@ -39,7 +39,7 @@ trait TransactionalReadTrait
     private $session;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $transactionId;
 
@@ -69,7 +69,7 @@ trait TransactionalReadTrait
     private $seqno = 1;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $tag = null;
 
@@ -220,7 +220,14 @@ trait TransactionalReadTrait
      *
      * @codingStandardsIgnoreStart
      * @param string $sql The query string to execute.
-     * @param array $options [optional] {
+     * @param array{
+     *     parameters?: array,
+     *     types?: array,
+     *     queryOptions?: array{optimizerVersion?: string},
+     *     requestOptions?: array,
+     *     directedReadOptions?: array,
+     *     begin?: array,
+     * } $options {
      *     Configuration Options.
      *     See [TransactionOptions](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.TransactionOptions)
      *     for detailed description of available transaction options. Please
@@ -268,6 +275,7 @@ trait TransactionalReadTrait
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
+     *     @type array $begin
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
@@ -300,7 +308,7 @@ trait TransactionalReadTrait
 
         $options['directedReadOptions'] = $this->configureDirectedReadOptions(
             $options,
-            $this->directedReadOptions ?? []
+            $this->directedReadOptions
         );
 
         $options = $this->addLarHeader($options, true, $this->context);
@@ -335,7 +343,13 @@ trait TransactionalReadTrait
      * @param string $table The table name.
      * @param KeySet $keySet The KeySet to select rows.
      * @param array $columns A list of column names to return.
-     * @param array $options [optional] {
+     * @param array{
+     *     index?: string,
+     *     limit?: int,
+     *     requestOptions?: array,
+     *     directedReadOptions?: array,
+     *     begin?: array,
+     * } $options {
      *     Configuration Options.
      *
      *     @type string $index The name of an index on the table.
@@ -351,6 +365,7 @@ trait TransactionalReadTrait
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
+     *     @type array $begin The begin transaction options. See {@see V1\TransactionOptions}.
      * }
      * @return Result
      */
@@ -380,7 +395,7 @@ trait TransactionalReadTrait
 
         $options['directedReadOptions'] = $this->configureDirectedReadOptions(
             $options,
-            $this->directedReadOptions ?? []
+            $this->directedReadOptions
         );
 
         $options = $this->addLarHeader($options, true, $this->context);

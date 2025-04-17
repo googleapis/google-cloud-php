@@ -151,7 +151,7 @@ class CacheSessionPool implements SessionPoolInterface
     private $cacheItemPool;
 
     /**
-     * @var string|null
+     * @var string
      */
     private $cacheKey;
 
@@ -161,7 +161,7 @@ class CacheSessionPool implements SessionPoolInterface
     private $config;
 
     /**
-     * @var Database|null
+     * @var Database
      */
     private $database;
 
@@ -403,7 +403,7 @@ class CacheSessionPool implements SessionPoolInterface
      * @param int $percent The percentage to downsize the pool by. Must be
      *        between 1 and 100.
      * @return int The number of sessions removed from the pool.
-     * @throws \InvaldArgumentException
+     * @throws \InvalidArgumentException
      * @throws \RuntimeException
      */
     public function downsize($percent)
@@ -765,12 +765,14 @@ class CacheSessionPool implements SessionPoolInterface
             unset($data['inUse'][$session['name']]);
             $this->save($item->set($data));
         });
+
+        return null;
     }
 
     /**
      * Blocks until a session becomes available.
      *
-     * @param \RuntimeException $exception
+     * @param \Exception $exception
      * @return array
      * @throws \RuntimeException
      */
@@ -942,6 +944,7 @@ class CacheSessionPool implements SessionPoolInterface
      */
     public function maintain()
     {
+        /** @phpstan-ignore-next-line */
         if (!isset($this->database)) {
             throw new \LogicException('Cannot maintain session pool: database not set.');
         }
@@ -1054,7 +1057,7 @@ class CacheSessionPool implements SessionPoolInterface
                             ];
                         }
                     }
-                    array_splice($sessions, 0, $refreshCount);
+                    array_splice($sessions, 0, (int) $refreshCount);
                 }
             }
 
@@ -1066,8 +1069,10 @@ class CacheSessionPool implements SessionPoolInterface
     }
 
     /**
+     * Returns `true` if session was refreshed, `false` if session does not exist.
+     *
      * @param Session $session
-     * @return bool `true`: session was refreshed, `false`: session does not exist
+     * @return bool
      */
     private function refreshSession($session)
     {

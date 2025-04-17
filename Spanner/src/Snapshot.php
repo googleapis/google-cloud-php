@@ -42,7 +42,11 @@ class Snapshot implements TransactionalReadInterface
     /**
      * @param Operation $operation The Operation instance.
      * @param Session $session The session to use for spanner interactions.
-     * @param array $options [optional] {
+     * @param array{
+     *     id?: string,
+     *     readTimestamp?: Timestamp,
+     *     directedReadOptions?: array,
+     * } $options {
      *     Configuration Options.
      *
      *     @type string $id The Transaction ID. If no ID is provided,
