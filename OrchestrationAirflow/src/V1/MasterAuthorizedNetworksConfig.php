@@ -19,9 +19,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class MasterAuthorizedNetworksConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Whether or not master authorized networks feature is enabled.
+     * Optional. Whether or not master authorized networks feature is enabled.
      *
-     * Generated from protobuf field <code>bool enabled = 1;</code>
+     * Generated from protobuf field <code>bool enabled = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $enabled = false;
     /**
@@ -39,7 +39,7 @@ class MasterAuthorizedNetworksConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enabled
-     *           Whether or not master authorized networks feature is enabled.
+     *           Optional. Whether or not master authorized networks feature is enabled.
      *     @type array<\Google\Cloud\Orchestration\Airflow\Service\V1\MasterAuthorizedNetworksConfig\CidrBlock>|\Google\Protobuf\Internal\RepeatedField $cidr_blocks
      *           Up to 50 external networks that could access Kubernetes master through
      *           HTTPS.
@@ -51,9 +51,9 @@ class MasterAuthorizedNetworksConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether or not master authorized networks feature is enabled.
+     * Optional. Whether or not master authorized networks feature is enabled.
      *
-     * Generated from protobuf field <code>bool enabled = 1;</code>
+     * Generated from protobuf field <code>bool enabled = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getEnabled()
@@ -62,9 +62,9 @@ class MasterAuthorizedNetworksConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether or not master authorized networks feature is enabled.
+     * Optional. Whether or not master authorized networks feature is enabled.
      *
-     * Generated from protobuf field <code>bool enabled = 1;</code>
+     * Generated from protobuf field <code>bool enabled = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
