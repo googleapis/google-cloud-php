@@ -700,6 +700,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "file"
     },
+    "FinancialServices": {
+        "language": "php",
+        "distribution_name": "google/cloud-financialservices",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-financialservices/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "financialservices"
+    },
     "Firestore": {
         "language": "php",
         "distribution_name": "google/cloud-firestore",
