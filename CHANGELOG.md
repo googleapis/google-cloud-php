@@ -1,5 +1,219 @@
 # Changelog
 
+## 0.284.0
+
+<details><summary>google/analytics-admin 0.28.0</summary>
+
+
+
+### Features
+
+* [AnalyticsAdmin] add the `CreateReportingDataAnnotation` method ([#8236](https://github.com/googleapis/google-cloud-php/issues/8236)) ([17b5d48](https://github.com/googleapis/google-cloud-php/commit/17b5d48532517ec0ddc2a7aa749be2d894e5ef54))
+
+</details>
+
+<details><summary>google/common-protos 4.12.0</summary>
+
+
+
+### Features
+
+* [CommonProtos] expand QuotaFailure with quota error details ([#8218](https://github.com/googleapis/google-cloud-php/issues/8218)) ([ecfcdbe](https://github.com/googleapis/google-cloud-php/commit/ecfcdbe319afb6ed88e48724be49f03a9cba40bf))
+
+</details>
+
+<details><summary>google/cloud-compute 1.30.0</summary>
+
+
+
+### Features
+
+* [Compute] Update Compute Engine API to revision 20250415 ([#8237](https://github.com/googleapis/google-cloud-php/issues/8237)) ([a93c8a5](https://github.com/googleapis/google-cloud-php/commit/a93c8a53ae06dd0f5b9dfc319147dec1522c47cc))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 2.2.5</summary>
+
+
+
+### Documentation
+
+* [DataCatalog] A comment for field `sql_resource` in message `.google.cloud.datacatalog.v1.LookupEntryRequest` is changed ([#8214](https://github.com/googleapis/google-cloud-php/issues/8214)) ([5cc3a52](https://github.com/googleapis/google-cloud-php/commit/5cc3a52fc0398bd721c59fff749d167d6f6c8f30))
+
+</details>
+
+<details><summary>google/cloud-dataplex 1.6.0</summary>
+
+
+
+### Features
+
+* [Dataplex] Add Data Discovery result statistics ([#8222](https://github.com/googleapis/google-cloud-php/issues/8222)) ([973af1c](https://github.com/googleapis/google-cloud-php/commit/973af1c936bbfdc0b4fdfda2ac11ff51beda3ce7))
+* A new field `export_result` is added to message `.google.cloud.dataplex.v1.MetadataJob` ([973af1c](https://github.com/googleapis/google-cloud-php/commit/973af1c936bbfdc0b4fdfda2ac11ff51beda3ce7))
+* A new field `export_spec` is added to message `.google.cloud.dataplex.v1.MetadataJob` ([973af1c](https://github.com/googleapis/google-cloud-php/commit/973af1c936bbfdc0b4fdfda2ac11ff51beda3ce7))
+* A new message `ExportJobResult` is added ([973af1c](https://github.com/googleapis/google-cloud-php/commit/973af1c936bbfdc0b4fdfda2ac11ff51beda3ce7))
+* A new message `ExportJobSpec` is added ([973af1c](https://github.com/googleapis/google-cloud-php/commit/973af1c936bbfdc0b4fdfda2ac11ff51beda3ce7))
+* A new value `EXPORT` is added to enum `Type` ([973af1c](https://github.com/googleapis/google-cloud-php/commit/973af1c936bbfdc0b4fdfda2ac11ff51beda3ce7))
+* Removing internal visibility labels for cmek public preview ([973af1c](https://github.com/googleapis/google-cloud-php/commit/973af1c936bbfdc0b4fdfda2ac11ff51beda3ce7))
+
+</details>
+
+<details><summary>google/cloud-edgenetwork 1.2.1</summary>
+
+
+
+### Documentation
+
+* [EdgeNetwork] fix typos in comments ([#8225](https://github.com/googleapis/google-cloud-php/issues/8225)) ([a29746d](https://github.com/googleapis/google-cloud-php/commit/a29746d582a5d8f2c49be7a815965b14ea0033f8))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.50.0</summary>
+
+
+
+### Features
+
+* [Firestore] new Firestore index modes and Database Editions ([#8217](https://github.com/googleapis/google-cloud-php/issues/8217)) ([266e26b](https://github.com/googleapis/google-cloud-php/commit/266e26b92a58cf6b609c91f8aff4e296aa538cad))
+
+</details>
+
+<details><summary>google/cloud-iap 2.1.0</summary>
+
+
+
+### Features
+
+* **IAP:** Use IAP with Workforce Identity Federation ([#8219](https://github.com/googleapis/google-cloud-php/issues/8219)) ([09dc1a9](https://github.com/googleapis/google-cloud-php/commit/09dc1a93e648020ee6341a6fac097d9e0ea30b5d))
+
+</details>
+
+<details><summary>google/cloud-netapp 1.4.1</summary>
+
+
+
+### Documentation
+
+* [NetApp] A comment for field `cooling_threshold_days` in message `.google.cloud.netapp.v1.TieringPolicy` is changed ([#8235](https://github.com/googleapis/google-cloud-php/issues/8235)) ([98a06ed](https://github.com/googleapis/google-cloud-php/commit/98a06ed6bcb74e7d2cb1ba47bcf3ff6a2250472d))
+
+</details>
+
+<details><summary>google/cloud-network-management 2.4.0</summary>
+
+
+
+### Features
+
+* [NetworkManagement] add messages and fields related to Direct VPC Egress ([#8211](https://github.com/googleapis/google-cloud-php/issues/8211)) ([bdd6100](https://github.com/googleapis/google-cloud-php/commit/bdd61006f1e12404ea78dde3eff51f7e4ca166ee))
+* Add enum types related to Abort ([bdd6100](https://github.com/googleapis/google-cloud-php/commit/bdd61006f1e12404ea78dde3eff51f7e4ca166ee))
+* Add enum types related to Drop ([bdd6100](https://github.com/googleapis/google-cloud-php/commit/bdd61006f1e12404ea78dde3eff51f7e4ca166ee))
+* Add enum types related to Firewall ([bdd6100](https://github.com/googleapis/google-cloud-php/commit/bdd61006f1e12404ea78dde3eff51f7e4ca166ee))
+* Add enum types related to Google Service ([bdd6100](https://github.com/googleapis/google-cloud-php/commit/bdd61006f1e12404ea78dde3eff51f7e4ca166ee))
+* Add messages and fields related to Route ([bdd6100](https://github.com/googleapis/google-cloud-php/commit/bdd61006f1e12404ea78dde3eff51f7e4ca166ee))
+* Add messages and fields related to Serverless External ([bdd6100](https://github.com/googleapis/google-cloud-php/commit/bdd61006f1e12404ea78dde3eff51f7e4ca166ee))
+
+
+### Documentation
+
+* Update outdated comments ([bdd6100](https://github.com/googleapis/google-cloud-php/commit/bdd61006f1e12404ea78dde3eff51f7e4ca166ee))
+
+</details>
+
+<details><summary>google/cloud-oracledatabase 0.5.0</summary>
+
+
+
+### Features
+
+* [OracleDatabase] add new AutonomousDatabase RPCs ([#8220](https://github.com/googleapis/google-cloud-php/issues/8220)) ([a0d34ea](https://github.com/googleapis/google-cloud-php/commit/a0d34ea4c2c6ac04d631ddcefac1978cf814624b))
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 2.1.7</summary>
+
+
+
+### Documentation
+
+* [OrchestrationAirflow] `enabled` field of `MasterAuthorizedNetworksConfig` is now marked as optional ([#8232](https://github.com/googleapis/google-cloud-php/issues/8232)) ([5f0f9fd](https://github.com/googleapis/google-cloud-php/commit/5f0f9fde70ab2e1d6bdd0af89bd538a9de897371))
+
+</details>
+
+<details><summary>google/cloud-org-policy 1.2.0</summary>
+
+
+
+### Features
+
+* [OrgPolicy] Add managed constraints new fields (e.g. parameter) ([#8238](https://github.com/googleapis/google-cloud-php/issues/8238)) ([1e61c11](https://github.com/googleapis/google-cloud-php/commit/1e61c11b6999983a1fb7067ddde3a060418730f3))
+
+</details>
+
+<details><summary>google/cloud-parallelstore 0.11.0</summary>
+
+
+
+### Features
+
+* [Parallelstore] A new value `REPAIRING` is added to enum `State` ([#8212](https://github.com/googleapis/google-cloud-php/issues/8212)) ([5515050](https://github.com/googleapis/google-cloud-php/commit/55150500c398a75e1a9e3453bdaff6b600a1d2ae))
+
+
+### Documentation
+
+* [Parallelstore] A comment for field `daos_version` in message `.google.cloud.parallelstore.v1.Instance` is changed ([#8231](https://github.com/googleapis/google-cloud-php/issues/8231)) ([377cc0f](https://github.com/googleapis/google-cloud-php/commit/377cc0fd5d1eafd7a9c67e4d84ee7749fe9d2ae5))
+
+</details>
+
+<details><summary>google/shopping-css 0.6.0</summary>
+
+
+
+### Features
+
+* [ShoppingCss] Introduce QuotaService for CSS API ([#8216](https://github.com/googleapis/google-cloud-php/issues/8216)) ([6b8d2b4](https://github.com/googleapis/google-cloud-php/commit/6b8d2b409fd6d546be80d4155323eeaa3ff08b38))
+
+</details>
+
+<details><summary>google/shopping-merchant-lfp 0.3.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantLfp] Add GetLfpMerchantState method ([#8226](https://github.com/googleapis/google-cloud-php/issues/8226)) ([0294352](https://github.com/googleapis/google-cloud-php/commit/02943524f02c9e0ae16912eec5a0f072a415fd6d))
+
+</details>
+
+<details><summary>google/shopping-merchant-products 0.5.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantProducts] A new field `automated_discounts` is added to message `google.shopping.merchant.products.v1beta.Product` ([#8215](https://github.com/googleapis/google-cloud-php/issues/8215)) ([8be2553](https://github.com/googleapis/google-cloud-php/commit/8be2553f68bba80cdce2714135add98c56bfa22f))
+
+</details>
+
+<details><summary>google/cloud-storage 1.48.0</summary>
+
+
+
+### Features
+
+* **Storage:** Add MoveObject functionality ([#8205](https://github.com/googleapis/google-cloud-php/issues/8205)) ([773b849](https://github.com/googleapis/google-cloud-php/commit/773b849c683b6b75777e1f5ab604f39e9b3144ee))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 2.1.1</summary>
+
+
+
+### Documentation
+
+* Update speech synthesis sample code ([#8230](https://github.com/googleapis/google-cloud-php/issues/8230)) ([56bcaba](https://github.com/googleapis/google-cloud-php/commit/56bcaba154920edbd19c23891fa5682ed58865ab))
+
+</details>
+
 ## 0.283.0
 
 <details><summary>google/cloud-artifact-registry 1.2.0</summary>
