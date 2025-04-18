@@ -32,7 +32,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Basic information about the Organization Policy.
+     * Basic information about the organization policy.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.PolicySpec spec = 2;</code>
      */
@@ -80,7 +80,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      *           acceptable name for API requests, but responses will return the name using
      *           the equivalent project number.
      *     @type \Google\Cloud\OrgPolicy\V2\PolicySpec $spec
-     *           Basic information about the Organization Policy.
+     *           Basic information about the organization policy.
      *     @type \Google\Cloud\OrgPolicy\V2\AlternatePolicySpec $alternate
      *           Deprecated.
      *     @type \Google\Cloud\OrgPolicy\V2\PolicySpec $dry_run_spec
@@ -144,7 +144,7 @@ class Policy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Basic information about the Organization Policy.
+     * Basic information about the organization policy.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.PolicySpec spec = 2;</code>
      * @return \Google\Cloud\OrgPolicy\V2\PolicySpec|null
@@ -165,7 +165,7 @@ class Policy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Basic information about the Organization Policy.
+     * Basic information about the organization policy.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.PolicySpec spec = 2;</code>
      * @param \Google\Cloud\OrgPolicy\V2\PolicySpec $var

@@ -478,6 +478,76 @@ class StorageObject
     }
 
     /**
+     * Move an object within a bucket with HNS enabled.
+     *
+     * This method copies data using multiple requests so large objects can be
+     * copied with a normal length timeout per request rather than one very long
+     * timeout for a single request.
+     *
+     * Example:
+     * ```
+     * // Provide your destination object as a string.
+     * $moveObject = $object->move('newObject.txt');
+     * ```
+     *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objects/move Objects move API documentation.
+     *
+     * @param string $destinationObject The destination object.
+     * @param array $options [optional]
+     *     Configuration options.
+     *
+     *     @type string $ifGenerationMatch Makes the operation conditional on
+     *           whether the destination object's current generation matches the
+     *           given value.
+     *     @type string $ifGenerationNotMatch Makes the operation conditional on
+     *           whether the destination object's current generation does not
+     *           match the given value.
+     *     @type string $ifMetagenerationMatch Makes the operation conditional
+     *           on whether the destination object's current metageneration
+     *           matches the given value.
+     *     @type string $ifMetagenerationNotMatch Makes the operation
+     *           conditional on whether the destination object's current
+     *           metageneration does not match the given value.
+     *     @type string $ifSourceGenerationMatch Makes the operation conditional
+     *           on whether the source object's current generation matches the
+     *           given value.
+     *     @type string $ifSourceGenerationNotMatch Makes the operation
+     *           conditional on whether the source object's current generation
+     *           does not match the given value.
+     *     @type string $ifSourceMetagenerationMatch Makes the operation
+     *           conditional on whether the source object's current
+     *           metageneration matches the given value.
+     *     @type string $ifSourceMetagenerationNotMatch Makes the operation
+     *           conditional on whether the source object's current
+     *           metageneration does not match the given value.
+     *
+     * @return StorageObject
+     * @throws \InvalidArgumentException
+     */
+    public function move($destinationObject, array $options = [])
+    {
+        if (!is_string($destinationObject)) {
+            throw new \InvalidArgumentException(
+                '$destinationObject must be a string.'
+            );
+        }
+        $options['bucket'] = $this->identity['bucket'];
+        $options['sourceObject'] = $this->identity['object'];
+        $options['destinationObject'] = $destinationObject;
+        $options['userProject'] = $this->identity['userProject'];
+
+        $response = $this->connection->moveObject($options);
+
+        return new StorageObject(
+            $this->connection,
+            $response['name'],
+            $response['bucket'],
+            $response['generation'],
+            $response + ['requesterProjectId' => $this->identity['userProject']]
+        );
+    }
+
+    /**
      * Renames the object.
      *
      * Please note that there is no atomic rename provided by the Storage API.

@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\InstancesReportHostAsFaultyRequest;
 use UnexpectedValueException;
 
 /**
- * The disruption schedule for the VM. Default to IMMEDIATE.
+ * The disruption schedule for the VM. Required field, only allows IMMEDIATE.
  *
  * Protobuf type <code>google.cloud.compute.v1.InstancesReportHostAsFaultyRequest.DisruptionSchedule</code>
  */
