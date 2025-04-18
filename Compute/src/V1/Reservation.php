@@ -34,6 +34,13 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     private $creation_timestamp = null;
     /**
+     * Specifies the deployment strategy for this reservation.
+     * Check the DeploymentType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string deployment_type = 396722292;</code>
+     */
+    private $deployment_type = null;
+    /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
@@ -51,6 +58,12 @@ class Reservation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
+    /**
+     * [Output Only] Full or partial URL to parent commitments. This field displays for reservations that are tied to multiple commitments.
+     *
+     * Generated from protobuf field <code>repeated string linked_commitments = 470957784;</code>
+     */
+    private $linked_commitments;
     /**
      * The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
@@ -131,12 +144,17 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *           [Output Only] Full or partial URL to a parent commitment. This field displays for reservations that are tied to a commitment.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
+     *     @type string $deployment_type
+     *           Specifies the deployment strategy for this reservation.
+     *           Check the DeploymentType enum for the list of possible values.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#reservations for reservations.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $linked_commitments
+     *           [Output Only] Full or partial URL to parent commitments. This field displays for reservations that are tied to multiple commitments.
      *     @type string $name
      *           The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type \Google\Cloud\Compute\V1\AllocationReservationSharingPolicy $reservation_sharing_policy
@@ -276,6 +294,44 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Specifies the deployment strategy for this reservation.
+     * Check the DeploymentType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string deployment_type = 396722292;</code>
+     * @return string
+     */
+    public function getDeploymentType()
+    {
+        return isset($this->deployment_type) ? $this->deployment_type : '';
+    }
+
+    public function hasDeploymentType()
+    {
+        return isset($this->deployment_type);
+    }
+
+    public function clearDeploymentType()
+    {
+        unset($this->deployment_type);
+    }
+
+    /**
+     * Specifies the deployment strategy for this reservation.
+     * Check the DeploymentType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string deployment_type = 396722292;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDeploymentType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->deployment_type = $var;
+
+        return $this;
+    }
+
+    /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
@@ -379,6 +435,32 @@ class Reservation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->kind = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Full or partial URL to parent commitments. This field displays for reservations that are tied to multiple commitments.
+     *
+     * Generated from protobuf field <code>repeated string linked_commitments = 470957784;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getLinkedCommitments()
+    {
+        return $this->linked_commitments;
+    }
+
+    /**
+     * [Output Only] Full or partial URL to parent commitments. This field displays for reservations that are tied to multiple commitments.
+     *
+     * Generated from protobuf field <code>repeated string linked_commitments = 470957784;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setLinkedCommitments($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->linked_commitments = $arr;
 
         return $this;
     }

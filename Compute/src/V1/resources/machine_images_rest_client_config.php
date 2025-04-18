@@ -111,6 +111,23 @@ return [
                     ],
                 ],
             ],
+            'SetLabels' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/machineImages/{resource}/setLabels',
+                'body' => 'global_set_labels_request_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
             'TestIamPermissions' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/machineImages/{resource}/testIamPermissions',
