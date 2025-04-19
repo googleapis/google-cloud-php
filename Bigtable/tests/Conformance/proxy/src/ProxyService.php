@@ -200,19 +200,27 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
             'rowRanges' => $ranges,
             'filter' => $request->getFilter(),
             'rowsLimit' => $request->getRowsLimit(),
+            'reversed' => $request->getReversed(),
             'timeoutMillis' => $this->getTimeoutMillis($config->getPerOperationTimeout()),
         ]);
 
         $rows = [];
         $rowCount = 0;
         $cancelAfterRows = $in->getCancelAfterRows();
-        foreach ($stream as $key => $rowData) {
-            $row = $this->arrayToRowProto($rowData);
-            $row->setKey($key);
-            $rows[] = $row;
-            if ($cancelAfterRows && ++$rowCount >= $cancelAfterRows) {
-                break;
+        try {
+            foreach ($stream as $key => $rowData) {
+                $row = $this->arrayToRowProto($rowData);
+                $row->setKey($key);
+                $rows[] = $row;
+                if ($cancelAfterRows && ++$rowCount >= $cancelAfterRows) {
+                    break;
+                }
             }
+        } catch (\Google\ApiCore\ApiException $e) {
+            return $out->setStatus(new Status([
+                'code' => $e->getCode(),
+                'message' => $e->getMessage(),
+            ]));
         }
 
         $out->setRows($rows);
