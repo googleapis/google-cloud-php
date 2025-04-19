@@ -29,7 +29,7 @@ class ListInstancePartitionsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
     /**
      * The list of unreachable instances or instance partitions.
      * It includes the names of instances or instance partitions whose metadata
