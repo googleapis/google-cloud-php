@@ -32,7 +32,7 @@ class CustomConstraint extends \Google\Protobuf\Internal\Message
     protected $name = '';
     /**
      * Immutable. The resource instance type on which this policy applies. Format
-     * will be of the form : `<canonical service name>/<type>` Example:
+     * will be of the form : `<service name>/<type>` Example:
      *  * `compute.googleapis.com/Instance`.
      *
      * Generated from protobuf field <code>repeated string resource_types = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
@@ -45,7 +45,8 @@ class CustomConstraint extends \Google\Protobuf\Internal\Message
      */
     private $method_types;
     /**
-     * Org policy condition/expression. For example:
+     * A Common Expression Language (CEL) condition which is used in the
+     * evaluation of the constraint. For example:
      * `resource.instanceName.matches("[production|test]_.*_(\d)+")` or,
      * `resource.management.auto_upgrade == true`
      * The max length of the condition is 1000 characters.
@@ -76,7 +77,7 @@ class CustomConstraint extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The last time this custom constraint was updated. This
      * represents the last time that the `CreateCustomConstraint` or
-     * `UpdateCustomConstraint` RPC was called
+     * `UpdateCustomConstraint` methods were called.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -97,12 +98,13 @@ class CustomConstraint extends \Google\Protobuf\Internal\Message
      *           prefix `organizations/{organization_id}/customConstraints/` is not counted.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_types
      *           Immutable. The resource instance type on which this policy applies. Format
-     *           will be of the form : `<canonical service name>/<type>` Example:
+     *           will be of the form : `<service name>/<type>` Example:
      *            * `compute.googleapis.com/Instance`.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $method_types
      *           All the operations being applied for this constraint.
      *     @type string $condition
-     *           Org policy condition/expression. For example:
+     *           A Common Expression Language (CEL) condition which is used in the
+     *           evaluation of the constraint. For example:
      *           `resource.instanceName.matches("[production|test]_.*_(\d)+")` or,
      *           `resource.management.auto_upgrade == true`
      *           The max length of the condition is 1000 characters.
@@ -117,7 +119,7 @@ class CustomConstraint extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The last time this custom constraint was updated. This
      *           represents the last time that the `CreateCustomConstraint` or
-     *           `UpdateCustomConstraint` RPC was called
+     *           `UpdateCustomConstraint` methods were called.
      * }
      */
     public function __construct($data = NULL) {
@@ -163,7 +165,7 @@ class CustomConstraint extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The resource instance type on which this policy applies. Format
-     * will be of the form : `<canonical service name>/<type>` Example:
+     * will be of the form : `<service name>/<type>` Example:
      *  * `compute.googleapis.com/Instance`.
      *
      * Generated from protobuf field <code>repeated string resource_types = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
@@ -176,7 +178,7 @@ class CustomConstraint extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The resource instance type on which this policy applies. Format
-     * will be of the form : `<canonical service name>/<type>` Example:
+     * will be of the form : `<service name>/<type>` Example:
      *  * `compute.googleapis.com/Instance`.
      *
      * Generated from protobuf field <code>repeated string resource_types = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
@@ -218,7 +220,8 @@ class CustomConstraint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Org policy condition/expression. For example:
+     * A Common Expression Language (CEL) condition which is used in the
+     * evaluation of the constraint. For example:
      * `resource.instanceName.matches("[production|test]_.*_(\d)+")` or,
      * `resource.management.auto_upgrade == true`
      * The max length of the condition is 1000 characters.
@@ -232,7 +235,8 @@ class CustomConstraint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Org policy condition/expression. For example:
+     * A Common Expression Language (CEL) condition which is used in the
+     * evaluation of the constraint. For example:
      * `resource.instanceName.matches("[production|test]_.*_(\d)+")` or,
      * `resource.management.auto_upgrade == true`
      * The max length of the condition is 1000 characters.
@@ -334,7 +338,7 @@ class CustomConstraint extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The last time this custom constraint was updated. This
      * represents the last time that the `CreateCustomConstraint` or
-     * `UpdateCustomConstraint` RPC was called
+     * `UpdateCustomConstraint` methods were called.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -357,7 +361,7 @@ class CustomConstraint extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The last time this custom constraint was updated. This
      * represents the last time that the `CreateCustomConstraint` or
-     * `UpdateCustomConstraint` RPC was called
+     * `UpdateCustomConstraint` methods were called.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
