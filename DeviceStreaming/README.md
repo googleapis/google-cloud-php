@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\DeviceStreaming\V1\Client\DirectAccessServiceClient;
+Google\Cloud\DeviceStreaming\V1\DeviceSession;
+Google\Cloud\DeviceStreaming\V1\GetDeviceSessionRequest;
+
+// Create a client.
+$directAccessServiceClient = new DirectAccessServiceClient();
+
+// Prepare the request message.
+$request = (new GetDeviceSessionRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var DeviceSession $response */
+    $response = $directAccessServiceClient->getDeviceSession($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/google-cloud-php-devicestreaming/tree/main/samples) for a canonical list of samples.
 
 ### Debugging
