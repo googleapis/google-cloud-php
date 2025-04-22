@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\FinancialServices\V1\BacktestResult;
+Google\Cloud\FinancialServices\V1\Client\AMLClient;
+Google\Cloud\FinancialServices\V1\GetBacktestResultRequest;
+
+// Create a client.
+$aMLClient = new AMLClient();
+
+// Prepare the request message.
+$request = (new GetBacktestResultRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var BacktestResult $response */
+    $response = $aMLClient->getBacktestResult($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/google-cloud-php-financialservices/tree/main/samples) for a canonical list of samples.
 
 ### Debugging
