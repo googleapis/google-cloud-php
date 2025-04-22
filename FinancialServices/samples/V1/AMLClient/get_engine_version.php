@@ -24,9 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START financialservices_v1_generated_AML_GetEngineVersion_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Financialservices\V1\Client\AMLClient;
-use Google\Cloud\Financialservices\V1\EngineVersion;
-use Google\Cloud\Financialservices\V1\GetEngineVersionRequest;
+use Google\Cloud\FinancialServices\V1\Client\AMLClient;
+use Google\Cloud\FinancialServices\V1\EngineVersion;
+use Google\Cloud\FinancialServices\V1\GetEngineVersionRequest;
 
 /**
  * Gets a single EngineVersion.

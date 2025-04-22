@@ -25,9 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START financialservices_v1_generated_AML_UpdateModel_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Financialservices\V1\Client\AMLClient;
-use Google\Cloud\Financialservices\V1\Model;
-use Google\Cloud\Financialservices\V1\UpdateModelRequest;
+use Google\Cloud\FinancialServices\V1\Client\AMLClient;
+use Google\Cloud\FinancialServices\V1\Model;
+use Google\Cloud\FinancialServices\V1\UpdateModelRequest;
 use Google\Protobuf\Timestamp;
 use Google\Rpc\Status;
 
@@ -36,12 +36,12 @@ use Google\Rpc\Status;
  *
  * @param string $formattedModelEngineConfig   The resource name of the EngineConfig the model training will be
  *                                             based on. Format:
- *                                             "/projects/{project_num}/locations/{location}/instances/{instance}/engineConfigs/{engineConfig}"
+ *                                             `/projects/{project_num}/locations/{location}/instances/{instance}/engineConfigs/{engineConfig}`
  *                                             Please see {@see AMLClient::engineConfigName()} for help formatting this field.
  * @param string $formattedModelPrimaryDataset The resource name of the Primary Dataset used in this model
  *                                             training. For information about how primary and auxiliary datasets are
  *                                             used, refer to the engine version's documentation.  Format:
- *                                             "/projects/{project_num}/locations/{location}/instances/{instance}/datasets/{dataset}"
+ *                                             `/projects/{project_num}/locations/{location}/instances/{instance}/datasets/{dataset}`
  *                                             Please see {@see AMLClient::datasetName()} for help formatting this field.
  */
 function update_model_sample(

@@ -25,11 +25,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START financialservices_v1_generated_AML_ExportModelMetadata_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Financialservices\V1\BigQueryDestination;
-use Google\Cloud\Financialservices\V1\BigQueryDestination\WriteDisposition;
-use Google\Cloud\Financialservices\V1\Client\AMLClient;
-use Google\Cloud\Financialservices\V1\ExportModelMetadataRequest;
-use Google\Cloud\Financialservices\V1\ExportModelMetadataResponse;
+use Google\Cloud\FinancialServices\V1\BigQueryDestination;
+use Google\Cloud\FinancialServices\V1\BigQueryDestination\WriteDisposition;
+use Google\Cloud\FinancialServices\V1\Client\AMLClient;
+use Google\Cloud\FinancialServices\V1\ExportModelMetadataRequest;
+use Google\Cloud\FinancialServices\V1\ExportModelMetadataResponse;
 use Google\Rpc\Status;
 
 /**
@@ -40,7 +40,7 @@ use Google\Rpc\Status;
  *
  * @param string $formattedModel                                The resource name of the Model. Please see
  *                                                              {@see AMLClient::modelName()} for help formatting this field.
- * @param int    $structuredMetadataDestinationWriteDisposition Whether or not to overwrite destination table. By default the
+ * @param int    $structuredMetadataDestinationWriteDisposition Whether or not to overwrite the destination table. By default the
  *                                                              table won't be overwritten and an error will be returned if the table
  *                                                              exists and contains data.
  */

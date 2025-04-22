@@ -25,9 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START financialservices_v1_generated_AML_ListBacktestResults_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Financialservices\V1\BacktestResult;
-use Google\Cloud\Financialservices\V1\Client\AMLClient;
-use Google\Cloud\Financialservices\V1\ListBacktestResultsRequest;
+use Google\Cloud\FinancialServices\V1\BacktestResult;
+use Google\Cloud\FinancialServices\V1\Client\AMLClient;
+use Google\Cloud\FinancialServices\V1\ListBacktestResultsRequest;
 
 /**
  * List BacktestResults.

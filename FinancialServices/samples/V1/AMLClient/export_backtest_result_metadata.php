@@ -25,11 +25,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START financialservices_v1_generated_AML_ExportBacktestResultMetadata_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Financialservices\V1\BigQueryDestination;
-use Google\Cloud\Financialservices\V1\BigQueryDestination\WriteDisposition;
-use Google\Cloud\Financialservices\V1\Client\AMLClient;
-use Google\Cloud\Financialservices\V1\ExportBacktestResultMetadataRequest;
-use Google\Cloud\Financialservices\V1\ExportBacktestResultMetadataResponse;
+use Google\Cloud\FinancialServices\V1\BigQueryDestination;
+use Google\Cloud\FinancialServices\V1\BigQueryDestination\WriteDisposition;
+use Google\Cloud\FinancialServices\V1\Client\AMLClient;
+use Google\Cloud\FinancialServices\V1\ExportBacktestResultMetadataRequest;
+use Google\Cloud\FinancialServices\V1\ExportBacktestResultMetadataResponse;
 use Google\Rpc\Status;
 
 /**
@@ -40,7 +40,7 @@ use Google\Rpc\Status;
  *
  * @param string $formattedBacktestResult                       The resource name of the BacktestResult. Please see
  *                                                              {@see AMLClient::backtestResultName()} for help formatting this field.
- * @param int    $structuredMetadataDestinationWriteDisposition Whether or not to overwrite destination table. By default the
+ * @param int    $structuredMetadataDestinationWriteDisposition Whether or not to overwrite the destination table. By default the
  *                                                              table won't be overwritten and an error will be returned if the table
  *                                                              exists and contains data.
  */

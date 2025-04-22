@@ -25,12 +25,12 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START financialservices_v1_generated_AML_ExportRegisteredParties_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Financialservices\V1\BigQueryDestination;
-use Google\Cloud\Financialservices\V1\BigQueryDestination\WriteDisposition;
-use Google\Cloud\Financialservices\V1\Client\AMLClient;
-use Google\Cloud\Financialservices\V1\ExportRegisteredPartiesRequest;
-use Google\Cloud\Financialservices\V1\ExportRegisteredPartiesResponse;
-use Google\Cloud\Financialservices\V1\LineOfBusiness;
+use Google\Cloud\FinancialServices\V1\BigQueryDestination;
+use Google\Cloud\FinancialServices\V1\BigQueryDestination\WriteDisposition;
+use Google\Cloud\FinancialServices\V1\Client\AMLClient;
+use Google\Cloud\FinancialServices\V1\ExportRegisteredPartiesRequest;
+use Google\Cloud\FinancialServices\V1\ExportRegisteredPartiesResponse;
+use Google\Cloud\FinancialServices\V1\LineOfBusiness;
 use Google\Rpc\Status;
 
 /**
@@ -40,9 +40,9 @@ use Google\Rpc\Status;
  * for information on the output schema for this method.
  *
  * @param string $formattedName           The full path to the Instance resource in this API.
- *                                        format: "projects/{project}/locations/{location}/instances/{instance}"
+ *                                        format: `projects/{project}/locations/{location}/instances/{instance}`
  *                                        Please see {@see AMLClient::instanceName()} for help formatting this field.
- * @param int    $datasetWriteDisposition Whether or not to overwrite destination table. By default the
+ * @param int    $datasetWriteDisposition Whether or not to overwrite the destination table. By default the
  *                                        table won't be overwritten and an error will be returned if the table
  *                                        exists and contains data.
  * @param int    $lineOfBusiness          LineOfBusiness to get RegisteredParties from.

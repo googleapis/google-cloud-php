@@ -25,9 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START financialservices_v1_generated_AML_UpdateInstance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Financialservices\V1\Client\AMLClient;
-use Google\Cloud\Financialservices\V1\Instance;
-use Google\Cloud\Financialservices\V1\UpdateInstanceRequest;
+use Google\Cloud\FinancialServices\V1\Client\AMLClient;
+use Google\Cloud\FinancialServices\V1\Instance;
+use Google\Cloud\FinancialServices\V1\UpdateInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -35,7 +35,7 @@ use Google\Rpc\Status;
  *
  * @param string $instanceKmsKey The KMS key name used for CMEK (encryption-at-rest).
  *                               format:
- *                               "projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{cryptoKey}"
+ *                               `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{cryptoKey}`
  *                               VPC-SC restrictions apply.
  */
 function update_instance_sample(string $instanceKmsKey): void

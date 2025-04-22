@@ -25,11 +25,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START financialservices_v1_generated_AML_ImportRegisteredParties_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Financialservices\V1\Client\AMLClient;
-use Google\Cloud\Financialservices\V1\ImportRegisteredPartiesRequest;
-use Google\Cloud\Financialservices\V1\ImportRegisteredPartiesRequest\UpdateMode;
-use Google\Cloud\Financialservices\V1\ImportRegisteredPartiesResponse;
-use Google\Cloud\Financialservices\V1\LineOfBusiness;
+use Google\Cloud\FinancialServices\V1\Client\AMLClient;
+use Google\Cloud\FinancialServices\V1\ImportRegisteredPartiesRequest;
+use Google\Cloud\FinancialServices\V1\ImportRegisteredPartiesRequest\UpdateMode;
+use Google\Cloud\FinancialServices\V1\ImportRegisteredPartiesResponse;
+use Google\Cloud\FinancialServices\V1\LineOfBusiness;
 use Google\Rpc\Status;
 
 /**
@@ -39,7 +39,7 @@ use Google\Rpc\Status;
  * for information on the input schema and response for this method.
  *
  * @param string $formattedName  The full path to the Instance resource in this API.
- *                               format: "projects/{project}/locations/{location}/instances/{instance}"
+ *                               format: `projects/{project}/locations/{location}/instances/{instance}`
  *                               Please see {@see AMLClient::instanceName()} for help formatting this field.
  * @param int    $mode           Mode of the request.
  * @param int    $lineOfBusiness LineOfBusiness for the specified registered parties.

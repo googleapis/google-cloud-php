@@ -29,7 +29,7 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-³R
+¢S
 /google/cloud/financialservices/v1/service.proto!google.cloud.financialservices.v1google/api/client.protogoogle/api/field_behavior.proto7google/cloud/financialservices/v1/backtest_result.proto/google/cloud/financialservices/v1/dataset.proto5google/cloud/financialservices/v1/engine_config.proto6google/cloud/financialservices/v1/engine_version.proto0google/cloud/financialservices/v1/instance.proto-google/cloud/financialservices/v1/model.proto9google/cloud/financialservices/v1/prediction_result.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"€
 OperationMetadata4
 create_time (2.google.protobuf.TimestampBàA1
@@ -103,8 +103,8 @@ ListModels4.google.cloud.financialservices.v1.ListModelsRequest5.google.cloud.
 ExportBacktestResultMetadataF.google.cloud.financialservices.v1.ExportBacktestResultMetadataRequest.google.longrunning.Operation"ÒÊA9
 $ExportBacktestResultMetadataResponseOperationMetadataÚA/backtest_result,structured_metadata_destination‚Óä“^"Y/v1/{backtest_result=projects/*/locations/*/instances/*/backtestResults/*}:exportMetadata:*ò
 DeleteBacktestResult>.google.cloud.financialservices.v1.DeleteBacktestResultRequest.google.longrunning.Operation"{ÊA*
-google.protobuf.EmptyOperationMetadataÚAname‚Óä“A*?/v1/{name=projects/*/locations/*/instances/*/backtestResults/*}TÊA financialservices.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBŒ
-%com.google.cloud.financialservices.v1BServiceProtoPZScloud.google.com/go/financialservices/apiv1/financialservicespb;financialservicespbbproto3'
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“A*?/v1/{name=projects/*/locations/*/instances/*/backtestResults/*}TÊA financialservices.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBû
+%com.google.cloud.financialservices.v1BServiceProtoPZScloud.google.com/go/financialservices/apiv1/financialservicespb;financialservicespbª!Google.Cloud.FinancialServices.V1Ê!Google\\Cloud\\FinancialServices\\V1ê$Google::Cloud::FinancialServices::V1bproto3'
         , true);
 
         static::$is_initialized = true;

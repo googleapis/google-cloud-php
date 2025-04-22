@@ -24,9 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START financialservices_v1_generated_AML_GetModel_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Financialservices\V1\Client\AMLClient;
-use Google\Cloud\Financialservices\V1\GetModelRequest;
-use Google\Cloud\Financialservices\V1\Model;
+use Google\Cloud\FinancialServices\V1\Client\AMLClient;
+use Google\Cloud\FinancialServices\V1\GetModelRequest;
+use Google\Cloud\FinancialServices\V1\Model;
 
 /**
  * Gets a model.

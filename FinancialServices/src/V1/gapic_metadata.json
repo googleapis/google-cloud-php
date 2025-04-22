@@ -3,7 +3,7 @@
     "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
     "language": "php",
     "protoPackage": "google.cloud.financialservices.v1",
-    "libraryPackage": "Google\\Cloud\\Financialservices\\V1",
+    "libraryPackage": "Google\\Cloud\\FinancialServices\\V1",
     "services": {
         "AML": {
             "clients": {

@@ -25,8 +25,8 @@ return [
         'google.cloud.financialservices.v1.AML' => [
             'CreateBacktestResult' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Financialservices\V1\BacktestResult',
-                    'metadataReturnType' => '\Google\Cloud\Financialservices\V1\OperationMetadata',
+                    'operationReturnType' => '\Google\Cloud\FinancialServices\V1\BacktestResult',
+                    'metadataReturnType' => '\Google\Cloud\FinancialServices\V1\OperationMetadata',
                     'initialPollDelayMillis' => '600000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '7200000',
@@ -44,8 +44,8 @@ return [
             ],
             'CreateDataset' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Financialservices\V1\Dataset',
-                    'metadataReturnType' => '\Google\Cloud\Financialservices\V1\OperationMetadata',
+                    'operationReturnType' => '\Google\Cloud\FinancialServices\V1\Dataset',
+                    'metadataReturnType' => '\Google\Cloud\FinancialServices\V1\OperationMetadata',
                     'initialPollDelayMillis' => '30000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '180000',
@@ -63,8 +63,8 @@ return [
             ],
             'CreateEngineConfig' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Financialservices\V1\EngineConfig',
-                    'metadataReturnType' => '\Google\Cloud\Financialservices\V1\OperationMetadata',
+                    'operationReturnType' => '\Google\Cloud\FinancialServices\V1\EngineConfig',
+                    'metadataReturnType' => '\Google\Cloud\FinancialServices\V1\OperationMetadata',
                     'initialPollDelayMillis' => '600000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '7200000',
@@ -82,8 +82,8 @@ return [
             ],
             'CreateInstance' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Financialservices\V1\Instance',
-                    'metadataReturnType' => '\Google\Cloud\Financialservices\V1\OperationMetadata',
+                    'operationReturnType' => '\Google\Cloud\FinancialServices\V1\Instance',
+                    'metadataReturnType' => '\Google\Cloud\FinancialServices\V1\OperationMetadata',
                     'initialPollDelayMillis' => '5000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '45000',
@@ -101,8 +101,8 @@ return [
             ],
             'CreateModel' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Financialservices\V1\Model',
-                    'metadataReturnType' => '\Google\Cloud\Financialservices\V1\OperationMetadata',
+                    'operationReturnType' => '\Google\Cloud\FinancialServices\V1\Model',
+                    'metadataReturnType' => '\Google\Cloud\FinancialServices\V1\OperationMetadata',
                     'initialPollDelayMillis' => '600000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '7200000',
@@ -120,8 +120,8 @@ return [
             ],
             'CreatePredictionResult' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Financialservices\V1\PredictionResult',
-                    'metadataReturnType' => '\Google\Cloud\Financialservices\V1\OperationMetadata',
+                    'operationReturnType' => '\Google\Cloud\FinancialServices\V1\PredictionResult',
+                    'metadataReturnType' => '\Google\Cloud\FinancialServices\V1\OperationMetadata',
                     'initialPollDelayMillis' => '600000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '7200000',
@@ -140,7 +140,7 @@ return [
             'DeleteBacktestResult' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                    'metadataReturnType' => '\Google\Cloud\Financialservices\V1\OperationMetadata',
+                    'metadataReturnType' => '\Google\Cloud\FinancialServices\V1\OperationMetadata',
                     'initialPollDelayMillis' => '30000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '180000',
@@ -159,7 +159,7 @@ return [
             'DeleteDataset' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                    'metadataReturnType' => '\Google\Cloud\Financialservices\V1\OperationMetadata',
+                    'metadataReturnType' => '\Google\Cloud\FinancialServices\V1\OperationMetadata',
                     'initialPollDelayMillis' => '300000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '1800000',
@@ -178,7 +178,7 @@ return [
             'DeleteEngineConfig' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                    'metadataReturnType' => '\Google\Cloud\Financialservices\V1\OperationMetadata',
+                    'metadataReturnType' => '\Google\Cloud\FinancialServices\V1\OperationMetadata',
                     'initialPollDelayMillis' => '5000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '45000',
@@ -197,7 +197,7 @@ return [
             'DeleteInstance' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                    'metadataReturnType' => '\Google\Cloud\Financialservices\V1\OperationMetadata',
+                    'metadataReturnType' => '\Google\Cloud\FinancialServices\V1\OperationMetadata',
                     'initialPollDelayMillis' => '600000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '7200000',
@@ -216,7 +216,7 @@ return [
             'DeleteModel' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                    'metadataReturnType' => '\Google\Cloud\Financialservices\V1\OperationMetadata',
+                    'metadataReturnType' => '\Google\Cloud\FinancialServices\V1\OperationMetadata',
                     'initialPollDelayMillis' => '5000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '45000',
@@ -235,7 +235,7 @@ return [
             'DeletePredictionResult' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                    'metadataReturnType' => '\Google\Cloud\Financialservices\V1\OperationMetadata',
+                    'metadataReturnType' => '\Google\Cloud\FinancialServices\V1\OperationMetadata',
                     'initialPollDelayMillis' => '30000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '180000',
@@ -253,8 +253,8 @@ return [
             ],
             'ExportBacktestResultMetadata' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Financialservices\V1\ExportBacktestResultMetadataResponse',
-                    'metadataReturnType' => '\Google\Cloud\Financialservices\V1\OperationMetadata',
+                    'operationReturnType' => '\Google\Cloud\FinancialServices\V1\ExportBacktestResultMetadataResponse',
+                    'metadataReturnType' => '\Google\Cloud\FinancialServices\V1\OperationMetadata',
                     'initialPollDelayMillis' => '60000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '300000',
@@ -272,8 +272,8 @@ return [
             ],
             'ExportEngineConfigMetadata' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Financialservices\V1\ExportEngineConfigMetadataResponse',
-                    'metadataReturnType' => '\Google\Cloud\Financialservices\V1\OperationMetadata',
+                    'operationReturnType' => '\Google\Cloud\FinancialServices\V1\ExportEngineConfigMetadataResponse',
+                    'metadataReturnType' => '\Google\Cloud\FinancialServices\V1\OperationMetadata',
                     'initialPollDelayMillis' => '30000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '180000',
@@ -291,8 +291,8 @@ return [
             ],
             'ExportModelMetadata' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Financialservices\V1\ExportModelMetadataResponse',
-                    'metadataReturnType' => '\Google\Cloud\Financialservices\V1\OperationMetadata',
+                    'operationReturnType' => '\Google\Cloud\FinancialServices\V1\ExportModelMetadataResponse',
+                    'metadataReturnType' => '\Google\Cloud\FinancialServices\V1\OperationMetadata',
                     'initialPollDelayMillis' => '30000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '180000',
@@ -310,8 +310,8 @@ return [
             ],
             'ExportPredictionResultMetadata' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Financialservices\V1\ExportPredictionResultMetadataResponse',
-                    'metadataReturnType' => '\Google\Cloud\Financialservices\V1\OperationMetadata',
+                    'operationReturnType' => '\Google\Cloud\FinancialServices\V1\ExportPredictionResultMetadataResponse',
+                    'metadataReturnType' => '\Google\Cloud\FinancialServices\V1\OperationMetadata',
                     'initialPollDelayMillis' => '60000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '300000',
@@ -329,8 +329,8 @@ return [
             ],
             'ExportRegisteredParties' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Financialservices\V1\ExportRegisteredPartiesResponse',
-                    'metadataReturnType' => '\Google\Cloud\Financialservices\V1\OperationMetadata',
+                    'operationReturnType' => '\Google\Cloud\FinancialServices\V1\ExportRegisteredPartiesResponse',
+                    'metadataReturnType' => '\Google\Cloud\FinancialServices\V1\OperationMetadata',
                     'initialPollDelayMillis' => '30000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '180000',
@@ -348,8 +348,8 @@ return [
             ],
             'ImportRegisteredParties' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Financialservices\V1\ImportRegisteredPartiesResponse',
-                    'metadataReturnType' => '\Google\Cloud\Financialservices\V1\OperationMetadata',
+                    'operationReturnType' => '\Google\Cloud\FinancialServices\V1\ImportRegisteredPartiesResponse',
+                    'metadataReturnType' => '\Google\Cloud\FinancialServices\V1\OperationMetadata',
                     'initialPollDelayMillis' => '30000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '180000',
@@ -367,8 +367,8 @@ return [
             ],
             'UpdateBacktestResult' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Financialservices\V1\BacktestResult',
-                    'metadataReturnType' => '\Google\Cloud\Financialservices\V1\OperationMetadata',
+                    'operationReturnType' => '\Google\Cloud\FinancialServices\V1\BacktestResult',
+                    'metadataReturnType' => '\Google\Cloud\FinancialServices\V1\OperationMetadata',
                     'initialPollDelayMillis' => '5000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '45000',
@@ -387,8 +387,8 @@ return [
             ],
             'UpdateDataset' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Financialservices\V1\Dataset',
-                    'metadataReturnType' => '\Google\Cloud\Financialservices\V1\OperationMetadata',
+                    'operationReturnType' => '\Google\Cloud\FinancialServices\V1\Dataset',
+                    'metadataReturnType' => '\Google\Cloud\FinancialServices\V1\OperationMetadata',
                     'initialPollDelayMillis' => '300000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '1800000',
@@ -407,8 +407,8 @@ return [
             ],
             'UpdateEngineConfig' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Financialservices\V1\EngineConfig',
-                    'metadataReturnType' => '\Google\Cloud\Financialservices\V1\OperationMetadata',
+                    'operationReturnType' => '\Google\Cloud\FinancialServices\V1\EngineConfig',
+                    'metadataReturnType' => '\Google\Cloud\FinancialServices\V1\OperationMetadata',
                     'initialPollDelayMillis' => '5000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '45000',
@@ -427,8 +427,8 @@ return [
             ],
             'UpdateInstance' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Financialservices\V1\Instance',
-                    'metadataReturnType' => '\Google\Cloud\Financialservices\V1\OperationMetadata',
+                    'operationReturnType' => '\Google\Cloud\FinancialServices\V1\Instance',
+                    'metadataReturnType' => '\Google\Cloud\FinancialServices\V1\OperationMetadata',
                     'initialPollDelayMillis' => '5000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '45000',
@@ -447,8 +447,8 @@ return [
             ],
             'UpdateModel' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Financialservices\V1\Model',
-                    'metadataReturnType' => '\Google\Cloud\Financialservices\V1\OperationMetadata',
+                    'operationReturnType' => '\Google\Cloud\FinancialServices\V1\Model',
+                    'metadataReturnType' => '\Google\Cloud\FinancialServices\V1\OperationMetadata',
                     'initialPollDelayMillis' => '5000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '45000',
@@ -467,8 +467,8 @@ return [
             ],
             'UpdatePredictionResult' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Financialservices\V1\PredictionResult',
-                    'metadataReturnType' => '\Google\Cloud\Financialservices\V1\OperationMetadata',
+                    'operationReturnType' => '\Google\Cloud\FinancialServices\V1\PredictionResult',
+                    'metadataReturnType' => '\Google\Cloud\FinancialServices\V1\OperationMetadata',
                     'initialPollDelayMillis' => '5000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '45000',
@@ -487,7 +487,7 @@ return [
             ],
             'GetBacktestResult' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\Financialservices\V1\BacktestResult',
+                'responseType' => 'Google\Cloud\FinancialServices\V1\BacktestResult',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -499,7 +499,7 @@ return [
             ],
             'GetDataset' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\Financialservices\V1\Dataset',
+                'responseType' => 'Google\Cloud\FinancialServices\V1\Dataset',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -511,7 +511,7 @@ return [
             ],
             'GetEngineConfig' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\Financialservices\V1\EngineConfig',
+                'responseType' => 'Google\Cloud\FinancialServices\V1\EngineConfig',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -523,7 +523,7 @@ return [
             ],
             'GetEngineVersion' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\Financialservices\V1\EngineVersion',
+                'responseType' => 'Google\Cloud\FinancialServices\V1\EngineVersion',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -535,7 +535,7 @@ return [
             ],
             'GetInstance' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\Financialservices\V1\Instance',
+                'responseType' => 'Google\Cloud\FinancialServices\V1\Instance',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -547,7 +547,7 @@ return [
             ],
             'GetModel' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\Financialservices\V1\Model',
+                'responseType' => 'Google\Cloud\FinancialServices\V1\Model',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -559,7 +559,7 @@ return [
             ],
             'GetPredictionResult' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\Financialservices\V1\PredictionResult',
+                'responseType' => 'Google\Cloud\FinancialServices\V1\PredictionResult',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -579,7 +579,7 @@ return [
                     'resourcesGetMethod' => 'getBacktestResults',
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
-                'responseType' => 'Google\Cloud\Financialservices\V1\ListBacktestResultsResponse',
+                'responseType' => 'Google\Cloud\FinancialServices\V1\ListBacktestResultsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -599,7 +599,7 @@ return [
                     'resourcesGetMethod' => 'getDatasets',
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
-                'responseType' => 'Google\Cloud\Financialservices\V1\ListDatasetsResponse',
+                'responseType' => 'Google\Cloud\FinancialServices\V1\ListDatasetsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -619,7 +619,7 @@ return [
                     'resourcesGetMethod' => 'getEngineConfigs',
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
-                'responseType' => 'Google\Cloud\Financialservices\V1\ListEngineConfigsResponse',
+                'responseType' => 'Google\Cloud\FinancialServices\V1\ListEngineConfigsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -639,7 +639,7 @@ return [
                     'resourcesGetMethod' => 'getEngineVersions',
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
-                'responseType' => 'Google\Cloud\Financialservices\V1\ListEngineVersionsResponse',
+                'responseType' => 'Google\Cloud\FinancialServices\V1\ListEngineVersionsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -659,7 +659,7 @@ return [
                     'resourcesGetMethod' => 'getInstances',
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
-                'responseType' => 'Google\Cloud\Financialservices\V1\ListInstancesResponse',
+                'responseType' => 'Google\Cloud\FinancialServices\V1\ListInstancesResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -679,7 +679,7 @@ return [
                     'resourcesGetMethod' => 'getModels',
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
-                'responseType' => 'Google\Cloud\Financialservices\V1\ListModelsResponse',
+                'responseType' => 'Google\Cloud\FinancialServices\V1\ListModelsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -699,7 +699,7 @@ return [
                     'resourcesGetMethod' => 'getPredictionResults',
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
-                'responseType' => 'Google\Cloud\Financialservices\V1\ListPredictionResultsResponse',
+                'responseType' => 'Google\Cloud\FinancialServices\V1\ListPredictionResultsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',

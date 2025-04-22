@@ -25,10 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START financialservices_v1_generated_AML_UpdateBacktestResult_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Financialservices\V1\BacktestResult;
-use Google\Cloud\Financialservices\V1\BacktestResult\PerformanceTarget;
-use Google\Cloud\Financialservices\V1\Client\AMLClient;
-use Google\Cloud\Financialservices\V1\UpdateBacktestResultRequest;
+use Google\Cloud\FinancialServices\V1\BacktestResult;
+use Google\Cloud\FinancialServices\V1\BacktestResult\PerformanceTarget;
+use Google\Cloud\FinancialServices\V1\Client\AMLClient;
+use Google\Cloud\FinancialServices\V1\UpdateBacktestResultRequest;
 use Google\Protobuf\Timestamp;
 use Google\Rpc\Status;
 
@@ -37,11 +37,11 @@ use Google\Rpc\Status;
  *
  * @param string $formattedBacktestResultDataset                                  The resource name of the Dataset to backtest on
  *                                                                                Format:
- *                                                                                "/projects/{project_num}/locations/{location}/instances/{instance}/datasets/{dataset}"
+ *                                                                                `/projects/{project_num}/locations/{location}/instances/{instance}/datasets/{dataset}`
  *                                                                                Please see {@see AMLClient::datasetName()} for help formatting this field.
  * @param string $formattedBacktestResultModel                                    The resource name of the Model to use or to backtest.
  *                                                                                Format:
- *                                                                                "/projects/{project_num}/locations/{location}/instances/{instance}/models/{model}"
+ *                                                                                `/projects/{project_num}/locations/{location}/instances/{instance}/models/{model}`
  *                                                                                Please see {@see AMLClient::modelName()} for help formatting this field.
  * @param int    $backtestResultPerformanceTargetPartyInvestigationsPerPeriodHint A number that gives the tuner a hint on the number of parties
  *                                                                                from this data that will be investigated per period (monthly). This is

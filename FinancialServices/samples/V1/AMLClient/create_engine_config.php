@@ -25,9 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START financialservices_v1_generated_AML_CreateEngineConfig_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Financialservices\V1\Client\AMLClient;
-use Google\Cloud\Financialservices\V1\CreateEngineConfigRequest;
-use Google\Cloud\Financialservices\V1\EngineConfig;
+use Google\Cloud\FinancialServices\V1\Client\AMLClient;
+use Google\Cloud\FinancialServices\V1\CreateEngineConfigRequest;
+use Google\Cloud\FinancialServices\V1\EngineConfig;
 use Google\Rpc\Status;
 
 /**
@@ -38,7 +38,7 @@ use Google\Rpc\Status;
  * @param string $engineConfigId                     The resource id of the EngineConfig
  * @param string $formattedEngineConfigEngineVersion The resource name of the EngineVersion used in this model tuning.
  *                                                   format:
- *                                                   "/projects/{project_num}/locations/{location}/instances/{instance}/engineVersions/{engine_version}"
+ *                                                   `/projects/{project_num}/locations/{location}/instances/{instance}/engineVersions/{engine_version}`
  *                                                   Please see {@see AMLClient::engineVersionName()} for help formatting this field.
  */
 function create_engine_config_sample(

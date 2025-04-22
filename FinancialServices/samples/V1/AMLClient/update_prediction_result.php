@@ -25,12 +25,12 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START financialservices_v1_generated_AML_UpdatePredictionResult_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Financialservices\V1\BigQueryDestination;
-use Google\Cloud\Financialservices\V1\BigQueryDestination\WriteDisposition;
-use Google\Cloud\Financialservices\V1\Client\AMLClient;
-use Google\Cloud\Financialservices\V1\PredictionResult;
-use Google\Cloud\Financialservices\V1\PredictionResult\Outputs;
-use Google\Cloud\Financialservices\V1\UpdatePredictionResultRequest;
+use Google\Cloud\FinancialServices\V1\BigQueryDestination;
+use Google\Cloud\FinancialServices\V1\BigQueryDestination\WriteDisposition;
+use Google\Cloud\FinancialServices\V1\Client\AMLClient;
+use Google\Cloud\FinancialServices\V1\PredictionResult;
+use Google\Cloud\FinancialServices\V1\PredictionResult\Outputs;
+use Google\Cloud\FinancialServices\V1\UpdatePredictionResultRequest;
 use Google\Protobuf\Timestamp;
 use Google\Rpc\Status;
 
@@ -39,13 +39,13 @@ use Google\Rpc\Status;
  *
  * @param string $formattedPredictionResultDataset                             The resource name of the Dataset to do predictions on
  *                                                                             Format:
- *                                                                             "/projects/{project_num}/locations/{location}/instances/{instance}/dataset/{dataset_id}"
+ *                                                                             `/projects/{project_num}/locations/{location}/instances/{instance}/dataset/{dataset_id}`
  *                                                                             Please see {@see AMLClient::datasetName()} for help formatting this field.
  * @param string $formattedPredictionResultModel                               The resource name of the Model to use to use to make predictions
  *                                                                             Format:
- *                                                                             "/projects/{project_num}/locations/{location}/instances/{instance}/models/{model}"
+ *                                                                             `/projects/{project_num}/locations/{location}/instances/{instance}/models/{model}`
  *                                                                             Please see {@see AMLClient::modelName()} for help formatting this field.
- * @param int    $predictionResultOutputsPredictionDestinationWriteDisposition Whether or not to overwrite destination table. By default the
+ * @param int    $predictionResultOutputsPredictionDestinationWriteDisposition Whether or not to overwrite the destination table. By default the
  *                                                                             table won't be overwritten and an error will be returned if the table
  *                                                                             exists and contains data.
  */
