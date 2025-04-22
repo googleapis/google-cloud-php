@@ -376,7 +376,7 @@ class QueryTest extends SpannerTestCase
         $db = self::$database;
 
         $interval = Interval::parse('P1Y');
-        $res = $db->execute('SELECT @param as foo', [
+        $res = $db->execute("SELECT INTERVAL '1-2 3 4:5:6.789123456' YEAR TO SECOND", [
             'parameters' => [
                 'param' => $interval
             ],
@@ -394,7 +394,7 @@ class QueryTest extends SpannerTestCase
         $this->skipEmulatorTests();
         $db = self::$database;
 
-        $res = $db->execute('SELECT @param as foo', [
+        $res = $db->execute('SELECT CAST(NULL AS INTERVAL);', [
             'parameters' => [
                 'param' => null
             ],
