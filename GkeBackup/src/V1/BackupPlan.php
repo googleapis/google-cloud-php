@@ -125,7 +125,8 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
     protected $state = 0;
     /**
      * Output only. Human-readable description of why BackupPlan is in the current
-     * `state`
+     * `state`. This field is only meant for human readability and should not be
+     * used programmatically as this field is not guaranteed to be consistent.
      *
      * Generated from protobuf field <code>string state_reason = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -145,6 +146,15 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string rpo_risk_reason = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $rpo_risk_reason = '';
+    /**
+     * Output only. Completion time of the last successful Backup. This is sourced
+     * from a successful Backup's complete_time field. This field is added to
+     * maintain consistency with BackupPlanBinding to display last successful
+     * backup time.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_successful_backup_time = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $last_successful_backup_time = null;
 
     /**
      * Constructor.
@@ -206,7 +216,8 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      *           if the BackupPlan is deactivated on an Update
      *     @type string $state_reason
      *           Output only. Human-readable description of why BackupPlan is in the current
-     *           `state`
+     *           `state`. This field is only meant for human readability and should not be
+     *           used programmatically as this field is not guaranteed to be consistent.
      *     @type int $rpo_risk_level
      *           Output only. A number that represents the current risk level of this
      *           BackupPlan from RPO perspective with 1 being no risk and 5 being highest
@@ -214,6 +225,11 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      *     @type string $rpo_risk_reason
      *           Output only. Human-readable description of why the BackupPlan is in the
      *           current rpo_risk_level and action items if any.
+     *     @type \Google\Protobuf\Timestamp $last_successful_backup_time
+     *           Output only. Completion time of the last successful Backup. This is sourced
+     *           from a successful Backup's complete_time field. This field is added to
+     *           maintain consistency with BackupPlanBinding to display last successful
+     *           backup time.
      * }
      */
     public function __construct($data = NULL) {
@@ -685,7 +701,8 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Human-readable description of why BackupPlan is in the current
-     * `state`
+     * `state`. This field is only meant for human readability and should not be
+     * used programmatically as this field is not guaranteed to be consistent.
      *
      * Generated from protobuf field <code>string state_reason = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -697,7 +714,8 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Human-readable description of why BackupPlan is in the current
-     * `state`
+     * `state`. This field is only meant for human readability and should not be
+     * used programmatically as this field is not guaranteed to be consistent.
      *
      * Generated from protobuf field <code>string state_reason = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -765,6 +783,48 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->rpo_risk_reason = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Completion time of the last successful Backup. This is sourced
+     * from a successful Backup's complete_time field. This field is added to
+     * maintain consistency with BackupPlanBinding to display last successful
+     * backup time.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_successful_backup_time = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getLastSuccessfulBackupTime()
+    {
+        return $this->last_successful_backup_time;
+    }
+
+    public function hasLastSuccessfulBackupTime()
+    {
+        return isset($this->last_successful_backup_time);
+    }
+
+    public function clearLastSuccessfulBackupTime()
+    {
+        unset($this->last_successful_backup_time);
+    }
+
+    /**
+     * Output only. Completion time of the last successful Backup. This is sourced
+     * from a successful Backup's complete_time field. This field is added to
+     * maintain consistency with BackupPlanBinding to display last successful
+     * backup time.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_successful_backup_time = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setLastSuccessfulBackupTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->last_successful_backup_time = $var;
 
         return $this;
     }
