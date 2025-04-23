@@ -142,8 +142,7 @@ class Interval
                     $state->daysSet = true;
                     break;
                 case 'T':
-                    if (
-                        $state->yearsSet == 0 &&
+                    if ( $state->yearsSet == 0 &&
                         $state->monthsSet == 0 &&
                         $state->daysSet == 0 &&
                         $end != 1

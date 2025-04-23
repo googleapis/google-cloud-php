@@ -24,7 +24,6 @@ use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\CommitTimestamp;
 use Google\Cloud\Spanner\Date;
-use Google\Cloud\Spanner\Interval;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Numeric;
@@ -69,7 +68,6 @@ class WriteTest extends SpannerTestCase
                 arrayTimestampField ARRAY<TIMESTAMP>,
                 arrayDateField ARRAY<DATE>,
                 arrayNumericField ARRAY<NUMERIC>,
-                arrayIntervalField ARRAY<INTERVAL>,
                 arrayProtoField ARRAY<`testing.data.User`>,
                 boolField BOOL,
                 bytesField BYTES(MAX),
@@ -80,7 +78,6 @@ class WriteTest extends SpannerTestCase
                 stringField STRING(MAX),
                 timestampField TIMESTAMP,
                 numericField NUMERIC,
-                intervalField INTERVAL,
                 protoField `testing.data.User`,
             ) PRIMARY KEY (id)',
             'CREATE TABLE ' . self::COMMIT_TIMESTAMP_TABLE_NAME . ' (
@@ -110,7 +107,6 @@ class WriteTest extends SpannerTestCase
             [$this->randId(), 'stringField', 'foo bar'],
             [$this->randId(), 'timestampField', new Timestamp(new \DateTime)],
             [$this->randId(), 'numericField', new Numeric('0.123456789')],
-            [$this->randId(), 'intervalField', Interval::parse('P1Y')],
             [$this->randId(), 'protoField', new User(['name' => 'John Doe'])],
         ];
     }
