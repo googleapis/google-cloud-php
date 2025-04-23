@@ -79,6 +79,8 @@ class Interval
             throw new InvalidArgumentException('The given interval is empty.');
         }
 
+        $text = str_replace(',', '.', $text);
+
         $state = new IntervalParsingState();
         $end = -1;
 
@@ -107,6 +109,7 @@ class Interval
                         substr($text, $state->start, $end - $state->start)
                     );
                     $state->nextAllowed = $state->afterY;
+                    $state->yearsSet = true;
                     break;
                 case 'M':
                     if (!$state->isTime) {
@@ -117,6 +120,7 @@ class Interval
                             substr($text, $state->start, $end - $state->start)
                         );
                         $state->nextAllowed = $state->afterMonth;
+                        $state->monthsSet = true;
                     } else {
                         $state->mayBeTerminal = true;
                         $state->isTerminal = false;
@@ -135,8 +139,21 @@ class Interval
                         substr($text, $state->start, $end - $state->start)
                     );
                     $state->nextAllowed = $state->afterD;
+                    $state->daysSet = true;
                     break;
                 case 'T':
+                    if (
+                        $state->yearsSet == 0 &&
+                        $state->monthsSet == 0 &&
+                        $state->daysSet == 0 &&
+                        $end != 1
+                    ) {
+                        // This means that there was just garbage before the T and we ignored it
+                        // and should be invalid.
+                        // If any of the state->set is false, it means that T should be after P
+                        // eg: ["PGARBAGET1H"] or ["P-T1H]
+                        throw new InvalidArgumentException('Invalid format');
+                    }
                     $state->mayBeTerminal = false;
                     $state->isTerminal = false;
                     $state->isTime = true;
@@ -328,7 +345,8 @@ class Interval
             }
 
             if ($seconds != 0) {
-                $intervalString .= "{$seconds}S";
+                $digits = Interval::secondsToString($seconds);
+                $intervalString .= "{$digits}S";
             }
         }
 
@@ -337,6 +355,15 @@ class Interval
         }
 
         return $intervalString;
+    }
+
+    private static function secondsToString(int|float $number): string
+    {
+        if (filter_var($number, FILTER_VALIDATE_INT)) {
+            return sprintf('%d', $number);
+        }
+
+        return rtrim(sprintf('%.9F', $number), '0');
     }
 
     private static function yearsToMonths(int $years): int
@@ -372,6 +399,10 @@ class Interval
         if (!is_numeric($valueString)) {
             throw new InvalidArgumentException('Invalid format');
         }
+        if ($valueString[-1] == '.') {
+            throw new InvalidArgumentException('Invalid format');
+        }
+
         return floatval($valueString);
     }
 

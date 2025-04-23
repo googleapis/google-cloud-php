@@ -724,7 +724,13 @@ class PgQueryTest extends SpannerPgTestCase
                     Interval::parse('P1Y'),
                     Interval::parse('PT1H'),
                     Interval::parse('P1M')
-                ]
+                ],
+                [
+                    Interval::parse('P1Y'),
+                    Interval::parse('PT1H'),
+                    Interval::parse('P1M')
+                ],
+                Interval::class,
             ]
         ];
     }

@@ -55,6 +55,9 @@ class IntervalParsingState
     public int $hours = 0;
     public float $minutes = 0;
     public float $seconds = 0;
+    public bool $yearsSet = false;
+    public bool $monthsSet = false;
+    public bool $daysSet = false;
 
     public function __construct()
     {
