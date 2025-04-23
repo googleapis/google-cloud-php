@@ -18,8 +18,8 @@
 namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\ApiException;
-use Google\ApiCore\ValidationException;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
@@ -238,7 +238,7 @@ class Database
 
         $this->setLroProperties($lroConnection, $lroCallables, $this->name);
         $this->databaseRole = $databaseRole;
-        $this->directedReadOptions = $instance->directedReadOptions();
+        $this->directedReadOptions = (array) $instance->directedReadOptions();
         $this->returnInt64AsObject = $returnInt64AsObject;
     }
 

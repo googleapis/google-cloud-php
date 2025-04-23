@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Spanner\Connection;
 
-use GuzzleHttp\Promise\PromiseInterface;
 use Google\ApiCore\OperationResponse;
+use GuzzleHttp\Promise\PromiseInterface;
 
 /**
  * Describes a connection to the Cloud Spanner API
