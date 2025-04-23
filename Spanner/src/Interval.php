@@ -24,9 +24,6 @@ class Interval
     private const NANOSECONDS_IN_A_SECOND = 1000000000;
     private const NANOSECONDS_IN_A_MINUTE = Interval::NANOSECONDS_IN_A_SECOND * 60;
     private const NANOSECONDS_IN_AN_HOUR = Interval::NANOSECONDS_IN_A_MINUTE * 60;
-    private const NANOSECONDS_IN_A_DAY = Interval::NANOSECONDS_IN_AN_HOUR * 24;
-    private const NANOSECONDS_IN_A_MONTH = Interval::NANOSECONDS_IN_A_DAY * 30;
-    private const NANOSECONDS_IN_A_YEAR = Interval::NANOSECONDS_IN_A_MONTH * 12;
     private const NANOSECONDS_IN_A_MILLISECOND = 1000000;
     private const NANOSECONDS_IN_A_MICROSECOND = 1000;
     private const MAX_MONTHS = 120000;
