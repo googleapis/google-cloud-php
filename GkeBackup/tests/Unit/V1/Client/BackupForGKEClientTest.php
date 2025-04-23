@@ -27,28 +27,46 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\GkeBackup\V1\Backup;
+use Google\Cloud\GkeBackup\V1\BackupChannel;
 use Google\Cloud\GkeBackup\V1\BackupPlan;
+use Google\Cloud\GkeBackup\V1\BackupPlanBinding;
 use Google\Cloud\GkeBackup\V1\Client\BackupForGKEClient;
+use Google\Cloud\GkeBackup\V1\CreateBackupChannelRequest;
 use Google\Cloud\GkeBackup\V1\CreateBackupPlanRequest;
 use Google\Cloud\GkeBackup\V1\CreateBackupRequest;
+use Google\Cloud\GkeBackup\V1\CreateRestoreChannelRequest;
 use Google\Cloud\GkeBackup\V1\CreateRestorePlanRequest;
 use Google\Cloud\GkeBackup\V1\CreateRestoreRequest;
+use Google\Cloud\GkeBackup\V1\DeleteBackupChannelRequest;
 use Google\Cloud\GkeBackup\V1\DeleteBackupPlanRequest;
 use Google\Cloud\GkeBackup\V1\DeleteBackupRequest;
+use Google\Cloud\GkeBackup\V1\DeleteRestoreChannelRequest;
 use Google\Cloud\GkeBackup\V1\DeleteRestorePlanRequest;
 use Google\Cloud\GkeBackup\V1\DeleteRestoreRequest;
+use Google\Cloud\GkeBackup\V1\GetBackupChannelRequest;
 use Google\Cloud\GkeBackup\V1\GetBackupIndexDownloadUrlRequest;
 use Google\Cloud\GkeBackup\V1\GetBackupIndexDownloadUrlResponse;
+use Google\Cloud\GkeBackup\V1\GetBackupPlanBindingRequest;
 use Google\Cloud\GkeBackup\V1\GetBackupPlanRequest;
 use Google\Cloud\GkeBackup\V1\GetBackupRequest;
+use Google\Cloud\GkeBackup\V1\GetRestoreChannelRequest;
+use Google\Cloud\GkeBackup\V1\GetRestorePlanBindingRequest;
 use Google\Cloud\GkeBackup\V1\GetRestorePlanRequest;
 use Google\Cloud\GkeBackup\V1\GetRestoreRequest;
 use Google\Cloud\GkeBackup\V1\GetVolumeBackupRequest;
 use Google\Cloud\GkeBackup\V1\GetVolumeRestoreRequest;
+use Google\Cloud\GkeBackup\V1\ListBackupChannelsRequest;
+use Google\Cloud\GkeBackup\V1\ListBackupChannelsResponse;
+use Google\Cloud\GkeBackup\V1\ListBackupPlanBindingsRequest;
+use Google\Cloud\GkeBackup\V1\ListBackupPlanBindingsResponse;
 use Google\Cloud\GkeBackup\V1\ListBackupPlansRequest;
 use Google\Cloud\GkeBackup\V1\ListBackupPlansResponse;
 use Google\Cloud\GkeBackup\V1\ListBackupsRequest;
 use Google\Cloud\GkeBackup\V1\ListBackupsResponse;
+use Google\Cloud\GkeBackup\V1\ListRestoreChannelsRequest;
+use Google\Cloud\GkeBackup\V1\ListRestoreChannelsResponse;
+use Google\Cloud\GkeBackup\V1\ListRestorePlanBindingsRequest;
+use Google\Cloud\GkeBackup\V1\ListRestorePlanBindingsResponse;
 use Google\Cloud\GkeBackup\V1\ListRestorePlansRequest;
 use Google\Cloud\GkeBackup\V1\ListRestorePlansResponse;
 use Google\Cloud\GkeBackup\V1\ListRestoresRequest;
@@ -58,10 +76,14 @@ use Google\Cloud\GkeBackup\V1\ListVolumeBackupsResponse;
 use Google\Cloud\GkeBackup\V1\ListVolumeRestoresRequest;
 use Google\Cloud\GkeBackup\V1\ListVolumeRestoresResponse;
 use Google\Cloud\GkeBackup\V1\Restore;
+use Google\Cloud\GkeBackup\V1\RestoreChannel;
 use Google\Cloud\GkeBackup\V1\RestoreConfig;
 use Google\Cloud\GkeBackup\V1\RestorePlan;
+use Google\Cloud\GkeBackup\V1\RestorePlanBinding;
+use Google\Cloud\GkeBackup\V1\UpdateBackupChannelRequest;
 use Google\Cloud\GkeBackup\V1\UpdateBackupPlanRequest;
 use Google\Cloud\GkeBackup\V1\UpdateBackupRequest;
+use Google\Cloud\GkeBackup\V1\UpdateRestoreChannelRequest;
 use Google\Cloud\GkeBackup\V1\UpdateRestorePlanRequest;
 use Google\Cloud\GkeBackup\V1\UpdateRestoreRequest;
 use Google\Cloud\GkeBackup\V1\VolumeBackup;
@@ -151,6 +173,8 @@ class BackupForGKEClientTest extends GeneratedTest
         $podCount = 977657493;
         $configBackupSizeBytes = 606785139;
         $permissiveMode = false;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Backup();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -169,6 +193,8 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setPodCount($podCount);
         $expectedResponse->setConfigBackupSizeBytes($configBackupSizeBytes);
         $expectedResponse->setPermissiveMode($permissiveMode);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -252,6 +278,148 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createBackupTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createBackupChannelTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createBackupChannelTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $destinationProject = 'destinationProject1210075112';
+        $uid = 'uid115792';
+        $description = 'description-1724546052';
+        $etag = 'etag3123477';
+        $destinationProjectId = 'destinationProjectId1687240914';
+        $expectedResponse = new BackupChannel();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDestinationProject($destinationProject);
+        $expectedResponse->setUid($uid);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setDestinationProjectId($destinationProjectId);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createBackupChannelTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $backupChannel = new BackupChannel();
+        $backupChannelDestinationProject = 'backupChannelDestinationProject1613511148';
+        $backupChannel->setDestinationProject($backupChannelDestinationProject);
+        $request = (new CreateBackupChannelRequest())->setParent($formattedParent)->setBackupChannel($backupChannel);
+        $response = $gapicClient->createBackupChannel($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/CreateBackupChannel', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getBackupChannel();
+        $this->assertProtobufEquals($backupChannel, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createBackupChannelTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createBackupChannelExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createBackupChannelTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $backupChannel = new BackupChannel();
+        $backupChannelDestinationProject = 'backupChannelDestinationProject1613511148';
+        $backupChannel->setDestinationProject($backupChannelDestinationProject);
+        $request = (new CreateBackupChannelRequest())->setParent($formattedParent)->setBackupChannel($backupChannel);
+        $response = $gapicClient->createBackupChannel($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createBackupChannelTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -592,6 +760,148 @@ class BackupForGKEClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createRestoreChannelTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createRestoreChannelTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $destinationProject = 'destinationProject1210075112';
+        $uid = 'uid115792';
+        $description = 'description-1724546052';
+        $etag = 'etag3123477';
+        $destinationProjectId = 'destinationProjectId1687240914';
+        $expectedResponse = new RestoreChannel();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDestinationProject($destinationProject);
+        $expectedResponse->setUid($uid);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setDestinationProjectId($destinationProjectId);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createRestoreChannelTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $restoreChannel = new RestoreChannel();
+        $restoreChannelDestinationProject = 'restoreChannelDestinationProject298818208';
+        $restoreChannel->setDestinationProject($restoreChannelDestinationProject);
+        $request = (new CreateRestoreChannelRequest())->setParent($formattedParent)->setRestoreChannel($restoreChannel);
+        $response = $gapicClient->createRestoreChannel($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/CreateRestoreChannel', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getRestoreChannel();
+        $this->assertProtobufEquals($restoreChannel, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createRestoreChannelTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createRestoreChannelExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createRestoreChannelTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $restoreChannel = new RestoreChannel();
+        $restoreChannelDestinationProject = 'restoreChannelDestinationProject298818208';
+        $restoreChannel->setDestinationProject($restoreChannelDestinationProject);
+        $request = (new CreateRestoreChannelRequest())->setParent($formattedParent)->setRestoreChannel($restoreChannel);
+        $response = $gapicClient->createRestoreChannel($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createRestoreChannelTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function createRestorePlanTest()
     {
         $operationsTransport = $this->createTransport();
@@ -876,6 +1186,128 @@ class BackupForGKEClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteBackupChannelTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteBackupChannelTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteBackupChannelTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->backupChannelName('[PROJECT]', '[LOCATION]', '[BACKUP_CHANNEL]');
+        $request = (new DeleteBackupChannelRequest())->setName($formattedName);
+        $response = $gapicClient->deleteBackupChannel($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/DeleteBackupChannel', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteBackupChannelTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteBackupChannelExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteBackupChannelTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->backupChannelName('[PROJECT]', '[LOCATION]', '[BACKUP_CHANNEL]');
+        $request = (new DeleteBackupChannelRequest())->setName($formattedName);
+        $response = $gapicClient->deleteBackupChannel($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteBackupChannelTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function deleteBackupPlanTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1120,6 +1552,128 @@ class BackupForGKEClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteRestoreChannelTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteRestoreChannelTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteRestoreChannelTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->restoreChannelName('[PROJECT]', '[LOCATION]', '[RESTORE_CHANNEL]');
+        $request = (new DeleteRestoreChannelRequest())->setName($formattedName);
+        $response = $gapicClient->deleteRestoreChannel($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/DeleteRestoreChannel', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteRestoreChannelTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteRestoreChannelExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteRestoreChannelTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->restoreChannelName('[PROJECT]', '[LOCATION]', '[RESTORE_CHANNEL]');
+        $request = (new DeleteRestoreChannelRequest())->setName($formattedName);
+        $response = $gapicClient->deleteRestoreChannel($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteRestoreChannelTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function deleteRestorePlanTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1267,6 +1821,8 @@ class BackupForGKEClientTest extends GeneratedTest
         $podCount = 977657493;
         $configBackupSizeBytes = 606785139;
         $permissiveMode = false;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Backup();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
@@ -1285,6 +1841,8 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setPodCount($podCount);
         $expectedResponse->setConfigBackupSizeBytes($configBackupSizeBytes);
         $expectedResponse->setPermissiveMode($permissiveMode);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]', '[BACKUP]');
@@ -1327,6 +1885,81 @@ class BackupForGKEClientTest extends GeneratedTest
         $request = (new GetBackupRequest())->setName($formattedName);
         try {
             $gapicClient->getBackup($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getBackupChannelTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $destinationProject = 'destinationProject1210075112';
+        $uid = 'uid115792';
+        $description = 'description-1724546052';
+        $etag = 'etag3123477';
+        $destinationProjectId = 'destinationProjectId1687240914';
+        $expectedResponse = new BackupChannel();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDestinationProject($destinationProject);
+        $expectedResponse->setUid($uid);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setDestinationProjectId($destinationProjectId);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->backupChannelName('[PROJECT]', '[LOCATION]', '[BACKUP_CHANNEL]');
+        $request = (new GetBackupChannelRequest())->setName($formattedName);
+        $response = $gapicClient->getBackupChannel($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/GetBackupChannel', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getBackupChannelExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->backupChannelName('[PROJECT]', '[LOCATION]', '[BACKUP_CHANNEL]');
+        $request = (new GetBackupChannelRequest())->setName($formattedName);
+        try {
+            $gapicClient->getBackupChannel($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1487,6 +2120,89 @@ class BackupForGKEClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getBackupPlanBindingTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $uid = 'uid115792';
+        $backupPlan = 'backupPlan1119623046';
+        $cluster = 'cluster872092154';
+        $etag = 'etag3123477';
+        $expectedResponse = new BackupPlanBinding();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setUid($uid);
+        $expectedResponse->setBackupPlan($backupPlan);
+        $expectedResponse->setCluster($cluster);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->backupPlanBindingName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[BACKUP_CHANNEL]',
+            '[BACKUP_PLAN_BINDING]'
+        );
+        $request = (new GetBackupPlanBindingRequest())->setName($formattedName);
+        $response = $gapicClient->getBackupPlanBinding($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/GetBackupPlanBinding', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getBackupPlanBindingExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->backupPlanBindingName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[BACKUP_CHANNEL]',
+            '[BACKUP_PLAN_BINDING]'
+        );
+        $request = (new GetBackupPlanBindingRequest())->setName($formattedName);
+        try {
+            $gapicClient->getBackupPlanBinding($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getRestoreTest()
     {
         $transport = $this->createTransport();
@@ -1560,6 +2276,81 @@ class BackupForGKEClientTest extends GeneratedTest
         $request = (new GetRestoreRequest())->setName($formattedName);
         try {
             $gapicClient->getRestore($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getRestoreChannelTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $destinationProject = 'destinationProject1210075112';
+        $uid = 'uid115792';
+        $description = 'description-1724546052';
+        $etag = 'etag3123477';
+        $destinationProjectId = 'destinationProjectId1687240914';
+        $expectedResponse = new RestoreChannel();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDestinationProject($destinationProject);
+        $expectedResponse->setUid($uid);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setDestinationProjectId($destinationProjectId);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->restoreChannelName('[PROJECT]', '[LOCATION]', '[RESTORE_CHANNEL]');
+        $request = (new GetRestoreChannelRequest())->setName($formattedName);
+        $response = $gapicClient->getRestoreChannel($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/GetRestoreChannel', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getRestoreChannelExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->restoreChannelName('[PROJECT]', '[LOCATION]', '[RESTORE_CHANNEL]');
+        $request = (new GetRestoreChannelRequest())->setName($formattedName);
+        try {
+            $gapicClient->getRestoreChannel($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1649,6 +2440,89 @@ class BackupForGKEClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getRestorePlanBindingTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $uid = 'uid115792';
+        $restorePlan = 'restorePlan1648876090';
+        $etag = 'etag3123477';
+        $backupPlan = 'backupPlan1119623046';
+        $expectedResponse = new RestorePlanBinding();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setUid($uid);
+        $expectedResponse->setRestorePlan($restorePlan);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setBackupPlan($backupPlan);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->restorePlanBindingName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RESTORE_CHANNEL]',
+            '[RESTORE_PLAN_BINDING]'
+        );
+        $request = (new GetRestorePlanBindingRequest())->setName($formattedName);
+        $response = $gapicClient->getRestorePlanBinding($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/GetRestorePlanBinding', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getRestorePlanBindingExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->restorePlanBindingName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RESTORE_CHANNEL]',
+            '[RESTORE_PLAN_BINDING]'
+        );
+        $request = (new GetRestorePlanBindingRequest())->setName($formattedName);
+        try {
+            $gapicClient->getRestorePlanBinding($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getVolumeBackupTest()
     {
         $transport = $this->createTransport();
@@ -1664,6 +2538,8 @@ class BackupForGKEClientTest extends GeneratedTest
         $diskSizeBytes = 275393905;
         $stateMessage = 'stateMessage29641305';
         $etag = 'etag3123477';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new VolumeBackup();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
@@ -1672,6 +2548,8 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setDiskSizeBytes($diskSizeBytes);
         $expectedResponse->setStateMessage($stateMessage);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->volumeBackupName(
@@ -1825,6 +2703,148 @@ class BackupForGKEClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listBackupChannelsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $backupChannelsElement = new BackupChannel();
+        $backupChannels = [$backupChannelsElement];
+        $expectedResponse = new ListBackupChannelsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setBackupChannels($backupChannels);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListBackupChannelsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listBackupChannels($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getBackupChannels()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/ListBackupChannels', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listBackupChannelsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListBackupChannelsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listBackupChannels($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listBackupPlanBindingsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $backupPlanBindingsElement = new BackupPlanBinding();
+        $backupPlanBindings = [$backupPlanBindingsElement];
+        $expectedResponse = new ListBackupPlanBindingsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setBackupPlanBindings($backupPlanBindings);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->backupChannelName('[PROJECT]', '[LOCATION]', '[BACKUP_CHANNEL]');
+        $request = (new ListBackupPlanBindingsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listBackupPlanBindings($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getBackupPlanBindings()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/ListBackupPlanBindings', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listBackupPlanBindingsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->backupChannelName('[PROJECT]', '[LOCATION]', '[BACKUP_CHANNEL]');
+        $request = (new ListBackupPlanBindingsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listBackupPlanBindings($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listBackupPlansTest()
     {
         $transport = $this->createTransport();
@@ -1955,6 +2975,148 @@ class BackupForGKEClientTest extends GeneratedTest
         $request = (new ListBackupsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listBackups($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listRestoreChannelsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $restoreChannelsElement = new RestoreChannel();
+        $restoreChannels = [$restoreChannelsElement];
+        $expectedResponse = new ListRestoreChannelsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setRestoreChannels($restoreChannels);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListRestoreChannelsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listRestoreChannels($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getRestoreChannels()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/ListRestoreChannels', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listRestoreChannelsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListRestoreChannelsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listRestoreChannels($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listRestorePlanBindingsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $restorePlanBindingsElement = new RestorePlanBinding();
+        $restorePlanBindings = [$restorePlanBindingsElement];
+        $expectedResponse = new ListRestorePlanBindingsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setRestorePlanBindings($restorePlanBindings);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->restoreChannelName('[PROJECT]', '[LOCATION]', '[RESTORE_CHANNEL]');
+        $request = (new ListRestorePlanBindingsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listRestorePlanBindings($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getRestorePlanBindings()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/ListRestorePlanBindings', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listRestorePlanBindingsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->restoreChannelName('[PROJECT]', '[LOCATION]', '[RESTORE_CHANNEL]');
+        $request = (new ListRestorePlanBindingsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listRestorePlanBindings($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2288,6 +3450,8 @@ class BackupForGKEClientTest extends GeneratedTest
         $podCount = 977657493;
         $configBackupSizeBytes = 606785139;
         $permissiveMode = false;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Backup();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -2306,6 +3470,8 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setPodCount($podCount);
         $expectedResponse->setConfigBackupSizeBytes($configBackupSizeBytes);
         $expectedResponse->setPermissiveMode($permissiveMode);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2389,6 +3555,144 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateBackupTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateBackupChannelTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateBackupChannelTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $destinationProject = 'destinationProject1210075112';
+        $uid = 'uid115792';
+        $description = 'description-1724546052';
+        $etag = 'etag3123477';
+        $destinationProjectId = 'destinationProjectId1687240914';
+        $expectedResponse = new BackupChannel();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDestinationProject($destinationProject);
+        $expectedResponse->setUid($uid);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setDestinationProjectId($destinationProjectId);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateBackupChannelTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $backupChannel = new BackupChannel();
+        $backupChannelDestinationProject = 'backupChannelDestinationProject1613511148';
+        $backupChannel->setDestinationProject($backupChannelDestinationProject);
+        $request = (new UpdateBackupChannelRequest())->setBackupChannel($backupChannel);
+        $response = $gapicClient->updateBackupChannel($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/UpdateBackupChannel', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getBackupChannel();
+        $this->assertProtobufEquals($backupChannel, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateBackupChannelTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateBackupChannelExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateBackupChannelTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $backupChannel = new BackupChannel();
+        $backupChannelDestinationProject = 'backupChannelDestinationProject1613511148';
+        $backupChannel->setDestinationProject($backupChannelDestinationProject);
+        $request = (new UpdateBackupChannelRequest())->setBackupChannel($backupChannel);
+        $response = $gapicClient->updateBackupChannel($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateBackupChannelTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -2683,6 +3987,144 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateRestoreTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateRestoreChannelTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateRestoreChannelTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $destinationProject = 'destinationProject1210075112';
+        $uid = 'uid115792';
+        $description = 'description-1724546052';
+        $etag = 'etag3123477';
+        $destinationProjectId = 'destinationProjectId1687240914';
+        $expectedResponse = new RestoreChannel();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDestinationProject($destinationProject);
+        $expectedResponse->setUid($uid);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setDestinationProjectId($destinationProjectId);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateRestoreChannelTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $restoreChannel = new RestoreChannel();
+        $restoreChannelDestinationProject = 'restoreChannelDestinationProject298818208';
+        $restoreChannel->setDestinationProject($restoreChannelDestinationProject);
+        $request = (new UpdateRestoreChannelRequest())->setRestoreChannel($restoreChannel);
+        $response = $gapicClient->updateRestoreChannel($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/UpdateRestoreChannel', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getRestoreChannel();
+        $this->assertProtobufEquals($restoreChannel, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateRestoreChannelTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateRestoreChannelExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateRestoreChannelTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $restoreChannel = new RestoreChannel();
+        $restoreChannelDestinationProject = 'restoreChannelDestinationProject298818208';
+        $restoreChannel->setDestinationProject($restoreChannelDestinationProject);
+        $request = (new UpdateRestoreChannelRequest())->setRestoreChannel($restoreChannel);
+        $response = $gapicClient->updateRestoreChannel($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateRestoreChannelTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -3219,6 +4661,8 @@ class BackupForGKEClientTest extends GeneratedTest
         $podCount = 977657493;
         $configBackupSizeBytes = 606785139;
         $permissiveMode = false;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Backup();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -3237,6 +4681,8 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setPodCount($podCount);
         $expectedResponse->setConfigBackupSizeBytes($configBackupSizeBytes);
         $expectedResponse->setPermissiveMode($permissiveMode);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

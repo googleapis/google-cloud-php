@@ -104,7 +104,9 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
     protected $state = 0;
     /**
      * Output only. Human-readable description of why RestorePlan is in the
-     * current `state`
+     * current `state`. This field is only meant for human readability and should
+     * not be used programmatically as this field is not guaranteed to be
+     * consistent.
      *
      * Generated from protobuf field <code>string state_reason = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -160,7 +162,9 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      *           during the Create operation.
      *     @type string $state_reason
      *           Output only. Human-readable description of why RestorePlan is in the
-     *           current `state`
+     *           current `state`. This field is only meant for human readability and should
+     *           not be used programmatically as this field is not guaranteed to be
+     *           consistent.
      * }
      */
     public function __construct($data = NULL) {
@@ -526,7 +530,9 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Human-readable description of why RestorePlan is in the
-     * current `state`
+     * current `state`. This field is only meant for human readability and should
+     * not be used programmatically as this field is not guaranteed to be
+     * consistent.
      *
      * Generated from protobuf field <code>string state_reason = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -538,7 +544,9 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Human-readable description of why RestorePlan is in the
-     * current `state`
+     * current `state`. This field is only meant for human readability and should
+     * not be used programmatically as this field is not guaranteed to be
+     * consistent.
      *
      * Generated from protobuf field <code>string state_reason = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
