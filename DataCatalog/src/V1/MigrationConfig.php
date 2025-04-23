@@ -31,6 +31,13 @@ class MigrationConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.CatalogUIExperience catalog_ui_experience = 2;</code>
      */
     protected $catalog_ui_experience = 0;
+    /**
+     * The time when the Tag Template migration was enabled.
+     * If the Tag Template migration is not enabled, this field is not set.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp template_migration_enabled_time = 3;</code>
+     */
+    protected $template_migration_enabled_time = null;
 
     /**
      * Constructor.
@@ -42,6 +49,9 @@ class MigrationConfig extends \Google\Protobuf\Internal\Message
      *           Opt-in status for the migration of Tag Templates to Dataplex.
      *     @type int $catalog_ui_experience
      *           Opt-in status for the UI switch to Dataplex.
+     *     @type \Google\Protobuf\Timestamp $template_migration_enabled_time
+     *           The time when the Tag Template migration was enabled.
+     *           If the Tag Template migration is not enabled, this field is not set.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,6 +107,44 @@ class MigrationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\DataCatalog\V1\CatalogUIExperience::class);
         $this->catalog_ui_experience = $var;
+
+        return $this;
+    }
+
+    /**
+     * The time when the Tag Template migration was enabled.
+     * If the Tag Template migration is not enabled, this field is not set.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp template_migration_enabled_time = 3;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getTemplateMigrationEnabledTime()
+    {
+        return $this->template_migration_enabled_time;
+    }
+
+    public function hasTemplateMigrationEnabledTime()
+    {
+        return isset($this->template_migration_enabled_time);
+    }
+
+    public function clearTemplateMigrationEnabledTime()
+    {
+        unset($this->template_migration_enabled_time);
+    }
+
+    /**
+     * The time when the Tag Template migration was enabled.
+     * If the Tag Template migration is not enabled, this field is not set.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp template_migration_enabled_time = 3;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setTemplateMigrationEnabledTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->template_migration_enabled_time = $var;
 
         return $this;
     }
