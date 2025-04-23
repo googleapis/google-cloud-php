@@ -810,6 +810,13 @@ class ValueMapper
             ];
         }
 
+        if ($value instanceof Interval) {
+            return [
+                $this->typeObject(self::TYPE_INTERVAL),
+                $value->__toString(),
+            ];
+        }
+
         throw new \InvalidArgumentException(sprintf(
             'Unrecognized value type %s. ' .
             'Please ensure you are using the latest version of google/cloud or google/cloud-spanner.',

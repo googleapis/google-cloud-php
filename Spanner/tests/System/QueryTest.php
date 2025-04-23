@@ -375,8 +375,8 @@ class QueryTest extends SpannerTestCase
         $this->skipEmulatorTests();
         $db = self::$database;
 
-        $interval = Interval::parse('P1Y');
-        $res = $db->execute("SELECT INTERVAL '1-2 3 4:5:6.789123456' YEAR TO SECOND", [
+        $interval = Interval::parse('P1Y2M3DT4H5M6.7S');
+        $res = $db->execute("SELECT @param as foo", [
             'parameters' => [
                 'param' => $interval
             ],
@@ -385,8 +385,9 @@ class QueryTest extends SpannerTestCase
             ]
         ]);
 
-        $row = $res->row()->current();
-        $this->assertEquals($interval, $row['foo']);
+        $row = $res->rows()->current();
+        $this->assertInstanceOf(Interval::class, $row['foo']);
+        $this->assertEquals($interval->__toString(), $row['foo']->__toString());
     }
 
     public function testBindIntervalParameterNull()
@@ -394,7 +395,7 @@ class QueryTest extends SpannerTestCase
         $this->skipEmulatorTests();
         $db = self::$database;
 
-        $res = $db->execute('SELECT CAST(NULL AS INTERVAL);', [
+        $res = $db->execute('SELECT CAST(@param AS INTERVAL) AS foo;', [
             'parameters' => [
                 'param' => null
             ],
@@ -724,6 +725,15 @@ class QueryTest extends SpannerTestCase
 
                     return $res;
                 }
+            ],
+
+            // Interval
+            [
+                [
+                    Interval::parse('P1Y'),
+                    Interval::parse('PT1H'),
+                    Interval::parse('P1M'),
+                ]
             ]
         ];
     }
@@ -739,6 +749,7 @@ class QueryTest extends SpannerTestCase
             [Database::TYPE_BYTES],
             [Database::TYPE_TIMESTAMP],
             [Database::TYPE_DATE],
+            [Database::TYPE_INTERVAL]
         ];
     }
 
@@ -754,6 +765,7 @@ class QueryTest extends SpannerTestCase
             [Database::TYPE_TIMESTAMP],
             [Database::TYPE_DATE],
             [Database::TYPE_NUMERIC],
+            [Database::TYPE_INTERVAL]
         ];
     }
 
@@ -769,6 +781,7 @@ class QueryTest extends SpannerTestCase
             [Database::TYPE_TIMESTAMP],
             [Database::TYPE_DATE],
             [Database::TYPE_NUMERIC],
+            [Database::TYPE_INTERVAL]
         ];
     }
 

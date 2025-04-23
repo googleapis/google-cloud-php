@@ -39,7 +39,6 @@ class Interval
     private int $months;
     private int $days;
     private float $nanoseconds;
-    private string|null $stringRepresentation = null;
 
     private function __construct(int $months, int $days, float $nanoseconds)
     {
@@ -199,12 +198,7 @@ class Interval
 
     public function __toString(): string
     {
-        // The string conversion is a bit heavy, memoizing it might be useful
-        if (is_null($this->stringRepresentation)) {
-            $this->stringRepresentation = Interval::intervalToString();
-        }
-
-        return $this->stringRepresentation;
+        return Interval::intervalToString();
     }
 
     /**
