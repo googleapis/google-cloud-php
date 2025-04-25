@@ -73,12 +73,23 @@ class Interval
         $this->nanoseconds = $nanoseconds;
     }
 
+    /**
+     * Parses an ISO8601 duration string into an Interval type.
+     * The format for the string should be in the format:
+     * `P[n]Y[n]M[n]DT[n]H[n]M[n[.fraction]]S`
+     * where `n` is an integer.
+     *
+     * @param string $text The ISO8601 duration string
+     *
+     * @return Interval
+     */
     public static function parse(string $text): Interval
     {
         if (empty($text)) {
             throw new InvalidArgumentException('The given interval is empty.');
         }
 
+        // Interval also accepts decimals delimited with a coma instead of a period.
         $text = str_replace(',', '.', $text);
 
         $state = new IntervalParsingState();
@@ -407,8 +418,7 @@ class Interval
 
     private static function isValidResolution(string $textValue): bool
     {
-        $splitText = str_replace($textValue, ',', '.');
-        $splitText = explode('.', $splitText);
+        $splitText = explode('.', $textValue);
 
         // If we have an int number, it is valid
         if (count($splitText) < 2) {
