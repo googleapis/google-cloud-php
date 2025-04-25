@@ -46,6 +46,7 @@ class ValueMapper
     const TYPE_NUMERIC = TypeCode::NUMERIC;
     const TYPE_JSON = TypeCode::JSON;
     const TYPE_PROTO = TypeCode::PROTO;
+    const TYPE_INTERVAL = TypeCode::INTERVAL;
     const TYPE_PG_NUMERIC = 'pgNumeric';
     const TYPE_PG_JSONB = 'pgJsonb';
     const TYPE_PG_OID = 'pgOid';
@@ -71,6 +72,7 @@ class ValueMapper
         self::TYPE_PG_OID,
         self::TYPE_FLOAT32,
         self::TYPE_PROTO,
+        self::TYPE_INTERVAL,
     ];
 
     /*
@@ -373,6 +375,16 @@ class ValueMapper
                 break;
             case self::TYPE_PROTO:
                 $value = new Proto($value, $type['protoTypeFqn']);
+                break;
+            case self::TYPE_INTERVAL:
+                if (!is_string($value)) {
+                    throw new \RuntimeException(sprintf(
+                        'Unexpected value %s in %s field.',
+                        $value,
+                        TypeCode::name($type['code'])
+                    ));
+                }
+                $value = Interval::parse($value);
                 break;
         }
 
@@ -795,6 +807,13 @@ class ValueMapper
             return [
                 $typeObject,
                 base64_encode($value->serializetoString())
+            ];
+        }
+
+        if ($value instanceof Interval) {
+            return [
+                $this->typeObject(self::TYPE_INTERVAL),
+                $value->__toString(),
             ];
         }
 
