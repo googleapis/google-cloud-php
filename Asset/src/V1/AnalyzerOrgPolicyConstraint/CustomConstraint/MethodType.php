@@ -40,12 +40,26 @@ class MethodType
      * Generated from protobuf enum <code>DELETE = 3;</code>
      */
     const DELETE = 3;
+    /**
+     * Constraint applied when removing an IAM grant.
+     *
+     * Generated from protobuf enum <code>REMOVE_GRANT = 4;</code>
+     */
+    const REMOVE_GRANT = 4;
+    /**
+     * Constraint applied when enforcing forced tagging.
+     *
+     * Generated from protobuf enum <code>GOVERN_TAGS = 5;</code>
+     */
+    const GOVERN_TAGS = 5;
 
     private static $valueToName = [
         self::METHOD_TYPE_UNSPECIFIED => 'METHOD_TYPE_UNSPECIFIED',
         self::CREATE => 'CREATE',
         self::UPDATE => 'UPDATE',
         self::DELETE => 'DELETE',
+        self::REMOVE_GRANT => 'REMOVE_GRANT',
+        self::GOVERN_TAGS => 'GOVERN_TAGS',
     ];
 
     public static function name($value)

@@ -372,6 +372,29 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     private $effective_tags;
     /**
+     * Enrichments of the asset. Currently supported enrichment types with
+     * SearchAllResources API:
+     * * RESOURCE_OWNERS
+     * The corresponding read masks in order to get the enrichment:
+     * * enrichments.resource_owners
+     * The corresponding required permissions:
+     * * cloudasset.assets.searchEnrichmentResourceOwners
+     * Example query to get resource owner enrichment:
+     * ```
+     *   scope: "projects/my-project"
+     *   query: "name: my-project"
+     *   assetTypes: "cloudresourcemanager.googleapis.com/Project"
+     *   readMask: {
+     *      paths: "asset_type"
+     *      paths: "name"
+     *      paths: "enrichments.resource_owners"
+     *   }
+     * ```
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AssetEnrichment enrichments = 31;</code>
+     */
+    private $enrichments;
+    /**
      * The type of this resource's immediate parent, if there is one.
      * To search against the `parent_asset_type`:
      * * Use a field query. Example:
@@ -652,6 +675,25 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *               - `effectiveTagValues:"123456789/env/prod*"`
      *               - `effectiveTagValues="123456789/env/prod"`
      *               - `effectiveTagValueIds="tagValues/456"`
+     *     @type array<\Google\Cloud\Asset\V1\AssetEnrichment>|\Google\Protobuf\Internal\RepeatedField $enrichments
+     *           Enrichments of the asset. Currently supported enrichment types with
+     *           SearchAllResources API:
+     *           * RESOURCE_OWNERS
+     *           The corresponding read masks in order to get the enrichment:
+     *           * enrichments.resource_owners
+     *           The corresponding required permissions:
+     *           * cloudasset.assets.searchEnrichmentResourceOwners
+     *           Example query to get resource owner enrichment:
+     *           ```
+     *             scope: "projects/my-project"
+     *             query: "name: my-project"
+     *             assetTypes: "cloudresourcemanager.googleapis.com/Project"
+     *             readMask: {
+     *                paths: "asset_type"
+     *                paths: "name"
+     *                paths: "enrichments.resource_owners"
+     *             }
+     *           ```
      *     @type string $parent_asset_type
      *           The type of this resource's immediate parent, if there is one.
      *           To search against the `parent_asset_type`:
@@ -1769,6 +1811,66 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Asset\V1\EffectiveTagDetails::class);
         $this->effective_tags = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Enrichments of the asset. Currently supported enrichment types with
+     * SearchAllResources API:
+     * * RESOURCE_OWNERS
+     * The corresponding read masks in order to get the enrichment:
+     * * enrichments.resource_owners
+     * The corresponding required permissions:
+     * * cloudasset.assets.searchEnrichmentResourceOwners
+     * Example query to get resource owner enrichment:
+     * ```
+     *   scope: "projects/my-project"
+     *   query: "name: my-project"
+     *   assetTypes: "cloudresourcemanager.googleapis.com/Project"
+     *   readMask: {
+     *      paths: "asset_type"
+     *      paths: "name"
+     *      paths: "enrichments.resource_owners"
+     *   }
+     * ```
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AssetEnrichment enrichments = 31;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getEnrichments()
+    {
+        return $this->enrichments;
+    }
+
+    /**
+     * Enrichments of the asset. Currently supported enrichment types with
+     * SearchAllResources API:
+     * * RESOURCE_OWNERS
+     * The corresponding read masks in order to get the enrichment:
+     * * enrichments.resource_owners
+     * The corresponding required permissions:
+     * * cloudasset.assets.searchEnrichmentResourceOwners
+     * Example query to get resource owner enrichment:
+     * ```
+     *   scope: "projects/my-project"
+     *   query: "name: my-project"
+     *   assetTypes: "cloudresourcemanager.googleapis.com/Project"
+     *   readMask: {
+     *      paths: "asset_type"
+     *      paths: "name"
+     *      paths: "enrichments.resource_owners"
+     *   }
+     * ```
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AssetEnrichment enrichments = 31;</code>
+     * @param array<\Google\Cloud\Asset\V1\AssetEnrichment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setEnrichments($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Asset\V1\AssetEnrichment::class);
+        $this->enrichments = $arr;
 
         return $this;
     }

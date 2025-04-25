@@ -17,7 +17,10 @@ class DeleteCssProductInputRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the CSS product input resource to delete.
-     * Format: accounts/{account}/cssProductInputs/{css_product_input}
+     * Format: accounts/{account}/cssProductInputs/{css_product_input}, where the
+     * last section `css_product_input` consists of 3 parts:
+     * contentLanguage~feedLabel~offerId. Example:
+     * accounts/123/cssProductInputs/de~DE~rawProvidedId123
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -34,7 +37,10 @@ class DeleteCssProductInputRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the CSS product input resource to delete.
-     *                     Format: accounts/{account}/cssProductInputs/{css_product_input}
+     *                     Format: accounts/{account}/cssProductInputs/{css_product_input}, where the
+     *                     last section `css_product_input` consists of 3 parts:
+     *                     contentLanguage~feedLabel~offerId. Example:
+     *                     accounts/123/cssProductInputs/de~DE~rawProvidedId123
      *                     Please see {@see CssProductInputsServiceClient::cssProductInputName()} for help formatting this field.
      *
      * @return \Google\Shopping\Css\V1\DeleteCssProductInputRequest
@@ -55,7 +61,10 @@ class DeleteCssProductInputRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the CSS product input resource to delete.
-     *           Format: accounts/{account}/cssProductInputs/{css_product_input}
+     *           Format: accounts/{account}/cssProductInputs/{css_product_input}, where the
+     *           last section `css_product_input` consists of 3 parts:
+     *           contentLanguage~feedLabel~offerId. Example:
+     *           accounts/123/cssProductInputs/de~DE~rawProvidedId123
      *     @type int|string $supplemental_feed_id
      *           The Content API Supplemental Feed ID.
      *           The field must not be set if the action applies to a primary feed.
@@ -70,7 +79,10 @@ class DeleteCssProductInputRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the CSS product input resource to delete.
-     * Format: accounts/{account}/cssProductInputs/{css_product_input}
+     * Format: accounts/{account}/cssProductInputs/{css_product_input}, where the
+     * last section `css_product_input` consists of 3 parts:
+     * contentLanguage~feedLabel~offerId. Example:
+     * accounts/123/cssProductInputs/de~DE~rawProvidedId123
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -82,7 +94,10 @@ class DeleteCssProductInputRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the CSS product input resource to delete.
-     * Format: accounts/{account}/cssProductInputs/{css_product_input}
+     * Format: accounts/{account}/cssProductInputs/{css_product_input}, where the
+     * last section `css_product_input` consists of 3 parts:
+     * contentLanguage~feedLabel~offerId. Example:
+     * accounts/123/cssProductInputs/de~DE~rawProvidedId123
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

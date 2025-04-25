@@ -35,7 +35,7 @@ class Oracledatabase
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‰a
+­i
 3google/cloud/oracledatabase/v1/oracledatabase.protogoogle.cloud.oracledatabase.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/field_info.protogoogle/api/resource.proto8google/cloud/oracledatabase/v1/autonomous_database.protoFgoogle/cloud/oracledatabase/v1/autonomous_database_character_set.proto9google/cloud/oracledatabase/v1/autonomous_db_backup.proto:google/cloud/oracledatabase/v1/autonomous_db_version.proto,google/cloud/oracledatabase/v1/db_node.proto.google/cloud/oracledatabase/v1/db_server.proto4google/cloud/oracledatabase/v1/db_system_shape.proto0google/cloud/oracledatabase/v1/entitlement.proto2google/cloud/oracledatabase/v1/exadata_infra.proto/google/cloud/oracledatabase/v1/gi_version.proto/google/cloud/oracledatabase/v1/vm_cluster.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"«
 &ListCloudExadataInfrastructuresRequestP
 parent (	B@àAúA:8oracledatabase.googleapis.com/CloudExadataInfrastructure
@@ -161,7 +161,16 @@ request_id (	BàAâŒÏ×"¡
  RestoreAutonomousDatabaseRequestF
 name (	B8àAúA2
 0oracledatabase.googleapis.com/AutonomousDatabase5
-restore_time (2.google.protobuf.TimestampBàA"ã
+restore_time (2.google.protobuf.TimestampBàA"g
+StopAutonomousDatabaseRequestF
+name (	B8àAúA2
+0oracledatabase.googleapis.com/AutonomousDatabase"h
+StartAutonomousDatabaseRequestF
+name (	B8àAúA2
+0oracledatabase.googleapis.com/AutonomousDatabase"j
+ RestartAutonomousDatabaseRequestF
+name (	B8àAúA2
+0oracledatabase.googleapis.com/AutonomousDatabase"ã
 \'GenerateAutonomousDatabaseWalletRequestF
 name (	B8àAúA2
 0oracledatabase.googleapis.com/AutonomousDatabase?
@@ -195,7 +204,7 @@ $ListAutonomousDatabaseBackupsRequestN
 page_token (	BàA"Ÿ
 %ListAutonomousDatabaseBackupsResponse]
 autonomous_database_backups (28.google.cloud.oracledatabase.v1.AutonomousDatabaseBackup
-next_page_token (	2Œ+
+next_page_token (	2ñ0
 OracleDatabase„
 ListCloudExadataInfrastructuresF.google.cloud.oracledatabase.v1.ListCloudExadataInfrastructuresRequestG.google.cloud.oracledatabase.v1.ListCloudExadataInfrastructuresResponse"PÚAparent‚Óä“A?/v1/{parent=projects/*/locations/*}/cloudExadataInfrastructuresñ
 GetCloudExadataInfrastructureD.google.cloud.oracledatabase.v1.GetCloudExadataInfrastructureRequest:.google.cloud.oracledatabase.v1.CloudExadataInfrastructure"NÚAname‚Óä“A?/v1/{name=projects/*/locations/*/cloudExadataInfrastructures/*}ê
@@ -225,7 +234,13 @@ page_token (	BàA"Ÿ
  GenerateAutonomousDatabaseWalletG.google.cloud.oracledatabase.v1.GenerateAutonomousDatabaseWalletRequestH.google.cloud.oracledatabase.v1.GenerateAutonomousDatabaseWalletResponse"rÚAname,type,is_regional,password‚Óä“K"F/v1/{name=projects/*/locations/*/autonomousDatabases/*}:generateWallet:*è
 ListAutonomousDbVersions?.google.cloud.oracledatabase.v1.ListAutonomousDbVersionsRequest@.google.cloud.oracledatabase.v1.ListAutonomousDbVersionsResponse"IÚAparent‚Óä“:8/v1/{parent=projects/*/locations/*}/autonomousDbVersions”
 #ListAutonomousDatabaseCharacterSetsJ.google.cloud.oracledatabase.v1.ListAutonomousDatabaseCharacterSetsRequestK.google.cloud.oracledatabase.v1.ListAutonomousDatabaseCharacterSetsResponse"TÚAparent‚Óä“EC/v1/{parent=projects/*/locations/*}/autonomousDatabaseCharacterSetsü
-ListAutonomousDatabaseBackupsD.google.cloud.oracledatabase.v1.ListAutonomousDatabaseBackupsRequestE.google.cloud.oracledatabase.v1.ListAutonomousDatabaseBackupsResponse"NÚAparent‚Óä“?=/v1/{parent=projects/*/locations/*}/autonomousDatabaseBackupsQÊAoracledatabase.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¶
+ListAutonomousDatabaseBackupsD.google.cloud.oracledatabase.v1.ListAutonomousDatabaseBackupsRequestE.google.cloud.oracledatabase.v1.ListAutonomousDatabaseBackupsResponse"NÚAparent‚Óä“?=/v1/{parent=projects/*/locations/*}/autonomousDatabaseBackupsð
+StopAutonomousDatabase=.google.cloud.oracledatabase.v1.StopAutonomousDatabaseRequest.google.longrunning.Operation"xÊA\'
+AutonomousDatabaseOperationMetadataÚAname‚Óä“A"</v1/{name=projects/*/locations/*/autonomousDatabases/*}:stop:*ó
+StartAutonomousDatabase>.google.cloud.oracledatabase.v1.StartAutonomousDatabaseRequest.google.longrunning.Operation"yÊA\'
+AutonomousDatabaseOperationMetadataÚAname‚Óä“B"=/v1/{name=projects/*/locations/*/autonomousDatabases/*}:start:*ù
+RestartAutonomousDatabase@.google.cloud.oracledatabase.v1.RestartAutonomousDatabaseRequest.google.longrunning.Operation"{ÊA\'
+AutonomousDatabaseOperationMetadataÚAname‚Óä“D"?/v1/{name=projects/*/locations/*/autonomousDatabases/*}:restart:*QÊAoracledatabase.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¶
 "com.google.cloud.oracledatabase.v1BV1mainProtoPZJcloud.google.com/go/oracledatabase/apiv1/oracledatabasepb;oracledatabasepbªGoogle.Cloud.OracleDatabase.V1ÊGoogle\\Cloud\\OracleDatabase\\V1ê!Google::Cloud::OracleDatabase::V1êAN
 compute.googleapis.com/Network,projects/{project}/global/networks/{network}bproto3'
         , true);

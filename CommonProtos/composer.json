@@ -2,7 +2,7 @@
   "name": "google/common-protos",
   "type": "library",
   "description": "Google API Common Protos for PHP",
-  "version": "4.11.0",
+  "version": "4.12.0",
   "keywords": [
     "google"
   ],

@@ -16,23 +16,24 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReauthSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Reauth method requested.
+     * Optional. Reauth method requested.
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings.Method method = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings.Method method = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $method = 0;
     /**
-     * Reauth session lifetime, how long before a user has to reauthenticate
-     * again.
+     * Optional. Reauth session lifetime, how long before a user has to
+     * reauthenticate again.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration max_age = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration max_age = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $max_age = null;
     /**
-     * How IAP determines the effective policy in cases of hierarchial policies.
-     * Policies are merged from higher in the hierarchy to lower in the hierarchy.
+     * Optional. How IAP determines the effective policy in cases of hierarchical
+     * policies. Policies are merged from higher in the hierarchy to lower in the
+     * hierarchy.
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings.PolicyType policy_type = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings.PolicyType policy_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $policy_type = 0;
 
@@ -43,13 +44,14 @@ class ReauthSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $method
-     *           Reauth method requested.
+     *           Optional. Reauth method requested.
      *     @type \Google\Protobuf\Duration $max_age
-     *           Reauth session lifetime, how long before a user has to reauthenticate
-     *           again.
+     *           Optional. Reauth session lifetime, how long before a user has to
+     *           reauthenticate again.
      *     @type int $policy_type
-     *           How IAP determines the effective policy in cases of hierarchial policies.
-     *           Policies are merged from higher in the hierarchy to lower in the hierarchy.
+     *           Optional. How IAP determines the effective policy in cases of hierarchical
+     *           policies. Policies are merged from higher in the hierarchy to lower in the
+     *           hierarchy.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,9 +60,9 @@ class ReauthSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reauth method requested.
+     * Optional. Reauth method requested.
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings.Method method = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings.Method method = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getMethod()
@@ -69,9 +71,9 @@ class ReauthSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reauth method requested.
+     * Optional. Reauth method requested.
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings.Method method = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings.Method method = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -84,10 +86,10 @@ class ReauthSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reauth session lifetime, how long before a user has to reauthenticate
-     * again.
+     * Optional. Reauth session lifetime, how long before a user has to
+     * reauthenticate again.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration max_age = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration max_age = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration|null
      */
     public function getMaxAge()
@@ -106,10 +108,10 @@ class ReauthSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reauth session lifetime, how long before a user has to reauthenticate
-     * again.
+     * Optional. Reauth session lifetime, how long before a user has to
+     * reauthenticate again.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration max_age = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration max_age = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var
      * @return $this
      */
@@ -122,10 +124,11 @@ class ReauthSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * How IAP determines the effective policy in cases of hierarchial policies.
-     * Policies are merged from higher in the hierarchy to lower in the hierarchy.
+     * Optional. How IAP determines the effective policy in cases of hierarchical
+     * policies. Policies are merged from higher in the hierarchy to lower in the
+     * hierarchy.
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings.PolicyType policy_type = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings.PolicyType policy_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPolicyType()
@@ -134,10 +137,11 @@ class ReauthSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * How IAP determines the effective policy in cases of hierarchial policies.
-     * Policies are merged from higher in the hierarchy to lower in the hierarchy.
+     * Optional. How IAP determines the effective policy in cases of hierarchical
+     * policies. Policies are merged from higher in the hierarchy to lower in the
+     * hierarchy.
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings.PolicyType policy_type = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings.PolicyType policy_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

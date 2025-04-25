@@ -97,7 +97,9 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
     protected $state = 0;
     /**
      * Output only. A human readable message explaining why the VolumeBackup is in
-     * its current state.
+     * its current state. This field is only meant for human consumption and
+     * should not be used programmatically as this field is not guaranteed to be
+     * consistent.
      *
      * Generated from protobuf field <code>string state_message = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -112,6 +114,18 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string etag = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $etag = '';
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = false;
 
     /**
      * Constructor.
@@ -155,13 +169,19 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
      *           Output only. The current state of this VolumeBackup.
      *     @type string $state_message
      *           Output only. A human readable message explaining why the VolumeBackup is in
-     *           its current state.
+     *           its current state. This field is only meant for human consumption and
+     *           should not be used programmatically as this field is not guaranteed to be
+     *           consistent.
      *     @type string $etag
      *           Output only. `etag` is used for optimistic concurrency control as a way to
      *           help prevent simultaneous updates of a volume backup from overwriting each
      *           other. It is strongly suggested that systems make use of the `etag` in the
      *           read-modify-write cycle to perform volume backup updates in order to avoid
      *           race conditions.
+     *     @type bool $satisfies_pzs
+     *           Output only. [Output Only] Reserved for future use.
+     *     @type bool $satisfies_pzi
+     *           Output only. [Output Only] Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -521,7 +541,9 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. A human readable message explaining why the VolumeBackup is in
-     * its current state.
+     * its current state. This field is only meant for human consumption and
+     * should not be used programmatically as this field is not guaranteed to be
+     * consistent.
      *
      * Generated from protobuf field <code>string state_message = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -533,7 +555,9 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. A human readable message explaining why the VolumeBackup is in
-     * its current state.
+     * its current state. This field is only meant for human consumption and
+     * should not be used programmatically as this field is not guaranteed to be
+     * consistent.
      *
      * Generated from protobuf field <code>string state_message = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -577,6 +601,58 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

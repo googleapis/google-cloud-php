@@ -29,7 +29,7 @@ class RedisClusterInfo extends \Google\Protobuf\Internal\Message
      */
     protected $uri = '';
     /**
-     * URI of a Redis Cluster network in format
+     * URI of the network containing the Redis Cluster endpoints in format
      * "projects/{project_id}/global/networks/{network_id}".
      *
      * Generated from protobuf field <code>string network_uri = 3;</code>
@@ -67,7 +67,7 @@ class RedisClusterInfo extends \Google\Protobuf\Internal\Message
      *           URI of a Redis Cluster in format
      *           "projects/{project_id}/locations/{location}/clusters/{cluster_id}"
      *     @type string $network_uri
-     *           URI of a Redis Cluster network in format
+     *           URI of the network containing the Redis Cluster endpoints in format
      *           "projects/{project_id}/global/networks/{network_id}".
      *     @type string $discovery_endpoint_ip_address
      *           Discovery endpoint IP address of a Redis Cluster.
@@ -138,7 +138,7 @@ class RedisClusterInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Redis Cluster network in format
+     * URI of the network containing the Redis Cluster endpoints in format
      * "projects/{project_id}/global/networks/{network_id}".
      *
      * Generated from protobuf field <code>string network_uri = 3;</code>
@@ -150,7 +150,7 @@ class RedisClusterInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a Redis Cluster network in format
+     * URI of the network containing the Redis Cluster endpoints in format
      * "projects/{project_id}/global/networks/{network_id}".
      *
      * Generated from protobuf field <code>string network_uri = 3;</code>

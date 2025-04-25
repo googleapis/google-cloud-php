@@ -35,6 +35,18 @@ return [
                     ],
                 ],
             ],
+            'CreateBackupChannel' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupChannels',
+                'body' => 'backup_channel',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateBackupPlan' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupPlans',
@@ -65,6 +77,18 @@ return [
                     'restore_id',
                 ],
             ],
+            'CreateRestoreChannel' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/restoreChannels',
+                'body' => 'restore_channel',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateRestorePlan' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/restorePlans',
@@ -83,6 +107,17 @@ return [
             'DeleteBackup' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/backupPlans/*/backups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteBackupChannel' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupChannels/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -113,6 +148,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteRestoreChannel' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/restoreChannels/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteRestorePlan' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/restorePlans/*}',
@@ -127,6 +173,17 @@ return [
             'GetBackup' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/backupPlans/*/backups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackupChannel' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupChannels/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -157,6 +214,17 @@ return [
                     ],
                 ],
             ],
+            'GetBackupPlanBinding' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupChannels/*/backupPlanBindings/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetRestore' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/restorePlans/*/restores/*}',
@@ -168,9 +236,31 @@ return [
                     ],
                 ],
             ],
+            'GetRestoreChannel' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/restoreChannels/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetRestorePlan' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/restorePlans/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetRestorePlanBinding' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/restoreChannels/*/restorePlanBindings/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -201,6 +291,28 @@ return [
                     ],
                 ],
             ],
+            'ListBackupChannels' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupChannels',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackupPlanBindings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/backupChannels/*}/backupPlanBindings',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListBackupPlans' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupPlans',
@@ -215,6 +327,28 @@ return [
             'ListBackups' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/backupPlans/*}/backups',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListRestoreChannels' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/restoreChannels',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListRestorePlanBindings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/restoreChannels/*}/restorePlanBindings',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -280,6 +414,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateBackupChannel' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{backup_channel.name=projects/*/locations/*/backupChannels/*}',
+                'body' => 'backup_channel',
+                'placeholders' => [
+                    'backup_channel.name' => [
+                        'getters' => [
+                            'getBackupChannel',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateBackupPlan' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{backup_plan.name=projects/*/locations/*/backupPlans/*}',
@@ -301,6 +448,19 @@ return [
                     'restore.name' => [
                         'getters' => [
                             'getRestore',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateRestoreChannel' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{restore_channel.name=projects/*/locations/*/restoreChannels/*}',
+                'body' => 'restore_channel',
+                'placeholders' => [
+                    'restore_channel.name' => [
+                        'getters' => [
+                            'getRestoreChannel',
                             'getName',
                         ],
                     ],

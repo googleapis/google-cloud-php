@@ -183,6 +183,14 @@ class Cause
      */
     const FIREWALL_BLOCKING_LOAD_BALANCER_BACKEND_HEALTH_CHECK = 13;
     /**
+     * Matching ingress firewall rules by network tags for packets sent via
+     * serverless VPC direct egress is unsupported. Behavior is undefined.
+     * https://cloud.google.com/run/docs/configuring/vpc-direct-vpc#limitations
+     *
+     * Generated from protobuf enum <code>INGRESS_FIREWALL_TAGS_UNSUPPORTED_BY_DIRECT_VPC_EGRESS = 85;</code>
+     */
+    const INGRESS_FIREWALL_TAGS_UNSUPPORTED_BY_DIRECT_VPC_EGRESS = 85;
+    /**
      * Packet is sent from or to a Compute Engine instance that is not in a
      * running state.
      *
@@ -597,6 +605,27 @@ class Cause
      * Generated from protobuf enum <code>PRIVATE_NAT_TO_PSC_ENDPOINT_UNSUPPORTED = 83;</code>
      */
     const PRIVATE_NAT_TO_PSC_ENDPOINT_UNSUPPORTED = 83;
+    /**
+     * Packet is sent to the PSC port mapping service, but its destination port
+     * does not match any port mapping rules.
+     *
+     * Generated from protobuf enum <code>PSC_PORT_MAPPING_PORT_MISMATCH = 86;</code>
+     */
+    const PSC_PORT_MAPPING_PORT_MISMATCH = 86;
+    /**
+     * Sending packets directly to the PSC port mapping service without going
+     * through the PSC connection is not supported.
+     *
+     * Generated from protobuf enum <code>PSC_PORT_MAPPING_WITHOUT_PSC_CONNECTION_UNSUPPORTED = 87;</code>
+     */
+    const PSC_PORT_MAPPING_WITHOUT_PSC_CONNECTION_UNSUPPORTED = 87;
+    /**
+     * Packet with destination IP address within the reserved NAT64 range is
+     * dropped due to matching a route of an unsupported type.
+     *
+     * Generated from protobuf enum <code>UNSUPPORTED_ROUTE_MATCHED_FOR_NAT64_DESTINATION = 88;</code>
+     */
+    const UNSUPPORTED_ROUTE_MATCHED_FOR_NAT64_DESTINATION = 88;
 
     private static $valueToName = [
         self::CAUSE_UNSPECIFIED => 'CAUSE_UNSPECIFIED',
@@ -624,6 +653,7 @@ class Cause
         self::FORWARDING_RULE_MISMATCH => 'FORWARDING_RULE_MISMATCH',
         self::FORWARDING_RULE_NO_INSTANCES => 'FORWARDING_RULE_NO_INSTANCES',
         self::FIREWALL_BLOCKING_LOAD_BALANCER_BACKEND_HEALTH_CHECK => 'FIREWALL_BLOCKING_LOAD_BALANCER_BACKEND_HEALTH_CHECK',
+        self::INGRESS_FIREWALL_TAGS_UNSUPPORTED_BY_DIRECT_VPC_EGRESS => 'INGRESS_FIREWALL_TAGS_UNSUPPORTED_BY_DIRECT_VPC_EGRESS',
         self::INSTANCE_NOT_RUNNING => 'INSTANCE_NOT_RUNNING',
         self::GKE_CLUSTER_NOT_RUNNING => 'GKE_CLUSTER_NOT_RUNNING',
         self::CLOUD_SQL_INSTANCE_NOT_RUNNING => 'CLOUD_SQL_INSTANCE_NOT_RUNNING',
@@ -683,6 +713,9 @@ class Cause
         self::NO_TRAFFIC_SELECTOR_TO_GCP_DESTINATION => 'NO_TRAFFIC_SELECTOR_TO_GCP_DESTINATION',
         self::NO_KNOWN_ROUTE_FROM_PEERED_NETWORK_TO_DESTINATION => 'NO_KNOWN_ROUTE_FROM_PEERED_NETWORK_TO_DESTINATION',
         self::PRIVATE_NAT_TO_PSC_ENDPOINT_UNSUPPORTED => 'PRIVATE_NAT_TO_PSC_ENDPOINT_UNSUPPORTED',
+        self::PSC_PORT_MAPPING_PORT_MISMATCH => 'PSC_PORT_MAPPING_PORT_MISMATCH',
+        self::PSC_PORT_MAPPING_WITHOUT_PSC_CONNECTION_UNSUPPORTED => 'PSC_PORT_MAPPING_WITHOUT_PSC_CONNECTION_UNSUPPORTED',
+        self::UNSUPPORTED_ROUTE_MATCHED_FOR_NAT64_DESTINATION => 'UNSUPPORTED_ROUTE_MATCHED_FOR_NAT64_DESTINATION',
     ];
 
     public static function name($value)

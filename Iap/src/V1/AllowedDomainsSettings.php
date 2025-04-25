@@ -17,15 +17,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class AllowedDomainsSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Configuration for customers to opt in for the feature.
+     * Optional. Configuration for customers to opt in for the feature.
      *
-     * Generated from protobuf field <code>optional bool enable = 1;</code>
+     * Generated from protobuf field <code>optional bool enable = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $enable = null;
     /**
-     * List of trusted domains.
+     * Optional. List of trusted domains.
      *
-     * Generated from protobuf field <code>repeated string domains = 2;</code>
+     * Generated from protobuf field <code>repeated string domains = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $domains;
 
@@ -36,9 +36,9 @@ class AllowedDomainsSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enable
-     *           Configuration for customers to opt in for the feature.
+     *           Optional. Configuration for customers to opt in for the feature.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $domains
-     *           List of trusted domains.
+     *           Optional. List of trusted domains.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,9 +47,9 @@ class AllowedDomainsSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration for customers to opt in for the feature.
+     * Optional. Configuration for customers to opt in for the feature.
      *
-     * Generated from protobuf field <code>optional bool enable = 1;</code>
+     * Generated from protobuf field <code>optional bool enable = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getEnable()
@@ -68,9 +68,9 @@ class AllowedDomainsSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration for customers to opt in for the feature.
+     * Optional. Configuration for customers to opt in for the feature.
      *
-     * Generated from protobuf field <code>optional bool enable = 1;</code>
+     * Generated from protobuf field <code>optional bool enable = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -83,9 +83,9 @@ class AllowedDomainsSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of trusted domains.
+     * Optional. List of trusted domains.
      *
-     * Generated from protobuf field <code>repeated string domains = 2;</code>
+     * Generated from protobuf field <code>repeated string domains = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getDomains()
@@ -94,9 +94,9 @@ class AllowedDomainsSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of trusted domains.
+     * Optional. List of trusted domains.
      *
-     * Generated from protobuf field <code>repeated string domains = 2;</code>
+     * Generated from protobuf field <code>repeated string domains = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

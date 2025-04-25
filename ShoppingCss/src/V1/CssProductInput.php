@@ -20,7 +20,10 @@ class CssProductInput extends \Google\Protobuf\Internal\Message
     /**
      * The name of the CSS Product input.
      * Format:
-     * `accounts/{account}/cssProductInputs/{css_product_input}`
+     * `accounts/{account}/cssProductInputs/{css_product_input}`, where the
+     * last section `css_product_input` consists of 3 parts:
+     * contentLanguage~feedLabel~offerId. Example:
+     * accounts/123/cssProductInputs/de~DE~rawProvidedId123
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -109,7 +112,10 @@ class CssProductInput extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name of the CSS Product input.
      *           Format:
-     *           `accounts/{account}/cssProductInputs/{css_product_input}`
+     *           `accounts/{account}/cssProductInputs/{css_product_input}`, where the
+     *           last section `css_product_input` consists of 3 parts:
+     *           contentLanguage~feedLabel~offerId. Example:
+     *           accounts/123/cssProductInputs/de~DE~rawProvidedId123
      *     @type string $final_name
      *           Output only. The name of the processed CSS Product.
      *           Format:
@@ -165,7 +171,10 @@ class CssProductInput extends \Google\Protobuf\Internal\Message
     /**
      * The name of the CSS Product input.
      * Format:
-     * `accounts/{account}/cssProductInputs/{css_product_input}`
+     * `accounts/{account}/cssProductInputs/{css_product_input}`, where the
+     * last section `css_product_input` consists of 3 parts:
+     * contentLanguage~feedLabel~offerId. Example:
+     * accounts/123/cssProductInputs/de~DE~rawProvidedId123
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -178,7 +187,10 @@ class CssProductInput extends \Google\Protobuf\Internal\Message
     /**
      * The name of the CSS Product input.
      * Format:
-     * `accounts/{account}/cssProductInputs/{css_product_input}`
+     * `accounts/{account}/cssProductInputs/{css_product_input}`, where the
+     * last section `css_product_input` consists of 3 parts:
+     * contentLanguage~feedLabel~offerId. Example:
+     * accounts/123/cssProductInputs/de~DE~rawProvidedId123
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

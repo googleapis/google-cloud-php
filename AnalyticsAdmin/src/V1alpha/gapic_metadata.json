@@ -165,6 +165,11 @@
                                 "createProperty"
                             ]
                         },
+                        "CreateReportingDataAnnotation": {
+                            "methods": [
+                                "createReportingDataAnnotation"
+                            ]
+                        },
                         "CreateRollupProperty": {
                             "methods": [
                                 "createRollupProperty"
@@ -283,6 +288,11 @@
                         "DeleteProperty": {
                             "methods": [
                                 "deleteProperty"
+                            ]
+                        },
+                        "DeleteReportingDataAnnotation": {
+                            "methods": [
+                                "deleteReportingDataAnnotation"
                             ]
                         },
                         "DeleteRollupPropertySourceLink": {
@@ -445,6 +455,11 @@
                                 "getProperty"
                             ]
                         },
+                        "GetReportingDataAnnotation": {
+                            "methods": [
+                                "getReportingDataAnnotation"
+                            ]
+                        },
                         "GetRollupPropertySourceLink": {
                             "methods": [
                                 "getRollupPropertySourceLink"
@@ -580,6 +595,11 @@
                                 "listProperties"
                             ]
                         },
+                        "ListReportingDataAnnotations": {
+                            "methods": [
+                                "listReportingDataAnnotations"
+                            ]
+                        },
                         "ListRollupPropertySourceLinks": {
                             "methods": [
                                 "listRollupPropertySourceLinks"
@@ -628,6 +648,11 @@
                         "SetAutomatedGa4ConfigurationOptOut": {
                             "methods": [
                                 "setAutomatedGa4ConfigurationOptOut"
+                            ]
+                        },
+                        "SubmitUserDeletion": {
+                            "methods": [
+                                "submitUserDeletion"
                             ]
                         },
                         "UpdateAccessBinding": {
@@ -743,6 +768,11 @@
                         "UpdateProperty": {
                             "methods": [
                                 "updateProperty"
+                            ]
+                        },
+                        "UpdateReportingDataAnnotation": {
+                            "methods": [
+                                "updateReportingDataAnnotation"
                             ]
                         },
                         "UpdateSKAdNetworkConversionValueSchema": {

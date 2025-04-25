@@ -368,6 +368,65 @@
                 }
             }
         },
+        "CmekService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CmekServiceGapicClient",
+                    "rpcs": {
+                        "CreateEncryptionConfig": {
+                            "methods": [
+                                "createEncryptionConfig"
+                            ]
+                        },
+                        "DeleteEncryptionConfig": {
+                            "methods": [
+                                "deleteEncryptionConfig"
+                            ]
+                        },
+                        "GetEncryptionConfig": {
+                            "methods": [
+                                "getEncryptionConfig"
+                            ]
+                        },
+                        "ListEncryptionConfigs": {
+                            "methods": [
+                                "listEncryptionConfigs"
+                            ]
+                        },
+                        "UpdateEncryptionConfig": {
+                            "methods": [
+                                "updateEncryptionConfig"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "ContentService": {
             "clients": {
                 "grpc": {

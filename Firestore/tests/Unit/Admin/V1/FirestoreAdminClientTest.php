@@ -284,6 +284,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $locationId = 'locationId552319461';
         $keyPrefix = 'keyPrefix438630514';
         $previousId = 'previousId-1005863069';
+        $freeTier = false;
         $etag = 'etag3123477';
         $expectedResponse = new Database();
         $expectedResponse->setName($name);
@@ -291,6 +292,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setKeyPrefix($keyPrefix);
         $expectedResponse->setPreviousId($previousId);
+        $expectedResponse->setFreeTier($freeTier);
         $expectedResponse->setEtag($etag);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -417,8 +419,12 @@ class FirestoreAdminClientTest extends GeneratedTest
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
+        $multikey = true;
+        $shardCount = 495377042;
         $expectedResponse = new Index();
         $expectedResponse->setName($name);
+        $expectedResponse->setMultikey($multikey);
+        $expectedResponse->setShardCount($shardCount);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -728,6 +734,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $locationId = 'locationId552319461';
         $keyPrefix = 'keyPrefix438630514';
         $previousId = 'previousId-1005863069';
+        $freeTier = false;
         $etag2 = 'etag2-1293302904';
         $expectedResponse = new Database();
         $expectedResponse->setName($name2);
@@ -735,6 +742,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setKeyPrefix($keyPrefix);
         $expectedResponse->setPreviousId($previousId);
+        $expectedResponse->setFreeTier($freeTier);
         $expectedResponse->setEtag($etag2);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -1326,6 +1334,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $locationId = 'locationId552319461';
         $keyPrefix = 'keyPrefix438630514';
         $previousId = 'previousId-1005863069';
+        $freeTier = false;
         $etag = 'etag3123477';
         $expectedResponse = new Database();
         $expectedResponse->setName($name2);
@@ -1333,6 +1342,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setKeyPrefix($keyPrefix);
         $expectedResponse->setPreviousId($previousId);
+        $expectedResponse->setFreeTier($freeTier);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -1452,8 +1462,12 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $multikey = true;
+        $shardCount = 495377042;
         $expectedResponse = new Index();
         $expectedResponse->setName($name2);
+        $expectedResponse->setMultikey($multikey);
+        $expectedResponse->setShardCount($shardCount);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->indexName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[INDEX]');
@@ -2137,6 +2151,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $locationId = 'locationId552319461';
         $keyPrefix = 'keyPrefix438630514';
         $previousId = 'previousId-1005863069';
+        $freeTier = false;
         $etag = 'etag3123477';
         $expectedResponse = new Database();
         $expectedResponse->setName($name);
@@ -2144,6 +2159,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setKeyPrefix($keyPrefix);
         $expectedResponse->setPreviousId($previousId);
+        $expectedResponse->setFreeTier($freeTier);
         $expectedResponse->setEtag($etag);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -2334,6 +2350,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $locationId = 'locationId552319461';
         $keyPrefix = 'keyPrefix438630514';
         $previousId = 'previousId-1005863069';
+        $freeTier = false;
         $etag = 'etag3123477';
         $expectedResponse = new Database();
         $expectedResponse->setName($name);
@@ -2341,6 +2358,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setKeyPrefix($keyPrefix);
         $expectedResponse->setPreviousId($previousId);
+        $expectedResponse->setFreeTier($freeTier);
         $expectedResponse->setEtag($etag);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());

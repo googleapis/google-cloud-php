@@ -20,7 +20,7 @@ class Name
      */
     const NAME_UNSPECIFIED = 0;
     /**
-     * Artifact Regsitry Stage
+     * Artifact Registry Stage
      *
      * Generated from protobuf enum <code>ARTIFACT_REGISTRY = 1;</code>
      */

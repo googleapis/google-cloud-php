@@ -19,6 +19,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class Document extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Optional. An internal identifier for document. Should be loggable (no PII).
+     *
+     * Generated from protobuf field <code>string docid = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $docid = '';
+    /**
      * An IANA published [media type (MIME
      * type)](https://www.iana.org/assignments/media-types/media-types.xhtml).
      *
@@ -116,6 +122,8 @@ class Document extends \Google\Protobuf\Internal\Message
      *           Optional. Inline document content, represented as a stream of bytes.
      *           Note: As with all `bytes` fields, protobuffers use a pure binary
      *           representation, whereas JSON representations use base64.
+     *     @type string $docid
+     *           Optional. An internal identifier for document. Should be loggable (no PII).
      *     @type string $mime_type
      *           An IANA published [media type (MIME
      *           type)](https://www.iana.org/assignments/media-types/media-types.xhtml).
@@ -223,6 +231,32 @@ class Document extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. An internal identifier for document. Should be loggable (no PII).
+     *
+     * Generated from protobuf field <code>string docid = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getDocid()
+    {
+        return $this->docid;
+    }
+
+    /**
+     * Optional. An internal identifier for document. Should be loggable (no PII).
+     *
+     * Generated from protobuf field <code>string docid = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDocid($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->docid = $var;
 
         return $this;
     }

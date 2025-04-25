@@ -21,6 +21,12 @@ class BigQueryPublishing extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     protected $dataset = '';
+    /**
+     * Output only. The location of the BigQuery publishing dataset.
+     *
+     * Generated from protobuf field <code>string location = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $location = '';
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class BigQueryPublishing extends \Google\Protobuf\Internal\Message
      *
      *     @type string $dataset
      *           Output only. The BigQuery dataset the discovered tables are published to.
+     *     @type string $location
+     *           Output only. The location of the BigQuery publishing dataset.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +67,32 @@ class BigQueryPublishing extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->dataset = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The location of the BigQuery publishing dataset.
+     *
+     * Generated from protobuf field <code>string location = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Output only. The location of the BigQuery publishing dataset.
+     *
+     * Generated from protobuf field <code>string location = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location = $var;
 
         return $this;
     }

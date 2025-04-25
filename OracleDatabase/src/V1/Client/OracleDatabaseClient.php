@@ -62,7 +62,10 @@ use Google\Cloud\OracleDatabase\V1\ListDbServersRequest;
 use Google\Cloud\OracleDatabase\V1\ListDbSystemShapesRequest;
 use Google\Cloud\OracleDatabase\V1\ListEntitlementsRequest;
 use Google\Cloud\OracleDatabase\V1\ListGiVersionsRequest;
+use Google\Cloud\OracleDatabase\V1\RestartAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\RestoreAutonomousDatabaseRequest;
+use Google\Cloud\OracleDatabase\V1\StartAutonomousDatabaseRequest;
+use Google\Cloud\OracleDatabase\V1\StopAutonomousDatabaseRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -100,7 +103,10 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listDbSystemShapesAsync(ListDbSystemShapesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listEntitlementsAsync(ListEntitlementsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listGiVersionsAsync(ListGiVersionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> restartAutonomousDatabaseAsync(RestartAutonomousDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> restoreAutonomousDatabaseAsync(RestoreAutonomousDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> startAutonomousDatabaseAsync(StartAutonomousDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> stopAutonomousDatabaseAsync(StopAutonomousDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
@@ -1002,6 +1008,35 @@ final class OracleDatabaseClient
     }
 
     /**
+     * Restarts an Autonomous Database.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::restartAutonomousDatabaseAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/restart_autonomous_database.php
+     *
+     * @param RestartAutonomousDatabaseRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function restartAutonomousDatabase(
+        RestartAutonomousDatabaseRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('RestartAutonomousDatabase', $request, $callOptions)->wait();
+    }
+
+    /**
      * Restores a single Autonomous Database.
      *
      * The async variant is
@@ -1028,6 +1063,64 @@ final class OracleDatabaseClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('RestoreAutonomousDatabase', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Starts an Autonomous Database.
+     *
+     * The async variant is {@see OracleDatabaseClient::startAutonomousDatabaseAsync()}
+     * .
+     *
+     * @example samples/V1/OracleDatabaseClient/start_autonomous_database.php
+     *
+     * @param StartAutonomousDatabaseRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function startAutonomousDatabase(
+        StartAutonomousDatabaseRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('StartAutonomousDatabase', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Stops an Autonomous Database.
+     *
+     * The async variant is {@see OracleDatabaseClient::stopAutonomousDatabaseAsync()}
+     * .
+     *
+     * @example samples/V1/OracleDatabaseClient/stop_autonomous_database.php
+     *
+     * @param StopAutonomousDatabaseRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function stopAutonomousDatabase(
+        StopAutonomousDatabaseRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('StopAutonomousDatabase', $request, $callOptions)->wait();
     }
 
     /**

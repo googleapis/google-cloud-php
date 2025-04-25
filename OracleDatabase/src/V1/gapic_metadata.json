@@ -115,9 +115,24 @@
                                 "listGiVersions"
                             ]
                         },
+                        "RestartAutonomousDatabase": {
+                            "methods": [
+                                "restartAutonomousDatabase"
+                            ]
+                        },
                         "RestoreAutonomousDatabase": {
                             "methods": [
                                 "restoreAutonomousDatabase"
+                            ]
+                        },
+                        "StartAutonomousDatabase": {
+                            "methods": [
+                                "startAutonomousDatabase"
+                            ]
+                        },
+                        "StopAutonomousDatabase": {
+                            "methods": [
+                                "stopAutonomousDatabase"
                             ]
                         },
                         "GetLocation": {

@@ -37,9 +37,9 @@ use Google\Shopping\Merchant\Products\V1beta\Product;
  * @param string $formattedName The name of the product to retrieve.
  *                              Format: `accounts/{account}/products/{product}`
  *                              where the last section `product` consists of 4 parts:
- *                              channel~content_language~feed_label~offer_id
+ *                              `channel~content_language~feed_label~offer_id`
  *                              example for product name is
- *                              "accounts/123/products/online~en~US~sku123"
+ *                              `accounts/123/products/online~en~US~sku123`
  *                              Please see {@see ProductsServiceClient::productName()} for help formatting this field.
  */
 function get_product_sample(string $formattedName): void

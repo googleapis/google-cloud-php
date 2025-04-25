@@ -25,10 +25,17 @@ class Type
      * Generated from protobuf enum <code>IMPORT = 1;</code>
      */
     const IMPORT = 1;
+    /**
+     * Export job type.
+     *
+     * Generated from protobuf enum <code>EXPORT = 2;</code>
+     */
+    const EXPORT = 2;
 
     private static $valueToName = [
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
         self::IMPORT => 'IMPORT',
+        self::EXPORT => 'EXPORT',
     ];
 
     public static function name($value)
