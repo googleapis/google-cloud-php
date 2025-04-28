@@ -23,9 +23,9 @@ class CompletionResult extends \Google\Protobuf\Internal\Message
     protected $suggestion = '';
     /**
      * Custom attributes for the suggestion term.
-     * * For "user-data", the attributes are additional custom attributes
+     * * For `user-data`, the attributes are additional custom attributes
      * ingested through BigQuery.
-     * * For "cloud-retail", the attributes are product attributes generated
+     * * For `cloud-retail`, the attributes are product attributes generated
      * by Cloud Retail. It requires
      * [UserEvent.product_details][google.cloud.retail.v2.UserEvent.product_details]
      * is imported properly.
@@ -44,9 +44,9 @@ class CompletionResult extends \Google\Protobuf\Internal\Message
      *           The suggestion for the query.
      *     @type array|\Google\Protobuf\Internal\MapField $attributes
      *           Custom attributes for the suggestion term.
-     *           * For "user-data", the attributes are additional custom attributes
+     *           * For `user-data`, the attributes are additional custom attributes
      *           ingested through BigQuery.
-     *           * For "cloud-retail", the attributes are product attributes generated
+     *           * For `cloud-retail`, the attributes are product attributes generated
      *           by Cloud Retail. It requires
      *           [UserEvent.product_details][google.cloud.retail.v2.UserEvent.product_details]
      *           is imported properly.
@@ -85,9 +85,9 @@ class CompletionResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Custom attributes for the suggestion term.
-     * * For "user-data", the attributes are additional custom attributes
+     * * For `user-data`, the attributes are additional custom attributes
      * ingested through BigQuery.
-     * * For "cloud-retail", the attributes are product attributes generated
+     * * For `cloud-retail`, the attributes are product attributes generated
      * by Cloud Retail. It requires
      * [UserEvent.product_details][google.cloud.retail.v2.UserEvent.product_details]
      * is imported properly.
@@ -102,9 +102,9 @@ class CompletionResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Custom attributes for the suggestion term.
-     * * For "user-data", the attributes are additional custom attributes
+     * * For `user-data`, the attributes are additional custom attributes
      * ingested through BigQuery.
-     * * For "cloud-retail", the attributes are product attributes generated
+     * * For `cloud-retail`, the attributes are product attributes generated
      * by Cloud Retail. It requires
      * [UserEvent.product_details][google.cloud.retail.v2.UserEvent.product_details]
      * is imported properly.
