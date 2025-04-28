@@ -29,7 +29,7 @@ namespace Google\Cloud\Spanner;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * $numeric = $spanner->numeric('99999999999999999999999999999999999999.999999999');
  * ```

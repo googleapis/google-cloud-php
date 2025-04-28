@@ -24,7 +24,7 @@ namespace Google\Cloud\Spanner;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * // Create a KeyRange for all people named Bob, born in 1969.
  * $start = $spanner->date(new \DateTime('1969-01-01'));
