@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\StorageBatchOperations\V1\Client\StorageBatchOperationsClient;
+Google\Cloud\StorageBatchOperations\V1\GetJobRequest;
+Google\Cloud\StorageBatchOperations\V1\Job;
+
+// Create a client.
+$storageBatchOperationsClient = new StorageBatchOperationsClient();
+
+// Prepare the request message.
+$request = (new GetJobRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Job $response */
+    $response = $storageBatchOperationsClient->getJob($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/google-cloud-php-storagebatchoperations/tree/main/samples) for a canonical list of samples.
 
 ### Debugging
