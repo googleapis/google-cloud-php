@@ -54,7 +54,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
     private $recent_search_results;
     /**
      * A map of matched attribute suggestions. This field is only available for
-     * "cloud-retail" dataset.
+     * `cloud-retail` dataset.
      * Current supported keys:
      * * `brands`
      * * `categories`
@@ -95,7 +95,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      *           when duplication happens.
      *     @type array|\Google\Protobuf\Internal\MapField $attribute_results
      *           A map of matched attribute suggestions. This field is only available for
-     *           "cloud-retail" dataset.
+     *           `cloud-retail` dataset.
      *           Current supported keys:
      *           * `brands`
      *           * `categories`
@@ -226,7 +226,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A map of matched attribute suggestions. This field is only available for
-     * "cloud-retail" dataset.
+     * `cloud-retail` dataset.
      * Current supported keys:
      * * `brands`
      * * `categories`
@@ -241,7 +241,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A map of matched attribute suggestions. This field is only available for
-     * "cloud-retail" dataset.
+     * `cloud-retail` dataset.
      * Current supported keys:
      * * `brands`
      * * `categories`
