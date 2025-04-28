@@ -16,6 +16,6 @@ parameters:
         # Problems with legacy namespaces (I'm not sure why these are throwing errors)
         - message: '#^Class Google\\[A-Za-z1-9\\]+_[A-Za-z1-9_]+ not found\.$#'
         # Protobuf constant classes sometimes contain multiple values for one array key
-        - { identifier: array.duplicateKey }
+        - identifier: array.duplicateKey
         # Ignore this error because I don't consider it to be level 0
-        - { identifier: new.static }
+        - identifier: new.static
