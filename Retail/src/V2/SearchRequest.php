@@ -333,6 +333,36 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.TileNavigationSpec tile_navigation_spec = 41 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $tile_navigation_spec = null;
+    /**
+     * Optional. The BCP-47 language code, such as "en-US" or "sr-Latn"
+     * [list](https://www.unicode.org/cldr/charts/46/summary/root.html). For more
+     * information, see [Standardized codes](https://google.aip.dev/143). This
+     * field helps to better interpret the query. If a value isn't specified, the
+     * query language code is automatically detected, which may not be accurate.
+     *
+     * Generated from protobuf field <code>string language_code = 43 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $language_code = '';
+    /**
+     * Optional. The Unicode country/region code (CLDR) of a location, such as
+     * "US" and "419"
+     * [list](https://www.unicode.org/cldr/charts/46/supplemental/territory_information.html).
+     * For more information, see [Standardized codes](https://google.aip.dev/143).
+     * If set, then results will be boosted based on the region_code provided.
+     *
+     * Generated from protobuf field <code>string region_code = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $region_code = '';
+    /**
+     * Optional. An id corresponding to a place, such as a store id or region id.
+     * When specified, we use the price from the local inventory with the matching
+     * product's
+     * [LocalInventory.place_id][google.cloud.retail.v2.LocalInventory.place_id]
+     * for revenue optimization.
+     *
+     * Generated from protobuf field <code>string place_id = 46 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $place_id = '';
 
     /**
      * Constructor.
@@ -560,6 +590,24 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           addition to traditional retail search.
      *     @type \Google\Cloud\Retail\V2\SearchRequest\TileNavigationSpec $tile_navigation_spec
      *           Optional. This field specifies tile navigation related parameters.
+     *     @type string $language_code
+     *           Optional. The BCP-47 language code, such as "en-US" or "sr-Latn"
+     *           [list](https://www.unicode.org/cldr/charts/46/summary/root.html). For more
+     *           information, see [Standardized codes](https://google.aip.dev/143). This
+     *           field helps to better interpret the query. If a value isn't specified, the
+     *           query language code is automatically detected, which may not be accurate.
+     *     @type string $region_code
+     *           Optional. The Unicode country/region code (CLDR) of a location, such as
+     *           "US" and "419"
+     *           [list](https://www.unicode.org/cldr/charts/46/supplemental/territory_information.html).
+     *           For more information, see [Standardized codes](https://google.aip.dev/143).
+     *           If set, then results will be boosted based on the region_code provided.
+     *     @type string $place_id
+     *           Optional. An id corresponding to a place, such as a store id or region id.
+     *           When specified, we use the price from the local inventory with the matching
+     *           product's
+     *           [LocalInventory.place_id][google.cloud.retail.v2.LocalInventory.place_id]
+     *           for revenue optimization.
      * }
      */
     public function __construct($data = NULL) {
@@ -1617,6 +1665,108 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Retail\V2\SearchRequest\TileNavigationSpec::class);
         $this->tile_navigation_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The BCP-47 language code, such as "en-US" or "sr-Latn"
+     * [list](https://www.unicode.org/cldr/charts/46/summary/root.html). For more
+     * information, see [Standardized codes](https://google.aip.dev/143). This
+     * field helps to better interpret the query. If a value isn't specified, the
+     * query language code is automatically detected, which may not be accurate.
+     *
+     * Generated from protobuf field <code>string language_code = 43 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getLanguageCode()
+    {
+        return $this->language_code;
+    }
+
+    /**
+     * Optional. The BCP-47 language code, such as "en-US" or "sr-Latn"
+     * [list](https://www.unicode.org/cldr/charts/46/summary/root.html). For more
+     * information, see [Standardized codes](https://google.aip.dev/143). This
+     * field helps to better interpret the query. If a value isn't specified, the
+     * query language code is automatically detected, which may not be accurate.
+     *
+     * Generated from protobuf field <code>string language_code = 43 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLanguageCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->language_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Unicode country/region code (CLDR) of a location, such as
+     * "US" and "419"
+     * [list](https://www.unicode.org/cldr/charts/46/supplemental/territory_information.html).
+     * For more information, see [Standardized codes](https://google.aip.dev/143).
+     * If set, then results will be boosted based on the region_code provided.
+     *
+     * Generated from protobuf field <code>string region_code = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getRegionCode()
+    {
+        return $this->region_code;
+    }
+
+    /**
+     * Optional. The Unicode country/region code (CLDR) of a location, such as
+     * "US" and "419"
+     * [list](https://www.unicode.org/cldr/charts/46/supplemental/territory_information.html).
+     * For more information, see [Standardized codes](https://google.aip.dev/143).
+     * If set, then results will be boosted based on the region_code provided.
+     *
+     * Generated from protobuf field <code>string region_code = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRegionCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->region_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. An id corresponding to a place, such as a store id or region id.
+     * When specified, we use the price from the local inventory with the matching
+     * product's
+     * [LocalInventory.place_id][google.cloud.retail.v2.LocalInventory.place_id]
+     * for revenue optimization.
+     *
+     * Generated from protobuf field <code>string place_id = 46 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPlaceId()
+    {
+        return $this->place_id;
+    }
+
+    /**
+     * Optional. An id corresponding to a place, such as a store id or region id.
+     * When specified, we use the price from the local inventory with the matching
+     * product's
+     * [LocalInventory.place_id][google.cloud.retail.v2.LocalInventory.place_id]
+     * for revenue optimization.
+     *
+     * Generated from protobuf field <code>string place_id = 46 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPlaceId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->place_id = $var;
 
         return $this;
     }
