@@ -54,11 +54,6 @@ class Grpc implements ConnectionInterface
     /**
      * @var string
      */
-    private $resourcePrefixHeader;
-
-    /**
-     * @var string
-     */
     private $databaseRoutingHeader;
 
     /**
@@ -121,14 +116,12 @@ class Grpc implements ConnectionInterface
         $projectId = $this->pluck('projectId', $config);
         $databaseId = $this->pluck('database', $config);
 
-        $this->resourcePrefixHeader = FirestoreClient::databaseRootName(
-            $projectId,
-            $databaseId
-        );
+        $database = FirestoreClient::databaseRootName($projectId, $databaseId);
         $this->databaseRoutingHeader = sprintf(
-            'project_id=%s&database_id=%s',
+            'project_id=%s&database_id=%s&database=%s',
             $projectId,
-            $databaseId
+            $databaseId,
+            urlencode($database)
         );
     }
 
@@ -312,8 +305,9 @@ class Grpc implements ConnectionInterface
             'headers' => []
         ];
 
-        $args['headers']['google-cloud-resource-prefix'] = [$this->resourcePrefixHeader];
-        $args['headers']['x-goog-request-params'] = [$this->databaseRoutingHeader];
+        $args['headers']['x-goog-request-params'] = [
+            $this->databaseRoutingHeader,
+        ];
 
         // Provide authentication header for requests when emulator is enabled.
         if ($this->isUsingEmulator) {
@@ -351,7 +345,6 @@ class Grpc implements ConnectionInterface
         return [
             'serializer' => get_class($this->serializer),
             'firestore' => get_class($this->firestore),
-            'resourcePrefixHeader' => $this->resourcePrefixHeader,
             'databaseRoutingHeader' => $this->databaseRoutingHeader,
             'isUsingEmulator' => $this->isUsingEmulator
         ];
