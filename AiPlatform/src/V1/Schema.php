@@ -168,6 +168,36 @@ class Schema extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Schema any_of = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $any_of;
+    /**
+     * Optional. Allows indirect references between schema nodes. The value should
+     * be a valid reference to a child of the root `defs`.
+     * For example, the following schema defines a reference to a schema node
+     * named "Pet":
+     * type: object
+     * properties:
+     *   pet:
+     *     ref: #/defs/Pet
+     * defs:
+     *   Pet:
+     *     type: object
+     *     properties:
+     *       name:
+     *         type: string
+     * The value of the "pet" property is a reference to the schema node
+     * named "Pet".
+     * See details in
+     * https://json-schema.org/understanding-json-schema/structuring
+     *
+     * Generated from protobuf field <code>string ref = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ref = '';
+    /**
+     * Optional. A map of definitions for use by `ref`
+     * Only allowed at the root of the schema.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.Schema> defs = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $defs;
 
     /**
      * Constructor.
@@ -237,6 +267,28 @@ class Schema extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\AIPlatform\V1\Schema>|\Google\Protobuf\Internal\RepeatedField $any_of
      *           Optional. The value should be validated against any (one or more) of the
      *           subschemas in the list.
+     *     @type string $ref
+     *           Optional. Allows indirect references between schema nodes. The value should
+     *           be a valid reference to a child of the root `defs`.
+     *           For example, the following schema defines a reference to a schema node
+     *           named "Pet":
+     *           type: object
+     *           properties:
+     *             pet:
+     *               ref: #/defs/Pet
+     *           defs:
+     *             Pet:
+     *               type: object
+     *               properties:
+     *                 name:
+     *                   type: string
+     *           The value of the "pet" property is a reference to the schema node
+     *           named "Pet".
+     *           See details in
+     *           https://json-schema.org/understanding-json-schema/structuring
+     *     @type array|\Google\Protobuf\Internal\MapField $defs
+     *           Optional. A map of definitions for use by `ref`
+     *           Only allowed at the root of the schema.
      * }
      */
     public function __construct($data = NULL) {
@@ -878,6 +930,94 @@ class Schema extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Schema::class);
         $this->any_of = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Allows indirect references between schema nodes. The value should
+     * be a valid reference to a child of the root `defs`.
+     * For example, the following schema defines a reference to a schema node
+     * named "Pet":
+     * type: object
+     * properties:
+     *   pet:
+     *     ref: #/defs/Pet
+     * defs:
+     *   Pet:
+     *     type: object
+     *     properties:
+     *       name:
+     *         type: string
+     * The value of the "pet" property is a reference to the schema node
+     * named "Pet".
+     * See details in
+     * https://json-schema.org/understanding-json-schema/structuring
+     *
+     * Generated from protobuf field <code>string ref = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getRef()
+    {
+        return $this->ref;
+    }
+
+    /**
+     * Optional. Allows indirect references between schema nodes. The value should
+     * be a valid reference to a child of the root `defs`.
+     * For example, the following schema defines a reference to a schema node
+     * named "Pet":
+     * type: object
+     * properties:
+     *   pet:
+     *     ref: #/defs/Pet
+     * defs:
+     *   Pet:
+     *     type: object
+     *     properties:
+     *       name:
+     *         type: string
+     * The value of the "pet" property is a reference to the schema node
+     * named "Pet".
+     * See details in
+     * https://json-schema.org/understanding-json-schema/structuring
+     *
+     * Generated from protobuf field <code>string ref = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRef($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ref = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A map of definitions for use by `ref`
+     * Only allowed at the root of the schema.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.Schema> defs = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getDefs()
+    {
+        return $this->defs;
+    }
+
+    /**
+     * Optional. A map of definitions for use by `ref`
+     * Only allowed at the root of the schema.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.Schema> defs = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setDefs($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Schema::class);
+        $this->defs = $arr;
 
         return $this;
     }
