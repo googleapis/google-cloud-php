@@ -99,6 +99,20 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool satisfies_pzi = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $satisfies_pzi = false;
+    /**
+     * Output only. Region of the volume from which the backup was created.
+     * Format: `projects/{project_id}/locations/{location}`
+     *
+     * Generated from protobuf field <code>string volume_region = 13 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    protected $volume_region = '';
+    /**
+     * Output only. Region in which backup is stored.
+     * Format: `projects/{project_id}/locations/{location}`
+     *
+     * Generated from protobuf field <code>string backup_region = 14 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    protected $backup_region = '';
 
     /**
      * Constructor.
@@ -142,6 +156,12 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Output only. Reserved for future use
      *     @type bool $satisfies_pzi
      *           Output only. Reserved for future use
+     *     @type string $volume_region
+     *           Output only. Region of the volume from which the backup was created.
+     *           Format: `projects/{project_id}/locations/{location}`
+     *     @type string $backup_region
+     *           Output only. Region in which backup is stored.
+     *           Format: `projects/{project_id}/locations/{location}`
      * }
      */
     public function __construct($data = NULL) {
@@ -501,6 +521,62 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzi = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Region of the volume from which the backup was created.
+     * Format: `projects/{project_id}/locations/{location}`
+     *
+     * Generated from protobuf field <code>string volume_region = 13 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getVolumeRegion()
+    {
+        return $this->volume_region;
+    }
+
+    /**
+     * Output only. Region of the volume from which the backup was created.
+     * Format: `projects/{project_id}/locations/{location}`
+     *
+     * Generated from protobuf field <code>string volume_region = 13 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setVolumeRegion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->volume_region = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Region in which backup is stored.
+     * Format: `projects/{project_id}/locations/{location}`
+     *
+     * Generated from protobuf field <code>string backup_region = 14 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getBackupRegion()
+    {
+        return $this->backup_region;
+    }
+
+    /**
+     * Output only. Region in which backup is stored.
+     * Format: `projects/{project_id}/locations/{location}`
+     *
+     * Generated from protobuf field <code>string backup_region = 14 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBackupRegion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->backup_region = $var;
 
         return $this;
     }
