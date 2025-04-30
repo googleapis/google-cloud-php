@@ -47,6 +47,43 @@ class BackupVault extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      */
     private $labels;
+    /**
+     * Optional. Type of backup vault to be created.
+     * Default is IN_REGION.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.BackupVault.BackupVaultType backup_vault_type = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $backup_vault_type = 0;
+    /**
+     * Output only. Region in which the backup vault is created.
+     * Format: `projects/{project_id}/locations/{location}`
+     *
+     * Generated from protobuf field <code>string source_region = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    protected $source_region = '';
+    /**
+     * Optional. Region where the backups are stored.
+     * Format: `projects/{project_id}/locations/{location}`
+     *
+     * Generated from protobuf field <code>string backup_region = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $backup_region = '';
+    /**
+     * Output only. Name of the Backup vault created in source region.
+     * Format:
+     * `projects/{project_id}/locations/{location}/backupVaults/{backup_vault_id}`
+     *
+     * Generated from protobuf field <code>string source_backup_vault = 9 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    protected $source_backup_vault = '';
+    /**
+     * Output only. Name of the Backup vault created in backup region.
+     * Format:
+     * `projects/{project_id}/locations/{location}/backupVaults/{backup_vault_id}`
+     *
+     * Generated from protobuf field <code>string destination_backup_vault = 10 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    protected $destination_backup_vault = '';
 
     /**
      * Constructor.
@@ -66,6 +103,23 @@ class BackupVault extends \Google\Protobuf\Internal\Message
      *           Description of the backup vault.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Resource labels to represent user provided metadata.
+     *     @type int $backup_vault_type
+     *           Optional. Type of backup vault to be created.
+     *           Default is IN_REGION.
+     *     @type string $source_region
+     *           Output only. Region in which the backup vault is created.
+     *           Format: `projects/{project_id}/locations/{location}`
+     *     @type string $backup_region
+     *           Optional. Region where the backups are stored.
+     *           Format: `projects/{project_id}/locations/{location}`
+     *     @type string $source_backup_vault
+     *           Output only. Name of the Backup vault created in source region.
+     *           Format:
+     *           `projects/{project_id}/locations/{location}/backupVaults/{backup_vault_id}`
+     *     @type string $destination_backup_vault
+     *           Output only. Name of the Backup vault created in backup region.
+     *           Format:
+     *           `projects/{project_id}/locations/{location}/backupVaults/{backup_vault_id}`
      * }
      */
     public function __construct($data = NULL) {
@@ -213,6 +267,150 @@ class BackupVault extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Type of backup vault to be created.
+     * Default is IN_REGION.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.BackupVault.BackupVaultType backup_vault_type = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getBackupVaultType()
+    {
+        return $this->backup_vault_type;
+    }
+
+    /**
+     * Optional. Type of backup vault to be created.
+     * Default is IN_REGION.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.BackupVault.BackupVaultType backup_vault_type = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setBackupVaultType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetApp\V1\BackupVault\BackupVaultType::class);
+        $this->backup_vault_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Region in which the backup vault is created.
+     * Format: `projects/{project_id}/locations/{location}`
+     *
+     * Generated from protobuf field <code>string source_region = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getSourceRegion()
+    {
+        return $this->source_region;
+    }
+
+    /**
+     * Output only. Region in which the backup vault is created.
+     * Format: `projects/{project_id}/locations/{location}`
+     *
+     * Generated from protobuf field <code>string source_region = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceRegion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_region = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Region where the backups are stored.
+     * Format: `projects/{project_id}/locations/{location}`
+     *
+     * Generated from protobuf field <code>string backup_region = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getBackupRegion()
+    {
+        return $this->backup_region;
+    }
+
+    /**
+     * Optional. Region where the backups are stored.
+     * Format: `projects/{project_id}/locations/{location}`
+     *
+     * Generated from protobuf field <code>string backup_region = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBackupRegion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->backup_region = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Name of the Backup vault created in source region.
+     * Format:
+     * `projects/{project_id}/locations/{location}/backupVaults/{backup_vault_id}`
+     *
+     * Generated from protobuf field <code>string source_backup_vault = 9 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getSourceBackupVault()
+    {
+        return $this->source_backup_vault;
+    }
+
+    /**
+     * Output only. Name of the Backup vault created in source region.
+     * Format:
+     * `projects/{project_id}/locations/{location}/backupVaults/{backup_vault_id}`
+     *
+     * Generated from protobuf field <code>string source_backup_vault = 9 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceBackupVault($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_backup_vault = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Name of the Backup vault created in backup region.
+     * Format:
+     * `projects/{project_id}/locations/{location}/backupVaults/{backup_vault_id}`
+     *
+     * Generated from protobuf field <code>string destination_backup_vault = 10 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getDestinationBackupVault()
+    {
+        return $this->destination_backup_vault;
+    }
+
+    /**
+     * Output only. Name of the Backup vault created in backup region.
+     * Format:
+     * `projects/{project_id}/locations/{location}/backupVaults/{backup_vault_id}`
+     *
+     * Generated from protobuf field <code>string destination_backup_vault = 10 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDestinationBackupVault($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->destination_backup_vault = $var;
 
         return $this;
     }
