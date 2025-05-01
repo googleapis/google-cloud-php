@@ -58,6 +58,12 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string location = 17;</code>
      */
     protected $location = '';
+    /**
+     * Optional. The job name.
+     *
+     * Generated from protobuf field <code>optional string name = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $name = null;
 
     /**
      * Constructor.
@@ -83,6 +89,8 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      *           The [regional endpoint]
      *           (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
      *           contains this job.
+     *     @type string $name
+     *           Optional. The job name.
      * }
      */
     public function __construct($data = NULL) {
@@ -258,6 +266,42 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->location = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The job name.
+     *
+     * Generated from protobuf field <code>optional string name = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getName()
+    {
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
+    }
+
+    /**
+     * Optional. The job name.
+     *
+     * Generated from protobuf field <code>optional string name = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->name = $var;
 
         return $this;
     }

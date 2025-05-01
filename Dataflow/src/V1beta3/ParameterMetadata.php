@@ -58,6 +58,53 @@ class ParameterMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> custom_metadata = 7;</code>
      */
     private $custom_metadata;
+    /**
+     * Optional. Specifies a group name for this parameter to be rendered under.
+     * Group header text will be rendered exactly as specified in this field. Only
+     * considered when parent_name is NOT provided.
+     *
+     * Generated from protobuf field <code>string group_name = 8;</code>
+     */
+    protected $group_name = '';
+    /**
+     * Optional. Specifies the name of the parent parameter. Used in conjunction
+     * with 'parent_trigger_values' to make this parameter conditional (will only
+     * be rendered conditionally). Should be mappable to a ParameterMetadata.name
+     * field.
+     *
+     * Generated from protobuf field <code>string parent_name = 9;</code>
+     */
+    protected $parent_name = '';
+    /**
+     * Optional. The value(s) of the 'parent_name' parameter which will trigger
+     * this parameter to be shown. If left empty, ANY non-empty value in
+     * parent_name will trigger this parameter to be shown. Only considered when
+     * this parameter is conditional (when 'parent_name' has been provided).
+     *
+     * Generated from protobuf field <code>repeated string parent_trigger_values = 10;</code>
+     */
+    private $parent_trigger_values;
+    /**
+     * Optional. The options shown when ENUM ParameterType is specified.
+     *
+     * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.ParameterMetadataEnumOption enum_options = 11;</code>
+     */
+    private $enum_options;
+    /**
+     * Optional. The default values will pre-populate the parameter with the
+     * given value from the proto. If default_value is left empty, the parameter
+     * will be populated with a default of the relevant type, e.g. false for a
+     * boolean.
+     *
+     * Generated from protobuf field <code>string default_value = 12;</code>
+     */
+    protected $default_value = '';
+    /**
+     * Optional. Whether the parameter should be hidden in the UI.
+     *
+     * Generated from protobuf field <code>bool hidden_ui = 13;</code>
+     */
+    protected $hidden_ui = false;
 
     /**
      * Constructor.
@@ -80,6 +127,29 @@ class ParameterMetadata extends \Google\Protobuf\Internal\Message
      *           Used for selecting input picker.
      *     @type array|\Google\Protobuf\Internal\MapField $custom_metadata
      *           Optional. Additional metadata for describing this parameter.
+     *     @type string $group_name
+     *           Optional. Specifies a group name for this parameter to be rendered under.
+     *           Group header text will be rendered exactly as specified in this field. Only
+     *           considered when parent_name is NOT provided.
+     *     @type string $parent_name
+     *           Optional. Specifies the name of the parent parameter. Used in conjunction
+     *           with 'parent_trigger_values' to make this parameter conditional (will only
+     *           be rendered conditionally). Should be mappable to a ParameterMetadata.name
+     *           field.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $parent_trigger_values
+     *           Optional. The value(s) of the 'parent_name' parameter which will trigger
+     *           this parameter to be shown. If left empty, ANY non-empty value in
+     *           parent_name will trigger this parameter to be shown. Only considered when
+     *           this parameter is conditional (when 'parent_name' has been provided).
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\ParameterMetadataEnumOption>|\Google\Protobuf\Internal\RepeatedField $enum_options
+     *           Optional. The options shown when ENUM ParameterType is specified.
+     *     @type string $default_value
+     *           Optional. The default values will pre-populate the parameter with the
+     *           given value from the proto. If default_value is left empty, the parameter
+     *           will be populated with a default of the relevant type, e.g. false for a
+     *           boolean.
+     *     @type bool $hidden_ui
+     *           Optional. Whether the parameter should be hidden in the UI.
      * }
      */
     public function __construct($data = NULL) {
@@ -267,6 +337,184 @@ class ParameterMetadata extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->custom_metadata = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies a group name for this parameter to be rendered under.
+     * Group header text will be rendered exactly as specified in this field. Only
+     * considered when parent_name is NOT provided.
+     *
+     * Generated from protobuf field <code>string group_name = 8;</code>
+     * @return string
+     */
+    public function getGroupName()
+    {
+        return $this->group_name;
+    }
+
+    /**
+     * Optional. Specifies a group name for this parameter to be rendered under.
+     * Group header text will be rendered exactly as specified in this field. Only
+     * considered when parent_name is NOT provided.
+     *
+     * Generated from protobuf field <code>string group_name = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setGroupName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->group_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the name of the parent parameter. Used in conjunction
+     * with 'parent_trigger_values' to make this parameter conditional (will only
+     * be rendered conditionally). Should be mappable to a ParameterMetadata.name
+     * field.
+     *
+     * Generated from protobuf field <code>string parent_name = 9;</code>
+     * @return string
+     */
+    public function getParentName()
+    {
+        return $this->parent_name;
+    }
+
+    /**
+     * Optional. Specifies the name of the parent parameter. Used in conjunction
+     * with 'parent_trigger_values' to make this parameter conditional (will only
+     * be rendered conditionally). Should be mappable to a ParameterMetadata.name
+     * field.
+     *
+     * Generated from protobuf field <code>string parent_name = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParentName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->parent_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The value(s) of the 'parent_name' parameter which will trigger
+     * this parameter to be shown. If left empty, ANY non-empty value in
+     * parent_name will trigger this parameter to be shown. Only considered when
+     * this parameter is conditional (when 'parent_name' has been provided).
+     *
+     * Generated from protobuf field <code>repeated string parent_trigger_values = 10;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getParentTriggerValues()
+    {
+        return $this->parent_trigger_values;
+    }
+
+    /**
+     * Optional. The value(s) of the 'parent_name' parameter which will trigger
+     * this parameter to be shown. If left empty, ANY non-empty value in
+     * parent_name will trigger this parameter to be shown. Only considered when
+     * this parameter is conditional (when 'parent_name' has been provided).
+     *
+     * Generated from protobuf field <code>repeated string parent_trigger_values = 10;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setParentTriggerValues($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->parent_trigger_values = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The options shown when ENUM ParameterType is specified.
+     *
+     * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.ParameterMetadataEnumOption enum_options = 11;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getEnumOptions()
+    {
+        return $this->enum_options;
+    }
+
+    /**
+     * Optional. The options shown when ENUM ParameterType is specified.
+     *
+     * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.ParameterMetadataEnumOption enum_options = 11;</code>
+     * @param array<\Google\Cloud\Dataflow\V1beta3\ParameterMetadataEnumOption>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setEnumOptions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataflow\V1beta3\ParameterMetadataEnumOption::class);
+        $this->enum_options = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The default values will pre-populate the parameter with the
+     * given value from the proto. If default_value is left empty, the parameter
+     * will be populated with a default of the relevant type, e.g. false for a
+     * boolean.
+     *
+     * Generated from protobuf field <code>string default_value = 12;</code>
+     * @return string
+     */
+    public function getDefaultValue()
+    {
+        return $this->default_value;
+    }
+
+    /**
+     * Optional. The default values will pre-populate the parameter with the
+     * given value from the proto. If default_value is left empty, the parameter
+     * will be populated with a default of the relevant type, e.g. false for a
+     * boolean.
+     *
+     * Generated from protobuf field <code>string default_value = 12;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDefaultValue($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->default_value = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether the parameter should be hidden in the UI.
+     *
+     * Generated from protobuf field <code>bool hidden_ui = 13;</code>
+     * @return bool
+     */
+    public function getHiddenUi()
+    {
+        return $this->hidden_ui;
+    }
+
+    /**
+     * Optional. Whether the parameter should be hidden in the UI.
+     *
+     * Generated from protobuf field <code>bool hidden_ui = 13;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setHiddenUi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->hidden_ui = $var;
 
         return $this;
     }
