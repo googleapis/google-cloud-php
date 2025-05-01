@@ -117,12 +117,7 @@ class Grpc implements ConnectionInterface
         $databaseId = $this->pluck('database', $config);
 
         $database = FirestoreClient::databaseRootName($projectId, $databaseId);
-        $this->databaseRoutingHeader = sprintf(
-            'project_id=%s&database_id=%s&database=%s',
-            $projectId,
-            $databaseId,
-            urlencode($database)
-        );
+        $this->databaseRoutingHeader = sprintf('database=%s', urlencode($database));
     }
 
     /**

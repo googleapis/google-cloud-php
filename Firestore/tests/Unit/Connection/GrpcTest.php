@@ -405,9 +405,7 @@ class GrpcTest extends TestCase
         return [
             "headers" => [
                 "x-goog-request-params" => [
-                    'project_id=test'
-                    . '&database_id=(default)'
-                    . '&database=projects%2Ftest%2Fdatabases%2F%28default%29'
+                    'database=projects%2Ftest%2Fdatabases%2F%28default%29'
                 ]
             ]
         ];
