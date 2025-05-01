@@ -878,6 +878,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "longrunning"
     },
+    "Lustre": {
+        "language": "php",
+        "distribution_name": "google/cloud-lustre",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-lustre/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "lustre"
+    },
     "ManagedIdentities": {
         "language": "php",
         "distribution_name": "google/cloud-managed-identities",
