@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "StorageControlGapicClient",
                     "rpcs": {
+                        "CreateAnywhereCache": {
+                            "methods": [
+                                "createAnywhereCache"
+                            ]
+                        },
                         "CreateFolder": {
                             "methods": [
                                 "createFolder"
@@ -30,6 +35,16 @@
                                 "deleteManagedFolder"
                             ]
                         },
+                        "DisableAnywhereCache": {
+                            "methods": [
+                                "disableAnywhereCache"
+                            ]
+                        },
+                        "GetAnywhereCache": {
+                            "methods": [
+                                "getAnywhereCache"
+                            ]
+                        },
                         "GetFolder": {
                             "methods": [
                                 "getFolder"
@@ -45,6 +60,11 @@
                                 "getStorageLayout"
                             ]
                         },
+                        "ListAnywhereCaches": {
+                            "methods": [
+                                "listAnywhereCaches"
+                            ]
+                        },
                         "ListFolders": {
                             "methods": [
                                 "listFolders"
@@ -55,9 +75,24 @@
                                 "listManagedFolders"
                             ]
                         },
+                        "PauseAnywhereCache": {
+                            "methods": [
+                                "pauseAnywhereCache"
+                            ]
+                        },
                         "RenameFolder": {
                             "methods": [
                                 "renameFolder"
+                            ]
+                        },
+                        "ResumeAnywhereCache": {
+                            "methods": [
+                                "resumeAnywhereCache"
+                            ]
+                        },
+                        "UpdateAnywhereCache": {
+                            "methods": [
+                                "updateAnywhereCache"
                             ]
                         }
                     }

@@ -34,19 +34,27 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Storage\Control\V2\AnywhereCache;
+use Google\Cloud\Storage\Control\V2\CreateAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\CreateFolderRequest;
 use Google\Cloud\Storage\Control\V2\CreateManagedFolderRequest;
 use Google\Cloud\Storage\Control\V2\DeleteFolderRequest;
 use Google\Cloud\Storage\Control\V2\DeleteManagedFolderRequest;
+use Google\Cloud\Storage\Control\V2\DisableAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\Folder;
+use Google\Cloud\Storage\Control\V2\GetAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\GetFolderRequest;
 use Google\Cloud\Storage\Control\V2\GetManagedFolderRequest;
 use Google\Cloud\Storage\Control\V2\GetStorageLayoutRequest;
+use Google\Cloud\Storage\Control\V2\ListAnywhereCachesRequest;
 use Google\Cloud\Storage\Control\V2\ListFoldersRequest;
 use Google\Cloud\Storage\Control\V2\ListManagedFoldersRequest;
 use Google\Cloud\Storage\Control\V2\ManagedFolder;
+use Google\Cloud\Storage\Control\V2\PauseAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\RenameFolderRequest;
+use Google\Cloud\Storage\Control\V2\ResumeAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\StorageLayout;
+use Google\Cloud\Storage\Control\V2\UpdateAnywhereCacheRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -63,16 +71,23 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<OperationResponse> createAnywhereCacheAsync(CreateAnywhereCacheRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Folder> createFolderAsync(CreateFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ManagedFolder> createManagedFolderAsync(CreateManagedFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteFolderAsync(DeleteFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteManagedFolderAsync(DeleteManagedFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AnywhereCache> disableAnywhereCacheAsync(DisableAnywhereCacheRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AnywhereCache> getAnywhereCacheAsync(GetAnywhereCacheRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Folder> getFolderAsync(GetFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ManagedFolder> getManagedFolderAsync(GetManagedFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<StorageLayout> getStorageLayoutAsync(GetStorageLayoutRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAnywhereCachesAsync(ListAnywhereCachesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listFoldersAsync(ListFoldersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listManagedFoldersAsync(ListManagedFoldersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AnywhereCache> pauseAnywhereCacheAsync(PauseAnywhereCacheRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> renameFolderAsync(RenameFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AnywhereCache> resumeAnywhereCacheAsync(ResumeAnywhereCacheRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAnywhereCacheAsync(UpdateAnywhereCacheRequest $request, array $optionalArgs = [])
  */
 final class StorageControlClient
 {
@@ -180,6 +195,25 @@ final class StorageControlClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * anywhere_cache resource.
+     *
+     * @param string $project
+     * @param string $bucket
+     * @param string $anywhereCache
+     *
+     * @return string The formatted anywhere_cache resource.
+     */
+    public static function anywhereCacheName(string $project, string $bucket, string $anywhereCache): string
+    {
+        return self::getPathTemplate('anywhereCache')->render([
+            'project' => $project,
+            'bucket' => $bucket,
+            'anywhere_cache' => $anywhereCache,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a bucket
      * resource.
      *
@@ -255,6 +289,7 @@ final class StorageControlClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - anywhereCache: projects/{project}/buckets/{bucket}/anywhereCaches/{anywhere_cache}
      * - bucket: projects/{project}/buckets/{bucket}
      * - folder: projects/{project}/buckets/{bucket}/folders/{folder=**}
      * - managedFolder: projects/{project}/buckets/{bucket}/managedFolders/{managed_folder=**}
@@ -354,6 +389,32 @@ final class StorageControlClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Creates an Anywhere Cache instance.
+     *
+     * The async variant is {@see StorageControlClient::createAnywhereCacheAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/create_anywhere_cache.php
+     *
+     * @param CreateAnywhereCacheRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createAnywhereCache(CreateAnywhereCacheRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateAnywhereCache', $request, $callOptions)->wait();
     }
 
     /**
@@ -459,6 +520,61 @@ final class StorageControlClient
     }
 
     /**
+     * Disables an Anywhere Cache instance. A disabled instance is read-only. The
+     * disablement could be revoked by calling ResumeAnywhereCache. The cache
+     * instance will be deleted automatically if it remains in the disabled state
+     * for at least one hour.
+     *
+     * The async variant is {@see StorageControlClient::disableAnywhereCacheAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/disable_anywhere_cache.php
+     *
+     * @param DisableAnywhereCacheRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AnywhereCache
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function disableAnywhereCache(DisableAnywhereCacheRequest $request, array $callOptions = []): AnywhereCache
+    {
+        return $this->startApiCall('DisableAnywhereCache', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets an Anywhere Cache instance.
+     *
+     * The async variant is {@see StorageControlClient::getAnywhereCacheAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/get_anywhere_cache.php
+     *
+     * @param GetAnywhereCacheRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AnywhereCache
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAnywhereCache(GetAnywhereCacheRequest $request, array $callOptions = []): AnywhereCache
+    {
+        return $this->startApiCall('GetAnywhereCache', $request, $callOptions)->wait();
+    }
+
+    /**
      * Returns metadata for the specified folder. This operation is only
      * applicable to a hierarchical namespace enabled bucket.
      *
@@ -538,6 +654,32 @@ final class StorageControlClient
     }
 
     /**
+     * Lists Anywhere Cache instances for a given bucket.
+     *
+     * The async variant is {@see StorageControlClient::listAnywhereCachesAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/list_anywhere_caches.php
+     *
+     * @param ListAnywhereCachesRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listAnywhereCaches(ListAnywhereCachesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListAnywhereCaches', $request, $callOptions);
+    }
+
+    /**
      * Retrieves a list of folders. This operation is only applicable to a
      * hierarchical namespace enabled bucket.
      *
@@ -591,6 +733,32 @@ final class StorageControlClient
     }
 
     /**
+     * Pauses an Anywhere Cache instance.
+     *
+     * The async variant is {@see StorageControlClient::pauseAnywhereCacheAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/pause_anywhere_cache.php
+     *
+     * @param PauseAnywhereCacheRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AnywhereCache
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function pauseAnywhereCache(PauseAnywhereCacheRequest $request, array $callOptions = []): AnywhereCache
+    {
+        return $this->startApiCall('PauseAnywhereCache', $request, $callOptions)->wait();
+    }
+
+    /**
      * Renames a source folder to a destination folder. This operation is only
      * applicable to a hierarchical namespace enabled bucket. During a rename, the
      * source and destination folders are locked until the long running operation
@@ -617,5 +785,58 @@ final class StorageControlClient
     public function renameFolder(RenameFolderRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('RenameFolder', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Resumes a disabled or paused Anywhere Cache instance.
+     *
+     * The async variant is {@see StorageControlClient::resumeAnywhereCacheAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/resume_anywhere_cache.php
+     *
+     * @param ResumeAnywhereCacheRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AnywhereCache
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function resumeAnywhereCache(ResumeAnywhereCacheRequest $request, array $callOptions = []): AnywhereCache
+    {
+        return $this->startApiCall('ResumeAnywhereCache', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates an Anywhere Cache instance. Mutable fields include `ttl` and
+     * `admission_policy`.
+     *
+     * The async variant is {@see StorageControlClient::updateAnywhereCacheAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/update_anywhere_cache.php
+     *
+     * @param UpdateAnywhereCacheRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateAnywhereCache(UpdateAnywhereCacheRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateAnywhereCache', $request, $callOptions)->wait();
     }
 }
