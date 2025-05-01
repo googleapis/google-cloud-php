@@ -26,26 +26,36 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Storage\Control\V2\AnywhereCache;
 use Google\Cloud\Storage\Control\V2\Client\StorageControlClient;
+use Google\Cloud\Storage\Control\V2\CreateAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\CreateFolderRequest;
 use Google\Cloud\Storage\Control\V2\CreateManagedFolderRequest;
 use Google\Cloud\Storage\Control\V2\DeleteFolderRequest;
 use Google\Cloud\Storage\Control\V2\DeleteManagedFolderRequest;
+use Google\Cloud\Storage\Control\V2\DisableAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\Folder;
+use Google\Cloud\Storage\Control\V2\GetAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\GetFolderRequest;
 use Google\Cloud\Storage\Control\V2\GetManagedFolderRequest;
 use Google\Cloud\Storage\Control\V2\GetStorageLayoutRequest;
+use Google\Cloud\Storage\Control\V2\ListAnywhereCachesRequest;
+use Google\Cloud\Storage\Control\V2\ListAnywhereCachesResponse;
 use Google\Cloud\Storage\Control\V2\ListFoldersRequest;
 use Google\Cloud\Storage\Control\V2\ListFoldersResponse;
 use Google\Cloud\Storage\Control\V2\ListManagedFoldersRequest;
 use Google\Cloud\Storage\Control\V2\ListManagedFoldersResponse;
 use Google\Cloud\Storage\Control\V2\ManagedFolder;
+use Google\Cloud\Storage\Control\V2\PauseAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\RenameFolderRequest;
+use Google\Cloud\Storage\Control\V2\ResumeAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\StorageLayout;
+use Google\Cloud\Storage\Control\V2\UpdateAnywhereCacheRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -78,6 +88,142 @@ class StorageControlClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new StorageControlClient($options);
+    }
+
+    /** @test */
+    public function createAnywhereCacheTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createAnywhereCacheTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $zone = 'zone3744684';
+        $admissionPolicy = 'admissionPolicy1847270952';
+        $state = 'state109757585';
+        $pendingUpdate = false;
+        $expectedResponse = new AnywhereCache();
+        $expectedResponse->setName($name);
+        $expectedResponse->setZone($zone);
+        $expectedResponse->setAdmissionPolicy($admissionPolicy);
+        $expectedResponse->setState($state);
+        $expectedResponse->setPendingUpdate($pendingUpdate);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createAnywhereCacheTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->bucketName('[PROJECT]', '[BUCKET]');
+        $anywhereCache = new AnywhereCache();
+        $request = (new CreateAnywhereCacheRequest())->setParent($formattedParent)->setAnywhereCache($anywhereCache);
+        $response = $gapicClient->createAnywhereCache($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.storage.control.v2.StorageControl/CreateAnywhereCache', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getAnywhereCache();
+        $this->assertProtobufEquals($anywhereCache, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createAnywhereCacheTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createAnywhereCacheExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createAnywhereCacheTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->bucketName('[PROJECT]', '[BUCKET]');
+        $anywhereCache = new AnywhereCache();
+        $request = (new CreateAnywhereCacheRequest())->setParent($formattedParent)->setAnywhereCache($anywhereCache);
+        $response = $gapicClient->createAnywhereCache($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createAnywhereCacheTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -367,6 +513,152 @@ class StorageControlClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function disableAnywhereCacheTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $zone = 'zone3744684';
+        $admissionPolicy = 'admissionPolicy1847270952';
+        $state = 'state109757585';
+        $pendingUpdate = false;
+        $expectedResponse = new AnywhereCache();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setZone($zone);
+        $expectedResponse->setAdmissionPolicy($admissionPolicy);
+        $expectedResponse->setState($state);
+        $expectedResponse->setPendingUpdate($pendingUpdate);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->anywhereCacheName('[PROJECT]', '[BUCKET]', '[ANYWHERE_CACHE]');
+        $request = (new DisableAnywhereCacheRequest())->setName($formattedName);
+        $response = $gapicClient->disableAnywhereCache($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.storage.control.v2.StorageControl/DisableAnywhereCache', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function disableAnywhereCacheExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->anywhereCacheName('[PROJECT]', '[BUCKET]', '[ANYWHERE_CACHE]');
+        $request = (new DisableAnywhereCacheRequest())->setName($formattedName);
+        try {
+            $gapicClient->disableAnywhereCache($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAnywhereCacheTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $zone = 'zone3744684';
+        $admissionPolicy = 'admissionPolicy1847270952';
+        $state = 'state109757585';
+        $pendingUpdate = false;
+        $expectedResponse = new AnywhereCache();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setZone($zone);
+        $expectedResponse->setAdmissionPolicy($admissionPolicy);
+        $expectedResponse->setState($state);
+        $expectedResponse->setPendingUpdate($pendingUpdate);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->anywhereCacheName('[PROJECT]', '[BUCKET]', '[ANYWHERE_CACHE]');
+        $request = (new GetAnywhereCacheRequest())->setName($formattedName);
+        $response = $gapicClient->getAnywhereCache($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.storage.control.v2.StorageControl/GetAnywhereCache', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAnywhereCacheExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->anywhereCacheName('[PROJECT]', '[BUCKET]', '[ANYWHERE_CACHE]');
+        $request = (new GetAnywhereCacheRequest())->setName($formattedName);
+        try {
+            $gapicClient->getAnywhereCache($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getFolderTest()
     {
         $transport = $this->createTransport();
@@ -570,6 +862,77 @@ class StorageControlClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listAnywhereCachesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $anywhereCachesElement = new AnywhereCache();
+        $anywhereCaches = [$anywhereCachesElement];
+        $expectedResponse = new ListAnywhereCachesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setAnywhereCaches($anywhereCaches);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->bucketName('[PROJECT]', '[BUCKET]');
+        $request = (new ListAnywhereCachesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listAnywhereCaches($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getAnywhereCaches()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.storage.control.v2.StorageControl/ListAnywhereCaches', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAnywhereCachesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->bucketName('[PROJECT]', '[BUCKET]');
+        $request = (new ListAnywhereCachesRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listAnywhereCaches($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listFoldersTest()
     {
         $transport = $this->createTransport();
@@ -712,6 +1075,79 @@ class StorageControlClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function pauseAnywhereCacheTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $zone = 'zone3744684';
+        $admissionPolicy = 'admissionPolicy1847270952';
+        $state = 'state109757585';
+        $pendingUpdate = false;
+        $expectedResponse = new AnywhereCache();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setZone($zone);
+        $expectedResponse->setAdmissionPolicy($admissionPolicy);
+        $expectedResponse->setState($state);
+        $expectedResponse->setPendingUpdate($pendingUpdate);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->anywhereCacheName('[PROJECT]', '[BUCKET]', '[ANYWHERE_CACHE]');
+        $request = (new PauseAnywhereCacheRequest())->setName($formattedName);
+        $response = $gapicClient->pauseAnywhereCache($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.storage.control.v2.StorageControl/PauseAnywhereCache', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function pauseAnywhereCacheExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->anywhereCacheName('[PROJECT]', '[BUCKET]', '[ANYWHERE_CACHE]');
+        $request = (new PauseAnywhereCacheRequest())->setName($formattedName);
+        try {
+            $gapicClient->pauseAnywhereCache($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function renameFolderTest()
     {
         $operationsTransport = $this->createTransport();
@@ -842,7 +1278,7 @@ class StorageControlClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createFolderAsyncTest()
+    public function resumeAnywhereCacheTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -850,33 +1286,279 @@ class StorageControlClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $name = 'name3373707';
-        $metageneration = 1048558813;
-        $expectedResponse = new Folder();
-        $expectedResponse->setName($name);
-        $expectedResponse->setMetageneration($metageneration);
+        $name2 = 'name2-1052831874';
+        $zone = 'zone3744684';
+        $admissionPolicy = 'admissionPolicy1847270952';
+        $state = 'state109757585';
+        $pendingUpdate = false;
+        $expectedResponse = new AnywhereCache();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setZone($zone);
+        $expectedResponse->setAdmissionPolicy($admissionPolicy);
+        $expectedResponse->setState($state);
+        $expectedResponse->setPendingUpdate($pendingUpdate);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->bucketName('[PROJECT]', '[BUCKET]');
-        $folder = new Folder();
-        $folderId = 'folderId527488652';
-        $request = (new CreateFolderRequest())
-            ->setParent($formattedParent)
-            ->setFolder($folder)
-            ->setFolderId($folderId);
-        $response = $gapicClient->createFolderAsync($request)->wait();
+        $formattedName = $gapicClient->anywhereCacheName('[PROJECT]', '[BUCKET]', '[ANYWHERE_CACHE]');
+        $request = (new ResumeAnywhereCacheRequest())->setName($formattedName);
+        $response = $gapicClient->resumeAnywhereCache($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.storage.control.v2.StorageControl/CreateFolder', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getFolder();
-        $this->assertProtobufEquals($folder, $actualValue);
-        $actualValue = $actualRequestObject->getFolderId();
-        $this->assertProtobufEquals($folderId, $actualValue);
+        $this->assertSame('/google.storage.control.v2.StorageControl/ResumeAnywhereCache', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function resumeAnywhereCacheExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->anywhereCacheName('[PROJECT]', '[BUCKET]', '[ANYWHERE_CACHE]');
+        $request = (new ResumeAnywhereCacheRequest())->setName($formattedName);
+        try {
+            $gapicClient->resumeAnywhereCache($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateAnywhereCacheTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateAnywhereCacheTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $zone = 'zone3744684';
+        $admissionPolicy = 'admissionPolicy1847270952';
+        $state = 'state109757585';
+        $pendingUpdate = false;
+        $expectedResponse = new AnywhereCache();
+        $expectedResponse->setName($name);
+        $expectedResponse->setZone($zone);
+        $expectedResponse->setAdmissionPolicy($admissionPolicy);
+        $expectedResponse->setState($state);
+        $expectedResponse->setPendingUpdate($pendingUpdate);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateAnywhereCacheTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $anywhereCache = new AnywhereCache();
+        $updateMask = new FieldMask();
+        $request = (new UpdateAnywhereCacheRequest())->setAnywhereCache($anywhereCache)->setUpdateMask($updateMask);
+        $response = $gapicClient->updateAnywhereCache($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.storage.control.v2.StorageControl/UpdateAnywhereCache', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getAnywhereCache();
+        $this->assertProtobufEquals($anywhereCache, $actualValue);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateAnywhereCacheTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateAnywhereCacheExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateAnywhereCacheTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $anywhereCache = new AnywhereCache();
+        $updateMask = new FieldMask();
+        $request = (new UpdateAnywhereCacheRequest())->setAnywhereCache($anywhereCache)->setUpdateMask($updateMask);
+        $response = $gapicClient->updateAnywhereCache($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateAnywhereCacheTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createAnywhereCacheAsyncTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createAnywhereCacheTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $zone = 'zone3744684';
+        $admissionPolicy = 'admissionPolicy1847270952';
+        $state = 'state109757585';
+        $pendingUpdate = false;
+        $expectedResponse = new AnywhereCache();
+        $expectedResponse->setName($name);
+        $expectedResponse->setZone($zone);
+        $expectedResponse->setAdmissionPolicy($admissionPolicy);
+        $expectedResponse->setState($state);
+        $expectedResponse->setPendingUpdate($pendingUpdate);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createAnywhereCacheTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->bucketName('[PROJECT]', '[BUCKET]');
+        $anywhereCache = new AnywhereCache();
+        $request = (new CreateAnywhereCacheRequest())->setParent($formattedParent)->setAnywhereCache($anywhereCache);
+        $response = $gapicClient->createAnywhereCacheAsync($request)->wait();
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.storage.control.v2.StorageControl/CreateAnywhereCache', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getAnywhereCache();
+        $this->assertProtobufEquals($anywhereCache, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createAnywhereCacheTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 }
