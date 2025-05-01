@@ -10,14 +10,39 @@
                 "grpc": {
                     "libraryClient": "MemorystoreGapicClient",
                     "rpcs": {
+                        "BackupInstance": {
+                            "methods": [
+                                "backupInstance"
+                            ]
+                        },
                         "CreateInstance": {
                             "methods": [
                                 "createInstance"
                             ]
                         },
+                        "DeleteBackup": {
+                            "methods": [
+                                "deleteBackup"
+                            ]
+                        },
                         "DeleteInstance": {
                             "methods": [
                                 "deleteInstance"
+                            ]
+                        },
+                        "ExportBackup": {
+                            "methods": [
+                                "exportBackup"
+                            ]
+                        },
+                        "GetBackup": {
+                            "methods": [
+                                "getBackup"
+                            ]
+                        },
+                        "GetBackupCollection": {
+                            "methods": [
+                                "getBackupCollection"
                             ]
                         },
                         "GetCertificateAuthority": {
@@ -30,9 +55,24 @@
                                 "getInstance"
                             ]
                         },
+                        "ListBackupCollections": {
+                            "methods": [
+                                "listBackupCollections"
+                            ]
+                        },
+                        "ListBackups": {
+                            "methods": [
+                                "listBackups"
+                            ]
+                        },
                         "ListInstances": {
                             "methods": [
                                 "listInstances"
+                            ]
+                        },
+                        "RescheduleMaintenance": {
+                            "methods": [
+                                "rescheduleMaintenance"
                             ]
                         },
                         "UpdateInstance": {
