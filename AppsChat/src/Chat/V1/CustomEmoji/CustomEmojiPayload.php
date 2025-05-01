@@ -115,6 +115,4 @@ class CustomEmojiPayload extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CustomEmojiPayload::class, \Google\Apps\Chat\V1\CustomEmoji_CustomEmojiPayload::class);
 
