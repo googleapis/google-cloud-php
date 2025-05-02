@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,37 +22,37 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START memorystore_v1_generated_Memorystore_UpdateInstance_sync]
+// [START memorystore_v1_generated_Memorystore_RescheduleMaintenance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Memorystore\V1\Client\MemorystoreClient;
 use Google\Cloud\Memorystore\V1\Instance;
-use Google\Cloud\Memorystore\V1\UpdateInstanceRequest;
+use Google\Cloud\Memorystore\V1\RescheduleMaintenanceRequest;
+use Google\Cloud\Memorystore\V1\RescheduleMaintenanceRequest\RescheduleType;
 use Google\Rpc\Status;
 
 /**
- * Updates the parameters of a single Instance.
+ * Reschedules upcoming maintenance event.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName  Name of the instance to reschedule maintenance for:
+ *                               `projects/{project}/locations/{location_id}/instances/{instance}`
+ *                               Please see {@see MemorystoreClient::instanceName()} for help formatting this field.
+ * @param int    $rescheduleType If reschedule type is SPECIFIC_TIME, schedule_time must be set.
  */
-function update_instance_sample(): void
+function reschedule_maintenance_sample(string $formattedName, int $rescheduleType): void
 {
     // Create a client.
     $memorystoreClient = new MemorystoreClient();
 
     // Prepare the request message.
-    $instance = new Instance();
-    $request = (new UpdateInstanceRequest())
-        ->setInstance($instance);
+    $request = (new RescheduleMaintenanceRequest())
+        ->setName($formattedName)
+        ->setRescheduleType($rescheduleType);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $memorystoreClient->updateInstance($request);
+        $response = $memorystoreClient->rescheduleMaintenance($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -68,4 +68,21 @@ function update_instance_sample(): void
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
 }
-// [END memorystore_v1_generated_Memorystore_UpdateInstance_sync]
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = MemorystoreClient::instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+    $rescheduleType = RescheduleType::RESCHEDULE_TYPE_UNSPECIFIED;
+
+    reschedule_maintenance_sample($formattedName, $rescheduleType);
+}
+// [END memorystore_v1_generated_Memorystore_RescheduleMaintenance_sync]

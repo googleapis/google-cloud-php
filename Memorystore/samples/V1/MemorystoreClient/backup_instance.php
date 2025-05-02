@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,47 +22,46 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START memorystore_v1_generated_Memorystore_CreateInstance_sync]
+// [START memorystore_v1_generated_Memorystore_BackupInstance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Memorystore\V1\BackupInstanceRequest;
 use Google\Cloud\Memorystore\V1\Client\MemorystoreClient;
-use Google\Cloud\Memorystore\V1\CreateInstanceRequest;
 use Google\Cloud\Memorystore\V1\Instance;
 use Google\Rpc\Status;
 
 /**
- * Creates a new Instance in a given project and location.
+ * Backup Instance.
+ * If this is the first time a backup is being created, a backup collection
+ * will be created at the backend, and this backup belongs to this collection.
+ * Both collection and backup will have a resource name. Backup will be
+ * executed for each shard. A replica (primary if nonHA) will be selected to
+ * perform the execution. Backup call will be rejected if there is an ongoing
+ * backup or update operation. Be aware that during preview, if the instance's
+ * internal software version is too old, critical update will be performed
+ * before actual backup. Once the internal software version is updated to the
+ * minimum version required by the backup feature, subsequent backups will not
+ * require critical update. After preview, there will be no critical update
+ * needed for backup.
  *
- * @param string $formattedParent The parent resource where this instance will be created.
- *                                Format: projects/{project}/locations/{location}
- *                                Please see {@see MemorystoreClient::locationName()} for help formatting this field.
- * @param string $instanceId      The ID to use for the instance, which will become the final
- *                                component of the instance's resource name.
- *
- *                                This value is subject to the following restrictions:
- *
- *                                * Must be 4-63 characters in length
- *                                * Must begin with a letter or digit
- *                                * Must contain only lowercase letters, digits, and hyphens
- *                                * Must not end with a hyphen
- *                                * Must be unique within a location
+ * @param string $formattedName Instance resource name using the form:
+ *                              `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+ *                              where `location_id` refers to a Google Cloud region. Please see
+ *                              {@see MemorystoreClient::instanceName()} for help formatting this field.
  */
-function create_instance_sample(string $formattedParent, string $instanceId): void
+function backup_instance_sample(string $formattedName): void
 {
     // Create a client.
     $memorystoreClient = new MemorystoreClient();
 
     // Prepare the request message.
-    $instance = new Instance();
-    $request = (new CreateInstanceRequest())
-        ->setParent($formattedParent)
-        ->setInstanceId($instanceId)
-        ->setInstance($instance);
+    $request = (new BackupInstanceRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $memorystoreClient->createInstance($request);
+        $response = $memorystoreClient->backupInstance($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -90,9 +89,8 @@ function create_instance_sample(string $formattedParent, string $instanceId): vo
  */
 function callSample(): void
 {
-    $formattedParent = MemorystoreClient::locationName('[PROJECT]', '[LOCATION]');
-    $instanceId = '[INSTANCE_ID]';
+    $formattedName = MemorystoreClient::instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
 
-    create_instance_sample($formattedParent, $instanceId);
+    backup_instance_sample($formattedName);
 }
-// [END memorystore_v1_generated_Memorystore_CreateInstance_sync]
+// [END memorystore_v1_generated_Memorystore_BackupInstance_sync]

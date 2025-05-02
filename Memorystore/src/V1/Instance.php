@@ -84,16 +84,17 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $shard_count = 0;
     /**
-     * Output only. Endpoints clients can connect to the instance through.
-     * Currently only one discovery endpoint is supported.
+     * Output only. Deprecated: Use the endpoints.connections.psc_auto_connection
+     * or endpoints.connections.psc_connection values instead.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.DiscoveryEndpoint discovery_endpoints = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.DiscoveryEndpoint discovery_endpoints = 12 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     private $discovery_endpoints;
     /**
-     * Optional. Immutable. Machine type for individual nodes of the instance.
+     * Optional. Machine type for individual nodes of the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.memorystore.v1.Instance.NodeType node_type = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.Instance.NodeType node_type = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $node_type = 0;
     /**
@@ -103,9 +104,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $persistence_config = null;
     /**
-     * Optional. Immutable. Engine version of the instance.
+     * Optional. Engine version of the instance.
      *
-     * Generated from protobuf field <code>string engine_version = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string engine_version = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $engine_version = '';
     /**
@@ -134,12 +135,19 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $deletion_protection_enabled = null;
     /**
-     * Required. Immutable. User inputs and resource details of the auto-created
-     * PSC connections.
+     * Optional. Immutable. Deprecated: Use the
+     * endpoints.connections.psc_auto_connection value instead.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.PscAutoConnection psc_auto_connections = 20 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.PscAutoConnection psc_auto_connections = 20 [deprecated = true, (.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @deprecated
      */
     private $psc_auto_connections;
+    /**
+     * Output only. Service attachment details to configure PSC connections.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.PscAttachmentDetail psc_attachment_details = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $psc_attachment_details;
     /**
      * Optional. Endpoints for the instance.
      *
@@ -152,6 +160,55 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.memorystore.v1.Instance.Mode mode = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $mode = 0;
+    /**
+     * Optional. Input only. Ondemand maintenance for the instance.
+     *
+     * Generated from protobuf field <code>optional bool ondemand_maintenance = 28 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    protected $ondemand_maintenance = null;
+    /**
+     * Optional. The maintenance policy for the instance. If not provided,
+     * the maintenance event will be performed based on Memorystore
+     * internal rollout schedule.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.MaintenancePolicy maintenance_policy = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $maintenance_policy = null;
+    /**
+     * Output only. Published maintenance schedule.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.MaintenanceSchedule maintenance_schedule = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $maintenance_schedule = null;
+    /**
+     * Optional. The config for cross instance replication.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.CrossInstanceReplicationConfig cross_instance_replication_config = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $cross_instance_replication_config = null;
+    /**
+     * Optional. If true, instance endpoints that are created and registered by
+     * customers can be deleted asynchronously. That is, such an instance endpoint
+     * can be de-registered before the forwarding rules in the instance endpoint
+     * are deleted.
+     *
+     * Generated from protobuf field <code>optional bool async_instance_endpoints_deletion_enabled = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $async_instance_endpoints_deletion_enabled = null;
+    /**
+     * Output only. The backup collection full resource name. Example:
+     * projects/{project}/locations/{location}/backupCollections/{collection}
+     *
+     * Generated from protobuf field <code>optional string backup_collection = 47 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    protected $backup_collection = null;
+    /**
+     * Optional. The automated backup config for the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.AutomatedBackupConfig automated_backup_config = 48 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $automated_backup_config = null;
+    protected $import_sources;
 
     /**
      * Constructor.
@@ -159,6 +216,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Memorystore\V1\Instance\GcsBackupSource $gcs_source
+     *           Optional. Immutable. Backups that stored in Cloud Storage buckets.
+     *           The Cloud Storage buckets need to be the same region as the instances.
+     *           Read permission is required to import from the provided Cloud Storage
+     *           Objects.
+     *     @type \Google\Cloud\Memorystore\V1\Instance\ManagedBackupSource $managed_backup_source
+     *           Optional. Immutable. Backups that generated and managed by memorystore
+     *           service.
      *     @type string $name
      *           Identifier. Unique name of the instance.
      *           Format: projects/{project}/locations/{location}/instances/{instance}
@@ -184,14 +249,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type int $shard_count
      *           Optional. Number of shards for the instance.
      *     @type array<\Google\Cloud\Memorystore\V1\DiscoveryEndpoint>|\Google\Protobuf\Internal\RepeatedField $discovery_endpoints
-     *           Output only. Endpoints clients can connect to the instance through.
-     *           Currently only one discovery endpoint is supported.
+     *           Output only. Deprecated: Use the endpoints.connections.psc_auto_connection
+     *           or endpoints.connections.psc_connection values instead.
      *     @type int $node_type
-     *           Optional. Immutable. Machine type for individual nodes of the instance.
+     *           Optional. Machine type for individual nodes of the instance.
      *     @type \Google\Cloud\Memorystore\V1\PersistenceConfig $persistence_config
      *           Optional. Persistence configuration of the instance.
      *     @type string $engine_version
-     *           Optional. Immutable. Engine version of the instance.
+     *           Optional. Engine version of the instance.
      *     @type array|\Google\Protobuf\Internal\MapField $engine_configs
      *           Optional. User-provided engine configurations for the instance.
      *     @type \Google\Cloud\Memorystore\V1\NodeConfig $node_config
@@ -202,17 +267,109 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type bool $deletion_protection_enabled
      *           Optional. If set to true deletion of the instance will fail.
      *     @type array<\Google\Cloud\Memorystore\V1\PscAutoConnection>|\Google\Protobuf\Internal\RepeatedField $psc_auto_connections
-     *           Required. Immutable. User inputs and resource details of the auto-created
-     *           PSC connections.
+     *           Optional. Immutable. Deprecated: Use the
+     *           endpoints.connections.psc_auto_connection value instead.
+     *     @type array<\Google\Cloud\Memorystore\V1\PscAttachmentDetail>|\Google\Protobuf\Internal\RepeatedField $psc_attachment_details
+     *           Output only. Service attachment details to configure PSC connections.
      *     @type array<\Google\Cloud\Memorystore\V1\Instance\InstanceEndpoint>|\Google\Protobuf\Internal\RepeatedField $endpoints
      *           Optional. Endpoints for the instance.
      *     @type int $mode
      *           Optional. The mode config for the instance.
+     *     @type bool $ondemand_maintenance
+     *           Optional. Input only. Ondemand maintenance for the instance.
+     *     @type \Google\Cloud\Memorystore\V1\MaintenancePolicy $maintenance_policy
+     *           Optional. The maintenance policy for the instance. If not provided,
+     *           the maintenance event will be performed based on Memorystore
+     *           internal rollout schedule.
+     *     @type \Google\Cloud\Memorystore\V1\MaintenanceSchedule $maintenance_schedule
+     *           Output only. Published maintenance schedule.
+     *     @type \Google\Cloud\Memorystore\V1\CrossInstanceReplicationConfig $cross_instance_replication_config
+     *           Optional. The config for cross instance replication.
+     *     @type bool $async_instance_endpoints_deletion_enabled
+     *           Optional. If true, instance endpoints that are created and registered by
+     *           customers can be deleted asynchronously. That is, such an instance endpoint
+     *           can be de-registered before the forwarding rules in the instance endpoint
+     *           are deleted.
+     *     @type string $backup_collection
+     *           Output only. The backup collection full resource name. Example:
+     *           projects/{project}/locations/{location}/backupCollections/{collection}
+     *     @type \Google\Cloud\Memorystore\V1\AutomatedBackupConfig $automated_backup_config
+     *           Optional. The automated backup config for the instance.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Memorystore\V1\Memorystore::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. Immutable. Backups that stored in Cloud Storage buckets.
+     * The Cloud Storage buckets need to be the same region as the instances.
+     * Read permission is required to import from the provided Cloud Storage
+     * Objects.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.Instance.GcsBackupSource gcs_source = 23 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Cloud\Memorystore\V1\Instance\GcsBackupSource|null
+     */
+    public function getGcsSource()
+    {
+        return $this->readOneof(23);
+    }
+
+    public function hasGcsSource()
+    {
+        return $this->hasOneof(23);
+    }
+
+    /**
+     * Optional. Immutable. Backups that stored in Cloud Storage buckets.
+     * The Cloud Storage buckets need to be the same region as the instances.
+     * Read permission is required to import from the provided Cloud Storage
+     * Objects.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.Instance.GcsBackupSource gcs_source = 23 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param \Google\Cloud\Memorystore\V1\Instance\GcsBackupSource $var
+     * @return $this
+     */
+    public function setGcsSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Memorystore\V1\Instance\GcsBackupSource::class);
+        $this->writeOneof(23, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. Backups that generated and managed by memorystore
+     * service.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.Instance.ManagedBackupSource managed_backup_source = 24 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Cloud\Memorystore\V1\Instance\ManagedBackupSource|null
+     */
+    public function getManagedBackupSource()
+    {
+        return $this->readOneof(24);
+    }
+
+    public function hasManagedBackupSource()
+    {
+        return $this->hasOneof(24);
+    }
+
+    /**
+     * Optional. Immutable. Backups that generated and managed by memorystore
+     * service.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.Instance.ManagedBackupSource managed_backup_source = 24 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param \Google\Cloud\Memorystore\V1\Instance\ManagedBackupSource $var
+     * @return $this
+     */
+    public function setManagedBackupSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Memorystore\V1\Instance\ManagedBackupSource::class);
+        $this->writeOneof(24, $var);
+
+        return $this;
     }
 
     /**
@@ -546,27 +703,31 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Endpoints clients can connect to the instance through.
-     * Currently only one discovery endpoint is supported.
+     * Output only. Deprecated: Use the endpoints.connections.psc_auto_connection
+     * or endpoints.connections.psc_connection values instead.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.DiscoveryEndpoint discovery_endpoints = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.DiscoveryEndpoint discovery_endpoints = 12 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getDiscoveryEndpoints()
     {
+        @trigger_error('discovery_endpoints is deprecated.', E_USER_DEPRECATED);
         return $this->discovery_endpoints;
     }
 
     /**
-     * Output only. Endpoints clients can connect to the instance through.
-     * Currently only one discovery endpoint is supported.
+     * Output only. Deprecated: Use the endpoints.connections.psc_auto_connection
+     * or endpoints.connections.psc_connection values instead.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.DiscoveryEndpoint discovery_endpoints = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.DiscoveryEndpoint discovery_endpoints = 12 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\Memorystore\V1\DiscoveryEndpoint>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setDiscoveryEndpoints($var)
     {
+        @trigger_error('discovery_endpoints is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Memorystore\V1\DiscoveryEndpoint::class);
         $this->discovery_endpoints = $arr;
 
@@ -574,9 +735,9 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Immutable. Machine type for individual nodes of the instance.
+     * Optional. Machine type for individual nodes of the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.memorystore.v1.Instance.NodeType node_type = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.Instance.NodeType node_type = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getNodeType()
@@ -585,9 +746,9 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Immutable. Machine type for individual nodes of the instance.
+     * Optional. Machine type for individual nodes of the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.memorystore.v1.Instance.NodeType node_type = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.Instance.NodeType node_type = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -636,9 +797,9 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Immutable. Engine version of the instance.
+     * Optional. Engine version of the instance.
      *
-     * Generated from protobuf field <code>string engine_version = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string engine_version = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getEngineVersion()
@@ -647,9 +808,9 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Immutable. Engine version of the instance.
+     * Optional. Engine version of the instance.
      *
-     * Generated from protobuf field <code>string engine_version = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string engine_version = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -798,29 +959,59 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. User inputs and resource details of the auto-created
-     * PSC connections.
+     * Optional. Immutable. Deprecated: Use the
+     * endpoints.connections.psc_auto_connection value instead.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.PscAutoConnection psc_auto_connections = 20 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.PscAutoConnection psc_auto_connections = 20 [deprecated = true, (.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getPscAutoConnections()
     {
+        @trigger_error('psc_auto_connections is deprecated.', E_USER_DEPRECATED);
         return $this->psc_auto_connections;
     }
 
     /**
-     * Required. Immutable. User inputs and resource details of the auto-created
-     * PSC connections.
+     * Optional. Immutable. Deprecated: Use the
+     * endpoints.connections.psc_auto_connection value instead.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.PscAutoConnection psc_auto_connections = 20 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.PscAutoConnection psc_auto_connections = 20 [deprecated = true, (.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param array<\Google\Cloud\Memorystore\V1\PscAutoConnection>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setPscAutoConnections($var)
     {
+        @trigger_error('psc_auto_connections is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Memorystore\V1\PscAutoConnection::class);
         $this->psc_auto_connections = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Service attachment details to configure PSC connections.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.PscAttachmentDetail psc_attachment_details = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPscAttachmentDetails()
+    {
+        return $this->psc_attachment_details;
+    }
+
+    /**
+     * Output only. Service attachment details to configure PSC connections.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.PscAttachmentDetail psc_attachment_details = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\Memorystore\V1\PscAttachmentDetail>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPscAttachmentDetails($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Memorystore\V1\PscAttachmentDetail::class);
+        $this->psc_attachment_details = $arr;
 
         return $this;
     }
@@ -875,6 +1066,278 @@ class Instance extends \Google\Protobuf\Internal\Message
         $this->mode = $var;
 
         return $this;
+    }
+
+    /**
+     * Optional. Input only. Ondemand maintenance for the instance.
+     *
+     * Generated from protobuf field <code>optional bool ondemand_maintenance = 28 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getOndemandMaintenance()
+    {
+        return isset($this->ondemand_maintenance) ? $this->ondemand_maintenance : false;
+    }
+
+    public function hasOndemandMaintenance()
+    {
+        return isset($this->ondemand_maintenance);
+    }
+
+    public function clearOndemandMaintenance()
+    {
+        unset($this->ondemand_maintenance);
+    }
+
+    /**
+     * Optional. Input only. Ondemand maintenance for the instance.
+     *
+     * Generated from protobuf field <code>optional bool ondemand_maintenance = 28 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setOndemandMaintenance($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->ondemand_maintenance = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The maintenance policy for the instance. If not provided,
+     * the maintenance event will be performed based on Memorystore
+     * internal rollout schedule.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.MaintenancePolicy maintenance_policy = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Memorystore\V1\MaintenancePolicy|null
+     */
+    public function getMaintenancePolicy()
+    {
+        return $this->maintenance_policy;
+    }
+
+    public function hasMaintenancePolicy()
+    {
+        return isset($this->maintenance_policy);
+    }
+
+    public function clearMaintenancePolicy()
+    {
+        unset($this->maintenance_policy);
+    }
+
+    /**
+     * Optional. The maintenance policy for the instance. If not provided,
+     * the maintenance event will be performed based on Memorystore
+     * internal rollout schedule.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.MaintenancePolicy maintenance_policy = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Memorystore\V1\MaintenancePolicy $var
+     * @return $this
+     */
+    public function setMaintenancePolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Memorystore\V1\MaintenancePolicy::class);
+        $this->maintenance_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Published maintenance schedule.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.MaintenanceSchedule maintenance_schedule = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Memorystore\V1\MaintenanceSchedule|null
+     */
+    public function getMaintenanceSchedule()
+    {
+        return $this->maintenance_schedule;
+    }
+
+    public function hasMaintenanceSchedule()
+    {
+        return isset($this->maintenance_schedule);
+    }
+
+    public function clearMaintenanceSchedule()
+    {
+        unset($this->maintenance_schedule);
+    }
+
+    /**
+     * Output only. Published maintenance schedule.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.MaintenanceSchedule maintenance_schedule = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Memorystore\V1\MaintenanceSchedule $var
+     * @return $this
+     */
+    public function setMaintenanceSchedule($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Memorystore\V1\MaintenanceSchedule::class);
+        $this->maintenance_schedule = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The config for cross instance replication.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.CrossInstanceReplicationConfig cross_instance_replication_config = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Memorystore\V1\CrossInstanceReplicationConfig|null
+     */
+    public function getCrossInstanceReplicationConfig()
+    {
+        return $this->cross_instance_replication_config;
+    }
+
+    public function hasCrossInstanceReplicationConfig()
+    {
+        return isset($this->cross_instance_replication_config);
+    }
+
+    public function clearCrossInstanceReplicationConfig()
+    {
+        unset($this->cross_instance_replication_config);
+    }
+
+    /**
+     * Optional. The config for cross instance replication.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.CrossInstanceReplicationConfig cross_instance_replication_config = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Memorystore\V1\CrossInstanceReplicationConfig $var
+     * @return $this
+     */
+    public function setCrossInstanceReplicationConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Memorystore\V1\CrossInstanceReplicationConfig::class);
+        $this->cross_instance_replication_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, instance endpoints that are created and registered by
+     * customers can be deleted asynchronously. That is, such an instance endpoint
+     * can be de-registered before the forwarding rules in the instance endpoint
+     * are deleted.
+     *
+     * Generated from protobuf field <code>optional bool async_instance_endpoints_deletion_enabled = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getAsyncInstanceEndpointsDeletionEnabled()
+    {
+        return isset($this->async_instance_endpoints_deletion_enabled) ? $this->async_instance_endpoints_deletion_enabled : false;
+    }
+
+    public function hasAsyncInstanceEndpointsDeletionEnabled()
+    {
+        return isset($this->async_instance_endpoints_deletion_enabled);
+    }
+
+    public function clearAsyncInstanceEndpointsDeletionEnabled()
+    {
+        unset($this->async_instance_endpoints_deletion_enabled);
+    }
+
+    /**
+     * Optional. If true, instance endpoints that are created and registered by
+     * customers can be deleted asynchronously. That is, such an instance endpoint
+     * can be de-registered before the forwarding rules in the instance endpoint
+     * are deleted.
+     *
+     * Generated from protobuf field <code>optional bool async_instance_endpoints_deletion_enabled = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAsyncInstanceEndpointsDeletionEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->async_instance_endpoints_deletion_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The backup collection full resource name. Example:
+     * projects/{project}/locations/{location}/backupCollections/{collection}
+     *
+     * Generated from protobuf field <code>optional string backup_collection = 47 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getBackupCollection()
+    {
+        return isset($this->backup_collection) ? $this->backup_collection : '';
+    }
+
+    public function hasBackupCollection()
+    {
+        return isset($this->backup_collection);
+    }
+
+    public function clearBackupCollection()
+    {
+        unset($this->backup_collection);
+    }
+
+    /**
+     * Output only. The backup collection full resource name. Example:
+     * projects/{project}/locations/{location}/backupCollections/{collection}
+     *
+     * Generated from protobuf field <code>optional string backup_collection = 47 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBackupCollection($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->backup_collection = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The automated backup config for the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.AutomatedBackupConfig automated_backup_config = 48 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Memorystore\V1\AutomatedBackupConfig|null
+     */
+    public function getAutomatedBackupConfig()
+    {
+        return $this->automated_backup_config;
+    }
+
+    public function hasAutomatedBackupConfig()
+    {
+        return isset($this->automated_backup_config);
+    }
+
+    public function clearAutomatedBackupConfig()
+    {
+        unset($this->automated_backup_config);
+    }
+
+    /**
+     * Optional. The automated backup config for the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.AutomatedBackupConfig automated_backup_config = 48 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Memorystore\V1\AutomatedBackupConfig $var
+     * @return $this
+     */
+    public function setAutomatedBackupConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Memorystore\V1\AutomatedBackupConfig::class);
+        $this->automated_backup_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImportSources()
+    {
+        return $this->whichOneof("import_sources");
     }
 
 }
