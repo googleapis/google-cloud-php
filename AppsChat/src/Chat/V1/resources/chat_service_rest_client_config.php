@@ -35,6 +35,11 @@ return [
                     ],
                 ],
             ],
+            'CreateCustomEmoji' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/customEmojis',
+                'body' => 'custom_emoji',
+            ],
             'CreateMembership' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=spaces/*}/members',
@@ -75,6 +80,17 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/spaces',
                 'body' => 'space',
+            ],
+            'DeleteCustomEmoji' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=customEmojis/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
             'DeleteMembership' => [
                 'method' => 'delete',
@@ -127,6 +143,17 @@ return [
             'GetAttachment' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=spaces/*/messages/*/attachments/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetCustomEmoji' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=customEmojis/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -211,6 +238,10 @@ return [
                         ],
                     ],
                 ],
+            ],
+            'ListCustomEmojis' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/customEmojis',
             ],
             'ListMemberships' => [
                 'method' => 'get',
