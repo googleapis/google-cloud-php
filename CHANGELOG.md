@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.286.0
+
+<details><summary>google/cloud-financialservices 0.1.0</summary>
+
+
+
+### Features
+
+* introduce FinancialServices component ([86618ea](https://github.com/googleapis/google-cloud-php/commit/86618ead2dd5c9496f6ceeeb4c036f5b8bd037ed))
+
+</details>
+
+<details><summary>google/grafeas 1.2.0</summary>
+
+
+
+### Features
+
+* [Grafeas] Support for Secrets ([#8278](https://github.com/googleapis/google-cloud-php/issues/8278)) ([824c3ea](https://github.com/googleapis/google-cloud-php/commit/824c3ead704861e10488c1675c9672b729cff060))
+
+</details>
+
 ## 0.285.0
 
 <details><summary>google/cloud-ai-platform 1.24.0</summary>
