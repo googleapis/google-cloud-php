@@ -34,7 +34,7 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 require 'vendor/autoload.php';
 
 use Google\Cloud\RecaptchaEnterprise\V1\Key;
-use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
+use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
 use Google\Cloud\RecaptchaEnterprise\V1\WebKeySettings;
 use Google\Cloud\RecaptchaEnterprise\V1\WebKeySettings\IntegrationType;
 
