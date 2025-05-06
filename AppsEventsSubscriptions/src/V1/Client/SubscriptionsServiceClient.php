@@ -90,7 +90,6 @@ final class SubscriptionsServiceClient
 
     /** The default scopes required by the service. */
     public static $serviceScopes = [
-        'https://www.googleapis.com/auth/chat.bot',
         'https://www.googleapis.com/auth/chat.memberships',
         'https://www.googleapis.com/auth/chat.memberships.readonly',
         'https://www.googleapis.com/auth/chat.messages',
