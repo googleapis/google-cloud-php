@@ -33,7 +33,6 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ```php
 require 'vendor/autoload.php';
 
-
 use Google\Cloud\Vision\V1\AnnotateImageRequest;
 use Google\Cloud\Vision\V1\BatchAnnotateImagesRequest;
 use Google\Cloud\Vision\V1\Client\ImageAnnotatorClient;
@@ -53,7 +52,7 @@ $request = (new AnnotateImageRequest())
     ->setImage($image)
     ->setFeatures([$feature]);
 $batchRequest = (new BatchAnnotateImagesRequest())
-        ->setRequests([$request]);
+    ->setRequests([$request]);
 
 // Annotate an image, detecting faces.
 $batchResponse = $client->batchAnnotateImages($batchRequest);
