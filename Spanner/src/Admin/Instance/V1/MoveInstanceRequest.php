@@ -22,14 +22,14 @@ class MoveInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The target instance configuration where to move the instance.
      * Values are of the form `projects/<project>/instanceConfigs/<config>`.
      *
      * Generated from protobuf field <code>string target_config = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $target_config = '';
+    protected $target_config = '';
 
     /**
      * Constructor.

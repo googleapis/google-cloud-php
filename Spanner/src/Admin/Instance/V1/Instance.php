@@ -23,7 +23,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The name of the instance's configuration. Values are of the form
      * `projects/<project>/instanceConfigs/<configuration>`. See
@@ -32,14 +32,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string config = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $config = '';
+    protected $config = '';
     /**
      * Required. The descriptive name for this instance as it appears in UIs.
      * Must be unique per project and between 4 and 30 characters in length.
      *
      * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The number of nodes allocated to this instance. At most, one of either
      * `node_count` or `processing_units` should be present in the message.
@@ -55,7 +55,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 node_count = 5;</code>
      */
-    private $node_count = 0;
+    protected $node_count = 0;
     /**
      * The number of processing units allocated to this instance. At most, one of
      * either `processing_units` or `node_count` should be present in the message.
@@ -72,7 +72,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 processing_units = 9;</code>
      */
-    private $processing_units = 0;
+    protected $processing_units = 0;
     /**
      * Output only. Lists the compute capacity per ReplicaSelection. A replica
      * selection identifies a set of replicas with common properties. Replicas
@@ -89,7 +89,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.AutoscalingConfig autoscaling_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $autoscaling_config = null;
+    protected $autoscaling_config = null;
     /**
      * Output only. The current instance state. For
      * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance],
@@ -99,7 +99,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Cloud Labels are a flexible and lightweight mechanism for organizing cloud
      * resources into groups that reflect a customer's organizational needs and
@@ -128,7 +128,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.InstanceType instance_type = 10;</code>
      */
-    private $instance_type = 0;
+    protected $instance_type = 0;
     /**
      * Deprecated. This field is not populated.
      *
@@ -140,25 +140,25 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time at which the instance was most recently updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Free instance metadata. Only populated for free instances.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.FreeInstanceMetadata free_instance_metadata = 13;</code>
      */
-    private $free_instance_metadata = null;
+    protected $free_instance_metadata = null;
     /**
      * Optional. The `Edition` of the current instance.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.Edition edition = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $edition = 0;
+    protected $edition = 0;
     /**
      * Optional. Controls the default backup schedule behavior for new databases
      * within the instance. By default, a backup schedule is created automatically
@@ -171,7 +171,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.DefaultBackupScheduleType default_backup_schedule_type = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $default_backup_schedule_type = 0;
+    protected $default_backup_schedule_type = 0;
 
     /**
      * Constructor.

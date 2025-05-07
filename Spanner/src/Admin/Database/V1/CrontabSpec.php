@@ -31,14 +31,14 @@ class CrontabSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $text = '';
+    protected $text = '';
     /**
      * Output only. The time zone of the times in `CrontabSpec.text`. Currently
      * only UTC is supported.
      *
      * Generated from protobuf field <code>string time_zone = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $time_zone = '';
+    protected $time_zone = '';
     /**
      * Output only. Schedule backups will contain an externally consistent copy
      * of the database at the version time specified in
@@ -50,7 +50,7 @@ class CrontabSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration creation_window = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $creation_window = null;
+    protected $creation_window = null;
 
     /**
      * Constructor.
