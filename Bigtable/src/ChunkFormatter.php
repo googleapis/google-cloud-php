@@ -253,8 +253,7 @@ class ChunkFormatter implements \IteratorAggregate
                     }
                     if ((!$range->getStartKeyOpen() || $prevRowKey > $range->getStartKeyOpen())
                         && (!$range->getStartKeyClosed() || $prevRowKey >= $range->getStartKeyClosed())) {
-                        $rowKeySetter = $request->getReversed() ? 'setEndKeyOpen' : 'setStartKeyOpen';
-                        $range->$rowKeySetter($prevRowKey);
+                        $range->setStartKeyOpen($prevRowKey);
                     }
                     $ranges[] = $range;
                 }
@@ -271,8 +270,7 @@ class ChunkFormatter implements \IteratorAggregate
             }
         } else {
             $range = (new RowRange());
-            $rowKeySetter = $request->getReversed() ? 'setEndKeyOpen' : 'setStartKeyOpen';
-            $range->$rowKeySetter($prevRowKey);
+            $range->setStartKeyOpen($prevRowKey);
             $rowset = (new RowSet())->setRowRanges([$range]);
             $request->setRows($rowset);
         }

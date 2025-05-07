@@ -200,7 +200,6 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
             'rowRanges' => $ranges,
             'filter' => $request->getFilter(),
             'rowsLimit' => $request->getRowsLimit(),
-            'reversed' => $request->getReversed(),
             'timeoutMillis' => $this->getTimeoutMillis($config->getPerOperationTimeout()),
         ]);
 
