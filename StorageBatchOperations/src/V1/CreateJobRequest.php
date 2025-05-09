@@ -39,9 +39,9 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. An optional request ID to identify requests. Specify a unique
      * request ID in case you need to retry your request. Requests with same
-     * `request_id` will ignored for at least 60 minutes since the first request.
-     * The request ID must be a valid UUID with the exception that zero UUID is
-     * not supported (00000000-0000-0000-0000-000000000000).
+     * `request_id` will be ignored for at least 60 minutes since the first
+     * request. The request ID must be a valid UUID with the exception that zero
+     * UUID is not supported (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -86,9 +86,9 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
      *     @type string $request_id
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID in case you need to retry your request. Requests with same
-     *           `request_id` will ignored for at least 60 minutes since the first request.
-     *           The request ID must be a valid UUID with the exception that zero UUID is
-     *           not supported (00000000-0000-0000-0000-000000000000).
+     *           `request_id` will be ignored for at least 60 minutes since the first
+     *           request. The request ID must be a valid UUID with the exception that zero
+     *           UUID is not supported (00000000-0000-0000-0000-000000000000).
      * }
      */
     public function __construct($data = NULL) {
@@ -193,9 +193,9 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. An optional request ID to identify requests. Specify a unique
      * request ID in case you need to retry your request. Requests with same
-     * `request_id` will ignored for at least 60 minutes since the first request.
-     * The request ID must be a valid UUID with the exception that zero UUID is
-     * not supported (00000000-0000-0000-0000-000000000000).
+     * `request_id` will be ignored for at least 60 minutes since the first
+     * request. The request ID must be a valid UUID with the exception that zero
+     * UUID is not supported (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -208,9 +208,9 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. An optional request ID to identify requests. Specify a unique
      * request ID in case you need to retry your request. Requests with same
-     * `request_id` will ignored for at least 60 minutes since the first request.
-     * The request ID must be a valid UUID with the exception that zero UUID is
-     * not supported (00000000-0000-0000-0000-000000000000).
+     * `request_id` will be ignored for at least 60 minutes since the first
+     * request. The request ID must be a valid UUID with the exception that zero
+     * UUID is not supported (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
