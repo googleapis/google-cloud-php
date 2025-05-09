@@ -118,6 +118,31 @@ in production.
 For more information about setting up authentication for a local development environment, see
 [Set up Application Default Credentials](https://cloud.google.com/docs/authentication/provide-credentials-adc#local-dev).
 
+### API Keys
+
+[API keys][api_keys] are a great way to quickly authenticate in a local environment during development. If
+you'd like to authenticate your client with API keys, use the `apiKey` client option when creating a new
+instance of your client:
+
+```php
+use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
+use Google\Cloud\RecaptchaEnterprise\V1\ListKeysRequest;
+
+// Create a client.
+$recaptcha = new RecaptchaEnterpriseServiceClient([
+    'apiKey' => $yourApiKey,
+]);
+
+// Prepare the request message.
+$formattedParent = RecaptchaEnterpriseServiceClient::projectName('[PROJECT]');
+$request = (new ListKeysRequest())->setParent($formattedParent);
+
+// Call the API
+$response = $recaptchaEnterpriseServiceClient->listKeys($request);
+```
+
+[api_keys]: https://cloud.google.com/docs/authentication/api-keys
+
 ## Troubleshooting
 
 If you're having trouble authenticating open a
