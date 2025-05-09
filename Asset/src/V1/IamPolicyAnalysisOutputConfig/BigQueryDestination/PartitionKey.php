@@ -25,7 +25,7 @@ class PartitionKey
     const PARTITION_KEY_UNSPECIFIED = 0;
     /**
      * The time when the request is received. If specified as partition key,
-     * the result table(s) is partitoned by the RequestTime column, an
+     * the result table(s) is partitioned by the RequestTime column, an
      * additional timestamp column representing when the request was received.
      *
      * Generated from protobuf enum <code>REQUEST_TIME = 1;</code>
