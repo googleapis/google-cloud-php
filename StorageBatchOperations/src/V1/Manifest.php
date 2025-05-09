@@ -23,9 +23,9 @@ class Manifest extends \Google\Protobuf\Internal\Message
      * upon.
      *  `manifest_location` should either be
      * 1) An absolute path to the object in the format of
-     * gs://bucket_name/path/file_name.csv.
+     * `gs://bucket_name/path/file_name.csv`.
      * 2) An absolute path with a single wildcard character in the file name, for
-     * example gs://bucket_name/path/file_name*.csv.
+     * example `gs://bucket_name/path/file_name*.csv`.
      * If manifest location is specified with a wildcard, objects in all manifest
      * files matching the pattern will be acted upon.
      *
@@ -47,9 +47,9 @@ class Manifest extends \Google\Protobuf\Internal\Message
      *           upon.
      *            `manifest_location` should either be
      *           1) An absolute path to the object in the format of
-     *           gs://bucket_name/path/file_name.csv.
+     *           `gs://bucket_name/path/file_name.csv`.
      *           2) An absolute path with a single wildcard character in the file name, for
-     *           example gs://bucket_name/path/file_name*.csv.
+     *           example `gs://bucket_name/path/file_name*.csv`.
      *           If manifest location is specified with a wildcard, objects in all manifest
      *           files matching the pattern will be acted upon.
      * }
@@ -67,9 +67,9 @@ class Manifest extends \Google\Protobuf\Internal\Message
      * upon.
      *  `manifest_location` should either be
      * 1) An absolute path to the object in the format of
-     * gs://bucket_name/path/file_name.csv.
+     * `gs://bucket_name/path/file_name.csv`.
      * 2) An absolute path with a single wildcard character in the file name, for
-     * example gs://bucket_name/path/file_name*.csv.
+     * example `gs://bucket_name/path/file_name*.csv`.
      * If manifest location is specified with a wildcard, objects in all manifest
      * files matching the pattern will be acted upon.
      *
@@ -89,9 +89,9 @@ class Manifest extends \Google\Protobuf\Internal\Message
      * upon.
      *  `manifest_location` should either be
      * 1) An absolute path to the object in the format of
-     * gs://bucket_name/path/file_name.csv.
+     * `gs://bucket_name/path/file_name.csv`.
      * 2) An absolute path with a single wildcard character in the file name, for
-     * example gs://bucket_name/path/file_name*.csv.
+     * example `gs://bucket_name/path/file_name*.csv`.
      * If manifest location is specified with a wildcard, objects in all manifest
      * files matching the pattern will be acted upon.
      *

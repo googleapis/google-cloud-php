@@ -40,7 +40,8 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * have
      * [google.longrunning.Operation.error][google.longrunning.Operation.error]
      * value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
-     * corresponding to `Code.CANCELLED`.
+     * corresponding to
+     * `[Code.CANCELLED][google.rpc.Code.CANCELLED]`.
      *
      * Generated from protobuf field <code>bool requested_cancellation = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -77,7 +78,8 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *           have
      *           [google.longrunning.Operation.error][google.longrunning.Operation.error]
      *           value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
-     *           corresponding to `Code.CANCELLED`.
+     *           corresponding to
+     *           `[Code.CANCELLED][google.rpc.Code.CANCELLED]`.
      *     @type string $api_version
      *           Output only. API version used to start the operation.
      *     @type \Google\Cloud\StorageBatchOperations\V1\Job $job
@@ -195,7 +197,8 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * have
      * [google.longrunning.Operation.error][google.longrunning.Operation.error]
      * value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
-     * corresponding to `Code.CANCELLED`.
+     * corresponding to
+     * `[Code.CANCELLED][google.rpc.Code.CANCELLED]`.
      *
      * Generated from protobuf field <code>bool requested_cancellation = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -211,7 +214,8 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * have
      * [google.longrunning.Operation.error][google.longrunning.Operation.error]
      * value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
-     * corresponding to `Code.CANCELLED`.
+     * corresponding to
+     * `[Code.CANCELLED][google.rpc.Code.CANCELLED]`.
      *
      * Generated from protobuf field <code>bool requested_cancellation = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
