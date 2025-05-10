@@ -68,3 +68,4 @@ jobs:
               -t ${{ secrets.SPLIT_TOKEN }} \
               --packagist-username=${{ vars.PACKAGIST_USERNAME }} \
               --packagist-token=${{ secrets.PACKAGIST_TOKEN }}
+              --packagist-safe-token=${{ secrets.PACKAGIST_SAFE_TOKEN }}
