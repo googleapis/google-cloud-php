@@ -9,64 +9,68 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Scope of the export job.
+ * The scope of the export job.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.MetadataJob.ExportJobSpec.ExportJobScope</code>
  */
 class ExportJobScope extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Indicating if it is an organization level export job.
-     * - When set to true, exports all entries from entry groups and projects
-     * sharing the same organization id of the Metadata Job. Only projects and
-     * entry groups in the VPC-SC perimeter will be exported. The projects and
-     * entry groups are ignored.
-     * - When set to false, one of the projects or entry groups must be
-     * specified.
-     * - Default to false.
+     * Whether the metadata export job is an organization-level export job.
+     * - If `true`, the job exports the entries from the same organization and
+     * VPC Service Controls perimeter as the job. The project that the job
+     * belongs to determines the VPC Service Controls perimeter. If you set
+     * the job scope to be at the organization level, then don't provide a
+     * list of projects or entry groups.
+     * - If `false`, you must specify a list of projects or a list of entry
+     * groups whose entries you want to export.
+     * The default is `false`.
      *
      * Generated from protobuf field <code>bool organization_level = 1;</code>
      */
     protected $organization_level = false;
     /**
-     * The projects that are in the scope of the export job. Can either be
-     * project numbers or project IDs. If specified, only the entries from the
-     * specified projects will be exported. The projects must be in the same
-     * organization and in the VPC-SC perimeter. Either projects or
-     * entry_groups can be specified when organization_level_export is set to
-     * false.
-     * Must follow the format: "projects/<project_id_or_number>"
+     * The projects whose metadata you want to export, in the format
+     * `projects/{project_id_or_number}`. Only the entries from
+     * the specified projects are exported.
+     * The projects must be in the same organization and VPC Service Controls
+     * perimeter as the job.
+     * If you set the job scope to be a list of projects, then set the
+     * organization-level export flag to false and don't provide a list of
+     * entry groups.
      *
      * Generated from protobuf field <code>repeated string projects = 2 [(.google.api.resource_reference) = {</code>
      */
     private $projects;
     /**
-     * The entry groups that are in scope for the export job. Optional. If
-     * specified, only entries in the specified entry groups will be exported
-     * by the job. Must be in the VPC-SC perimeter of the job. The location of
-     * the entry groups must be the same as the job. Either projects or
-     * entry_groups can be specified when organization_level_export is set to
-     * false. Must follow the format:
-     * "projects/<project_id_or_number>/locations/<location>/entryGroups/<entry_group_id>"
+     * The entry groups whose metadata you want to export, in the format
+     * `projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}`.
+     * Only the entries in the specified entry groups are exported.
+     * The entry groups must be in the same location and the same VPC Service
+     * Controls perimeter as the job.
+     * If you set the job scope to be a list of entry groups, then set the
+     * organization-level export flag to false and don't provide a list of
+     * projects.
      *
      * Generated from protobuf field <code>repeated string entry_groups = 3 [(.google.api.resource_reference) = {</code>
      */
     private $entry_groups;
     /**
-     * If specified, only entries of the specified types will be
-     * affected by the job.
-     * Must follow the format:
-     * "projects/<project_id_or_number>/locations/<location>/entryTypes/<entry_type_id>"
+     * The entry types that are in scope for the export job, specified as
+     * relative resource names in the format
+     * `projects/{project_id_or_number}/locations/{location}/entryTypes/{entry_type_id}`.
+     * Only entries that belong to the specified entry types are affected by
+     * the job.
      *
      * Generated from protobuf field <code>repeated string entry_types = 4 [(.google.api.resource_reference) = {</code>
      */
     private $entry_types;
     /**
-     * The aspect types that are in scope for the export job.
-     * Optional. If specified, only aspects of the specified types will be
-     * affected by the job.
-     * Must follow the format:
-     * "projects/<project_id_or_number>/locations/<location>/aspectTypes/<aspect_type_id>"
+     * The aspect types that are in scope for the export job, specified as
+     * relative resource names in the format
+     * `projects/{project_id_or_number}/locations/{location}/aspectTypes/{aspect_type_id}`.
+     * Only aspects that belong to the specified aspect types are affected by
+     * the job.
      *
      * Generated from protobuf field <code>repeated string aspect_types = 5 [(.google.api.resource_reference) = {</code>
      */
@@ -79,41 +83,45 @@ class ExportJobScope extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $organization_level
-     *           Indicating if it is an organization level export job.
-     *           - When set to true, exports all entries from entry groups and projects
-     *           sharing the same organization id of the Metadata Job. Only projects and
-     *           entry groups in the VPC-SC perimeter will be exported. The projects and
-     *           entry groups are ignored.
-     *           - When set to false, one of the projects or entry groups must be
-     *           specified.
-     *           - Default to false.
+     *           Whether the metadata export job is an organization-level export job.
+     *           - If `true`, the job exports the entries from the same organization and
+     *           VPC Service Controls perimeter as the job. The project that the job
+     *           belongs to determines the VPC Service Controls perimeter. If you set
+     *           the job scope to be at the organization level, then don't provide a
+     *           list of projects or entry groups.
+     *           - If `false`, you must specify a list of projects or a list of entry
+     *           groups whose entries you want to export.
+     *           The default is `false`.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $projects
-     *           The projects that are in the scope of the export job. Can either be
-     *           project numbers or project IDs. If specified, only the entries from the
-     *           specified projects will be exported. The projects must be in the same
-     *           organization and in the VPC-SC perimeter. Either projects or
-     *           entry_groups can be specified when organization_level_export is set to
-     *           false.
-     *           Must follow the format: "projects/<project_id_or_number>"
+     *           The projects whose metadata you want to export, in the format
+     *           `projects/{project_id_or_number}`. Only the entries from
+     *           the specified projects are exported.
+     *           The projects must be in the same organization and VPC Service Controls
+     *           perimeter as the job.
+     *           If you set the job scope to be a list of projects, then set the
+     *           organization-level export flag to false and don't provide a list of
+     *           entry groups.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entry_groups
-     *           The entry groups that are in scope for the export job. Optional. If
-     *           specified, only entries in the specified entry groups will be exported
-     *           by the job. Must be in the VPC-SC perimeter of the job. The location of
-     *           the entry groups must be the same as the job. Either projects or
-     *           entry_groups can be specified when organization_level_export is set to
-     *           false. Must follow the format:
-     *           "projects/<project_id_or_number>/locations/<location>/entryGroups/<entry_group_id>"
+     *           The entry groups whose metadata you want to export, in the format
+     *           `projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}`.
+     *           Only the entries in the specified entry groups are exported.
+     *           The entry groups must be in the same location and the same VPC Service
+     *           Controls perimeter as the job.
+     *           If you set the job scope to be a list of entry groups, then set the
+     *           organization-level export flag to false and don't provide a list of
+     *           projects.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entry_types
-     *           If specified, only entries of the specified types will be
-     *           affected by the job.
-     *           Must follow the format:
-     *           "projects/<project_id_or_number>/locations/<location>/entryTypes/<entry_type_id>"
+     *           The entry types that are in scope for the export job, specified as
+     *           relative resource names in the format
+     *           `projects/{project_id_or_number}/locations/{location}/entryTypes/{entry_type_id}`.
+     *           Only entries that belong to the specified entry types are affected by
+     *           the job.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $aspect_types
-     *           The aspect types that are in scope for the export job.
-     *           Optional. If specified, only aspects of the specified types will be
-     *           affected by the job.
-     *           Must follow the format:
-     *           "projects/<project_id_or_number>/locations/<location>/aspectTypes/<aspect_type_id>"
+     *           The aspect types that are in scope for the export job, specified as
+     *           relative resource names in the format
+     *           `projects/{project_id_or_number}/locations/{location}/aspectTypes/{aspect_type_id}`.
+     *           Only aspects that belong to the specified aspect types are affected by
+     *           the job.
      * }
      */
     public function __construct($data = NULL) {
@@ -122,14 +130,15 @@ class ExportJobScope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicating if it is an organization level export job.
-     * - When set to true, exports all entries from entry groups and projects
-     * sharing the same organization id of the Metadata Job. Only projects and
-     * entry groups in the VPC-SC perimeter will be exported. The projects and
-     * entry groups are ignored.
-     * - When set to false, one of the projects or entry groups must be
-     * specified.
-     * - Default to false.
+     * Whether the metadata export job is an organization-level export job.
+     * - If `true`, the job exports the entries from the same organization and
+     * VPC Service Controls perimeter as the job. The project that the job
+     * belongs to determines the VPC Service Controls perimeter. If you set
+     * the job scope to be at the organization level, then don't provide a
+     * list of projects or entry groups.
+     * - If `false`, you must specify a list of projects or a list of entry
+     * groups whose entries you want to export.
+     * The default is `false`.
      *
      * Generated from protobuf field <code>bool organization_level = 1;</code>
      * @return bool
@@ -140,14 +149,15 @@ class ExportJobScope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicating if it is an organization level export job.
-     * - When set to true, exports all entries from entry groups and projects
-     * sharing the same organization id of the Metadata Job. Only projects and
-     * entry groups in the VPC-SC perimeter will be exported. The projects and
-     * entry groups are ignored.
-     * - When set to false, one of the projects or entry groups must be
-     * specified.
-     * - Default to false.
+     * Whether the metadata export job is an organization-level export job.
+     * - If `true`, the job exports the entries from the same organization and
+     * VPC Service Controls perimeter as the job. The project that the job
+     * belongs to determines the VPC Service Controls perimeter. If you set
+     * the job scope to be at the organization level, then don't provide a
+     * list of projects or entry groups.
+     * - If `false`, you must specify a list of projects or a list of entry
+     * groups whose entries you want to export.
+     * The default is `false`.
      *
      * Generated from protobuf field <code>bool organization_level = 1;</code>
      * @param bool $var
@@ -162,13 +172,14 @@ class ExportJobScope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The projects that are in the scope of the export job. Can either be
-     * project numbers or project IDs. If specified, only the entries from the
-     * specified projects will be exported. The projects must be in the same
-     * organization and in the VPC-SC perimeter. Either projects or
-     * entry_groups can be specified when organization_level_export is set to
-     * false.
-     * Must follow the format: "projects/<project_id_or_number>"
+     * The projects whose metadata you want to export, in the format
+     * `projects/{project_id_or_number}`. Only the entries from
+     * the specified projects are exported.
+     * The projects must be in the same organization and VPC Service Controls
+     * perimeter as the job.
+     * If you set the job scope to be a list of projects, then set the
+     * organization-level export flag to false and don't provide a list of
+     * entry groups.
      *
      * Generated from protobuf field <code>repeated string projects = 2 [(.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -179,13 +190,14 @@ class ExportJobScope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The projects that are in the scope of the export job. Can either be
-     * project numbers or project IDs. If specified, only the entries from the
-     * specified projects will be exported. The projects must be in the same
-     * organization and in the VPC-SC perimeter. Either projects or
-     * entry_groups can be specified when organization_level_export is set to
-     * false.
-     * Must follow the format: "projects/<project_id_or_number>"
+     * The projects whose metadata you want to export, in the format
+     * `projects/{project_id_or_number}`. Only the entries from
+     * the specified projects are exported.
+     * The projects must be in the same organization and VPC Service Controls
+     * perimeter as the job.
+     * If you set the job scope to be a list of projects, then set the
+     * organization-level export flag to false and don't provide a list of
+     * entry groups.
      *
      * Generated from protobuf field <code>repeated string projects = 2 [(.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -200,13 +212,14 @@ class ExportJobScope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The entry groups that are in scope for the export job. Optional. If
-     * specified, only entries in the specified entry groups will be exported
-     * by the job. Must be in the VPC-SC perimeter of the job. The location of
-     * the entry groups must be the same as the job. Either projects or
-     * entry_groups can be specified when organization_level_export is set to
-     * false. Must follow the format:
-     * "projects/<project_id_or_number>/locations/<location>/entryGroups/<entry_group_id>"
+     * The entry groups whose metadata you want to export, in the format
+     * `projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}`.
+     * Only the entries in the specified entry groups are exported.
+     * The entry groups must be in the same location and the same VPC Service
+     * Controls perimeter as the job.
+     * If you set the job scope to be a list of entry groups, then set the
+     * organization-level export flag to false and don't provide a list of
+     * projects.
      *
      * Generated from protobuf field <code>repeated string entry_groups = 3 [(.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -217,13 +230,14 @@ class ExportJobScope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The entry groups that are in scope for the export job. Optional. If
-     * specified, only entries in the specified entry groups will be exported
-     * by the job. Must be in the VPC-SC perimeter of the job. The location of
-     * the entry groups must be the same as the job. Either projects or
-     * entry_groups can be specified when organization_level_export is set to
-     * false. Must follow the format:
-     * "projects/<project_id_or_number>/locations/<location>/entryGroups/<entry_group_id>"
+     * The entry groups whose metadata you want to export, in the format
+     * `projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}`.
+     * Only the entries in the specified entry groups are exported.
+     * The entry groups must be in the same location and the same VPC Service
+     * Controls perimeter as the job.
+     * If you set the job scope to be a list of entry groups, then set the
+     * organization-level export flag to false and don't provide a list of
+     * projects.
      *
      * Generated from protobuf field <code>repeated string entry_groups = 3 [(.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -238,10 +252,11 @@ class ExportJobScope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If specified, only entries of the specified types will be
-     * affected by the job.
-     * Must follow the format:
-     * "projects/<project_id_or_number>/locations/<location>/entryTypes/<entry_type_id>"
+     * The entry types that are in scope for the export job, specified as
+     * relative resource names in the format
+     * `projects/{project_id_or_number}/locations/{location}/entryTypes/{entry_type_id}`.
+     * Only entries that belong to the specified entry types are affected by
+     * the job.
      *
      * Generated from protobuf field <code>repeated string entry_types = 4 [(.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -252,10 +267,11 @@ class ExportJobScope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If specified, only entries of the specified types will be
-     * affected by the job.
-     * Must follow the format:
-     * "projects/<project_id_or_number>/locations/<location>/entryTypes/<entry_type_id>"
+     * The entry types that are in scope for the export job, specified as
+     * relative resource names in the format
+     * `projects/{project_id_or_number}/locations/{location}/entryTypes/{entry_type_id}`.
+     * Only entries that belong to the specified entry types are affected by
+     * the job.
      *
      * Generated from protobuf field <code>repeated string entry_types = 4 [(.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -270,11 +286,11 @@ class ExportJobScope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The aspect types that are in scope for the export job.
-     * Optional. If specified, only aspects of the specified types will be
-     * affected by the job.
-     * Must follow the format:
-     * "projects/<project_id_or_number>/locations/<location>/aspectTypes/<aspect_type_id>"
+     * The aspect types that are in scope for the export job, specified as
+     * relative resource names in the format
+     * `projects/{project_id_or_number}/locations/{location}/aspectTypes/{aspect_type_id}`.
+     * Only aspects that belong to the specified aspect types are affected by
+     * the job.
      *
      * Generated from protobuf field <code>repeated string aspect_types = 5 [(.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -285,11 +301,11 @@ class ExportJobScope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The aspect types that are in scope for the export job.
-     * Optional. If specified, only aspects of the specified types will be
-     * affected by the job.
-     * Must follow the format:
-     * "projects/<project_id_or_number>/locations/<location>/aspectTypes/<aspect_type_id>"
+     * The aspect types that are in scope for the export job, specified as
+     * relative resource names in the format
+     * `projects/{project_id_or_number}/locations/{location}/aspectTypes/{aspect_type_id}`.
+     * Only aspects that belong to the specified aspect types are affected by
+     * the job.
      *
      * Generated from protobuf field <code>repeated string aspect_types = 5 [(.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
