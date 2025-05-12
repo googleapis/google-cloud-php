@@ -59,43 +59,48 @@ abstract class SpannerTestCase extends SystemTestCase
 
         self::$instance = self::$client->instance(self::INSTANCE_NAME);
 
-        self::$dbName = uniqid(self::TESTING_PREFIX);
-        $op = self::$instance->createDatabase(self::$dbName);
-        $op->pollUntilComplete();
+        self::$dbName = getenv('GOOGLE_CLOUD_SPANNER_TEST_DATABASE') ?: uniqid(self::TESTING_PREFIX);
+        $database = self::$instance->database(self::$dbName);
+        if (!$database->exists()) {
+            $op = self::$instance->createDatabase(self::$dbName);
+            $op->pollUntilComplete();
 
-        $db = self::getDatabaseInstance(self::$dbName);
+            $db = self::getDatabaseInstance(self::$dbName);
 
-        self::$deletionQueue->add(function () use ($db) {
-            $db->drop();
-        });
+            if (!getenv('GOOGLE_CLOUD_SPANNER_TEST_DATABASE')) {
+                self::$deletionQueue->add(function () use ($db) {
+                    $db->drop();
+                });
+            }
 
-        $op = $db->updateDdlBatch(
-            [
-                'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
-                  id INT64 NOT NULL,
-                  name STRING(MAX) NOT NULL,
-                  birthday DATE
-                ) PRIMARY KEY (id)',
-                'CREATE UNIQUE INDEX ' . self::TEST_INDEX_NAME . '
-                ON ' . self::TEST_TABLE_NAME . ' (name)',
-            ]
-        );
-        $op->pollUntilComplete();
-
-        self::$database = $db;
-        self::$database2 = self::getDatabaseInstance(self::$dbName);
-
-        if ($db->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL) {
-            $db->updateDdlBatch(
+            $op = $db->updateDdlBatch(
                 [
-                    'CREATE ROLE ' . self::DATABASE_ROLE,
-                    'CREATE ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
-                    'GRANT SELECT ON TABLE ' . self::TEST_TABLE_NAME .
-                    ' TO ROLE ' . self::DATABASE_ROLE,
-                    'GRANT SELECT(id, name), INSERT(id, name), UPDATE(id, name) ON TABLE '
-                    . self::TEST_TABLE_NAME . ' TO ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
+                    'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
+                    id INT64 NOT NULL,
+                    name STRING(MAX) NOT NULL,
+                    birthday DATE
+                    ) PRIMARY KEY (id)',
+                    'CREATE UNIQUE INDEX ' . self::TEST_INDEX_NAME . '
+                    ON ' . self::TEST_TABLE_NAME . ' (name)',
                 ]
-            )->pollUntilComplete();
+            );
+            $op->pollUntilComplete();
+
+            self::$database = $db;
+            self::$database2 = self::getDatabaseInstance(self::$dbName);
+
+            if ($db->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL) {
+                $db->updateDdlBatch(
+                    [
+                        'CREATE ROLE ' . self::DATABASE_ROLE,
+                        'CREATE ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
+                        'GRANT SELECT ON TABLE ' . self::TEST_TABLE_NAME .
+                        ' TO ROLE ' . self::DATABASE_ROLE,
+                        'GRANT SELECT(id, name), INSERT(id, name), UPDATE(id, name) ON TABLE '
+                        . self::TEST_TABLE_NAME . ' TO ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
+                    ]
+                )->pollUntilComplete();
+            }
         }
 
         self::$hasSetUp = true;
