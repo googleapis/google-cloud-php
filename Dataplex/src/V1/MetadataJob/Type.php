@@ -26,7 +26,7 @@ class Type
      */
     const IMPORT = 1;
     /**
-     * Export job type.
+     * Export job.
      *
      * Generated from protobuf enum <code>EXPORT = 2;</code>
      */
