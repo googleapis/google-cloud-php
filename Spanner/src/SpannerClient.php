@@ -307,10 +307,10 @@ class SpannerClient
         $operation = new Operation(
             $this->spannerClient,
             $this->serializer,
-            $this->returnInt64AsObject,
             [
                 'routeToLeader' => $this->routeToLeader,
-                'defaultQueryOptions' => $this->defaultQueryOptions
+                'defaultQueryOptions' => $this->defaultQueryOptions,
+                'returnInt64AsObject' => $this->returnInt64AsObject,
             ]
         );
 

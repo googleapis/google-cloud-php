@@ -126,7 +126,7 @@ class BatchDmlResultTest extends SnippetTestCase
             $instance->reveal(),
             'test-project',
             'projects/test-project/instances/my-instance/databases/my-database',
-            $sessionPool->reveal()
+            ['sessionPool' => $sessionPool->reveal()],
         );
 
         $snippet = $this->snippetFromClass(BatchDmlResult::class);

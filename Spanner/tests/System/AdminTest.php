@@ -20,8 +20,8 @@ namespace Google\Cloud\Spanner\Tests\System;
 use Google\Cloud\Core\Exception\FailedPreconditionException;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\Type;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
@@ -82,6 +82,7 @@ class AdminTest extends SpannerTestCase
             'replicaComputeCapacity' => [],
             'edition' => 0,
             'defaultBackupScheduleType' => 0,
+            'instanceType' => 0,
         ];
         $info = $instance->reload(['fieldMask' => $requestedFieldNames]);
         $this->assertEquals($expectedInfo, $info);

@@ -86,7 +86,6 @@ class TransactionTest extends TestCase
         $this->operation = new Operation(
             $this->spannerClient->reveal(),
             $this->serializer,
-            false
         );
 
         $this->session = new Session(

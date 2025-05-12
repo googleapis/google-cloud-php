@@ -98,7 +98,7 @@ class BatchSnapshotTest extends TestCase
         $this->spannerClient = $this->prophesize(SpannerClient::class);
 
         $this->snapshot = new BatchSnapshot(
-            new Operation($this->spannerClient->reveal(), $this->serializer, false),
+            new Operation($this->spannerClient->reveal(), $this->serializer),
             $this->session->reveal(),
             ['id' => self::TRANSACTION, 'readTimestamp' => $this->timestamp]
         );

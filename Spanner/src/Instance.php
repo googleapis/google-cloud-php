@@ -490,12 +490,20 @@ class Instance
      * ```
      *
      * @param string $name The database name
-     * @param array $options [optional] {
+     * @param array $options {
      *     Configuration options.
      *
-     *     @type SessionPoolInterface $sessionPool A pool used to manage
-     *           sessions.
-     *     @type string $databaseRole The user created database role which creates the session.
+     *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
+     *         **Defaults to** `true` (enabled).
+     *     @type array $defaultQueryOptions
+     *     @type SessionPoolInterface $sessionPool The session pool
+     *         implementation.
+     *     @type bool $returnInt64AsObject If true, 64 bit integers will
+     *         be returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
+     *         platform compatibility. **Defaults to** false.
+     *     @type string $databaseRole The user created database role which
+     *         creates the session.
+     *     @type array $database The database info.
      * }
      * @return Database
      */
@@ -508,13 +516,10 @@ class Instance
             $this,
             $this->projectId,
             $name,
-            isset($options['sessionPool']) ? $options['sessionPool'] : null,
-            $this->returnInt64AsObject,
-            isset($options['database']) ? $options['database'] : [],
-            isset($options['databaseRole']) ? $options['databaseRole'] : '',
-            [
+            $options + [
                 'routeToLeader' => $this->routeToLeader,
                 'defaultQueryOptions' => $this->defaultQueryOptions,
+                'returnInt64AsObject' => $this->returnInt64AsObject,
             ]
         );
     }
