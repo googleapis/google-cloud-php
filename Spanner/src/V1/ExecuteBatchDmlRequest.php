@@ -58,6 +58,19 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 5;</code>
      */
     protected $request_options = null;
+    /**
+     * Optional. If set to true, this request marks the end of the transaction.
+     * The transaction should be committed or aborted after these statements
+     * execute, and attempts to execute any other requests against this
+     * transaction (including reads and queries) will be rejected.
+     * Setting this option may cause some error reporting to be deferred until
+     * commit time (e.g. validation of unique constraints). Given this, successful
+     * execution of statements should not be assumed until a subsequent Commit
+     * call completes successfully.
+     *
+     * Generated from protobuf field <code>bool last_statements = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $last_statements = false;
 
     /**
      * Constructor.
