@@ -85,7 +85,6 @@ class OperationTest extends TestCase
         $this->operation = new Operation(
             $this->spannerClient->reveal(),
             $this->serializer,
-            false
         );
 
         $session = $this->prophesize(Session::class);

@@ -62,7 +62,7 @@ class BatchClientTest extends TestCase
         $this->serializer = new Serializer();
         $this->spannerClient = $this->prophesize(GapicSpannerClient::class);
         $this->batchClient = new BatchClient(
-            new Operation($this->spannerClient->reveal(), $this->serializer, false),
+            new Operation($this->spannerClient->reveal(), $this->serializer),
             self::DATABASE
         );
     }
@@ -201,7 +201,7 @@ class BatchClientTest extends TestCase
             ]));
 
         $batchClient = new BatchClient(
-            new Operation($this->spannerClient->reveal(), $this->serializer, false),
+            new Operation($this->spannerClient->reveal(), $this->serializer),
             self::DATABASE,
             ['databaseRole' => 'Reader']
         );

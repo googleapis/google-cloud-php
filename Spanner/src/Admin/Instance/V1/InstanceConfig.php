@@ -126,6 +126,25 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.State state = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $state = 0;
+    /**
+     * Output only. Describes whether free instances are available to be created
+     * in this instance configuration.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.FreeInstanceAvailability free_instance_availability = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $free_instance_availability = 0;
+    /**
+     * Output only. The `QuorumType` of the instance configuration.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.QuorumType quorum_type = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $quorum_type = 0;
+    /**
+     * Output only. The storage limit in bytes per processing unit.
+     *
+     * Generated from protobuf field <code>int64 storage_limit_per_processing_unit = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $storage_limit_per_processing_unit = 0;
 
     /**
      * Constructor.

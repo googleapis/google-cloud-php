@@ -98,7 +98,7 @@ class ReadPartitionTest extends SnippetTestCase
             ]));
 
         $client = new BatchClient(
-            new Operation($this->spannerClient->reveal(), $this->serializer, false),
+            new Operation($this->spannerClient->reveal(), $this->serializer),
             self::DATABASE
         );
 

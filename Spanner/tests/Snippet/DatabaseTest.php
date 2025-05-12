@@ -135,7 +135,7 @@ class DatabaseTest extends SnippetTestCase
             $this->instance,
             self::PROJECT,
             self::DATABASE,
-            $sessionPool->reveal()
+            ['sessionPool' => $sessionPool->reveal()]
         );
     }
 

@@ -482,7 +482,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
             $instance->reveal(),
             self::PROJECT,
             self::DATABASE,
-            $sessionPool->reveal()
+            ['sessionPool' => $sessionPool->reveal()]
         );
     }
 
@@ -525,7 +525,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         ]);
 
         return new BatchSnapshot(
-            new Operation($this->spannerClient->reveal(), $this->serializer, false),
+            new Operation($this->spannerClient->reveal(), $this->serializer),
             $this->session->reveal(),
             [
                 'id' => self::TRANSACTION,
