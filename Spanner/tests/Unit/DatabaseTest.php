@@ -647,68 +647,6 @@ class DatabaseTest extends TestCase
     /**
      * @group spanner-admin
      */
-    public function testDropDeleteSession()
-    {
-        $this->spannerClient->createSession(
-            Argument::that(function ($request) {
-                $message = $this->serializer->encodeMessage($request);
-                return $message['database'] == $this->database->name();
-            }),
-            Argument::type('array')
-        )
-            ->shouldBeCalledOnce()
-            ->willReturn(new SessionProto(['name' => $this->session->name()]));
-
-        $this->spannerClient->beginTransaction(
-            Argument::that(function ($request) {
-                $message = $this->serializer->encodeMessage($request);
-                return $message['session'] == $this->session->name();
-            }),
-            Argument::type('array')
-        )
-            ->shouldBeCalledOnce()
-            ->willReturn(new TransactionProto(['id' => self::TRANSACTION]));
-
-        $this->spannerClient->deleteSession(
-            Argument::that(function ($request) {
-                $message = $this->serializer->encodeMessage($request);
-                return $message['name'] == $this->session->name();
-            }),
-            Argument::type('array')
-        )
-            ->shouldBeCalledOnce();
-
-        $this->databaseAdminClient->dropDatabase(
-            Argument::that(function ($request) {
-                $message = $this->serializer->encodeMessage($request);
-                $this->assertEquals(
-                    $message['database'],
-                    DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
-                );
-                return true;
-            }),
-            Argument::type('array')
-        )
-            ->shouldBeCalledOnce();
-
-        $database = new Database(
-            $this->spannerClient->reveal(),
-            $this->databaseAdminClient->reveal(),
-            $this->serializer,
-            $this->instance,
-            self::PROJECT,
-            self::DATABASE
-        );
-
-        // This will set a session on the Database class.
-        $database->transaction();
-
-        $database->drop();
-    }
-
-    /**
-     * @group spanner-admin
-     */
     public function testDdl()
     {
         $ddl = ['create table users', 'create table posts'];
@@ -1535,68 +1473,6 @@ class DatabaseTest extends TestCase
         $this->assertInstanceOf(SessionPoolInterface::class, $this->database->sessionPool());
     }
 
-    public function testClose()
-    {
-        $this->spannerClient->beginTransaction(
-            Argument::type(BeginTransactionRequest::class),
-            Argument::type('array')
-        )
-            ->shouldBeCalledOnce()
-            ->willReturn(new TransactionProto(['id' => self::TRANSACTION]));
-
-        $this->sessionPool->release(Argument::type(Session::class))
-            ->shouldBeCalled()
-            ->willReturn(null);
-
-        // start a transaction to create a session
-        $this->database->transaction();
-
-        $this->database->close();
-    }
-
-    public function testCloseNoPool()
-    {
-        $database = new Database(
-            $this->spannerClient->reveal(),
-            $this->databaseAdminClient->reveal(),
-            $this->serializer,
-            $this->instance,
-            self::PROJECT,
-            self::DATABASE
-        );
-
-        $this->spannerClient->createSession(
-            Argument::that(function ($request) {
-                $message = $this->serializer->encodeMessage($request);
-                return $message['database'] == $this->database->name();
-            }),
-            Argument::type('array')
-        )
-            ->shouldBeCalledOnce()
-            ->willReturn(new SessionProto(['name' => $this->session->name()]));
-
-        $this->spannerClient->deleteSession(
-            Argument::that(function ($request) {
-                $message = $this->serializer->encodeMessage($request);
-                return $message['name'] == $this->session->name();
-            }),
-            Argument::type('array')
-        )
-            ->shouldBeCalledOnce();
-
-        $this->spannerClient->beginTransaction(
-            Argument::type(BeginTransactionRequest::class),
-            Argument::type('array')
-        )
-            ->shouldBeCalledOnce()
-            ->willReturn(new TransactionProto(['id' => self::TRANSACTION]));
-
-        // start a transaction to create a session
-        $database->transaction();
-
-        $this->database->close();
-    }
-
     public function testCreateSession()
     {
         $this->spannerClient->createSession(
@@ -1607,7 +1483,10 @@ class DatabaseTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new SessionProto(['name' => $this->session->name()]));
+            ->willReturn(new SessionProto([
+                'name' => $this->session->name(),
+                'multiplexed' => true,
+            ]));
 
         $sess = $this->database->createSession();
 
@@ -1675,7 +1554,10 @@ class DatabaseTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new SessionProto(['name' => $this->session->name()]));
+            ->willReturn(new SessionProto([
+                'name' => $this->session->name(),
+                'multiplexed' => true,
+            ]));
 
         $sql = $this->createStreamingAPIArgs()['sql'];
         $this->spannerClient->executeStreamingSql(
@@ -1687,11 +1569,6 @@ class DatabaseTest extends TestCase
         )
             ->shouldBeCalledOnce()
             ->willReturn($this->resultGeneratorStream());
-
-        $this->spannerClient->deleteSession(
-            Argument::type(DeleteSessionRequest::class),
-            Argument::type('array')
-        )->shouldBeCalledOnce();
 
         $databaseWithDatabaseRole = new Database(
             $this->spannerClient->reveal(),
