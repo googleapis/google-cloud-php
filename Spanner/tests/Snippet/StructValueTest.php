@@ -82,7 +82,7 @@ class StructValueTest extends SnippetTestCase
             $instance->reveal(),
             self::PROJECT,
             self::DATABASE,
-            $sessionPool->reveal()
+            ['sessionPool' => $sessionPool->reveal()]
         );
 
         $this->value = new StructValue();

@@ -70,7 +70,7 @@ class BatchClientTest extends SnippetTestCase
         $this->spannerClient = $this->prophesize(SpannerClient::class);
         $this->serializer = new Serializer();
         $this->client = new BatchClient(
-            new Operation($this->spannerClient->reveal(), $this->serializer, false),
+            new Operation($this->spannerClient->reveal(), $this->serializer),
             self::DATABASE
         );
     }

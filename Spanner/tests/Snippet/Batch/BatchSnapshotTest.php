@@ -82,7 +82,7 @@ class BatchSnapshotTest extends SnippetTestCase
 
         $this->time = time();
         $this->snapshot = new BatchSnapshot(
-            new Operation($this->spannerClient->reveal(), $this->serializer, false),
+            new Operation($this->spannerClient->reveal(), $this->serializer),
             $this->session->reveal(),
             [
                 'id' => self::TRANSACTION,
@@ -110,7 +110,7 @@ class BatchSnapshotTest extends SnippetTestCase
             ]));
 
         $client = new BatchClient(
-            new Operation($this->spannerClient->reveal(), $this->serializer, false),
+            new Operation($this->spannerClient->reveal(), $this->serializer),
             self::DATABASE
         );
 

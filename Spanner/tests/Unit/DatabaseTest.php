@@ -190,10 +190,10 @@ class DatabaseTest extends TestCase
             $this->instance,
             self::PROJECT,
             self::DATABASE,
-            $this->sessionPool->reveal(),
-            false,
-            [],
-            'Reader'
+            [
+                'sessionPool' => $this->sessionPool->reveal(),
+                'databaseRole' => 'Reader',
+            ]
         );
 
         $this->operationResponse = $this->prophesize(OperationResponse::class);
@@ -1702,10 +1702,7 @@ class DatabaseTest extends TestCase
             $this->instance,
             self::PROJECT,
             self::DATABASE,
-            null,
-            false,
-            [],
-            'Reader'
+            ['databaseRole' => 'Reader']
         );
         $databaseWithDatabaseRole->execute($sql);
     }

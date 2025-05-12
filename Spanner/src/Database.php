@@ -130,22 +130,30 @@ class Database
     /**
      * @var bool
      */
-    private $isRunningTransaction = false;
+    private bool $isRunningTransaction = false;
 
     /**
      * @var array
      */
-    private $directedReadOptions;
+    private array $directedReadOptions;
 
     /**
      * @var bool
      */
-    private $routeToLeader;
+    private bool $routeToLeader;
 
     /**
      * @var array
      */
     private $defaultQueryOptions;
+
+    private string $databaseRole;
+
+    private bool $returnInt64AsObject;
+
+    private ?SessionPoolInterface $sessionPool;
+
+    private array $info;
 
     /**
      * @var array
@@ -169,18 +177,20 @@ class Database
      * @param Instance $instance The instance in which the database exists.
      * @param string $projectId The project ID.
      * @param string $name The database name or ID.
-     * @param SessionPoolInterface $sessionPool [optional] The session pool
-     *        implementation.
-     * @param bool $returnInt64AsObject [optional If true, 64 bit integers will
-     *        be returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
-     *        platform compatibility. **Defaults to** false.
-     * @param string $databaseRole The user created database role which creates the session.
-     * @param string $config [Optional] {
-     *     Configuration options.
+     * @param string $options [Optional] {
+     *     Database options.
      *
      *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
      *         **Defaults to** `true` (enabled).
      *     @type array $defaultQueryOptions
+     *     @type SessionPoolInterface $sessionPool The session pool
+     *         implementation.
+     *     @type bool $returnInt64AsObject If true, 64 bit integers will
+     *         be returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
+     *         platform compatibility. **Defaults to** false.
+     *     @type string $databaseRole The user created database role which
+     *         creates the session.
+     *     @type array $database The database info.
      * }
      */
     public function __construct(
@@ -190,22 +200,22 @@ class Database
         private Instance $instance,
         private string $projectId,
         private string $name,
-        private ?SessionPoolInterface $sessionPool = null,
-        private bool $returnInt64AsObject = false,
-        private array $info = [],
-        private string $databaseRole = '',
-        array $config = []
+        array $options = [],
     ) {
         $this->name = $this->fullyQualifiedDatabaseName($name);
-        $this->routeToLeader = $config['routeToLeader'] ?? true;
-        $this->defaultQueryOptions = $config['defaultQueryOptions'] ?? [];
+        $this->routeToLeader = $options['routeToLeader'] ?? true;
+        $this->defaultQueryOptions = $options['defaultQueryOptions'] ?? [];
+        $this->databaseRole = $options['databaseRole'] ?? '';
+        $this->returnInt64AsObject = $options['returnInt64AsObject'] ?? false;
+        $this->sessionPool = $options['sessionPool'] ?? null;
+        $this->info = $options['database'] ?? [];
         $this->operation = new Operation(
             $this->spannerClient,
             $serializer,
-            $returnInt64AsObject,
             [
                 'routeToLeader' => $this->routeToLeader,
-                'defaultQueryOptions' => $this->defaultQueryOptions
+                'defaultQueryOptions' => $this->defaultQueryOptions,
+                'returnInt64AsObject' => $this->returnInt64AsObject,
             ]
         );
 

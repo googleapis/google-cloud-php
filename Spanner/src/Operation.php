@@ -77,24 +77,23 @@ class Operation
     /**
      * @param SpannerClient $spannerClient The Spanner client used to make requests.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
-     * @param bool $returnInt64AsObject If true, 64 bit integers will be
-     *        returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
-     *        platform compatibility.
      * @param array $config [optional] {
      *     Configuration options.
      *
      *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
      *         **Defaults to** `true` (enabled).
      *     @type array $defaultQueryOptions
+     *     @type bool $returnInt64AsObject If true, 64 bit integers will be
+     *        returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
+     *        platform compatibility.
      * }
      */
     public function __construct(
         private SpannerClient $spannerClient,
         private Serializer $serializer,
-        bool $returnInt64AsObject,
         $config = []
     ) {
-        $this->mapper = new ValueMapper($returnInt64AsObject);
+        $this->mapper = new ValueMapper($options['returnInt64AsObject'] ?? false);
         $this->routeToLeader = $this->pluck('routeToLeader', $config, false) ?: true;
         $this->defaultQueryOptions =
             $this->pluck('defaultQueryOptions', $config, false) ?: [];
