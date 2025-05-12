@@ -31,7 +31,7 @@ interface ValueInterface
     /**
      * @return mixed
      */
-    public function get(): mixed;
+    public function get();
 
     /**
      * @return string

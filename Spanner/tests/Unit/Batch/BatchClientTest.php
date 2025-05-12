@@ -24,6 +24,7 @@ use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
+use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Serializer;
@@ -56,14 +57,16 @@ class BatchClientTest extends TestCase
     private $spannerClient;
     private $serializer;
     private $batchClient;
+    private $database;
 
     public function setUp(): void
     {
         $this->serializer = new Serializer();
         $this->spannerClient = $this->prophesize(GapicSpannerClient::class);
+        $this->database = $this->prophesize(Database::class);
         $this->batchClient = new BatchClient(
             new Operation($this->spannerClient->reveal(), $this->serializer),
-            self::DATABASE
+            $this->database->reveal()
         );
     }
 
@@ -79,7 +82,12 @@ class BatchClientTest extends TestCase
                 return true;
             }),
             Argument::type('array')
-        )->shouldBeCalledOnce()->willReturn(new Session(['name' => self::SESSION]));
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new Session([
+                'name' => self::SESSION,
+                'multiplexed' => true,
+            ]));
 
         $this->spannerClient->beginTransaction(
             Argument::that(function (BeginTransactionRequest $request) {
@@ -182,7 +190,10 @@ class BatchClientTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new Session(['name' => self::SESSION]));
+            ->willReturn(new Session([
+                'name' => self::SESSION,
+                'multiplexed' => true,
+            ]));
 
         $this->spannerClient->beginTransaction(
             Argument::that(function (BeginTransactionRequest $request) {

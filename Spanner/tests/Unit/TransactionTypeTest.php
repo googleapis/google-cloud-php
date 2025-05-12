@@ -118,9 +118,6 @@ class TransactionTypeTest extends TestCase
             Argument::type('array')
         )
             ->willReturn(new Session(['name' => $this->getFullyQualifiedSessionName()]));
-
-        $this->spannerClient->deleteSession(Argument::cetera())
-            ->shouldBeCalledOnce();
     }
 
     public function testDatabaseRunTransactionPreAllocate()

@@ -17,8 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Session\SessionCache;
 
 /**
  * Shared methods for reads inside a transaction.
@@ -30,7 +29,7 @@ trait TransactionalReadTrait
     use TransactionConfigurationTrait;
 
     private Operation $operation;
-    private Session $session;
+    private SessionCache $session;
     private string|null $transactionId;
     private string $context;
     private int $type;
@@ -280,7 +279,7 @@ trait TransactionalReadTrait
         unset($executeSqlOptions['singleUse']);
 
         $result = $this->operation->execute($this->session, $sql, $executeSqlOptions + [
-            'route-to-leader' => $this->context === SessionPoolInterface::CONTEXT_READWRITE
+            'route-to-leader' => $this->context === Database::CONTEXT_READWRITE
         ]);
 
         if (empty($this->id()) && $result->transaction()) {
@@ -363,7 +362,7 @@ trait TransactionalReadTrait
         );
 
         $result = $this->operation->read($this->session, $table, $keySet, $columns, $options + [
-            'route-to-leader' => $this->context === SessionPoolInterface::CONTEXT_READWRITE
+            'route-to-leader' => $this->context === Database::CONTEXT_READWRITE
         ]);
         if (empty($this->id()) && $result->transaction()) {
             $this->setId($result->transaction()->id());
@@ -409,9 +408,9 @@ trait TransactionalReadTrait
      * Get the Transaction Session
      *
      * @access private
-     * @return Session
+     * @return SessionCache
      */
-    public function session(): Session
+    public function session(): SessionCache
     {
         return $this->session;
     }
@@ -445,7 +444,7 @@ trait TransactionalReadTrait
      */
     private function checkReadContext(): void
     {
-        if ($this->type === self::TYPE_SINGLE_USE && $this->context === SessionPoolInterface::CONTEXT_READWRITE) {
+        if ($this->type === self::TYPE_SINGLE_USE && $this->context === Database::CONTEXT_READWRITE) {
             throw new \BadMethodCallException('Cannot use a single-use read-write transaction for read or execute.');
         }
     }

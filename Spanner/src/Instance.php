@@ -33,7 +33,6 @@ use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\LongRunning\ListOperationsRequest;
 use Google\LongRunning\Operation as OperationProto;
@@ -423,14 +422,14 @@ class Instance
      *         descriptor set object to be used in the update, or alternatively, an absolute
      *         path to the generated file descriptor set. The descriptor set is only used
      *         during DDL statements, such as `CREATE PROTO BUNDLE`.
-     *     @type SessionPoolInterface $sessionPool A pool used to manage
+     *     @type CacheItemPoolInterface $cacheItemPool A pool used to manage
      *           sessions.
      * }
      * @return LongRunningOperation
      */
     public function createDatabase($name, array $options = []): LongRunningOperation
     {
-        $instantiation = $this->pluckArray(['sessionPool'], $options);
+        $instantiation = $this->pluckArray(['cacheItemPool'], $options);
 
         $database = $this->database($name, $instantiation);
         return $database->create($options);
@@ -481,8 +480,7 @@ class Instance
      *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
      *         **Defaults to** `true` (enabled).
      *     @type array $defaultQueryOptions
-     *     @type SessionPoolInterface $sessionPool The session pool
-     *         implementation.
+     *     @type CacheItemPoolInterface $cacheItemPool PSR-6 cache implementation for sessions.
      *     @type bool $returnInt64AsObject If true, 64 bit integers will
      *         be returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *         platform compatibility. **Defaults to** false.
