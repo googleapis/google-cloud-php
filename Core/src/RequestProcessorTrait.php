@@ -23,6 +23,7 @@ use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Rpc\BadRequest;
+use Google\Rpc\Code;
 
 /**
  * @internal
