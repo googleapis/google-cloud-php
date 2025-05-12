@@ -52,7 +52,7 @@ trait DatabaseRoleTrait
                 'PERMISSION_DENIED'
             ],
             [
-                self::getDbWithSessionPoolRestrictiveRole(),
+                self::getDbWithRestrictiveRole(),
                 [
                     'id' => rand(1, 346464),
                     'name' => uniqid(SpannerTestCase::TESTING_PREFIX)

@@ -105,19 +105,6 @@ class BatchSnapshotTest extends TestCase
         );
     }
 
-    public function testClose()
-    {
-        $session = $this->prophesize(Session::class);
-        $session->delete([])->shouldBeCalledOnce();
-
-        $this->snapshot = new BatchSnapshot(
-            $this->prophesize(Operation::class)->reveal(),
-            $session->reveal()
-        );
-
-        $this->snapshot->close();
-    }
-
     public function testPartitionRead()
     {
         $table = 'table';

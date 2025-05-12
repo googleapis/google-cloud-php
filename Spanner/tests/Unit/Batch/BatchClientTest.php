@@ -20,13 +20,18 @@ namespace Google\Cloud\Spanner\Tests\Unit\Batch;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
+use Google\Cloud\Spanner\Database;
+use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Serializer;
+use Google\Cloud\Spanner\Session\SessionCache;;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
@@ -52,18 +57,42 @@ class BatchClientTest extends TestCase
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
     const TRANSACTION = 'transaction-id';
+    const PROJECT = 'my-project';
+    const INSTANCE = 'my-instance';
 
     private $spannerClient;
+    private $databaseAdminClient;
+    private $instanceAdminClient;
     private $serializer;
     private $batchClient;
+    private $database;
+    private $instance;
 
     public function setUp(): void
     {
         $this->serializer = new Serializer();
         $this->spannerClient = $this->prophesize(GapicSpannerClient::class);
+        $this->databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
+        $this->instanceAdminClient = $this->prophesize(InstanceAdminClient::class);
+        $this->instance = new Instance(
+            $this->spannerClient->reveal(),
+            $this->instanceAdminClient->reveal(),
+            $this->databaseAdminClient->reveal(),
+            new Serializer(),
+            self::PROJECT,
+            self::INSTANCE
+        );
+        $this->database = new Database(
+            $this->spannerClient->reveal(),
+            $this->databaseAdminClient->reveal(),
+            new Serializer(),
+            $this->instance,
+            self::PROJECT,
+            self::DATABASE
+        );
         $this->batchClient = new BatchClient(
             new Operation($this->spannerClient->reveal(), $this->serializer),
-            self::DATABASE
+            $this->database,
         );
     }
 
@@ -79,7 +108,13 @@ class BatchClientTest extends TestCase
                 return true;
             }),
             Argument::type('array')
-        )->shouldBeCalledOnce()->willReturn(new Session(['name' => self::SESSION]));
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new Session([
+                'name' => self::SESSION,
+                'multiplexed' => true,
+                'create_time' => new TimestampProto(['seconds' => $time])
+            ]));
 
         $this->spannerClient->beginTransaction(
             Argument::that(function (BeginTransactionRequest $request) {
@@ -111,6 +146,16 @@ class BatchClientTest extends TestCase
             'readTimestamp' => \DateTime::createFromFormat('U', (string) $time)->format(Timestamp::FORMAT)
         ]));
 
+        $this->spannerClient->createSession(
+            Argument::type(CreateSessionRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new Session([
+                'name' => self::SESSION,
+                'multiplexed' => true,
+                'create_time' => new TimestampProto(['seconds' => $time])
+            ]));
         $snapshot = $this->batchClient->snapshotFromString($identifier);
         $this->assertEquals(self::SESSION, $snapshot->session()->name());
         $this->assertEquals(self::TRANSACTION, $snapshot->id());
@@ -176,13 +221,20 @@ class BatchClientTest extends TestCase
     {
         $time = time();
         $this->spannerClient->createSession(
-            Argument::that(function (CreateSessionRequest $request) {
-                return $this->serializer->encodeMessage($request)['session']['creatorRole'] == 'Reader';
+          Argument::that(function (CreateSessionRequest $request) {
+                $this->assertEquals(
+                    'Reader',
+                    $this->serializer->encodeMessage($request)['session']['creatorRole'],
+                );
+                return true;
             }),
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new Session(['name' => self::SESSION]));
+            ->willReturn(new Session([
+                'name' => self::SESSION,
+                'multiplexed' => true,
+            ]));
 
         $this->spannerClient->beginTransaction(
             Argument::that(function (BeginTransactionRequest $request) {
@@ -202,7 +254,7 @@ class BatchClientTest extends TestCase
 
         $batchClient = new BatchClient(
             new Operation($this->spannerClient->reveal(), $this->serializer),
-            self::DATABASE,
+            $this->database,
             ['databaseRole' => 'Reader']
         );
 

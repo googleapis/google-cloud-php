@@ -38,7 +38,6 @@ use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Middleware\SpannerMiddleware;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\LongRunning\Operation as OperationProto;
 use Google\Protobuf\Duration;
@@ -289,13 +288,11 @@ class SpannerClient
             ]
         );
 
+        $database = $this->instance($instanceId)->database($databaseId);
+
         return new BatchClient(
             $operation,
-            GapicSpannerClient::databaseName(
-                $this->projectId,
-                $instanceId,
-                $databaseId
-            ),
+            $database,
             $options
         );
     }
@@ -625,7 +622,7 @@ class SpannerClient
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type SessionPoolInterface $sessionPool A pool used to manage
+     *     @type CacheItemPoolInterface $cacheItemPool A pool used to manage
      *           sessions.
      *     @type string $databaseRole The user created database role which creates the session.
      * }

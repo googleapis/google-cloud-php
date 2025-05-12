@@ -17,10 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
-use Google\Auth\Cache\MemoryCacheItemPool;
-use Google\Cloud\Spanner\Session\CacheSessionPool;
-use Google\Cloud\Spanner\Session\Session;
-use Psr\Cache\CacheItemPoolInterface;
+use Google\Cloud\Core\Exception\NotFoundException;
 
 /**
  * @group spanner
@@ -36,93 +33,15 @@ class SessionTest extends SpannerTestCase
         self::setUpTestDatabase();
     }
 
-    public function testCacheSessionPool()
-    {
-        $identity = self::$database->identity();
-        $cacheKey = sprintf(
-            CacheSessionPool::CACHE_KEY_TEMPLATE,
-            $identity['projectId'],
-            $identity['instance'],
-            $identity['database']
-        );
-
-        $cache = new MemoryCacheItemPool();
-        $pool = new CacheSessionPool($cache, [
-            'maxSessions' => 10,
-            'minSessions' => 5,
-            'shouldWaitForSession' => false
-        ]);
-        $pool->setDatabase(self::$database);
-
-        $this->assertNull($cache->getItem($cacheKey)->get());
-
-        $pool->warmup();
-
-        $this->assertPoolCounts($cache, $cacheKey, 5, 0, 0);
-
-        $session = $pool->acquire();
-        $this->assertInstanceOf(Session::class, $session);
-        $this->assertTrue($session->exists());
-        $this->assertPoolCounts($cache, $cacheKey, 4, 1, 0);
-        $this->assertEquals($session->name(), current($cache->getItem($cacheKey)->get()['inUse'])['name']);
-
-        $pool->release($session);
-
-        $inUse = [];
-        for ($i = 0; $i < 10; $i++) {
-            $inUse[] = $pool->acquire();
-        }
-
-        $this->assertPoolCounts($cache, $cacheKey, 0, 10, 0);
-
-        $pool->maintain();
-        $this->assertPoolCounts($cache, $cacheKey, 0, 10, 0);
-
-        $exception = null;
-        try {
-            $pool->acquire();
-        } catch (\RuntimeException $exception) {
-            // no-op
-        }
-        $this->assertInstanceOf(
-            \RuntimeException::class,
-            $exception,
-            'Should catch a RuntimeException when pool is exhausted.'
-        );
-
-        foreach ($inUse as $i) {
-            $pool->release($i);
-        }
-        sleep(1);
-
-        $this->assertPoolCounts($cache, $cacheKey, 10, 0, 0);
-
-        $pool->clear();
-        sleep(1);
-        $this->assertNull($cache->getItem($cacheKey)->get());
-        $this->assertFalse($inUse[0]->exists());
-    }
-
     public function testSessionPoolShouldFailWhenIncorrectDatabase()
     {
-        $this->expectException(\RuntimeException::class);
+        $this->expectException(NotFoundException::class);
         $this->expectExceptionMessage('Database not found');
 
-        $db = self::getDatabaseWithSessionPool(
-            'non-existent-db',
-            ['maxCyclesToWaitForSession' => 1]
-        );
+        $db = self::getDatabaseInstance('non-existent-db');
         $db->runTransaction(function ($t) {
             $t->select('SELECT 1');
             $t->commit();
         });
-    }
-
-    private function assertPoolCounts(CacheItemPoolInterface $cache, $key, $queue, $inUse, $toCreate)
-    {
-        $item = $cache->getItem($key)->get();
-        $this->assertCount($queue, $item['queue'], 'Sessions In Queue');
-        $this->assertCount($inUse, $item['inUse'], 'Sessions In Use');
-        $this->assertCount($toCreate, $item['toCreate'], 'Sessions To Create');
     }
 }

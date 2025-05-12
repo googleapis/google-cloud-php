@@ -28,7 +28,7 @@ use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Serializer;
-use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
@@ -87,7 +87,7 @@ class OperationTest extends TestCase
             $this->serializer,
         );
 
-        $session = $this->prophesize(Session::class);
+        $session = $this->prophesize(SessionCache::class);
         $session->name()->willReturn(self::SESSION);
         $session->info()->willReturn(['databaseName' => self::DATABASE]);
         $this->session = $session->reveal();

@@ -122,7 +122,6 @@ class PgBatchTest extends SpannerPgTestCase
         } else {
             $this->assertEquals($error->getServiceException()->getStatus(), $expected);
         }
-        $snapshot->close();
     }
 
     private function executePartitions(BatchClient $client, BatchSnapshot $snapshot, array $partitions)

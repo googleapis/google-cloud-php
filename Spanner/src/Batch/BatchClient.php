@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Batch;
 
 use Google\Cloud\Core\TimeTrait;
+use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\TransactionConfigurationTrait;
@@ -113,8 +114,6 @@ class BatchClient
         ReadPartition::class
     ];
 
-    private Operation $operation;
-    private string $databaseName;
     private string|null $databaseRole;
 
     /**
@@ -127,10 +126,11 @@ class BatchClient
      *     @type string $databaseRole The user created database role which creates the session.
      * }
      */
-    public function __construct(Operation $operation, $databaseName, array $options = [])
-    {
-        $this->operation = $operation;
-        $this->databaseName = $databaseName;
+    public function __construct(
+        private Operation $operation,
+        private Database $database,
+        array $options = []
+    ) {
         $this->databaseRole = $options['databaseRole'] ?? '';
     }
 
@@ -174,14 +174,7 @@ class BatchClient
 
         $transactionOptions = $this->configureReadOnlyTransactionOptions($transactionOptions);
 
-        if ($this->databaseRole !== null) {
-            $sessionOptions['creator_role'] = $this->databaseRole;
-        }
-
-        $session = $this->operation->createSession(
-            $this->databaseName,
-            $sessionOptions
-        );
+        $session = $this->database->session($sessionOptions);
 
         /** @var BatchSnapshot */
         return $this->operation->snapshot($session, [
@@ -217,8 +210,6 @@ class BatchClient
             throw new \InvalidArgumentException('Invalid identifier.');
         }
 
-        $session = $this->operation->session($data['sessionName']);
-
         if ($data['readTimestamp']) {
             if (!($data['readTimestamp'] instanceof Timestamp)) {
                 $time = $this->parseTimeString($data['readTimestamp']);
@@ -227,7 +218,7 @@ class BatchClient
         }
         return new BatchSnapshot(
             $this->operation,
-            $session,
+            $this->database->session(),
             [
                 'id' => $data['transactionId'],
                 'readTimestamp' => $data['readTimestamp']

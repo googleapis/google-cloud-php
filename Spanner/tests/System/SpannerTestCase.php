@@ -141,23 +141,6 @@ abstract class SpannerTestCase extends SystemTestCase
         return $instance->database($dbName, $options);
     }
 
-    public static function getDatabaseWithSessionPool($dbName, $options = [])
-    {
-        $sessionCache = new MemoryCacheItemPool();
-        $sessionPool = new CacheSessionPool(
-            $sessionCache,
-            $options
-        );
-
-        return self::$client->connect(
-            self::INSTANCE_NAME,
-            $dbName,
-            [
-                'sessionPool' => $sessionPool
-            ]
-        );
-    }
-
     public static function skipEmulatorTests()
     {
         if ((bool) getenv('SPANNER_EMULATOR_HOST')) {
@@ -180,14 +163,6 @@ abstract class SpannerTestCase extends SystemTestCase
             self::INSTANCE_NAME,
             self::$dbName,
             ['databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
-        );
-    }
-
-    public static function getDbWithSessionPoolRestrictiveRole()
-    {
-        return self::getDatabaseWithSessionPool(
-            self::$dbName,
-            ['minSessions' => 1, 'maxSession' => 2, 'databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
         );
     }
 }
