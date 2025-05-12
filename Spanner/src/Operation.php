@@ -638,7 +638,8 @@ class Operation
             'database' => $databaseName,
             'session' => [
                 'labels' => $options['labels'] ?? [],
-                'creator_role' => $options['creator_role'] ?? ''
+                'creator_role' => $options['creator_role'] ?? '',
+                'multiplexed' => true,
         ]];
 
         $request = $this->serializer->decodeMessage(new CreateSessionRequest(), $createSession);
@@ -647,6 +648,12 @@ class Operation
             'resource-prefix' => $databaseName,
             'route-to-leader' => $this->routeToLeader
         ]);
+
+        // Verify the session is multiplexed
+        if ($response->getMultiplexed() !== true) {
+            throw new \Exception('Invalid session - not multiplexed');
+        }
+
         $res = $this->handleResponse($response);
 
         return $this->session($res['name']);
