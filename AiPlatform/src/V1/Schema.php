@@ -169,6 +169,13 @@ class Schema extends \Google\Protobuf\Internal\Message
      */
     private $any_of;
     /**
+     * Optional. Can either be a boolean or an object; controls the presence of
+     * additional properties.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value additional_properties = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $additional_properties = null;
+    /**
      * Optional. Allows indirect references between schema nodes. The value should
      * be a valid reference to a child of the root `defs`.
      * For example, the following schema defines a reference to a schema node
@@ -267,6 +274,9 @@ class Schema extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\AIPlatform\V1\Schema>|\Google\Protobuf\Internal\RepeatedField $any_of
      *           Optional. The value should be validated against any (one or more) of the
      *           subschemas in the list.
+     *     @type \Google\Protobuf\Value $additional_properties
+     *           Optional. Can either be a boolean or an object; controls the presence of
+     *           additional properties.
      *     @type string $ref
      *           Optional. Allows indirect references between schema nodes. The value should
      *           be a valid reference to a child of the root `defs`.
@@ -930,6 +940,44 @@ class Schema extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Schema::class);
         $this->any_of = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Can either be a boolean or an object; controls the presence of
+     * additional properties.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value additional_properties = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Value|null
+     */
+    public function getAdditionalProperties()
+    {
+        return $this->additional_properties;
+    }
+
+    public function hasAdditionalProperties()
+    {
+        return isset($this->additional_properties);
+    }
+
+    public function clearAdditionalProperties()
+    {
+        unset($this->additional_properties);
+    }
+
+    /**
+     * Optional. Can either be a boolean or an object; controls the presence of
+     * additional properties.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value additional_properties = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Value $var
+     * @return $this
+     */
+    public function setAdditionalProperties($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Value::class);
+        $this->additional_properties = $var;
 
         return $this;
     }
