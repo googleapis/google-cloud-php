@@ -17,7 +17,7 @@ class DeleteSubscriptionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Resource name of the subscription to delete.
-     * e.g. projects/123/locations/US/subscriptions/456
+     * e.g. projects/123/locations/us/subscriptions/456
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -25,7 +25,7 @@ class DeleteSubscriptionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Resource name of the subscription to delete.
-     *                     e.g. projects/123/locations/US/subscriptions/456
+     *                     e.g. projects/123/locations/us/subscriptions/456
      *                     Please see {@see AnalyticsHubServiceClient::subscriptionName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\DeleteSubscriptionRequest
@@ -46,7 +46,7 @@ class DeleteSubscriptionRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Resource name of the subscription to delete.
-     *           e.g. projects/123/locations/US/subscriptions/456
+     *           e.g. projects/123/locations/us/subscriptions/456
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class DeleteSubscriptionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Resource name of the subscription to delete.
-     * e.g. projects/123/locations/US/subscriptions/456
+     * e.g. projects/123/locations/us/subscriptions/456
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +68,7 @@ class DeleteSubscriptionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Resource name of the subscription to delete.
-     * e.g. projects/123/locations/US/subscriptions/456
+     * e.g. projects/123/locations/us/subscriptions/456
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
