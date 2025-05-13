@@ -28,6 +28,11 @@ class SelectedResource extends \Google\Protobuf\Internal\Message
      *           For table:
      *           `projects/{projectId}/datasets/{datasetId}/tables/{tableId}`
      *           Example:"projects/test_project/datasets/test_dataset/tables/test_table"
+     *     @type string $routine
+     *           Optional. Format:
+     *           For routine:
+     *           `projects/{projectId}/datasets/{datasetId}/routines/{routineId}`
+     *           Example:"projects/test_project/datasets/test_dataset/routines/test_routine"
      * }
      */
     public function __construct($data = NULL) {
@@ -68,6 +73,43 @@ class SelectedResource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Format:
+     * For routine:
+     * `projects/{projectId}/datasets/{datasetId}/routines/{routineId}`
+     * Example:"projects/test_project/datasets/test_dataset/routines/test_routine"
+     *
+     * Generated from protobuf field <code>string routine = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getRoutine()
+    {
+        return $this->readOneof(2);
+    }
+
+    public function hasRoutine()
+    {
+        return $this->hasOneof(2);
+    }
+
+    /**
+     * Optional. Format:
+     * For routine:
+     * `projects/{projectId}/datasets/{datasetId}/routines/{routineId}`
+     * Example:"projects/test_project/datasets/test_dataset/routines/test_routine"
+     *
+     * Generated from protobuf field <code>string routine = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRoutine($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(2, $var);
 
         return $this;
     }

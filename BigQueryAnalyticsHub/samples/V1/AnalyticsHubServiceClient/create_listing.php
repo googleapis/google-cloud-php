@@ -32,10 +32,10 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing;
  * Creates a new listing.
  *
  * @param string $formattedParent    The parent resource path of the listing.
- *                                   e.g. `projects/myproject/locations/US/dataExchanges/123`. Please see
+ *                                   e.g. `projects/myproject/locations/us/dataExchanges/123`. Please see
  *                                   {@see AnalyticsHubServiceClient::dataExchangeName()} for help formatting this field.
  * @param string $listingId          The ID of the listing to create.
- *                                   Must contain only ASCII letters, numbers (0-9), underscores (_).
+ *                                   Must contain only Unicode letters, numbers (0-9), underscores (_).
  *                                   Max length: 100 bytes.
  * @param string $listingDisplayName Human-readable display name of the listing. The display name must
  *                                   contain only Unicode letters, numbers (0-9), underscores (_), dashes (-),

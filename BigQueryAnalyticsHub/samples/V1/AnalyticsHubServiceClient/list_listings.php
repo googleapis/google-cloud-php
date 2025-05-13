@@ -33,7 +33,7 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing;
  * Lists all listings in a given project and location.
  *
  * @param string $formattedParent The parent resource path of the listing.
- *                                e.g. `projects/myproject/locations/US/dataExchanges/123`. Please see
+ *                                e.g. `projects/myproject/locations/us/dataExchanges/123`. Please see
  *                                {@see AnalyticsHubServiceClient::dataExchangeName()} for help formatting this field.
  */
 function list_listings_sample(string $formattedParent): void

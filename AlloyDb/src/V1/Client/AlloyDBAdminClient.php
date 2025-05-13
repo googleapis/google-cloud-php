@@ -50,6 +50,7 @@ use Google\Cloud\AlloyDb\V1\DeleteInstanceRequest;
 use Google\Cloud\AlloyDb\V1\DeleteUserRequest;
 use Google\Cloud\AlloyDb\V1\ExecuteSqlRequest;
 use Google\Cloud\AlloyDb\V1\ExecuteSqlResponse;
+use Google\Cloud\AlloyDb\V1\ExportClusterRequest;
 use Google\Cloud\AlloyDb\V1\FailoverInstanceRequest;
 use Google\Cloud\AlloyDb\V1\GenerateClientCertificateRequest;
 use Google\Cloud\AlloyDb\V1\GenerateClientCertificateResponse;
@@ -58,6 +59,7 @@ use Google\Cloud\AlloyDb\V1\GetClusterRequest;
 use Google\Cloud\AlloyDb\V1\GetConnectionInfoRequest;
 use Google\Cloud\AlloyDb\V1\GetInstanceRequest;
 use Google\Cloud\AlloyDb\V1\GetUserRequest;
+use Google\Cloud\AlloyDb\V1\ImportClusterRequest;
 use Google\Cloud\AlloyDb\V1\InjectFaultRequest;
 use Google\Cloud\AlloyDb\V1\Instance;
 use Google\Cloud\AlloyDb\V1\ListBackupsRequest;
@@ -74,6 +76,7 @@ use Google\Cloud\AlloyDb\V1\UpdateBackupRequest;
 use Google\Cloud\AlloyDb\V1\UpdateClusterRequest;
 use Google\Cloud\AlloyDb\V1\UpdateInstanceRequest;
 use Google\Cloud\AlloyDb\V1\UpdateUserRequest;
+use Google\Cloud\AlloyDb\V1\UpgradeClusterRequest;
 use Google\Cloud\AlloyDb\V1\User;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
@@ -106,6 +109,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteUserAsync(DeleteUserRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ExecuteSqlResponse> executeSqlAsync(ExecuteSqlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportClusterAsync(ExportClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> failoverInstanceAsync(FailoverInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GenerateClientCertificateResponse> generateClientCertificateAsync(GenerateClientCertificateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
@@ -113,6 +117,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<ConnectionInfo> getConnectionInfoAsync(GetConnectionInfoRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Instance> getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<User> getUserAsync(GetUserRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importClusterAsync(ImportClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> injectFaultAsync(InjectFaultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
@@ -128,6 +133,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> updateClusterAsync(UpdateClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<User> updateUserAsync(UpdateUserRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> upgradeClusterAsync(UpgradeClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
@@ -809,6 +815,33 @@ final class AlloyDBAdminClient
     }
 
     /**
+     * Exports data from the cluster.
+     * Imperative only.
+     *
+     * The async variant is {@see AlloyDBAdminClient::exportClusterAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/export_cluster.php
+     *
+     * @param ExportClusterRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function exportCluster(ExportClusterRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ExportCluster', $request, $callOptions)->wait();
+    }
+
+    /**
      * Forces a Failover for a highly available instance.
      * Failover promotes the HA standby instance as the new primary.
      * Imperative only.
@@ -997,6 +1030,33 @@ final class AlloyDBAdminClient
     public function getUser(GetUserRequest $request, array $callOptions = []): User
     {
         return $this->startApiCall('GetUser', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Imports data to the cluster.
+     * Imperative only.
+     *
+     * The async variant is {@see AlloyDBAdminClient::importClusterAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/import_cluster.php
+     *
+     * @param ImportClusterRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function importCluster(ImportClusterRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ImportCluster', $request, $callOptions)->wait();
     }
 
     /**
@@ -1399,6 +1459,33 @@ final class AlloyDBAdminClient
     public function updateUser(UpdateUserRequest $request, array $callOptions = []): User
     {
         return $this->startApiCall('UpdateUser', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Upgrades a single Cluster.
+     * Imperative only.
+     *
+     * The async variant is {@see AlloyDBAdminClient::upgradeClusterAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/upgrade_cluster.php
+     *
+     * @param UpgradeClusterRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function upgradeCluster(UpgradeClusterRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpgradeCluster', $request, $callOptions)->wait();
     }
 
     /**

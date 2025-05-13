@@ -33,7 +33,7 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription;
  * Lists all subscriptions in a given project and location.
  *
  * @param string $formattedParent The parent resource path of the subscription.
- *                                e.g. projects/myproject/locations/US
+ *                                e.g. projects/myproject/locations/us
  *                                Please see {@see AnalyticsHubServiceClient::locationName()} for help formatting this field.
  */
 function list_subscriptions_sample(string $formattedParent): void

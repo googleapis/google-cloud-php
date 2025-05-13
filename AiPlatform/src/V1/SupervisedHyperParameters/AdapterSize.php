@@ -26,6 +26,12 @@ class AdapterSize
      */
     const ADAPTER_SIZE_ONE = 1;
     /**
+     * Adapter size 2.
+     *
+     * Generated from protobuf enum <code>ADAPTER_SIZE_TWO = 6;</code>
+     */
+    const ADAPTER_SIZE_TWO = 6;
+    /**
      * Adapter size 4.
      *
      * Generated from protobuf enum <code>ADAPTER_SIZE_FOUR = 2;</code>
@@ -43,13 +49,21 @@ class AdapterSize
      * Generated from protobuf enum <code>ADAPTER_SIZE_SIXTEEN = 4;</code>
      */
     const ADAPTER_SIZE_SIXTEEN = 4;
+    /**
+     * Adapter size 32.
+     *
+     * Generated from protobuf enum <code>ADAPTER_SIZE_THIRTY_TWO = 5;</code>
+     */
+    const ADAPTER_SIZE_THIRTY_TWO = 5;
 
     private static $valueToName = [
         self::ADAPTER_SIZE_UNSPECIFIED => 'ADAPTER_SIZE_UNSPECIFIED',
         self::ADAPTER_SIZE_ONE => 'ADAPTER_SIZE_ONE',
+        self::ADAPTER_SIZE_TWO => 'ADAPTER_SIZE_TWO',
         self::ADAPTER_SIZE_FOUR => 'ADAPTER_SIZE_FOUR',
         self::ADAPTER_SIZE_EIGHT => 'ADAPTER_SIZE_EIGHT',
         self::ADAPTER_SIZE_SIXTEEN => 'ADAPTER_SIZE_SIXTEEN',
+        self::ADAPTER_SIZE_THIRTY_TWO => 'ADAPTER_SIZE_THIRTY_TWO',
     ];
 
     public static function name($value)
