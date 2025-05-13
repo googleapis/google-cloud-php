@@ -6,9 +6,6 @@ parameters:
         # Ignore deprecated classes
         - Core/src/Lock/SymfonyLockAdapter.php
         - Core/src/PhpArray.php
-        # Ignore classes using the deprecated stackriver_debugger extension
-        - Debugger/src/Agent.php
-        - Debugger/src/Breakpoint.php
         # Ignore Monolog3 for now, as these tests run using Monolog2
         - Logging/src/LogMessageProcessor/MonologV3MessageProcessor.php
         - Logging/src/LogMessageProcessor/MonologV3MessageProcessor.php

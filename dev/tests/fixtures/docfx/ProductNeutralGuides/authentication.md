@@ -68,7 +68,6 @@ The libraries that support this environment variable are:
 - BigQuery
 - Datastore
 - Firestore
-- Debugger
 - Logging
 - Trace
 - Translate
