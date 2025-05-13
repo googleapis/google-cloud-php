@@ -920,7 +920,7 @@ class TransactionTypeTest extends TestCase
         $t->rollback();
     }
 
-    private function database(SpannerClient $spannerClient, Serializer $serializer = null)
+    private function database(SpannerClient $spannerClient, ?Serializer $serializer = null)
     {
         $instance = $this->prophesize(Instance::class);
         $instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));

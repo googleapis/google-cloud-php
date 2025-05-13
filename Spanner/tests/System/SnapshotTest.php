@@ -35,7 +35,7 @@ class SnapshotTest extends SpannerTestCase
      */
     public static function setUpTestFixtures(): void
     {
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
 
         self::$tableName = uniqid(self::TABLE_NAME);
 

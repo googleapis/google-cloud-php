@@ -19,12 +19,11 @@ namespace Google\Cloud\Spanner;
 
 use Closure;
 use DateTimeInterface;
-use Google\Cloud\Core\LongRunning\LongRunningGapicConnection;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Spanner\Admin\Database\V1\Backup as BackupProto;
+use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup\State;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\CopyBackupRequest;
@@ -33,6 +32,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\DeleteBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\GetBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateBackupRequest;
 use Google\LongRunning\ListOperationsRequest;
+use Google\LongRunning\Operation as OperationProto;
 
 /**
  * Represents a Cloud Spanner Backup.
@@ -365,7 +365,7 @@ class Backup
     public function resumeOperation($operationName, array $options = []): LongRunningOperation
     {
         return new LongRunningOperation(
-            new LongRunningGapicConnection($this->databaseAdminClient, $this->serializer),
+            new LongRunningClientConnection($this->databaseAdminClient, $this->serializer),
             $operationName,
             [
                 [
@@ -408,7 +408,13 @@ class Backup
         return $this->buildLongRunningIterator(
             [$this->databaseAdminClient->getOperationsClient(), 'listOperations'],
             $request,
-            $callOptions
+            $callOptions,
+            function (OperationProto $operation) {
+                return $this->resumeOperation(
+                    $operation->getName(),
+                    $this->handleResponse($operation)
+                );
+            }
         );
     }
 
@@ -438,7 +444,7 @@ class Backup
     {
         return function (array $backup) {
             $name = DatabaseAdminClient::parseName($backup['name']);
-            return $this->instance->backup($name['name'], $backup);
+            return $this->instance->backup($name['backup'], $backup);
         };
     }
 }

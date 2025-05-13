@@ -20,11 +20,7 @@ namespace Google\Cloud\Core\LongRunning;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\RequestProcessorTrait;
-use Google\LongRunning\Operation;
 use Google\LongRunning\ListOperationsRequest;
-use Google\LongRunning\GetOperationRequest;
-use Google\LongRunning\CancelOperationRequest;
-use Google\LongRunning\DeleteOperationRequest;
 use Google\Protobuf\Any;
 
 /**
@@ -33,7 +29,7 @@ use Google\Protobuf\Any;
  *
  * @internal
  */
-class LongRunningGapicConnection implements LongRunningConnectionInterface
+class LongRunningClientConnection implements LongRunningConnectionInterface
 {
     use RequestProcessorTrait;
 

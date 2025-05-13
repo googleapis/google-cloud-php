@@ -18,11 +18,11 @@
 namespace Google\Cloud\Spanner;
 
 use Closure;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
-use Google\Cloud\Core\LongRunning\LongRunningGapicConnection;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsRequest;
@@ -31,12 +31,12 @@ use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceRequest;
-use Google\Cloud\Spanner\Admin\Instance\V1\Instance as InstanceProto;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\LongRunning\ListOperationsRequest;
+use Google\LongRunning\Operation as OperationProto;
 
 /**
  * Represents a Cloud Spanner instance
@@ -84,6 +84,8 @@ class Instance
      */
     private $projectName;
 
+    private bool $returnInt64AsObject;
+
     /**
      * Create an object representing a Cloud Spanner instance.
      *
@@ -95,11 +97,7 @@ class Instance
      * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param string $projectId The project ID.
      * @param string $name The instance name or ID.
-     * @param bool $returnInt64AsObject [optional] If true, 64 bit integers will be
-     *        returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit platform
-     *        compatibility. **Defaults to** false.
-     * @param array $info [optional] A representation of the instance object.
-     * @param array $options [optional]{
+     * @param array $options {
      *     Instance options
      *
      *     @type array $directedReadOptions Directed read options.
@@ -108,7 +106,11 @@ class Instance
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
      *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
      *           **Defaults to** `true` (enabled).
+     *     @type bool $returnInt64AsObject If true, 64 bit integers will be
+     *           returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit platform
+     *           compatibility. **Defaults to** false.
      * }
+     * @param array $info A representation of the instance object.
      */
     public function __construct(
         private GapicSpannerClient $spannerClient,
@@ -117,14 +119,14 @@ class Instance
         private Serializer $serializer,
         private string $projectId,
         private string $name,
-        private bool $returnInt64AsObject = false,
+        array $options = [],
         private array $info = [],
-        array $options = []
     ) {
         $this->name = $this->fullyQualifiedInstanceName($name, $projectId);
         $this->directedReadOptions = $options['directedReadOptions'] ?? [];
         $this->routeToLeader = $options['routeToLeader'] ?? true;
         $this->defaultQueryOptions = $options['defaultQueryOptions'] ?? [];
+        $this->returnInt64AsObject = $options['returnInt64AsObject'] ?? false;
         $this->projectName = InstanceAdminClient::projectName($projectId);
     }
 
@@ -795,7 +797,7 @@ class Instance
      */
     public function createInstanceArray(
         array $instanceArray,
-        InstanceConfiguration $config = null
+        ?InstanceConfiguration $config = null
     ): array {
         return $instanceArray + [
             'name' => $this->name,
@@ -810,7 +812,7 @@ class Instance
      *
      * Example:
      * ```
-     * $operation = $spanner->resumeOperation($operationName);
+     * $operation = $instance->resumeOperation($operationName);
      * ```
      *
      * @param string $operationName The Long Running Operation name.
@@ -819,7 +821,7 @@ class Instance
     public function resumeOperation($operationName, array $options = []): LongRunningOperation
     {
         return new LongRunningOperation(
-            new LongRunningGapicConnection($this->instanceAdminClient, $this->serializer),
+            new LongRunningClientConnection($this->instanceAdminClient, $this->serializer),
             $operationName,
             [
                 [
@@ -840,7 +842,7 @@ class Instance
      *
      * Example:
      * ```
-     * $operations = $backup->longRunningOperations();
+     * $operations = $instance->longRunningOperations();
      * ```
      *
      * @param array $options [optional] {
@@ -866,7 +868,13 @@ class Instance
         return $this->buildLongRunningIterator(
             [$this->instanceAdminClient->getOperationsClient(), 'listOperations'],
             $request,
-            $callOptions
+            $callOptions,
+            function (OperationProto $operation) {
+                return $this->resumeOperation(
+                    $operation->getName(),
+                    $this->handleResponse($operation)
+                );
+            }
         );
     }
 
@@ -881,13 +889,13 @@ class Instance
                 $this->serializer,
                 $this->projectId,
                 $name['instance'],
-                $this->returnInt64AsObject,
-                $result,
                 [
                     'directedReadOptions' => $this->directedReadOptions,
                     'routeToLeader' => $this->routeToLeader,
                     'defaultQueryOptions' => $this->defaultQueryOptions,
-                ]
+                    'returnInt64AsObject' => $this->returnInt64AsObject,
+                ],
+                $result,
             );
         };
     }

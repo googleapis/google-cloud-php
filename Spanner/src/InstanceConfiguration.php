@@ -19,9 +19,9 @@ namespace Google\Cloud\Spanner;
 
 use Closure;
 use Google\ApiCore\ApiException;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
-use Google\Cloud\Core\LongRunning\LongRunningGapicConnection;
 use Google\ApiCore\ValidationException;
+use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceConfigRequest;
@@ -280,10 +280,9 @@ class InstanceConfiguration
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $validateOnly = $data['validateOnly'] ?? false;
         unset($data['validateOnly']);
-        $data += ['name' => $this->name];
 
         $request = $this->serializer->decodeMessage(new UpdateInstanceConfigRequest(), [
-            'instanceConfig' => $data,
+            'instanceConfig' => $data + ['name' => $this->name],
             'updateMask' => $this->fieldMask($data),
             'validateOnly' => $validateOnly
         ]);
@@ -338,7 +337,7 @@ class InstanceConfiguration
     public function resumeOperation($operationName, array $options = [])
     {
         return new LongRunningOperation(
-            new LongRunningGapicConnection($this->instanceAdminClient, $this->serializer),
+            new LongRunningClientConnection($this->instanceAdminClient, $this->serializer),
             $operationName,
             [
                 [

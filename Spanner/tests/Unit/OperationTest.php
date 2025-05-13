@@ -573,7 +573,7 @@ class OperationTest extends TestCase
         $this->assertEquals($partitionToken2, $res[1]->token());
     }
 
-    private function executeAndReadResponseStream(string $transactionId = null)
+    private function executeAndReadResponseStream(?string $transactionId = null)
     {
         $stream = $this->prophesize(ServerStream::class);
         $stream->readAll()->willReturn($this->executeAndReadResponse($transactionId));
@@ -581,7 +581,7 @@ class OperationTest extends TestCase
         return $stream->reveal();
     }
 
-    private function executeAndReadResponse(string $transactionId = null)
+    private function executeAndReadResponse(?string $transactionId = null)
     {
         $transactionMetadata = [];
         if ($transactionId) {

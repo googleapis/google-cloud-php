@@ -77,7 +77,7 @@ class Operation
     /**
      * @param SpannerClient $spannerClient The Spanner client used to make requests.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
-     * @param array $config [optional] {
+     * @param array $options {
      *     Configuration options.
      *
      *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
@@ -91,12 +91,11 @@ class Operation
     public function __construct(
         private SpannerClient $spannerClient,
         private Serializer $serializer,
-        $config = []
+        array $options = []
     ) {
         $this->mapper = new ValueMapper($options['returnInt64AsObject'] ?? false);
-        $this->routeToLeader = $this->pluck('routeToLeader', $config, false) ?: true;
-        $this->defaultQueryOptions =
-            $this->pluck('defaultQueryOptions', $config, false) ?: [];
+        $this->routeToLeader = $options['routeToLeader'] ?? true;
+        $this->defaultQueryOptions = $options['defaultQueryOptions'] ?? [];
     }
 
     /**
@@ -235,17 +234,17 @@ class Operation
      */
     public function execute(Session $session, $sql, array $options = []): Result
     {
-        $options += [
+        $transactionSelector = $options + [
             'parameters' => [],
             'types' => [],
             'transactionContext' => null
         ];
 
-        $parameters = $this->pluck('parameters', $options);
-        $types = $this->pluck('types', $options);
-        $options += $this->mapper->formatParamsForExecuteSql($parameters, $types);
+        $parameters = $this->pluck('parameters', $transactionSelector);
+        $types = $this->pluck('types', $transactionSelector);
+        $transactionSelector += $this->mapper->formatParamsForExecuteSql($parameters, $types);
 
-        $context = $this->pluck('transactionContext', $options);
+        $context = $this->pluck('transactionContext', $transactionSelector);
 
         // Initially with begin, transactionId will be null.
         // Once transaction is generated, even in the case of stream failure,
@@ -253,22 +252,21 @@ class Operation
         $call = function ($resumeToken = null, $transaction = null) use (
             $session,
             $sql,
-            $options
+            $transactionSelector
         ) {
             if ($transaction && !empty($transaction->id())) {
-                $options['transaction'] = ['id' => $transaction->id()];
+                $transactionSelector['transaction'] = ['id' => $transaction->id()];
             }
             if ($resumeToken) {
-                $options['resumeToken'] = $resumeToken;
+                $transactionSelector['resumeToken'] = $resumeToken;
             }
 
             return $this->executeStreamingSql([
                 'sql' => $sql,
                 'session' => $session->name(),
                 'database' => $this->getDatabaseNameFromSession($session)
-            ] + $options);
+            ] + $transactionSelector);
         };
-
         return new Result($this, $session, $call, $context, $this->mapper);
     }
 
@@ -482,41 +480,49 @@ class Operation
      *           `false`.
      *     @type array $begin The begin transaction options.
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
+     *     @type array $requestOptions
+     *     @type string $tag
      * }
      * @return Transaction
      */
     public function transaction(Session $session, array $options = []): Transaction
     {
-        $options += [
-            'singleUse' => false,
-            'requestOptions' => []
-        ];
-        $isRetry = $this->pluck('isRetry', $options, false) ?: false;
-        $transactionTag = $this->pluck('tag', $options, false);
+        $transactionTag = $options['tag'] ?? null;
+        if (empty($options['singleUse']) && (
+            !isset($options['begin'])
+            || isset($options['transactionConstructorOptions']['partitionedDml'])
+        )) {
+            $beginTransactionOptions = array_intersect_key(
+                $options,
+                array_flip(['requestOptions', 'transactionOptions', 'begin'])
+            ) + [
+                'requestOptions' => [],
+            ];
 
-        if (isset($transactionTag)) {
-            $options['requestOptions']['transactionTag'] = $transactionTag;
-        }
+            if ($transactionTag) {
+                $beginTransactionOptions['requestOptions']['transactionTag'] = $transactionTag;
+            }
 
-        if (!$options['singleUse'] && (!isset($options['begin']) ||
-            isset($options['transactionOptions']['partitionedDml']))
-        ) {
-            // Single use transactions never calls the beginTransaction API.
-            // The `singleUse` key creates issue with serializer as BeginTransactionRequest
-            // does not have this attribute.
-            unset($options['singleUse']);
-            $res = $this->beginTransaction($session, $options);
+            $res = $this->beginTransaction($session, $beginTransactionOptions);
         } else {
             $res = [];
         }
+
+        $transactionConstructorOptions = array_intersect_key(
+            $options,
+            array_flip(['singleUse', 'requestOptions', 'transactionOptions', 'begin'])
+        ) + [
+            'singleUse' => false,
+            'requestOptions' => [],
+        ];
 
         return $this->createTransaction(
             $session,
             $res,
             [
                 'tag' => $transactionTag,
-                'isRetry' => $isRetry,
-                'transactionOptions' => $options
+                'isRetry' => $options['isRetry'] ?? false,
+                'transactionOptions' => $transactionConstructorOptions
             ]
         );
     }
@@ -526,9 +532,23 @@ class Operation
      *
      * @param Session $session The session the transaction belongs to.
      * @param array $res [optional] The createTransaction response.
-     * @param array $options [optional] Options for the transaction object.
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type bool $singleUse If true, a Transaction ID will not be allocated
+     *           up front. Instead, the transaction will be considered
+     *           "single-use", and may be used for only a single operation.
+     *           **Defaults to** `false`.
+     *     @type bool $isRetry If true, the resulting transaction will indicate
+     *           that it is the result of a retry operation. **Defaults to**
+     *           `false`.
      *     @type array $begin The begin transaction options.
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
+     *     @type array $requestOptions
+     *     @type string $tag
+     *     @type array $transactionOptions Transaction constructor options. See {@see Transaction}.
+     *           **NOTE**: This is distinct from the TransactionOptions seen in {@see V1\TransactionOptions}.
+     * }
      * @return Transaction
      */
     public function createTransaction(
@@ -539,20 +559,21 @@ class Operation
         $res += [
             'id' => null
         ];
+
+        // TODO: unravel this
+        $transactionOptions = $options['transactionOptions'] ?? [];
+        unset($options['transactionOptions']);
+
         $options += [
             'tag' => null,
-            'transactionOptions' => []
-        ];
-
-        $options['isRetry'] = $options['isRetry'] ?? false;
+            'isRetry' => false,
+        ] + $transactionOptions;
 
         return new Transaction(
             $this,
             $session,
             $res['id'],
-            $options['isRetry'],
-            $options['tag'],
-            $options['transactionOptions'],
+            $options,
             $this->mapper
         );
     }

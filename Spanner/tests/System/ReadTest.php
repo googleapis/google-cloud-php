@@ -40,7 +40,7 @@ class ReadTest extends SpannerTestCase
      */
     public static function setUpTestFixtures(): void
     {
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
 
         self::$readTableName = uniqid(self::TESTING_PREFIX);
         self::$rangeTableName = uniqid(self::TESTING_PREFIX);

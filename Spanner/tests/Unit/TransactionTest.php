@@ -101,8 +101,7 @@ class TransactionTest extends TestCase
             $this->operation,
             $this->session,
             self::TRANSACTION,
-            false,
-            self::TRANSACTION_TAG
+            ['tag' => self::TRANSACTION_TAG]
         );
     }
 
@@ -114,8 +113,7 @@ class TransactionTest extends TestCase
             $this->operation,
             $this->session,
             null,
-            false,
-            self::TRANSACTION_TAG
+            ['tag' => self::TRANSACTION_TAG]
         );
     }
 
@@ -467,8 +465,7 @@ class TransactionTest extends TestCase
             $operation->reveal(),
             $this->session,
             self::TRANSACTION,
-            false,
-            self::TRANSACTION_TAG
+            ['tag' => self::TRANSACTION_TAG]
         );
 
         $transaction->insert('Posts', ['foo' => 'bar']);
@@ -502,8 +499,7 @@ class TransactionTest extends TestCase
             $operation->reveal(),
             $this->session,
             self::TRANSACTION,
-            false,
-            self::TRANSACTION_TAG
+            ['tag' => self::TRANSACTION_TAG]
         );
 
         $transaction->insert('Posts', ['foo' => 'bar']);
@@ -543,8 +539,7 @@ class TransactionTest extends TestCase
             $operation->reveal(),
             $this->session,
             self::TRANSACTION,
-            false,
-            self::TRANSACTION_TAG
+            ['tag' => self::TRANSACTION_TAG]
         );
         $transaction->insert('Posts', ['foo' => 'bar']);
         $transaction->commit([
@@ -568,8 +563,7 @@ class TransactionTest extends TestCase
             $operation->reveal(),
             $this->session,
             self::TRANSACTION,
-            false,
-            self::TRANSACTION_TAG
+            ['tag' => self::TRANSACTION_TAG]
         );
 
         // call "commit" to mock closing the state
@@ -606,8 +600,7 @@ class TransactionTest extends TestCase
             $operation->reveal(),
             $this->session,
             self::TRANSACTION,
-            false,
-            self::TRANSACTION_TAG
+            ['tag' => self::TRANSACTION_TAG]
         );
 
         // call "commit" to mock closing the state
@@ -633,8 +626,7 @@ class TransactionTest extends TestCase
             $operation->reveal(),
             $this->session,
             self::TRANSACTION,
-            false,
-            self::TRANSACTION_TAG
+            ['tag' => self::TRANSACTION_TAG]
         );
 
         $this->assertEquals(Transaction::STATE_ACTIVE, $transaction->state());
@@ -667,7 +659,7 @@ class TransactionTest extends TestCase
             $this->operation,
             $this->session,
             self::TRANSACTION,
-            true
+            ['isRetry' => true]
         );
 
         $this->assertTrue($transaction->isRetry());
