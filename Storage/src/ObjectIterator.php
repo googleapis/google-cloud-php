@@ -24,8 +24,7 @@ use Google\Cloud\Core\Iterator\ItemIteratorTrait;
  *
  * Iterates over a set of {@see StorageObject} items.
  *
- * @template T
- * @implements \Iterator<int, T>
+ * @implements \Iterator<int, StorageObject>
  */
 class ObjectIterator implements \Iterator
 {
