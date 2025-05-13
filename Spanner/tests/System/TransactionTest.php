@@ -47,7 +47,7 @@ class TransactionTest extends SpannerTestCase
         if (self::$isSetup) {
             return;
         }
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
 
         self::$tableName = uniqid(self::TABLE_NAME);
         self::$id1 = rand(1000, 9999);

@@ -33,7 +33,7 @@ use Google\Protobuf\Any;
  *
  * @internal
  */
-class LongRunningGapicConnection implements LongRunningConnectionInterface
+class LongRunningClientConnection implements LongRunningConnectionInterface
 {
     use RequestProcessorTrait;
 

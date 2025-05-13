@@ -35,9 +35,9 @@ use Google\Protobuf\Value;
 trait ResultGeneratorTrait
 {
     private function resultGeneratorStream(
-        array $chunks = null,
-        ResultSetStats $stats = null,
-        string $transactionId = null
+        ?array $chunks = null,
+        ?ResultSetStats $stats = null,
+        ?string $transactionId = null
     ) {
         $this->stream = $this->prophesize(ServerStream::class);
         $chunks = $chunks ?: [

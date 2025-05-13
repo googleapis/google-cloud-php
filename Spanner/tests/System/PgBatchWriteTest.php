@@ -34,7 +34,7 @@ class PgBatchWriteTest extends SpannerPgTestCase
         // The BatchWrite tests are skipped for the GSQL dialect when running
         // against the emulator.
         self::skipEmulatorTests();
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
 
         self::$database->updateDdlBatch([
             'CREATE TABLE Singers (

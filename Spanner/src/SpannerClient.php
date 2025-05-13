@@ -21,6 +21,7 @@ use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Middleware\MiddlewareInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ClientTrait;
@@ -39,6 +40,7 @@ use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Middleware\SpannerMiddleware;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
+use Google\LongRunning\Operation as OperationProto;
 use Google\Protobuf\Duration;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\StreamInterface;
@@ -157,7 +159,7 @@ class SpannerClient
      * Create a Spanner client. Please note that this client requires
      * [the gRPC extension](https://cloud.google.com/php/grpc).
      *
-     * @param array $config [optional] {
+     * @param array $options {
      *     Configuration Options.
      *
      *     @type string $projectId The Google Cloud project ID.
@@ -206,13 +208,13 @@ class SpannerClient
      * }
      * @throws GoogleException If the gRPC extension is not enabled.
      */
-    public function __construct(array $config = [])
+    public function __construct(array $options = [])
     {
         $emulatorHost = getenv('SPANNER_EMULATOR_HOST');
 
         $this->requireGrpc();
         $scopes = [self::FULL_CONTROL_SCOPE, self::ADMIN_SCOPE];
-        $config += [
+        $options += [
             'returnInt64AsObject' => false,
             'projectIdRequired' => true,
             'hasEmulator' => (bool) $emulatorHost,
@@ -220,49 +222,49 @@ class SpannerClient
             'queryOptions' => []
         ];
 
-        $this->returnInt64AsObject = $config['returnInt64AsObject'];
-        $this->directedReadOptions = $config['directedReadOptions'] ?? [];
-        $this->routeToLeader = $config['routeToLeader'] ?? true;
-        $this->defaultQueryOptions = $config['queryOptions'];
+        $this->returnInt64AsObject = $options['returnInt64AsObject'];
+        $this->directedReadOptions = $options['directedReadOptions'] ?? [];
+        $this->routeToLeader = $options['routeToLeader'] ?? true;
+        $this->defaultQueryOptions = $options['queryOptions'];
 
         // Configure GAPIC client options
-        $config = $this->buildClientOptions($config);
-        if (isset($config['credentialsConfig']['scopes'])) {
-            $config['credentialsConfig']['scopes'] = array_merge(
-                $config['credentialsConfig']['scopes'],
+        $options = $this->buildClientOptions($options);
+        if (isset($options['credentialsConfig']['scopes'])) {
+            $options['credentialsConfig']['scopes'] = array_merge(
+                $options['credentialsConfig']['scopes'],
                 $scopes
             );
         } else {
-            $config['credentialsConfig']['scopes'] = $scopes;
+            $options['credentialsConfig']['scopes'] = $scopes;
         }
 
         if ($emulatorHost) {
             $emulatorConfig = $this->emulatorGapicConfig($emulatorHost);
-            $config = array_merge(
-                $config,
+            $options = array_merge(
+                $options,
                 $emulatorConfig
             );
         } else {
-            $config['credentials'] = $this->createCredentialsWrapper(
-                $config['credentials'],
-                $config['credentialsConfig'],
-                $config['universeDomain']
+            $options['credentials'] = $this->createCredentialsWrapper(
+                $options['credentials'],
+                $options['credentialsConfig'],
+                $options['universeDomain']
             );
         }
-        $this->projectId = $this->detectProjectId($config);
+        $this->projectId = $this->detectProjectId($options);
         $this->serializer = new Serializer();
 
         // Adds some defaults
         // gccl needs to be present for handwritten clients
-        $clientConfig = $config += [
+        $clientOptions = $options += [
             'libName' => 'gccl',
             'serializer' => $this->serializer,
         ];
-        $this->spannerClient = $config['gapicSpannerClient'] ?? new GapicSpannerClient($clientConfig);
-        $this->instanceAdminClient = $config['gapicSpannerInstanceAdminClient']
-            ?? new InstanceAdminClient($clientConfig);
-        $this->databaseAdminClient = $config['gapicSpannerDatabaseAdminClient']
-            ?? new DatabaseAdminClient($clientConfig);
+        $this->spannerClient = $options['gapicSpannerClient'] ?? new GapicSpannerClient($clientOptions);
+        $this->instanceAdminClient = $options['gapicSpannerInstanceAdminClient']
+            ?? new InstanceAdminClient($clientOptions);
+        $this->databaseAdminClient = $options['gapicSpannerDatabaseAdminClient']
+            ?? new DatabaseAdminClient($clientOptions);
 
         // Add the SpannerMiddleware, which wraps API Exceptions, and adds
         // Resource Prefix and LAR headers
@@ -499,9 +501,9 @@ class SpannerClient
             [$this->instanceAdminClient, 'listInstanceConfigOperations'],
             $request,
             $callOptions + ['resource-prefix' => $this->projectName],
-            function (Operation $operation) {
+            function (OperationProto $operation) {
                 return new LongRunningOperation(
-                    new LongRunningGapicConnection($this->databaseAdminClient, $this->serializer),
+                    new LongRunningClientConnection($this->databaseAdminClient, $this->serializer),
                     $operation->getName(),
                     [
                         'type.googleapis.com/google.spanner.admin.instance.v1.ListInstanceConfigMetadata' =>
@@ -566,13 +568,13 @@ class SpannerClient
             $this->serializer,
             $this->projectId,
             $name,
-            $this->returnInt64AsObject,
-            $instance,
             [
                 'directedReadOptions' => $this->directedReadOptions,
                 'routeToLeader' => $this->routeToLeader,
-                'defaultQueryOptions' => $this->defaultQueryOptions
-            ]
+                'defaultQueryOptions' => $this->defaultQueryOptions,
+                'returnInt64AsObject' => $this->returnInt64AsObject,
+            ],
+            $instance,
         );
     }
 

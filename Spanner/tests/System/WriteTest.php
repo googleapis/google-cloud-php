@@ -48,7 +48,7 @@ class WriteTest extends SpannerTestCase
     public static function setUpTestFixtures(): void
     {
         self::skipEmulatorTests();
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
 
         self::$database->updateDdlBatch([
             'CREATE PROTO BUNDLE (' .
@@ -357,7 +357,7 @@ class WriteTest extends SpannerTestCase
         if ($value instanceof Bytes) {
             $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
         } else {
-            if ($field === 'arrayProtoField') {
+            if ($field === 'arrayProtoField' && $value !== null) {
                 foreach ($row[$field] as $i => $protoItem) {
                     $row[$field][$i] = $protoItem->get();
                 }

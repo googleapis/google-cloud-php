@@ -29,7 +29,7 @@ use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Retry;
-use Google\Cloud\Core\LongRunning\LongRunningGapicConnection;
+use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
@@ -2365,7 +2365,7 @@ class Database
     public function resumeOperation($operationName, array $options = []): LongRunningOperation
     {
         return new LongRunningOperation(
-            new LongRunningGapicConnection($this->databaseAdminClient, $this->serializer),
+            new LongRunningClientConnection($this->databaseAdminClient, $this->serializer),
             $operationName,
             [
                 [

@@ -27,6 +27,7 @@ use Google\Cloud\Spanner\PgJsonb;
 use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
+use Google\Cloud\Spanner\Interval;
 use Google\Cloud\Spanner\V1\RequestOptions\Priority;
 
 /**
@@ -45,7 +46,7 @@ class PgQueryTest extends SpannerPgTestCase
      */
     public static function setUpTestFixtures(): void
     {
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
 
         self::$database->updateDdl(
             'CREATE TABLE ' . self::TABLE_NAME . ' (

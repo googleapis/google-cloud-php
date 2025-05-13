@@ -19,7 +19,7 @@ namespace Google\Cloud\Spanner;
 
 use Closure;
 use DateTimeInterface;
-use Google\Cloud\Core\LongRunning\LongRunningGapicConnection;
+use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\NotFoundException;
@@ -365,7 +365,7 @@ class Backup
     public function resumeOperation($operationName, array $options = []): LongRunningOperation
     {
         return new LongRunningOperation(
-            new LongRunningGapicConnection($this->databaseAdminClient, $this->serializer),
+            new LongRunningClientConnection($this->databaseAdminClient, $this->serializer),
             $operationName,
             [
                 [
@@ -438,7 +438,7 @@ class Backup
     {
         return function (array $backup) {
             $name = DatabaseAdminClient::parseName($backup['name']);
-            return $this->instance->backup($name['name'], $backup);
+            return $this->instance->backup($name['backup'], $backup);
         };
     }
 }

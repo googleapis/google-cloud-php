@@ -46,7 +46,7 @@ class PgTransactionTest extends SpannerPgTestCase
         if (self::$isSetup) {
             return;
         }
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
 
         self::$tableName = 'transactions_test';
 
