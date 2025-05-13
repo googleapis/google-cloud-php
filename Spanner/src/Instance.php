@@ -883,13 +883,13 @@ class Instance
                 $this->serializer,
                 $this->projectId,
                 $name['instance'],
-                $this->returnInt64AsObject,
-                $result,
                 [
                     'directedReadOptions' => $this->directedReadOptions,
                     'routeToLeader' => $this->routeToLeader,
                     'defaultQueryOptions' => $this->defaultQueryOptions,
-                ]
+                    'returnInt64AsObject' => $this->returnInt64AsObject,
+                ],
+                $result,
             );
         };
     }

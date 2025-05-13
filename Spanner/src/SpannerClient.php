@@ -568,13 +568,13 @@ class SpannerClient
             $this->serializer,
             $this->projectId,
             $name,
-            $instance,
             [
                 'directedReadOptions' => $this->directedReadOptions,
                 'routeToLeader' => $this->routeToLeader,
                 'defaultQueryOptions' => $this->defaultQueryOptions,
                 'returnInt64AsObject' => $this->returnInt64AsObject,
-            ]
+            ],
+            $instance,
         );
     }
 
