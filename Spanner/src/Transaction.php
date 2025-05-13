@@ -21,6 +21,7 @@ use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Protobuf\Duration;
 
 /**
  * Manages interaction with Cloud Spanner inside a Transaction.
@@ -47,7 +48,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * $database = $spanner->connect('my-instance', 'my-database');
  *
@@ -78,44 +79,32 @@ class Transaction implements TransactionalReadInterface
      */
     private $mutations = [];
 
-    /**
-     * @var bool
-     */
-    private $isRetry = false;
-
-    private ValueMapper $mapper;
+    private bool $isRetry;
 
     /**
      * @param Operation $operation The Operation instance.
      * @param Session $session The session to use for spanner interactions.
-     * @param string $transactionId [optional] The Transaction ID. If no ID is
-     *        provided, the Transaction will be a Single-Use Transaction.
-     * @param bool $isRetry Whether the transaction will automatically retry or not.
-     * @param string $tag A transaction tag. Requests made using this transaction will
-     *        use this as the transaction tag.
-     * @param array $options [optional] {
+     * @param string $transactionId The Transaction ID. If no ID is provided, the Transaction will
+     *        be a Single-Use Transaction.
+     * @param array $options {
      *     Configuration Options.
      *
      *     @type array $begin The begin Transaction options.
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
+     *     @type bool $isRetry Whether the transaction will automatically retry or not.
+     *     @type string $tag A transaction tag. Requests made using this transaction will
+     *           use this as the transaction tag.
      * }
      * @param ValueMapper $mapper Consumed internally for properly map mutation data.
      * @throws \InvalidArgumentException if a tag is specified on a single-use transaction.
      */
     public function __construct(
-        Operation $operation,
-        Session $session,
-        $transactionId = null,
-        $isRetry = false,
-        $tag = null,
-        $options = [],
-        $mapper = null
+        private Operation $operation,
+        private Session $session,
+        private ?string $transactionId = null,
+        array $options = [],
+        private ?ValueMapper $mapper = null
     ) {
-        $this->operation = $operation;
-        $this->session = $session;
-        $this->transactionId = $transactionId;
-        $this->isRetry = $isRetry;
-
         $this->type = ($transactionId || isset($options['begin']))
             ? self::TYPE_PRE_ALLOCATED
             : self::TYPE_SINGLE_USE;
@@ -125,13 +114,15 @@ class Transaction implements TransactionalReadInterface
                 'Cannot set a transaction tag on a single-use transaction.'
             );
         }
-        $this->tag = $tag;
 
         $this->context = SessionPoolInterface::CONTEXT_READWRITE;
+        $this->tag = $options['tag'] ?? null;
+        $this->isRetry = $options['isRetry'] ?? false;
+
+        // unset our custom options
+        // TODO: untange this from transaction options
+        unset($options['tag'], $options['isRetry']);
         $this->options = $options;
-        if (!is_null($mapper)) {
-            $this->mapper = $mapper;
-        }
     }
 
     /**
@@ -531,6 +522,8 @@ class Transaction implements TransactionalReadInterface
         $selector = $this->transactionSelector($options);
         $options['transaction'] = $selector[0];
 
-        return $this->addLarHeader($options);
+        $options['headers']['spanner-route-to-leader'] = ['true'];
+
+        return $options;
     }
 }

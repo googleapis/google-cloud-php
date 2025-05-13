@@ -28,6 +28,14 @@ use Psr\Cache\CacheItemPoolInterface;
  */
 class SessionTest extends SpannerTestCase
 {
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
+    {
+        self::setUpTestDatabase();
+    }
+
     public function testCacheSessionPool()
     {
         $identity = self::$database->identity();
@@ -38,7 +46,7 @@ class SessionTest extends SpannerTestCase
             $identity['database']
         );
 
-        $cache = new MemoryCacheItemPool;
+        $cache = new MemoryCacheItemPool();
         $pool = new CacheSessionPool($cache, [
             'maxSessions' => 10,
             'minSessions' => 5,
@@ -105,7 +113,7 @@ class SessionTest extends SpannerTestCase
             ['maxCyclesToWaitForSession' => 1]
         );
         $db->runTransaction(function ($t) {
-            $t->select("SELECT 1");
+            $t->select('SELECT 1');
             $t->commit();
         });
     }

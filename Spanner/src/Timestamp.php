@@ -32,7 +32,7 @@ use Google\Cloud\Core\Timestamp as CoreTimestamp;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * $timestamp = $spanner->timestamp(new \DateTime('2003-02-05 11:15:02.421827Z'));
  * ```
