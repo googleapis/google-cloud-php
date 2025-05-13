@@ -713,6 +713,7 @@ class Bucket
     {
         $resultLimit = $this->pluck('resultLimit', $options, false);
 
+        /** @var ObjectIterator<StorageObject> */
         return new ObjectIterator(
             new ObjectPageIterator(
                 function (array $object) {

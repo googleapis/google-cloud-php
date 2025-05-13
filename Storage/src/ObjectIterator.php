@@ -23,6 +23,9 @@ use Google\Cloud\Core\Iterator\ItemIteratorTrait;
  * ObjectIterator
  *
  * Iterates over a set of {@see StorageObject} items.
+ *
+ * @template T
+ * @implements \Iterator<int, T>
  */
 class ObjectIterator implements \Iterator
 {
