@@ -1,5 +1,107 @@
 # Changelog
 
+## 0.287.0
+
+<details><summary>google/cloud-ai-platform 1.25.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] A new value `NVIDIA_B200 & NVIDIA_H200_141GB` is added to enum `AcceleratorType` ([#8292](https://github.com/googleapis/google-cloud-php/issues/8292)) ([ea65c0c](https://github.com/googleapis/google-cloud-php/commit/ea65c0c192d2946c676d1566434930b9a6326bf6))
+
+</details>
+
+<details><summary>google/apps-events-subscriptions 0.2.1</summary>
+
+
+
+### Bug Fixes
+
+* [AppsEventsSubscriptions] remove oauth_scope auth/chat.bot from SubscriptionsService ([#8287](https://github.com/googleapis/google-cloud-php/issues/8287)) ([7d3a4f7](https://github.com/googleapis/google-cloud-php/commit/7d3a4f75bcfd7f3383ad23262a4f972c5bf9f627))
+
+</details>
+
+<details><summary>google/cloud-asset 2.2.1</summary>
+
+
+
+### Documentation
+
+* [Asset] fix typos in documentation ([#8289](https://github.com/googleapis/google-cloud-php/issues/8289)) ([7e41023](https://github.com/googleapis/google-cloud-php/commit/7e410231d6e7ef390baf695c97cd92592c3d285b))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.11.0</summary>
+
+
+
+### Features
+
+* **Bigtable:** Validate row order ([#8228](https://github.com/googleapis/google-cloud-php/issues/8228)) ([3023ded](https://github.com/googleapis/google-cloud-php/commit/3023ded1c117315abc950fc6ace4630a6e92842c))
+
+</details>
+
+<details><summary>google/cloud-core 1.62.2</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Php 8.4 deprecations ([#8282](https://github.com/googleapis/google-cloud-php/issues/8282)) ([2f6a63c](https://github.com/googleapis/google-cloud-php/commit/2f6a63c15ab7da7201cbbd852faeb47709af4dc8))
+
+</details>
+
+<details><summary>google/cloud-deploy 1.5.6</summary>
+
+
+
+### Bug Fixes
+
+* [Deploy] correct pattern of unused resource definition, Revision ([#8286](https://github.com/googleapis/google-cloud-php/issues/8286)) ([0aa35a4](https://github.com/googleapis/google-cloud-php/commit/0aa35a422c055f82ee6d7ab34784dc5d3a3d3ff3))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 2.1.1</summary>
+
+
+
+### Documentation
+
+* **RecaptchaEnterprise:** Fix sample in readme ([#8285](https://github.com/googleapis/google-cloud-php/issues/8285)) ([b30e7ac](https://github.com/googleapis/google-cloud-php/commit/b30e7acd02113897d8d5d1cd108ee47d0d35995f))
+
+</details>
+
+<details><summary>google/cloud-storagebatchoperations 0.1.1</summary>
+
+
+
+### Documentation
+
+* [StorageBatchOperations] minor fixes to the reference documentation ([#8291](https://github.com/googleapis/google-cloud-php/issues/8291)) ([c7adc79](https://github.com/googleapis/google-cloud-php/commit/c7adc79e40c578bfd327bb417fffc75781f7aade))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 2.2.0</summary>
+
+
+
+### Features
+
+* [TextToSpeech] Support markup input for Cloud TTS Chirp 3: HD voice synthesis ([#8283](https://github.com/googleapis/google-cloud-php/issues/8283)) ([0725c41](https://github.com/googleapis/google-cloud-php/commit/0725c41a559ac6996aa35d4192c5e56cc48d178b))
+
+</details>
+
+<details><summary>google/cloud-vision 2.0.1</summary>
+
+
+
+### Documentation
+
+* **Vision:** Fix sample in README ([#8288](https://github.com/googleapis/google-cloud-php/issues/8288)) ([8beb7e5](https://github.com/googleapis/google-cloud-php/commit/8beb7e5d0eabfbd08e9dc2e05400e14c0a69cf70))
+
+</details>
+
 ## 0.286.0
 
 <details><summary>google/cloud-financialservices 0.1.0</summary>

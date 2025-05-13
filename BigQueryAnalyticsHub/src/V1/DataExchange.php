@@ -19,7 +19,7 @@ class DataExchange extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The resource name of the data exchange.
-     * e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * e.g. `projects/myproject/locations/us/dataExchanges/123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -89,7 +89,6 @@ class DataExchange extends \Google\Protobuf\Internal\Message
     /**
      * Optional. By default, false.
      * If true, the DataExchange has an email sharing mandate enabled.
-     * Publishers can view the logged email of the subscriber.
      *
      * Generated from protobuf field <code>optional bool log_linked_dataset_query_user_email = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -103,7 +102,7 @@ class DataExchange extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The resource name of the data exchange.
-     *           e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     *           e.g. `projects/myproject/locations/us/dataExchanges/123`.
      *     @type string $display_name
      *           Required. Human-readable display name of the data exchange. The display
      *           name must contain only Unicode letters, numbers (0-9), underscores (_),
@@ -137,7 +136,6 @@ class DataExchange extends \Google\Protobuf\Internal\Message
      *     @type bool $log_linked_dataset_query_user_email
      *           Optional. By default, false.
      *           If true, the DataExchange has an email sharing mandate enabled.
-     *           Publishers can view the logged email of the subscriber.
      * }
      */
     public function __construct($data = NULL) {
@@ -147,7 +145,7 @@ class DataExchange extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name of the data exchange.
-     * e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * e.g. `projects/myproject/locations/us/dataExchanges/123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -159,7 +157,7 @@ class DataExchange extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name of the data exchange.
-     * e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * e.g. `projects/myproject/locations/us/dataExchanges/123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -432,7 +430,6 @@ class DataExchange extends \Google\Protobuf\Internal\Message
     /**
      * Optional. By default, false.
      * If true, the DataExchange has an email sharing mandate enabled.
-     * Publishers can view the logged email of the subscriber.
      *
      * Generated from protobuf field <code>optional bool log_linked_dataset_query_user_email = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -455,7 +452,6 @@ class DataExchange extends \Google\Protobuf\Internal\Message
     /**
      * Optional. By default, false.
      * If true, the DataExchange has an email sharing mandate enabled.
-     * Publishers can view the logged email of the subscriber.
      *
      * Generated from protobuf field <code>optional bool log_linked_dataset_query_user_email = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

@@ -38,6 +38,17 @@ class ImportRagFilesConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 max_embedding_requests_per_min = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $max_embedding_requests_per_min = 0;
+    /**
+     * Rebuilds the ANN index to optimize for recall on the imported data.
+     * Only applicable for RagCorpora running on RagManagedDb with
+     * `retrieval_strategy` set to `ANN`. The rebuild will be performed using the
+     * existing ANN config set on the RagCorpus. To change the ANN config, please
+     * use the UpdateRagCorpus API.
+     * Default is false, i.e., index is not rebuilt.
+     *
+     * Generated from protobuf field <code>bool rebuild_ann_index = 19;</code>
+     */
+    protected $rebuild_ann_index = false;
     protected $import_source;
     protected $partial_failure_sink;
     protected $import_result_sink;
@@ -93,6 +104,13 @@ class ImportRagFilesConfig extends \Google\Protobuf\Internal\Message
      *           to this job and not shared across other import jobs. Consult the Quotas
      *           page on the project to set an appropriate value here.
      *           If unspecified, a default value of 1,000 QPM would be used.
+     *     @type bool $rebuild_ann_index
+     *           Rebuilds the ANN index to optimize for recall on the imported data.
+     *           Only applicable for RagCorpora running on RagManagedDb with
+     *           `retrieval_strategy` set to `ANN`. The rebuild will be performed using the
+     *           existing ANN config set on the RagCorpus. To change the ANN config, please
+     *           use the UpdateRagCorpus API.
+     *           Default is false, i.e., index is not rebuilt.
      * }
      */
     public function __construct($data = NULL) {
@@ -525,6 +543,42 @@ class ImportRagFilesConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->max_embedding_requests_per_min = $var;
+
+        return $this;
+    }
+
+    /**
+     * Rebuilds the ANN index to optimize for recall on the imported data.
+     * Only applicable for RagCorpora running on RagManagedDb with
+     * `retrieval_strategy` set to `ANN`. The rebuild will be performed using the
+     * existing ANN config set on the RagCorpus. To change the ANN config, please
+     * use the UpdateRagCorpus API.
+     * Default is false, i.e., index is not rebuilt.
+     *
+     * Generated from protobuf field <code>bool rebuild_ann_index = 19;</code>
+     * @return bool
+     */
+    public function getRebuildAnnIndex()
+    {
+        return $this->rebuild_ann_index;
+    }
+
+    /**
+     * Rebuilds the ANN index to optimize for recall on the imported data.
+     * Only applicable for RagCorpora running on RagManagedDb with
+     * `retrieval_strategy` set to `ANN`. The rebuild will be performed using the
+     * existing ANN config set on the RagCorpus. To change the ANN config, please
+     * use the UpdateRagCorpus API.
+     * Default is false, i.e., index is not rebuilt.
+     *
+     * Generated from protobuf field <code>bool rebuild_ann_index = 19;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRebuildAnnIndex($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->rebuild_ann_index = $var;
 
         return $this;
     }

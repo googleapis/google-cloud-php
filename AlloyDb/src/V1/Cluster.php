@@ -255,6 +255,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Output only. Cluster created from backup.
      *     @type \Google\Cloud\AlloyDb\V1\MigrationSource $migration_source
      *           Output only. Cluster created via DMS migration.
+     *     @type \Google\Cloud\AlloyDb\V1\CloudSQLBackupRunSource $cloudsql_backup_run_source
+     *           Output only. Cluster created from CloudSQL snapshot.
      *     @type string $name
      *           Output only. The name of the cluster resource with the format:
      *            * projects/{project}/locations/{region}/clusters/{cluster_id}
@@ -421,6 +423,37 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\MigrationSource::class);
         $this->writeOneof(16, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. Cluster created from CloudSQL snapshot.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.CloudSQLBackupRunSource cloudsql_backup_run_source = 42 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AlloyDb\V1\CloudSQLBackupRunSource|null
+     */
+    public function getCloudsqlBackupRunSource()
+    {
+        return $this->readOneof(42);
+    }
+
+    public function hasCloudsqlBackupRunSource()
+    {
+        return $this->hasOneof(42);
+    }
+
+    /**
+     * Output only. Cluster created from CloudSQL snapshot.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.CloudSQLBackupRunSource cloudsql_backup_run_source = 42 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AlloyDb\V1\CloudSQLBackupRunSource $var
+     * @return $this
+     */
+    public function setCloudsqlBackupRunSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\CloudSQLBackupRunSource::class);
+        $this->writeOneof(42, $var);
 
         return $this;
     }
