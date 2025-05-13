@@ -77,7 +77,7 @@ class Operation
     /**
      * @param SpannerClient $spannerClient The Spanner client used to make requests.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
-     * @param array $config [optional] {
+     * @param array $options {
      *     Configuration options.
      *
      *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
@@ -91,12 +91,11 @@ class Operation
     public function __construct(
         private SpannerClient $spannerClient,
         private Serializer $serializer,
-        $config = []
+        array $options = []
     ) {
         $this->mapper = new ValueMapper($options['returnInt64AsObject'] ?? false);
-        $this->routeToLeader = $this->pluck('routeToLeader', $config, false) ?: true;
-        $this->defaultQueryOptions =
-            $this->pluck('defaultQueryOptions', $config, false) ?: [];
+        $this->routeToLeader = $options['routeToLeader'] ?? true;
+        $this->defaultQueryOptions = $options['defaultQueryOptions'] ?? [];
     }
 
     /**
@@ -539,20 +538,21 @@ class Operation
         $res += [
             'id' => null
         ];
+
+        // TODO: unravel this
+        $transactionOptions = $options['transactionOptions'] ?? [];
+        unset($options['transactionOptions']);
+
         $options += [
             'tag' => null,
-            'transactionOptions' => []
-        ];
-
-        $options['isRetry'] = $options['isRetry'] ?? false;
+            'isRetry' => false,
+        ] + $transactionOptions;
 
         return new Transaction(
             $this,
             $session,
             $res['id'],
-            $options['isRetry'],
-            $options['tag'],
-            $options['transactionOptions'],
+            $options,
             $this->mapper
         );
     }

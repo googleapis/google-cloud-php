@@ -38,6 +38,14 @@ use Google\Cloud\Spanner\V1\RequestOptions\Priority;
 class QueryTest extends SpannerTestCase
 {
     /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
+    {
+        self::setUpTestDatabase();
+    }
+
+    /**
      * covers 19
      */
     public function testSelect1()

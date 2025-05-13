@@ -43,7 +43,7 @@ class LargeReadTest extends SpannerTestCase
      */
     public static function setUpTestFixtures(): void
     {
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
 
         self::$tableName = uniqid(self::TESTING_PREFIX);
 

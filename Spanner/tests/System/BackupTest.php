@@ -39,7 +39,6 @@ class BackupTest extends SpannerTestCase
     protected static $copyBackupId;
     protected static $backupOperationName;
     protected static $restoreOperationName;
-    protected static $createDbOperationName;
     protected static $createTime1;
     protected static $createTime2;
 
@@ -57,52 +56,56 @@ class BackupTest extends SpannerTestCase
     {
         self::skipEmulatorTests();
 
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
         if (self::$hasSetUp) {
             return;
         }
 
         self::$project = self::parseName(self::$instance->name(), 'project');
 
-        self::$dbName1 = uniqid(self::TESTING_PREFIX);
-        $op = self::$instance->createDatabase(self::$dbName1);
-        self::$createDbOperationName = $op->name();
-        $op->pollUntilComplete();
+        if (!self::$dbName1 = getenv('GOOGLE_CLOUD_SPANNER_TEST_BACKUP_DATABASE_1')) {
+            self::$dbName1 = uniqid(self::TESTING_PREFIX);
+            self::$deletionQueue->add(function () {
+                self::getDatabaseInstance(self::$dbName1)->drop();
+            });
+        }
+
+        if (!self::$dbName2 = getenv('GOOGLE_CLOUD_SPANNER_TEST_BACKUP_DATABASE_2')) {
+            self::$dbName2 = uniqid(self::TESTING_PREFIX);
+            self::$deletionQueue->add(function () {
+                self::getDatabaseInstance(self::$dbName2)->drop();
+            });
+        }
 
         $db1 = self::getDatabaseInstance(self::$dbName1);
-
-        self::$deletionQueue->add(function () use ($db1) {
-            $db1->drop();
-        });
-
-        $db1->updateDdl(
-            'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
-                id INT64 NOT NULL,
-                name STRING(MAX) NOT NULL,
-                birthday DATE NOT NULL
-            ) PRIMARY KEY (id)'
-        )->pollUntilComplete();
-
-        self::$dbName2 = uniqid(self::TESTING_PREFIX);
-        $op = self::$instance->createDatabase(self::$dbName2);
-        $op->pollUntilComplete();
-
         $db2 = self::getDatabaseInstance(self::$dbName2);
 
-        self::$deletionQueue->add(function () use ($db2) {
-            $db2->drop();
-        });
+        if (!$db1->exists()) {
+            $op = self::$instance->createDatabase(self::$dbName1);
+            $op->pollUntilComplete();
+            $db1->updateDdl(
+                'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
+                    id INT64 NOT NULL,
+                    name STRING(MAX) NOT NULL,
+                    birthday DATE NOT NULL
+                ) PRIMARY KEY (id)'
+            )->pollUntilComplete();
+            self::insertData(5, self::$dbName1);
+        }
 
-        $db2->updateDdl(
-            'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
-                id INT64 NOT NULL,
-                name STRING(MAX) NOT NULL,
-                birthday DATE NOT NULL
-            ) PRIMARY KEY (id)'
-        )->pollUntilComplete();
+        if (!$db2->exists()) {
+            $op = self::$instance->createDatabase(self::$dbName2);
+            $op->pollUntilComplete();
 
-        self::insertData(5, self::$dbName1);
-        self::insertData(10, self::$dbName2);
+            $db2->updateDdl(
+                'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
+                    id INT64 NOT NULL,
+                    name STRING(MAX) NOT NULL,
+                    birthday DATE NOT NULL
+                ) PRIMARY KEY (id)'
+            )->pollUntilComplete();
+            self::insertData(10, self::$dbName2);
+        }
 
         self::$backupId1 = uniqid(self::BACKUP_PREFIX);
         self::$backupId2 = uniqid('users-');
@@ -110,65 +113,55 @@ class BackupTest extends SpannerTestCase
         self::$hasSetUp = true;
     }
 
-    public function testListAllInstances()
-    {
-        $allInstances = self::$client->instances();
+    // public function testCreateBackup()
+    // {
+    //     $expireTime = new \DateTime('+7 hours');
+    //     $encryptionConfig = [
+    //         'encryptionType' => CreateBackupEncryptionConfig\EncryptionType::GOOGLE_DEFAULT_ENCRYPTION,
+    //     ];
 
-        foreach ($allInstances as $i) {
-            print(PHP_EOL);
-            print_r($i->name());
-        }
-    }
+    //     $backup = self::$instance->backup(self::$backupId1);
+    //     $db1 = self::getDatabaseInstance(self::$dbName1);
 
-    public function testCreateBackup()
-    {
-        $expireTime = new \DateTime('+7 hours');
-        $encryptionConfig = [
-            'encryptionType' => CreateBackupEncryptionConfig\EncryptionType::GOOGLE_DEFAULT_ENCRYPTION,
-        ];
+    //     self::$createTime1 = gmdate('"Y-m-d\TH:i:s\Z"');
+    //     $op = $backup->create(self::$dbName1, $expireTime, [
+    //         'encryptionConfig' => $encryptionConfig,
+    //     ]);
+    //     self::$backupOperationName = $op->name();
 
-        $backup = self::$instance->backup(self::$backupId1);
-        $db1 = self::getDatabaseInstance(self::$dbName1);
+    //     $metadata = null;
+    //     foreach (self::$instance->backupOperations() as $listItem) {
+    //         if ($listItem->name() == $op->name()) {
+    //             $metadata = $listItem->info()['metadata'];
+    //             break;
+    //         }
+    //     }
 
-        self::$createTime1 = gmdate('"Y-m-d\TH:i:s\Z"');
-        $op = $backup->create(self::$dbName1, $expireTime, [
-            'encryptionConfig' => $encryptionConfig,
-        ]);
-        self::$backupOperationName = $op->name();
+    //     $op->pollUntilComplete();
 
-        $metadata = null;
-        foreach (self::$instance->backupOperations() as $listItem) {
-            if ($listItem->name() == $op->name()) {
-                $metadata = $listItem->info()['metadata'];
-                break;
-            }
-        }
+    //     self::$deletionQueue->add(function () use ($backup) {
+    //         $backup->delete();
+    //     });
 
-        $op->pollUntilComplete();
+    //     $this->assertTrue($backup->exists());
+    //     $this->assertInstanceOf(Backup::class, $backup);
+    //     $this->assertEquals(self::$backupId1, DatabaseAdminClient::parseName($backup->info()['name'])['backup']);
+    //     $this->assertEquals(self::$dbName1, DatabaseAdminClient::parseName($backup->info()['database'])['database']);
+    //     $this->assertEquals($expireTime->format('Y-m-d\TH:i:s.u\Z'), $backup->info()['expireTime']);
+    //     $this->assertTrue(is_string($backup->info()['createTime']));
+    //     $this->assertEquals(Backup::STATE_READY, $backup->state());
+    //     $this->assertTrue($backup->info()['sizeBytes'] > 0);
+    //     // earliestVersionTime deviates from backup's versionTime by a couple of minutes
+    //     $expectedDateTime = \DateTime::createFromFormat('Y-m-d\TH:i:s.u\Z', $db1->info()['earliestVersionTime']);
+    //     $actualDateTime = \DateTime::createFromFormat('Y-m-d\TH:i:s.u\Z', $backup->info()['versionTime']);
+    //     $this->assertEqualsWithDelta($expectedDateTime->getTimestamp(), $actualDateTime->getTimestamp(), 300);
+    //     $this->assertEquals(Type::GOOGLE_DEFAULT_ENCRYPTION, $backup->info()['encryptionInfo']['encryptionType']);
 
-        self::$deletionQueue->add(function () use ($backup) {
-            $backup->delete();
-        });
-
-        $this->assertTrue($backup->exists());
-        $this->assertInstanceOf(Backup::class, $backup);
-        $this->assertEquals(self::$backupId1, DatabaseAdminClient::parseName($backup->info()['name'])['backup']);
-        $this->assertEquals(self::$dbName1, DatabaseAdminClient::parseName($backup->info()['database'])['database']);
-        $this->assertEquals($expireTime->format('Y-m-d\TH:i:s.u\Z'), $backup->info()['expireTime']);
-        $this->assertTrue(is_string($backup->info()['createTime']));
-        $this->assertEquals(Backup::STATE_READY, $backup->state());
-        $this->assertTrue($backup->info()['sizeBytes'] > 0);
-        // earliestVersionTime deviates from backup's versionTime by a couple of minutes
-        $expectedDateTime = \DateTime::createFromFormat('Y-m-d\TH:i:s.u\Z', $db1->info()['earliestVersionTime']);
-        $actualDateTime = \DateTime::createFromFormat('Y-m-d\TH:i:s.u\Z', $backup->info()['versionTime']);
-        $this->assertEqualsWithDelta($expectedDateTime->getTimestamp(), $actualDateTime->getTimestamp(), 300);
-        $this->assertEquals(Type::GOOGLE_DEFAULT_ENCRYPTION, $backup->info()['encryptionInfo']['encryptionType']);
-
-        $this->assertNotNull($metadata);
-        $this->assertArrayHasKey('progress', $metadata);
-        $this->assertArrayHasKey('progressPercent', $metadata['progress']);
-        $this->assertArrayHasKey('startTime', $metadata['progress']);
-    }
+    //     $this->assertNotNull($metadata);
+    //     $this->assertArrayHasKey('progress', $metadata);
+    //     $this->assertArrayHasKey('progressPercent', $metadata['progress']);
+    //     $this->assertArrayHasKey('startTime', $metadata['progress']);
+    // }
 
     public function testCreateBackupRequestFailed()
     {

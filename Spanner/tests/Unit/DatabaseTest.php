@@ -169,8 +169,6 @@ class DatabaseTest extends TestCase
             $this->serializer,
             self::PROJECT,
             self::INSTANCE,
-            false,
-            [],
             ['directedReadOptions' => self::DIRECTED_READ_OPTIONS_INCLUDE_REPLICAS]
         );
 

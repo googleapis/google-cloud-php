@@ -25,6 +25,14 @@ class PartitionedDmlTest extends SpannerTestCase
 {
     const PDML_TABLE = 'partitionedDml';
 
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
+    {
+        self::setUpTestDatabase();
+    }
+
     public function testPdml()
     {
         $db = self::$database;

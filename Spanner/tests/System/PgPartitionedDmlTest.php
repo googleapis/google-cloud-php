@@ -26,6 +26,14 @@ class PgPartitionedDmlTest extends SpannerPgTestCase
 {
     const PDML_TABLE = 'partitionedDml';
 
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
+    {
+        self::setUpTestDatabase();
+    }
+
     public function testPdml()
     {
         // Skipping temporarily while we figure out the issue with

@@ -49,7 +49,7 @@ class PgWriteTest extends SpannerPgTestCase
     {
         // The equiavalent tests for the GSQL dialect are also skipped.
         self::skipEmulatorTests();
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
 
         self::$database->updateDdlBatch([
             'CREATE TABLE ' . self::TABLE_NAME . ' (

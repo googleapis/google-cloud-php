@@ -33,6 +33,14 @@ use Google\Cloud\Spanner\InstanceConfiguration;
 class AdminTest extends SpannerTestCase
 {
     /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
+    {
+        self::setUpTestDatabase();
+    }
+
+    /**
      * covers 121
      */
     public function testInstance()

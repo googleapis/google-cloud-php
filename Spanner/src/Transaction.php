@@ -79,19 +79,21 @@ class Transaction implements TransactionalReadInterface
      */
     private $mutations = [];
 
+    private bool $isRetry;
+
     /**
      * @param Operation $operation The Operation instance.
      * @param Session $session The session to use for spanner interactions.
-     * @param string $transactionId [optional] The Transaction ID. If no ID is
-     *        provided, the Transaction will be a Single-Use Transaction.
-     * @param bool $isRetry Whether the transaction will automatically retry or not.
-     * @param string $tag A transaction tag. Requests made using this transaction will
-     *        use this as the transaction tag.
-     * @param array $options [optional] {
+     * @param string $transactionId The Transaction ID. If no ID is provided, the Transaction will
+     *        be a Single-Use Transaction.
+     * @param array $options {
      *     Configuration Options.
      *
      *     @type array $begin The begin Transaction options.
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
+     *     @type bool $isRetry Whether the transaction will automatically retry or not.
+     *     @type string $tag A transaction tag. Requests made using this transaction will
+     *           use this as the transaction tag.
      * }
      * @param ValueMapper $mapper Consumed internally for properly map mutation data.
      * @throws \InvalidArgumentException if a tag is specified on a single-use transaction.
@@ -100,8 +102,6 @@ class Transaction implements TransactionalReadInterface
         private Operation $operation,
         private Session $session,
         private ?string $transactionId = null,
-        private bool $isRetry = false,
-        ?string $tag = null,
         array $options = [],
         private ?ValueMapper $mapper = null
     ) {
@@ -116,8 +116,13 @@ class Transaction implements TransactionalReadInterface
         }
 
         $this->context = SessionPoolInterface::CONTEXT_READWRITE;
+        $this->tag = $options['tag'] ?? null;
+        $this->isRetry = $options['isRetry'] ?? false;
+
+        // unset our custom options
+        // TODO: untange this from transaction options
+        unset($options['tag'], $options['isRetry']);
         $this->options = $options;
-        $this->tag = $tag;
     }
 
     /**

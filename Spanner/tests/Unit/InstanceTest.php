@@ -108,8 +108,6 @@ class InstanceTest extends TestCase
             $this->serializer,
             self::PROJECT_ID,
             self::NAME,
-            false,
-            [],
             ['directedReadOptions' => $this->directedReadOptionsIncludeReplicas]
         );
     }

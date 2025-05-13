@@ -42,7 +42,7 @@ class PgBatchTest extends SpannerPgTestCase
         if (self::$isSetup) {
             return;
         }
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
 
         self::$tableName = uniqid(self::TESTING_PREFIX);
 

@@ -134,11 +134,12 @@ class Result implements \IteratorAggregate
      * @param string $transactionContext The transaction's context.
      * @param ValueMapper $mapper Maps values.
      * @param ?RetrySettings $retrySettings {
-     *           Retry configuration options. Currently, only the `maxRetries` option is supported.
+     *     Retry configuration options. Currently, only the `maxRetries` option
+     *     is supported.
      *
-     *           @type int $maxRetries The maximum number of retry attempts before the operation fails.
-     *                 Defaults to 3.
-     *     }
+     *     @type int $maxRetries The maximum number of retry attempts before the operation
+     *           fails. Defaults to 3.
+     * }
      */
     public function __construct(
         Operation $operation,

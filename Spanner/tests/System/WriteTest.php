@@ -48,7 +48,7 @@ class WriteTest extends SpannerTestCase
     public static function setUpTestFixtures(): void
     {
         self::skipEmulatorTests();
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
 
         self::$database->updateDdlBatch([
             'CREATE PROTO BUNDLE (' .

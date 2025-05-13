@@ -39,7 +39,7 @@ class PgReadTest extends SpannerPgTestCase
      */
     public static function setUpTestFixtures(): void
     {
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
 
         self::$readTableName = 'read_table';
         self::$rangeTableName = 'range_table';

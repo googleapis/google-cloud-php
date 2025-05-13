@@ -47,10 +47,7 @@ abstract class SpannerPgTestCase extends SystemTestCase
 
     private static $hasSetUp = false;
 
-    /**
-     * @beforeClass
-     */
-    public static function setUpTestFixtures(): void
+    protected static function setUpTestDatabase(): void
     {
         if (self::$hasSetUp) {
             return;

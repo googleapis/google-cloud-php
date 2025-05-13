@@ -46,10 +46,7 @@ abstract class SpannerTestCase extends SystemTestCase
 
     private static $hasSetUp = false;
 
-    /**
-     * @beforeClass
-     */
-    public static function setUpTestFixtures(): void
+    protected static function setUpTestDatabase(): void
     {
         if (self::$hasSetUp) {
             return;
@@ -59,21 +56,18 @@ abstract class SpannerTestCase extends SystemTestCase
 
         self::$instance = self::$client->instance(self::INSTANCE_NAME);
 
-        self::$dbName = getenv('GOOGLE_CLOUD_SPANNER_TEST_DATABASE') ?: uniqid(self::TESTING_PREFIX);
-        $database = self::$instance->database(self::$dbName);
-        if (!$database->exists()) {
+        if (!self::$dbName = getenv('GOOGLE_CLOUD_SPANNER_TEST_DATABASE')) {
+            self::$dbName = uniqid(self::TESTING_PREFIX);
+            self::$deletionQueue->add(function () {
+                self::getDatabaseInstance(self::$dbName)->drop();
+            });
+        }
+        self::$database = self::getDatabaseInstance(self::$dbName);
+
+        if (!self::$database->exists()) {
             $op = self::$instance->createDatabase(self::$dbName);
             $op->pollUntilComplete();
-
-            $db = self::getDatabaseInstance(self::$dbName);
-
-            if (!getenv('GOOGLE_CLOUD_SPANNER_TEST_DATABASE')) {
-                self::$deletionQueue->add(function () use ($db) {
-                    $db->drop();
-                });
-            }
-
-            $op = $db->updateDdlBatch(
+            $op = self::$database->updateDdlBatch(
                 [
                     'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
                     id INT64 NOT NULL,
@@ -86,11 +80,8 @@ abstract class SpannerTestCase extends SystemTestCase
             );
             $op->pollUntilComplete();
 
-            self::$database = $db;
-            self::$database2 = self::getDatabaseInstance(self::$dbName);
-
-            if ($db->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL) {
-                $db->updateDdlBatch(
+            if (self::$database->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL) {
+                self::$database->updateDdlBatch(
                     [
                         'CREATE ROLE ' . self::DATABASE_ROLE,
                         'CREATE ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
@@ -103,6 +94,7 @@ abstract class SpannerTestCase extends SystemTestCase
             }
         }
 
+        self::$database2 = self::getDatabaseInstance(self::$dbName);
         self::$hasSetUp = true;
     }
 

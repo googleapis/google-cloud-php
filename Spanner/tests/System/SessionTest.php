@@ -28,6 +28,14 @@ use Psr\Cache\CacheItemPoolInterface;
  */
 class SessionTest extends SpannerTestCase
 {
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
+    {
+        self::setUpTestDatabase();
+    }
+
     public function testCacheSessionPool()
     {
         $identity = self::$database->identity();
