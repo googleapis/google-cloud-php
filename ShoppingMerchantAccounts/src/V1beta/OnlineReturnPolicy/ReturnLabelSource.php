@@ -66,6 +66,4 @@ class ReturnLabelSource
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReturnLabelSource::class, \Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy_ReturnLabelSource::class);
 
