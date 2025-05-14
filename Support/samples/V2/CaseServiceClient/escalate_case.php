@@ -29,15 +29,57 @@ use Google\Cloud\Support\V2\EscalateCaseRequest;
 use Google\Cloud\Support\V2\PBCase;
 
 /**
- * Escalate a case. Escalating a case will initiate the Google Cloud Support
- * escalation management process.
+ * Escalate a case, starting the Google Cloud Support escalation management
+ * process.
  *
- * This operation is only available to certain Customer Care tiers. Go to
+ * This operation is only available for some support services. Go to
  * https://cloud.google.com/support and look for 'Technical support
- * escalations' in the feature list to find out which tiers are able to
- * perform escalations.
+ * escalations' in the feature list to find out which ones let you
+ * do that.
  *
- * @param string $formattedName The fully qualified name of the Case resource to be escalated. Please see
+ * EXAMPLES:
+ *
+ * cURL:
+ *
+ * ```shell
+ * case="projects/some-project/cases/43595344"
+ * curl \
+ * --request POST \
+ * --header "Authorization: Bearer $(gcloud auth print-access-token)" \
+ * --header "Content-Type: application/json" \
+ * --data '{
+ * "escalation": {
+ * "reason": "BUSINESS_IMPACT",
+ * "justification": "This is a test escalation."
+ * }
+ * }' \
+ * "https://cloudsupport.googleapis.com/v2/$case:escalate"
+ * ```
+ *
+ * Python:
+ *
+ * ```python
+ * import googleapiclient.discovery
+ *
+ * api_version = "v2"
+ * supportApiService = googleapiclient.discovery.build(
+ * serviceName="cloudsupport",
+ * version=api_version,
+ * discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
+ * )
+ * request = supportApiService.cases().escalate(
+ * name="projects/some-project/cases/43595344",
+ * body={
+ * "escalation": {
+ * "reason": "BUSINESS_IMPACT",
+ * "justification": "This is a test escalation.",
+ * },
+ * },
+ * )
+ * print(request.execute())
+ * ```
+ *
+ * @param string $formattedName The name of the case to be escalated. Please see
  *                              {@see CaseServiceClient::caseName()} for help formatting this field.
  */
 function escalate_case_sample(string $formattedName): void

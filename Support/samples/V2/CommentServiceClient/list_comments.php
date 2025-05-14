@@ -30,10 +30,39 @@ use Google\Cloud\Support\V2\Comment;
 use Google\Cloud\Support\V2\ListCommentsRequest;
 
 /**
- * Retrieve all Comments associated with the Case object.
+ * List all the comments associated with a case.
  *
- * @param string $formattedParent The resource name of Case object for which comments should be
- *                                listed. Please see
+ * EXAMPLES:
+ *
+ * cURL:
+ *
+ * ```shell
+ * case="projects/some-project/cases/43595344"
+ * curl \
+ * --header "Authorization: Bearer $(gcloud auth print-access-token)" \
+ * "https://cloudsupport.googleapis.com/v2/$case/comments"
+ * ```
+ *
+ * Python:
+ *
+ * ```python
+ * import googleapiclient.discovery
+ *
+ * api_version = "v2"
+ * supportApiService = googleapiclient.discovery.build(
+ * serviceName="cloudsupport",
+ * version=api_version,
+ * discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
+ * )
+ * request = (
+ * supportApiService.cases()
+ * .comments()
+ * .list(parent="projects/some-project/cases/43595344")
+ * )
+ * print(request.execute())
+ * ```
+ *
+ * @param string $formattedParent The name of the case for which to list comments. Please see
  *                                {@see CommentServiceClient::caseName()} for help formatting this field.
  */
 function list_comments_sample(string $formattedParent): void

@@ -9,8 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An object containing information about the effective user and
- * authenticated principal responsible for an action.
+ * An Actor represents an entity that performed an action. For example, an actor
+ * could be a user who posted a comment on a support case, a user who
+ * uploaded an attachment, or a service account that created a support case.
  *
  * Generated from protobuf message <code>google.cloud.support.v2.Actor</code>
  */
@@ -26,13 +27,14 @@ class Actor extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * The email address of the actor. If not provided, it is inferred from
-     * credentials supplied during case creation. If the authenticated principal
-     * does not have an email address, one must be provided. When a name is
-     * provided, an email must also be provided. This will be obfuscated if the
-     * user is a Google Support agent.
+     * The email address of the actor. If not provided, it is inferred from the
+     * credentials supplied during case creation. When a name is provided, an
+     * email must also be provided. If the user is a Google Support agent, this is
+     * obfuscated.
+     * This field is deprecated. Use **username** field instead.
      *
-     * Generated from protobuf field <code>string email = 2;</code>
+     * Generated from protobuf field <code>string email = 2 [deprecated = true];</code>
+     * @deprecated
      */
     protected $email = '';
     /**
@@ -41,6 +43,16 @@ class Actor extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool google_support = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $google_support = false;
+    /**
+     * Output only. The username of the actor. It may look like an email or other
+     * format provided by the identity provider. If not provided, it is inferred
+     * from the credentials supplied. When a name is provided, a username must
+     * also be provided. If the user is a Google Support agent, this will not be
+     * set.
+     *
+     * Generated from protobuf field <code>string username = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $username = '';
 
     /**
      * Constructor.
@@ -54,13 +66,19 @@ class Actor extends \Google\Protobuf\Internal\Message
      *           display name must also be provided. This will be obfuscated if the user
      *           is a Google Support agent.
      *     @type string $email
-     *           The email address of the actor. If not provided, it is inferred from
-     *           credentials supplied during case creation. If the authenticated principal
-     *           does not have an email address, one must be provided. When a name is
-     *           provided, an email must also be provided. This will be obfuscated if the
-     *           user is a Google Support agent.
+     *           The email address of the actor. If not provided, it is inferred from the
+     *           credentials supplied during case creation. When a name is provided, an
+     *           email must also be provided. If the user is a Google Support agent, this is
+     *           obfuscated.
+     *           This field is deprecated. Use **username** field instead.
      *     @type bool $google_support
      *           Output only. Whether the actor is a Google support actor.
+     *     @type string $username
+     *           Output only. The username of the actor. It may look like an email or other
+     *           format provided by the identity provider. If not provided, it is inferred
+     *           from the credentials supplied. When a name is provided, a username must
+     *           also be provided. If the user is a Google Support agent, this will not be
+     *           set.
      * }
      */
     public function __construct($data = NULL) {
@@ -101,33 +119,37 @@ class Actor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The email address of the actor. If not provided, it is inferred from
-     * credentials supplied during case creation. If the authenticated principal
-     * does not have an email address, one must be provided. When a name is
-     * provided, an email must also be provided. This will be obfuscated if the
-     * user is a Google Support agent.
+     * The email address of the actor. If not provided, it is inferred from the
+     * credentials supplied during case creation. When a name is provided, an
+     * email must also be provided. If the user is a Google Support agent, this is
+     * obfuscated.
+     * This field is deprecated. Use **username** field instead.
      *
-     * Generated from protobuf field <code>string email = 2;</code>
+     * Generated from protobuf field <code>string email = 2 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getEmail()
     {
+        @trigger_error('email is deprecated.', E_USER_DEPRECATED);
         return $this->email;
     }
 
     /**
-     * The email address of the actor. If not provided, it is inferred from
-     * credentials supplied during case creation. If the authenticated principal
-     * does not have an email address, one must be provided. When a name is
-     * provided, an email must also be provided. This will be obfuscated if the
-     * user is a Google Support agent.
+     * The email address of the actor. If not provided, it is inferred from the
+     * credentials supplied during case creation. When a name is provided, an
+     * email must also be provided. If the user is a Google Support agent, this is
+     * obfuscated.
+     * This field is deprecated. Use **username** field instead.
      *
-     * Generated from protobuf field <code>string email = 2;</code>
+     * Generated from protobuf field <code>string email = 2 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setEmail($var)
     {
+        @trigger_error('email is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->email = $var;
 
@@ -156,6 +178,40 @@ class Actor extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->google_support = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The username of the actor. It may look like an email or other
+     * format provided by the identity provider. If not provided, it is inferred
+     * from the credentials supplied. When a name is provided, a username must
+     * also be provided. If the user is a Google Support agent, this will not be
+     * set.
+     *
+     * Generated from protobuf field <code>string username = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * Output only. The username of the actor. It may look like an email or other
+     * format provided by the identity provider. If not provided, it is inferred
+     * from the credentials supplied. When a name is provided, a username must
+     * also be provided. If the user is a Google Support agent, this will not be
+     * set.
+     *
+     * Generated from protobuf field <code>string username = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUsername($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->username = $var;
 
         return $this;
     }

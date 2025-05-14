@@ -38,7 +38,7 @@ use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: A service to manage file attachment for Google Cloud support cases.
+ * Service Description: A service to manage file attachments for Google Cloud support cases.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -254,7 +254,37 @@ final class CaseAttachmentServiceClient
     }
 
     /**
-     * Retrieve all attachments associated with a support case.
+     * List all the attachments associated with a support case.
+     *
+     * EXAMPLES:
+     *
+     * cURL:
+     *
+     * ```shell
+     * case="projects/some-project/cases/23598314"
+     * curl \
+     * --header "Authorization: Bearer $(gcloud auth print-access-token)" \
+     * "https://cloudsupport.googleapis.com/v2/$case/attachments"
+     * ```
+     *
+     * Python:
+     *
+     * ```python
+     * import googleapiclient.discovery
+     *
+     * api_version = "v2"
+     * supportApiService = googleapiclient.discovery.build(
+     * serviceName="cloudsupport",
+     * version=api_version,
+     * discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
+     * )
+     * request = (
+     * supportApiService.cases()
+     * .attachments()
+     * .list(parent="projects/some-project/cases/43595344")
+     * )
+     * print(request.execute())
+     * ```
      *
      * The async variant is {@see CaseAttachmentServiceClient::listAttachmentsAsync()}
      * .
