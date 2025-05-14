@@ -73,6 +73,4 @@ class DvrWindow extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DvrWindow::class, \Google\Cloud\Video\LiveStream\V1\DvrSession_DvrWindow::class);
 
