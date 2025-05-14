@@ -43,9 +43,13 @@ use Google\Cloud\Storage\Control\V2\DeleteManagedFolderRequest;
 use Google\Cloud\Storage\Control\V2\DisableAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\Folder;
 use Google\Cloud\Storage\Control\V2\GetAnywhereCacheRequest;
+use Google\Cloud\Storage\Control\V2\GetFolderIntelligenceConfigRequest;
 use Google\Cloud\Storage\Control\V2\GetFolderRequest;
 use Google\Cloud\Storage\Control\V2\GetManagedFolderRequest;
+use Google\Cloud\Storage\Control\V2\GetOrganizationIntelligenceConfigRequest;
+use Google\Cloud\Storage\Control\V2\GetProjectIntelligenceConfigRequest;
 use Google\Cloud\Storage\Control\V2\GetStorageLayoutRequest;
+use Google\Cloud\Storage\Control\V2\IntelligenceConfig;
 use Google\Cloud\Storage\Control\V2\ListAnywhereCachesRequest;
 use Google\Cloud\Storage\Control\V2\ListFoldersRequest;
 use Google\Cloud\Storage\Control\V2\ListManagedFoldersRequest;
@@ -55,6 +59,9 @@ use Google\Cloud\Storage\Control\V2\RenameFolderRequest;
 use Google\Cloud\Storage\Control\V2\ResumeAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\StorageLayout;
 use Google\Cloud\Storage\Control\V2\UpdateAnywhereCacheRequest;
+use Google\Cloud\Storage\Control\V2\UpdateFolderIntelligenceConfigRequest;
+use Google\Cloud\Storage\Control\V2\UpdateOrganizationIntelligenceConfigRequest;
+use Google\Cloud\Storage\Control\V2\UpdateProjectIntelligenceConfigRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -79,7 +86,10 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<AnywhereCache> disableAnywhereCacheAsync(DisableAnywhereCacheRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AnywhereCache> getAnywhereCacheAsync(GetAnywhereCacheRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Folder> getFolderAsync(GetFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IntelligenceConfig> getFolderIntelligenceConfigAsync(GetFolderIntelligenceConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ManagedFolder> getManagedFolderAsync(GetManagedFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IntelligenceConfig> getOrganizationIntelligenceConfigAsync(GetOrganizationIntelligenceConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IntelligenceConfig> getProjectIntelligenceConfigAsync(GetProjectIntelligenceConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<StorageLayout> getStorageLayoutAsync(GetStorageLayoutRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAnywhereCachesAsync(ListAnywhereCachesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listFoldersAsync(ListFoldersRequest $request, array $optionalArgs = [])
@@ -88,6 +98,9 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> renameFolderAsync(RenameFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AnywhereCache> resumeAnywhereCacheAsync(ResumeAnywhereCacheRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAnywhereCacheAsync(UpdateAnywhereCacheRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IntelligenceConfig> updateFolderIntelligenceConfigAsync(UpdateFolderIntelligenceConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IntelligenceConfig> updateOrganizationIntelligenceConfigAsync(UpdateOrganizationIntelligenceConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IntelligenceConfig> updateProjectIntelligenceConfigAsync(UpdateProjectIntelligenceConfigRequest $request, array $optionalArgs = [])
  */
 final class StorageControlClient
 {
@@ -251,6 +264,40 @@ final class StorageControlClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * folder_location_intelligenceConfig resource.
+     *
+     * @param string $folder
+     * @param string $location
+     *
+     * @return string The formatted folder_location_intelligenceConfig resource.
+     */
+    public static function folderLocationIntelligenceConfigName(string $folder, string $location): string
+    {
+        return self::getPathTemplate('folderLocationIntelligenceConfig')->render([
+            'folder' => $folder,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * intelligence_config resource.
+     *
+     * @param string $folder
+     * @param string $location
+     *
+     * @return string The formatted intelligence_config resource.
+     */
+    public static function intelligenceConfigName(string $folder, string $location): string
+    {
+        return self::getPathTemplate('intelligenceConfig')->render([
+            'folder' => $folder,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * managed_folder resource.
      *
      * @param string $project
@@ -265,6 +312,40 @@ final class StorageControlClient
             'project' => $project,
             'bucket' => $bucket,
             'managed_folder' => $managedFolder,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * org_location_intelligenceConfig resource.
+     *
+     * @param string $org
+     * @param string $location
+     *
+     * @return string The formatted org_location_intelligenceConfig resource.
+     */
+    public static function orgLocationIntelligenceConfigName(string $org, string $location): string
+    {
+        return self::getPathTemplate('orgLocationIntelligenceConfig')->render([
+            'org' => $org,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_intelligenceConfig resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted project_location_intelligenceConfig resource.
+     */
+    public static function projectLocationIntelligenceConfigName(string $project, string $location): string
+    {
+        return self::getPathTemplate('projectLocationIntelligenceConfig')->render([
+            'project' => $project,
+            'location' => $location,
         ]);
     }
 
@@ -292,7 +373,11 @@ final class StorageControlClient
      * - anywhereCache: projects/{project}/buckets/{bucket}/anywhereCaches/{anywhere_cache}
      * - bucket: projects/{project}/buckets/{bucket}
      * - folder: projects/{project}/buckets/{bucket}/folders/{folder=**}
+     * - folderLocationIntelligenceConfig: folders/{folder}/locations/{location}/intelligenceConfig
+     * - intelligenceConfig: folders/{folder}/locations/{location}/intelligenceConfig
      * - managedFolder: projects/{project}/buckets/{bucket}/managedFolders/{managed_folder=**}
+     * - orgLocationIntelligenceConfig: organizations/{org}/locations/{location}/intelligenceConfig
+     * - projectLocationIntelligenceConfig: projects/{project}/locations/{location}/intelligenceConfig
      * - storageLayout: projects/{project}/buckets/{bucket}/storageLayout
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -602,6 +687,35 @@ final class StorageControlClient
     }
 
     /**
+     * Returns the Folder scoped singleton IntelligenceConfig resource.
+     *
+     * The async variant is
+     * {@see StorageControlClient::getFolderIntelligenceConfigAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/get_folder_intelligence_config.php
+     *
+     * @param GetFolderIntelligenceConfigRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return IntelligenceConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getFolderIntelligenceConfig(
+        GetFolderIntelligenceConfigRequest $request,
+        array $callOptions = []
+    ): IntelligenceConfig {
+        return $this->startApiCall('GetFolderIntelligenceConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Returns metadata for the specified managed folder.
      *
      * The async variant is {@see StorageControlClient::getManagedFolderAsync()} .
@@ -625,6 +739,64 @@ final class StorageControlClient
     public function getManagedFolder(GetManagedFolderRequest $request, array $callOptions = []): ManagedFolder
     {
         return $this->startApiCall('GetManagedFolder', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns the Organization scoped singleton IntelligenceConfig resource.
+     *
+     * The async variant is
+     * {@see StorageControlClient::getOrganizationIntelligenceConfigAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/get_organization_intelligence_config.php
+     *
+     * @param GetOrganizationIntelligenceConfigRequest $request     A request to house fields associated with the call.
+     * @param array                                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return IntelligenceConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getOrganizationIntelligenceConfig(
+        GetOrganizationIntelligenceConfigRequest $request,
+        array $callOptions = []
+    ): IntelligenceConfig {
+        return $this->startApiCall('GetOrganizationIntelligenceConfig', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns the Project scoped singleton IntelligenceConfig resource.
+     *
+     * The async variant is
+     * {@see StorageControlClient::getProjectIntelligenceConfigAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/get_project_intelligence_config.php
+     *
+     * @param GetProjectIntelligenceConfigRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return IntelligenceConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getProjectIntelligenceConfig(
+        GetProjectIntelligenceConfigRequest $request,
+        array $callOptions = []
+    ): IntelligenceConfig {
+        return $this->startApiCall('GetProjectIntelligenceConfig', $request, $callOptions)->wait();
     }
 
     /**
@@ -838,5 +1010,92 @@ final class StorageControlClient
     public function updateAnywhereCache(UpdateAnywhereCacheRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateAnywhereCache', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the Folder scoped singleton IntelligenceConfig resource.
+     *
+     * The async variant is
+     * {@see StorageControlClient::updateFolderIntelligenceConfigAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/update_folder_intelligence_config.php
+     *
+     * @param UpdateFolderIntelligenceConfigRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return IntelligenceConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateFolderIntelligenceConfig(
+        UpdateFolderIntelligenceConfigRequest $request,
+        array $callOptions = []
+    ): IntelligenceConfig {
+        return $this->startApiCall('UpdateFolderIntelligenceConfig', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the Organization scoped singleton IntelligenceConfig resource.
+     *
+     * The async variant is
+     * {@see StorageControlClient::updateOrganizationIntelligenceConfigAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/update_organization_intelligence_config.php
+     *
+     * @param UpdateOrganizationIntelligenceConfigRequest $request     A request to house fields associated with the call.
+     * @param array                                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return IntelligenceConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateOrganizationIntelligenceConfig(
+        UpdateOrganizationIntelligenceConfigRequest $request,
+        array $callOptions = []
+    ): IntelligenceConfig {
+        return $this->startApiCall('UpdateOrganizationIntelligenceConfig', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the Project scoped singleton IntelligenceConfig resource.
+     *
+     * The async variant is
+     * {@see StorageControlClient::updateProjectIntelligenceConfigAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/update_project_intelligence_config.php
+     *
+     * @param UpdateProjectIntelligenceConfigRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return IntelligenceConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateProjectIntelligenceConfig(
+        UpdateProjectIntelligenceConfigRequest $request,
+        array $callOptions = []
+    ): IntelligenceConfig {
+        return $this->startApiCall('UpdateProjectIntelligenceConfig', $request, $callOptions)->wait();
     }
 }

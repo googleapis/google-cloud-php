@@ -83,6 +83,4 @@ class EditionConfig
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EditionConfig::class, \Google\Cloud\Storage\Control\V2\IntelligenceConfig_EditionConfig::class);
 

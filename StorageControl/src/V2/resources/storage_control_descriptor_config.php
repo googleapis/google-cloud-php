@@ -216,6 +216,18 @@ return [
                     'requestId' => \Google\Api\FieldInfo\Format::UUID4,
                 ],
             ],
+            'GetFolderIntelligenceConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\IntelligenceConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetManagedFolder' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Storage\Control\V2\ManagedFolder',
@@ -232,6 +244,30 @@ return [
                 ],
                 'autoPopulatedFields' => [
                     'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
+            ],
+            'GetOrganizationIntelligenceConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\IntelligenceConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetProjectIntelligenceConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\IntelligenceConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'GetStorageLayout' => [
@@ -354,11 +390,54 @@ return [
                     'requestId' => \Google\Api\FieldInfo\Format::UUID4,
                 ],
             ],
+            'UpdateFolderIntelligenceConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\IntelligenceConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'intelligence_config.name',
+                        'fieldAccessors' => [
+                            'getIntelligenceConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateOrganizationIntelligenceConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\IntelligenceConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'intelligence_config.name',
+                        'fieldAccessors' => [
+                            'getIntelligenceConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateProjectIntelligenceConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\IntelligenceConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'intelligence_config.name',
+                        'fieldAccessors' => [
+                            'getIntelligenceConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
                 'anywhereCache' => 'projects/{project}/buckets/{bucket}/anywhereCaches/{anywhere_cache}',
                 'bucket' => 'projects/{project}/buckets/{bucket}',
                 'folder' => 'projects/{project}/buckets/{bucket}/folders/{folder=**}',
+                'folderLocationIntelligenceConfig' => 'folders/{folder}/locations/{location}/intelligenceConfig',
+                'intelligenceConfig' => 'folders/{folder}/locations/{location}/intelligenceConfig',
                 'managedFolder' => 'projects/{project}/buckets/{bucket}/managedFolders/{managed_folder=**}',
+                'orgLocationIntelligenceConfig' => 'organizations/{org}/locations/{location}/intelligenceConfig',
+                'projectLocationIntelligenceConfig' => 'projects/{project}/locations/{location}/intelligenceConfig',
                 'storageLayout' => 'projects/{project}/buckets/{bucket}/storageLayout',
             ],
         ],

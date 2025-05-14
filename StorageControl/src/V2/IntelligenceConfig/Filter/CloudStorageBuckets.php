@@ -93,6 +93,4 @@ class CloudStorageBuckets extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CloudStorageBuckets::class, \Google\Cloud\Storage\Control\V2\IntelligenceConfig_Filter_CloudStorageBuckets::class);
 

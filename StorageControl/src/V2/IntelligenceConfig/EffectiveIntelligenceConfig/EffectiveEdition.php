@@ -59,6 +59,4 @@ class EffectiveEdition
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EffectiveEdition::class, \Google\Cloud\Storage\Control\V2\IntelligenceConfig_EffectiveIntelligenceConfig_EffectiveEdition::class);
 
