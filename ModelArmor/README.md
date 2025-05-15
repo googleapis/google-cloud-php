@@ -1,10 +1,10 @@
-# Google Cloud Parameter Manager for PHP
+# Google Cloud Model Armor for PHP
 
-> Idiomatic PHP client for [Google Cloud Parameter Manager](https://cloud.google.com/secret-manager/parameter-manager/docs/overview).
+> Idiomatic PHP client for [Google Cloud Model Armor](https://cloud.google.com/security-command-center).
 
-[![Latest Stable Version](https://poser.pugx.org/google/cloud-parametermanager/v/stable)](https://packagist.org/packages/google/cloud-parametermanager) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-parametermanager.svg)](https://packagist.org/packages/google/cloud-parametermanager)
+[![Latest Stable Version](https://poser.pugx.org/google/cloud-modelarmor/v/stable)](https://packagist.org/packages/google/cloud-modelarmor) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-modelarmor.svg)](https://packagist.org/packages/google/cloud-modelarmor)
 
-* [API documentation](https://cloud.google.com/php/docs/reference/cloud-parametermanager/latest)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-modelarmor/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
@@ -17,7 +17,7 @@ To begin, install the preferred dependency manager for PHP, [Composer](https://g
 Now, install this component:
 
 ```sh
-$ composer require google/cloud-parametermanager
+$ composer require google/cloud-modelarmor
 ```
 
 > Browse the complete list of [Google Cloud APIs](https://cloud.google.com/php/docs/reference)
@@ -36,27 +36,28 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ```php
 Google\ApiCore\ApiException;
-Google\Cloud\Location\GetLocationRequest;
-Google\Cloud\Location\Location;
-Google\Cloud\ParameterManager\V1\Client\ParameterManagerClient;
+Google\Cloud\ModelArmor\V1\Client\ModelArmorClient;
+Google\Cloud\ModelArmor\V1\FloorSetting;
+Google\Cloud\ModelArmor\V1\GetFloorSettingRequest;
 
 // Create a client.
-$parameterManagerClient = new ParameterManagerClient();
+$modelArmorClient = new ModelArmorClient();
 
 // Prepare the request message.
-$request = new GetLocationRequest();
+$request = (new GetFloorSettingRequest())
+    ->setName($formattedName);
 
 // Call the API and handle any network failures.
 try {
-    /** @var Location $response */
-    $response = $parameterManagerClient->getLocation($request);
+    /** @var FloorSetting $response */
+    $response = $modelArmorClient->getFloorSetting($request);
     printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
 } catch (ApiException $ex) {
     printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
 ```
 
-See the [samples directory](https://github.com/googleapis/google-cloud-php-parametermanager/tree/main/samples) for a canonical list of samples.
+See the [samples directory](https://github.com/googleapis/google-cloud-php-modelarmor/tree/main/samples) for a canonical list of samples.
 
 ### Debugging
 
@@ -69,4 +70,4 @@ This component is considered alpha. As such, it is still a work-in-progress and 
 
 ### Next Steps
 
-1. Understand the [official documentation](https://cloud.google.com/secret-manager/parameter-manager/docs/overview).
+1. Understand the [official documentation](https://cloud.google.com/security-command-center/docs/model-armor-overview).
