@@ -135,7 +135,6 @@
         "google/cloud-datastore": "1.32.3",
         "google/cloud-datastore-admin": "1.0.3",
         "google/cloud-datastream": "2.3.0",
-        "google/cloud-debugger": "1.9.5",
         "google/cloud-deploy": "1.5.6",
         "google/cloud-developerconnect": "0.3.0",
         "google/cloud-devicestreaming": "0.1.0",
@@ -453,7 +452,6 @@
             "GPBMetadata\\Google\\Devtools\\Artifactregistry\\": "ArtifactRegistry/metadata",
             "GPBMetadata\\Google\\Devtools\\Build\\": "Build/metadata",
             "GPBMetadata\\Google\\Devtools\\Cloudbuild\\": "Build/metadata",
-            "GPBMetadata\\Google\\Devtools\\Clouddebugger\\": "Debugger/metadata",
             "GPBMetadata\\Google\\Devtools\\Clouderrorreporting\\": "ErrorReporting/metadata",
             "GPBMetadata\\Google\\Devtools\\Cloudprofiler\\": "Profiler/metadata",
             "GPBMetadata\\Google\\Devtools\\Cloudtrace\\": "Trace/metadata",
@@ -577,7 +575,6 @@
             "Google\\Cloud\\Datastore\\": "Datastore/src",
             "Google\\Cloud\\Datastore\\Admin\\": "DatastoreAdmin/src",
             "Google\\Cloud\\Datastream\\": "Datastream/src",
-            "Google\\Cloud\\Debugger\\": "Debugger/src",
             "Google\\Cloud\\Deploy\\": "Deploy/src",
             "Google\\Cloud\\DeveloperConnect\\": "DeveloperConnect/src",
             "Google\\Cloud\\DeviceStreaming\\": "DeviceStreaming/src",
@@ -752,7 +749,6 @@
             "Google\\Cloud\\Core\\Tests\\": "Core/tests",
             "Google\\Cloud\\DataCatalog\\Lineage\\Tests\\": "DataCatalogLineage/tests",
             "Google\\Cloud\\Datastore\\Tests\\": "Datastore/tests",
-            "Google\\Cloud\\Debugger\\Tests\\": "Debugger/tests",
             "Google\\Cloud\\ErrorReporting\\Tests\\": "ErrorReporting/tests",
             "Google\\Cloud\\Firestore\\Tests\\": "Firestore/tests",
             "Google\\Cloud\\Language\\Tests\\": "Language/tests",
@@ -783,7 +779,6 @@
         ]
     },
     "bin": [
-        "Core/bin/google-cloud-batch",
-        "Debugger/bin/google-cloud-debugger"
+        "Core/bin/google-cloud-batch"
     ]
 }

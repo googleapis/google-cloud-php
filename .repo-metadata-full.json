@@ -400,7 +400,8 @@
         "distribution_name": "google/cloud-common-protos",
         "release_level": "preview",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-common-protos/latest",
-        "library_type": "CORE"
+        "library_type": "CORE",
+        "api_shortname": ""
     },
     "CommerceConsumerProcurement": {
         "language": "php",
@@ -415,7 +416,8 @@
         "distribution_name": "google/common-protos",
         "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/common-protos/latest",
-        "library_type": "GAPIC_AUTO"
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": ""
     },
     "Compute": {
         "language": "php",
@@ -579,14 +581,6 @@
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-datastream/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "datastream"
-    },
-    "Debugger": {
-        "language": "php",
-        "distribution_name": "google/cloud-debugger",
-        "release_level": "stable",
-        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-debugger/latest",
-        "library_type": "GAPIC_COMBO",
-        "api_shortname": "clouddebugger"
     },
     "Deploy": {
         "language": "php",
@@ -754,7 +748,8 @@
         "distribution_name": "google/geo-common-protos",
         "release_level": "preview",
         "client_documentation": "https://cloud.google.com/php/docs/reference/geo-common-protos/latest",
-        "library_type": "CORE"
+        "library_type": "CORE",
+        "api_shortname": ""
     },
     "GkeBackup": {
         "language": "php",
@@ -1332,7 +1327,8 @@
         "distribution_name": "google/shopping-common-protos",
         "release_level": "preview",
         "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-common-protos/latest",
-        "library_type": "CORE"
+        "library_type": "CORE",
+        "api_shortname": ""
     },
     "ShoppingCss": {
         "language": "php",
