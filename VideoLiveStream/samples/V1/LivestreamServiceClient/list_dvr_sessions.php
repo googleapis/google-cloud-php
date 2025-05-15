@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,42 +22,36 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START livestream_v1_generated_LivestreamService_DeleteClip_sync]
+// [START livestream_v1_generated_LivestreamService_ListDvrSessions_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\OperationResponse;
+use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Video\LiveStream\V1\Client\LivestreamServiceClient;
-use Google\Cloud\Video\LiveStream\V1\DeleteClipRequest;
-use Google\Rpc\Status;
+use Google\Cloud\Video\LiveStream\V1\DvrSession;
+use Google\Cloud\Video\LiveStream\V1\ListDvrSessionsRequest;
 
 /**
- * Deletes the specified clip job resource. This method only deletes the clip
- * job and does not delete the VOD clip stored in Cloud Storage.
+ * Returns a list of all DVR sessions in the specified channel.
  *
- * @param string $formattedName The name of the clip resource, in the form of:
- *                              `projects/{project}/locations/{location}/channels/{channelId}/clips/{clipId}`. Please see
- *                              {@see LivestreamServiceClient::clipName()} for help formatting this field.
+ * @param string $formattedParent Parent value for ListDvrSessionsRequest
+ *                                Please see {@see LivestreamServiceClient::channelName()} for help formatting this field.
  */
-function delete_clip_sample(string $formattedName): void
+function list_dvr_sessions_sample(string $formattedParent): void
 {
     // Create a client.
     $livestreamServiceClient = new LivestreamServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteClipRequest())
-        ->setName($formattedName);
+    $request = (new ListDvrSessionsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
-        /** @var OperationResponse $response */
-        $response = $livestreamServiceClient->deleteClip($request);
-        $response->pollUntilComplete();
+        /** @var PagedListResponse $response */
+        $response = $livestreamServiceClient->listDvrSessions($request);
 
-        if ($response->operationSucceeded()) {
-            printf('Operation completed successfully.' . PHP_EOL);
-        } else {
-            /** @var Status $error */
-            $error = $response->getError();
-            printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+        /** @var DvrSession $element */
+        foreach ($response as $element) {
+            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -75,13 +69,8 @@ function delete_clip_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = LivestreamServiceClient::clipName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CHANNEL]',
-        '[CLIP]'
-    );
+    $formattedParent = LivestreamServiceClient::channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
 
-    delete_clip_sample($formattedName);
+    list_dvr_sessions_sample($formattedParent);
 }
-// [END livestream_v1_generated_LivestreamService_DeleteClip_sync]
+// [END livestream_v1_generated_LivestreamService_ListDvrSessions_sync]

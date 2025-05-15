@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,38 +22,52 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START livestream_v1_generated_LivestreamService_DeleteClip_sync]
+// [START livestream_v1_generated_LivestreamService_UpdateDvrSession_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Video\LiveStream\V1\Client\LivestreamServiceClient;
-use Google\Cloud\Video\LiveStream\V1\DeleteClipRequest;
+use Google\Cloud\Video\LiveStream\V1\DvrSession;
+use Google\Cloud\Video\LiveStream\V1\DvrSession\DvrManifest;
+use Google\Cloud\Video\LiveStream\V1\DvrSession\DvrWindow;
+use Google\Cloud\Video\LiveStream\V1\UpdateDvrSessionRequest;
+use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
- * Deletes the specified clip job resource. This method only deletes the clip
- * job and does not delete the VOD clip stored in Cloud Storage.
+ * Updates the specified DVR session.
  *
- * @param string $formattedName The name of the clip resource, in the form of:
- *                              `projects/{project}/locations/{location}/channels/{channelId}/clips/{clipId}`. Please see
- *                              {@see LivestreamServiceClient::clipName()} for help formatting this field.
+ * @param string $dvrSessionDvrManifestsManifestKey A unique key that identifies a manifest config in the parent
+ *                                                  channel. This key is the same as `channel.manifests.key` for the selected
+ *                                                  manifest.
  */
-function delete_clip_sample(string $formattedName): void
+function update_dvr_session_sample(string $dvrSessionDvrManifestsManifestKey): void
 {
     // Create a client.
     $livestreamServiceClient = new LivestreamServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteClipRequest())
-        ->setName($formattedName);
+    $updateMask = new FieldMask();
+    $dvrManifest = (new DvrManifest())
+        ->setManifestKey($dvrSessionDvrManifestsManifestKey);
+    $dvrSessionDvrManifests = [$dvrManifest,];
+    $dvrSessionDvrWindows = [new DvrWindow()];
+    $dvrSession = (new DvrSession())
+        ->setDvrManifests($dvrSessionDvrManifests)
+        ->setDvrWindows($dvrSessionDvrWindows);
+    $request = (new UpdateDvrSessionRequest())
+        ->setUpdateMask($updateMask)
+        ->setDvrSession($dvrSession);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $livestreamServiceClient->deleteClip($request);
+        $response = $livestreamServiceClient->updateDvrSession($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            printf('Operation completed successfully.' . PHP_EOL);
+            /** @var DvrSession $result */
+            $result = $response->getResult();
+            printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {
             /** @var Status $error */
             $error = $response->getError();
@@ -75,13 +89,8 @@ function delete_clip_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = LivestreamServiceClient::clipName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CHANNEL]',
-        '[CLIP]'
-    );
+    $dvrSessionDvrManifestsManifestKey = '[MANIFEST_KEY]';
 
-    delete_clip_sample($formattedName);
+    update_dvr_session_sample($dvrSessionDvrManifestsManifestKey);
 }
-// [END livestream_v1_generated_LivestreamService_DeleteClip_sync]
+// [END livestream_v1_generated_LivestreamService_UpdateDvrSession_sync]
