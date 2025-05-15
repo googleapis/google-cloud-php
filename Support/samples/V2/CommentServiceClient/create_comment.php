@@ -29,10 +29,49 @@ use Google\Cloud\Support\V2\Comment;
 use Google\Cloud\Support\V2\CreateCommentRequest;
 
 /**
- * Add a new comment to the specified Case.
- * The comment object must have the following fields set: body.
+ * Add a new comment to a case.
  *
- * @param string $formattedParent The resource name of Case to which this comment should be added. Please see
+ * The comment must have the following fields set: `body`.
+ *
+ * EXAMPLES:
+ *
+ * cURL:
+ *
+ * ```shell
+ * case="projects/some-project/cases/43591344"
+ * curl \
+ * --request POST \
+ * --header "Authorization: Bearer $(gcloud auth print-access-token)" \
+ * --header 'Content-Type: application/json' \
+ * --data '{
+ * "body": "This is a test comment."
+ * }' \
+ * "https://cloudsupport.googleapis.com/v2/$case/comments"
+ * ```
+ *
+ * Python:
+ *
+ * ```python
+ * import googleapiclient.discovery
+ *
+ * api_version = "v2"
+ * supportApiService = googleapiclient.discovery.build(
+ * serviceName="cloudsupport",
+ * version=api_version,
+ * discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
+ * )
+ * request = (
+ * supportApiService.cases()
+ * .comments()
+ * .create(
+ * parent="projects/some-project/cases/43595344",
+ * body={"body": "This is a test comment."},
+ * )
+ * )
+ * print(request.execute())
+ * ```
+ *
+ * @param string $formattedParent The name of the case to which the comment should be added. Please see
  *                                {@see CommentServiceClient::caseName()} for help formatting this field.
  */
 function create_comment_sample(string $formattedParent): void

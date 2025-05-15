@@ -16,29 +16,27 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListCommentsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of Case object for which comments should be
-     * listed.
+     * Required. The name of the case for which to list comments.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
-     * The maximum number of comments fetched with each request. Defaults to 10.
+     * The maximum number of comments to fetch. Defaults to 10.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      */
     protected $page_size = 0;
     /**
      * A token identifying the page of results to return. If unspecified, the
-     * first page is retrieved.
+     * first page is returned.
      *
      * Generated from protobuf field <code>string page_token = 5;</code>
      */
     protected $page_token = '';
 
     /**
-     * @param string $parent Required. The resource name of Case object for which comments should be
-     *                       listed. Please see
+     * @param string $parent Required. The name of the case for which to list comments. Please see
      *                       {@see CommentServiceClient::caseName()} for help formatting this field.
      *
      * @return \Google\Cloud\Support\V2\ListCommentsRequest
@@ -58,13 +56,12 @@ class ListCommentsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of Case object for which comments should be
-     *           listed.
+     *           Required. The name of the case for which to list comments.
      *     @type int $page_size
-     *           The maximum number of comments fetched with each request. Defaults to 10.
+     *           The maximum number of comments to fetch. Defaults to 10.
      *     @type string $page_token
      *           A token identifying the page of results to return. If unspecified, the
-     *           first page is retrieved.
+     *           first page is returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,8 +70,7 @@ class ListCommentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of Case object for which comments should be
-     * listed.
+     * Required. The name of the case for which to list comments.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -85,8 +81,7 @@ class ListCommentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of Case object for which comments should be
-     * listed.
+     * Required. The name of the case for which to list comments.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -101,7 +96,7 @@ class ListCommentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of comments fetched with each request. Defaults to 10.
+     * The maximum number of comments to fetch. Defaults to 10.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      * @return int
@@ -112,7 +107,7 @@ class ListCommentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of comments fetched with each request. Defaults to 10.
+     * The maximum number of comments to fetch. Defaults to 10.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      * @param int $var
@@ -128,7 +123,7 @@ class ListCommentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A token identifying the page of results to return. If unspecified, the
-     * first page is retrieved.
+     * first page is returned.
      *
      * Generated from protobuf field <code>string page_token = 5;</code>
      * @return string
@@ -140,7 +135,7 @@ class ListCommentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A token identifying the page of results to return. If unspecified, the
-     * first page is retrieved.
+     * first page is returned.
      *
      * Generated from protobuf field <code>string page_token = 5;</code>
      * @param string $var

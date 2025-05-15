@@ -9,22 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for SearchCaseClassifications endpoint.
+ * The request message for the SearchCaseClassifications endpoint.
  *
  * Generated from protobuf message <code>google.cloud.support.v2.SearchCaseClassificationsRequest</code>
  */
 class SearchCaseClassificationsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * An expression written in the Google Cloud filter language. If non-empty,
-     * then only cases whose fields match the filter are returned. If empty, then
-     * no messages are filtered out.
+     * An expression used to filter case classifications.
+     * If it's an empty string, then no filtering happens. Otherwise, case
+     * classifications will be returned that match the filter.
      *
      * Generated from protobuf field <code>string query = 1;</code>
      */
     protected $query = '';
     /**
-     * The maximum number of cases fetched with each request.
+     * The maximum number of classifications fetched with each request.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -44,11 +44,11 @@ class SearchCaseClassificationsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $query
-     *           An expression written in the Google Cloud filter language. If non-empty,
-     *           then only cases whose fields match the filter are returned. If empty, then
-     *           no messages are filtered out.
+     *           An expression used to filter case classifications.
+     *           If it's an empty string, then no filtering happens. Otherwise, case
+     *           classifications will be returned that match the filter.
      *     @type int $page_size
-     *           The maximum number of cases fetched with each request.
+     *           The maximum number of classifications fetched with each request.
      *     @type string $page_token
      *           A token identifying the page of results to return. If unspecified, the
      *           first page is retrieved.
@@ -60,9 +60,9 @@ class SearchCaseClassificationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An expression written in the Google Cloud filter language. If non-empty,
-     * then only cases whose fields match the filter are returned. If empty, then
-     * no messages are filtered out.
+     * An expression used to filter case classifications.
+     * If it's an empty string, then no filtering happens. Otherwise, case
+     * classifications will be returned that match the filter.
      *
      * Generated from protobuf field <code>string query = 1;</code>
      * @return string
@@ -73,9 +73,9 @@ class SearchCaseClassificationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An expression written in the Google Cloud filter language. If non-empty,
-     * then only cases whose fields match the filter are returned. If empty, then
-     * no messages are filtered out.
+     * An expression used to filter case classifications.
+     * If it's an empty string, then no filtering happens. Otherwise, case
+     * classifications will be returned that match the filter.
      *
      * Generated from protobuf field <code>string query = 1;</code>
      * @param string $var
@@ -90,7 +90,7 @@ class SearchCaseClassificationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of cases fetched with each request.
+     * The maximum number of classifications fetched with each request.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -101,7 +101,7 @@ class SearchCaseClassificationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of cases fetched with each request.
+     * The maximum number of classifications fetched with each request.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var

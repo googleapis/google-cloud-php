@@ -10,41 +10,46 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A comment associated with a support case.
+ * Case comments are the primary way for Google Support to communicate with a
+ * user who has opened a case. When a user responds to Google Support, the
+ * user's responses also appear as comments.
  *
  * Generated from protobuf message <code>google.cloud.support.v2.Comment</code>
  */
 class Comment extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name for the comment.
+     * Output only. Identifier. The resource name of the comment.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $name = '';
     /**
-     * Output only. The time when this comment was created.
+     * Output only. The time when the comment was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $create_time = null;
     /**
-     * Output only. The user or Google Support agent created this comment.
+     * Output only. The user or Google Support agent who created the comment.
      *
      * Generated from protobuf field <code>.google.cloud.support.v2.Actor creator = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $creator = null;
     /**
-     * The full comment body. Maximum of 12800 characters. This can contain rich
-     * text syntax.
+     * The full comment body.
+     * Maximum of 12800 characters.
      *
      * Generated from protobuf field <code>string body = 4;</code>
      */
     protected $body = '';
     /**
-     * Output only. DEPRECATED. An automatically generated plain text version of
-     * body with all rich text syntax stripped.
+     * Output only. DEPRECATED. DO NOT USE.
+     * A duplicate of the `body` field.
+     * This field is only present for legacy reasons.
      *
-     * Generated from protobuf field <code>string plain_text_body = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string plain_text_body = 5 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     protected $plain_text_body = '';
 
@@ -55,17 +60,18 @@ class Comment extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name for the comment.
+     *           Output only. Identifier. The resource name of the comment.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. The time when this comment was created.
+     *           Output only. The time when the comment was created.
      *     @type \Google\Cloud\Support\V2\Actor $creator
-     *           Output only. The user or Google Support agent created this comment.
+     *           Output only. The user or Google Support agent who created the comment.
      *     @type string $body
-     *           The full comment body. Maximum of 12800 characters. This can contain rich
-     *           text syntax.
+     *           The full comment body.
+     *           Maximum of 12800 characters.
      *     @type string $plain_text_body
-     *           Output only. DEPRECATED. An automatically generated plain text version of
-     *           body with all rich text syntax stripped.
+     *           Output only. DEPRECATED. DO NOT USE.
+     *           A duplicate of the `body` field.
+     *           This field is only present for legacy reasons.
      * }
      */
     public function __construct($data = NULL) {
@@ -74,9 +80,9 @@ class Comment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for the comment.
+     * Output only. Identifier. The resource name of the comment.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -85,9 +91,9 @@ class Comment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for the comment.
+     * Output only. Identifier. The resource name of the comment.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -100,7 +106,7 @@ class Comment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time when this comment was created.
+     * Output only. The time when the comment was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -121,7 +127,7 @@ class Comment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time when this comment was created.
+     * Output only. The time when the comment was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -136,7 +142,7 @@ class Comment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The user or Google Support agent created this comment.
+     * Output only. The user or Google Support agent who created the comment.
      *
      * Generated from protobuf field <code>.google.cloud.support.v2.Actor creator = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Support\V2\Actor|null
@@ -157,7 +163,7 @@ class Comment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The user or Google Support agent created this comment.
+     * Output only. The user or Google Support agent who created the comment.
      *
      * Generated from protobuf field <code>.google.cloud.support.v2.Actor creator = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Support\V2\Actor $var
@@ -172,8 +178,8 @@ class Comment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full comment body. Maximum of 12800 characters. This can contain rich
-     * text syntax.
+     * The full comment body.
+     * Maximum of 12800 characters.
      *
      * Generated from protobuf field <code>string body = 4;</code>
      * @return string
@@ -184,8 +190,8 @@ class Comment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full comment body. Maximum of 12800 characters. This can contain rich
-     * text syntax.
+     * The full comment body.
+     * Maximum of 12800 characters.
      *
      * Generated from protobuf field <code>string body = 4;</code>
      * @param string $var
@@ -200,27 +206,33 @@ class Comment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. DEPRECATED. An automatically generated plain text version of
-     * body with all rich text syntax stripped.
+     * Output only. DEPRECATED. DO NOT USE.
+     * A duplicate of the `body` field.
+     * This field is only present for legacy reasons.
      *
-     * Generated from protobuf field <code>string plain_text_body = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string plain_text_body = 5 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
+     * @deprecated
      */
     public function getPlainTextBody()
     {
+        @trigger_error('plain_text_body is deprecated.', E_USER_DEPRECATED);
         return $this->plain_text_body;
     }
 
     /**
-     * Output only. DEPRECATED. An automatically generated plain text version of
-     * body with all rich text syntax stripped.
+     * Output only. DEPRECATED. DO NOT USE.
+     * A duplicate of the `body` field.
+     * This field is only present for legacy reasons.
      *
-     * Generated from protobuf field <code>string plain_text_body = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string plain_text_body = 5 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setPlainTextBody($var)
     {
+        @trigger_error('plain_text_body is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->plain_text_body = $var;
 

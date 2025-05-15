@@ -30,10 +30,42 @@ use Google\Cloud\Support\V2\Client\CaseServiceClient;
 use Google\Cloud\Support\V2\SearchCaseClassificationsRequest;
 
 /**
- * Retrieve valid classifications to be used when creating a support case.
- * The classications are hierarchical, with each classification containing
- * all levels of the hierarchy, separated by " > ". For example "Technical
- * Issue > Compute > Compute Engine".
+ * Retrieve valid classifications to use when creating a support case.
+ *
+ * Classifications are hierarchical. Each classification is a string
+ * containing all levels of the hierarchy separated by `" > "`. For example,
+ * `"Technical Issue > Compute > Compute Engine"`.
+ *
+ * Classification IDs returned by this endpoint are valid for at least six
+ * months. When a classification is deactivated, this endpoint immediately
+ * stops returning it. After six months, `case.create` requests using the
+ * classification will fail.
+ *
+ * EXAMPLES:
+ *
+ * cURL:
+ *
+ * ```shell
+ * curl \
+ * --header "Authorization: Bearer $(gcloud auth print-access-token)" \
+ * 'https://cloudsupport.googleapis.com/v2/caseClassifications:search?query=display_name:"*Compute%20Engine*"'
+ * ```
+ *
+ * Python:
+ *
+ * ```python
+ * import googleapiclient.discovery
+ *
+ * supportApiService = googleapiclient.discovery.build(
+ * serviceName="cloudsupport",
+ * version="v2",
+ * discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version=v2",
+ * )
+ * request = supportApiService.caseClassifications().search(
+ * query='display_name:"*Compute Engine*"'
+ * )
+ * print(request.execute())
+ * ```
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

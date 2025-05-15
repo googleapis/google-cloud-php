@@ -16,19 +16,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateCaseRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The case object to update.
+     * Required. The case to update.
      *
      * Generated from protobuf field <code>.google.cloud.support.v2.Case case = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $case = null;
     /**
-     * A list of attributes of the case object that should be updated
-     * as part of this request. Supported values are `priority`, `display_name`,
-     * and `subscriber_email_addresses`. If no fields are specified, all supported
-     * fields are updated.
-     * WARNING: If you do not provide a field mask, then you might accidentally
-     * clear some fields. For example, if you leave the field mask empty and do
-     * not provide a value for `subscriber_email_addresses`, then
+     * A list of attributes of the case that should be updated. Supported values
+     * are `priority`, `display_name`, and `subscriber_email_addresses`. If no
+     * fields are specified, all supported fields are updated.
+     * Be careful - if you do not provide a field mask, then you might
+     * accidentally clear some fields. For example, if you leave the field mask
+     * empty and do not provide a value for `subscriber_email_addresses`, then
      * `subscriber_email_addresses` is updated to empty.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
@@ -36,15 +35,14 @@ class UpdateCaseRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
-     * @param \Google\Cloud\Support\V2\PBCase $case       Required. The case object to update.
-     * @param \Google\Protobuf\FieldMask      $updateMask A list of attributes of the case object that should be updated
-     *                                                    as part of this request. Supported values are `priority`, `display_name`,
-     *                                                    and `subscriber_email_addresses`. If no fields are specified, all supported
-     *                                                    fields are updated.
+     * @param \Google\Cloud\Support\V2\PBCase $case       Required. The case to update.
+     * @param \Google\Protobuf\FieldMask      $updateMask A list of attributes of the case that should be updated. Supported values
+     *                                                    are `priority`, `display_name`, and `subscriber_email_addresses`. If no
+     *                                                    fields are specified, all supported fields are updated.
      *
-     *                                                    WARNING: If you do not provide a field mask, then you might accidentally
-     *                                                    clear some fields. For example, if you leave the field mask empty and do
-     *                                                    not provide a value for `subscriber_email_addresses`, then
+     *                                                    Be careful - if you do not provide a field mask, then you might
+     *                                                    accidentally clear some fields. For example, if you leave the field mask
+     *                                                    empty and do not provide a value for `subscriber_email_addresses`, then
      *                                                    `subscriber_email_addresses` is updated to empty.
      *
      * @return \Google\Cloud\Support\V2\UpdateCaseRequest
@@ -65,15 +63,14 @@ class UpdateCaseRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Support\V2\PBCase $case
-     *           Required. The case object to update.
+     *           Required. The case to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           A list of attributes of the case object that should be updated
-     *           as part of this request. Supported values are `priority`, `display_name`,
-     *           and `subscriber_email_addresses`. If no fields are specified, all supported
-     *           fields are updated.
-     *           WARNING: If you do not provide a field mask, then you might accidentally
-     *           clear some fields. For example, if you leave the field mask empty and do
-     *           not provide a value for `subscriber_email_addresses`, then
+     *           A list of attributes of the case that should be updated. Supported values
+     *           are `priority`, `display_name`, and `subscriber_email_addresses`. If no
+     *           fields are specified, all supported fields are updated.
+     *           Be careful - if you do not provide a field mask, then you might
+     *           accidentally clear some fields. For example, if you leave the field mask
+     *           empty and do not provide a value for `subscriber_email_addresses`, then
      *           `subscriber_email_addresses` is updated to empty.
      * }
      */
@@ -83,7 +80,7 @@ class UpdateCaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The case object to update.
+     * Required. The case to update.
      *
      * Generated from protobuf field <code>.google.cloud.support.v2.Case case = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Support\V2\PBCase|null
@@ -104,7 +101,7 @@ class UpdateCaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The case object to update.
+     * Required. The case to update.
      *
      * Generated from protobuf field <code>.google.cloud.support.v2.Case case = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Support\V2\PBCase $var
@@ -119,13 +116,12 @@ class UpdateCaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of attributes of the case object that should be updated
-     * as part of this request. Supported values are `priority`, `display_name`,
-     * and `subscriber_email_addresses`. If no fields are specified, all supported
-     * fields are updated.
-     * WARNING: If you do not provide a field mask, then you might accidentally
-     * clear some fields. For example, if you leave the field mask empty and do
-     * not provide a value for `subscriber_email_addresses`, then
+     * A list of attributes of the case that should be updated. Supported values
+     * are `priority`, `display_name`, and `subscriber_email_addresses`. If no
+     * fields are specified, all supported fields are updated.
+     * Be careful - if you do not provide a field mask, then you might
+     * accidentally clear some fields. For example, if you leave the field mask
+     * empty and do not provide a value for `subscriber_email_addresses`, then
      * `subscriber_email_addresses` is updated to empty.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
@@ -147,13 +143,12 @@ class UpdateCaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of attributes of the case object that should be updated
-     * as part of this request. Supported values are `priority`, `display_name`,
-     * and `subscriber_email_addresses`. If no fields are specified, all supported
-     * fields are updated.
-     * WARNING: If you do not provide a field mask, then you might accidentally
-     * clear some fields. For example, if you leave the field mask empty and do
-     * not provide a value for `subscriber_email_addresses`, then
+     * A list of attributes of the case that should be updated. Supported values
+     * are `priority`, `display_name`, and `subscriber_email_addresses`. If no
+     * fields are specified, all supported fields are updated.
+     * Be careful - if you do not provide a field mask, then you might
+     * accidentally clear some fields. For example, if you leave the field mask
+     * empty and do not provide a value for `subscriber_email_addresses`, then
      * `subscriber_email_addresses` is updated to empty.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
