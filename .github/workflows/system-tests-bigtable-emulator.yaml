@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - run: ./.github/emulator/start-emulator.sh bigtable 419.0.0-emulators
+      - run: ./.github/emulator/start-emulator.sh bigtable 521.0.0-emulators
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
