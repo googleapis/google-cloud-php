@@ -468,6 +468,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $stateReason = 'stateReason282113458';
         $rpoRiskLevel = 1939768030;
         $rpoRiskReason = 'rpoRiskReason167896166';
+        $backupChannel = 'backupChannel1207089030';
         $expectedResponse = new BackupPlan();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -479,6 +480,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setStateReason($stateReason);
         $expectedResponse->setRpoRiskLevel($rpoRiskLevel);
         $expectedResponse->setRpoRiskReason($rpoRiskReason);
+        $expectedResponse->setBackupChannel($backupChannel);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -929,6 +931,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $cluster = 'cluster872092154';
         $etag = 'etag3123477';
         $stateReason = 'stateReason282113458';
+        $restoreChannel = 'restoreChannel1359579218';
         $expectedResponse = new RestorePlan();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -937,6 +940,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setCluster($cluster);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setStateReason($stateReason);
+        $expectedResponse->setRestoreChannel($restoreChannel);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2055,6 +2059,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $stateReason = 'stateReason282113458';
         $rpoRiskLevel = 1939768030;
         $rpoRiskReason = 'rpoRiskReason167896166';
+        $backupChannel = 'backupChannel1207089030';
         $expectedResponse = new BackupPlan();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
@@ -2066,6 +2071,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setStateReason($stateReason);
         $expectedResponse->setRpoRiskLevel($rpoRiskLevel);
         $expectedResponse->setRpoRiskReason($rpoRiskReason);
+        $expectedResponse->setBackupChannel($backupChannel);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
@@ -2378,6 +2384,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $cluster = 'cluster872092154';
         $etag = 'etag3123477';
         $stateReason = 'stateReason282113458';
+        $restoreChannel = 'restoreChannel1359579218';
         $expectedResponse = new RestorePlan();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
@@ -2386,6 +2393,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setCluster($cluster);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setStateReason($stateReason);
+        $expectedResponse->setRestoreChannel($restoreChannel);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->restorePlanName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]');
@@ -3741,6 +3749,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $stateReason = 'stateReason282113458';
         $rpoRiskLevel = 1939768030;
         $rpoRiskReason = 'rpoRiskReason167896166';
+        $backupChannel = 'backupChannel1207089030';
         $expectedResponse = new BackupPlan();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -3752,6 +3761,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setStateReason($stateReason);
         $expectedResponse->setRpoRiskLevel($rpoRiskLevel);
         $expectedResponse->setRpoRiskReason($rpoRiskReason);
+        $expectedResponse->setBackupChannel($backupChannel);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -4170,6 +4180,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $cluster = 'cluster872092154';
         $etag = 'etag3123477';
         $stateReason = 'stateReason282113458';
+        $restoreChannel = 'restoreChannel1359579218';
         $expectedResponse = new RestorePlan();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -4178,6 +4189,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setCluster($cluster);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setStateReason($stateReason);
+        $expectedResponse->setRestoreChannel($restoreChannel);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

@@ -34,9 +34,7 @@ use Google\Rpc\Status;
  * Update a BackupChannel.
  *
  * @param string $backupChannelDestinationProject Immutable. The project where Backups are allowed to be stored.
- *                                                The format is `projects/{project}`.
- *                                                Currently, {project} can only be the project number. Support for project
- *                                                IDs will be added in the future.
+ *                                                The format is `projects/{projectId}` or `projects/{projectNumber}`.
  */
 function update_backup_channel_sample(string $backupChannelDestinationProject): void
 {

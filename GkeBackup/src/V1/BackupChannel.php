@@ -27,9 +27,7 @@ class BackupChannel extends \Google\Protobuf\Internal\Message
     protected $name = '';
     /**
      * Required. Immutable. The project where Backups are allowed to be stored.
-     * The format is `projects/{project}`.
-     * Currently, {project} can only be the project number. Support for project
-     * IDs will be added in the future.
+     * The format is `projects/{projectId}` or `projects/{projectNumber}`.
      *
      * Generated from protobuf field <code>string destination_project = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -101,9 +99,7 @@ class BackupChannel extends \Google\Protobuf\Internal\Message
      *           `projects/&#42;&#47;locations/&#42;&#47;backupChannels/&#42;`
      *     @type string $destination_project
      *           Required. Immutable. The project where Backups are allowed to be stored.
-     *           The format is `projects/{project}`.
-     *           Currently, {project} can only be the project number. Support for project
-     *           IDs will be added in the future.
+     *           The format is `projects/{projectId}` or `projects/{projectNumber}`.
      *     @type string $uid
      *           Output only. Server generated global unique identifier of
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.
@@ -168,9 +164,7 @@ class BackupChannel extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Immutable. The project where Backups are allowed to be stored.
-     * The format is `projects/{project}`.
-     * Currently, {project} can only be the project number. Support for project
-     * IDs will be added in the future.
+     * The format is `projects/{projectId}` or `projects/{projectNumber}`.
      *
      * Generated from protobuf field <code>string destination_project = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -182,9 +176,7 @@ class BackupChannel extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Immutable. The project where Backups are allowed to be stored.
-     * The format is `projects/{project}`.
-     * Currently, {project} can only be the project number. Support for project
-     * IDs will be added in the future.
+     * The format is `projects/{projectId}` or `projects/{projectNumber}`.
      *
      * Generated from protobuf field <code>string destination_project = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
