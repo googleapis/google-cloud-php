@@ -10,21 +10,21 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Request message for
- * [`ListReportConfigs`][google.cloud.storageinsights.v1.StorageInsights.ListReportConfigs]
+ * [`ListDatasetConfigs`][google.cloud.storageinsights.v1.StorageInsights.ListDatasetConfigs]
  *
- * Generated from protobuf message <code>google.cloud.storageinsights.v1.ListReportConfigsRequest</code>
+ * Generated from protobuf message <code>google.cloud.storageinsights.v1.ListDatasetConfigsRequest</code>
  */
-class ListReportConfigsRequest extends \Google\Protobuf\Internal\Message
+class ListDatasetConfigsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Parent value for ListReportConfigsRequest
+     * Required. Parent value for ListDatasetConfigsRequest
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
-     * Requested page size. Server may return fewer items than requested.
-     * If unspecified, server will pick an appropriate default.
+     * Requested page size. Server might return fewer items than requested.
+     * If unspecified, server picks an appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -49,10 +49,10 @@ class ListReportConfigsRequest extends \Google\Protobuf\Internal\Message
     protected $order_by = '';
 
     /**
-     * @param string $parent Required. Parent value for ListReportConfigsRequest
+     * @param string $parent Required. Parent value for ListDatasetConfigsRequest
      *                       Please see {@see StorageInsightsClient::locationName()} for help formatting this field.
      *
-     * @return \Google\Cloud\StorageInsights\V1\ListReportConfigsRequest
+     * @return \Google\Cloud\StorageInsights\V1\ListDatasetConfigsRequest
      *
      * @experimental
      */
@@ -69,10 +69,10 @@ class ListReportConfigsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Parent value for ListReportConfigsRequest
+     *           Required. Parent value for ListDatasetConfigsRequest
      *     @type int $page_size
-     *           Requested page size. Server may return fewer items than requested.
-     *           If unspecified, server will pick an appropriate default.
+     *           Requested page size. Server might return fewer items than requested.
+     *           If unspecified, server picks an appropriate default.
      *     @type string $page_token
      *           A token identifying a page of results the server should return.
      *     @type string $filter
@@ -87,7 +87,7 @@ class ListReportConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Parent value for ListReportConfigsRequest
+     * Required. Parent value for ListDatasetConfigsRequest
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -98,7 +98,7 @@ class ListReportConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Parent value for ListReportConfigsRequest
+     * Required. Parent value for ListDatasetConfigsRequest
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -113,8 +113,8 @@ class ListReportConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Requested page size. Server may return fewer items than requested.
-     * If unspecified, server will pick an appropriate default.
+     * Requested page size. Server might return fewer items than requested.
+     * If unspecified, server picks an appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -125,8 +125,8 @@ class ListReportConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Requested page size. Server may return fewer items than requested.
-     * If unspecified, server will pick an appropriate default.
+     * Requested page size. Server might return fewer items than requested.
+     * If unspecified, server picks an appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var
