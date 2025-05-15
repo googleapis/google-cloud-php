@@ -245,6 +245,16 @@
                 "grpc": {
                     "libraryClient": "OnlineReturnPolicyServiceGapicClient",
                     "rpcs": {
+                        "CreateOnlineReturnPolicy": {
+                            "methods": [
+                                "createOnlineReturnPolicy"
+                            ]
+                        },
+                        "DeleteOnlineReturnPolicy": {
+                            "methods": [
+                                "deleteOnlineReturnPolicy"
+                            ]
+                        },
                         "GetOnlineReturnPolicy": {
                             "methods": [
                                 "getOnlineReturnPolicy"
@@ -253,6 +263,11 @@
                         "ListOnlineReturnPolicies": {
                             "methods": [
                                 "listOnlineReturnPolicies"
+                            ]
+                        },
+                        "UpdateOnlineReturnPolicy": {
+                            "methods": [
+                                "updateOnlineReturnPolicy"
                             ]
                         }
                     }

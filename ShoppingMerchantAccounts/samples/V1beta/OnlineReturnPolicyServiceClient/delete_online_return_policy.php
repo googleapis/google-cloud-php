@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,38 +22,31 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START merchantapi_v1beta_generated_OnlineReturnPolicyService_ListOnlineReturnPolicies_sync]
+// [START merchantapi_v1beta_generated_OnlineReturnPolicyService_DeleteOnlineReturnPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\PagedListResponse;
 use Google\Shopping\Merchant\Accounts\V1beta\Client\OnlineReturnPolicyServiceClient;
-use Google\Shopping\Merchant\Accounts\V1beta\ListOnlineReturnPoliciesRequest;
-use Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy;
+use Google\Shopping\Merchant\Accounts\V1beta\DeleteOnlineReturnPolicyRequest;
 
 /**
- * Lists all existing return policies for a given merchant.
+ * Deletes an existing return policy for a given merchant.
  *
- * @param string $formattedParent The merchant account for which to list return policies.
- *                                Format: `accounts/{account}`
- *                                Please see {@see OnlineReturnPolicyServiceClient::accountName()} for help formatting this field.
+ * @param string $formattedName The name of the return policy to delete.
+ *                              Format: `accounts/{account}/onlineReturnPolicies/{return_policy}`
+ *                              Please see {@see OnlineReturnPolicyServiceClient::onlineReturnPolicyName()} for help formatting this field.
  */
-function list_online_return_policies_sample(string $formattedParent): void
+function delete_online_return_policy_sample(string $formattedName): void
 {
     // Create a client.
     $onlineReturnPolicyServiceClient = new OnlineReturnPolicyServiceClient();
 
     // Prepare the request message.
-    $request = (new ListOnlineReturnPoliciesRequest())
-        ->setParent($formattedParent);
+    $request = (new DeleteOnlineReturnPolicyRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
-        /** @var PagedListResponse $response */
-        $response = $onlineReturnPolicyServiceClient->listOnlineReturnPolicies($request);
-
-        /** @var OnlineReturnPolicy $element */
-        foreach ($response as $element) {
-            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
-        }
+        $onlineReturnPolicyServiceClient->deleteOnlineReturnPolicy($request);
+        printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -70,8 +63,11 @@ function list_online_return_policies_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = OnlineReturnPolicyServiceClient::accountName('[ACCOUNT]');
+    $formattedName = OnlineReturnPolicyServiceClient::onlineReturnPolicyName(
+        '[ACCOUNT]',
+        '[RETURN_POLICY]'
+    );
 
-    list_online_return_policies_sample($formattedParent);
+    delete_online_return_policy_sample($formattedName);
 }
-// [END merchantapi_v1beta_generated_OnlineReturnPolicyService_ListOnlineReturnPolicies_sync]
+// [END merchantapi_v1beta_generated_OnlineReturnPolicyService_DeleteOnlineReturnPolicy_sync]
