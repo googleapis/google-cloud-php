@@ -204,7 +204,9 @@ class KeyRangeLocation extends \Google\Protobuf\Internal\Message
      */
     public function getDeprecatedPersistentDirectory()
     {
-        @trigger_error('deprecated_persistent_directory is deprecated.', E_USER_DEPRECATED);
+        if ($this->deprecated_persistent_directory !== '') {
+            @trigger_error('deprecated_persistent_directory is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->deprecated_persistent_directory;
     }
 

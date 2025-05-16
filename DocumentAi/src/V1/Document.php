@@ -324,7 +324,9 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     public function getTextStyles()
     {
-        @trigger_error('text_styles is deprecated.', E_USER_DEPRECATED);
+        if ($this->text_styles->count() !== 0) {
+            @trigger_error('text_styles is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->text_styles;
     }
 
@@ -338,8 +340,10 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     public function setTextStyles($var)
     {
-        @trigger_error('text_styles is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DocumentAI\V1\Document\Style::class);
+        if ($arr->count() !== 0) {
+            @trigger_error('text_styles is deprecated.', E_USER_DEPRECATED);
+        }
         $this->text_styles = $arr;
 
         return $this;
