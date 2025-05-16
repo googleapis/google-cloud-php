@@ -660,7 +660,9 @@ class DatasetConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSkipVerificationAndIngest()
     {
-        @trigger_error('skip_verification_and_ingest is deprecated.', E_USER_DEPRECATED);
+        if ($this->skip_verification_and_ingest !== false) {
+            @trigger_error('skip_verification_and_ingest is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->skip_verification_and_ingest;
     }
 

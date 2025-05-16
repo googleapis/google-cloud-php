@@ -216,7 +216,9 @@ class Comment extends \Google\Protobuf\Internal\Message
      */
     public function getPlainTextBody()
     {
-        @trigger_error('plain_text_body is deprecated.', E_USER_DEPRECATED);
+        if ($this->plain_text_body !== '') {
+            @trigger_error('plain_text_body is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->plain_text_body;
     }
 

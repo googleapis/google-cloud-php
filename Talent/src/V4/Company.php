@@ -515,7 +515,9 @@ class Company extends \Google\Protobuf\Internal\Message
      */
     public function getKeywordSearchableJobCustomAttributes()
     {
-        @trigger_error('keyword_searchable_job_custom_attributes is deprecated.', E_USER_DEPRECATED);
+        if ($this->keyword_searchable_job_custom_attributes->count() !== 0) {
+            @trigger_error('keyword_searchable_job_custom_attributes is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->keyword_searchable_job_custom_attributes;
     }
 
@@ -539,8 +541,10 @@ class Company extends \Google\Protobuf\Internal\Message
      */
     public function setKeywordSearchableJobCustomAttributes($var)
     {
-        @trigger_error('keyword_searchable_job_custom_attributes is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        if ($arr->count() !== 0) {
+            @trigger_error('keyword_searchable_job_custom_attributes is deprecated.', E_USER_DEPRECATED);
+        }
         $this->keyword_searchable_job_custom_attributes = $arr;
 
         return $this;

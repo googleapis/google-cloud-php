@@ -184,7 +184,9 @@ class BucketErrors extends \Google\Protobuf\Internal\Message
      */
     public function getNonManagementHubEntitledCount()
     {
-        @trigger_error('non_management_hub_entitled_count is deprecated.', E_USER_DEPRECATED);
+        if ($this->non_management_hub_entitled_count !== 0) {
+            @trigger_error('non_management_hub_entitled_count is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->non_management_hub_entitled_count;
     }
 

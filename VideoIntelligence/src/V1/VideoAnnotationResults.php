@@ -425,7 +425,9 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      */
     public function getFaceAnnotations()
     {
-        @trigger_error('face_annotations is deprecated.', E_USER_DEPRECATED);
+        if ($this->face_annotations->count() !== 0) {
+            @trigger_error('face_annotations is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->face_annotations;
     }
 
@@ -439,8 +441,10 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      */
     public function setFaceAnnotations($var)
     {
-        @trigger_error('face_annotations is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VideoIntelligence\V1\FaceAnnotation::class);
+        if ($arr->count() !== 0) {
+            @trigger_error('face_annotations is deprecated.', E_USER_DEPRECATED);
+        }
         $this->face_annotations = $arr;
 
         return $this;

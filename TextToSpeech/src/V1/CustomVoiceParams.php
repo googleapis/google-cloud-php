@@ -81,7 +81,9 @@ class CustomVoiceParams extends \Google\Protobuf\Internal\Message
      */
     public function getReportedUsage()
     {
-        @trigger_error('reported_usage is deprecated.', E_USER_DEPRECATED);
+        if ($this->reported_usage !== 0) {
+            @trigger_error('reported_usage is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->reported_usage;
     }
 

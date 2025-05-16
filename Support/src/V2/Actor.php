@@ -131,7 +131,9 @@ class Actor extends \Google\Protobuf\Internal\Message
      */
     public function getEmail()
     {
-        @trigger_error('email is deprecated.', E_USER_DEPRECATED);
+        if ($this->email !== '') {
+            @trigger_error('email is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->email;
     }
 
