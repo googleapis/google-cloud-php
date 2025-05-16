@@ -1028,7 +1028,9 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      */
     public function getBreakRules()
     {
-        @trigger_error('break_rules is deprecated.', E_USER_DEPRECATED);
+        if ($this->break_rules->count() !== 0) {
+            @trigger_error('break_rules is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->break_rules;
     }
 
@@ -1046,8 +1048,10 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      */
     public function setBreakRules($var)
     {
-        @trigger_error('break_rules is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Optimization\V1\ShipmentModel\BreakRule::class);
+        if ($arr->count() !== 0) {
+            @trigger_error('break_rules is deprecated.', E_USER_DEPRECATED);
+        }
         $this->break_rules = $arr;
 
         return $this;

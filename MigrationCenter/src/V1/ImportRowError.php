@@ -71,7 +71,9 @@ class ImportRowError extends \Google\Protobuf\Internal\Message
      */
     public function getRowNumber()
     {
-        @trigger_error('row_number is deprecated.', E_USER_DEPRECATED);
+        if ($this->row_number !== 0) {
+            @trigger_error('row_number is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->row_number;
     }
 
