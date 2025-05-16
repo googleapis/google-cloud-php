@@ -237,6 +237,4 @@ class BackupRetentionPolicy extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BackupRetentionPolicy::class, \Google\Cloud\NetApp\V1\BackupVault_BackupRetentionPolicy::class);
 

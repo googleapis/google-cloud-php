@@ -84,6 +84,12 @@ class BackupVault extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string destination_backup_vault = 10 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     protected $destination_backup_vault = '';
+    /**
+     * Optional. Backup retention policy defining the retenton of backups.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy backup_retention_policy = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $backup_retention_policy = null;
 
     /**
      * Constructor.
@@ -120,6 +126,8 @@ class BackupVault extends \Google\Protobuf\Internal\Message
      *           Output only. Name of the Backup vault created in backup region.
      *           Format:
      *           `projects/{project_id}/locations/{location}/backupVaults/{backup_vault_id}`
+     *     @type \Google\Cloud\NetApp\V1\BackupVault\BackupRetentionPolicy $backup_retention_policy
+     *           Optional. Backup retention policy defining the retenton of backups.
      * }
      */
     public function __construct($data = NULL) {
@@ -411,6 +419,42 @@ class BackupVault extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->destination_backup_vault = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Backup retention policy defining the retenton of backups.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy backup_retention_policy = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\NetApp\V1\BackupVault\BackupRetentionPolicy|null
+     */
+    public function getBackupRetentionPolicy()
+    {
+        return $this->backup_retention_policy;
+    }
+
+    public function hasBackupRetentionPolicy()
+    {
+        return isset($this->backup_retention_policy);
+    }
+
+    public function clearBackupRetentionPolicy()
+    {
+        unset($this->backup_retention_policy);
+    }
+
+    /**
+     * Optional. Backup retention policy defining the retenton of backups.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy backup_retention_policy = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\NetApp\V1\BackupVault\BackupRetentionPolicy $var
+     * @return $this
+     */
+    public function setBackupRetentionPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetApp\V1\BackupVault\BackupRetentionPolicy::class);
+        $this->backup_retention_policy = $var;
 
         return $this;
     }
