@@ -1455,6 +1455,9 @@ class NetAppClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $satisfiesPzs = false;
         $satisfiesPzi = false;
+        $customPerformanceEnabled = true;
+        $totalThroughputMibps = 2085075953;
+        $totalIops = 705711676;
         $expectedResponse = new StoragePool();
         $expectedResponse->setName($name);
         $expectedResponse->setCapacityGib($capacityGib);
@@ -1473,6 +1476,9 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setZone($zone);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setCustomPerformanceEnabled($customPerformanceEnabled);
+        $expectedResponse->setTotalThroughputMibps($totalThroughputMibps);
+        $expectedResponse->setTotalIops($totalIops);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -3957,6 +3963,9 @@ class NetAppClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $satisfiesPzs = false;
         $satisfiesPzi = false;
+        $customPerformanceEnabled = true;
+        $totalThroughputMibps = 2085075953;
+        $totalIops = 705711676;
         $expectedResponse = new StoragePool();
         $expectedResponse->setName($name2);
         $expectedResponse->setCapacityGib($capacityGib);
@@ -3975,6 +3984,9 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setZone($zone);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setCustomPerformanceEnabled($customPerformanceEnabled);
+        $expectedResponse->setTotalThroughputMibps($totalThroughputMibps);
+        $expectedResponse->setTotalIops($totalIops);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
@@ -5461,6 +5473,9 @@ class NetAppClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $satisfiesPzs = false;
         $satisfiesPzi = false;
+        $customPerformanceEnabled = true;
+        $totalThroughputMibps = 2085075953;
+        $totalIops = 705711676;
         $expectedResponse = new StoragePool();
         $expectedResponse->setName($name2);
         $expectedResponse->setCapacityGib($capacityGib);
@@ -5479,6 +5494,9 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setZone($zone);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setCustomPerformanceEnabled($customPerformanceEnabled);
+        $expectedResponse->setTotalThroughputMibps($totalThroughputMibps);
+        $expectedResponse->setTotalIops($totalIops);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -6935,6 +6953,9 @@ class NetAppClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $satisfiesPzs = false;
         $satisfiesPzi = false;
+        $customPerformanceEnabled = true;
+        $totalThroughputMibps = 2085075953;
+        $totalIops = 705711676;
         $expectedResponse = new StoragePool();
         $expectedResponse->setName($name);
         $expectedResponse->setCapacityGib($capacityGib);
@@ -6953,6 +6974,9 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setZone($zone);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setCustomPerformanceEnabled($customPerformanceEnabled);
+        $expectedResponse->setTotalThroughputMibps($totalThroughputMibps);
+        $expectedResponse->setTotalIops($totalIops);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

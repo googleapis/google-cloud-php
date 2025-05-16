@@ -156,6 +156,26 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool satisfies_pzi = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $satisfies_pzi = false;
+    /**
+     * Optional. True if using Independent Scaling of capacity and performance
+     * (Hyperdisk) By default set to false
+     *
+     * Generated from protobuf field <code>bool custom_performance_enabled = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $custom_performance_enabled = false;
+    /**
+     * Optional. Custom Performance Total Throughput of the pool (in MiB/s)
+     *
+     * Generated from protobuf field <code>int64 total_throughput_mibps = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $total_throughput_mibps = 0;
+    /**
+     * Optional. Custom Performance Total IOPS of the pool
+     * If not provided, it will be calculated based on the total_throughput_mibps
+     *
+     * Generated from protobuf field <code>int64 total_iops = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $total_iops = 0;
 
     /**
      * Constructor.
@@ -213,6 +233,14 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      *           Output only. Reserved for future use
      *     @type bool $satisfies_pzi
      *           Output only. Reserved for future use
+     *     @type bool $custom_performance_enabled
+     *           Optional. True if using Independent Scaling of capacity and performance
+     *           (Hyperdisk) By default set to false
+     *     @type int|string $total_throughput_mibps
+     *           Optional. Custom Performance Total Throughput of the pool (in MiB/s)
+     *     @type int|string $total_iops
+     *           Optional. Custom Performance Total IOPS of the pool
+     *           If not provided, it will be calculated based on the total_throughput_mibps
      * }
      */
     public function __construct($data = NULL) {
@@ -826,6 +854,88 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzi = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. True if using Independent Scaling of capacity and performance
+     * (Hyperdisk) By default set to false
+     *
+     * Generated from protobuf field <code>bool custom_performance_enabled = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getCustomPerformanceEnabled()
+    {
+        return $this->custom_performance_enabled;
+    }
+
+    /**
+     * Optional. True if using Independent Scaling of capacity and performance
+     * (Hyperdisk) By default set to false
+     *
+     * Generated from protobuf field <code>bool custom_performance_enabled = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setCustomPerformanceEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->custom_performance_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Custom Performance Total Throughput of the pool (in MiB/s)
+     *
+     * Generated from protobuf field <code>int64 total_throughput_mibps = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getTotalThroughputMibps()
+    {
+        return $this->total_throughput_mibps;
+    }
+
+    /**
+     * Optional. Custom Performance Total Throughput of the pool (in MiB/s)
+     *
+     * Generated from protobuf field <code>int64 total_throughput_mibps = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setTotalThroughputMibps($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->total_throughput_mibps = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Custom Performance Total IOPS of the pool
+     * If not provided, it will be calculated based on the total_throughput_mibps
+     *
+     * Generated from protobuf field <code>int64 total_iops = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getTotalIops()
+    {
+        return $this->total_iops;
+    }
+
+    /**
+     * Optional. Custom Performance Total IOPS of the pool
+     * If not provided, it will be calculated based on the total_throughput_mibps
+     *
+     * Generated from protobuf field <code>int64 total_iops = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setTotalIops($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->total_iops = $var;
 
         return $this;
     }
