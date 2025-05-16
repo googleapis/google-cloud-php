@@ -745,12 +745,14 @@ class DataformClientTest extends GeneratedTest
         $releaseConfig = 'releaseConfig582587002';
         $cronSchedule = 'cronSchedule206244136';
         $timeZone = 'timeZone36848094';
+        $disabled = true;
         $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new WorkflowConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setReleaseConfig($releaseConfig);
         $expectedResponse->setCronSchedule($cronSchedule);
         $expectedResponse->setTimeZone($timeZone);
+        $expectedResponse->setDisabled($disabled);
         $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -1973,12 +1975,14 @@ class DataformClientTest extends GeneratedTest
         $releaseConfig = 'releaseConfig582587002';
         $cronSchedule = 'cronSchedule206244136';
         $timeZone = 'timeZone36848094';
+        $disabled = true;
         $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new WorkflowConfig();
         $expectedResponse->setName($name2);
         $expectedResponse->setReleaseConfig($releaseConfig);
         $expectedResponse->setCronSchedule($cronSchedule);
         $expectedResponse->setTimeZone($timeZone);
+        $expectedResponse->setDisabled($disabled);
         $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -3987,12 +3991,14 @@ class DataformClientTest extends GeneratedTest
         $releaseConfig = 'releaseConfig582587002';
         $cronSchedule = 'cronSchedule206244136';
         $timeZone = 'timeZone36848094';
+        $disabled = true;
         $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new WorkflowConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setReleaseConfig($releaseConfig);
         $expectedResponse->setCronSchedule($cronSchedule);
         $expectedResponse->setTimeZone($timeZone);
+        $expectedResponse->setDisabled($disabled);
         $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request

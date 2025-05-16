@@ -72,6 +72,8 @@ class WorkflowInvocationAction extends \Google\Protobuf\Internal\Message
      *           Output only. The workflow action's bigquery action details.
      *     @type \Google\Cloud\Dataform\V1beta1\WorkflowInvocationAction\NotebookAction $notebook_action
      *           Output only. The workflow action's notebook action details.
+     *     @type \Google\Cloud\Dataform\V1beta1\WorkflowInvocationAction\DataPreparationAction $data_preparation_action
+     *           Output only. The workflow action's data preparation action details.
      *     @type \Google\Cloud\Dataform\V1beta1\Target $target
      *           Output only. This action's identifier. Unique within the workflow
      *           invocation.
@@ -158,6 +160,37 @@ class WorkflowInvocationAction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\WorkflowInvocationAction\NotebookAction::class);
         $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. The workflow action's data preparation action details.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.WorkflowInvocationAction.DataPreparationAction data_preparation_action = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataform\V1beta1\WorkflowInvocationAction\DataPreparationAction|null
+     */
+    public function getDataPreparationAction()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasDataPreparationAction()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * Output only. The workflow action's data preparation action details.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.WorkflowInvocationAction.DataPreparationAction data_preparation_action = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataform\V1beta1\WorkflowInvocationAction\DataPreparationAction $var
+     * @return $this
+     */
+    public function setDataPreparationAction($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\WorkflowInvocationAction\DataPreparationAction::class);
+        $this->writeOneof(9, $var);
 
         return $this;
     }
