@@ -225,7 +225,9 @@ class BatchRecognizeFileResult extends \Google\Protobuf\Internal\Message
      */
     public function getUri()
     {
-        @trigger_error('uri is deprecated.', E_USER_DEPRECATED);
+        if ($this->uri !== '') {
+            @trigger_error('uri is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->uri;
     }
 
@@ -255,13 +257,17 @@ class BatchRecognizeFileResult extends \Google\Protobuf\Internal\Message
      */
     public function getTranscript()
     {
-        @trigger_error('transcript is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->transcript)) {
+            @trigger_error('transcript is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->transcript;
     }
 
     public function hasTranscript()
     {
-        @trigger_error('transcript is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->transcript)) {
+            @trigger_error('transcript is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->transcript);
     }
 

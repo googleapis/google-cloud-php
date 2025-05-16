@@ -1363,7 +1363,9 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDisableKeywordMatch()
     {
-        @trigger_error('disable_keyword_match is deprecated.', E_USER_DEPRECATED);
+        if ($this->disable_keyword_match !== false) {
+            @trigger_error('disable_keyword_match is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->disable_keyword_match;
     }
 

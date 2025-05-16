@@ -338,7 +338,9 @@ class Recognizer extends \Google\Protobuf\Internal\Message
      */
     public function getModel()
     {
-        @trigger_error('model is deprecated.', E_USER_DEPRECATED);
+        if ($this->model !== '') {
+            @trigger_error('model is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->model;
     }
 
@@ -391,7 +393,9 @@ class Recognizer extends \Google\Protobuf\Internal\Message
      */
     public function getLanguageCodes()
     {
-        @trigger_error('language_codes is deprecated.', E_USER_DEPRECATED);
+        if ($this->language_codes->count() !== 0) {
+            @trigger_error('language_codes is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->language_codes;
     }
 
@@ -418,8 +422,10 @@ class Recognizer extends \Google\Protobuf\Internal\Message
      */
     public function setLanguageCodes($var)
     {
-        @trigger_error('language_codes is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        if ($arr->count() !== 0) {
+            @trigger_error('language_codes is deprecated.', E_USER_DEPRECATED);
+        }
         $this->language_codes = $arr;
 
         return $this;

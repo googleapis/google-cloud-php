@@ -245,13 +245,17 @@ class SqlBakExportOptions extends \Google\Protobuf\Internal\Message
      */
     public function getCopyOnly()
     {
-        @trigger_error('copy_only is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->copy_only)) {
+            @trigger_error('copy_only is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->copy_only;
     }
 
     public function hasCopyOnly()
     {
-        @trigger_error('copy_only is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->copy_only)) {
+            @trigger_error('copy_only is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->copy_only);
     }
 
@@ -271,7 +275,9 @@ class SqlBakExportOptions extends \Google\Protobuf\Internal\Message
      */
     public function getCopyOnlyUnwrapped()
     {
-        @trigger_error('copy_only is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->copy_only)) {
+            @trigger_error('copy_only is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readWrapperValue("copy_only");
     }
 

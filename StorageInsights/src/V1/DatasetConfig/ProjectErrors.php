@@ -225,13 +225,17 @@ class ProjectErrors extends \Google\Protobuf\Internal\Message
      */
     public function getNonManagementHubEntitledErrorCount()
     {
-        @trigger_error('non_management_hub_entitled_error_count is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->non_management_hub_entitled_error_count)) {
+            @trigger_error('non_management_hub_entitled_error_count is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->non_management_hub_entitled_error_count) ? $this->non_management_hub_entitled_error_count : 0;
     }
 
     public function hasNonManagementHubEntitledErrorCount()
     {
-        @trigger_error('non_management_hub_entitled_error_count is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->non_management_hub_entitled_error_count)) {
+            @trigger_error('non_management_hub_entitled_error_count is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->non_management_hub_entitled_error_count);
     }
 
@@ -269,7 +273,9 @@ class ProjectErrors extends \Google\Protobuf\Internal\Message
      */
     public function getNonManagementHubEntitledProjectNumbers()
     {
-        @trigger_error('non_management_hub_entitled_project_numbers is deprecated.', E_USER_DEPRECATED);
+        if ($this->non_management_hub_entitled_project_numbers->count() !== 0) {
+            @trigger_error('non_management_hub_entitled_project_numbers is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->non_management_hub_entitled_project_numbers;
     }
 
@@ -284,8 +290,10 @@ class ProjectErrors extends \Google\Protobuf\Internal\Message
      */
     public function setNonManagementHubEntitledProjectNumbers($var)
     {
-        @trigger_error('non_management_hub_entitled_project_numbers is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT64);
+        if ($arr->count() !== 0) {
+            @trigger_error('non_management_hub_entitled_project_numbers is deprecated.', E_USER_DEPRECATED);
+        }
         $this->non_management_hub_entitled_project_numbers = $arr;
 
         return $this;

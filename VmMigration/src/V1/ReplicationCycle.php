@@ -278,7 +278,9 @@ class ReplicationCycle extends \Google\Protobuf\Internal\Message
      */
     public function getProgressPercent()
     {
-        @trigger_error('progress_percent is deprecated.', E_USER_DEPRECATED);
+        if ($this->progress_percent !== 0) {
+            @trigger_error('progress_percent is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->progress_percent;
     }
 

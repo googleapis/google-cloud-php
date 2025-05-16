@@ -483,7 +483,9 @@ class Settings extends \Google\Protobuf\Internal\Message
      */
     public function getAuthorizedGaeApplications()
     {
-        @trigger_error('authorized_gae_applications is deprecated.', E_USER_DEPRECATED);
+        if ($this->authorized_gae_applications->count() !== 0) {
+            @trigger_error('authorized_gae_applications is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->authorized_gae_applications;
     }
 
@@ -498,8 +500,10 @@ class Settings extends \Google\Protobuf\Internal\Message
      */
     public function setAuthorizedGaeApplications($var)
     {
-        @trigger_error('authorized_gae_applications is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        if ($arr->count() !== 0) {
+            @trigger_error('authorized_gae_applications is deprecated.', E_USER_DEPRECATED);
+        }
         $this->authorized_gae_applications = $arr;
 
         return $this;
@@ -664,7 +668,9 @@ class Settings extends \Google\Protobuf\Internal\Message
      */
     public function getReplicationType()
     {
-        @trigger_error('replication_type is deprecated.', E_USER_DEPRECATED);
+        if ($this->replication_type !== 0) {
+            @trigger_error('replication_type is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->replication_type;
     }
 
@@ -1149,13 +1155,17 @@ class Settings extends \Google\Protobuf\Internal\Message
      */
     public function getCrashSafeReplicationEnabled()
     {
-        @trigger_error('crash_safe_replication_enabled is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->crash_safe_replication_enabled)) {
+            @trigger_error('crash_safe_replication_enabled is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->crash_safe_replication_enabled;
     }
 
     public function hasCrashSafeReplicationEnabled()
     {
-        @trigger_error('crash_safe_replication_enabled is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->crash_safe_replication_enabled)) {
+            @trigger_error('crash_safe_replication_enabled is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->crash_safe_replication_enabled);
     }
 
@@ -1177,7 +1187,9 @@ class Settings extends \Google\Protobuf\Internal\Message
      */
     public function getCrashSafeReplicationEnabledUnwrapped()
     {
-        @trigger_error('crash_safe_replication_enabled is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->crash_safe_replication_enabled)) {
+            @trigger_error('crash_safe_replication_enabled is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readWrapperValue("crash_safe_replication_enabled");
     }
 
