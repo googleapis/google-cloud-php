@@ -211,6 +211,25 @@
                 }
             }
         },
+        "GbpAccountsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "GbpAccountsServiceGapicClient",
+                    "rpcs": {
+                        "LinkGbpAccount": {
+                            "methods": [
+                                "linkGbpAccount"
+                            ]
+                        },
+                        "ListGbpAccounts": {
+                            "methods": [
+                                "listGbpAccounts"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "HomepageService": {
             "clients": {
                 "grpc": {
@@ -234,6 +253,59 @@
                         "UpdateHomepage": {
                             "methods": [
                                 "updateHomepage"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "LfpProvidersService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "LfpProvidersServiceGapicClient",
+                    "rpcs": {
+                        "FindLfpProviders": {
+                            "methods": [
+                                "findLfpProviders"
+                            ]
+                        },
+                        "LinkLfpProvider": {
+                            "methods": [
+                                "linkLfpProvider"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "OmnichannelSettingsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "OmnichannelSettingsServiceGapicClient",
+                    "rpcs": {
+                        "CreateOmnichannelSetting": {
+                            "methods": [
+                                "createOmnichannelSetting"
+                            ]
+                        },
+                        "GetOmnichannelSetting": {
+                            "methods": [
+                                "getOmnichannelSetting"
+                            ]
+                        },
+                        "ListOmnichannelSettings": {
+                            "methods": [
+                                "listOmnichannelSettings"
+                            ]
+                        },
+                        "RequestInventoryVerification": {
+                            "methods": [
+                                "requestInventoryVerification"
+                            ]
+                        },
+                        "UpdateOmnichannelSetting": {
+                            "methods": [
+                                "updateOmnichannelSetting"
                             ]
                         }
                     }
