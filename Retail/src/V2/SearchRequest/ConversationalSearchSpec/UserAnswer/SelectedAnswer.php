@@ -58,7 +58,9 @@ class SelectedAnswer extends \Google\Protobuf\Internal\Message
      */
     public function getProductAttributeValues()
     {
-        @trigger_error('product_attribute_values is deprecated.', E_USER_DEPRECATED);
+        if ($this->product_attribute_values->count() !== 0) {
+            @trigger_error('product_attribute_values is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->product_attribute_values;
     }
 
@@ -72,8 +74,10 @@ class SelectedAnswer extends \Google\Protobuf\Internal\Message
      */
     public function setProductAttributeValues($var)
     {
-        @trigger_error('product_attribute_values is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Retail\V2\ProductAttributeValue::class);
+        if ($arr->count() !== 0) {
+            @trigger_error('product_attribute_values is deprecated.', E_USER_DEPRECATED);
+        }
         $this->product_attribute_values = $arr;
 
         return $this;

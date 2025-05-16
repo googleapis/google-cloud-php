@@ -487,7 +487,9 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
      */
     public function getCosts()
     {
-        @trigger_error('costs is deprecated.', E_USER_DEPRECATED);
+        if ($this->costs->count() !== 0) {
+            @trigger_error('costs is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->costs;
     }
 
@@ -505,8 +507,10 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
      */
     public function setCosts($var)
     {
-        @trigger_error('costs is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::DOUBLE);
+        if ($arr->count() !== 0) {
+            @trigger_error('costs is deprecated.', E_USER_DEPRECATED);
+        }
         $this->costs = $arr;
 
         return $this;
@@ -525,7 +529,9 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
      */
     public function getTotalCost()
     {
-        @trigger_error('total_cost is deprecated.', E_USER_DEPRECATED);
+        if ($this->total_cost !== 0.0) {
+            @trigger_error('total_cost is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->total_cost;
     }
 

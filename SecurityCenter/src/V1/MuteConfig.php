@@ -218,7 +218,9 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
      */
     public function getDisplayName()
     {
-        @trigger_error('display_name is deprecated.', E_USER_DEPRECATED);
+        if ($this->display_name !== '') {
+            @trigger_error('display_name is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->display_name;
     }
 

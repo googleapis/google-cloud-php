@@ -690,13 +690,17 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      */
     public function getGlobalAccessAllowed()
     {
-        @trigger_error('global_access_allowed is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->global_access_allowed)) {
+            @trigger_error('global_access_allowed is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->global_access_allowed) ? $this->global_access_allowed : false;
     }
 
     public function hasGlobalAccessAllowed()
     {
-        @trigger_error('global_access_allowed is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->global_access_allowed)) {
+            @trigger_error('global_access_allowed is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->global_access_allowed);
     }
 

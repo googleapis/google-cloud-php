@@ -185,7 +185,9 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
      */
     public function getConsumerId()
     {
-        @trigger_error('consumer_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->consumer_id !== '') {
+            @trigger_error('consumer_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->consumer_id;
     }
 
