@@ -188,13 +188,17 @@ class Policy extends \Google\Protobuf\Internal\Message
      */
     public function getAlternate()
     {
-        @trigger_error('alternate is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->alternate)) {
+            @trigger_error('alternate is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->alternate;
     }
 
     public function hasAlternate()
     {
-        @trigger_error('alternate is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->alternate)) {
+            @trigger_error('alternate is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->alternate);
     }
 

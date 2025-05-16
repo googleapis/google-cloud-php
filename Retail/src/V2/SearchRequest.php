@@ -1059,13 +1059,17 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDynamicFacetSpec()
     {
-        @trigger_error('dynamic_facet_spec is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->dynamic_facet_spec)) {
+            @trigger_error('dynamic_facet_spec is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->dynamic_facet_spec;
     }
 
     public function hasDynamicFacetSpec()
     {
-        @trigger_error('dynamic_facet_spec is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->dynamic_facet_spec)) {
+            @trigger_error('dynamic_facet_spec is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->dynamic_facet_spec);
     }
 

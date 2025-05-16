@@ -189,7 +189,9 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      */
     public function getRecentSearchResults()
     {
-        @trigger_error('recent_search_results is deprecated.', E_USER_DEPRECATED);
+        if ($this->recent_search_results->count() !== 0) {
+            @trigger_error('recent_search_results is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->recent_search_results;
     }
 
@@ -217,8 +219,10 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      */
     public function setRecentSearchResults($var)
     {
-        @trigger_error('recent_search_results is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Retail\V2\CompleteQueryResponse\RecentSearchResult::class);
+        if ($arr->count() !== 0) {
+            @trigger_error('recent_search_results is deprecated.', E_USER_DEPRECATED);
+        }
         $this->recent_search_results = $arr;
 
         return $this;

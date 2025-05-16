@@ -1450,7 +1450,9 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      */
     public function getBreakRuleIndices()
     {
-        @trigger_error('break_rule_indices is deprecated.', E_USER_DEPRECATED);
+        if ($this->break_rule_indices->count() !== 0) {
+            @trigger_error('break_rule_indices is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->break_rule_indices;
     }
 
@@ -1468,8 +1470,10 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      */
     public function setBreakRuleIndices($var)
     {
-        @trigger_error('break_rule_indices is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT32);
+        if ($arr->count() !== 0) {
+            @trigger_error('break_rule_indices is deprecated.', E_USER_DEPRECATED);
+        }
         $this->break_rule_indices = $arr;
 
         return $this;
@@ -1486,7 +1490,9 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      */
     public function getCapacities()
     {
-        @trigger_error('capacities is deprecated.', E_USER_DEPRECATED);
+        if ($this->capacities->count() !== 0) {
+            @trigger_error('capacities is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->capacities;
     }
 
@@ -1502,8 +1508,10 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      */
     public function setCapacities($var)
     {
-        @trigger_error('capacities is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Optimization\V1\CapacityQuantity::class);
+        if ($arr->count() !== 0) {
+            @trigger_error('capacities is deprecated.', E_USER_DEPRECATED);
+        }
         $this->capacities = $arr;
 
         return $this;
@@ -1520,7 +1528,9 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      */
     public function getStartLoadIntervals()
     {
-        @trigger_error('start_load_intervals is deprecated.', E_USER_DEPRECATED);
+        if ($this->start_load_intervals->count() !== 0) {
+            @trigger_error('start_load_intervals is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->start_load_intervals;
     }
 
@@ -1536,8 +1546,10 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      */
     public function setStartLoadIntervals($var)
     {
-        @trigger_error('start_load_intervals is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Optimization\V1\CapacityQuantityInterval::class);
+        if ($arr->count() !== 0) {
+            @trigger_error('start_load_intervals is deprecated.', E_USER_DEPRECATED);
+        }
         $this->start_load_intervals = $arr;
 
         return $this;
@@ -1554,7 +1566,9 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      */
     public function getEndLoadIntervals()
     {
-        @trigger_error('end_load_intervals is deprecated.', E_USER_DEPRECATED);
+        if ($this->end_load_intervals->count() !== 0) {
+            @trigger_error('end_load_intervals is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->end_load_intervals;
     }
 
@@ -1570,8 +1584,10 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      */
     public function setEndLoadIntervals($var)
     {
-        @trigger_error('end_load_intervals is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Optimization\V1\CapacityQuantityInterval::class);
+        if ($arr->count() !== 0) {
+            @trigger_error('end_load_intervals is deprecated.', E_USER_DEPRECATED);
+        }
         $this->end_load_intervals = $arr;
 
         return $this;

@@ -823,7 +823,9 @@ class Shipment extends \Google\Protobuf\Internal\Message
      */
     public function getDemands()
     {
-        @trigger_error('demands is deprecated.', E_USER_DEPRECATED);
+        if ($this->demands->count() !== 0) {
+            @trigger_error('demands is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->demands;
     }
 
@@ -839,8 +841,10 @@ class Shipment extends \Google\Protobuf\Internal\Message
      */
     public function setDemands($var)
     {
-        @trigger_error('demands is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Optimization\V1\CapacityQuantity::class);
+        if ($arr->count() !== 0) {
+            @trigger_error('demands is deprecated.', E_USER_DEPRECATED);
+        }
         $this->demands = $arr;
 
         return $this;

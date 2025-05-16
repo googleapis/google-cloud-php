@@ -788,7 +788,9 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      */
     public function getEndLoads()
     {
-        @trigger_error('end_loads is deprecated.', E_USER_DEPRECATED);
+        if ($this->end_loads->count() !== 0) {
+            @trigger_error('end_loads is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->end_loads;
     }
 
@@ -809,8 +811,10 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      */
     public function setEndLoads($var)
     {
-        @trigger_error('end_loads is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Optimization\V1\CapacityQuantity::class);
+        if ($arr->count() !== 0) {
+            @trigger_error('end_loads is deprecated.', E_USER_DEPRECATED);
+        }
         $this->end_loads = $arr;
 
         return $this;
@@ -827,7 +831,9 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      */
     public function getTravelSteps()
     {
-        @trigger_error('travel_steps is deprecated.', E_USER_DEPRECATED);
+        if ($this->travel_steps->count() !== 0) {
+            @trigger_error('travel_steps is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->travel_steps;
     }
 
@@ -843,8 +849,10 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      */
     public function setTravelSteps($var)
     {
-        @trigger_error('travel_steps is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Optimization\V1\ShipmentRoute\TravelStep::class);
+        if ($arr->count() !== 0) {
+            @trigger_error('travel_steps is deprecated.', E_USER_DEPRECATED);
+        }
         $this->travel_steps = $arr;
 
         return $this;
@@ -866,13 +874,17 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      */
     public function getVehicleDetour()
     {
-        @trigger_error('vehicle_detour is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->vehicle_detour)) {
+            @trigger_error('vehicle_detour is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->vehicle_detour;
     }
 
     public function hasVehicleDetour()
     {
-        @trigger_error('vehicle_detour is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->vehicle_detour)) {
+            @trigger_error('vehicle_detour is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->vehicle_detour);
     }
 
@@ -916,13 +928,17 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      */
     public function getDelayBeforeVehicleEnd()
     {
-        @trigger_error('delay_before_vehicle_end is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->delay_before_vehicle_end)) {
+            @trigger_error('delay_before_vehicle_end is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->delay_before_vehicle_end;
     }
 
     public function hasDelayBeforeVehicleEnd()
     {
-        @trigger_error('delay_before_vehicle_end is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->delay_before_vehicle_end)) {
+            @trigger_error('delay_before_vehicle_end is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->delay_before_vehicle_end);
     }
 

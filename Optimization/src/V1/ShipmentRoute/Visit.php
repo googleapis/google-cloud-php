@@ -491,7 +491,9 @@ class Visit extends \Google\Protobuf\Internal\Message
      */
     public function getArrivalLoads()
     {
-        @trigger_error('arrival_loads is deprecated.', E_USER_DEPRECATED);
+        if ($this->arrival_loads->count() !== 0) {
+            @trigger_error('arrival_loads is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->arrival_loads;
     }
 
@@ -512,8 +514,10 @@ class Visit extends \Google\Protobuf\Internal\Message
      */
     public function setArrivalLoads($var)
     {
-        @trigger_error('arrival_loads is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Optimization\V1\CapacityQuantity::class);
+        if ($arr->count() !== 0) {
+            @trigger_error('arrival_loads is deprecated.', E_USER_DEPRECATED);
+        }
         $this->arrival_loads = $arr;
 
         return $this;
@@ -530,13 +534,17 @@ class Visit extends \Google\Protobuf\Internal\Message
      */
     public function getDelayBeforeStart()
     {
-        @trigger_error('delay_before_start is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->delay_before_start)) {
+            @trigger_error('delay_before_start is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->delay_before_start;
     }
 
     public function hasDelayBeforeStart()
     {
-        @trigger_error('delay_before_start is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->delay_before_start)) {
+            @trigger_error('delay_before_start is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->delay_before_start);
     }
 
@@ -576,7 +584,9 @@ class Visit extends \Google\Protobuf\Internal\Message
      */
     public function getDemands()
     {
-        @trigger_error('demands is deprecated.', E_USER_DEPRECATED);
+        if ($this->demands->count() !== 0) {
+            @trigger_error('demands is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->demands;
     }
 
@@ -592,8 +602,10 @@ class Visit extends \Google\Protobuf\Internal\Message
      */
     public function setDemands($var)
     {
-        @trigger_error('demands is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Optimization\V1\CapacityQuantity::class);
+        if ($arr->count() !== 0) {
+            @trigger_error('demands is deprecated.', E_USER_DEPRECATED);
+        }
         $this->demands = $arr;
 
         return $this;

@@ -632,7 +632,9 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      */
     public function getIsInternal()
     {
-        @trigger_error('is_internal is deprecated.', E_USER_DEPRECATED);
+        if ($this->is_internal !== false) {
+            @trigger_error('is_internal is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->is_internal;
     }
 
@@ -668,7 +670,9 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      */
     public function getInternalCheckers()
     {
-        @trigger_error('internal_checkers is deprecated.', E_USER_DEPRECATED);
+        if ($this->internal_checkers->count() !== 0) {
+            @trigger_error('internal_checkers is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->internal_checkers;
     }
 
@@ -685,8 +689,10 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      */
     public function setInternalCheckers($var)
     {
-        @trigger_error('internal_checkers is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Monitoring\V3\InternalChecker::class);
+        if ($arr->count() !== 0) {
+            @trigger_error('internal_checkers is deprecated.', E_USER_DEPRECATED);
+        }
         $this->internal_checkers = $arr;
 
         return $this;
