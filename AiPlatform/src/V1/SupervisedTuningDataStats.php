@@ -195,7 +195,9 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
      */
     public function getTotalBillableCharacterCount()
     {
-        @trigger_error('total_billable_character_count is deprecated.', E_USER_DEPRECATED);
+        if ($this->total_billable_character_count !== 0) {
+            @trigger_error('total_billable_character_count is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->total_billable_character_count;
     }
 

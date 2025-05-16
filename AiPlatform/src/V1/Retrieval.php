@@ -117,7 +117,9 @@ class Retrieval extends \Google\Protobuf\Internal\Message
      */
     public function getDisableAttribution()
     {
-        @trigger_error('disable_attribution is deprecated.', E_USER_DEPRECATED);
+        if ($this->disable_attribution !== false) {
+            @trigger_error('disable_attribution is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->disable_attribution;
     }
 
