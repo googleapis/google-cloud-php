@@ -627,7 +627,9 @@ class Agent extends \Google\Protobuf\Internal\Message
      */
     public function getEnableStackdriverLogging()
     {
-        @trigger_error('enable_stackdriver_logging is deprecated.', E_USER_DEPRECATED);
+        if ($this->enable_stackdriver_logging !== false) {
+            @trigger_error('enable_stackdriver_logging is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->enable_stackdriver_logging;
     }
 

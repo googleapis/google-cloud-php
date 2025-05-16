@@ -312,13 +312,17 @@ class Instruction extends \Google\Protobuf\Internal\Message
      */
     public function getCsvInstruction()
     {
-        @trigger_error('csv_instruction is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->csv_instruction)) {
+            @trigger_error('csv_instruction is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->csv_instruction;
     }
 
     public function hasCsvInstruction()
     {
-        @trigger_error('csv_instruction is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->csv_instruction)) {
+            @trigger_error('csv_instruction is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->csv_instruction);
     }
 

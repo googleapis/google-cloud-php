@@ -194,7 +194,9 @@ class Revision extends \Google\Protobuf\Internal\Message
      */
     public function getParent()
     {
-        @trigger_error('parent is deprecated.', E_USER_DEPRECATED);
+        if ($this->parent->count() !== 0) {
+            @trigger_error('parent is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->parent;
     }
 
@@ -210,8 +212,10 @@ class Revision extends \Google\Protobuf\Internal\Message
      */
     public function setParent($var)
     {
-        @trigger_error('parent is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT32);
+        if ($arr->count() !== 0) {
+            @trigger_error('parent is deprecated.', E_USER_DEPRECATED);
+        }
         $this->parent = $arr;
 
         return $this;

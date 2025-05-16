@@ -145,7 +145,9 @@ class TextChange extends \Google\Protobuf\Internal\Message
      */
     public function getProvenance()
     {
-        @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
+        if ($this->provenance->count() !== 0) {
+            @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->provenance;
     }
 
@@ -159,8 +161,10 @@ class TextChange extends \Google\Protobuf\Internal\Message
      */
     public function setProvenance($var)
     {
-        @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DocumentAI\V1\Document\Provenance::class);
+        if ($arr->count() !== 0) {
+            @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
+        }
         $this->provenance = $arr;
 
         return $this;

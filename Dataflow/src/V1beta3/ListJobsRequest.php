@@ -160,7 +160,9 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getView()
     {
-        @trigger_error('view is deprecated.', E_USER_DEPRECATED);
+        if ($this->view !== 0) {
+            @trigger_error('view is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->view;
     }
 
