@@ -598,7 +598,9 @@ class NasJob extends \Google\Protobuf\Internal\Message
      */
     public function getEnableRestrictedImageTraining()
     {
-        @trigger_error('enable_restricted_image_training is deprecated.', E_USER_DEPRECATED);
+        if ($this->enable_restricted_image_training !== false) {
+            @trigger_error('enable_restricted_image_training is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->enable_restricted_image_training;
     }
 

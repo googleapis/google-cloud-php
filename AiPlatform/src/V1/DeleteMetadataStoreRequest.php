@@ -106,7 +106,9 @@ class DeleteMetadataStoreRequest extends \Google\Protobuf\Internal\Message
      */
     public function getForce()
     {
-        @trigger_error('force is deprecated.', E_USER_DEPRECATED);
+        if ($this->force !== false) {
+            @trigger_error('force is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->force;
     }
 
