@@ -183,7 +183,9 @@ class Zone extends \Google\Protobuf\Internal\Message
      */
     public function getLabels()
     {
-        @trigger_error('labels is deprecated.', E_USER_DEPRECATED);
+        if ($this->labels->count() !== 0) {
+            @trigger_error('labels is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->labels;
     }
 
@@ -198,8 +200,10 @@ class Zone extends \Google\Protobuf\Internal\Message
      */
     public function setLabels($var)
     {
-        @trigger_error('labels is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        if ($arr->count() !== 0) {
+            @trigger_error('labels is deprecated.', E_USER_DEPRECATED);
+        }
         $this->labels = $arr;
 
         return $this;
@@ -215,7 +219,9 @@ class Zone extends \Google\Protobuf\Internal\Message
      */
     public function getLayoutName()
     {
-        @trigger_error('layout_name is deprecated.', E_USER_DEPRECATED);
+        if ($this->layout_name !== '') {
+            @trigger_error('layout_name is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->layout_name;
     }
 

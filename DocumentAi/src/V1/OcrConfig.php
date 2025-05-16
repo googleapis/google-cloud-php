@@ -286,7 +286,9 @@ class OcrConfig extends \Google\Protobuf\Internal\Message
      */
     public function getComputeStyleInfo()
     {
-        @trigger_error('compute_style_info is deprecated.', E_USER_DEPRECATED);
+        if ($this->compute_style_info !== false) {
+            @trigger_error('compute_style_info is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->compute_style_info;
     }
 

@@ -234,7 +234,9 @@ class UnstructuredDocumentInfo extends \Google\Protobuf\Internal\Message
      */
     public function getExtractiveAnswers()
     {
-        @trigger_error('extractive_answers is deprecated.', E_USER_DEPRECATED);
+        if ($this->extractive_answers->count() !== 0) {
+            @trigger_error('extractive_answers is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->extractive_answers;
     }
 
@@ -251,8 +253,10 @@ class UnstructuredDocumentInfo extends \Google\Protobuf\Internal\Message
      */
     public function setExtractiveAnswers($var)
     {
-        @trigger_error('extractive_answers is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult\UnstructuredDocumentInfo\ExtractiveAnswer::class);
+        if ($arr->count() !== 0) {
+            @trigger_error('extractive_answers is deprecated.', E_USER_DEPRECATED);
+        }
         $this->extractive_answers = $arr;
 
         return $this;
