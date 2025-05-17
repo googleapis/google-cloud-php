@@ -1,0 +1,58 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.bigquery.connection.v1",
+    "libraryPackage": "Google\\Cloud\\BigQuery\\Connection\\V1",
+    "services": {
+        "ConnectionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ConnectionServiceGapicClient",
+                    "rpcs": {
+                        "CreateConnection": {
+                            "methods": [
+                                "createConnection"
+                            ]
+                        },
+                        "DeleteConnection": {
+                            "methods": [
+                                "deleteConnection"
+                            ]
+                        },
+                        "GetConnection": {
+                            "methods": [
+                                "getConnection"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "ListConnections": {
+                            "methods": [
+                                "listConnections"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UpdateConnection": {
+                            "methods": [
+                                "updateConnection"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
