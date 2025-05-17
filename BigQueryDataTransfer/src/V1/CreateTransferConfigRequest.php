@@ -271,7 +271,9 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAuthorizationCode()
     {
-        @trigger_error('authorization_code is deprecated.', E_USER_DEPRECATED);
+        if ($this->authorization_code !== '') {
+            @trigger_error('authorization_code is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->authorization_code;
     }
 

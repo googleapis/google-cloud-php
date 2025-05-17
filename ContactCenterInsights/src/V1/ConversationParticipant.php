@@ -139,7 +139,9 @@ class ConversationParticipant extends \Google\Protobuf\Internal\Message
      */
     public function getDialogflowParticipant()
     {
-        @trigger_error('dialogflow_participant is deprecated.', E_USER_DEPRECATED);
+        if ($this->dialogflow_participant !== '') {
+            @trigger_error('dialogflow_participant is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->dialogflow_participant;
     }
 

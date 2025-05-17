@@ -566,13 +566,17 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function getRelatedAssets()
     {
-        @trigger_error('related_assets is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->related_assets)) {
+            @trigger_error('related_assets is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->related_assets;
     }
 
     public function hasRelatedAssets()
     {
-        @trigger_error('related_assets is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->related_assets)) {
+            @trigger_error('related_assets is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->related_assets);
     }
 

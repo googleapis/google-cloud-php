@@ -256,13 +256,17 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      */
     public function getKubernetesDashboard()
     {
-        @trigger_error('kubernetes_dashboard is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->kubernetes_dashboard)) {
+            @trigger_error('kubernetes_dashboard is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->kubernetes_dashboard;
     }
 
     public function hasKubernetesDashboard()
     {
-        @trigger_error('kubernetes_dashboard is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->kubernetes_dashboard)) {
+            @trigger_error('kubernetes_dashboard is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->kubernetes_dashboard);
     }
 

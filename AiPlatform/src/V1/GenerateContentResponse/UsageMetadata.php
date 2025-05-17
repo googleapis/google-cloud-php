@@ -30,6 +30,12 @@ class UsageMetadata extends \Google\Protobuf\Internal\Message
      */
     protected $candidates_token_count = 0;
     /**
+     * Output only. Number of tokens present in thoughts output.
+     *
+     * Generated from protobuf field <code>int32 thoughts_token_count = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $thoughts_token_count = 0;
+    /**
      * Total token count for prompt and response candidates.
      *
      * Generated from protobuf field <code>int32 total_token_count = 3;</code>
@@ -74,6 +80,8 @@ class UsageMetadata extends \Google\Protobuf\Internal\Message
      *           tokens in the cached content.
      *     @type int $candidates_token_count
      *           Number of tokens in the response(s).
+     *     @type int $thoughts_token_count
+     *           Output only. Number of tokens present in thoughts output.
      *     @type int $total_token_count
      *           Total token count for prompt and response candidates.
      *     @type int $cached_content_token_count
@@ -145,6 +153,32 @@ class UsageMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->candidates_token_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Number of tokens present in thoughts output.
+     *
+     * Generated from protobuf field <code>int32 thoughts_token_count = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getThoughtsTokenCount()
+    {
+        return $this->thoughts_token_count;
+    }
+
+    /**
+     * Output only. Number of tokens present in thoughts output.
+     *
+     * Generated from protobuf field <code>int32 thoughts_token_count = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setThoughtsTokenCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->thoughts_token_count = $var;
 
         return $this;
     }
