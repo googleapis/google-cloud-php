@@ -134,7 +134,9 @@ class MasterAuth extends \Google\Protobuf\Internal\Message
      */
     public function getUsername()
     {
-        @trigger_error('username is deprecated.', E_USER_DEPRECATED);
+        if ($this->username !== '') {
+            @trigger_error('username is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->username;
     }
 
@@ -177,7 +179,9 @@ class MasterAuth extends \Google\Protobuf\Internal\Message
      */
     public function getPassword()
     {
-        @trigger_error('password is deprecated.', E_USER_DEPRECATED);
+        if ($this->password !== '') {
+            @trigger_error('password is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->password;
     }
 

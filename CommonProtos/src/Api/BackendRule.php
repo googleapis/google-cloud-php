@@ -288,7 +288,9 @@ class BackendRule extends \Google\Protobuf\Internal\Message
      */
     public function getMinDeadline()
     {
-        @trigger_error('min_deadline is deprecated.', E_USER_DEPRECATED);
+        if ($this->min_deadline !== 0.0) {
+            @trigger_error('min_deadline is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->min_deadline;
     }
 

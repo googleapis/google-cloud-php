@@ -305,13 +305,17 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      */
     public function getDiskTypeDeprecated()
     {
-        @trigger_error('disk_type_deprecated is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->disk_type_deprecated)) {
+            @trigger_error('disk_type_deprecated is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->disk_type_deprecated) ? $this->disk_type_deprecated : 0;
     }
 
     public function hasDiskTypeDeprecated()
     {
-        @trigger_error('disk_type_deprecated is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->disk_type_deprecated)) {
+            @trigger_error('disk_type_deprecated is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->disk_type_deprecated);
     }
 

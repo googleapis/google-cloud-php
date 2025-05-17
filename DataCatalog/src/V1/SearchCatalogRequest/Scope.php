@@ -284,7 +284,9 @@ class Scope extends \Google\Protobuf\Internal\Message
      */
     public function getIncludePublicTagTemplates()
     {
-        @trigger_error('include_public_tag_templates is deprecated.', E_USER_DEPRECATED);
+        if ($this->include_public_tag_templates !== false) {
+            @trigger_error('include_public_tag_templates is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->include_public_tag_templates;
     }
 

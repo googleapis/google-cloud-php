@@ -326,7 +326,9 @@ class Space extends \Google\Protobuf\Internal\Message
      */
     public function getType()
     {
-        @trigger_error('type is deprecated.', E_USER_DEPRECATED);
+        if ($this->type !== 0) {
+            @trigger_error('type is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->type;
     }
 
@@ -414,7 +416,9 @@ class Space extends \Google\Protobuf\Internal\Message
      */
     public function getThreaded()
     {
-        @trigger_error('threaded is deprecated.', E_USER_DEPRECATED);
+        if ($this->threaded !== false) {
+            @trigger_error('threaded is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->threaded;
     }
 

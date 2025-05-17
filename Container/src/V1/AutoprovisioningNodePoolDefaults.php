@@ -304,7 +304,9 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      */
     public function getMinCpuPlatform()
     {
-        @trigger_error('min_cpu_platform is deprecated.', E_USER_DEPRECATED);
+        if ($this->min_cpu_platform !== '') {
+            @trigger_error('min_cpu_platform is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->min_cpu_platform;
     }
 

@@ -134,13 +134,17 @@ class DecoratedText extends \Google\Protobuf\Internal\Message
      */
     public function getIcon()
     {
-        @trigger_error('icon is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->icon)) {
+            @trigger_error('icon is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->icon;
     }
 
     public function hasIcon()
     {
-        @trigger_error('icon is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->icon)) {
+            @trigger_error('icon is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->icon);
     }
 

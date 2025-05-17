@@ -152,13 +152,17 @@ class GerritSourceContext extends \Google\Protobuf\Internal\Message
      */
     public function getAliasName()
     {
-        @trigger_error('alias_name is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(4)) {
+            @trigger_error('alias_name is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(4);
     }
 
     public function hasAliasName()
     {
-        @trigger_error('alias_name is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(4)) {
+            @trigger_error('alias_name is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(4);
     }
 
