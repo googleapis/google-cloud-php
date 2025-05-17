@@ -112,13 +112,17 @@ class VertexRagStore extends \Google\Protobuf\Internal\Message
      */
     public function getSimilarityTopK()
     {
-        @trigger_error('similarity_top_k is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->similarity_top_k)) {
+            @trigger_error('similarity_top_k is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->similarity_top_k) ? $this->similarity_top_k : 0;
     }
 
     public function hasSimilarityTopK()
     {
-        @trigger_error('similarity_top_k is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->similarity_top_k)) {
+            @trigger_error('similarity_top_k is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->similarity_top_k);
     }
 
@@ -155,13 +159,17 @@ class VertexRagStore extends \Google\Protobuf\Internal\Message
      */
     public function getVectorDistanceThreshold()
     {
-        @trigger_error('vector_distance_threshold is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->vector_distance_threshold)) {
+            @trigger_error('vector_distance_threshold is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->vector_distance_threshold) ? $this->vector_distance_threshold : 0.0;
     }
 
     public function hasVectorDistanceThreshold()
     {
-        @trigger_error('vector_distance_threshold is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->vector_distance_threshold)) {
+            @trigger_error('vector_distance_threshold is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->vector_distance_threshold);
     }
 

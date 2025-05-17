@@ -109,13 +109,17 @@ class ResourceReference extends \Google\Protobuf\Internal\Message
      */
     public function getUseCase()
     {
-        @trigger_error('use_case is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(3)) {
+            @trigger_error('use_case is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(3);
     }
 
     public function hasUseCase()
     {
-        @trigger_error('use_case is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(3)) {
+            @trigger_error('use_case is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(3);
     }
 
@@ -145,13 +149,17 @@ class ResourceReference extends \Google\Protobuf\Internal\Message
      */
     public function getDescription()
     {
-        @trigger_error('description is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(4)) {
+            @trigger_error('description is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(4);
     }
 
     public function hasDescription()
     {
-        @trigger_error('description is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(4)) {
+            @trigger_error('description is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(4);
     }
 

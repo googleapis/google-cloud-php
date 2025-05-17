@@ -291,13 +291,17 @@ class ImportRagFilesConfig extends \Google\Protobuf\Internal\Message
      */
     public function getPartialFailureGcsSink()
     {
-        @trigger_error('partial_failure_gcs_sink is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(11)) {
+            @trigger_error('partial_failure_gcs_sink is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(11);
     }
 
     public function hasPartialFailureGcsSink()
     {
-        @trigger_error('partial_failure_gcs_sink is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(11)) {
+            @trigger_error('partial_failure_gcs_sink is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(11);
     }
 
@@ -334,13 +338,17 @@ class ImportRagFilesConfig extends \Google\Protobuf\Internal\Message
      */
     public function getPartialFailureBigquerySink()
     {
-        @trigger_error('partial_failure_bigquery_sink is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(12)) {
+            @trigger_error('partial_failure_bigquery_sink is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(12);
     }
 
     public function hasPartialFailureBigquerySink()
     {
-        @trigger_error('partial_failure_bigquery_sink is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(12)) {
+            @trigger_error('partial_failure_bigquery_sink is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(12);
     }
 
