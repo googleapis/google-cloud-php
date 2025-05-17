@@ -532,13 +532,17 @@ class Workload extends \Google\Protobuf\Internal\Message
      */
     public function getKmsSettings()
     {
-        @trigger_error('kms_settings is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->kms_settings)) {
+            @trigger_error('kms_settings is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->kms_settings;
     }
 
     public function hasKmsSettings()
     {
-        @trigger_error('kms_settings is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->kms_settings)) {
+            @trigger_error('kms_settings is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->kms_settings);
     }
 

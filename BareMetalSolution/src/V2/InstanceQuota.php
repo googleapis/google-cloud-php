@@ -110,7 +110,9 @@ class InstanceQuota extends \Google\Protobuf\Internal\Message
      */
     public function getInstanceType()
     {
-        @trigger_error('instance_type is deprecated.', E_USER_DEPRECATED);
+        if ($this->instance_type !== '') {
+            @trigger_error('instance_type is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->instance_type;
     }
 

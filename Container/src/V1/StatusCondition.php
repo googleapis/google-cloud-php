@@ -67,7 +67,9 @@ class StatusCondition extends \Google\Protobuf\Internal\Message
      */
     public function getCode()
     {
-        @trigger_error('code is deprecated.', E_USER_DEPRECATED);
+        if ($this->code !== 0) {
+            @trigger_error('code is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->code;
     }
 

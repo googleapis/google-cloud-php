@@ -48,13 +48,17 @@ class AwsProperties extends \Google\Protobuf\Internal\Message
      */
     public function getCrossAccountRole()
     {
-        @trigger_error('cross_account_role is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(2)) {
+            @trigger_error('cross_account_role is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(2);
     }
 
     public function hasCrossAccountRole()
     {
-        @trigger_error('cross_account_role is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(2)) {
+            @trigger_error('cross_account_role is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(2);
     }
 
