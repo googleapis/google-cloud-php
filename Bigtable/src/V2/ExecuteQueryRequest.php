@@ -266,7 +266,9 @@ class ExecuteQueryRequest extends \Google\Protobuf\Internal\Message
      */
     public function getQuery()
     {
-        @trigger_error('query is deprecated.', E_USER_DEPRECATED);
+        if ($this->query !== '') {
+            @trigger_error('query is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->query;
     }
 
@@ -337,13 +339,17 @@ class ExecuteQueryRequest extends \Google\Protobuf\Internal\Message
      */
     public function getProtoFormat()
     {
-        @trigger_error('proto_format is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(4)) {
+            @trigger_error('proto_format is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(4);
     }
 
     public function hasProtoFormat()
     {
-        @trigger_error('proto_format is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(4)) {
+            @trigger_error('proto_format is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(4);
     }
 

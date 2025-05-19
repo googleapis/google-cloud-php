@@ -121,13 +121,17 @@ class CloudRepoSourceContext extends \Google\Protobuf\Internal\Message
      */
     public function getAliasName()
     {
-        @trigger_error('alias_name is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(3)) {
+            @trigger_error('alias_name is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(3);
     }
 
     public function hasAliasName()
     {
-        @trigger_error('alias_name is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(3)) {
+            @trigger_error('alias_name is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(3);
     }
 

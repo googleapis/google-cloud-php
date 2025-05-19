@@ -85,7 +85,9 @@ class QueryDeployedModelsResponse extends \Google\Protobuf\Internal\Message
      */
     public function getDeployedModels()
     {
-        @trigger_error('deployed_models is deprecated.', E_USER_DEPRECATED);
+        if ($this->deployed_models->count() !== 0) {
+            @trigger_error('deployed_models is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->deployed_models;
     }
 
@@ -99,8 +101,10 @@ class QueryDeployedModelsResponse extends \Google\Protobuf\Internal\Message
      */
     public function setDeployedModels($var)
     {
-        @trigger_error('deployed_models is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\DeployedModel::class);
+        if ($arr->count() !== 0) {
+            @trigger_error('deployed_models is deprecated.', E_USER_DEPRECATED);
+        }
         $this->deployed_models = $arr;
 
         return $this;

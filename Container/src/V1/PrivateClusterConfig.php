@@ -163,7 +163,9 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getEnablePrivateNodes()
     {
-        @trigger_error('enable_private_nodes is deprecated.', E_USER_DEPRECATED);
+        if ($this->enable_private_nodes !== false) {
+            @trigger_error('enable_private_nodes is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->enable_private_nodes;
     }
 
@@ -202,7 +204,9 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getEnablePrivateEndpoint()
     {
-        @trigger_error('enable_private_endpoint is deprecated.', E_USER_DEPRECATED);
+        if ($this->enable_private_endpoint !== false) {
+            @trigger_error('enable_private_endpoint is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->enable_private_endpoint;
     }
 
@@ -271,7 +275,9 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getPrivateEndpoint()
     {
-        @trigger_error('private_endpoint is deprecated.', E_USER_DEPRECATED);
+        if ($this->private_endpoint !== '') {
+            @trigger_error('private_endpoint is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->private_endpoint;
     }
 
@@ -307,7 +313,9 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getPublicEndpoint()
     {
-        @trigger_error('public_endpoint is deprecated.', E_USER_DEPRECATED);
+        if ($this->public_endpoint !== '') {
+            @trigger_error('public_endpoint is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->public_endpoint;
     }
 
@@ -369,13 +377,17 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getMasterGlobalAccessConfig()
     {
-        @trigger_error('master_global_access_config is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->master_global_access_config)) {
+            @trigger_error('master_global_access_config is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->master_global_access_config;
     }
 
     public function hasMasterGlobalAccessConfig()
     {
-        @trigger_error('master_global_access_config is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->master_global_access_config)) {
+            @trigger_error('master_global_access_config is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->master_global_access_config);
     }
 
@@ -418,7 +430,9 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getPrivateEndpointSubnetwork()
     {
-        @trigger_error('private_endpoint_subnetwork is deprecated.', E_USER_DEPRECATED);
+        if ($this->private_endpoint_subnetwork !== '') {
+            @trigger_error('private_endpoint_subnetwork is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->private_endpoint_subnetwork;
     }
 

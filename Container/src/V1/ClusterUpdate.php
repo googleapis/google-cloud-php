@@ -1188,13 +1188,17 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredMasterAuthorizedNetworksConfig()
     {
-        @trigger_error('desired_master_authorized_networks_config is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->desired_master_authorized_networks_config)) {
+            @trigger_error('desired_master_authorized_networks_config is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->desired_master_authorized_networks_config;
     }
 
     public function hasDesiredMasterAuthorizedNetworksConfig()
     {
-        @trigger_error('desired_master_authorized_networks_config is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->desired_master_authorized_networks_config)) {
+            @trigger_error('desired_master_authorized_networks_config is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->desired_master_authorized_networks_config);
     }
 
@@ -1427,13 +1431,17 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredPrivateClusterConfig()
     {
-        @trigger_error('desired_private_cluster_config is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->desired_private_cluster_config)) {
+            @trigger_error('desired_private_cluster_config is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->desired_private_cluster_config;
     }
 
     public function hasDesiredPrivateClusterConfig()
     {
-        @trigger_error('desired_private_cluster_config is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->desired_private_cluster_config)) {
+            @trigger_error('desired_private_cluster_config is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->desired_private_cluster_config);
     }
 
@@ -1895,13 +1903,17 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredEnablePrivateEndpoint()
     {
-        @trigger_error('desired_enable_private_endpoint is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->desired_enable_private_endpoint)) {
+            @trigger_error('desired_enable_private_endpoint is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->desired_enable_private_endpoint) ? $this->desired_enable_private_endpoint : false;
     }
 
     public function hasDesiredEnablePrivateEndpoint()
     {
-        @trigger_error('desired_enable_private_endpoint is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->desired_enable_private_endpoint)) {
+            @trigger_error('desired_enable_private_endpoint is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->desired_enable_private_endpoint);
     }
 
