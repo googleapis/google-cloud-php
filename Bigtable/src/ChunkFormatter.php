@@ -195,7 +195,11 @@ class ChunkFormatter implements \IteratorAggregate
         //   are to be discarded.
 
         foreach ($this->stream as $readRowsResponse) {
-            $this->prevRowKey = $readRowsResponse->getLastScannedRowKey();
+            if ($lastScannedRowKey = $readRowsResponse->getLastScannedRowKey()) {
+                // If the Response contains a "last_scanned_row_key", it's possible that there was
+                // a chunkless drop
+                $this->prevRowKey = $lastScannedRowKey;
+            }
             foreach ($readRowsResponse->getChunks() as $chunk) {
                 switch ($this->state) {
                     case self::$rowStateEnum['NEW_ROW']:
