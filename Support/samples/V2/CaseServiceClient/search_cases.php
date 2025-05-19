@@ -32,34 +32,6 @@ use Google\Cloud\Support\V2\SearchCasesRequest;
 /**
  * Search for cases using a query.
  *
- * EXAMPLES:
- *
- * cURL:
- *
- * ```shell
- * parent="projects/some-project"
- * curl \
- * --header "Authorization: Bearer $(gcloud auth print-access-token)" \
- * "https://cloudsupport.googleapis.com/v2/$parent/cases:search"
- * ```
- *
- * Python:
- *
- * ```python
- * import googleapiclient.discovery
- *
- * api_version = "v2"
- * supportApiService = googleapiclient.discovery.build(
- * serviceName="cloudsupport",
- * version=api_version,
- * discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
- * )
- * request = supportApiService.cases().search(
- * parent="projects/some-project", query="state=OPEN"
- * )
- * print(request.execute())
- * ```
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.

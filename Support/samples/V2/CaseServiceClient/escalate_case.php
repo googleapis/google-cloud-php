@@ -37,48 +37,6 @@ use Google\Cloud\Support\V2\PBCase;
  * escalations' in the feature list to find out which ones let you
  * do that.
  *
- * EXAMPLES:
- *
- * cURL:
- *
- * ```shell
- * case="projects/some-project/cases/43595344"
- * curl \
- * --request POST \
- * --header "Authorization: Bearer $(gcloud auth print-access-token)" \
- * --header "Content-Type: application/json" \
- * --data '{
- * "escalation": {
- * "reason": "BUSINESS_IMPACT",
- * "justification": "This is a test escalation."
- * }
- * }' \
- * "https://cloudsupport.googleapis.com/v2/$case:escalate"
- * ```
- *
- * Python:
- *
- * ```python
- * import googleapiclient.discovery
- *
- * api_version = "v2"
- * supportApiService = googleapiclient.discovery.build(
- * serviceName="cloudsupport",
- * version=api_version,
- * discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
- * )
- * request = supportApiService.cases().escalate(
- * name="projects/some-project/cases/43595344",
- * body={
- * "escalation": {
- * "reason": "BUSINESS_IMPACT",
- * "justification": "This is a test escalation.",
- * },
- * },
- * )
- * print(request.execute())
- * ```
- *
  * @param string $formattedName The name of the case to be escalated. Please see
  *                              {@see CaseServiceClient::caseName()} for help formatting this field.
  */

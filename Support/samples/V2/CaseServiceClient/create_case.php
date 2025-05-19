@@ -35,61 +35,6 @@ use Google\Cloud\Support\V2\PBCase;
  * `classification`, and `priority`. If you're just testing the API and don't
  * want to route your case to an agent, set `testCase=true`.
  *
- * EXAMPLES:
- *
- * cURL:
- *
- * ```shell
- * parent="projects/some-project"
- * curl \
- * --request POST \
- * --header "Authorization: Bearer $(gcloud auth print-access-token)" \
- * --header 'Content-Type: application/json' \
- * --data '{
- * "display_name": "Test case created by me.",
- * "description": "a random test case, feel free to close",
- * "classification": {
- * "id":
- * "100IK2AKCLHMGRJ9CDGMOCGP8DM6UTB4BT262T31BT1M2T31DHNMENPO6KS36CPJ786L2TBFEHGN6NPI64R3CDHN8880G08I1H3MURR7DHII0GRCDTQM8"
- * },
- * "time_zone": "-07:00",
- * "subscriber_email_addresses": [
- * "foo&#64;domain.com",
- * "bar&#64;domain.com"
- * ],
- * "testCase": true,
- * "priority": "P3"
- * }' \
- * "https://cloudsupport.googleapis.com/v2/$parent/cases"
- * ```
- *
- * Python:
- *
- * ```python
- * import googleapiclient.discovery
- *
- * api_version = "v2"
- * supportApiService = googleapiclient.discovery.build(
- * serviceName="cloudsupport",
- * version=api_version,
- * discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
- * )
- * request = supportApiService.cases().create(
- * parent="projects/some-project",
- * body={
- * "displayName": "A Test Case",
- * "description": "This is a test case.",
- * "testCase": True,
- * "priority": "P2",
- * "classification": {
- * "id":
- * "100IK2AKCLHMGRJ9CDGMOCGP8DM6UTB4BT262T31BT1M2T31DHNMENPO6KS36CPJ786L2TBFEHGN6NPI64R3CDHN8880G08I1H3MURR7DHII0GRCDTQM8"
- * },
- * },
- * )
- * print(request.execute())
- * ```
- *
  * @param string $formattedParent The name of the parent under which the case should be created. Please see
  *                                {@see CaseServiceClient::projectName()} for help formatting this field.
  */
