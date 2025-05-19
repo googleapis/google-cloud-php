@@ -96,13 +96,17 @@ class VertexRagStore extends \Google\Protobuf\Internal\Message
      */
     public function getVectorDistanceThreshold()
     {
-        @trigger_error('vector_distance_threshold is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->vector_distance_threshold)) {
+            @trigger_error('vector_distance_threshold is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->vector_distance_threshold) ? $this->vector_distance_threshold : 0.0;
     }
 
     public function hasVectorDistanceThreshold()
     {
-        @trigger_error('vector_distance_threshold is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->vector_distance_threshold)) {
+            @trigger_error('vector_distance_threshold is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->vector_distance_threshold);
     }
 

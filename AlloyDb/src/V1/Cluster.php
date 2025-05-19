@@ -817,7 +817,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getNetwork()
     {
-        @trigger_error('network is deprecated.', E_USER_DEPRECATED);
+        if ($this->network !== '') {
+            @trigger_error('network is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->network;
     }
 
@@ -1025,13 +1027,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getSslConfig()
     {
-        @trigger_error('ssl_config is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->ssl_config)) {
+            @trigger_error('ssl_config is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->ssl_config;
     }
 
     public function hasSslConfig()
     {
-        @trigger_error('ssl_config is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->ssl_config)) {
+            @trigger_error('ssl_config is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->ssl_config);
     }
 

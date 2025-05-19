@@ -435,7 +435,9 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getClusterIpv4Cidr()
     {
-        @trigger_error('cluster_ipv4_cidr is deprecated.', E_USER_DEPRECATED);
+        if ($this->cluster_ipv4_cidr !== '') {
+            @trigger_error('cluster_ipv4_cidr is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->cluster_ipv4_cidr;
     }
 
@@ -465,7 +467,9 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getNodeIpv4Cidr()
     {
-        @trigger_error('node_ipv4_cidr is deprecated.', E_USER_DEPRECATED);
+        if ($this->node_ipv4_cidr !== '') {
+            @trigger_error('node_ipv4_cidr is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->node_ipv4_cidr;
     }
 
@@ -495,7 +499,9 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getServicesIpv4Cidr()
     {
-        @trigger_error('services_ipv4_cidr is deprecated.', E_USER_DEPRECATED);
+        if ($this->services_ipv4_cidr !== '') {
+            @trigger_error('services_ipv4_cidr is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->services_ipv4_cidr;
     }
 

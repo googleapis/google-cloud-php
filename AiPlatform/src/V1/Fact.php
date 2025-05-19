@@ -251,13 +251,17 @@ class Fact extends \Google\Protobuf\Internal\Message
      */
     public function getVectorDistance()
     {
-        @trigger_error('vector_distance is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->vector_distance)) {
+            @trigger_error('vector_distance is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->vector_distance) ? $this->vector_distance : 0.0;
     }
 
     public function hasVectorDistance()
     {
-        @trigger_error('vector_distance is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->vector_distance)) {
+            @trigger_error('vector_distance is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->vector_distance);
     }
 

@@ -71,7 +71,9 @@ class InputDataConfig extends \Google\Protobuf\Internal\Message
      */
     public function getMedium()
     {
-        @trigger_error('medium is deprecated.', E_USER_DEPRECATED);
+        if ($this->medium !== 0) {
+            @trigger_error('medium is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->medium;
     }
 

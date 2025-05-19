@@ -243,7 +243,9 @@ class CreateMessageRequest extends \Google\Protobuf\Internal\Message
      */
     public function getThreadKey()
     {
-        @trigger_error('thread_key is deprecated.', E_USER_DEPRECATED);
+        if ($this->thread_key !== '') {
+            @trigger_error('thread_key is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->thread_key;
     }
 
