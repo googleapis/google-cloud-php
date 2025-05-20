@@ -1,5 +1,590 @@
 # Changelog
 
+## 0.288.0
+
+<details><summary>google/cloud-ai-platform 1.26.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] Add checkpoint ID to endpoint proto ([#8314](https://github.com/googleapis/google-cloud-php/issues/8314)) ([aea50f9](https://github.com/googleapis/google-cloud-php/commit/aea50f93e215f16ffc9712033785688bff27651a))
+* [AiPlatform] add VertexAISearch.max_results, filter, data_store_specs options ([#8326](https://github.com/googleapis/google-cloud-php/issues/8326)) ([99d115e](https://github.com/googleapis/google-cloud-php/commit/99d115efd62ba8ddb187706294b9777aca2214a0))
+* [AiPlatform] Tuning Checkpoints API ([#8300](https://github.com/googleapis/google-cloud-php/issues/8300)) ([5d5ed7d](https://github.com/googleapis/google-cloud-php/commit/5d5ed7d9a9518f747e034cad8ef6e8f67b14cdd9))
+* Adding thoughts_token_count to prediction service ([99d115e](https://github.com/googleapis/google-cloud-php/commit/99d115efd62ba8ddb187706294b9777aca2214a0))
+* New field `additional_properties` is added to message `.google.cloud.aiplatform.v1.Schema` ([5d5ed7d](https://github.com/googleapis/google-cloud-php/commit/5d5ed7d9a9518f747e034cad8ef6e8f67b14cdd9))
+
+</details>
+
+<details><summary>google/cloud-alloydb 1.3.0</summary>
+
+
+
+### Features
+
+* [AlloyDb] Sync AlloyDB API changes from HEAD to stable ([#8301](https://github.com/googleapis/google-cloud-php/issues/8301)) ([9ce2a23](https://github.com/googleapis/google-cloud-php/commit/9ce2a23944e03be878031e663977800c509a9db0))
+
+</details>
+
+<details><summary>google/analytics-admin 0.28.1</summary>
+
+
+
+</details>
+
+<details><summary>google/apps-chat 0.11.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-asset 2.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-assured-workloads 1.0.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-backupdr 0.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bare-metal-solution 1.0.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-batch 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-analyticshub 1.2.0</summary>
+
+
+
+### Features
+
+* [BigQueryAnalyticsHub] Add support for Analytics Hub & Marketplace Integration ([#8303](https://github.com/googleapis/google-cloud-php/issues/8303)) ([4941c29](https://github.com/googleapis/google-cloud-php/commit/4941c29e01e62fafcb3f78aae48db657f7176118))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 2.0.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 2.1.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 2.1.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.11.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-channel 2.1.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-chronicle 0.1.1</summary>
+
+
+
+### Bug Fixes
+
+* [Chronicle] A new packaging option `com.google.cloud.chronicle.v1` for `java_package` is added ([#8302](https://github.com/googleapis/google-cloud-php/issues/8302)) ([1831fa1](https://github.com/googleapis/google-cloud-php/commit/1831fa156c1f9b85ffd8a01362ee19e63240296a))
+* An existing packaging option `google.cloud.chronicle.v1` for `java_package` is removed ([1831fa1](https://github.com/googleapis/google-cloud-php/commit/1831fa156c1f9b85ffd8a01362ee19e63240296a))
+
+</details>
+
+<details><summary>google/cloud-common-protos 0.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/common-protos 4.12.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 2.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-container 2.3.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-core 1.62.3</summary>
+
+
+
+### Documentation
+
+* Add template for ObjectIterator ([#8305](https://github.com/googleapis/google-cloud-php/issues/8305)) ([15a9f6c](https://github.com/googleapis/google-cloud-php/commit/15a9f6cb75e8c13b773ad2409df49b38398c17b4))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 2.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-data-fusion 1.0.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-datalabeling 0.6.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataflow 0.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataform 0.7.0</summary>
+
+
+
+### Features
+
+* [Dataform] Support adding a workflow action to execute a Data Preparation node ([#8321](https://github.com/googleapis/google-cloud-php/issues/8321)) ([ee70a06](https://github.com/googleapis/google-cloud-php/commit/ee70a06bc44e1e6559680048681178c1d2fd1ba2))
+
+</details>
+
+<details><summary>google/cloud-dataplex 1.6.1</summary>
+
+
+
+### Documentation
+
+* Misc comments changed ([#8297](https://github.com/googleapis/google-cloud-php/issues/8297)) ([a8adac7](https://github.com/googleapis/google-cloud-php/commit/a8adac7478249bb607e201b7922f68d555d5d951))
+
+</details>
+
+<details><summary>google/cloud-dataproc-metastore 1.0.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dialogflow 2.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dialogflow-cx 0.7.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 1.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dlp 2.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-document-ai 2.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-edgenetwork 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-functions 2.0.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-gke-backup 1.2.0</summary>
+
+
+
+### Features
+
+* [GkeBackup] Add BackupChannel field in BackupPlan ([#8311](https://github.com/googleapis/google-cloud-php/issues/8311)) ([8358a6f](https://github.com/googleapis/google-cloud-php/commit/8358a6f7586e87922d236fedb8d87edd3a5d42e6))
+
+</details>
+
+<details><summary>google/cloud-gke-hub 1.0.4</summary>
+
+
+
+</details>
+
+<details><summary>google/grafeas 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-kms 2.3.0</summary>
+
+
+
+### Features
+
+* [Kms] Adding eTag field to AutokeyConfig ([#8317](https://github.com/googleapis/google-cloud-php/issues/8317)) ([5728fd1](https://github.com/googleapis/google-cloud-php/commit/5728fd1d2f1a1aeca3045013bc9c8372a6aad8f4))
+
+</details>
+
+<details><summary>google/cloud-life-sciences 0.7.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-logging 1.32.2</summary>
+
+
+
+</details>
+
+<details><summary>google/maps-fleetengine 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/maps-fleetengine-delivery 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-memorystore 0.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-migrationcenter 1.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-modelarmor 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce ModelArmor ([#8299](https://github.com/googleapis/google-cloud-php/issues/8299)) ([8e5fdc7](https://github.com/googleapis/google-cloud-php/commit/8e5fdc72c1d4d31e8aef8735835ddf01aec7fada))
+
+</details>
+
+<details><summary>google/cloud-monitoring 2.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-netapp 1.6.0</summary>
+
+
+
+### Features
+
+* [NetApp] A new message 'google.cloud.netapp.v1.BackupRetentionPolicy' is added in 'google.cloud.netapp.v1.BackupVault' ([#8319](https://github.com/googleapis/google-cloud-php/issues/8319)) ([bdd08b9](https://github.com/googleapis/google-cloud-php/commit/bdd08b9d0d4ea6279d98279fadc3647ea279df3d))
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 2.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-network-management 2.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-notebooks 1.0.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-optimization 1.0.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-org-policy 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-osconfig 2.0.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-parallelstore 0.11.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-parametermanager 0.3.0</summary>
+
+
+
+### Features
+
+* Introduce ModelArmor ([#8299](https://github.com/googleapis/google-cloud-php/issues/8299)) ([8e5fdc7](https://github.com/googleapis/google-cloud-php/commit/8e5fdc72c1d4d31e8aef8735835ddf01aec7fada))
+
+</details>
+
+<details><summary>google/cloud-private-catalog 0.5.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.11.3</summary>
+
+
+
+### Documentation
+
+* **PubSub:** Fix client options phpdoc ([#8308](https://github.com/googleapis/google-cloud-php/issues/8308)) ([d850900](https://github.com/googleapis/google-cloud-php/commit/d850900fb68c5a24430ba4182e098b8a1828c627))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 2.1.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-redis 2.1.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-retail 2.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-run 1.7.0</summary>
+
+
+
+### Features
+
+* [Run] support GPU zonal redundancy setting in Cloud Run services ([#8307](https://github.com/googleapis/google-cloud-php/issues/8307)) ([13775e4](https://github.com/googleapis/google-cloud-php/commit/13775e416d2bdd287a73bdc09c78142245814c09))
+* [Run] support node selector in Cloud Run jobs for GPU setting ([#8304](https://github.com/googleapis/google-cloud-php/issues/8304)) ([46a69df](https://github.com/googleapis/google-cloud-php/commit/46a69df8430d124fa33ee81a0c6269594eeacee5))
+
+</details>
+
+<details><summary>google/cloud-security-center 2.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-service-management 2.0.4</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-css 0.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-accounts 0.7.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantAccounts] Add OmnichannelSetingsService, LfpProvidersService and GbpAccountsService ([#8318](https://github.com/googleapis/google-cloud-php/issues/8318)) ([b64f510](https://github.com/googleapis/google-cloud-php/commit/b64f510d99d689a2e9508f225456fadbfe34456b))
+* [ShoppingMerchantAccounts] updated comments for returns sub-API publication ([#8312](https://github.com/googleapis/google-cloud-php/issues/8312)) ([d64638e](https://github.com/googleapis/google-cloud-php/commit/d64638ed8c0fcbdb00a9ece5e15ce0ce66fcc2b8))
+
+
+### Documentation
+
+* A comment for service `OnlineReturnPolicyService` is changed ([d64638e](https://github.com/googleapis/google-cloud-php/commit/d64638ed8c0fcbdb00a9ece5e15ce0ce66fcc2b8))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.100.0</summary>
+
+
+
+### Features
+
+* Add throughput_mode to UpdateDatabaseDdlRequest to be used by Spanner Migration Tool. ([#8327](https://github.com/googleapis/google-cloud-php/issues/8327)) ([55f2e2c](https://github.com/googleapis/google-cloud-php/commit/55f2e2c0d6b706e54d8608b1736326059027f1ec))
+
+</details>
+
+<details><summary>google/cloud-speech 2.0.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-sql-admin 1.2.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storage 1.48.1</summary>
+
+
+
+### Documentation
+
+* Add template for ObjectIterator ([#8305](https://github.com/googleapis/google-cloud-php/issues/8305)) ([15a9f6c](https://github.com/googleapis/google-cloud-php/commit/15a9f6cb75e8c13b773ad2409df49b38398c17b4))
+
+</details>
+
+<details><summary>google/cloud-storage-control 1.3.0</summary>
+
+
+
+### Features
+
+* [StorageControl] Add Client Libraries Storage IntelligenceConfig ([#8310](https://github.com/googleapis/google-cloud-php/issues/8310)) ([d3364c3](https://github.com/googleapis/google-cloud-php/commit/d3364c33a11c0d2a334f8af9f4eafdd36e88d211))
+
+</details>
+
+<details><summary>google/cloud-storageinsights 1.2.0</summary>
+
+
+
+### Features
+
+* [StorageInsights] Add Client Libraries for Datasets ([#8313](https://github.com/googleapis/google-cloud-php/issues/8313)) ([521ffa0](https://github.com/googleapis/google-cloud-php/commit/521ffa0de69a472f26fcd0441bb3d78366cf6596))
+
+</details>
+
+<details><summary>google/cloud-support 1.2.0</summary>
+
+
+
+### Features
+
+* [Support] Deprecate the Actor.email field and add username to replace it ([#8315](https://github.com/googleapis/google-cloud-php/issues/8315)) ([d06a801](https://github.com/googleapis/google-cloud-php/commit/d06a801541debabf75c0f9a61183d638d16b89db))
+* Annotate `Comment.plain_text_body` as deprecated (it was already deprecated, but now we're adding the annotation for it) ([d06a801](https://github.com/googleapis/google-cloud-php/commit/d06a801541debabf75c0f9a61183d638d16b89db))
+
+
+### Documentation
+
+* [Support] Update Cloud Support RPC comments to no longer include cURL and Python examples ([#8328](https://github.com/googleapis/google-cloud-php/issues/8328)) ([b468c30](https://github.com/googleapis/google-cloud-php/commit/b468c30ac465fb5c0d34504cad18e2e2aa0fe692))
+* Bring comments and metadata up to date ([d06a801](https://github.com/googleapis/google-cloud-php/commit/d06a801541debabf75c0f9a61183d638d16b89db))
+
+</details>
+
+<details><summary>google/cloud-talent 2.1.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 2.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-videointelligence 2.0.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-video-live-stream 1.2.0</summary>
+
+
+
+### Features
+
+* [VideoLiveStream] added OutputType field to the Clip resource to support MP4 clipping ([#8316](https://github.com/googleapis/google-cloud-php/issues/8316)) ([8c35adc](https://github.com/googleapis/google-cloud-php/commit/8c35adc9e93373733a9d9f0a745081a5816ce970))
+
+</details>
+
+<details><summary>google/cloud-vision 2.0.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vm-migration 1.0.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 1.0.4</summary>
+
+
+
+</details>
+
 ## 0.287.0
 
 <details><summary>google/cloud-ai-platform 1.25.0</summary>
