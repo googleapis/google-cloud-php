@@ -291,7 +291,7 @@ class ProjectErrors extends \Google\Protobuf\Internal\Message
     public function setNonManagementHubEntitledProjectNumbers($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT64);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('non_management_hub_entitled_project_numbers is deprecated.', E_USER_DEPRECATED);
         }
         $this->non_management_hub_entitled_project_numbers = $arr;

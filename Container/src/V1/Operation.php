@@ -600,7 +600,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     public function setClusterConditions($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\StatusCondition::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('cluster_conditions is deprecated.', E_USER_DEPRECATED);
         }
         $this->cluster_conditions = $arr;
@@ -636,7 +636,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     public function setNodepoolConditions($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\StatusCondition::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('nodepool_conditions is deprecated.', E_USER_DEPRECATED);
         }
         $this->nodepool_conditions = $arr;

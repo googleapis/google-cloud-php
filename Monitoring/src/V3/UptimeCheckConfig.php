@@ -690,7 +690,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
     public function setInternalCheckers($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Monitoring\V3\InternalChecker::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('internal_checkers is deprecated.', E_USER_DEPRECATED);
         }
         $this->internal_checkers = $arr;

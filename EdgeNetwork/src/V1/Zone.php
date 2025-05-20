@@ -201,7 +201,7 @@ class Zone extends \Google\Protobuf\Internal\Message
     public function setLabels($var)
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('labels is deprecated.', E_USER_DEPRECATED);
         }
         $this->labels = $arr;

@@ -812,7 +812,7 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
     public function setEndLoads($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Optimization\V1\CapacityQuantity::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('end_loads is deprecated.', E_USER_DEPRECATED);
         }
         $this->end_loads = $arr;
@@ -850,7 +850,7 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
     public function setTravelSteps($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Optimization\V1\ShipmentRoute\TravelStep::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('travel_steps is deprecated.', E_USER_DEPRECATED);
         }
         $this->travel_steps = $arr;

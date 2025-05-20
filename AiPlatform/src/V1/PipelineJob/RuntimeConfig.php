@@ -160,7 +160,7 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
     public function setParameters($var)
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Value::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('parameters is deprecated.', E_USER_DEPRECATED);
         }
         $this->parameters = $arr;

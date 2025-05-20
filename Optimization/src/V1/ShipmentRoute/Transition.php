@@ -609,7 +609,7 @@ class Transition extends \Google\Protobuf\Internal\Message
     public function setLoads($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Optimization\V1\CapacityQuantity::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('loads is deprecated.', E_USER_DEPRECATED);
         }
         $this->loads = $arr;

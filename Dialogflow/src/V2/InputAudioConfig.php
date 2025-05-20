@@ -386,7 +386,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     public function setPhraseHints($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('phrase_hints is deprecated.', E_USER_DEPRECATED);
         }
         $this->phrase_hints = $arr;

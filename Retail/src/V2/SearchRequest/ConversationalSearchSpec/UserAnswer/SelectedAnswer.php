@@ -75,7 +75,7 @@ class SelectedAnswer extends \Google\Protobuf\Internal\Message
     public function setProductAttributeValues($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Retail\V2\ProductAttributeValue::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('product_attribute_values is deprecated.', E_USER_DEPRECATED);
         }
         $this->product_attribute_values = $arr;

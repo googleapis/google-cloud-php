@@ -213,7 +213,7 @@ class Revision extends \Google\Protobuf\Internal\Message
     public function setParent($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT32);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('parent is deprecated.', E_USER_DEPRECATED);
         }
         $this->parent = $arr;

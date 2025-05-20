@@ -1611,7 +1611,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     public function setTagKeys($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('tag_keys is deprecated.', E_USER_DEPRECATED);
         }
         $this->tag_keys = $arr;
@@ -1667,7 +1667,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     public function setTagValues($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('tag_values is deprecated.', E_USER_DEPRECATED);
         }
         $this->tag_values = $arr;
@@ -1715,7 +1715,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     public function setTagValueIds($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('tag_value_ids is deprecated.', E_USER_DEPRECATED);
         }
         $this->tag_value_ids = $arr;

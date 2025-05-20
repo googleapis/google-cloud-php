@@ -220,7 +220,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
     public function setRecentSearchResults($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Retail\V2\CompleteQueryResponse\RecentSearchResult::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('recent_search_results is deprecated.', E_USER_DEPRECATED);
         }
         $this->recent_search_results = $arr;

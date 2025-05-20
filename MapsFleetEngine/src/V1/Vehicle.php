@@ -626,7 +626,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
     public function setRoute($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Maps\FleetEngine\V1\TerminalLocation::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('route is deprecated.', E_USER_DEPRECATED);
         }
         $this->route = $arr;

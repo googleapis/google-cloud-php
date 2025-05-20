@@ -358,7 +358,7 @@ class JobStats extends \Google\Protobuf\Internal\Message
     public function setReservationUsage($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Audit\BigQueryAuditMetadata\JobStats\ReservationResourceUsage::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('reservation_usage is deprecated.', E_USER_DEPRECATED);
         }
         $this->reservation_usage = $arr;

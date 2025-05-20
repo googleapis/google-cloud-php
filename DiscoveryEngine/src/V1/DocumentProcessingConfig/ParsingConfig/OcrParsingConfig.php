@@ -78,7 +78,7 @@ class OcrParsingConfig extends \Google\Protobuf\Internal\Message
     public function setEnhancedDocumentElements($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('enhanced_document_elements is deprecated.', E_USER_DEPRECATED);
         }
         $this->enhanced_document_elements = $arr;

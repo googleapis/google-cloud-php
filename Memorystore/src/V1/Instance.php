@@ -730,7 +730,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     public function setDiscoveryEndpoints($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Memorystore\V1\DiscoveryEndpoint::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('discovery_endpoints is deprecated.', E_USER_DEPRECATED);
         }
         $this->discovery_endpoints = $arr;
@@ -990,7 +990,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     public function setPscAutoConnections($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Memorystore\V1\PscAutoConnection::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('psc_auto_connections is deprecated.', E_USER_DEPRECATED);
         }
         $this->psc_auto_connections = $arr;

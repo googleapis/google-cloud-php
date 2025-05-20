@@ -2689,7 +2689,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     public function setInstanceGroupUrls($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('instance_group_urls is deprecated.', E_USER_DEPRECATED);
         }
         $this->instance_group_urls = $arr;

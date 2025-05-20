@@ -341,7 +341,7 @@ class Document extends \Google\Protobuf\Internal\Message
     public function setTextStyles($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DocumentAI\V1\Document\Style::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('text_styles is deprecated.', E_USER_DEPRECATED);
         }
         $this->text_styles = $arr;

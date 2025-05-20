@@ -508,7 +508,7 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
     public function setCosts($var)
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::DOUBLE);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('costs is deprecated.', E_USER_DEPRECATED);
         }
         $this->costs = $arr;

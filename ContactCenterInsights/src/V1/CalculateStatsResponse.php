@@ -290,7 +290,7 @@ class CalculateStatsResponse extends \Google\Protobuf\Internal\Message
     public function setIssueMatches($var)
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::INT32);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('issue_matches is deprecated.', E_USER_DEPRECATED);
         }
         $this->issue_matches = $arr;

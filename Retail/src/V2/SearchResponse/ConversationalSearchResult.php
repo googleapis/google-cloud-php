@@ -217,7 +217,7 @@ class ConversationalSearchResult extends \Google\Protobuf\Internal\Message
     public function setAdditionalFilters($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Retail\V2\SearchResponse\ConversationalSearchResult\AdditionalFilter::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('additional_filters is deprecated.', E_USER_DEPRECATED);
         }
         $this->additional_filters = $arr;
