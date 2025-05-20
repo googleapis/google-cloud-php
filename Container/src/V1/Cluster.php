@@ -954,7 +954,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getInitialNodeCount()
     {
-        @trigger_error('initial_node_count is deprecated.', E_USER_DEPRECATED);
+        if ($this->initial_node_count !== 0) {
+            @trigger_error('initial_node_count is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->initial_node_count;
     }
 
@@ -1001,13 +1003,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getNodeConfig()
     {
-        @trigger_error('node_config is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->node_config)) {
+            @trigger_error('node_config is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->node_config;
     }
 
     public function hasNodeConfig()
     {
-        @trigger_error('node_config is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->node_config)) {
+            @trigger_error('node_config is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->node_config);
     }
 
@@ -1583,13 +1589,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getMasterAuthorizedNetworksConfig()
     {
-        @trigger_error('master_authorized_networks_config is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->master_authorized_networks_config)) {
+            @trigger_error('master_authorized_networks_config is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->master_authorized_networks_config;
     }
 
     public function hasMasterAuthorizedNetworksConfig()
     {
-        @trigger_error('master_authorized_networks_config is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->master_authorized_networks_config)) {
+            @trigger_error('master_authorized_networks_config is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->master_authorized_networks_config);
     }
 
@@ -2326,7 +2336,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getZone()
     {
-        @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
+        if ($this->zone !== '') {
+            @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->zone;
     }
 
@@ -2468,7 +2480,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getCurrentNodeVersion()
     {
-        @trigger_error('current_node_version is deprecated.', E_USER_DEPRECATED);
+        if ($this->current_node_version !== '') {
+            @trigger_error('current_node_version is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->current_node_version;
     }
 
@@ -2558,7 +2572,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getStatusMessage()
     {
-        @trigger_error('status_message is deprecated.', E_USER_DEPRECATED);
+        if ($this->status_message !== '') {
+            @trigger_error('status_message is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->status_message;
     }
 
@@ -2656,7 +2672,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getInstanceGroupUrls()
     {
-        @trigger_error('instance_group_urls is deprecated.', E_USER_DEPRECATED);
+        if ($this->instance_group_urls->count() !== 0) {
+            @trigger_error('instance_group_urls is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->instance_group_urls;
     }
 
@@ -2670,8 +2688,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function setInstanceGroupUrls($var)
     {
-        @trigger_error('instance_group_urls is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        if (count($arr) !== 0) {
+            @trigger_error('instance_group_urls is deprecated.', E_USER_DEPRECATED);
+        }
         $this->instance_group_urls = $arr;
 
         return $this;
@@ -2687,7 +2707,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getCurrentNodeCount()
     {
-        @trigger_error('current_node_count is deprecated.', E_USER_DEPRECATED);
+        if ($this->current_node_count !== 0) {
+            @trigger_error('current_node_count is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->current_node_count;
     }
 

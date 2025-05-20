@@ -292,7 +292,7 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
     public function setSupportedTiers($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Monitoring\V3\ServiceTier::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('supported_tiers is deprecated.', E_USER_DEPRECATED);
         }
         $this->supported_tiers = $arr;

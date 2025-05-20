@@ -757,7 +757,9 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     public function getCards()
     {
-        @trigger_error('cards is deprecated.', E_USER_DEPRECATED);
+        if ($this->cards->count() !== 0) {
+            @trigger_error('cards is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->cards;
     }
 
@@ -775,8 +777,10 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     public function setCards($var)
     {
-        @trigger_error('cards is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Apps\Chat\V1\ContextualAddOnMarkup\Card::class);
+        if (count($arr) !== 0) {
+            @trigger_error('cards is deprecated.', E_USER_DEPRECATED);
+        }
         $this->cards = $arr;
 
         return $this;

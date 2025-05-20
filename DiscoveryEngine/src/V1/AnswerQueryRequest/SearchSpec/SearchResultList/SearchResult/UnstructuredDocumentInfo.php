@@ -254,7 +254,7 @@ class UnstructuredDocumentInfo extends \Google\Protobuf\Internal\Message
     public function setExtractiveAnswers($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult\UnstructuredDocumentInfo\ExtractiveAnswer::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('extractive_answers is deprecated.', E_USER_DEPRECATED);
         }
         $this->extractive_answers = $arr;

@@ -1471,7 +1471,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
     public function setBreakRuleIndices($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT32);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('break_rule_indices is deprecated.', E_USER_DEPRECATED);
         }
         $this->break_rule_indices = $arr;
@@ -1509,7 +1509,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
     public function setCapacities($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Optimization\V1\CapacityQuantity::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('capacities is deprecated.', E_USER_DEPRECATED);
         }
         $this->capacities = $arr;
@@ -1547,7 +1547,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
     public function setStartLoadIntervals($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Optimization\V1\CapacityQuantityInterval::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('start_load_intervals is deprecated.', E_USER_DEPRECATED);
         }
         $this->start_load_intervals = $arr;
@@ -1585,7 +1585,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
     public function setEndLoadIntervals($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Optimization\V1\CapacityQuantityInterval::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('end_load_intervals is deprecated.', E_USER_DEPRECATED);
         }
         $this->end_load_intervals = $arr;

@@ -842,7 +842,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
     public function setDemands($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Optimization\V1\CapacityQuantity::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('demands is deprecated.', E_USER_DEPRECATED);
         }
         $this->demands = $arr;
