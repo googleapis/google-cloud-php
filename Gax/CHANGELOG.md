@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.36.1](https://github.com/googleapis/gax-php/compare/v1.36.0...v1.36.1) (2025-05-20)
+
+
+### Bug Fixes
+
+* Protobuf 4.31 deprecations ([#616](https://github.com/googleapis/gax-php/issues/616)) ([b06048b](https://github.com/googleapis/gax-php/commit/b06048be5c29a2534ba1c908642c69798e145d99))
+
 ## [1.36.0](https://github.com/googleapis/gax-php/compare/v1.35.1...v1.36.0) (2024-12-11)
 
 
