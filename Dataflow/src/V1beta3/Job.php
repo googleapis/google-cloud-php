@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Defines a job to be run by the Cloud Dataflow service.
+ * Defines a job to be run by the Cloud Dataflow service. Do not enter
+ * confidential information when you supply string values using the API.
  *
  * Generated from protobuf message <code>google.dataflow.v1beta3.Job</code>
  */
@@ -17,40 +18,42 @@ class Job extends \Google\Protobuf\Internal\Message
 {
     /**
      * The unique ID of this job.
-     * This field is set by the Cloud Dataflow service when the Job is
+     * This field is set by the Dataflow service when the job is
      * created, and is immutable for the life of the job.
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
     protected $id = '';
     /**
-     * The ID of the Cloud Platform project that the job belongs to.
+     * The ID of the Google Cloud project that the job belongs to.
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      */
     protected $project_id = '';
     /**
-     * The user-specified Cloud Dataflow job name.
-     * Only one Job with a given name may exist in a project at any
-     * given time. If a caller attempts to create a Job with the same
-     * name as an already-existing Job, the attempt returns the
-     * existing Job.
+     * Optional. The user-specified Dataflow job name.
+     * Only one active job with a given name can exist in a project within one
+     * region at
+     * any given time. Jobs in different regions can have the same name.
+     * If a caller attempts to create a job with the same
+     * name as an active job that already exists, the attempt returns the
+     * existing job.
      * The name must match the regular expression
      * `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $name = '';
     /**
-     * The type of Cloud Dataflow job.
+     * Optional. The type of Dataflow job.
      *
-     * Generated from protobuf field <code>.google.dataflow.v1beta3.JobType type = 4;</code>
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.JobType type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $type = 0;
     /**
-     * The environment for the job.
+     * Optional. The environment for the job.
      *
-     * Generated from protobuf field <code>.google.dataflow.v1beta3.Environment environment = 5;</code>
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.Environment environment = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $environment = null;
     /**
@@ -74,7 +77,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * A job in the `JOB_STATE_RUNNING` state may asynchronously enter a
      * terminal state. After a job has reached a terminal state, no
      * further state updates may be made.
-     * This field may be mutated by the Cloud Dataflow service;
+     * This field might be mutated by the Dataflow service;
      * callers cannot mutate it.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.JobState current_state = 7;</code>
@@ -87,12 +90,14 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     protected $current_state_time = null;
     /**
-     * The job's requested state.
-     * `UpdateJob` may be used to switch between the `JOB_STATE_STOPPED` and
-     * `JOB_STATE_RUNNING` states, by setting requested_state.  `UpdateJob` may
-     * also be used to directly set a job's requested state to
-     * `JOB_STATE_CANCELLED` or `JOB_STATE_DONE`, irrevocably terminating the
-     * job if it has not already reached a terminal state.
+     * The job's requested state. Applies to `UpdateJob` requests.
+     * Set `requested_state` with `UpdateJob` requests to switch between the
+     * states `JOB_STATE_STOPPED` and `JOB_STATE_RUNNING`. You can also use
+     * `UpdateJob` requests to change a job's
+     * state from `JOB_STATE_RUNNING` to `JOB_STATE_CANCELLED`,
+     * `JOB_STATE_DONE`,  or `JOB_STATE_DRAINED`. These states irrevocably
+     * terminate the job if it hasn't already reached a terminal state.
+     * This field has no effect on `CreateJob` requests.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.JobState requested_state = 9;</code>
      */
@@ -121,10 +126,10 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     protected $replace_job_id = '';
     /**
-     * The map of transform name prefixes of the job to be replaced to the
-     * corresponding name prefixes of the new job.
+     * Optional. The map of transform name prefixes of the job to be replaced to
+     * the corresponding name prefixes of the new job.
      *
-     * Generated from protobuf field <code>map<string, string> transform_name_mapping = 13;</code>
+     * Generated from protobuf field <code>map<string, string> transform_name_mapping = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $transform_name_mapping;
     /**
@@ -173,11 +178,11 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * The [regional endpoint]
+     * Optional. The [regional endpoint]
      * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
      * contains this job.
      *
-     * Generated from protobuf field <code>string location = 18;</code>
+     * Generated from protobuf field <code>string location = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $location = '';
     /**
@@ -229,6 +234,27 @@ class Job extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool satisfies_pzs = 25;</code>
      */
     protected $satisfies_pzs = false;
+    /**
+     * This field may ONLY be modified at runtime using the projects.jobs.update
+     * method to adjust job behavior. This field has no effect when specified at
+     * job creation.
+     *
+     * Generated from protobuf field <code>optional .google.dataflow.v1beta3.RuntimeUpdatableParams runtime_updatable_params = 26;</code>
+     */
+    protected $runtime_updatable_params = null;
+    /**
+     * Output only. Reserved for future use. This field is set only in responses
+     * from the server; it is ignored if it is set in any requests.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = null;
+    /**
+     * Output only. Resources used by the Dataflow Service to run the job.
+     *
+     * Generated from protobuf field <code>optional .google.dataflow.v1beta3.ServiceResources service_resources = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $service_resources = null;
 
     /**
      * Constructor.
@@ -238,22 +264,24 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           The unique ID of this job.
-     *           This field is set by the Cloud Dataflow service when the Job is
+     *           This field is set by the Dataflow service when the job is
      *           created, and is immutable for the life of the job.
      *     @type string $project_id
-     *           The ID of the Cloud Platform project that the job belongs to.
+     *           The ID of the Google Cloud project that the job belongs to.
      *     @type string $name
-     *           The user-specified Cloud Dataflow job name.
-     *           Only one Job with a given name may exist in a project at any
-     *           given time. If a caller attempts to create a Job with the same
-     *           name as an already-existing Job, the attempt returns the
-     *           existing Job.
+     *           Optional. The user-specified Dataflow job name.
+     *           Only one active job with a given name can exist in a project within one
+     *           region at
+     *           any given time. Jobs in different regions can have the same name.
+     *           If a caller attempts to create a job with the same
+     *           name as an active job that already exists, the attempt returns the
+     *           existing job.
      *           The name must match the regular expression
      *           `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`
      *     @type int $type
-     *           The type of Cloud Dataflow job.
+     *           Optional. The type of Dataflow job.
      *     @type \Google\Cloud\Dataflow\V1beta3\Environment $environment
-     *           The environment for the job.
+     *           Optional. The environment for the job.
      *     @type array<\Google\Cloud\Dataflow\V1beta3\Step>|\Google\Protobuf\Internal\RepeatedField $steps
      *           Exactly one of step or steps_location should be specified.
      *           The top-level steps that constitute the entire job. Only retrieved with
@@ -267,17 +295,19 @@ class Job extends \Google\Protobuf\Internal\Message
      *           A job in the `JOB_STATE_RUNNING` state may asynchronously enter a
      *           terminal state. After a job has reached a terminal state, no
      *           further state updates may be made.
-     *           This field may be mutated by the Cloud Dataflow service;
+     *           This field might be mutated by the Dataflow service;
      *           callers cannot mutate it.
      *     @type \Google\Protobuf\Timestamp $current_state_time
      *           The timestamp associated with the current state.
      *     @type int $requested_state
-     *           The job's requested state.
-     *           `UpdateJob` may be used to switch between the `JOB_STATE_STOPPED` and
-     *           `JOB_STATE_RUNNING` states, by setting requested_state.  `UpdateJob` may
-     *           also be used to directly set a job's requested state to
-     *           `JOB_STATE_CANCELLED` or `JOB_STATE_DONE`, irrevocably terminating the
-     *           job if it has not already reached a terminal state.
+     *           The job's requested state. Applies to `UpdateJob` requests.
+     *           Set `requested_state` with `UpdateJob` requests to switch between the
+     *           states `JOB_STATE_STOPPED` and `JOB_STATE_RUNNING`. You can also use
+     *           `UpdateJob` requests to change a job's
+     *           state from `JOB_STATE_RUNNING` to `JOB_STATE_CANCELLED`,
+     *           `JOB_STATE_DONE`,  or `JOB_STATE_DRAINED`. These states irrevocably
+     *           terminate the job if it hasn't already reached a terminal state.
+     *           This field has no effect on `CreateJob` requests.
      *     @type \Google\Cloud\Dataflow\V1beta3\JobExecutionInfo $execution_info
      *           Deprecated.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -290,8 +320,8 @@ class Job extends \Google\Protobuf\Internal\Message
      *           here. The job named here is stopped, and its intermediate state is
      *           transferred to this job.
      *     @type array|\Google\Protobuf\Internal\MapField $transform_name_mapping
-     *           The map of transform name prefixes of the job to be replaced to the
-     *           corresponding name prefixes of the new job.
+     *           Optional. The map of transform name prefixes of the job to be replaced to
+     *           the corresponding name prefixes of the new job.
      *     @type string $client_request_id
      *           The client's unique identifier of the job, re-used across retried attempts.
      *           If this field is set, the service will ensure its uniqueness.
@@ -322,7 +352,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *           * Both keys and values are additionally constrained to be <= 128 bytes in
      *           size.
      *     @type string $location
-     *           The [regional endpoint]
+     *           Optional. The [regional endpoint]
      *           (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
      *           contains this job.
      *     @type \Google\Cloud\Dataflow\V1beta3\PipelineDescription $pipeline_description
@@ -350,6 +380,15 @@ class Job extends \Google\Protobuf\Internal\Message
      *     @type bool $satisfies_pzs
      *           Reserved for future use. This field is set only in responses from the
      *           server; it is ignored if it is set in any requests.
+     *     @type \Google\Cloud\Dataflow\V1beta3\RuntimeUpdatableParams $runtime_updatable_params
+     *           This field may ONLY be modified at runtime using the projects.jobs.update
+     *           method to adjust job behavior. This field has no effect when specified at
+     *           job creation.
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use. This field is set only in responses
+     *           from the server; it is ignored if it is set in any requests.
+     *     @type \Google\Cloud\Dataflow\V1beta3\ServiceResources $service_resources
+     *           Output only. Resources used by the Dataflow Service to run the job.
      * }
      */
     public function __construct($data = NULL) {
@@ -359,7 +398,7 @@ class Job extends \Google\Protobuf\Internal\Message
 
     /**
      * The unique ID of this job.
-     * This field is set by the Cloud Dataflow service when the Job is
+     * This field is set by the Dataflow service when the job is
      * created, and is immutable for the life of the job.
      *
      * Generated from protobuf field <code>string id = 1;</code>
@@ -372,7 +411,7 @@ class Job extends \Google\Protobuf\Internal\Message
 
     /**
      * The unique ID of this job.
-     * This field is set by the Cloud Dataflow service when the Job is
+     * This field is set by the Dataflow service when the job is
      * created, and is immutable for the life of the job.
      *
      * Generated from protobuf field <code>string id = 1;</code>
@@ -388,7 +427,7 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the Cloud Platform project that the job belongs to.
+     * The ID of the Google Cloud project that the job belongs to.
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      * @return string
@@ -399,7 +438,7 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the Cloud Platform project that the job belongs to.
+     * The ID of the Google Cloud project that the job belongs to.
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      * @param string $var
@@ -414,15 +453,17 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The user-specified Cloud Dataflow job name.
-     * Only one Job with a given name may exist in a project at any
-     * given time. If a caller attempts to create a Job with the same
-     * name as an already-existing Job, the attempt returns the
-     * existing Job.
+     * Optional. The user-specified Dataflow job name.
+     * Only one active job with a given name can exist in a project within one
+     * region at
+     * any given time. Jobs in different regions can have the same name.
+     * If a caller attempts to create a job with the same
+     * name as an active job that already exists, the attempt returns the
+     * existing job.
      * The name must match the regular expression
      * `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getName()
@@ -431,15 +472,17 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The user-specified Cloud Dataflow job name.
-     * Only one Job with a given name may exist in a project at any
-     * given time. If a caller attempts to create a Job with the same
-     * name as an already-existing Job, the attempt returns the
-     * existing Job.
+     * Optional. The user-specified Dataflow job name.
+     * Only one active job with a given name can exist in a project within one
+     * region at
+     * any given time. Jobs in different regions can have the same name.
+     * If a caller attempts to create a job with the same
+     * name as an active job that already exists, the attempt returns the
+     * existing job.
      * The name must match the regular expression
      * `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`
      *
-     * Generated from protobuf field <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -452,9 +495,9 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of Cloud Dataflow job.
+     * Optional. The type of Dataflow job.
      *
-     * Generated from protobuf field <code>.google.dataflow.v1beta3.JobType type = 4;</code>
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.JobType type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getType()
@@ -463,9 +506,9 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of Cloud Dataflow job.
+     * Optional. The type of Dataflow job.
      *
-     * Generated from protobuf field <code>.google.dataflow.v1beta3.JobType type = 4;</code>
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.JobType type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -478,9 +521,9 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The environment for the job.
+     * Optional. The environment for the job.
      *
-     * Generated from protobuf field <code>.google.dataflow.v1beta3.Environment environment = 5;</code>
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.Environment environment = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataflow\V1beta3\Environment|null
      */
     public function getEnvironment()
@@ -499,9 +542,9 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The environment for the job.
+     * Optional. The environment for the job.
      *
-     * Generated from protobuf field <code>.google.dataflow.v1beta3.Environment environment = 5;</code>
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.Environment environment = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataflow\V1beta3\Environment $var
      * @return $this
      */
@@ -576,7 +619,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * A job in the `JOB_STATE_RUNNING` state may asynchronously enter a
      * terminal state. After a job has reached a terminal state, no
      * further state updates may be made.
-     * This field may be mutated by the Cloud Dataflow service;
+     * This field might be mutated by the Dataflow service;
      * callers cannot mutate it.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.JobState current_state = 7;</code>
@@ -594,7 +637,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * A job in the `JOB_STATE_RUNNING` state may asynchronously enter a
      * terminal state. After a job has reached a terminal state, no
      * further state updates may be made.
-     * This field may be mutated by the Cloud Dataflow service;
+     * This field might be mutated by the Dataflow service;
      * callers cannot mutate it.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.JobState current_state = 7;</code>
@@ -646,12 +689,14 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The job's requested state.
-     * `UpdateJob` may be used to switch between the `JOB_STATE_STOPPED` and
-     * `JOB_STATE_RUNNING` states, by setting requested_state.  `UpdateJob` may
-     * also be used to directly set a job's requested state to
-     * `JOB_STATE_CANCELLED` or `JOB_STATE_DONE`, irrevocably terminating the
-     * job if it has not already reached a terminal state.
+     * The job's requested state. Applies to `UpdateJob` requests.
+     * Set `requested_state` with `UpdateJob` requests to switch between the
+     * states `JOB_STATE_STOPPED` and `JOB_STATE_RUNNING`. You can also use
+     * `UpdateJob` requests to change a job's
+     * state from `JOB_STATE_RUNNING` to `JOB_STATE_CANCELLED`,
+     * `JOB_STATE_DONE`,  or `JOB_STATE_DRAINED`. These states irrevocably
+     * terminate the job if it hasn't already reached a terminal state.
+     * This field has no effect on `CreateJob` requests.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.JobState requested_state = 9;</code>
      * @return int
@@ -662,12 +707,14 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The job's requested state.
-     * `UpdateJob` may be used to switch between the `JOB_STATE_STOPPED` and
-     * `JOB_STATE_RUNNING` states, by setting requested_state.  `UpdateJob` may
-     * also be used to directly set a job's requested state to
-     * `JOB_STATE_CANCELLED` or `JOB_STATE_DONE`, irrevocably terminating the
-     * job if it has not already reached a terminal state.
+     * The job's requested state. Applies to `UpdateJob` requests.
+     * Set `requested_state` with `UpdateJob` requests to switch between the
+     * states `JOB_STATE_STOPPED` and `JOB_STATE_RUNNING`. You can also use
+     * `UpdateJob` requests to change a job's
+     * state from `JOB_STATE_RUNNING` to `JOB_STATE_CANCELLED`,
+     * `JOB_STATE_DONE`,  or `JOB_STATE_DRAINED`. These states irrevocably
+     * terminate the job if it hasn't already reached a terminal state.
+     * This field has no effect on `CreateJob` requests.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.JobState requested_state = 9;</code>
      * @param int $var
@@ -790,10 +837,10 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The map of transform name prefixes of the job to be replaced to the
-     * corresponding name prefixes of the new job.
+     * Optional. The map of transform name prefixes of the job to be replaced to
+     * the corresponding name prefixes of the new job.
      *
-     * Generated from protobuf field <code>map<string, string> transform_name_mapping = 13;</code>
+     * Generated from protobuf field <code>map<string, string> transform_name_mapping = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getTransformNameMapping()
@@ -802,10 +849,10 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The map of transform name prefixes of the job to be replaced to the
-     * corresponding name prefixes of the new job.
+     * Optional. The map of transform name prefixes of the job to be replaced to
+     * the corresponding name prefixes of the new job.
      *
-     * Generated from protobuf field <code>map<string, string> transform_name_mapping = 13;</code>
+     * Generated from protobuf field <code>map<string, string> transform_name_mapping = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -964,11 +1011,11 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [regional endpoint]
+     * Optional. The [regional endpoint]
      * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
      * contains this job.
      *
-     * Generated from protobuf field <code>string location = 18;</code>
+     * Generated from protobuf field <code>string location = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getLocation()
@@ -977,11 +1024,11 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [regional endpoint]
+     * Optional. The [regional endpoint]
      * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
      * contains this job.
      *
-     * Generated from protobuf field <code>string location = 18;</code>
+     * Generated from protobuf field <code>string location = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -1201,6 +1248,120 @@ class Job extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * This field may ONLY be modified at runtime using the projects.jobs.update
+     * method to adjust job behavior. This field has no effect when specified at
+     * job creation.
+     *
+     * Generated from protobuf field <code>optional .google.dataflow.v1beta3.RuntimeUpdatableParams runtime_updatable_params = 26;</code>
+     * @return \Google\Cloud\Dataflow\V1beta3\RuntimeUpdatableParams|null
+     */
+    public function getRuntimeUpdatableParams()
+    {
+        return $this->runtime_updatable_params;
+    }
+
+    public function hasRuntimeUpdatableParams()
+    {
+        return isset($this->runtime_updatable_params);
+    }
+
+    public function clearRuntimeUpdatableParams()
+    {
+        unset($this->runtime_updatable_params);
+    }
+
+    /**
+     * This field may ONLY be modified at runtime using the projects.jobs.update
+     * method to adjust job behavior. This field has no effect when specified at
+     * job creation.
+     *
+     * Generated from protobuf field <code>optional .google.dataflow.v1beta3.RuntimeUpdatableParams runtime_updatable_params = 26;</code>
+     * @param \Google\Cloud\Dataflow\V1beta3\RuntimeUpdatableParams $var
+     * @return $this
+     */
+    public function setRuntimeUpdatableParams($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataflow\V1beta3\RuntimeUpdatableParams::class);
+        $this->runtime_updatable_params = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use. This field is set only in responses
+     * from the server; it is ignored if it is set in any requests.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi) ? $this->satisfies_pzi : false;
+    }
+
+    public function hasSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi);
+    }
+
+    public function clearSatisfiesPzi()
+    {
+        unset($this->satisfies_pzi);
+    }
+
+    /**
+     * Output only. Reserved for future use. This field is set only in responses
+     * from the server; it is ignored if it is set in any requests.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Resources used by the Dataflow Service to run the job.
+     *
+     * Generated from protobuf field <code>optional .google.dataflow.v1beta3.ServiceResources service_resources = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataflow\V1beta3\ServiceResources|null
+     */
+    public function getServiceResources()
+    {
+        return $this->service_resources;
+    }
+
+    public function hasServiceResources()
+    {
+        return isset($this->service_resources);
+    }
+
+    public function clearServiceResources()
+    {
+        unset($this->service_resources);
+    }
+
+    /**
+     * Output only. Resources used by the Dataflow Service to run the job.
+     *
+     * Generated from protobuf field <code>optional .google.dataflow.v1beta3.ServiceResources service_resources = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataflow\V1beta3\ServiceResources $var
+     * @return $this
+     */
+    public function setServiceResources($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataflow\V1beta3\ServiceResources::class);
+        $this->service_resources = $var;
 
         return $this;
     }

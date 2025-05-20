@@ -16,12 +16,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class DebugOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * When true, enables the logging of the literal hot key to the user's Cloud
-     * Logging.
+     * Optional. When true, enables the logging of the literal hot key to the
+     * user's Cloud Logging.
      *
-     * Generated from protobuf field <code>bool enable_hot_key_logging = 1;</code>
+     * Generated from protobuf field <code>bool enable_hot_key_logging = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $enable_hot_key_logging = false;
+    /**
+     * Configuration options for sampling elements from a running pipeline.
+     *
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.DataSamplingConfig data_sampling = 2;</code>
+     */
+    protected $data_sampling = null;
 
     /**
      * Constructor.
@@ -30,8 +36,10 @@ class DebugOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enable_hot_key_logging
-     *           When true, enables the logging of the literal hot key to the user's Cloud
-     *           Logging.
+     *           Optional. When true, enables the logging of the literal hot key to the
+     *           user's Cloud Logging.
+     *     @type \Google\Cloud\Dataflow\V1beta3\DataSamplingConfig $data_sampling
+     *           Configuration options for sampling elements from a running pipeline.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,10 +48,10 @@ class DebugOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When true, enables the logging of the literal hot key to the user's Cloud
-     * Logging.
+     * Optional. When true, enables the logging of the literal hot key to the
+     * user's Cloud Logging.
      *
-     * Generated from protobuf field <code>bool enable_hot_key_logging = 1;</code>
+     * Generated from protobuf field <code>bool enable_hot_key_logging = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getEnableHotKeyLogging()
@@ -52,10 +60,10 @@ class DebugOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When true, enables the logging of the literal hot key to the user's Cloud
-     * Logging.
+     * Optional. When true, enables the logging of the literal hot key to the
+     * user's Cloud Logging.
      *
-     * Generated from protobuf field <code>bool enable_hot_key_logging = 1;</code>
+     * Generated from protobuf field <code>bool enable_hot_key_logging = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -63,6 +71,42 @@ class DebugOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_hot_key_logging = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration options for sampling elements from a running pipeline.
+     *
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.DataSamplingConfig data_sampling = 2;</code>
+     * @return \Google\Cloud\Dataflow\V1beta3\DataSamplingConfig|null
+     */
+    public function getDataSampling()
+    {
+        return $this->data_sampling;
+    }
+
+    public function hasDataSampling()
+    {
+        return isset($this->data_sampling);
+    }
+
+    public function clearDataSampling()
+    {
+        unset($this->data_sampling);
+    }
+
+    /**
+     * Configuration options for sampling elements from a running pipeline.
+     *
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.DataSamplingConfig data_sampling = 2;</code>
+     * @param \Google\Cloud\Dataflow\V1beta3\DataSamplingConfig $var
+     * @return $this
+     */
+    public function setDataSampling($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataflow\V1beta3\DataSamplingConfig::class);
+        $this->data_sampling = $var;
 
         return $this;
     }

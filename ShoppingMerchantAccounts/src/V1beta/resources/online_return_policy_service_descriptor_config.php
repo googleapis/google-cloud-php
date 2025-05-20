@@ -23,6 +23,30 @@
 return [
     'interfaces' => [
         'google.shopping.merchant.accounts.v1beta.OnlineReturnPolicyService' => [
+            'CreateOnlineReturnPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteOnlineReturnPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetOnlineReturnPolicy' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy',
@@ -51,6 +75,19 @@ return [
                         'keyName' => 'parent',
                         'fieldAccessors' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateOnlineReturnPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'online_return_policy.name',
+                        'fieldAccessors' => [
+                            'getOnlineReturnPolicy',
+                            'getName',
                         ],
                     ],
                 ],

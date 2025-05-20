@@ -125,7 +125,9 @@ class LogicalInterface extends \Google\Protobuf\Internal\Message
      */
     public function getInterfaceIndex()
     {
-        @trigger_error('interface_index is deprecated.', E_USER_DEPRECATED);
+        if ($this->interface_index !== 0) {
+            @trigger_error('interface_index is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->interface_index;
     }
 

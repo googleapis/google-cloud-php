@@ -281,7 +281,9 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getScaleTier()
     {
-        @trigger_error('scale_tier is deprecated.', E_USER_DEPRECATED);
+        if ($this->scale_tier !== 0) {
+            @trigger_error('scale_tier is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->scale_tier;
     }
 

@@ -16,13 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class EscalateCaseRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The fully qualified name of the Case resource to be escalated.
+     * Required. The name of the case to be escalated.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
     /**
-     * The escalation object to be sent with the escalation request.
+     * The escalation information to be sent with the escalation request.
      *
      * Generated from protobuf field <code>.google.cloud.support.v2.Escalation escalation = 2;</code>
      */
@@ -35,9 +35,9 @@ class EscalateCaseRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The fully qualified name of the Case resource to be escalated.
+     *           Required. The name of the case to be escalated.
      *     @type \Google\Cloud\Support\V2\Escalation $escalation
-     *           The escalation object to be sent with the escalation request.
+     *           The escalation information to be sent with the escalation request.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +46,7 @@ class EscalateCaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The fully qualified name of the Case resource to be escalated.
+     * Required. The name of the case to be escalated.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -57,7 +57,7 @@ class EscalateCaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The fully qualified name of the Case resource to be escalated.
+     * Required. The name of the case to be escalated.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -72,7 +72,7 @@ class EscalateCaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The escalation object to be sent with the escalation request.
+     * The escalation information to be sent with the escalation request.
      *
      * Generated from protobuf field <code>.google.cloud.support.v2.Escalation escalation = 2;</code>
      * @return \Google\Cloud\Support\V2\Escalation|null
@@ -93,7 +93,7 @@ class EscalateCaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The escalation object to be sent with the escalation request.
+     * The escalation information to be sent with the escalation request.
      *
      * Generated from protobuf field <code>.google.cloud.support.v2.Escalation escalation = 2;</code>
      * @param \Google\Cloud\Support\V2\Escalation $var

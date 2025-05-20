@@ -20,7 +20,7 @@ class ErrorCode
      */
     const UNKNOWN = 0;
     /**
-     * Error because of internal server error, will be retried automatically..
+     * Error because of internal server error, will be retried automatically.
      *
      * Generated from protobuf enum <code>INTERNAL_ERROR = 1;</code>
      */

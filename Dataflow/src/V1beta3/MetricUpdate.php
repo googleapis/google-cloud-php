@@ -10,6 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Describes the state of a metric.
+ * Next ID: 14
  *
  * Generated from protobuf message <code>google.dataflow.v1beta3.MetricUpdate</code>
  */
@@ -68,12 +69,19 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
     /**
      * Worker-computed aggregate value for the "Set" aggregation kind.  The only
      * possible value type is a list of Values whose type can be Long, Double,
-     * or String, according to the metric's type.  All Values in the list must
-     * be of the same type.
+     * String, or BoundedTrie according to the metric's type.  All Values in the
+     * list must be of the same type.
      *
      * Generated from protobuf field <code>.google.protobuf.Value set = 7;</code>
      */
     protected $set = null;
+    /**
+     * Worker-computed aggregate value for the "Trie" aggregation kind.  The only
+     * possible value type is a BoundedTrieNode.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value trie = 13;</code>
+     */
+    protected $trie = null;
     /**
      * A struct value describing properties of a distribution of numeric values.
      *
@@ -139,8 +147,11 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Value $set
      *           Worker-computed aggregate value for the "Set" aggregation kind.  The only
      *           possible value type is a list of Values whose type can be Long, Double,
-     *           or String, according to the metric's type.  All Values in the list must
-     *           be of the same type.
+     *           String, or BoundedTrie according to the metric's type.  All Values in the
+     *           list must be of the same type.
+     *     @type \Google\Protobuf\Value $trie
+     *           Worker-computed aggregate value for the "Trie" aggregation kind.  The only
+     *           possible value type is a BoundedTrieNode.
      *     @type \Google\Protobuf\Value $distribution
      *           A struct value describing properties of a distribution of numeric values.
      *     @type \Google\Protobuf\Value $gauge
@@ -388,8 +399,8 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
     /**
      * Worker-computed aggregate value for the "Set" aggregation kind.  The only
      * possible value type is a list of Values whose type can be Long, Double,
-     * or String, according to the metric's type.  All Values in the list must
-     * be of the same type.
+     * String, or BoundedTrie according to the metric's type.  All Values in the
+     * list must be of the same type.
      *
      * Generated from protobuf field <code>.google.protobuf.Value set = 7;</code>
      * @return \Google\Protobuf\Value|null
@@ -412,8 +423,8 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
     /**
      * Worker-computed aggregate value for the "Set" aggregation kind.  The only
      * possible value type is a list of Values whose type can be Long, Double,
-     * or String, according to the metric's type.  All Values in the list must
-     * be of the same type.
+     * String, or BoundedTrie according to the metric's type.  All Values in the
+     * list must be of the same type.
      *
      * Generated from protobuf field <code>.google.protobuf.Value set = 7;</code>
      * @param \Google\Protobuf\Value $var
@@ -423,6 +434,44 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Value::class);
         $this->set = $var;
+
+        return $this;
+    }
+
+    /**
+     * Worker-computed aggregate value for the "Trie" aggregation kind.  The only
+     * possible value type is a BoundedTrieNode.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value trie = 13;</code>
+     * @return \Google\Protobuf\Value|null
+     */
+    public function getTrie()
+    {
+        return $this->trie;
+    }
+
+    public function hasTrie()
+    {
+        return isset($this->trie);
+    }
+
+    public function clearTrie()
+    {
+        unset($this->trie);
+    }
+
+    /**
+     * Worker-computed aggregate value for the "Trie" aggregation kind.  The only
+     * possible value type is a BoundedTrieNode.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value trie = 13;</code>
+     * @param \Google\Protobuf\Value $var
+     * @return $this
+     */
+    public function setTrie($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Value::class);
+        $this->trie = $var;
 
         return $this;
     }

@@ -72,6 +72,7 @@ use Google\Analytics\Admin\V1alpha\CreateGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateKeyEventRequest;
 use Google\Analytics\Admin\V1alpha\CreateMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\CreatePropertyRequest;
+use Google\Analytics\Admin\V1alpha\CreateReportingDataAnnotationRequest;
 use Google\Analytics\Admin\V1alpha\CreateRollupPropertyRequest;
 use Google\Analytics\Admin\V1alpha\CreateRollupPropertyResponse;
 use Google\Analytics\Admin\V1alpha\CreateRollupPropertySourceLinkRequest;
@@ -103,6 +104,7 @@ use Google\Analytics\Admin\V1alpha\DeleteGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteKeyEventRequest;
 use Google\Analytics\Admin\V1alpha\DeleteMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\DeletePropertyRequest;
+use Google\Analytics\Admin\V1alpha\DeleteReportingDataAnnotationRequest;
 use Google\Analytics\Admin\V1alpha\DeleteRollupPropertySourceLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\DeleteSearchAds360LinkRequest;
@@ -144,6 +146,7 @@ use Google\Analytics\Admin\V1alpha\GetGoogleSignalsSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetKeyEventRequest;
 use Google\Analytics\Admin\V1alpha\GetMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\GetPropertyRequest;
+use Google\Analytics\Admin\V1alpha\GetReportingDataAnnotationRequest;
 use Google\Analytics\Admin\V1alpha\GetRollupPropertySourceLinkRequest;
 use Google\Analytics\Admin\V1alpha\GetSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\GetSearchAds360LinkRequest;
@@ -176,6 +179,7 @@ use Google\Analytics\Admin\V1alpha\ListGoogleAdsLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListKeyEventsRequest;
 use Google\Analytics\Admin\V1alpha\ListMeasurementProtocolSecretsRequest;
 use Google\Analytics\Admin\V1alpha\ListPropertiesRequest;
+use Google\Analytics\Admin\V1alpha\ListReportingDataAnnotationsRequest;
 use Google\Analytics\Admin\V1alpha\ListRollupPropertySourceLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListSKAdNetworkConversionValueSchemasRequest;
 use Google\Analytics\Admin\V1alpha\ListSearchAds360LinksRequest;
@@ -187,6 +191,7 @@ use Google\Analytics\Admin\V1alpha\ProvisionAccountTicketResponse;
 use Google\Analytics\Admin\V1alpha\ProvisionSubpropertyRequest;
 use Google\Analytics\Admin\V1alpha\ProvisionSubpropertyResponse;
 use Google\Analytics\Admin\V1alpha\ReorderEventEditRulesRequest;
+use Google\Analytics\Admin\V1alpha\ReportingDataAnnotation;
 use Google\Analytics\Admin\V1alpha\RollupPropertySourceLink;
 use Google\Analytics\Admin\V1alpha\RunAccessReportRequest;
 use Google\Analytics\Admin\V1alpha\RunAccessReportResponse;
@@ -195,6 +200,8 @@ use Google\Analytics\Admin\V1alpha\SearchAds360Link;
 use Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsRequest;
 use Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutRequest;
 use Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutResponse;
+use Google\Analytics\Admin\V1alpha\SubmitUserDeletionRequest;
+use Google\Analytics\Admin\V1alpha\SubmitUserDeletionResponse;
 use Google\Analytics\Admin\V1alpha\SubpropertyEventFilter;
 use Google\Analytics\Admin\V1alpha\UpdateAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAccountRequest;
@@ -219,6 +226,7 @@ use Google\Analytics\Admin\V1alpha\UpdateGoogleSignalsSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateKeyEventRequest;
 use Google\Analytics\Admin\V1alpha\UpdateMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\UpdatePropertyRequest;
+use Google\Analytics\Admin\V1alpha\UpdateReportingDataAnnotationRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSubpropertyEventFilterRequest;
@@ -278,6 +286,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<KeyEvent> createKeyEventAsync(CreateKeyEventRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<MeasurementProtocolSecret> createMeasurementProtocolSecretAsync(CreateMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Property> createPropertyAsync(CreatePropertyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportingDataAnnotation> createReportingDataAnnotationAsync(CreateReportingDataAnnotationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CreateRollupPropertyResponse> createRollupPropertyAsync(CreateRollupPropertyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RollupPropertySourceLink> createRollupPropertySourceLinkAsync(CreateRollupPropertySourceLinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SKAdNetworkConversionValueSchema> createSKAdNetworkConversionValueSchemaAsync(CreateSKAdNetworkConversionValueSchemaRequest $request, array $optionalArgs = [])
@@ -302,6 +311,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<void> deleteKeyEventAsync(DeleteKeyEventRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteMeasurementProtocolSecretAsync(DeleteMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Property> deletePropertyAsync(DeletePropertyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteReportingDataAnnotationAsync(DeleteReportingDataAnnotationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteRollupPropertySourceLinkAsync(DeleteRollupPropertySourceLinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteSKAdNetworkConversionValueSchemaAsync(DeleteSKAdNetworkConversionValueSchemaRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteSearchAds360LinkAsync(DeleteSearchAds360LinkRequest $request, array $optionalArgs = [])
@@ -334,6 +344,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<KeyEvent> getKeyEventAsync(GetKeyEventRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<MeasurementProtocolSecret> getMeasurementProtocolSecretAsync(GetMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Property> getPropertyAsync(GetPropertyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportingDataAnnotation> getReportingDataAnnotationAsync(GetReportingDataAnnotationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RollupPropertySourceLink> getRollupPropertySourceLinkAsync(GetRollupPropertySourceLinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SKAdNetworkConversionValueSchema> getSKAdNetworkConversionValueSchemaAsync(GetSKAdNetworkConversionValueSchemaRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SearchAds360Link> getSearchAds360LinkAsync(GetSearchAds360LinkRequest $request, array $optionalArgs = [])
@@ -361,6 +372,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listKeyEventsAsync(ListKeyEventsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listMeasurementProtocolSecretsAsync(ListMeasurementProtocolSecretsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listPropertiesAsync(ListPropertiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReportingDataAnnotationsAsync(ListReportingDataAnnotationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listRollupPropertySourceLinksAsync(ListRollupPropertySourceLinksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listSKAdNetworkConversionValueSchemasAsync(ListSKAdNetworkConversionValueSchemasRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listSearchAds360LinksAsync(ListSearchAds360LinksRequest $request, array $optionalArgs = [])
@@ -371,6 +383,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<RunAccessReportResponse> runAccessReportAsync(RunAccessReportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> searchChangeHistoryEventsAsync(SearchChangeHistoryEventsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SetAutomatedGa4ConfigurationOptOutResponse> setAutomatedGa4ConfigurationOptOutAsync(SetAutomatedGa4ConfigurationOptOutRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SubmitUserDeletionResponse> submitUserDeletionAsync(SubmitUserDeletionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AccessBinding> updateAccessBindingAsync(UpdateAccessBindingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Account> updateAccountAsync(UpdateAccountRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AttributionSettings> updateAttributionSettingsAsync(UpdateAttributionSettingsRequest $request, array $optionalArgs = [])
@@ -394,6 +407,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<KeyEvent> updateKeyEventAsync(UpdateKeyEventRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<MeasurementProtocolSecret> updateMeasurementProtocolSecretAsync(UpdateMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Property> updatePropertyAsync(UpdatePropertyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportingDataAnnotation> updateReportingDataAnnotationAsync(UpdateReportingDataAnnotationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SKAdNetworkConversionValueSchema> updateSKAdNetworkConversionValueSchemaAsync(UpdateSKAdNetworkConversionValueSchemaRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SearchAds360Link> updateSearchAds360LinkAsync(UpdateSearchAds360LinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SubpropertyEventFilter> updateSubpropertyEventFilterAsync(UpdateSubpropertyEventFilterRequest $request, array $optionalArgs = [])
@@ -1039,6 +1053,25 @@ final class AnalyticsAdminServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * reporting_data_annotation resource.
+     *
+     * @param string $property
+     * @param string $reportingDataAnnotation
+     *
+     * @return string The formatted reporting_data_annotation resource.
+     *
+     * @experimental
+     */
+    public static function reportingDataAnnotationName(string $property, string $reportingDataAnnotation): string
+    {
+        return self::getPathTemplate('reportingDataAnnotation')->render([
+            'property' => $property,
+            'reporting_data_annotation' => $reportingDataAnnotation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * rollup_property_source_link resource.
      *
      * @param string $property
@@ -1153,6 +1186,7 @@ final class AnalyticsAdminServiceClient
      * - organization: organizations/{organization}
      * - property: properties/{property}
      * - propertyAccessBinding: properties/{property}/accessBindings/{access_binding}
+     * - reportingDataAnnotation: properties/{property}/reportingDataAnnotations/{reporting_data_annotation}
      * - rollupPropertySourceLink: properties/{property}/rollupPropertySourceLinks/{rollup_property_source_link}
      * - sKAdNetworkConversionValueSchema: properties/{property}/dataStreams/{data_stream}/sKAdNetworkConversionValueSchema/{skadnetwork_conversion_value_schema}
      * - searchAds360Link: properties/{property}/searchAds360Links/{search_ads_360_link}
@@ -2209,6 +2243,37 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
+     * Creates a Reporting Data Annotation.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::createReportingDataAnnotationAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/create_reporting_data_annotation.php
+     *
+     * @param CreateReportingDataAnnotationRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ReportingDataAnnotation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createReportingDataAnnotation(
+        CreateReportingDataAnnotationRequest $request,
+        array $callOptions = []
+    ): ReportingDataAnnotation {
+        return $this->startApiCall('CreateReportingDataAnnotation', $request, $callOptions)->wait();
+    }
+
+    /**
      * Create a roll-up property and all roll-up property source links.
      *
      * The async variant is
@@ -2908,6 +2973,35 @@ final class AnalyticsAdminServiceClient
     public function deleteProperty(DeletePropertyRequest $request, array $callOptions = []): Property
     {
         return $this->startApiCall('DeleteProperty', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a Reporting Data Annotation.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::deleteReportingDataAnnotationAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/delete_reporting_data_annotation.php
+     *
+     * @param DeleteReportingDataAnnotationRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteReportingDataAnnotation(
+        DeleteReportingDataAnnotationRequest $request,
+        array $callOptions = []
+    ): void {
+        $this->startApiCall('DeleteReportingDataAnnotation', $request, $callOptions)->wait();
     }
 
     /**
@@ -3870,6 +3964,37 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
+     * Lookup a single Reporting Data Annotation.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::getReportingDataAnnotationAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/get_reporting_data_annotation.php
+     *
+     * @param GetReportingDataAnnotationRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ReportingDataAnnotation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getReportingDataAnnotation(
+        GetReportingDataAnnotationRequest $request,
+        array $callOptions = []
+    ): ReportingDataAnnotation {
+        return $this->startApiCall('GetReportingDataAnnotation', $request, $callOptions)->wait();
+    }
+
+    /**
      * Lookup for a single roll-up property source Link.
      * Only roll-up properties can have source links, so this method will throw an
      * error if used on other types of properties.
@@ -4698,6 +4823,37 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
+     * List all Reporting Data Annotations on a property.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::listReportingDataAnnotationsAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/list_reporting_data_annotations.php
+     *
+     * @param ListReportingDataAnnotationsRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listReportingDataAnnotations(
+        ListReportingDataAnnotationsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListReportingDataAnnotations', $request, $callOptions);
+    }
+
+    /**
      * Lists roll-up property source Links on a property.
      * Only roll-up properties can have source links, so this method will throw an
      * error if used on other types of properties.
@@ -5029,6 +5185,37 @@ final class AnalyticsAdminServiceClient
         array $callOptions = []
     ): SetAutomatedGa4ConfigurationOptOutResponse {
         return $this->startApiCall('SetAutomatedGa4ConfigurationOptOut', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Submits a request for user deletion for a property.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::submitUserDeletionAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/submit_user_deletion.php
+     *
+     * @param SubmitUserDeletionRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SubmitUserDeletionResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function submitUserDeletion(
+        SubmitUserDeletionRequest $request,
+        array $callOptions = []
+    ): SubmitUserDeletionResponse {
+        return $this->startApiCall('SubmitUserDeletion', $request, $callOptions)->wait();
     }
 
     /**
@@ -5721,6 +5908,37 @@ final class AnalyticsAdminServiceClient
     public function updateProperty(UpdatePropertyRequest $request, array $callOptions = []): Property
     {
         return $this->startApiCall('UpdateProperty', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a Reporting Data Annotation.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::updateReportingDataAnnotationAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/update_reporting_data_annotation.php
+     *
+     * @param UpdateReportingDataAnnotationRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ReportingDataAnnotation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateReportingDataAnnotation(
+        UpdateReportingDataAnnotationRequest $request,
+        array $callOptions = []
+    ): ReportingDataAnnotation {
+        return $this->startApiCall('UpdateReportingDataAnnotation', $request, $callOptions)->wait();
     }
 
     /**

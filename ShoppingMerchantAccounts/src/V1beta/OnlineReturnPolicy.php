@@ -51,9 +51,9 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
      */
     private $countries;
     /**
-     * The return policy.
+     * Optional. The return policy.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.Policy policy = 5;</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.Policy policy = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $policy = null;
     /**
@@ -64,31 +64,32 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
      */
     private $seasonal_overrides;
     /**
-     * The restocking fee that applies to all return reason categories. This would
-     * be treated as a free restocking fee if the value is not set.
+     * Optional. The restocking fee that applies to all return reason categories.
+     * This would be treated as a free restocking fee if the value is not set.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.RestockingFee restocking_fee = 6;</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.RestockingFee restocking_fee = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $restocking_fee = null;
     /**
-     * The return methods of how customers can return an item. This value is
-     * required to not be empty unless the type of return policy is noReturns.
+     * Optional. The return methods of how customers can return an item. This
+     * value is required to not be empty unless the type of return policy is
+     * noReturns.
      *
-     * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnMethod return_methods = 7;</code>
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnMethod return_methods = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $return_methods;
     /**
-     * The item conditions accepted for returns must not be empty unless the type
-     * of return policy is 'noReturns'.
+     * Optional. The item conditions accepted for returns must not be empty unless
+     * the type of return policy is 'noReturns'.
      *
-     * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ItemCondition item_conditions = 8;</code>
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ItemCondition item_conditions = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $item_conditions;
     /**
-     * The return shipping fee. Should be set only when customer need to download
-     * and print the return label.
+     * Optional. The return shipping fee. Should be set only when customer need to
+     * download and print the return label.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnShippingFee return_shipping_fee = 9;</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnShippingFee return_shipping_fee = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $return_shipping_fee = null;
     /**
@@ -119,6 +120,13 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool accept_exchange = 13;</code>
      */
     protected $accept_exchange = null;
+    /**
+     * The field specifies the return label source. This field is required when
+     * return method is BY_MAIL.
+     *
+     * Generated from protobuf field <code>optional .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnLabelSource return_label_source = 15;</code>
+     */
+    protected $return_label_source = null;
 
     /**
      * Constructor.
@@ -144,22 +152,23 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
      *           Required. Immutable. The countries of sale where the return policy applies.
      *           The values must be a valid 2 letter ISO 3166 code.
      *     @type \Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy\Policy $policy
-     *           The return policy.
+     *           Optional. The return policy.
      *     @type array<\Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy\SeasonalOverride>|\Google\Protobuf\Internal\RepeatedField $seasonal_overrides
      *           Optional. Overrides to the general policy for orders placed during a
      *           specific set of time intervals.
      *     @type \Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy\RestockingFee $restocking_fee
-     *           The restocking fee that applies to all return reason categories. This would
-     *           be treated as a free restocking fee if the value is not set.
+     *           Optional. The restocking fee that applies to all return reason categories.
+     *           This would be treated as a free restocking fee if the value is not set.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $return_methods
-     *           The return methods of how customers can return an item. This value is
-     *           required to not be empty unless the type of return policy is noReturns.
+     *           Optional. The return methods of how customers can return an item. This
+     *           value is required to not be empty unless the type of return policy is
+     *           noReturns.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $item_conditions
-     *           The item conditions accepted for returns must not be empty unless the type
-     *           of return policy is 'noReturns'.
+     *           Optional. The item conditions accepted for returns must not be empty unless
+     *           the type of return policy is 'noReturns'.
      *     @type \Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy\ReturnShippingFee $return_shipping_fee
-     *           The return shipping fee. Should be set only when customer need to download
-     *           and print the return label.
+     *           Optional. The return shipping fee. Should be set only when customer need to
+     *           download and print the return label.
      *     @type string $return_policy_uri
      *           Required. The return policy uri. This can used by Google to do a sanity
      *           check for the policy. It must be a valid URL.
@@ -172,6 +181,9 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
      *     @type bool $accept_exchange
      *           This field specifies if merchant allows customers to exchange products,
      *           this field is required.
+     *     @type int $return_label_source
+     *           The field specifies the return label source. This field is required when
+     *           return method is BY_MAIL.
      * }
      */
     public function __construct($data = NULL) {
@@ -302,9 +314,9 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The return policy.
+     * Optional. The return policy.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.Policy policy = 5;</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.Policy policy = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy\Policy|null
      */
     public function getPolicy()
@@ -323,9 +335,9 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The return policy.
+     * Optional. The return policy.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.Policy policy = 5;</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.Policy policy = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy\Policy $var
      * @return $this
      */
@@ -366,10 +378,10 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The restocking fee that applies to all return reason categories. This would
-     * be treated as a free restocking fee if the value is not set.
+     * Optional. The restocking fee that applies to all return reason categories.
+     * This would be treated as a free restocking fee if the value is not set.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.RestockingFee restocking_fee = 6;</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.RestockingFee restocking_fee = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy\RestockingFee|null
      */
     public function getRestockingFee()
@@ -388,10 +400,10 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The restocking fee that applies to all return reason categories. This would
-     * be treated as a free restocking fee if the value is not set.
+     * Optional. The restocking fee that applies to all return reason categories.
+     * This would be treated as a free restocking fee if the value is not set.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.RestockingFee restocking_fee = 6;</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.RestockingFee restocking_fee = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy\RestockingFee $var
      * @return $this
      */
@@ -404,10 +416,11 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The return methods of how customers can return an item. This value is
-     * required to not be empty unless the type of return policy is noReturns.
+     * Optional. The return methods of how customers can return an item. This
+     * value is required to not be empty unless the type of return policy is
+     * noReturns.
      *
-     * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnMethod return_methods = 7;</code>
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnMethod return_methods = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getReturnMethods()
@@ -416,10 +429,11 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The return methods of how customers can return an item. This value is
-     * required to not be empty unless the type of return policy is noReturns.
+     * Optional. The return methods of how customers can return an item. This
+     * value is required to not be empty unless the type of return policy is
+     * noReturns.
      *
-     * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnMethod return_methods = 7;</code>
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnMethod return_methods = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -432,10 +446,10 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The item conditions accepted for returns must not be empty unless the type
-     * of return policy is 'noReturns'.
+     * Optional. The item conditions accepted for returns must not be empty unless
+     * the type of return policy is 'noReturns'.
      *
-     * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ItemCondition item_conditions = 8;</code>
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ItemCondition item_conditions = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getItemConditions()
@@ -444,10 +458,10 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The item conditions accepted for returns must not be empty unless the type
-     * of return policy is 'noReturns'.
+     * Optional. The item conditions accepted for returns must not be empty unless
+     * the type of return policy is 'noReturns'.
      *
-     * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ItemCondition item_conditions = 8;</code>
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ItemCondition item_conditions = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -460,10 +474,10 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The return shipping fee. Should be set only when customer need to download
-     * and print the return label.
+     * Optional. The return shipping fee. Should be set only when customer need to
+     * download and print the return label.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnShippingFee return_shipping_fee = 9;</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnShippingFee return_shipping_fee = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy\ReturnShippingFee|null
      */
     public function getReturnShippingFee()
@@ -482,10 +496,10 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The return shipping fee. Should be set only when customer need to download
-     * and print the return label.
+     * Optional. The return shipping fee. Should be set only when customer need to
+     * download and print the return label.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnShippingFee return_shipping_fee = 9;</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnShippingFee return_shipping_fee = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy\ReturnShippingFee $var
      * @return $this
      */
@@ -635,6 +649,44 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->accept_exchange = $var;
+
+        return $this;
+    }
+
+    /**
+     * The field specifies the return label source. This field is required when
+     * return method is BY_MAIL.
+     *
+     * Generated from protobuf field <code>optional .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnLabelSource return_label_source = 15;</code>
+     * @return int
+     */
+    public function getReturnLabelSource()
+    {
+        return isset($this->return_label_source) ? $this->return_label_source : 0;
+    }
+
+    public function hasReturnLabelSource()
+    {
+        return isset($this->return_label_source);
+    }
+
+    public function clearReturnLabelSource()
+    {
+        unset($this->return_label_source);
+    }
+
+    /**
+     * The field specifies the return label source. This field is required when
+     * return method is BY_MAIL.
+     *
+     * Generated from protobuf field <code>optional .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnLabelSource return_label_source = 15;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setReturnLabelSource($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy\ReturnLabelSource::class);
+        $this->return_label_source = $var;
 
         return $this;
     }

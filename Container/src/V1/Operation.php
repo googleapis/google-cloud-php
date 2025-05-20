@@ -235,7 +235,9 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     public function getZone()
     {
-        @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
+        if ($this->zone !== '') {
+            @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->zone;
     }
 
@@ -346,7 +348,9 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     public function getStatusMessage()
     {
-        @trigger_error('status_message is deprecated.', E_USER_DEPRECATED);
+        if ($this->status_message !== '') {
+            @trigger_error('status_message is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->status_message;
     }
 
@@ -578,7 +582,9 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     public function getClusterConditions()
     {
-        @trigger_error('cluster_conditions is deprecated.', E_USER_DEPRECATED);
+        if ($this->cluster_conditions->count() !== 0) {
+            @trigger_error('cluster_conditions is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->cluster_conditions;
     }
 
@@ -593,8 +599,10 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     public function setClusterConditions($var)
     {
-        @trigger_error('cluster_conditions is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\StatusCondition::class);
+        if (count($arr) !== 0) {
+            @trigger_error('cluster_conditions is deprecated.', E_USER_DEPRECATED);
+        }
         $this->cluster_conditions = $arr;
 
         return $this;
@@ -610,7 +618,9 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     public function getNodepoolConditions()
     {
-        @trigger_error('nodepool_conditions is deprecated.', E_USER_DEPRECATED);
+        if ($this->nodepool_conditions->count() !== 0) {
+            @trigger_error('nodepool_conditions is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->nodepool_conditions;
     }
 
@@ -625,8 +635,10 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     public function setNodepoolConditions($var)
     {
-        @trigger_error('nodepool_conditions is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\StatusCondition::class);
+        if (count($arr) !== 0) {
+            @trigger_error('nodepool_conditions is deprecated.', E_USER_DEPRECATED);
+        }
         $this->nodepool_conditions = $arr;
 
         return $this;

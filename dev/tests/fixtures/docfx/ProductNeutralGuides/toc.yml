@@ -14,3 +14,6 @@
     -
       name: 'Migrating to V2'
       href: migrating.md
+    -
+      name: 'Installing gRPC'
+      href: grpc.md

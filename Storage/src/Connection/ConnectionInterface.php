@@ -118,6 +118,11 @@ interface ConnectionInterface
     /**
      * @param array $args
      */
+    public function moveObject(array $args = []);
+
+    /**
+     * @param array $args
+     */
     public function composeObject(array $args = []);
 
     /**

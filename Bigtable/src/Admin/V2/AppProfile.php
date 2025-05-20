@@ -253,13 +253,17 @@ class AppProfile extends \Google\Protobuf\Internal\Message
      */
     public function getPriority()
     {
-        @trigger_error('priority is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(7)) {
+            @trigger_error('priority is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(7);
     }
 
     public function hasPriority()
     {
-        @trigger_error('priority is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(7)) {
+            @trigger_error('priority is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(7);
     }
 

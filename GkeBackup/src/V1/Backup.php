@@ -145,7 +145,8 @@ class Backup extends \Google\Protobuf\Internal\Message
     protected $state = 0;
     /**
      * Output only. Human-readable description of why the backup is in the current
-     * `state`.
+     * `state`. This field is only meant for human readability and should not be
+     * used programmatically as this field is not guaranteed to be consistent.
      *
      * Generated from protobuf field <code>string state_reason = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -218,6 +219,18 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool permissive_mode = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $permissive_mode = false;
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = false;
     protected $backup_scope;
 
     /**
@@ -301,7 +314,8 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Output only. Current state of the Backup
      *     @type string $state_reason
      *           Output only. Human-readable description of why the backup is in the current
-     *           `state`.
+     *           `state`. This field is only meant for human readability and should not be
+     *           used programmatically as this field is not guaranteed to be consistent.
      *     @type \Google\Protobuf\Timestamp $complete_time
      *           Output only. Completion time of the Backup
      *     @type int $resource_count
@@ -334,6 +348,10 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Inherited from the parent BackupPlan's
      *           [permissive_mode][google.cloud.gkebackup.v1.BackupPlan.BackupConfig.permissive_mode]
      *           value.
+     *     @type bool $satisfies_pzs
+     *           Output only. [Output Only] Reserved for future use.
+     *     @type bool $satisfies_pzi
+     *           Output only. [Output Only] Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -960,7 +978,8 @@ class Backup extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Human-readable description of why the backup is in the current
-     * `state`.
+     * `state`. This field is only meant for human readability and should not be
+     * used programmatically as this field is not guaranteed to be consistent.
      *
      * Generated from protobuf field <code>string state_reason = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -972,7 +991,8 @@ class Backup extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Human-readable description of why the backup is in the current
-     * `state`.
+     * `state`. This field is only meant for human readability and should not be
+     * used programmatically as this field is not guaranteed to be consistent.
      *
      * Generated from protobuf field <code>string state_reason = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -1254,6 +1274,58 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->permissive_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

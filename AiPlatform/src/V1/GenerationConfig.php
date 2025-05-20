@@ -111,6 +111,14 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.GenerationConfig.RoutingConfig routing_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $routing_config = null;
+    /**
+     * Optional. Config for thinking features.
+     * An error will be returned if this field is set for models that don't
+     * support thinking.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenerationConfig.ThinkingConfig thinking_config = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $thinking_config = null;
 
     /**
      * Constructor.
@@ -158,6 +166,10 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      *           `application/json`: Schema for JSON response.
      *     @type \Google\Cloud\AIPlatform\V1\GenerationConfig\RoutingConfig $routing_config
      *           Optional. Routing configuration.
+     *     @type \Google\Cloud\AIPlatform\V1\GenerationConfig\ThinkingConfig $thinking_config
+     *           Optional. Config for thinking features.
+     *           An error will be returned if this field is set for models that don't
+     *           support thinking.
      * }
      */
     public function __construct($data = NULL) {
@@ -669,6 +681,46 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GenerationConfig\RoutingConfig::class);
         $this->routing_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Config for thinking features.
+     * An error will be returned if this field is set for models that don't
+     * support thinking.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenerationConfig.ThinkingConfig thinking_config = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\GenerationConfig\ThinkingConfig|null
+     */
+    public function getThinkingConfig()
+    {
+        return $this->thinking_config;
+    }
+
+    public function hasThinkingConfig()
+    {
+        return isset($this->thinking_config);
+    }
+
+    public function clearThinkingConfig()
+    {
+        unset($this->thinking_config);
+    }
+
+    /**
+     * Optional. Config for thinking features.
+     * An error will be returned if this field is set for models that don't
+     * support thinking.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenerationConfig.ThinkingConfig thinking_config = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\GenerationConfig\ThinkingConfig $var
+     * @return $this
+     */
+    public function setThinkingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GenerationConfig\ThinkingConfig::class);
+        $this->thinking_config = $var;
 
         return $this;
     }

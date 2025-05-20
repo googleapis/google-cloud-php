@@ -76,6 +76,12 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      */
     private $name = null;
     /**
+     * List of Subnetwork resources whose traffic should be translated by NAT64 Gateway. It is used only when LIST_OF_IPV6_SUBNETWORKS is selected for the SubnetworkIpRangeToNat64Option above.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatSubnetworkToNat64 nat64_subnetworks = 63585701;</code>
+     */
+    private $nat64_subnetworks;
+    /**
      * Specify the NatIpAllocateOption, which can take one of the following values: - MANUAL_ONLY: Uses only Nat IP addresses provided by customers. When there are not enough specified Nat IPs, the Nat service fails for new VMs. - AUTO_ONLY: Nat IPs are allocated by Google Cloud Platform; customers can't specify any Nat IPs. When choosing AUTO_ONLY, then nat_ip should be empty.
      * Check the NatIpAllocateOption enum for the list of possible values.
      *
@@ -101,6 +107,13 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string source_subnetwork_ip_ranges_to_nat = 252213211;</code>
      */
     private $source_subnetwork_ip_ranges_to_nat = null;
+    /**
+     * Specify the Nat option for NAT64, which can take one of the following values: - ALL_IPV6_SUBNETWORKS: All of the IP ranges in every Subnetwork are allowed to Nat. - LIST_OF_IPV6_SUBNETWORKS: A list of Subnetworks are allowed to Nat (specified in the field nat64_subnetwork below) The default is NAT64_OPTION_UNSPECIFIED. Note that if this field contains NAT64_ALL_V6_SUBNETWORKS no other Router.Nat section in this region can also enable NAT64 for any Subnetworks in this network. Other Router.Nat sections can still be present to enable NAT44 only.
+     * Check the SourceSubnetworkIpRangesToNat64 enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string source_subnetwork_ip_ranges_to_nat64 = 248116185;</code>
+     */
+    private $source_subnetwork_ip_ranges_to_nat64 = null;
     /**
      * A list of Subnetwork resources whose traffic should be translated by NAT Gateway. It is used only when LIST_OF_SUBNETWORKS is selected for the SubnetworkIpRangeToNatOption above.
      *
@@ -166,6 +179,8 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      *           Minimum number of ports allocated to a VM from this NAT config. If not set, a default number of ports is allocated to a VM. This is rounded up to the nearest power of 2. For example, if the value of this field is 50, at least 64 ports are allocated to a VM.
      *     @type string $name
      *           Unique name of this Nat service. The name must be 1-63 characters long and comply with RFC1035.
+     *     @type array<\Google\Cloud\Compute\V1\RouterNatSubnetworkToNat64>|\Google\Protobuf\Internal\RepeatedField $nat64_subnetworks
+     *           List of Subnetwork resources whose traffic should be translated by NAT64 Gateway. It is used only when LIST_OF_IPV6_SUBNETWORKS is selected for the SubnetworkIpRangeToNat64Option above.
      *     @type string $nat_ip_allocate_option
      *           Specify the NatIpAllocateOption, which can take one of the following values: - MANUAL_ONLY: Uses only Nat IP addresses provided by customers. When there are not enough specified Nat IPs, the Nat service fails for new VMs. - AUTO_ONLY: Nat IPs are allocated by Google Cloud Platform; customers can't specify any Nat IPs. When choosing AUTO_ONLY, then nat_ip should be empty.
      *           Check the NatIpAllocateOption enum for the list of possible values.
@@ -176,6 +191,9 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      *     @type string $source_subnetwork_ip_ranges_to_nat
      *           Specify the Nat option, which can take one of the following values: - ALL_SUBNETWORKS_ALL_IP_RANGES: All of the IP ranges in every Subnetwork are allowed to Nat. - ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES: All of the primary IP ranges in every Subnetwork are allowed to Nat. - LIST_OF_SUBNETWORKS: A list of Subnetworks are allowed to Nat (specified in the field subnetwork below) The default is SUBNETWORK_IP_RANGE_TO_NAT_OPTION_UNSPECIFIED. Note that if this field contains ALL_SUBNETWORKS_ALL_IP_RANGES then there should not be any other Router.Nat section in any Router for this network in this region.
      *           Check the SourceSubnetworkIpRangesToNat enum for the list of possible values.
+     *     @type string $source_subnetwork_ip_ranges_to_nat64
+     *           Specify the Nat option for NAT64, which can take one of the following values: - ALL_IPV6_SUBNETWORKS: All of the IP ranges in every Subnetwork are allowed to Nat. - LIST_OF_IPV6_SUBNETWORKS: A list of Subnetworks are allowed to Nat (specified in the field nat64_subnetwork below) The default is NAT64_OPTION_UNSPECIFIED. Note that if this field contains NAT64_ALL_V6_SUBNETWORKS no other Router.Nat section in this region can also enable NAT64 for any Subnetworks in this network. Other Router.Nat sections can still be present to enable NAT44 only.
+     *           Check the SourceSubnetworkIpRangesToNat64 enum for the list of possible values.
      *     @type array<\Google\Cloud\Compute\V1\RouterNatSubnetworkToNat>|\Google\Protobuf\Internal\RepeatedField $subnetworks
      *           A list of Subnetwork resources whose traffic should be translated by NAT Gateway. It is used only when LIST_OF_SUBNETWORKS is selected for the SubnetworkIpRangeToNatOption above.
      *     @type int $tcp_established_idle_timeout_sec
@@ -537,6 +555,32 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * List of Subnetwork resources whose traffic should be translated by NAT64 Gateway. It is used only when LIST_OF_IPV6_SUBNETWORKS is selected for the SubnetworkIpRangeToNat64Option above.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatSubnetworkToNat64 nat64_subnetworks = 63585701;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNat64Subnetworks()
+    {
+        return $this->nat64_subnetworks;
+    }
+
+    /**
+     * List of Subnetwork resources whose traffic should be translated by NAT64 Gateway. It is used only when LIST_OF_IPV6_SUBNETWORKS is selected for the SubnetworkIpRangeToNat64Option above.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatSubnetworkToNat64 nat64_subnetworks = 63585701;</code>
+     * @param array<\Google\Cloud\Compute\V1\RouterNatSubnetworkToNat64>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNat64Subnetworks($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\RouterNatSubnetworkToNat64::class);
+        $this->nat64_subnetworks = $arr;
+
+        return $this;
+    }
+
+    /**
      * Specify the NatIpAllocateOption, which can take one of the following values: - MANUAL_ONLY: Uses only Nat IP addresses provided by customers. When there are not enough specified Nat IPs, the Nat service fails for new VMs. - AUTO_ONLY: Nat IPs are allocated by Google Cloud Platform; customers can't specify any Nat IPs. When choosing AUTO_ONLY, then nat_ip should be empty.
      * Check the NatIpAllocateOption enum for the list of possible values.
      *
@@ -660,6 +704,44 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->source_subnetwork_ip_ranges_to_nat = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specify the Nat option for NAT64, which can take one of the following values: - ALL_IPV6_SUBNETWORKS: All of the IP ranges in every Subnetwork are allowed to Nat. - LIST_OF_IPV6_SUBNETWORKS: A list of Subnetworks are allowed to Nat (specified in the field nat64_subnetwork below) The default is NAT64_OPTION_UNSPECIFIED. Note that if this field contains NAT64_ALL_V6_SUBNETWORKS no other Router.Nat section in this region can also enable NAT64 for any Subnetworks in this network. Other Router.Nat sections can still be present to enable NAT44 only.
+     * Check the SourceSubnetworkIpRangesToNat64 enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string source_subnetwork_ip_ranges_to_nat64 = 248116185;</code>
+     * @return string
+     */
+    public function getSourceSubnetworkIpRangesToNat64()
+    {
+        return isset($this->source_subnetwork_ip_ranges_to_nat64) ? $this->source_subnetwork_ip_ranges_to_nat64 : '';
+    }
+
+    public function hasSourceSubnetworkIpRangesToNat64()
+    {
+        return isset($this->source_subnetwork_ip_ranges_to_nat64);
+    }
+
+    public function clearSourceSubnetworkIpRangesToNat64()
+    {
+        unset($this->source_subnetwork_ip_ranges_to_nat64);
+    }
+
+    /**
+     * Specify the Nat option for NAT64, which can take one of the following values: - ALL_IPV6_SUBNETWORKS: All of the IP ranges in every Subnetwork are allowed to Nat. - LIST_OF_IPV6_SUBNETWORKS: A list of Subnetworks are allowed to Nat (specified in the field nat64_subnetwork below) The default is NAT64_OPTION_UNSPECIFIED. Note that if this field contains NAT64_ALL_V6_SUBNETWORKS no other Router.Nat section in this region can also enable NAT64 for any Subnetworks in this network. Other Router.Nat sections can still be present to enable NAT44 only.
+     * Check the SourceSubnetworkIpRangesToNat64 enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string source_subnetwork_ip_ranges_to_nat64 = 248116185;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceSubnetworkIpRangesToNat64($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_subnetwork_ip_ranges_to_nat64 = $var;
 
         return $this;
     }

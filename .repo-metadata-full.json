@@ -387,12 +387,21 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "cloudchannel"
     },
+    "Chronicle": {
+        "language": "php",
+        "distribution_name": "google/cloud-chronicle",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-chronicle/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "chronicle"
+    },
     "CloudCommonProtos": {
         "language": "php",
         "distribution_name": "google/cloud-common-protos",
         "release_level": "preview",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-common-protos/latest",
-        "library_type": "CORE"
+        "library_type": "CORE",
+        "api_shortname": ""
     },
     "CommerceConsumerProcurement": {
         "language": "php",
@@ -407,7 +416,8 @@
         "distribution_name": "google/common-protos",
         "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/common-protos/latest",
-        "library_type": "GAPIC_AUTO"
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": ""
     },
     "Compute": {
         "language": "php",
@@ -572,14 +582,6 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "datastream"
     },
-    "Debugger": {
-        "language": "php",
-        "distribution_name": "google/cloud-debugger",
-        "release_level": "stable",
-        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-debugger/latest",
-        "library_type": "GAPIC_COMBO",
-        "api_shortname": "clouddebugger"
-    },
     "Deploy": {
         "language": "php",
         "distribution_name": "google/cloud-deploy",
@@ -595,6 +597,14 @@
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-developerconnect/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "developerconnect"
+    },
+    "DeviceStreaming": {
+        "language": "php",
+        "distribution_name": "google/cloud-devicestreaming",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-devicestreaming/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "devicestreaming"
     },
     "Dialogflow": {
         "language": "php",
@@ -700,6 +710,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "file"
     },
+    "FinancialServices": {
+        "language": "php",
+        "distribution_name": "google/cloud-financialservices",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-financialservices/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "financialservices"
+    },
     "Firestore": {
         "language": "php",
         "distribution_name": "google/cloud-firestore",
@@ -730,7 +748,8 @@
         "distribution_name": "google/geo-common-protos",
         "release_level": "preview",
         "client_documentation": "https://cloud.google.com/php/docs/reference/geo-common-protos/latest",
-        "library_type": "CORE"
+        "library_type": "CORE",
+        "api_shortname": ""
     },
     "GkeBackup": {
         "language": "php",
@@ -854,6 +873,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "longrunning"
     },
+    "Lustre": {
+        "language": "php",
+        "distribution_name": "google/cloud-lustre",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-lustre/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "lustre"
+    },
     "ManagedIdentities": {
         "language": "php",
         "distribution_name": "google/cloud-managed-identities",
@@ -925,6 +952,14 @@
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-migrationcenter/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "migrationcenter"
+    },
+    "ModelArmor": {
+        "language": "php",
+        "distribution_name": "google/cloud-modelarmor",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-modelarmor/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "modelarmor"
     },
     "Monitoring": {
         "language": "php",
@@ -1292,7 +1327,8 @@
         "distribution_name": "google/shopping-common-protos",
         "release_level": "preview",
         "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-common-protos/latest",
-        "library_type": "CORE"
+        "library_type": "CORE",
+        "api_shortname": ""
     },
     "ShoppingCss": {
         "language": "php",
@@ -1420,6 +1456,14 @@
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-storage/latest",
         "library_type": "GAPIC_MANUAL",
         "api_shortname": "storage"
+    },
+    "StorageBatchOperations": {
+        "language": "php",
+        "distribution_name": "google/cloud-storagebatchoperations",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-storagebatchoperations/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "storagebatchoperations"
     },
     "StorageControl": {
         "language": "php",

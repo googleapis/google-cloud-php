@@ -338,7 +338,9 @@ class JobStats extends \Google\Protobuf\Internal\Message
      */
     public function getReservationUsage()
     {
-        @trigger_error('reservation_usage is deprecated.', E_USER_DEPRECATED);
+        if ($this->reservation_usage->count() !== 0) {
+            @trigger_error('reservation_usage is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->reservation_usage;
     }
 
@@ -355,8 +357,10 @@ class JobStats extends \Google\Protobuf\Internal\Message
      */
     public function setReservationUsage($var)
     {
-        @trigger_error('reservation_usage is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Audit\BigQueryAuditMetadata\JobStats\ReservationResourceUsage::class);
+        if (count($arr) !== 0) {
+            @trigger_error('reservation_usage is deprecated.', E_USER_DEPRECATED);
+        }
         $this->reservation_usage = $arr;
 
         return $this;
