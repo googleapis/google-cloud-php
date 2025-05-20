@@ -35,9 +35,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class PBCase extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name for the case.
+     * Identifier. The resource name for the case.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -145,7 +145,7 @@ class PBCase extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name for the case.
+     *           Identifier. The resource name for the case.
      *     @type string $display_name
      *           The short summary of the issue reported in this case.
      *     @type string $description
@@ -195,9 +195,9 @@ class PBCase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name for the case.
+     * Identifier. The resource name for the case.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -206,9 +206,9 @@ class PBCase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name for the case.
+     * Identifier. The resource name for the case.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

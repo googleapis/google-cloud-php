@@ -31,7 +31,7 @@ class Actor extends \Google\Protobuf\Internal\Message
      * credentials supplied during case creation. When a name is provided, an
      * email must also be provided. If the user is a Google Support agent, this is
      * obfuscated.
-     * This field is deprecated. Use **username** field instead.
+     * This field is deprecated. Use `username` instead.
      *
      * Generated from protobuf field <code>string email = 2 [deprecated = true];</code>
      * @deprecated
@@ -70,7 +70,7 @@ class Actor extends \Google\Protobuf\Internal\Message
      *           credentials supplied during case creation. When a name is provided, an
      *           email must also be provided. If the user is a Google Support agent, this is
      *           obfuscated.
-     *           This field is deprecated. Use **username** field instead.
+     *           This field is deprecated. Use `username` instead.
      *     @type bool $google_support
      *           Output only. Whether the actor is a Google support actor.
      *     @type string $username
@@ -123,7 +123,7 @@ class Actor extends \Google\Protobuf\Internal\Message
      * credentials supplied during case creation. When a name is provided, an
      * email must also be provided. If the user is a Google Support agent, this is
      * obfuscated.
-     * This field is deprecated. Use **username** field instead.
+     * This field is deprecated. Use `username` instead.
      *
      * Generated from protobuf field <code>string email = 2 [deprecated = true];</code>
      * @return string
@@ -142,7 +142,7 @@ class Actor extends \Google\Protobuf\Internal\Message
      * credentials supplied during case creation. When a name is provided, an
      * email must also be provided. If the user is a Google Support agent, this is
      * obfuscated.
-     * This field is deprecated. Use **username** field instead.
+     * This field is deprecated. Use `username` instead.
      *
      * Generated from protobuf field <code>string email = 2 [deprecated = true];</code>
      * @param string $var
