@@ -61,12 +61,12 @@ class CredentialsWrapperTest extends TestCase
     public function testBuildWithoutExplicitKeyFile($args, $expectedCredentialsWrapper)
     {
         $appDefaultCreds = getenv('GOOGLE_APPLICATION_CREDENTIALS');
-        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . __DIR__ . '/testdata/json-key-file.json');
+        $this->setEnv('GOOGLE_APPLICATION_CREDENTIALS', __DIR__ . '/testdata/json-key-file.json');
 
         $actualCredentialsWrapper = CredentialsWrapper::build($args);
         $this->assertEquals($expectedCredentialsWrapper, $actualCredentialsWrapper);
 
-        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . $appDefaultCreds);
+        $this->setEnv('GOOGLE_APPLICATION_CREDENTIALS', $appDefaultCreds);
     }
 
     /**
@@ -81,7 +81,7 @@ class CredentialsWrapperTest extends TestCase
     public function buildDataWithoutExplicitKeyFile()
     {
         $appDefaultCreds = getenv('GOOGLE_APPLICATION_CREDENTIALS');
-        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . __DIR__ . '/testdata/json-key-file.json');
+        $this->setEnv('GOOGLE_APPLICATION_CREDENTIALS', __DIR__ . '/testdata/json-key-file.json');
         $scopes = ['myscope'];
         $authHttpHandler = HttpHandlerFactory::build();
         $asyncAuthHttpHandler = function ($request, $options) use ($authHttpHandler) {
@@ -123,7 +123,7 @@ class CredentialsWrapperTest extends TestCase
             ],
         ];
 
-        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . $appDefaultCreds);
+        $this->setEnv('GOOGLE_APPLICATION_CREDENTIALS', $appDefaultCreds);
 
         return $testData;
     }
@@ -454,8 +454,8 @@ class CredentialsWrapperTest extends TestCase
      */
     public function testApplicationDefaultCredentialsWithOnGCECacheTrue()
     {
-        putenv('HOME=' . __DIR__ . '/not_exist_fixtures');
-        putenv(ServiceAccountCredentials::ENV_VAR);  // removes it from the environment
+        $this->setEnv('HOME', __DIR__ . '/not_exist_fixtures');
+        $this->setEnv(ServiceAccountCredentials::ENV_VAR);  // removes it from the environment
 
         $mockCacheItem = $this->prophesize('Psr\Cache\CacheItemInterface');
         $mockCacheItem->isHit()
@@ -484,8 +484,8 @@ class CredentialsWrapperTest extends TestCase
      */
     public function testApplicationDefaultCredentialsWithOnGCECacheFalse()
     {
-        putenv('HOME=' . __DIR__ . '/not_exist_fixtures');
-        putenv(ServiceAccountCredentials::ENV_VAR);  // removes it from the environment
+        $this->setEnv('HOME', __DIR__ . '/not_exist_fixtures');
+        $this->setEnv(ServiceAccountCredentials::ENV_VAR);  // removes it from the environment
 
         $this->expectException(ValidationException::class);
         $this->expectExceptionMessage('Could not construct ApplicationDefaultCredentials');
@@ -513,8 +513,8 @@ class CredentialsWrapperTest extends TestCase
      */
     public function testApplicationDefaultCredentialsWithOnGCECacheOptions()
     {
-        putenv('HOME=' . __DIR__ . '/not_exist_fixtures');
-        putenv(ServiceAccountCredentials::ENV_VAR);  // removes it from the environment
+        $this->setEnv('HOME', __DIR__ . '/not_exist_fixtures');
+        $this->setEnv(ServiceAccountCredentials::ENV_VAR);  // removes it from the environment
 
         $mockCacheItem = $this->prophesize('Psr\Cache\CacheItemInterface');
         $mockCacheItem->isHit()
@@ -578,5 +578,16 @@ class CredentialsWrapperTest extends TestCase
         ]);
         $serialized = serialize($credentialsWrapper);
         $this->assertIsString($serialized);
+    }
+
+    private function setEnv(string $env, ?string $value = null)
+    {
+        if ($value === null) {
+            putenv($env);
+            unset($_ENV[$env]);
+        } else {
+            putenv($env . '=' . $value);
+            $_ENV[$env] = $value;
+        }
     }
 }
