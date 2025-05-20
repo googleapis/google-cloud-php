@@ -31,43 +31,6 @@ use Google\Cloud\Support\V2\UpdateCaseRequest;
 /**
  * Update a case. Only some fields can be updated.
  *
- * EXAMPLES:
- *
- * cURL:
- *
- * ```shell
- * case="projects/some-project/cases/43595344"
- * curl \
- * --request PATCH \
- * --header "Authorization: Bearer $(gcloud auth print-access-token)" \
- * --header "Content-Type: application/json" \
- * --data '{
- * "priority": "P1"
- * }' \
- * "https://cloudsupport.googleapis.com/v2/$case?updateMask=priority"
- * ```
- *
- * Python:
- *
- * ```python
- * import googleapiclient.discovery
- *
- * api_version = "v2"
- * supportApiService = googleapiclient.discovery.build(
- * serviceName="cloudsupport",
- * version=api_version,
- * discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
- * )
- * request = supportApiService.cases().patch(
- * name="projects/some-project/cases/43112854",
- * body={
- * "displayName": "This is Now a New Title",
- * "priority": "P2",
- * },
- * )
- * print(request.execute())
- * ```
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.

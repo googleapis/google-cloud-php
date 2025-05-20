@@ -41,32 +41,6 @@ use Google\Cloud\Support\V2\SearchCaseClassificationsRequest;
  * stops returning it. After six months, `case.create` requests using the
  * classification will fail.
  *
- * EXAMPLES:
- *
- * cURL:
- *
- * ```shell
- * curl \
- * --header "Authorization: Bearer $(gcloud auth print-access-token)" \
- * 'https://cloudsupport.googleapis.com/v2/caseClassifications:search?query=display_name:"*Compute%20Engine*"'
- * ```
- *
- * Python:
- *
- * ```python
- * import googleapiclient.discovery
- *
- * supportApiService = googleapiclient.discovery.build(
- * serviceName="cloudsupport",
- * version="v2",
- * discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version=v2",
- * )
- * request = supportApiService.caseClassifications().search(
- * query='display_name:"*Compute Engine*"'
- * )
- * print(request.execute())
- * ```
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.

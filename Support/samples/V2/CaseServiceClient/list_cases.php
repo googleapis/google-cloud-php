@@ -36,34 +36,6 @@ use Google\Cloud\Support\V2\PBCase;
  * that are directly parented by that organization. To retrieve cases
  * under an organization and its projects, use `cases.search`.
  *
- * EXAMPLES:
- *
- * cURL:
- *
- * ```shell
- * parent="projects/some-project"
- * curl \
- * --header "Authorization: Bearer $(gcloud auth print-access-token)" \
- * "https://cloudsupport.googleapis.com/v2/$parent/cases"
- * ```
- *
- * Python:
- *
- * ```python
- * import googleapiclient.discovery
- *
- * api_version = "v2"
- * supportApiService = googleapiclient.discovery.build(
- * serviceName="cloudsupport",
- * version=api_version,
- * discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
- * )
- *
- * request =
- * supportApiService.cases().list(parent="projects/some-project")
- * print(request.execute())
- * ```
- *
  * @param string $formattedParent The name of a parent to list cases under. Please see
  *                                {@see CaseServiceClient::projectName()} for help formatting this field.
  */
