@@ -9,26 +9,58 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for the `UpdateOnlineReturnPolicy` method.
+ * Request message for the `UpdateOnlineReturnPolicy` method. The method
+ * supports field masks and when the mask is provided, only the fields specified
+ * in the mask are updated.
  *
  * Generated from protobuf message <code>google.shopping.merchant.accounts.v1beta.UpdateOnlineReturnPolicyRequest</code>
  */
 class UpdateOnlineReturnPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The return policy to update.
+     * Required. The online return policy to update.
+     * The online return policy's `name` field is used to identify the
+     * online return policy to be updated.
      *
      * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy online_return_policy = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $online_return_policy = null;
     /**
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Optional. List of fields being updated.
+     * The following fields are supported (in both `snake_case` and
+     * `lowerCamelCase`):
+     * - `accept_defective_only`
+     * - `accept_exchange`
+     * - `item_conditions`
+     * - `policy`
+     * - `process_refund_days`
+     * - `restocking_fee`
+     * - `return_methods`
+     * - `return_policy_uri`
+     * - `return_shipping_fee`
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $update_mask = null;
 
     /**
-     * @param \Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy $onlineReturnPolicy Required. The return policy to update.
-     * @param \Google\Protobuf\FieldMask                                   $updateMask
+     * @param \Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy $onlineReturnPolicy Required. The online return policy to update.
+     *                                                                                         The online return policy's `name` field is used to identify the
+     *                                                                                         online return policy to be updated.
+     * @param \Google\Protobuf\FieldMask                                   $updateMask         Optional. List of fields being updated.
+     *
+     *                                                                                         The following fields are supported (in both `snake_case` and
+     *                                                                                         `lowerCamelCase`):
+     *
+     *                                                                                         - `accept_defective_only`
+     *                                                                                         - `accept_exchange`
+     *                                                                                         - `item_conditions`
+     *                                                                                         - `policy`
+     *                                                                                         - `process_refund_days`
+     *                                                                                         - `restocking_fee`
+     *                                                                                         - `return_methods`
+     *                                                                                         - `return_policy_uri`
+     *                                                                                         - `return_shipping_fee`
      *
      * @return \Google\Shopping\Merchant\Accounts\V1beta\UpdateOnlineReturnPolicyRequest
      *
@@ -48,8 +80,22 @@ class UpdateOnlineReturnPolicyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy $online_return_policy
-     *           Required. The return policy to update.
+     *           Required. The online return policy to update.
+     *           The online return policy's `name` field is used to identify the
+     *           online return policy to be updated.
      *     @type \Google\Protobuf\FieldMask $update_mask
+     *           Optional. List of fields being updated.
+     *           The following fields are supported (in both `snake_case` and
+     *           `lowerCamelCase`):
+     *           - `accept_defective_only`
+     *           - `accept_exchange`
+     *           - `item_conditions`
+     *           - `policy`
+     *           - `process_refund_days`
+     *           - `restocking_fee`
+     *           - `return_methods`
+     *           - `return_policy_uri`
+     *           - `return_shipping_fee`
      * }
      */
     public function __construct($data = NULL) {
@@ -58,7 +104,9 @@ class UpdateOnlineReturnPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The return policy to update.
+     * Required. The online return policy to update.
+     * The online return policy's `name` field is used to identify the
+     * online return policy to be updated.
      *
      * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy online_return_policy = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy|null
@@ -79,7 +127,9 @@ class UpdateOnlineReturnPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The return policy to update.
+     * Required. The online return policy to update.
+     * The online return policy's `name` field is used to identify the
+     * online return policy to be updated.
      *
      * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy online_return_policy = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy $var
@@ -94,7 +144,20 @@ class UpdateOnlineReturnPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Optional. List of fields being updated.
+     * The following fields are supported (in both `snake_case` and
+     * `lowerCamelCase`):
+     * - `accept_defective_only`
+     * - `accept_exchange`
+     * - `item_conditions`
+     * - `policy`
+     * - `process_refund_days`
+     * - `restocking_fee`
+     * - `return_methods`
+     * - `return_policy_uri`
+     * - `return_shipping_fee`
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
@@ -113,7 +176,20 @@ class UpdateOnlineReturnPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Optional. List of fields being updated.
+     * The following fields are supported (in both `snake_case` and
+     * `lowerCamelCase`):
+     * - `accept_defective_only`
+     * - `accept_exchange`
+     * - `item_conditions`
+     * - `policy`
+     * - `process_refund_days`
+     * - `restocking_fee`
+     * - `return_methods`
+     * - `return_policy_uri`
+     * - `return_shipping_fee`
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

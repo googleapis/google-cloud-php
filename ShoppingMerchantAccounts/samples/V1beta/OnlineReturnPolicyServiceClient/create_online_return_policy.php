@@ -31,7 +31,7 @@ use Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy;
 /**
  * Creates a new return policy for a given merchant.
  *
- * @param string $formattedParent                    The merchant account for which to create a return policy.
+ * @param string $formattedParent                    The merchant account for which the return policy will be created.
  *                                                   Format: `accounts/{account}`
  *                                                   Please see {@see OnlineReturnPolicyServiceClient::accountName()} for help formatting this field.
  * @param string $onlineReturnPolicyLabel            Immutable. This field represents the unique user-defined label of

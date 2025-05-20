@@ -16,21 +16,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateOnlineReturnPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The merchant account for which to create a return policy.
+     * Required. The merchant account for which the return policy will be created.
      * Format: `accounts/{account}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
-     * Required. The return policy to create.
+     * Required. The return policy object to create.
      *
      * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy online_return_policy = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $online_return_policy = null;
 
     /**
-     * @param string $parent Required. The merchant account for which to create a return policy.
+     * @param string $parent Required. The merchant account for which the return policy will be created.
      *                       Format: `accounts/{account}`
      *                       Please see {@see OnlineReturnPolicyServiceClient::accountName()} for help formatting this field.
      *
@@ -45,16 +45,33 @@ class CreateOnlineReturnPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * @param string                                                       $parent             Required. The merchant account for which the return policy will be created.
+     *                                                                                         Format: `accounts/{account}`
+     *                                                                                         Please see {@see OnlineReturnPolicyServiceClient::accountName()} for help formatting this field.
+     * @param \Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy $onlineReturnPolicy Required. The return policy object to create.
+     *
+     * @return \Google\Shopping\Merchant\Accounts\V1beta\CreateOnlineReturnPolicyRequest
+     *
+     * @experimental
+     */
+    public static function buildFromParentOnlineReturnPolicy(string $parent, \Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy $onlineReturnPolicy): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setOnlineReturnPolicy($onlineReturnPolicy);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The merchant account for which to create a return policy.
+     *           Required. The merchant account for which the return policy will be created.
      *           Format: `accounts/{account}`
      *     @type \Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy $online_return_policy
-     *           Required. The return policy to create.
+     *           Required. The return policy object to create.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,7 +80,7 @@ class CreateOnlineReturnPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The merchant account for which to create a return policy.
+     * Required. The merchant account for which the return policy will be created.
      * Format: `accounts/{account}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -75,7 +92,7 @@ class CreateOnlineReturnPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The merchant account for which to create a return policy.
+     * Required. The merchant account for which the return policy will be created.
      * Format: `accounts/{account}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -91,7 +108,7 @@ class CreateOnlineReturnPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The return policy to create.
+     * Required. The return policy object to create.
      *
      * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy online_return_policy = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy|null
@@ -112,7 +129,7 @@ class CreateOnlineReturnPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The return policy to create.
+     * Required. The return policy object to create.
      *
      * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy online_return_policy = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy $var

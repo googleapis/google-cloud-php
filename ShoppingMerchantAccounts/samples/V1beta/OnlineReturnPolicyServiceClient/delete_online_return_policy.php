@@ -28,7 +28,7 @@ use Google\Shopping\Merchant\Accounts\V1beta\Client\OnlineReturnPolicyServiceCli
 use Google\Shopping\Merchant\Accounts\V1beta\DeleteOnlineReturnPolicyRequest;
 
 /**
- * Deletes an existing return policy for a given merchant.
+ * Deletes an existing return policy.
  *
  * @param string $formattedName The name of the return policy to delete.
  *                              Format: `accounts/{account}/onlineReturnPolicies/{return_policy}`
