@@ -198,8 +198,7 @@ class ChunkFormatter implements \IteratorAggregate
 
         foreach ($this->stream as $readRowsResponse) {
             if ($lastScannedRowKey = $readRowsResponse->getLastScannedRowKey()) {
-                // If the Response contains a "last_scanned_row_key", it's possible that there was
-                // a chunkless drop
+                // The server sends the response with a "last_scanned_row_key" in some cases
                 $this->prevRowKey = $lastScannedRowKey;
             }
             foreach ($readRowsResponse->getChunks() as $chunk) {
