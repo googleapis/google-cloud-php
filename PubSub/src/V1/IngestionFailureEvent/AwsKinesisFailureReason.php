@@ -20,19 +20,19 @@ class AwsKinesisFailureReason extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string stream_arn = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $stream_arn = '';
+    private $stream_arn = '';
     /**
      * Optional. The partition key of the message that failed to be ingested.
      *
      * Generated from protobuf field <code>string partition_key = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $partition_key = '';
+    private $partition_key = '';
     /**
      * Optional. The sequence number of the message that failed to be ingested.
      *
      * Generated from protobuf field <code>string sequence_number = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $sequence_number = '';
+    private $sequence_number = '';
     protected $reason;
 
     /**
@@ -175,6 +175,4 @@ class AwsKinesisFailureReason extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AwsKinesisFailureReason::class, \Google\Cloud\PubSub\V1\IngestionFailureEvent_AwsKinesisFailureReason::class);
 

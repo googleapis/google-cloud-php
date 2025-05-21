@@ -9,12 +9,12 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Set when an Avro file is unsupported or its format is not valid. When this
- * occurs, one or more Avro objects won't be ingested.
+ * Set when a Pub/Sub message fails to get published due to a schema
+ * validation violation.
  *
- * Generated from protobuf message <code>google.pubsub.v1.IngestionFailureEvent.AvroFailureReason</code>
+ * Generated from protobuf message <code>google.pubsub.v1.IngestionFailureEvent.SchemaViolationReason</code>
  */
-class AvroFailureReason extends \Google\Protobuf\Internal\Message
+class SchemaViolationReason extends \Google\Protobuf\Internal\Message
 {
 
     /**
@@ -32,6 +32,4 @@ class AvroFailureReason extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AvroFailureReason::class, \Google\Cloud\PubSub\V1\IngestionFailureEvent_AvroFailureReason::class);
 
