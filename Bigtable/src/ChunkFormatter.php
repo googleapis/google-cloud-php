@@ -197,6 +197,10 @@ class ChunkFormatter implements \IteratorAggregate
         //   are to be discarded.
 
         foreach ($this->stream as $readRowsResponse) {
+            if ($lastScannedRowKey = $readRowsResponse->getLastScannedRowKey()) {
+                // The server sends the response with a "last_scanned_row_key" in some cases
+                $this->prevRowKey = $lastScannedRowKey;
+            }
             foreach ($readRowsResponse->getChunks() as $chunk) {
                 switch ($this->state) {
                     case self::$rowStateEnum['NEW_ROW']:
@@ -234,7 +238,6 @@ class ChunkFormatter implements \IteratorAggregate
                 $options['requestCompleted'] = true;
             }
         }
-
         if ($request->hasRows()) {
             $rowSet = $request->getRows();
             if (count($rowSet->getRowKeys()) > 0) {
@@ -252,7 +255,8 @@ class ChunkFormatter implements \IteratorAggregate
                     if (($range->getEndKeyOpen() && $prevRowKey > $range->getEndKeyOpen())
                         || ($range->getEndKeyClosed() && $prevRowKey >= $range->getEndKeyClosed())) {
                         continue;
-                    } elseif ((!$range->getStartKeyOpen() || $prevRowKey > $range->getStartKeyOpen())
+                    }
+                    if ((!$range->getStartKeyOpen() || $prevRowKey > $range->getStartKeyOpen())
                         && (!$range->getStartKeyClosed() || $prevRowKey >= $range->getStartKeyClosed())) {
                         $range->setStartKeyOpen($prevRowKey);
                     }
@@ -270,8 +274,10 @@ class ChunkFormatter implements \IteratorAggregate
                 $options['requestCompleted'] = true;
             }
         } else {
-            $range = (new RowRange())->setStartKeyOpen($prevRowKey);
-            $options['rows'] = (new RowSet())->setRowRanges([$range]);
+            $range = (new RowRange());
+            $range->setStartKeyOpen($prevRowKey);
+            $rowset = (new RowSet())->setRowRanges([$range]);
+            $request->setRows($rowset);
         }
 
         return [$request, $options];
