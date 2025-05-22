@@ -291,7 +291,7 @@ final class OnlineReturnPolicyServiceClient
     }
 
     /**
-     * Deletes an existing return policy for a given merchant.
+     * Deletes an existing return policy.
      *
      * The async variant is
      * {@see OnlineReturnPolicyServiceClient::deleteOnlineReturnPolicyAsync()} .

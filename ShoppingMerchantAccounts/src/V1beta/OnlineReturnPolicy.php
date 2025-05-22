@@ -100,31 +100,31 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
      */
     protected $return_policy_uri = '';
     /**
-     * This field specifies if merchant only accepts defective products for
-     * returns, and this field is required.
+     * Optional. This field specifies if merchant
+     * only accepts defective products for returns.
      *
-     * Generated from protobuf field <code>optional bool accept_defective_only = 11;</code>
+     * Generated from protobuf field <code>optional bool accept_defective_only = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $accept_defective_only = null;
     /**
-     * The field specifies the number of days it takes for merchants to process
-     * refunds, field is optional.
+     * Optional. The field specifies the number of
+     * days it takes for merchants to process refunds.
      *
-     * Generated from protobuf field <code>optional int32 process_refund_days = 12;</code>
+     * Generated from protobuf field <code>optional int32 process_refund_days = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $process_refund_days = null;
     /**
-     * This field specifies if merchant allows customers to exchange products,
-     * this field is required.
+     * Optional. This field specifies if merchant
+     * allows customers to exchange products.
      *
-     * Generated from protobuf field <code>optional bool accept_exchange = 13;</code>
+     * Generated from protobuf field <code>optional bool accept_exchange = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $accept_exchange = null;
     /**
-     * The field specifies the return label source. This field is required when
-     * return method is BY_MAIL.
+     * Optional. The field specifies the return
+     * label source.
      *
-     * Generated from protobuf field <code>optional .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnLabelSource return_label_source = 15;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnLabelSource return_label_source = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $return_label_source = null;
 
@@ -173,17 +173,17 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
      *           Required. The return policy uri. This can used by Google to do a sanity
      *           check for the policy. It must be a valid URL.
      *     @type bool $accept_defective_only
-     *           This field specifies if merchant only accepts defective products for
-     *           returns, and this field is required.
+     *           Optional. This field specifies if merchant
+     *           only accepts defective products for returns.
      *     @type int $process_refund_days
-     *           The field specifies the number of days it takes for merchants to process
-     *           refunds, field is optional.
+     *           Optional. The field specifies the number of
+     *           days it takes for merchants to process refunds.
      *     @type bool $accept_exchange
-     *           This field specifies if merchant allows customers to exchange products,
-     *           this field is required.
+     *           Optional. This field specifies if merchant
+     *           allows customers to exchange products.
      *     @type int $return_label_source
-     *           The field specifies the return label source. This field is required when
-     *           return method is BY_MAIL.
+     *           Optional. The field specifies the return
+     *           label source.
      * }
      */
     public function __construct($data = NULL) {
@@ -540,10 +540,10 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field specifies if merchant only accepts defective products for
-     * returns, and this field is required.
+     * Optional. This field specifies if merchant
+     * only accepts defective products for returns.
      *
-     * Generated from protobuf field <code>optional bool accept_defective_only = 11;</code>
+     * Generated from protobuf field <code>optional bool accept_defective_only = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getAcceptDefectiveOnly()
@@ -562,10 +562,10 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field specifies if merchant only accepts defective products for
-     * returns, and this field is required.
+     * Optional. This field specifies if merchant
+     * only accepts defective products for returns.
      *
-     * Generated from protobuf field <code>optional bool accept_defective_only = 11;</code>
+     * Generated from protobuf field <code>optional bool accept_defective_only = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -578,10 +578,10 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The field specifies the number of days it takes for merchants to process
-     * refunds, field is optional.
+     * Optional. The field specifies the number of
+     * days it takes for merchants to process refunds.
      *
-     * Generated from protobuf field <code>optional int32 process_refund_days = 12;</code>
+     * Generated from protobuf field <code>optional int32 process_refund_days = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getProcessRefundDays()
@@ -600,10 +600,10 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The field specifies the number of days it takes for merchants to process
-     * refunds, field is optional.
+     * Optional. The field specifies the number of
+     * days it takes for merchants to process refunds.
      *
-     * Generated from protobuf field <code>optional int32 process_refund_days = 12;</code>
+     * Generated from protobuf field <code>optional int32 process_refund_days = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -616,10 +616,10 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field specifies if merchant allows customers to exchange products,
-     * this field is required.
+     * Optional. This field specifies if merchant
+     * allows customers to exchange products.
      *
-     * Generated from protobuf field <code>optional bool accept_exchange = 13;</code>
+     * Generated from protobuf field <code>optional bool accept_exchange = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getAcceptExchange()
@@ -638,10 +638,10 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field specifies if merchant allows customers to exchange products,
-     * this field is required.
+     * Optional. This field specifies if merchant
+     * allows customers to exchange products.
      *
-     * Generated from protobuf field <code>optional bool accept_exchange = 13;</code>
+     * Generated from protobuf field <code>optional bool accept_exchange = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -654,10 +654,10 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The field specifies the return label source. This field is required when
-     * return method is BY_MAIL.
+     * Optional. The field specifies the return
+     * label source.
      *
-     * Generated from protobuf field <code>optional .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnLabelSource return_label_source = 15;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnLabelSource return_label_source = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getReturnLabelSource()
@@ -676,10 +676,10 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The field specifies the return label source. This field is required when
-     * return method is BY_MAIL.
+     * Optional. The field specifies the return
+     * label source.
      *
-     * Generated from protobuf field <code>optional .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnLabelSource return_label_source = 15;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy.ReturnLabelSource return_label_source = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
