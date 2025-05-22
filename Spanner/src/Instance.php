@@ -18,11 +18,11 @@
 namespace Google\Cloud\Spanner;
 
 use Closure;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
-use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsRequest;
@@ -31,12 +31,12 @@ use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceRequest;
-use Google\Cloud\Spanner\Admin\Instance\V1\Instance as InstanceProto;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\LongRunning\ListOperationsRequest;
+use Google\LongRunning\Operation as OperationProto;
 
 /**
  * Represents a Cloud Spanner instance
@@ -797,7 +797,7 @@ class Instance
      */
     public function createInstanceArray(
         array $instanceArray,
-        InstanceConfiguration $config = null
+        ?InstanceConfiguration $config = null
     ): array {
         return $instanceArray + [
             'name' => $this->name,
@@ -812,7 +812,7 @@ class Instance
      *
      * Example:
      * ```
-     * $operation = $spanner->resumeOperation($operationName);
+     * $operation = $instance->resumeOperation($operationName);
      * ```
      *
      * @param string $operationName The Long Running Operation name.
@@ -842,7 +842,7 @@ class Instance
      *
      * Example:
      * ```
-     * $operations = $backup->longRunningOperations();
+     * $operations = $instance->longRunningOperations();
      * ```
      *
      * @param array $options [optional] {
@@ -868,7 +868,13 @@ class Instance
         return $this->buildLongRunningIterator(
             [$this->instanceAdminClient->getOperationsClient(), 'listOperations'],
             $request,
-            $callOptions
+            $callOptions,
+            function (OperationProto $operation) {
+                return $this->resumeOperation(
+                    $operation->getName(),
+                    $this->handleResponse($operation)
+                );
+            }
         );
     }
 

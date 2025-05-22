@@ -27,13 +27,12 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\RequestHandler;
-use Google\Cloud\Core\Retry;
 use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Retry;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
-use Google\Cloud\Spanner\Admin\Database\V1\Database as DatabaseProto;
 use Google\Cloud\Spanner\Admin\Database\V1\Database\State;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Admin\Database\V1\DropDatabaseRequest;
@@ -55,6 +54,7 @@ use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
 use Google\Cloud\Spanner\V1\TypeCode;
 use Google\LongRunning\ListOperationsRequest;
+use Google\LongRunning\Operation as OperationProto;
 use Google\Protobuf\Duration;
 use Google\Protobuf\ListValue;
 use Google\Protobuf\Struct;
@@ -766,7 +766,19 @@ class Database
             'singleUse' => false
         ];
 
-        $options['transactionOptions'] = $this->configureSnapshotOptions($options);
+        $options['transactionOptions'] = $this->configureReadOnlyTransactionOptions($options);
+
+        // For backwards compatibility - remove all PBReadOnly fields
+        // This was previously being done in configureReadOnlyTransactionOptions
+        // @TODO: clean this up
+        unset(
+            $options['returnReadTimestamp'],
+            $options['strong'],
+            $options['readTimestamp'],
+            $options['exactStaleness'],
+            $options['minReadTimestamp'],
+            $options['maxStaleness'],
+        );
 
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READ,
@@ -827,8 +839,7 @@ class Database
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
         }
 
-        // There isn't anything configurable here.
-        $options['transactionOptions'] = $this->configureTransactionOptions();
+        $options['transactionOptions'] = $this->configureReadWriteTransactionOptions();
 
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READWRITE,
@@ -944,7 +955,9 @@ class Database
         }
 
         // There isn't anything configurable here.
-        $options['transactionOptions'] = $this->configureTransactionOptions($options['transactionOptions'] ?? []);
+        $options['transactionOptions'] = $this->configureReadWriteTransactionOptions(
+            $options['transactionOptions'] ?? []
+        );
 
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READWRITE,
@@ -1933,6 +1946,7 @@ class Database
      *           Please note, if using the `priority` setting you may utilize the constants available
      *           on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *           Please note, the `transactionTag` setting will be ignored as it is not supported for partitioned DML.
+     *     @type array $transactionOptions Transaction options ({@see V1\TransactionOptions}).
      * }
      * @return int The number of rows modified.
      */
@@ -2285,7 +2299,8 @@ class Database
         return $this->buildLongRunningIterator(
             [$this->databaseAdminClient, 'listBackupOperations'],
             $request,
-            $callOptions +  ['resource-prefix' => $this->name]
+            $callOptions +  ['resource-prefix' => $this->name],
+            $this->getResultMapper()
         );
     }
 
@@ -2347,7 +2362,8 @@ class Database
         return $this->buildLongRunningIterator(
             [$this->databaseAdminClient, 'listDatabaseOperations'],
             $request,
-            $callOptions + ['resource-prefix' => $this->name]
+            $callOptions + ['resource-prefix' => $this->name],
+            $this->getResultMapper()
         );
     }
 
@@ -2412,7 +2428,8 @@ class Database
         return $this->buildLongRunningIterator(
             [$this->databaseAdminClient->getOperationsClient(), 'listOperations'],
             $request,
-            $callOptions
+            $callOptions,
+            $this->getResultMapper()
         );
     }
 
@@ -2634,6 +2651,16 @@ class Database
                 'database' => $database,
                 'databaseRole' => $this->databaseRole,
             ]);
+        };
+    }
+
+    private function getResultMapper()
+    {
+        return function (OperationProto $operation) {
+            return $this->resumeOperation(
+                $operation->getName(),
+                $this->handleResponse($operation)
+            );
         };
     }
 

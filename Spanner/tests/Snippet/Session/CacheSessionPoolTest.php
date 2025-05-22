@@ -49,7 +49,8 @@ class CacheSessionPoolTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(CacheSessionPool::class, 1);
         $snippet->replace('$cache =', '//$cache =');
         $snippet->addLocal('cache', new MemoryCacheItemPool());
-        $res = $snippet->invoke();
+        $res = $snippet->invoke('sessionPool');
+        $this->assertInstanceOf(CacheSessionPool::class, $res->returnVal());
     }
 
     public function testClassWithDatabaseRole()

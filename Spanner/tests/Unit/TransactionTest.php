@@ -658,7 +658,8 @@ class TransactionTest extends TestCase
         $transaction = new Transaction(
             $this->operation,
             $this->session,
-            self::TRANSACTION
+            self::TRANSACTION,
+            ['isRetry' => true]
         );
 
         $this->assertTrue($transaction->isRetry());

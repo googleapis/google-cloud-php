@@ -32,15 +32,15 @@
 
 namespace Google\Cloud\Spanner\Middleware;
 
-use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\BidiStream;
 use Google\ApiCore\Call;
 use Google\ApiCore\ClientStream;
 use Google\ApiCore\Middleware\MiddlewareInterface;
-use Google\Cloud\Spanner\Serializer;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\RequestProcessorTrait;
+use Google\Cloud\Spanner\Serializer;
 use GuzzleHttp\Promise\PromiseInterface;
 use Throwable;
 

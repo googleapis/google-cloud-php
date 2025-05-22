@@ -39,7 +39,7 @@ trait ResultGeneratorTrait
         ?ResultSetStats $stats = null,
         ?string $transactionId = null
     ) {
-        $this->stream = $this->prophesize(ServerStream::class);
+        $stream = $this->prophesize(ServerStream::class);
         $chunks = $chunks ?: [
             [
                 'name' => 'ID',
@@ -72,7 +72,7 @@ trait ResultGeneratorTrait
                     'type' => new Type(['code' => $row['type']])
                 ]);
 
-                $values[] = new Value(['string_value' => $row['value']]);
+                $values[] = new Value(['string_value' => (string) $row['value']]);
             }
 
             $result = [
@@ -99,10 +99,10 @@ trait ResultGeneratorTrait
             $rows[] = new PartialResultSet($result);
         }
 
-        $this->stream->readAll()
+        $stream->readAll()
             ->willReturn($this->resultGeneratorArray($rows));
 
-        return $this->stream->reveal();
+        return $stream->reveal();
     }
 
     private function resultGeneratorArray($chunks)

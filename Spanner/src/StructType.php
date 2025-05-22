@@ -42,8 +42,7 @@ namespace Google\Cloud\Spanner;
  *             ->add('lastName', Database::TYPE_STRING)
  *     ]
  * ])->rows()->current();
- *
- * $fullName = $res['firstName'] . ' ' . $res['lastName']; // `John Testuser`
+ * $fullName = $res['firstName'] . ' ' . $res['lastName']; // `John Testuser`;
  * ```
  */
 class StructType

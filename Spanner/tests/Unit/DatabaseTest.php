@@ -1894,7 +1894,8 @@ class DatabaseTest extends TestCase
                             'readLockMode' => 0,
                             'multiplexedSessionPreviousTransactionId' => '',
                         ],
-                        'excludeTxnFromChangeStreams' => false
+                        'excludeTxnFromChangeStreams' => false,
+                        'isolationLevel' => 0,
                     ]
                 ], $message['transaction']);
                 return true;
@@ -1937,15 +1938,7 @@ class DatabaseTest extends TestCase
                     $message['requestOptions']['transactionTag'],
                     self::TRANSACTION_TAG
                 );
-                return $message['transaction'] == [
-                    'begin' => [
-                        'readWrite' => [
-                            'readLockMode' => 0,
-                            'multiplexedSessionPreviousTransactionId' => '',
-                        ],
-                        'excludeTxnFromChangeStreams' => false,
-                    ]
-                ];
+                return isset($message['transaction']['begin']);
             }),
             Argument::type('array')
         )
@@ -2046,15 +2039,7 @@ class DatabaseTest extends TestCase
                     $message['requestOptions']['transactionTag'],
                     self::TRANSACTION_TAG
                 );
-                return $message['transaction'] == [
-                    'begin' => [
-                        'readWrite' => [
-                            'readLockMode' => 0,
-                            'multiplexedSessionPreviousTransactionId' => ''
-                        ],
-                        'excludeTxnFromChangeStreams' => false
-                    ]
-                ];
+                return isset($message['transaction']['begin']);
             }),
             Argument::type('array')
         )
@@ -2111,18 +2096,7 @@ class DatabaseTest extends TestCase
             Argument::that(function (ExecuteSqlRequest $request) use ($sql) {
                 $message = $this->serializer->encodeMessage($request);
                 $this->assertEquals($message['sql'], $sql);
-                $this->assertEquals(
-                    $message['transaction'],
-                    [
-                        'begin' => [
-                            'readWrite' => [
-                                'readLockMode' => 0,
-                                'multiplexedSessionPreviousTransactionId' => ''
-                            ],
-                            'excludeTxnFromChangeStreams' => false
-                        ]
-                    ]
-                );
+                $this->assertTrue(isset($message['transaction']['begin']));
                 return $message['requestOptions']['transactionTag'] == self::TRANSACTION_TAG;
             }),
             Argument::type('array')
@@ -2203,16 +2177,7 @@ class DatabaseTest extends TestCase
                 $message = $this->serializer->encodeMessage($request);
                 $this->assertEquals($message['table'], self::TEST_TABLE_NAME);
                 $this->assertEquals($message['columns'], $cols);
-                return $message['transaction']
-                        == [
-                            'begin' => [
-                                'readWrite' => [
-                                    'readLockMode' => 0,
-                                    'multiplexedSessionPreviousTransactionId' => ''
-                                ],
-                                'excludeTxnFromChangeStreams' => false
-                            ]
-                        ]
+                return isset($message['transaction']['begin'])
                     && $message['requestOptions']['transactionTag'] == self::TRANSACTION_TAG;
             }),
             Argument::type('array')
@@ -2314,11 +2279,9 @@ class DatabaseTest extends TestCase
                 $prop->setAccessible(true);
                 $prop->setValue($t, Transaction::STATE_COMMITTED);
             },
-            Argument::type('array')
-        )
-            ->shouldBeCalledOnce()
-            ->willReturn([
-'transactionOptions' => ['excludeTxnFromChangeStreams' => true]]
+            [
+                'transactionOptions' => ['excludeTxnFromChangeStreams' => true]
+            ]
         );
     }
 

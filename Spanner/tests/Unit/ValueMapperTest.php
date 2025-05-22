@@ -1332,7 +1332,7 @@ class ValueMapperTest extends TestCase
     /** @dataProvider invalidIntervals */
     public function testIntervalWithInvalidFormatThrowsException(string $interval)
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
 
         $res = $this->mapper->decodeValues(
             $this->createField(Database::TYPE_INTERVAL),

@@ -22,10 +22,8 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\LongRunning\Operation;
+use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Protobuf\Internal\Message;
 
 /**
@@ -53,17 +51,12 @@ trait RequestTrait
         callable $call,
         Message $request,
         array $callOptions,
-        ?callable $resultMapper = null
+        callable $resultMapper
     ): ItemIterator {
         $resultLimit = $this->pluck('resultLimit', $callOptions, false) ?: 0;
         return new ItemIterator(
             new PageIterator(
-                $resultMapper ?: function (Operation $operation) {
-                    return $this->resumeOperation(
-                        $operation->getName(),
-                        $this->handleResponse($operation)
-                    );
-                },
+                $resultMapper,
                 function (array $args) use ($call) {
                     if ($pageToken = $this->pluck('pageToken', $args, false) ?: null) {
                         $args['request']->setPageToken($pageToken);
@@ -123,6 +116,9 @@ trait RequestTrait
     private function operationFromOperationResponse(
         OperationResponse $operation
     ): LongRunningOperation {
+        if (!method_exists($this, 'resumeOperation')) {
+            throw new \BadMethodCallException('This class must implement resumeOperation to call this method.');
+        }
         return $this->resumeOperation(
             $operation->getName(),
             $this->handleResponse($operation->getLastProtoResponse()) ?? []
