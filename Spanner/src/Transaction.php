@@ -21,6 +21,7 @@ use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 
 /**
  * Manages interaction with Cloud Spanner inside a Transaction.
@@ -85,6 +86,9 @@ class Transaction implements TransactionalReadInterface
 
     private ValueMapper $mapper;
 
+    private int $isolationLevel;
+    private array $requestOptions;
+
     /**
      * @param Operation $operation The Operation instance.
      * @param Session $session The session to use for spanner interactions.
@@ -96,10 +100,11 @@ class Transaction implements TransactionalReadInterface
      * @param array $options [optional] {
      *     Configuration Options.
      *
-     *     @type array $begin The begin Transaction options.
-     *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
+     *     @type array $begin The begin Transaction options. See {@see V1\TransactionOptions}.
      *     @type int $isolationLevel level of Isolation for this transaction instance
-     *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
+     *           **Defaults to** {@see IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED}
+     *     @type array $requestOptions See {@see V1\RequestOptions}.
+     *     @type array $transactionOptions See {@see V1\TransactionOptions}.
      * }
      * @param ValueMapper $mapper Consumed internally for properly map mutation data.
      * @throws \InvalidArgumentException if a tag is specified on a single-use transaction.
@@ -130,7 +135,14 @@ class Transaction implements TransactionalReadInterface
         $this->tag = $tag;
 
         $this->context = SessionPoolInterface::CONTEXT_READWRITE;
-        $this->options = $options;
+        $this->isolationLevel = $options['isolationLevel'] ?? IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED;
+        $this->transactionSelector = array_intersect_key(
+            (array) $options,
+            array_flip(['singleUse', 'begin'])
+        );
+        $this->requestOptions = $options['requestOptions'] ?? [];
+        $this->transactionOptions = $options['transactionOptions'] ?? [];
+
         if (!is_null($mapper)) {
             $this->mapper = $mapper;
         }
@@ -436,17 +448,19 @@ class Transaction implements TransactionalReadInterface
 
         // For commit, A transaction ID is mandatory for non-single-use transactions,
         // and the `begin` option is not supported.
-        if (empty($this->transactionId) && isset($this->options['begin'])) {
-            // Since the begin option is not supported in commit, unset it.
-            unset($this->options['begin']);
+        // @TODO: Find out why the `begin` option is not supported for calling the `beginTransaction` RPC
+        if (empty($this->transactionId) && isset($this->transactionSelector['begin'])) {
+            $operationTransactionOptions = [
+                'isolationLevel' => $this->isolationLevel,
+                'requestOptions' => $this->requestOptions,
+                'singleUse' => $this->transactionSelector['singleUse'] ?? null,
+                'transactionOptions' => $this->transactionOptions,
+            ];
+            // Execute the beginTransaction RPC.
+            $transaction = $this->operation->transaction($this->session, $operationTransactionOptions);
 
-            // A transaction ID is mandatory for non-single-use transactions.
-            if ($this->type !== self::TYPE_SINGLE_USE) {
-                // Execute the beginTransaction RPC.
-                $transaction = $this->operation->transaction($this->session, $this->options);
-                // Set the transaction ID of the current transaction.
-                $this->transactionId = $transaction->id();
-            }
+            // Set the transaction ID of the current transaction.
+            $this->transactionId = $transaction->id();
         }
 
         if (!$this->singleUseState()) {
@@ -536,8 +550,8 @@ class Transaction implements TransactionalReadInterface
         $this->seqno++;
 
         $options['transactionType'] = $this->context;
-        if (empty($this->transactionId) && isset($this->options['begin'])) {
-            $options['begin'] = $this->options['begin'];
+        if (empty($this->transactionId) && isset($this->transactionSelector['begin'])) {
+            $options['begin'] = $this->transactionSelector['begin'];
         } else {
             $options['transactionId'] = $this->transactionId;
         }
