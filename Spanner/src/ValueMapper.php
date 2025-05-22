@@ -22,6 +22,8 @@ use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\V1\TypeAnnotationCode;
 use Google\Cloud\Spanner\V1\TypeCode;
+use Google\Protobuf\Internal\DescriptorPool;
+use Google\Protobuf\Internal\Message;
 
 /**
  * Manage value mappings between Google Cloud PHP and Cloud Spanner
