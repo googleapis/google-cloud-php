@@ -187,7 +187,7 @@ class BatchClient
         $transactionOptions = $this->pluck('transactionOptions', $options);
         $transactionOptions['returnReadTimestamp'] = true;
 
-        $transactionOptions = $this->configureSnapshotOptions($transactionOptions);
+        $transactionOptions = $this->configureReadOnlyTransactionOptions($transactionOptions);
 
         if ($this->databaseRole !== null) {
             $sessionOptions['creator_role'] = $this->databaseRole;

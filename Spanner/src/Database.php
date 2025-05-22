@@ -766,7 +766,19 @@ class Database
             'singleUse' => false
         ];
 
-        $options['transactionOptions'] = $this->configureSnapshotOptions($options);
+        $options['transactionOptions'] = $this->configureReadOnlyTransactionOptions($options);
+
+        // For backwards compatibility - remove all PBReadOnly fields
+        // This was previously being done in configureReadOnlyTransactionOptions
+        // @TODO: clean this up
+        unset(
+            $options['returnReadTimestamp'],
+            $options['strong'],
+            $options['readTimestamp'],
+            $options['exactStaleness'],
+            $options['minReadTimestamp'],
+            $options['maxStaleness'],
+        );
 
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READ,
@@ -827,8 +839,7 @@ class Database
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
         }
 
-        // There isn't anything configurable here.
-        $options['transactionOptions'] = $this->configureTransactionOptions();
+        $options['transactionOptions'] = $this->configureReadWriteTransactionOptions();
 
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READWRITE,
@@ -944,7 +955,9 @@ class Database
         }
 
         // There isn't anything configurable here.
-        $options['transactionOptions'] = $this->configureTransactionOptions($options['transactionOptions'] ?? []);
+        $options['transactionOptions'] = $this->configureReadWriteTransactionOptions(
+            $options['transactionOptions'] ?? []
+        );
 
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READWRITE,
@@ -1933,6 +1946,7 @@ class Database
      *           Please note, if using the `priority` setting you may utilize the constants available
      *           on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *           Please note, the `transactionTag` setting will be ignored as it is not supported for partitioned DML.
+     *     @type array $transactionOptions Transaction options ({@see V1\TransactionOptions}).
      * }
      * @return int The number of rows modified.
      */
