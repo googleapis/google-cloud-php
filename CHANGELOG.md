@@ -1,5 +1,73 @@
 # Changelog
 
+## 0.289.0
+
+<details><summary>google/cloud-bigtable 2.11.2</summary>
+
+
+
+### Bug Fixes
+
+* **Bigtable:** Ensure RowRanges are set on retry ([#8224](https://github.com/googleapis/google-cloud-php/issues/8224)) ([d37a65a](https://github.com/googleapis/google-cloud-php/commit/d37a65a4f905e3d8c3ce149f27d1fa4a27b08be0))
+
+</details>
+
+<details><summary>google/cloud-commerce-consumer-procurement 1.2.1</summary>
+
+
+
+### Bug Fixes
+
+* Google.api.http annotation `http_uri` changed for `LicenseManagementService.UpdateLicensePool` ([#8337](https://github.com/googleapis/google-cloud-php/issues/8337)) ([78981e2](https://github.com/googleapis/google-cloud-php/commit/78981e264da92236a51171552decd6a22f712561))
+
+</details>
+
+<details><summary>google/cloud-container 2.4.0</summary>
+
+
+
+### Features
+
+* [Container] add topology_manager in NodeKubeletConfig ([#8338](https://github.com/googleapis/google-cloud-php/issues/8338)) ([058c4fb](https://github.com/googleapis/google-cloud-php/commit/058c4fb93fd41935e2ec944fe6543d38dddce49e))
+
+</details>
+
+<details><summary>google/cloud-managedkafka 0.5.0</summary>
+
+
+
+### Features
+
+* [ManagedKafka] add Managed Kafka ACL API ([#8335](https://github.com/googleapis/google-cloud-php/issues/8335)) ([b5ccef1](https://github.com/googleapis/google-cloud-php/commit/b5ccef10acf5bedb915d88596fa226df7fc5d00a))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.12.0</summary>
+
+
+
+### Features
+
+* [PubSub] Add SchemaViolationReason to IngestionFailureEvent ([#8333](https://github.com/googleapis/google-cloud-php/issues/8333)) ([68c5d41](https://github.com/googleapis/google-cloud-php/commit/68c5d41afc743cdee06adc96e699d721ec011f68))
+
+</details>
+
+<details><summary>google/cloud-security-public-ca 1.0.4</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-accounts 0.8.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantAccounts] A new method_signature `parent,online_return_policy` is added to method `CreateOnlineReturnPolicy` in service `OnlineReturnPolicyService` ([#8330](https://github.com/googleapis/google-cloud-php/issues/8330)) ([54b3483](https://github.com/googleapis/google-cloud-php/commit/54b34838dd3fc3b06f3f3619d772fe36d9975879))
+
+</details>
+
 ## 0.288.0
 
 <details><summary>google/cloud-ai-platform 1.26.0</summary>
