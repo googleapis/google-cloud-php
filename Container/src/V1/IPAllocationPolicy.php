@@ -141,8 +141,11 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      * notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g.
      * `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range
      * to use.
+     * This field is deprecated due to the deprecation of 2VM TPU. The end of life
+     * date for 2VM TPU is 2025-04-25.
      *
-     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 13;</code>
+     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 13 [deprecated = true];</code>
+     * @deprecated
      */
     protected $tpu_ipv4_cidr_block = '';
     /**
@@ -296,6 +299,8 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      *           notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g.
      *           `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range
      *           to use.
+     *           This field is deprecated due to the deprecation of 2VM TPU. The end of life
+     *           date for 2VM TPU is 2025-04-25.
      *     @type bool $use_routes
      *           Whether routes will be used for pod IPs in the cluster.
      *           This is used in conjunction with use_ip_aliases. It cannot be true if
@@ -742,12 +747,18 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      * notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g.
      * `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range
      * to use.
+     * This field is deprecated due to the deprecation of 2VM TPU. The end of life
+     * date for 2VM TPU is 2025-04-25.
      *
-     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 13;</code>
+     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 13 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getTpuIpv4CidrBlock()
     {
+        if ($this->tpu_ipv4_cidr_block !== '') {
+            @trigger_error('tpu_ipv4_cidr_block is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->tpu_ipv4_cidr_block;
     }
 
@@ -763,13 +774,17 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      * notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g.
      * `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range
      * to use.
+     * This field is deprecated due to the deprecation of 2VM TPU. The end of life
+     * date for 2VM TPU is 2025-04-25.
      *
-     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 13;</code>
+     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 13 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setTpuIpv4CidrBlock($var)
     {
+        @trigger_error('tpu_ipv4_cidr_block is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->tpu_ipv4_cidr_block = $var;
 

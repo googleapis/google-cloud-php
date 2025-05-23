@@ -22,7 +22,7 @@ class Autopilot extends \Google\Protobuf\Internal\Message
      */
     protected $enabled = false;
     /**
-     * Workload policy configuration for Autopilot.
+     * WorkloadPolicyConfig is the configuration related to GCW workload policy
      *
      * Generated from protobuf field <code>.google.container.v1.WorkloadPolicyConfig workload_policy_config = 2;</code>
      */
@@ -37,7 +37,7 @@ class Autopilot extends \Google\Protobuf\Internal\Message
      *     @type bool $enabled
      *           Enable Autopilot
      *     @type \Google\Cloud\Container\V1\WorkloadPolicyConfig $workload_policy_config
-     *           Workload policy configuration for Autopilot.
+     *           WorkloadPolicyConfig is the configuration related to GCW workload policy
      * }
      */
     public function __construct($data = NULL) {
@@ -72,7 +72,7 @@ class Autopilot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Workload policy configuration for Autopilot.
+     * WorkloadPolicyConfig is the configuration related to GCW workload policy
      *
      * Generated from protobuf field <code>.google.container.v1.WorkloadPolicyConfig workload_policy_config = 2;</code>
      * @return \Google\Cloud\Container\V1\WorkloadPolicyConfig|null
@@ -93,7 +93,7 @@ class Autopilot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Workload policy configuration for Autopilot.
+     * WorkloadPolicyConfig is the configuration related to GCW workload policy
      *
      * Generated from protobuf field <code>.google.container.v1.WorkloadPolicyConfig workload_policy_config = 2;</code>
      * @param \Google\Cloud\Container\V1\WorkloadPolicyConfig $var
