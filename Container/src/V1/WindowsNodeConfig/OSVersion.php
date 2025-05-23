@@ -14,19 +14,19 @@ use UnexpectedValueException;
 class OSVersion
 {
     /**
-     * When OSVersion is not specified
+     * When OSVersion is not specified.
      *
      * Generated from protobuf enum <code>OS_VERSION_UNSPECIFIED = 0;</code>
      */
     const OS_VERSION_UNSPECIFIED = 0;
     /**
-     * LTSC2019 specifies to use LTSC2019 as the Windows Servercore Base Image
+     * LTSC2019 specifies to use LTSC2019 as the Windows Servercore Base Image.
      *
      * Generated from protobuf enum <code>OS_VERSION_LTSC2019 = 1;</code>
      */
     const OS_VERSION_LTSC2019 = 1;
     /**
-     * LTSC2022 specifies to use LTSC2022 as the Windows Servercore Base Image
+     * LTSC2022 specifies to use LTSC2022 as the Windows Servercore Base Image.
      *
      * Generated from protobuf enum <code>OS_VERSION_LTSC2022 = 2;</code>
      */

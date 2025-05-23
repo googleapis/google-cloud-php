@@ -45,7 +45,7 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The monitoring service the cluster should use to write metrics.
      * Currently available options:
-     * * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
+     * * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring
      * service with a Kubernetes-native resource model
      * * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
      *   longer available as of GKE 1.15).
@@ -77,7 +77,7 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
      * @param string $monitoringService Required. The monitoring service the cluster should use to write metrics.
      *                                  Currently available options:
      *
-     *                                  * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
+     *                                  * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring
      *                                  service with a Kubernetes-native resource model
      *                                  * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
      *                                  longer available as of GKE 1.15).
@@ -105,7 +105,7 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
      * @param string $monitoringService Required. The monitoring service the cluster should use to write metrics.
      *                                  Currently available options:
      *
-     *                                  * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
+     *                                  * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring
      *                                  service with a Kubernetes-native resource model
      *                                  * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
      *                                  longer available as of GKE 1.15).
@@ -146,7 +146,7 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
      *     @type string $monitoring_service
      *           Required. The monitoring service the cluster should use to write metrics.
      *           Currently available options:
-     *           * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
+     *           * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring
      *           service with a Kubernetes-native resource model
      *           * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
      *             longer available as of GKE 1.15).
@@ -274,7 +274,7 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The monitoring service the cluster should use to write metrics.
      * Currently available options:
-     * * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
+     * * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring
      * service with a Kubernetes-native resource model
      * * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
      *   longer available as of GKE 1.15).
@@ -293,7 +293,7 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The monitoring service the cluster should use to write metrics.
      * Currently available options:
-     * * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
+     * * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring
      * service with a Kubernetes-native resource model
      * * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
      *   longer available as of GKE 1.15).

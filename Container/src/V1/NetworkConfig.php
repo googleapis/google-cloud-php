@@ -131,6 +131,12 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool default_enable_private_nodes = 22;</code>
      */
     protected $default_enable_private_nodes = null;
+    /**
+     * Disable L4 load balancer VPC firewalls to enable firewall policies.
+     *
+     * Generated from protobuf field <code>optional bool disable_l4_lb_firewall_reconciliation = 24;</code>
+     */
+    protected $disable_l4_lb_firewall_reconciliation = null;
 
     /**
      * Constructor.
@@ -190,6 +196,8 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *           and this field at the same time.
      *           To update the default setting, use
      *           [ClusterUpdate.desired_default_enable_private_nodes][google.container.v1.ClusterUpdate.desired_default_enable_private_nodes]
+     *     @type bool $disable_l4_lb_firewall_reconciliation
+     *           Disable L4 load balancer VPC firewalls to enable firewall policies.
      * }
      */
     public function __construct($data = NULL) {
@@ -739,6 +747,42 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->default_enable_private_nodes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Disable L4 load balancer VPC firewalls to enable firewall policies.
+     *
+     * Generated from protobuf field <code>optional bool disable_l4_lb_firewall_reconciliation = 24;</code>
+     * @return bool
+     */
+    public function getDisableL4LbFirewallReconciliation()
+    {
+        return isset($this->disable_l4_lb_firewall_reconciliation) ? $this->disable_l4_lb_firewall_reconciliation : false;
+    }
+
+    public function hasDisableL4LbFirewallReconciliation()
+    {
+        return isset($this->disable_l4_lb_firewall_reconciliation);
+    }
+
+    public function clearDisableL4LbFirewallReconciliation()
+    {
+        unset($this->disable_l4_lb_firewall_reconciliation);
+    }
+
+    /**
+     * Disable L4 load balancer VPC firewalls to enable firewall policies.
+     *
+     * Generated from protobuf field <code>optional bool disable_l4_lb_firewall_reconciliation = 24;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableL4LbFirewallReconciliation($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_l4_lb_firewall_reconciliation = $var;
 
         return $this;
     }
