@@ -260,6 +260,19 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string storage_pools = 43;</code>
      */
     private $storage_pools;
+    /**
+     * The maximum duration for the nodes to exist.
+     * If unspecified, the nodes can exist indefinitely.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration max_run_duration = 45;</code>
+     */
+    protected $max_run_duration = null;
+    /**
+     * Flex Start flag for enabling Flex Start VM.
+     *
+     * Generated from protobuf field <code>optional bool flex_start = 46;</code>
+     */
+    protected $flex_start = null;
 
     /**
      * Constructor.
@@ -380,6 +393,11 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $storage_pools
      *           List of Storage Pools where boot disks are provisioned.
      *           Existing Storage Pools will be replaced with storage-pools.
+     *     @type \Google\Protobuf\Duration $max_run_duration
+     *           The maximum duration for the nodes to exist.
+     *           If unspecified, the nodes can exist indefinitely.
+     *     @type bool $flex_start
+     *           Flex Start flag for enabling Flex Start VM.
      * }
      */
     public function __construct($data = NULL) {
@@ -1517,6 +1535,80 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->storage_pools = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The maximum duration for the nodes to exist.
+     * If unspecified, the nodes can exist indefinitely.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration max_run_duration = 45;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getMaxRunDuration()
+    {
+        return $this->max_run_duration;
+    }
+
+    public function hasMaxRunDuration()
+    {
+        return isset($this->max_run_duration);
+    }
+
+    public function clearMaxRunDuration()
+    {
+        unset($this->max_run_duration);
+    }
+
+    /**
+     * The maximum duration for the nodes to exist.
+     * If unspecified, the nodes can exist indefinitely.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration max_run_duration = 45;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setMaxRunDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->max_run_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Flex Start flag for enabling Flex Start VM.
+     *
+     * Generated from protobuf field <code>optional bool flex_start = 46;</code>
+     * @return bool
+     */
+    public function getFlexStart()
+    {
+        return isset($this->flex_start) ? $this->flex_start : false;
+    }
+
+    public function hasFlexStart()
+    {
+        return isset($this->flex_start);
+    }
+
+    public function clearFlexStart()
+    {
+        unset($this->flex_start);
+    }
+
+    /**
+     * Flex Start flag for enabling Flex Start VM.
+     *
+     * Generated from protobuf field <code>optional bool flex_start = 46;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setFlexStart($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->flex_start = $var;
 
         return $this;
     }

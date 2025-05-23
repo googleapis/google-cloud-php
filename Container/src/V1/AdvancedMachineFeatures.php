@@ -29,6 +29,13 @@ class AdvancedMachineFeatures extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool enable_nested_virtualization = 2;</code>
      */
     protected $enable_nested_virtualization = null;
+    /**
+     * Type of Performance Monitoring Unit (PMU) requested on node pool instances.
+     * If unset, PMU will not be available to the node.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.AdvancedMachineFeatures.PerformanceMonitoringUnit performance_monitoring_unit = 3;</code>
+     */
+    protected $performance_monitoring_unit = null;
 
     /**
      * Constructor.
@@ -42,6 +49,9 @@ class AdvancedMachineFeatures extends \Google\Protobuf\Internal\Message
      *           supported per core by the underlying processor is assumed.
      *     @type bool $enable_nested_virtualization
      *           Whether or not to enable nested virtualization (defaults to false).
+     *     @type int $performance_monitoring_unit
+     *           Type of Performance Monitoring Unit (PMU) requested on node pool instances.
+     *           If unset, PMU will not be available to the node.
      * }
      */
     public function __construct($data = NULL) {
@@ -121,6 +131,44 @@ class AdvancedMachineFeatures extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_nested_virtualization = $var;
+
+        return $this;
+    }
+
+    /**
+     * Type of Performance Monitoring Unit (PMU) requested on node pool instances.
+     * If unset, PMU will not be available to the node.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.AdvancedMachineFeatures.PerformanceMonitoringUnit performance_monitoring_unit = 3;</code>
+     * @return int
+     */
+    public function getPerformanceMonitoringUnit()
+    {
+        return isset($this->performance_monitoring_unit) ? $this->performance_monitoring_unit : 0;
+    }
+
+    public function hasPerformanceMonitoringUnit()
+    {
+        return isset($this->performance_monitoring_unit);
+    }
+
+    public function clearPerformanceMonitoringUnit()
+    {
+        unset($this->performance_monitoring_unit);
+    }
+
+    /**
+     * Type of Performance Monitoring Unit (PMU) requested on node pool instances.
+     * If unset, PMU will not be available to the node.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.AdvancedMachineFeatures.PerformanceMonitoringUnit performance_monitoring_unit = 3;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPerformanceMonitoringUnit($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\AdvancedMachineFeatures\PerformanceMonitoringUnit::class);
+        $this->performance_monitoring_unit = $var;
 
         return $this;
     }

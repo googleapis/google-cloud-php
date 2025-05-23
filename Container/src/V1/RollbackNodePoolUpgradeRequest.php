@@ -10,8 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * RollbackNodePoolUpgradeRequest rollbacks the previously Aborted or Failed
- * NodePool upgrade. This will be an no-op if the last upgrade successfully
- * completed.
+ *  NodePool upgrade. This will be an no-op if the last upgrade successfully
+ *  completed.
  *
  * Generated from protobuf message <code>google.container.v1.RollbackNodePoolUpgradeRequest</code>
  */

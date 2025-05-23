@@ -23,6 +23,7 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * net.core.busy_read
      * net.core.netdev_max_backlog
      * net.core.rmem_max
+     * net.core.rmem_default
      * net.core.wmem_default
      * net.core.wmem_max
      * net.core.optmem_max
@@ -30,9 +31,16 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * net.ipv4.tcp_rmem
      * net.ipv4.tcp_wmem
      * net.ipv4.tcp_tw_reuse
+     * net.netfilter.nf_conntrack_max
+     * net.netfilter.nf_conntrack_buckets
+     * net.netfilter.nf_conntrack_tcp_timeout_close_wait
+     * net.netfilter.nf_conntrack_tcp_timeout_time_wait
+     * net.netfilter.nf_conntrack_tcp_timeout_established
+     * net.netfilter.nf_conntrack_acct
      * kernel.shmmni
      * kernel.shmmax
      * kernel.shmall
+     * vm.max_map_count
      *
      * Generated from protobuf field <code>map<string, string> sysctls = 1;</code>
      */
@@ -64,6 +72,7 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      *           net.core.busy_read
      *           net.core.netdev_max_backlog
      *           net.core.rmem_max
+     *           net.core.rmem_default
      *           net.core.wmem_default
      *           net.core.wmem_max
      *           net.core.optmem_max
@@ -71,9 +80,16 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      *           net.ipv4.tcp_rmem
      *           net.ipv4.tcp_wmem
      *           net.ipv4.tcp_tw_reuse
+     *           net.netfilter.nf_conntrack_max
+     *           net.netfilter.nf_conntrack_buckets
+     *           net.netfilter.nf_conntrack_tcp_timeout_close_wait
+     *           net.netfilter.nf_conntrack_tcp_timeout_time_wait
+     *           net.netfilter.nf_conntrack_tcp_timeout_established
+     *           net.netfilter.nf_conntrack_acct
      *           kernel.shmmni
      *           kernel.shmmax
      *           kernel.shmall
+     *           vm.max_map_count
      *     @type int $cgroup_mode
      *           cgroup_mode specifies the cgroup mode to be used on the node.
      *     @type \Google\Cloud\Container\V1\LinuxNodeConfig\HugepagesConfig $hugepages
@@ -93,6 +109,7 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * net.core.busy_read
      * net.core.netdev_max_backlog
      * net.core.rmem_max
+     * net.core.rmem_default
      * net.core.wmem_default
      * net.core.wmem_max
      * net.core.optmem_max
@@ -100,9 +117,16 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * net.ipv4.tcp_rmem
      * net.ipv4.tcp_wmem
      * net.ipv4.tcp_tw_reuse
+     * net.netfilter.nf_conntrack_max
+     * net.netfilter.nf_conntrack_buckets
+     * net.netfilter.nf_conntrack_tcp_timeout_close_wait
+     * net.netfilter.nf_conntrack_tcp_timeout_time_wait
+     * net.netfilter.nf_conntrack_tcp_timeout_established
+     * net.netfilter.nf_conntrack_acct
      * kernel.shmmni
      * kernel.shmmax
      * kernel.shmall
+     * vm.max_map_count
      *
      * Generated from protobuf field <code>map<string, string> sysctls = 1;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -120,6 +144,7 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * net.core.busy_read
      * net.core.netdev_max_backlog
      * net.core.rmem_max
+     * net.core.rmem_default
      * net.core.wmem_default
      * net.core.wmem_max
      * net.core.optmem_max
@@ -127,9 +152,16 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * net.ipv4.tcp_rmem
      * net.ipv4.tcp_wmem
      * net.ipv4.tcp_tw_reuse
+     * net.netfilter.nf_conntrack_max
+     * net.netfilter.nf_conntrack_buckets
+     * net.netfilter.nf_conntrack_tcp_timeout_close_wait
+     * net.netfilter.nf_conntrack_tcp_timeout_time_wait
+     * net.netfilter.nf_conntrack_tcp_timeout_established
+     * net.netfilter.nf_conntrack_acct
      * kernel.shmmni
      * kernel.shmmax
      * kernel.shmall
+     * vm.max_map_count
      *
      * Generated from protobuf field <code>map<string, string> sysctls = 1;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

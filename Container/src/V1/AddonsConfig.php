@@ -112,6 +112,12 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.RayOperatorConfig ray_operator_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $ray_operator_config = null;
+    /**
+     * Configuration for the High Scale Checkpointing add-on.
+     *
+     * Generated from protobuf field <code>.google.container.v1.HighScaleCheckpointingConfig high_scale_checkpointing_config = 22;</code>
+     */
+    protected $high_scale_checkpointing_config = null;
 
     /**
      * Constructor.
@@ -158,6 +164,8 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      *           Configuration for the Cloud Storage Parallelstore CSI driver.
      *     @type \Google\Cloud\Container\V1\RayOperatorConfig $ray_operator_config
      *           Optional. Configuration for Ray Operator addon.
+     *     @type \Google\Cloud\Container\V1\HighScaleCheckpointingConfig $high_scale_checkpointing_config
+     *           Configuration for the High Scale Checkpointing add-on.
      * }
      */
     public function __construct($data = NULL) {
@@ -697,6 +705,42 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\RayOperatorConfig::class);
         $this->ray_operator_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for the High Scale Checkpointing add-on.
+     *
+     * Generated from protobuf field <code>.google.container.v1.HighScaleCheckpointingConfig high_scale_checkpointing_config = 22;</code>
+     * @return \Google\Cloud\Container\V1\HighScaleCheckpointingConfig|null
+     */
+    public function getHighScaleCheckpointingConfig()
+    {
+        return $this->high_scale_checkpointing_config;
+    }
+
+    public function hasHighScaleCheckpointingConfig()
+    {
+        return isset($this->high_scale_checkpointing_config);
+    }
+
+    public function clearHighScaleCheckpointingConfig()
+    {
+        unset($this->high_scale_checkpointing_config);
+    }
+
+    /**
+     * Configuration for the High Scale Checkpointing add-on.
+     *
+     * Generated from protobuf field <code>.google.container.v1.HighScaleCheckpointingConfig high_scale_checkpointing_config = 22;</code>
+     * @param \Google\Cloud\Container\V1\HighScaleCheckpointingConfig $var
+     * @return $this
+     */
+    public function setHighScaleCheckpointingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\HighScaleCheckpointingConfig::class);
+        $this->high_scale_checkpointing_config = $var;
 
         return $this;
     }
