@@ -58,7 +58,7 @@ class BatchDmlResult
     private $errorStatement;
 
     /**
-     * @var array|null
+     * @var array
      */
     private $rowCounts;
 
@@ -87,6 +87,7 @@ class BatchDmlResult
     public function rowCounts()
     {
         if (!$this->rowCounts) {
+            $this->rowCounts = [];
             foreach ($this->data['resultSets'] as $resultSet) {
                 $this->rowCounts[] = $resultSet['stats']['rowCountExact'];
             }

@@ -18,6 +18,7 @@
 namespace Google\Cloud\Core;
 
 use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\OperationResponse;
 use Google\Auth\GetUniverseDomainInterface;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
@@ -63,7 +64,7 @@ trait GrpcTrait
      * @param callable $request
      * @param array $args
      * @param bool $whitelisted
-     * @return \Generator|array
+     * @return \Generator|array|OperationResponse
      * @throws ServiceException
      */
     public function send(callable $request, array $args, $whitelisted = false)

@@ -51,7 +51,7 @@ class KeyRange
     private $startType;
 
     /**
-     * @var array
+     * @var array|null
      */
     private $start;
 
@@ -61,7 +61,7 @@ class KeyRange
     private $endType;
 
     /**
-     * @var array
+     * @var array|null
      */
     private $end;
 
@@ -82,7 +82,12 @@ class KeyRange
     /**
      * Create a KeyRange.
      *
-     * @param array $options [optional] {
+     * @param array{
+     *     startType?: string,
+     *     start?: array,
+     *     endType?: string,
+     *     end?: array,
+     * } $options {
      *     Configuration Options.
      *
      *     @type string $startType Either "open" or "closed". Use constants
@@ -185,7 +190,7 @@ class KeyRange
      * $end = $range->end();
      * ```
      *
-     * @return array
+     * @return array|null
      */
     public function end()
     {
