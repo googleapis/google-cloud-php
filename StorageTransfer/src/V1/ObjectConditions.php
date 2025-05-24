@@ -15,6 +15,12 @@ use Google\Protobuf\Internal\GPBUtil;
  * last change to the object's content or metadata — specifically, this is
  * the `updated` property of Cloud Storage objects, the `LastModified` field
  * of S3 objects, and the `Last-Modified` header of Azure blobs.
+ * For S3 objects, the `LastModified` value is the time the object begins
+ * uploading. If the object meets your "last modification time" criteria,
+ * but has not finished uploading, the object is not transferred. See
+ * [Transfer from Amazon S3 to Cloud
+ * Storage](https://cloud.google.com/storage-transfer/docs/create-transfers/agentless/s3#transfer_options)
+ * for more information.
  * Transfers with a [PosixFilesystem][google.storagetransfer.v1.PosixFilesystem]
  * source or destination don't support `ObjectConditions`.
  *

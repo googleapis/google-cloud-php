@@ -114,6 +114,4 @@ class FederatedIdentityConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FederatedIdentityConfig::class, \Google\Cloud\StorageTransfer\V1\AzureBlobStorageData_FederatedIdentityConfig::class);
 
