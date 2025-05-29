@@ -45,6 +45,7 @@ trait SnapshotTrait
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
+     *     @type array $transactionOptions The Transaction Options
      * }
      */
     private function initialize(
@@ -72,7 +73,11 @@ trait SnapshotTrait
 
         $this->context = SessionPoolInterface::CONTEXT_READ;
         $this->directedReadOptions = $options['directedReadOptions'] ?? [];
-        $this->options = $options;
+        $this->transactionSelector = array_intersect_key(
+            (array) $options,
+            array_flip(['singleUse', 'begin'])
+        );
+        $this->transactionOptions = $options['transactionOptions'] ?? [];
     }
 
     /**

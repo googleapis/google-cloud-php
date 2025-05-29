@@ -195,17 +195,17 @@ class Operation
      */
     public function execute(Session $session, $sql, array $options = [])
     {
-        $options += [
+        $transactionSelector = $options + [
             'parameters' => [],
             'types' => [],
             'transactionContext' => null
         ];
 
-        $parameters = $this->pluck('parameters', $options);
-        $types = $this->pluck('types', $options);
-        $options += $this->mapper->formatParamsForExecuteSql($parameters, $types);
+        $parameters = $this->pluck('parameters', $transactionSelector);
+        $types = $this->pluck('types', $transactionSelector);
+        $transactionSelector += $this->mapper->formatParamsForExecuteSql($parameters, $types);
 
-        $context = $this->pluck('transactionContext', $options);
+        $context = $this->pluck('transactionContext', $transactionSelector);
 
         // Initially with begin, transactionId will be null.
         // Once transaction is generated, even in the case of stream failure,
@@ -213,20 +213,19 @@ class Operation
         $call = function ($resumeToken = null, $transaction = null) use (
             $session,
             $sql,
-            $options
+            $transactionSelector
         ) {
             if ($transaction && !empty($transaction->id())) {
-                $options['transaction'] = ['id' => $transaction->id()];
+                $transactionSelector['transaction'] = ['id' => $transaction->id()];
             }
             if ($resumeToken) {
-                $options['resumeToken'] = $resumeToken;
+                $transactionSelector['resumeToken'] = $resumeToken;
             }
-
             return $this->connection->executeStreamingSql([
                 'sql' => $sql,
                 'session' => $session->name(),
                 'database' => $this->getDatabaseNameFromSession($session)
-            ] + $options);
+            ] + $transactionSelector);
         };
 
         return new Result($this, $session, $call, $context, $this->mapper);
@@ -458,26 +457,34 @@ class Operation
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
      *     @type int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
      *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
+     *     @type array $requestOptions
+     *     @type string $tag
      * }
      * @return Transaction
      */
     public function transaction(Session $session, array $options = [])
     {
-        $options += [
+        // only "singleUse", "requestOptions", "isolationLevel", "transactionOptions", and "begin"
+        // are valid Transaction constructor options
+        $transactionConstructorOptions = array_intersect_key(
+            $options,
+            array_flip(['singleUse', 'requestOptions', 'isolationLevel', 'transactionOptions', 'begin'])
+        ) + [
             'singleUse' => false,
-            'isRetry' => false,
             'requestOptions' => [],
-            'isolationLevel' => IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
+            'isolationLevel' => IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED,
         ];
-        $transactionTag = $this->pluck('tag', $options, false);
-        if (isset($transactionTag)) {
-            $options['requestOptions']['transactionTag'] = $transactionTag;
+
+        $transactionTag = $options['tag'] ?? null;
+        if ($transactionTag) {
+            $transactionConstructorOptions['requestOptions']['transactionTag'] = $transactionTag;
         }
 
-        if (!$options['singleUse'] && (!isset($options['begin']) ||
-            isset($options['transactionOptions']['partitionedDml']))
-        ) {
-            $res = $this->beginTransaction($session, $options);
+        if (!$transactionConstructorOptions['singleUse'] && (
+            !isset($transactionConstructorOptions['begin'])
+            || isset($transactionConstructorOptions['transactionConstructorOptions']['partitionedDml'])
+        )) {
+            $res = $this->beginTransaction($session, $transactionConstructorOptions);
         } else {
             $res = [];
         }
@@ -487,8 +494,8 @@ class Operation
             $res,
             [
                 'tag' => $transactionTag,
-                'isRetry' => $options['isRetry'],
-                'transactionOptions' => $options
+                'isRetry' => $options['isRetry'] ?? false,
+                'transactionOptions' => $transactionConstructorOptions
             ]
         );
     }
@@ -498,9 +505,25 @@ class Operation
      *
      * @param Session $session The session the transaction belongs to.
      * @param array $res [optional] The createTransaction response.
-     * @param array $options [optional] Options for the transaction object.
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type bool $singleUse If true, a Transaction ID will not be allocated
+     *           up front. Instead, the transaction will be considered
+     *           "single-use", and may be used for only a single operation.
+     *           **Defaults to** `false`.
+     *     @type bool $isRetry If true, the resulting transaction will indicate
+     *           that it is the result of a retry operation. **Defaults to**
+     *           `false`.
      *     @type array $begin The begin transaction options.
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
+     *     @type int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
+     *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
+     *     @type array $requestOptions
+     *     @type string $tag
+     *     @type array $transactionOptions Transaction constructor options. See {@see Transaction}.
+     *           **NOTE**: This is distinct from the TransactionOptions seen in {@see V1\TransactionOptions}.
+     * }
      * @return Transaction
      */
     public function createTransaction(Session $session, array $res = [], array $options = [])
