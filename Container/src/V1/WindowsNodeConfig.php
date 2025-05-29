@@ -11,14 +11,14 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Parameters that can be configured on Windows nodes.
  * Windows Node Config that define the parameters that will be used to
- * configure the Windows node pool settings
+ * configure the Windows node pool settings.
  *
  * Generated from protobuf message <code>google.container.v1.WindowsNodeConfig</code>
  */
 class WindowsNodeConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * OSVersion specifies the Windows node config to be used on the node
+     * OSVersion specifies the Windows node config to be used on the node.
      *
      * Generated from protobuf field <code>.google.container.v1.WindowsNodeConfig.OSVersion os_version = 1;</code>
      */
@@ -31,7 +31,7 @@ class WindowsNodeConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $os_version
-     *           OSVersion specifies the Windows node config to be used on the node
+     *           OSVersion specifies the Windows node config to be used on the node.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,7 +40,7 @@ class WindowsNodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * OSVersion specifies the Windows node config to be used on the node
+     * OSVersion specifies the Windows node config to be used on the node.
      *
      * Generated from protobuf field <code>.google.container.v1.WindowsNodeConfig.OSVersion os_version = 1;</code>
      * @return int
@@ -51,7 +51,7 @@ class WindowsNodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * OSVersion specifies the Windows node config to be used on the node
+     * OSVersion specifies the Windows node config to be used on the node.
      *
      * Generated from protobuf field <code>.google.container.v1.WindowsNodeConfig.OSVersion os_version = 1;</code>
      * @param int $var

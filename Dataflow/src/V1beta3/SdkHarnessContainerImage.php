@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Defines a SDK harness container for executing Dataflow pipelines.
+ * Defines an SDK harness container for executing Dataflow pipelines.
  *
  * Generated from protobuf message <code>google.dataflow.v1beta3.SdkHarnessContainerImage</code>
  */
@@ -40,7 +40,7 @@ class SdkHarnessContainerImage extends \Google\Protobuf\Internal\Message
     protected $environment_id = '';
     /**
      * The set of capabilities enumerated in the above Environment proto. See also
-     * https://github.com/apache/beam/blob/master/model/pipeline/src/main/proto/beam_runner_api.proto
+     * [beam_runner_api.proto](https://github.com/apache/beam/blob/master/model/pipeline/src/main/proto/org/apache/beam/model/pipeline/v1/beam_runner_api.proto)
      *
      * Generated from protobuf field <code>repeated string capabilities = 4;</code>
      */
@@ -65,7 +65,7 @@ class SdkHarnessContainerImage extends \Google\Protobuf\Internal\Message
      *           to the current SDK Harness.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $capabilities
      *           The set of capabilities enumerated in the above Environment proto. See also
-     *           https://github.com/apache/beam/blob/master/model/pipeline/src/main/proto/beam_runner_api.proto
+     *           [beam_runner_api.proto](https://github.com/apache/beam/blob/master/model/pipeline/src/main/proto/org/apache/beam/model/pipeline/v1/beam_runner_api.proto)
      * }
      */
     public function __construct($data = NULL) {
@@ -163,7 +163,7 @@ class SdkHarnessContainerImage extends \Google\Protobuf\Internal\Message
 
     /**
      * The set of capabilities enumerated in the above Environment proto. See also
-     * https://github.com/apache/beam/blob/master/model/pipeline/src/main/proto/beam_runner_api.proto
+     * [beam_runner_api.proto](https://github.com/apache/beam/blob/master/model/pipeline/src/main/proto/org/apache/beam/model/pipeline/v1/beam_runner_api.proto)
      *
      * Generated from protobuf field <code>repeated string capabilities = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -175,7 +175,7 @@ class SdkHarnessContainerImage extends \Google\Protobuf\Internal\Message
 
     /**
      * The set of capabilities enumerated in the above Environment proto. See also
-     * https://github.com/apache/beam/blob/master/model/pipeline/src/main/proto/beam_runner_api.proto
+     * [beam_runner_api.proto](https://github.com/apache/beam/blob/master/model/pipeline/src/main/proto/org/apache/beam/model/pipeline/v1/beam_runner_api.proto)
      *
      * Generated from protobuf field <code>repeated string capabilities = 4;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

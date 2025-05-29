@@ -66,7 +66,6 @@ class ServicesNotFoundTest extends TestCase
             "Core",
             "Dataproc",
             "Datastore",
-            "Debugger",
             "Dlp",
             "ErrorReporting",
             "Firestore",

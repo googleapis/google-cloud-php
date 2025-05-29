@@ -162,13 +162,17 @@ class RepricingConfig extends \Google\Protobuf\Internal\Message
      */
     public function getChannelPartnerGranularity()
     {
-        @trigger_error('channel_partner_granularity is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(5)) {
+            @trigger_error('channel_partner_granularity is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(5);
     }
 
     public function hasChannelPartnerGranularity()
     {
-        @trigger_error('channel_partner_granularity is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(5)) {
+            @trigger_error('channel_partner_granularity is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(5);
     }
 

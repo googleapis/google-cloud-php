@@ -219,6 +219,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $icon = '121';
         $requestAccess = 'requestAccess2059178260';
         $logLinkedDatasetQueryUserEmail = false;
+        $allowOnlyMetadataSharing = false;
         $expectedResponse = new Listing();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -228,6 +229,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $expectedResponse->setIcon($icon);
         $expectedResponse->setRequestAccess($requestAccess);
         $expectedResponse->setLogLinkedDatasetQueryUserEmail($logLinkedDatasetQueryUserEmail);
+        $expectedResponse->setAllowOnlyMetadataSharing($allowOnlyMetadataSharing);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->dataExchangeName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]');
@@ -717,6 +719,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $icon = '121';
         $requestAccess = 'requestAccess2059178260';
         $logLinkedDatasetQueryUserEmail = false;
+        $allowOnlyMetadataSharing = false;
         $expectedResponse = new Listing();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -726,6 +729,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $expectedResponse->setIcon($icon);
         $expectedResponse->setRequestAccess($requestAccess);
         $expectedResponse->setLogLinkedDatasetQueryUserEmail($logLinkedDatasetQueryUserEmail);
+        $expectedResponse->setAllowOnlyMetadataSharing($allowOnlyMetadataSharing);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->listingName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]', '[LISTING]');
@@ -1868,6 +1872,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $icon = '121';
         $requestAccess = 'requestAccess2059178260';
         $logLinkedDatasetQueryUserEmail = false;
+        $allowOnlyMetadataSharing = false;
         $expectedResponse = new Listing();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -1877,6 +1882,7 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $expectedResponse->setIcon($icon);
         $expectedResponse->setRequestAccess($requestAccess);
         $expectedResponse->setLogLinkedDatasetQueryUserEmail($logLinkedDatasetQueryUserEmail);
+        $expectedResponse->setAllowOnlyMetadataSharing($allowOnlyMetadataSharing);
         $transport->addResponse($expectedResponse);
         // Mock request
         $updateMask = new FieldMask();

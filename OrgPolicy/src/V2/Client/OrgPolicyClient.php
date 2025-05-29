@@ -499,10 +499,10 @@ final class OrgPolicyClient
     }
 
     /**
-     * Gets a custom constraint.
+     * Gets a custom or managed constraint.
      *
      * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
-     * custom constraint does not exist.
+     * custom or managed constraint does not exist.
      *
      * The async variant is {@see OrgPolicyClient::getCustomConstraintAsync()} .
      *

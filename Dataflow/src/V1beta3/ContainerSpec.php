@@ -39,6 +39,24 @@ class ContainerSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.dataflow.v1beta3.FlexTemplateRuntimeEnvironment default_environment = 4;</code>
      */
     protected $default_environment = null;
+    /**
+     * Secret Manager secret id for username to authenticate to private registry.
+     *
+     * Generated from protobuf field <code>string image_repository_username_secret_id = 5;</code>
+     */
+    protected $image_repository_username_secret_id = '';
+    /**
+     * Secret Manager secret id for password to authenticate to private registry.
+     *
+     * Generated from protobuf field <code>string image_repository_password_secret_id = 6;</code>
+     */
+    protected $image_repository_password_secret_id = '';
+    /**
+     * Cloud Storage path to self-signed certificate of private registry.
+     *
+     * Generated from protobuf field <code>string image_repository_cert_path = 7;</code>
+     */
+    protected $image_repository_cert_path = '';
 
     /**
      * Constructor.
@@ -54,6 +72,12 @@ class ContainerSpec extends \Google\Protobuf\Internal\Message
      *           Required. SDK info of the Flex Template.
      *     @type \Google\Cloud\Dataflow\V1beta3\FlexTemplateRuntimeEnvironment $default_environment
      *           Default runtime environment for the job.
+     *     @type string $image_repository_username_secret_id
+     *           Secret Manager secret id for username to authenticate to private registry.
+     *     @type string $image_repository_password_secret_id
+     *           Secret Manager secret id for password to authenticate to private registry.
+     *     @type string $image_repository_cert_path
+     *           Cloud Storage path to self-signed certificate of private registry.
      * }
      */
     public function __construct($data = NULL) {
@@ -191,6 +215,84 @@ class ContainerSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataflow\V1beta3\FlexTemplateRuntimeEnvironment::class);
         $this->default_environment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Secret Manager secret id for username to authenticate to private registry.
+     *
+     * Generated from protobuf field <code>string image_repository_username_secret_id = 5;</code>
+     * @return string
+     */
+    public function getImageRepositoryUsernameSecretId()
+    {
+        return $this->image_repository_username_secret_id;
+    }
+
+    /**
+     * Secret Manager secret id for username to authenticate to private registry.
+     *
+     * Generated from protobuf field <code>string image_repository_username_secret_id = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setImageRepositoryUsernameSecretId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->image_repository_username_secret_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Secret Manager secret id for password to authenticate to private registry.
+     *
+     * Generated from protobuf field <code>string image_repository_password_secret_id = 6;</code>
+     * @return string
+     */
+    public function getImageRepositoryPasswordSecretId()
+    {
+        return $this->image_repository_password_secret_id;
+    }
+
+    /**
+     * Secret Manager secret id for password to authenticate to private registry.
+     *
+     * Generated from protobuf field <code>string image_repository_password_secret_id = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setImageRepositoryPasswordSecretId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->image_repository_password_secret_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Cloud Storage path to self-signed certificate of private registry.
+     *
+     * Generated from protobuf field <code>string image_repository_cert_path = 7;</code>
+     * @return string
+     */
+    public function getImageRepositoryCertPath()
+    {
+        return $this->image_repository_cert_path;
+    }
+
+    /**
+     * Cloud Storage path to self-signed certificate of private registry.
+     *
+     * Generated from protobuf field <code>string image_repository_cert_path = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setImageRepositoryCertPath($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->image_repository_cert_path = $var;
 
         return $this;
     }

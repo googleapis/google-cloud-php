@@ -356,13 +356,17 @@ class CssProductInput extends \Google\Protobuf\Internal\Message
      */
     public function getFreshnessTime()
     {
-        @trigger_error('freshness_time is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->freshness_time)) {
+            @trigger_error('freshness_time is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->freshness_time;
     }
 
     public function hasFreshnessTime()
     {
-        @trigger_error('freshness_time is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->freshness_time)) {
+            @trigger_error('freshness_time is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->freshness_time);
     }
 

@@ -60,6 +60,12 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
      */
     private $recent_scheduled_execution_records;
     /**
+     * Optional. Disables automatic creation of workflow invocations.
+     *
+     * Generated from protobuf field <code>bool disabled = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $disabled = false;
+    /**
      * Output only. The timestamp of when the WorkflowConfig was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -106,6 +112,8 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
      *           Output only. Records of the 10 most recent scheduled execution attempts,
      *           ordered in descending order of `execution_time`. Updated whenever automatic
      *           creation of a workflow invocation is triggered by cron_schedule.
+     *     @type bool $disabled
+     *           Optional. Disables automatic creation of workflow invocations.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The timestamp of when the WorkflowConfig was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -299,6 +307,32 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataform\V1beta1\WorkflowConfig\ScheduledExecutionRecord::class);
         $this->recent_scheduled_execution_records = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Disables automatic creation of workflow invocations.
+     *
+     * Generated from protobuf field <code>bool disabled = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDisabled()
+    {
+        return $this->disabled;
+    }
+
+    /**
+     * Optional. Disables automatic creation of workflow invocations.
+     *
+     * Generated from protobuf field <code>bool disabled = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disabled = $var;
 
         return $this;
     }

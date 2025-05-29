@@ -10,8 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * RollbackNodePoolUpgradeRequest rollbacks the previously Aborted or Failed
- * NodePool upgrade. This will be an no-op if the last upgrade successfully
- * completed.
+ *  NodePool upgrade. This will be an no-op if the last upgrade successfully
+ *  completed.
  *
  * Generated from protobuf message <code>google.container.v1.RollbackNodePoolUpgradeRequest</code>
  */
@@ -155,7 +155,9 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getProjectId()
     {
-        @trigger_error('project_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->project_id !== '') {
+            @trigger_error('project_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->project_id;
     }
 
@@ -190,7 +192,9 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getZone()
     {
-        @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
+        if ($this->zone !== '') {
+            @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->zone;
     }
 
@@ -224,7 +228,9 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getClusterId()
     {
-        @trigger_error('cluster_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->cluster_id !== '') {
+            @trigger_error('cluster_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->cluster_id;
     }
 
@@ -256,7 +262,9 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getNodePoolId()
     {
-        @trigger_error('node_pool_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->node_pool_id !== '') {
+            @trigger_error('node_pool_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->node_pool_id;
     }
 

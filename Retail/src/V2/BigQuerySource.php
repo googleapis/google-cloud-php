@@ -80,8 +80,6 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Type\Date $partition_date
      *           BigQuery time partitioned table's _PARTITIONDATE in YYYY-MM-DD format.
-     *           Only supported in
-     *           [ImportProductsRequest][google.cloud.retail.v2.ImportProductsRequest].
      *     @type string $project_id
      *           The project ID (can be project # or ID) that the BigQuery source is in with
      *           a length limit of 128 characters. If not specified, inherits the project
@@ -126,8 +124,6 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
 
     /**
      * BigQuery time partitioned table's _PARTITIONDATE in YYYY-MM-DD format.
-     * Only supported in
-     * [ImportProductsRequest][google.cloud.retail.v2.ImportProductsRequest].
      *
      * Generated from protobuf field <code>.google.type.Date partition_date = 6;</code>
      * @return \Google\Type\Date|null
@@ -144,8 +140,6 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
 
     /**
      * BigQuery time partitioned table's _PARTITIONDATE in YYYY-MM-DD format.
-     * Only supported in
-     * [ImportProductsRequest][google.cloud.retail.v2.ImportProductsRequest].
      *
      * Generated from protobuf field <code>.google.type.Date partition_date = 6;</code>
      * @param \Google\Type\Date $var

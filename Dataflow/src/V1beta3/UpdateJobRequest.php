@@ -42,6 +42,17 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string location = 4;</code>
      */
     protected $location = '';
+    /**
+     * The list of fields to update relative to Job. If empty, only
+     * RequestedJobState will be considered for update. If the FieldMask is not
+     * empty and RequestedJobState is none/empty, The fields specified in the
+     * update mask will be the only ones considered for update. If both
+     * RequestedJobState and update_mask are specified, an error will be returned
+     * as we cannot update both state and mask.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.FieldMask update_mask = 5;</code>
+     */
+    protected $update_mask = null;
 
     /**
      * Constructor.
@@ -60,6 +71,13 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
      *           The [regional endpoint]
      *           (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
      *           contains this job.
+     *     @type \Google\Protobuf\FieldMask $update_mask
+     *           The list of fields to update relative to Job. If empty, only
+     *           RequestedJobState will be considered for update. If the FieldMask is not
+     *           empty and RequestedJobState is none/empty, The fields specified in the
+     *           update mask will be the only ones considered for update. If both
+     *           RequestedJobState and update_mask are specified, an error will be returned
+     *           as we cannot update both state and mask.
      * }
      */
     public function __construct($data = NULL) {
@@ -183,6 +201,52 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->location = $var;
+
+        return $this;
+    }
+
+    /**
+     * The list of fields to update relative to Job. If empty, only
+     * RequestedJobState will be considered for update. If the FieldMask is not
+     * empty and RequestedJobState is none/empty, The fields specified in the
+     * update mask will be the only ones considered for update. If both
+     * RequestedJobState and update_mask are specified, an error will be returned
+     * as we cannot update both state and mask.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.FieldMask update_mask = 5;</code>
+     * @return \Google\Protobuf\FieldMask|null
+     */
+    public function getUpdateMask()
+    {
+        return $this->update_mask;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
+    }
+
+    /**
+     * The list of fields to update relative to Job. If empty, only
+     * RequestedJobState will be considered for update. If the FieldMask is not
+     * empty and RequestedJobState is none/empty, The fields specified in the
+     * update mask will be the only ones considered for update. If both
+     * RequestedJobState and update_mask are specified, an error will be returned
+     * as we cannot update both state and mask.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.FieldMask update_mask = 5;</code>
+     * @param \Google\Protobuf\FieldMask $var
+     * @return $this
+     */
+    public function setUpdateMask($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
+        $this->update_mask = $var;
 
         return $this;
     }

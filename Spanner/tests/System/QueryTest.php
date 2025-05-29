@@ -23,6 +23,7 @@ use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
+use Google\Cloud\Spanner\Interval;
 use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\StructType;
@@ -369,6 +370,44 @@ class QueryTest extends SpannerTestCase
         $this->assertNull($row['foo']);
     }
 
+    public function testBindIntervalParameter()
+    {
+        $this->skipEmulatorTests();
+        $db = self::$database;
+
+        $interval = Interval::parse('P1Y2M3DT4H5M6.7S');
+        $res = $db->execute("SELECT @param as foo", [
+            'parameters' => [
+                'param' => $interval
+            ],
+            'types' => [
+                'param' => Database::TYPE_INTERVAL
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+        $this->assertInstanceOf(Interval::class, $row['foo']);
+        $this->assertEquals($interval->__toString(), $row['foo']->__toString());
+    }
+
+    public function testBindIntervalParameterNull()
+    {
+        $this->skipEmulatorTests();
+        $db = self::$database;
+
+        $res = $db->execute('SELECT CAST(@param AS INTERVAL) AS foo;', [
+            'parameters' => [
+                'param' => null
+            ],
+            'types' => [
+                'param' => Database::TYPE_INTERVAL
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+        $this->assertNull($row['foo']);
+    }
+
     /**
      * covers 37
      * covers 40
@@ -686,6 +725,21 @@ class QueryTest extends SpannerTestCase
 
                     return $res;
                 }
+            ],
+
+            // Interval
+            [
+                [
+                    Interval::parse('P1Y'),
+                    Interval::parse('PT1H'),
+                    Interval::parse('P1M'),
+                ],
+                [
+                    Interval::parse('P1Y'),
+                    Interval::parse('PT1H'),
+                    Interval::parse('P1M'),
+                ],
+                Interval::class,
             ]
         ];
     }
@@ -701,6 +755,7 @@ class QueryTest extends SpannerTestCase
             [Database::TYPE_BYTES],
             [Database::TYPE_TIMESTAMP],
             [Database::TYPE_DATE],
+            [Database::TYPE_INTERVAL]
         ];
     }
 
@@ -716,6 +771,7 @@ class QueryTest extends SpannerTestCase
             [Database::TYPE_TIMESTAMP],
             [Database::TYPE_DATE],
             [Database::TYPE_NUMERIC],
+            [Database::TYPE_INTERVAL]
         ];
     }
 
@@ -731,6 +787,7 @@ class QueryTest extends SpannerTestCase
             [Database::TYPE_TIMESTAMP],
             [Database::TYPE_DATE],
             [Database::TYPE_NUMERIC],
+            [Database::TYPE_INTERVAL]
         ];
     }
 

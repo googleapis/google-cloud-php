@@ -34,6 +34,7 @@ use Google\Cloud\Compute\V1\Reservation;
 use Google\Cloud\Compute\V1\ReservationAggregatedList;
 use Google\Cloud\Compute\V1\ReservationList;
 use Google\Cloud\Compute\V1\ReservationsClient;
+use Google\Cloud\Compute\V1\ReservationsPerformMaintenanceRequest;
 use Google\Cloud\Compute\V1\ReservationsResizeRequest;
 use Google\Cloud\Compute\V1\ReservationsScopedList;
 use Google\Cloud\Compute\V1\TestPermissionsRequest;
@@ -276,6 +277,7 @@ class ReservationsClientTest extends GeneratedTest
         // Mock response
         $commitment = 'commitment1019005717';
         $creationTimestamp = 'creationTimestamp567396278';
+        $deploymentType = 'deploymentType2007335028';
         $description = 'description-1724546052';
         $id = 3355;
         $kind = 'kind3292052';
@@ -288,6 +290,7 @@ class ReservationsClientTest extends GeneratedTest
         $expectedResponse = new Reservation();
         $expectedResponse->setCommitment($commitment);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
+        $expectedResponse->setDeploymentType($deploymentType);
         $expectedResponse->setDescription($description);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -620,6 +623,129 @@ class ReservationsClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function performMaintenanceTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new ZoneOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/performMaintenanceTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/performMaintenanceTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $project = 'project-309310695';
+        $reservation = 'reservation-1563081780';
+        $reservationsPerformMaintenanceRequestResource = new ReservationsPerformMaintenanceRequest();
+        $zone = 'zone3744684';
+        $response = $gapicClient->performMaintenance($project, $reservation, $reservationsPerformMaintenanceRequestResource, $zone);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.Reservations/PerformMaintenance', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getReservation();
+        $this->assertProtobufEquals($reservation, $actualValue);
+        $actualValue = $actualApiRequestObject->getReservationsPerformMaintenanceRequestResource();
+        $this->assertProtobufEquals($reservationsPerformMaintenanceRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
+        $expectedOperationsRequestObject = new GetZoneOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.ZoneOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function performMaintenanceExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new ZoneOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/performMaintenanceExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
+        $reservation = 'reservation-1563081780';
+        $reservationsPerformMaintenanceRequestResource = new ReservationsPerformMaintenanceRequest();
+        $zone = 'zone3744684';
+        $response = $gapicClient->performMaintenance($project, $reservation, $reservationsPerformMaintenanceRequestResource, $zone);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */

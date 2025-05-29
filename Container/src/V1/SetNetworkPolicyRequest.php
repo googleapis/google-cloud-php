@@ -138,7 +138,9 @@ class SetNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getProjectId()
     {
-        @trigger_error('project_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->project_id !== '') {
+            @trigger_error('project_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->project_id;
     }
 
@@ -173,7 +175,9 @@ class SetNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getZone()
     {
-        @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
+        if ($this->zone !== '') {
+            @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->zone;
     }
 
@@ -207,7 +211,9 @@ class SetNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getClusterId()
     {
-        @trigger_error('cluster_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->cluster_id !== '') {
+            @trigger_error('cluster_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->cluster_id;
     }
 

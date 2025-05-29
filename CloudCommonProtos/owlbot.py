@@ -62,6 +62,12 @@ php.owlbot_copy_version(
     version_string="common",
 )
 
+# fix protobuf bug (b/418528083)
+s.replace(
+    "src/**/*.php",
+    "\$arr->count\(\)",
+    "count($arr)")
+
 # remove class_alias code (but keep the existing class aliases)
 sources = list(Path(".").glob("src/**/*.php"))
 sources.remove(PosixPath("src/Audit/ServiceAccountDelegationInfo/FirstPartyPrincipal.php"))

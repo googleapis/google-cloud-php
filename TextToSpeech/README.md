@@ -33,8 +33,9 @@ require __DIR__ . '/vendor/autoload.php';
 use Google\Cloud\TextToSpeech\V1\AudioConfig;
 use Google\Cloud\TextToSpeech\V1\AudioEncoding;
 use Google\Cloud\TextToSpeech\V1\SynthesisInput;
-use Google\Cloud\TextToSpeech\V1\TextToSpeechClient;
+use Google\Cloud\TextToSpeech\V1\Client\TextToSpeechClient;
 use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
+use Google\Cloud\TextToSpeech\V1\SynthesizeSpeechRequest;
 
 $textToSpeechClient = new TextToSpeechClient();
 
@@ -44,8 +45,12 @@ $voice = new VoiceSelectionParams();
 $voice->setLanguageCode('en-US');
 $audioConfig = new AudioConfig();
 $audioConfig->setAudioEncoding(AudioEncoding::MP3);
+$request = (new SynthesizeSpeechRequest())
+	->setInput($input)
+	->setVoice($voice)
+	->setAudioConfig($audioConfig);
 
-$resp = $textToSpeechClient->synthesizeSpeech($input, $voice, $audioConfig);
+$resp = $textToSpeechClient->synthesizeSpeech($request);
 file_put_contents('test.mp3', $resp->getAudioContent());
 ```
 

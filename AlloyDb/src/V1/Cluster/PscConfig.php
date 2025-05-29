@@ -22,6 +22,13 @@ class PscConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool psc_enabled = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $psc_enabled = false;
+    /**
+     * Output only. The project number that needs to be allowlisted on the
+     * network attachment to enable outbound connectivity.
+     *
+     * Generated from protobuf field <code>int64 service_owned_project_number = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $service_owned_project_number = 0;
 
     /**
      * Constructor.
@@ -32,6 +39,9 @@ class PscConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $psc_enabled
      *           Optional. Create an instance that allows connections from Private Service
      *           Connect endpoints to the instance.
+     *     @type int|string $service_owned_project_number
+     *           Output only. The project number that needs to be allowlisted on the
+     *           network attachment to enable outbound connectivity.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +73,34 @@ class PscConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->psc_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The project number that needs to be allowlisted on the
+     * network attachment to enable outbound connectivity.
+     *
+     * Generated from protobuf field <code>int64 service_owned_project_number = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getServiceOwnedProjectNumber()
+    {
+        return $this->service_owned_project_number;
+    }
+
+    /**
+     * Output only. The project number that needs to be allowlisted on the
+     * network attachment to enable outbound connectivity.
+     *
+     * Generated from protobuf field <code>int64 service_owned_project_number = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setServiceOwnedProjectNumber($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->service_owned_project_number = $var;
 
         return $this;
     }

@@ -17,14 +17,14 @@ class SubscribeDataExchangeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Resource name of the Data Exchange.
-     * e.g. `projects/publisherproject/locations/US/dataExchanges/123`
+     * e.g. `projects/publisherproject/locations/us/dataExchanges/123`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
     /**
      * Required. The parent resource path of the Subscription.
-     * e.g. `projects/subscriberproject/locations/US`
+     * e.g. `projects/subscriberproject/locations/us`
      *
      * Generated from protobuf field <code>string destination = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -51,7 +51,7 @@ class SubscribeDataExchangeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Resource name of the Data Exchange.
-     *                     e.g. `projects/publisherproject/locations/US/dataExchanges/123`
+     *                     e.g. `projects/publisherproject/locations/us/dataExchanges/123`
      *                     Please see {@see AnalyticsHubServiceClient::dataExchangeName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeDataExchangeRequest
@@ -72,10 +72,10 @@ class SubscribeDataExchangeRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Resource name of the Data Exchange.
-     *           e.g. `projects/publisherproject/locations/US/dataExchanges/123`
+     *           e.g. `projects/publisherproject/locations/us/dataExchanges/123`
      *     @type string $destination
      *           Required. The parent resource path of the Subscription.
-     *           e.g. `projects/subscriberproject/locations/US`
+     *           e.g. `projects/subscriberproject/locations/us`
      *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\DestinationDataset $destination_dataset
      *           Optional. BigQuery destination dataset to create for the subscriber.
      *     @type string $subscription
@@ -92,7 +92,7 @@ class SubscribeDataExchangeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Resource name of the Data Exchange.
-     * e.g. `projects/publisherproject/locations/US/dataExchanges/123`
+     * e.g. `projects/publisherproject/locations/us/dataExchanges/123`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -104,7 +104,7 @@ class SubscribeDataExchangeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Resource name of the Data Exchange.
-     * e.g. `projects/publisherproject/locations/US/dataExchanges/123`
+     * e.g. `projects/publisherproject/locations/us/dataExchanges/123`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -120,7 +120,7 @@ class SubscribeDataExchangeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource path of the Subscription.
-     * e.g. `projects/subscriberproject/locations/US`
+     * e.g. `projects/subscriberproject/locations/us`
      *
      * Generated from protobuf field <code>string destination = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -132,7 +132,7 @@ class SubscribeDataExchangeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource path of the Subscription.
-     * e.g. `projects/subscriberproject/locations/US`
+     * e.g. `projects/subscriberproject/locations/us`
      *
      * Generated from protobuf field <code>string destination = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

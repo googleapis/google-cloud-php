@@ -17,7 +17,7 @@ class GetDataExchangeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the data exchange.
-     * e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * e.g. `projects/myproject/locations/us/dataExchanges/123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -25,7 +25,7 @@ class GetDataExchangeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The resource name of the data exchange.
-     *                     e.g. `projects/myproject/locations/US/dataExchanges/123`. Please see
+     *                     e.g. `projects/myproject/locations/us/dataExchanges/123`. Please see
      *                     {@see AnalyticsHubServiceClient::dataExchangeName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\GetDataExchangeRequest
@@ -46,7 +46,7 @@ class GetDataExchangeRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The resource name of the data exchange.
-     *           e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     *           e.g. `projects/myproject/locations/us/dataExchanges/123`.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class GetDataExchangeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the data exchange.
-     * e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * e.g. `projects/myproject/locations/us/dataExchanges/123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +68,7 @@ class GetDataExchangeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the data exchange.
-     * e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * e.g. `projects/myproject/locations/us/dataExchanges/123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

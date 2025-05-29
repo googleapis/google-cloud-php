@@ -55,6 +55,7 @@ class DocFxCommand extends Command
         'AUTHENTICATION.md' => 'Authentication',
         'DEBUG.md' => 'Debug Logging',
         'MIGRATING.md' => 'Migrating to V2',
+        'GRPC.md' => 'Installing gRPC',
     ];
 
     protected function configure()
@@ -94,7 +95,7 @@ class DocFxCommand extends Command
             $output->writeln('Generating <options=bold;fg=white>product neutral guides</>');
             $tocItems = [];
             foreach (self::$productNeutralGuides as $file => $name) {
-                $href = $file === 'README.md' ? 'getting-started.md' : strtolower($file);
+                $href = $file === 'README.md' ? 'getting-started.md' : strtolower(basename($file));
                 file_put_contents(
                     $outDir . '/' . $href,
                     file_get_contents(Component::ROOT_DIR . '/' . $file)

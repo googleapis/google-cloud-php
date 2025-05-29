@@ -261,6 +261,14 @@ class Rest implements ConnectionInterface
     /**
      * @param array $args
      */
+    public function moveObject(array $args = [])
+    {
+        return $this->send('objects', 'move', $args);
+    }
+
+    /**
+     * @param array $args
+     */
     public function composeObject(array $args = [])
     {
         return $this->send('objects', 'compose', $args);

@@ -46,7 +46,7 @@ class CryptoKeyVersionState
      */
     const DISABLED = 2;
     /**
-     * This version is destroyed, and the key material is no longer stored.
+     * The key material of this version is destroyed and no longer stored.
      * This version may only become
      * [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED]
      * again if this version is

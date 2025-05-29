@@ -26,6 +26,13 @@ return [
             'CollectUserEvent' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/locations/*/catalogs/*}/userEvents:collect',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/catalogs/*}/userEvents:collect',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

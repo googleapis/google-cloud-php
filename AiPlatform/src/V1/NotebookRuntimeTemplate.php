@@ -336,7 +336,9 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getIsDefault()
     {
-        @trigger_error('is_default is deprecated.', E_USER_DEPRECATED);
+        if ($this->is_default !== false) {
+            @trigger_error('is_default is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->is_default;
     }
 
@@ -495,7 +497,9 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getServiceAccount()
     {
-        @trigger_error('service_account is deprecated.', E_USER_DEPRECATED);
+        if ($this->service_account !== '') {
+            @trigger_error('service_account is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->service_account;
     }
 

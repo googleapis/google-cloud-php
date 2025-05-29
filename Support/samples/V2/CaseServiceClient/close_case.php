@@ -29,9 +29,9 @@ use Google\Cloud\Support\V2\CloseCaseRequest;
 use Google\Cloud\Support\V2\PBCase;
 
 /**
- * Close the specified case.
+ * Close a case.
  *
- * @param string $formattedName The fully qualified name of the case resource to be closed. Please see
+ * @param string $formattedName The name of the case to close. Please see
  *                              {@see CaseServiceClient::caseName()} for help formatting this field.
  */
 function close_case_sample(string $formattedName): void

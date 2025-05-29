@@ -39,6 +39,13 @@ class ListSupportedDatabaseFlagsRequest extends \Google\Protobuf\Internal\Messag
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
     protected $page_token = '';
+    /**
+     * Optional. The scope for which supported flags are requested. If not
+     * specified, default is DATABASE.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.SupportedDatabaseFlag.Scope scope = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $scope = 0;
 
     /**
      * @param string $parent Required. The name of the parent resource. The required format is:
@@ -78,6 +85,9 @@ class ListSupportedDatabaseFlagsRequest extends \Google\Protobuf\Internal\Messag
      *           If unspecified, server will pick an appropriate default.
      *     @type string $page_token
      *           A token identifying a page of results the server should return.
+     *     @type int $scope
+     *           Optional. The scope for which supported flags are requested. If not
+     *           specified, default is DATABASE.
      * }
      */
     public function __construct($data = NULL) {
@@ -171,6 +181,34 @@ class ListSupportedDatabaseFlagsRequest extends \Google\Protobuf\Internal\Messag
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The scope for which supported flags are requested. If not
+     * specified, default is DATABASE.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.SupportedDatabaseFlag.Scope scope = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getScope()
+    {
+        return $this->scope;
+    }
+
+    /**
+     * Optional. The scope for which supported flags are requested. If not
+     * specified, default is DATABASE.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.SupportedDatabaseFlag.Scope scope = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setScope($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AlloyDb\V1\SupportedDatabaseFlag\Scope::class);
+        $this->scope = $var;
 
         return $this;
     }
