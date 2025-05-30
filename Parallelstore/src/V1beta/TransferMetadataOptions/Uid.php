@@ -7,7 +7,7 @@ namespace Google\Cloud\Parallelstore\V1beta\TransferMetadataOptions;
 use UnexpectedValueException;
 
 /**
- * The UID perservation behavior.
+ * The UID preservation behavior.
  *
  * Protobuf type <code>google.cloud.parallelstore.v1beta.TransferMetadataOptions.Uid</code>
  */
