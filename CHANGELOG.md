@@ -1,5 +1,70 @@
 # Changelog
 
+## 0.290.0
+
+<details><summary>google/cloud-ai-platform 1.27.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] Expose URL Context API to v1 ([#8345](https://github.com/googleapis/google-cloud-php/issues/8345)) ([79ed5b0](https://github.com/googleapis/google-cloud-php/commit/79ed5b052ccb99752e8e717a777e5912e41a4ec0))
+
+</details>
+
+<details><summary>google/cloud-dlp 2.5.0</summary>
+
+
+
+### Features
+
+* [Dlp] add Dataplex Catalog action for discovery configs ([#8342](https://github.com/googleapis/google-cloud-php/issues/8342)) ([7462997](https://github.com/googleapis/google-cloud-php/commit/7462997788ef77834445ba0c3534bfc5274f04a7))
+* Add a project ID to table reference so that org parents can create single table discovery configs. ([7462997](https://github.com/googleapis/google-cloud-php/commit/7462997788ef77834445ba0c3534bfc5274f04a7))
+* New fields for data profile finding. ([7462997](https://github.com/googleapis/google-cloud-php/commit/7462997788ef77834445ba0c3534bfc5274f04a7))
+
+
+### Documentation
+
+* Various doc revisions ([7462997](https://github.com/googleapis/google-cloud-php/commit/7462997788ef77834445ba0c3534bfc5274f04a7))
+
+</details>
+
+<details><summary>google/cloud-iap 2.1.1</summary>
+
+
+
+### Documentation
+
+* [Iap] Add clarifications on IAP CorsSettings behavior ([#8343](https://github.com/googleapis/google-cloud-php/issues/8343)) ([ba3152c](https://github.com/googleapis/google-cloud-php/commit/ba3152c365863ce3ef79e9b887c3c2ebdf327c5a))
+
+</details>
+
+<details><summary>google/cloud-parallelstore 0.11.2</summary>
+
+
+
+### Documentation
+
+* [Parallelstore] fix various typos in commentary ([#8350](https://github.com/googleapis/google-cloud-php/issues/8350)) ([043ee5a](https://github.com/googleapis/google-cloud-php/commit/043ee5a8ee2f480755160c817bb1867a4767e40e))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.100.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 2.2.0</summary>
+
+
+
+### Features
+
+* [StorageTransfer] support Azure federated identity ([#8340](https://github.com/googleapis/google-cloud-php/issues/8340)) ([4fc5b16](https://github.com/googleapis/google-cloud-php/commit/4fc5b161bf3b4c65c52131b1dfeba5e3f37c7b46))
+
+</details>
+
 ## 0.289.0
 
 <details><summary>google/cloud-bigtable 2.11.2</summary>
