@@ -63,7 +63,10 @@ class BatchSnapshot implements TransactionalReadInterface
     /**
      * @param Operation $operation The Operation instance.
      * @param Session $session The session to use for spanner interactions.
-     * @param array $options [optional] {
+     * @param array{
+     *     id?: string,
+     *     readTimestamp?: Timestamp,
+     * } $options {
      *     Configuration Options.
      *
      *     @type string $id The Transaction ID.
@@ -245,10 +248,10 @@ class BatchSnapshot implements TransactionalReadInterface
      */
     public function serialize()
     {
-        return base64_encode(json_encode([
+        return base64_encode((string) json_encode([
             'sessionName' => $this->session->name(),
             'transactionId' => $this->transactionId,
-            'readTimestamp' => $this->readTimestamp->formatAsString()
+            'readTimestamp' => $this->readTimestamp?->formatAsString()
         ]));
     }
 
