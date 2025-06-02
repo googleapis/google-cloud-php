@@ -19,6 +19,7 @@ namespace Google\Cloud\Datastore\Tests\Unit;
 
 use Google\Cloud\Datastore\EntityIterator;
 use Google\Cloud\Datastore\EntityPageIterator;
+use Google\Cloud\Datastore\V1\ExplainMetrics;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -40,5 +41,39 @@ class EntityIteratorTest extends TestCase
         $items = new EntityIterator($pageIterator->reveal());
 
         $this->assertEquals($moreResultsType, $items->moreResultsType());
+    }
+
+    public function testGetExplainMetrics()
+    {
+        $explainMetrics = [
+            "planSummary" => [
+                "indexesUsed" => [
+                    [
+                        "fields" => [
+                            "query_scope" => "Collection group",
+                            "properties" => "(done ASC, __name__ ASC)"
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $pageIterator = $this->prophesize(EntityPageIterator::class);
+        $pageIterator->getExplainMetrics()
+            ->willReturn($explainMetrics)
+            ->shouldBeCalledTimes(1);
+        $pageIterator->current()
+            ->shouldBeCalledTimes(1);
+        $pageIterator->nextResultToken()
+            ->willReturn(null)
+            ->shouldBeCalled(1);
+
+        $response = new EntityIterator($pageIterator->reveal());
+
+        $expectedMetrics = new ExplainMetrics();
+        $expectedMetrics->mergeFromJsonString(json_encode($explainMetrics));
+        $metrics = $response->getExplainMetrics();
+        $this->assertInstanceOf(ExplainMetrics::class, $metrics);
+        $this->assertEquals($expectedMetrics, $metrics);
     }
 }

@@ -18,6 +18,7 @@
 namespace Google\Cloud\Datastore;
 
 use Google\Cloud\Core\Iterator\ItemIteratorTrait;
+use Google\Cloud\Datastore\V1\ExplainMetrics;
 
 /**
  * Iterates over a set of {@see \Google\Cloud\Datastore\Entity} items.
@@ -25,6 +26,11 @@ use Google\Cloud\Core\Iterator\ItemIteratorTrait;
 class EntityIterator implements \Iterator
 {
     use ItemIteratorTrait;
+
+    /**
+     * @var null|ExplainMetrics
+     */
+    private null|ExplainMetrics $explainMetrics = null;
 
     /**
      * The state of the query after the current batch.
@@ -40,5 +46,112 @@ class EntityIterator implements \Iterator
         return method_exists($this->pageIterator, 'moreResultsType')
             ? $this->pageIterator->moreResultsType()
             : null;
+    }
+
+    /**
+     * Returns a ExplainMetrics object from the query.
+     *
+     * By default, the query does not get executed and the explain metrics object
+     * contains only the planning statistics {@see Google\Cloud\Datastore\V1\ExplainMetrics}.
+     *
+     * If the request was configured with the ExplainOptions object `Analyze` attribute to true
+     * the request then also gets executed, including the ExecutionStates on the ExplainMetrics
+     * object
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Datastore\DatastoreClient;
+     * use Google\Cloud\Datastore\V1\ExplainOptions;
+     *
+     * $datastore = new DatastoreClient();
+     *
+     * explainOptions = (new ExplainOptions())->setAnalyze(false);
+     * $queryOptions = [
+     *     'explainOptions' => $explainOptions
+     * ];
+     *
+     * // The query does not get executed
+     * $res = $datastore->runQuery($query, $queryOptions);
+     *
+     * $explainMetrics = $res->getExplainMetrics();
+     *
+     * // This is populated
+     * $explainMetrics->planningSummary
+     *
+     * // This is not populated
+     * $explainMetrics->executionStats
+     * ```
+     *
+     * Example:
+     * ```
+     * explainOptions = (new ExplainOptions())->setAnalyze(true);
+     * $queryOptions = [
+     *     'explainOptions' => $explainOptions
+     * ];
+     *
+     * // The query does not get executed
+     * $res = $datastore->runQuery($query, $queryOptions);
+     *
+     * $explainMetrics = $res->getExplainMetrics();
+     *
+     * // This is populated
+     * $explainMetrics->planningSummary
+     *
+     * // This is also populated
+     * $explainMetrics->executionStats
+     * ```
+     *
+     * @return null|ExplainMetrics
+     */
+    public function getExplainMetrics() : null|ExplainMetrics
+    {
+        if (is_null($this->explainMetrics)) {
+            $this->explainMetrics = $this->gatherExplainMetrics();
+        }
+
+        return $this->explainMetrics;
+    }
+
+    private function gatherExplainMetrics() : null|explainMetrics
+    {
+        $metrics = null;
+        $this->pageIterator->current();
+
+        while (is_null($metrics)) {
+            $metrics = $this->pageIterator->getExplainMetrics();
+
+            if (!$this->nextResultToken()) {
+                break;
+            }
+
+            $this->pageIterator->next();
+        }
+
+        if (is_null($metrics)) {
+            return null;
+        }
+
+        $explainMetrics = new ExplainMetrics();
+        $jsonString = json_encode($this->fixDurationFormat($metrics));
+        $explainMetrics->mergeFromJsonString($jsonString);
+
+        return $explainMetrics;
+    }
+
+    private function fixDurationFormat(array $metrics) : array
+    {
+        // The current protobuf library does not support the current json representation of the well-known type Duration.
+        // Hence we have to convert the object format into a string format for the merging from json to work.
+        // If the protobuf library gets updated, this should be removed.
+        if (!isset($metrics['executionStats']) && !isset($metrics['executionStats']['executionDuration'])) {
+            return $metrics;
+        }
+
+        $seconds = $metrics['executionStats']['executionDuration']['seconds'];
+        $nanos = str_pad($metrics['executionStats']['executionDuration']['nanos'], 9, 0, STR_PAD_LEFT);
+
+        $metrics['executionStats']['executionDuration'] = "{$seconds}.{$nanos}s";
+
+        return $metrics;
     }
 }
