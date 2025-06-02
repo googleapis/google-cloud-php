@@ -56,13 +56,17 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
      */
     public function getTimeSeries()
     {
-        @trigger_error('time_series is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->time_series)) {
+            @trigger_error('time_series is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->time_series;
     }
 
     public function hasTimeSeries()
     {
-        @trigger_error('time_series is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->time_series)) {
+            @trigger_error('time_series is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->time_series);
     }
 
@@ -98,13 +102,17 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        @trigger_error('status is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->status)) {
+            @trigger_error('status is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->status;
     }
 
     public function hasStatus()
     {
-        @trigger_error('status is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->status)) {
+            @trigger_error('status is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->status);
     }
 

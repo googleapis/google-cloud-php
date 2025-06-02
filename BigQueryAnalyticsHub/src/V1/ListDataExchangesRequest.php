@@ -17,7 +17,7 @@ class ListDataExchangesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent resource path of the data exchanges.
-     * e.g. `projects/myproject/locations/US`.
+     * e.g. `projects/myproject/locations/us`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -39,7 +39,7 @@ class ListDataExchangesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The parent resource path of the data exchanges.
-     *                       e.g. `projects/myproject/locations/US`. Please see
+     *                       e.g. `projects/myproject/locations/us`. Please see
      *                       {@see AnalyticsHubServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\ListDataExchangesRequest
@@ -60,7 +60,7 @@ class ListDataExchangesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent resource path of the data exchanges.
-     *           e.g. `projects/myproject/locations/US`.
+     *           e.g. `projects/myproject/locations/us`.
      *     @type int $page_size
      *           The maximum number of results to return in a single response page. Leverage
      *           the page tokens to iterate through the entire collection.
@@ -76,7 +76,7 @@ class ListDataExchangesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource path of the data exchanges.
-     * e.g. `projects/myproject/locations/US`.
+     * e.g. `projects/myproject/locations/us`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -88,7 +88,7 @@ class ListDataExchangesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource path of the data exchanges.
-     * e.g. `projects/myproject/locations/US`.
+     * e.g. `projects/myproject/locations/us`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

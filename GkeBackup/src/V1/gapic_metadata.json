@@ -15,6 +15,11 @@
                                 "createBackup"
                             ]
                         },
+                        "CreateBackupChannel": {
+                            "methods": [
+                                "createBackupChannel"
+                            ]
+                        },
                         "CreateBackupPlan": {
                             "methods": [
                                 "createBackupPlan"
@@ -23,6 +28,11 @@
                         "CreateRestore": {
                             "methods": [
                                 "createRestore"
+                            ]
+                        },
+                        "CreateRestoreChannel": {
+                            "methods": [
+                                "createRestoreChannel"
                             ]
                         },
                         "CreateRestorePlan": {
@@ -35,6 +45,11 @@
                                 "deleteBackup"
                             ]
                         },
+                        "DeleteBackupChannel": {
+                            "methods": [
+                                "deleteBackupChannel"
+                            ]
+                        },
                         "DeleteBackupPlan": {
                             "methods": [
                                 "deleteBackupPlan"
@@ -43,6 +58,11 @@
                         "DeleteRestore": {
                             "methods": [
                                 "deleteRestore"
+                            ]
+                        },
+                        "DeleteRestoreChannel": {
+                            "methods": [
+                                "deleteRestoreChannel"
                             ]
                         },
                         "DeleteRestorePlan": {
@@ -55,6 +75,11 @@
                                 "getBackup"
                             ]
                         },
+                        "GetBackupChannel": {
+                            "methods": [
+                                "getBackupChannel"
+                            ]
+                        },
                         "GetBackupIndexDownloadUrl": {
                             "methods": [
                                 "getBackupIndexDownloadUrl"
@@ -65,14 +90,29 @@
                                 "getBackupPlan"
                             ]
                         },
+                        "GetBackupPlanBinding": {
+                            "methods": [
+                                "getBackupPlanBinding"
+                            ]
+                        },
                         "GetRestore": {
                             "methods": [
                                 "getRestore"
                             ]
                         },
+                        "GetRestoreChannel": {
+                            "methods": [
+                                "getRestoreChannel"
+                            ]
+                        },
                         "GetRestorePlan": {
                             "methods": [
                                 "getRestorePlan"
+                            ]
+                        },
+                        "GetRestorePlanBinding": {
+                            "methods": [
+                                "getRestorePlanBinding"
                             ]
                         },
                         "GetVolumeBackup": {
@@ -85,6 +125,16 @@
                                 "getVolumeRestore"
                             ]
                         },
+                        "ListBackupChannels": {
+                            "methods": [
+                                "listBackupChannels"
+                            ]
+                        },
+                        "ListBackupPlanBindings": {
+                            "methods": [
+                                "listBackupPlanBindings"
+                            ]
+                        },
                         "ListBackupPlans": {
                             "methods": [
                                 "listBackupPlans"
@@ -93,6 +143,16 @@
                         "ListBackups": {
                             "methods": [
                                 "listBackups"
+                            ]
+                        },
+                        "ListRestoreChannels": {
+                            "methods": [
+                                "listRestoreChannels"
+                            ]
+                        },
+                        "ListRestorePlanBindings": {
+                            "methods": [
+                                "listRestorePlanBindings"
                             ]
                         },
                         "ListRestorePlans": {
@@ -120,6 +180,11 @@
                                 "updateBackup"
                             ]
                         },
+                        "UpdateBackupChannel": {
+                            "methods": [
+                                "updateBackupChannel"
+                            ]
+                        },
                         "UpdateBackupPlan": {
                             "methods": [
                                 "updateBackupPlan"
@@ -128,6 +193,11 @@
                         "UpdateRestore": {
                             "methods": [
                                 "updateRestore"
+                            ]
+                        },
+                        "UpdateRestoreChannel": {
+                            "methods": [
+                                "updateRestoreChannel"
                             ]
                         },
                         "UpdateRestorePlan": {

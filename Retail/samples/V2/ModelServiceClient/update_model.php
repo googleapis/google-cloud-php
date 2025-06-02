@@ -51,7 +51,6 @@ use Google\Cloud\Retail\V2\UpdateModelRequest;
  *                                 `frequently-bought-together`, `page-optimization`, `similar-items`,
  *                                 `buy-it-again`, `on-sale-items`, and `recently-viewed`(readonly value).
  *
- *
  *                                 This field together with
  *                                 [optimization_objective][google.cloud.retail.v2.Model.optimization_objective]
  *                                 describe model metadata to use to control model training and serving.

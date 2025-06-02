@@ -25,6 +25,11 @@
                                 "createClip"
                             ]
                         },
+                        "CreateDvrSession": {
+                            "methods": [
+                                "createDvrSession"
+                            ]
+                        },
                         "CreateEvent": {
                             "methods": [
                                 "createEvent"
@@ -50,6 +55,11 @@
                                 "deleteClip"
                             ]
                         },
+                        "DeleteDvrSession": {
+                            "methods": [
+                                "deleteDvrSession"
+                            ]
+                        },
                         "DeleteEvent": {
                             "methods": [
                                 "deleteEvent"
@@ -73,6 +83,11 @@
                         "GetClip": {
                             "methods": [
                                 "getClip"
+                            ]
+                        },
+                        "GetDvrSession": {
+                            "methods": [
+                                "getDvrSession"
                             ]
                         },
                         "GetEvent": {
@@ -105,6 +120,11 @@
                                 "listClips"
                             ]
                         },
+                        "ListDvrSessions": {
+                            "methods": [
+                                "listDvrSessions"
+                            ]
+                        },
                         "ListEvents": {
                             "methods": [
                                 "listEvents"
@@ -128,6 +148,11 @@
                         "UpdateChannel": {
                             "methods": [
                                 "updateChannel"
+                            ]
+                        },
+                        "UpdateDvrSession": {
+                            "methods": [
+                                "updateDvrSession"
                             ]
                         },
                         "UpdateInput": {

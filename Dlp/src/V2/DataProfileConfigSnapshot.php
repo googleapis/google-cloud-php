@@ -131,13 +131,17 @@ class DataProfileConfigSnapshot extends \Google\Protobuf\Internal\Message
      */
     public function getDataProfileJob()
     {
-        @trigger_error('data_profile_job is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->data_profile_job)) {
+            @trigger_error('data_profile_job is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->data_profile_job;
     }
 
     public function hasDataProfileJob()
     {
-        @trigger_error('data_profile_job is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->data_profile_job)) {
+            @trigger_error('data_profile_job is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->data_profile_job);
     }
 

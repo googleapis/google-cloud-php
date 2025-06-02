@@ -130,6 +130,28 @@ return [
                     ],
                 ],
             ],
+            'PerformMaintenance' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/reservations/{reservation}/performMaintenance',
+                'body' => 'reservations_perform_maintenance_request_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'reservation' => [
+                        'getters' => [
+                            'getReservation',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
             'Resize' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/reservations/{reservation}/resize',

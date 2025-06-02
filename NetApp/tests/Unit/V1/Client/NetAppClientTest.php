@@ -372,6 +372,8 @@ class NetAppClientTest extends GeneratedTest
         $chainStorageBytes = 1614651561;
         $satisfiesPzs = false;
         $satisfiesPzi = false;
+        $volumeRegion = 'volumeRegion1126820793';
+        $backupRegion = 'backupRegion-2028072943';
         $expectedResponse = new Backup();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -381,6 +383,8 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setChainStorageBytes($chainStorageBytes);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setVolumeRegion($volumeRegion);
+        $expectedResponse->setBackupRegion($backupRegion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -668,9 +672,17 @@ class NetAppClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $description = 'description-1724546052';
+        $sourceRegion = 'sourceRegion203585432';
+        $backupRegion = 'backupRegion-2028072943';
+        $sourceBackupVault = 'sourceBackupVault1668478745';
+        $destinationBackupVault = 'destinationBackupVault1650417158';
         $expectedResponse = new BackupVault();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setSourceRegion($sourceRegion);
+        $expectedResponse->setBackupRegion($backupRegion);
+        $expectedResponse->setSourceBackupVault($sourceBackupVault);
+        $expectedResponse->setDestinationBackupVault($destinationBackupVault);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1443,6 +1455,9 @@ class NetAppClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $satisfiesPzs = false;
         $satisfiesPzi = false;
+        $customPerformanceEnabled = true;
+        $totalThroughputMibps = 2085075953;
+        $totalIops = 705711676;
         $expectedResponse = new StoragePool();
         $expectedResponse->setName($name);
         $expectedResponse->setCapacityGib($capacityGib);
@@ -1461,6 +1476,9 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setZone($zone);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setCustomPerformanceEnabled($customPerformanceEnabled);
+        $expectedResponse->setTotalThroughputMibps($totalThroughputMibps);
+        $expectedResponse->setTotalIops($totalIops);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -3405,6 +3423,8 @@ class NetAppClientTest extends GeneratedTest
         $chainStorageBytes = 1614651561;
         $satisfiesPzs = false;
         $satisfiesPzi = false;
+        $volumeRegion = 'volumeRegion1126820793';
+        $backupRegion = 'backupRegion-2028072943';
         $expectedResponse = new Backup();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
@@ -3414,6 +3434,8 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setChainStorageBytes($chainStorageBytes);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setVolumeRegion($volumeRegion);
+        $expectedResponse->setBackupRegion($backupRegion);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_VAULT]', '[BACKUP]');
@@ -3555,9 +3577,17 @@ class NetAppClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $description = 'description-1724546052';
+        $sourceRegion = 'sourceRegion203585432';
+        $backupRegion = 'backupRegion-2028072943';
+        $sourceBackupVault = 'sourceBackupVault1668478745';
+        $destinationBackupVault = 'destinationBackupVault1650417158';
         $expectedResponse = new BackupVault();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setSourceRegion($sourceRegion);
+        $expectedResponse->setBackupRegion($backupRegion);
+        $expectedResponse->setSourceBackupVault($sourceBackupVault);
+        $expectedResponse->setDestinationBackupVault($destinationBackupVault);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupVaultName('[PROJECT]', '[LOCATION]', '[BACKUP_VAULT]');
@@ -3933,6 +3963,9 @@ class NetAppClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $satisfiesPzs = false;
         $satisfiesPzi = false;
+        $customPerformanceEnabled = true;
+        $totalThroughputMibps = 2085075953;
+        $totalIops = 705711676;
         $expectedResponse = new StoragePool();
         $expectedResponse->setName($name2);
         $expectedResponse->setCapacityGib($capacityGib);
@@ -3951,6 +3984,9 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setZone($zone);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setCustomPerformanceEnabled($customPerformanceEnabled);
+        $expectedResponse->setTotalThroughputMibps($totalThroughputMibps);
+        $expectedResponse->setTotalIops($totalIops);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
@@ -5437,6 +5473,9 @@ class NetAppClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $satisfiesPzs = false;
         $satisfiesPzi = false;
+        $customPerformanceEnabled = true;
+        $totalThroughputMibps = 2085075953;
+        $totalIops = 705711676;
         $expectedResponse = new StoragePool();
         $expectedResponse->setName($name2);
         $expectedResponse->setCapacityGib($capacityGib);
@@ -5455,6 +5494,9 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setZone($zone);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setCustomPerformanceEnabled($customPerformanceEnabled);
+        $expectedResponse->setTotalThroughputMibps($totalThroughputMibps);
+        $expectedResponse->setTotalIops($totalIops);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -5902,6 +5944,8 @@ class NetAppClientTest extends GeneratedTest
         $chainStorageBytes = 1614651561;
         $satisfiesPzs = false;
         $satisfiesPzi = false;
+        $volumeRegion = 'volumeRegion1126820793';
+        $backupRegion = 'backupRegion-2028072943';
         $expectedResponse = new Backup();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -5911,6 +5955,8 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setChainStorageBytes($chainStorageBytes);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setVolumeRegion($volumeRegion);
+        $expectedResponse->setBackupRegion($backupRegion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -6178,9 +6224,17 @@ class NetAppClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $description = 'description-1724546052';
+        $sourceRegion = 'sourceRegion203585432';
+        $backupRegion = 'backupRegion-2028072943';
+        $sourceBackupVault = 'sourceBackupVault1668478745';
+        $destinationBackupVault = 'destinationBackupVault1650417158';
         $expectedResponse = new BackupVault();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setSourceRegion($sourceRegion);
+        $expectedResponse->setBackupRegion($backupRegion);
+        $expectedResponse->setSourceBackupVault($sourceBackupVault);
+        $expectedResponse->setDestinationBackupVault($destinationBackupVault);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -6899,6 +6953,9 @@ class NetAppClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $satisfiesPzs = false;
         $satisfiesPzi = false;
+        $customPerformanceEnabled = true;
+        $totalThroughputMibps = 2085075953;
+        $totalIops = 705711676;
         $expectedResponse = new StoragePool();
         $expectedResponse->setName($name);
         $expectedResponse->setCapacityGib($capacityGib);
@@ -6917,6 +6974,9 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setZone($zone);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setCustomPerformanceEnabled($customPerformanceEnabled);
+        $expectedResponse->setTotalThroughputMibps($totalThroughputMibps);
+        $expectedResponse->setTotalIops($totalIops);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

@@ -32,7 +32,7 @@ class MasterAuthorizedNetworksConfig extends \Google\Protobuf\Internal\Message
      */
     private $cidr_blocks;
     /**
-     * Whether master is accessbile via Google Compute Engine Public IP addresses.
+     * Whether master is accessible via Google Compute Engine Public IP addresses.
      *
      * Generated from protobuf field <code>optional bool gcp_public_cidrs_access_enabled = 3;</code>
      */
@@ -56,7 +56,7 @@ class MasterAuthorizedNetworksConfig extends \Google\Protobuf\Internal\Message
      *           cidr_blocks define up to 50 external networks that could access
      *           Kubernetes master through HTTPS.
      *     @type bool $gcp_public_cidrs_access_enabled
-     *           Whether master is accessbile via Google Compute Engine Public IP addresses.
+     *           Whether master is accessible via Google Compute Engine Public IP addresses.
      *     @type bool $private_endpoint_enforcement_enabled
      *           Whether master authorized networks is enforced on private endpoint or not.
      * }
@@ -121,7 +121,7 @@ class MasterAuthorizedNetworksConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether master is accessbile via Google Compute Engine Public IP addresses.
+     * Whether master is accessible via Google Compute Engine Public IP addresses.
      *
      * Generated from protobuf field <code>optional bool gcp_public_cidrs_access_enabled = 3;</code>
      * @return bool
@@ -142,7 +142,7 @@ class MasterAuthorizedNetworksConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether master is accessbile via Google Compute Engine Public IP addresses.
+     * Whether master is accessible via Google Compute Engine Public IP addresses.
      *
      * Generated from protobuf field <code>optional bool gcp_public_cidrs_access_enabled = 3;</code>
      * @param bool $var

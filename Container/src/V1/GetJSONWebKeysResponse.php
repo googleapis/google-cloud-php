@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * GetJSONWebKeysResponse is a valid JSON Web Key Set as specififed in rfc 7517
+ * GetJSONWebKeysResponse is a valid JSON Web Key Set as specified in rfc 7517
  *
  * Generated from protobuf message <code>google.container.v1.GetJSONWebKeysResponse</code>
  */

@@ -725,13 +725,17 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     public function getMaxDiskSize()
     {
-        @trigger_error('max_disk_size is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->max_disk_size)) {
+            @trigger_error('max_disk_size is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->max_disk_size;
     }
 
     public function hasMaxDiskSize()
     {
-        @trigger_error('max_disk_size is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->max_disk_size)) {
+            @trigger_error('max_disk_size is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->max_disk_size);
     }
 
@@ -751,7 +755,9 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     public function getMaxDiskSizeUnwrapped()
     {
-        @trigger_error('max_disk_size is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->max_disk_size)) {
+            @trigger_error('max_disk_size is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readWrapperValue("max_disk_size");
     }
 
@@ -800,13 +806,17 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     public function getCurrentDiskSize()
     {
-        @trigger_error('current_disk_size is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->current_disk_size)) {
+            @trigger_error('current_disk_size is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->current_disk_size;
     }
 
     public function hasCurrentDiskSize()
     {
-        @trigger_error('current_disk_size is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->current_disk_size)) {
+            @trigger_error('current_disk_size is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->current_disk_size);
     }
 
@@ -831,7 +841,9 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     public function getCurrentDiskSizeUnwrapped()
     {
-        @trigger_error('current_disk_size is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->current_disk_size)) {
+            @trigger_error('current_disk_size is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readWrapperValue("current_disk_size");
     }
 
@@ -1003,7 +1015,9 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     public function getIpv6Address()
     {
-        @trigger_error('ipv6_address is deprecated.', E_USER_DEPRECATED);
+        if ($this->ipv6_address !== '') {
+            @trigger_error('ipv6_address is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->ipv6_address;
     }
 
@@ -1872,13 +1886,17 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     public function getPrimaryDnsName()
     {
-        @trigger_error('primary_dns_name is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->primary_dns_name)) {
+            @trigger_error('primary_dns_name is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->primary_dns_name) ? $this->primary_dns_name : '';
     }
 
     public function hasPrimaryDnsName()
     {
-        @trigger_error('primary_dns_name is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->primary_dns_name)) {
+            @trigger_error('primary_dns_name is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->primary_dns_name);
     }
 

@@ -625,6 +625,10 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/ragEngineConfig/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/specialistPools/*/operations/*}:cancel',
                     ],
                     [
@@ -758,6 +762,10 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/persistentResources/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/ragEngineConfig/operations/*}:cancel',
                     ],
                     [
                         'method' => 'post',
@@ -982,6 +990,10 @@ return [
                     ],
                     [
                         'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/ragEngineConfig/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/tensorboards/*/operations/*}',
                     ],
                     [
@@ -1123,6 +1135,10 @@ return [
                     [
                         'method' => 'delete',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/notebookRuntimeTemplates/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/ragEngineConfig/operations/*}',
                     ],
                     [
                         'method' => 'delete',
@@ -1367,6 +1383,10 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/ragEngineConfig/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/schedules/*/operations/*}',
                     ],
                     [
@@ -1520,6 +1540,10 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/notebookRuntimeTemplates/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/ragEngineConfig/operations/*}',
                     ],
                     [
                         'method' => 'get',
@@ -1760,6 +1784,10 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/ragEngineConfig}/operations',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/schedules/*}/operations',
                     ],
                     [
@@ -1937,6 +1965,10 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/pipelineJobs/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/ragEngineConfig}/operations',
                     ],
                     [
                         'method' => 'get',
@@ -2161,6 +2193,10 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/ragEngineConfig/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/tensorboards/*/operations/*}:wait',
                     ],
                     [
@@ -2302,6 +2338,10 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/notebookRuntimeTemplates/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/ragEngineConfig/operations/*}:wait',
                     ],
                     [
                         'method' => 'post',

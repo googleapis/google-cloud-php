@@ -69,6 +69,12 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess vpc_access = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $vpc_access = null;
+    /**
+     * Optional. The node selector for the task template.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.NodeSelector node_selector = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $node_selector = null;
     protected $retries;
 
     /**
@@ -105,6 +111,8 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
      *           Optional. VPC Access configuration to use for this Task. For more
      *           information, visit
      *           https://cloud.google.com/run/docs/configuring/connecting-vpc.
+     *     @type \Google\Cloud\Run\V2\NodeSelector $node_selector
+     *           Optional. The node selector for the task template.
      * }
      */
     public function __construct($data = NULL) {
@@ -365,6 +373,42 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\VpcAccess::class);
         $this->vpc_access = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The node selector for the task template.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.NodeSelector node_selector = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Run\V2\NodeSelector|null
+     */
+    public function getNodeSelector()
+    {
+        return $this->node_selector;
+    }
+
+    public function hasNodeSelector()
+    {
+        return isset($this->node_selector);
+    }
+
+    public function clearNodeSelector()
+    {
+        unset($this->node_selector);
+    }
+
+    /**
+     * Optional. The node selector for the task template.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.NodeSelector node_selector = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Run\V2\NodeSelector $var
+     * @return $this
+     */
+    public function setNodeSelector($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\NodeSelector::class);
+        $this->node_selector = $var;
 
         return $this;
     }

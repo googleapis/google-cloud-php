@@ -22,6 +22,12 @@ class ConfidentialNodes extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enabled = 1;</code>
      */
     protected $enabled = false;
+    /**
+     * Defines the type of technology used by the confidential node.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes.ConfidentialInstanceType confidential_instance_type = 2;</code>
+     */
+    protected $confidential_instance_type = 0;
 
     /**
      * Constructor.
@@ -31,6 +37,8 @@ class ConfidentialNodes extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $enabled
      *           Whether Confidential Nodes feature is enabled.
+     *     @type int $confidential_instance_type
+     *           Defines the type of technology used by the confidential node.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,6 +68,32 @@ class ConfidentialNodes extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Defines the type of technology used by the confidential node.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes.ConfidentialInstanceType confidential_instance_type = 2;</code>
+     * @return int
+     */
+    public function getConfidentialInstanceType()
+    {
+        return $this->confidential_instance_type;
+    }
+
+    /**
+     * Defines the type of technology used by the confidential node.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes.ConfidentialInstanceType confidential_instance_type = 2;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setConfidentialInstanceType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\ConfidentialNodes\ConfidentialInstanceType::class);
+        $this->confidential_instance_type = $var;
 
         return $this;
     }

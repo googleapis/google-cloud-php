@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Acknowledgement IDs sent in one or more previous requests to modify the
+ * Acknowledgment IDs sent in one or more previous requests to modify the
  * deadline for a specific message.
  *
  * Generated from protobuf message <code>google.pubsub.v1.StreamingPullResponse.ModifyAckDeadlineConfirmation</code>
@@ -17,20 +17,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class ModifyAckDeadlineConfirmation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Successfully processed acknowledgement IDs.
+     * Optional. Successfully processed acknowledgment IDs.
      *
      * Generated from protobuf field <code>repeated string ack_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $ack_ids;
     /**
-     * Optional. List of acknowledgement IDs that were malformed or whose
-     * acknowledgement deadline has expired.
+     * Optional. List of acknowledgment IDs that were malformed or whose
+     * acknowledgment deadline has expired.
      *
      * Generated from protobuf field <code>repeated string invalid_ack_ids = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $invalid_ack_ids;
     /**
-     * Optional. List of acknowledgement IDs that failed processing with
+     * Optional. List of acknowledgment IDs that failed processing with
      * temporary issues.
      *
      * Generated from protobuf field <code>repeated string temporary_failed_ack_ids = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -44,12 +44,12 @@ class ModifyAckDeadlineConfirmation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ack_ids
-     *           Optional. Successfully processed acknowledgement IDs.
+     *           Optional. Successfully processed acknowledgment IDs.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $invalid_ack_ids
-     *           Optional. List of acknowledgement IDs that were malformed or whose
-     *           acknowledgement deadline has expired.
+     *           Optional. List of acknowledgment IDs that were malformed or whose
+     *           acknowledgment deadline has expired.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $temporary_failed_ack_ids
-     *           Optional. List of acknowledgement IDs that failed processing with
+     *           Optional. List of acknowledgment IDs that failed processing with
      *           temporary issues.
      * }
      */
@@ -59,7 +59,7 @@ class ModifyAckDeadlineConfirmation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Successfully processed acknowledgement IDs.
+     * Optional. Successfully processed acknowledgment IDs.
      *
      * Generated from protobuf field <code>repeated string ack_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -70,7 +70,7 @@ class ModifyAckDeadlineConfirmation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Successfully processed acknowledgement IDs.
+     * Optional. Successfully processed acknowledgment IDs.
      *
      * Generated from protobuf field <code>repeated string ack_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -85,8 +85,8 @@ class ModifyAckDeadlineConfirmation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of acknowledgement IDs that were malformed or whose
-     * acknowledgement deadline has expired.
+     * Optional. List of acknowledgment IDs that were malformed or whose
+     * acknowledgment deadline has expired.
      *
      * Generated from protobuf field <code>repeated string invalid_ack_ids = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -97,8 +97,8 @@ class ModifyAckDeadlineConfirmation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of acknowledgement IDs that were malformed or whose
-     * acknowledgement deadline has expired.
+     * Optional. List of acknowledgment IDs that were malformed or whose
+     * acknowledgment deadline has expired.
      *
      * Generated from protobuf field <code>repeated string invalid_ack_ids = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -113,7 +113,7 @@ class ModifyAckDeadlineConfirmation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of acknowledgement IDs that failed processing with
+     * Optional. List of acknowledgment IDs that failed processing with
      * temporary issues.
      *
      * Generated from protobuf field <code>repeated string temporary_failed_ack_ids = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -125,7 +125,7 @@ class ModifyAckDeadlineConfirmation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of acknowledgement IDs that failed processing with
+     * Optional. List of acknowledgment IDs that failed processing with
      * temporary issues.
      *
      * Generated from protobuf field <code>repeated string temporary_failed_ack_ids = 3 [(.google.api.field_behavior) = OPTIONAL];</code>

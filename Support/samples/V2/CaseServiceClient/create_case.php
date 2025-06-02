@@ -29,12 +29,13 @@ use Google\Cloud\Support\V2\CreateCaseRequest;
 use Google\Cloud\Support\V2\PBCase;
 
 /**
- * Create a new case and associate it with the given Google Cloud Resource.
- * The case object must have the following fields set: `display_name`,
- * `description`, `classification`, and `priority`.
+ * Create a new case and associate it with a parent.
  *
- * @param string $formattedParent The name of the Google Cloud Resource under which the case should
- *                                be created. Please see
+ * It must have the following fields set: `display_name`, `description`,
+ * `classification`, and `priority`. If you're just testing the API and don't
+ * want to route your case to an agent, set `testCase=true`.
+ *
+ * @param string $formattedParent The name of the parent under which the case should be created. Please see
  *                                {@see CaseServiceClient::projectName()} for help formatting this field.
  */
 function create_case_sample(string $formattedParent): void

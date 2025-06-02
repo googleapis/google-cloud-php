@@ -45,13 +45,17 @@ class Authentication extends \Google\Protobuf\Internal\Message
      */
     public function getGoogleAccount()
     {
-        @trigger_error('google_account is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(1)) {
+            @trigger_error('google_account is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(1);
     }
 
     public function hasGoogleAccount()
     {
-        @trigger_error('google_account is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(1)) {
+            @trigger_error('google_account is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(1);
     }
 

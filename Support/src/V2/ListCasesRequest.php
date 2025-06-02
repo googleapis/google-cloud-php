@@ -16,22 +16,23 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListCasesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The fully qualified name of parent resource to list cases under.
+     * Required. The name of a parent to list cases under.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
-     * An expression written in filter language. If non-empty, the query returns
-     * the cases that match the filter. Else, the query doesn't filter the cases.
-     * Filter expressions use the following fields with the operators equals (`=`)
-     * and `AND`:
-     * - `state`: The accepted values are `OPEN` or `CLOSED`.
-     * - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You
+     * An expression used to filter cases.
+     * If it's an empty string, then no filtering happens. Otherwise, the endpoint
+     * returns the cases that match the filter.
+     * Expressions use the following fields separated by `AND` and specified with
+     * `=`:
+     * - `state`: Can be `OPEN` or `CLOSED`.
+     * - `priority`: Can be `P0`, `P1`, `P2`, `P3`, or `P4`. You
      * can specify multiple values for priority using the `OR` operator. For
      * example, `priority=P1 OR priority=P2`.
      * - `creator.email`: The email address of the case creator.
-     * Examples:
+     * EXAMPLES:
      * - `state=CLOSED`
      * - `state=OPEN AND creator.email="tester&#64;example.com"`
      * - `state=OPEN AND (priority=P0 OR priority=P1)`
@@ -54,7 +55,7 @@ class ListCasesRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
-     * @param string $parent Required. The fully qualified name of parent resource to list cases under. Please see
+     * @param string $parent Required. The name of a parent to list cases under. Please see
      *                       {@see CaseServiceClient::projectName()} for help formatting this field.
      *
      * @return \Google\Cloud\Support\V2\ListCasesRequest
@@ -74,18 +75,19 @@ class ListCasesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The fully qualified name of parent resource to list cases under.
+     *           Required. The name of a parent to list cases under.
      *     @type string $filter
-     *           An expression written in filter language. If non-empty, the query returns
-     *           the cases that match the filter. Else, the query doesn't filter the cases.
-     *           Filter expressions use the following fields with the operators equals (`=`)
-     *           and `AND`:
-     *           - `state`: The accepted values are `OPEN` or `CLOSED`.
-     *           - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You
+     *           An expression used to filter cases.
+     *           If it's an empty string, then no filtering happens. Otherwise, the endpoint
+     *           returns the cases that match the filter.
+     *           Expressions use the following fields separated by `AND` and specified with
+     *           `=`:
+     *           - `state`: Can be `OPEN` or `CLOSED`.
+     *           - `priority`: Can be `P0`, `P1`, `P2`, `P3`, or `P4`. You
      *           can specify multiple values for priority using the `OR` operator. For
      *           example, `priority=P1 OR priority=P2`.
      *           - `creator.email`: The email address of the case creator.
-     *           Examples:
+     *           EXAMPLES:
      *           - `state=CLOSED`
      *           - `state=OPEN AND creator.email="tester&#64;example.com"`
      *           - `state=OPEN AND (priority=P0 OR priority=P1)`
@@ -102,7 +104,7 @@ class ListCasesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The fully qualified name of parent resource to list cases under.
+     * Required. The name of a parent to list cases under.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -113,7 +115,7 @@ class ListCasesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The fully qualified name of parent resource to list cases under.
+     * Required. The name of a parent to list cases under.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -128,16 +130,17 @@ class ListCasesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An expression written in filter language. If non-empty, the query returns
-     * the cases that match the filter. Else, the query doesn't filter the cases.
-     * Filter expressions use the following fields with the operators equals (`=`)
-     * and `AND`:
-     * - `state`: The accepted values are `OPEN` or `CLOSED`.
-     * - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You
+     * An expression used to filter cases.
+     * If it's an empty string, then no filtering happens. Otherwise, the endpoint
+     * returns the cases that match the filter.
+     * Expressions use the following fields separated by `AND` and specified with
+     * `=`:
+     * - `state`: Can be `OPEN` or `CLOSED`.
+     * - `priority`: Can be `P0`, `P1`, `P2`, `P3`, or `P4`. You
      * can specify multiple values for priority using the `OR` operator. For
      * example, `priority=P1 OR priority=P2`.
      * - `creator.email`: The email address of the case creator.
-     * Examples:
+     * EXAMPLES:
      * - `state=CLOSED`
      * - `state=OPEN AND creator.email="tester&#64;example.com"`
      * - `state=OPEN AND (priority=P0 OR priority=P1)`
@@ -151,16 +154,17 @@ class ListCasesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An expression written in filter language. If non-empty, the query returns
-     * the cases that match the filter. Else, the query doesn't filter the cases.
-     * Filter expressions use the following fields with the operators equals (`=`)
-     * and `AND`:
-     * - `state`: The accepted values are `OPEN` or `CLOSED`.
-     * - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You
+     * An expression used to filter cases.
+     * If it's an empty string, then no filtering happens. Otherwise, the endpoint
+     * returns the cases that match the filter.
+     * Expressions use the following fields separated by `AND` and specified with
+     * `=`:
+     * - `state`: Can be `OPEN` or `CLOSED`.
+     * - `priority`: Can be `P0`, `P1`, `P2`, `P3`, or `P4`. You
      * can specify multiple values for priority using the `OR` operator. For
      * example, `priority=P1 OR priority=P2`.
      * - `creator.email`: The email address of the case creator.
-     * Examples:
+     * EXAMPLES:
      * - `state=CLOSED`
      * - `state=OPEN AND creator.email="tester&#64;example.com"`
      * - `state=OPEN AND (priority=P0 OR priority=P1)`

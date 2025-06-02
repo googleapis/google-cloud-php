@@ -31,7 +31,7 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\DeleteListingRequest;
  * Deletes a listing.
  *
  * @param string $formattedName Resource name of the listing to delete.
- *                              e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`. Please see
+ *                              e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`. Please see
  *                              {@see AnalyticsHubServiceClient::listingName()} for help formatting this field.
  */
 function delete_listing_sample(string $formattedName): void

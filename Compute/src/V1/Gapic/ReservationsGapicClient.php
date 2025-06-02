@@ -40,10 +40,12 @@ use Google\Cloud\Compute\V1\GetReservationRequest;
 use Google\Cloud\Compute\V1\InsertReservationRequest;
 use Google\Cloud\Compute\V1\ListReservationsRequest;
 use Google\Cloud\Compute\V1\Operation;
+use Google\Cloud\Compute\V1\PerformMaintenanceReservationRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\Reservation;
 use Google\Cloud\Compute\V1\ReservationAggregatedList;
 use Google\Cloud\Compute\V1\ReservationList;
+use Google\Cloud\Compute\V1\ReservationsPerformMaintenanceRequest;
 use Google\Cloud\Compute\V1\ReservationsResizeRequest;
 use Google\Cloud\Compute\V1\ResizeReservationRequest;
 use Google\Cloud\Compute\V1\SetIamPolicyReservationRequest;
@@ -691,6 +693,85 @@ class ReservationsGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('List', $optionalArgs, ReservationList::class, $request);
+    }
+
+    /**
+     * Perform maintenance on an extended reservation
+     *
+     * Sample code:
+     * ```
+     * $reservationsClient = new ReservationsClient();
+     * try {
+     *     $project = 'project';
+     *     $reservation = 'reservation';
+     *     $reservationsPerformMaintenanceRequestResource = new ReservationsPerformMaintenanceRequest();
+     *     $zone = 'zone';
+     *     $operationResponse = $reservationsClient->performMaintenance($project, $reservation, $reservationsPerformMaintenanceRequestResource, $zone);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $reservationsClient->performMaintenance($project, $reservation, $reservationsPerformMaintenanceRequestResource, $zone);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $reservationsClient->resumeOperation($operationName, 'performMaintenance');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $reservationsClient->close();
+     * }
+     * ```
+     *
+     * @param string                                $project                                       Project ID for this request.
+     * @param string                                $reservation                                   The name of the reservation. Name should conform to RFC1035 or be a resource ID.
+     * @param ReservationsPerformMaintenanceRequest $reservationsPerformMaintenanceRequestResource The body resource for this request
+     * @param string                                $zone                                          Name of the zone for this request. Zone name should conform to RFC1035.
+     * @param array                                 $optionalArgs                                  {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function performMaintenance($project, $reservation, $reservationsPerformMaintenanceRequestResource, $zone, array $optionalArgs = [])
+    {
+        $request = new PerformMaintenanceReservationRequest();
+        $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setReservation($reservation);
+        $request->setReservationsPerformMaintenanceRequestResource($reservationsPerformMaintenanceRequestResource);
+        $request->setZone($zone);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['reservation'] = $reservation;
+        $requestParamHeaders['zone'] = $zone;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('PerformMaintenance', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
     }
 
     /**

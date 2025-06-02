@@ -116,7 +116,9 @@ class DeleteSchemaRevisionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRevisionId()
     {
-        @trigger_error('revision_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->revision_id !== '') {
+            @trigger_error('revision_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->revision_id;
     }
 

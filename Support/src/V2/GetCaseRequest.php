@@ -16,14 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetCaseRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The fully qualified name of a case to be retrieved.
+     * Required. The full name of a case to be retrieved.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
 
     /**
-     * @param string $name Required. The fully qualified name of a case to be retrieved. Please see
+     * @param string $name Required. The full name of a case to be retrieved. Please see
      *                     {@see CaseServiceClient::caseName()} for help formatting this field.
      *
      * @return \Google\Cloud\Support\V2\GetCaseRequest
@@ -43,7 +43,7 @@ class GetCaseRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The fully qualified name of a case to be retrieved.
+     *           Required. The full name of a case to be retrieved.
      * }
      */
     public function __construct($data = NULL) {
@@ -52,7 +52,7 @@ class GetCaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The fully qualified name of a case to be retrieved.
+     * Required. The full name of a case to be retrieved.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -63,7 +63,7 @@ class GetCaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The fully qualified name of a case to be retrieved.
+     * Required. The full name of a case to be retrieved.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

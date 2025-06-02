@@ -28,47 +28,32 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Memorystore\V1\Client\MemorystoreClient;
 use Google\Cloud\Memorystore\V1\CreateInstanceRequest;
 use Google\Cloud\Memorystore\V1\Instance;
-use Google\Cloud\Memorystore\V1\PscAutoConnection;
 use Google\Rpc\Status;
 
 /**
  * Creates a new Instance in a given project and location.
  *
- * @param string $formattedParent                            The parent resource where this instance will be created.
- *                                                           Format: projects/{project}/locations/{location}
- *                                                           Please see {@see MemorystoreClient::locationName()} for help formatting this field.
- * @param string $instanceId                                 The ID to use for the instance, which will become the final
- *                                                           component of the instance's resource name.
+ * @param string $formattedParent The parent resource where this instance will be created.
+ *                                Format: projects/{project}/locations/{location}
+ *                                Please see {@see MemorystoreClient::locationName()} for help formatting this field.
+ * @param string $instanceId      The ID to use for the instance, which will become the final
+ *                                component of the instance's resource name.
  *
- *                                                           This value is subject to the following restrictions:
+ *                                This value is subject to the following restrictions:
  *
- *                                                           * Must be 4-63 characters in length
- *                                                           * Must begin with a letter or digit
- *                                                           * Must contain only lowercase letters, digits, and hyphens
- *                                                           * Must not end with a hyphen
- *                                                           * Must be unique within a location
- * @param string $instancePscAutoConnectionsProjectId        The consumer project_id where PSC connections are established.
- *                                                           This should be the same project_id that the instance is being created in.
- * @param string $formattedInstancePscAutoConnectionsNetwork The network where the PSC endpoints are created, in the form of
- *                                                           projects/{project_id}/global/networks/{network_id}. Please see
- *                                                           {@see MemorystoreClient::networkName()} for help formatting this field.
+ *                                * Must be 4-63 characters in length
+ *                                * Must begin with a letter or digit
+ *                                * Must contain only lowercase letters, digits, and hyphens
+ *                                * Must not end with a hyphen
+ *                                * Must be unique within a location
  */
-function create_instance_sample(
-    string $formattedParent,
-    string $instanceId,
-    string $instancePscAutoConnectionsProjectId,
-    string $formattedInstancePscAutoConnectionsNetwork
-): void {
+function create_instance_sample(string $formattedParent, string $instanceId): void
+{
     // Create a client.
     $memorystoreClient = new MemorystoreClient();
 
     // Prepare the request message.
-    $pscAutoConnection = (new PscAutoConnection())
-        ->setProjectId($instancePscAutoConnectionsProjectId)
-        ->setNetwork($formattedInstancePscAutoConnectionsNetwork);
-    $instancePscAutoConnections = [$pscAutoConnection,];
-    $instance = (new Instance())
-        ->setPscAutoConnections($instancePscAutoConnections);
+    $instance = new Instance();
     $request = (new CreateInstanceRequest())
         ->setParent($formattedParent)
         ->setInstanceId($instanceId)
@@ -107,17 +92,7 @@ function callSample(): void
 {
     $formattedParent = MemorystoreClient::locationName('[PROJECT]', '[LOCATION]');
     $instanceId = '[INSTANCE_ID]';
-    $instancePscAutoConnectionsProjectId = '[PROJECT_ID]';
-    $formattedInstancePscAutoConnectionsNetwork = MemorystoreClient::networkName(
-        '[PROJECT]',
-        '[NETWORK]'
-    );
 
-    create_instance_sample(
-        $formattedParent,
-        $instanceId,
-        $instancePscAutoConnectionsProjectId,
-        $formattedInstancePscAutoConnectionsNetwork
-    );
+    create_instance_sample($formattedParent, $instanceId);
 }
 // [END memorystore_v1_generated_Memorystore_CreateInstance_sync]

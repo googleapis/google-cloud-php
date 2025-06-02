@@ -120,6 +120,8 @@ class Occurrence extends \Google\Protobuf\Internal\Message
      *           Describes an attestation of an artifact using dsse.
      *     @type \Grafeas\V1\SBOMReferenceOccurrence $sbom_reference
      *           Describes a specific SBOM reference occurrences.
+     *     @type \Grafeas\V1\SecretOccurrence $secret
+     *           Describes a secret.
      *     @type \Grafeas\V1\Envelope $envelope
      *           https://github.com/secure-systems-lab/dsse
      * }
@@ -682,6 +684,37 @@ class Occurrence extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Grafeas\V1\SBOMReferenceOccurrence::class);
         $this->writeOneof(19, $var);
+
+        return $this;
+    }
+
+    /**
+     * Describes a secret.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.SecretOccurrence secret = 20;</code>
+     * @return \Grafeas\V1\SecretOccurrence|null
+     */
+    public function getSecret()
+    {
+        return $this->readOneof(20);
+    }
+
+    public function hasSecret()
+    {
+        return $this->hasOneof(20);
+    }
+
+    /**
+     * Describes a secret.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.SecretOccurrence secret = 20;</code>
+     * @param \Grafeas\V1\SecretOccurrence $var
+     * @return $this
+     */
+    public function setSecret($var)
+    {
+        GPBUtil::checkMessage($var, \Grafeas\V1\SecretOccurrence::class);
+        $this->writeOneof(20, $var);
 
         return $this;
     }

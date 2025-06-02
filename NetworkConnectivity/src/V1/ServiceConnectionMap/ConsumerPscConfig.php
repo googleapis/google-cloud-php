@@ -256,7 +256,9 @@ class ConsumerPscConfig extends \Google\Protobuf\Internal\Message
      */
     public function getProducerInstanceId()
     {
-        @trigger_error('producer_instance_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->producer_instance_id !== '') {
+            @trigger_error('producer_instance_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->producer_instance_id;
     }
 
