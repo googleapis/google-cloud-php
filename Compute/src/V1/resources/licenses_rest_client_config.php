@@ -128,6 +128,23 @@ return [
                     ],
                 ],
             ],
+            'Update' => [
+                'method' => 'patch',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/licenses/{license}',
+                'body' => 'license_resource',
+                'placeholders' => [
+                    'license' => [
+                        'getters' => [
+                            'getLicense',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.compute.v1.GlobalOperations' => [
             'AggregatedList' => [

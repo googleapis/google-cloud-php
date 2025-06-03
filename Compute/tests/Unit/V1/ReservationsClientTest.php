@@ -277,6 +277,7 @@ class ReservationsClientTest extends GeneratedTest
         // Mock response
         $commitment = 'commitment1019005717';
         $creationTimestamp = 'creationTimestamp567396278';
+        $deleteAtTime = 'deleteAtTime-453576507';
         $deploymentType = 'deploymentType2007335028';
         $description = 'description-1724546052';
         $id = 3355;
@@ -290,6 +291,7 @@ class ReservationsClientTest extends GeneratedTest
         $expectedResponse = new Reservation();
         $expectedResponse->setCommitment($commitment);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
+        $expectedResponse->setDeleteAtTime($deleteAtTime);
         $expectedResponse->setDeploymentType($deploymentType);
         $expectedResponse->setDescription($description);
         $expectedResponse->setId($id);

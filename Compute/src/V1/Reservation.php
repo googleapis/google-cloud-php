@@ -34,6 +34,18 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     private $creation_timestamp = null;
     /**
+     * Duration time relative to reservation creation when Compute Engine will automatically delete this resource.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration delete_after_duration = 323997099;</code>
+     */
+    private $delete_after_duration = null;
+    /**
+     * Absolute time in future when the reservation will be auto-deleted by Compute Engine. Timestamp is represented in RFC3339 text format.
+     *
+     * Generated from protobuf field <code>optional string delete_at_time = 83294405;</code>
+     */
+    private $delete_at_time = null;
+    /**
      * Specifies the deployment strategy for this reservation.
      * Check the DeploymentType enum for the list of possible values.
      *
@@ -144,6 +156,10 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *           [Output Only] Full or partial URL to a parent commitment. This field displays for reservations that are tied to a commitment.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
+     *     @type \Google\Cloud\Compute\V1\Duration $delete_after_duration
+     *           Duration time relative to reservation creation when Compute Engine will automatically delete this resource.
+     *     @type string $delete_at_time
+     *           Absolute time in future when the reservation will be auto-deleted by Compute Engine. Timestamp is represented in RFC3339 text format.
      *     @type string $deployment_type
      *           Specifies the deployment strategy for this reservation.
      *           Check the DeploymentType enum for the list of possible values.
@@ -289,6 +305,78 @@ class Reservation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->creation_timestamp = $var;
+
+        return $this;
+    }
+
+    /**
+     * Duration time relative to reservation creation when Compute Engine will automatically delete this resource.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration delete_after_duration = 323997099;</code>
+     * @return \Google\Cloud\Compute\V1\Duration|null
+     */
+    public function getDeleteAfterDuration()
+    {
+        return $this->delete_after_duration;
+    }
+
+    public function hasDeleteAfterDuration()
+    {
+        return isset($this->delete_after_duration);
+    }
+
+    public function clearDeleteAfterDuration()
+    {
+        unset($this->delete_after_duration);
+    }
+
+    /**
+     * Duration time relative to reservation creation when Compute Engine will automatically delete this resource.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration delete_after_duration = 323997099;</code>
+     * @param \Google\Cloud\Compute\V1\Duration $var
+     * @return $this
+     */
+    public function setDeleteAfterDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\Duration::class);
+        $this->delete_after_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Absolute time in future when the reservation will be auto-deleted by Compute Engine. Timestamp is represented in RFC3339 text format.
+     *
+     * Generated from protobuf field <code>optional string delete_at_time = 83294405;</code>
+     * @return string
+     */
+    public function getDeleteAtTime()
+    {
+        return isset($this->delete_at_time) ? $this->delete_at_time : '';
+    }
+
+    public function hasDeleteAtTime()
+    {
+        return isset($this->delete_at_time);
+    }
+
+    public function clearDeleteAtTime()
+    {
+        unset($this->delete_at_time);
+    }
+
+    /**
+     * Absolute time in future when the reservation will be auto-deleted by Compute Engine. Timestamp is represented in RFC3339 text format.
+     *
+     * Generated from protobuf field <code>optional string delete_at_time = 83294405;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDeleteAtTime($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->delete_at_time = $var;
 
         return $this;
     }
