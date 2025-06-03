@@ -22,6 +22,12 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     private $admin_enabled = null;
     /**
+     * [Output Only] URL of the AttachmentGroup that includes this Attachment.
+     *
+     * Generated from protobuf field <code>optional string attachment_group = 63442019;</code>
+     */
+    private $attachment_group = null;
+    /**
      * Provisioned bandwidth capacity for the interconnect attachment. For attachments of type DEDICATED, the user can set the bandwidth. For attachments of type PARTNER, the Google Partner that is operating the interconnect must set the bandwidth. Output only for PARTNER type, mutable for PARTNER_PROVIDER and DEDICATED, and can take one of the following values: - BPS_50M: 50 Mbit/s - BPS_100M: 100 Mbit/s - BPS_200M: 200 Mbit/s - BPS_300M: 300 Mbit/s - BPS_400M: 400 Mbit/s - BPS_500M: 500 Mbit/s - BPS_1G: 1 Gbit/s - BPS_2G: 2 Gbit/s - BPS_5G: 5 Gbit/s - BPS_10G: 10 Gbit/s - BPS_20G: 20 Gbit/s - BPS_50G: 50 Gbit/s - BPS_100G: 100 Gbit/s
      * Check the Bandwidth enum for the list of possible values.
      *
@@ -157,7 +163,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Maximum Transmission Unit (MTU), in bytes, of packets passing through this interconnect attachment. Only 1440 and 1500 are allowed. If not specified, the value will default to 1440.
+     * Maximum Transmission Unit (MTU), in bytes, of packets passing through this interconnect attachment. Valid values are 1440, 1460, 1500, and 8896. If not specified, the value will default to 1440.
      *
      * Generated from protobuf field <code>optional int32 mtu = 108462;</code>
      */
@@ -271,6 +277,8 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $admin_enabled
      *           Determines whether this Attachment will carry packets. Not present for PARTNER_PROVIDER.
+     *     @type string $attachment_group
+     *           [Output Only] URL of the AttachmentGroup that includes this Attachment.
      *     @type string $bandwidth
      *           Provisioned bandwidth capacity for the interconnect attachment. For attachments of type DEDICATED, the user can set the bandwidth. For attachments of type PARTNER, the Google Partner that is operating the interconnect must set the bandwidth. Output only for PARTNER type, mutable for PARTNER_PROVIDER and DEDICATED, and can take one of the following values: - BPS_50M: 50 Mbit/s - BPS_100M: 100 Mbit/s - BPS_200M: 200 Mbit/s - BPS_300M: 300 Mbit/s - BPS_400M: 400 Mbit/s - BPS_500M: 500 Mbit/s - BPS_1G: 1 Gbit/s - BPS_2G: 2 Gbit/s - BPS_5G: 5 Gbit/s - BPS_10G: 10 Gbit/s - BPS_20G: 20 Gbit/s - BPS_50G: 50 Gbit/s - BPS_100G: 100 Gbit/s
      *           Check the Bandwidth enum for the list of possible values.
@@ -319,7 +327,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels for this resource. These can only be added or modified by the setLabels method. Each label key/value pair must comply with RFC1035. Label values may be empty.
      *     @type int $mtu
-     *           Maximum Transmission Unit (MTU), in bytes, of packets passing through this interconnect attachment. Only 1440 and 1500 are allowed. If not specified, the value will default to 1440.
+     *           Maximum Transmission Unit (MTU), in bytes, of packets passing through this interconnect attachment. Valid values are 1440, 1460, 1500, and 8896. If not specified, the value will default to 1440.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type string $operational_status
@@ -395,6 +403,42 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->admin_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] URL of the AttachmentGroup that includes this Attachment.
+     *
+     * Generated from protobuf field <code>optional string attachment_group = 63442019;</code>
+     * @return string
+     */
+    public function getAttachmentGroup()
+    {
+        return isset($this->attachment_group) ? $this->attachment_group : '';
+    }
+
+    public function hasAttachmentGroup()
+    {
+        return isset($this->attachment_group);
+    }
+
+    public function clearAttachmentGroup()
+    {
+        unset($this->attachment_group);
+    }
+
+    /**
+     * [Output Only] URL of the AttachmentGroup that includes this Attachment.
+     *
+     * Generated from protobuf field <code>optional string attachment_group = 63442019;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAttachmentGroup($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->attachment_group = $var;
 
         return $this;
     }
@@ -1158,7 +1202,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum Transmission Unit (MTU), in bytes, of packets passing through this interconnect attachment. Only 1440 and 1500 are allowed. If not specified, the value will default to 1440.
+     * Maximum Transmission Unit (MTU), in bytes, of packets passing through this interconnect attachment. Valid values are 1440, 1460, 1500, and 8896. If not specified, the value will default to 1440.
      *
      * Generated from protobuf field <code>optional int32 mtu = 108462;</code>
      * @return int
@@ -1179,7 +1223,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum Transmission Unit (MTU), in bytes, of packets passing through this interconnect attachment. Only 1440 and 1500 are allowed. If not specified, the value will default to 1440.
+     * Maximum Transmission Unit (MTU), in bytes, of packets passing through this interconnect attachment. Valid values are 1440, 1460, 1500, and 8896. If not specified, the value will default to 1440.
      *
      * Generated from protobuf field <code>optional int32 mtu = 108462;</code>
      * @param int $var

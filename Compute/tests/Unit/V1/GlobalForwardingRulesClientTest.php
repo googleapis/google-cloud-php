@@ -198,6 +198,8 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         $baseForwardingRule = 'baseForwardingRule524873104';
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
+        $externalManagedBackendBucketMigrationState = 'externalManagedBackendBucketMigrationState-429059542';
+        $externalManagedBackendBucketMigrationTestingPercentage = 3856772;
         $fingerprint = 'fingerprint-1375934236';
         $id = 3355;
         $ipCollection = 'ipCollection176818358';
@@ -229,6 +231,8 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         $expectedResponse->setBaseForwardingRule($baseForwardingRule);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setExternalManagedBackendBucketMigrationState($externalManagedBackendBucketMigrationState);
+        $expectedResponse->setExternalManagedBackendBucketMigrationTestingPercentage($externalManagedBackendBucketMigrationTestingPercentage);
         $expectedResponse->setFingerprint($fingerprint);
         $expectedResponse->setId($id);
         $expectedResponse->setIpCollection($ipCollection);

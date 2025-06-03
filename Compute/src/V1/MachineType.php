@@ -101,12 +101,6 @@ class MachineType extends \Google\Protobuf\Internal\Message
      */
     private $name = null;
     /**
-     * [Output Only] A list of extended scratch disks assigned to the instance.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ScratchDisks scratch_disks = 480778481;</code>
-     */
-    private $scratch_disks;
-    /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -154,8 +148,6 @@ class MachineType extends \Google\Protobuf\Internal\Message
      *           [Output Only] The amount of physical memory available to the instance, defined in MB.
      *     @type string $name
      *           [Output Only] Name of the resource.
-     *     @type array<\Google\Cloud\Compute\V1\ScratchDisks>|\Google\Protobuf\Internal\RepeatedField $scratch_disks
-     *           [Output Only] A list of extended scratch disks assigned to the instance.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $zone
@@ -659,32 +651,6 @@ class MachineType extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
-
-        return $this;
-    }
-
-    /**
-     * [Output Only] A list of extended scratch disks assigned to the instance.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ScratchDisks scratch_disks = 480778481;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getScratchDisks()
-    {
-        return $this->scratch_disks;
-    }
-
-    /**
-     * [Output Only] A list of extended scratch disks assigned to the instance.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ScratchDisks scratch_disks = 480778481;</code>
-     * @param array<\Google\Cloud\Compute\V1\ScratchDisks>|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setScratchDisks($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\ScratchDisks::class);
-        $this->scratch_disks = $arr;
 
         return $this;
     }
