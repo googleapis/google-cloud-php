@@ -457,7 +457,6 @@ class Operation
      *     @type array $begin The begin transaction options.
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
      *     @type int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
-     *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
      * }
      * @return Transaction
      */
@@ -466,8 +465,7 @@ class Operation
         $options += [
             'singleUse' => false,
             'isRetry' => false,
-            'requestOptions' => [],
-            // 'isolationLevel' => IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
+            'requestOptions' => []
         ];
         $transactionTag = $this->pluck('tag', $options, false);
         if (isset($transactionTag)) {

@@ -937,14 +937,15 @@ class Database
             'maxRetries' => self::MAX_RETRIES,
         ];
 
-        if (!isset($options['transactionOptions']['isolationLevel'])) {
+        $transactionOptions = (isset($options['transactionOptions'])) ? $options['transactionOptions'] : [];
+
+        if (!isset($transactionOptions['isolationLevel'])) {
             $options['transactionOptions']['isolationLevel'] = $this->isolationLevel;
         }
 
-        // There isn't anything configurable here.
         $options['transactionOptions'] = $this->configureTransactionOptions([
-            'isolationLevel' => $options['isolationLevel'] ?? $this->isolationLevel
-        ]);
+            'isolationLevel' => $options['transactionOptions']['isolationLevel'] ?? $this->isolationLevel
+        ] + $transactionOptions);
 
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READWRITE,
@@ -956,13 +957,13 @@ class Database
 
             // Initial attempt requires to set `begin` options (ILB).
             if ($attempt === 0) {
+                if (!isset($options['transactionOptions']['isolationLevel'])) {
+                    $options['transactionOptions']['isolationLevel'] = IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED;
+                }
+
                 // Partitioned DML does not support ILB.
                 if (!isset($options['transactionOptions']['partitionedDml'])) {
                     $options['begin'] = $options['transactionOptions'];
-                }
-
-                if (!isset($options['transactionOptions']['isolationLevel'])) {
-                    $options['transactionOptions']['isolationLevel'] = IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED;
                 }
             } else {
                 $options['isRetry'] = true;
