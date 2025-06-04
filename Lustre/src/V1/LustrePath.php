@@ -9,15 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * LustrePath represents a path in the Lustre file system.
+ * The root directory path to the Lustre file system.
  *
  * Generated from protobuf message <code>google.cloud.lustre.v1.LustrePath</code>
  */
 class LustrePath extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Root directory path to the Managed Lustre file system, starting
-     * with `/`. Defaults to `/` if unset.
+     * Optional. The root directory path to the Managed Lustre file system. Must
+     * start with
+     * `/`. Default is `/`. If you're importing data into Managed Lustre, any
+     * path other than the default must already exist on the file system.
      *
      * Generated from protobuf field <code>string path = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -30,8 +32,10 @@ class LustrePath extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $path
-     *           Optional. Root directory path to the Managed Lustre file system, starting
-     *           with `/`. Defaults to `/` if unset.
+     *           Optional. The root directory path to the Managed Lustre file system. Must
+     *           start with
+     *           `/`. Default is `/`. If you're importing data into Managed Lustre, any
+     *           path other than the default must already exist on the file system.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +44,10 @@ class LustrePath extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Root directory path to the Managed Lustre file system, starting
-     * with `/`. Defaults to `/` if unset.
+     * Optional. The root directory path to the Managed Lustre file system. Must
+     * start with
+     * `/`. Default is `/`. If you're importing data into Managed Lustre, any
+     * path other than the default must already exist on the file system.
      *
      * Generated from protobuf field <code>string path = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -52,8 +58,10 @@ class LustrePath extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Root directory path to the Managed Lustre file system, starting
-     * with `/`. Defaults to `/` if unset.
+     * Optional. The root directory path to the Managed Lustre file system. Must
+     * start with
+     * `/`. Default is `/`. If you're importing data into Managed Lustre, any
+     * path other than the default must already exist on the file system.
      *
      * Generated from protobuf field <code>string path = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

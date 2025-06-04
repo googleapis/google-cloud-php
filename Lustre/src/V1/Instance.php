@@ -31,7 +31,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     protected $filesystem = '';
     /**
      * Required. The storage capacity of the instance in gibibytes (GiB). Allowed
-     * values are from `18000` to `936000`, in increments of 9000.
+     * values are from `18000` to `954000`, in increments of 9000.
      *
      * Generated from protobuf field <code>int64 capacity_gib = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -82,11 +82,10 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Optional. The throughput of the instance in MB/s/TiB.
-     * Valid values are 250, 500, 1000.
-     * Default value is 1000.
+     * Required. The throughput of the instance in MB/s/TiB.
+     * Valid values are 125, 250, 500, 1000.
      *
-     * Generated from protobuf field <code>int64 per_unit_storage_throughput = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int64 per_unit_storage_throughput = 11 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $per_unit_storage_throughput = 0;
     /**
@@ -111,7 +110,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           eight characters or less and can only contain letters and numbers.
      *     @type int|string $capacity_gib
      *           Required. The storage capacity of the instance in gibibytes (GiB). Allowed
-     *           values are from `18000` to `936000`, in increments of 9000.
+     *           values are from `18000` to `954000`, in increments of 9000.
      *     @type string $network
      *           Required. Immutable. The full name of the VPC network to which the instance
      *           is connected. Must be in the format
@@ -130,9 +129,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Labels as key value pairs.
      *     @type int|string $per_unit_storage_throughput
-     *           Optional. The throughput of the instance in MB/s/TiB.
-     *           Valid values are 250, 500, 1000.
-     *           Default value is 1000.
+     *           Required. The throughput of the instance in MB/s/TiB.
+     *           Valid values are 125, 250, 500, 1000.
      *     @type bool $gke_support_enabled
      *           Optional. Indicates whether you want to enable support for GKE clients. By
      *           default, GKE clients are not supported.
@@ -201,7 +199,7 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The storage capacity of the instance in gibibytes (GiB). Allowed
-     * values are from `18000` to `936000`, in increments of 9000.
+     * values are from `18000` to `954000`, in increments of 9000.
      *
      * Generated from protobuf field <code>int64 capacity_gib = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int|string
@@ -213,7 +211,7 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The storage capacity of the instance in gibibytes (GiB). Allowed
-     * values are from `18000` to `936000`, in increments of 9000.
+     * values are from `18000` to `954000`, in increments of 9000.
      *
      * Generated from protobuf field <code>int64 capacity_gib = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int|string $var
@@ -436,11 +434,10 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The throughput of the instance in MB/s/TiB.
-     * Valid values are 250, 500, 1000.
-     * Default value is 1000.
+     * Required. The throughput of the instance in MB/s/TiB.
+     * Valid values are 125, 250, 500, 1000.
      *
-     * Generated from protobuf field <code>int64 per_unit_storage_throughput = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int64 per_unit_storage_throughput = 11 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int|string
      */
     public function getPerUnitStorageThroughput()
@@ -449,11 +446,10 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The throughput of the instance in MB/s/TiB.
-     * Valid values are 250, 500, 1000.
-     * Default value is 1000.
+     * Required. The throughput of the instance in MB/s/TiB.
+     * Valid values are 125, 250, 500, 1000.
      *
-     * Generated from protobuf field <code>int64 per_unit_storage_throughput = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int64 per_unit_storage_throughput = 11 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int|string $var
      * @return $this
      */

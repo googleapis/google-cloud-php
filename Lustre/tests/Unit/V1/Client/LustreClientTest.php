@@ -135,6 +135,8 @@ class LustreClientTest extends GeneratedTest
         $instance->setCapacityGib($instanceCapacityGib);
         $instanceNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
         $instance->setNetwork($instanceNetwork);
+        $instancePerUnitStorageThroughput = 781320825;
+        $instance->setPerUnitStorageThroughput($instancePerUnitStorageThroughput);
         $request = (new CreateInstanceRequest())
             ->setParent($formattedParent)
             ->setInstanceId($instanceId)
@@ -218,6 +220,8 @@ class LustreClientTest extends GeneratedTest
         $instance->setCapacityGib($instanceCapacityGib);
         $instanceNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
         $instance->setNetwork($instanceNetwork);
+        $instancePerUnitStorageThroughput = 781320825;
+        $instance->setPerUnitStorageThroughput($instancePerUnitStorageThroughput);
         $request = (new CreateInstanceRequest())
             ->setParent($formattedParent)
             ->setInstanceId($instanceId)
@@ -813,6 +817,8 @@ class LustreClientTest extends GeneratedTest
         $instance->setCapacityGib($instanceCapacityGib);
         $instanceNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
         $instance->setNetwork($instanceNetwork);
+        $instancePerUnitStorageThroughput = 781320825;
+        $instance->setPerUnitStorageThroughput($instancePerUnitStorageThroughput);
         $request = (new UpdateInstanceRequest())->setInstance($instance);
         $response = $gapicClient->updateInstance($request);
         $this->assertFalse($response->isDone());
@@ -887,6 +893,8 @@ class LustreClientTest extends GeneratedTest
         $instance->setCapacityGib($instanceCapacityGib);
         $instanceNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
         $instance->setNetwork($instanceNetwork);
+        $instancePerUnitStorageThroughput = 781320825;
+        $instance->setPerUnitStorageThroughput($instancePerUnitStorageThroughput);
         $request = (new UpdateInstanceRequest())->setInstance($instance);
         $response = $gapicClient->updateInstance($request);
         $this->assertFalse($response->isDone());
@@ -1093,6 +1101,8 @@ class LustreClientTest extends GeneratedTest
         $instance->setCapacityGib($instanceCapacityGib);
         $instanceNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
         $instance->setNetwork($instanceNetwork);
+        $instancePerUnitStorageThroughput = 781320825;
+        $instance->setPerUnitStorageThroughput($instancePerUnitStorageThroughput);
         $request = (new CreateInstanceRequest())
             ->setParent($formattedParent)
             ->setInstanceId($instanceId)
