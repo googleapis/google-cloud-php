@@ -37,6 +37,7 @@ use Google\Cloud\Spanner\Connection\IamDatabase;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
+use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\Cloud\Spanner\V1\TypeCode;
 use Google\Rpc\Code;
@@ -918,6 +919,8 @@ class Database
      *           Session labels may be applied using the `labels` key.
      *     @type string $tag A transaction tag. Requests made using this transaction will
      *           use this as the transaction tag.
+     *     @type array transactionOptions Options for the transaction. {@see \Google\Cloud\Spanner\V1\TransactionOptions}
+     *           for available options
      * }
      * @return mixed The return value of `$operation`.
      * @throws \RuntimeException If a transaction is not committed or rolled back.
@@ -934,10 +937,12 @@ class Database
             'maxRetries' => self::MAX_RETRIES,
         ];
 
+        if (!isset($options['transactionOptions']['isolationLevel'])) {
+            $options['transactionOptions']['isolationLevel'] = $this->isolationLevel;
+        }
+
         // There isn't anything configurable here.
-        $options['transactionOptions'] = $this->configureTransactionOptions([
-            'isolationLevel' => $options['isolationLevel'] ?? $this->isolationLevel
-        ]);
+        $options['transactionOptions'] = $this->configureTransactionOptions($options['transactionOptions'] ?? []);
 
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READWRITE,

@@ -467,7 +467,7 @@ class Operation
             'singleUse' => false,
             'isRetry' => false,
             'requestOptions' => [],
-            'isolationLevel' => IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
+            // 'isolationLevel' => IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
         ];
         $transactionTag = $this->pluck('tag', $options, false);
         if (isset($transactionTag)) {

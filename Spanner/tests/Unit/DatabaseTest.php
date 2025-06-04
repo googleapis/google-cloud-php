@@ -82,7 +82,7 @@ class DatabaseTest extends TestCase
     const TRANSACTION_TAG = 'my-transaction-tag';
     const TEST_TABLE_NAME = 'Users';
     const TIMESTAMP = '2017-01-09T18:05:22.534799Z';
-    const BEGIN_RW_OPTIONS = ['begin' => ['readWrite' => []]];
+    const BEGIN_RW_OPTIONS = ['begin' => ['readWrite' => [], 'isolationLevel' => 0]];
 
     private $connection;
     private $instance;
