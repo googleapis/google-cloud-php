@@ -299,6 +299,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $pscConnectionStatus = 'pscConnectionStatus-889592652';
         $region2 = 'region2-690338393';
         $selfLink = 'selfLink-1691268851';
+        $selfLinkWithId = 'selfLinkWithId-1029220862';
         $serviceLabel = 'serviceLabel-1730474774';
         $serviceName = 'serviceName359880149';
         $subnetwork = 'subnetwork-1302785042';
@@ -332,6 +333,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $expectedResponse->setPscConnectionStatus($pscConnectionStatus);
         $expectedResponse->setRegion($region2);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setSelfLinkWithId($selfLinkWithId);
         $expectedResponse->setServiceLabel($serviceLabel);
         $expectedResponse->setServiceName($serviceName);
         $expectedResponse->setSubnetwork($subnetwork);

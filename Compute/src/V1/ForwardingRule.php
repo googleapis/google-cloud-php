@@ -208,6 +208,12 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
+     * [Output Only] Server-defined URL for this resource with the resource id.
+     *
+     * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
+     */
+    private $self_link_with_id = null;
+    /**
      * Service Directory resources to register this forwarding rule with. Currently, only supports a single Service Directory resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ForwardingRuleServiceDirectoryRegistration service_directory_registrations = 223549694;</code>
@@ -318,6 +324,8 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *           [Output Only] URL of the region where the regional forwarding rule resides. This field is not applicable to global forwarding rules. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
+     *     @type string $self_link_with_id
+     *           [Output Only] Server-defined URL for this resource with the resource id.
      *     @type array<\Google\Cloud\Compute\V1\ForwardingRuleServiceDirectoryRegistration>|\Google\Protobuf\Internal\RepeatedField $service_directory_registrations
      *           Service Directory resources to register this forwarding rule with. Currently, only supports a single Service Directory resource.
      *     @type string $service_label
@@ -1431,6 +1439,42 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->self_link = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Server-defined URL for this resource with the resource id.
+     *
+     * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
+     * @return string
+     */
+    public function getSelfLinkWithId()
+    {
+        return isset($this->self_link_with_id) ? $this->self_link_with_id : '';
+    }
+
+    public function hasSelfLinkWithId()
+    {
+        return isset($this->self_link_with_id);
+    }
+
+    public function clearSelfLinkWithId()
+    {
+        unset($this->self_link_with_id);
+    }
+
+    /**
+     * [Output Only] Server-defined URL for this resource with the resource id.
+     *
+     * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSelfLinkWithId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->self_link_with_id = $var;
 
         return $this;
     }
