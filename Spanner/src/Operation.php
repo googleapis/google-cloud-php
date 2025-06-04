@@ -25,7 +25,6 @@ use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
-use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\Rpc\Code;
 use InvalidArgumentException;
 

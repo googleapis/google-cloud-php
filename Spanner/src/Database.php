@@ -919,7 +919,8 @@ class Database
      *           Session labels may be applied using the `labels` key.
      *     @type string $tag A transaction tag. Requests made using this transaction will
      *           use this as the transaction tag.
-     *     @type array transactionOptions Options for the transaction. {@see \Google\Cloud\Spanner\V1\TransactionOptions}
+     *     @type array transactionOptions Options for the transaction.
+     *           {@see \Google\Cloud\Spanner\V1\TransactionOptions}
      *           for available options
      * }
      * @return mixed The return value of `$operation`.

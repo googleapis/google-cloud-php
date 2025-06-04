@@ -463,7 +463,12 @@ class DatabaseTest extends SnippetTestCase
             ->shouldBeCalled();
 
         $this->connection->executeStreamingSql(
-            Argument::withEntry('transaction', ['begin' => ['readWrite' => [], 'isolationLevel' => IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED]])
+            Argument::withEntry('transaction', [
+                'begin' => [
+                    'readWrite' => [],
+                    'isolationLevel' => IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
+                ]
+            ])
         )
             ->shouldBeCalled()
             ->willReturn($this->resultGeneratorData([
