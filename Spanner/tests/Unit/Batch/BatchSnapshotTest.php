@@ -60,6 +60,7 @@ class BatchSnapshotTest extends TestCase
     private $session;
     private $timestamp;
     private $snapshot;
+    private $stream;
 
     public function setUp(): void
     {
