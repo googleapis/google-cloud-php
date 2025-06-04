@@ -319,6 +319,11 @@
                                 "bulkInsert"
                             ]
                         },
+                        "BulkSetLabels": {
+                            "methods": [
+                                "bulkSetLabels"
+                            ]
+                        },
                         "CreateSnapshot": {
                             "methods": [
                                 "createSnapshot"
@@ -3753,6 +3758,25 @@
                         "PerformMaintenance": {
                             "methods": [
                                 "performMaintenance"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ReservationSubBlocks": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ReservationSubBlocksGapicClient",
+                    "rpcs": {
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
                             ]
                         }
                     }

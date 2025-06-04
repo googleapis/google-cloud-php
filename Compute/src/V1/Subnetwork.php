@@ -120,6 +120,12 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      */
     private $network = null;
     /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SubnetworkParams params = 78313862;</code>
+     */
+    private $params = null;
+    /**
      * Whether the VMs in this subnet can access Google services without assigned external IP addresses. This field can be both set at resource creation time and updated using setPrivateIpGoogleAccess.
      *
      * Generated from protobuf field <code>optional bool private_ip_google_access = 421491790;</code>
@@ -239,6 +245,8 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      *           The name of the resource, provided by the client when initially creating the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type string $network
      *           The URL of the network to which this subnetwork belongs, provided by the client when initially creating the subnetwork. This field can be set only at resource creation time.
+     *     @type \Google\Cloud\Compute\V1\SubnetworkParams $params
+     *           Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
      *     @type bool $private_ip_google_access
      *           Whether the VMs in this subnet can access Google services without assigned external IP addresses. This field can be both set at resource creation time and updated using setPrivateIpGoogleAccess.
      *     @type string $private_ipv6_google_access
@@ -887,6 +895,42 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->network = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SubnetworkParams params = 78313862;</code>
+     * @return \Google\Cloud\Compute\V1\SubnetworkParams|null
+     */
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    public function hasParams()
+    {
+        return isset($this->params);
+    }
+
+    public function clearParams()
+    {
+        unset($this->params);
+    }
+
+    /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SubnetworkParams params = 78313862;</code>
+     * @param \Google\Cloud\Compute\V1\SubnetworkParams $var
+     * @return $this
+     */
+    public function setParams($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\SubnetworkParams::class);
+        $this->params = $var;
 
         return $this;
     }

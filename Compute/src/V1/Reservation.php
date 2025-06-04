@@ -59,6 +59,12 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     private $description = null;
     /**
+     * Indicates whether Compute Engine allows unplanned maintenance for your VMs; for example, to fix hardware errors.
+     *
+     * Generated from protobuf field <code>optional bool enable_emergent_maintenance = 353759497;</code>
+     */
+    private $enable_emergent_maintenance = null;
+    /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -165,6 +171,8 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *           Check the DeploymentType enum for the list of possible values.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
+     *     @type bool $enable_emergent_maintenance
+     *           Indicates whether Compute Engine allows unplanned maintenance for your VMs; for example, to fix hardware errors.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
@@ -451,6 +459,42 @@ class Reservation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates whether Compute Engine allows unplanned maintenance for your VMs; for example, to fix hardware errors.
+     *
+     * Generated from protobuf field <code>optional bool enable_emergent_maintenance = 353759497;</code>
+     * @return bool
+     */
+    public function getEnableEmergentMaintenance()
+    {
+        return isset($this->enable_emergent_maintenance) ? $this->enable_emergent_maintenance : false;
+    }
+
+    public function hasEnableEmergentMaintenance()
+    {
+        return isset($this->enable_emergent_maintenance);
+    }
+
+    public function clearEnableEmergentMaintenance()
+    {
+        unset($this->enable_emergent_maintenance);
+    }
+
+    /**
+     * Indicates whether Compute Engine allows unplanned maintenance for your VMs; for example, to fix hardware errors.
+     *
+     * Generated from protobuf field <code>optional bool enable_emergent_maintenance = 353759497;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableEmergentMaintenance($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_emergent_maintenance = $var;
 
         return $this;
     }
