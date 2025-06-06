@@ -20,6 +20,7 @@ namespace Google\Cloud\Datastore\Tests\System;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Query\Aggregation;
+use Google\Cloud\Datastore\V1\ExplainOptions;
 
 /**
  * @group datastore
@@ -102,6 +103,65 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
         $results = iterator_to_array($client->runQuery($query));
 
         $this->assertCount(0, $results);
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testExplainMetricsReturnsResultsAndInformation(DatastoreClient $client)
+    {
+        $explainOptions = new ExplainOptions();
+        $queryOptions = [
+            'explainOptions' => $explainOptions
+        ];
+
+        $query = $client->query()
+            ->kind(self::$kind)
+            ->order('knownDances');
+
+        $response = $client->runQuery($query, $queryOptions);
+
+        $this->assertNotEmpty($response->getExplainMetrics());
+        $this->assertNotEmpty($response->getExplainMetrics()->getPlanSummary());
+        $this->assertNull($response->getExplainMetrics()->getExecutionStats());
+
+        $results = iterator_to_array($response);
+
+        // $this->assertEquals(self::$data[0], $results[0]->get());
+        // $this->assertEquals(self::$data[1], $results[1]->get());
+        // $this->assertEquals(self::$data[2], $results[2]->get());
+        // $this->assertEquals(self::$data[3], $results[3]->get());
+        $this->assertCount(0, $results);
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testExplainMetricsReturnsAllData(DatastoreClient $client)
+    {
+        $explainOptions = new ExplainOptions();
+        $explainOptions->setAnalyze(true);
+        $queryOptions = [
+            'explainOptions' => $explainOptions
+        ];
+
+        $query = $client->query()
+            ->kind(self::$kind)
+            ->order('knownDances');
+
+        $response = $client->runQuery($query, $queryOptions);
+
+        $this->assertNotEmpty($response->getExplainMetrics());
+        $this->assertNotEmpty($response->getExplainMetrics()->getPlanSummary());
+        $this->assertNotEmpty($response->getExplainMetrics()->getExecutionStats());
+
+        $results = iterator_to_array($response);
+
+        $this->assertEquals(self::$data[0], $results[0]->get());
+        $this->assertEquals(self::$data[1], $results[1]->get());
+        $this->assertEquals(self::$data[2], $results[2]->get());
+        $this->assertEquals(self::$data[3], $results[3]->get());
+        $this->assertCount(4, $results);
     }
 
     /**

@@ -515,7 +515,6 @@ class Operation
                     $options['namespaceId'],
                     $options['databaseId']
                 ),
-                'explainOptions' => $options['explainOptions'],
                 $runQueryObj->queryKey() => $requestQueryArr,
             ] + $this->readOptions($options) + $options;
 
@@ -580,6 +579,10 @@ class Operation
             'namespaceId' => $this->namespaceId,
             'databaseId' => $this->databaseId,
         ];
+
+        if (isset($options['explainOptions']) && !$options['explainOptions'] instanceof ExplainOptions) {
+            throw new InvalidArgumentException('The explainOptions parameter needs to be an instance of the ExplainOptions class');
+        }
 
         $args = [
             'query' => [],

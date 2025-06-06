@@ -58,6 +58,9 @@ class EntityIterator implements \Iterator
      * the request then also gets executed, including the ExecutionStates on the ExplainMetrics
      * object
      *
+     * Contrary to looping through the result of run query, this method caches the first metrics
+     * to avoid variations when analyzing said metrics.
+     *
      * Example:
      * ```
      * use Google\Cloud\Datastore\DatastoreClient;

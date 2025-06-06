@@ -19,6 +19,8 @@ namespace Google\Cloud\Datastore\Tests\System;
 
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Query\Aggregation;
+use Google\Cloud\Datastore\V1\ExplainOptions;
+use InvalidArgumentException;
 
 /**
  * @group datastore
@@ -109,6 +111,63 @@ class AggregationQueryTest extends DatastoreMultipleDbTestCase
         $results = $client->runAggregationQuery($aggregationQuery);
 
         $this->compareResult($expected, $results->get('result'));
+    }
+
+     /**
+     * @dataProvider filterCases
+     * @dataProvider cornerCases
+     */
+    public function testAggregationQueryExplainOptions(DatastoreClient $client, $type, $property, $expected)
+    {
+        $this->skipEmulatorTests();
+        $aggregation = (is_null($property) ? Aggregation::$type() : Aggregation::$type($property));
+        $aggregationQuery = $client->query()
+            ->kind(self::$kind)
+            ->aggregation($aggregation->alias('result'));
+
+        $explainOptions = new ExplainOptions();
+        $explainOptions->setAnalyze(true);
+
+        $queryOptions = [
+            'explainOptions' => $explainOptions
+        ];
+
+        $results = $client->runAggregationQuery($aggregationQuery, $queryOptions);
+        $explainMetrics = $results->getExplainMetrics();
+
+        $this->compareResult($expected, $results->get('result'));
+        $this->assertNotEmpty($explainMetrics);
+        $this->assertNotEmpty($explainMetrics->getPlanSummary());
+        $this->assertNotEmpty($explainMetrics->getExecutionStats());
+    }
+
+    /**
+     * @dataProvider filterCases
+     * @dataProvider cornerCases
+     */
+    public function testAggregationExplainFalseDoesNotContainExecution(DatastoreClient $client, $type, $property, $expected)
+    {
+        $this->skipEmulatorTests();
+        $aggregation = (is_null($property) ? Aggregation::$type() : Aggregation::$type($property));
+        $aggregationQuery = $client->query()
+            ->kind(self::$kind)
+            ->aggregation($aggregation->alias('result'));
+
+        $explainOptions = new ExplainOptions();
+
+        $queryOptions = [
+            'explainOptions' => $explainOptions
+        ];
+
+        $results = $client->runAggregationQuery($aggregationQuery, $queryOptions);
+        $explainMetrics = $results->getExplainMetrics();
+
+        $this->assertNotEmpty($explainMetrics);
+        $this->assertNotEmpty($explainMetrics->getPlanSummary());
+        $this->assertNull($explainMetrics->getExecutionStats());
+
+        $this->expectException(InvalidArgumentException::class);
+        $results->get('result');
     }
 
     /**

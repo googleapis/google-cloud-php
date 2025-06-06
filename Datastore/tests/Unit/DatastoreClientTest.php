@@ -30,7 +30,6 @@ use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
-use Google\Cloud\Datastore\Query\Aggregation;
 use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\GqlQuery;
@@ -38,6 +37,7 @@ use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
+use Google\Cloud\Datastore\V1\ExplainOptions;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -745,6 +745,39 @@ class DatastoreClientTest extends TestCase
 
         $res = iterator_to_array($this->client->runQuery($query->reveal(), ['readTime' => $time]));
         $this->assertContainsOnlyInstancesOf(Entity::class, $res);
+    }
+
+    public function testRunQuerySendsExplainOptions()
+    {
+        $key = $this->client->key('Person', 'John');
+        $explainOptions = new ExplainOptions();
+        $explainOptions->setAnalyze(true);
+
+        $this->connection->runQuery(Argument::allOf(
+            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
+            Argument::withEntry('gqlQuery', ['queryString' => 'SELECT 1=1']),
+            Argument::withEntry('explainOptions', $explainOptions)
+        ))->shouldBeCalled()->willReturn([
+            'batch' => [
+                'entityResults' => [
+                    [
+                        'entity' => $this->entityArray($key)
+                    ]
+                ]
+            ]
+        ]);
+
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
+
+        $query = $this->prophesize(QueryInterface::class);
+        $query->queryKey()->willReturn('gqlQuery');
+        $query->queryObject()->willReturn(['queryString' => 'SELECT 1=1']);
+
+
+
+        iterator_to_array($this->client->runQuery($query->reveal(), ['explainOptions' => $explainOptions]));
     }
 
     public function aggregationReturnTypesCases()

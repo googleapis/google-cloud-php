@@ -20,6 +20,7 @@ namespace Google\Cloud\Datastore\Query;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Datastore\EntityMapper;
+use Google\Cloud\Datastore\V1\ExplainMetrics;
 use InvalidArgumentException;
 
 /**
@@ -65,6 +66,11 @@ class AggregationQueryResult
     private array $aggregationResults = [];
 
     /**
+     * @var null|ExplainMetrics
+     */
+    private null|ExplainMetrics $explainMetrics = null;
+
+    /**
      * @var string|null
      */
     private $transaction;
@@ -100,6 +106,12 @@ class AggregationQueryResult
         }
         if (isset($result['batch']['readTime'])) {
             $this->readTime = $result['batch']['readTime'];
+        }
+        if (isset($result['explainMetrics'])) {
+            $metricsJson = json_encode($this->fixDurationFormat($result['explainMetrics']));
+            $metrics = new ExplainMetrics();
+            $metrics->mergeFromJsonString($metricsJson);
+            $this->explainMetrics = $metrics;
         }
 
         // Though the client always passes an entity mapper object, we need to
@@ -162,12 +174,40 @@ class AggregationQueryResult
     }
 
     /**
-     * Gets the timsstamp when Aggregation was executed.
+     * Gets the timestamp when Aggregation was executed.
      *
      * @return Timestamp
      */
     public function getReadTime()
     {
         return $this->readTime;
+    }
+
+    /**
+     * Gets the ExplainMetrics object if the explainOptions parameter was set for
+     * the query
+     *
+     * @return null|ExplainMetrics
+     */
+    public function getExplainMetrics()
+    {
+        return $this->explainMetrics;
+    }
+
+    private function fixDurationFormat(array $metrics) : array
+    {
+        // The current protobuf library does not support the current json representation of the well-known type Duration.
+        // Hence we have to convert the object format into a string format for the merging from json to work.
+        // If the protobuf library gets updated, this should be removed.
+        if (!isset($metrics['executionStats']) && !isset($metrics['executionStats']['executionDuration'])) {
+            return $metrics;
+        }
+
+        $seconds = $metrics['executionStats']['executionDuration']['seconds'];
+        $nanos = str_pad($metrics['executionStats']['executionDuration']['nanos'], 9, 0, STR_PAD_LEFT);
+
+        $metrics['executionStats']['executionDuration'] = "{$seconds}.{$nanos}s";
+
+        return $metrics;
     }
 }
