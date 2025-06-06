@@ -65,11 +65,11 @@ class EntityPageIterator implements \Iterator
     }
 
     /**
-     * Get the ExplainMetrics object if included on the request options
+     * Get the ExplainMetrics object if included on the request options.
      *
      * @return null|array
      */
-    public function getExplainMetrics() : null|array
+    public function getExplainMetrics(): null|array
     {
         if (is_null($this->page)) {
             return null;

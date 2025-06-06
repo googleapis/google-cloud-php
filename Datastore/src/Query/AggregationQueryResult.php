@@ -189,14 +189,15 @@ class AggregationQueryResult
      *
      * @return null|ExplainMetrics
      */
-    public function getExplainMetrics()
+    public function getExplainMetrics(): null|ExplainMetrics
     {
         return $this->explainMetrics;
     }
 
-    private function fixDurationFormat(array $metrics) : array
+    private function fixDurationFormat(array $metrics): array
     {
-        // The current protobuf library does not support the current json representation of the well-known type Duration.
+        // The current protobuf library does not support the current json representation
+        // of the well-known type Duration.
         // Hence we have to convert the object format into a string format for the merging from json to work.
         // If the protobuf library gets updated, this should be removed.
         if (!isset($metrics['executionStats']) && !isset($metrics['executionStats']['executionDuration'])) {
@@ -204,7 +205,7 @@ class AggregationQueryResult
         }
 
         // The REST version returns the executionDuration in a String format. If is a string should be ready to go
-        if(isset($metrics['executionStats']) && is_string($metrics['executionStats']['executionDuration'])) {
+        if (isset($metrics['executionStats']) && is_string($metrics['executionStats']['executionDuration'])) {
             return $metrics;
         }
 

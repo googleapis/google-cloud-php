@@ -458,7 +458,8 @@ class Operation
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      *     @type string $databaseId ID of the database to which the entities belong.
      *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
-     *     @type ExplainMetrics $explainMetrics The ExplainMetrics object for query stats. {@see \Google\Cloud\Datastore\V1\ExplainOptions}
+     *     @type ExplainMetrics $explainMetrics The ExplainMetrics object for query stats.
+     *           {@see \Google\Cloud\Datastore\V1\ExplainOptions}
      * }
      * @return EntityIterator<EntityInterface>
      * @throws InvalidArgumentException
@@ -581,7 +582,9 @@ class Operation
         ];
 
         if (isset($options['explainOptions']) && !$options['explainOptions'] instanceof ExplainOptions) {
-            throw new InvalidArgumentException('The explainOptions parameter needs to be an instance of the ExplainOptions class');
+            throw new InvalidArgumentException(
+                'The explainOptions parameter needs to be an instance of the ExplainOptions class'
+            );
         }
 
         $args = [

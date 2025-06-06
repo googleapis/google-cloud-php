@@ -1222,7 +1222,8 @@ class DatastoreClient
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
-     *     @type ExplainOptions $explainOptions An ExplainOptions instance. {@see \Google\Cloud\Datastore\V1\ExplainOptions}
+     *     @type ExplainOptions $explainOptions An ExplainOptions instance.
+     *           {@see \Google\Cloud\Datastore\V1\ExplainOptions}
      * }
      * @return AggregationQueryResult
      */

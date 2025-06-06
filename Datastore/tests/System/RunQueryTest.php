@@ -110,6 +110,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
      */
     public function testExplainMetricsReturnsPlanSummary(DatastoreClient $client)
     {
+        $this->skipEmulatorTests();
         // This is equivalent to $explainOptions->setAnalyze(false);
         $explainOptions = new ExplainOptions();
         $queryOptions = [
@@ -136,6 +137,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
      */
     public function testExplainMetricsReturnsAllData(DatastoreClient $client)
     {
+        $this->skipEmulatorTests();
         $explainOptions = new ExplainOptions();
         $explainOptions->setAnalyze(true);
         $queryOptions = [

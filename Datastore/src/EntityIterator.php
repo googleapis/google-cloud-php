@@ -52,7 +52,7 @@ class EntityIterator implements \Iterator
      * Returns a ExplainMetrics object from the query.
      *
      * By default, the query does not get executed and the explain metrics object
-     * contains only the planning statistics {@see Google\Cloud\Datastore\V1\ExplainMetrics}.
+     * contains only the planning statistics {@see \Google\Cloud\Datastore\V1\ExplainMetrics}.
      *
      * If the request was configured with the ExplainOptions object `Analyze` attribute to true
      * the request then also gets executed, including the ExecutionStates on the ExplainMetrics
@@ -106,7 +106,7 @@ class EntityIterator implements \Iterator
      *
      * @return null|ExplainMetrics
      */
-    public function getExplainMetrics() : null|ExplainMetrics
+    public function getExplainMetrics(): null|ExplainMetrics
     {
         if (is_null($this->explainMetrics)) {
             $this->explainMetrics = $this->gatherExplainMetrics();
@@ -115,7 +115,7 @@ class EntityIterator implements \Iterator
         return $this->explainMetrics;
     }
 
-    private function gatherExplainMetrics() : null|explainMetrics
+    private function gatherExplainMetrics(): null|explainMetrics
     {
         $metrics = null;
         $this->pageIterator->current();
@@ -141,9 +141,10 @@ class EntityIterator implements \Iterator
         return $explainMetrics;
     }
 
-    private function fixDurationFormat(array $metrics) : array
+    private function fixDurationFormat(array $metrics): array
     {
-        // The current protobuf library does not support the current json representation of the well-known type Duration.
+        // The current protobuf library does not support the current json representation
+        // of the well-known type Duration.
         // Hence we have to convert the object format into a string format for the merging from json to work.
         // If the protobuf library gets updated, this should be removed.
         if (!isset($metrics['executionStats']) && !isset($metrics['executionStats']['executionDuration'])) {
@@ -151,7 +152,7 @@ class EntityIterator implements \Iterator
         }
 
         // The REST version returns the executionDuration in a String format. If is a string should be ready to go
-        if(isset($metrics['executionStats']) && is_string($metrics['executionStats']['executionDuration'])) {
+        if (isset($metrics['executionStats']) && is_string($metrics['executionStats']['executionDuration'])) {
             return $metrics;
         }
 

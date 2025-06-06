@@ -145,7 +145,7 @@ class AggregationQueryTest extends DatastoreMultipleDbTestCase
      * @dataProvider filterCases
      * @dataProvider cornerCases
      */
-    public function testAggregationExplainFalseDoesNotContainExecution(DatastoreClient $client, $type, $property, $expected)
+    public function testExplainFalseDoesNotContainExecution(DatastoreClient $client, $type, $property, $expected)
     {
         $this->skipEmulatorTests();
         $aggregation = (is_null($property) ? Aggregation::$type() : Aggregation::$type($property));
