@@ -42,7 +42,7 @@ class PgOperationsTest extends SpannerPgTestCase
         if (self::$isSetup) {
             return;
         }
-        parent::setUpTestFixtures();
+        self::setUpTestDatabase();
 
         self::$id = rand(1000, 9999);
         self::$row = [

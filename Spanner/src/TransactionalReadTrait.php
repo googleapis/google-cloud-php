@@ -22,61 +22,69 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 
 /**
  * Shared methods for reads inside a transaction.
+ *
+ * @internal
  */
 trait TransactionalReadTrait
 {
     use TransactionConfigurationTrait;
-    use RequestHeaderTrait;
 
     /**
      * @var Operation
      */
-    private $operation;
+    private Operation $operation;
 
     /**
      * @var Session
      */
-    private $session;
+    private Session $session;
 
     /**
      * @var string
      */
-    private $transactionId;
+    private ?string $transactionId;
 
     /**
      * @var string
      */
-    private $context;
+    private string $context;
 
     /**
      * @var int
      */
-    private $type;
+    private int $type;
 
     /**
      * @var int
      */
-    private $state = 0; // TransactionalReadInterface::STATE_ACTIVE
+    private int $state = TransactionalReadInterface::STATE_ACTIVE;
+
+    /**
+     * @see V1\TransactionSelector
+     * @var array
+     */
+    private array $transactionSelector = [];
+
+    /**
+     * @see V1\TransactionOptions
+     * @var array
+     */
+    private array $transactionOptions = [];
+
+    /**
+     * @var int
+     */
+    private int $seqno = 1;
+
+    /**
+     * @var string
+     */
+    private ?string $tag = null;
 
     /**
      * @var array
      */
-    private $options = [];
-
-    /**
-     * @var int
-     */
-    private $seqno = 1;
-
-    /**
-     * @var string
-     */
-    private $tag = null;
-
-    /**
-     * @var array
-     */
-    private $directedReadOptions = [];
+    private array $directedReadOptions = [];
 
     /**
      * Run a query.
@@ -277,35 +285,43 @@ trait TransactionalReadTrait
         $this->singleUseState();
         $this->checkReadContext();
 
-        if (empty($this->transactionId) && isset($this->options['begin'])) {
-            $options['begin'] = $this->options['begin'];
+        $executeSqlOptions = $options;
+        if (empty($this->transactionId) && isset($this->transactionSelector['begin'])) {
+            $executeSqlOptions['begin'] = $this->transactionSelector['begin'];
         } else {
-            $options['transactionId'] = $this->transactionId;
+            $executeSqlOptions['transactionId'] = $this->transactionId;
         }
-        $options['transactionType'] = $this->context;
-        $options['seqno'] = $this->seqno;
+        $executeSqlOptions['transactionType'] = $this->context;
+        $executeSqlOptions['seqno'] = $this->seqno;
         $this->seqno++;
 
-        $selector = $this->transactionSelector($options, $this->options);
+        $selector = $this->transactionSelector(
+            $executeSqlOptions,
+            $this->transactionOptions['readOnly'] ?? []
+        );
 
-        $options['transaction'] = $selector[0];
+        $executeSqlOptions['transaction'] = $selector[0];
 
-        unset($options['requestOptions']['transactionTag']);
+        unset($executeSqlOptions['requestOptions']['transactionTag']);
         if (isset($this->tag)) {
-            $options += [
+            $executeSqlOptions += [
                 'requestOptions' => []
             ];
-            $options['requestOptions']['transactionTag'] = $this->tag;
+            $executeSqlOptions['requestOptions']['transactionTag'] = $this->tag;
         }
 
-        $options['directedReadOptions'] = $this->configureDirectedReadOptions(
-            $options,
+        $executeSqlOptions['directedReadOptions'] = $this->configureDirectedReadOptions(
+            $executeSqlOptions,
             $this->directedReadOptions ?? []
         );
 
-        $options = $this->addLarHeader($options, true, $this->context);
+        // Unsetting the internal flag
+        unset($executeSqlOptions['singleUse']);
 
-        $result = $this->operation->execute($this->session, $sql, $options);
+        $result = $this->operation->execute($this->session, $sql, $executeSqlOptions + [
+            'route-to-leader' => $this->context === SessionPoolInterface::CONTEXT_READWRITE
+        ]);
+
         if (empty($this->id()) && $result->transaction()) {
             $this->setId($result->transaction()->id());
         }
@@ -359,14 +375,16 @@ trait TransactionalReadTrait
         $this->singleUseState();
         $this->checkReadContext();
 
-        if (empty($this->transactionId) && isset($this->options['begin'])) {
-            $options['begin'] = $this->options['begin'];
+        if (empty($this->transactionId) && isset($this->transactionSelector['begin'])) {
+            $options['begin'] = $this->transactionSelector['begin'];
         } else {
             $options['transactionId'] = $this->transactionId;
         }
         $options['transactionType'] = $this->context;
-        $options += $this->options;
-        $selector = $this->transactionSelector($options, $this->options);
+        $selector = $this->transactionSelector(
+            $options,
+            $this->transactionOptions['readOnly'] ?? []
+        );
 
         $options['transaction'] = $selector[0];
 
@@ -383,9 +401,9 @@ trait TransactionalReadTrait
             $this->directedReadOptions ?? []
         );
 
-        $options = $this->addLarHeader($options, true, $this->context);
-
-        $result = $this->operation->read($this->session, $table, $keySet, $columns, $options);
+        $result = $this->operation->read($this->session, $table, $keySet, $columns, $options + [
+            'route-to-leader' => $this->context === SessionPoolInterface::CONTEXT_READWRITE
+        ]);
         if (empty($this->id()) && $result->transaction()) {
             $this->setId($result->transaction()->id());
         }

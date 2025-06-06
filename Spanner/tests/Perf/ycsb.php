@@ -56,7 +56,7 @@ Note: This benchmark script assumes that the table has a PK field named "id".
 $parameters = Config::getParameters();
 $report = Report::getReporter();
 
-$database = (new SpannerClient)->connect($parameters['instance'], $parameters['database']);
+$database = (new SpannerClient())->connect($parameters['instance'], $parameters['database']);
 
 $totalWeight = 0.0;
 $weights = [];

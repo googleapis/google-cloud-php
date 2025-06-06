@@ -18,10 +18,10 @@
 namespace Google\Cloud\Spanner\Batch;
 
 use Google\Cloud\Core\TimeTrait;
-use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\TransactionConfigurationTrait;
+use Google\Protobuf\Duration;
 
 /**
  * Provides Batch APIs used to read data from a Cloud Spanner database.
@@ -36,7 +36,7 @@ use Google\Cloud\Spanner\TransactionConfigurationTrait;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $batch = $spanner->batch('instance-id', 'database-id');
  * ```
  *
@@ -187,7 +187,7 @@ class BatchClient
         $transactionOptions = $this->pluck('transactionOptions', $options);
         $transactionOptions['returnReadTimestamp'] = true;
 
-        $transactionOptions = $this->configureSnapshotOptions($transactionOptions);
+        $transactionOptions = $this->configureReadOnlyTransactionOptions($transactionOptions);
 
         if ($this->databaseRole !== null) {
             $sessionOptions['creator_role'] = $this->databaseRole;

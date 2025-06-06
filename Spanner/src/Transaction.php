@@ -21,6 +21,7 @@ use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Protobuf\Duration;
 
 /**
  * Manages interaction with Cloud Spanner inside a Transaction.
@@ -47,7 +48,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * $database = $spanner->connect('my-instance', 'my-database');
  *
@@ -78,57 +79,55 @@ class Transaction implements TransactionalReadInterface
      */
     private $mutations = [];
 
-    /**
-     * @var bool
-     */
-    private $isRetry = false;
+    private bool $isRetry;
 
-    private ValueMapper $mapper;
+    private array $requestOptions;
 
     /**
      * @param Operation $operation The Operation instance.
      * @param Session $session The session to use for spanner interactions.
-     * @param string $transactionId [optional] The Transaction ID. If no ID is
-     *        provided, the Transaction will be a Single-Use Transaction.
-     * @param bool $isRetry Whether the transaction will automatically retry or not.
-     * @param string $tag A transaction tag. Requests made using this transaction will
-     *        use this as the transaction tag.
-     * @param array $options [optional] {
+     * @param string $transactionId The Transaction ID. If no ID is provided, the Transaction will
+     *        be a Single-Use Transaction.
+     * @param array $options {
      *     Configuration Options.
      *
-     *     @type array $begin The begin Transaction options.
-     *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
+   *     @type bool $isRetry Whether the transaction will automatically retry or not.
+     *     @type string $tag A transaction tag. Requests made using this transaction will
+     *           use this as the transaction tag.
+     *     @type array $begin The begin Transaction options. See {@see V1\TransactionOptions}.
+     *     @type array $requestOptions See {@see V1\RequestOptions}.
+     *     @type array $transactionOptions See {@see V1\TransactionOptions}.
      * }
      * @param ValueMapper $mapper Consumed internally for properly map mutation data.
      * @throws \InvalidArgumentException if a tag is specified on a single-use transaction.
      */
     public function __construct(
-        Operation $operation,
-        Session $session,
-        $transactionId = null,
-        $isRetry = false,
-        $tag = null,
-        $options = [],
-        $mapper = null
+        private Operation $operation,
+        private Session $session,
+        private ?string $transactionId = null,
+        array $options = [],
+        private ?ValueMapper $mapper = null
     ) {
-        $this->operation = $operation;
-        $this->session = $session;
-        $this->transactionId = $transactionId;
-        $this->isRetry = $isRetry;
-
         $this->type = ($transactionId || isset($options['begin']))
             ? self::TYPE_PRE_ALLOCATED
             : self::TYPE_SINGLE_USE;
 
-        if ($this->type == self::TYPE_SINGLE_USE && isset($tag)) {
+        if ($this->type == self::TYPE_SINGLE_USE && isset($options['tag'])) {
             throw new \InvalidArgumentException(
                 'Cannot set a transaction tag on a single-use transaction.'
             );
         }
-        $this->tag = $tag;
 
         $this->context = SessionPoolInterface::CONTEXT_READWRITE;
-        $this->options = $options;
+        $this->tag = $options['tag'] ?? null;
+        $this->isRetry = $options['isRetry'] ?? false;
+        $this->transactionSelector = array_intersect_key(
+            (array) $options,
+            array_flip(['singleUse', 'begin'])
+        );
+        $this->requestOptions = $options['requestOptions'] ?? [];
+        $this->transactionOptions = $options['transactionOptions'] ?? [];
+
         if (!is_null($mapper)) {
             $this->mapper = $mapper;
         }
@@ -423,17 +422,17 @@ class Transaction implements TransactionalReadInterface
 
         // For commit, A transaction ID is mandatory for non-single-use transactions,
         // and the `begin` option is not supported.
-        if (empty($this->transactionId) && isset($this->options['begin'])) {
-            // Since the begin option is not supported in commit, unset it.
-            unset($this->options['begin']);
-
-            // A transaction ID is mandatory for non-single-use transactions.
-            if ($this->type !== self::TYPE_SINGLE_USE) {
-                // Execute the beginTransaction RPC.
-                $transaction = $this->operation->transaction($this->session, $this->options);
-                // Set the transaction ID of the current transaction.
-                $this->transactionId = $transaction->id();
-            }
+        // @TODO: Find out why the `begin` option is not supported for calling the `beginTransaction` RPC
+        if (empty($this->transactionId) && isset($this->transactionSelector['begin'])) {
+            $operationTransactionOptions = [
+                'requestOptions' => $this->requestOptions,
+                'transactionOptions' => $this->transactionOptions,
+                'singleUse' => $this->transactionSelector['singleUse'] ?? null,
+            ];
+            // Execute the beginTransaction RPC.
+            $transaction = $this->operation->transaction($this->session, $operationTransactionOptions);
+            // Set the transaction ID of the current transaction.
+            $this->transactionId = $transaction->id();
         }
 
         if (!$this->singleUseState()) {
@@ -523,14 +522,16 @@ class Transaction implements TransactionalReadInterface
         $this->seqno++;
 
         $options['transactionType'] = $this->context;
-        if (empty($this->transactionId) && isset($this->options['begin'])) {
-            $options['begin'] = $this->options['begin'];
+        if (empty($this->transactionId) && isset($this->transactionSelector['begin'])) {
+            $options['begin'] = $this->transactionSelector['begin'];
         } else {
             $options['transactionId'] = $this->transactionId;
         }
         $selector = $this->transactionSelector($options);
         $options['transaction'] = $selector[0];
 
-        return $this->addLarHeader($options);
+        $options['headers']['spanner-route-to-leader'] = ['true'];
+
+        return $options;
     }
 }

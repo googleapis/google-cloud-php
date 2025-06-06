@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
-use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Spanner\KeyRange;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
@@ -35,7 +35,7 @@ class KeyRangeTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->range = new KeyRange;
+        $this->range = new KeyRange();
     }
 
     public function testConstructWithScalars()
