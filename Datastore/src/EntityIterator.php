@@ -150,6 +150,11 @@ class EntityIterator implements \Iterator
             return $metrics;
         }
 
+        // The REST version returns the executionDuration in a String format. If is a string should be ready to go
+        if(isset($metrics['executionStats']) && is_string($metrics['executionStats']['executionDuration'])) {
+            return $metrics;
+        }
+
         $seconds = $metrics['executionStats']['executionDuration']['seconds'];
         $nanos = str_pad($metrics['executionStats']['executionDuration']['nanos'], 9, 0, STR_PAD_LEFT);
 

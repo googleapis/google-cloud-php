@@ -108,8 +108,9 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
     /**
      * @dataProvider defaultDbClientProvider
      */
-    public function testExplainMetricsReturnsResultsAndInformation(DatastoreClient $client)
+    public function testExplainMetricsReturnsPlanSummary(DatastoreClient $client)
     {
+        // This is equivalent to $explainOptions->setAnalyze(false);
         $explainOptions = new ExplainOptions();
         $queryOptions = [
             'explainOptions' => $explainOptions
@@ -127,10 +128,6 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
 
         $results = iterator_to_array($response);
 
-        // $this->assertEquals(self::$data[0], $results[0]->get());
-        // $this->assertEquals(self::$data[1], $results[1]->get());
-        // $this->assertEquals(self::$data[2], $results[2]->get());
-        // $this->assertEquals(self::$data[3], $results[3]->get());
         $this->assertCount(0, $results);
     }
 
