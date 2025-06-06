@@ -19,7 +19,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
     /**
      * Resource name of this QuotaInfo.
      * The ID component following "locations/" must be "global".
-     * Example:
+     * For example,
      * `projects/123/locations/global/services/compute.googleapis.com/quotaInfos/CpusPerProjectPerRegion`
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -27,7 +27,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
     protected $name = '';
     /**
      * The id of the quota, which is unquie within the service.
-     * Example: `CpusPerProjectPerRegion`
+     * For example, `CpusPerProjectPerRegion`
      *
      * Generated from protobuf field <code>string quota_id = 2;</code>
      */
@@ -35,14 +35,14 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
     /**
      * The metric of the quota. It specifies the resources consumption the quota
      * is defined for.
-     * Example: `compute.googleapis.com/cpus`
+     * For example, `compute.googleapis.com/cpus`
      *
      * Generated from protobuf field <code>string metric = 3;</code>
      */
     protected $metric = '';
     /**
      * The name of the service in which the quota is defined.
-     * Example: `compute.googleapis.com`
+     * For example, `compute.googleapis.com`
      *
      * Generated from protobuf field <code>string service = 4;</code>
      */
@@ -57,8 +57,8 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
     /**
      * The reset time interval for the quota. Refresh interval applies to rate
      * quota only.
-     * Example: "minute" for per minute, "day" for per day, or "10 seconds" for
-     * every 10 seconds.
+     * For example, "minute" for per minute, "day" for per day, or "10 seconds"
+     * for every 10 seconds.
      *
      * Generated from protobuf field <code>string refresh_interval = 6;</code>
      */
@@ -137,26 +137,26 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Resource name of this QuotaInfo.
      *           The ID component following "locations/" must be "global".
-     *           Example:
+     *           For example,
      *           `projects/123/locations/global/services/compute.googleapis.com/quotaInfos/CpusPerProjectPerRegion`
      *     @type string $quota_id
      *           The id of the quota, which is unquie within the service.
-     *           Example: `CpusPerProjectPerRegion`
+     *           For example, `CpusPerProjectPerRegion`
      *     @type string $metric
      *           The metric of the quota. It specifies the resources consumption the quota
      *           is defined for.
-     *           Example: `compute.googleapis.com/cpus`
+     *           For example, `compute.googleapis.com/cpus`
      *     @type string $service
      *           The name of the service in which the quota is defined.
-     *           Example: `compute.googleapis.com`
+     *           For example, `compute.googleapis.com`
      *     @type bool $is_precise
      *           Whether this is a precise quota. A precise quota is tracked with absolute
      *           precision. In contrast, an imprecise quota is not tracked with precision.
      *     @type string $refresh_interval
      *           The reset time interval for the quota. Refresh interval applies to rate
      *           quota only.
-     *           Example: "minute" for per minute, "day" for per day, or "10 seconds" for
-     *           every 10 seconds.
+     *           For example, "minute" for per minute, "day" for per day, or "10 seconds"
+     *           for every 10 seconds.
      *     @type int $container_type
      *           The container type of the QuotaInfo.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dimensions
@@ -191,7 +191,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
     /**
      * Resource name of this QuotaInfo.
      * The ID component following "locations/" must be "global".
-     * Example:
+     * For example,
      * `projects/123/locations/global/services/compute.googleapis.com/quotaInfos/CpusPerProjectPerRegion`
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -205,7 +205,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
     /**
      * Resource name of this QuotaInfo.
      * The ID component following "locations/" must be "global".
-     * Example:
+     * For example,
      * `projects/123/locations/global/services/compute.googleapis.com/quotaInfos/CpusPerProjectPerRegion`
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -222,7 +222,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * The id of the quota, which is unquie within the service.
-     * Example: `CpusPerProjectPerRegion`
+     * For example, `CpusPerProjectPerRegion`
      *
      * Generated from protobuf field <code>string quota_id = 2;</code>
      * @return string
@@ -234,7 +234,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * The id of the quota, which is unquie within the service.
-     * Example: `CpusPerProjectPerRegion`
+     * For example, `CpusPerProjectPerRegion`
      *
      * Generated from protobuf field <code>string quota_id = 2;</code>
      * @param string $var
@@ -251,7 +251,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
     /**
      * The metric of the quota. It specifies the resources consumption the quota
      * is defined for.
-     * Example: `compute.googleapis.com/cpus`
+     * For example, `compute.googleapis.com/cpus`
      *
      * Generated from protobuf field <code>string metric = 3;</code>
      * @return string
@@ -264,7 +264,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
     /**
      * The metric of the quota. It specifies the resources consumption the quota
      * is defined for.
-     * Example: `compute.googleapis.com/cpus`
+     * For example, `compute.googleapis.com/cpus`
      *
      * Generated from protobuf field <code>string metric = 3;</code>
      * @param string $var
@@ -280,7 +280,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the service in which the quota is defined.
-     * Example: `compute.googleapis.com`
+     * For example, `compute.googleapis.com`
      *
      * Generated from protobuf field <code>string service = 4;</code>
      * @return string
@@ -292,7 +292,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the service in which the quota is defined.
-     * Example: `compute.googleapis.com`
+     * For example, `compute.googleapis.com`
      *
      * Generated from protobuf field <code>string service = 4;</code>
      * @param string $var
@@ -337,8 +337,8 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
     /**
      * The reset time interval for the quota. Refresh interval applies to rate
      * quota only.
-     * Example: "minute" for per minute, "day" for per day, or "10 seconds" for
-     * every 10 seconds.
+     * For example, "minute" for per minute, "day" for per day, or "10 seconds"
+     * for every 10 seconds.
      *
      * Generated from protobuf field <code>string refresh_interval = 6;</code>
      * @return string
@@ -351,8 +351,8 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
     /**
      * The reset time interval for the quota. Refresh interval applies to rate
      * quota only.
-     * Example: "minute" for per minute, "day" for per day, or "10 seconds" for
-     * every 10 seconds.
+     * For example, "minute" for per minute, "day" for per day, or "10 seconds"
+     * for every 10 seconds.
      *
      * Generated from protobuf field <code>string refresh_interval = 6;</code>
      * @param string $var
