@@ -37,7 +37,7 @@ use Google\Cloud\CloudQuotas\V1beta\UpdateQuotaPreferenceRequest;
  *                                                         to -1, it means the value is "unlimited".
  * @param string $quotaPreferenceService                   The name of the service to which the quota preference is applied.
  * @param string $quotaPreferenceQuotaId                   The id of the quota to which the quota preference is applied. A
- *                                                         quota name is unique in the service. Example: `CpusPerProjectPerRegion`
+ *                                                         quota name is unique in the service. For example, `CpusPerProjectPerRegion`
  */
 function update_quota_preference_sample(
     int $quotaPreferenceQuotaConfigPreferredValue,
