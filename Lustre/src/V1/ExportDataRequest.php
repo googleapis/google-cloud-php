@@ -9,14 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message for exporting data from Lustre.
+ * Export data from Managed Lustre to a Cloud Storage bucket.
  *
  * Generated from protobuf message <code>google.cloud.lustre.v1.ExportDataRequest</code>
  */
 class ExportDataRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the resource.
+     * Required. The name of the Managed Lustre instance in the format
+     * `projects/{project}/locations/{location}/instances/{instance}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -44,11 +45,16 @@ class ExportDataRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Lustre\V1\LustrePath $lustre_path
-     *           Lustre path source.
+     *           The root directory path to the Managed Lustre file system. Must start
+     *           with `/`. Default is `/`.
      *     @type \Google\Cloud\Lustre\V1\GcsPath $gcs_path
-     *           Cloud Storage destination.
+     *           The URI to a Cloud Storage bucket, or a path within a bucket, using
+     *           the format `gs://<bucket_name>/<optional_path_inside_bucket>/`. If a
+     *           path inside the bucket is specified, it must end with a forward slash
+     *           (`/`).
      *     @type string $name
-     *           Required. Name of the resource.
+     *           Required. The name of the Managed Lustre instance in the format
+     *           `projects/{project}/locations/{location}/instances/{instance}`.
      *     @type string $request_id
      *           Optional. UUID to identify requests.
      *     @type string $service_account
@@ -62,7 +68,8 @@ class ExportDataRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Lustre path source.
+     * The root directory path to the Managed Lustre file system. Must start
+     * with `/`. Default is `/`.
      *
      * Generated from protobuf field <code>.google.cloud.lustre.v1.LustrePath lustre_path = 2;</code>
      * @return \Google\Cloud\Lustre\V1\LustrePath|null
@@ -78,7 +85,8 @@ class ExportDataRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Lustre path source.
+     * The root directory path to the Managed Lustre file system. Must start
+     * with `/`. Default is `/`.
      *
      * Generated from protobuf field <code>.google.cloud.lustre.v1.LustrePath lustre_path = 2;</code>
      * @param \Google\Cloud\Lustre\V1\LustrePath $var
@@ -93,7 +101,10 @@ class ExportDataRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cloud Storage destination.
+     * The URI to a Cloud Storage bucket, or a path within a bucket, using
+     * the format `gs://<bucket_name>/<optional_path_inside_bucket>/`. If a
+     * path inside the bucket is specified, it must end with a forward slash
+     * (`/`).
      *
      * Generated from protobuf field <code>.google.cloud.lustre.v1.GcsPath gcs_path = 3;</code>
      * @return \Google\Cloud\Lustre\V1\GcsPath|null
@@ -109,7 +120,10 @@ class ExportDataRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cloud Storage destination.
+     * The URI to a Cloud Storage bucket, or a path within a bucket, using
+     * the format `gs://<bucket_name>/<optional_path_inside_bucket>/`. If a
+     * path inside the bucket is specified, it must end with a forward slash
+     * (`/`).
      *
      * Generated from protobuf field <code>.google.cloud.lustre.v1.GcsPath gcs_path = 3;</code>
      * @param \Google\Cloud\Lustre\V1\GcsPath $var
@@ -124,7 +138,8 @@ class ExportDataRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the resource.
+     * Required. The name of the Managed Lustre instance in the format
+     * `projects/{project}/locations/{location}/instances/{instance}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -135,7 +150,8 @@ class ExportDataRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the resource.
+     * Required. The name of the Managed Lustre instance in the format
+     * `projects/{project}/locations/{location}/instances/{instance}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
