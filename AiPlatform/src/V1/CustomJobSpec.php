@@ -78,6 +78,12 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      */
     private $reserved_ip_ranges;
     /**
+     * Optional. Configuration for PSC-I for CustomJob.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PscInterfaceConfig psc_interface_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $psc_interface_config = null;
+    /**
      * The Cloud Storage location to store the output of this CustomJob or
      * HyperparameterTuningJob. For HyperparameterTuningJob,
      * the baseOutputDirectory of
@@ -223,6 +229,8 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *           the job will be deployed to any ip ranges under the provided VPC
      *           network.
      *           Example: ['vertex-ai-ip-range'].
+     *     @type \Google\Cloud\AIPlatform\V1\PscInterfaceConfig $psc_interface_config
+     *           Optional. Configuration for PSC-I for CustomJob.
      *     @type \Google\Cloud\AIPlatform\V1\GcsDestination $base_output_directory
      *           The Cloud Storage location to store the output of this CustomJob or
      *           HyperparameterTuningJob. For HyperparameterTuningJob,
@@ -513,6 +521,42 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->reserved_ip_ranges = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for PSC-I for CustomJob.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PscInterfaceConfig psc_interface_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\PscInterfaceConfig|null
+     */
+    public function getPscInterfaceConfig()
+    {
+        return $this->psc_interface_config;
+    }
+
+    public function hasPscInterfaceConfig()
+    {
+        return isset($this->psc_interface_config);
+    }
+
+    public function clearPscInterfaceConfig()
+    {
+        unset($this->psc_interface_config);
+    }
+
+    /**
+     * Optional. Configuration for PSC-I for CustomJob.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PscInterfaceConfig psc_interface_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\PscInterfaceConfig $var
+     * @return $this
+     */
+    public function setPscInterfaceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\PscInterfaceConfig::class);
+        $this->psc_interface_config = $var;
 
         return $this;
     }
