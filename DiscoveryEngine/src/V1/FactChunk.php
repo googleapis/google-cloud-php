@@ -42,6 +42,24 @@ class FactChunk extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> source_metadata = 3;</code>
      */
     private $source_metadata;
+    /**
+     * The URI of the source.
+     *
+     * Generated from protobuf field <code>string uri = 5;</code>
+     */
+    protected $uri = '';
+    /**
+     * The title of the source.
+     *
+     * Generated from protobuf field <code>string title = 6;</code>
+     */
+    protected $title = '';
+    /**
+     * The domain of the source.
+     *
+     * Generated from protobuf field <code>string domain = 7;</code>
+     */
+    protected $domain = '';
 
     /**
      * Constructor.
@@ -60,6 +78,12 @@ class FactChunk extends \Google\Protobuf\Internal\Message
      *           The index of this chunk. Currently, only used for the streaming mode.
      *     @type array|\Google\Protobuf\Internal\MapField $source_metadata
      *           More fine-grained information for the source reference.
+     *     @type string $uri
+     *           The URI of the source.
+     *     @type string $title
+     *           The title of the source.
+     *     @type string $domain
+     *           The domain of the source.
      * }
      */
     public function __construct($data = NULL) {
@@ -173,6 +197,84 @@ class FactChunk extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->source_metadata = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The URI of the source.
+     *
+     * Generated from protobuf field <code>string uri = 5;</code>
+     * @return string
+     */
+    public function getUri()
+    {
+        return $this->uri;
+    }
+
+    /**
+     * The URI of the source.
+     *
+     * Generated from protobuf field <code>string uri = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * The title of the source.
+     *
+     * Generated from protobuf field <code>string title = 6;</code>
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * The title of the source.
+     *
+     * Generated from protobuf field <code>string title = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTitle($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->title = $var;
+
+        return $this;
+    }
+
+    /**
+     * The domain of the source.
+     *
+     * Generated from protobuf field <code>string domain = 7;</code>
+     * @return string
+     */
+    public function getDomain()
+    {
+        return $this->domain;
+    }
+
+    /**
+     * The domain of the source.
+     *
+     * Generated from protobuf field <code>string domain = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDomain($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->domain = $var;
 
         return $this;
     }

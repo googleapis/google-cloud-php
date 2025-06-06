@@ -31,6 +31,14 @@ class SearchLinkPromotion extends \Google\Protobuf\Internal\Message
      */
     protected $uri = '';
     /**
+     * Optional. The [Document][google.cloud.discoveryengine.v1.Document] the user
+     * wants to promote. For site search, leave unset and only populate uri. Can
+     * be set along with uri.
+     *
+     * Generated from protobuf field <code>string document = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $document = '';
+    /**
      * Optional. The promotion thumbnail image url.
      *
      * Generated from protobuf field <code>string image_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -64,6 +72,10 @@ class SearchLinkPromotion extends \Google\Protobuf\Internal\Message
      *     @type string $uri
      *           Optional. The URL for the page the user wants to promote. Must be set for
      *           site search. For other verticals, this is optional.
+     *     @type string $document
+     *           Optional. The [Document][google.cloud.discoveryengine.v1.Document] the user
+     *           wants to promote. For site search, leave unset and only populate uri. Can
+     *           be set along with uri.
      *     @type string $image_uri
      *           Optional. The promotion thumbnail image url.
      *     @type string $description
@@ -132,6 +144,36 @@ class SearchLinkPromotion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The [Document][google.cloud.discoveryengine.v1.Document] the user
+     * wants to promote. For site search, leave unset and only populate uri. Can
+     * be set along with uri.
+     *
+     * Generated from protobuf field <code>string document = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getDocument()
+    {
+        return $this->document;
+    }
+
+    /**
+     * Optional. The [Document][google.cloud.discoveryengine.v1.Document] the user
+     * wants to promote. For site search, leave unset and only populate uri. Can
+     * be set along with uri.
+     *
+     * Generated from protobuf field <code>string document = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDocument($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->document = $var;
 
         return $this;
     }
