@@ -1,5 +1,67 @@
 # Changelog
 
+## 0.291.0
+
+<details><summary>google/cloud-ai-platform 1.28.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] Expose UrlContextMetadata API to v1 ([#8353](https://github.com/googleapis/google-cloud-php/issues/8353)) ([5b89ec7](https://github.com/googleapis/google-cloud-php/commit/5b89ec772b99dc62a58c3f2a141974339bfbea9a))
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.4.0</summary>
+
+
+
+### Features
+
+* [Dataproc] add scenarios AUTO/NONE to autotuning config ([#8356](https://github.com/googleapis/google-cloud-php/issues/8356)) ([53f9dba](https://github.com/googleapis/google-cloud-php/commit/53f9dba065a439ebe37b5c0c4b32128b46d8590c))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 1.6.0</summary>
+
+
+
+### Features
+
+* [DiscoveryEngine] add CMEK config service ([#8358](https://github.com/googleapis/google-cloud-php/issues/8358)) ([020c7ad](https://github.com/googleapis/google-cloud-php/commit/020c7ad58d28d8a3cd000cd4b3a3ba6bff939d16))
+
+</details>
+
+<details><summary>google/cloud-lustre 0.1.1</summary>
+
+
+
+### Bug Fixes
+
+* [Lustre] Changed field behavior for an existing field per_unit_storage_throughput. It is now required ([#8359](https://github.com/googleapis/google-cloud-php/issues/8359)) ([3c72b64](https://github.com/googleapis/google-cloud-php/commit/3c72b64011016fa61228d9987158ff9eb57e8a84))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 2.1.0</summary>
+
+
+
+### Features
+
+* [SecretManager] update secret manager protos for tags ([#8360](https://github.com/googleapis/google-cloud-php/issues/8360)) ([2d67c91](https://github.com/googleapis/google-cloud-php/commit/2d67c9158d8794a125bf4012e648849e9d420af1))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.101.0</summary>
+
+
+
+### Features
+
+* **spanner:** [Spanner] add new change_stream.proto ([#8355](https://github.com/googleapis/google-cloud-php/issues/8355)) ([5af124b](https://github.com/googleapis/google-cloud-php/commit/5af124ba0bd0d6266390615e03dfb87305cc1ad1))
+
+</details>
+
 ## 0.290.0
 
 <details><summary>google/cloud-ai-platform 1.27.0</summary>
