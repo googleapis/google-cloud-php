@@ -404,8 +404,9 @@ class GrpcTest extends TestCase
     {
         return [
             "headers" => [
-                "google-cloud-resource-prefix" => ["projects/test/databases/(default)"],
-                "x-goog-request-params" => ["project_id=test&database_id=(default)"]
+                "x-goog-request-params" => [
+                    'database=projects%2Ftest%2Fdatabases%2F%28default%29'
+                ]
             ]
         ];
     }
