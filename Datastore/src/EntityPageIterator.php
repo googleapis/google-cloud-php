@@ -18,6 +18,7 @@
 namespace Google\Cloud\Datastore;
 
 use Google\Cloud\Core\Iterator\PageIteratorTrait;
+use Google\Cloud\Datastore\V1\ExplainMetrics;
 
 /**
  * Iterates over a set of pages containing {@see \Google\Cloud\Datastore\Entity}
@@ -61,5 +62,23 @@ class EntityPageIterator implements \Iterator
         $this->moreResultsType = $this->page['batch']['moreResults'] ?? null;
 
         return $this->get($this->itemsPath, $this->page);
+    }
+
+    /**
+     * Get the ExplainMetrics object if included on the request options.
+     *
+     * @return null|array
+     */
+    public function getExplainMetrics(): null|array
+    {
+        if (is_null($this->page)) {
+            return null;
+        }
+
+        if (!isset($this->page['explainMetrics'])) {
+            return null;
+        }
+
+        return $this->page['explainMetrics'];
     }
 }
