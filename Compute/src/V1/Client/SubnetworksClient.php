@@ -49,6 +49,7 @@ use Google\Cloud\Compute\V1\SetPrivateIpGoogleAccessSubnetworkRequest;
 use Google\Cloud\Compute\V1\Subnetwork;
 use Google\Cloud\Compute\V1\TestIamPermissionsSubnetworkRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
+use Google\Cloud\Compute\V1\UsableSubnetworksAggregatedList;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -65,7 +66,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicySubnetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> insertAsync(InsertSubnetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAsync(ListSubnetworksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> listUsableAsync(ListUsableSubnetworksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UsableSubnetworksAggregatedList> listUsableAsync(ListUsableSubnetworksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> patchAsync(PatchSubnetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicySubnetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> setPrivateIpGoogleAccessAsync(SetPrivateIpGoogleAccessSubnetworkRequest $request, array $optionalArgs = [])
@@ -464,13 +465,13 @@ final class SubnetworksClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return PagedListResponse
+     * @return UsableSubnetworksAggregatedList
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listUsable(ListUsableSubnetworksRequest $request, array $callOptions = []): PagedListResponse
+    public function listUsable(ListUsableSubnetworksRequest $request, array $callOptions = []): UsableSubnetworksAggregatedList
     {
-        return $this->startApiCall('ListUsable', $request, $callOptions);
+        return $this->startApiCall('ListUsable', $request, $callOptions)->wait();
     }
 
     /**

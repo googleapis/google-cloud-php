@@ -24,9 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_Subnetworks_ListUsable_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\Client\SubnetworksClient;
 use Google\Cloud\Compute\V1\ListUsableSubnetworksRequest;
+use Google\Cloud\Compute\V1\UsableSubnetworksAggregatedList;
 
 /**
  * Retrieves an aggregated list of all usable subnetworks in the project.
@@ -44,12 +44,9 @@ function list_usable_sample(string $project): void
 
     // Call the API and handle any network failures.
     try {
-        /** @var PagedListResponse $response */
+        /** @var UsableSubnetworksAggregatedList $response */
         $response = $subnetworksClient->listUsable($request);
-
-        foreach ($response as $element) {
-            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
-        }
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }

@@ -71,6 +71,19 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      */
     private $description = null;
     /**
+     * Specifies the canary migration state for the backend buckets attached to this forwarding rule. Possible values are PREPARE, TEST_BY_PERCENTAGE, and TEST_ALL_TRAFFIC. To begin the migration from EXTERNAL to EXTERNAL_MANAGED, the state must be changed to PREPARE. The state must be changed to TEST_ALL_TRAFFIC before the loadBalancingScheme can be changed to EXTERNAL_MANAGED. Optionally, the TEST_BY_PERCENTAGE state can be used to migrate traffic to backend buckets attached to this forwarding rule by percentage using externalManagedBackendBucketMigrationTestingPercentage. Rolling back a migration requires the states to be set in reverse order. So changing the scheme from EXTERNAL_MANAGED to EXTERNAL requires the state to be set to TEST_ALL_TRAFFIC at the same time. Optionally, the TEST_BY_PERCENTAGE state can be used to migrate some traffic back to EXTERNAL or PREPARE can be used to migrate all traffic back to EXTERNAL.
+     * Check the ExternalManagedBackendBucketMigrationState enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string external_managed_backend_bucket_migration_state = 107811370;</code>
+     */
+    private $external_managed_backend_bucket_migration_state = null;
+    /**
+     * Determines the fraction of requests to backend buckets that should be processed by the global external Application Load Balancer. The value of this field must be in the range [0, 100]. This value can only be set if the loadBalancingScheme in the BackendService is set to EXTERNAL (when using the classic Application Load Balancer) and the migration state is TEST_BY_PERCENTAGE.
+     *
+     * Generated from protobuf field <code>optional float external_managed_backend_bucket_migration_testing_percentage = 105676592;</code>
+     */
+    private $external_managed_backend_bucket_migration_testing_percentage = null;
+    /**
      * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a ForwardingRule. Include the fingerprint in patch request to ensure that you do not overwrite changes that were applied from another concurrent request. To see the latest fingerprint, make a get() request to retrieve a ForwardingRule.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
@@ -195,6 +208,12 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
+     * [Output Only] Server-defined URL for this resource with the resource id.
+     *
+     * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
+     */
+    private $self_link_with_id = null;
+    /**
      * Service Directory resources to register this forwarding rule with. Currently, only supports a single Service Directory resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ForwardingRuleServiceDirectoryRegistration service_directory_registrations = 223549694;</code>
@@ -256,6 +275,11 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
+     *     @type string $external_managed_backend_bucket_migration_state
+     *           Specifies the canary migration state for the backend buckets attached to this forwarding rule. Possible values are PREPARE, TEST_BY_PERCENTAGE, and TEST_ALL_TRAFFIC. To begin the migration from EXTERNAL to EXTERNAL_MANAGED, the state must be changed to PREPARE. The state must be changed to TEST_ALL_TRAFFIC before the loadBalancingScheme can be changed to EXTERNAL_MANAGED. Optionally, the TEST_BY_PERCENTAGE state can be used to migrate traffic to backend buckets attached to this forwarding rule by percentage using externalManagedBackendBucketMigrationTestingPercentage. Rolling back a migration requires the states to be set in reverse order. So changing the scheme from EXTERNAL_MANAGED to EXTERNAL requires the state to be set to TEST_ALL_TRAFFIC at the same time. Optionally, the TEST_BY_PERCENTAGE state can be used to migrate some traffic back to EXTERNAL or PREPARE can be used to migrate all traffic back to EXTERNAL.
+     *           Check the ExternalManagedBackendBucketMigrationState enum for the list of possible values.
+     *     @type float $external_managed_backend_bucket_migration_testing_percentage
+     *           Determines the fraction of requests to backend buckets that should be processed by the global external Application Load Balancer. The value of this field must be in the range [0, 100]. This value can only be set if the loadBalancingScheme in the BackendService is set to EXTERNAL (when using the classic Application Load Balancer) and the migration state is TEST_BY_PERCENTAGE.
      *     @type string $fingerprint
      *           Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a ForwardingRule. Include the fingerprint in patch request to ensure that you do not overwrite changes that were applied from another concurrent request. To see the latest fingerprint, make a get() request to retrieve a ForwardingRule.
      *     @type int|string $id
@@ -300,6 +324,8 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *           [Output Only] URL of the region where the regional forwarding rule resides. This field is not applicable to global forwarding rules. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
+     *     @type string $self_link_with_id
+     *           [Output Only] Server-defined URL for this resource with the resource id.
      *     @type array<\Google\Cloud\Compute\V1\ForwardingRuleServiceDirectoryRegistration>|\Google\Protobuf\Internal\RepeatedField $service_directory_registrations
      *           Service Directory resources to register this forwarding rule with. Currently, only supports a single Service Directory resource.
      *     @type string $service_label
@@ -641,6 +667,80 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the canary migration state for the backend buckets attached to this forwarding rule. Possible values are PREPARE, TEST_BY_PERCENTAGE, and TEST_ALL_TRAFFIC. To begin the migration from EXTERNAL to EXTERNAL_MANAGED, the state must be changed to PREPARE. The state must be changed to TEST_ALL_TRAFFIC before the loadBalancingScheme can be changed to EXTERNAL_MANAGED. Optionally, the TEST_BY_PERCENTAGE state can be used to migrate traffic to backend buckets attached to this forwarding rule by percentage using externalManagedBackendBucketMigrationTestingPercentage. Rolling back a migration requires the states to be set in reverse order. So changing the scheme from EXTERNAL_MANAGED to EXTERNAL requires the state to be set to TEST_ALL_TRAFFIC at the same time. Optionally, the TEST_BY_PERCENTAGE state can be used to migrate some traffic back to EXTERNAL or PREPARE can be used to migrate all traffic back to EXTERNAL.
+     * Check the ExternalManagedBackendBucketMigrationState enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string external_managed_backend_bucket_migration_state = 107811370;</code>
+     * @return string
+     */
+    public function getExternalManagedBackendBucketMigrationState()
+    {
+        return isset($this->external_managed_backend_bucket_migration_state) ? $this->external_managed_backend_bucket_migration_state : '';
+    }
+
+    public function hasExternalManagedBackendBucketMigrationState()
+    {
+        return isset($this->external_managed_backend_bucket_migration_state);
+    }
+
+    public function clearExternalManagedBackendBucketMigrationState()
+    {
+        unset($this->external_managed_backend_bucket_migration_state);
+    }
+
+    /**
+     * Specifies the canary migration state for the backend buckets attached to this forwarding rule. Possible values are PREPARE, TEST_BY_PERCENTAGE, and TEST_ALL_TRAFFIC. To begin the migration from EXTERNAL to EXTERNAL_MANAGED, the state must be changed to PREPARE. The state must be changed to TEST_ALL_TRAFFIC before the loadBalancingScheme can be changed to EXTERNAL_MANAGED. Optionally, the TEST_BY_PERCENTAGE state can be used to migrate traffic to backend buckets attached to this forwarding rule by percentage using externalManagedBackendBucketMigrationTestingPercentage. Rolling back a migration requires the states to be set in reverse order. So changing the scheme from EXTERNAL_MANAGED to EXTERNAL requires the state to be set to TEST_ALL_TRAFFIC at the same time. Optionally, the TEST_BY_PERCENTAGE state can be used to migrate some traffic back to EXTERNAL or PREPARE can be used to migrate all traffic back to EXTERNAL.
+     * Check the ExternalManagedBackendBucketMigrationState enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string external_managed_backend_bucket_migration_state = 107811370;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setExternalManagedBackendBucketMigrationState($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->external_managed_backend_bucket_migration_state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Determines the fraction of requests to backend buckets that should be processed by the global external Application Load Balancer. The value of this field must be in the range [0, 100]. This value can only be set if the loadBalancingScheme in the BackendService is set to EXTERNAL (when using the classic Application Load Balancer) and the migration state is TEST_BY_PERCENTAGE.
+     *
+     * Generated from protobuf field <code>optional float external_managed_backend_bucket_migration_testing_percentage = 105676592;</code>
+     * @return float
+     */
+    public function getExternalManagedBackendBucketMigrationTestingPercentage()
+    {
+        return isset($this->external_managed_backend_bucket_migration_testing_percentage) ? $this->external_managed_backend_bucket_migration_testing_percentage : 0.0;
+    }
+
+    public function hasExternalManagedBackendBucketMigrationTestingPercentage()
+    {
+        return isset($this->external_managed_backend_bucket_migration_testing_percentage);
+    }
+
+    public function clearExternalManagedBackendBucketMigrationTestingPercentage()
+    {
+        unset($this->external_managed_backend_bucket_migration_testing_percentage);
+    }
+
+    /**
+     * Determines the fraction of requests to backend buckets that should be processed by the global external Application Load Balancer. The value of this field must be in the range [0, 100]. This value can only be set if the loadBalancingScheme in the BackendService is set to EXTERNAL (when using the classic Application Load Balancer) and the migration state is TEST_BY_PERCENTAGE.
+     *
+     * Generated from protobuf field <code>optional float external_managed_backend_bucket_migration_testing_percentage = 105676592;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setExternalManagedBackendBucketMigrationTestingPercentage($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->external_managed_backend_bucket_migration_testing_percentage = $var;
 
         return $this;
     }
@@ -1339,6 +1439,42 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->self_link = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Server-defined URL for this resource with the resource id.
+     *
+     * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
+     * @return string
+     */
+    public function getSelfLinkWithId()
+    {
+        return isset($this->self_link_with_id) ? $this->self_link_with_id : '';
+    }
+
+    public function hasSelfLinkWithId()
+    {
+        return isset($this->self_link_with_id);
+    }
+
+    public function clearSelfLinkWithId()
+    {
+        unset($this->self_link_with_id);
+    }
+
+    /**
+     * [Output Only] Server-defined URL for this resource with the resource id.
+     *
+     * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSelfLinkWithId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->self_link_with_id = $var;
 
         return $this;
     }

@@ -64,6 +64,18 @@ class ReservationBlock extends \Google\Protobuf\Internal\Message
      */
     private $reservation_maintenance = null;
     /**
+     * [Output Only] The number of reservation subBlocks associated with this reservation block.
+     *
+     * Generated from protobuf field <code>optional int32 reservation_sub_block_count = 330782955;</code>
+     */
+    private $reservation_sub_block_count = null;
+    /**
+     * [Output Only] The number of in-use reservation subBlocks associated with this reservation block. If at least one VM is running on a subBlock, it is considered in-use.
+     *
+     * Generated from protobuf field <code>optional int32 reservation_sub_block_in_use_count = 186007137;</code>
+     */
+    private $reservation_sub_block_in_use_count = null;
+    /**
      * [Output Only] Server-defined fully-qualified URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -111,6 +123,10 @@ class ReservationBlock extends \Google\Protobuf\Internal\Message
      *           [Output Only] The physical topology of the reservation block.
      *     @type \Google\Cloud\Compute\V1\GroupMaintenanceInfo $reservation_maintenance
      *           [Output Only] Maintenance information for this reservation block.
+     *     @type int $reservation_sub_block_count
+     *           [Output Only] The number of reservation subBlocks associated with this reservation block.
+     *     @type int $reservation_sub_block_in_use_count
+     *           [Output Only] The number of in-use reservation subBlocks associated with this reservation block. If at least one VM is running on a subBlock, it is considered in-use.
      *     @type string $self_link
      *           [Output Only] Server-defined fully-qualified URL for this resource.
      *     @type string $self_link_with_id
@@ -411,6 +427,78 @@ class ReservationBlock extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\GroupMaintenanceInfo::class);
         $this->reservation_maintenance = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The number of reservation subBlocks associated with this reservation block.
+     *
+     * Generated from protobuf field <code>optional int32 reservation_sub_block_count = 330782955;</code>
+     * @return int
+     */
+    public function getReservationSubBlockCount()
+    {
+        return isset($this->reservation_sub_block_count) ? $this->reservation_sub_block_count : 0;
+    }
+
+    public function hasReservationSubBlockCount()
+    {
+        return isset($this->reservation_sub_block_count);
+    }
+
+    public function clearReservationSubBlockCount()
+    {
+        unset($this->reservation_sub_block_count);
+    }
+
+    /**
+     * [Output Only] The number of reservation subBlocks associated with this reservation block.
+     *
+     * Generated from protobuf field <code>optional int32 reservation_sub_block_count = 330782955;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setReservationSubBlockCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->reservation_sub_block_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The number of in-use reservation subBlocks associated with this reservation block. If at least one VM is running on a subBlock, it is considered in-use.
+     *
+     * Generated from protobuf field <code>optional int32 reservation_sub_block_in_use_count = 186007137;</code>
+     * @return int
+     */
+    public function getReservationSubBlockInUseCount()
+    {
+        return isset($this->reservation_sub_block_in_use_count) ? $this->reservation_sub_block_in_use_count : 0;
+    }
+
+    public function hasReservationSubBlockInUseCount()
+    {
+        return isset($this->reservation_sub_block_in_use_count);
+    }
+
+    public function clearReservationSubBlockInUseCount()
+    {
+        unset($this->reservation_sub_block_in_use_count);
+    }
+
+    /**
+     * [Output Only] The number of in-use reservation subBlocks associated with this reservation block. If at least one VM is running on a subBlock, it is considered in-use.
+     *
+     * Generated from protobuf field <code>optional int32 reservation_sub_block_in_use_count = 186007137;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setReservationSubBlockInUseCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->reservation_sub_block_in_use_count = $var;
 
         return $this;
     }
