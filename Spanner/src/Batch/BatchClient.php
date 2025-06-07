@@ -157,7 +157,10 @@ class BatchClient
      * $snapshot = $batch->snapshot();
      * ```
      *
-     * @param array $options [optional] {
+     * @param array{
+     *     transactionOptions?: array{strong?: bool, readTimestamp?: Timestamp, exactStaleness?: Duration},
+     *     sessionOptions?: array,
+     * } $options {
      *     Configuration Options
      *
      *     See [ReadOnly](https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.TransactionOptions.ReadOnly)
