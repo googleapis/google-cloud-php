@@ -46,12 +46,12 @@ class EntityIteratorTest extends TestCase
     public function testGetExplainMetrics()
     {
         $explainMetrics = [
-            "planSummary" => [
-                "indexesUsed" => [
+            'planSummary' => [
+                'indexesUsed' => [
                     [
-                        "fields" => [
-                            "query_scope" => "Collection group",
-                            "properties" => "(done ASC, __name__ ASC)"
+                        'fields' => [
+                            'query_scope' => 'Collection group',
+                            'properties' => '(done ASC, __name__ ASC)'
                         ]
                     ]
                 ]

@@ -775,7 +775,9 @@ class DatastoreClientTest extends TestCase
         $query->queryKey()->willReturn('gqlQuery');
         $query->queryObject()->willReturn(['queryString' => 'SELECT 1=1']);
 
-        iterator_to_array($this->client->runQuery($query->reveal(), ['explainOptions' => $explainOptions]));
+        $result = $this->client->runQuery($query->reveal(), ['explainOptions' => $explainOptions]);
+
+        iterator_to_array($result);
     }
 
     public function aggregationReturnTypesCases()
