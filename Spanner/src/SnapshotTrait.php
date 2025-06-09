@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\ArrayTrait;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 
@@ -25,6 +26,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  */
 trait SnapshotTrait
 {
+    use ArrayTrait;
     use TransactionalReadTrait;
 
     /**
@@ -45,6 +47,7 @@ trait SnapshotTrait
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
+     *     @type array $transactionOptions The Transaction Options
      * }
      */
     private function initialize(
@@ -64,15 +67,19 @@ trait SnapshotTrait
             throw new \InvalidArgumentException('$options.readTimestamp must be an instance of Timestamp.');
         }
 
-        $this->transactionId = $options['id'] ?: null;
-        $this->readTimestamp = $options['readTimestamp'];
-        $this->type = $options['id']
+        $this->transactionId = $this->pluck('id', $options) ?: null;
+        $this->readTimestamp = $this->pluck('readTimestamp', $options) ?: null;
+        $this->type = $this->transactionId
             ? self::TYPE_PRE_ALLOCATED
             : self::TYPE_SINGLE_USE;
 
         $this->context = SessionPoolInterface::CONTEXT_READ;
         $this->directedReadOptions = $options['directedReadOptions'] ?? [];
-        $this->options = $options;
+        $this->transactionSelector = array_intersect_key(
+            (array) $options,
+            array_flip(['singleUse', 'begin'])
+        );
+        $this->transactionOptions = $options['transactionOptions'] ?? [];
     }
 
     /**

@@ -36,7 +36,7 @@ use Google\Cloud\Spanner\KeySet;
  * use Google\Cloud\Spanner\KeySet;
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $batch = $spanner->batch('instance-id', 'database-id');
  * $snapshot = $batch->snapshot();
  *
