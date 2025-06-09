@@ -135,32 +135,9 @@ class EntityIterator implements \Iterator
         }
 
         $explainMetrics = new ExplainMetrics();
-        $jsonString = json_encode($this->fixDurationFormat($metrics));
+        $jsonString = json_encode($metrics);
         $explainMetrics->mergeFromJsonString($jsonString);
 
         return $explainMetrics;
-    }
-
-    private function fixDurationFormat(array $metrics): array
-    {
-        // The current protobuf library does not support the current json representation
-        // of the well-known type Duration.
-        // Hence we have to convert the object format into a string format for the merging from json to work.
-        // If the protobuf library gets updated, this should be removed.
-        if (!isset($metrics['executionStats']) && !isset($metrics['executionStats']['executionDuration'])) {
-            return $metrics;
-        }
-
-        // The REST version returns the executionDuration in a String format. If is a string should be ready to go
-        if (isset($metrics['executionStats']) && is_string($metrics['executionStats']['executionDuration'])) {
-            return $metrics;
-        }
-
-        $seconds = $metrics['executionStats']['executionDuration']['seconds'];
-        $nanos = str_pad($metrics['executionStats']['executionDuration']['nanos'], 9, 0, STR_PAD_LEFT);
-
-        $metrics['executionStats']['executionDuration'] = "{$seconds}.{$nanos}s";
-
-        return $metrics;
     }
 }
