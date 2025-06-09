@@ -321,8 +321,8 @@ trait GrpcTrait
      */
     private function formatDurationFromApi($value): string
     {
-        $seconds = $metrics['seconds'];
-        $nanos = str_pad($metrics['nanos'], 9, 0, STR_PAD_LEFT);
+        $seconds = $value['seconds'];
+        $nanos = str_pad($value['nanos'], 9, 0, STR_PAD_LEFT);
 
         return "{$seconds}.{$nanos}s";
     }
