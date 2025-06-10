@@ -583,7 +583,7 @@ class Operation
 
         if (isset($options['explainOptions']) && !$options['explainOptions'] instanceof ExplainOptions) {
             throw new InvalidArgumentException(
-                'The explainOptions parameter needs to be an instance of the ExplainOptions class'
+                'The explainOptions option needs to be an instance of the ExplainOptions class'
             );
         }
 

@@ -55,7 +55,7 @@ class EntityIterator implements \Iterator
      * contains only the planning statistics {@see \Google\Cloud\Datastore\V1\ExplainMetrics}.
      *
      * If the request was configured with the ExplainOptions object `Analyze` attribute to true
-     * the request then also gets executed, including the ExecutionStates on the ExplainMetrics
+     * the request then also gets executed, including the ExecutionStats on the ExplainMetrics
      * object
      *
      * Contrary to looping through the result of run query, this method caches the first metrics
@@ -98,10 +98,10 @@ class EntityIterator implements \Iterator
      * $explainMetrics = $res->getExplainMetrics();
      *
      * // This is populated
-     * $explainMetrics->planningSummary
+     * $explainMetrics->getPlanSummary()
      *
      * // This is also populated
-     * $explainMetrics->executionStats
+     * $explainMetrics->getExecutionStats()
      * ```
      *
      * @return null|ExplainMetrics
@@ -129,6 +129,8 @@ class EntityIterator implements \Iterator
 
             $this->pageIterator->next();
         }
+
+        $this->rewind();
 
         if (is_null($metrics)) {
             return null;
