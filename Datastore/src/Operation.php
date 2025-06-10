@@ -25,7 +25,9 @@ use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Datastore\V1\ExplainOptions;
 use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
+use InvalidArgumentException;
 
 /**
  * Run lookups and queries and commit changes.
@@ -456,8 +458,11 @@ class Operation
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      *     @type string $databaseId ID of the database to which the entities belong.
      *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
+     *     @type ExplainMetrics $explainMetrics The ExplainMetrics object for query stats.
+     *           {@see \Google\Cloud\Datastore\V1\ExplainOptions}
      * }
      * @return EntityIterator<EntityInterface>
+     * @throws InvalidArgumentException
      */
     public function runQuery(QueryInterface $query, array $options = [])
     {
@@ -466,6 +471,10 @@ class Operation
             'namespaceId' => $this->namespaceId,
             'databaseId' => $this->databaseId,
         ];
+
+        if (isset($options['explainOptions']) && !$options['explainOptions'] instanceof ExplainOptions) {
+            throw new InvalidArgumentException('The explainOptions option should be an instance of ExplainOptions.');
+        }
 
         $iteratorConfig = [
             'itemsKey' => 'batch.entityResults',
@@ -571,6 +580,12 @@ class Operation
             'namespaceId' => $this->namespaceId,
             'databaseId' => $this->databaseId,
         ];
+
+        if (isset($options['explainOptions']) && !$options['explainOptions'] instanceof ExplainOptions) {
+            throw new InvalidArgumentException(
+                'The explainOptions option needs to be an instance of the ExplainOptions class'
+            );
+        }
 
         $args = [
             'query' => [],
