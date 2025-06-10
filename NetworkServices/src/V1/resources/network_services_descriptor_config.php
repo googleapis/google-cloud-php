@@ -137,6 +137,25 @@ return [
                     ],
                 ],
             ],
+            'CreateServiceLbPolicy' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkServices\V1\ServiceLbPolicy',
+                    'metadataReturnType' => '\Google\Cloud\NetworkServices\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateTcpRoute' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\NetworkServices\V1\TcpRoute',
@@ -271,6 +290,25 @@ return [
                 ],
             ],
             'DeleteServiceBinding' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\NetworkServices\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteServiceLbPolicy' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\NetworkServices\V1\OperationMetadata',
@@ -427,6 +465,46 @@ return [
                     ],
                 ],
             ],
+            'UpdateServiceBinding' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkServices\V1\ServiceBinding',
+                    'metadataReturnType' => '\Google\Cloud\NetworkServices\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'service_binding.name',
+                        'fieldAccessors' => [
+                            'getServiceBinding',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateServiceLbPolicy' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkServices\V1\ServiceLbPolicy',
+                    'metadataReturnType' => '\Google\Cloud\NetworkServices\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'service_lb_policy.name',
+                        'fieldAccessors' => [
+                            'getServiceLbPolicy',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateTcpRoute' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\NetworkServices\V1\TcpRoute',
@@ -491,6 +569,18 @@ return [
                     ],
                 ],
             ],
+            'GetGatewayRouteView' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\NetworkServices\V1\GatewayRouteView',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetGrpcRoute' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\NetworkServices\V1\GrpcRoute',
@@ -527,9 +617,33 @@ return [
                     ],
                 ],
             ],
+            'GetMeshRouteView' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\NetworkServices\V1\MeshRouteView',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetServiceBinding' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\NetworkServices\V1\ServiceBinding',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetServiceLbPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\NetworkServices\V1\ServiceLbPolicy',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -574,6 +688,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\NetworkServices\V1\ListEndpointPoliciesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListGatewayRouteViews' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getGatewayRouteViews',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\NetworkServices\V1\ListGatewayRouteViewsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -643,6 +777,26 @@ return [
                     ],
                 ],
             ],
+            'ListMeshRouteViews' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getMeshRouteViews',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\NetworkServices\V1\ListMeshRouteViewsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListMeshes' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -674,6 +828,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\NetworkServices\V1\ListServiceBindingsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListServiceLbPolicies' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getServiceLbPolicies',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\NetworkServices\V1\ListServiceLbPoliciesResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -797,17 +971,26 @@ return [
                 'interfaceOverride' => 'google.iam.v1.IAMPolicy',
             ],
             'templateMap' => [
+                'address' => 'projects/{project}/regions/{region}/addresses/{address}',
                 'authorizationPolicy' => 'projects/{project}/locations/{location}/authorizationPolicies/{authorization_policy}',
                 'backendService' => 'projects/{project}/locations/{location}/backendServices/{backend_service}',
+                'certificate' => 'projects/{project}/locations/{location}/certificates/{certificate}',
                 'clientTlsPolicy' => 'projects/{project}/locations/{location}/clientTlsPolicies/{client_tls_policy}',
                 'endpointPolicy' => 'projects/{project}/locations/{location}/endpointPolicies/{endpoint_policy}',
                 'gateway' => 'projects/{project}/locations/{location}/gateways/{gateway}',
+                'gatewayRouteView' => 'projects/{project}/locations/{location}/gateways/{gateway}/routeViews/{route_view}',
+                'gatewaySecurityPolicy' => 'projects/{project}/locations/{location}/gatewaySecurityPolicies/{gateway_security_policy}',
                 'grpcRoute' => 'projects/{project}/locations/{location}/grpcRoutes/{grpc_route}',
                 'httpRoute' => 'projects/{project}/locations/{location}/httpRoutes/{http_route}',
                 'location' => 'projects/{project}/locations/{location}',
                 'mesh' => 'projects/{project}/locations/{location}/meshes/{mesh}',
+                'meshRouteView' => 'projects/{project}/locations/{location}/meshes/{mesh}/routeViews/{route_view}',
+                'network' => 'projects/{project}/global/networks/{network}',
                 'serverTlsPolicy' => 'projects/{project}/locations/{location}/serverTlsPolicies/{server_tls_policy}',
+                'service' => 'projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}',
                 'serviceBinding' => 'projects/{project}/locations/{location}/serviceBindings/{service_binding}',
+                'serviceLbPolicy' => 'projects/{project}/locations/{location}/serviceLbPolicies/{service_lb_policy}',
+                'subnetwork' => 'projects/{project}/regions/{region}/subnetworks/{subnetwork}',
                 'tcpRoute' => 'projects/{project}/locations/{location}/tcpRoutes/{tcp_route}',
                 'tlsRoute' => 'projects/{project}/locations/{location}/tlsRoutes/{tls_route}',
             ],

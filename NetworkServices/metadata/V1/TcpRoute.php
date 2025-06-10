@@ -16,14 +16,15 @@ class TcpRoute
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-À
-/google/cloud/networkservices/v1/tcp_route.protogoogle.cloud.networkservices.v1google/api/resource.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"¿
+Ë
+/google/cloud/networkservices/v1/tcp_route.protogoogle.cloud.networkservices.v1google/api/resource.protogoogle/protobuf/duration.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"ˆ
 TcpRoute
-name (	B‡A
+name (	B‡A
 	self_link (	B‡A4
 create_time (2.google.protobuf.TimestampB‡A4
 update_time (2.google.protobuf.TimestampB‡A
@@ -41,10 +42,11 @@ class TcpRoute
 
 RouteMatch
 address (	B‡A
-port (	B‡Aá
+port (	B‡AΩ
 RouteActionU
 destinations (2:.google.cloud.networkservices.v1.TcpRoute.RouteDestinationB‡A!
-original_destination (B‡Al
+original_destination (B‡A4
+idle_timeout (2.google.protobuf.DurationB‡Al
 RouteDestinationC
 service_name (	B-‡A˙A\'
 %compute.googleapis.com/BackendService
@@ -52,16 +54,18 @@ RouteMatch
 LabelsEntry
 key (	
 value (	:8:kÍAh
-\'networkservices.googleapis.com/TcpRoute=projects/{project}/locations/{location}/tcpRoutes/{tcp_route}"~
+\'networkservices.googleapis.com/TcpRoute=projects/{project}/locations/{location}/tcpRoutes/{tcp_route}"£
 ListTcpRoutesRequest?
 parent (	B/‡A˙A)\'networkservices.googleapis.com/TcpRoute
 	page_size (
 
-page_token (	"o
+page_token (	#
+return_partial_success (B‡A"Ñ
 ListTcpRoutesResponse=
 
 tcp_routes (2).google.cloud.networkservices.v1.TcpRoute
-next_page_token (	"S
+next_page_token (	
+unreachable (	"S
 GetTcpRouteRequest=
 name (	B/‡A˙A)
 \'networkservices.googleapis.com/TcpRoute"∂
@@ -74,9 +78,8 @@ tcp_routes (2).google.cloud.networkservices.v1.TcpRoute
 	tcp_route (2).google.cloud.networkservices.v1.TcpRouteB‡A"V
 DeleteTcpRouteRequest=
 name (	B/‡A˙A)
-\'networkservices.googleapis.com/TcpRouteB„
-#com.google.cloud.networkservices.v1BTcpRouteProtoPZMcloud.google.com/go/networkservices/apiv1/networkservicespb;networkservicespb™Google.Cloud.NetworkServices.V1 Google\\Cloud\\NetworkServices\\V1Í"Google::Cloud::NetworkServices::V1ÍAr
-%compute.googleapis.com/BackendServiceIprojects/{project}/locations/{location}/backendServices/{backend_service}bproto3'
+\'networkservices.googleapis.com/TcpRouteBÓ
+#com.google.cloud.networkservices.v1BTcpRouteProtoPZMcloud.google.com/go/networkservices/apiv1/networkservicespb;networkservicespb™Google.Cloud.NetworkServices.V1 Google\\Cloud\\NetworkServices\\V1Í"Google::Cloud::NetworkServices::V1bproto3'
         , true);
 
         static::$is_initialized = true;
