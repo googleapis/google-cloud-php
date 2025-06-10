@@ -67,6 +67,8 @@ class EntityIteratorTest extends TestCase
         $pageIterator->nextResultToken()
             ->willReturn(null)
             ->shouldBeCalled(1);
+        $pageIterator->rewind()
+            ->shouldBeCalledTimes(1);
 
         $response = new EntityIterator($pageIterator->reveal());
 
