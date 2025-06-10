@@ -23,9 +23,9 @@ class ExplicitDecodingConfig extends \Google\Protobuf\Internal\Message
     protected $encoding = 0;
     /**
      * Optional. Sample rate in Hertz of the audio data sent for recognition.
-     * Valid values are: 8000-48000. 16000 is optimal. For best results, set the
-     * sampling rate of the audio source to 16000 Hz. If that's not possible, use
-     * the native sample rate of the audio source (instead of re-sampling).
+     * Valid values are: 8000-48000, and 16000 is optimal. For best results, set
+     * the sampling rate of the audio source to 16000 Hz. If that's not possible,
+     * use the native sample rate of the audio source (instead of resampling).
      * Note that this field is marked as OPTIONAL for backward compatibility
      * reasons. It is (and has always been) effectively REQUIRED.
      *
@@ -52,9 +52,9 @@ class ExplicitDecodingConfig extends \Google\Protobuf\Internal\Message
      *           Required. Encoding of the audio data sent for recognition.
      *     @type int $sample_rate_hertz
      *           Optional. Sample rate in Hertz of the audio data sent for recognition.
-     *           Valid values are: 8000-48000. 16000 is optimal. For best results, set the
-     *           sampling rate of the audio source to 16000 Hz. If that's not possible, use
-     *           the native sample rate of the audio source (instead of re-sampling).
+     *           Valid values are: 8000-48000, and 16000 is optimal. For best results, set
+     *           the sampling rate of the audio source to 16000 Hz. If that's not possible,
+     *           use the native sample rate of the audio source (instead of resampling).
      *           Note that this field is marked as OPTIONAL for backward compatibility
      *           reasons. It is (and has always been) effectively REQUIRED.
      *     @type int $audio_channel_count
@@ -97,9 +97,9 @@ class ExplicitDecodingConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Sample rate in Hertz of the audio data sent for recognition.
-     * Valid values are: 8000-48000. 16000 is optimal. For best results, set the
-     * sampling rate of the audio source to 16000 Hz. If that's not possible, use
-     * the native sample rate of the audio source (instead of re-sampling).
+     * Valid values are: 8000-48000, and 16000 is optimal. For best results, set
+     * the sampling rate of the audio source to 16000 Hz. If that's not possible,
+     * use the native sample rate of the audio source (instead of resampling).
      * Note that this field is marked as OPTIONAL for backward compatibility
      * reasons. It is (and has always been) effectively REQUIRED.
      *
@@ -113,9 +113,9 @@ class ExplicitDecodingConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Sample rate in Hertz of the audio data sent for recognition.
-     * Valid values are: 8000-48000. 16000 is optimal. For best results, set the
-     * sampling rate of the audio source to 16000 Hz. If that's not possible, use
-     * the native sample rate of the audio source (instead of re-sampling).
+     * Valid values are: 8000-48000, and 16000 is optimal. For best results, set
+     * the sampling rate of the audio source to 16000 Hz. If that's not possible,
+     * use the native sample rate of the audio source (instead of resampling).
      * Note that this field is marked as OPTIONAL for backward compatibility
      * reasons. It is (and has always been) effectively REQUIRED.
      *
