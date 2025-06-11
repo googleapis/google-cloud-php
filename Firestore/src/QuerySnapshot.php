@@ -118,8 +118,10 @@ class QuerySnapshot implements \IteratorAggregate
     }
 
     /**
-     * Return the explainMetrics option if the explainOptions was supplied
-     * {@see \Google\Cloud\Firestore\ExplainOptions}
+     * Get the ExplainMetrics if the explainOptions was supplied.
+     * If the explainOptions analyze was set to false, the query gets
+     * planned and not executed returning only the planSummary and not
+     * the executionStats nor the result.
      *
      * @return null|ExplainMetrics
      */
