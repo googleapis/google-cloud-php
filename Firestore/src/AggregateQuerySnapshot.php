@@ -106,7 +106,7 @@ class AggregateQuerySnapshot
      * If the explainOptions analyze was set to false, the query gets
      * planned and not executed returning only the planSummary and not
      * the executionStats nor the result.
-     * {@see \Google\Cloud\Firestore\ExplainOptions}
+     * {@see \Google\Cloud\Firestore\V1\ExplainMetrics}
      *
      * @return null|ExplainMetrics
      */
