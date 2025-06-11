@@ -18,6 +18,8 @@
 namespace Google\Cloud\Firestore;
 
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\V1\ExplainOptions;
+use InvalidArgumentException;
 
 /**
  * A Cloud Firestore Aggregate Query.
@@ -98,12 +100,21 @@ class AggregateQuery
      *     Configuration options is an array.
      *
      *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
+     *     @type ExplainOptions $explainOptions An instance of the ExplainOptions class.
+     *           {@see \Google\Cloud\Firestore\ExplainOptions}
      * }
      * @return AggregateQuerySnapshot
      */
     public function getSnapshot($options = [])
     {
         $parsedAggregates = [];
+
+        if (isset($options['explainOptions']) && !$options['explainOptions'] instanceof ExplainOptions) {
+            throw new InvalidArgumentException(
+                'The explainOptions option must be an instance of the ExplainOptions class.'
+            );
+        }
+
         foreach ($this->aggregates as $aggregate) {
             $parsedAggregates[] = $aggregate->getProps();
         }
