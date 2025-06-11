@@ -189,7 +189,9 @@ class Query
     public function count(array $options = [])
     {
         if (isset($options['explainOptions'])) {
-            throw new InvalidArgumentException('The explainOptions option is not supported in the ' . __FUNCTION__ . ' method');
+            throw new InvalidArgumentException(
+                'The explainOptions option is not supported in the ' . __FUNCTION__ . ' method'
+            );
         }
         $aggregateQuery = $this->addAggregation(Aggregate::count()->alias('count'));
 
@@ -221,7 +223,9 @@ class Query
     public function sum(string $field, array $options = [])
     {
         if (isset($options['explainOptions'])) {
-            throw new InvalidArgumentException('The explainOptions option is not supported in the ' . __FUNCTION__ . ' method');
+            throw new InvalidArgumentException(
+                'The explainOptions option is not supported in the ' . __FUNCTION__ . ' method'
+            );
         }
         $aggregateQuery = $this->addAggregation(Aggregate::sum($field)->alias('sum'));
 
@@ -253,7 +257,9 @@ class Query
     public function avg(string $field, array $options = [])
     {
         if (isset($options['explainOptions'])) {
-            throw new InvalidArgumentException('The explainOptions option is not supported in the ' . __FUNCTION__ . ' method');
+            throw new InvalidArgumentException(
+                'The explainOptions option is not supported in the ' . __FUNCTION__ . ' method'
+            );
         }
         $aggregateQuery = $this->addAggregation(Aggregate::avg($field)->alias('avg'));
 

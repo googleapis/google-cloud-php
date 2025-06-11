@@ -110,7 +110,9 @@ class AggregateQuery
         $parsedAggregates = [];
 
         if (isset($options['explainOptions']) && !$options['explainOptions'] instanceof ExplainOptions) {
-            throw new InvalidArgumentException('The explainOptions option must be an instance of the ExplainOptions class.');
+            throw new InvalidArgumentException(
+                'The explainOptions option must be an instance of the ExplainOptions class.'
+            );
         }
 
         foreach ($this->aggregates as $aggregate) {
