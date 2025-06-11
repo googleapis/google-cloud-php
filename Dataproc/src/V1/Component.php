@@ -30,6 +30,12 @@ class Component
      */
     const ANACONDA = 5;
     /**
+     * Delta Lake.
+     *
+     * Generated from protobuf enum <code>DELTA = 20;</code>
+     */
+    const DELTA = 20;
+    /**
      * Docker
      *
      * Generated from protobuf enum <code>DOCKER = 13;</code>
@@ -66,11 +72,23 @@ class Component
      */
     const HUDI = 18;
     /**
+     * Iceberg.
+     *
+     * Generated from protobuf enum <code>ICEBERG = 19;</code>
+     */
+    const ICEBERG = 19;
+    /**
      * The Jupyter Notebook.
      *
      * Generated from protobuf enum <code>JUPYTER = 1;</code>
      */
     const JUPYTER = 1;
+    /**
+     * The Pig component.
+     *
+     * Generated from protobuf enum <code>PIG = 21;</code>
+     */
+    const PIG = 21;
     /**
      * The Presto query engine.
      *
@@ -111,13 +129,16 @@ class Component
     private static $valueToName = [
         self::COMPONENT_UNSPECIFIED => 'COMPONENT_UNSPECIFIED',
         self::ANACONDA => 'ANACONDA',
+        self::DELTA => 'DELTA',
         self::DOCKER => 'DOCKER',
         self::DRUID => 'DRUID',
         self::FLINK => 'FLINK',
         self::HBASE => 'HBASE',
         self::HIVE_WEBHCAT => 'HIVE_WEBHCAT',
         self::HUDI => 'HUDI',
+        self::ICEBERG => 'ICEBERG',
         self::JUPYTER => 'JUPYTER',
+        self::PIG => 'PIG',
         self::PRESTO => 'PRESTO',
         self::TRINO => 'TRINO',
         self::RANGER => 'RANGER',
