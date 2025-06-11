@@ -117,6 +117,12 @@ class QuerySnapshot implements \IteratorAggregate
         return $this->rows;
     }
 
+    /**
+     * Return the explainMetrics option if the explainOptions was supplied
+     * {@see \Google\Cloud\Firestore\ExplainOptions}
+     *
+     * @return null|ExplainMetrics
+     */
     public function getExplainMetrics()
     {
         return $this->explainMetrics;

@@ -102,7 +102,8 @@ class AggregateQuerySnapshot
     }
 
     /**
-     * Get the ExplainMetrics object (TODO)
+     * Get the ExplainMetrics if the explainOptions was supplied
+     * {@see \Google\Cloud\Firestore\ExplainOptions}
      *
      * @return null|ExplainMetrics
      */
