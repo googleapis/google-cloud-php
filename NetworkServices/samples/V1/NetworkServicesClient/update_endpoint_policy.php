@@ -35,12 +35,10 @@ use Google\Rpc\Status;
 /**
  * Updates the parameters of a single EndpointPolicy.
  *
- * @param string $endpointPolicyName Name of the EndpointPolicy resource. It matches pattern
- *                                   `projects/{project}/locations/global/endpointPolicies/{endpoint_policy}`.
- * @param int    $endpointPolicyType The type of endpoint policy. This is primarily used to validate
- *                                   the configuration.
+ * @param int $endpointPolicyType The type of endpoint policy. This is primarily used to validate
+ *                                the configuration.
  */
-function update_endpoint_policy_sample(string $endpointPolicyName, int $endpointPolicyType): void
+function update_endpoint_policy_sample(int $endpointPolicyType): void
 {
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
@@ -48,7 +46,6 @@ function update_endpoint_policy_sample(string $endpointPolicyName, int $endpoint
     // Prepare the request message.
     $endpointPolicyEndpointMatcher = new EndpointMatcher();
     $endpointPolicy = (new EndpointPolicy())
-        ->setName($endpointPolicyName)
         ->setType($endpointPolicyType)
         ->setEndpointMatcher($endpointPolicyEndpointMatcher);
     $request = (new UpdateEndpointPolicyRequest())
@@ -85,9 +82,8 @@ function update_endpoint_policy_sample(string $endpointPolicyName, int $endpoint
  */
 function callSample(): void
 {
-    $endpointPolicyName = '[NAME]';
     $endpointPolicyType = EndpointPolicyType::ENDPOINT_POLICY_TYPE_UNSPECIFIED;
 
-    update_endpoint_policy_sample($endpointPolicyName, $endpointPolicyType);
+    update_endpoint_policy_sample($endpointPolicyType);
 }
 // [END networkservices_v1_generated_NetworkServices_UpdateEndpointPolicy_sync]

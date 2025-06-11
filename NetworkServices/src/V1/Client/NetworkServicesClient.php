@@ -48,6 +48,7 @@ use Google\Cloud\NetworkServices\V1\CreateGrpcRouteRequest;
 use Google\Cloud\NetworkServices\V1\CreateHttpRouteRequest;
 use Google\Cloud\NetworkServices\V1\CreateMeshRequest;
 use Google\Cloud\NetworkServices\V1\CreateServiceBindingRequest;
+use Google\Cloud\NetworkServices\V1\CreateServiceLbPolicyRequest;
 use Google\Cloud\NetworkServices\V1\CreateTcpRouteRequest;
 use Google\Cloud\NetworkServices\V1\CreateTlsRouteRequest;
 use Google\Cloud\NetworkServices\V1\DeleteEndpointPolicyRequest;
@@ -56,30 +57,40 @@ use Google\Cloud\NetworkServices\V1\DeleteGrpcRouteRequest;
 use Google\Cloud\NetworkServices\V1\DeleteHttpRouteRequest;
 use Google\Cloud\NetworkServices\V1\DeleteMeshRequest;
 use Google\Cloud\NetworkServices\V1\DeleteServiceBindingRequest;
+use Google\Cloud\NetworkServices\V1\DeleteServiceLbPolicyRequest;
 use Google\Cloud\NetworkServices\V1\DeleteTcpRouteRequest;
 use Google\Cloud\NetworkServices\V1\DeleteTlsRouteRequest;
 use Google\Cloud\NetworkServices\V1\EndpointPolicy;
 use Google\Cloud\NetworkServices\V1\Gateway;
+use Google\Cloud\NetworkServices\V1\GatewayRouteView;
 use Google\Cloud\NetworkServices\V1\GetEndpointPolicyRequest;
 use Google\Cloud\NetworkServices\V1\GetGatewayRequest;
+use Google\Cloud\NetworkServices\V1\GetGatewayRouteViewRequest;
 use Google\Cloud\NetworkServices\V1\GetGrpcRouteRequest;
 use Google\Cloud\NetworkServices\V1\GetHttpRouteRequest;
 use Google\Cloud\NetworkServices\V1\GetMeshRequest;
+use Google\Cloud\NetworkServices\V1\GetMeshRouteViewRequest;
 use Google\Cloud\NetworkServices\V1\GetServiceBindingRequest;
+use Google\Cloud\NetworkServices\V1\GetServiceLbPolicyRequest;
 use Google\Cloud\NetworkServices\V1\GetTcpRouteRequest;
 use Google\Cloud\NetworkServices\V1\GetTlsRouteRequest;
 use Google\Cloud\NetworkServices\V1\GrpcRoute;
 use Google\Cloud\NetworkServices\V1\HttpRoute;
 use Google\Cloud\NetworkServices\V1\ListEndpointPoliciesRequest;
+use Google\Cloud\NetworkServices\V1\ListGatewayRouteViewsRequest;
 use Google\Cloud\NetworkServices\V1\ListGatewaysRequest;
 use Google\Cloud\NetworkServices\V1\ListGrpcRoutesRequest;
 use Google\Cloud\NetworkServices\V1\ListHttpRoutesRequest;
+use Google\Cloud\NetworkServices\V1\ListMeshRouteViewsRequest;
 use Google\Cloud\NetworkServices\V1\ListMeshesRequest;
 use Google\Cloud\NetworkServices\V1\ListServiceBindingsRequest;
+use Google\Cloud\NetworkServices\V1\ListServiceLbPoliciesRequest;
 use Google\Cloud\NetworkServices\V1\ListTcpRoutesRequest;
 use Google\Cloud\NetworkServices\V1\ListTlsRoutesRequest;
 use Google\Cloud\NetworkServices\V1\Mesh;
+use Google\Cloud\NetworkServices\V1\MeshRouteView;
 use Google\Cloud\NetworkServices\V1\ServiceBinding;
+use Google\Cloud\NetworkServices\V1\ServiceLbPolicy;
 use Google\Cloud\NetworkServices\V1\TcpRoute;
 use Google\Cloud\NetworkServices\V1\TlsRoute;
 use Google\Cloud\NetworkServices\V1\UpdateEndpointPolicyRequest;
@@ -87,6 +98,8 @@ use Google\Cloud\NetworkServices\V1\UpdateGatewayRequest;
 use Google\Cloud\NetworkServices\V1\UpdateGrpcRouteRequest;
 use Google\Cloud\NetworkServices\V1\UpdateHttpRouteRequest;
 use Google\Cloud\NetworkServices\V1\UpdateMeshRequest;
+use Google\Cloud\NetworkServices\V1\UpdateServiceBindingRequest;
+use Google\Cloud\NetworkServices\V1\UpdateServiceLbPolicyRequest;
 use Google\Cloud\NetworkServices\V1\UpdateTcpRouteRequest;
 use Google\Cloud\NetworkServices\V1\UpdateTlsRouteRequest;
 use Google\LongRunning\Client\OperationsClient;
@@ -111,6 +124,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> createHttpRouteAsync(CreateHttpRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createMeshAsync(CreateMeshRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createServiceBindingAsync(CreateServiceBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createServiceLbPolicyAsync(CreateServiceLbPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createTcpRouteAsync(CreateTcpRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createTlsRouteAsync(CreateTlsRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteEndpointPolicyAsync(DeleteEndpointPolicyRequest $request, array $optionalArgs = [])
@@ -119,22 +133,29 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> deleteHttpRouteAsync(DeleteHttpRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteMeshAsync(DeleteMeshRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteServiceBindingAsync(DeleteServiceBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteServiceLbPolicyAsync(DeleteServiceLbPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteTcpRouteAsync(DeleteTcpRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteTlsRouteAsync(DeleteTlsRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<EndpointPolicy> getEndpointPolicyAsync(GetEndpointPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Gateway> getGatewayAsync(GetGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GatewayRouteView> getGatewayRouteViewAsync(GetGatewayRouteViewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GrpcRoute> getGrpcRouteAsync(GetGrpcRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<HttpRoute> getHttpRouteAsync(GetHttpRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Mesh> getMeshAsync(GetMeshRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MeshRouteView> getMeshRouteViewAsync(GetMeshRouteViewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ServiceBinding> getServiceBindingAsync(GetServiceBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServiceLbPolicy> getServiceLbPolicyAsync(GetServiceLbPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TcpRoute> getTcpRouteAsync(GetTcpRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TlsRoute> getTlsRouteAsync(GetTlsRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listEndpointPoliciesAsync(ListEndpointPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGatewayRouteViewsAsync(ListGatewayRouteViewsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listGatewaysAsync(ListGatewaysRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listGrpcRoutesAsync(ListGrpcRoutesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listHttpRoutesAsync(ListHttpRoutesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMeshRouteViewsAsync(ListMeshRouteViewsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listMeshesAsync(ListMeshesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listServiceBindingsAsync(ListServiceBindingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listServiceLbPoliciesAsync(ListServiceLbPoliciesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listTcpRoutesAsync(ListTcpRoutesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listTlsRoutesAsync(ListTlsRoutesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateEndpointPolicyAsync(UpdateEndpointPolicyRequest $request, array $optionalArgs = [])
@@ -142,6 +163,8 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> updateGrpcRouteAsync(UpdateGrpcRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateHttpRouteAsync(UpdateHttpRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateMeshAsync(UpdateMeshRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateServiceBindingAsync(UpdateServiceBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateServiceLbPolicyAsync(UpdateServiceLbPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateTcpRouteAsync(UpdateTcpRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateTlsRouteAsync(UpdateTlsRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
@@ -249,6 +272,25 @@ final class NetworkServicesClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a address
+     * resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $address
+     *
+     * @return string The formatted address resource.
+     */
+    public static function addressName(string $project, string $region, string $address): string
+    {
+        return self::getPathTemplate('address')->render([
+            'project' => $project,
+            'region' => $region,
+            'address' => $address,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * authorization_policy resource.
      *
@@ -286,6 +328,25 @@ final class NetworkServicesClient
             'project' => $project,
             'location' => $location,
             'backend_service' => $backendService,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a certificate
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $certificate
+     *
+     * @return string The formatted certificate resource.
+     */
+    public static function certificateName(string $project, string $location, string $certificate): string
+    {
+        return self::getPathTemplate('certificate')->render([
+            'project' => $project,
+            'location' => $location,
+            'certificate' => $certificate,
         ]);
     }
 
@@ -343,6 +404,53 @@ final class NetworkServicesClient
             'project' => $project,
             'location' => $location,
             'gateway' => $gateway,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * gateway_route_view resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $gateway
+     * @param string $routeView
+     *
+     * @return string The formatted gateway_route_view resource.
+     */
+    public static function gatewayRouteViewName(
+        string $project,
+        string $location,
+        string $gateway,
+        string $routeView
+    ): string {
+        return self::getPathTemplate('gatewayRouteView')->render([
+            'project' => $project,
+            'location' => $location,
+            'gateway' => $gateway,
+            'route_view' => $routeView,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * gateway_security_policy resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $gatewaySecurityPolicy
+     *
+     * @return string The formatted gateway_security_policy resource.
+     */
+    public static function gatewaySecurityPolicyName(
+        string $project,
+        string $location,
+        string $gatewaySecurityPolicy
+    ): string {
+        return self::getPathTemplate('gatewaySecurityPolicy')->render([
+            'project' => $project,
+            'location' => $location,
+            'gateway_security_policy' => $gatewaySecurityPolicy,
         ]);
     }
 
@@ -422,6 +530,44 @@ final class NetworkServicesClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * mesh_route_view resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $mesh
+     * @param string $routeView
+     *
+     * @return string The formatted mesh_route_view resource.
+     */
+    public static function meshRouteViewName(string $project, string $location, string $mesh, string $routeView): string
+    {
+        return self::getPathTemplate('meshRouteView')->render([
+            'project' => $project,
+            'location' => $location,
+            'mesh' => $mesh,
+            'route_view' => $routeView,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a network
+     * resource.
+     *
+     * @param string $project
+     * @param string $network
+     *
+     * @return string The formatted network resource.
+     */
+    public static function networkName(string $project, string $network): string
+    {
+        return self::getPathTemplate('network')->render([
+            'project' => $project,
+            'network' => $network,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * server_tls_policy resource.
      *
      * @param string $project
@@ -436,6 +582,27 @@ final class NetworkServicesClient
             'project' => $project,
             'location' => $location,
             'server_tls_policy' => $serverTlsPolicy,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a service
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $namespace
+     * @param string $service
+     *
+     * @return string The formatted service resource.
+     */
+    public static function serviceName(string $project, string $location, string $namespace, string $service): string
+    {
+        return self::getPathTemplate('service')->render([
+            'project' => $project,
+            'location' => $location,
+            'namespace' => $namespace,
+            'service' => $service,
         ]);
     }
 
@@ -455,6 +622,44 @@ final class NetworkServicesClient
             'project' => $project,
             'location' => $location,
             'service_binding' => $serviceBinding,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * service_lb_policy resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $serviceLbPolicy
+     *
+     * @return string The formatted service_lb_policy resource.
+     */
+    public static function serviceLbPolicyName(string $project, string $location, string $serviceLbPolicy): string
+    {
+        return self::getPathTemplate('serviceLbPolicy')->render([
+            'project' => $project,
+            'location' => $location,
+            'service_lb_policy' => $serviceLbPolicy,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a subnetwork
+     * resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $subnetwork
+     *
+     * @return string The formatted subnetwork resource.
+     */
+    public static function subnetworkName(string $project, string $region, string $subnetwork): string
+    {
+        return self::getPathTemplate('subnetwork')->render([
+            'project' => $project,
+            'region' => $region,
+            'subnetwork' => $subnetwork,
         ]);
     }
 
@@ -500,17 +705,26 @@ final class NetworkServicesClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - address: projects/{project}/regions/{region}/addresses/{address}
      * - authorizationPolicy: projects/{project}/locations/{location}/authorizationPolicies/{authorization_policy}
      * - backendService: projects/{project}/locations/{location}/backendServices/{backend_service}
+     * - certificate: projects/{project}/locations/{location}/certificates/{certificate}
      * - clientTlsPolicy: projects/{project}/locations/{location}/clientTlsPolicies/{client_tls_policy}
      * - endpointPolicy: projects/{project}/locations/{location}/endpointPolicies/{endpoint_policy}
      * - gateway: projects/{project}/locations/{location}/gateways/{gateway}
+     * - gatewayRouteView: projects/{project}/locations/{location}/gateways/{gateway}/routeViews/{route_view}
+     * - gatewaySecurityPolicy: projects/{project}/locations/{location}/gatewaySecurityPolicies/{gateway_security_policy}
      * - grpcRoute: projects/{project}/locations/{location}/grpcRoutes/{grpc_route}
      * - httpRoute: projects/{project}/locations/{location}/httpRoutes/{http_route}
      * - location: projects/{project}/locations/{location}
      * - mesh: projects/{project}/locations/{location}/meshes/{mesh}
+     * - meshRouteView: projects/{project}/locations/{location}/meshes/{mesh}/routeViews/{route_view}
+     * - network: projects/{project}/global/networks/{network}
      * - serverTlsPolicy: projects/{project}/locations/{location}/serverTlsPolicies/{server_tls_policy}
+     * - service: projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}
      * - serviceBinding: projects/{project}/locations/{location}/serviceBindings/{service_binding}
+     * - serviceLbPolicy: projects/{project}/locations/{location}/serviceLbPolicies/{service_lb_policy}
+     * - subnetwork: projects/{project}/regions/{region}/subnetworks/{subnetwork}
      * - tcpRoute: projects/{project}/locations/{location}/tcpRoutes/{tcp_route}
      * - tlsRoute: projects/{project}/locations/{location}/tlsRoutes/{tls_route}
      *
@@ -774,6 +988,35 @@ final class NetworkServicesClient
     }
 
     /**
+     * Creates a new ServiceLbPolicy in a given project and location.
+     *
+     * The async variant is {@see NetworkServicesClient::createServiceLbPolicyAsync()}
+     * .
+     *
+     * @example samples/V1/NetworkServicesClient/create_service_lb_policy.php
+     *
+     * @param CreateServiceLbPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createServiceLbPolicy(
+        CreateServiceLbPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateServiceLbPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new TcpRoute in a given project and location.
      *
      * The async variant is {@see NetworkServicesClient::createTcpRouteAsync()} .
@@ -986,6 +1229,35 @@ final class NetworkServicesClient
     }
 
     /**
+     * Deletes a single ServiceLbPolicy.
+     *
+     * The async variant is {@see NetworkServicesClient::deleteServiceLbPolicyAsync()}
+     * .
+     *
+     * @example samples/V1/NetworkServicesClient/delete_service_lb_policy.php
+     *
+     * @param DeleteServiceLbPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteServiceLbPolicy(
+        DeleteServiceLbPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteServiceLbPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single TcpRoute.
      *
      * The async variant is {@see NetworkServicesClient::deleteTcpRouteAsync()} .
@@ -1090,6 +1362,32 @@ final class NetworkServicesClient
     }
 
     /**
+     * Get a single RouteView of a Gateway.
+     *
+     * The async variant is {@see NetworkServicesClient::getGatewayRouteViewAsync()} .
+     *
+     * @example samples/V1/NetworkServicesClient/get_gateway_route_view.php
+     *
+     * @param GetGatewayRouteViewRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GatewayRouteView
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getGatewayRouteView(GetGatewayRouteViewRequest $request, array $callOptions = []): GatewayRouteView
+    {
+        return $this->startApiCall('GetGatewayRouteView', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets details of a single GrpcRoute.
      *
      * The async variant is {@see NetworkServicesClient::getGrpcRouteAsync()} .
@@ -1168,6 +1466,32 @@ final class NetworkServicesClient
     }
 
     /**
+     * Get a single RouteView of a Mesh.
+     *
+     * The async variant is {@see NetworkServicesClient::getMeshRouteViewAsync()} .
+     *
+     * @example samples/V1/NetworkServicesClient/get_mesh_route_view.php
+     *
+     * @param GetMeshRouteViewRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return MeshRouteView
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getMeshRouteView(GetMeshRouteViewRequest $request, array $callOptions = []): MeshRouteView
+    {
+        return $this->startApiCall('GetMeshRouteView', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets details of a single ServiceBinding.
      *
      * The async variant is {@see NetworkServicesClient::getServiceBindingAsync()} .
@@ -1191,6 +1515,32 @@ final class NetworkServicesClient
     public function getServiceBinding(GetServiceBindingRequest $request, array $callOptions = []): ServiceBinding
     {
         return $this->startApiCall('GetServiceBinding', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single ServiceLbPolicy.
+     *
+     * The async variant is {@see NetworkServicesClient::getServiceLbPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkServicesClient/get_service_lb_policy.php
+     *
+     * @param GetServiceLbPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ServiceLbPolicy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getServiceLbPolicy(GetServiceLbPolicyRequest $request, array $callOptions = []): ServiceLbPolicy
+    {
+        return $this->startApiCall('GetServiceLbPolicy', $request, $callOptions)->wait();
     }
 
     /**
@@ -1274,6 +1624,35 @@ final class NetworkServicesClient
     }
 
     /**
+     * Lists RouteViews
+     *
+     * The async variant is {@see NetworkServicesClient::listGatewayRouteViewsAsync()}
+     * .
+     *
+     * @example samples/V1/NetworkServicesClient/list_gateway_route_views.php
+     *
+     * @param ListGatewayRouteViewsRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listGatewayRouteViews(
+        ListGatewayRouteViewsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListGatewayRouteViews', $request, $callOptions);
+    }
+
+    /**
      * Lists Gateways in a given project and location.
      *
      * The async variant is {@see NetworkServicesClient::listGatewaysAsync()} .
@@ -1352,6 +1731,32 @@ final class NetworkServicesClient
     }
 
     /**
+     * Lists RouteViews
+     *
+     * The async variant is {@see NetworkServicesClient::listMeshRouteViewsAsync()} .
+     *
+     * @example samples/V1/NetworkServicesClient/list_mesh_route_views.php
+     *
+     * @param ListMeshRouteViewsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listMeshRouteViews(ListMeshRouteViewsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListMeshRouteViews', $request, $callOptions);
+    }
+
+    /**
      * Lists Meshes in a given project and location.
      *
      * The async variant is {@see NetworkServicesClient::listMeshesAsync()} .
@@ -1401,6 +1806,35 @@ final class NetworkServicesClient
     public function listServiceBindings(ListServiceBindingsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListServiceBindings', $request, $callOptions);
+    }
+
+    /**
+     * Lists ServiceLbPolicies in a given project and location.
+     *
+     * The async variant is {@see NetworkServicesClient::listServiceLbPoliciesAsync()}
+     * .
+     *
+     * @example samples/V1/NetworkServicesClient/list_service_lb_policies.php
+     *
+     * @param ListServiceLbPoliciesRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listServiceLbPolicies(
+        ListServiceLbPoliciesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListServiceLbPolicies', $request, $callOptions);
     }
 
     /**
@@ -1585,6 +2019,63 @@ final class NetworkServicesClient
     public function updateMesh(UpdateMeshRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateMesh', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the parameters of a single ServiceBinding.
+     *
+     * The async variant is {@see NetworkServicesClient::updateServiceBindingAsync()} .
+     *
+     * @example samples/V1/NetworkServicesClient/update_service_binding.php
+     *
+     * @param UpdateServiceBindingRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateServiceBinding(
+        UpdateServiceBindingRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateServiceBinding', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the parameters of a single ServiceLbPolicy.
+     *
+     * The async variant is {@see NetworkServicesClient::updateServiceLbPolicyAsync()}
+     * .
+     *
+     * @example samples/V1/NetworkServicesClient/update_service_lb_policy.php
+     *
+     * @param UpdateServiceLbPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateServiceLbPolicy(
+        UpdateServiceLbPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateServiceLbPolicy', $request, $callOptions)->wait();
     }
 
     /**
