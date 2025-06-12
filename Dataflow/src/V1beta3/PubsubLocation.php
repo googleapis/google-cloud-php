@@ -63,6 +63,12 @@ class PubsubLocation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool with_attributes = 7;</code>
      */
     protected $with_attributes = false;
+    /**
+     * If true, then this location represents dynamic topics.
+     *
+     * Generated from protobuf field <code>bool dynamic_destinations = 8;</code>
+     */
+    protected $dynamic_destinations = false;
 
     /**
      * Constructor.
@@ -89,6 +95,8 @@ class PubsubLocation extends \Google\Protobuf\Internal\Message
      *           custom time timestamps for watermark estimation.
      *     @type bool $with_attributes
      *           If true, then the client has requested to get pubsub attributes.
+     *     @type bool $dynamic_destinations
+     *           If true, then this location represents dynamic topics.
      * }
      */
     public function __construct($data = NULL) {
@@ -284,6 +292,32 @@ class PubsubLocation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->with_attributes = $var;
+
+        return $this;
+    }
+
+    /**
+     * If true, then this location represents dynamic topics.
+     *
+     * Generated from protobuf field <code>bool dynamic_destinations = 8;</code>
+     * @return bool
+     */
+    public function getDynamicDestinations()
+    {
+        return $this->dynamic_destinations;
+    }
+
+    /**
+     * If true, then this location represents dynamic topics.
+     *
+     * Generated from protobuf field <code>bool dynamic_destinations = 8;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDynamicDestinations($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->dynamic_destinations = $var;
 
         return $this;
     }

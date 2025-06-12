@@ -8,9 +8,9 @@ use UnexpectedValueException;
 
 /**
  * The operation for which this constraint will be applied. To apply this
- * constraint only when creating new VMs, the `method_types` should be
+ * constraint only when creating new resources, the `method_types` should be
  * `CREATE` only. To apply this constraint when creating or deleting
- * VMs, the `method_types` should be `CREATE` and `DELETE`.
+ * resources, the `method_types` should be `CREATE` and `DELETE`.
  * `UPDATE` only custom constraints are not supported. Use `CREATE` or
  * `CREATE, UPDATE`.
  *
@@ -19,7 +19,8 @@ use UnexpectedValueException;
 class MethodType
 {
     /**
-     * Unspecified. Results in an error.
+     * This is only used for distinguishing unset values and should never be
+     * used. Results in an error.
      *
      * Generated from protobuf enum <code>METHOD_TYPE_UNSPECIFIED = 0;</code>
      */
@@ -38,7 +39,7 @@ class MethodType
     const UPDATE = 2;
     /**
      * Constraint applied when deleting the resource.
-     * Not supported yet.
+     * Not currently supported.
      *
      * Generated from protobuf enum <code>DELETE = 3;</code>
      */

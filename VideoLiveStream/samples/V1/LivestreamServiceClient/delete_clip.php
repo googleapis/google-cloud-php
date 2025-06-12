@@ -31,7 +31,7 @@ use Google\Rpc\Status;
 
 /**
  * Deletes the specified clip job resource. This method only deletes the clip
- * job and does not delete the VOD clip stored in the GCS.
+ * job and does not delete the VOD clip stored in Cloud Storage.
  *
  * @param string $formattedName The name of the clip resource, in the form of:
  *                              `projects/{project}/locations/{location}/channels/{channelId}/clips/{clipId}`. Please see

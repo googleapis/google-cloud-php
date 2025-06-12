@@ -16,16 +16,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListAttachmentsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of Case object for which attachments should be
-     * listed.
+     * Required. The name of the case for which attachments should be listed.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
-     * The maximum number of attachments fetched with each request. If not
-     * provided, the default is 10. The maximum page size that will be returned is
-     * 100.
+     * The maximum number of attachments fetched with each request.
+     * If not provided, the default is 10. The maximum page size that will be
+     * returned is 100.
+     * The size of each page can be smaller than the requested page size and can
+     * include zero. For example, you could request 100 attachments on one page,
+     * receive 0, and then on the next page, receive 90.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -39,8 +41,7 @@ class ListAttachmentsRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
-     * @param string $parent Required. The resource name of Case object for which attachments should be
-     *                       listed. Please see
+     * @param string $parent Required. The name of the case for which attachments should be listed. Please see
      *                       {@see CaseAttachmentServiceClient::caseName()} for help formatting this field.
      *
      * @return \Google\Cloud\Support\V2\ListAttachmentsRequest
@@ -60,12 +61,14 @@ class ListAttachmentsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of Case object for which attachments should be
-     *           listed.
+     *           Required. The name of the case for which attachments should be listed.
      *     @type int $page_size
-     *           The maximum number of attachments fetched with each request. If not
-     *           provided, the default is 10. The maximum page size that will be returned is
-     *           100.
+     *           The maximum number of attachments fetched with each request.
+     *           If not provided, the default is 10. The maximum page size that will be
+     *           returned is 100.
+     *           The size of each page can be smaller than the requested page size and can
+     *           include zero. For example, you could request 100 attachments on one page,
+     *           receive 0, and then on the next page, receive 90.
      *     @type string $page_token
      *           A token identifying the page of results to return. If unspecified, the
      *           first page is retrieved.
@@ -77,8 +80,7 @@ class ListAttachmentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of Case object for which attachments should be
-     * listed.
+     * Required. The name of the case for which attachments should be listed.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -89,8 +91,7 @@ class ListAttachmentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of Case object for which attachments should be
-     * listed.
+     * Required. The name of the case for which attachments should be listed.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -105,9 +106,12 @@ class ListAttachmentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of attachments fetched with each request. If not
-     * provided, the default is 10. The maximum page size that will be returned is
-     * 100.
+     * The maximum number of attachments fetched with each request.
+     * If not provided, the default is 10. The maximum page size that will be
+     * returned is 100.
+     * The size of each page can be smaller than the requested page size and can
+     * include zero. For example, you could request 100 attachments on one page,
+     * receive 0, and then on the next page, receive 90.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -118,9 +122,12 @@ class ListAttachmentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of attachments fetched with each request. If not
-     * provided, the default is 10. The maximum page size that will be returned is
-     * 100.
+     * The maximum number of attachments fetched with each request.
+     * If not provided, the default is 10. The maximum page size that will be
+     * returned is 100.
+     * The size of each page can be smaller than the requested page size and can
+     * include zero. For example, you could request 100 attachments on one page,
+     * receive 0, and then on the next page, receive 90.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var

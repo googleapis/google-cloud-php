@@ -33,8 +33,7 @@ class ContinuousBackupConfig extends \Google\Protobuf\Internal\Message
     /**
      * The encryption config can be specified to encrypt the
      * backups with a customer-managed encryption key (CMEK). When this field is
-     * not specified, the backup will then use default encryption scheme to
-     * protect the user data.
+     * not specified, the backup will use the cluster's encryption config.
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.EncryptionConfig encryption_config = 3;</code>
      */
@@ -55,8 +54,7 @@ class ContinuousBackupConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AlloyDb\V1\EncryptionConfig $encryption_config
      *           The encryption config can be specified to encrypt the
      *           backups with a customer-managed encryption key (CMEK). When this field is
-     *           not specified, the backup will then use default encryption scheme to
-     *           protect the user data.
+     *           not specified, the backup will use the cluster's encryption config.
      * }
      */
     public function __construct($data = NULL) {
@@ -133,8 +131,7 @@ class ContinuousBackupConfig extends \Google\Protobuf\Internal\Message
     /**
      * The encryption config can be specified to encrypt the
      * backups with a customer-managed encryption key (CMEK). When this field is
-     * not specified, the backup will then use default encryption scheme to
-     * protect the user data.
+     * not specified, the backup will use the cluster's encryption config.
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.EncryptionConfig encryption_config = 3;</code>
      * @return \Google\Cloud\AlloyDb\V1\EncryptionConfig|null
@@ -157,8 +154,7 @@ class ContinuousBackupConfig extends \Google\Protobuf\Internal\Message
     /**
      * The encryption config can be specified to encrypt the
      * backups with a customer-managed encryption key (CMEK). When this field is
-     * not specified, the backup will then use default encryption scheme to
-     * protect the user data.
+     * not specified, the backup will use the cluster's encryption config.
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.EncryptionConfig encryption_config = 3;</code>
      * @param \Google\Cloud\AlloyDb\V1\EncryptionConfig $var

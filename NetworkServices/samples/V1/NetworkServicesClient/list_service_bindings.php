@@ -33,7 +33,7 @@ use Google\Cloud\NetworkServices\V1\ServiceBinding;
  * Lists ServiceBinding in a given project and location.
  *
  * @param string $formattedParent The project and location from which the ServiceBindings should be
- *                                listed, specified in the format `projects/&#42;/locations/global`. Please see
+ *                                listed, specified in the format `projects/&#42;/locations/*`. Please see
  *                                {@see NetworkServicesClient::locationName()} for help formatting this field.
  */
 function list_service_bindings_sample(string $formattedParent): void

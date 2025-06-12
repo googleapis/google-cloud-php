@@ -10,13 +10,14 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Resource that represents attribute results.
- * The list of suggestions for the attribute.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.CompleteQueryResponse.AttributeResult</code>
  */
 class AttributeResult extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The list of suggestions for the attribute.
+     *
      * Generated from protobuf field <code>repeated string suggestions = 1;</code>
      */
     private $suggestions;
@@ -28,6 +29,7 @@ class AttributeResult extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $suggestions
+     *           The list of suggestions for the attribute.
      * }
      */
     public function __construct($data = NULL) {
@@ -36,6 +38,8 @@ class AttributeResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The list of suggestions for the attribute.
+     *
      * Generated from protobuf field <code>repeated string suggestions = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
@@ -45,6 +49,8 @@ class AttributeResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The list of suggestions for the attribute.
+     *
      * Generated from protobuf field <code>repeated string suggestions = 1;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this

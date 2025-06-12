@@ -29,6 +29,22 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      */
     protected $cpu_manager_policy = '';
     /**
+     * Optional. Controls Topology Manager configuration on the node.
+     * For more information, see:
+     * https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/
+     *
+     * Generated from protobuf field <code>.google.container.v1.TopologyManager topology_manager = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $topology_manager = null;
+    /**
+     * Optional. Controls NUMA-aware Memory Manager configuration on the
+     * node. For more information, see:
+     * https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/
+     *
+     * Generated from protobuf field <code>.google.container.v1.MemoryManager memory_manager = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $memory_manager = null;
+    /**
      * Enable CPU CFS quota enforcement for containers that specify CPU limits.
      * This option is enabled by default which makes kubelet use CFS quota
      * (https://www.kernel.org/doc/Documentation/scheduler/sched-bwc.txt) to
@@ -66,6 +82,94 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool insecure_kubelet_readonly_port_enabled = 7;</code>
      */
     protected $insecure_kubelet_readonly_port_enabled = null;
+    /**
+     * Optional. Defines the percent of disk usage before which image garbage
+     * collection is never run. Lowest disk usage to garbage collect to. The
+     * percent is calculated as this field value out of 100.
+     * The value must be between 10 and 85, inclusive and smaller than
+     * image_gc_high_threshold_percent.
+     * The default value is 80 if unspecified.
+     *
+     * Generated from protobuf field <code>int32 image_gc_low_threshold_percent = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $image_gc_low_threshold_percent = 0;
+    /**
+     * Optional. Defines the percent of disk usage after which image garbage
+     * collection is always run. The percent is calculated as this field value out
+     * of 100.
+     * The value must be between 10 and 85, inclusive and greater than
+     * image_gc_low_threshold_percent.
+     * The default value is 85 if unspecified.
+     *
+     * Generated from protobuf field <code>int32 image_gc_high_threshold_percent = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $image_gc_high_threshold_percent = 0;
+    /**
+     * Optional. Defines the minimum age for an unused image before it is garbage
+     * collected.
+     * The string must be a sequence of decimal numbers, each with optional
+     * fraction and a unit suffix, such as "300s", "1.5h", and "2h45m". Valid time
+     * units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
+     * The value must be a positive duration less than or equal to 2 minutes.
+     * The default value is "2m0s" if unspecified.
+     *
+     * Generated from protobuf field <code>string image_minimum_gc_age = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $image_minimum_gc_age = '';
+    /**
+     * Optional. Defines the maximum age an image can be unused before it is
+     * garbage collected. The string must be a sequence of decimal numbers, each
+     * with optional fraction and a unit suffix, such as "300s", "1.5h", and
+     * "2h45m". Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
+     * The value must be a positive duration greater than image_minimum_gc_age
+     * or "0s".
+     * The default value is "0s" if unspecified, which disables this field,
+     * meaning images won't be garbage collected based on being unused for too
+     * long.
+     *
+     * Generated from protobuf field <code>string image_maximum_gc_age = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $image_maximum_gc_age = '';
+    /**
+     * Optional. Defines the maximum size of the container log file before it is
+     * rotated. See
+     * https://kubernetes.io/docs/concepts/cluster-administration/logging/#log-rotation
+     * Valid format is positive number + unit, e.g. 100Ki, 10Mi. Valid units are
+     * Ki, Mi, Gi.
+     * The value must be between 10Mi and 500Mi, inclusive.
+     * Note that the total container log size (container_log_max_size *
+     * container_log_max_files) cannot exceed 1% of the total
+     * storage of the node, to avoid disk pressure caused by log files.
+     * The default value is 10Mi if unspecified.
+     *
+     * Generated from protobuf field <code>string container_log_max_size = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $container_log_max_size = '';
+    /**
+     * Optional. Defines the maximum number of container log files that can be
+     * present for a container. See
+     * https://kubernetes.io/docs/concepts/cluster-administration/logging/#log-rotation
+     * The value must be an integer between 2 and 10, inclusive.
+     * The default value is 5 if unspecified.
+     *
+     * Generated from protobuf field <code>int32 container_log_max_files = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $container_log_max_files = 0;
+    /**
+     * Optional. Defines a comma-separated allowlist of unsafe sysctls or sysctl
+     * patterns (ending in `*`).
+     * The unsafe namespaced sysctl groups are `kernel.shm*`, `kernel.msg*`,
+     * `kernel.sem`, `fs.mqueue.*`, and `net.*`. Leaving this allowlist empty
+     * means they cannot be set on Pods.
+     * To allow certain sysctls or sysctl patterns to be set on Pods, list them
+     * separated by commas.
+     * For example: `kernel.msg*,net.ipv4.route.min_pmtu`.
+     * See https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/
+     * for more details.
+     *
+     * Generated from protobuf field <code>repeated string allowed_unsafe_sysctls = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $allowed_unsafe_sysctls;
 
     /**
      * Constructor.
@@ -82,6 +186,14 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      *           * "static": allows pods with certain resource characteristics to be granted
      *           increased CPU affinity and exclusivity on the node.
      *           The default value is 'none' if unspecified.
+     *     @type \Google\Cloud\Container\V1\TopologyManager $topology_manager
+     *           Optional. Controls Topology Manager configuration on the node.
+     *           For more information, see:
+     *           https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/
+     *     @type \Google\Cloud\Container\V1\MemoryManager $memory_manager
+     *           Optional. Controls NUMA-aware Memory Manager configuration on the
+     *           node. For more information, see:
+     *           https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/
      *     @type \Google\Protobuf\BoolValue $cpu_cfs_quota
      *           Enable CPU CFS quota enforcement for containers that specify CPU limits.
      *           This option is enabled by default which makes kubelet use CFS quota
@@ -104,6 +216,66 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      *           must be greater than or equal to 1024 and less than 4194304.
      *     @type bool $insecure_kubelet_readonly_port_enabled
      *           Enable or disable Kubelet read only port.
+     *     @type int $image_gc_low_threshold_percent
+     *           Optional. Defines the percent of disk usage before which image garbage
+     *           collection is never run. Lowest disk usage to garbage collect to. The
+     *           percent is calculated as this field value out of 100.
+     *           The value must be between 10 and 85, inclusive and smaller than
+     *           image_gc_high_threshold_percent.
+     *           The default value is 80 if unspecified.
+     *     @type int $image_gc_high_threshold_percent
+     *           Optional. Defines the percent of disk usage after which image garbage
+     *           collection is always run. The percent is calculated as this field value out
+     *           of 100.
+     *           The value must be between 10 and 85, inclusive and greater than
+     *           image_gc_low_threshold_percent.
+     *           The default value is 85 if unspecified.
+     *     @type string $image_minimum_gc_age
+     *           Optional. Defines the minimum age for an unused image before it is garbage
+     *           collected.
+     *           The string must be a sequence of decimal numbers, each with optional
+     *           fraction and a unit suffix, such as "300s", "1.5h", and "2h45m". Valid time
+     *           units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
+     *           The value must be a positive duration less than or equal to 2 minutes.
+     *           The default value is "2m0s" if unspecified.
+     *     @type string $image_maximum_gc_age
+     *           Optional. Defines the maximum age an image can be unused before it is
+     *           garbage collected. The string must be a sequence of decimal numbers, each
+     *           with optional fraction and a unit suffix, such as "300s", "1.5h", and
+     *           "2h45m". Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
+     *           The value must be a positive duration greater than image_minimum_gc_age
+     *           or "0s".
+     *           The default value is "0s" if unspecified, which disables this field,
+     *           meaning images won't be garbage collected based on being unused for too
+     *           long.
+     *     @type string $container_log_max_size
+     *           Optional. Defines the maximum size of the container log file before it is
+     *           rotated. See
+     *           https://kubernetes.io/docs/concepts/cluster-administration/logging/#log-rotation
+     *           Valid format is positive number + unit, e.g. 100Ki, 10Mi. Valid units are
+     *           Ki, Mi, Gi.
+     *           The value must be between 10Mi and 500Mi, inclusive.
+     *           Note that the total container log size (container_log_max_size *
+     *           container_log_max_files) cannot exceed 1% of the total
+     *           storage of the node, to avoid disk pressure caused by log files.
+     *           The default value is 10Mi if unspecified.
+     *     @type int $container_log_max_files
+     *           Optional. Defines the maximum number of container log files that can be
+     *           present for a container. See
+     *           https://kubernetes.io/docs/concepts/cluster-administration/logging/#log-rotation
+     *           The value must be an integer between 2 and 10, inclusive.
+     *           The default value is 5 if unspecified.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_unsafe_sysctls
+     *           Optional. Defines a comma-separated allowlist of unsafe sysctls or sysctl
+     *           patterns (ending in `*`).
+     *           The unsafe namespaced sysctl groups are `kernel.shm*`, `kernel.msg*`,
+     *           `kernel.sem`, `fs.mqueue.*`, and `net.*`. Leaving this allowlist empty
+     *           means they cannot be set on Pods.
+     *           To allow certain sysctls or sysctl patterns to be set on Pods, list them
+     *           separated by commas.
+     *           For example: `kernel.msg*,net.ipv4.route.min_pmtu`.
+     *           See https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/
+     *           for more details.
      * }
      */
     public function __construct($data = NULL) {
@@ -147,6 +319,86 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->cpu_manager_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Controls Topology Manager configuration on the node.
+     * For more information, see:
+     * https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/
+     *
+     * Generated from protobuf field <code>.google.container.v1.TopologyManager topology_manager = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\TopologyManager|null
+     */
+    public function getTopologyManager()
+    {
+        return $this->topology_manager;
+    }
+
+    public function hasTopologyManager()
+    {
+        return isset($this->topology_manager);
+    }
+
+    public function clearTopologyManager()
+    {
+        unset($this->topology_manager);
+    }
+
+    /**
+     * Optional. Controls Topology Manager configuration on the node.
+     * For more information, see:
+     * https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/
+     *
+     * Generated from protobuf field <code>.google.container.v1.TopologyManager topology_manager = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\TopologyManager $var
+     * @return $this
+     */
+    public function setTopologyManager($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\TopologyManager::class);
+        $this->topology_manager = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Controls NUMA-aware Memory Manager configuration on the
+     * node. For more information, see:
+     * https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/
+     *
+     * Generated from protobuf field <code>.google.container.v1.MemoryManager memory_manager = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\MemoryManager|null
+     */
+    public function getMemoryManager()
+    {
+        return $this->memory_manager;
+    }
+
+    public function hasMemoryManager()
+    {
+        return isset($this->memory_manager);
+    }
+
+    public function clearMemoryManager()
+    {
+        unset($this->memory_manager);
+    }
+
+    /**
+     * Optional. Controls NUMA-aware Memory Manager configuration on the
+     * node. For more information, see:
+     * https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/
+     *
+     * Generated from protobuf field <code>.google.container.v1.MemoryManager memory_manager = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\MemoryManager $var
+     * @return $this
+     */
+    public function setMemoryManager($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\MemoryManager::class);
+        $this->memory_manager = $var;
 
         return $this;
     }
@@ -340,6 +592,280 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->insecure_kubelet_readonly_port_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Defines the percent of disk usage before which image garbage
+     * collection is never run. Lowest disk usage to garbage collect to. The
+     * percent is calculated as this field value out of 100.
+     * The value must be between 10 and 85, inclusive and smaller than
+     * image_gc_high_threshold_percent.
+     * The default value is 80 if unspecified.
+     *
+     * Generated from protobuf field <code>int32 image_gc_low_threshold_percent = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getImageGcLowThresholdPercent()
+    {
+        return $this->image_gc_low_threshold_percent;
+    }
+
+    /**
+     * Optional. Defines the percent of disk usage before which image garbage
+     * collection is never run. Lowest disk usage to garbage collect to. The
+     * percent is calculated as this field value out of 100.
+     * The value must be between 10 and 85, inclusive and smaller than
+     * image_gc_high_threshold_percent.
+     * The default value is 80 if unspecified.
+     *
+     * Generated from protobuf field <code>int32 image_gc_low_threshold_percent = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setImageGcLowThresholdPercent($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->image_gc_low_threshold_percent = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Defines the percent of disk usage after which image garbage
+     * collection is always run. The percent is calculated as this field value out
+     * of 100.
+     * The value must be between 10 and 85, inclusive and greater than
+     * image_gc_low_threshold_percent.
+     * The default value is 85 if unspecified.
+     *
+     * Generated from protobuf field <code>int32 image_gc_high_threshold_percent = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getImageGcHighThresholdPercent()
+    {
+        return $this->image_gc_high_threshold_percent;
+    }
+
+    /**
+     * Optional. Defines the percent of disk usage after which image garbage
+     * collection is always run. The percent is calculated as this field value out
+     * of 100.
+     * The value must be between 10 and 85, inclusive and greater than
+     * image_gc_low_threshold_percent.
+     * The default value is 85 if unspecified.
+     *
+     * Generated from protobuf field <code>int32 image_gc_high_threshold_percent = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setImageGcHighThresholdPercent($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->image_gc_high_threshold_percent = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Defines the minimum age for an unused image before it is garbage
+     * collected.
+     * The string must be a sequence of decimal numbers, each with optional
+     * fraction and a unit suffix, such as "300s", "1.5h", and "2h45m". Valid time
+     * units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
+     * The value must be a positive duration less than or equal to 2 minutes.
+     * The default value is "2m0s" if unspecified.
+     *
+     * Generated from protobuf field <code>string image_minimum_gc_age = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getImageMinimumGcAge()
+    {
+        return $this->image_minimum_gc_age;
+    }
+
+    /**
+     * Optional. Defines the minimum age for an unused image before it is garbage
+     * collected.
+     * The string must be a sequence of decimal numbers, each with optional
+     * fraction and a unit suffix, such as "300s", "1.5h", and "2h45m". Valid time
+     * units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
+     * The value must be a positive duration less than or equal to 2 minutes.
+     * The default value is "2m0s" if unspecified.
+     *
+     * Generated from protobuf field <code>string image_minimum_gc_age = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setImageMinimumGcAge($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->image_minimum_gc_age = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Defines the maximum age an image can be unused before it is
+     * garbage collected. The string must be a sequence of decimal numbers, each
+     * with optional fraction and a unit suffix, such as "300s", "1.5h", and
+     * "2h45m". Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
+     * The value must be a positive duration greater than image_minimum_gc_age
+     * or "0s".
+     * The default value is "0s" if unspecified, which disables this field,
+     * meaning images won't be garbage collected based on being unused for too
+     * long.
+     *
+     * Generated from protobuf field <code>string image_maximum_gc_age = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getImageMaximumGcAge()
+    {
+        return $this->image_maximum_gc_age;
+    }
+
+    /**
+     * Optional. Defines the maximum age an image can be unused before it is
+     * garbage collected. The string must be a sequence of decimal numbers, each
+     * with optional fraction and a unit suffix, such as "300s", "1.5h", and
+     * "2h45m". Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
+     * The value must be a positive duration greater than image_minimum_gc_age
+     * or "0s".
+     * The default value is "0s" if unspecified, which disables this field,
+     * meaning images won't be garbage collected based on being unused for too
+     * long.
+     *
+     * Generated from protobuf field <code>string image_maximum_gc_age = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setImageMaximumGcAge($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->image_maximum_gc_age = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Defines the maximum size of the container log file before it is
+     * rotated. See
+     * https://kubernetes.io/docs/concepts/cluster-administration/logging/#log-rotation
+     * Valid format is positive number + unit, e.g. 100Ki, 10Mi. Valid units are
+     * Ki, Mi, Gi.
+     * The value must be between 10Mi and 500Mi, inclusive.
+     * Note that the total container log size (container_log_max_size *
+     * container_log_max_files) cannot exceed 1% of the total
+     * storage of the node, to avoid disk pressure caused by log files.
+     * The default value is 10Mi if unspecified.
+     *
+     * Generated from protobuf field <code>string container_log_max_size = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getContainerLogMaxSize()
+    {
+        return $this->container_log_max_size;
+    }
+
+    /**
+     * Optional. Defines the maximum size of the container log file before it is
+     * rotated. See
+     * https://kubernetes.io/docs/concepts/cluster-administration/logging/#log-rotation
+     * Valid format is positive number + unit, e.g. 100Ki, 10Mi. Valid units are
+     * Ki, Mi, Gi.
+     * The value must be between 10Mi and 500Mi, inclusive.
+     * Note that the total container log size (container_log_max_size *
+     * container_log_max_files) cannot exceed 1% of the total
+     * storage of the node, to avoid disk pressure caused by log files.
+     * The default value is 10Mi if unspecified.
+     *
+     * Generated from protobuf field <code>string container_log_max_size = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setContainerLogMaxSize($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->container_log_max_size = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Defines the maximum number of container log files that can be
+     * present for a container. See
+     * https://kubernetes.io/docs/concepts/cluster-administration/logging/#log-rotation
+     * The value must be an integer between 2 and 10, inclusive.
+     * The default value is 5 if unspecified.
+     *
+     * Generated from protobuf field <code>int32 container_log_max_files = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getContainerLogMaxFiles()
+    {
+        return $this->container_log_max_files;
+    }
+
+    /**
+     * Optional. Defines the maximum number of container log files that can be
+     * present for a container. See
+     * https://kubernetes.io/docs/concepts/cluster-administration/logging/#log-rotation
+     * The value must be an integer between 2 and 10, inclusive.
+     * The default value is 5 if unspecified.
+     *
+     * Generated from protobuf field <code>int32 container_log_max_files = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setContainerLogMaxFiles($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->container_log_max_files = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Defines a comma-separated allowlist of unsafe sysctls or sysctl
+     * patterns (ending in `*`).
+     * The unsafe namespaced sysctl groups are `kernel.shm*`, `kernel.msg*`,
+     * `kernel.sem`, `fs.mqueue.*`, and `net.*`. Leaving this allowlist empty
+     * means they cannot be set on Pods.
+     * To allow certain sysctls or sysctl patterns to be set on Pods, list them
+     * separated by commas.
+     * For example: `kernel.msg*,net.ipv4.route.min_pmtu`.
+     * See https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/
+     * for more details.
+     *
+     * Generated from protobuf field <code>repeated string allowed_unsafe_sysctls = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAllowedUnsafeSysctls()
+    {
+        return $this->allowed_unsafe_sysctls;
+    }
+
+    /**
+     * Optional. Defines a comma-separated allowlist of unsafe sysctls or sysctl
+     * patterns (ending in `*`).
+     * The unsafe namespaced sysctl groups are `kernel.shm*`, `kernel.msg*`,
+     * `kernel.sem`, `fs.mqueue.*`, and `net.*`. Leaving this allowlist empty
+     * means they cannot be set on Pods.
+     * To allow certain sysctls or sysctl patterns to be set on Pods, list them
+     * separated by commas.
+     * For example: `kernel.msg*,net.ipv4.route.min_pmtu`.
+     * See https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/
+     * for more details.
+     *
+     * Generated from protobuf field <code>repeated string allowed_unsafe_sysctls = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAllowedUnsafeSysctls($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->allowed_unsafe_sysctls = $arr;
 
         return $this;
     }

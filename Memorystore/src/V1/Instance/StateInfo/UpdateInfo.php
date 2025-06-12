@@ -27,6 +27,18 @@ class UpdateInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional int32 target_replica_count = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $target_replica_count = null;
+    /**
+     * Output only. Target engine version for the instance.
+     *
+     * Generated from protobuf field <code>optional string target_engine_version = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $target_engine_version = null;
+    /**
+     * Output only. Target node type for the instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.memorystore.v1.Instance.NodeType target_node_type = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $target_node_type = null;
 
     /**
      * Constructor.
@@ -38,6 +50,10 @@ class UpdateInfo extends \Google\Protobuf\Internal\Message
      *           Output only. Target number of shards for the instance.
      *     @type int $target_replica_count
      *           Output only. Target number of replica nodes per shard for the instance.
+     *     @type string $target_engine_version
+     *           Output only. Target engine version for the instance.
+     *     @type int $target_node_type
+     *           Output only. Target node type for the instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -113,6 +129,78 @@ class UpdateInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->target_replica_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Target engine version for the instance.
+     *
+     * Generated from protobuf field <code>optional string target_engine_version = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getTargetEngineVersion()
+    {
+        return isset($this->target_engine_version) ? $this->target_engine_version : '';
+    }
+
+    public function hasTargetEngineVersion()
+    {
+        return isset($this->target_engine_version);
+    }
+
+    public function clearTargetEngineVersion()
+    {
+        unset($this->target_engine_version);
+    }
+
+    /**
+     * Output only. Target engine version for the instance.
+     *
+     * Generated from protobuf field <code>optional string target_engine_version = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTargetEngineVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->target_engine_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Target node type for the instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.memorystore.v1.Instance.NodeType target_node_type = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getTargetNodeType()
+    {
+        return isset($this->target_node_type) ? $this->target_node_type : 0;
+    }
+
+    public function hasTargetNodeType()
+    {
+        return isset($this->target_node_type);
+    }
+
+    public function clearTargetNodeType()
+    {
+        unset($this->target_node_type);
+    }
+
+    /**
+     * Output only. Target node type for the instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.memorystore.v1.Instance.NodeType target_node_type = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTargetNodeType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Memorystore\V1\Instance\NodeType::class);
+        $this->target_node_type = $var;
 
         return $this;
     }

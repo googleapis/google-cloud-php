@@ -77,6 +77,7 @@ use Google\Analytics\Admin\V1alpha\CreateGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateKeyEventRequest;
 use Google\Analytics\Admin\V1alpha\CreateMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\CreatePropertyRequest;
+use Google\Analytics\Admin\V1alpha\CreateReportingDataAnnotationRequest;
 use Google\Analytics\Admin\V1alpha\CreateRollupPropertyRequest;
 use Google\Analytics\Admin\V1alpha\CreateRollupPropertyResponse;
 use Google\Analytics\Admin\V1alpha\CreateRollupPropertySourceLinkRequest;
@@ -113,6 +114,7 @@ use Google\Analytics\Admin\V1alpha\DeleteGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteKeyEventRequest;
 use Google\Analytics\Admin\V1alpha\DeleteMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\DeletePropertyRequest;
+use Google\Analytics\Admin\V1alpha\DeleteReportingDataAnnotationRequest;
 use Google\Analytics\Admin\V1alpha\DeleteRollupPropertySourceLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\DeleteSearchAds360LinkRequest;
@@ -154,6 +156,7 @@ use Google\Analytics\Admin\V1alpha\GetGoogleSignalsSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetKeyEventRequest;
 use Google\Analytics\Admin\V1alpha\GetMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\GetPropertyRequest;
+use Google\Analytics\Admin\V1alpha\GetReportingDataAnnotationRequest;
 use Google\Analytics\Admin\V1alpha\GetRollupPropertySourceLinkRequest;
 use Google\Analytics\Admin\V1alpha\GetSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\GetSearchAds360LinkRequest;
@@ -209,6 +212,8 @@ use Google\Analytics\Admin\V1alpha\ListMeasurementProtocolSecretsRequest;
 use Google\Analytics\Admin\V1alpha\ListMeasurementProtocolSecretsResponse;
 use Google\Analytics\Admin\V1alpha\ListPropertiesRequest;
 use Google\Analytics\Admin\V1alpha\ListPropertiesResponse;
+use Google\Analytics\Admin\V1alpha\ListReportingDataAnnotationsRequest;
+use Google\Analytics\Admin\V1alpha\ListReportingDataAnnotationsResponse;
 use Google\Analytics\Admin\V1alpha\ListRollupPropertySourceLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListRollupPropertySourceLinksResponse;
 use Google\Analytics\Admin\V1alpha\ListSKAdNetworkConversionValueSchemasRequest;
@@ -225,6 +230,8 @@ use Google\Analytics\Admin\V1alpha\ProvisionAccountTicketResponse;
 use Google\Analytics\Admin\V1alpha\ProvisionSubpropertyRequest;
 use Google\Analytics\Admin\V1alpha\ProvisionSubpropertyResponse;
 use Google\Analytics\Admin\V1alpha\ReorderEventEditRulesRequest;
+use Google\Analytics\Admin\V1alpha\ReportingDataAnnotation;
+use Google\Analytics\Admin\V1alpha\ReportingDataAnnotation\Color;
 use Google\Analytics\Admin\V1alpha\RollupPropertySourceLink;
 use Google\Analytics\Admin\V1alpha\RunAccessReportRequest;
 use Google\Analytics\Admin\V1alpha\RunAccessReportResponse;
@@ -234,6 +241,8 @@ use Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsRequest;
 use Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsResponse;
 use Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutRequest;
 use Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutResponse;
+use Google\Analytics\Admin\V1alpha\SubmitUserDeletionRequest;
+use Google\Analytics\Admin\V1alpha\SubmitUserDeletionResponse;
 use Google\Analytics\Admin\V1alpha\SubpropertyEventFilter;
 use Google\Analytics\Admin\V1alpha\UpdateAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAccountRequest;
@@ -258,6 +267,7 @@ use Google\Analytics\Admin\V1alpha\UpdateGoogleSignalsSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateKeyEventRequest;
 use Google\Analytics\Admin\V1alpha\UpdateMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\UpdatePropertyRequest;
+use Google\Analytics\Admin\V1alpha\UpdateReportingDataAnnotationRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSubpropertyEventFilterRequest;
@@ -2733,6 +2743,100 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createReportingDataAnnotationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $title = 'title110371416';
+        $description = 'description-1724546052';
+        $systemGenerated = false;
+        $expectedResponse = new ReportingDataAnnotation();
+        $expectedResponse->setName($name);
+        $expectedResponse->setTitle($title);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setSystemGenerated($systemGenerated);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $reportingDataAnnotation = new ReportingDataAnnotation();
+        $reportingDataAnnotationName = 'reportingDataAnnotationName-286898318';
+        $reportingDataAnnotation->setName($reportingDataAnnotationName);
+        $reportingDataAnnotationTitle = 'reportingDataAnnotationTitle-298126767';
+        $reportingDataAnnotation->setTitle($reportingDataAnnotationTitle);
+        $reportingDataAnnotationColor = Color::COLOR_UNSPECIFIED;
+        $reportingDataAnnotation->setColor($reportingDataAnnotationColor);
+        $request = (new CreateReportingDataAnnotationRequest())
+            ->setParent($formattedParent)
+            ->setReportingDataAnnotation($reportingDataAnnotation);
+        $response = $gapicClient->createReportingDataAnnotation($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateReportingDataAnnotation',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getReportingDataAnnotation();
+        $this->assertProtobufEquals($reportingDataAnnotation, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createReportingDataAnnotationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $reportingDataAnnotation = new ReportingDataAnnotation();
+        $reportingDataAnnotationName = 'reportingDataAnnotationName-286898318';
+        $reportingDataAnnotation->setName($reportingDataAnnotationName);
+        $reportingDataAnnotationTitle = 'reportingDataAnnotationTitle-298126767';
+        $reportingDataAnnotation->setTitle($reportingDataAnnotationTitle);
+        $reportingDataAnnotationColor = Color::COLOR_UNSPECIFIED;
+        $reportingDataAnnotation->setColor($reportingDataAnnotationColor);
+        $request = (new CreateReportingDataAnnotationRequest())
+            ->setParent($formattedParent)
+            ->setReportingDataAnnotation($reportingDataAnnotation);
+        try {
+            $gapicClient->createReportingDataAnnotation($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function createRollupPropertyTest()
     {
         $transport = $this->createTransport();
@@ -4346,6 +4450,71 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $request = (new DeletePropertyRequest())->setName($formattedName);
         try {
             $gapicClient->deleteProperty($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteReportingDataAnnotationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->reportingDataAnnotationName('[PROPERTY]', '[REPORTING_DATA_ANNOTATION]');
+        $request = (new DeleteReportingDataAnnotationRequest())->setName($formattedName);
+        $gapicClient->deleteReportingDataAnnotation($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteReportingDataAnnotation',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteReportingDataAnnotationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->reportingDataAnnotationName('[PROPERTY]', '[REPORTING_DATA_ANNOTATION]');
+        $request = (new DeleteReportingDataAnnotationRequest())->setName($formattedName);
+        try {
+            $gapicClient->deleteReportingDataAnnotation($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -6651,6 +6820,80 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getReportingDataAnnotationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $title = 'title110371416';
+        $description = 'description-1724546052';
+        $systemGenerated = false;
+        $expectedResponse = new ReportingDataAnnotation();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setTitle($title);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setSystemGenerated($systemGenerated);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->reportingDataAnnotationName('[PROPERTY]', '[REPORTING_DATA_ANNOTATION]');
+        $request = (new GetReportingDataAnnotationRequest())->setName($formattedName);
+        $response = $gapicClient->getReportingDataAnnotation($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.analytics.admin.v1alpha.AnalyticsAdminService/GetReportingDataAnnotation',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getReportingDataAnnotationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->reportingDataAnnotationName('[PROPERTY]', '[REPORTING_DATA_ANNOTATION]');
+        $request = (new GetReportingDataAnnotationRequest())->setName($formattedName);
+        try {
+            $gapicClient->getReportingDataAnnotation($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getRollupPropertySourceLinkTest()
     {
         $transport = $this->createTransport();
@@ -8575,6 +8818,80 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listReportingDataAnnotationsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $reportingDataAnnotationsElement = new ReportingDataAnnotation();
+        $reportingDataAnnotations = [$reportingDataAnnotationsElement];
+        $expectedResponse = new ListReportingDataAnnotationsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setReportingDataAnnotations($reportingDataAnnotations);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $request = (new ListReportingDataAnnotationsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listReportingDataAnnotations($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getReportingDataAnnotations()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.analytics.admin.v1alpha.AnalyticsAdminService/ListReportingDataAnnotations',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listReportingDataAnnotationsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $request = (new ListReportingDataAnnotationsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listReportingDataAnnotations($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listRollupPropertySourceLinksTest()
     {
         $transport = $this->createTransport();
@@ -9267,6 +9584,69 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $request = (new SetAutomatedGa4ConfigurationOptOutRequest())->setProperty($property);
         try {
             $gapicClient->setAutomatedGa4ConfigurationOptOut($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function submitUserDeletionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new SubmitUserDeletionResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->propertyName('[PROPERTY]');
+        $request = (new SubmitUserDeletionRequest())->setName($formattedName);
+        $response = $gapicClient->submitUserDeletion($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/SubmitUserDeletion', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function submitUserDeletionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->propertyName('[PROPERTY]');
+        $request = (new SubmitUserDeletionRequest())->setName($formattedName);
+        try {
+            $gapicClient->submitUserDeletion($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -11172,6 +11552,92 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $request = (new UpdatePropertyRequest())->setProperty($property)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateProperty($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateReportingDataAnnotationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $title = 'title110371416';
+        $description = 'description-1724546052';
+        $systemGenerated = false;
+        $expectedResponse = new ReportingDataAnnotation();
+        $expectedResponse->setName($name);
+        $expectedResponse->setTitle($title);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setSystemGenerated($systemGenerated);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $reportingDataAnnotation = new ReportingDataAnnotation();
+        $reportingDataAnnotationName = 'reportingDataAnnotationName-286898318';
+        $reportingDataAnnotation->setName($reportingDataAnnotationName);
+        $reportingDataAnnotationTitle = 'reportingDataAnnotationTitle-298126767';
+        $reportingDataAnnotation->setTitle($reportingDataAnnotationTitle);
+        $reportingDataAnnotationColor = Color::COLOR_UNSPECIFIED;
+        $reportingDataAnnotation->setColor($reportingDataAnnotationColor);
+        $request = (new UpdateReportingDataAnnotationRequest())->setReportingDataAnnotation($reportingDataAnnotation);
+        $response = $gapicClient->updateReportingDataAnnotation($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateReportingDataAnnotation',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getReportingDataAnnotation();
+        $this->assertProtobufEquals($reportingDataAnnotation, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateReportingDataAnnotationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $reportingDataAnnotation = new ReportingDataAnnotation();
+        $reportingDataAnnotationName = 'reportingDataAnnotationName-286898318';
+        $reportingDataAnnotation->setName($reportingDataAnnotationName);
+        $reportingDataAnnotationTitle = 'reportingDataAnnotationTitle-298126767';
+        $reportingDataAnnotation->setTitle($reportingDataAnnotationTitle);
+        $reportingDataAnnotationColor = Color::COLOR_UNSPECIFIED;
+        $reportingDataAnnotation->setColor($reportingDataAnnotationColor);
+        $request = (new UpdateReportingDataAnnotationRequest())->setReportingDataAnnotation($reportingDataAnnotation);
+        try {
+            $gapicClient->updateReportingDataAnnotation($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

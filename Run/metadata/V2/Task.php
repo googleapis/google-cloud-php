@@ -26,7 +26,7 @@ class Task
         \GPBMetadata\Google\Rpc\Status::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¯
+∑
 google/cloud/run/v2/task.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/run/v2/condition.proto!google/cloud/run/v2/k8s.min.proto)google/cloud/run/v2/vendor_settings.protogoogle/protobuf/duration.protogoogle/protobuf/timestamp.protogoogle/rpc/status.proto"?
 GetTaskRequest-
 name (	B‡A˙A
@@ -39,7 +39,7 @@ page_token (	
 show_deleted ("V
 ListTasksResponse(
 tasks (2.google.cloud.run.v2.Task
-next_page_token (	"∏
+next_page_token (	"˜
 Task
 name (	B‡A
 uid (	B‡A
@@ -79,7 +79,8 @@ conditions (2.google.cloud.run.v2.ConditionB‡A
 
 vpc_access (2.google.cloud.run.v2.VpcAccessB‡A
 log_uri  (	B‡A
-satisfies_pzs! (B‡A
+satisfies_pzs! (B‡A=
+node_selector$ (2!.google.cloud.run.v2.NodeSelectorB‡A
 etagc (	B‡A-
 LabelsEntry
 key (	

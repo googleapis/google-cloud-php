@@ -177,7 +177,9 @@ class Partition extends \Google\Protobuf\Internal\Message
      */
     public function getEtag()
     {
-        @trigger_error('etag is deprecated.', E_USER_DEPRECATED);
+        if ($this->etag !== '') {
+            @trigger_error('etag is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->etag;
     }
 

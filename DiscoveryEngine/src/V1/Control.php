@@ -89,7 +89,6 @@ class Control extends \Google\Protobuf\Internal\Message
      *           Treats a group of terms as synonyms of one another.
      *     @type \Google\Cloud\DiscoveryEngine\V1\Control\PromoteAction $promote_action
      *           Promote certain links based on predefined trigger queries.
-     *           This now only supports basic site search.
      *     @type string $name
      *           Immutable. Fully qualified name
      *           `projects/&#42;&#47;locations/global/dataStore/&#42;&#47;controls/&#42;`
@@ -253,7 +252,6 @@ class Control extends \Google\Protobuf\Internal\Message
 
     /**
      * Promote certain links based on predefined trigger queries.
-     * This now only supports basic site search.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Control.PromoteAction promote_action = 15;</code>
      * @return \Google\Cloud\DiscoveryEngine\V1\Control\PromoteAction|null
@@ -270,7 +268,6 @@ class Control extends \Google\Protobuf\Internal\Message
 
     /**
      * Promote certain links based on predefined trigger queries.
-     * This now only supports basic site search.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Control.PromoteAction promote_action = 15;</code>
      * @param \Google\Cloud\DiscoveryEngine\V1\Control\PromoteAction $var

@@ -25,6 +25,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START oracledatabase_v1_generated_OracleDatabase_ListAutonomousDbVersions_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\OracleDatabase\V1\AutonomousDbVersion;
 use Google\Cloud\OracleDatabase\V1\Client\OracleDatabaseClient;
 use Google\Cloud\OracleDatabase\V1\ListAutonomousDbVersionsRequest;
 
@@ -50,6 +51,7 @@ function list_autonomous_db_versions_sample(string $formattedParent): void
         /** @var PagedListResponse $response */
         $response = $oracleDatabaseClient->listAutonomousDbVersions($request);
 
+        /** @var AutonomousDbVersion $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

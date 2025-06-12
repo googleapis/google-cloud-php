@@ -26,6 +26,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\OracleDatabase\V1\Client\OracleDatabaseClient;
+use Google\Cloud\OracleDatabase\V1\DbSystemShape;
 use Google\Cloud\OracleDatabase\V1\ListDbSystemShapesRequest;
 
 /**
@@ -49,6 +50,7 @@ function list_db_system_shapes_sample(string $formattedParent): void
         /** @var PagedListResponse $response */
         $response = $oracleDatabaseClient->listDbSystemShapes($request);
 
+        /** @var DbSystemShape $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

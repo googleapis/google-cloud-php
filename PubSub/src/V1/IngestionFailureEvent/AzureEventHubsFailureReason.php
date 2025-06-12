@@ -60,6 +60,8 @@ class AzureEventHubsFailureReason extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\PubSub\V1\IngestionFailureEvent\ApiViolationReason $api_violation_reason
      *           Optional. The Pub/Sub API limits prevented the desired message from
      *           being published.
+     *     @type \Google\Cloud\PubSub\V1\IngestionFailureEvent\SchemaViolationReason $schema_violation_reason
+     *           Optional. The Pub/Sub message failed schema validation.
      * }
      */
     public function __construct($data = NULL) {
@@ -202,6 +204,37 @@ class AzureEventHubsFailureReason extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\IngestionFailureEvent\ApiViolationReason::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Pub/Sub message failed schema validation.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionFailureEvent.SchemaViolationReason schema_violation_reason = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\PubSub\V1\IngestionFailureEvent\SchemaViolationReason|null
+     */
+    public function getSchemaViolationReason()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasSchemaViolationReason()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Optional. The Pub/Sub message failed schema validation.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionFailureEvent.SchemaViolationReason schema_violation_reason = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\PubSub\V1\IngestionFailureEvent\SchemaViolationReason $var
+     * @return $this
+     */
+    public function setSchemaViolationReason($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\IngestionFailureEvent\SchemaViolationReason::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

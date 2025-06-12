@@ -113,7 +113,9 @@ class BuildpacksBuild extends \Google\Protobuf\Internal\Message
      */
     public function getRuntime()
     {
-        @trigger_error('runtime is deprecated.', E_USER_DEPRECATED);
+        if ($this->runtime !== '') {
+            @trigger_error('runtime is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->runtime;
     }
 

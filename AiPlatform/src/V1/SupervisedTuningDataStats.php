@@ -71,19 +71,27 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
      */
     private $user_dataset_examples;
     /**
-     * The number of examples in the dataset that have been truncated by any
-     * amount.
+     * Output only. The number of examples in the dataset that have been dropped.
+     * An example can be dropped for reasons including: too many tokens, contains
+     * an invalid image, contains too many images, etc.
      *
-     * Generated from protobuf field <code>int64 total_truncated_example_count = 10;</code>
+     * Generated from protobuf field <code>int64 total_truncated_example_count = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $total_truncated_example_count = 0;
     /**
-     * A partial sample of the indices (starting from 1) of the truncated
-     * examples.
+     * Output only. A partial sample of the indices (starting from 1) of the
+     * dropped examples.
      *
-     * Generated from protobuf field <code>repeated int64 truncated_example_indices = 11;</code>
+     * Generated from protobuf field <code>repeated int64 truncated_example_indices = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $truncated_example_indices;
+    /**
+     * Output only. For each index in `truncated_example_indices`, the user-facing
+     * reason why the example was dropped.
+     *
+     * Generated from protobuf field <code>repeated string dropped_example_reasons = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $dropped_example_reasons;
 
     /**
      * Constructor.
@@ -110,11 +118,15 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\AIPlatform\V1\Content>|\Google\Protobuf\Internal\RepeatedField $user_dataset_examples
      *           Output only. Sample user messages in the training dataset uri.
      *     @type int|string $total_truncated_example_count
-     *           The number of examples in the dataset that have been truncated by any
-     *           amount.
+     *           Output only. The number of examples in the dataset that have been dropped.
+     *           An example can be dropped for reasons including: too many tokens, contains
+     *           an invalid image, contains too many images, etc.
      *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $truncated_example_indices
-     *           A partial sample of the indices (starting from 1) of the truncated
-     *           examples.
+     *           Output only. A partial sample of the indices (starting from 1) of the
+     *           dropped examples.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dropped_example_reasons
+     *           Output only. For each index in `truncated_example_indices`, the user-facing
+     *           reason why the example was dropped.
      * }
      */
     public function __construct($data = NULL) {
@@ -183,7 +195,9 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
      */
     public function getTotalBillableCharacterCount()
     {
-        @trigger_error('total_billable_character_count is deprecated.', E_USER_DEPRECATED);
+        if ($this->total_billable_character_count !== 0) {
+            @trigger_error('total_billable_character_count is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->total_billable_character_count;
     }
 
@@ -391,10 +405,11 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of examples in the dataset that have been truncated by any
-     * amount.
+     * Output only. The number of examples in the dataset that have been dropped.
+     * An example can be dropped for reasons including: too many tokens, contains
+     * an invalid image, contains too many images, etc.
      *
-     * Generated from protobuf field <code>int64 total_truncated_example_count = 10;</code>
+     * Generated from protobuf field <code>int64 total_truncated_example_count = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
      */
     public function getTotalTruncatedExampleCount()
@@ -403,10 +418,11 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of examples in the dataset that have been truncated by any
-     * amount.
+     * Output only. The number of examples in the dataset that have been dropped.
+     * An example can be dropped for reasons including: too many tokens, contains
+     * an invalid image, contains too many images, etc.
      *
-     * Generated from protobuf field <code>int64 total_truncated_example_count = 10;</code>
+     * Generated from protobuf field <code>int64 total_truncated_example_count = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
      */
@@ -419,10 +435,10 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A partial sample of the indices (starting from 1) of the truncated
-     * examples.
+     * Output only. A partial sample of the indices (starting from 1) of the
+     * dropped examples.
      *
-     * Generated from protobuf field <code>repeated int64 truncated_example_indices = 11;</code>
+     * Generated from protobuf field <code>repeated int64 truncated_example_indices = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTruncatedExampleIndices()
@@ -431,10 +447,10 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A partial sample of the indices (starting from 1) of the truncated
-     * examples.
+     * Output only. A partial sample of the indices (starting from 1) of the
+     * dropped examples.
      *
-     * Generated from protobuf field <code>repeated int64 truncated_example_indices = 11;</code>
+     * Generated from protobuf field <code>repeated int64 truncated_example_indices = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -442,6 +458,34 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT64);
         $this->truncated_example_indices = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. For each index in `truncated_example_indices`, the user-facing
+     * reason why the example was dropped.
+     *
+     * Generated from protobuf field <code>repeated string dropped_example_reasons = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDroppedExampleReasons()
+    {
+        return $this->dropped_example_reasons;
+    }
+
+    /**
+     * Output only. For each index in `truncated_example_indices`, the user-facing
+     * reason why the example was dropped.
+     *
+     * Generated from protobuf field <code>repeated string dropped_example_reasons = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDroppedExampleReasons($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->dropped_example_reasons = $arr;
 
         return $this;
     }

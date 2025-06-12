@@ -22,6 +22,13 @@ class FileLocation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string file_path = 1;</code>
      */
     protected $file_path = '';
+    /**
+     * Each package found in a file should have its own layer metadata (that is,
+     * information from the origin layer of the package).
+     *
+     * Generated from protobuf field <code>.grafeas.v1.LayerDetails layer_details = 2;</code>
+     */
+    protected $layer_details = null;
 
     /**
      * Constructor.
@@ -32,6 +39,9 @@ class FileLocation extends \Google\Protobuf\Internal\Message
      *     @type string $file_path
      *           For jars that are contained inside .war files, this filepath
      *           can indicate the path to war file combined with the path to jar file.
+     *     @type \Grafeas\V1\LayerDetails $layer_details
+     *           Each package found in a file should have its own layer metadata (that is,
+     *           information from the origin layer of the package).
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +73,44 @@ class FileLocation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->file_path = $var;
+
+        return $this;
+    }
+
+    /**
+     * Each package found in a file should have its own layer metadata (that is,
+     * information from the origin layer of the package).
+     *
+     * Generated from protobuf field <code>.grafeas.v1.LayerDetails layer_details = 2;</code>
+     * @return \Grafeas\V1\LayerDetails|null
+     */
+    public function getLayerDetails()
+    {
+        return $this->layer_details;
+    }
+
+    public function hasLayerDetails()
+    {
+        return isset($this->layer_details);
+    }
+
+    public function clearLayerDetails()
+    {
+        unset($this->layer_details);
+    }
+
+    /**
+     * Each package found in a file should have its own layer metadata (that is,
+     * information from the origin layer of the package).
+     *
+     * Generated from protobuf field <code>.grafeas.v1.LayerDetails layer_details = 2;</code>
+     * @param \Grafeas\V1\LayerDetails $var
+     * @return $this
+     */
+    public function setLayerDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Grafeas\V1\LayerDetails::class);
+        $this->layer_details = $var;
 
         return $this;
     }

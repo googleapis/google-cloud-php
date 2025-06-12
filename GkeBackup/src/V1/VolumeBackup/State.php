@@ -61,6 +61,13 @@ class State
      * Generated from protobuf enum <code>DELETING = 6;</code>
      */
     const DELETING = 6;
+    /**
+     * The underlying artifacts of a volume backup (eg: persistent disk
+     * snapshots) are deleted.
+     *
+     * Generated from protobuf enum <code>CLEANED_UP = 7;</code>
+     */
+    const CLEANED_UP = 7;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -70,6 +77,7 @@ class State
         self::SUCCEEDED => 'SUCCEEDED',
         self::FAILED => 'FAILED',
         self::DELETING => 'DELETING',
+        self::CLEANED_UP => 'CLEANED_UP',
     ];
 
     public static function name($value)

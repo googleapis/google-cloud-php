@@ -25,37 +25,37 @@ class GetOpenIDConfigResponse extends \Google\Protobuf\Internal\Message
     /**
      * JSON Web Key uri.
      *
-     * Generated from protobuf field <code>string jwks_uri = 2;</code>
+     * Generated from protobuf field <code>string jwks_uri = 2 [json_name = "jwks_uri"];</code>
      */
     protected $jwks_uri = '';
     /**
      * Supported response types.
      *
-     * Generated from protobuf field <code>repeated string response_types_supported = 3;</code>
+     * Generated from protobuf field <code>repeated string response_types_supported = 3 [json_name = "response_types_supported"];</code>
      */
     private $response_types_supported;
     /**
      * Supported subject types.
      *
-     * Generated from protobuf field <code>repeated string subject_types_supported = 4;</code>
+     * Generated from protobuf field <code>repeated string subject_types_supported = 4 [json_name = "subject_types_supported"];</code>
      */
     private $subject_types_supported;
     /**
      * supported ID Token signing Algorithms.
      *
-     * Generated from protobuf field <code>repeated string id_token_signing_alg_values_supported = 5;</code>
+     * Generated from protobuf field <code>repeated string id_token_signing_alg_values_supported = 5 [json_name = "id_token_signing_alg_values_supported"];</code>
      */
     private $id_token_signing_alg_values_supported;
     /**
      * Supported claims.
      *
-     * Generated from protobuf field <code>repeated string claims_supported = 6;</code>
+     * Generated from protobuf field <code>repeated string claims_supported = 6 [json_name = "claims_supported"];</code>
      */
     private $claims_supported;
     /**
      * Supported grant types.
      *
-     * Generated from protobuf field <code>repeated string grant_types = 7;</code>
+     * Generated from protobuf field <code>repeated string grant_types = 7 [json_name = "grant_types"];</code>
      */
     private $grant_types;
 
@@ -115,7 +115,7 @@ class GetOpenIDConfigResponse extends \Google\Protobuf\Internal\Message
     /**
      * JSON Web Key uri.
      *
-     * Generated from protobuf field <code>string jwks_uri = 2;</code>
+     * Generated from protobuf field <code>string jwks_uri = 2 [json_name = "jwks_uri"];</code>
      * @return string
      */
     public function getJwksUri()
@@ -126,7 +126,7 @@ class GetOpenIDConfigResponse extends \Google\Protobuf\Internal\Message
     /**
      * JSON Web Key uri.
      *
-     * Generated from protobuf field <code>string jwks_uri = 2;</code>
+     * Generated from protobuf field <code>string jwks_uri = 2 [json_name = "jwks_uri"];</code>
      * @param string $var
      * @return $this
      */
@@ -141,7 +141,7 @@ class GetOpenIDConfigResponse extends \Google\Protobuf\Internal\Message
     /**
      * Supported response types.
      *
-     * Generated from protobuf field <code>repeated string response_types_supported = 3;</code>
+     * Generated from protobuf field <code>repeated string response_types_supported = 3 [json_name = "response_types_supported"];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getResponseTypesSupported()
@@ -152,7 +152,7 @@ class GetOpenIDConfigResponse extends \Google\Protobuf\Internal\Message
     /**
      * Supported response types.
      *
-     * Generated from protobuf field <code>repeated string response_types_supported = 3;</code>
+     * Generated from protobuf field <code>repeated string response_types_supported = 3 [json_name = "response_types_supported"];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -167,7 +167,7 @@ class GetOpenIDConfigResponse extends \Google\Protobuf\Internal\Message
     /**
      * Supported subject types.
      *
-     * Generated from protobuf field <code>repeated string subject_types_supported = 4;</code>
+     * Generated from protobuf field <code>repeated string subject_types_supported = 4 [json_name = "subject_types_supported"];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSubjectTypesSupported()
@@ -178,7 +178,7 @@ class GetOpenIDConfigResponse extends \Google\Protobuf\Internal\Message
     /**
      * Supported subject types.
      *
-     * Generated from protobuf field <code>repeated string subject_types_supported = 4;</code>
+     * Generated from protobuf field <code>repeated string subject_types_supported = 4 [json_name = "subject_types_supported"];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -193,7 +193,7 @@ class GetOpenIDConfigResponse extends \Google\Protobuf\Internal\Message
     /**
      * supported ID Token signing Algorithms.
      *
-     * Generated from protobuf field <code>repeated string id_token_signing_alg_values_supported = 5;</code>
+     * Generated from protobuf field <code>repeated string id_token_signing_alg_values_supported = 5 [json_name = "id_token_signing_alg_values_supported"];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getIdTokenSigningAlgValuesSupported()
@@ -204,7 +204,7 @@ class GetOpenIDConfigResponse extends \Google\Protobuf\Internal\Message
     /**
      * supported ID Token signing Algorithms.
      *
-     * Generated from protobuf field <code>repeated string id_token_signing_alg_values_supported = 5;</code>
+     * Generated from protobuf field <code>repeated string id_token_signing_alg_values_supported = 5 [json_name = "id_token_signing_alg_values_supported"];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -219,7 +219,7 @@ class GetOpenIDConfigResponse extends \Google\Protobuf\Internal\Message
     /**
      * Supported claims.
      *
-     * Generated from protobuf field <code>repeated string claims_supported = 6;</code>
+     * Generated from protobuf field <code>repeated string claims_supported = 6 [json_name = "claims_supported"];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getClaimsSupported()
@@ -230,7 +230,7 @@ class GetOpenIDConfigResponse extends \Google\Protobuf\Internal\Message
     /**
      * Supported claims.
      *
-     * Generated from protobuf field <code>repeated string claims_supported = 6;</code>
+     * Generated from protobuf field <code>repeated string claims_supported = 6 [json_name = "claims_supported"];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -245,7 +245,7 @@ class GetOpenIDConfigResponse extends \Google\Protobuf\Internal\Message
     /**
      * Supported grant types.
      *
-     * Generated from protobuf field <code>repeated string grant_types = 7;</code>
+     * Generated from protobuf field <code>repeated string grant_types = 7 [json_name = "grant_types"];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getGrantTypes()
@@ -256,7 +256,7 @@ class GetOpenIDConfigResponse extends \Google\Protobuf\Internal\Message
     /**
      * Supported grant types.
      *
-     * Generated from protobuf field <code>repeated string grant_types = 7;</code>
+     * Generated from protobuf field <code>repeated string grant_types = 7 [json_name = "grant_types"];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

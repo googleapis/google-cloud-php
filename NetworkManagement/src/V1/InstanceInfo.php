@@ -293,7 +293,9 @@ class InstanceInfo extends \Google\Protobuf\Internal\Message
      */
     public function getServiceAccount()
     {
-        @trigger_error('service_account is deprecated.', E_USER_DEPRECATED);
+        if ($this->service_account !== '') {
+            @trigger_error('service_account is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->service_account;
     }
 

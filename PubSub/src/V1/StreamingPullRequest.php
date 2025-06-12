@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Request for the `StreamingPull` streaming RPC method. This request is used to
- * establish the initial stream as well as to stream acknowledgements and ack
+ * establish the initial stream as well as to stream acknowledgments and ack
  * deadline modifications from the client to the server.
  *
  * Generated from protobuf message <code>google.pubsub.v1.StreamingPullRequest</code>
@@ -27,12 +27,11 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      */
     private $subscription = '';
     /**
-     * Optional. List of acknowledgement IDs for acknowledging previously received
+     * Optional. List of acknowledgment IDs for acknowledging previously received
      * messages (received on this stream or a different stream). If an ack ID has
      * expired, the corresponding message may be redelivered later. Acknowledging
-     * a message more than once will not result in an error. If the
-     * acknowledgement ID is malformed, the stream will be aborted with status
-     * `INVALID_ARGUMENT`.
+     * a message more than once will not result in an error. If the acknowledgment
+     * ID is malformed, the stream will be aborted with status `INVALID_ARGUMENT`.
      *
      * Generated from protobuf field <code>repeated string ack_ids = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -54,7 +53,7 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      */
     private $modify_deadline_seconds;
     /**
-     * Optional. List of acknowledgement IDs whose deadline will be modified based
+     * Optional. List of acknowledgment IDs whose deadline will be modified based
      * on the corresponding element in `modify_deadline_seconds`. This field can
      * be used to indicate that more time is needed to process a message by the
      * subscriber, or to make the message available for redelivery if the
@@ -124,12 +123,11 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      *           subsequent requests from client to server.
      *           Format is `projects/{project}/subscriptions/{sub}`.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ack_ids
-     *           Optional. List of acknowledgement IDs for acknowledging previously received
+     *           Optional. List of acknowledgment IDs for acknowledging previously received
      *           messages (received on this stream or a different stream). If an ack ID has
      *           expired, the corresponding message may be redelivered later. Acknowledging
-     *           a message more than once will not result in an error. If the
-     *           acknowledgement ID is malformed, the stream will be aborted with status
-     *           `INVALID_ARGUMENT`.
+     *           a message more than once will not result in an error. If the acknowledgment
+     *           ID is malformed, the stream will be aborted with status `INVALID_ARGUMENT`.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $modify_deadline_seconds
      *           Optional. The list of new ack deadlines for the IDs listed in
      *           `modify_deadline_ack_ids`. The size of this list must be the same as the
@@ -143,7 +141,7 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      *           non-streaming pull request. If the value is < 0 (an error), the stream will
      *           be aborted with status `INVALID_ARGUMENT`.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $modify_deadline_ack_ids
-     *           Optional. List of acknowledgement IDs whose deadline will be modified based
+     *           Optional. List of acknowledgment IDs whose deadline will be modified based
      *           on the corresponding element in `modify_deadline_seconds`. This field can
      *           be used to indicate that more time is needed to process a message by the
      *           subscriber, or to make the message available for redelivery if the
@@ -220,12 +218,11 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of acknowledgement IDs for acknowledging previously received
+     * Optional. List of acknowledgment IDs for acknowledging previously received
      * messages (received on this stream or a different stream). If an ack ID has
      * expired, the corresponding message may be redelivered later. Acknowledging
-     * a message more than once will not result in an error. If the
-     * acknowledgement ID is malformed, the stream will be aborted with status
-     * `INVALID_ARGUMENT`.
+     * a message more than once will not result in an error. If the acknowledgment
+     * ID is malformed, the stream will be aborted with status `INVALID_ARGUMENT`.
      *
      * Generated from protobuf field <code>repeated string ack_ids = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -236,12 +233,11 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of acknowledgement IDs for acknowledging previously received
+     * Optional. List of acknowledgment IDs for acknowledging previously received
      * messages (received on this stream or a different stream). If an ack ID has
      * expired, the corresponding message may be redelivered later. Acknowledging
-     * a message more than once will not result in an error. If the
-     * acknowledgement ID is malformed, the stream will be aborted with status
-     * `INVALID_ARGUMENT`.
+     * a message more than once will not result in an error. If the acknowledgment
+     * ID is malformed, the stream will be aborted with status `INVALID_ARGUMENT`.
      *
      * Generated from protobuf field <code>repeated string ack_ids = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -302,7 +298,7 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of acknowledgement IDs whose deadline will be modified based
+     * Optional. List of acknowledgment IDs whose deadline will be modified based
      * on the corresponding element in `modify_deadline_seconds`. This field can
      * be used to indicate that more time is needed to process a message by the
      * subscriber, or to make the message available for redelivery if the
@@ -317,7 +313,7 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of acknowledgement IDs whose deadline will be modified based
+     * Optional. List of acknowledgment IDs whose deadline will be modified based
      * on the corresponding element in `modify_deadline_seconds`. This field can
      * be used to indicate that more time is needed to process a message by the
      * subscriber, or to make the message available for redelivery if the

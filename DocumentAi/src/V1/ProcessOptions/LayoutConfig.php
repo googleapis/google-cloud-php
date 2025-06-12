@@ -21,6 +21,19 @@ class LayoutConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessOptions.LayoutConfig.ChunkingConfig chunking_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $chunking_config = null;
+    /**
+     * Optional. Whether to include images in layout parser processor response.
+     *
+     * Generated from protobuf field <code>bool return_images = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $return_images = false;
+    /**
+     * Optional. Whether to include bounding boxes in layout parser processor
+     * response.
+     *
+     * Generated from protobuf field <code>bool return_bounding_boxes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $return_bounding_boxes = false;
 
     /**
      * Constructor.
@@ -30,6 +43,11 @@ class LayoutConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\DocumentAI\V1\ProcessOptions\LayoutConfig\ChunkingConfig $chunking_config
      *           Optional. Config for chunking in layout parser processor.
+     *     @type bool $return_images
+     *           Optional. Whether to include images in layout parser processor response.
+     *     @type bool $return_bounding_boxes
+     *           Optional. Whether to include bounding boxes in layout parser processor
+     *           response.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +87,60 @@ class LayoutConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\ProcessOptions\LayoutConfig\ChunkingConfig::class);
         $this->chunking_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether to include images in layout parser processor response.
+     *
+     * Generated from protobuf field <code>bool return_images = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getReturnImages()
+    {
+        return $this->return_images;
+    }
+
+    /**
+     * Optional. Whether to include images in layout parser processor response.
+     *
+     * Generated from protobuf field <code>bool return_images = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReturnImages($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->return_images = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether to include bounding boxes in layout parser processor
+     * response.
+     *
+     * Generated from protobuf field <code>bool return_bounding_boxes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getReturnBoundingBoxes()
+    {
+        return $this->return_bounding_boxes;
+    }
+
+    /**
+     * Optional. Whether to include bounding boxes in layout parser processor
+     * response.
+     *
+     * Generated from protobuf field <code>bool return_bounding_boxes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReturnBoundingBoxes($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->return_bounding_boxes = $var;
 
         return $this;
     }

@@ -91,7 +91,9 @@ class InfoTypeSummary extends \Google\Protobuf\Internal\Message
      */
     public function getEstimatedPrevalence()
     {
-        @trigger_error('estimated_prevalence is deprecated.', E_USER_DEPRECATED);
+        if ($this->estimated_prevalence !== 0) {
+            @trigger_error('estimated_prevalence is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->estimated_prevalence;
     }
 

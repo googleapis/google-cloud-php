@@ -218,6 +218,8 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
             'retrySettings' => [
                 'totalTimeoutMillis' => $timeoutMillis,
             ],
+            'reversed' => $request->getReversed(),
+            'timeoutMillis' => $this->getTimeoutMillis($config->getPerOperationTimeout()),
         ]);
 
         $rows = [];

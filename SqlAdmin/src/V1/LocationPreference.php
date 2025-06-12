@@ -83,7 +83,9 @@ class LocationPreference extends \Google\Protobuf\Internal\Message
      */
     public function getFollowGaeApplication()
     {
-        @trigger_error('follow_gae_application is deprecated.', E_USER_DEPRECATED);
+        if ($this->follow_gae_application !== '') {
+            @trigger_error('follow_gae_application is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->follow_gae_application;
     }
 

@@ -37,8 +37,7 @@ class AutomatedBackupPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The encryption config can be specified to encrypt the
      * backups with a customer-managed encryption key (CMEK). When this field is
-     * not specified, the backup will then use default encryption scheme to
-     * protect the user data.
+     * not specified, the backup will use the cluster's encryption config.
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.EncryptionConfig encryption_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -84,8 +83,7 @@ class AutomatedBackupPolicy extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AlloyDb\V1\EncryptionConfig $encryption_config
      *           Optional. The encryption config can be specified to encrypt the
      *           backups with a customer-managed encryption key (CMEK). When this field is
-     *           not specified, the backup will then use default encryption scheme to
-     *           protect the user data.
+     *           not specified, the backup will use the cluster's encryption config.
      *     @type string $location
      *           The location where the backup will be stored. Currently, the only supported
      *           option is to store the backup in the same region as the cluster.
@@ -277,8 +275,7 @@ class AutomatedBackupPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The encryption config can be specified to encrypt the
      * backups with a customer-managed encryption key (CMEK). When this field is
-     * not specified, the backup will then use default encryption scheme to
-     * protect the user data.
+     * not specified, the backup will use the cluster's encryption config.
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.EncryptionConfig encryption_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\AlloyDb\V1\EncryptionConfig|null
@@ -301,8 +298,7 @@ class AutomatedBackupPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The encryption config can be specified to encrypt the
      * backups with a customer-managed encryption key (CMEK). When this field is
-     * not specified, the backup will then use default encryption scheme to
-     * protect the user data.
+     * not specified, the backup will use the cluster's encryption config.
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.EncryptionConfig encryption_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\AlloyDb\V1\EncryptionConfig $var

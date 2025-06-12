@@ -35,6 +35,12 @@ class PipelineDescription extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.DisplayData display_data = 3;</code>
      */
     private $display_data;
+    /**
+     * A hash value of the submitted pipeline portable graph step names if exists.
+     *
+     * Generated from protobuf field <code>string step_names_hash = 4;</code>
+     */
+    protected $step_names_hash = '';
 
     /**
      * Constructor.
@@ -48,6 +54,8 @@ class PipelineDescription extends \Google\Protobuf\Internal\Message
      *           Description of each stage of execution of the pipeline.
      *     @type array<\Google\Cloud\Dataflow\V1beta3\DisplayData>|\Google\Protobuf\Internal\RepeatedField $display_data
      *           Pipeline level display data.
+     *     @type string $step_names_hash
+     *           A hash value of the submitted pipeline portable graph step names if exists.
      * }
      */
     public function __construct($data = NULL) {
@@ -129,6 +137,32 @@ class PipelineDescription extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataflow\V1beta3\DisplayData::class);
         $this->display_data = $arr;
+
+        return $this;
+    }
+
+    /**
+     * A hash value of the submitted pipeline portable graph step names if exists.
+     *
+     * Generated from protobuf field <code>string step_names_hash = 4;</code>
+     * @return string
+     */
+    public function getStepNamesHash()
+    {
+        return $this->step_names_hash;
+    }
+
+    /**
+     * A hash value of the submitted pipeline portable graph step names if exists.
+     *
+     * Generated from protobuf field <code>string step_names_hash = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setStepNamesHash($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->step_names_hash = $var;
 
         return $this;
     }

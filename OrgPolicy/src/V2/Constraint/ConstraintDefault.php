@@ -17,7 +17,7 @@ class ConstraintDefault
 {
     /**
      * This is only used for distinguishing unset values and should never be
-     * used.
+     * used. Results in an error.
      *
      * Generated from protobuf enum <code>CONSTRAINT_DEFAULT_UNSPECIFIED = 0;</code>
      */

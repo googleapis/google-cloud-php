@@ -75,10 +75,12 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
      *           A snapshot of an Audience resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\EventCreateRule $event_create_rule
      *           A snapshot of an EventCreateRule resource in change history.
-     *     @type \Google\Analytics\Admin\V1alpha\CalculatedMetric $calculated_metric
-     *           A snapshot of a CalculatedMetric resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\KeyEvent $key_event
      *           A snapshot of a KeyEvent resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\CalculatedMetric $calculated_metric
+     *           A snapshot of a CalculatedMetric resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\ReportingDataAnnotation $reporting_data_annotation
+     *           A snapshot of a ReportingDataAnnotation resource in change history.
      * }
      */
     public function __construct($data = NULL) {
@@ -837,6 +839,37 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A snapshot of a KeyEvent resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.KeyEvent key_event = 30;</code>
+     * @return \Google\Analytics\Admin\V1alpha\KeyEvent|null
+     */
+    public function getKeyEvent()
+    {
+        return $this->readOneof(30);
+    }
+
+    public function hasKeyEvent()
+    {
+        return $this->hasOneof(30);
+    }
+
+    /**
+     * A snapshot of a KeyEvent resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.KeyEvent key_event = 30;</code>
+     * @param \Google\Analytics\Admin\V1alpha\KeyEvent $var
+     * @return $this
+     */
+    public function setKeyEvent($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\KeyEvent::class);
+        $this->writeOneof(30, $var);
+
+        return $this;
+    }
+
+    /**
      * A snapshot of a CalculatedMetric resource in change history.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.CalculatedMetric calculated_metric = 31;</code>
@@ -868,31 +901,31 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A snapshot of a KeyEvent resource in change history.
+     * A snapshot of a ReportingDataAnnotation resource in change history.
      *
-     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.KeyEvent key_event = 32;</code>
-     * @return \Google\Analytics\Admin\V1alpha\KeyEvent|null
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ReportingDataAnnotation reporting_data_annotation = 32;</code>
+     * @return \Google\Analytics\Admin\V1alpha\ReportingDataAnnotation|null
      */
-    public function getKeyEvent()
+    public function getReportingDataAnnotation()
     {
         return $this->readOneof(32);
     }
 
-    public function hasKeyEvent()
+    public function hasReportingDataAnnotation()
     {
         return $this->hasOneof(32);
     }
 
     /**
-     * A snapshot of a KeyEvent resource in change history.
+     * A snapshot of a ReportingDataAnnotation resource in change history.
      *
-     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.KeyEvent key_event = 32;</code>
-     * @param \Google\Analytics\Admin\V1alpha\KeyEvent $var
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ReportingDataAnnotation reporting_data_annotation = 32;</code>
+     * @param \Google\Analytics\Admin\V1alpha\ReportingDataAnnotation $var
      * @return $this
      */
-    public function setKeyEvent($var)
+    public function setReportingDataAnnotation($var)
     {
-        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\KeyEvent::class);
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\ReportingDataAnnotation::class);
         $this->writeOneof(32, $var);
 
         return $this;

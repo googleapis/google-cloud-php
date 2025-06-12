@@ -9,7 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Parameters to provide to the template being launched.
+ * Parameters to provide to the template being launched. Note that the
+ * [metadata in the pipeline code]
+ * (https://cloud.google.com/dataflow/docs/guides/templates/creating-templates#metadata)
+ * determines which runtime parameters are valid.
  *
  * Generated from protobuf message <code>google.dataflow.v1beta3.LaunchTemplateParameters</code>
  */
@@ -17,6 +20,8 @@ class LaunchTemplateParameters extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The job name to use for the created job.
+     * The name must match the regular expression
+     * `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`
      *
      * Generated from protobuf field <code>string job_name = 1;</code>
      */
@@ -56,6 +61,8 @@ class LaunchTemplateParameters extends \Google\Protobuf\Internal\Message
      *
      *     @type string $job_name
      *           Required. The job name to use for the created job.
+     *           The name must match the regular expression
+     *           `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`
      *     @type array|\Google\Protobuf\Internal\MapField $parameters
      *           The runtime parameters to pass to the job.
      *     @type \Google\Cloud\Dataflow\V1beta3\RuntimeEnvironment $environment
@@ -75,6 +82,8 @@ class LaunchTemplateParameters extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The job name to use for the created job.
+     * The name must match the regular expression
+     * `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`
      *
      * Generated from protobuf field <code>string job_name = 1;</code>
      * @return string
@@ -86,6 +95,8 @@ class LaunchTemplateParameters extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The job name to use for the created job.
+     * The name must match the regular expression
+     * `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`
      *
      * Generated from protobuf field <code>string job_name = 1;</code>
      * @param string $var

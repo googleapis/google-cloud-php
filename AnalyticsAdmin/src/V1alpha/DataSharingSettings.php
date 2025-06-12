@@ -25,35 +25,51 @@ class DataSharingSettings extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Allows Google support to access the data in order to help troubleshoot
-     * issues.
+     * Allows Google technical support representatives access to your Google
+     * Analytics data and account when necessary to provide service and find
+     * solutions to technical issues.
+     * This field maps to the "Technical support" field in the Google Analytics
+     * Admin UI.
      *
      * Generated from protobuf field <code>bool sharing_with_google_support_enabled = 2;</code>
      */
     protected $sharing_with_google_support_enabled = false;
     /**
-     * Allows Google sales teams that are assigned to the customer to access the
-     * data in order to suggest configuration changes to improve results.
-     * Sales team restrictions still apply when enabled.
+     * Allows Google access to your Google Analytics account data, including
+     * account usage and configuration data, product spending, and users
+     * associated with your Google Analytics account, so that Google can help you
+     * make the most of Google products, providing you with insights, offers,
+     * recommendations, and optimization tips across Google Analytics and other
+     * Google products for business.
+     * This field maps to the "Recommendations for your business" field in the
+     * Google Analytics Admin UI.
      *
      * Generated from protobuf field <code>bool sharing_with_google_assigned_sales_enabled = 3;</code>
      */
     protected $sharing_with_google_assigned_sales_enabled = false;
     /**
-     * Allows any of Google sales to access the data in order to suggest
-     * configuration changes to improve results.
+     * Deprecated. This field is no longer used and always returns false.
      *
-     * Generated from protobuf field <code>bool sharing_with_google_any_sales_enabled = 4;</code>
+     * Generated from protobuf field <code>bool sharing_with_google_any_sales_enabled = 4 [deprecated = true];</code>
+     * @deprecated
      */
     protected $sharing_with_google_any_sales_enabled = false;
     /**
      * Allows Google to use the data to improve other Google products or services.
+     * This fields maps to the "Google products & services" field in the Google
+     * Analytics Admin UI.
      *
      * Generated from protobuf field <code>bool sharing_with_google_products_enabled = 5;</code>
      */
     protected $sharing_with_google_products_enabled = false;
     /**
-     * Allows Google to share the data anonymously in aggregate form with others.
+     * Enable features like predictions, modeled data, and benchmarking that can
+     * provide you with richer business insights when you contribute aggregated
+     * measurement data. The data you share (including information about the
+     * property from which it is shared) is aggregated and de-identified before
+     * being used to generate business insights.
+     * This field maps to the "Modeling contributions & business insights" field
+     * in the Google Analytics Admin UI.
      *
      * Generated from protobuf field <code>bool sharing_with_others_enabled = 6;</code>
      */
@@ -70,19 +86,34 @@ class DataSharingSettings extends \Google\Protobuf\Internal\Message
      *           Format: accounts/{account}/dataSharingSettings
      *           Example: "accounts/1000/dataSharingSettings"
      *     @type bool $sharing_with_google_support_enabled
-     *           Allows Google support to access the data in order to help troubleshoot
-     *           issues.
+     *           Allows Google technical support representatives access to your Google
+     *           Analytics data and account when necessary to provide service and find
+     *           solutions to technical issues.
+     *           This field maps to the "Technical support" field in the Google Analytics
+     *           Admin UI.
      *     @type bool $sharing_with_google_assigned_sales_enabled
-     *           Allows Google sales teams that are assigned to the customer to access the
-     *           data in order to suggest configuration changes to improve results.
-     *           Sales team restrictions still apply when enabled.
+     *           Allows Google access to your Google Analytics account data, including
+     *           account usage and configuration data, product spending, and users
+     *           associated with your Google Analytics account, so that Google can help you
+     *           make the most of Google products, providing you with insights, offers,
+     *           recommendations, and optimization tips across Google Analytics and other
+     *           Google products for business.
+     *           This field maps to the "Recommendations for your business" field in the
+     *           Google Analytics Admin UI.
      *     @type bool $sharing_with_google_any_sales_enabled
-     *           Allows any of Google sales to access the data in order to suggest
-     *           configuration changes to improve results.
+     *           Deprecated. This field is no longer used and always returns false.
      *     @type bool $sharing_with_google_products_enabled
      *           Allows Google to use the data to improve other Google products or services.
+     *           This fields maps to the "Google products & services" field in the Google
+     *           Analytics Admin UI.
      *     @type bool $sharing_with_others_enabled
-     *           Allows Google to share the data anonymously in aggregate form with others.
+     *           Enable features like predictions, modeled data, and benchmarking that can
+     *           provide you with richer business insights when you contribute aggregated
+     *           measurement data. The data you share (including information about the
+     *           property from which it is shared) is aggregated and de-identified before
+     *           being used to generate business insights.
+     *           This field maps to the "Modeling contributions & business insights" field
+     *           in the Google Analytics Admin UI.
      * }
      */
     public function __construct($data = NULL) {
@@ -121,8 +152,11 @@ class DataSharingSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Allows Google support to access the data in order to help troubleshoot
-     * issues.
+     * Allows Google technical support representatives access to your Google
+     * Analytics data and account when necessary to provide service and find
+     * solutions to technical issues.
+     * This field maps to the "Technical support" field in the Google Analytics
+     * Admin UI.
      *
      * Generated from protobuf field <code>bool sharing_with_google_support_enabled = 2;</code>
      * @return bool
@@ -133,8 +167,11 @@ class DataSharingSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Allows Google support to access the data in order to help troubleshoot
-     * issues.
+     * Allows Google technical support representatives access to your Google
+     * Analytics data and account when necessary to provide service and find
+     * solutions to technical issues.
+     * This field maps to the "Technical support" field in the Google Analytics
+     * Admin UI.
      *
      * Generated from protobuf field <code>bool sharing_with_google_support_enabled = 2;</code>
      * @param bool $var
@@ -149,9 +186,14 @@ class DataSharingSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Allows Google sales teams that are assigned to the customer to access the
-     * data in order to suggest configuration changes to improve results.
-     * Sales team restrictions still apply when enabled.
+     * Allows Google access to your Google Analytics account data, including
+     * account usage and configuration data, product spending, and users
+     * associated with your Google Analytics account, so that Google can help you
+     * make the most of Google products, providing you with insights, offers,
+     * recommendations, and optimization tips across Google Analytics and other
+     * Google products for business.
+     * This field maps to the "Recommendations for your business" field in the
+     * Google Analytics Admin UI.
      *
      * Generated from protobuf field <code>bool sharing_with_google_assigned_sales_enabled = 3;</code>
      * @return bool
@@ -162,9 +204,14 @@ class DataSharingSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Allows Google sales teams that are assigned to the customer to access the
-     * data in order to suggest configuration changes to improve results.
-     * Sales team restrictions still apply when enabled.
+     * Allows Google access to your Google Analytics account data, including
+     * account usage and configuration data, product spending, and users
+     * associated with your Google Analytics account, so that Google can help you
+     * make the most of Google products, providing you with insights, offers,
+     * recommendations, and optimization tips across Google Analytics and other
+     * Google products for business.
+     * This field maps to the "Recommendations for your business" field in the
+     * Google Analytics Admin UI.
      *
      * Generated from protobuf field <code>bool sharing_with_google_assigned_sales_enabled = 3;</code>
      * @param bool $var
@@ -179,27 +226,31 @@ class DataSharingSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Allows any of Google sales to access the data in order to suggest
-     * configuration changes to improve results.
+     * Deprecated. This field is no longer used and always returns false.
      *
-     * Generated from protobuf field <code>bool sharing_with_google_any_sales_enabled = 4;</code>
+     * Generated from protobuf field <code>bool sharing_with_google_any_sales_enabled = 4 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getSharingWithGoogleAnySalesEnabled()
     {
+        if ($this->sharing_with_google_any_sales_enabled !== false) {
+            @trigger_error('sharing_with_google_any_sales_enabled is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->sharing_with_google_any_sales_enabled;
     }
 
     /**
-     * Allows any of Google sales to access the data in order to suggest
-     * configuration changes to improve results.
+     * Deprecated. This field is no longer used and always returns false.
      *
-     * Generated from protobuf field <code>bool sharing_with_google_any_sales_enabled = 4;</code>
+     * Generated from protobuf field <code>bool sharing_with_google_any_sales_enabled = 4 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setSharingWithGoogleAnySalesEnabled($var)
     {
+        @trigger_error('sharing_with_google_any_sales_enabled is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->sharing_with_google_any_sales_enabled = $var;
 
@@ -208,6 +259,8 @@ class DataSharingSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Allows Google to use the data to improve other Google products or services.
+     * This fields maps to the "Google products & services" field in the Google
+     * Analytics Admin UI.
      *
      * Generated from protobuf field <code>bool sharing_with_google_products_enabled = 5;</code>
      * @return bool
@@ -219,6 +272,8 @@ class DataSharingSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Allows Google to use the data to improve other Google products or services.
+     * This fields maps to the "Google products & services" field in the Google
+     * Analytics Admin UI.
      *
      * Generated from protobuf field <code>bool sharing_with_google_products_enabled = 5;</code>
      * @param bool $var
@@ -233,7 +288,13 @@ class DataSharingSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Allows Google to share the data anonymously in aggregate form with others.
+     * Enable features like predictions, modeled data, and benchmarking that can
+     * provide you with richer business insights when you contribute aggregated
+     * measurement data. The data you share (including information about the
+     * property from which it is shared) is aggregated and de-identified before
+     * being used to generate business insights.
+     * This field maps to the "Modeling contributions & business insights" field
+     * in the Google Analytics Admin UI.
      *
      * Generated from protobuf field <code>bool sharing_with_others_enabled = 6;</code>
      * @return bool
@@ -244,7 +305,13 @@ class DataSharingSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Allows Google to share the data anonymously in aggregate form with others.
+     * Enable features like predictions, modeled data, and benchmarking that can
+     * provide you with richer business insights when you contribute aggregated
+     * measurement data. The data you share (including information about the
+     * property from which it is shared) is aggregated and de-identified before
+     * being used to generate business insights.
+     * This field maps to the "Modeling contributions & business insights" field
+     * in the Google Analytics Admin UI.
      *
      * Generated from protobuf field <code>bool sharing_with_others_enabled = 6;</code>
      * @param bool $var

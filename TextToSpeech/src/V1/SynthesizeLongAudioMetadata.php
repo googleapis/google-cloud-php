@@ -99,13 +99,17 @@ class SynthesizeLongAudioMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getLastUpdateTime()
     {
-        @trigger_error('last_update_time is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->last_update_time)) {
+            @trigger_error('last_update_time is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->last_update_time;
     }
 
     public function hasLastUpdateTime()
     {
-        @trigger_error('last_update_time is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->last_update_time)) {
+            @trigger_error('last_update_time is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->last_update_time);
     }
 

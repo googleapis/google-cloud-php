@@ -303,13 +303,17 @@ class AssetReference extends \Google\Protobuf\Internal\Message
      */
     public function getGcsPath()
     {
-        @trigger_error('gcs_path is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(11)) {
+            @trigger_error('gcs_path is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(11);
     }
 
     public function hasGcsPath()
     {
-        @trigger_error('gcs_path is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(11)) {
+            @trigger_error('gcs_path is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(11);
     }
 
@@ -478,7 +482,9 @@ class AssetReference extends \Google\Protobuf\Internal\Message
      */
     public function getVersion()
     {
-        @trigger_error('version is deprecated.', E_USER_DEPRECATED);
+        if ($this->version !== '') {
+            @trigger_error('version is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->version;
     }
 

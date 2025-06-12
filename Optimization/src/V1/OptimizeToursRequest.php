@@ -1207,7 +1207,9 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      */
     public function getPopulateTravelStepPolylines()
     {
-        @trigger_error('populate_travel_step_polylines is deprecated.', E_USER_DEPRECATED);
+        if ($this->populate_travel_step_polylines !== false) {
+            @trigger_error('populate_travel_step_polylines is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->populate_travel_step_polylines;
     }
 

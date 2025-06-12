@@ -9,21 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Export Job Results. The result is based on the snapshot at the time when
- * the job is created.
+ * Summary results from a metadata export job. The results are a snapshot of
+ * the metadata at the time when the job was created. The exported entries are
+ * saved to a Cloud Storage bucket.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.MetadataJob.ExportJobResult</code>
  */
 class ExportJobResult extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The number of entries that have been exported.
+     * Output only. The number of entries that were exported.
      *
      * Generated from protobuf field <code>int64 exported_entries = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $exported_entries = 0;
     /**
-     * Output only. The error message if the export job failed.
+     * Output only. The error message if the metadata export job failed.
      *
      * Generated from protobuf field <code>string error_message = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -36,9 +37,9 @@ class ExportJobResult extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $exported_entries
-     *           Output only. The number of entries that have been exported.
+     *           Output only. The number of entries that were exported.
      *     @type string $error_message
-     *           Output only. The error message if the export job failed.
+     *           Output only. The error message if the metadata export job failed.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,7 +48,7 @@ class ExportJobResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The number of entries that have been exported.
+     * Output only. The number of entries that were exported.
      *
      * Generated from protobuf field <code>int64 exported_entries = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
@@ -58,7 +59,7 @@ class ExportJobResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The number of entries that have been exported.
+     * Output only. The number of entries that were exported.
      *
      * Generated from protobuf field <code>int64 exported_entries = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
@@ -73,7 +74,7 @@ class ExportJobResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The error message if the export job failed.
+     * Output only. The error message if the metadata export job failed.
      *
      * Generated from protobuf field <code>string error_message = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -84,7 +85,7 @@ class ExportJobResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The error message if the export job failed.
+     * Output only. The error message if the metadata export job failed.
      *
      * Generated from protobuf field <code>string error_message = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

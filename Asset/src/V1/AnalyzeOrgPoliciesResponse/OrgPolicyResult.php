@@ -18,7 +18,7 @@ class OrgPolicyResult extends \Google\Protobuf\Internal\Message
     /**
      * The consolidated organization policy for the analyzed resource. The
      * consolidated organization policy is computed by merging and evaluating
-     * [AnalyzeOrgPoliciesResponse.policy_bundle][].
+     * [policy_bundle][google.cloud.asset.v1.AnalyzeOrgPoliciesResponse.OrgPolicyResult.policy_bundle].
      * The evaluation will respect the organization policy [hierarchy
      * rules](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-hierarchy).
      *
@@ -27,7 +27,7 @@ class OrgPolicyResult extends \Google\Protobuf\Internal\Message
     protected $consolidated_policy = null;
     /**
      * The ordered list of all organization policies from the
-     * [AnalyzeOrgPoliciesResponse.OrgPolicyResult.consolidated_policy.attached_resource][].
+     * [consolidated_policy.attached_resource][google.cloud.asset.v1.AnalyzerOrgPolicy.attached_resource].
      * to the scope specified in the request.
      * If the constraint is defined with default policy, it will also appear in
      * the list.
@@ -69,12 +69,12 @@ class OrgPolicyResult extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Asset\V1\AnalyzerOrgPolicy $consolidated_policy
      *           The consolidated organization policy for the analyzed resource. The
      *           consolidated organization policy is computed by merging and evaluating
-     *           [AnalyzeOrgPoliciesResponse.policy_bundle][].
+     *           [policy_bundle][google.cloud.asset.v1.AnalyzeOrgPoliciesResponse.OrgPolicyResult.policy_bundle].
      *           The evaluation will respect the organization policy [hierarchy
      *           rules](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-hierarchy).
      *     @type array<\Google\Cloud\Asset\V1\AnalyzerOrgPolicy>|\Google\Protobuf\Internal\RepeatedField $policy_bundle
      *           The ordered list of all organization policies from the
-     *           [AnalyzeOrgPoliciesResponse.OrgPolicyResult.consolidated_policy.attached_resource][].
+     *           [consolidated_policy.attached_resource][google.cloud.asset.v1.AnalyzerOrgPolicy.attached_resource].
      *           to the scope specified in the request.
      *           If the constraint is defined with default policy, it will also appear in
      *           the list.
@@ -100,7 +100,7 @@ class OrgPolicyResult extends \Google\Protobuf\Internal\Message
     /**
      * The consolidated organization policy for the analyzed resource. The
      * consolidated organization policy is computed by merging and evaluating
-     * [AnalyzeOrgPoliciesResponse.policy_bundle][].
+     * [policy_bundle][google.cloud.asset.v1.AnalyzeOrgPoliciesResponse.OrgPolicyResult.policy_bundle].
      * The evaluation will respect the organization policy [hierarchy
      * rules](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-hierarchy).
      *
@@ -125,7 +125,7 @@ class OrgPolicyResult extends \Google\Protobuf\Internal\Message
     /**
      * The consolidated organization policy for the analyzed resource. The
      * consolidated organization policy is computed by merging and evaluating
-     * [AnalyzeOrgPoliciesResponse.policy_bundle][].
+     * [policy_bundle][google.cloud.asset.v1.AnalyzeOrgPoliciesResponse.OrgPolicyResult.policy_bundle].
      * The evaluation will respect the organization policy [hierarchy
      * rules](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-hierarchy).
      *
@@ -143,7 +143,7 @@ class OrgPolicyResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The ordered list of all organization policies from the
-     * [AnalyzeOrgPoliciesResponse.OrgPolicyResult.consolidated_policy.attached_resource][].
+     * [consolidated_policy.attached_resource][google.cloud.asset.v1.AnalyzerOrgPolicy.attached_resource].
      * to the scope specified in the request.
      * If the constraint is defined with default policy, it will also appear in
      * the list.
@@ -158,7 +158,7 @@ class OrgPolicyResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The ordered list of all organization policies from the
-     * [AnalyzeOrgPoliciesResponse.OrgPolicyResult.consolidated_policy.attached_resource][].
+     * [consolidated_policy.attached_resource][google.cloud.asset.v1.AnalyzerOrgPolicy.attached_resource].
      * to the scope specified in the request.
      * If the constraint is defined with default policy, it will also appear in
      * the list.

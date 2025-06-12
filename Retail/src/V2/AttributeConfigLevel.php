@@ -29,7 +29,7 @@ class AttributeConfigLevel
     const PRODUCT_LEVEL_ATTRIBUTE_CONFIG = 1;
     /**
      * At this level, we honor the attribute configurations set in
-     * [CatalogConfig.attribute_configs][].
+     * `CatalogConfig.attribute_configs`.
      *
      * Generated from protobuf enum <code>CATALOG_LEVEL_ATTRIBUTE_CONFIG = 2;</code>
      */

@@ -55,6 +55,9 @@ class Rule extends \Google\Protobuf\Internal\Message
      *           Force returns an attribute as a facet in the request.
      *     @type \Google\Cloud\Retail\V2\Rule\RemoveFacetAction $remove_facet_action
      *           Remove an attribute as a facet in the request (if present).
+     *     @type \Google\Cloud\Retail\V2\Rule\PinAction $pin_action
+     *           Pins one or more specified products to a specific position in the
+     *           results.
      *     @type \Google\Cloud\Retail\V2\Condition $condition
      *           Required. The condition that triggers the rule.
      *           If the condition is empty, the rule will always apply.
@@ -373,6 +376,39 @@ class Rule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Retail\V2\Rule\RemoveFacetAction::class);
         $this->writeOneof(13, $var);
+
+        return $this;
+    }
+
+    /**
+     * Pins one or more specified products to a specific position in the
+     * results.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.Rule.PinAction pin_action = 14;</code>
+     * @return \Google\Cloud\Retail\V2\Rule\PinAction|null
+     */
+    public function getPinAction()
+    {
+        return $this->readOneof(14);
+    }
+
+    public function hasPinAction()
+    {
+        return $this->hasOneof(14);
+    }
+
+    /**
+     * Pins one or more specified products to a specific position in the
+     * results.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.Rule.PinAction pin_action = 14;</code>
+     * @param \Google\Cloud\Retail\V2\Rule\PinAction $var
+     * @return $this
+     */
+    public function setPinAction($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Retail\V2\Rule\PinAction::class);
+        $this->writeOneof(14, $var);
 
         return $this;
     }

@@ -38,6 +38,12 @@ class LogicalView extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string etag = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $etag = '';
+    /**
+     * Optional. Set to true to make the LogicalView protected against deletion.
+     *
+     * Generated from protobuf field <code>bool deletion_protection = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $deletion_protection = false;
 
     /**
      * Constructor.
@@ -56,6 +62,8 @@ class LogicalView extends \Google\Protobuf\Internal\Message
      *           This may be sent on update requests to ensure that the client has an
      *           up-to-date value before proceeding. The server returns an ABORTED error on
      *           a mismatched etag.
+     *     @type bool $deletion_protection
+     *           Optional. Set to true to make the LogicalView protected against deletion.
      * }
      */
     public function __construct($data = NULL) {
@@ -147,6 +155,32 @@ class LogicalView extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Set to true to make the LogicalView protected against deletion.
+     *
+     * Generated from protobuf field <code>bool deletion_protection = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDeletionProtection()
+    {
+        return $this->deletion_protection;
+    }
+
+    /**
+     * Optional. Set to true to make the LogicalView protected against deletion.
+     *
+     * Generated from protobuf field <code>bool deletion_protection = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDeletionProtection($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->deletion_protection = $var;
 
         return $this;
     }

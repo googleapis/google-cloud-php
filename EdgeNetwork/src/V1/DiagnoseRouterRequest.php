@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message for requesting diagnositcs of a router within a specific zone.
+ * Message for requesting diagnostics of a router within a specific zone.
  *
  * Generated from protobuf message <code>google.cloud.edgenetwork.v1.DiagnoseRouterRequest</code>
  */

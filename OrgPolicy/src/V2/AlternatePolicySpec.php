@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Similar to PolicySpec but with an extra 'launch' field for launch reference.
- * The PolicySpec here is specific for dry-run/darklaunch.
+ * The PolicySpec here is specific for dry-run.
  *
  * Generated from protobuf message <code>google.cloud.orgpolicy.v2.AlternatePolicySpec</code>
  */

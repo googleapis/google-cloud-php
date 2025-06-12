@@ -283,6 +283,40 @@ final class AnalyticsHubServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * managed_service resource.
+     *
+     * @param string $service
+     *
+     * @return string The formatted managed_service resource.
+     */
+    public static function managedServiceName(string $service): string
+    {
+        return self::getPathTemplate('managedService')->render([
+            'service' => $service,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a routine
+     * resource.
+     *
+     * @param string $project
+     * @param string $dataset
+     * @param string $routine
+     *
+     * @return string The formatted routine resource.
+     */
+    public static function routineName(string $project, string $dataset, string $routine): string
+    {
+        return self::getPathTemplate('routine')->render([
+            'project' => $project,
+            'dataset' => $dataset,
+            'routine' => $routine,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a subscription
      * resource.
      *
@@ -345,6 +379,8 @@ final class AnalyticsHubServiceClient
      * - dataset: projects/{project}/datasets/{dataset}
      * - listing: projects/{project}/locations/{location}/dataExchanges/{data_exchange}/listings/{listing}
      * - location: projects/{project}/locations/{location}
+     * - managedService: services/{service}
+     * - routine: projects/{project}/datasets/{dataset}/routines/{routine}
      * - subscription: projects/{project}/locations/{location}/subscriptions/{subscription}
      * - table: projects/{project}/datasets/{dataset}/tables/{table}
      * - topic: projects/{project}/topics/{topic}
@@ -905,8 +941,10 @@ final class AnalyticsHubServiceClient
     }
 
     /**
-     * Creates a Subscription to a Data Clean Room. This is a long-running
-     * operation as it will create one or more linked datasets.
+     * Creates a Subscription to a Data Clean Room. This is a
+     * long-running operation as it will create one or more linked datasets.
+     * Throws a Bad Request error if the Data Exchange does not contain any
+     * listings.
      *
      * The async variant is
      * {@see AnalyticsHubServiceClient::subscribeDataExchangeAsync()} .

@@ -25,6 +25,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START oracledatabase_v1_generated_OracleDatabase_ListAutonomousDatabases_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\OracleDatabase\V1\AutonomousDatabase;
 use Google\Cloud\OracleDatabase\V1\Client\OracleDatabaseClient;
 use Google\Cloud\OracleDatabase\V1\ListAutonomousDatabasesRequest;
 
@@ -49,6 +50,7 @@ function list_autonomous_databases_sample(string $formattedParent): void
         /** @var PagedListResponse $response */
         $response = $oracleDatabaseClient->listAutonomousDatabases($request);
 
+        /** @var AutonomousDatabase $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

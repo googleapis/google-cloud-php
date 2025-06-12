@@ -33,11 +33,20 @@ class LoggableActionState
      * Generated from protobuf enum <code>FAILED = 2;</code>
      */
     const FAILED = 2;
+    /**
+     * The `COPY` action was skipped for this file. Only supported for
+     * agent-based transfers. `SKIPPED` actions are
+     * logged as [INFO][google.logging.type.LogSeverity.INFO].
+     *
+     * Generated from protobuf enum <code>SKIPPED = 3;</code>
+     */
+    const SKIPPED = 3;
 
     private static $valueToName = [
         self::LOGGABLE_ACTION_STATE_UNSPECIFIED => 'LOGGABLE_ACTION_STATE_UNSPECIFIED',
         self::SUCCEEDED => 'SUCCEEDED',
         self::FAILED => 'FAILED',
+        self::SKIPPED => 'SKIPPED',
     ];
 
     public static function name($value)

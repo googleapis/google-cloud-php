@@ -38,12 +38,26 @@ class Scenario
      * Generated from protobuf enum <code>MEMORY = 4;</code>
      */
     const MEMORY = 4;
+    /**
+     * No autotuning.
+     *
+     * Generated from protobuf enum <code>NONE = 5;</code>
+     */
+    const NONE = 5;
+    /**
+     * Automatic selection of scenarios.
+     *
+     * Generated from protobuf enum <code>AUTO = 6;</code>
+     */
+    const AUTO = 6;
 
     private static $valueToName = [
         self::SCENARIO_UNSPECIFIED => 'SCENARIO_UNSPECIFIED',
         self::SCALING => 'SCALING',
         self::BROADCAST_HASH_JOIN => 'BROADCAST_HASH_JOIN',
         self::MEMORY => 'MEMORY',
+        self::NONE => 'NONE',
+        self::AUTO => 'AUTO',
     ];
 
     public static function name($value)

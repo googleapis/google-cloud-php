@@ -14,7 +14,8 @@ use UnexpectedValueException;
 class ActionType
 {
     /**
-     * Unspecified. Results in an error.
+     * This is only used for distinguishing unset values and should never be
+     * used. Results in an error.
      *
      * Generated from protobuf enum <code>ACTION_TYPE_UNSPECIFIED = 0;</code>
      */

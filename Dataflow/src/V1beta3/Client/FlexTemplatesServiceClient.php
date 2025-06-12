@@ -39,7 +39,7 @@ use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: Provides a service for Flex templates. This feature is not ready yet.
+ * Service Description: Provides a service for Flex templates.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -75,8 +75,6 @@ final class FlexTemplatesServiceClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/compute',
-        'https://www.googleapis.com/auth/compute.readonly',
-        'https://www.googleapis.com/auth/userinfo.email',
     ];
 
     private static function getClientDefaults()

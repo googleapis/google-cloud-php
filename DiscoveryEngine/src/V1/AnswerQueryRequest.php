@@ -548,7 +548,9 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAsynchronousMode()
     {
-        @trigger_error('asynchronous_mode is deprecated.', E_USER_DEPRECATED);
+        if ($this->asynchronous_mode !== false) {
+            @trigger_error('asynchronous_mode is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->asynchronous_mode;
     }
 

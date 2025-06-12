@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * WorkloadPolicyConfig is the configuration of workload policy for autopilot
- * clusters.
+ * WorkloadPolicyConfig is the configuration related to GCW workload policy
  *
  * Generated from protobuf message <code>google.container.v1.WorkloadPolicyConfig</code>
  */
@@ -22,6 +21,13 @@ class WorkloadPolicyConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool allow_net_admin = 1;</code>
      */
     protected $allow_net_admin = null;
+    /**
+     * If true, enables the GCW Auditor that audits workloads on
+     * standard clusters.
+     *
+     * Generated from protobuf field <code>optional bool autopilot_compatibility_auditing_enabled = 2;</code>
+     */
+    protected $autopilot_compatibility_auditing_enabled = null;
 
     /**
      * Constructor.
@@ -31,6 +37,9 @@ class WorkloadPolicyConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $allow_net_admin
      *           If true, workloads can use NET_ADMIN capability.
+     *     @type bool $autopilot_compatibility_auditing_enabled
+     *           If true, enables the GCW Auditor that audits workloads on
+     *           standard clusters.
      * }
      */
     public function __construct($data = NULL) {
@@ -70,6 +79,44 @@ class WorkloadPolicyConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->allow_net_admin = $var;
+
+        return $this;
+    }
+
+    /**
+     * If true, enables the GCW Auditor that audits workloads on
+     * standard clusters.
+     *
+     * Generated from protobuf field <code>optional bool autopilot_compatibility_auditing_enabled = 2;</code>
+     * @return bool
+     */
+    public function getAutopilotCompatibilityAuditingEnabled()
+    {
+        return isset($this->autopilot_compatibility_auditing_enabled) ? $this->autopilot_compatibility_auditing_enabled : false;
+    }
+
+    public function hasAutopilotCompatibilityAuditingEnabled()
+    {
+        return isset($this->autopilot_compatibility_auditing_enabled);
+    }
+
+    public function clearAutopilotCompatibilityAuditingEnabled()
+    {
+        unset($this->autopilot_compatibility_auditing_enabled);
+    }
+
+    /**
+     * If true, enables the GCW Auditor that audits workloads on
+     * standard clusters.
+     *
+     * Generated from protobuf field <code>optional bool autopilot_compatibility_auditing_enabled = 2;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAutopilotCompatibilityAuditingEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->autopilot_compatibility_auditing_enabled = $var;
 
         return $this;
     }

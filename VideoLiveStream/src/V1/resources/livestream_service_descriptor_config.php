@@ -80,6 +80,25 @@ return [
                     ],
                 ],
             ],
+            'CreateDvrSession' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Video\LiveStream\V1\DvrSession',
+                    'metadataReturnType' => '\Google\Cloud\Video\LiveStream\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateInput' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Video\LiveStream\V1\Input',
@@ -138,6 +157,25 @@ return [
                 ],
             ],
             'DeleteClip' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Video\LiveStream\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteDvrSession' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\Video\LiveStream\V1\OperationMetadata',
@@ -228,6 +266,26 @@ return [
                         'keyName' => 'channel.name',
                         'fieldAccessors' => [
                             'getChannel',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateDvrSession' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Video\LiveStream\V1\DvrSession',
+                    'metadataReturnType' => '\Google\Cloud\Video\LiveStream\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'dvr_session.name',
+                        'fieldAccessors' => [
+                            'getDvrSession',
                             'getName',
                         ],
                     ],
@@ -333,6 +391,18 @@ return [
                     ],
                 ],
             ],
+            'GetDvrSession' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Video\LiveStream\V1\DvrSession',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetEvent' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Video\LiveStream\V1\Event',
@@ -429,6 +499,26 @@ return [
                     ],
                 ],
             ],
+            'ListDvrSessions' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getDvrSessions',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Video\LiveStream\V1\ListDvrSessionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListEvents' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -507,6 +597,7 @@ return [
                 'asset' => 'projects/{project}/locations/{location}/assets/{asset}',
                 'channel' => 'projects/{project}/locations/{location}/channels/{channel}',
                 'clip' => 'projects/{project}/locations/{location}/channels/{channel}/clips/{clip}',
+                'dvrSession' => 'projects/{project}/locations/{location}/channels/{channel}/dvrSessions/{dvr_session}',
                 'event' => 'projects/{project}/locations/{location}/channels/{channel}/events/{event}',
                 'input' => 'projects/{project}/locations/{location}/inputs/{input}',
                 'location' => 'projects/{project}/locations/{location}',

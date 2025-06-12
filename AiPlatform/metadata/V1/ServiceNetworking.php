@@ -18,7 +18,7 @@ class ServiceNetworking
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-è
+Ì
 3google/cloud/aiplatform/v1/service_networking.protogoogle.cloud.aiplatform.v1google/api/resource.proto"D
 PSCAutomationConfig
 
@@ -32,7 +32,10 @@ project_id (	BàA
 
 project_id (	
 network (	
-match_address (	BÍ
+match_address (	"b
+PscInterfaceConfigL
+network_attachment (	B0àAúA*
+(compute.googleapis.com/NetworkAttachmentBÍ
 com.google.cloud.aiplatform.v1BServiceNetworkingProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1êAv
 (compute.googleapis.com/NetworkAttachmentJprojects/{project}/regions/{region}/networkAttachments/{networkattachment}bproto3'
         , true);

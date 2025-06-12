@@ -18,7 +18,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
     /**
      * Required. Google Cloud Storage URI(-s) to the input file(s). May contain
      * wildcards. For more information on wildcards, see
-     * https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames.
+     * https://cloud.google.com/storage/docs/wildcards.
      *
      * Generated from protobuf field <code>repeated string uris = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -33,7 +33,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $uris
      *           Required. Google Cloud Storage URI(-s) to the input file(s). May contain
      *           wildcards. For more information on wildcards, see
-     *           https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames.
+     *           https://cloud.google.com/storage/docs/wildcards.
      * }
      */
     public function __construct($data = NULL) {
@@ -44,7 +44,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
     /**
      * Required. Google Cloud Storage URI(-s) to the input file(s). May contain
      * wildcards. For more information on wildcards, see
-     * https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames.
+     * https://cloud.google.com/storage/docs/wildcards.
      *
      * Generated from protobuf field <code>repeated string uris = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -57,7 +57,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
     /**
      * Required. Google Cloud Storage URI(-s) to the input file(s). May contain
      * wildcards. For more information on wildcards, see
-     * https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames.
+     * https://cloud.google.com/storage/docs/wildcards.
      *
      * Generated from protobuf field <code>repeated string uris = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

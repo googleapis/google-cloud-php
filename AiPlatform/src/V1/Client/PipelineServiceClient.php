@@ -376,6 +376,25 @@ final class PipelineServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * network_attachment resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $networkattachment
+     *
+     * @return string The formatted network_attachment resource.
+     */
+    public static function networkAttachmentName(string $project, string $region, string $networkattachment): string
+    {
+        return self::getPathTemplate('networkAttachment')->render([
+            'project' => $project,
+            'region' => $region,
+            'networkattachment' => $networkattachment,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a pipeline_job
      * resource.
      *
@@ -470,6 +489,7 @@ final class PipelineServiceClient
      * - metadataStore: projects/{project}/locations/{location}/metadataStores/{metadata_store}
      * - model: projects/{project}/locations/{location}/models/{model}
      * - network: projects/{project}/global/networks/{network}
+     * - networkAttachment: projects/{project}/regions/{region}/networkAttachments/{networkattachment}
      * - pipelineJob: projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}
      * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}

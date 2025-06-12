@@ -54,13 +54,17 @@ class TerminalPointId extends \Google\Protobuf\Internal\Message
      */
     public function getPlaceId()
     {
-        @trigger_error('place_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(2)) {
+            @trigger_error('place_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(2);
     }
 
     public function hasPlaceId()
     {
-        @trigger_error('place_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(2)) {
+            @trigger_error('place_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(2);
     }
 
@@ -90,13 +94,17 @@ class TerminalPointId extends \Google\Protobuf\Internal\Message
      */
     public function getGeneratedId()
     {
-        @trigger_error('generated_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(3)) {
+            @trigger_error('generated_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(3);
     }
 
     public function hasGeneratedId()
     {
-        @trigger_error('generated_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(3)) {
+            @trigger_error('generated_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(3);
     }
 
@@ -126,7 +134,9 @@ class TerminalPointId extends \Google\Protobuf\Internal\Message
      */
     public function getValue()
     {
-        @trigger_error('value is deprecated.', E_USER_DEPRECATED);
+        if ($this->value !== '') {
+            @trigger_error('value is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->value;
     }
 

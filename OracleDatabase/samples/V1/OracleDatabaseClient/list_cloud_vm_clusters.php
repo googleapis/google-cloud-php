@@ -26,6 +26,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\OracleDatabase\V1\Client\OracleDatabaseClient;
+use Google\Cloud\OracleDatabase\V1\CloudVmCluster;
 use Google\Cloud\OracleDatabase\V1\ListCloudVmClustersRequest;
 
 /**
@@ -49,6 +50,7 @@ function list_cloud_vm_clusters_sample(string $formattedParent): void
         /** @var PagedListResponse $response */
         $response = $oracleDatabaseClient->listCloudVmClusters($request);
 
+        /** @var CloudVmCluster $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

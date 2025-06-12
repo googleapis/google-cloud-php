@@ -57,6 +57,13 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      */
     private $allow_cloud_router = null;
     /**
+     * Specifies whether default NIC attachment is allowed.
+     * Check the AllowDefaultNicAttachment enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_default_nic_attachment = 53917486;</code>
+     */
+    private $allow_default_nic_attachment = null;
+    /**
      * Specifies whether VMs are allowed to have external IP access on network interfaces connected to this VPC.
      * Check the AllowExternalIpAccess enum for the list of possible values.
      *
@@ -71,6 +78,13 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      */
     private $allow_interconnect = null;
     /**
+     * Specifies whether IP forwarding is allowed.
+     * Check the AllowIpForwarding enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_ip_forwarding = 500838047;</code>
+     */
+    private $allow_ip_forwarding = null;
+    /**
      * Specifies whether cloud load balancing is allowed.
      * Check the AllowLoadBalancing enum for the list of possible values.
      *
@@ -84,6 +98,20 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string allow_multi_nic_in_same_network = 88251004;</code>
      */
     private $allow_multi_nic_in_same_network = null;
+    /**
+     * Specifies whether NCC is allowed.
+     * Check the AllowNcc enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_ncc = 372354904;</code>
+     */
+    private $allow_ncc = null;
+    /**
+     * Specifies whether VM network migration is allowed.
+     * Check the AllowNetworkMigration enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_network_migration = 239588231;</code>
+     */
+    private $allow_network_migration = null;
     /**
      * Specifies whether Packet Mirroring 1.0 is supported.
      * Check the AllowPacketMirroring enum for the list of possible values.
@@ -162,6 +190,20 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      */
     private $subnet_stack_types;
     /**
+     * Specifies which subnetwork purposes are supported.
+     * Check the SubnetworkPurposes enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string subnetwork_purposes = 528240710;</code>
+     */
+    private $subnetwork_purposes;
+    /**
+     * Specifies which subnetwork stack types are supported.
+     * Check the SubnetworkStackTypes enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string subnetwork_stack_types = 436827441;</code>
+     */
+    private $subnetwork_stack_types;
+    /**
      * Specifies which type of unicast is supported.
      * Check the Unicast enum for the list of possible values.
      *
@@ -193,18 +235,30 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      *     @type string $allow_cloud_router
      *           Specifies whether cloud router creation is allowed.
      *           Check the AllowCloudRouter enum for the list of possible values.
+     *     @type string $allow_default_nic_attachment
+     *           Specifies whether default NIC attachment is allowed.
+     *           Check the AllowDefaultNicAttachment enum for the list of possible values.
      *     @type string $allow_external_ip_access
      *           Specifies whether VMs are allowed to have external IP access on network interfaces connected to this VPC.
      *           Check the AllowExternalIpAccess enum for the list of possible values.
      *     @type string $allow_interconnect
      *           Specifies whether Cloud Interconnect creation is allowed.
      *           Check the AllowInterconnect enum for the list of possible values.
+     *     @type string $allow_ip_forwarding
+     *           Specifies whether IP forwarding is allowed.
+     *           Check the AllowIpForwarding enum for the list of possible values.
      *     @type string $allow_load_balancing
      *           Specifies whether cloud load balancing is allowed.
      *           Check the AllowLoadBalancing enum for the list of possible values.
      *     @type string $allow_multi_nic_in_same_network
      *           Specifies whether multi-nic in the same network is allowed.
      *           Check the AllowMultiNicInSameNetwork enum for the list of possible values.
+     *     @type string $allow_ncc
+     *           Specifies whether NCC is allowed.
+     *           Check the AllowNcc enum for the list of possible values.
+     *     @type string $allow_network_migration
+     *           Specifies whether VM network migration is allowed.
+     *           Check the AllowNetworkMigration enum for the list of possible values.
      *     @type string $allow_packet_mirroring
      *           Specifies whether Packet Mirroring 1.0 is supported.
      *           Check the AllowPacketMirroring enum for the list of possible values.
@@ -238,6 +292,12 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subnet_stack_types
      *           Specifies which subnetwork stack types are supported.
      *           Check the SubnetStackTypes enum for the list of possible values.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subnetwork_purposes
+     *           Specifies which subnetwork purposes are supported.
+     *           Check the SubnetworkPurposes enum for the list of possible values.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subnetwork_stack_types
+     *           Specifies which subnetwork stack types are supported.
+     *           Check the SubnetworkStackTypes enum for the list of possible values.
      *     @type string $unicast
      *           Specifies which type of unicast is supported.
      *           Check the Unicast enum for the list of possible values.
@@ -467,6 +527,44 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Specifies whether default NIC attachment is allowed.
+     * Check the AllowDefaultNicAttachment enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_default_nic_attachment = 53917486;</code>
+     * @return string
+     */
+    public function getAllowDefaultNicAttachment()
+    {
+        return isset($this->allow_default_nic_attachment) ? $this->allow_default_nic_attachment : '';
+    }
+
+    public function hasAllowDefaultNicAttachment()
+    {
+        return isset($this->allow_default_nic_attachment);
+    }
+
+    public function clearAllowDefaultNicAttachment()
+    {
+        unset($this->allow_default_nic_attachment);
+    }
+
+    /**
+     * Specifies whether default NIC attachment is allowed.
+     * Check the AllowDefaultNicAttachment enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_default_nic_attachment = 53917486;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAllowDefaultNicAttachment($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->allow_default_nic_attachment = $var;
+
+        return $this;
+    }
+
+    /**
      * Specifies whether VMs are allowed to have external IP access on network interfaces connected to this VPC.
      * Check the AllowExternalIpAccess enum for the list of possible values.
      *
@@ -543,6 +641,44 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Specifies whether IP forwarding is allowed.
+     * Check the AllowIpForwarding enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_ip_forwarding = 500838047;</code>
+     * @return string
+     */
+    public function getAllowIpForwarding()
+    {
+        return isset($this->allow_ip_forwarding) ? $this->allow_ip_forwarding : '';
+    }
+
+    public function hasAllowIpForwarding()
+    {
+        return isset($this->allow_ip_forwarding);
+    }
+
+    public function clearAllowIpForwarding()
+    {
+        unset($this->allow_ip_forwarding);
+    }
+
+    /**
+     * Specifies whether IP forwarding is allowed.
+     * Check the AllowIpForwarding enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_ip_forwarding = 500838047;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAllowIpForwarding($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->allow_ip_forwarding = $var;
+
+        return $this;
+    }
+
+    /**
      * Specifies whether cloud load balancing is allowed.
      * Check the AllowLoadBalancing enum for the list of possible values.
      *
@@ -614,6 +750,82 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->allow_multi_nic_in_same_network = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies whether NCC is allowed.
+     * Check the AllowNcc enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_ncc = 372354904;</code>
+     * @return string
+     */
+    public function getAllowNcc()
+    {
+        return isset($this->allow_ncc) ? $this->allow_ncc : '';
+    }
+
+    public function hasAllowNcc()
+    {
+        return isset($this->allow_ncc);
+    }
+
+    public function clearAllowNcc()
+    {
+        unset($this->allow_ncc);
+    }
+
+    /**
+     * Specifies whether NCC is allowed.
+     * Check the AllowNcc enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_ncc = 372354904;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAllowNcc($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->allow_ncc = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies whether VM network migration is allowed.
+     * Check the AllowNetworkMigration enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_network_migration = 239588231;</code>
+     * @return string
+     */
+    public function getAllowNetworkMigration()
+    {
+        return isset($this->allow_network_migration) ? $this->allow_network_migration : '';
+    }
+
+    public function hasAllowNetworkMigration()
+    {
+        return isset($this->allow_network_migration);
+    }
+
+    public function clearAllowNetworkMigration()
+    {
+        unset($this->allow_network_migration);
+    }
+
+    /**
+     * Specifies whether VM network migration is allowed.
+     * Check the AllowNetworkMigration enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_network_migration = 239588231;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAllowNetworkMigration($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->allow_network_migration = $var;
 
         return $this;
     }
@@ -1002,6 +1214,62 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->subnet_stack_types = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Specifies which subnetwork purposes are supported.
+     * Check the SubnetworkPurposes enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string subnetwork_purposes = 528240710;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSubnetworkPurposes()
+    {
+        return $this->subnetwork_purposes;
+    }
+
+    /**
+     * Specifies which subnetwork purposes are supported.
+     * Check the SubnetworkPurposes enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string subnetwork_purposes = 528240710;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSubnetworkPurposes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->subnetwork_purposes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Specifies which subnetwork stack types are supported.
+     * Check the SubnetworkStackTypes enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string subnetwork_stack_types = 436827441;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSubnetworkStackTypes()
+    {
+        return $this->subnetwork_stack_types;
+    }
+
+    /**
+     * Specifies which subnetwork stack types are supported.
+     * Check the SubnetworkStackTypes enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string subnetwork_stack_types = 436827441;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSubnetworkStackTypes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->subnetwork_stack_types = $arr;
 
         return $this;
     }

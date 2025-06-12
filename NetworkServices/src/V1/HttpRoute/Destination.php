@@ -37,6 +37,25 @@ class Destination extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 weight = 2;</code>
      */
     protected $weight = 0;
+    /**
+     * Optional. The specification for modifying the headers of a matching
+     * request prior to delivery of the request to the destination. If
+     * HeaderModifiers are set on both the Destination and the RouteAction, they
+     * will be merged. Conflicts between the two will not be resolved on the
+     * configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.HttpRoute.HeaderModifier request_header_modifier = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $request_header_modifier = null;
+    /**
+     * Optional. The specification for modifying the headers of a response prior
+     * to sending the response back to the client. If HeaderModifiers are set on
+     * both the Destination and the RouteAction, they will be merged. Conflicts
+     * between the two will not be resolved on the configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.HttpRoute.HeaderModifier response_header_modifier = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $response_header_modifier = null;
 
     /**
      * Constructor.
@@ -58,6 +77,17 @@ class Destination extends \Google\Protobuf\Internal\Message
      *           specified for all of them.
      *           If weights are unspecified for all services, then, traffic is distributed
      *           in equal proportions to all of them.
+     *     @type \Google\Cloud\NetworkServices\V1\HttpRoute\HeaderModifier $request_header_modifier
+     *           Optional. The specification for modifying the headers of a matching
+     *           request prior to delivery of the request to the destination. If
+     *           HeaderModifiers are set on both the Destination and the RouteAction, they
+     *           will be merged. Conflicts between the two will not be resolved on the
+     *           configuration.
+     *     @type \Google\Cloud\NetworkServices\V1\HttpRoute\HeaderModifier $response_header_modifier
+     *           Optional. The specification for modifying the headers of a response prior
+     *           to sending the response back to the client. If HeaderModifiers are set on
+     *           both the Destination and the RouteAction, they will be merged. Conflicts
+     *           between the two will not be resolved on the configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -133,6 +163,92 @@ class Destination extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->weight = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The specification for modifying the headers of a matching
+     * request prior to delivery of the request to the destination. If
+     * HeaderModifiers are set on both the Destination and the RouteAction, they
+     * will be merged. Conflicts between the two will not be resolved on the
+     * configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.HttpRoute.HeaderModifier request_header_modifier = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\NetworkServices\V1\HttpRoute\HeaderModifier|null
+     */
+    public function getRequestHeaderModifier()
+    {
+        return $this->request_header_modifier;
+    }
+
+    public function hasRequestHeaderModifier()
+    {
+        return isset($this->request_header_modifier);
+    }
+
+    public function clearRequestHeaderModifier()
+    {
+        unset($this->request_header_modifier);
+    }
+
+    /**
+     * Optional. The specification for modifying the headers of a matching
+     * request prior to delivery of the request to the destination. If
+     * HeaderModifiers are set on both the Destination and the RouteAction, they
+     * will be merged. Conflicts between the two will not be resolved on the
+     * configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.HttpRoute.HeaderModifier request_header_modifier = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\NetworkServices\V1\HttpRoute\HeaderModifier $var
+     * @return $this
+     */
+    public function setRequestHeaderModifier($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkServices\V1\HttpRoute\HeaderModifier::class);
+        $this->request_header_modifier = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The specification for modifying the headers of a response prior
+     * to sending the response back to the client. If HeaderModifiers are set on
+     * both the Destination and the RouteAction, they will be merged. Conflicts
+     * between the two will not be resolved on the configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.HttpRoute.HeaderModifier response_header_modifier = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\NetworkServices\V1\HttpRoute\HeaderModifier|null
+     */
+    public function getResponseHeaderModifier()
+    {
+        return $this->response_header_modifier;
+    }
+
+    public function hasResponseHeaderModifier()
+    {
+        return isset($this->response_header_modifier);
+    }
+
+    public function clearResponseHeaderModifier()
+    {
+        unset($this->response_header_modifier);
+    }
+
+    /**
+     * Optional. The specification for modifying the headers of a response prior
+     * to sending the response back to the client. If HeaderModifiers are set on
+     * both the Destination and the RouteAction, they will be merged. Conflicts
+     * between the two will not be resolved on the configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.HttpRoute.HeaderModifier response_header_modifier = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\NetworkServices\V1\HttpRoute\HeaderModifier $var
+     * @return $this
+     */
+    public function setResponseHeaderModifier($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkServices\V1\HttpRoute\HeaderModifier::class);
+        $this->response_header_modifier = $var;
 
         return $this;
     }

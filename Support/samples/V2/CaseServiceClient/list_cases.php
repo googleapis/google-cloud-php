@@ -30,14 +30,13 @@ use Google\Cloud\Support\V2\ListCasesRequest;
 use Google\Cloud\Support\V2\PBCase;
 
 /**
- * Retrieve all cases under the specified parent.
+ * Retrieve all cases under a parent, but not its children.
  *
- * Note: Listing cases under an Organization returns only the cases directly
- * parented by that organization. To retrieve all cases under an organization,
- * including cases parented by projects under that organization, use
- * `cases.search`.
+ * For example, listing cases under an organization only returns the cases
+ * that are directly parented by that organization. To retrieve cases
+ * under an organization and its projects, use `cases.search`.
  *
- * @param string $formattedParent The fully qualified name of parent resource to list cases under. Please see
+ * @param string $formattedParent The name of a parent to list cases under. Please see
  *                                {@see CaseServiceClient::projectName()} for help formatting this field.
  */
 function list_cases_sample(string $formattedParent): void

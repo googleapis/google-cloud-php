@@ -311,7 +311,9 @@ class UpgradeHistoryEntry extends \Google\Protobuf\Internal\Message
      */
     public function getTargetImage()
     {
-        @trigger_error('target_image is deprecated.', E_USER_DEPRECATED);
+        if ($this->target_image !== '') {
+            @trigger_error('target_image is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->target_image;
     }
 

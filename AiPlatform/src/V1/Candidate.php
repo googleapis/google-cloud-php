@@ -78,6 +78,12 @@ class Candidate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GroundingMetadata grounding_metadata = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $grounding_metadata = null;
+    /**
+     * Output only. Metadata related to url context retrieval tool.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.UrlContextMetadata url_context_metadata = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $url_context_metadata = null;
 
     /**
      * Constructor.
@@ -108,6 +114,8 @@ class Candidate extends \Google\Protobuf\Internal\Message
      *           Output only. Source attribution of the generated content.
      *     @type \Google\Cloud\AIPlatform\V1\GroundingMetadata $grounding_metadata
      *           Output only. Metadata specifies sources used to ground generated content.
+     *     @type \Google\Cloud\AIPlatform\V1\UrlContextMetadata $url_context_metadata
+     *           Output only. Metadata related to url context retrieval tool.
      * }
      */
     public function __construct($data = NULL) {
@@ -427,6 +435,42 @@ class Candidate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GroundingMetadata::class);
         $this->grounding_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Metadata related to url context retrieval tool.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.UrlContextMetadata url_context_metadata = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\UrlContextMetadata|null
+     */
+    public function getUrlContextMetadata()
+    {
+        return $this->url_context_metadata;
+    }
+
+    public function hasUrlContextMetadata()
+    {
+        return isset($this->url_context_metadata);
+    }
+
+    public function clearUrlContextMetadata()
+    {
+        unset($this->url_context_metadata);
+    }
+
+    /**
+     * Output only. Metadata related to url context retrieval tool.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.UrlContextMetadata url_context_metadata = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\UrlContextMetadata $var
+     * @return $this
+     */
+    public function setUrlContextMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\UrlContextMetadata::class);
+        $this->url_context_metadata = $var;
 
         return $this;
     }

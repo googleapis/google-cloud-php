@@ -99,7 +99,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      */
     protected $image_type = '';
     /**
-     * Enable or disable Kubelet read only port.
+     * DEPRECATED. Use NodePoolAutoConfig.NodeKubeletConfig instead.
      *
      * Generated from protobuf field <code>optional bool insecure_kubelet_readonly_port_enabled = 13;</code>
      */
@@ -153,7 +153,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
      *           available image types.
      *     @type bool $insecure_kubelet_readonly_port_enabled
-     *           Enable or disable Kubelet read only port.
+     *           DEPRECATED. Use NodePoolAutoConfig.NodeKubeletConfig instead.
      * }
      */
     public function __construct($data = NULL) {
@@ -304,7 +304,9 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      */
     public function getMinCpuPlatform()
     {
-        @trigger_error('min_cpu_platform is deprecated.', E_USER_DEPRECATED);
+        if ($this->min_cpu_platform !== '') {
+            @trigger_error('min_cpu_platform is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->min_cpu_platform;
     }
 
@@ -498,7 +500,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable or disable Kubelet read only port.
+     * DEPRECATED. Use NodePoolAutoConfig.NodeKubeletConfig instead.
      *
      * Generated from protobuf field <code>optional bool insecure_kubelet_readonly_port_enabled = 13;</code>
      * @return bool
@@ -519,7 +521,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable or disable Kubelet read only port.
+     * DEPRECATED. Use NodePoolAutoConfig.NodeKubeletConfig instead.
      *
      * Generated from protobuf field <code>optional bool insecure_kubelet_readonly_port_enabled = 13;</code>
      * @param bool $var

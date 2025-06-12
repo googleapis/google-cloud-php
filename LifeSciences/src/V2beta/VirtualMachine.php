@@ -592,7 +592,9 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      */
     public function getNvidiaDriverVersion()
     {
-        @trigger_error('nvidia_driver_version is deprecated.', E_USER_DEPRECATED);
+        if ($this->nvidia_driver_version !== '') {
+            @trigger_error('nvidia_driver_version is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->nvidia_driver_version;
     }
 

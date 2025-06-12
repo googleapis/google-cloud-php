@@ -55,6 +55,27 @@ class FunctionDeclaration extends \Google\Protobuf\Internal\Message
      */
     protected $parameters = null;
     /**
+     * Optional. Describes the parameters to the function in JSON Schema format.
+     * The schema must describe an object where the properties are the parameters
+     * to the function. For example:
+     * ```
+     * {
+     *   "type": "object",
+     *   "properties": {
+     *     "name": { "type": "string" },
+     *     "age": { "type": "integer" }
+     *   },
+     *   "additionalProperties": false,
+     *   "required": ["name", "age"],
+     *   "propertyOrdering": ["name", "age"]
+     * }
+     * ```
+     * This field is mutually exclusive with `parameters`.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value parameters_json_schema = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $parameters_json_schema = null;
+    /**
      * Optional. Describes the output from this function in JSON Schema format.
      * Reflects the Open API 3.03 Response Object. The Schema defines the type
      * used for the response value of the function.
@@ -62,6 +83,14 @@ class FunctionDeclaration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Schema response = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $response = null;
+    /**
+     * Optional. Describes the output from this function in JSON Schema format.
+     * The value specified by the schema is the response value of the function.
+     * This field is mutually exclusive with `response`.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value response_json_schema = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $response_json_schema = null;
 
     /**
      * Constructor.
@@ -92,10 +121,31 @@ class FunctionDeclaration extends \Google\Protobuf\Internal\Message
      *              type: INTEGER
      *           required:
      *            - param1
+     *     @type \Google\Protobuf\Value $parameters_json_schema
+     *           Optional. Describes the parameters to the function in JSON Schema format.
+     *           The schema must describe an object where the properties are the parameters
+     *           to the function. For example:
+     *           ```
+     *           {
+     *             "type": "object",
+     *             "properties": {
+     *               "name": { "type": "string" },
+     *               "age": { "type": "integer" }
+     *             },
+     *             "additionalProperties": false,
+     *             "required": ["name", "age"],
+     *             "propertyOrdering": ["name", "age"]
+     *           }
+     *           ```
+     *           This field is mutually exclusive with `parameters`.
      *     @type \Google\Cloud\AIPlatform\V1\Schema $response
      *           Optional. Describes the output from this function in JSON Schema format.
      *           Reflects the Open API 3.03 Response Object. The Schema defines the type
      *           used for the response value of the function.
+     *     @type \Google\Protobuf\Value $response_json_schema
+     *           Optional. Describes the output from this function in JSON Schema format.
+     *           The value specified by the schema is the response value of the function.
+     *           This field is mutually exclusive with `response`.
      * }
      */
     public function __construct($data = NULL) {
@@ -226,6 +276,72 @@ class FunctionDeclaration extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Describes the parameters to the function in JSON Schema format.
+     * The schema must describe an object where the properties are the parameters
+     * to the function. For example:
+     * ```
+     * {
+     *   "type": "object",
+     *   "properties": {
+     *     "name": { "type": "string" },
+     *     "age": { "type": "integer" }
+     *   },
+     *   "additionalProperties": false,
+     *   "required": ["name", "age"],
+     *   "propertyOrdering": ["name", "age"]
+     * }
+     * ```
+     * This field is mutually exclusive with `parameters`.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value parameters_json_schema = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Value|null
+     */
+    public function getParametersJsonSchema()
+    {
+        return $this->parameters_json_schema;
+    }
+
+    public function hasParametersJsonSchema()
+    {
+        return isset($this->parameters_json_schema);
+    }
+
+    public function clearParametersJsonSchema()
+    {
+        unset($this->parameters_json_schema);
+    }
+
+    /**
+     * Optional. Describes the parameters to the function in JSON Schema format.
+     * The schema must describe an object where the properties are the parameters
+     * to the function. For example:
+     * ```
+     * {
+     *   "type": "object",
+     *   "properties": {
+     *     "name": { "type": "string" },
+     *     "age": { "type": "integer" }
+     *   },
+     *   "additionalProperties": false,
+     *   "required": ["name", "age"],
+     *   "propertyOrdering": ["name", "age"]
+     * }
+     * ```
+     * This field is mutually exclusive with `parameters`.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value parameters_json_schema = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Value $var
+     * @return $this
+     */
+    public function setParametersJsonSchema($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Value::class);
+        $this->parameters_json_schema = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. Describes the output from this function in JSON Schema format.
      * Reflects the Open API 3.03 Response Object. The Schema defines the type
      * used for the response value of the function.
@@ -261,6 +377,46 @@ class FunctionDeclaration extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Schema::class);
         $this->response = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Describes the output from this function in JSON Schema format.
+     * The value specified by the schema is the response value of the function.
+     * This field is mutually exclusive with `response`.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value response_json_schema = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Value|null
+     */
+    public function getResponseJsonSchema()
+    {
+        return $this->response_json_schema;
+    }
+
+    public function hasResponseJsonSchema()
+    {
+        return isset($this->response_json_schema);
+    }
+
+    public function clearResponseJsonSchema()
+    {
+        unset($this->response_json_schema);
+    }
+
+    /**
+     * Optional. Describes the output from this function in JSON Schema format.
+     * The value specified by the schema is the response value of the function.
+     * This field is mutually exclusive with `response`.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value response_json_schema = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Value $var
+     * @return $this
+     */
+    public function setResponseJsonSchema($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Value::class);
+        $this->response_json_schema = $var;
 
         return $this;
     }

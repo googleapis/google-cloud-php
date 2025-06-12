@@ -22,12 +22,9 @@ class CreateEncryptionConfigRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
-     * Required. The ID of the EncryptionConfig to create.
-     * The ID must contain only letters (a-z, A-Z), numbers (0-9),
-     * and hyphens (-).
-     * The maximum size is 63 characters.
-     * The first character must be a letter.
-     * The last character must be a letter or a number.
+     * Required. The ID of the
+     * [EncryptionConfig][google.cloud.dataplex.v1.EncryptionConfig] to create.
+     * Currently, only a value of "default" is supported.
      *
      * Generated from protobuf field <code>string encryption_config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -43,12 +40,9 @@ class CreateEncryptionConfigRequest extends \Google\Protobuf\Internal\Message
      * @param string                                     $parent             Required. The location at which the EncryptionConfig is to be created. Please see
      *                                                                       {@see CmekServiceClient::organizationLocationName()} for help formatting this field.
      * @param \Google\Cloud\Dataplex\V1\EncryptionConfig $encryptionConfig   Required. The EncryptionConfig to create.
-     * @param string                                     $encryptionConfigId Required. The ID of the EncryptionConfig to create.
-     *                                                                       The ID must contain only letters (a-z, A-Z), numbers (0-9),
-     *                                                                       and hyphens (-).
-     *                                                                       The maximum size is 63 characters.
-     *                                                                       The first character must be a letter.
-     *                                                                       The last character must be a letter or a number.
+     * @param string                                     $encryptionConfigId Required. The ID of the
+     *                                                                       [EncryptionConfig][google.cloud.dataplex.v1.EncryptionConfig] to create.
+     *                                                                       Currently, only a value of "default" is supported.
      *
      * @return \Google\Cloud\Dataplex\V1\CreateEncryptionConfigRequest
      *
@@ -71,12 +65,9 @@ class CreateEncryptionConfigRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The location at which the EncryptionConfig is to be created.
      *     @type string $encryption_config_id
-     *           Required. The ID of the EncryptionConfig to create.
-     *           The ID must contain only letters (a-z, A-Z), numbers (0-9),
-     *           and hyphens (-).
-     *           The maximum size is 63 characters.
-     *           The first character must be a letter.
-     *           The last character must be a letter or a number.
+     *           Required. The ID of the
+     *           [EncryptionConfig][google.cloud.dataplex.v1.EncryptionConfig] to create.
+     *           Currently, only a value of "default" is supported.
      *     @type \Google\Cloud\Dataplex\V1\EncryptionConfig $encryption_config
      *           Required. The EncryptionConfig to create.
      * }
@@ -113,12 +104,9 @@ class CreateEncryptionConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the EncryptionConfig to create.
-     * The ID must contain only letters (a-z, A-Z), numbers (0-9),
-     * and hyphens (-).
-     * The maximum size is 63 characters.
-     * The first character must be a letter.
-     * The last character must be a letter or a number.
+     * Required. The ID of the
+     * [EncryptionConfig][google.cloud.dataplex.v1.EncryptionConfig] to create.
+     * Currently, only a value of "default" is supported.
      *
      * Generated from protobuf field <code>string encryption_config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -129,12 +117,9 @@ class CreateEncryptionConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the EncryptionConfig to create.
-     * The ID must contain only letters (a-z, A-Z), numbers (0-9),
-     * and hyphens (-).
-     * The maximum size is 63 characters.
-     * The first character must be a letter.
-     * The last character must be a letter or a number.
+     * Required. The ID of the
+     * [EncryptionConfig][google.cloud.dataplex.v1.EncryptionConfig] to create.
+     * Currently, only a value of "default" is supported.
      *
      * Generated from protobuf field <code>string encryption_config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

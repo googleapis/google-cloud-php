@@ -26,6 +26,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\OracleDatabase\V1\Client\OracleDatabaseClient;
+use Google\Cloud\OracleDatabase\V1\CloudExadataInfrastructure;
 use Google\Cloud\OracleDatabase\V1\ListCloudExadataInfrastructuresRequest;
 
 /**
@@ -49,6 +50,7 @@ function list_cloud_exadata_infrastructures_sample(string $formattedParent): voi
         /** @var PagedListResponse $response */
         $response = $oracleDatabaseClient->listCloudExadataInfrastructures($request);
 
+        /** @var CloudExadataInfrastructure $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

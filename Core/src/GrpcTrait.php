@@ -314,6 +314,20 @@ trait GrpcTrait
     }
 
     /**
+     * Format a duration from the API
+     *
+     * @param array $value
+     * @return string
+     */
+    private function formatDurationFromApi($value): string
+    {
+        $seconds = $value['seconds'];
+        $nanos = str_pad($value['nanos'], 9, 0, STR_PAD_LEFT);
+
+        return "{$seconds}.{$nanos}s";
+    }
+
+    /**
      * Construct a gapic client. Allows for tests to intercept.
      *
      * @param string $gapicName

@@ -66,11 +66,29 @@ class UpgradeInfoEvent extends \Google\Protobuf\Internal\Message
      */
     protected $state = 0;
     /**
+     * The end of standard support timestamp.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp standard_support_end_time = 9;</code>
+     */
+    protected $standard_support_end_time = null;
+    /**
+     * The end of extended support timestamp.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp extended_support_end_time = 10;</code>
+     */
+    protected $extended_support_end_time = null;
+    /**
      * A brief description of the event.
      *
      * Generated from protobuf field <code>string description = 11;</code>
      */
     protected $description = '';
+    /**
+     * The type of the event.
+     *
+     * Generated from protobuf field <code>.google.container.v1.UpgradeInfoEvent.EventType event_type = 12;</code>
+     */
+    protected $event_type = 0;
 
     /**
      * Constructor.
@@ -95,8 +113,14 @@ class UpgradeInfoEvent extends \Google\Protobuf\Internal\Message
      *           the relative path of the node pool.
      *     @type int $state
      *           Output only. The state of the upgrade.
+     *     @type \Google\Protobuf\Timestamp $standard_support_end_time
+     *           The end of standard support timestamp.
+     *     @type \Google\Protobuf\Timestamp $extended_support_end_time
+     *           The end of extended support timestamp.
      *     @type string $description
      *           A brief description of the event.
+     *     @type int $event_type
+     *           The type of the event.
      * }
      */
     public function __construct($data = NULL) {
@@ -335,6 +359,78 @@ class UpgradeInfoEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The end of standard support timestamp.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp standard_support_end_time = 9;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getStandardSupportEndTime()
+    {
+        return $this->standard_support_end_time;
+    }
+
+    public function hasStandardSupportEndTime()
+    {
+        return isset($this->standard_support_end_time);
+    }
+
+    public function clearStandardSupportEndTime()
+    {
+        unset($this->standard_support_end_time);
+    }
+
+    /**
+     * The end of standard support timestamp.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp standard_support_end_time = 9;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setStandardSupportEndTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->standard_support_end_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * The end of extended support timestamp.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp extended_support_end_time = 10;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getExtendedSupportEndTime()
+    {
+        return $this->extended_support_end_time;
+    }
+
+    public function hasExtendedSupportEndTime()
+    {
+        return isset($this->extended_support_end_time);
+    }
+
+    public function clearExtendedSupportEndTime()
+    {
+        unset($this->extended_support_end_time);
+    }
+
+    /**
+     * The end of extended support timestamp.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp extended_support_end_time = 10;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setExtendedSupportEndTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->extended_support_end_time = $var;
+
+        return $this;
+    }
+
+    /**
      * A brief description of the event.
      *
      * Generated from protobuf field <code>string description = 11;</code>
@@ -356,6 +452,32 @@ class UpgradeInfoEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * The type of the event.
+     *
+     * Generated from protobuf field <code>.google.container.v1.UpgradeInfoEvent.EventType event_type = 12;</code>
+     * @return int
+     */
+    public function getEventType()
+    {
+        return $this->event_type;
+    }
+
+    /**
+     * The type of the event.
+     *
+     * Generated from protobuf field <code>.google.container.v1.UpgradeInfoEvent.EventType event_type = 12;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEventType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\UpgradeInfoEvent\EventType::class);
+        $this->event_type = $var;
 
         return $this;
     }

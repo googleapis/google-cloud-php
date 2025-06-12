@@ -100,6 +100,13 @@ class SplitCommand extends Command
                 'submitted via the packagist API.',
             )
             ->addOption(
+                'packagist-safe-token',
+                '',
+                InputOption::VALUE_REQUIRED,
+                'A Packagist API Auth Token. This token can only be used for package updates, and ' .
+                'is not very sensitive if leaked.',
+            )
+            ->addOption(
                 'splitsh',
                 null,
                 InputOption::VALUE_OPTIONAL,
@@ -149,7 +156,8 @@ class SplitCommand extends Command
             if (!$packagistToken = $input->getOption('packagist-token')) {
                 throw new \InvalidArgumentException('A packagist token must be provided if a username is provided.');
             }
-            $packagist = new Packagist($guzzle, $packagistUsername, $packagistToken, $output);
+            $packagistSafeToken = $input->getOption('packagist-safe-token');
+            $packagist = new Packagist($guzzle, $packagistUsername, $packagistToken, $packagistSafeToken, $output);
         }
 
 
@@ -373,7 +381,9 @@ class SplitCommand extends Command
                     return false;
                 }
 
-                if ($github->addWebhook($repoName, $packagist->getWebhookUrl(), $packagist->getApiToken())) {
+                // use the safe API token if possible
+                $apiToken = $packagist->getSafeApiToken() ?: $packagist->getApiToken();
+                if ($github->addWebhook($repoName, $packagist->getWebhookUrl(), $apiToken)) {
                     $output->writeln(sprintf('<comment>%s</comment>: Packagist webhook package created.', $componentId));
                 } else {
                     $output->writeln(sprintf('<error>%s</error>: Unable to create Packagist webhook.', $componentId));

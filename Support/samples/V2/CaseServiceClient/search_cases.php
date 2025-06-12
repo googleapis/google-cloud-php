@@ -30,7 +30,7 @@ use Google\Cloud\Support\V2\PBCase;
 use Google\Cloud\Support\V2\SearchCasesRequest;
 
 /**
- * Search cases using the specified query.
+ * Search for cases using a query.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

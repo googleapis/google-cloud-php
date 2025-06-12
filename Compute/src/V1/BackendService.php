@@ -105,6 +105,19 @@ class BackendService extends \Google\Protobuf\Internal\Message
      */
     private $enable_c_d_n = null;
     /**
+     * Specifies the canary migration state. Possible values are PREPARE, TEST_BY_PERCENTAGE, and TEST_ALL_TRAFFIC. To begin the migration from EXTERNAL to EXTERNAL_MANAGED, the state must be changed to PREPARE. The state must be changed to TEST_ALL_TRAFFIC before the loadBalancingScheme can be changed to EXTERNAL_MANAGED. Optionally, the TEST_BY_PERCENTAGE state can be used to migrate traffic by percentage using externalManagedMigrationTestingPercentage. Rolling back a migration requires the states to be set in reverse order. So changing the scheme from EXTERNAL_MANAGED to EXTERNAL requires the state to be set to TEST_ALL_TRAFFIC at the same time. Optionally, the TEST_BY_PERCENTAGE state can be used to migrate some traffic back to EXTERNAL or PREPARE can be used to migrate all traffic back to EXTERNAL.
+     * Check the ExternalManagedMigrationState enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string external_managed_migration_state = 66947020;</code>
+     */
+    private $external_managed_migration_state = null;
+    /**
+     * Determines the fraction of requests that should be processed by the Global external Application Load Balancer. The value of this field must be in the range [0, 100]. Session affinity options will slightly affect this routing behavior, for more details, see: Session Affinity. This value can only be set if the loadBalancingScheme in the BackendService is set to EXTERNAL (when using the classic Application Load Balancer) and the migration state is TEST_BY_PERCENTAGE.
+     *
+     * Generated from protobuf field <code>optional float external_managed_migration_testing_percentage = 507232462;</code>
+     */
+    private $external_managed_migration_testing_percentage = null;
+    /**
      * Requires at least one backend instance group to be defined as a backup (failover) backend. For load balancers that have configurable failover: [Internal passthrough Network Load Balancers](https://cloud.google.com/load-balancing/docs/internal/failover-overview) and [external passthrough Network Load Balancers](https://cloud.google.com/load-balancing/docs/network/networklb-failover-overview). failoverPolicy cannot be specified with haPolicy.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendServiceFailoverPolicy failover_policy = 105658655;</code>
@@ -332,6 +345,11 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *           [Output Only] The resource URL for the edge security policy associated with this backend service.
      *     @type bool $enable_c_d_n
      *           If true, enables Cloud CDN for the backend service of a global external Application Load Balancer.
+     *     @type string $external_managed_migration_state
+     *           Specifies the canary migration state. Possible values are PREPARE, TEST_BY_PERCENTAGE, and TEST_ALL_TRAFFIC. To begin the migration from EXTERNAL to EXTERNAL_MANAGED, the state must be changed to PREPARE. The state must be changed to TEST_ALL_TRAFFIC before the loadBalancingScheme can be changed to EXTERNAL_MANAGED. Optionally, the TEST_BY_PERCENTAGE state can be used to migrate traffic by percentage using externalManagedMigrationTestingPercentage. Rolling back a migration requires the states to be set in reverse order. So changing the scheme from EXTERNAL_MANAGED to EXTERNAL requires the state to be set to TEST_ALL_TRAFFIC at the same time. Optionally, the TEST_BY_PERCENTAGE state can be used to migrate some traffic back to EXTERNAL or PREPARE can be used to migrate all traffic back to EXTERNAL.
+     *           Check the ExternalManagedMigrationState enum for the list of possible values.
+     *     @type float $external_managed_migration_testing_percentage
+     *           Determines the fraction of requests that should be processed by the Global external Application Load Balancer. The value of this field must be in the range [0, 100]. Session affinity options will slightly affect this routing behavior, for more details, see: Session Affinity. This value can only be set if the loadBalancingScheme in the BackendService is set to EXTERNAL (when using the classic Application Load Balancer) and the migration state is TEST_BY_PERCENTAGE.
      *     @type \Google\Cloud\Compute\V1\BackendServiceFailoverPolicy $failover_policy
      *           Requires at least one backend instance group to be defined as a backup (failover) backend. For load balancers that have configurable failover: [Internal passthrough Network Load Balancers](https://cloud.google.com/load-balancing/docs/internal/failover-overview) and [external passthrough Network Load Balancers](https://cloud.google.com/load-balancing/docs/network/networklb-failover-overview). failoverPolicy cannot be specified with haPolicy.
      *     @type string $fingerprint
@@ -900,6 +918,80 @@ class BackendService extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_c_d_n = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the canary migration state. Possible values are PREPARE, TEST_BY_PERCENTAGE, and TEST_ALL_TRAFFIC. To begin the migration from EXTERNAL to EXTERNAL_MANAGED, the state must be changed to PREPARE. The state must be changed to TEST_ALL_TRAFFIC before the loadBalancingScheme can be changed to EXTERNAL_MANAGED. Optionally, the TEST_BY_PERCENTAGE state can be used to migrate traffic by percentage using externalManagedMigrationTestingPercentage. Rolling back a migration requires the states to be set in reverse order. So changing the scheme from EXTERNAL_MANAGED to EXTERNAL requires the state to be set to TEST_ALL_TRAFFIC at the same time. Optionally, the TEST_BY_PERCENTAGE state can be used to migrate some traffic back to EXTERNAL or PREPARE can be used to migrate all traffic back to EXTERNAL.
+     * Check the ExternalManagedMigrationState enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string external_managed_migration_state = 66947020;</code>
+     * @return string
+     */
+    public function getExternalManagedMigrationState()
+    {
+        return isset($this->external_managed_migration_state) ? $this->external_managed_migration_state : '';
+    }
+
+    public function hasExternalManagedMigrationState()
+    {
+        return isset($this->external_managed_migration_state);
+    }
+
+    public function clearExternalManagedMigrationState()
+    {
+        unset($this->external_managed_migration_state);
+    }
+
+    /**
+     * Specifies the canary migration state. Possible values are PREPARE, TEST_BY_PERCENTAGE, and TEST_ALL_TRAFFIC. To begin the migration from EXTERNAL to EXTERNAL_MANAGED, the state must be changed to PREPARE. The state must be changed to TEST_ALL_TRAFFIC before the loadBalancingScheme can be changed to EXTERNAL_MANAGED. Optionally, the TEST_BY_PERCENTAGE state can be used to migrate traffic by percentage using externalManagedMigrationTestingPercentage. Rolling back a migration requires the states to be set in reverse order. So changing the scheme from EXTERNAL_MANAGED to EXTERNAL requires the state to be set to TEST_ALL_TRAFFIC at the same time. Optionally, the TEST_BY_PERCENTAGE state can be used to migrate some traffic back to EXTERNAL or PREPARE can be used to migrate all traffic back to EXTERNAL.
+     * Check the ExternalManagedMigrationState enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string external_managed_migration_state = 66947020;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setExternalManagedMigrationState($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->external_managed_migration_state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Determines the fraction of requests that should be processed by the Global external Application Load Balancer. The value of this field must be in the range [0, 100]. Session affinity options will slightly affect this routing behavior, for more details, see: Session Affinity. This value can only be set if the loadBalancingScheme in the BackendService is set to EXTERNAL (when using the classic Application Load Balancer) and the migration state is TEST_BY_PERCENTAGE.
+     *
+     * Generated from protobuf field <code>optional float external_managed_migration_testing_percentage = 507232462;</code>
+     * @return float
+     */
+    public function getExternalManagedMigrationTestingPercentage()
+    {
+        return isset($this->external_managed_migration_testing_percentage) ? $this->external_managed_migration_testing_percentage : 0.0;
+    }
+
+    public function hasExternalManagedMigrationTestingPercentage()
+    {
+        return isset($this->external_managed_migration_testing_percentage);
+    }
+
+    public function clearExternalManagedMigrationTestingPercentage()
+    {
+        unset($this->external_managed_migration_testing_percentage);
+    }
+
+    /**
+     * Determines the fraction of requests that should be processed by the Global external Application Load Balancer. The value of this field must be in the range [0, 100]. Session affinity options will slightly affect this routing behavior, for more details, see: Session Affinity. This value can only be set if the loadBalancingScheme in the BackendService is set to EXTERNAL (when using the classic Application Load Balancer) and the migration state is TEST_BY_PERCENTAGE.
+     *
+     * Generated from protobuf field <code>optional float external_managed_migration_testing_percentage = 507232462;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setExternalManagedMigrationTestingPercentage($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->external_managed_migration_testing_percentage = $var;
 
         return $this;
     }

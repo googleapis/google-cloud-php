@@ -59,6 +59,12 @@ class WorkItemDetails extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.MetricUpdate metrics = 7;</code>
      */
     private $metrics;
+    /**
+     * Information about straggler detections for this work item.
+     *
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.StragglerInfo straggler_info = 8;</code>
+     */
+    protected $straggler_info = null;
 
     /**
      * Constructor.
@@ -82,6 +88,8 @@ class WorkItemDetails extends \Google\Protobuf\Internal\Message
      *           Progress of this work item.
      *     @type array<\Google\Cloud\Dataflow\V1beta3\MetricUpdate>|\Google\Protobuf\Internal\RepeatedField $metrics
      *           Metrics for this work item.
+     *     @type \Google\Cloud\Dataflow\V1beta3\StragglerInfo $straggler_info
+     *           Information about straggler detections for this work item.
      * }
      */
     public function __construct($data = NULL) {
@@ -301,6 +309,42 @@ class WorkItemDetails extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataflow\V1beta3\MetricUpdate::class);
         $this->metrics = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Information about straggler detections for this work item.
+     *
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.StragglerInfo straggler_info = 8;</code>
+     * @return \Google\Cloud\Dataflow\V1beta3\StragglerInfo|null
+     */
+    public function getStragglerInfo()
+    {
+        return $this->straggler_info;
+    }
+
+    public function hasStragglerInfo()
+    {
+        return isset($this->straggler_info);
+    }
+
+    public function clearStragglerInfo()
+    {
+        unset($this->straggler_info);
+    }
+
+    /**
+     * Information about straggler detections for this work item.
+     *
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.StragglerInfo straggler_info = 8;</code>
+     * @param \Google\Cloud\Dataflow\V1beta3\StragglerInfo $var
+     * @return $this
+     */
+    public function setStragglerInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataflow\V1beta3\StragglerInfo::class);
+        $this->straggler_info = $var;
 
         return $this;
     }

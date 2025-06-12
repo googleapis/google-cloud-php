@@ -550,7 +550,9 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     public function getStatusMessage()
     {
-        @trigger_error('status_message is deprecated.', E_USER_DEPRECATED);
+        if ($this->status_message !== '') {
+            @trigger_error('status_message is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->status_message;
     }
 

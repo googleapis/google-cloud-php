@@ -33,6 +33,9 @@ class ListKeyRingsResponse extends \Google\Protobuf\Internal\Message
     /**
      * The total number of [KeyRings][google.cloud.kms.v1.KeyRing] that matched
      * the query.
+     * This field is not populated if
+     * [ListKeyRingsRequest.filter][google.cloud.kms.v1.ListKeyRingsRequest.filter]
+     * is applied.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      */
@@ -53,6 +56,9 @@ class ListKeyRingsResponse extends \Google\Protobuf\Internal\Message
      *     @type int $total_size
      *           The total number of [KeyRings][google.cloud.kms.v1.KeyRing] that matched
      *           the query.
+     *           This field is not populated if
+     *           [ListKeyRingsRequest.filter][google.cloud.kms.v1.ListKeyRingsRequest.filter]
+     *           is applied.
      * }
      */
     public function __construct($data = NULL) {
@@ -119,6 +125,9 @@ class ListKeyRingsResponse extends \Google\Protobuf\Internal\Message
     /**
      * The total number of [KeyRings][google.cloud.kms.v1.KeyRing] that matched
      * the query.
+     * This field is not populated if
+     * [ListKeyRingsRequest.filter][google.cloud.kms.v1.ListKeyRingsRequest.filter]
+     * is applied.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      * @return int
@@ -131,6 +140,9 @@ class ListKeyRingsResponse extends \Google\Protobuf\Internal\Message
     /**
      * The total number of [KeyRings][google.cloud.kms.v1.KeyRing] that matched
      * the query.
+     * This field is not populated if
+     * [ListKeyRingsRequest.filter][google.cloud.kms.v1.ListKeyRingsRequest.filter]
+     * is applied.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      * @param int $var

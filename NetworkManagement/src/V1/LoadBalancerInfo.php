@@ -111,7 +111,9 @@ class LoadBalancerInfo extends \Google\Protobuf\Internal\Message
      */
     public function getHealthCheckUri()
     {
-        @trigger_error('health_check_uri is deprecated.', E_USER_DEPRECATED);
+        if ($this->health_check_uri !== '') {
+            @trigger_error('health_check_uri is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->health_check_uri;
     }
 

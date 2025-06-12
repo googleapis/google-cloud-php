@@ -16,6 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetBackupIndexDownloadUrlResponse extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Required. The signed URL for downloading the backup index.
+     *
      * Generated from protobuf field <code>string signed_url = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $signed_url = '';
@@ -27,6 +29,7 @@ class GetBackupIndexDownloadUrlResponse extends \Google\Protobuf\Internal\Messag
      *     Optional. Data for populating the Message object.
      *
      *     @type string $signed_url
+     *           Required. The signed URL for downloading the backup index.
      * }
      */
     public function __construct($data = NULL) {
@@ -35,6 +38,8 @@ class GetBackupIndexDownloadUrlResponse extends \Google\Protobuf\Internal\Messag
     }
 
     /**
+     * Required. The signed URL for downloading the backup index.
+     *
      * Generated from protobuf field <code>string signed_url = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
@@ -44,6 +49,8 @@ class GetBackupIndexDownloadUrlResponse extends \Google\Protobuf\Internal\Messag
     }
 
     /**
+     * Required. The signed URL for downloading the backup index.
+     *
      * Generated from protobuf field <code>string signed_url = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this

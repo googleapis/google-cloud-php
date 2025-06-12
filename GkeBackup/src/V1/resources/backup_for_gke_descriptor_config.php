@@ -42,6 +42,25 @@ return [
                     ],
                 ],
             ],
+            'CreateBackupChannel' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\GkeBackup\V1\BackupChannel',
+                    'metadataReturnType' => '\Google\Cloud\GkeBackup\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateBackupPlan' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\GkeBackup\V1\BackupPlan',
@@ -64,6 +83,25 @@ return [
             'CreateRestore' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\GkeBackup\V1\Restore',
+                    'metadataReturnType' => '\Google\Cloud\GkeBackup\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateRestoreChannel' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\GkeBackup\V1\RestoreChannel',
                     'metadataReturnType' => '\Google\Cloud\GkeBackup\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
@@ -118,6 +156,25 @@ return [
                     ],
                 ],
             ],
+            'DeleteBackupChannel' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\GkeBackup\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteBackupPlan' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
@@ -138,6 +195,25 @@ return [
                 ],
             ],
             'DeleteRestore' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\GkeBackup\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteRestoreChannel' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\GkeBackup\V1\OperationMetadata',
@@ -195,6 +271,26 @@ return [
                     ],
                 ],
             ],
+            'UpdateBackupChannel' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\GkeBackup\V1\BackupChannel',
+                    'metadataReturnType' => '\Google\Cloud\GkeBackup\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'backup_channel.name',
+                        'fieldAccessors' => [
+                            'getBackupChannel',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateBackupPlan' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\GkeBackup\V1\BackupPlan',
@@ -235,6 +331,26 @@ return [
                     ],
                 ],
             ],
+            'UpdateRestoreChannel' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\GkeBackup\V1\RestoreChannel',
+                    'metadataReturnType' => '\Google\Cloud\GkeBackup\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'restore_channel.name',
+                        'fieldAccessors' => [
+                            'getRestoreChannel',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateRestorePlan' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\GkeBackup\V1\RestorePlan',
@@ -258,6 +374,18 @@ return [
             'GetBackup' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\GkeBackup\V1\Backup',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackupChannel' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\GkeBackup\V1\BackupChannel',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -291,6 +419,18 @@ return [
                     ],
                 ],
             ],
+            'GetBackupPlanBinding' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\GkeBackup\V1\BackupPlanBinding',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetRestore' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\GkeBackup\V1\Restore',
@@ -303,9 +443,33 @@ return [
                     ],
                 ],
             ],
+            'GetRestoreChannel' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\GkeBackup\V1\RestoreChannel',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetRestorePlan' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\GkeBackup\V1\RestorePlan',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetRestorePlanBinding' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\GkeBackup\V1\RestorePlanBinding',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -335,6 +499,46 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackupChannels' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getBackupChannels',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\GkeBackup\V1\ListBackupChannelsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackupPlanBindings' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getBackupPlanBindings',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\GkeBackup\V1\ListBackupPlanBindingsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -370,6 +574,46 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\GkeBackup\V1\ListBackupsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListRestoreChannels' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getRestoreChannels',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\GkeBackup\V1\ListRestoreChannelsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListRestorePlanBindings' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getRestorePlanBindings',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\GkeBackup\V1\ListRestorePlanBindingsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -534,12 +778,16 @@ return [
             ],
             'templateMap' => [
                 'backup' => 'projects/{project}/locations/{location}/backupPlans/{backup_plan}/backups/{backup}',
+                'backupChannel' => 'projects/{project}/locations/{location}/backupChannels/{backup_channel}',
                 'backupPlan' => 'projects/{project}/locations/{location}/backupPlans/{backup_plan}',
+                'backupPlanBinding' => 'projects/{project}/locations/{location}/backupChannels/{backup_channel}/backupPlanBindings/{backup_plan_binding}',
                 'cluster' => 'projects/{project}/locations/{location}/clusters/{cluster}',
                 'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'location' => 'projects/{project}/locations/{location}',
                 'restore' => 'projects/{project}/locations/{location}/restorePlans/{restore_plan}/restores/{restore}',
+                'restoreChannel' => 'projects/{project}/locations/{location}/restoreChannels/{restore_channel}',
                 'restorePlan' => 'projects/{project}/locations/{location}/restorePlans/{restore_plan}',
+                'restorePlanBinding' => 'projects/{project}/locations/{location}/restoreChannels/{restore_channel}/restorePlanBindings/{restore_plan_binding}',
                 'volumeBackup' => 'projects/{project}/locations/{location}/backupPlans/{backup_plan}/backups/{backup}/volumeBackups/{volume_backup}',
                 'volumeRestore' => 'projects/{project}/locations/{location}/restorePlans/{restore_plan}/restores/{restore}/volumeRestores/{volume_restore}',
             ],

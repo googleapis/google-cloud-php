@@ -5,6 +5,35 @@
     "protoPackage": "google.cloud.discoveryengine.v1",
     "libraryPackage": "Google\\Cloud\\DiscoveryEngine\\V1",
     "services": {
+        "CmekConfigService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CmekConfigServiceGapicClient",
+                    "rpcs": {
+                        "DeleteCmekConfig": {
+                            "methods": [
+                                "deleteCmekConfig"
+                            ]
+                        },
+                        "GetCmekConfig": {
+                            "methods": [
+                                "getCmekConfig"
+                            ]
+                        },
+                        "ListCmekConfigs": {
+                            "methods": [
+                                "listCmekConfigs"
+                            ]
+                        },
+                        "UpdateCmekConfig": {
+                            "methods": [
+                                "updateCmekConfig"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "CompletionService": {
             "clients": {
                 "grpc": {
@@ -312,6 +341,50 @@
                 }
             }
         },
+        "IdentityMappingStoreService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "IdentityMappingStoreServiceGapicClient",
+                    "rpcs": {
+                        "CreateIdentityMappingStore": {
+                            "methods": [
+                                "createIdentityMappingStore"
+                            ]
+                        },
+                        "DeleteIdentityMappingStore": {
+                            "methods": [
+                                "deleteIdentityMappingStore"
+                            ]
+                        },
+                        "GetIdentityMappingStore": {
+                            "methods": [
+                                "getIdentityMappingStore"
+                            ]
+                        },
+                        "ImportIdentityMappings": {
+                            "methods": [
+                                "importIdentityMappings"
+                            ]
+                        },
+                        "ListIdentityMappingStores": {
+                            "methods": [
+                                "listIdentityMappingStores"
+                            ]
+                        },
+                        "ListIdentityMappings": {
+                            "methods": [
+                                "listIdentityMappings"
+                            ]
+                        },
+                        "PurgeIdentityMappings": {
+                            "methods": [
+                                "purgeIdentityMappings"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "ProjectService": {
             "clients": {
                 "grpc": {
@@ -528,6 +601,25 @@
                         "WriteUserEvent": {
                             "methods": [
                                 "writeUserEvent"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "UserLicenseService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "UserLicenseServiceGapicClient",
+                    "rpcs": {
+                        "BatchUpdateUserLicenses": {
+                            "methods": [
+                                "batchUpdateUserLicenses"
+                            ]
+                        },
+                        "ListUserLicenses": {
+                            "methods": [
+                                "listUserLicenses"
                             ]
                         }
                     }

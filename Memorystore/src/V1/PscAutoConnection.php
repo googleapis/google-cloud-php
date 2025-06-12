@@ -83,8 +83,7 @@ class PscAutoConnection extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $port
-     *           Optional. Output only. port will only be set for Primary/Reader or
-     *           Discovery endpoint.
+     *           Optional. port will only be set for Primary/Reader or Discovery endpoint.
      *     @type string $psc_connection_id
      *           Output only. The PSC connection id of the forwarding rule connected to the
      *           service attachment.
@@ -120,10 +119,9 @@ class PscAutoConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Output only. port will only be set for Primary/Reader or
-     * Discovery endpoint.
+     * Optional. port will only be set for Primary/Reader or Discovery endpoint.
      *
-     * Generated from protobuf field <code>int32 port = 9 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 port = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPort()
@@ -137,10 +135,9 @@ class PscAutoConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Output only. port will only be set for Primary/Reader or
-     * Discovery endpoint.
+     * Optional. port will only be set for Primary/Reader or Discovery endpoint.
      *
-     * Generated from protobuf field <code>int32 port = 9 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 port = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

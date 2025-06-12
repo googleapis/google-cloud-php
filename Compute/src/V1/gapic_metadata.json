@@ -1787,6 +1787,11 @@
                                 "setIamPolicy"
                             ]
                         },
+                        "SetLabels": {
+                            "methods": [
+                                "setLabels"
+                            ]
+                        },
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
@@ -3612,6 +3617,30 @@
                 }
             }
         },
+        "ReservationBlocks": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ReservationBlocksGapicClient",
+                    "rpcs": {
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "PerformMaintenance": {
+                            "methods": [
+                                "performMaintenance"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "Reservations": {
             "clients": {
                 "grpc": {
@@ -3645,6 +3674,11 @@
                         "List": {
                             "methods": [
                                 "list"
+                            ]
+                        },
+                        "PerformMaintenance": {
+                            "methods": [
+                                "performMaintenance"
                             ]
                         },
                         "Resize": {

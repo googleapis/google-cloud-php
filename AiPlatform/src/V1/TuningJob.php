@@ -102,7 +102,7 @@ class TuningJob extends \Google\Protobuf\Internal\Message
      */
     protected $experiment = '';
     /**
-     * Output only. The tuned model resources assiociated with this
+     * Output only. The tuned model resources associated with this
      * [TuningJob][google.cloud.aiplatform.v1.TuningJob].
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TunedModel tuned_model = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -144,7 +144,8 @@ class TuningJob extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $base_model
-     *           The base model that is being tuned, e.g., "gemini-1.0-pro-002".
+     *           The base model that is being tuned. See [Supported
+     *           models](https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/tuning#supported_models).
      *     @type \Google\Cloud\AIPlatform\V1\SupervisedTuningSpec $supervised_tuning_spec
      *           Tuning Spec for Supervised Fine Tuning.
      *     @type string $name
@@ -190,7 +191,7 @@ class TuningJob extends \Google\Protobuf\Internal\Message
      *           Output only. The Experiment associated with this
      *           [TuningJob][google.cloud.aiplatform.v1.TuningJob].
      *     @type \Google\Cloud\AIPlatform\V1\TunedModel $tuned_model
-     *           Output only. The tuned model resources assiociated with this
+     *           Output only. The tuned model resources associated with this
      *           [TuningJob][google.cloud.aiplatform.v1.TuningJob].
      *     @type \Google\Cloud\AIPlatform\V1\TuningDataStats $tuning_data_stats
      *           Output only. The tuning data statistics associated with this
@@ -214,7 +215,8 @@ class TuningJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The base model that is being tuned, e.g., "gemini-1.0-pro-002".
+     * The base model that is being tuned. See [Supported
+     * models](https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/tuning#supported_models).
      *
      * Generated from protobuf field <code>string base_model = 4;</code>
      * @return string
@@ -230,7 +232,8 @@ class TuningJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The base model that is being tuned, e.g., "gemini-1.0-pro-002".
+     * The base model that is being tuned. See [Supported
+     * models](https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/tuning#supported_models).
      *
      * Generated from protobuf field <code>string base_model = 4;</code>
      * @param string $var
@@ -652,7 +655,7 @@ class TuningJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The tuned model resources assiociated with this
+     * Output only. The tuned model resources associated with this
      * [TuningJob][google.cloud.aiplatform.v1.TuningJob].
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TunedModel tuned_model = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -674,7 +677,7 @@ class TuningJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The tuned model resources assiociated with this
+     * Output only. The tuned model resources associated with this
      * [TuningJob][google.cloud.aiplatform.v1.TuningJob].
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TunedModel tuned_model = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

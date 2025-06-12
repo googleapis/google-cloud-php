@@ -542,10 +542,12 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $name = 'name3373707';
         $query = 'query107944136';
         $etag = 'etag3123477';
+        $deletionProtection = true;
         $expectedResponse = new LogicalView();
         $expectedResponse->setName($name);
         $expectedResponse->setQuery($query);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setDeletionProtection($deletionProtection);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1401,10 +1403,12 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $query = 'query107944136';
         $etag = 'etag3123477';
+        $deletionProtection = true;
         $expectedResponse = new LogicalView();
         $expectedResponse->setName($name2);
         $expectedResponse->setQuery($query);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setDeletionProtection($deletionProtection);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->logicalViewName('[PROJECT]', '[INSTANCE]', '[LOGICAL_VIEW]');
@@ -2765,10 +2769,12 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $name = 'name3373707';
         $query = 'query107944136';
         $etag = 'etag3123477';
+        $deletionProtection = true;
         $expectedResponse = new LogicalView();
         $expectedResponse->setName($name);
         $expectedResponse->setQuery($query);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setDeletionProtection($deletionProtection);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

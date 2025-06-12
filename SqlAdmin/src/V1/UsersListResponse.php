@@ -115,7 +115,9 @@ class UsersListResponse extends \Google\Protobuf\Internal\Message
      */
     public function getNextPageToken()
     {
-        @trigger_error('next_page_token is deprecated.', E_USER_DEPRECATED);
+        if ($this->next_page_token !== '') {
+            @trigger_error('next_page_token is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->next_page_token;
     }
 

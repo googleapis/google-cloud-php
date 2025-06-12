@@ -32,6 +32,9 @@ use Google\Cloud\Dataflow\V1beta3\ListJobsRequest;
 /**
  * List the jobs of a project across all regions.
  *
+ * **Note:** This method doesn't support filtering the list of
+ * jobs by name.
+ *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.

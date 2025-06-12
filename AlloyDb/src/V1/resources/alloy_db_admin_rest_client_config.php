@@ -175,6 +175,18 @@ return [
                     ],
                 ],
             ],
+            'ExportCluster' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:export',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'FailoverInstance' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/instances/*}:failover',
@@ -246,6 +258,18 @@ return [
             'GetUser' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/users/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ImportCluster' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:import',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -427,6 +451,18 @@ return [
                     'user.name' => [
                         'getters' => [
                             'getUser',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpgradeCluster' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:upgrade',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
                             'getName',
                         ],
                     ],

@@ -355,6 +355,8 @@ return [
                 'dataset' => 'projects/{project}/datasets/{dataset}',
                 'listing' => 'projects/{project}/locations/{location}/dataExchanges/{data_exchange}/listings/{listing}',
                 'location' => 'projects/{project}/locations/{location}',
+                'managedService' => 'services/{service}',
+                'routine' => 'projects/{project}/datasets/{dataset}/routines/{routine}',
                 'subscription' => 'projects/{project}/locations/{location}/subscriptions/{subscription}',
                 'table' => 'projects/{project}/datasets/{dataset}/tables/{table}',
                 'topic' => 'projects/{project}/topics/{topic}',

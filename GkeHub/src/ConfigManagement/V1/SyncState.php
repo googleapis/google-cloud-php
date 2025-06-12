@@ -183,7 +183,9 @@ class SyncState extends \Google\Protobuf\Internal\Message
      */
     public function getLastSync()
     {
-        @trigger_error('last_sync is deprecated.', E_USER_DEPRECATED);
+        if ($this->last_sync !== '') {
+            @trigger_error('last_sync is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->last_sync;
     }
 

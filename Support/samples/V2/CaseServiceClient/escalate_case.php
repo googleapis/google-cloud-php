@@ -29,15 +29,15 @@ use Google\Cloud\Support\V2\EscalateCaseRequest;
 use Google\Cloud\Support\V2\PBCase;
 
 /**
- * Escalate a case. Escalating a case will initiate the Google Cloud Support
- * escalation management process.
+ * Escalate a case, starting the Google Cloud Support escalation management
+ * process.
  *
- * This operation is only available to certain Customer Care tiers. Go to
+ * This operation is only available for some support services. Go to
  * https://cloud.google.com/support and look for 'Technical support
- * escalations' in the feature list to find out which tiers are able to
- * perform escalations.
+ * escalations' in the feature list to find out which ones let you
+ * do that.
  *
- * @param string $formattedName The fully qualified name of the Case resource to be escalated. Please see
+ * @param string $formattedName The name of the case to be escalated. Please see
  *                              {@see CaseServiceClient::caseName()} for help formatting this field.
  */
 function escalate_case_sample(string $formattedName): void

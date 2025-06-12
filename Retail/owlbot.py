@@ -32,6 +32,12 @@ _tracked_paths.add(src)
 
 php.owlbot_main(src=src, dest=dest)
 
+# fix protobuf bug (b/418528083)
+s.replace(
+    "src/V*/**/*.php",
+    "\$arr->count\(\)",
+    "count($arr)")
+
 # remove class_alias code
 s.replace(
     "src/V*/**/*.php",

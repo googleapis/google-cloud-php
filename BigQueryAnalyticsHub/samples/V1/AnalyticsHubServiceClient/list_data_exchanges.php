@@ -33,7 +33,7 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\ListDataExchangesRequest;
  * Lists all data exchanges in a given project and location.
  *
  * @param string $formattedParent The parent resource path of the data exchanges.
- *                                e.g. `projects/myproject/locations/US`. Please see
+ *                                e.g. `projects/myproject/locations/us`. Please see
  *                                {@see AnalyticsHubServiceClient::locationName()} for help formatting this field.
  */
 function list_data_exchanges_sample(string $formattedParent): void

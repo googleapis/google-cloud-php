@@ -33,11 +33,38 @@ class PhoneticEncoding
      * Generated from protobuf enum <code>PHONETIC_ENCODING_X_SAMPA = 2;</code>
      */
     const PHONETIC_ENCODING_X_SAMPA = 2;
+    /**
+     * For reading-to-pron conversion to work well, the `pronunciation` field
+     *  should only contain Kanji, Hiragana, and Katakana.
+     * The pronunciation can also contain pitch accents.
+     * The start of a pitch phrase is specified with `^` and the down-pitch
+     * position is specified with `!`, for example:
+     *     phrase:端  pronunciation:^はし
+     *     phrase:箸  pronunciation:^は!し
+     *     phrase:橋  pronunciation:^はし!
+     * We currently only support the Tokyo dialect, which allows at most one
+     * down-pitch per phrase (i.e. at most one `!` between `^`).
+     *
+     * Generated from protobuf enum <code>PHONETIC_ENCODING_JAPANESE_YOMIGANA = 3;</code>
+     */
+    const PHONETIC_ENCODING_JAPANESE_YOMIGANA = 3;
+    /**
+     * Used to specify pronunciations for Mandarin words. See
+     * https://en.wikipedia.org/wiki/Pinyin.
+     * For example: 朝阳, the pronunciation is "chao2 yang2". The number
+     * represents the tone, and there is a space between syllables. Neutral
+     * tones are represented by 5, for example 孩子 "hai2 zi5".
+     *
+     * Generated from protobuf enum <code>PHONETIC_ENCODING_PINYIN = 4;</code>
+     */
+    const PHONETIC_ENCODING_PINYIN = 4;
 
     private static $valueToName = [
         self::PHONETIC_ENCODING_UNSPECIFIED => 'PHONETIC_ENCODING_UNSPECIFIED',
         self::PHONETIC_ENCODING_IPA => 'PHONETIC_ENCODING_IPA',
         self::PHONETIC_ENCODING_X_SAMPA => 'PHONETIC_ENCODING_X_SAMPA',
+        self::PHONETIC_ENCODING_JAPANESE_YOMIGANA => 'PHONETIC_ENCODING_JAPANESE_YOMIGANA',
+        self::PHONETIC_ENCODING_PINYIN => 'PHONETIC_ENCODING_PINYIN',
     ];
 
     public static function name($value)

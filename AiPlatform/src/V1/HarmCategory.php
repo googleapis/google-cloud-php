@@ -44,9 +44,10 @@ class HarmCategory
      */
     const HARM_CATEGORY_SEXUALLY_EXPLICIT = 4;
     /**
+     * Deprecated: Election filter is not longer supported.
      * The harm category is civic integrity.
      *
-     * Generated from protobuf enum <code>HARM_CATEGORY_CIVIC_INTEGRITY = 5;</code>
+     * Generated from protobuf enum <code>HARM_CATEGORY_CIVIC_INTEGRITY = 5 [deprecated = true];</code>
      */
     const HARM_CATEGORY_CIVIC_INTEGRITY = 5;
 

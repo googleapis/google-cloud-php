@@ -44,6 +44,15 @@ class AutokeyConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.kms.v1.AutokeyConfig.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $state = 0;
+    /**
+     * Optional. A checksum computed by the server based on the value of other
+     * fields. This may be sent on update requests to ensure that the client has
+     * an up-to-date value before proceeding. The request will be rejected with an
+     * ABORTED error on a mismatched etag.
+     *
+     * Generated from protobuf field <code>string etag = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $etag = '';
 
     /**
      * Constructor.
@@ -68,6 +77,11 @@ class AutokeyConfig extends \Google\Protobuf\Internal\Message
      *           key project field will clear the configuration.
      *     @type int $state
      *           Output only. The state for the AutokeyConfig.
+     *     @type string $etag
+     *           Optional. A checksum computed by the server based on the value of other
+     *           fields. This may be sent on update requests to ensure that the client has
+     *           an up-to-date value before proceeding. The request will be rejected with an
+     *           ABORTED error on a mismatched etag.
      * }
      */
     public function __construct($data = NULL) {
@@ -171,6 +185,38 @@ class AutokeyConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\AutokeyConfig\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A checksum computed by the server based on the value of other
+     * fields. This may be sent on update requests to ensure that the client has
+     * an up-to-date value before proceeding. The request will be rejected with an
+     * ABORTED error on a mismatched etag.
+     *
+     * Generated from protobuf field <code>string etag = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getEtag()
+    {
+        return $this->etag;
+    }
+
+    /**
+     * Optional. A checksum computed by the server based on the value of other
+     * fields. This may be sent on update requests to ensure that the client has
+     * an up-to-date value before proceeding. The request will be rejected with an
+     * ABORTED error on a mismatched etag.
+     *
+     * Generated from protobuf field <code>string etag = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEtag($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->etag = $var;
 
         return $this;
     }

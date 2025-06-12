@@ -32,7 +32,7 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing;
  * Gets the details of a listing.
  *
  * @param string $formattedName The resource name of the listing.
- *                              e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`. Please see
+ *                              e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`. Please see
  *                              {@see AnalyticsHubServiceClient::listingName()} for help formatting this field.
  */
 function get_listing_sample(string $formattedName): void

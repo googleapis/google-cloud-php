@@ -185,13 +185,17 @@ class Token extends \Google\Protobuf\Internal\Message
      */
     public function getProvenance()
     {
-        @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->provenance)) {
+            @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->provenance;
     }
 
     public function hasProvenance()
     {
-        @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->provenance)) {
+            @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->provenance);
     }
 

@@ -30,10 +30,13 @@ use Google\Apps\Chat\V1\Attachment;
 use Google\Apps\Chat\V1\Client\ChatServiceClient;
 use Google\Apps\Chat\V1\CompleteImportSpaceRequest;
 use Google\Apps\Chat\V1\CompleteImportSpaceResponse;
+use Google\Apps\Chat\V1\CreateCustomEmojiRequest;
 use Google\Apps\Chat\V1\CreateMembershipRequest;
 use Google\Apps\Chat\V1\CreateMessageRequest;
 use Google\Apps\Chat\V1\CreateReactionRequest;
 use Google\Apps\Chat\V1\CreateSpaceRequest;
+use Google\Apps\Chat\V1\CustomEmoji;
+use Google\Apps\Chat\V1\DeleteCustomEmojiRequest;
 use Google\Apps\Chat\V1\DeleteMembershipRequest;
 use Google\Apps\Chat\V1\DeleteMessageRequest;
 use Google\Apps\Chat\V1\DeleteReactionRequest;
@@ -41,6 +44,7 @@ use Google\Apps\Chat\V1\DeleteSpaceRequest;
 use Google\Apps\Chat\V1\Emoji;
 use Google\Apps\Chat\V1\FindDirectMessageRequest;
 use Google\Apps\Chat\V1\GetAttachmentRequest;
+use Google\Apps\Chat\V1\GetCustomEmojiRequest;
 use Google\Apps\Chat\V1\GetMembershipRequest;
 use Google\Apps\Chat\V1\GetMessageRequest;
 use Google\Apps\Chat\V1\GetSpaceEventRequest;
@@ -48,6 +52,8 @@ use Google\Apps\Chat\V1\GetSpaceNotificationSettingRequest;
 use Google\Apps\Chat\V1\GetSpaceReadStateRequest;
 use Google\Apps\Chat\V1\GetSpaceRequest;
 use Google\Apps\Chat\V1\GetThreadReadStateRequest;
+use Google\Apps\Chat\V1\ListCustomEmojisRequest;
+use Google\Apps\Chat\V1\ListCustomEmojisResponse;
 use Google\Apps\Chat\V1\ListMembershipsRequest;
 use Google\Apps\Chat\V1\ListMembershipsResponse;
 use Google\Apps\Chat\V1\ListMessagesRequest;
@@ -163,6 +169,77 @@ class ChatServiceClientTest extends GeneratedTest
         $request = (new CompleteImportSpaceRequest())->setName($formattedName);
         try {
             $gapicClient->completeImportSpace($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createCustomEmojiTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $uid = 'uid115792';
+        $emojiName = 'emojiName749661924';
+        $temporaryImageUri = 'temporaryImageUri-241827814';
+        $expectedResponse = new CustomEmoji();
+        $expectedResponse->setName($name);
+        $expectedResponse->setUid($uid);
+        $expectedResponse->setEmojiName($emojiName);
+        $expectedResponse->setTemporaryImageUri($temporaryImageUri);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $customEmoji = new CustomEmoji();
+        $request = (new CreateCustomEmojiRequest())->setCustomEmoji($customEmoji);
+        $response = $gapicClient->createCustomEmoji($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.chat.v1.ChatService/CreateCustomEmoji', $actualFuncCall);
+        $actualValue = $actualRequestObject->getCustomEmoji();
+        $this->assertProtobufEquals($customEmoji, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createCustomEmojiExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $customEmoji = new CustomEmoji();
+        $request = (new CreateCustomEmojiRequest())->setCustomEmoji($customEmoji);
+        try {
+            $gapicClient->createCustomEmoji($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -465,6 +542,68 @@ class ChatServiceClientTest extends GeneratedTest
         $request = (new CreateSpaceRequest())->setSpace($space);
         try {
             $gapicClient->createSpace($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteCustomEmojiTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->customEmojiName('[CUSTOM_EMOJI]');
+        $request = (new DeleteCustomEmojiRequest())->setName($formattedName);
+        $gapicClient->deleteCustomEmoji($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.chat.v1.ChatService/DeleteCustomEmoji', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteCustomEmojiExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->customEmojiName('[CUSTOM_EMOJI]');
+        $request = (new DeleteCustomEmojiRequest())->setName($formattedName);
+        try {
+            $gapicClient->deleteCustomEmoji($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -868,6 +1007,77 @@ class ChatServiceClientTest extends GeneratedTest
         $request = (new GetAttachmentRequest())->setName($formattedName);
         try {
             $gapicClient->getAttachment($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getCustomEmojiTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $uid = 'uid115792';
+        $emojiName = 'emojiName749661924';
+        $temporaryImageUri = 'temporaryImageUri-241827814';
+        $expectedResponse = new CustomEmoji();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setUid($uid);
+        $expectedResponse->setEmojiName($emojiName);
+        $expectedResponse->setTemporaryImageUri($temporaryImageUri);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->customEmojiName('[CUSTOM_EMOJI]');
+        $request = (new GetCustomEmojiRequest())->setName($formattedName);
+        $response = $gapicClient->getCustomEmoji($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.chat.v1.ChatService/GetCustomEmoji', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getCustomEmojiExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->customEmojiName('[CUSTOM_EMOJI]');
+        $request = (new GetCustomEmojiRequest())->setName($formattedName);
+        try {
+            $gapicClient->getCustomEmoji($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1351,6 +1561,71 @@ class ChatServiceClientTest extends GeneratedTest
         $request = (new GetThreadReadStateRequest())->setName($formattedName);
         try {
             $gapicClient->getThreadReadState($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listCustomEmojisTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $customEmojisElement = new CustomEmoji();
+        $customEmojis = [$customEmojisElement];
+        $expectedResponse = new ListCustomEmojisResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setCustomEmojis($customEmojis);
+        $transport->addResponse($expectedResponse);
+        $request = new ListCustomEmojisRequest();
+        $response = $gapicClient->listCustomEmojis($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getCustomEmojis()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.chat.v1.ChatService/ListCustomEmojis', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listCustomEmojisExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        $request = new ListCustomEmojisRequest();
+        try {
+            $gapicClient->listCustomEmojis($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

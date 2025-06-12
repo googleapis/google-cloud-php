@@ -69,6 +69,12 @@ class CodeCompilationConfig extends \Google\Protobuf\Internal\Message
      */
     protected $table_prefix = '';
     /**
+     * Optional. The prefix to prepend to built-in assertion names.
+     *
+     * Generated from protobuf field <code>string builtin_assertion_name_prefix = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $builtin_assertion_name_prefix = '';
+    /**
      * Optional. The default notebook runtime options.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.NotebookRuntimeOptions default_notebook_runtime_options = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -102,6 +108,8 @@ class CodeCompilationConfig extends \Google\Protobuf\Internal\Message
      *           dataset ID) names.
      *     @type string $table_prefix
      *           Optional. The prefix that should be prepended to all table names.
+     *     @type string $builtin_assertion_name_prefix
+     *           Optional. The prefix to prepend to built-in assertion names.
      *     @type \Google\Cloud\Dataform\V1beta1\NotebookRuntimeOptions $default_notebook_runtime_options
      *           Optional. The default notebook runtime options.
      * }
@@ -325,6 +333,32 @@ class CodeCompilationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->table_prefix = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The prefix to prepend to built-in assertion names.
+     *
+     * Generated from protobuf field <code>string builtin_assertion_name_prefix = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getBuiltinAssertionNamePrefix()
+    {
+        return $this->builtin_assertion_name_prefix;
+    }
+
+    /**
+     * Optional. The prefix to prepend to built-in assertion names.
+     *
+     * Generated from protobuf field <code>string builtin_assertion_name_prefix = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBuiltinAssertionNamePrefix($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->builtin_assertion_name_prefix = $var;
 
         return $this;
     }

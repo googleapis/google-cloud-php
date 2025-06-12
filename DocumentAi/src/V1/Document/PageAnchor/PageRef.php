@@ -167,7 +167,9 @@ class PageRef extends \Google\Protobuf\Internal\Message
      */
     public function getLayoutId()
     {
-        @trigger_error('layout_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->layout_id !== '') {
+            @trigger_error('layout_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->layout_id;
     }
 

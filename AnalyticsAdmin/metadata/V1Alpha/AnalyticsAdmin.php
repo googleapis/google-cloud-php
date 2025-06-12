@@ -30,7 +30,7 @@ class AnalyticsAdmin
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Úæ
+¦ü
 4google/analytics/admin/v1alpha/analytics_admin.protogoogle.analytics.admin.v1alpha-google/analytics/admin/v1alpha/audience.proto2google/analytics/admin/v1alpha/channel_group.proto:google/analytics/admin/v1alpha/event_create_and_edit.proto6google/analytics/admin/v1alpha/expanded_data_set.proto.google/analytics/admin/v1alpha/resources.proto=google/analytics/admin/v1alpha/subproperty_event_filter.protogoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"à
 RunAccessReportRequest
 entity (	C
@@ -669,7 +669,38 @@ page_token (	BàA"™
 update_mask (2.google.protobuf.FieldMaskBàA"q
 #DeleteSubpropertyEventFilterRequestJ
 name (	B<àAúA6
-4analyticsadmin.googleapis.com/SubpropertyEventFilter2šŽ
+4analyticsadmin.googleapis.com/SubpropertyEventFilter"Ö
+$CreateReportingDataAnnotationRequestM
+parent (	B=àAúA75analyticsadmin.googleapis.com/ReportingDataAnnotation_
+reporting_data_annotation (27.google.analytics.admin.v1alpha.ReportingDataAnnotationBàA"p
+!GetReportingDataAnnotationRequestK
+name (	B=àAúA7
+5analyticsadmin.googleapis.com/ReportingDataAnnotation"º
+#ListReportingDataAnnotationsRequestM
+parent (	B=àAúA75analyticsadmin.googleapis.com/ReportingDataAnnotation
+filter (	BàA
+	page_size (BàA
+
+page_token (	BàA"œ
+$ListReportingDataAnnotationsResponse[
+reporting_data_annotations (27.google.analytics.admin.v1alpha.ReportingDataAnnotation
+next_page_token (	"½
+$UpdateReportingDataAnnotationRequest_
+reporting_data_annotation (27.google.analytics.admin.v1alpha.ReportingDataAnnotationBàA4
+update_mask (2.google.protobuf.FieldMaskBàA"s
+$DeleteReportingDataAnnotationRequestK
+name (	B=àAúA7
+5analyticsadmin.googleapis.com/ReportingDataAnnotation"Â
+SubmitUserDeletionRequest
+user_id (	H 
+	client_id (	H 
+app_instance_id (	H 
+user_provided_data (	H <
+name (	B.àAúA(
+&analyticsadmin.googleapis.com/PropertyB
+user"W
+SubmitUserDeletionResponse9
+deletion_request_time (2.google.protobuf.Timestamp2ì™
 AnalyticsAdminService“
 
 GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytics.admin.v1alpha.Account")ÚAname‚Óä“/v1alpha/{name=accounts/*}”
@@ -821,7 +852,13 @@ $FetchAutomatedGa4ConfigurationOptOutK.google.analytics.admin.v1alpha.FetchAuto
 GetSubpropertyEventFilter@.google.analytics.admin.v1alpha.GetSubpropertyEventFilterRequest6.google.analytics.admin.v1alpha.SubpropertyEventFilter"EÚAname‚Óä“86/v1alpha/{name=properties/*/subpropertyEventFilters/*}ï
 ListSubpropertyEventFiltersB.google.analytics.admin.v1alpha.ListSubpropertyEventFiltersRequestC.google.analytics.admin.v1alpha.ListSubpropertyEventFiltersResponse"GÚAparent‚Óä“86/v1alpha/{parent=properties/*}/subpropertyEventFilters¶
 UpdateSubpropertyEventFilterC.google.analytics.admin.v1alpha.UpdateSubpropertyEventFilterRequest6.google.analytics.admin.v1alpha.SubpropertyEventFilter"˜ÚA$subproperty_event_filter,update_mask‚Óä“k2O/v1alpha/{subproperty_event_filter.name=properties/*/subpropertyEventFilters/*}:subproperty_event_filterÂ
-DeleteSubpropertyEventFilterC.google.analytics.admin.v1alpha.DeleteSubpropertyEventFilterRequest.google.protobuf.Empty"EÚAname‚Óä“8*6/v1alpha/{name=properties/*/subpropertyEventFilters/*}üÊAanalyticsadmin.googleapis.comÒAØhttps://www.googleapis.com/auth/analytics.edit,https://www.googleapis.com/auth/analytics.manage.users,https://www.googleapis.com/auth/analytics.manage.users.readonly,https://www.googleapis.com/auth/analytics.readonlyB{
+DeleteSubpropertyEventFilterC.google.analytics.admin.v1alpha.DeleteSubpropertyEventFilterRequest.google.protobuf.Empty"EÚAname‚Óä“8*6/v1alpha/{name=properties/*/subpropertyEventFilters/*}
+CreateReportingDataAnnotationD.google.analytics.admin.v1alpha.CreateReportingDataAnnotationRequest7.google.analytics.admin.v1alpha.ReportingDataAnnotation"}ÚA parent,reporting_data_annotation‚Óä“T"7/v1alpha/{parent=properties/*}/reportingDataAnnotations:reporting_data_annotationà
+GetReportingDataAnnotationA.google.analytics.admin.v1alpha.GetReportingDataAnnotationRequest7.google.analytics.admin.v1alpha.ReportingDataAnnotation"FÚAname‚Óä“97/v1alpha/{name=properties/*/reportingDataAnnotations/*}ó
+ListReportingDataAnnotationsC.google.analytics.admin.v1alpha.ListReportingDataAnnotationsRequestD.google.analytics.admin.v1alpha.ListReportingDataAnnotationsResponse"HÚAparent‚Óä“97/v1alpha/{parent=properties/*}/reportingDataAnnotations½
+UpdateReportingDataAnnotationD.google.analytics.admin.v1alpha.UpdateReportingDataAnnotationRequest7.google.analytics.admin.v1alpha.ReportingDataAnnotation"œÚA%reporting_data_annotation,update_mask‚Óä“n2Q/v1alpha/{reporting_data_annotation.name=properties/*/reportingDataAnnotations/*}:reporting_data_annotationÅ
+DeleteReportingDataAnnotationD.google.analytics.admin.v1alpha.DeleteReportingDataAnnotationRequest.google.protobuf.Empty"FÚAname‚Óä“9*7/v1alpha/{name=properties/*/reportingDataAnnotations/*}Î
+SubmitUserDeletion9.google.analytics.admin.v1alpha.SubmitUserDeletionRequest:.google.analytics.admin.v1alpha.SubmitUserDeletionResponse"AÚAname‚Óä“4"//v1alpha/{name=properties/*}:submitUserDeletion:*üÊAanalyticsadmin.googleapis.comÒAØhttps://www.googleapis.com/auth/analytics.edit,https://www.googleapis.com/auth/analytics.manage.users,https://www.googleapis.com/auth/analytics.manage.users.readonly,https://www.googleapis.com/auth/analytics.readonlyB{
 "com.google.analytics.admin.v1alphaBAnalyticsAdminProtoPZ>cloud.google.com/go/analytics/admin/apiv1alpha/adminpb;adminpbbproto3'
         , true);
 

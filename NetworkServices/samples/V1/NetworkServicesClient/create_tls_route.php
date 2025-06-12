@@ -41,15 +41,12 @@ use Google\Rpc\Status;
  *                                                                    format `projects/&#42;/locations/global`. Please see
  *                                                                    {@see NetworkServicesClient::locationName()} for help formatting this field.
  * @param string $tlsRouteId                                          Short name of the TlsRoute resource to be created.
- * @param string $tlsRouteName                                        Name of the TlsRoute resource. It matches pattern
- *                                                                    `projects/&#42;/locations/global/tlsRoutes/tls_route_name>`.
  * @param string $formattedTlsRouteRulesActionDestinationsServiceName The URL of a BackendService to route traffic to. Please see
  *                                                                    {@see NetworkServicesClient::backendServiceName()} for help formatting this field.
  */
 function create_tls_route_sample(
     string $formattedParent,
     string $tlsRouteId,
-    string $tlsRouteName,
     string $formattedTlsRouteRulesActionDestinationsServiceName
 ): void {
     // Create a client.
@@ -67,7 +64,6 @@ function create_tls_route_sample(
         ->setAction($tlsRouteRulesAction);
     $tlsRouteRules = [$routeRule,];
     $tlsRoute = (new TlsRoute())
-        ->setName($tlsRouteName)
         ->setRules($tlsRouteRules);
     $request = (new CreateTlsRouteRequest())
         ->setParent($formattedParent)
@@ -107,7 +103,6 @@ function callSample(): void
 {
     $formattedParent = NetworkServicesClient::locationName('[PROJECT]', '[LOCATION]');
     $tlsRouteId = '[TLS_ROUTE_ID]';
-    $tlsRouteName = '[NAME]';
     $formattedTlsRouteRulesActionDestinationsServiceName = NetworkServicesClient::backendServiceName(
         '[PROJECT]',
         '[LOCATION]',
@@ -117,7 +112,6 @@ function callSample(): void
     create_tls_route_sample(
         $formattedParent,
         $tlsRouteId,
-        $tlsRouteName,
         $formattedTlsRouteRulesActionDestinationsServiceName
     );
 }

@@ -135,13 +135,17 @@ class StopLocation extends \Google\Protobuf\Internal\Message
      */
     public function getStopTime()
     {
-        @trigger_error('stop_time is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->stop_time)) {
+            @trigger_error('stop_time is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->stop_time;
     }
 
     public function hasStopTime()
     {
-        @trigger_error('stop_time is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->stop_time)) {
+            @trigger_error('stop_time is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->stop_time);
     }
 

@@ -19,9 +19,13 @@ class Gkebackup
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Gkebackup\V1\Backup::initOnce();
+        \GPBMetadata\Google\Cloud\Gkebackup\V1\BackupChannel::initOnce();
         \GPBMetadata\Google\Cloud\Gkebackup\V1\BackupPlan::initOnce();
+        \GPBMetadata\Google\Cloud\Gkebackup\V1\BackupPlanBinding::initOnce();
         \GPBMetadata\Google\Cloud\Gkebackup\V1\Restore::initOnce();
+        \GPBMetadata\Google\Cloud\Gkebackup\V1\RestoreChannel::initOnce();
         \GPBMetadata\Google\Cloud\Gkebackup\V1\RestorePlan::initOnce();
+        \GPBMetadata\Google\Cloud\Gkebackup\V1\RestorePlanBinding::initOnce();
         \GPBMetadata\Google\Cloud\Gkebackup\V1\Volume::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
@@ -29,8 +33,8 @@ class Gkebackup
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-’T
-)google/cloud/gkebackup/v1/gkebackup.protogoogle.cloud.gkebackup.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/gkebackup/v1/backup.proto+google/cloud/gkebackup/v1/backup_plan.proto\'google/cloud/gkebackup/v1/restore.proto,google/cloud/gkebackup/v1/restore_plan.proto&google/cloud/gkebackup/v1/volume.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Ä
+ÊÑ
+)google/cloud/gkebackup/v1/gkebackup.protogoogle.cloud.gkebackup.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/gkebackup/v1/backup.proto.google/cloud/gkebackup/v1/backup_channel.proto+google/cloud/gkebackup/v1/backup_plan.proto3google/cloud/gkebackup/v1/backup_plan_binding.proto\'google/cloud/gkebackup/v1/restore.proto/google/cloud/gkebackup/v1/restore_channel.proto,google/cloud/gkebackup/v1/restore_plan.proto4google/cloud/gkebackup/v1/restore_plan_binding.proto&google/cloud/gkebackup/v1/volume.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Ä
 OperationMetadata4
 create_time (2.google.protobuf.TimestampB‡A1
 end_time (2.google.protobuf.TimestampB‡A
@@ -65,12 +69,55 @@ page_token (	B‡A
 DeleteBackupPlanRequest9
 name (	B+‡A˙A%
 #gkebackup.googleapis.com/BackupPlan
-etag (	B‡A"¢
+etag (	B‡A"æ
+CreateBackupChannelRequest9
+parent (	B)‡A˙A#
+!locations.googleapis.com/LocationE
+backup_channel (2(.google.cloud.gkebackup.v1.BackupChannelB‡A
+backup_channel_id (	B‡A"≥
+ListBackupChannelsRequest9
+parent (	B)‡A˙A#
+!locations.googleapis.com/Location
+	page_size (B‡A
+
+page_token (	B‡A
+filter (	B‡A
+order_by (	B‡A"ç
+ListBackupChannelsResponseA
+backup_channels (2(.google.cloud.gkebackup.v1.BackupChannel
+next_page_token (	
+unreachable (	"W
+GetBackupChannelRequest<
+name (	B.‡A˙A(
+&gkebackup.googleapis.com/BackupChannel"ô
+UpdateBackupChannelRequestE
+backup_channel (2(.google.cloud.gkebackup.v1.BackupChannelB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"Å
+DeleteBackupChannelRequest<
+name (	B.‡A˙A(
+&gkebackup.googleapis.com/BackupChannel
+etag (	B‡A
+force (B‡A"º
+ListBackupPlanBindingsRequest>
+parent (	B.‡A˙A(
+&gkebackup.googleapis.com/BackupChannel
+	page_size (B‡A
+
+page_token (	B‡A
+filter (	B‡A
+order_by (	B‡A"ö
+ListBackupPlanBindingsResponseJ
+backup_plan_bindings (2,.google.cloud.gkebackup.v1.BackupPlanBinding
+next_page_token (	
+unreachable (	"_
+GetBackupPlanBindingRequest@
+name (	B2‡A˙A,
+*gkebackup.googleapis.com/BackupPlanBinding"¢
 CreateBackupRequest;
 parent (	B+‡A˙A%
 #gkebackup.googleapis.com/BackupPlan6
 backup (2!.google.cloud.gkebackup.v1.BackupB‡A
-	backup_id (	B‡A"Æ
+	backup_id (	B‡A"”
 ListBackupsRequest;
 parent (	B+‡A˙A%
 #gkebackup.googleapis.com/BackupPlan
@@ -78,10 +125,12 @@ page_token (	B‡A
 
 page_token (	B‡A
 filter (	B‡A
-order_by (	B‡A"b
+order_by (	B‡A#
+return_partial_success (B‡A"w
 ListBackupsResponse2
 backups (2!.google.cloud.gkebackup.v1.Backup
-next_page_token (	"I
+next_page_token (	
+unreachable (	"I
 GetBackupRequest5
 name (	B\'‡A˙A!
 gkebackup.googleapis.com/Backup"É
@@ -134,7 +183,49 @@ $gkebackup.googleapis.com/RestorePlan"ì
 name (	B,‡A˙A&
 $gkebackup.googleapis.com/RestorePlan
 etag (	B‡A
-force (B‡A"ß
+force (B‡A"¬
+CreateRestoreChannelRequest9
+parent (	B)‡A˙A#
+!locations.googleapis.com/LocationG
+restore_channel (2).google.cloud.gkebackup.v1.RestoreChannelB‡A
+restore_channel_id (	B‡A"¥
+ListRestoreChannelsRequest9
+parent (	B)‡A˙A#
+!locations.googleapis.com/Location
+	page_size (B‡A
+
+page_token (	B‡A
+filter (	B‡A
+order_by (	B‡A"ê
+ListRestoreChannelsResponseC
+restore_channels (2).google.cloud.gkebackup.v1.RestoreChannel
+next_page_token (	
+unreachable (	"Y
+GetRestoreChannelRequest=
+name (	B/‡A˙A)
+\'gkebackup.googleapis.com/RestoreChannel"ú
+UpdateRestoreChannelRequestG
+restore_channel (2).google.cloud.gkebackup.v1.RestoreChannelB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"o
+DeleteRestoreChannelRequest=
+name (	B/‡A˙A)
+\'gkebackup.googleapis.com/RestoreChannel
+etag (	B‡A"æ
+ListRestorePlanBindingsRequest?
+parent (	B/‡A˙A)
+\'gkebackup.googleapis.com/RestoreChannel
+	page_size (B‡A
+
+page_token (	B‡A
+filter (	B‡A
+order_by (	B‡A"¢
+ListRestorePlanBindingsResponseL
+restore_plan_bindings (2-.google.cloud.gkebackup.v1.RestorePlanBinding
+next_page_token (	
+unreachable (	B‡A"a
+GetRestorePlanBindingRequestA
+name (	B3‡A˙A-
++gkebackup.googleapis.com/RestorePlanBinding"ß
 CreateRestoreRequest<
 parent (	B,‡A˙A&
 $gkebackup.googleapis.com/RestorePlan8
@@ -183,7 +274,7 @@ page_token (	B‡A
 gkebackup.googleapis.com/Backup"<
 !GetBackupIndexDownloadUrlResponse
 
-signed_url (	B‡A2∆*
+signed_url (	B‡A2—C
 BackupForGKEÚ
 CreateBackupPlan2.google.cloud.gkebackup.v1.CreateBackupPlanRequest.google.longrunning.Operation"ä A
 
@@ -194,7 +285,17 @@ BackupPlanOperationMetadata⁄A!parent,backup_plan,backup_plan_idÇ”‰ì>"//v1/{pa
 
 BackupPlanOperationMetadata⁄Abackup_plan,update_maskÇ”‰ìJ2;/v1/{backup_plan.name=projects/*/locations/*/backupPlans/*}:backup_plan“
 DeleteBackupPlan2.google.cloud.gkebackup.v1.DeleteBackupPlanRequest.google.longrunning.Operation"k A*
-google.protobuf.EmptyOperationMetadata⁄AnameÇ”‰ì1*//v1/{name=projects/*/locations/*/backupPlans/*}·
+google.protobuf.EmptyOperationMetadata⁄AnameÇ”‰ì1*//v1/{name=projects/*/locations/*/backupPlans/*}á
+CreateBackupChannel5.google.cloud.gkebackup.v1.CreateBackupChannelRequest.google.longrunning.Operation"ô A"
+BackupChannelOperationMetadata⁄A\'parent,backup_channel,backup_channel_idÇ”‰ìD"2/v1/{parent=projects/*/locations/*}/backupChannels:backup_channel∆
+ListBackupChannels4.google.cloud.gkebackup.v1.ListBackupChannelsRequest5.google.cloud.gkebackup.v1.ListBackupChannelsResponse"C⁄AparentÇ”‰ì42/v1/{parent=projects/*/locations/*}/backupChannels≥
+GetBackupChannel2.google.cloud.gkebackup.v1.GetBackupChannelRequest(.google.cloud.gkebackup.v1.BackupChannel"A⁄AnameÇ”‰ì42/v1/{name=projects/*/locations/*/backupChannels/*}â
+UpdateBackupChannel5.google.cloud.gkebackup.v1.UpdateBackupChannelRequest.google.longrunning.Operation"õ A"
+BackupChannelOperationMetadata⁄Abackup_channel,update_maskÇ”‰ìS2A/v1/{backup_channel.name=projects/*/locations/*/backupChannels/*}:backup_channel€
+DeleteBackupChannel5.google.cloud.gkebackup.v1.DeleteBackupChannelRequest.google.longrunning.Operation"n A*
+google.protobuf.EmptyOperationMetadata⁄AnameÇ”‰ì4*2/v1/{name=projects/*/locations/*/backupChannels/*}Á
+ListBackupPlanBindings8.google.cloud.gkebackup.v1.ListBackupPlanBindingsRequest9.google.cloud.gkebackup.v1.ListBackupPlanBindingsResponse"X⁄AparentÇ”‰ìIG/v1/{parent=projects/*/locations/*/backupChannels/*}/backupPlanBindings‘
+GetBackupPlanBinding6.google.cloud.gkebackup.v1.GetBackupPlanBindingRequest,.google.cloud.gkebackup.v1.BackupPlanBinding"V⁄AnameÇ”‰ìIG/v1/{name=projects/*/locations/*/backupChannels/*/backupPlanBindings/*}·
 CreateBackup..google.cloud.gkebackup.v1.CreateBackupRequest.google.longrunning.Operation"Å A
 BackupOperationMetadata⁄Aparent,backup,backup_idÇ”‰ìC"9/v1/{parent=projects/*/locations/*/backupPlans/*}/backups:backup∏
 ListBackups-.google.cloud.gkebackup.v1.ListBackupsRequest..google.cloud.gkebackup.v1.ListBackupsResponse"J⁄AparentÇ”‰ì;9/v1/{parent=projects/*/locations/*/backupPlans/*}/backups•
@@ -212,7 +313,17 @@ BackupPlanOperationMetadata⁄Abackup_plan,update_maskÇ”‰ìJ2;/v1/{backup_plan.
 UpdateRestorePlan3.google.cloud.gkebackup.v1.UpdateRestorePlanRequest.google.longrunning.Operation"ë A 
 RestorePlanOperationMetadata⁄Arestore_plan,update_maskÇ”‰ìM2=/v1/{restore_plan.name=projects/*/locations/*/restorePlans/*}:restore_plan’
 DeleteRestorePlan3.google.cloud.gkebackup.v1.DeleteRestorePlanRequest.google.longrunning.Operation"l A*
-google.protobuf.EmptyOperationMetadata⁄AnameÇ”‰ì2*0/v1/{name=projects/*/locations/*/restorePlans/*}È
+google.protobuf.EmptyOperationMetadata⁄AnameÇ”‰ì2*0/v1/{name=projects/*/locations/*/restorePlans/*}é
+CreateRestoreChannel6.google.cloud.gkebackup.v1.CreateRestoreChannelRequest.google.longrunning.Operation"û A#
+RestoreChannelOperationMetadata⁄A)parent,restore_channel,restore_channel_idÇ”‰ìF"3/v1/{parent=projects/*/locations/*}/restoreChannels:restore_channel 
+ListRestoreChannels5.google.cloud.gkebackup.v1.ListRestoreChannelsRequest6.google.cloud.gkebackup.v1.ListRestoreChannelsResponse"D⁄AparentÇ”‰ì53/v1/{parent=projects/*/locations/*}/restoreChannels∑
+GetRestoreChannel3.google.cloud.gkebackup.v1.GetRestoreChannelRequest).google.cloud.gkebackup.v1.RestoreChannel"B⁄AnameÇ”‰ì53/v1/{name=projects/*/locations/*/restoreChannels/*}ê
+UpdateRestoreChannel6.google.cloud.gkebackup.v1.UpdateRestoreChannelRequest.google.longrunning.Operation"† A#
+RestoreChannelOperationMetadata⁄Arestore_channel,update_maskÇ”‰ìV2C/v1/{restore_channel.name=projects/*/locations/*/restoreChannels/*}:restore_channelﬁ
+DeleteRestoreChannel6.google.cloud.gkebackup.v1.DeleteRestoreChannelRequest.google.longrunning.Operation"o A*
+google.protobuf.EmptyOperationMetadata⁄AnameÇ”‰ì5*3/v1/{name=projects/*/locations/*/restoreChannels/*}Ï
+ListRestorePlanBindings9.google.cloud.gkebackup.v1.ListRestorePlanBindingsRequest:.google.cloud.gkebackup.v1.ListRestorePlanBindingsResponse"Z⁄AparentÇ”‰ìKI/v1/{parent=projects/*/locations/*/restoreChannels/*}/restorePlanBindingsŸ
+GetRestorePlanBinding7.google.cloud.gkebackup.v1.GetRestorePlanBindingRequest-.google.cloud.gkebackup.v1.RestorePlanBinding"X⁄AnameÇ”‰ìKI/v1/{name=projects/*/locations/*/restoreChannels/*/restorePlanBindings/*}È
 CreateRestore/.google.cloud.gkebackup.v1.CreateRestoreRequest.google.longrunning.Operation"á A
 RestoreOperationMetadata⁄Aparent,restore,restore_idÇ”‰ìF";/v1/{parent=projects/*/locations/*/restorePlans/*}/restores:restoreΩ
 ListRestores..google.cloud.gkebackup.v1.ListRestoresRequest/.google.cloud.gkebackup.v1.ListRestoresResponse"L⁄AparentÇ”‰ì=;/v1/{parent=projects/*/locations/*/restorePlans/*}/restores™

@@ -741,7 +741,9 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      */
     public function getVersion()
     {
-        @trigger_error('version is deprecated.', E_USER_DEPRECATED);
+        if ($this->version !== 0) {
+            @trigger_error('version is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->version;
     }
 

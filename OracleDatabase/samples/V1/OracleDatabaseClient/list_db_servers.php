@@ -26,6 +26,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\OracleDatabase\V1\Client\OracleDatabaseClient;
+use Google\Cloud\OracleDatabase\V1\DbServer;
 use Google\Cloud\OracleDatabase\V1\ListDbServersRequest;
 
 /**
@@ -49,6 +50,7 @@ function list_db_servers_sample(string $formattedParent): void
         /** @var PagedListResponse $response */
         $response = $oracleDatabaseClient->listDbServers($request);
 
+        /** @var DbServer $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

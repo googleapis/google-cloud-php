@@ -318,7 +318,9 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      */
     public function getRouteScope()
     {
-        @trigger_error('route_scope is deprecated.', E_USER_DEPRECATED);
+        if ($this->route_scope !== 0) {
+            @trigger_error('route_scope is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->route_scope;
     }
 
@@ -461,7 +463,9 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      */
     public function getNextHop()
     {
-        @trigger_error('next_hop is deprecated.', E_USER_DEPRECATED);
+        if ($this->next_hop !== '') {
+            @trigger_error('next_hop is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->next_hop;
     }
 
@@ -793,13 +797,17 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      */
     public function getAdvertisedRouteNextHopUri()
     {
-        @trigger_error('advertised_route_next_hop_uri is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->advertised_route_next_hop_uri)) {
+            @trigger_error('advertised_route_next_hop_uri is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->advertised_route_next_hop_uri) ? $this->advertised_route_next_hop_uri : '';
     }
 
     public function hasAdvertisedRouteNextHopUri()
     {
-        @trigger_error('advertised_route_next_hop_uri is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->advertised_route_next_hop_uri)) {
+            @trigger_error('advertised_route_next_hop_uri is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->advertised_route_next_hop_uri);
     }
 

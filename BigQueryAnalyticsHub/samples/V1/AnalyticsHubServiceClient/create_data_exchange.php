@@ -32,10 +32,10 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\DataExchange;
  * Creates a new data exchange.
  *
  * @param string $formattedParent         The parent resource path of the data exchange.
- *                                        e.g. `projects/myproject/locations/US`. Please see
+ *                                        e.g. `projects/myproject/locations/us`. Please see
  *                                        {@see AnalyticsHubServiceClient::locationName()} for help formatting this field.
  * @param string $dataExchangeId          The ID of the data exchange.
- *                                        Must contain only ASCII letters, numbers (0-9), underscores (_).
+ *                                        Must contain only Unicode letters, numbers (0-9), underscores (_).
  *                                        Max length: 100 bytes.
  * @param string $dataExchangeDisplayName Human-readable display name of the data exchange. The display
  *                                        name must contain only Unicode letters, numbers (0-9), underscores (_),

@@ -32,6 +32,19 @@ class PolicyRule extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.type.Expr condition = 5;</code>
      */
     protected $condition = null;
+    /**
+     * Optional. Required for managed constraints if parameters are defined.
+     * Passes parameter values when policy enforcement is enabled. Ensure that
+     * parameter value types match those defined in the constraint definition.
+     * For example:
+     * {
+     *   "allowedLocations" : ["us-east1", "us-west1"],
+     *   "allowAll" : true
+     * }
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $parameters = null;
     protected $kind;
 
     /**
@@ -66,6 +79,15 @@ class PolicyRule extends \Google\Protobuf\Internal\Message
      *           "resource.matchTag('123456789/environment,
      *           'prod')". or "resource.matchTagId('tagKeys/123',
      *           'tagValues/456')".
+     *     @type \Google\Protobuf\Struct $parameters
+     *           Optional. Required for managed constraints if parameters are defined.
+     *           Passes parameter values when policy enforcement is enabled. Ensure that
+     *           parameter value types match those defined in the constraint definition.
+     *           For example:
+     *           {
+     *             "allowedLocations" : ["us-east1", "us-west1"],
+     *             "allowAll" : true
+     *           }
      * }
      */
     public function __construct($data = NULL) {
@@ -261,6 +283,56 @@ class PolicyRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Type\Expr::class);
         $this->condition = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Required for managed constraints if parameters are defined.
+     * Passes parameter values when policy enforcement is enabled. Ensure that
+     * parameter value types match those defined in the constraint definition.
+     * For example:
+     * {
+     *   "allowedLocations" : ["us-east1", "us-west1"],
+     *   "allowAll" : true
+     * }
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Struct|null
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
+    }
+
+    public function hasParameters()
+    {
+        return isset($this->parameters);
+    }
+
+    public function clearParameters()
+    {
+        unset($this->parameters);
+    }
+
+    /**
+     * Optional. Required for managed constraints if parameters are defined.
+     * Passes parameter values when policy enforcement is enabled. Ensure that
+     * parameter value types match those defined in the constraint definition.
+     * For example:
+     * {
+     *   "allowedLocations" : ["us-east1", "us-west1"],
+     *   "allowAll" : true
+     * }
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setParameters($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->parameters = $var;
 
         return $this;
     }

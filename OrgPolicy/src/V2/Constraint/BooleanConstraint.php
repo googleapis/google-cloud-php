@@ -9,15 +9,21 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A constraint that is either enforced or not.
- * For example, a constraint `constraints/compute.disableSerialPortAccess`.
- * If it is enforced on a VM instance, serial port connections will not be
- * opened to that instance.
+ * A constraint type is enforced or not enforced, which is configured in the
+ * [`PolicyRule`][google.cloud.orgpolicy.v2.PolicySpec.PolicyRule].
+ * If `customConstraintDefinition` is defined, this constraint is a managed
+ * constraint.
  *
  * Generated from protobuf message <code>google.cloud.orgpolicy.v2.Constraint.BooleanConstraint</code>
  */
 class BooleanConstraint extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Custom constraint definition. Defines this as a managed constraint.
+     *
+     * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.Constraint.CustomConstraintDefinition custom_constraint_definition = 1;</code>
+     */
+    protected $custom_constraint_definition = null;
 
     /**
      * Constructor.
@@ -25,11 +31,49 @@ class BooleanConstraint extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\OrgPolicy\V2\Constraint\CustomConstraintDefinition $custom_constraint_definition
+     *           Custom constraint definition. Defines this as a managed constraint.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Orgpolicy\V2\Constraint::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Custom constraint definition. Defines this as a managed constraint.
+     *
+     * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.Constraint.CustomConstraintDefinition custom_constraint_definition = 1;</code>
+     * @return \Google\Cloud\OrgPolicy\V2\Constraint\CustomConstraintDefinition|null
+     */
+    public function getCustomConstraintDefinition()
+    {
+        return $this->custom_constraint_definition;
+    }
+
+    public function hasCustomConstraintDefinition()
+    {
+        return isset($this->custom_constraint_definition);
+    }
+
+    public function clearCustomConstraintDefinition()
+    {
+        unset($this->custom_constraint_definition);
+    }
+
+    /**
+     * Custom constraint definition. Defines this as a managed constraint.
+     *
+     * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.Constraint.CustomConstraintDefinition custom_constraint_definition = 1;</code>
+     * @param \Google\Cloud\OrgPolicy\V2\Constraint\CustomConstraintDefinition $var
+     * @return $this
+     */
+    public function setCustomConstraintDefinition($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\OrgPolicy\V2\Constraint\CustomConstraintDefinition::class);
+        $this->custom_constraint_definition = $var;
+
+        return $this;
     }
 
 }

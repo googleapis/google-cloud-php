@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A list of Kubernetes Namespaces
+ * A list of Kubernetes Namespaces.
  *
  * Generated from protobuf message <code>google.cloud.gkebackup.v1.Namespaces</code>
  */
 class Namespaces extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. A list of Kubernetes Namespaces
+     * Optional. A list of Kubernetes Namespaces.
      *
      * Generated from protobuf field <code>repeated string namespaces = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -29,7 +29,7 @@ class Namespaces extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $namespaces
-     *           Optional. A list of Kubernetes Namespaces
+     *           Optional. A list of Kubernetes Namespaces.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class Namespaces extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A list of Kubernetes Namespaces
+     * Optional. A list of Kubernetes Namespaces.
      *
      * Generated from protobuf field <code>repeated string namespaces = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -49,7 +49,7 @@ class Namespaces extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A list of Kubernetes Namespaces
+     * Optional. A list of Kubernetes Namespaces.
      *
      * Generated from protobuf field <code>repeated string namespaces = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

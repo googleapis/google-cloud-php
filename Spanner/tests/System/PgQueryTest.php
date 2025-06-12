@@ -23,6 +23,7 @@ use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
+use Google\Cloud\Spanner\Interval;
 use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\PgJsonb;
 use Google\Cloud\Spanner\Timestamp;
@@ -547,6 +548,42 @@ class PgQueryTest extends SpannerPgTestCase
         $this->assertCount($currentCount + 1, iterator_to_array($res));
     }
 
+    public function testBindIntervalParameter()
+    {
+        $db = self::$database;
+
+        $interval = Interval::parse('P1Y2M3DT4H5M6.7S');
+        $res = $db->execute("SELECT $1 AS foo", [
+            'parameters' => [
+                'p1' => $interval
+            ],
+            'types' => [
+                'p1' => Database::TYPE_INTERVAL
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+        $this->assertInstanceOf(Interval::class, $row['foo']);
+        $this->assertEquals($interval->__toString(), $row['foo']->__toString());
+    }
+
+    public function testBindIntervalParameterNull()
+    {
+        $db = self::$database;
+
+        $res = $db->execute("SELECT CAST($1 AS INTERVAL) AS foo", [
+            'parameters' => [
+                'p1' => null
+            ],
+            'types' => [
+                'p1' => Database::TYPE_INTERVAL
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+        $this->assertNull($row['foo']);
+    }
+
     public function testBindPgOidParameter()
     {
         // Emulator support for PG.OID is pending.
@@ -681,6 +718,20 @@ class PgQueryTest extends SpannerPgTestCase
             ],
             // pg_oid
             [[5,4,3,2,1]],
+            // Interval
+            [
+                [
+                    Interval::parse('P1Y'),
+                    Interval::parse('PT1H'),
+                    Interval::parse('P1M')
+                ],
+                [
+                    Interval::parse('P1Y'),
+                    Interval::parse('PT1H'),
+                    Interval::parse('P1M')
+                ],
+                Interval::class,
+            ]
         ];
     }
 
@@ -727,6 +778,7 @@ class PgQueryTest extends SpannerPgTestCase
             [Database::TYPE_PG_NUMERIC],
             [Database::TYPE_PG_JSONB],
             [Database::TYPE_PG_OID],
+            [Database::TYPE_INTERVAL],
         ];
     }
 
@@ -767,6 +819,7 @@ class PgQueryTest extends SpannerPgTestCase
             [Database::TYPE_PG_NUMERIC],
             [Database::TYPE_PG_JSONB],
             [Database::TYPE_PG_OID],
+            [Database::TYPE_INTERVAL],
         ];
     }
 

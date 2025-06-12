@@ -34,7 +34,7 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\ListOrgDataExchangesRequest;
  * location.
  *
  * @param string $organization The organization resource path of the projects containing
- *                             DataExchanges. e.g. `organizations/myorg/locations/US`.
+ *                             DataExchanges. e.g. `organizations/myorg/locations/us`.
  */
 function list_org_data_exchanges_sample(string $organization): void
 {

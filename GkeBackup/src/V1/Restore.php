@@ -44,9 +44,9 @@ class Restore extends \Google\Protobuf\Internal\Message
      */
     protected $update_time = null;
     /**
-     * User specified descriptive string for this Restore.
+     * Optional. User specified descriptive string for this Restore.
      *
-     * Generated from protobuf field <code>string description = 5;</code>
+     * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $description = '';
     /**
@@ -93,7 +93,9 @@ class Restore extends \Google\Protobuf\Internal\Message
     protected $state = 0;
     /**
      * Output only. Human-readable description of why the Restore is in its
-     * current state.
+     * current state. This field is only meant for human readability and should
+     * not be used programmatically as this field is not guaranteed to be
+     * consistent.
      *
      * Generated from protobuf field <code>string state_reason = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -145,8 +147,8 @@ class Restore extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Immutable. Filters resources for `Restore`. If not specified, the
      * scope of the restore will remain the same as defined in the `RestorePlan`.
-     * If this is specified, and no resources are matched by the
-     * `inclusion_filters` or everyting is excluded by the `exclusion_filters`,
+     * If this is specified and no resources are matched by the
+     * `inclusion_filters` or everything is excluded by the `exclusion_filters`,
      * nothing will be restored. This filter can only be specified if the value of
      * [namespaced_resource_restore_mode][google.cloud.gkebackup.v1.RestoreConfig.namespaced_resource_restore_mode]
      * is set to `MERGE_SKIP_ON_CONFLICT`, `MERGE_REPLACE_VOLUME_ON_CONFLICT` or
@@ -181,7 +183,7 @@ class Restore extends \Google\Protobuf\Internal\Message
      *           Output only. The timestamp when this Restore resource was last
      *           updated.
      *     @type string $description
-     *           User specified descriptive string for this Restore.
+     *           Optional. User specified descriptive string for this Restore.
      *     @type string $backup
      *           Required. Immutable. A reference to the
      *           [Backup][google.cloud.gkebackup.v1.Backup] used as the source from which
@@ -206,7 +208,9 @@ class Restore extends \Google\Protobuf\Internal\Message
      *           Output only. The current state of the Restore.
      *     @type string $state_reason
      *           Output only. Human-readable description of why the Restore is in its
-     *           current state.
+     *           current state. This field is only meant for human readability and should
+     *           not be used programmatically as this field is not guaranteed to be
+     *           consistent.
      *     @type \Google\Protobuf\Timestamp $complete_time
      *           Output only. Timestamp of when the restore operation completed.
      *     @type int $resources_restored_count
@@ -230,8 +234,8 @@ class Restore extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GkeBackup\V1\Restore\Filter $filter
      *           Optional. Immutable. Filters resources for `Restore`. If not specified, the
      *           scope of the restore will remain the same as defined in the `RestorePlan`.
-     *           If this is specified, and no resources are matched by the
-     *           `inclusion_filters` or everyting is excluded by the `exclusion_filters`,
+     *           If this is specified and no resources are matched by the
+     *           `inclusion_filters` or everything is excluded by the `exclusion_filters`,
      *           nothing will be restored. This filter can only be specified if the value of
      *           [namespaced_resource_restore_mode][google.cloud.gkebackup.v1.RestoreConfig.namespaced_resource_restore_mode]
      *           is set to `MERGE_SKIP_ON_CONFLICT`, `MERGE_REPLACE_VOLUME_ON_CONFLICT` or
@@ -377,9 +381,9 @@ class Restore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User specified descriptive string for this Restore.
+     * Optional. User specified descriptive string for this Restore.
      *
-     * Generated from protobuf field <code>string description = 5;</code>
+     * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -388,9 +392,9 @@ class Restore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User specified descriptive string for this Restore.
+     * Optional. User specified descriptive string for this Restore.
      *
-     * Generated from protobuf field <code>string description = 5;</code>
+     * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -568,7 +572,9 @@ class Restore extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Human-readable description of why the Restore is in its
-     * current state.
+     * current state. This field is only meant for human readability and should
+     * not be used programmatically as this field is not guaranteed to be
+     * consistent.
      *
      * Generated from protobuf field <code>string state_reason = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -580,7 +586,9 @@ class Restore extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Human-readable description of why the Restore is in its
-     * current state.
+     * current state. This field is only meant for human readability and should
+     * not be used programmatically as this field is not guaranteed to be
+     * consistent.
      *
      * Generated from protobuf field <code>string state_reason = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -779,8 +787,8 @@ class Restore extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Immutable. Filters resources for `Restore`. If not specified, the
      * scope of the restore will remain the same as defined in the `RestorePlan`.
-     * If this is specified, and no resources are matched by the
-     * `inclusion_filters` or everyting is excluded by the `exclusion_filters`,
+     * If this is specified and no resources are matched by the
+     * `inclusion_filters` or everything is excluded by the `exclusion_filters`,
      * nothing will be restored. This filter can only be specified if the value of
      * [namespaced_resource_restore_mode][google.cloud.gkebackup.v1.RestoreConfig.namespaced_resource_restore_mode]
      * is set to `MERGE_SKIP_ON_CONFLICT`, `MERGE_REPLACE_VOLUME_ON_CONFLICT` or
@@ -807,8 +815,8 @@ class Restore extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Immutable. Filters resources for `Restore`. If not specified, the
      * scope of the restore will remain the same as defined in the `RestorePlan`.
-     * If this is specified, and no resources are matched by the
-     * `inclusion_filters` or everyting is excluded by the `exclusion_filters`,
+     * If this is specified and no resources are matched by the
+     * `inclusion_filters` or everything is excluded by the `exclusion_filters`,
      * nothing will be restored. This filter can only be specified if the value of
      * [namespaced_resource_restore_mode][google.cloud.gkebackup.v1.RestoreConfig.namespaced_resource_restore_mode]
      * is set to `MERGE_SKIP_ON_CONFLICT`, `MERGE_REPLACE_VOLUME_ON_CONFLICT` or

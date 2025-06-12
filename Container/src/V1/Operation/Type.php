@@ -22,8 +22,9 @@ class Type
     /**
      * The cluster is being created. The cluster should be assumed to be
      * unusable until the operation finishes.
-     * In the event of the operation failing, the cluster will enter the [ERROR
-     * state][Cluster.Status.ERROR] and eventually be deleted.
+     * In the event of the operation failing, the cluster will enter the
+     * [ERROR state][google.container.v1.Cluster.Status.ERROR] and eventually be
+     * deleted.
      *
      * Generated from protobuf enum <code>CREATE_CLUSTER = 1;</code>
      */
@@ -31,9 +32,9 @@ class Type
     /**
      * The cluster is being deleted. The cluster should be assumed to be
      * unusable as soon as this operation starts.
-     * In the event of the operation failing, the cluster will enter the [ERROR
-     * state][Cluster.Status.ERROR] and the deletion will be automatically
-     * retried until completed.
+     * In the event of the operation failing, the cluster will enter the
+     * [ERROR state][google.container.v1.Cluster.Status.ERROR] and the deletion
+     * will be automatically retried until completed.
      *
      * Generated from protobuf enum <code>DELETE_CLUSTER = 2;</code>
      */

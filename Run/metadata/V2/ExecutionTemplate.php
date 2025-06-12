@@ -18,12 +18,12 @@ class ExecutionTemplate
         \GPBMetadata\Google\Cloud\Run\V2\TaskTemplate::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Â
-,google/cloud/run/v2/execution_template.protogoogle.cloud.run.v2\'google/cloud/run/v2/task_template.proto"ë
+Ç
+,google/cloud/run/v2/execution_template.protogoogle.cloud.run.v2\'google/cloud/run/v2/task_template.proto"ð
 ExecutionTemplateB
 labels (22.google.cloud.run.v2.ExecutionTemplate.LabelsEntryL
-annotations (27.google.cloud.run.v2.ExecutionTemplate.AnnotationsEntry
-parallelism (
+annotations (27.google.cloud.run.v2.ExecutionTemplate.AnnotationsEntry
+parallelism (BàA
 
 task_count (8
 template (2!.google.cloud.run.v2.TaskTemplateBàA-

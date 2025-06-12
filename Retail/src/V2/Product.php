@@ -2337,13 +2337,17 @@ class Product extends \Google\Protobuf\Internal\Message
      */
     public function getRetrievableFields()
     {
-        @trigger_error('retrievable_fields is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->retrievable_fields)) {
+            @trigger_error('retrievable_fields is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->retrievable_fields;
     }
 
     public function hasRetrievableFields()
     {
-        @trigger_error('retrievable_fields is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->retrievable_fields)) {
+            @trigger_error('retrievable_fields is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->retrievable_fields);
     }
 

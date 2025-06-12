@@ -76,7 +76,9 @@ class SnippetSpec extends \Google\Protobuf\Internal\Message
      */
     public function getMaxSnippetCount()
     {
-        @trigger_error('max_snippet_count is deprecated.', E_USER_DEPRECATED);
+        if ($this->max_snippet_count !== 0) {
+            @trigger_error('max_snippet_count is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->max_snippet_count;
     }
 
@@ -109,7 +111,9 @@ class SnippetSpec extends \Google\Protobuf\Internal\Message
      */
     public function getReferenceOnly()
     {
-        @trigger_error('reference_only is deprecated.', E_USER_DEPRECATED);
+        if ($this->reference_only !== false) {
+            @trigger_error('reference_only is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->reference_only;
     }
 

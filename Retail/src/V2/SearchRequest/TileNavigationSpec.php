@@ -23,9 +23,13 @@ class TileNavigationSpec extends \Google\Protobuf\Internal\Message
      */
     protected $tile_navigation_requested = false;
     /**
-     * This field specifies the tiles which are already clicked in client side.
-     * NOTE: This field is not being used for filtering search products. Client
-     * side should also put all the applied tiles in
+     * This optional field specifies the tiles which are already clicked in
+     * client side. While the feature works without this field set, particularly
+     * for an initial query, it is highly recommended to set this field because
+     * it can improve the quality of the search response and removes possible
+     * duplicate tiles.
+     * NOTE: This field is not being used for filtering search
+     * products. Client side should also put all the applied tiles in
      * [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter].
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Tile applied_tiles = 2;</code>
@@ -42,9 +46,13 @@ class TileNavigationSpec extends \Google\Protobuf\Internal\Message
      *           This field specifies whether the customer would like to request tile
      *           navigation.
      *     @type array<\Google\Cloud\Retail\V2\Tile>|\Google\Protobuf\Internal\RepeatedField $applied_tiles
-     *           This field specifies the tiles which are already clicked in client side.
-     *           NOTE: This field is not being used for filtering search products. Client
-     *           side should also put all the applied tiles in
+     *           This optional field specifies the tiles which are already clicked in
+     *           client side. While the feature works without this field set, particularly
+     *           for an initial query, it is highly recommended to set this field because
+     *           it can improve the quality of the search response and removes possible
+     *           duplicate tiles.
+     *           NOTE: This field is not being used for filtering search
+     *           products. Client side should also put all the applied tiles in
      *           [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter].
      * }
      */
@@ -82,9 +90,13 @@ class TileNavigationSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field specifies the tiles which are already clicked in client side.
-     * NOTE: This field is not being used for filtering search products. Client
-     * side should also put all the applied tiles in
+     * This optional field specifies the tiles which are already clicked in
+     * client side. While the feature works without this field set, particularly
+     * for an initial query, it is highly recommended to set this field because
+     * it can improve the quality of the search response and removes possible
+     * duplicate tiles.
+     * NOTE: This field is not being used for filtering search
+     * products. Client side should also put all the applied tiles in
      * [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter].
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Tile applied_tiles = 2;</code>
@@ -96,9 +108,13 @@ class TileNavigationSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field specifies the tiles which are already clicked in client side.
-     * NOTE: This field is not being used for filtering search products. Client
-     * side should also put all the applied tiles in
+     * This optional field specifies the tiles which are already clicked in
+     * client side. While the feature works without this field set, particularly
+     * for an initial query, it is highly recommended to set this field because
+     * it can improve the quality of the search response and removes possible
+     * duplicate tiles.
+     * NOTE: This field is not being used for filtering search
+     * products. Client side should also put all the applied tiles in
      * [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter].
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Tile applied_tiles = 2;</code>

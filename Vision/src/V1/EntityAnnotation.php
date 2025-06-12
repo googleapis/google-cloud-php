@@ -259,7 +259,9 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getConfidence()
     {
-        @trigger_error('confidence is deprecated.', E_USER_DEPRECATED);
+        if ($this->confidence !== 0.0) {
+            @trigger_error('confidence is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->confidence;
     }
 

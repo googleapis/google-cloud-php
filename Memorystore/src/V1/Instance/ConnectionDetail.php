@@ -24,8 +24,8 @@ class ConnectionDetail extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Memorystore\V1\PscAutoConnection $psc_auto_connection
-     *           Detailed information of a PSC connection that is created through
-     *           service connectivity automation.
+     *           Immutable. Detailed information of a PSC connection that is created
+     *           through service connectivity automation.
      *     @type \Google\Cloud\Memorystore\V1\PscConnection $psc_connection
      *           Detailed information of a PSC connection that is created by the user.
      * }
@@ -36,10 +36,10 @@ class ConnectionDetail extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Detailed information of a PSC connection that is created through
-     * service connectivity automation.
+     * Immutable. Detailed information of a PSC connection that is created
+     * through service connectivity automation.
      *
-     * Generated from protobuf field <code>.google.cloud.memorystore.v1.PscAutoConnection psc_auto_connection = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.PscAutoConnection psc_auto_connection = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Cloud\Memorystore\V1\PscAutoConnection|null
      */
     public function getPscAutoConnection()
@@ -53,10 +53,10 @@ class ConnectionDetail extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Detailed information of a PSC connection that is created through
-     * service connectivity automation.
+     * Immutable. Detailed information of a PSC connection that is created
+     * through service connectivity automation.
      *
-     * Generated from protobuf field <code>.google.cloud.memorystore.v1.PscAutoConnection psc_auto_connection = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.PscAutoConnection psc_auto_connection = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\Memorystore\V1\PscAutoConnection $var
      * @return $this
      */

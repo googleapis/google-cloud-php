@@ -928,7 +928,9 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      */
     public function getPopulateDataStoreConnectionSignals()
     {
-        @trigger_error('populate_data_store_connection_signals is deprecated.', E_USER_DEPRECATED);
+        if ($this->populate_data_store_connection_signals !== false) {
+            @trigger_error('populate_data_store_connection_signals is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->populate_data_store_connection_signals;
     }
 

@@ -34,7 +34,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     /**
      * The monitoring service the cluster should use to write metrics.
      * Currently available options:
-     * * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
+     * * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring
      * service with a Kubernetes-native resource model
      * * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
      *   longer available as of GKE 1.15).
@@ -314,6 +314,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     protected $desired_node_pool_auto_config_network_tags = null;
     /**
+     * The desired config for pod autoscaling.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PodAutoscaling desired_pod_autoscaling = 113;</code>
+     */
+    protected $desired_pod_autoscaling = null;
+    /**
      * The desired config of Gateway API on this cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.GatewayAPIConfig desired_gateway_api_config = 114;</code>
@@ -387,7 +393,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     protected $desired_enable_fqdn_network_policy = null;
     /**
-     * The desired workload policy configuration for the autopilot cluster.
+     * WorkloadPolicyConfig is the configuration related to GCW workload policy
      *
      * Generated from protobuf field <code>.google.container.v1.WorkloadPolicyConfig desired_autopilot_workload_policy_config = 128;</code>
      */
@@ -474,6 +480,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     protected $desired_enterprise_config = null;
     /**
+     * Enable/Disable L4 LB VPC firewall reconciliation for the cluster.
+     *
+     * Generated from protobuf field <code>optional bool desired_disable_l4_lb_firewall_reconciliation = 149;</code>
+     */
+    protected $desired_disable_l4_lb_firewall_reconciliation = null;
+    /**
      * The desired Linux node config for all auto-provisioned node pools
      * in autopilot clusters and node auto-provisioning enabled clusters.
      * Currently only `cgroup_mode` can be set here.
@@ -481,6 +493,13 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig desired_node_pool_auto_config_linux_node_config = 150;</code>
      */
     protected $desired_node_pool_auto_config_linux_node_config = null;
+    /**
+     * Configuration for limiting anonymous access to all endpoints except the
+     * health checks.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AnonymousAuthenticationConfig desired_anonymous_authentication_config = 156;</code>
+     */
+    protected $desired_anonymous_authentication_config = null;
 
     /**
      * Constructor.
@@ -501,7 +520,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *     @type string $desired_monitoring_service
      *           The monitoring service the cluster should use to write metrics.
      *           Currently available options:
-     *           * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
+     *           * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring
      *           service with a Kubernetes-native resource model
      *           * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
      *             longer available as of GKE 1.15).
@@ -629,6 +648,8 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\NetworkTags $desired_node_pool_auto_config_network_tags
      *           The desired network tags that apply to all auto-provisioned node pools
      *           in autopilot clusters and node auto-provisioning enabled clusters.
+     *     @type \Google\Cloud\Container\V1\PodAutoscaling $desired_pod_autoscaling
+     *           The desired config for pod autoscaling.
      *     @type \Google\Cloud\Container\V1\GatewayAPIConfig $desired_gateway_api_config
      *           The desired config of Gateway API on this cluster.
      *     @type string $etag
@@ -659,7 +680,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *     @type bool $desired_enable_fqdn_network_policy
      *           Enable/Disable FQDN Network Policy for the cluster.
      *     @type \Google\Cloud\Container\V1\WorkloadPolicyConfig $desired_autopilot_workload_policy_config
-     *           The desired workload policy configuration for the autopilot cluster.
+     *           WorkloadPolicyConfig is the configuration related to GCW workload policy
      *     @type \Google\Cloud\Container\V1\K8sBetaAPIConfig $desired_k8s_beta_apis
      *           Desired Beta APIs to be enabled for cluster.
      *     @type \Google\Cloud\Container\V1\ContainerdConfig $desired_containerd_config
@@ -689,10 +710,15 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           RoleBindings that can be created.
      *     @type \Google\Cloud\Container\V1\DesiredEnterpriseConfig $desired_enterprise_config
      *           The desired enterprise configuration for the cluster.
+     *     @type bool $desired_disable_l4_lb_firewall_reconciliation
+     *           Enable/Disable L4 LB VPC firewall reconciliation for the cluster.
      *     @type \Google\Cloud\Container\V1\LinuxNodeConfig $desired_node_pool_auto_config_linux_node_config
      *           The desired Linux node config for all auto-provisioned node pools
      *           in autopilot clusters and node auto-provisioning enabled clusters.
      *           Currently only `cgroup_mode` can be set here.
+     *     @type \Google\Cloud\Container\V1\AnonymousAuthenticationConfig $desired_anonymous_authentication_config
+     *           Configuration for limiting anonymous access to all endpoints except the
+     *           health checks.
      * }
      */
     public function __construct($data = NULL) {
@@ -745,7 +771,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     /**
      * The monitoring service the cluster should use to write metrics.
      * Currently available options:
-     * * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
+     * * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring
      * service with a Kubernetes-native resource model
      * * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
      *   longer available as of GKE 1.15).
@@ -764,7 +790,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     /**
      * The monitoring service the cluster should use to write metrics.
      * Currently available options:
-     * * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
+     * * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring
      * service with a Kubernetes-native resource model
      * * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
      *   longer available as of GKE 1.15).
@@ -1188,13 +1214,17 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredMasterAuthorizedNetworksConfig()
     {
-        @trigger_error('desired_master_authorized_networks_config is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->desired_master_authorized_networks_config)) {
+            @trigger_error('desired_master_authorized_networks_config is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->desired_master_authorized_networks_config;
     }
 
     public function hasDesiredMasterAuthorizedNetworksConfig()
     {
-        @trigger_error('desired_master_authorized_networks_config is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->desired_master_authorized_networks_config)) {
+            @trigger_error('desired_master_authorized_networks_config is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->desired_master_authorized_networks_config);
     }
 
@@ -1427,13 +1457,17 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredPrivateClusterConfig()
     {
-        @trigger_error('desired_private_cluster_config is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->desired_private_cluster_config)) {
+            @trigger_error('desired_private_cluster_config is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->desired_private_cluster_config;
     }
 
     public function hasDesiredPrivateClusterConfig()
     {
-        @trigger_error('desired_private_cluster_config is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->desired_private_cluster_config)) {
+            @trigger_error('desired_private_cluster_config is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->desired_private_cluster_config);
     }
 
@@ -1895,13 +1929,17 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredEnablePrivateEndpoint()
     {
-        @trigger_error('desired_enable_private_endpoint is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->desired_enable_private_endpoint)) {
+            @trigger_error('desired_enable_private_endpoint is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->desired_enable_private_endpoint) ? $this->desired_enable_private_endpoint : false;
     }
 
     public function hasDesiredEnablePrivateEndpoint()
     {
-        @trigger_error('desired_enable_private_endpoint is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->desired_enable_private_endpoint)) {
+            @trigger_error('desired_enable_private_endpoint is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->desired_enable_private_endpoint);
     }
 
@@ -2122,6 +2160,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NetworkTags::class);
         $this->desired_node_pool_auto_config_network_tags = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired config for pod autoscaling.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PodAutoscaling desired_pod_autoscaling = 113;</code>
+     * @return \Google\Cloud\Container\V1\PodAutoscaling|null
+     */
+    public function getDesiredPodAutoscaling()
+    {
+        return $this->desired_pod_autoscaling;
+    }
+
+    public function hasDesiredPodAutoscaling()
+    {
+        return isset($this->desired_pod_autoscaling);
+    }
+
+    public function clearDesiredPodAutoscaling()
+    {
+        unset($this->desired_pod_autoscaling);
+    }
+
+    /**
+     * The desired config for pod autoscaling.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PodAutoscaling desired_pod_autoscaling = 113;</code>
+     * @param \Google\Cloud\Container\V1\PodAutoscaling $var
+     * @return $this
+     */
+    public function setDesiredPodAutoscaling($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\PodAutoscaling::class);
+        $this->desired_pod_autoscaling = $var;
 
         return $this;
     }
@@ -2517,7 +2591,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The desired workload policy configuration for the autopilot cluster.
+     * WorkloadPolicyConfig is the configuration related to GCW workload policy
      *
      * Generated from protobuf field <code>.google.container.v1.WorkloadPolicyConfig desired_autopilot_workload_policy_config = 128;</code>
      * @return \Google\Cloud\Container\V1\WorkloadPolicyConfig|null
@@ -2538,7 +2612,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The desired workload policy configuration for the autopilot cluster.
+     * WorkloadPolicyConfig is the configuration related to GCW workload policy
      *
      * Generated from protobuf field <code>.google.container.v1.WorkloadPolicyConfig desired_autopilot_workload_policy_config = 128;</code>
      * @param \Google\Cloud\Container\V1\WorkloadPolicyConfig $var
@@ -3027,6 +3101,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Enable/Disable L4 LB VPC firewall reconciliation for the cluster.
+     *
+     * Generated from protobuf field <code>optional bool desired_disable_l4_lb_firewall_reconciliation = 149;</code>
+     * @return bool
+     */
+    public function getDesiredDisableL4LbFirewallReconciliation()
+    {
+        return isset($this->desired_disable_l4_lb_firewall_reconciliation) ? $this->desired_disable_l4_lb_firewall_reconciliation : false;
+    }
+
+    public function hasDesiredDisableL4LbFirewallReconciliation()
+    {
+        return isset($this->desired_disable_l4_lb_firewall_reconciliation);
+    }
+
+    public function clearDesiredDisableL4LbFirewallReconciliation()
+    {
+        unset($this->desired_disable_l4_lb_firewall_reconciliation);
+    }
+
+    /**
+     * Enable/Disable L4 LB VPC firewall reconciliation for the cluster.
+     *
+     * Generated from protobuf field <code>optional bool desired_disable_l4_lb_firewall_reconciliation = 149;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDesiredDisableL4LbFirewallReconciliation($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->desired_disable_l4_lb_firewall_reconciliation = $var;
+
+        return $this;
+    }
+
+    /**
      * The desired Linux node config for all auto-provisioned node pools
      * in autopilot clusters and node auto-provisioning enabled clusters.
      * Currently only `cgroup_mode` can be set here.
@@ -3062,6 +3172,44 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\LinuxNodeConfig::class);
         $this->desired_node_pool_auto_config_linux_node_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for limiting anonymous access to all endpoints except the
+     * health checks.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AnonymousAuthenticationConfig desired_anonymous_authentication_config = 156;</code>
+     * @return \Google\Cloud\Container\V1\AnonymousAuthenticationConfig|null
+     */
+    public function getDesiredAnonymousAuthenticationConfig()
+    {
+        return $this->desired_anonymous_authentication_config;
+    }
+
+    public function hasDesiredAnonymousAuthenticationConfig()
+    {
+        return isset($this->desired_anonymous_authentication_config);
+    }
+
+    public function clearDesiredAnonymousAuthenticationConfig()
+    {
+        unset($this->desired_anonymous_authentication_config);
+    }
+
+    /**
+     * Configuration for limiting anonymous access to all endpoints except the
+     * health checks.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AnonymousAuthenticationConfig desired_anonymous_authentication_config = 156;</code>
+     * @param \Google\Cloud\Container\V1\AnonymousAuthenticationConfig $var
+     * @return $this
+     */
+    public function setDesiredAnonymousAuthenticationConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\AnonymousAuthenticationConfig::class);
+        $this->desired_anonymous_authentication_config = $var;
 
         return $this;
     }

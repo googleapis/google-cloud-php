@@ -81,6 +81,30 @@ return [
                     ],
                 ],
             ],
+            'AddAclEntry' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ManagedKafka\V1\AddAclEntryResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'acl',
+                        'fieldAccessors' => [
+                            'getAcl',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateAcl' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ManagedKafka\V1\Acl',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateTopic' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\ManagedKafka\V1\Topic',
@@ -89,6 +113,18 @@ return [
                         'keyName' => 'parent',
                         'fieldAccessors' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteAcl' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -108,6 +144,18 @@ return [
             'DeleteTopic' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAcl' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ManagedKafka\V1\Acl',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -149,6 +197,26 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAcls' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getAcls',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\ManagedKafka\V1\ListAclsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -209,6 +277,31 @@ return [
                         'keyName' => 'parent',
                         'fieldAccessors' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RemoveAclEntry' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ManagedKafka\V1\RemoveAclEntryResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'acl',
+                        'fieldAccessors' => [
+                            'getAcl',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateAcl' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ManagedKafka\V1\Acl',
+                'headerParams' => [
+                    [
+                        'keyName' => 'acl.name',
+                        'fieldAccessors' => [
+                            'getAcl',
+                            'getName',
                         ],
                     ],
                 ],
@@ -274,6 +367,7 @@ return [
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
             'templateMap' => [
+                'acl' => 'projects/{project}/locations/{location}/clusters/{cluster}/acls/{acl}',
                 'cluster' => 'projects/{project}/locations/{location}/clusters/{cluster}',
                 'consumerGroup' => 'projects/{project}/locations/{location}/clusters/{cluster}/consumerGroups/{consumer_group}',
                 'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',

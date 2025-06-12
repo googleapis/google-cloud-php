@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Persistent Disk Snapshot resource. You can use snapshots to back up data on a regular interval. For more information, read Creating persistent disk snapshots.
+ * Represents a Persistent Disk Snapshot resource. You can use snapshots to back up data on a regular interval. For more information, read Creating persistent disk snapshots. LINT.IfChange
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Snapshot</code>
  */
@@ -70,6 +70,12 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
      */
     private $enable_confidential_compute = null;
+    /**
+     * [Input Only] Whether to attempt an application consistent snapshot by informing the OS to prepare for the snapshot process.
+     *
+     * Generated from protobuf field <code>optional bool guest_flush = 385550813;</code>
+     */
+    private $guest_flush = null;
     /**
      * [Output Only] A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
      *
@@ -261,6 +267,8 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *           [Output Only] Number of bytes downloaded to restore a snapshot to a disk.
      *     @type bool $enable_confidential_compute
      *           Whether this snapshot is created from a confidential compute mode disk. [Output Only]: This field is not set by user, but from source disk.
+     *     @type bool $guest_flush
+     *           [Input Only] Whether to attempt an application consistent snapshot by informing the OS to prepare for the snapshot process.
      *     @type array<\Google\Cloud\Compute\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $guest_os_features
      *           [Output Only] A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
      *     @type int|string $id
@@ -647,6 +655,42 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_confidential_compute = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Input Only] Whether to attempt an application consistent snapshot by informing the OS to prepare for the snapshot process.
+     *
+     * Generated from protobuf field <code>optional bool guest_flush = 385550813;</code>
+     * @return bool
+     */
+    public function getGuestFlush()
+    {
+        return isset($this->guest_flush) ? $this->guest_flush : false;
+    }
+
+    public function hasGuestFlush()
+    {
+        return isset($this->guest_flush);
+    }
+
+    public function clearGuestFlush()
+    {
+        unset($this->guest_flush);
+    }
+
+    /**
+     * [Input Only] Whether to attempt an application consistent snapshot by informing the OS to prepare for the snapshot process.
+     *
+     * Generated from protobuf field <code>optional bool guest_flush = 385550813;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setGuestFlush($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->guest_flush = $var;
 
         return $this;
     }

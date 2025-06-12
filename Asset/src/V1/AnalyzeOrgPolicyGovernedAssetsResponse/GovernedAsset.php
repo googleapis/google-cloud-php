@@ -29,7 +29,7 @@ class GovernedAsset extends \Google\Protobuf\Internal\Message
     protected $consolidated_policy = null;
     /**
      * The ordered list of all organization policies from the
-     * [AnalyzeOrgPoliciesResponse.OrgPolicyResult.consolidated_policy.attached_resource][]
+     * [consolidated_policy.attached_resource][google.cloud.asset.v1.AnalyzerOrgPolicy.attached_resource]
      * to the scope specified in the request.
      * If the constraint is defined with default policy, it will also appear in
      * the list.
@@ -61,7 +61,7 @@ class GovernedAsset extends \Google\Protobuf\Internal\Message
      *           rules](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-hierarchy).
      *     @type array<\Google\Cloud\Asset\V1\AnalyzerOrgPolicy>|\Google\Protobuf\Internal\RepeatedField $policy_bundle
      *           The ordered list of all organization policies from the
-     *           [AnalyzeOrgPoliciesResponse.OrgPolicyResult.consolidated_policy.attached_resource][]
+     *           [consolidated_policy.attached_resource][google.cloud.asset.v1.AnalyzerOrgPolicy.attached_resource]
      *           to the scope specified in the request.
      *           If the constraint is defined with default policy, it will also appear in
      *           the list.
@@ -188,7 +188,7 @@ class GovernedAsset extends \Google\Protobuf\Internal\Message
 
     /**
      * The ordered list of all organization policies from the
-     * [AnalyzeOrgPoliciesResponse.OrgPolicyResult.consolidated_policy.attached_resource][]
+     * [consolidated_policy.attached_resource][google.cloud.asset.v1.AnalyzerOrgPolicy.attached_resource]
      * to the scope specified in the request.
      * If the constraint is defined with default policy, it will also appear in
      * the list.
@@ -203,7 +203,7 @@ class GovernedAsset extends \Google\Protobuf\Internal\Message
 
     /**
      * The ordered list of all organization policies from the
-     * [AnalyzeOrgPoliciesResponse.OrgPolicyResult.consolidated_policy.attached_resource][]
+     * [consolidated_policy.attached_resource][google.cloud.asset.v1.AnalyzerOrgPolicy.attached_resource]
      * to the scope specified in the request.
      * If the constraint is defined with default policy, it will also appear in
      * the list.

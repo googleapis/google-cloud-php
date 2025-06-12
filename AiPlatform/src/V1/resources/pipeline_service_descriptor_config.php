@@ -294,6 +294,7 @@ return [
                 'metadataStore' => 'projects/{project}/locations/{location}/metadataStores/{metadata_store}',
                 'model' => 'projects/{project}/locations/{location}/models/{model}',
                 'network' => 'projects/{project}/global/networks/{network}',
+                'networkAttachment' => 'projects/{project}/regions/{region}/networkAttachments/{networkattachment}',
                 'pipelineJob' => 'projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}',
                 'projectLocationEndpoint' => 'projects/{project}/locations/{location}/endpoints/{endpoint}',
                 'projectLocationPublisherModel' => 'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}',

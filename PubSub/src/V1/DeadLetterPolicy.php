@@ -35,7 +35,7 @@ class DeadLetterPolicy extends \Google\Protobuf\Internal\Message
      * Optional. The maximum number of delivery attempts for any message. The
      * value must be between 5 and 100.
      * The number of delivery attempts is defined as 1 + (the sum of number of
-     * NACKs and number of times the acknowledgement deadline has been exceeded
+     * NACKs and number of times the acknowledgment deadline has been exceeded
      * for the message).
      * A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that
      * client libraries may automatically extend ack_deadlines.
@@ -65,7 +65,7 @@ class DeadLetterPolicy extends \Google\Protobuf\Internal\Message
      *           Optional. The maximum number of delivery attempts for any message. The
      *           value must be between 5 and 100.
      *           The number of delivery attempts is defined as 1 + (the sum of number of
-     *           NACKs and number of times the acknowledgement deadline has been exceeded
+     *           NACKs and number of times the acknowledgment deadline has been exceeded
      *           for the message).
      *           A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that
      *           client libraries may automatically extend ack_deadlines.
@@ -122,7 +122,7 @@ class DeadLetterPolicy extends \Google\Protobuf\Internal\Message
      * Optional. The maximum number of delivery attempts for any message. The
      * value must be between 5 and 100.
      * The number of delivery attempts is defined as 1 + (the sum of number of
-     * NACKs and number of times the acknowledgement deadline has been exceeded
+     * NACKs and number of times the acknowledgment deadline has been exceeded
      * for the message).
      * A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that
      * client libraries may automatically extend ack_deadlines.
@@ -141,7 +141,7 @@ class DeadLetterPolicy extends \Google\Protobuf\Internal\Message
      * Optional. The maximum number of delivery attempts for any message. The
      * value must be between 5 and 100.
      * The number of delivery attempts is defined as 1 + (the sum of number of
-     * NACKs and number of times the acknowledgement deadline has been exceeded
+     * NACKs and number of times the acknowledgment deadline has been exceeded
      * for the message).
      * A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that
      * client libraries may automatically extend ack_deadlines.

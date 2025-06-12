@@ -299,7 +299,9 @@ class SearchDataItemsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSavedQuery()
     {
-        @trigger_error('saved_query is deprecated.', E_USER_DEPRECATED);
+        if ($this->saved_query !== '') {
+            @trigger_error('saved_query is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->saved_query;
     }
 
@@ -410,7 +412,9 @@ class SearchDataItemsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAnnotationsFilter()
     {
-        @trigger_error('annotations_filter is deprecated.', E_USER_DEPRECATED);
+        if ($this->annotations_filter !== '') {
+            @trigger_error('annotations_filter is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->annotations_filter;
     }
 
@@ -573,7 +577,9 @@ class SearchDataItemsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getOrderBy()
     {
-        @trigger_error('order_by is deprecated.', E_USER_DEPRECATED);
+        if ($this->order_by !== '') {
+            @trigger_error('order_by is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->order_by;
     }
 

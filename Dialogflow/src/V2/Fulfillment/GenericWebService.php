@@ -205,7 +205,9 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
      */
     public function getIsCloudFunction()
     {
-        @trigger_error('is_cloud_function is deprecated.', E_USER_DEPRECATED);
+        if ($this->is_cloud_function !== false) {
+            @trigger_error('is_cloud_function is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->is_cloud_function;
     }
 

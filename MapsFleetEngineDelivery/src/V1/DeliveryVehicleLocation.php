@@ -336,13 +336,17 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      */
     public function getHorizontalAccuracy()
     {
-        @trigger_error('horizontal_accuracy is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->horizontal_accuracy)) {
+            @trigger_error('horizontal_accuracy is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->horizontal_accuracy;
     }
 
     public function hasHorizontalAccuracy()
     {
-        @trigger_error('horizontal_accuracy is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->horizontal_accuracy)) {
+            @trigger_error('horizontal_accuracy is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->horizontal_accuracy);
     }
 
@@ -362,7 +366,9 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      */
     public function getHorizontalAccuracyUnwrapped()
     {
-        @trigger_error('horizontal_accuracy is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->horizontal_accuracy)) {
+            @trigger_error('horizontal_accuracy is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readWrapperValue("horizontal_accuracy");
     }
 
@@ -536,13 +542,17 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      */
     public function getBearingAccuracy()
     {
-        @trigger_error('bearing_accuracy is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->bearing_accuracy)) {
+            @trigger_error('bearing_accuracy is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->bearing_accuracy;
     }
 
     public function hasBearingAccuracy()
     {
-        @trigger_error('bearing_accuracy is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->bearing_accuracy)) {
+            @trigger_error('bearing_accuracy is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->bearing_accuracy);
     }
 
@@ -562,7 +572,9 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      */
     public function getBearingAccuracyUnwrapped()
     {
-        @trigger_error('bearing_accuracy is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->bearing_accuracy)) {
+            @trigger_error('bearing_accuracy is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readWrapperValue("bearing_accuracy");
     }
 
@@ -732,13 +744,17 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      */
     public function getVerticalAccuracy()
     {
-        @trigger_error('vertical_accuracy is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->vertical_accuracy)) {
+            @trigger_error('vertical_accuracy is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->vertical_accuracy;
     }
 
     public function hasVerticalAccuracy()
     {
-        @trigger_error('vertical_accuracy is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->vertical_accuracy)) {
+            @trigger_error('vertical_accuracy is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->vertical_accuracy);
     }
 
@@ -758,7 +774,9 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      */
     public function getVerticalAccuracyUnwrapped()
     {
-        @trigger_error('vertical_accuracy is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->vertical_accuracy)) {
+            @trigger_error('vertical_accuracy is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readWrapperValue("vertical_accuracy");
     }
 
@@ -866,13 +884,17 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      */
     public function getSpeedKmph()
     {
-        @trigger_error('speed_kmph is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->speed_kmph)) {
+            @trigger_error('speed_kmph is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->speed_kmph;
     }
 
     public function hasSpeedKmph()
     {
-        @trigger_error('speed_kmph is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->speed_kmph)) {
+            @trigger_error('speed_kmph is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->speed_kmph);
     }
 
@@ -893,7 +915,9 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      */
     public function getSpeedKmphUnwrapped()
     {
-        @trigger_error('speed_kmph is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->speed_kmph)) {
+            @trigger_error('speed_kmph is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readWrapperValue("speed_kmph");
     }
 
@@ -1367,13 +1391,17 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      */
     public function getNumStaleUpdates()
     {
-        @trigger_error('num_stale_updates is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->num_stale_updates)) {
+            @trigger_error('num_stale_updates is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->num_stale_updates;
     }
 
     public function hasNumStaleUpdates()
     {
-        @trigger_error('num_stale_updates is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->num_stale_updates)) {
+            @trigger_error('num_stale_updates is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->num_stale_updates);
     }
 
@@ -1394,7 +1422,9 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      */
     public function getNumStaleUpdatesUnwrapped()
     {
-        @trigger_error('num_stale_updates is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->num_stale_updates)) {
+            @trigger_error('num_stale_updates is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readWrapperValue("num_stale_updates");
     }
 
@@ -1764,7 +1794,9 @@ class DeliveryVehicleLocation extends \Google\Protobuf\Internal\Message
      */
     public function getRoadSnapped()
     {
-        @trigger_error('road_snapped is deprecated.', E_USER_DEPRECATED);
+        if ($this->road_snapped !== false) {
+            @trigger_error('road_snapped is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->road_snapped;
     }
 

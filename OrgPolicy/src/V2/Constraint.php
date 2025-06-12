@@ -17,8 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
  * organization by setting a policy that includes constraints at different
  * locations in the organization's resource hierarchy. Policies are inherited
  * down the resource hierarchy from higher levels, but can also be overridden.
- * For details about the inheritance rules please read about
- * [`policies`][google.cloud.OrgPolicy.v2.Policy].
+ * For details about the inheritance rules, see
+ * [`Policy`][google.cloud.orgpolicy.v2.Policy].
  * Constraints have a default behavior determined by the `constraint_default`
  * field, which is the enforcement behavior that is used in the absence of a
  * policy being defined or inherited for the resource in question.
@@ -65,6 +65,19 @@ class Constraint extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool supports_dry_run = 7;</code>
      */
     protected $supports_dry_run = false;
+    /**
+     * Managed constraint and canned constraint sometimes can have
+     * equivalents. This field is used to store the equivalent constraint name.
+     *
+     * Generated from protobuf field <code>string equivalent_constraint = 8;</code>
+     */
+    protected $equivalent_constraint = '';
+    /**
+     * Shows if simulation is supported for this constraint or not.
+     *
+     * Generated from protobuf field <code>bool supports_simulation = 9;</code>
+     */
+    protected $supports_simulation = false;
     protected $constraint_type;
 
     /**
@@ -90,11 +103,16 @@ class Constraint extends \Google\Protobuf\Internal\Message
      *     @type int $constraint_default
      *           The evaluation behavior of this constraint in the absence of a policy.
      *     @type \Google\Cloud\OrgPolicy\V2\Constraint\ListConstraint $list_constraint
-     *           Defines this constraint as being a ListConstraint.
+     *           Defines this constraint as being a list constraint.
      *     @type \Google\Cloud\OrgPolicy\V2\Constraint\BooleanConstraint $boolean_constraint
-     *           Defines this constraint as being a BooleanConstraint.
+     *           Defines this constraint as being a boolean constraint.
      *     @type bool $supports_dry_run
      *           Shows if dry run is supported for this constraint or not.
+     *     @type string $equivalent_constraint
+     *           Managed constraint and canned constraint sometimes can have
+     *           equivalents. This field is used to store the equivalent constraint name.
+     *     @type bool $supports_simulation
+     *           Shows if simulation is supported for this constraint or not.
      * }
      */
     public function __construct($data = NULL) {
@@ -223,7 +241,7 @@ class Constraint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines this constraint as being a ListConstraint.
+     * Defines this constraint as being a list constraint.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.Constraint.ListConstraint list_constraint = 5;</code>
      * @return \Google\Cloud\OrgPolicy\V2\Constraint\ListConstraint|null
@@ -239,7 +257,7 @@ class Constraint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines this constraint as being a ListConstraint.
+     * Defines this constraint as being a list constraint.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.Constraint.ListConstraint list_constraint = 5;</code>
      * @param \Google\Cloud\OrgPolicy\V2\Constraint\ListConstraint $var
@@ -254,7 +272,7 @@ class Constraint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines this constraint as being a BooleanConstraint.
+     * Defines this constraint as being a boolean constraint.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.Constraint.BooleanConstraint boolean_constraint = 6;</code>
      * @return \Google\Cloud\OrgPolicy\V2\Constraint\BooleanConstraint|null
@@ -270,7 +288,7 @@ class Constraint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines this constraint as being a BooleanConstraint.
+     * Defines this constraint as being a boolean constraint.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.Constraint.BooleanConstraint boolean_constraint = 6;</code>
      * @param \Google\Cloud\OrgPolicy\V2\Constraint\BooleanConstraint $var
@@ -306,6 +324,60 @@ class Constraint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->supports_dry_run = $var;
+
+        return $this;
+    }
+
+    /**
+     * Managed constraint and canned constraint sometimes can have
+     * equivalents. This field is used to store the equivalent constraint name.
+     *
+     * Generated from protobuf field <code>string equivalent_constraint = 8;</code>
+     * @return string
+     */
+    public function getEquivalentConstraint()
+    {
+        return $this->equivalent_constraint;
+    }
+
+    /**
+     * Managed constraint and canned constraint sometimes can have
+     * equivalents. This field is used to store the equivalent constraint name.
+     *
+     * Generated from protobuf field <code>string equivalent_constraint = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEquivalentConstraint($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->equivalent_constraint = $var;
+
+        return $this;
+    }
+
+    /**
+     * Shows if simulation is supported for this constraint or not.
+     *
+     * Generated from protobuf field <code>bool supports_simulation = 9;</code>
+     * @return bool
+     */
+    public function getSupportsSimulation()
+    {
+        return $this->supports_simulation;
+    }
+
+    /**
+     * Shows if simulation is supported for this constraint or not.
+     *
+     * Generated from protobuf field <code>bool supports_simulation = 9;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSupportsSimulation($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->supports_simulation = $var;
 
         return $this;
     }

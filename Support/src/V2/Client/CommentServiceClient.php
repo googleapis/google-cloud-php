@@ -317,8 +317,9 @@ final class CommentServiceClient
     }
 
     /**
-     * Add a new comment to the specified Case.
-     * The comment object must have the following fields set: body.
+     * Add a new comment to a case.
+     *
+     * The comment must have the following fields set: `body`.
      *
      * The async variant is {@see CommentServiceClient::createCommentAsync()} .
      *
@@ -344,7 +345,7 @@ final class CommentServiceClient
     }
 
     /**
-     * Retrieve all Comments associated with the Case object.
+     * List all the comments associated with a case.
      *
      * The async variant is {@see CommentServiceClient::listCommentsAsync()} .
      *

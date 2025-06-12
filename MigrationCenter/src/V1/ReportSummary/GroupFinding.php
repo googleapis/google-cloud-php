@@ -167,7 +167,9 @@ class GroupFinding extends \Google\Protobuf\Internal\Message
      */
     public function getOverlappingAssetCount()
     {
-        @trigger_error('overlapping_asset_count is deprecated.', E_USER_DEPRECATED);
+        if ($this->overlapping_asset_count !== 0) {
+            @trigger_error('overlapping_asset_count is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->overlapping_asset_count;
     }
 

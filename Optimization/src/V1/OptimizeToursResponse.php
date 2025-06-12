@@ -265,7 +265,9 @@ class OptimizeToursResponse extends \Google\Protobuf\Internal\Message
      */
     public function getTotalCost()
     {
-        @trigger_error('total_cost is deprecated.', E_USER_DEPRECATED);
+        if ($this->total_cost !== 0.0) {
+            @trigger_error('total_cost is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->total_cost;
     }
 

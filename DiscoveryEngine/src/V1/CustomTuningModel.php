@@ -221,13 +221,17 @@ class CustomTuningModel extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        @trigger_error('create_time is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->create_time)) {
+            @trigger_error('create_time is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->create_time;
     }
 
     public function hasCreateTime()
     {
-        @trigger_error('create_time is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->create_time)) {
+            @trigger_error('create_time is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->create_time);
     }
 

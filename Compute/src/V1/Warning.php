@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [Output Only] Informational warning message.
+ * Informational warning message.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Warning</code>
  */

@@ -32,7 +32,7 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\GetDataExchangeRequest;
  * Gets the details of a data exchange.
  *
  * @param string $formattedName The resource name of the data exchange.
- *                              e.g. `projects/myproject/locations/US/dataExchanges/123`. Please see
+ *                              e.g. `projects/myproject/locations/us/dataExchanges/123`. Please see
  *                              {@see AnalyticsHubServiceClient::dataExchangeName()} for help formatting this field.
  */
 function get_data_exchange_sample(string $formattedName): void

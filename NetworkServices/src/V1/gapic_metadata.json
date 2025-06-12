@@ -124,6 +124,11 @@
                                 "createServiceBinding"
                             ]
                         },
+                        "CreateServiceLbPolicy": {
+                            "methods": [
+                                "createServiceLbPolicy"
+                            ]
+                        },
                         "CreateTcpRoute": {
                             "methods": [
                                 "createTcpRoute"
@@ -164,6 +169,11 @@
                                 "deleteServiceBinding"
                             ]
                         },
+                        "DeleteServiceLbPolicy": {
+                            "methods": [
+                                "deleteServiceLbPolicy"
+                            ]
+                        },
                         "DeleteTcpRoute": {
                             "methods": [
                                 "deleteTcpRoute"
@@ -184,6 +194,11 @@
                                 "getGateway"
                             ]
                         },
+                        "GetGatewayRouteView": {
+                            "methods": [
+                                "getGatewayRouteView"
+                            ]
+                        },
                         "GetGrpcRoute": {
                             "methods": [
                                 "getGrpcRoute"
@@ -199,9 +214,19 @@
                                 "getMesh"
                             ]
                         },
+                        "GetMeshRouteView": {
+                            "methods": [
+                                "getMeshRouteView"
+                            ]
+                        },
                         "GetServiceBinding": {
                             "methods": [
                                 "getServiceBinding"
+                            ]
+                        },
+                        "GetServiceLbPolicy": {
+                            "methods": [
+                                "getServiceLbPolicy"
                             ]
                         },
                         "GetTcpRoute": {
@@ -219,6 +244,11 @@
                                 "listEndpointPolicies"
                             ]
                         },
+                        "ListGatewayRouteViews": {
+                            "methods": [
+                                "listGatewayRouteViews"
+                            ]
+                        },
                         "ListGateways": {
                             "methods": [
                                 "listGateways"
@@ -234,6 +264,11 @@
                                 "listHttpRoutes"
                             ]
                         },
+                        "ListMeshRouteViews": {
+                            "methods": [
+                                "listMeshRouteViews"
+                            ]
+                        },
                         "ListMeshes": {
                             "methods": [
                                 "listMeshes"
@@ -242,6 +277,11 @@
                         "ListServiceBindings": {
                             "methods": [
                                 "listServiceBindings"
+                            ]
+                        },
+                        "ListServiceLbPolicies": {
+                            "methods": [
+                                "listServiceLbPolicies"
                             ]
                         },
                         "ListTcpRoutes": {
@@ -277,6 +317,16 @@
                         "UpdateMesh": {
                             "methods": [
                                 "updateMesh"
+                            ]
+                        },
+                        "UpdateServiceBinding": {
+                            "methods": [
+                                "updateServiceBinding"
+                            ]
+                        },
+                        "UpdateServiceLbPolicy": {
+                            "methods": [
+                                "updateServiceLbPolicy"
                             ]
                         },
                         "UpdateTcpRoute": {

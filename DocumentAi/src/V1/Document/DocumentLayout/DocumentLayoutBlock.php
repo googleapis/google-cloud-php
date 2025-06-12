@@ -28,6 +28,12 @@ class DocumentLayoutBlock extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutPageSpan page_span = 5;</code>
      */
     protected $page_span = null;
+    /**
+     * Identifies the bounding box for the block.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.BoundingPoly bounding_box = 6;</code>
+     */
+    protected $bounding_box = null;
     protected $block;
 
     /**
@@ -46,6 +52,8 @@ class DocumentLayoutBlock extends \Google\Protobuf\Internal\Message
      *           ID of the block.
      *     @type \Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutPageSpan $page_span
      *           Page span of the block.
+     *     @type \Google\Cloud\DocumentAI\V1\BoundingPoly $bounding_box
+     *           Identifies the bounding box for the block.
      * }
      */
     public function __construct($data = NULL) {
@@ -204,6 +212,42 @@ class DocumentLayoutBlock extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutPageSpan::class);
         $this->page_span = $var;
+
+        return $this;
+    }
+
+    /**
+     * Identifies the bounding box for the block.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.BoundingPoly bounding_box = 6;</code>
+     * @return \Google\Cloud\DocumentAI\V1\BoundingPoly|null
+     */
+    public function getBoundingBox()
+    {
+        return $this->bounding_box;
+    }
+
+    public function hasBoundingBox()
+    {
+        return isset($this->bounding_box);
+    }
+
+    public function clearBoundingBox()
+    {
+        unset($this->bounding_box);
+    }
+
+    /**
+     * Identifies the bounding box for the block.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.BoundingPoly bounding_box = 6;</code>
+     * @param \Google\Cloud\DocumentAI\V1\BoundingPoly $var
+     * @return $this
+     */
+    public function setBoundingBox($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\BoundingPoly::class);
+        $this->bounding_box = $var;
 
         return $this;
     }

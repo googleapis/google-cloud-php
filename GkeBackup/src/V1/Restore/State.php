@@ -52,6 +52,13 @@ class State
      * Generated from protobuf enum <code>DELETING = 5;</code>
      */
     const DELETING = 5;
+    /**
+     * The Kubernetes resources created by this Restore are being
+     * validated.
+     *
+     * Generated from protobuf enum <code>VALIDATING = 6;</code>
+     */
+    const VALIDATING = 6;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -60,6 +67,7 @@ class State
         self::SUCCEEDED => 'SUCCEEDED',
         self::FAILED => 'FAILED',
         self::DELETING => 'DELETING',
+        self::VALIDATING => 'VALIDATING',
     ];
 
     public static function name($value)

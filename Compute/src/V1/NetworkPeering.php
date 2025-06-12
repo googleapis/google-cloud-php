@@ -64,7 +64,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      */
     private $network = null;
     /**
-     * Maximum Transmission Unit in bytes.
+     * [Output Only] Maximum Transmission Unit in bytes of the peer network.
      *
      * Generated from protobuf field <code>optional int32 peer_mtu = 69584721;</code>
      */
@@ -113,7 +113,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      *     @type string $network
      *           The URL of the peer network. It can be either full URL or partial URL. The peer network may belong to a different project. If the partial URL does not contain project, it is assumed that the peer network is in the same project as the current network.
      *     @type int $peer_mtu
-     *           Maximum Transmission Unit in bytes.
+     *           [Output Only] Maximum Transmission Unit in bytes of the peer network.
      *     @type string $stack_type
      *           Which IP version(s) of traffic and routes are allowed to be imported or exported between peer networks. The default value is IPV4_ONLY.
      *           Check the StackType enum for the list of possible values.
@@ -418,7 +418,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum Transmission Unit in bytes.
+     * [Output Only] Maximum Transmission Unit in bytes of the peer network.
      *
      * Generated from protobuf field <code>optional int32 peer_mtu = 69584721;</code>
      * @return int
@@ -439,7 +439,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum Transmission Unit in bytes.
+     * [Output Only] Maximum Transmission Unit in bytes of the peer network.
      *
      * Generated from protobuf field <code>optional int32 peer_mtu = 69584721;</code>
      * @param int $var

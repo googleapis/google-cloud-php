@@ -15,6 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class RagManagedDb extends \Google\Protobuf\Internal\Message
 {
+    protected $retrieval_strategy;
 
     /**
      * Constructor.
@@ -22,11 +23,91 @@ class RagManagedDb extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\AIPlatform\V1\RagVectorDbConfig\RagManagedDb\KNN $knn
+     *           Performs a KNN search on RagCorpus.
+     *           Default choice if not specified.
+     *     @type \Google\Cloud\AIPlatform\V1\RagVectorDbConfig\RagManagedDb\ANN $ann
+     *           Performs an ANN search on RagCorpus. Use this if you have a lot of
+     *           files (> 10K) in your RagCorpus and want to reduce the search latency.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Aiplatform\V1\VertexRagData::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Performs a KNN search on RagCorpus.
+     * Default choice if not specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RagVectorDbConfig.RagManagedDb.KNN knn = 1;</code>
+     * @return \Google\Cloud\AIPlatform\V1\RagVectorDbConfig\RagManagedDb\KNN|null
+     */
+    public function getKnn()
+    {
+        return $this->readOneof(1);
+    }
+
+    public function hasKnn()
+    {
+        return $this->hasOneof(1);
+    }
+
+    /**
+     * Performs a KNN search on RagCorpus.
+     * Default choice if not specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RagVectorDbConfig.RagManagedDb.KNN knn = 1;</code>
+     * @param \Google\Cloud\AIPlatform\V1\RagVectorDbConfig\RagManagedDb\KNN $var
+     * @return $this
+     */
+    public function setKnn($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\RagVectorDbConfig\RagManagedDb\KNN::class);
+        $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Performs an ANN search on RagCorpus. Use this if you have a lot of
+     * files (> 10K) in your RagCorpus and want to reduce the search latency.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RagVectorDbConfig.RagManagedDb.ANN ann = 2;</code>
+     * @return \Google\Cloud\AIPlatform\V1\RagVectorDbConfig\RagManagedDb\ANN|null
+     */
+    public function getAnn()
+    {
+        return $this->readOneof(2);
+    }
+
+    public function hasAnn()
+    {
+        return $this->hasOneof(2);
+    }
+
+    /**
+     * Performs an ANN search on RagCorpus. Use this if you have a lot of
+     * files (> 10K) in your RagCorpus and want to reduce the search latency.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RagVectorDbConfig.RagManagedDb.ANN ann = 2;</code>
+     * @param \Google\Cloud\AIPlatform\V1\RagVectorDbConfig\RagManagedDb\ANN $var
+     * @return $this
+     */
+    public function setAnn($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\RagVectorDbConfig\RagManagedDb\ANN::class);
+        $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRetrievalStrategy()
+    {
+        return $this->whichOneof("retrieval_strategy");
     }
 
 }

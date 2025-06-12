@@ -28,6 +28,14 @@ class TableReference extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string table_id = 2;</code>
      */
     protected $table_id = '';
+    /**
+     * The Google Cloud project ID of the project containing the table.
+     * If omitted, the project ID is inferred from the parent project. This field
+     * is required if the parent resource is an organization.
+     *
+     * Generated from protobuf field <code>string project_id = 3;</code>
+     */
+    protected $project_id = '';
 
     /**
      * Constructor.
@@ -39,6 +47,10 @@ class TableReference extends \Google\Protobuf\Internal\Message
      *           Dataset ID of the table.
      *     @type string $table_id
      *           Name of the table.
+     *     @type string $project_id
+     *           The Google Cloud project ID of the project containing the table.
+     *           If omitted, the project ID is inferred from the parent project. This field
+     *           is required if the parent resource is an organization.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,6 +106,36 @@ class TableReference extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->table_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The Google Cloud project ID of the project containing the table.
+     * If omitted, the project ID is inferred from the parent project. This field
+     * is required if the parent resource is an organization.
+     *
+     * Generated from protobuf field <code>string project_id = 3;</code>
+     * @return string
+     */
+    public function getProjectId()
+    {
+        return $this->project_id;
+    }
+
+    /**
+     * The Google Cloud project ID of the project containing the table.
+     * If omitted, the project ID is inferred from the parent project. This field
+     * is required if the parent resource is an organization.
+     *
+     * Generated from protobuf field <code>string project_id = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setProjectId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->project_id = $var;
 
         return $this;
     }

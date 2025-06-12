@@ -19,7 +19,7 @@ class CertificateAuthorityDomainConfig extends \Google\Protobuf\Internal\Message
     /**
      * List of fully qualified domain names (FQDN).
      * Specifying port is supported.
-     * Wilcards are NOT supported.
+     * Wildcards are NOT supported.
      * Examples:
      * - my.customdomain.com
      * - 10.0.1.2:5000
@@ -38,7 +38,7 @@ class CertificateAuthorityDomainConfig extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $fqdns
      *           List of fully qualified domain names (FQDN).
      *           Specifying port is supported.
-     *           Wilcards are NOT supported.
+     *           Wildcards are NOT supported.
      *           Examples:
      *           - my.customdomain.com
      *           - 10.0.1.2:5000
@@ -54,7 +54,7 @@ class CertificateAuthorityDomainConfig extends \Google\Protobuf\Internal\Message
     /**
      * List of fully qualified domain names (FQDN).
      * Specifying port is supported.
-     * Wilcards are NOT supported.
+     * Wildcards are NOT supported.
      * Examples:
      * - my.customdomain.com
      * - 10.0.1.2:5000
@@ -70,7 +70,7 @@ class CertificateAuthorityDomainConfig extends \Google\Protobuf\Internal\Message
     /**
      * List of fully qualified domain names (FQDN).
      * Specifying port is supported.
-     * Wilcards are NOT supported.
+     * Wildcards are NOT supported.
      * Examples:
      * - my.customdomain.com
      * - 10.0.1.2:5000

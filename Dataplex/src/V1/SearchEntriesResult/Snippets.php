@@ -49,13 +49,17 @@ class Snippets extends \Google\Protobuf\Internal\Message
      */
     public function getDataplexEntry()
     {
-        @trigger_error('dataplex_entry is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->dataplex_entry)) {
+            @trigger_error('dataplex_entry is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->dataplex_entry;
     }
 
     public function hasDataplexEntry()
     {
-        @trigger_error('dataplex_entry is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->dataplex_entry)) {
+            @trigger_error('dataplex_entry is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->dataplex_entry);
     }
 

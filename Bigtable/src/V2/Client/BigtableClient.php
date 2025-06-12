@@ -292,8 +292,6 @@ final class BigtableClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
-     *     @type string $universeDomain
-     *           The expected universe of the credentials. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException

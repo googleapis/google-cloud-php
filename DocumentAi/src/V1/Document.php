@@ -19,6 +19,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class Document extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Optional. An internal identifier for document. Should be loggable (no PII).
+     *
+     * Generated from protobuf field <code>string docid = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $docid = '';
+    /**
      * An IANA published [media type (MIME
      * type)](https://www.iana.org/assignments/media-types/media-types.xhtml).
      *
@@ -116,6 +122,8 @@ class Document extends \Google\Protobuf\Internal\Message
      *           Optional. Inline document content, represented as a stream of bytes.
      *           Note: As with all `bytes` fields, protobuffers use a pure binary
      *           representation, whereas JSON representations use base64.
+     *     @type string $docid
+     *           Optional. An internal identifier for document. Should be loggable (no PII).
      *     @type string $mime_type
      *           An IANA published [media type (MIME
      *           type)](https://www.iana.org/assignments/media-types/media-types.xhtml).
@@ -228,6 +236,32 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. An internal identifier for document. Should be loggable (no PII).
+     *
+     * Generated from protobuf field <code>string docid = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getDocid()
+    {
+        return $this->docid;
+    }
+
+    /**
+     * Optional. An internal identifier for document. Should be loggable (no PII).
+     *
+     * Generated from protobuf field <code>string docid = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDocid($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->docid = $var;
+
+        return $this;
+    }
+
+    /**
      * An IANA published [media type (MIME
      * type)](https://www.iana.org/assignments/media-types/media-types.xhtml).
      *
@@ -290,7 +324,9 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     public function getTextStyles()
     {
-        @trigger_error('text_styles is deprecated.', E_USER_DEPRECATED);
+        if ($this->text_styles->count() !== 0) {
+            @trigger_error('text_styles is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->text_styles;
     }
 
@@ -304,8 +340,10 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     public function setTextStyles($var)
     {
-        @trigger_error('text_styles is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DocumentAI\V1\Document\Style::class);
+        if (count($arr) !== 0) {
+            @trigger_error('text_styles is deprecated.', E_USER_DEPRECATED);
+        }
         $this->text_styles = $arr;
 
         return $this;

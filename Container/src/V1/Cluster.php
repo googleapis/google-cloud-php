@@ -90,7 +90,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * The monitoring service the cluster should use to write metrics.
      * Currently available options:
-     * * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
+     * * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring
      * service with a Kubernetes-native resource model
      * * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
      *   longer available as of GKE 1.15).
@@ -166,6 +166,14 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_kubernetes_alpha = 14;</code>
      */
     protected $enable_kubernetes_alpha = false;
+    /**
+     * The list of user specified Kubernetes feature gates.
+     * Each string represents the activation status of a feature gate (e.g.
+     * "featureX=true" or "featureX=false")
+     *
+     * Generated from protobuf field <code>repeated string alpha_cluster_feature_gates = 160;</code>
+     */
+    private $alpha_cluster_feature_gates;
     /**
      * The resource labels for the cluster to use to annotate any related
      * Google Compute Engine resources.
@@ -459,16 +467,22 @@ class Cluster extends \Google\Protobuf\Internal\Message
     protected $location = '';
     /**
      * Enable the ability to use Cloud TPUs in this cluster.
+     * This field is deprecated due to the deprecation of 2VM TPU. The end of life
+     * date for 2VM TPU is 2025-04-25.
      *
-     * Generated from protobuf field <code>bool enable_tpu = 115;</code>
+     * Generated from protobuf field <code>bool enable_tpu = 115 [deprecated = true];</code>
+     * @deprecated
      */
     protected $enable_tpu = false;
     /**
      * Output only. The IP address range of the Cloud TPUs in this cluster, in
      * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      * notation (e.g. `1.2.3.4/29`).
+     * This field is deprecated due to the deprecation of 2VM TPU. The end of life
+     * date for 2VM TPU is 2025-04-25.
      *
-     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 116 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 116 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     protected $tpu_ipv4_cidr_block = '';
     /**
@@ -515,6 +529,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.NodePoolAutoConfig node_pool_auto_config = 136;</code>
      */
     protected $node_pool_auto_config = null;
+    /**
+     * The config for pod autoscaling.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PodAutoscaling pod_autoscaling = 138;</code>
+     */
+    protected $pod_autoscaling = null;
     /**
      * This checksum is computed by the server based on the value of cluster
      * fields, and may be sent on update requests to ensure the client has an
@@ -590,6 +610,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.container.v1.RBACBindingConfig rbac_binding_config = 156;</code>
      */
     protected $rbac_binding_config = null;
+    /**
+     * Configuration for limiting anonymous access to all endpoints except the
+     * health checks.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AnonymousAuthenticationConfig anonymous_authentication_config = 164;</code>
+     */
+    protected $anonymous_authentication_config = null;
 
     /**
      * Constructor.
@@ -646,7 +673,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type string $monitoring_service
      *           The monitoring service the cluster should use to write metrics.
      *           Currently available options:
-     *           * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
+     *           * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring
      *           service with a Kubernetes-native resource model
      *           * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
      *             longer available as of GKE 1.15).
@@ -690,6 +717,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           The cluster has no SLA for uptime and master/node upgrades are disabled.
      *           Alpha enabled clusters are automatically deleted thirty days after
      *           creation.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $alpha_cluster_feature_gates
+     *           The list of user specified Kubernetes feature gates.
+     *           Each string represents the activation status of a feature gate (e.g.
+     *           "featureX=true" or "featureX=false")
      *     @type array|\Google\Protobuf\Internal\MapField $resource_labels
      *           The resource labels for the cluster to use to annotate any related
      *           Google Compute Engine resources.
@@ -821,10 +852,14 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           in which the cluster resides.
      *     @type bool $enable_tpu
      *           Enable the ability to use Cloud TPUs in this cluster.
+     *           This field is deprecated due to the deprecation of 2VM TPU. The end of life
+     *           date for 2VM TPU is 2025-04-25.
      *     @type string $tpu_ipv4_cidr_block
      *           Output only. The IP address range of the Cloud TPUs in this cluster, in
      *           [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      *           notation (e.g. `1.2.3.4/29`).
+     *           This field is deprecated due to the deprecation of 2VM TPU. The end of life
+     *           date for 2VM TPU is 2025-04-25.
      *     @type array<\Google\Cloud\Container\V1\StatusCondition>|\Google\Protobuf\Internal\RepeatedField $conditions
      *           Which conditions caused the current cluster state.
      *     @type \Google\Cloud\Container\V1\Autopilot $autopilot
@@ -841,6 +876,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\NodePoolAutoConfig $node_pool_auto_config
      *           Node pool configs that apply to all auto-provisioned node pools
      *           in autopilot clusters and node auto-provisioning enabled clusters.
+     *     @type \Google\Cloud\Container\V1\PodAutoscaling $pod_autoscaling
+     *           The config for pod autoscaling.
      *     @type string $etag
      *           This checksum is computed by the server based on the value of cluster
      *           fields, and may be sent on update requests to ensure the client has an
@@ -868,6 +905,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\RBACBindingConfig $rbac_binding_config
      *           RBACBindingConfig allows user to restrict ClusterRoleBindings an
      *           RoleBindings that can be created.
+     *     @type \Google\Cloud\Container\V1\AnonymousAuthenticationConfig $anonymous_authentication_config
+     *           Configuration for limiting anonymous access to all endpoints except the
+     *           health checks.
      * }
      */
     public function __construct($data = NULL) {
@@ -954,7 +994,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getInitialNodeCount()
     {
-        @trigger_error('initial_node_count is deprecated.', E_USER_DEPRECATED);
+        if ($this->initial_node_count !== 0) {
+            @trigger_error('initial_node_count is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->initial_node_count;
     }
 
@@ -1001,13 +1043,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getNodeConfig()
     {
-        @trigger_error('node_config is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->node_config)) {
+            @trigger_error('node_config is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->node_config;
     }
 
     public function hasNodeConfig()
     {
-        @trigger_error('node_config is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->node_config)) {
+            @trigger_error('node_config is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->node_config);
     }
 
@@ -1132,7 +1178,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * The monitoring service the cluster should use to write metrics.
      * Currently available options:
-     * * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
+     * * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring
      * service with a Kubernetes-native resource model
      * * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
      *   longer available as of GKE 1.15).
@@ -1151,7 +1197,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * The monitoring service the cluster should use to write metrics.
      * Currently available options:
-     * * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
+     * * `monitoring.googleapis.com/kubernetes` - The Cloud Monitoring
      * service with a Kubernetes-native resource model
      * * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
      *   longer available as of GKE 1.15).
@@ -1410,6 +1456,36 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The list of user specified Kubernetes feature gates.
+     * Each string represents the activation status of a feature gate (e.g.
+     * "featureX=true" or "featureX=false")
+     *
+     * Generated from protobuf field <code>repeated string alpha_cluster_feature_gates = 160;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAlphaClusterFeatureGates()
+    {
+        return $this->alpha_cluster_feature_gates;
+    }
+
+    /**
+     * The list of user specified Kubernetes feature gates.
+     * Each string represents the activation status of a feature gate (e.g.
+     * "featureX=true" or "featureX=false")
+     *
+     * Generated from protobuf field <code>repeated string alpha_cluster_feature_gates = 160;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAlphaClusterFeatureGates($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->alpha_cluster_feature_gates = $arr;
+
+        return $this;
+    }
+
+    /**
      * The resource labels for the cluster to use to annotate any related
      * Google Compute Engine resources.
      *
@@ -1583,13 +1659,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getMasterAuthorizedNetworksConfig()
     {
-        @trigger_error('master_authorized_networks_config is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->master_authorized_networks_config)) {
+            @trigger_error('master_authorized_networks_config is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->master_authorized_networks_config;
     }
 
     public function hasMasterAuthorizedNetworksConfig()
     {
-        @trigger_error('master_authorized_networks_config is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->master_authorized_networks_config)) {
+            @trigger_error('master_authorized_networks_config is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->master_authorized_networks_config);
     }
 
@@ -2326,7 +2406,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getZone()
     {
-        @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
+        if ($this->zone !== '') {
+            @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->zone;
     }
 
@@ -2468,7 +2550,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getCurrentNodeVersion()
     {
-        @trigger_error('current_node_version is deprecated.', E_USER_DEPRECATED);
+        if ($this->current_node_version !== '') {
+            @trigger_error('current_node_version is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->current_node_version;
     }
 
@@ -2558,7 +2642,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getStatusMessage()
     {
-        @trigger_error('status_message is deprecated.', E_USER_DEPRECATED);
+        if ($this->status_message !== '') {
+            @trigger_error('status_message is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->status_message;
     }
 
@@ -2656,7 +2742,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getInstanceGroupUrls()
     {
-        @trigger_error('instance_group_urls is deprecated.', E_USER_DEPRECATED);
+        if ($this->instance_group_urls->count() !== 0) {
+            @trigger_error('instance_group_urls is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->instance_group_urls;
     }
 
@@ -2670,8 +2758,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function setInstanceGroupUrls($var)
     {
-        @trigger_error('instance_group_urls is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        if (count($arr) !== 0) {
+            @trigger_error('instance_group_urls is deprecated.', E_USER_DEPRECATED);
+        }
         $this->instance_group_urls = $arr;
 
         return $this;
@@ -2687,7 +2777,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getCurrentNodeCount()
     {
-        @trigger_error('current_node_count is deprecated.', E_USER_DEPRECATED);
+        if ($this->current_node_count !== 0) {
+            @trigger_error('current_node_count is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->current_node_count;
     }
 
@@ -2773,24 +2865,34 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * Enable the ability to use Cloud TPUs in this cluster.
+     * This field is deprecated due to the deprecation of 2VM TPU. The end of life
+     * date for 2VM TPU is 2025-04-25.
      *
-     * Generated from protobuf field <code>bool enable_tpu = 115;</code>
+     * Generated from protobuf field <code>bool enable_tpu = 115 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getEnableTpu()
     {
+        if ($this->enable_tpu !== false) {
+            @trigger_error('enable_tpu is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->enable_tpu;
     }
 
     /**
      * Enable the ability to use Cloud TPUs in this cluster.
+     * This field is deprecated due to the deprecation of 2VM TPU. The end of life
+     * date for 2VM TPU is 2025-04-25.
      *
-     * Generated from protobuf field <code>bool enable_tpu = 115;</code>
+     * Generated from protobuf field <code>bool enable_tpu = 115 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setEnableTpu($var)
     {
+        @trigger_error('enable_tpu is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->enable_tpu = $var;
 
@@ -2801,12 +2903,18 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Output only. The IP address range of the Cloud TPUs in this cluster, in
      * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      * notation (e.g. `1.2.3.4/29`).
+     * This field is deprecated due to the deprecation of 2VM TPU. The end of life
+     * date for 2VM TPU is 2025-04-25.
      *
-     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 116 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 116 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
+     * @deprecated
      */
     public function getTpuIpv4CidrBlock()
     {
+        if ($this->tpu_ipv4_cidr_block !== '') {
+            @trigger_error('tpu_ipv4_cidr_block is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->tpu_ipv4_cidr_block;
     }
 
@@ -2814,13 +2922,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Output only. The IP address range of the Cloud TPUs in this cluster, in
      * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      * notation (e.g. `1.2.3.4/29`).
+     * This field is deprecated due to the deprecation of 2VM TPU. The end of life
+     * date for 2VM TPU is 2025-04-25.
      *
-     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 116 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 116 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setTpuIpv4CidrBlock($var)
     {
+        @trigger_error('tpu_ipv4_cidr_block is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->tpu_ipv4_cidr_block = $var;
 
@@ -3059,6 +3171,42 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePoolAutoConfig::class);
         $this->node_pool_auto_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The config for pod autoscaling.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PodAutoscaling pod_autoscaling = 138;</code>
+     * @return \Google\Cloud\Container\V1\PodAutoscaling|null
+     */
+    public function getPodAutoscaling()
+    {
+        return $this->pod_autoscaling;
+    }
+
+    public function hasPodAutoscaling()
+    {
+        return isset($this->pod_autoscaling);
+    }
+
+    public function clearPodAutoscaling()
+    {
+        unset($this->pod_autoscaling);
+    }
+
+    /**
+     * The config for pod autoscaling.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PodAutoscaling pod_autoscaling = 138;</code>
+     * @param \Google\Cloud\Container\V1\PodAutoscaling $var
+     * @return $this
+     */
+    public function setPodAutoscaling($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\PodAutoscaling::class);
+        $this->pod_autoscaling = $var;
 
         return $this;
     }
@@ -3487,6 +3635,44 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\RBACBindingConfig::class);
         $this->rbac_binding_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for limiting anonymous access to all endpoints except the
+     * health checks.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AnonymousAuthenticationConfig anonymous_authentication_config = 164;</code>
+     * @return \Google\Cloud\Container\V1\AnonymousAuthenticationConfig|null
+     */
+    public function getAnonymousAuthenticationConfig()
+    {
+        return $this->anonymous_authentication_config;
+    }
+
+    public function hasAnonymousAuthenticationConfig()
+    {
+        return isset($this->anonymous_authentication_config);
+    }
+
+    public function clearAnonymousAuthenticationConfig()
+    {
+        unset($this->anonymous_authentication_config);
+    }
+
+    /**
+     * Configuration for limiting anonymous access to all endpoints except the
+     * health checks.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AnonymousAuthenticationConfig anonymous_authentication_config = 164;</code>
+     * @param \Google\Cloud\Container\V1\AnonymousAuthenticationConfig $var
+     * @return $this
+     */
+    public function setAnonymousAuthenticationConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\AnonymousAuthenticationConfig::class);
+        $this->anonymous_authentication_config = $var;
 
         return $this;
     }
