@@ -26,7 +26,7 @@ class ServingConfigExperiment extends \Google\Protobuf\Internal\Message
     protected $original_serving_config = '';
     /**
      * The fully qualified resource name of the serving config
-     * [Experiment.VariantArm.serving_config_id][] responsible for generating
+     * `Experiment.VariantArm.serving_config_id` responsible for generating
      * the search response. For example:
      * `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;&#47;servingConfigs/&#42;`.
      *
@@ -47,7 +47,7 @@ class ServingConfigExperiment extends \Google\Protobuf\Internal\Message
      *           example: `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;&#47;servingConfigs/&#42;`.
      *     @type string $experiment_serving_config
      *           The fully qualified resource name of the serving config
-     *           [Experiment.VariantArm.serving_config_id][] responsible for generating
+     *           `Experiment.VariantArm.serving_config_id` responsible for generating
      *           the search response. For example:
      *           `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;&#47;servingConfigs/&#42;`.
      * }
@@ -91,7 +91,7 @@ class ServingConfigExperiment extends \Google\Protobuf\Internal\Message
 
     /**
      * The fully qualified resource name of the serving config
-     * [Experiment.VariantArm.serving_config_id][] responsible for generating
+     * `Experiment.VariantArm.serving_config_id` responsible for generating
      * the search response. For example:
      * `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;&#47;servingConfigs/&#42;`.
      *
@@ -105,7 +105,7 @@ class ServingConfigExperiment extends \Google\Protobuf\Internal\Message
 
     /**
      * The fully qualified resource name of the serving config
-     * [Experiment.VariantArm.serving_config_id][] responsible for generating
+     * `Experiment.VariantArm.serving_config_id` responsible for generating
      * the search response. For example:
      * `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;&#47;servingConfigs/&#42;`.
      *

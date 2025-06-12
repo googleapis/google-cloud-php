@@ -162,6 +162,23 @@ final class DataStoreServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a cmek_config
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted cmek_config resource.
+     */
+    public static function cmekConfigName(string $project, string $location): string
+    {
+        return self::getPathTemplate('cmekConfig')->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a collection
      * resource.
      *
@@ -177,6 +194,55 @@ final class DataStoreServiceClient
             'project' => $project,
             'location' => $location,
             'collection' => $collection,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * crypto_key_versions resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     * @param string $cryptoKeyVersion
+     *
+     * @return string The formatted crypto_key_versions resource.
+     */
+    public static function cryptoKeyVersionsName(
+        string $project,
+        string $location,
+        string $keyRing,
+        string $cryptoKey,
+        string $cryptoKeyVersion
+    ): string {
+        return self::getPathTemplate('cryptoKeyVersions')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+            'crypto_key_version' => $cryptoKeyVersion,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a crypto_keys
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_keys resource.
+     */
+    public static function cryptoKeysName(string $project, string $location, string $keyRing, string $cryptoKey): string
+    {
+        return self::getPathTemplate('cryptoKeys')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
         ]);
     }
 
@@ -215,6 +281,45 @@ final class DataStoreServiceClient
             'project' => $project,
             'location' => $location,
             'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * identity_mapping_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $identityMappingStore
+     *
+     * @return string The formatted identity_mapping_store resource.
+     */
+    public static function identityMappingStoreName(
+        string $project,
+        string $location,
+        string $identityMappingStore
+    ): string {
+        return self::getPathTemplate('identityMappingStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'identity_mapping_store' => $identityMappingStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_cmekConfig resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted project_location_cmekConfig resource.
+     */
+    public static function projectLocationCmekConfigName(string $project, string $location): string
+    {
+        return self::getPathTemplate('projectLocationCmekConfig')->render([
+            'project' => $project,
+            'location' => $location,
         ]);
     }
 
@@ -387,9 +492,14 @@ final class DataStoreServiceClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - cmekConfig: projects/{project}/locations/{location}/cmekConfig
      * - collection: projects/{project}/locations/{location}/collections/{collection}
+     * - cryptoKeyVersions: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
+     * - cryptoKeys: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - dataStore: projects/{project}/locations/{location}/dataStores/{data_store}
      * - documentProcessingConfig: projects/{project}/locations/{location}/dataStores/{data_store}/documentProcessingConfig
+     * - identityMappingStore: projects/{project}/locations/{location}/identityMappingStores/{identity_mapping_store}
+     * - projectLocationCmekConfig: projects/{project}/locations/{location}/cmekConfig
      * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
      * - projectLocationCollectionDataStoreDocumentProcessingConfig: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/documentProcessingConfig
      * - projectLocationCollectionDataStoreSchema: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/schemas/{schema}

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class TransferStats extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Cumulative bytes trasferred so far for the replication relatinonship.
+     * Cumulative bytes transferred so far for the replication relationship.
      *
      * Generated from protobuf field <code>optional int64 transfer_bytes = 1;</code>
      */
@@ -73,7 +73,7 @@ class TransferStats extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $transfer_bytes
-     *           Cumulative bytes trasferred so far for the replication relatinonship.
+     *           Cumulative bytes transferred so far for the replication relationship.
      *     @type \Google\Protobuf\Duration $total_transfer_duration
      *           Cumulative time taken across all transfers for the replication
      *           relationship.
@@ -98,7 +98,7 @@ class TransferStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cumulative bytes trasferred so far for the replication relatinonship.
+     * Cumulative bytes transferred so far for the replication relationship.
      *
      * Generated from protobuf field <code>optional int64 transfer_bytes = 1;</code>
      * @return int|string
@@ -119,7 +119,7 @@ class TransferStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cumulative bytes trasferred so far for the replication relatinonship.
+     * Cumulative bytes transferred so far for the replication relationship.
      *
      * Generated from protobuf field <code>optional int64 transfer_bytes = 1;</code>
      * @param int|string $var

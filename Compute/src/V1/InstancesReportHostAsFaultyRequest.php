@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstancesReportHostAsFaultyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The disruption schedule for the VM. Default to IMMEDIATE.
+     * The disruption schedule for the VM. Required field, only allows IMMEDIATE.
      * Check the DisruptionSchedule enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string disruption_schedule = 95871619;</code>
@@ -33,7 +33,7 @@ class InstancesReportHostAsFaultyRequest extends \Google\Protobuf\Internal\Messa
      *     Optional. Data for populating the Message object.
      *
      *     @type string $disruption_schedule
-     *           The disruption schedule for the VM. Default to IMMEDIATE.
+     *           The disruption schedule for the VM. Required field, only allows IMMEDIATE.
      *           Check the DisruptionSchedule enum for the list of possible values.
      *     @type array<\Google\Cloud\Compute\V1\InstancesReportHostAsFaultyRequestFaultReason>|\Google\Protobuf\Internal\RepeatedField $fault_reasons
      * }
@@ -44,7 +44,7 @@ class InstancesReportHostAsFaultyRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * The disruption schedule for the VM. Default to IMMEDIATE.
+     * The disruption schedule for the VM. Required field, only allows IMMEDIATE.
      * Check the DisruptionSchedule enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string disruption_schedule = 95871619;</code>
@@ -66,7 +66,7 @@ class InstancesReportHostAsFaultyRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * The disruption schedule for the VM. Default to IMMEDIATE.
+     * The disruption schedule for the VM. Required field, only allows IMMEDIATE.
      * Check the DisruptionSchedule enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string disruption_schedule = 95871619;</code>

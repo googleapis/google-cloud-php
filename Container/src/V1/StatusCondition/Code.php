@@ -58,6 +58,12 @@ class Code
      * Generated from protobuf enum <code>CA_EXPIRING = 9;</code>
      */
     const CA_EXPIRING = 9;
+    /**
+     * Node service account is missing permissions.
+     *
+     * Generated from protobuf enum <code>NODE_SERVICE_ACCOUNT_MISSING_PERMISSIONS = 10;</code>
+     */
+    const NODE_SERVICE_ACCOUNT_MISSING_PERMISSIONS = 10;
 
     private static $valueToName = [
         self::UNKNOWN => 'UNKNOWN',
@@ -67,6 +73,7 @@ class Code
         self::SET_BY_OPERATOR => 'SET_BY_OPERATOR',
         self::CLOUD_KMS_KEY_ERROR => 'CLOUD_KMS_KEY_ERROR',
         self::CA_EXPIRING => 'CA_EXPIRING',
+        self::NODE_SERVICE_ACCOUNT_MISSING_PERMISSIONS => 'NODE_SERVICE_ACCOUNT_MISSING_PERMISSIONS',
     ];
 
     public static function name($value)

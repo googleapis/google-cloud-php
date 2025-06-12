@@ -90,8 +90,6 @@ final class JobsV1Beta3Client
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/compute',
-        'https://www.googleapis.com/auth/compute.readonly',
-        'https://www.googleapis.com/auth/userinfo.email',
     ];
 
     private static function getClientDefaults()
@@ -198,6 +196,9 @@ final class JobsV1Beta3Client
     /**
      * List the jobs of a project across all regions.
      *
+     * **Note:** This method doesn't support filtering the list of
+     * jobs by name.
+     *
      * The async variant is {@see JobsV1Beta3Client::aggregatedListJobsAsync()} .
      *
      * @example samples/V1beta3/JobsV1Beta3Client/aggregated_list_jobs.php
@@ -259,6 +260,9 @@ final class JobsV1Beta3Client
      * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using
      * `projects.jobs.create` is not recommended, as your job will always start
      * in `us-central1`.
+     *
+     * Do not enter confidential information when you supply string values using
+     * the API.
      *
      * The async variant is {@see JobsV1Beta3Client::createJobAsync()} .
      *
@@ -326,8 +330,12 @@ final class JobsV1Beta3Client
      * `projects.locations.jobs.list` with a [regional endpoint]
      * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). To
      * list the all jobs across all regions, use `projects.jobs.aggregated`. Using
-     * `projects.jobs.list` is not recommended, as you can only get the list of
-     * jobs that are running in `us-central1`.
+     * `projects.jobs.list` is not recommended, because you can only get the list
+     * of jobs that are running in `us-central1`.
+     *
+     * `projects.locations.jobs.list` and `projects.jobs.list` support filtering
+     * the list of jobs by name. Filtering by name isn't supported by
+     * `projects.jobs.aggregated`.
      *
      * The async variant is {@see JobsV1Beta3Client::listJobsAsync()} .
      *

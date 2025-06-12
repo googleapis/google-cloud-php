@@ -163,7 +163,9 @@ class Attack extends \Google\Protobuf\Internal\Message
      */
     public function getVolumePps()
     {
-        @trigger_error('volume_pps is deprecated.', E_USER_DEPRECATED);
+        if ($this->volume_pps !== 0) {
+            @trigger_error('volume_pps is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->volume_pps;
     }
 
@@ -195,7 +197,9 @@ class Attack extends \Google\Protobuf\Internal\Message
      */
     public function getVolumeBps()
     {
-        @trigger_error('volume_bps is deprecated.', E_USER_DEPRECATED);
+        if ($this->volume_bps !== 0) {
+            @trigger_error('volume_bps is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->volume_bps;
     }
 

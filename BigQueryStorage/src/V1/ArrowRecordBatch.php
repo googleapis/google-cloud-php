@@ -84,7 +84,9 @@ class ArrowRecordBatch extends \Google\Protobuf\Internal\Message
      */
     public function getRowCount()
     {
-        @trigger_error('row_count is deprecated.', E_USER_DEPRECATED);
+        if ($this->row_count !== 0) {
+            @trigger_error('row_count is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->row_count;
     }
 

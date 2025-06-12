@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Statistics of the DataDiscoveryScan.
+ * Describes result statistics of a data scan discovery job.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DataDiscoveryResult.ScanStatistics</code>
  */

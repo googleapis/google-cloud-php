@@ -35,6 +35,10 @@ return [
                     ],
                 ],
             ],
+            'CreateCustomEmoji' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\CustomEmoji',
+            ],
             'CreateMembership' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\Membership',
@@ -74,6 +78,18 @@ return [
             'CreateSpace' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\Space',
+            ],
+            'DeleteCustomEmoji' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
             'DeleteMembership' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -130,6 +146,18 @@ return [
             'GetAttachment' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\Attachment',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetCustomEmoji' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\CustomEmoji',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -222,6 +250,18 @@ return [
                         ],
                     ],
                 ],
+            ],
+            'ListCustomEmojis' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getCustomEmojis',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\ListCustomEmojisResponse',
             ],
             'ListMemberships' => [
                 'pageStreaming' => [
@@ -410,6 +450,7 @@ return [
             ],
             'templateMap' => [
                 'attachment' => 'spaces/{space}/messages/{message}/attachments/{attachment}',
+                'customEmoji' => 'customEmojis/{custom_emoji}',
                 'membership' => 'spaces/{space}/members/{member}',
                 'message' => 'spaces/{space}/messages/{message}',
                 'quotedMessageMetadata' => 'spaces/{space}/messages/{message}/quotedMessageMetadata/{quoted_message_metadata}',

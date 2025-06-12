@@ -38,7 +38,7 @@ use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: A service to manage file attachment for Google Cloud support cases.
+ * Service Description: A service to manage file attachments for Google Cloud support cases.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -254,7 +254,7 @@ final class CaseAttachmentServiceClient
     }
 
     /**
-     * Retrieve all attachments associated with a support case.
+     * List all the attachments associated with a support case.
      *
      * The async variant is {@see CaseAttachmentServiceClient::listAttachmentsAsync()}
      * .

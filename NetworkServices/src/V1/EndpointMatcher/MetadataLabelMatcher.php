@@ -35,7 +35,7 @@ class MetadataLabelMatcher extends \Google\Protobuf\Internal\Message
      * from P3 will be selected.
      * If there is more than one best match, (for example, if a
      * config P4 with selector <A:1,D:1> exists and if a client with
-     * label <A:1,B:1,D:1> connects), an error will be thrown.
+     * label <A:1,B:1,D:1> connects), pick up the one with older creation time.
      *
      * Generated from protobuf field <code>.google.cloud.networkservices.v1.EndpointMatcher.MetadataLabelMatcher.MetadataLabelMatchCriteria metadata_label_match_criteria = 1;</code>
      */
@@ -77,7 +77,7 @@ class MetadataLabelMatcher extends \Google\Protobuf\Internal\Message
      *           from P3 will be selected.
      *           If there is more than one best match, (for example, if a
      *           config P4 with selector <A:1,D:1> exists and if a client with
-     *           label <A:1,B:1,D:1> connects), an error will be thrown.
+     *           label <A:1,B:1,D:1> connects), pick up the one with older creation time.
      *     @type array<\Google\Cloud\NetworkServices\V1\EndpointMatcher\MetadataLabelMatcher\MetadataLabels>|\Google\Protobuf\Internal\RepeatedField $metadata_labels
      *           The list of label value pairs that must match labels in the
      *           provided metadata based on filterMatchCriteria This list can
@@ -111,7 +111,7 @@ class MetadataLabelMatcher extends \Google\Protobuf\Internal\Message
      * from P3 will be selected.
      * If there is more than one best match, (for example, if a
      * config P4 with selector <A:1,D:1> exists and if a client with
-     * label <A:1,B:1,D:1> connects), an error will be thrown.
+     * label <A:1,B:1,D:1> connects), pick up the one with older creation time.
      *
      * Generated from protobuf field <code>.google.cloud.networkservices.v1.EndpointMatcher.MetadataLabelMatcher.MetadataLabelMatchCriteria metadata_label_match_criteria = 1;</code>
      * @return int
@@ -141,7 +141,7 @@ class MetadataLabelMatcher extends \Google\Protobuf\Internal\Message
      * from P3 will be selected.
      * If there is more than one best match, (for example, if a
      * config P4 with selector <A:1,D:1> exists and if a client with
-     * label <A:1,B:1,D:1> connects), an error will be thrown.
+     * label <A:1,B:1,D:1> connects), pick up the one with older creation time.
      *
      * Generated from protobuf field <code>.google.cloud.networkservices.v1.EndpointMatcher.MetadataLabelMatcher.MetadataLabelMatchCriteria metadata_label_match_criteria = 1;</code>
      * @param int $var

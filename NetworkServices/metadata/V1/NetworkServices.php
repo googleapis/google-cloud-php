@@ -16,19 +16,22 @@ class NetworkServices
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
+        \GPBMetadata\Google\Cloud\Networkservices\V1\Common::initOnce();
         \GPBMetadata\Google\Cloud\Networkservices\V1\EndpointPolicy::initOnce();
         \GPBMetadata\Google\Cloud\Networkservices\V1\Gateway::initOnce();
         \GPBMetadata\Google\Cloud\Networkservices\V1\GrpcRoute::initOnce();
         \GPBMetadata\Google\Cloud\Networkservices\V1\HttpRoute::initOnce();
         \GPBMetadata\Google\Cloud\Networkservices\V1\Mesh::initOnce();
+        \GPBMetadata\Google\Cloud\Networkservices\V1\RouteView::initOnce();
         \GPBMetadata\Google\Cloud\Networkservices\V1\ServiceBinding::initOnce();
+        \GPBMetadata\Google\Cloud\Networkservices\V1\ServiceLbPolicy::initOnce();
         \GPBMetadata\Google\Cloud\Networkservices\V1\TcpRoute::initOnce();
         \GPBMetadata\Google\Cloud\Networkservices\V1\TlsRoute::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¬N
-6google/cloud/networkservices/v1/network_services.protogoogle.cloud.networkservices.v1google/api/client.proto5google/cloud/networkservices/v1/endpoint_policy.proto-google/cloud/networkservices/v1/gateway.proto0google/cloud/networkservices/v1/grpc_route.proto0google/cloud/networkservices/v1/http_route.proto*google/cloud/networkservices/v1/mesh.proto5google/cloud/networkservices/v1/service_binding.proto/google/cloud/networkservices/v1/tcp_route.proto/google/cloud/networkservices/v1/tls_route.proto#google/longrunning/operations.proto2™H
+”c
+6google/cloud/networkservices/v1/network_services.protogoogle.cloud.networkservices.v1google/api/client.proto,google/cloud/networkservices/v1/common.proto5google/cloud/networkservices/v1/endpoint_policy.proto-google/cloud/networkservices/v1/gateway.proto0google/cloud/networkservices/v1/grpc_route.proto0google/cloud/networkservices/v1/http_route.proto*google/cloud/networkservices/v1/mesh.proto0google/cloud/networkservices/v1/route_view.proto5google/cloud/networkservices/v1/service_binding.proto7google/cloud/networkservices/v1/service_lb_policy.proto/google/cloud/networkservices/v1/tcp_route.proto/google/cloud/networkservices/v1/tls_route.proto#google/longrunning/operations.proto2è[
 NetworkServicesÚ
 ListEndpointPolicies<.google.cloud.networkservices.v1.ListEndpointPoliciesRequest=.google.cloud.networkservices.v1.ListEndpointPoliciesResponse"EÚAparent‚Óä“64/v1/{parent=projects/*/locations/*}/endpointPoliciesÄ
 GetEndpointPolicy9.google.cloud.networkservices.v1.GetEndpointPolicyRequest/.google.cloud.networkservices.v1.EndpointPolicy"CÚAname‚Óä“64/v1/{name=projects/*/locations/*/endpointPolicies/*}µ
@@ -86,7 +89,9 @@ http_routeö
 ListServiceBindings;.google.cloud.networkservices.v1.ListServiceBindingsRequest<.google.cloud.networkservices.v1.ListServiceBindingsResponse"DÚAparent‚Óä“53/v1/{parent=projects/*/locations/*}/serviceBindingsÃ
 GetServiceBinding9.google.cloud.networkservices.v1.GetServiceBindingRequest/.google.cloud.networkservices.v1.ServiceBinding"BÚAname‚Óä“53/v1/{name=projects/*/locations/*/serviceBindings/*}´
 CreateServiceBinding<.google.cloud.networkservices.v1.CreateServiceBindingRequest.google.longrunning.Operation"¾ÊAC
-ServiceBinding1google.cloud.networkservices.v1.OperationMetadataÚA)parent,service_binding,service_binding_id‚Óä“F"3/v1/{parent=projects/*/locations/*}/serviceBindings:service_binding…
+ServiceBinding1google.cloud.networkservices.v1.OperationMetadataÚA)parent,service_binding,service_binding_id‚Óä“F"3/v1/{parent=projects/*/locations/*}/serviceBindings:service_binding¶
+UpdateServiceBinding<.google.cloud.networkservices.v1.UpdateServiceBindingRequest.google.longrunning.Operation"ÀÊAC
+ServiceBinding1google.cloud.networkservices.v1.OperationMetadataÚAservice_binding,update_mask‚Óä“V2C/v1/{service_binding.name=projects/*/locations/*/serviceBindings/*}:service_binding…
 DeleteServiceBinding<.google.cloud.networkservices.v1.DeleteServiceBindingRequest.google.longrunning.Operation"ÊAJ
 google.protobuf.Empty1google.cloud.networkservices.v1.OperationMetadataÚAname‚Óä“5*3/v1/{name=projects/*/locations/*/serviceBindings/*}²
 
@@ -100,7 +105,19 @@ UpdateMesh2.google.cloud.networkservices.v1.UpdateMeshRequest.google.longrunn
 Mesh1google.cloud.networkservices.v1.OperationMetadataÚAmesh,update_mask‚Óä“72//v1/{mesh.name=projects/*/locations/*/meshes/*}:meshè
 
 DeleteMesh2.google.cloud.networkservices.v1.DeleteMeshRequest.google.longrunning.Operation"†ÊAJ
-google.protobuf.Empty1google.cloud.networkservices.v1.OperationMetadataÚAname‚Óä“,**/v1/{name=projects/*/locations/*/meshes/*}RÊAnetworkservices.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBß
+google.protobuf.Empty1google.cloud.networkservices.v1.OperationMetadataÚAname‚Óä“,**/v1/{name=projects/*/locations/*/meshes/*}Þ
+ListServiceLbPolicies=.google.cloud.networkservices.v1.ListServiceLbPoliciesRequest>.google.cloud.networkservices.v1.ListServiceLbPoliciesResponse"FÚAparent‚Óä“75/v1/{parent=projects/*/locations/*}/serviceLbPoliciesÈ
+GetServiceLbPolicy:.google.cloud.networkservices.v1.GetServiceLbPolicyRequest0.google.cloud.networkservices.v1.ServiceLbPolicy"DÚAname‚Óä“75/v1/{name=projects/*/locations/*/serviceLbPolicies/*}¿
+CreateServiceLbPolicy=.google.cloud.networkservices.v1.CreateServiceLbPolicyRequest.google.longrunning.Operation"ÇÊAD
+ServiceLbPolicy1google.cloud.networkservices.v1.OperationMetadataÚA-parent,service_lb_policy,service_lb_policy_id‚Óä“J"5/v1/{parent=projects/*/locations/*}/serviceLbPolicies:service_lb_policyÁ
+UpdateServiceLbPolicy=.google.cloud.networkservices.v1.UpdateServiceLbPolicyRequest.google.longrunning.Operation"ÉÊAD
+ServiceLbPolicy1google.cloud.networkservices.v1.OperationMetadataÚAservice_lb_policy,update_mask‚Óä“\\2G/v1/{service_lb_policy.name=projects/*/locations/*/serviceLbPolicies/*}:service_lb_policy‰
+DeleteServiceLbPolicy=.google.cloud.networkservices.v1.DeleteServiceLbPolicyRequest.google.longrunning.Operation"‘ÊAJ
+google.protobuf.Empty1google.cloud.networkservices.v1.OperationMetadataÚAname‚Óä“7*5/v1/{name=projects/*/locations/*/serviceLbPolicies/*}Ï
+GetGatewayRouteView;.google.cloud.networkservices.v1.GetGatewayRouteViewRequest1.google.cloud.networkservices.v1.GatewayRouteView"HÚAname‚Óä“;9/v1/{name=projects/*/locations/*/gateways/*/routeViews/*}Ä
+GetMeshRouteView8.google.cloud.networkservices.v1.GetMeshRouteViewRequest..google.cloud.networkservices.v1.MeshRouteView"FÚAname‚Óä“97/v1/{name=projects/*/locations/*/meshes/*/routeViews/*}â
+ListGatewayRouteViews=.google.cloud.networkservices.v1.ListGatewayRouteViewsRequest>.google.cloud.networkservices.v1.ListGatewayRouteViewsResponse"JÚAparent‚Óä“;9/v1/{parent=projects/*/locations/*/gateways/*}/routeViews×
+ListMeshRouteViews:.google.cloud.networkservices.v1.ListMeshRouteViewsRequest;.google.cloud.networkservices.v1.ListMeshRouteViewsResponse"HÚAparent‚Óä“97/v1/{parent=projects/*/locations/*/meshes/*}/routeViewsRÊAnetworkservices.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBß
 #com.google.cloud.networkservices.v1PZMcloud.google.com/go/networkservices/apiv1/networkservicespb;networkservicespbªGoogle.Cloud.NetworkServices.V1ÊGoogle\\Cloud\\NetworkServices\\V1ê"Google::Cloud::NetworkServices::V1bproto3'
         , true);
 

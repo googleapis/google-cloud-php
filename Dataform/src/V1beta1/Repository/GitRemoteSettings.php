@@ -207,7 +207,9 @@ class GitRemoteSettings extends \Google\Protobuf\Internal\Message
      */
     public function getTokenStatus()
     {
-        @trigger_error('token_status is deprecated.', E_USER_DEPRECATED);
+        if ($this->token_status !== 0) {
+            @trigger_error('token_status is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->token_status;
     }
 

@@ -47,6 +47,33 @@ return [
             ],
         ],
         'google.cloud.managedkafka.v1.ManagedKafka' => [
+            'AddAclEntry' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{acl=projects/*/locations/*/clusters/*/acls/**}:addAclEntry',
+                'body' => 'acl_entry',
+                'placeholders' => [
+                    'acl' => [
+                        'getters' => [
+                            'getAcl',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateAcl' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/clusters/*}/acls',
+                'body' => 'acl',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'acl_id',
+                ],
+            ],
             'CreateCluster' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/clusters',
@@ -77,6 +104,17 @@ return [
                     'topic_id',
                 ],
             ],
+            'DeleteAcl' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/acls/**}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteCluster' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}',
@@ -102,6 +140,17 @@ return [
             'DeleteTopic' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/topics/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAcl' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/acls/**}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -143,6 +192,17 @@ return [
                     ],
                 ],
             ],
+            'ListAcls' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/clusters/*}/acls',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListClusters' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/clusters',
@@ -172,6 +232,31 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RemoveAclEntry' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{acl=projects/*/locations/*/clusters/*/acls/**}:removeAclEntry',
+                'body' => 'acl_entry',
+                'placeholders' => [
+                    'acl' => [
+                        'getters' => [
+                            'getAcl',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateAcl' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{acl.name=projects/*/locations/*/clusters/*/acls/**}',
+                'body' => 'acl',
+                'placeholders' => [
+                    'acl.name' => [
+                        'getters' => [
+                            'getAcl',
+                            'getName',
                         ],
                     ],
                 ],

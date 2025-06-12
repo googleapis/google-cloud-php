@@ -18,8 +18,9 @@ class EffectiveTagDetails extends \Google\Protobuf\Internal\Message
     /**
      * The [full resource
      * name](https://cloud.google.com/asset-inventory/docs/resource-name-format)
-     * of the ancestor from which an [effective_tag][] is inherited, according to
-     * [tag
+     * of the ancestor from which
+     * [effective_tags][google.cloud.asset.v1.EffectiveTagDetails.effective_tags]
+     * are inherited, according to [tag
      * inheritance](https://cloud.google.com/resource-manager/docs/tags/tags-overview#inheritance).
      *
      * Generated from protobuf field <code>optional string attached_resource = 1;</code>
@@ -48,8 +49,9 @@ class EffectiveTagDetails extends \Google\Protobuf\Internal\Message
      *     @type string $attached_resource
      *           The [full resource
      *           name](https://cloud.google.com/asset-inventory/docs/resource-name-format)
-     *           of the ancestor from which an [effective_tag][] is inherited, according to
-     *           [tag
+     *           of the ancestor from which
+     *           [effective_tags][google.cloud.asset.v1.EffectiveTagDetails.effective_tags]
+     *           are inherited, according to [tag
      *           inheritance](https://cloud.google.com/resource-manager/docs/tags/tags-overview#inheritance).
      *     @type array<\Google\Cloud\Asset\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $effective_tags
      *           The effective tags inherited from the
@@ -70,8 +72,9 @@ class EffectiveTagDetails extends \Google\Protobuf\Internal\Message
     /**
      * The [full resource
      * name](https://cloud.google.com/asset-inventory/docs/resource-name-format)
-     * of the ancestor from which an [effective_tag][] is inherited, according to
-     * [tag
+     * of the ancestor from which
+     * [effective_tags][google.cloud.asset.v1.EffectiveTagDetails.effective_tags]
+     * are inherited, according to [tag
      * inheritance](https://cloud.google.com/resource-manager/docs/tags/tags-overview#inheritance).
      *
      * Generated from protobuf field <code>optional string attached_resource = 1;</code>
@@ -95,8 +98,9 @@ class EffectiveTagDetails extends \Google\Protobuf\Internal\Message
     /**
      * The [full resource
      * name](https://cloud.google.com/asset-inventory/docs/resource-name-format)
-     * of the ancestor from which an [effective_tag][] is inherited, according to
-     * [tag
+     * of the ancestor from which
+     * [effective_tags][google.cloud.asset.v1.EffectiveTagDetails.effective_tags]
+     * are inherited, according to [tag
      * inheritance](https://cloud.google.com/resource-manager/docs/tags/tags-overview#inheritance).
      *
      * Generated from protobuf field <code>optional string attached_resource = 1;</code>

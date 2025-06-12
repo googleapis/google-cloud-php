@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Acknowledgement IDs sent in one or more previous requests to acknowledge a
+ * Acknowledgment IDs sent in one or more previous requests to acknowledge a
  * previously received message.
  *
  * Generated from protobuf message <code>google.pubsub.v1.StreamingPullResponse.AcknowledgeConfirmation</code>
@@ -17,26 +17,26 @@ use Google\Protobuf\Internal\GPBUtil;
 class AcknowledgeConfirmation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Successfully processed acknowledgement IDs.
+     * Optional. Successfully processed acknowledgment IDs.
      *
      * Generated from protobuf field <code>repeated string ack_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $ack_ids;
     /**
-     * Optional. List of acknowledgement IDs that were malformed or whose
-     * acknowledgement deadline has expired.
+     * Optional. List of acknowledgment IDs that were malformed or whose
+     * acknowledgment deadline has expired.
      *
      * Generated from protobuf field <code>repeated string invalid_ack_ids = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $invalid_ack_ids;
     /**
-     * Optional. List of acknowledgement IDs that were out of order.
+     * Optional. List of acknowledgment IDs that were out of order.
      *
      * Generated from protobuf field <code>repeated string unordered_ack_ids = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $unordered_ack_ids;
     /**
-     * Optional. List of acknowledgement IDs that failed processing with
+     * Optional. List of acknowledgment IDs that failed processing with
      * temporary issues.
      *
      * Generated from protobuf field <code>repeated string temporary_failed_ack_ids = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -50,14 +50,14 @@ class AcknowledgeConfirmation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ack_ids
-     *           Optional. Successfully processed acknowledgement IDs.
+     *           Optional. Successfully processed acknowledgment IDs.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $invalid_ack_ids
-     *           Optional. List of acknowledgement IDs that were malformed or whose
-     *           acknowledgement deadline has expired.
+     *           Optional. List of acknowledgment IDs that were malformed or whose
+     *           acknowledgment deadline has expired.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unordered_ack_ids
-     *           Optional. List of acknowledgement IDs that were out of order.
+     *           Optional. List of acknowledgment IDs that were out of order.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $temporary_failed_ack_ids
-     *           Optional. List of acknowledgement IDs that failed processing with
+     *           Optional. List of acknowledgment IDs that failed processing with
      *           temporary issues.
      * }
      */
@@ -67,7 +67,7 @@ class AcknowledgeConfirmation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Successfully processed acknowledgement IDs.
+     * Optional. Successfully processed acknowledgment IDs.
      *
      * Generated from protobuf field <code>repeated string ack_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -78,7 +78,7 @@ class AcknowledgeConfirmation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Successfully processed acknowledgement IDs.
+     * Optional. Successfully processed acknowledgment IDs.
      *
      * Generated from protobuf field <code>repeated string ack_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -93,8 +93,8 @@ class AcknowledgeConfirmation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of acknowledgement IDs that were malformed or whose
-     * acknowledgement deadline has expired.
+     * Optional. List of acknowledgment IDs that were malformed or whose
+     * acknowledgment deadline has expired.
      *
      * Generated from protobuf field <code>repeated string invalid_ack_ids = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -105,8 +105,8 @@ class AcknowledgeConfirmation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of acknowledgement IDs that were malformed or whose
-     * acknowledgement deadline has expired.
+     * Optional. List of acknowledgment IDs that were malformed or whose
+     * acknowledgment deadline has expired.
      *
      * Generated from protobuf field <code>repeated string invalid_ack_ids = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -121,7 +121,7 @@ class AcknowledgeConfirmation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of acknowledgement IDs that were out of order.
+     * Optional. List of acknowledgment IDs that were out of order.
      *
      * Generated from protobuf field <code>repeated string unordered_ack_ids = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -132,7 +132,7 @@ class AcknowledgeConfirmation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of acknowledgement IDs that were out of order.
+     * Optional. List of acknowledgment IDs that were out of order.
      *
      * Generated from protobuf field <code>repeated string unordered_ack_ids = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -147,7 +147,7 @@ class AcknowledgeConfirmation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of acknowledgement IDs that failed processing with
+     * Optional. List of acknowledgment IDs that failed processing with
      * temporary issues.
      *
      * Generated from protobuf field <code>repeated string temporary_failed_ack_ids = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -159,7 +159,7 @@ class AcknowledgeConfirmation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of acknowledgement IDs that failed processing with
+     * Optional. List of acknowledgment IDs that failed processing with
      * temporary issues.
      *
      * Generated from protobuf field <code>repeated string temporary_failed_ack_ids = 4 [(.google.api.field_behavior) = OPTIONAL];</code>

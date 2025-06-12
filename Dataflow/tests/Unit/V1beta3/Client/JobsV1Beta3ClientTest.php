@@ -213,6 +213,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
         $location2 = 'location21541837352';
         $createdFromSnapshotId = 'createdFromSnapshotId1520659672';
         $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Job();
         $expectedResponse->setId($id);
         $expectedResponse->setProjectId($projectId2);
@@ -224,6 +225,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
         $expectedResponse->setLocation($location2);
         $expectedResponse->setCreatedFromSnapshotId($createdFromSnapshotId);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         $request = new CreateJobRequest();
         $response = $gapicClient->createJob($request);
@@ -290,6 +292,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
         $location2 = 'location21541837352';
         $createdFromSnapshotId = 'createdFromSnapshotId1520659672';
         $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Job();
         $expectedResponse->setId($id);
         $expectedResponse->setProjectId($projectId2);
@@ -301,6 +304,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
         $expectedResponse->setLocation($location2);
         $expectedResponse->setCreatedFromSnapshotId($createdFromSnapshotId);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         $request = new GetJobRequest();
         $response = $gapicClient->getJob($request);
@@ -501,6 +505,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
         $location2 = 'location21541837352';
         $createdFromSnapshotId = 'createdFromSnapshotId1520659672';
         $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Job();
         $expectedResponse->setId($id);
         $expectedResponse->setProjectId($projectId2);
@@ -512,6 +517,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
         $expectedResponse->setLocation($location2);
         $expectedResponse->setCreatedFromSnapshotId($createdFromSnapshotId);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         $request = new UpdateJobRequest();
         $response = $gapicClient->updateJob($request);

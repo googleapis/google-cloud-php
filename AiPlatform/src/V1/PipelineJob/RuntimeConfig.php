@@ -136,7 +136,9 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
      */
     public function getParameters()
     {
-        @trigger_error('parameters is deprecated.', E_USER_DEPRECATED);
+        if ($this->parameters->count() !== 0) {
+            @trigger_error('parameters is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->parameters;
     }
 
@@ -157,8 +159,10 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
      */
     public function setParameters($var)
     {
-        @trigger_error('parameters is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Value::class);
+        if (count($arr) !== 0) {
+            @trigger_error('parameters is deprecated.', E_USER_DEPRECATED);
+        }
         $this->parameters = $arr;
 
         return $this;

@@ -39,6 +39,7 @@ use Google\Cloud\Compute\V1\GetIamPolicyReservationRequest;
 use Google\Cloud\Compute\V1\GetReservationRequest;
 use Google\Cloud\Compute\V1\InsertReservationRequest;
 use Google\Cloud\Compute\V1\ListReservationsRequest;
+use Google\Cloud\Compute\V1\PerformMaintenanceReservationRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\Reservation;
 use Google\Cloud\Compute\V1\ResizeReservationRequest;
@@ -62,6 +63,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyReservationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> insertAsync(InsertReservationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAsync(ListReservationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> performMaintenanceAsync(PerformMaintenanceReservationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> resizeAsync(ResizeReservationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyReservationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsReservationRequest $request, array $optionalArgs = [])
@@ -415,6 +417,32 @@ final class ReservationsClient
     public function list(ListReservationsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('List', $request, $callOptions);
+    }
+
+    /**
+     * Perform maintenance on an extended reservation
+     *
+     * The async variant is {@see ReservationsClient::performMaintenanceAsync()} .
+     *
+     * @example samples/V1/ReservationsClient/perform_maintenance.php
+     *
+     * @param PerformMaintenanceReservationRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function performMaintenance(PerformMaintenanceReservationRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('PerformMaintenance', $request, $callOptions)->wait();
     }
 
     /**

@@ -20,7 +20,7 @@ class GroupKind extends \Google\Protobuf\Internal\Message
     /**
      * Optional. API group string of a Kubernetes resource, e.g.
      * "apiextensions.k8s.io", "storage.k8s.io", etc.
-     * Note: use empty string for core API group
+     * Note: use empty string for core API group.
      *
      * Generated from protobuf field <code>string resource_group = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -43,7 +43,7 @@ class GroupKind extends \Google\Protobuf\Internal\Message
      *     @type string $resource_group
      *           Optional. API group string of a Kubernetes resource, e.g.
      *           "apiextensions.k8s.io", "storage.k8s.io", etc.
-     *           Note: use empty string for core API group
+     *           Note: use empty string for core API group.
      *     @type string $resource_kind
      *           Optional. Kind of a Kubernetes resource, must be in UpperCamelCase
      *           (PascalCase) and singular form. E.g. "CustomResourceDefinition",
@@ -58,7 +58,7 @@ class GroupKind extends \Google\Protobuf\Internal\Message
     /**
      * Optional. API group string of a Kubernetes resource, e.g.
      * "apiextensions.k8s.io", "storage.k8s.io", etc.
-     * Note: use empty string for core API group
+     * Note: use empty string for core API group.
      *
      * Generated from protobuf field <code>string resource_group = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -71,7 +71,7 @@ class GroupKind extends \Google\Protobuf\Internal\Message
     /**
      * Optional. API group string of a Kubernetes resource, e.g.
      * "apiextensions.k8s.io", "storage.k8s.io", etc.
-     * Note: use empty string for core API group
+     * Note: use empty string for core API group.
      *
      * Generated from protobuf field <code>string resource_group = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

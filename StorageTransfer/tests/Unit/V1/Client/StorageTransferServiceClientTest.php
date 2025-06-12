@@ -181,11 +181,13 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $description = 'description-1724546052';
         $projectId = 'projectId-1969970175';
+        $serviceAccount = 'serviceAccount-1948028253';
         $latestOperationName = 'latestOperationName1224975899';
         $expectedResponse = new TransferJob();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setProjectId($projectId);
+        $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setLatestOperationName($latestOperationName);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -514,11 +516,13 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $description = 'description-1724546052';
         $projectId2 = 'projectId2939242356';
+        $serviceAccount = 'serviceAccount-1948028253';
         $latestOperationName = 'latestOperationName1224975899';
         $expectedResponse = new TransferJob();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setProjectId($projectId2);
+        $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setLatestOperationName($latestOperationName);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -1052,11 +1056,13 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $description = 'description-1724546052';
         $projectId2 = 'projectId2939242356';
+        $serviceAccount = 'serviceAccount-1948028253';
         $latestOperationName = 'latestOperationName1224975899';
         $expectedResponse = new TransferJob();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setProjectId($projectId2);
+        $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setLatestOperationName($latestOperationName);
         $transport->addResponse($expectedResponse);
         // Mock request

@@ -194,9 +194,47 @@ return [
                     ],
                 ],
             ],
+            'ExportCluster' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AlloyDb\V1\ExportClusterResponse',
+                    'metadataReturnType' => '\Google\Cloud\AlloyDb\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'FailoverInstance' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\AlloyDb\V1\Instance',
+                    'metadataReturnType' => '\Google\Cloud\AlloyDb\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ImportCluster' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AlloyDb\V1\ImportClusterResponse',
                     'metadataReturnType' => '\Google\Cloud\AlloyDb\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
@@ -363,6 +401,25 @@ return [
                         'keyName' => 'instance.name',
                         'fieldAccessors' => [
                             'getInstance',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpgradeCluster' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AlloyDb\V1\UpgradeClusterResponse',
+                    'metadataReturnType' => '\Google\Cloud\AlloyDb\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
                             'getName',
                         ],
                     ],

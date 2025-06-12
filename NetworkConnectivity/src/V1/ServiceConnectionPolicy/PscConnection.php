@@ -250,7 +250,9 @@ class PscConnection extends \Google\Protobuf\Internal\Message
      */
     public function getErrorType()
     {
-        @trigger_error('error_type is deprecated.', E_USER_DEPRECATED);
+        if ($this->error_type !== 0) {
+            @trigger_error('error_type is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->error_type;
     }
 
@@ -282,13 +284,17 @@ class PscConnection extends \Google\Protobuf\Internal\Message
      */
     public function getError()
     {
-        @trigger_error('error is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->error)) {
+            @trigger_error('error is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->error;
     }
 
     public function hasError()
     {
-        @trigger_error('error is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->error)) {
+            @trigger_error('error is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->error);
     }
 
@@ -470,7 +476,9 @@ class PscConnection extends \Google\Protobuf\Internal\Message
      */
     public function getProducerInstanceId()
     {
-        @trigger_error('producer_instance_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->producer_instance_id !== '') {
+            @trigger_error('producer_instance_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->producer_instance_id;
     }
 

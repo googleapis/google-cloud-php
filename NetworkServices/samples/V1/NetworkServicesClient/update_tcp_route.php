@@ -35,10 +35,13 @@ use Google\Rpc\Status;
 /**
  * Updates the parameters of a single TcpRoute.
  *
- * @param string $tcpRouteName Name of the TcpRoute resource. It matches pattern
- *                             `projects/&#42;/locations/global/tcpRoutes/tcp_route_name>`.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_tcp_route_sample(string $tcpRouteName): void
+function update_tcp_route_sample(): void
 {
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
@@ -49,7 +52,6 @@ function update_tcp_route_sample(string $tcpRouteName): void
         ->setAction($tcpRouteRulesAction);
     $tcpRouteRules = [$routeRule,];
     $tcpRoute = (new TcpRoute())
-        ->setName($tcpRouteName)
         ->setRules($tcpRouteRules);
     $request = (new UpdateTcpRouteRequest())
         ->setTcpRoute($tcpRoute);
@@ -72,21 +74,5 @@ function update_tcp_route_sample(string $tcpRouteName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $tcpRouteName = '[NAME]';
-
-    update_tcp_route_sample($tcpRouteName);
 }
 // [END networkservices_v1_generated_NetworkServices_UpdateTcpRoute_sync]

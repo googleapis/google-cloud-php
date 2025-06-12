@@ -41,6 +41,15 @@ class DataStoreSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.BoostSpec boost_spec = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $boost_spec = null;
+    /**
+     * Optional. Custom search operators which if specified will be used to
+     * filter results from workspace data stores. For more information on custom
+     * search operators, see
+     * [SearchOperators](https://support.google.com/cloudsearch/answer/6172299).
+     *
+     * Generated from protobuf field <code>string custom_search_operators = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $custom_search_operators = '';
 
     /**
      * Constructor.
@@ -60,6 +69,11 @@ class DataStoreSpec extends \Google\Protobuf\Internal\Message
      *           Optional. Boost specification to boost certain documents.
      *           For more information on boosting, see
      *           [Boosting](https://cloud.google.com/generative-ai-app-builder/docs/boost-search-results)
+     *     @type string $custom_search_operators
+     *           Optional. Custom search operators which if specified will be used to
+     *           filter results from workspace data stores. For more information on custom
+     *           search operators, see
+     *           [SearchOperators](https://support.google.com/cloudsearch/answer/6172299).
      * }
      */
     public function __construct($data = NULL) {
@@ -163,6 +177,38 @@ class DataStoreSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\BoostSpec::class);
         $this->boost_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Custom search operators which if specified will be used to
+     * filter results from workspace data stores. For more information on custom
+     * search operators, see
+     * [SearchOperators](https://support.google.com/cloudsearch/answer/6172299).
+     *
+     * Generated from protobuf field <code>string custom_search_operators = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCustomSearchOperators()
+    {
+        return $this->custom_search_operators;
+    }
+
+    /**
+     * Optional. Custom search operators which if specified will be used to
+     * filter results from workspace data stores. For more information on custom
+     * search operators, see
+     * [SearchOperators](https://support.google.com/cloudsearch/answer/6172299).
+     *
+     * Generated from protobuf field <code>string custom_search_operators = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCustomSearchOperators($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->custom_search_operators = $var;
 
         return $this;
     }

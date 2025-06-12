@@ -32,7 +32,7 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\RevokeSubscriptionResponse;
  * Revokes a given subscription.
  *
  * @param string $formattedName Resource name of the subscription to revoke.
- *                              e.g. projects/123/locations/US/subscriptions/456
+ *                              e.g. projects/123/locations/us/subscriptions/456
  *                              Please see {@see AnalyticsHubServiceClient::subscriptionName()} for help formatting this field.
  */
 function revoke_subscription_sample(string $formattedName): void

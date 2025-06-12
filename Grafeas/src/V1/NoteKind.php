@@ -91,6 +91,12 @@ class NoteKind
      * Generated from protobuf enum <code>SBOM_REFERENCE = 12;</code>
      */
     const SBOM_REFERENCE = 12;
+    /**
+     * This represents a secret.
+     *
+     * Generated from protobuf enum <code>SECRET = 13;</code>
+     */
+    const SECRET = 13;
 
     private static $valueToName = [
         self::NOTE_KIND_UNSPECIFIED => 'NOTE_KIND_UNSPECIFIED',
@@ -106,6 +112,7 @@ class NoteKind
         self::DSSE_ATTESTATION => 'DSSE_ATTESTATION',
         self::VULNERABILITY_ASSESSMENT => 'VULNERABILITY_ASSESSMENT',
         self::SBOM_REFERENCE => 'SBOM_REFERENCE',
+        self::SECRET => 'SECRET',
     ];
 
     public static function name($value)

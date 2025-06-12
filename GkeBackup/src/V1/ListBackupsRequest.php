@@ -56,6 +56,13 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $order_by = '';
+    /**
+     * Optional. If set to true, the response will return partial results when
+     * some regions are unreachable and the unreachable field will be populated.
+     *
+     * Generated from protobuf field <code>bool return_partial_success = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $return_partial_success = false;
 
     /**
      * @param string $parent Required. The BackupPlan that contains the Backups to list.
@@ -99,6 +106,9 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *           Optional. Field match expression used to filter the results.
      *     @type string $order_by
      *           Optional. Field by which to sort the results.
+     *     @type bool $return_partial_success
+     *           Optional. If set to true, the response will return partial results when
+     *           some regions are unreachable and the unreachable field will be populated.
      * }
      */
     public function __construct($data = NULL) {
@@ -254,6 +264,34 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->order_by = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set to true, the response will return partial results when
+     * some regions are unreachable and the unreachable field will be populated.
+     *
+     * Generated from protobuf field <code>bool return_partial_success = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getReturnPartialSuccess()
+    {
+        return $this->return_partial_success;
+    }
+
+    /**
+     * Optional. If set to true, the response will return partial results when
+     * some regions are unreachable and the unreachable field will be populated.
+     *
+     * Generated from protobuf field <code>bool return_partial_success = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReturnPartialSuccess($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->return_partial_success = $var;
 
         return $this;
     }

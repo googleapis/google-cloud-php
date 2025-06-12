@@ -351,7 +351,9 @@ class Event extends \Google\Protobuf\Internal\Message
      */
     public function getHashedAccountId()
     {
-        @trigger_error('hashed_account_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->hashed_account_id !== '') {
+            @trigger_error('hashed_account_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hashed_account_id;
     }
 

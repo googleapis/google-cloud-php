@@ -1,0 +1,87 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.iam.v3",
+    "libraryPackage": "Google\\Cloud\\Iam\\V3",
+    "services": {
+        "PolicyBindings": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PolicyBindingsGapicClient",
+                    "rpcs": {
+                        "CreatePolicyBinding": {
+                            "methods": [
+                                "createPolicyBinding"
+                            ]
+                        },
+                        "DeletePolicyBinding": {
+                            "methods": [
+                                "deletePolicyBinding"
+                            ]
+                        },
+                        "GetPolicyBinding": {
+                            "methods": [
+                                "getPolicyBinding"
+                            ]
+                        },
+                        "ListPolicyBindings": {
+                            "methods": [
+                                "listPolicyBindings"
+                            ]
+                        },
+                        "SearchTargetPolicyBindings": {
+                            "methods": [
+                                "searchTargetPolicyBindings"
+                            ]
+                        },
+                        "UpdatePolicyBinding": {
+                            "methods": [
+                                "updatePolicyBinding"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "PrincipalAccessBoundaryPolicies": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PrincipalAccessBoundaryPoliciesGapicClient",
+                    "rpcs": {
+                        "CreatePrincipalAccessBoundaryPolicy": {
+                            "methods": [
+                                "createPrincipalAccessBoundaryPolicy"
+                            ]
+                        },
+                        "DeletePrincipalAccessBoundaryPolicy": {
+                            "methods": [
+                                "deletePrincipalAccessBoundaryPolicy"
+                            ]
+                        },
+                        "GetPrincipalAccessBoundaryPolicy": {
+                            "methods": [
+                                "getPrincipalAccessBoundaryPolicy"
+                            ]
+                        },
+                        "ListPrincipalAccessBoundaryPolicies": {
+                            "methods": [
+                                "listPrincipalAccessBoundaryPolicies"
+                            ]
+                        },
+                        "SearchPrincipalAccessBoundaryPolicyBindings": {
+                            "methods": [
+                                "searchPrincipalAccessBoundaryPolicyBindings"
+                            ]
+                        },
+                        "UpdatePrincipalAccessBoundaryPolicy": {
+                            "methods": [
+                                "updatePrincipalAccessBoundaryPolicy"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

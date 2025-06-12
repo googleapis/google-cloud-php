@@ -29,7 +29,6 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\CloudQuotas\V1beta\Client\QuotaAdjusterSettingsManagerClient;
 use Google\Cloud\CloudQuotas\V1beta\GetQuotaAdjusterSettingsRequest;
 use Google\Cloud\CloudQuotas\V1beta\QuotaAdjusterSettings;
-use Google\Cloud\CloudQuotas\V1beta\QuotaAdjusterSettings\Enablement;
 use Google\Cloud\CloudQuotas\V1beta\UpdateQuotaAdjusterSettingsRequest;
 use Google\Rpc\Code;
 use stdClass;
@@ -75,9 +74,13 @@ class QuotaAdjusterSettingsManagerClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $etag = 'etag3123477';
+        $inherited = true;
+        $inheritedFrom = 'inheritedFrom945634799';
         $expectedResponse = new QuotaAdjusterSettings();
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setInherited($inherited);
+        $expectedResponse->setInheritedFrom($inheritedFrom);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->quotaAdjusterSettingsName('[PROJECT]', '[LOCATION]');
@@ -145,14 +148,16 @@ class QuotaAdjusterSettingsManagerClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $etag = 'etag3123477';
+        $inherited = true;
+        $inheritedFrom = 'inheritedFrom945634799';
         $expectedResponse = new QuotaAdjusterSettings();
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setInherited($inherited);
+        $expectedResponse->setInheritedFrom($inheritedFrom);
         $transport->addResponse($expectedResponse);
         // Mock request
         $quotaAdjusterSettings = new QuotaAdjusterSettings();
-        $quotaAdjusterSettingsEnablement = Enablement::ENABLEMENT_UNSPECIFIED;
-        $quotaAdjusterSettings->setEnablement($quotaAdjusterSettingsEnablement);
         $request = (new UpdateQuotaAdjusterSettingsRequest())->setQuotaAdjusterSettings($quotaAdjusterSettings);
         $response = $gapicClient->updateQuotaAdjusterSettings($request);
         $this->assertEquals($expectedResponse, $response);
@@ -192,8 +197,6 @@ class QuotaAdjusterSettingsManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $quotaAdjusterSettings = new QuotaAdjusterSettings();
-        $quotaAdjusterSettingsEnablement = Enablement::ENABLEMENT_UNSPECIFIED;
-        $quotaAdjusterSettings->setEnablement($quotaAdjusterSettingsEnablement);
         $request = (new UpdateQuotaAdjusterSettingsRequest())->setQuotaAdjusterSettings($quotaAdjusterSettings);
         try {
             $gapicClient->updateQuotaAdjusterSettings($request);
@@ -219,9 +222,13 @@ class QuotaAdjusterSettingsManagerClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $etag = 'etag3123477';
+        $inherited = true;
+        $inheritedFrom = 'inheritedFrom945634799';
         $expectedResponse = new QuotaAdjusterSettings();
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setInherited($inherited);
+        $expectedResponse->setInheritedFrom($inheritedFrom);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->quotaAdjusterSettingsName('[PROJECT]', '[LOCATION]');

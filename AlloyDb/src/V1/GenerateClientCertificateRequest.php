@@ -56,9 +56,9 @@ class GenerateClientCertificateRequest extends \Google\Protobuf\Internal\Message
      */
     protected $public_key = '';
     /**
-     * Optional. An optional hint to the endpoint to generate a client
-     * ceritificate that can be used by AlloyDB connectors to exchange additional
-     * metadata with the server after TLS handshake.
+     * Optional. An optional hint to the endpoint to generate a client certificate
+     * that can be used by AlloyDB connectors to exchange additional metadata with
+     * the server after TLS handshake.
      *
      * Generated from protobuf field <code>bool use_metadata_exchange = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -109,9 +109,9 @@ class GenerateClientCertificateRequest extends \Google\Protobuf\Internal\Message
      *     @type string $public_key
      *           Optional. The public key from the client.
      *     @type bool $use_metadata_exchange
-     *           Optional. An optional hint to the endpoint to generate a client
-     *           ceritificate that can be used by AlloyDB connectors to exchange additional
-     *           metadata with the server after TLS handshake.
+     *           Optional. An optional hint to the endpoint to generate a client certificate
+     *           that can be used by AlloyDB connectors to exchange additional metadata with
+     *           the server after TLS handshake.
      * }
      */
     public function __construct($data = NULL) {
@@ -264,9 +264,9 @@ class GenerateClientCertificateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An optional hint to the endpoint to generate a client
-     * ceritificate that can be used by AlloyDB connectors to exchange additional
-     * metadata with the server after TLS handshake.
+     * Optional. An optional hint to the endpoint to generate a client certificate
+     * that can be used by AlloyDB connectors to exchange additional metadata with
+     * the server after TLS handshake.
      *
      * Generated from protobuf field <code>bool use_metadata_exchange = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -277,9 +277,9 @@ class GenerateClientCertificateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An optional hint to the endpoint to generate a client
-     * ceritificate that can be used by AlloyDB connectors to exchange additional
-     * metadata with the server after TLS handshake.
+     * Optional. An optional hint to the endpoint to generate a client certificate
+     * that can be used by AlloyDB connectors to exchange additional metadata with
+     * the server after TLS handshake.
      *
      * Generated from protobuf field <code>bool use_metadata_exchange = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

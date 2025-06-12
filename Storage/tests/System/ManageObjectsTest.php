@@ -357,6 +357,34 @@ class ManageObjectsTest extends StorageTestCase
         $this->assertStorageObjectExists($softDeleteHNSBucket, $restoredObject);
     }
 
+    public function testMoveObject()
+    {
+        $name = "move-object-bucket-" . uniqid();
+        $sourceObjectName = uniqid(self::TESTING_PREFIX);
+        $destinationObjectName = uniqid(self::TESTING_PREFIX);
+        $sourceBucket = self::createBucket(
+            self::$client,
+            $name,
+            [
+                'hierarchicalNamespace' => ['enabled' => true,],
+                'iamConfiguration' => ['uniformBucketLevelAccess' => ['enabled' => true]]
+            ]
+        );
+
+        // Assert that the bucket was created correctly.
+        $this->assertEquals($name, $sourceBucket->name());
+
+        $object = $sourceBucket->upload(self::DATA, ['name' => $sourceObjectName]);
+        $this->assertStorageObjectExists($sourceBucket, $object);
+
+        // Move the object.
+        $movedObject = $object->move($destinationObjectName);
+
+        // Assert that check existance of source and destination object.
+        $this->assertStorageObjectNotExists($sourceBucket, $object);
+        $this->assertStorageObjectExists($sourceBucket, $movedObject);
+    }
+
     public function testRotatesCustomerSuppliedEncrpytion()
     {
         $key = base64_encode(openssl_random_pseudo_bytes(32));

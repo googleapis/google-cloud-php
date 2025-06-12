@@ -37,7 +37,7 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeListingResponse;
  * creates a linked dataset in the subscriber's project.
  *
  * @param string $formattedName Resource name of the listing that you want to subscribe to.
- *                              e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`. Please see
+ *                              e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`. Please see
  *                              {@see AnalyticsHubServiceClient::listingName()} for help formatting this field.
  */
 function subscribe_listing_sample(string $formattedName): void

@@ -97,7 +97,9 @@ class MessageTransform extends \Google\Protobuf\Internal\Message
      */
     public function getEnabled()
     {
-        @trigger_error('enabled is deprecated.', E_USER_DEPRECATED);
+        if ($this->enabled !== false) {
+            @trigger_error('enabled is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->enabled;
     }
 

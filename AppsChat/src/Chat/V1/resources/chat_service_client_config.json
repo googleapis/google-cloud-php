@@ -33,6 +33,11 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "CreateCustomEmoji": {
+                    "timeout_millis": 30000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "CreateMembership": {
                     "timeout_millis": 30000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -49,6 +54,11 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "CreateSpace": {
+                    "timeout_millis": 30000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "DeleteCustomEmoji": {
                     "timeout_millis": 30000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -79,6 +89,11 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "GetAttachment": {
+                    "timeout_millis": 30000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetCustomEmoji": {
                     "timeout_millis": 30000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -114,6 +129,11 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "GetThreadReadState": {
+                    "timeout_millis": 30000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListCustomEmojis": {
                     "timeout_millis": 30000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"

@@ -30,6 +30,12 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     protected $next_page_token = '';
+    /**
+     * Locations that could not be reached.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3;</code>
+     */
+    private $unreachable;
 
     /**
      * Constructor.
@@ -44,6 +50,8 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
      *           [page_token][google.cloud.gkebackup.v1.ListBackupsRequest.page_token] in a
      *           subsequent `ListBackups` call to retrieve the next page of results. If this
      *           field is omitted or empty, then there are no more results to return.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *           Locations that could not be reached.
      * }
      */
     public function __construct($data = NULL) {
@@ -105,6 +113,32 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->next_page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Locations that could not be reached.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getUnreachable()
+    {
+        return $this->unreachable;
+    }
+
+    /**
+     * Locations that could not be reached.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setUnreachable($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->unreachable = $arr;
 
         return $this;
     }

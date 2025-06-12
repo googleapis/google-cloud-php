@@ -154,7 +154,9 @@ class MaintenanceSchedule extends \Google\Protobuf\Internal\Message
      */
     public function getCanReschedule()
     {
-        @trigger_error('can_reschedule is deprecated.', E_USER_DEPRECATED);
+        if ($this->can_reschedule !== false) {
+            @trigger_error('can_reschedule is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->can_reschedule;
     }
 

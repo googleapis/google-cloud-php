@@ -33,7 +33,7 @@ use Google\Rpc\Status;
  * Deletes a subscription.
  *
  * @param string $formattedName Resource name of the subscription to delete.
- *                              e.g. projects/123/locations/US/subscriptions/456
+ *                              e.g. projects/123/locations/us/subscriptions/456
  *                              Please see {@see AnalyticsHubServiceClient::subscriptionName()} for help formatting this field.
  */
 function delete_subscription_sample(string $formattedName): void

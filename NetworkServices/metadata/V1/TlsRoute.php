@@ -16,14 +16,15 @@ class TlsRoute
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-∏
-/google/cloud/networkservices/v1/tls_route.protogoogle.cloud.networkservices.v1google/api/resource.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"¢
+∆
+/google/cloud/networkservices/v1/tls_route.protogoogle.cloud.networkservices.v1google/api/resource.protogoogle/protobuf/duration.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"‘
 TlsRoute
-name (	B‡A
+name (	B‡A
 	self_link (	B‡A4
 create_time (2.google.protobuf.TimestampB‡A4
 update_time (2.google.protobuf.TimestampB‡A
@@ -32,30 +33,37 @@ class TlsRoute
 meshes (	B+‡A˙A%
 #networkservices.googleapis.com/Mesh@
 gateways (	B.‡A˙A(
-&networkservices.googleapis.com/Gateway£
+&networkservices.googleapis.com/GatewayJ
+labels (25.google.cloud.networkservices.v1.TlsRoute.LabelsEntryB‡A£
 	RouteRuleJ
 matches (24.google.cloud.networkservices.v1.TlsRoute.RouteMatchB‡AJ
 action (25.google.cloud.networkservices.v1.TlsRoute.RouteActionB‡A6
 
 RouteMatch
 sni_host (	B‡A
-alpn (	B‡Ad
+alpn (	B‡Aö
 RouteActionU
-destinations (2:.google.cloud.networkservices.v1.TlsRoute.RouteDestinationB‡Al
+destinations (2:.google.cloud.networkservices.v1.TlsRoute.RouteDestinationB‡A4
+idle_timeout (2.google.protobuf.DurationB‡Al
 RouteDestinationC
 service_name (	B-‡A˙A\'
 %compute.googleapis.com/BackendService
-weight (B‡A:kÍAh
-\'networkservices.googleapis.com/TlsRoute=projects/{project}/locations/{location}/tlsRoutes/{tls_route}"~
+weight (B‡A-
+LabelsEntry
+key (	
+value (	:8:kÍAh
+\'networkservices.googleapis.com/TlsRoute=projects/{project}/locations/{location}/tlsRoutes/{tls_route}"£
 ListTlsRoutesRequest?
 parent (	B/‡A˙A)\'networkservices.googleapis.com/TlsRoute
 	page_size (
 
-page_token (	"o
+page_token (	#
+return_partial_success (B‡A"Ñ
 ListTlsRoutesResponse=
 
 tls_routes (2).google.cloud.networkservices.v1.TlsRoute
-next_page_token (	"S
+next_page_token (	
+unreachable (	"S
 GetTlsRouteRequest=
 name (	B/‡A˙A)
 \'networkservices.googleapis.com/TlsRoute"∂

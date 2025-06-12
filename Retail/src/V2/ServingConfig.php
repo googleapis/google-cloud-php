@@ -40,7 +40,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * others-you-may-like CTR to others-you-may-like CVR).
      * Required when
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
+     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
      *
      * Generated from protobuf field <code>string model_id = 3;</code>
      */
@@ -60,7 +60,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * `no-price-reranking`.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
+     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
      *
      * Generated from protobuf field <code>string price_reranking_level = 4;</code>
      */
@@ -75,7 +75,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * is returned.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string facet_control_ids = 5;</code>
      */
@@ -85,7 +85,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * textual facets can be dynamically generated.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.DynamicFacetSpec dynamic_facet_spec = 6;</code>
      */
@@ -104,7 +104,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * to the sum of the boost scores from all matched boost conditions.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string boost_control_ids = 7;</code>
      */
@@ -116,7 +116,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * specifications is 100.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string filter_control_ids = 9;</code>
      */
@@ -127,7 +127,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * 1000.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string redirect_control_ids = 10;</code>
      */
@@ -139,7 +139,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * 100.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string twoway_synonyms_control_ids = 18;</code>
      */
@@ -151,7 +151,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * specifications is 100.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string oneway_synonyms_control_ids = 12;</code>
      */
@@ -164,7 +164,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * - Maximum number of specifications is 100.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string do_not_associate_control_ids = 13;</code>
      */
@@ -176,7 +176,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * - Maximum number of specifications is 100.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string replacement_control_ids = 14;</code>
      */
@@ -189,7 +189,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * - Maximum number of specifications is 100.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string ignore_control_ids = 15;</code>
      */
@@ -206,7 +206,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * type. Default value: `no-diversity`.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
+     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
      *
      * Generated from protobuf field <code>string diversity_level = 8;</code>
      */
@@ -231,7 +231,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *   will satisfy both conditions (user given and category match).
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
+     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
      *
      * Generated from protobuf field <code>string enable_category_filter_level = 16;</code>
      */
@@ -247,7 +247,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * The specification for personalization spec.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      * Notice that if both
      * [ServingConfig.personalization_spec][google.cloud.retail.v2.ServingConfig.personalization_spec]
      * and
@@ -290,7 +290,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           others-you-may-like CTR to others-you-may-like CVR).
      *           Required when
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     *           [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
+     *           [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
      *     @type string $price_reranking_level
      *           How much price ranking we want in serving results.
      *           Price reranking causes product items with a similar
@@ -306,7 +306,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           `no-price-reranking`.
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     *           [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
+     *           [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $facet_control_ids
      *           Facet specifications for faceted search. If empty, no facets are returned.
      *           The ids refer to the ids of [Control][google.cloud.retail.v2.Control]
@@ -317,13 +317,13 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           is returned.
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *     @type \Google\Cloud\Retail\V2\SearchRequest\DynamicFacetSpec $dynamic_facet_spec
      *           The specification for dynamically generated facets. Notice that only
      *           textual facets can be dynamically generated.
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $boost_control_ids
      *           Condition boost specifications. If a product matches multiple conditions
      *           in the specifications, boost scores from these specifications are all
@@ -338,7 +338,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           to the sum of the boost scores from all matched boost conditions.
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $filter_control_ids
      *           Condition filter specifications. If a product matches multiple conditions
      *           in the specifications, filters from these specifications are all
@@ -346,14 +346,14 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           specifications is 100.
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $redirect_control_ids
      *           Condition redirect specifications. Only the first triggered redirect action
      *           is applied, even if multiple apply. Maximum number of specifications is
      *           1000.
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $twoway_synonyms_control_ids
      *           Condition synonyms specifications. If multiple syonyms conditions match,
      *           all matching synonyms control in the list will execute. Order of controls
@@ -361,7 +361,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           100.
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $oneway_synonyms_control_ids
      *           Condition oneway synonyms specifications. If multiple oneway synonyms
      *           conditions match, all matching oneway synonyms controls in the list will
@@ -369,7 +369,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           specifications is 100.
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $do_not_associate_control_ids
      *           Condition do not associate specifications. If multiple do not associate
      *           conditions match, all matching do not associate controls in the list will
@@ -378,7 +378,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           - Maximum number of specifications is 100.
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $replacement_control_ids
      *           Condition replacement specifications.
      *           - Applied according to the order in the list.
@@ -386,7 +386,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           - Maximum number of specifications is 100.
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ignore_control_ids
      *           Condition ignore specifications. If multiple ignore
      *           conditions match, all matching ignore controls in the list will
@@ -395,7 +395,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           - Maximum number of specifications is 100.
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *     @type string $diversity_level
      *           How much diversity to use in recommendation model results e.g.
      *           `medium-diversity` or `high-diversity`. Currently supported values:
@@ -408,7 +408,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           type. Default value: `no-diversity`.
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     *           [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
+     *           [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
      *     @type int $diversity_type
      *           What kind of diversity to use - data driven or rule based. If unset, the
      *           server behavior defaults to
@@ -425,7 +425,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *             will satisfy both conditions (user given and category match).
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     *           [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
+     *           [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
      *     @type bool $ignore_recs_denylist
      *           When the flag is enabled, the products in the denylist will not be filtered
      *           out in the recommendation filtering results.
@@ -433,7 +433,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           The specification for personalization spec.
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *           Notice that if both
      *           [ServingConfig.personalization_spec][google.cloud.retail.v2.ServingConfig.personalization_spec]
      *           and
@@ -520,7 +520,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * others-you-may-like CTR to others-you-may-like CVR).
      * Required when
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
+     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
      *
      * Generated from protobuf field <code>string model_id = 3;</code>
      * @return string
@@ -538,7 +538,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * others-you-may-like CTR to others-you-may-like CVR).
      * Required when
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
+     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
      *
      * Generated from protobuf field <code>string model_id = 3;</code>
      * @param string $var
@@ -567,7 +567,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * `no-price-reranking`.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
+     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
      *
      * Generated from protobuf field <code>string price_reranking_level = 4;</code>
      * @return string
@@ -592,7 +592,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * `no-price-reranking`.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
+     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
      *
      * Generated from protobuf field <code>string price_reranking_level = 4;</code>
      * @param string $var
@@ -616,7 +616,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * is returned.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string facet_control_ids = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -636,7 +636,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * is returned.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string facet_control_ids = 5;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -655,7 +655,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * textual facets can be dynamically generated.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.DynamicFacetSpec dynamic_facet_spec = 6;</code>
      * @return \Google\Cloud\Retail\V2\SearchRequest\DynamicFacetSpec|null
@@ -680,7 +680,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * textual facets can be dynamically generated.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.DynamicFacetSpec dynamic_facet_spec = 6;</code>
      * @param \Google\Cloud\Retail\V2\SearchRequest\DynamicFacetSpec $var
@@ -708,7 +708,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * to the sum of the boost scores from all matched boost conditions.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string boost_control_ids = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -732,7 +732,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * to the sum of the boost scores from all matched boost conditions.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string boost_control_ids = 7;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -753,7 +753,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * specifications is 100.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string filter_control_ids = 9;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -770,7 +770,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * specifications is 100.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string filter_control_ids = 9;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -790,7 +790,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * 1000.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string redirect_control_ids = 10;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -806,7 +806,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * 1000.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string redirect_control_ids = 10;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -827,7 +827,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * 100.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string twoway_synonyms_control_ids = 18;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -844,7 +844,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * 100.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string twoway_synonyms_control_ids = 18;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -865,7 +865,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * specifications is 100.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string oneway_synonyms_control_ids = 12;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -882,7 +882,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * specifications is 100.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string oneway_synonyms_control_ids = 12;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -904,7 +904,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * - Maximum number of specifications is 100.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string do_not_associate_control_ids = 13;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -922,7 +922,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * - Maximum number of specifications is 100.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string do_not_associate_control_ids = 13;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -943,7 +943,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * - Maximum number of specifications is 100.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string replacement_control_ids = 14;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -960,7 +960,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * - Maximum number of specifications is 100.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string replacement_control_ids = 14;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -982,7 +982,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * - Maximum number of specifications is 100.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string ignore_control_ids = 15;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -1000,7 +1000,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * - Maximum number of specifications is 100.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string ignore_control_ids = 15;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -1026,7 +1026,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * type. Default value: `no-diversity`.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
+     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
      *
      * Generated from protobuf field <code>string diversity_level = 8;</code>
      * @return string
@@ -1048,7 +1048,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * type. Default value: `no-diversity`.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
+     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
      *
      * Generated from protobuf field <code>string diversity_level = 8;</code>
      * @param string $var
@@ -1104,7 +1104,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *   will satisfy both conditions (user given and category match).
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
+     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
      *
      * Generated from protobuf field <code>string enable_category_filter_level = 16;</code>
      * @return string
@@ -1126,7 +1126,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *   will satisfy both conditions (user given and category match).
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
+     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
      *
      * Generated from protobuf field <code>string enable_category_filter_level = 16;</code>
      * @param string $var
@@ -1172,7 +1172,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * The specification for personalization spec.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      * Notice that if both
      * [ServingConfig.personalization_spec][google.cloud.retail.v2.ServingConfig.personalization_spec]
      * and
@@ -1204,7 +1204,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * The specification for personalization spec.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
-     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_SEARCH].
+     * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      * Notice that if both
      * [ServingConfig.personalization_spec][google.cloud.retail.v2.ServingConfig.personalization_spec]
      * and

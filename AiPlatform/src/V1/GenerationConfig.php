@@ -106,11 +106,55 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      */
     protected $response_schema = null;
     /**
+     * Optional. Output schema of the generated response. This is an alternative
+     * to `response_schema` that accepts [JSON Schema](https://json-schema.org/).
+     * If set, `response_schema` must be omitted, but `response_mime_type` is
+     * required.
+     * While the full JSON Schema may be sent, not all features are supported.
+     * Specifically, only the following properties are supported:
+     * - `$id`
+     * - `$defs`
+     * - `$ref`
+     * - `$anchor`
+     * - `type`
+     * - `format`
+     * - `title`
+     * - `description`
+     * - `enum` (for strings and numbers)
+     * - `items`
+     * - `prefixItems`
+     * - `minItems`
+     * - `maxItems`
+     * - `minimum`
+     * - `maximum`
+     * - `anyOf`
+     * - `oneOf` (interpreted the same as `anyOf`)
+     * - `properties`
+     * - `additionalProperties`
+     * - `required`
+     * The non-standard `propertyOrdering` property may also be set.
+     * Cyclic references are unrolled to a limited degree and, as such, may only
+     * be used within non-required properties. (Nullable properties are not
+     * sufficient.) If `$ref` is set on a sub-schema, no other properties, except
+     * for than those starting as a `$`, may be set.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Value response_json_schema = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $response_json_schema = null;
+    /**
      * Optional. Routing configuration.
      *
      * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.GenerationConfig.RoutingConfig routing_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $routing_config = null;
+    /**
+     * Optional. Config for thinking features.
+     * An error will be returned if this field is set for models that don't
+     * support thinking.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenerationConfig.ThinkingConfig thinking_config = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $thinking_config = null;
 
     /**
      * Constructor.
@@ -156,8 +200,44 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      *           If set, a compatible response_mime_type must also be set.
      *           Compatible mimetypes:
      *           `application/json`: Schema for JSON response.
+     *     @type \Google\Protobuf\Value $response_json_schema
+     *           Optional. Output schema of the generated response. This is an alternative
+     *           to `response_schema` that accepts [JSON Schema](https://json-schema.org/).
+     *           If set, `response_schema` must be omitted, but `response_mime_type` is
+     *           required.
+     *           While the full JSON Schema may be sent, not all features are supported.
+     *           Specifically, only the following properties are supported:
+     *           - `$id`
+     *           - `$defs`
+     *           - `$ref`
+     *           - `$anchor`
+     *           - `type`
+     *           - `format`
+     *           - `title`
+     *           - `description`
+     *           - `enum` (for strings and numbers)
+     *           - `items`
+     *           - `prefixItems`
+     *           - `minItems`
+     *           - `maxItems`
+     *           - `minimum`
+     *           - `maximum`
+     *           - `anyOf`
+     *           - `oneOf` (interpreted the same as `anyOf`)
+     *           - `properties`
+     *           - `additionalProperties`
+     *           - `required`
+     *           The non-standard `propertyOrdering` property may also be set.
+     *           Cyclic references are unrolled to a limited degree and, as such, may only
+     *           be used within non-required properties. (Nullable properties are not
+     *           sufficient.) If `$ref` is set on a sub-schema, no other properties, except
+     *           for than those starting as a `$`, may be set.
      *     @type \Google\Cloud\AIPlatform\V1\GenerationConfig\RoutingConfig $routing_config
      *           Optional. Routing configuration.
+     *     @type \Google\Cloud\AIPlatform\V1\GenerationConfig\ThinkingConfig $thinking_config
+     *           Optional. Config for thinking features.
+     *           An error will be returned if this field is set for models that don't
+     *           support thinking.
      * }
      */
     public function __construct($data = NULL) {
@@ -638,6 +718,102 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Output schema of the generated response. This is an alternative
+     * to `response_schema` that accepts [JSON Schema](https://json-schema.org/).
+     * If set, `response_schema` must be omitted, but `response_mime_type` is
+     * required.
+     * While the full JSON Schema may be sent, not all features are supported.
+     * Specifically, only the following properties are supported:
+     * - `$id`
+     * - `$defs`
+     * - `$ref`
+     * - `$anchor`
+     * - `type`
+     * - `format`
+     * - `title`
+     * - `description`
+     * - `enum` (for strings and numbers)
+     * - `items`
+     * - `prefixItems`
+     * - `minItems`
+     * - `maxItems`
+     * - `minimum`
+     * - `maximum`
+     * - `anyOf`
+     * - `oneOf` (interpreted the same as `anyOf`)
+     * - `properties`
+     * - `additionalProperties`
+     * - `required`
+     * The non-standard `propertyOrdering` property may also be set.
+     * Cyclic references are unrolled to a limited degree and, as such, may only
+     * be used within non-required properties. (Nullable properties are not
+     * sufficient.) If `$ref` is set on a sub-schema, no other properties, except
+     * for than those starting as a `$`, may be set.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Value response_json_schema = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Value|null
+     */
+    public function getResponseJsonSchema()
+    {
+        return $this->response_json_schema;
+    }
+
+    public function hasResponseJsonSchema()
+    {
+        return isset($this->response_json_schema);
+    }
+
+    public function clearResponseJsonSchema()
+    {
+        unset($this->response_json_schema);
+    }
+
+    /**
+     * Optional. Output schema of the generated response. This is an alternative
+     * to `response_schema` that accepts [JSON Schema](https://json-schema.org/).
+     * If set, `response_schema` must be omitted, but `response_mime_type` is
+     * required.
+     * While the full JSON Schema may be sent, not all features are supported.
+     * Specifically, only the following properties are supported:
+     * - `$id`
+     * - `$defs`
+     * - `$ref`
+     * - `$anchor`
+     * - `type`
+     * - `format`
+     * - `title`
+     * - `description`
+     * - `enum` (for strings and numbers)
+     * - `items`
+     * - `prefixItems`
+     * - `minItems`
+     * - `maxItems`
+     * - `minimum`
+     * - `maximum`
+     * - `anyOf`
+     * - `oneOf` (interpreted the same as `anyOf`)
+     * - `properties`
+     * - `additionalProperties`
+     * - `required`
+     * The non-standard `propertyOrdering` property may also be set.
+     * Cyclic references are unrolled to a limited degree and, as such, may only
+     * be used within non-required properties. (Nullable properties are not
+     * sufficient.) If `$ref` is set on a sub-schema, no other properties, except
+     * for than those starting as a `$`, may be set.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Value response_json_schema = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Value $var
+     * @return $this
+     */
+    public function setResponseJsonSchema($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Value::class);
+        $this->response_json_schema = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. Routing configuration.
      *
      * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.GenerationConfig.RoutingConfig routing_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -669,6 +845,46 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GenerationConfig\RoutingConfig::class);
         $this->routing_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Config for thinking features.
+     * An error will be returned if this field is set for models that don't
+     * support thinking.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenerationConfig.ThinkingConfig thinking_config = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\GenerationConfig\ThinkingConfig|null
+     */
+    public function getThinkingConfig()
+    {
+        return $this->thinking_config;
+    }
+
+    public function hasThinkingConfig()
+    {
+        return isset($this->thinking_config);
+    }
+
+    public function clearThinkingConfig()
+    {
+        unset($this->thinking_config);
+    }
+
+    /**
+     * Optional. Config for thinking features.
+     * An error will be returned if this field is set for models that don't
+     * support thinking.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenerationConfig.ThinkingConfig thinking_config = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\GenerationConfig\ThinkingConfig $var
+     * @return $this
+     */
+    public function setThinkingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GenerationConfig\ThinkingConfig::class);
+        $this->thinking_config = $var;
 
         return $this;
     }

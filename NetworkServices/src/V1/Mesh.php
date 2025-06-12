@@ -18,10 +18,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class Mesh extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the Mesh resource. It matches pattern
+     * Identifier. Name of the Mesh resource. It matches pattern
      * `projects/&#42;&#47;locations/global/meshes/<mesh_name>`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -66,6 +66,14 @@ class Mesh extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 interception_port = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $interception_port = 0;
+    /**
+     * Optional. Determines if envoy will insert internal debug headers into
+     * upstream requests. Other Envoy headers may still be injected. By default,
+     * envoy will not insert any debug headers.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.networkservices.v1.EnvoyHeaders envoy_headers = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $envoy_headers = null;
 
     /**
      * Constructor.
@@ -74,7 +82,7 @@ class Mesh extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Name of the Mesh resource. It matches pattern
+     *           Identifier. Name of the Mesh resource. It matches pattern
      *           `projects/&#42;&#47;locations/global/meshes/<mesh_name>`.
      *     @type string $self_link
      *           Output only. Server-defined URL of this resource
@@ -94,6 +102,10 @@ class Mesh extends \Google\Protobuf\Internal\Message
      *           regardless of its actual ip:port destination. If unset, a port '15001' is
      *           used as the interception port. This is applicable only for sidecar proxy
      *           deployments.
+     *     @type int $envoy_headers
+     *           Optional. Determines if envoy will insert internal debug headers into
+     *           upstream requests. Other Envoy headers may still be injected. By default,
+     *           envoy will not insert any debug headers.
      * }
      */
     public function __construct($data = NULL) {
@@ -102,10 +114,10 @@ class Mesh extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the Mesh resource. It matches pattern
+     * Identifier. Name of the Mesh resource. It matches pattern
      * `projects/&#42;&#47;locations/global/meshes/<mesh_name>`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -114,10 +126,10 @@ class Mesh extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the Mesh resource. It matches pattern
+     * Identifier. Name of the Mesh resource. It matches pattern
      * `projects/&#42;&#47;locations/global/meshes/<mesh_name>`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -313,6 +325,46 @@ class Mesh extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->interception_port = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Determines if envoy will insert internal debug headers into
+     * upstream requests. Other Envoy headers may still be injected. By default,
+     * envoy will not insert any debug headers.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.networkservices.v1.EnvoyHeaders envoy_headers = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getEnvoyHeaders()
+    {
+        return isset($this->envoy_headers) ? $this->envoy_headers : 0;
+    }
+
+    public function hasEnvoyHeaders()
+    {
+        return isset($this->envoy_headers);
+    }
+
+    public function clearEnvoyHeaders()
+    {
+        unset($this->envoy_headers);
+    }
+
+    /**
+     * Optional. Determines if envoy will insert internal debug headers into
+     * upstream requests. Other Envoy headers may still be injected. By default,
+     * envoy will not insert any debug headers.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.networkservices.v1.EnvoyHeaders envoy_headers = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEnvoyHeaders($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetworkServices\V1\EnvoyHeaders::class);
+        $this->envoy_headers = $var;
 
         return $this;
     }
