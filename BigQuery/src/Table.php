@@ -232,6 +232,7 @@ class Table
     {
         $resultLimit = $this->pluck('resultLimit', $options, false);
         $schema = $this->info()['schema']['fields'];
+        $options['formatOptions.useInt64Timestamp'] = $this->mapper->useInt64Timestamp;
 
         return new ItemIterator(
             new PageIterator(

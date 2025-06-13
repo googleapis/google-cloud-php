@@ -100,7 +100,9 @@ class QueryResults implements \IteratorAggregate
                 : $job->identity()['location']
         ];
         $this->mapper = $mapper;
-        $this->queryResultsOptions = $queryResultsOptions;
+        $this->queryResultsOptions =
+            ['formatOptions.useInt64Timestamp' => $mapper->useInt64Timestamp]
+            + $queryResultsOptions;
     }
 
     /**
@@ -160,6 +162,8 @@ class QueryResults implements \IteratorAggregate
      */
     public function rows(array $options = [])
     {
+        // $this->mapper->useInt64Timestamp should not be overriden
+        unset($options['formatOptions.useInt64Timestamp']);
         $options += $this->queryResultsOptions;
         $this->waitUntilComplete($options);
         $schema = $this->info['schema']['fields'];
