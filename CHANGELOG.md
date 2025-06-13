@@ -1,5 +1,77 @@
 # Changelog
 
+## 0.292.0
+
+<details><summary>google/cloud-ai-platform 1.29.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add EncryptionSpec field for RagCorpus CMEK feature to v1 ([#8374](https://github.com/googleapis/google-cloud-php/issues/8374)) ([6f5a6b5](https://github.com/googleapis/google-cloud-php/commit/6f5a6b568e3918629fc5cc1724ea8824f0ac6f08))
+
+</details>
+
+<details><summary>google/analytics-admin 0.29.0</summary>
+
+
+
+### Features
+
+* [AnalyticsAdmin] add the `GetSubpropertySyncConfigRequest` method ([#8376](https://github.com/googleapis/google-cloud-php/issues/8376)) ([0c2d5d6](https://github.com/googleapis/google-cloud-php/commit/0c2d5d62c071b52f82c9ca3eff9686de7c23641a))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.32.0</summary>
+
+
+
+### Features
+
+* **BigQuery:** Upgrade Discovery JSON file to latest revision 20250511 ([#8366](https://github.com/googleapis/google-cloud-php/issues/8366)) ([fec2cbe](https://github.com/googleapis/google-cloud-php/commit/fec2cbed534bf1d27b4472a0611c2606e47fb135))
+
+</details>
+
+<details><summary>google/cloud-core 1.63.0</summary>
+
+
+
+### Features
+
+* **Datastore:** Add support for the ExplainOptions ([#8361](https://github.com/googleapis/google-cloud-php/issues/8361)) ([c17d2c3](https://github.com/googleapis/google-cloud-php/commit/c17d2c30119fe866f4e0ee4e1e5eafead1d0ab49))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.33.0</summary>
+
+
+
+### Features
+
+* **Datastore:** Add support for the ExplainOptions ([#8361](https://github.com/googleapis/google-cloud-php/issues/8361)) ([c17d2c3](https://github.com/googleapis/google-cloud-php/commit/c17d2c30119fe866f4e0ee4e1e5eafead1d0ab49))
+
+</details>
+
+<details><summary>google/cloud-networkservices 0.4.0</summary>
+
+
+
+### Features
+
+* [NetworkServices] update NetworkServices protos ([#8370](https://github.com/googleapis/google-cloud-php/issues/8370)) ([e23db77](https://github.com/googleapis/google-cloud-php/commit/e23db779b29210d0e1b26f490ed13f77ae720070))
+
+</details>
+
+<details><summary>google/cloud-quotas 1.4.0</summary>
+
+
+
+### Features
+
+* [Quotas] Added support for hierarchical enrollment in Quota Adjuster consumer API ([#8362](https://github.com/googleapis/google-cloud-php/issues/8362)) ([a1bc16e](https://github.com/googleapis/google-cloud-php/commit/a1bc16e4bf1ba4b102eb0800de13f317e8b6a233))
+
+</details>
+
 ## 0.291.0
 
 <details><summary>google/cloud-ai-platform 1.28.0</summary>
