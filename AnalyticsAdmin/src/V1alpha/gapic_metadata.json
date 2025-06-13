@@ -480,6 +480,11 @@
                                 "getSubpropertyEventFilter"
                             ]
                         },
+                        "GetSubpropertySyncConfig": {
+                            "methods": [
+                                "getSubpropertySyncConfig"
+                            ]
+                        },
                         "ListAccessBindings": {
                             "methods": [
                                 "listAccessBindings"
@@ -618,6 +623,11 @@
                         "ListSubpropertyEventFilters": {
                             "methods": [
                                 "listSubpropertyEventFilters"
+                            ]
+                        },
+                        "ListSubpropertySyncConfigs": {
+                            "methods": [
+                                "listSubpropertySyncConfigs"
                             ]
                         },
                         "ProvisionAccountTicket": {
@@ -788,6 +798,11 @@
                         "UpdateSubpropertyEventFilter": {
                             "methods": [
                                 "updateSubpropertyEventFilter"
+                            ]
+                        },
+                        "UpdateSubpropertySyncConfig": {
+                            "methods": [
+                                "updateSubpropertySyncConfig"
                             ]
                         }
                     }
