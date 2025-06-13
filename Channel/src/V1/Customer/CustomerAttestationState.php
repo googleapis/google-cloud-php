@@ -62,6 +62,4 @@ class CustomerAttestationState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CustomerAttestationState::class, \Google\Cloud\Channel\V1\Customer_CustomerAttestationState::class);
 
