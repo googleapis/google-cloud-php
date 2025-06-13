@@ -56,16 +56,25 @@ class ValueMapper
      *      as a {@see Int64} object for 32 bit platform
      *      compatibility.
      */
-    private $returnInt64AsObject;
+    public $returnInt64AsObject;
+
+    /**
+     * @var bool $useInt64Timestamp If true, Timestamps will be returned and
+     *      interpreted as {@see Int64} microseconds. Defaults to true.
+     */
+    public $useInt64Timestamp;
 
     /**
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
      *        returned as a {@see Int64} object for 32 bit
      *        platform compatibility.
+     * @param bool $useInt64Timestamp If true, Timestamps will be returned and
+     *        interpreted as {@see Int64} microseconds. Defaults to true.
      */
-    public function __construct($returnInt64AsObject)
+    public function __construct($returnInt64AsObject, $useInt64Timestamp = true)
     {
         $this->returnInt64AsObject = $returnInt64AsObject;
+        $this->useInt64Timestamp = $useInt64Timestamp;
     }
 
     /**
@@ -114,7 +123,9 @@ class ValueMapper
             case self::TYPE_TIME:
                 return new Time(new \DateTime($value));
             case self::TYPE_TIMESTAMP:
-                return $this->timestampFromBigQuery($value);
+                return $this->useInt64Timestamp
+                    ? $this->int64TimestampFromBigQuery($value)
+                    : $this->epochTimestampFromBigQuery($value);
             case self::TYPE_RECORD:
                 return $this->recordFromBigQuery($value, $schema['fields']);
             case self::TYPE_GEOGRAPHY:
@@ -336,13 +347,13 @@ class ValueMapper
     }
 
     /**
-     * Converts a timestamp in string format received from BigQuery to a
+     * Converts an epoch timestamp in string format received from BigQuery to a
      * {@see Timestamp}.
      *
-     * @param string $value The timestamp.
+     * @param string $value The epoch timestamp.
      * @return Timestamp
      */
-    private function timestampFromBigQuery($value)
+    private function epochTimestampFromBigQuery($value)
     {
         // If the string contains 'E' convert from exponential notation to
         // decimal notation. This doesn't cast to a float because precision can
@@ -380,5 +391,28 @@ class ValueMapper
                 )
             )
         );
+    }
+
+    /**
+     * Converts an int64 microseconds in string format received from BigQuery to a
+     * {@see Timestamp}.
+     *
+     * @param string $value The Int64 microseconds in string format.
+     * @return Timestamp
+     */
+    private function int64TimestampFromBigQuery($value): Timestamp
+    {
+        $microSeconds = (int) $value;
+        $seconds = floor($microSeconds / 1000000);
+        $remainderMicroSeconds = abs($microSeconds % 1000000);
+
+        // Handle negative timestamps
+        if ($microSeconds < 0 && $remainderMicroSeconds > 0) {
+            $remainderMicroSeconds = 1000000 - $remainderMicroSeconds; // Invert remainder
+        }
+        $remainderMicroSeconds = str_pad($remainderMicroSeconds, 6, '0', STR_PAD_LEFT);
+
+        $dateTime = \DateTime::createFromFormat('U u', "{$seconds} {$remainderMicroSeconds}");
+        return new Timestamp($dateTime);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2016 Google Inc.
  *
@@ -25,6 +26,7 @@ use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\JobConfigurationInterface;
 use Google\Cloud\BigQuery\LoadJobConfiguration;
 use Google\Cloud\BigQuery\Table;
+use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\Exception\NotFoundException;
@@ -44,19 +46,19 @@ class TableTest extends TestCase
 {
     use ProphecyTrait;
 
-    const JOB_ID = 'myJobId';
-    const PROJECT_ID = 'myProjectId';
-    const BUCKET_NAME = 'myBucket';
-    const FILE_NAME = 'myfile.csv';
-    const TABLE_ID = 'myTableId';
-    const DATASET_ID = 'myDatasetId';
+    public const JOB_ID = 'myJobId';
+    public const PROJECT_ID = 'myProjectId';
+    public const BUCKET_NAME = 'myBucket';
+    public const FILE_NAME = 'myfile.csv';
+    public const TABLE_ID = 'myTableId';
+    public const DATASET_ID = 'myDatasetId';
 
     public $connection;
     public $storageConnection;
     public $mapper;
     public $rowData = [
         'rows' => [
-            ['f' => [['v' => 'Alton']]]
+            ['f' => [['v' => 'Alton'], ['v' => '40969200000000']]]
         ]
     ];
     public $schemaData = [
@@ -65,6 +67,10 @@ class TableTest extends TestCase
                 [
                     'name' => 'first_name',
                     'type' => 'STRING'
+                ],
+                [
+                    'name' => 'timestamp',
+                    'type' => 'TIMESTAMP'
                 ]
             ]
         ]
@@ -80,7 +86,6 @@ class TableTest extends TestCase
 
     public function setUp(): void
     {
-        $this->mapper = new ValueMapper(false);
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->storageConnection = $this->prophesize(StorageConnectionInterface::class);
     }
@@ -94,14 +99,19 @@ class TableTest extends TestCase
         );
     }
 
-    public function getTable($connection, array $data = [], $tableId = null, $location = null)
-    {
+    public function getTable(
+        $connection,
+        array $data = [],
+        $tableId = null,
+        $location = null,
+        $useInt64Timestamp = true
+    ) {
         return new TableStub(
             $connection->reveal(),
             $tableId ?: self::TABLE_ID,
             self::DATASET_ID,
             self::PROJECT_ID,
-            $this->mapper,
+            new ValueMapper(false, $useInt64Timestamp),
             $data,
             $location
         );
@@ -234,6 +244,42 @@ class TableTest extends TestCase
             $this->rowData['rows'][0]['f'][0]['v'],
             $rows[0]['first_name']
         );
+        $this->assertEquals(
+            new Timestamp(new \DateTime('1971-04-20T04:20:00.000000Z')),
+            $rows[0]['timestamp']
+        );
+    }
+
+    public function testGetsRowWithEpochTimestamp()
+    {
+        $this->rowData['rows'][0]['f'][1]['v'] = '1.438712914E9';
+        $this->connection->getTable(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('tableId', self::TABLE_ID)
+        ))
+            ->willReturn($this->schemaData)
+            ->shouldBeCalledTimes(1);
+
+        $this->connection->listTableData(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('tableId', self::TABLE_ID)
+        ))
+            ->willReturn($this->rowData)
+            ->shouldBeCalledTimes(1);
+
+        $table = $this->getTable($this->connection, useInt64Timestamp: false);
+        $rows = iterator_to_array($table->rows());
+
+        $this->assertEquals(
+            $this->rowData['rows'][0]['f'][0]['v'],
+            $rows[0]['first_name']
+        );
+        $this->assertEquals(
+            new Timestamp(new \DateTime('2015-08-04 18:28:34Z')),
+            $rows[0]['timestamp']
+        );
     }
 
     public function testGetsRowsWithToken()
@@ -264,6 +310,10 @@ class TableTest extends TestCase
         $rows = iterator_to_array($table->rows());
 
         $this->assertEquals($name, $rows[1]['first_name']);
+        $this->assertEquals(
+            new Timestamp(new \DateTime('1971-04-20T04:20:00.000000Z')),
+            $rows[1]['timestamp']
+        );
     }
 
     /**

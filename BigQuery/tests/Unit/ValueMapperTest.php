@@ -90,7 +90,7 @@ class ValueMapperTest extends TestCase
      */
     public function testMapsFromBigQuery($value, $schema, $expected)
     {
-        $mapper = new ValueMapper(false);
+        $mapper = new ValueMapper(false, false);
         $actual = $mapper->fromBigQuery($value, $schema);
 
         $this->assertEquals($expected, $actual);
@@ -219,6 +219,41 @@ class ValueMapperTest extends TestCase
                 new Json(json_encode(['id' => 1]))
             ],
         ];
+    }
+
+    public function int64TimestampDataProvider()
+    {
+        return [
+            [
+                ['v' => '40969200000001'],
+                ['type' => 'TIMESTAMP'],
+                new Timestamp(new \DateTime('1971-04-20T04:20:00.000001Z'))
+            ],
+            [
+                ['v' => '-842745600000425'],
+                ['type' => 'TIMESTAMP'],
+                new Timestamp(new \DateTime('1943-04-18T23:59:59.999575'))
+            ],
+            [
+                ['v' => '327456000000013'],
+                ['type' => 'TIMESTAMP'],
+                new Timestamp(new \DateTime('1980-05-18T00:00:00.000013Z'))
+            ],
+            [
+                ['v' => '-769392000999999'],
+                ['type' => 'TIMESTAMP'],
+                new Timestamp(new \DateTime('1945-08-14T23:59:59.000001Z'))
+            ]
+        ];
+    }
+
+    /**
+     * @dataProvider int64TimestampDataProvider
+     */
+    public function testInt64Timestamp($value, $schema, $expected)
+    {
+        $mapper = new ValueMapper(false);
+        $this->assertEquals($expected, $mapper->fromBigQuery($value, $schema));
     }
 
     public function testMapsBytesFromBigQuery()
