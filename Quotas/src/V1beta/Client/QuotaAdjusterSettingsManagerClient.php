@@ -110,6 +110,63 @@ final class QuotaAdjusterSettingsManagerClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * folder_location_quotaAdjusterSettings resource.
+     *
+     * @param string $folder
+     * @param string $location
+     *
+     * @return string The formatted folder_location_quotaAdjusterSettings resource.
+     *
+     * @experimental
+     */
+    public static function folderLocationQuotaAdjusterSettingsName(string $folder, string $location): string
+    {
+        return self::getPathTemplate('folderLocationQuotaAdjusterSettings')->render([
+            'folder' => $folder,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location_quotaAdjusterSettings resource.
+     *
+     * @param string $organization
+     * @param string $location
+     *
+     * @return string The formatted organization_location_quotaAdjusterSettings resource.
+     *
+     * @experimental
+     */
+    public static function organizationLocationQuotaAdjusterSettingsName(string $organization, string $location): string
+    {
+        return self::getPathTemplate('organizationLocationQuotaAdjusterSettings')->render([
+            'organization' => $organization,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_quotaAdjusterSettings resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted project_location_quotaAdjusterSettings resource.
+     *
+     * @experimental
+     */
+    public static function projectLocationQuotaAdjusterSettingsName(string $project, string $location): string
+    {
+        return self::getPathTemplate('projectLocationQuotaAdjusterSettings')->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * quota_adjuster_settings resource.
      *
      * @param string $project
@@ -131,6 +188,9 @@ final class QuotaAdjusterSettingsManagerClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - folderLocationQuotaAdjusterSettings: folders/{folder}/locations/{location}/quotaAdjusterSettings
+     * - organizationLocationQuotaAdjusterSettings: organizations/{organization}/locations/{location}/quotaAdjusterSettings
+     * - projectLocationQuotaAdjusterSettings: projects/{project}/locations/{location}/quotaAdjusterSettings
      * - quotaAdjusterSettings: projects/{project}/locations/{location}/quotaAdjusterSettings
      *
      * The optional $template argument can be supplied to specify a particular pattern,

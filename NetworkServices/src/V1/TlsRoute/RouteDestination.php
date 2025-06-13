@@ -22,7 +22,7 @@ class RouteDestination extends \Google\Protobuf\Internal\Message
      */
     protected $service_name = '';
     /**
-     * Optional. Specifies the proportion of requests forwareded to the backend
+     * Optional. Specifies the proportion of requests forwarded to the backend
      * referenced by the service_name field. This is computed as:
      * - weight/Sum(weights in destinations)
      * Weights in all destinations does not need to sum up to 100.
@@ -40,7 +40,7 @@ class RouteDestination extends \Google\Protobuf\Internal\Message
      *     @type string $service_name
      *           Required. The URL of a BackendService to route traffic to.
      *     @type int $weight
-     *           Optional. Specifies the proportion of requests forwareded to the backend
+     *           Optional. Specifies the proportion of requests forwarded to the backend
      *           referenced by the service_name field. This is computed as:
      *           - weight/Sum(weights in destinations)
      *           Weights in all destinations does not need to sum up to 100.
@@ -78,7 +78,7 @@ class RouteDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specifies the proportion of requests forwareded to the backend
+     * Optional. Specifies the proportion of requests forwarded to the backend
      * referenced by the service_name field. This is computed as:
      * - weight/Sum(weights in destinations)
      * Weights in all destinations does not need to sum up to 100.
@@ -92,7 +92,7 @@ class RouteDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specifies the proportion of requests forwareded to the backend
+     * Optional. Specifies the proportion of requests forwarded to the backend
      * referenced by the service_name field. This is computed as:
      * - weight/Sum(weights in destinations)
      * Weights in all destinations does not need to sum up to 100.

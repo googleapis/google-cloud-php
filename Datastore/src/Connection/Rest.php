@@ -116,6 +116,13 @@ class Rest implements ConnectionInterface
      */
     public function runQuery(array $args)
     {
+        // There is a push to stop using generic arrays for options.
+        // We will transition into using structured options in the future
+        // hence we add this to handle options with the message type
+        if (isset($args['explainOptions'])) {
+            $args['explainOptions'] = json_decode($args['explainOptions']->serializeToJsonString());
+        }
+
         return $this->sendWithHeaders('projects', 'runQuery', $args);
     }
 
@@ -134,6 +141,12 @@ class Rest implements ConnectionInterface
                     $aggregation
                 );
             }
+        }
+        // There is a push to stop using generic arrays for options.
+        // We will transition into using structured options in the future
+        // hence we add this to handle options with the message type
+        if (isset($args['explainOptions'])) {
+            $args['explainOptions'] = json_decode($args['explainOptions']->serializeToJsonString());
         }
         return $this->sendWithHeaders('projects', 'runAggregationQuery', $args);
     }

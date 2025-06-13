@@ -34,8 +34,6 @@ use Google\Rpc\Status;
 /**
  * Updates the parameters of a single HttpRoute.
  *
- * @param string $httpRouteName             Name of the HttpRoute resource. It matches pattern
- *                                          `projects/&#42;/locations/global/httpRoutes/http_route_name>`.
  * @param string $httpRouteHostnamesElement Hostnames define a set of hosts that should match against the
  *                                          HTTP host header to select a HttpRoute to process the request. Hostname is
  *                                          the fully qualified domain name of a network host, as defined by RFC 1123
@@ -61,7 +59,7 @@ use Google\Rpc\Status;
  *                                          Gateways under the same scope), it is not possible to associate two routes
  *                                          both with `*.bar.com` or both with `bar.com`.
  */
-function update_http_route_sample(string $httpRouteName, string $httpRouteHostnamesElement): void
+function update_http_route_sample(string $httpRouteHostnamesElement): void
 {
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
@@ -70,7 +68,6 @@ function update_http_route_sample(string $httpRouteName, string $httpRouteHostna
     $httpRouteHostnames = [$httpRouteHostnamesElement,];
     $httpRouteRules = [new RouteRule()];
     $httpRoute = (new HttpRoute())
-        ->setName($httpRouteName)
         ->setHostnames($httpRouteHostnames)
         ->setRules($httpRouteRules);
     $request = (new UpdateHttpRouteRequest())
@@ -107,9 +104,8 @@ function update_http_route_sample(string $httpRouteName, string $httpRouteHostna
  */
 function callSample(): void
 {
-    $httpRouteName = '[NAME]';
     $httpRouteHostnamesElement = '[HOSTNAMES]';
 
-    update_http_route_sample($httpRouteName, $httpRouteHostnamesElement);
+    update_http_route_sample($httpRouteHostnamesElement);
 }
 // [END networkservices_v1_generated_NetworkServices_UpdateHttpRoute_sync]

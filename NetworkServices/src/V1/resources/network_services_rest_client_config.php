@@ -137,6 +137,21 @@ return [
                     'service_binding_id',
                 ],
             ],
+            'CreateServiceLbPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/serviceLbPolicies',
+                'body' => 'service_lb_policy',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'service_lb_policy_id',
+                ],
+            ],
             'CreateTcpRoute' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/tcpRoutes',
@@ -233,6 +248,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteServiceLbPolicy' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/serviceLbPolicies/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteTcpRoute' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/tcpRoutes/*}',
@@ -277,6 +303,17 @@ return [
                     ],
                 ],
             ],
+            'GetGatewayRouteView' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/gateways/*/routeViews/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetGrpcRoute' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/grpcRoutes/*}',
@@ -310,9 +347,31 @@ return [
                     ],
                 ],
             ],
+            'GetMeshRouteView' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/meshes/*/routeViews/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetServiceBinding' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/serviceBindings/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetServiceLbPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/serviceLbPolicies/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -354,6 +413,17 @@ return [
                     ],
                 ],
             ],
+            'ListGatewayRouteViews' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/gateways/*}/routeViews',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListGateways' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/gateways',
@@ -387,6 +457,17 @@ return [
                     ],
                 ],
             ],
+            'ListMeshRouteViews' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/meshes/*}/routeViews',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListMeshes' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/meshes',
@@ -401,6 +482,17 @@ return [
             'ListServiceBindings' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/serviceBindings',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListServiceLbPolicies' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/serviceLbPolicies',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -491,6 +583,32 @@ return [
                     'mesh.name' => [
                         'getters' => [
                             'getMesh',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateServiceBinding' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{service_binding.name=projects/*/locations/*/serviceBindings/*}',
+                'body' => 'service_binding',
+                'placeholders' => [
+                    'service_binding.name' => [
+                        'getters' => [
+                            'getServiceBinding',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateServiceLbPolicy' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{service_lb_policy.name=projects/*/locations/*/serviceLbPolicies/*}',
+                'body' => 'service_lb_policy',
+                'placeholders' => [
+                    'service_lb_policy.name' => [
+                        'getters' => [
+                            'getServiceLbPolicy',
                             'getName',
                         ],
                     ],
