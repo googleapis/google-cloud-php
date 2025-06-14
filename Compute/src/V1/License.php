@@ -16,6 +16,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class License extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Specifies licenseCodes of licenses that can replace this license. Note: such replacements are allowed even if removable_from_disk is false.
+     *
+     * Generated from protobuf field <code>repeated string allowed_replacement_licenses = 195677718;</code>
+     */
+    private $allowed_replacement_licenses;
+    /**
+     * If true, this license can be appended to an existing disk's set of licenses.
+     *
+     * Generated from protobuf field <code>optional bool appendable_to_disk = 16959254;</code>
+     */
+    private $appendable_to_disk = null;
+    /**
      * [Output Only] Deprecated. This field no longer reflects whether a license charges a usage fee.
      *
      * Generated from protobuf field <code>optional bool charges_use_fee = 372412622;</code>
@@ -40,6 +52,12 @@ class License extends \Google\Protobuf\Internal\Message
      */
     private $id = null;
     /**
+     * Specifies licenseCodes of licenses that are incompatible with this license. If a license is incompatible with this license, it cannot be attached to the same disk or image.
+     *
+     * Generated from protobuf field <code>repeated string incompatible_licenses = 334239768;</code>
+     */
+    private $incompatible_licenses;
+    /**
      * [Output Only] Type of resource. Always compute#license for licenses.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -52,11 +70,41 @@ class License extends \Google\Protobuf\Internal\Message
      */
     private $license_code = null;
     /**
+     * If set, this license will be unable to be removed or replaced once attached to a disk until the minimum_retention period has passed.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration minimum_retention = 155398189;</code>
+     */
+    private $minimum_retention = null;
+    /**
+     * If true, this license can only be used on VMs on multi tenant nodes.
+     *
+     * Generated from protobuf field <code>optional bool multi_tenant_only = 274395163;</code>
+     */
+    private $multi_tenant_only = null;
+    /**
      * Name of the resource. The name must be 1-63 characters long and comply with RFC1035.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
+    /**
+     * If true, indicates this is an OS license. Only one OS license can be attached to a disk or image at a time.
+     *
+     * Generated from protobuf field <code>optional bool os_license = 487986406;</code>
+     */
+    private $os_license = null;
+    /**
+     * If true, this license can be removed from a disk's set of licenses, with no replacement license needed.
+     *
+     * Generated from protobuf field <code>optional bool removable_from_disk = 25854638;</code>
+     */
+    private $removable_from_disk = null;
+    /**
+     * Specifies the set of permissible coattached licenseCodes of licenses that satisfy the coattachment requirement of this license. At least one license from the set must be attached to the same disk or image as this license.
+     *
+     * Generated from protobuf field <code>repeated string required_coattached_licenses = 129195265;</code>
+     */
+    private $required_coattached_licenses;
     /**
      * [Input Only] Deprecated.
      *
@@ -70,11 +118,29 @@ class License extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
+     * [Output Only] Server-defined URL for this resource with the resource id.
+     *
+     * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
+     */
+    private $self_link_with_id = null;
+    /**
+     * If true, this license can only be used on VMs on sole tenant nodes.
+     *
+     * Generated from protobuf field <code>optional bool sole_tenant_only = 427525559;</code>
+     */
+    private $sole_tenant_only = null;
+    /**
      * If false, licenses will not be copied from the source resource when creating an image from a disk, disk from snapshot, or snapshot from disk.
      *
      * Generated from protobuf field <code>optional bool transferable = 4349893;</code>
      */
     private $transferable = null;
+    /**
+     * [Output Only] Last update timestamp in RFC3339 text format.
+     *
+     * Generated from protobuf field <code>optional string update_timestamp = 120894752;</code>
+     */
+    private $update_timestamp = null;
 
     /**
      * Constructor.
@@ -82,6 +148,10 @@ class License extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_replacement_licenses
+     *           Specifies licenseCodes of licenses that can replace this license. Note: such replacements are allowed even if removable_from_disk is false.
+     *     @type bool $appendable_to_disk
+     *           If true, this license can be appended to an existing disk's set of licenses.
      *     @type bool $charges_use_fee
      *           [Output Only] Deprecated. This field no longer reflects whether a license charges a usage fee.
      *     @type string $creation_timestamp
@@ -90,23 +160,103 @@ class License extends \Google\Protobuf\Internal\Message
      *           An optional textual description of the resource; provided by the client when the resource is created.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $incompatible_licenses
+     *           Specifies licenseCodes of licenses that are incompatible with this license. If a license is incompatible with this license, it cannot be attached to the same disk or image.
      *     @type string $kind
      *           [Output Only] Type of resource. Always compute#license for licenses.
      *     @type int|string $license_code
      *           [Output Only] The unique code used to attach this license to images, snapshots, and disks.
+     *     @type \Google\Cloud\Compute\V1\Duration $minimum_retention
+     *           If set, this license will be unable to be removed or replaced once attached to a disk until the minimum_retention period has passed.
+     *     @type bool $multi_tenant_only
+     *           If true, this license can only be used on VMs on multi tenant nodes.
      *     @type string $name
      *           Name of the resource. The name must be 1-63 characters long and comply with RFC1035.
+     *     @type bool $os_license
+     *           If true, indicates this is an OS license. Only one OS license can be attached to a disk or image at a time.
+     *     @type bool $removable_from_disk
+     *           If true, this license can be removed from a disk's set of licenses, with no replacement license needed.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $required_coattached_licenses
+     *           Specifies the set of permissible coattached licenseCodes of licenses that satisfy the coattachment requirement of this license. At least one license from the set must be attached to the same disk or image as this license.
      *     @type \Google\Cloud\Compute\V1\LicenseResourceRequirements $resource_requirements
      *           [Input Only] Deprecated.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
+     *     @type string $self_link_with_id
+     *           [Output Only] Server-defined URL for this resource with the resource id.
+     *     @type bool $sole_tenant_only
+     *           If true, this license can only be used on VMs on sole tenant nodes.
      *     @type bool $transferable
      *           If false, licenses will not be copied from the source resource when creating an image from a disk, disk from snapshot, or snapshot from disk.
+     *     @type string $update_timestamp
+     *           [Output Only] Last update timestamp in RFC3339 text format.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Specifies licenseCodes of licenses that can replace this license. Note: such replacements are allowed even if removable_from_disk is false.
+     *
+     * Generated from protobuf field <code>repeated string allowed_replacement_licenses = 195677718;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAllowedReplacementLicenses()
+    {
+        return $this->allowed_replacement_licenses;
+    }
+
+    /**
+     * Specifies licenseCodes of licenses that can replace this license. Note: such replacements are allowed even if removable_from_disk is false.
+     *
+     * Generated from protobuf field <code>repeated string allowed_replacement_licenses = 195677718;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAllowedReplacementLicenses($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->allowed_replacement_licenses = $arr;
+
+        return $this;
+    }
+
+    /**
+     * If true, this license can be appended to an existing disk's set of licenses.
+     *
+     * Generated from protobuf field <code>optional bool appendable_to_disk = 16959254;</code>
+     * @return bool
+     */
+    public function getAppendableToDisk()
+    {
+        return isset($this->appendable_to_disk) ? $this->appendable_to_disk : false;
+    }
+
+    public function hasAppendableToDisk()
+    {
+        return isset($this->appendable_to_disk);
+    }
+
+    public function clearAppendableToDisk()
+    {
+        unset($this->appendable_to_disk);
+    }
+
+    /**
+     * If true, this license can be appended to an existing disk's set of licenses.
+     *
+     * Generated from protobuf field <code>optional bool appendable_to_disk = 16959254;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAppendableToDisk($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->appendable_to_disk = $var;
+
+        return $this;
     }
 
     /**
@@ -254,6 +404,32 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Specifies licenseCodes of licenses that are incompatible with this license. If a license is incompatible with this license, it cannot be attached to the same disk or image.
+     *
+     * Generated from protobuf field <code>repeated string incompatible_licenses = 334239768;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getIncompatibleLicenses()
+    {
+        return $this->incompatible_licenses;
+    }
+
+    /**
+     * Specifies licenseCodes of licenses that are incompatible with this license. If a license is incompatible with this license, it cannot be attached to the same disk or image.
+     *
+     * Generated from protobuf field <code>repeated string incompatible_licenses = 334239768;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setIncompatibleLicenses($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->incompatible_licenses = $arr;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] Type of resource. Always compute#license for licenses.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -326,6 +502,78 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * If set, this license will be unable to be removed or replaced once attached to a disk until the minimum_retention period has passed.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration minimum_retention = 155398189;</code>
+     * @return \Google\Cloud\Compute\V1\Duration|null
+     */
+    public function getMinimumRetention()
+    {
+        return $this->minimum_retention;
+    }
+
+    public function hasMinimumRetention()
+    {
+        return isset($this->minimum_retention);
+    }
+
+    public function clearMinimumRetention()
+    {
+        unset($this->minimum_retention);
+    }
+
+    /**
+     * If set, this license will be unable to be removed or replaced once attached to a disk until the minimum_retention period has passed.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration minimum_retention = 155398189;</code>
+     * @param \Google\Cloud\Compute\V1\Duration $var
+     * @return $this
+     */
+    public function setMinimumRetention($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\Duration::class);
+        $this->minimum_retention = $var;
+
+        return $this;
+    }
+
+    /**
+     * If true, this license can only be used on VMs on multi tenant nodes.
+     *
+     * Generated from protobuf field <code>optional bool multi_tenant_only = 274395163;</code>
+     * @return bool
+     */
+    public function getMultiTenantOnly()
+    {
+        return isset($this->multi_tenant_only) ? $this->multi_tenant_only : false;
+    }
+
+    public function hasMultiTenantOnly()
+    {
+        return isset($this->multi_tenant_only);
+    }
+
+    public function clearMultiTenantOnly()
+    {
+        unset($this->multi_tenant_only);
+    }
+
+    /**
+     * If true, this license can only be used on VMs on multi tenant nodes.
+     *
+     * Generated from protobuf field <code>optional bool multi_tenant_only = 274395163;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setMultiTenantOnly($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->multi_tenant_only = $var;
+
+        return $this;
+    }
+
+    /**
      * Name of the resource. The name must be 1-63 characters long and comply with RFC1035.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
@@ -357,6 +605,104 @@ class License extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * If true, indicates this is an OS license. Only one OS license can be attached to a disk or image at a time.
+     *
+     * Generated from protobuf field <code>optional bool os_license = 487986406;</code>
+     * @return bool
+     */
+    public function getOsLicense()
+    {
+        return isset($this->os_license) ? $this->os_license : false;
+    }
+
+    public function hasOsLicense()
+    {
+        return isset($this->os_license);
+    }
+
+    public function clearOsLicense()
+    {
+        unset($this->os_license);
+    }
+
+    /**
+     * If true, indicates this is an OS license. Only one OS license can be attached to a disk or image at a time.
+     *
+     * Generated from protobuf field <code>optional bool os_license = 487986406;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setOsLicense($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->os_license = $var;
+
+        return $this;
+    }
+
+    /**
+     * If true, this license can be removed from a disk's set of licenses, with no replacement license needed.
+     *
+     * Generated from protobuf field <code>optional bool removable_from_disk = 25854638;</code>
+     * @return bool
+     */
+    public function getRemovableFromDisk()
+    {
+        return isset($this->removable_from_disk) ? $this->removable_from_disk : false;
+    }
+
+    public function hasRemovableFromDisk()
+    {
+        return isset($this->removable_from_disk);
+    }
+
+    public function clearRemovableFromDisk()
+    {
+        unset($this->removable_from_disk);
+    }
+
+    /**
+     * If true, this license can be removed from a disk's set of licenses, with no replacement license needed.
+     *
+     * Generated from protobuf field <code>optional bool removable_from_disk = 25854638;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRemovableFromDisk($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->removable_from_disk = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the set of permissible coattached licenseCodes of licenses that satisfy the coattachment requirement of this license. At least one license from the set must be attached to the same disk or image as this license.
+     *
+     * Generated from protobuf field <code>repeated string required_coattached_licenses = 129195265;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getRequiredCoattachedLicenses()
+    {
+        return $this->required_coattached_licenses;
+    }
+
+    /**
+     * Specifies the set of permissible coattached licenseCodes of licenses that satisfy the coattachment requirement of this license. At least one license from the set must be attached to the same disk or image as this license.
+     *
+     * Generated from protobuf field <code>repeated string required_coattached_licenses = 129195265;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setRequiredCoattachedLicenses($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->required_coattached_licenses = $arr;
 
         return $this;
     }
@@ -434,6 +780,78 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * [Output Only] Server-defined URL for this resource with the resource id.
+     *
+     * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
+     * @return string
+     */
+    public function getSelfLinkWithId()
+    {
+        return isset($this->self_link_with_id) ? $this->self_link_with_id : '';
+    }
+
+    public function hasSelfLinkWithId()
+    {
+        return isset($this->self_link_with_id);
+    }
+
+    public function clearSelfLinkWithId()
+    {
+        unset($this->self_link_with_id);
+    }
+
+    /**
+     * [Output Only] Server-defined URL for this resource with the resource id.
+     *
+     * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSelfLinkWithId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->self_link_with_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * If true, this license can only be used on VMs on sole tenant nodes.
+     *
+     * Generated from protobuf field <code>optional bool sole_tenant_only = 427525559;</code>
+     * @return bool
+     */
+    public function getSoleTenantOnly()
+    {
+        return isset($this->sole_tenant_only) ? $this->sole_tenant_only : false;
+    }
+
+    public function hasSoleTenantOnly()
+    {
+        return isset($this->sole_tenant_only);
+    }
+
+    public function clearSoleTenantOnly()
+    {
+        unset($this->sole_tenant_only);
+    }
+
+    /**
+     * If true, this license can only be used on VMs on sole tenant nodes.
+     *
+     * Generated from protobuf field <code>optional bool sole_tenant_only = 427525559;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSoleTenantOnly($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->sole_tenant_only = $var;
+
+        return $this;
+    }
+
+    /**
      * If false, licenses will not be copied from the source resource when creating an image from a disk, disk from snapshot, or snapshot from disk.
      *
      * Generated from protobuf field <code>optional bool transferable = 4349893;</code>
@@ -465,6 +883,42 @@ class License extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->transferable = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Last update timestamp in RFC3339 text format.
+     *
+     * Generated from protobuf field <code>optional string update_timestamp = 120894752;</code>
+     * @return string
+     */
+    public function getUpdateTimestamp()
+    {
+        return isset($this->update_timestamp) ? $this->update_timestamp : '';
+    }
+
+    public function hasUpdateTimestamp()
+    {
+        return isset($this->update_timestamp);
+    }
+
+    public function clearUpdateTimestamp()
+    {
+        unset($this->update_timestamp);
+    }
+
+    /**
+     * [Output Only] Last update timestamp in RFC3339 text format.
+     *
+     * Generated from protobuf field <code>optional string update_timestamp = 120894752;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUpdateTimestamp($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->update_timestamp = $var;
 
         return $this;
     }

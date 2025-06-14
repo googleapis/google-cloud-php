@@ -271,6 +271,7 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $adminEnabled = false;
+        $attachmentGroup = 'attachmentGroup600312931';
         $bandwidth = 'bandwidth-1965768527';
         $cloudRouterIpAddress = 'cloudRouterIpAddress1361134600';
         $cloudRouterIpv6Address = 'cloudRouterIpv6Address-621819448';
@@ -305,6 +306,7 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $vlanTag8021q = 1730540572;
         $expectedResponse = new InterconnectAttachment();
         $expectedResponse->setAdminEnabled($adminEnabled);
+        $expectedResponse->setAttachmentGroup($attachmentGroup);
         $expectedResponse->setBandwidth($bandwidth);
         $expectedResponse->setCloudRouterIpAddress($cloudRouterIpAddress);
         $expectedResponse->setCloudRouterIpv6Address($cloudRouterIpv6Address);
