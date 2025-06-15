@@ -37,6 +37,7 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\Firestore\Filter;
+use Google\Cloud\Firestore\V1\ExplainOptions;
 
 /**
  * @group firestore
@@ -116,6 +117,42 @@ class QueryTest extends TestCase
         $this->query->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->query->documents(['maxRetries' => 0]);
+        $this->assertContainsOnlyInstancesOf(DocumentSnapshot::class, $res);
+        $this->assertCount(1, $res->rows());
+
+        $current = $res->rows()[0];
+        $this->assertEquals($name, $current->name());
+        $this->assertEquals('world', $current['hello']);
+    }
+
+    public function testContainsQueryExplainOptions()
+    {
+        $name = self::QUERY_PARENT .'/foo';
+        $explainOptions = new ExplainOptions();
+        $explainOptions->setAnalyze(true);
+
+        $this->connection->runQuery(Argument::that(function ($options) {
+            return isset($options['explainOptions']);
+        }))
+            ->shouldBeCalled()
+            ->willReturn(new \ArrayIterator([
+                [
+                    'document' => [
+                        'name' => $name,
+                        'fields' => [
+                            'hello' => [
+                                'stringValue' => 'world'
+                            ]
+                        ]
+                    ],
+                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT),
+                ],
+                []
+            ]));
+
+        $this->query->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->query->documents(['maxRetries' => 0, 'explainOptions' => $explainOptions]);
         $this->assertContainsOnlyInstancesOf(DocumentSnapshot::class, $res);
         $this->assertCount(1, $res->rows());
 
