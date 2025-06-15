@@ -55,7 +55,11 @@ class KeySet
     /**
      * Create a KeySet.
      *
-     * @param array $options [optional] {
+     * @param array{
+     *     keys?: array,
+     *     ranges?: KeyRange[],
+     *     all?: bool,
+     * } $options {
      *     @type array $keys A list of specific keys. Entries in keys should
      *           have exactly as many elements as there are columns in the
      *           primary or index key with which this KeySet is used.
