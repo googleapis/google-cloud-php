@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Representes a singular feature of a model. If the feature is `recognizer`,
+ * Represents a singular feature of a model. If the feature is `recognizer`,
  * the release_state of the feature represents the release_state of the model
  *
  * Generated from protobuf message <code>google.cloud.speech.v2.ModelFeature</code>
