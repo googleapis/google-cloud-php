@@ -212,7 +212,8 @@ class AggregateQueryTest extends FirestoreTestCase
         $this->assertNull($explainMetrics->getExecutionStats());
 
         // When setting the ExplainOptions::analyze to false, the 'total' alias
-        // should be empty. Get throws an error when the alias is not found
+        // should be empty. The AggregateQuerySnapshot::get() method
+        // throws an error when the alias is not found
         $this->expectException(InvalidArgumentException::class);
         $result->get('total');
     }
