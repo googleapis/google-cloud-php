@@ -80,7 +80,7 @@ class QueryTest extends FirestoreTestCase
         $this->assertEquals($res->name(), $doc->name());
     }
 
-    public function testExplainOptionsFalseReturnsPlanSummaryOnly()
+    public function testExplainOptionsWithAnalyzeFalseReturnsPlanSummaryOnly()
     {
         $randomVal = base64_encode(random_bytes(10));
         $doc = $this->insertDoc([
@@ -103,7 +103,7 @@ class QueryTest extends FirestoreTestCase
         $this->assertEmpty(iterator_to_array($res));
     }
 
-    public function testExplainOptionsTrueReturnsAll()
+    public function testExplainOptionsWithAnalyzeTrueReturnsAll()
     {
         $randomVal = base64_encode(random_bytes(10));
         $doc = $this->insertDoc([

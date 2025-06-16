@@ -190,7 +190,7 @@ class AggregateQueryTest extends FirestoreTestCase
         );
     }
 
-    public function testExplainOptionsAnalyzeFalseReturnsPlan()
+    public function testAggregationExplainOptionsWithAnalyzeFalseReturnsPlanSummaryOnly()
     {
         $docsToAdd = [['foo' => 'bar', 'hello' => 'world', 'good' => 'night']];
 
@@ -218,7 +218,7 @@ class AggregateQueryTest extends FirestoreTestCase
         $result->get('total');
     }
 
-    public function testExplainOptionsAnalyzeTrue()
+    public function testAggregationExplainOptionsWithAnalyzeTrueReturnsAll()
     {
         $docsToAdd = [['foo' => 'bar', 'hello' => 'world', 'good' => 'night']];
 
