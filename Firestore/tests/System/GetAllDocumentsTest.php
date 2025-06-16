@@ -18,7 +18,6 @@
 namespace Google\Cloud\Firestore\Tests\System;
 
 use Google\Cloud\Firestore\DocumentSnapshot;
-use Google\Cloud\Firestore\V1\ExplainOptions;
 
 /**
  * @group firestore
@@ -62,50 +61,6 @@ class GetAllDocumentsTest extends FirestoreTestCase
         $res = $f->documents($paths);
 
         $this->assertContainsOnlyInstancesOf(DocumentSnapshot::class, $res);
-        foreach ($res as $i => $document) {
-            $name = $document->name();
-
-            // check order
-            $this->assertEquals($paths[$i]->name(), $name);
-
-            $exist = array_key_exists($name, self::$refsExist);
-
-            $this->assertEquals($exist, $document->exists());
-        }
-    }
-
-    public function textExplainOptionsWithAnalyzeFalseReturnsPlanSummaryOnly()
-    {
-        $f = self::$client;
-
-        $explainOptions = new ExplainOptions();
-        $explainOptions->setAnalyze(false);
-
-        $paths = $this->interleave();
-        $res = $f->documents($paths);
-        $explainMetrics = $res->getExplainMetrics();
-
-        $this->assertNotNull($explainMetrics->getPlanSummary());
-        $this->assertNull($explainMetrics->getExecutionStats());
-
-        $this->assertEmpty($res->rows());
-    }
-
-    public function textExplainOptionsWithAnalyzeReturnsAllData()
-    {
-        $f = self::$client;
-
-        $explainOptions = new ExplainOptions();
-        $explainOptions->setAnalyze(false);
-
-        $paths = $this->interleave();
-        $res = $f->documents($paths);
-        $explainMetrics = $res->getExplainMetrics();
-
-        $this->assertNotNull($explainMetrics->getPlanSummary());
-        $this->assertNotNull($explainMetrics->getExecutionStats());
-
-         $this->assertContainsOnlyInstancesOf(DocumentSnapshot::class, $res);
         foreach ($res as $i => $document) {
             $name = $document->name();
 
