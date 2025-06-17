@@ -20,6 +20,7 @@ namespace Google\Cloud\Firestore\Tests\System;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\Filter;
+use Google\Cloud\Firestore\V1\ExplainOptions;
 
 /**
  * @group firestore
@@ -77,6 +78,53 @@ class QueryTest extends FirestoreTestCase
             Filter::field('foo', '=', $randomVal)
         ));
         $this->assertEquals($res->name(), $doc->name());
+    }
+
+    public function testExplainOptionsWithAnalyzeFalseReturnsPlanSummaryOnly()
+    {
+        $randomVal = base64_encode(random_bytes(10));
+        $doc = $this->insertDoc([
+            'foo' => $randomVal
+        ]);
+
+        $explainOptions = new ExplainOptions();
+        $explainOptions->setAnalyze(false);
+
+        $res = $this->query->where('foo', '=', $randomVal)
+            ->documents([
+                'explainOptions' => $explainOptions
+            ]);
+
+        $explainMetrics = $res->getExplainMetrics();
+
+        $this->assertNotNull($explainMetrics);
+        $this->assertNotNull($explainMetrics->getPlanSummary());
+        $this->assertNull($explainMetrics->getExecutionStats());
+        $this->assertEmpty(iterator_to_array($res));
+    }
+
+    public function testExplainOptionsWithAnalyzeTrueReturnsAll()
+    {
+        $randomVal = base64_encode(random_bytes(10));
+        $doc = $this->insertDoc([
+            'foo' => $randomVal
+        ]);
+
+        $explainOptions = new ExplainOptions();
+        $explainOptions->setAnalyze(true);
+
+        $res = $this->query->where('foo', '=', $randomVal)
+            ->documents([
+                'explainOptions' => $explainOptions
+            ]);
+
+        $explainMetrics = $res->getExplainMetrics();
+
+        $this->assertNotNull($explainMetrics);
+        $this->assertNotNull($explainMetrics->getPlanSummary());
+        $this->assertNotNull($explainMetrics->getExecutionStats());
+
+        $this->assertEquals(current(iterator_to_array($res))->name(), $doc->name());
     }
 
     public function testWhereNull()
