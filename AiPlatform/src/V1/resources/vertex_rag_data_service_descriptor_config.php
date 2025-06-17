@@ -119,9 +119,41 @@ return [
                     ],
                 ],
             ],
+            'UpdateRagEngineConfig' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AIPlatform\V1\RagEngineConfig',
+                    'metadataReturnType' => '\Google\Cloud\AIPlatform\V1\UpdateRagEngineConfigOperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'rag_engine_config.name',
+                        'fieldAccessors' => [
+                            'getRagEngineConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetRagCorpus' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\AIPlatform\V1\RagCorpus',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetRagEngineConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AIPlatform\V1\RagEngineConfig',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -275,6 +307,7 @@ return [
                 'projectLocationEndpoint' => 'projects/{project}/locations/{location}/endpoints/{endpoint}',
                 'projectLocationPublisherModel' => 'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}',
                 'ragCorpus' => 'projects/{project}/locations/{location}/ragCorpora/{rag_corpus}',
+                'ragEngineConfig' => 'projects/{project}/locations/{location}/ragEngineConfig',
                 'ragFile' => 'projects/{project}/locations/{location}/ragCorpora/{rag_corpus}/ragFiles/{rag_file}',
                 'secretVersion' => 'projects/{project}/secrets/{secret}/versions/{secret_version}',
             ],
