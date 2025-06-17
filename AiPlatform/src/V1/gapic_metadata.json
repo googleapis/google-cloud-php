@@ -2511,6 +2511,11 @@
                                 "getRagCorpus"
                             ]
                         },
+                        "GetRagEngineConfig": {
+                            "methods": [
+                                "getRagEngineConfig"
+                            ]
+                        },
                         "GetRagFile": {
                             "methods": [
                                 "getRagFile"
@@ -2534,6 +2539,11 @@
                         "UpdateRagCorpus": {
                             "methods": [
                                 "updateRagCorpus"
+                            ]
+                        },
+                        "UpdateRagEngineConfig": {
+                            "methods": [
+                                "updateRagEngineConfig"
                             ]
                         },
                         "UploadRagFile": {
