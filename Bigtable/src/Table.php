@@ -345,7 +345,10 @@ class Table
     public function readRow($rowKey, array $options = [])
     {
         return $this->readRows(
-            ['rowKeys' => [$rowKey]] + $options + $this->options
+            [
+                'rowKeys' => [$rowKey],
+                'rowsLimit' => 1,
+            ] + $options + $this->options
         )
             ->readAll()
             ->current();
