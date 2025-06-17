@@ -25,6 +25,8 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Bigtable\V2\Client\BigtableClient as GapicClient;
+use Google\Cloud\Bigtable\V2\PingAndWarmRequest;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\DetectProjectIdTrait;
 
 /**
@@ -44,6 +46,7 @@ class BigtableClient
     use ArrayTrait;
     use DetectProjectIdTrait;
     use ClientOptionsTrait;
+    use ApiHelperTrait;
 
     // The name of the service. Used in debug logging.
     private const SERVICE_NAME = 'google.bigtable.v2.Bigtable';
@@ -57,6 +60,23 @@ class BigtableClient
      * @var Serializer
      */
     private Serializer $serializer;
+
+    /**
+     * Invoke {@see GapicClient::pingAndWarm()} when {@see self::table()} is called
+     * in order to establish a persistent gRPC channel before making an RPC call.
+     *
+     * @experimental
+     * @var bool
+     */
+    private $pingAndWarm;
+
+    /**
+     * An in-memory array to ensure pingAndWarm is only called once per instance.
+     *
+     * @experimental
+     * @var array
+     */
+    private $pingAndWarmCalled = [];
 
     /**
      * Create a Bigtable client.
@@ -109,6 +129,9 @@ class BigtableClient
      *           supported options.
      *     @type string $quotaProject Specifies a user project to bill for
      *           access charges associated with the request.
+     *     @type bool $pingAndWarm EXPERIMENTAL When true, calls the
+     *           {@see GapicClient::pingAndWarm()} RPC to establish a persistent
+     *           gRPC channel before making an RPC call.
      * }
      * @throws ValidationException
      */
@@ -138,6 +161,7 @@ class BigtableClient
 
         $this->projectId = $this->detectProjectId($detectProjectIdConfig);
         $this->serializer = new Serializer();
+        $this->pingAndWarm = $config['pingAndWarm'] ?? false;
         $this->gapicClient = new GapicClient($config);
     }
 
@@ -163,6 +187,17 @@ class BigtableClient
      */
     public function table($instanceId, $tableId, array $options = [])
     {
+        if ($this->pingAndWarm && !($this->pingAndWarmCalled[$instanceId] ?? false)) {
+            // The default deadline is configured by the "clientConfig" option, which uses
+            // `src/V2/resources/bigtable_client_config.json`.
+            // This default deadline should be high enough to absorb cold connection latencies.
+            list($data, $callOptions) = $this->splitOptionalArgs($options);
+            $data['name'] = GapicClient::instanceName($this->projectId, $instanceId);
+            $request = $this->serializer->decodeMessage(new PingAndWarmRequest(), $data);
+            $this->gapicClient->pingAndWarm($request, $callOptions);
+            $this->pingAndWarmCalled[$instanceId] = true;
+        }
+
         return new Table(
             $this->gapicClient,
             $this->serializer,
