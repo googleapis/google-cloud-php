@@ -34,6 +34,28 @@ class InstanceNetworkConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_outbound_public_ip = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $enable_outbound_public_ip = false;
+    /**
+     * Output only. The resource link for the VPC network in which instance
+     * resources are created and from which they are accessible via Private IP.
+     * This will be the same value as the parent cluster's network. It is
+     * specified in the form: //
+     * `projects/{project_number}/global/networks/{network_id}`.
+     *
+     * Generated from protobuf field <code>string network = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    protected $network = '';
+    /**
+     * Optional. Name of the allocated IP range for the private IP AlloyDB
+     * instance, for example: "google-managed-services-default". If set, the
+     * instance IPs will be created from this allocated range and will override
+     * the IP range used by the parent cluster. The range name must comply with
+     * [RFC 1035](http://datatracker.ietf.org/doc/html/rfc1035). Specifically,
+     * the name must be 1-63 characters long and match the regular expression
+     * [a-z]([-a-z0-9]*[a-z0-9])?.
+     *
+     * Generated from protobuf field <code>string allocated_ip_range_override = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $allocated_ip_range_override = '';
 
     /**
      * Constructor.
@@ -48,6 +70,20 @@ class InstanceNetworkConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $enable_outbound_public_ip
      *           Optional. Enabling an outbound public IP address to support a database
      *           server sending requests out into the internet.
+     *     @type string $network
+     *           Output only. The resource link for the VPC network in which instance
+     *           resources are created and from which they are accessible via Private IP.
+     *           This will be the same value as the parent cluster's network. It is
+     *           specified in the form: //
+     *           `projects/{project_number}/global/networks/{network_id}`.
+     *     @type string $allocated_ip_range_override
+     *           Optional. Name of the allocated IP range for the private IP AlloyDB
+     *           instance, for example: "google-managed-services-default". If set, the
+     *           instance IPs will be created from this allocated range and will override
+     *           the IP range used by the parent cluster. The range name must comply with
+     *           [RFC 1035](http://datatracker.ietf.org/doc/html/rfc1035). Specifically,
+     *           the name must be 1-63 characters long and match the regular expression
+     *           [a-z]([-a-z0-9]*[a-z0-9])?.
      * }
      */
     public function __construct($data = NULL) {
@@ -131,6 +167,78 @@ class InstanceNetworkConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_outbound_public_ip = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The resource link for the VPC network in which instance
+     * resources are created and from which they are accessible via Private IP.
+     * This will be the same value as the parent cluster's network. It is
+     * specified in the form: //
+     * `projects/{project_number}/global/networks/{network_id}`.
+     *
+     * Generated from protobuf field <code>string network = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getNetwork()
+    {
+        return $this->network;
+    }
+
+    /**
+     * Output only. The resource link for the VPC network in which instance
+     * resources are created and from which they are accessible via Private IP.
+     * This will be the same value as the parent cluster's network. It is
+     * specified in the form: //
+     * `projects/{project_number}/global/networks/{network_id}`.
+     *
+     * Generated from protobuf field <code>string network = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNetwork($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->network = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Name of the allocated IP range for the private IP AlloyDB
+     * instance, for example: "google-managed-services-default". If set, the
+     * instance IPs will be created from this allocated range and will override
+     * the IP range used by the parent cluster. The range name must comply with
+     * [RFC 1035](http://datatracker.ietf.org/doc/html/rfc1035). Specifically,
+     * the name must be 1-63 characters long and match the regular expression
+     * [a-z]([-a-z0-9]*[a-z0-9])?.
+     *
+     * Generated from protobuf field <code>string allocated_ip_range_override = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getAllocatedIpRangeOverride()
+    {
+        return $this->allocated_ip_range_override;
+    }
+
+    /**
+     * Optional. Name of the allocated IP range for the private IP AlloyDB
+     * instance, for example: "google-managed-services-default". If set, the
+     * instance IPs will be created from this allocated range and will override
+     * the IP range used by the parent cluster. The range name must comply with
+     * [RFC 1035](http://datatracker.ietf.org/doc/html/rfc1035). Specifically,
+     * the name must be 1-63 characters long and match the regular expression
+     * [a-z]([-a-z0-9]*[a-z0-9])?.
+     *
+     * Generated from protobuf field <code>string allocated_ip_range_override = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAllocatedIpRangeOverride($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->allocated_ip_range_override = $var;
 
         return $this;
     }
