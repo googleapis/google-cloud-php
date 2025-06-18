@@ -59,6 +59,4 @@ class ActivationPolicy
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ActivationPolicy::class, \Google\Cloud\AlloyDb\V1\Instance_ActivationPolicy::class);
 

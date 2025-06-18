@@ -40,12 +40,36 @@ class PscAutoConnectionConfig extends \Google\Protobuf\Internal\Message
     protected $ip_address = '';
     /**
      * Output only. The status of the PSC service automation connection.
+     * Possible values:
+     *   "STATE_UNSPECIFIED" - An invalid state as the default case.
+     *   "ACTIVE" - The connection has been created successfully.
+     *   "FAILED" - The connection is not functional since some resources on the
+     * connection fail to be created.
+     *   "CREATING" - The connection is being created.
+     *   "DELETING" - The connection is being deleted.
+     *   "CREATE_REPAIRING" - The connection is being repaired to complete
+     * creation.
+     *   "DELETE_REPAIRING" - The connection is being repaired to complete
+     * deletion.
      *
      * Generated from protobuf field <code>string status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $status = '';
     /**
      * Output only. The status of the service connection policy.
+     * Possible values:
+     *   "STATE_UNSPECIFIED" - Default state, when Connection Map is created
+     * initially.
+     *   "VALID" - Set when policy and map configuration is valid, and their
+     * matching can lead to allowing creation of PSC Connections subject to
+     * other constraints like connections limit.
+     *   "CONNECTION_POLICY_MISSING" - No Service Connection Policy found for
+     * this network and Service Class
+     *   "POLICY_LIMIT_REACHED" - Service Connection Policy limit reached for
+     *   this network and Service Class
+     *   "CONSUMER_INSTANCE_PROJECT_NOT_ALLOWLISTED" - The consumer instance
+     * project is not in AllowedGoogleProducersResourceHierarchyLevels of the
+     * matching ServiceConnectionPolicy.
      *
      * Generated from protobuf field <code>string consumer_network_status = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -69,8 +93,32 @@ class PscAutoConnectionConfig extends \Google\Protobuf\Internal\Message
      *           Output only. The IP address of the PSC service automation endpoint.
      *     @type string $status
      *           Output only. The status of the PSC service automation connection.
+     *           Possible values:
+     *             "STATE_UNSPECIFIED" - An invalid state as the default case.
+     *             "ACTIVE" - The connection has been created successfully.
+     *             "FAILED" - The connection is not functional since some resources on the
+     *           connection fail to be created.
+     *             "CREATING" - The connection is being created.
+     *             "DELETING" - The connection is being deleted.
+     *             "CREATE_REPAIRING" - The connection is being repaired to complete
+     *           creation.
+     *             "DELETE_REPAIRING" - The connection is being repaired to complete
+     *           deletion.
      *     @type string $consumer_network_status
      *           Output only. The status of the service connection policy.
+     *           Possible values:
+     *             "STATE_UNSPECIFIED" - Default state, when Connection Map is created
+     *           initially.
+     *             "VALID" - Set when policy and map configuration is valid, and their
+     *           matching can lead to allowing creation of PSC Connections subject to
+     *           other constraints like connections limit.
+     *             "CONNECTION_POLICY_MISSING" - No Service Connection Policy found for
+     *           this network and Service Class
+     *             "POLICY_LIMIT_REACHED" - Service Connection Policy limit reached for
+     *             this network and Service Class
+     *             "CONSUMER_INSTANCE_PROJECT_NOT_ALLOWLISTED" - The consumer instance
+     *           project is not in AllowedGoogleProducersResourceHierarchyLevels of the
+     *           matching ServiceConnectionPolicy.
      * }
      */
     public function __construct($data = NULL) {
@@ -166,6 +214,17 @@ class PscAutoConnectionConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The status of the PSC service automation connection.
+     * Possible values:
+     *   "STATE_UNSPECIFIED" - An invalid state as the default case.
+     *   "ACTIVE" - The connection has been created successfully.
+     *   "FAILED" - The connection is not functional since some resources on the
+     * connection fail to be created.
+     *   "CREATING" - The connection is being created.
+     *   "DELETING" - The connection is being deleted.
+     *   "CREATE_REPAIRING" - The connection is being repaired to complete
+     * creation.
+     *   "DELETE_REPAIRING" - The connection is being repaired to complete
+     * deletion.
      *
      * Generated from protobuf field <code>string status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -177,6 +236,17 @@ class PscAutoConnectionConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The status of the PSC service automation connection.
+     * Possible values:
+     *   "STATE_UNSPECIFIED" - An invalid state as the default case.
+     *   "ACTIVE" - The connection has been created successfully.
+     *   "FAILED" - The connection is not functional since some resources on the
+     * connection fail to be created.
+     *   "CREATING" - The connection is being created.
+     *   "DELETING" - The connection is being deleted.
+     *   "CREATE_REPAIRING" - The connection is being repaired to complete
+     * creation.
+     *   "DELETE_REPAIRING" - The connection is being repaired to complete
+     * deletion.
      *
      * Generated from protobuf field <code>string status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -192,6 +262,19 @@ class PscAutoConnectionConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The status of the service connection policy.
+     * Possible values:
+     *   "STATE_UNSPECIFIED" - Default state, when Connection Map is created
+     * initially.
+     *   "VALID" - Set when policy and map configuration is valid, and their
+     * matching can lead to allowing creation of PSC Connections subject to
+     * other constraints like connections limit.
+     *   "CONNECTION_POLICY_MISSING" - No Service Connection Policy found for
+     * this network and Service Class
+     *   "POLICY_LIMIT_REACHED" - Service Connection Policy limit reached for
+     *   this network and Service Class
+     *   "CONSUMER_INSTANCE_PROJECT_NOT_ALLOWLISTED" - The consumer instance
+     * project is not in AllowedGoogleProducersResourceHierarchyLevels of the
+     * matching ServiceConnectionPolicy.
      *
      * Generated from protobuf field <code>string consumer_network_status = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -203,6 +286,19 @@ class PscAutoConnectionConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The status of the service connection policy.
+     * Possible values:
+     *   "STATE_UNSPECIFIED" - Default state, when Connection Map is created
+     * initially.
+     *   "VALID" - Set when policy and map configuration is valid, and their
+     * matching can lead to allowing creation of PSC Connections subject to
+     * other constraints like connections limit.
+     *   "CONNECTION_POLICY_MISSING" - No Service Connection Policy found for
+     * this network and Service Class
+     *   "POLICY_LIMIT_REACHED" - Service Connection Policy limit reached for
+     *   this network and Service Class
+     *   "CONSUMER_INSTANCE_PROJECT_NOT_ALLOWLISTED" - The consumer instance
+     * project is not in AllowedGoogleProducersResourceHierarchyLevels of the
+     * matching ServiceConnectionPolicy.
      *
      * Generated from protobuf field <code>string consumer_network_status = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
