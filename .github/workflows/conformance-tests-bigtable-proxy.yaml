@@ -19,13 +19,13 @@ on:
       - main
     paths:
       - 'Bigtable/**'
-      - '.github/workflows/conformance-tests-bigtable-emulator.yaml'
+      - '.github/workflows/conformance-tests-bigtable-proxy.yaml'
   pull_request:
     paths:
       - 'Bigtable/**'
-      - '.github/workflows/conformance-tests-bigtable-emulator.yaml'
+      - '.github/workflows/conformance-tests-bigtable-proxy.yaml'
   workflow_dispatch:
-name: Run Bigtable Conformance Tests With Emulator
+name: Run Bigtable Conformance Tests With Proxy
 jobs:
   conformance:
     runs-on: ubuntu-latest
