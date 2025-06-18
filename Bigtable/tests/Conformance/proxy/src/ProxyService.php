@@ -134,7 +134,6 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
         ]);
 
         $timeoutMillis = $this->getTimeoutMillis($config->getPerOperationTimeout());
-
         try {
             $rowData = $table->readRow($in->getRowKey(), [
                 'filter' => $in->getFilter(),
@@ -215,6 +214,7 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
             'rowRanges' => $ranges,
             'filter' => $request->getFilter(),
             'rowsLimit' => $request->getRowsLimit(),
+            'reversed' => $request->getReversed(),
             'retrySettings' => [
                 'totalTimeoutMillis' => $timeoutMillis,
             ],
@@ -326,7 +326,6 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
         }
 
         $timeoutMillis = $this->getTimeoutMillis($config->getPerOperationTimeout());
-
         try {
             $table->mutateRows($mutations, [
                 'retrySettings' => [
