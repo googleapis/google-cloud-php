@@ -171,7 +171,7 @@ class TransactionTest extends SnippetTestCase
                 $this->assertEquals($message['params'], $expectedParams);
                 $this->assertEquals($message['paramTypes']['post']['structType']['fields'], $expectedStructData);
                 return true;
-            }),
+            },
             Argument::type('array')
         )
             ->shouldBeCalledOnce()

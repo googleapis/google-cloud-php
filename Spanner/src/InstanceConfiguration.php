@@ -19,9 +19,9 @@ namespace Google\Cloud\Spanner;
 
 use Closure;
 use Google\ApiCore\ApiException;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
-use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
 use Google\ApiCore\ValidationException;
+use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceConfigRequest;

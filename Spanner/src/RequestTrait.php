@@ -22,9 +22,8 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Core\RequestProcessorTrait;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Internal\Message;
 

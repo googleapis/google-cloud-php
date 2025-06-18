@@ -19,12 +19,11 @@ namespace Google\Cloud\Spanner;
 
 use Closure;
 use DateTimeInterface;
-use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Spanner\Admin\Database\V1\Backup as BackupProto;
+use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup\State;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\CopyBackupRequest;

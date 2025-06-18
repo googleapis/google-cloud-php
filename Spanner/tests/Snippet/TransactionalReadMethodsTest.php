@@ -243,7 +243,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
                     Database::TYPE_INT64
                 );
                 return true;
-            }),
+            },
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
