@@ -21,6 +21,8 @@ use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Serializer;
+use Google\ApiCore\Transport\GrpcTransport;
+use Google\ApiCore\Transport\RestTransport;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
@@ -94,14 +96,13 @@ class BigtableClient
      *           This option accepts either a path to a credentials file, or a
      *           decoded credentials file as a PHP array.
      *           *Advanced usage*: In addition, this option can also accept a
-     *           pre-constructed {@see Google\Auth\FetchAuthTokenInterface} object
-     *           or {@see Google\ApiCore\CredentialsWrapper} object. Note that when
-     *           one of these objects are provided, any settings in
-     *           $config['credentialsConfig'] will be ignored.
+     *           pre-constructed {@see FetchAuthTokenInterface} object
+     *           or {@see CredentialsWrapper} object. Note that when one of
+     *           these objects are provided, any settings in
+     *           `$config['credentialsConfig']` will be ignored.
      *     @type array $credentialsConfig Options used to configure credentials,
      *           including auth token caching, for the client. For a full list of
-     *           supporting configuration options, see
-     *           {@see Google\ApiCore\CredentialsWrapper}.
+     *           supporting configuration options, see {@see CredentialsWrapper}.
      *     @type bool $disableRetries Determines whether or not retries defined by
      *           the client configuration should be disabled. **Defaults to**
      *           `false`.
@@ -112,9 +113,8 @@ class BigtableClient
      *           executing network requests. May be either the string `rest` or
      *           `grpc`. **Defaults to** `grpc` if gRPC support is detected on
      *           the system. *Advanced usage*: Additionally, it is possible to
-     *           pass in an already instantiated
-     *           {@see Google\ApiCore\Transport\TransportInterface} object. Note
-     *           that when this object is provided, any settings in
+     *           pass in an already instantiated {@see TransportInterface}
+     *           object. Note that when this object is provided, any settings in
      *           $config['transportConfig'] and the $config['apiEndpoint']
      *           setting will be ignored.
      *     @type array $transportConfig Configuration options that will be used to
@@ -124,9 +124,8 @@ class BigtableClient
      *               'grpc' => [...],
      *               'rest' => [...]
      *           ];
-     *           See the `build` method on {@see Google\ApiCore\Transport\GrpcTransport}
-     *           and {@see Google\ApiCore\Transport\RestTransport} for the
-     *           supported options.
+     *           See the `build` method on {@see GrpcTransport} and
+     *           {@see RestTransport} for the supported options.
      *     @type string $quotaProject Specifies a user project to bill for
      *           access charges associated with the request.
      *     @type bool $pingAndWarm EXPERIMENTAL When true, calls the

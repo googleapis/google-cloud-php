@@ -133,10 +133,23 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
             'appProfileId' => $config->getAppProfileId(),
         ]);
 
-        $rowData = $table->readRow($in->getRowKey(), [
-            'filter' => $in->getFilter(),
-            'timeoutMillis' => $this->getTimeoutMillis($config->getPerOperationTimeout()),
-        ]);
+        $timeoutMillis = $this->getTimeoutMillis($config->getPerOperationTimeout());
+        try {
+            $rowData = $table->readRow($in->getRowKey(), [
+                'filter' => $in->getFilter(),
+                'retrySettings' => [
+                    // set total timeout for the operation (including retries)
+                    'totalTimeoutMillis' => $timeoutMillis,
+                ],
+                // the conformance tests check for this, but I'm not sure why
+                'rowsLimit' => 1,
+            ]);
+        } catch (\Google\ApiCore\ApiException $e) {
+            return $out->setStatus(new Status([
+                'code' => $e->getCode(),
+                'message' => $e->getMessage(),
+            ]));
+        }
 
         if ($rowData) {
             $row = $this->arrayToRowProto($rowData);
@@ -195,13 +208,16 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
 
         $this->logger->debug(json_encode($rowKeys));
 
+        $timeoutMillis = $this->getTimeoutMillis($config->getPerOperationTimeout());
         $stream = $table->readRows([
             'rowKeys' => $rowKeys,
             'rowRanges' => $ranges,
             'filter' => $request->getFilter(),
             'rowsLimit' => $request->getRowsLimit(),
             'reversed' => $request->getReversed(),
-            'timeoutMillis' => $this->getTimeoutMillis($config->getPerOperationTimeout()),
+            'retrySettings' => [
+                'totalTimeoutMillis' => $timeoutMillis,
+            ],
         ]);
 
         $rows = [];
@@ -309,25 +325,31 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
             $mutations[$entry->getRowKey()] = $this->protoToMutations($entry->getMutations());
         }
 
+        $timeoutMillis = $this->getTimeoutMillis($config->getPerOperationTimeout());
         try {
             $table->mutateRows($mutations, [
-                'timeoutMillis' => $this->getTimeoutMillis($config->getPerOperationTimeout())
+                'retrySettings' => [
+                    'totalTimeoutMillis' => $timeoutMillis,
+                ]
             ]);
         } catch (BigtableDataOperationException $e) {
             $failedEntries = [];
             foreach ($e->getMetadata() as $metadata) {
-                $status = new Status([
-                    'code' => $metadata['statusCode'],
-                    'message' => $metadata['message'],
-                ]);
                 $failedEntries[] = new Entry([
-                    'index' => $metadata['index'],
-                    'status' => $status,
+                    'index' => $metadata['index'] ?? 0,
+                    'status' => new Status([
+                        'code' => $metadata['statusCode'],
+                        'message' => $metadata['message'],
+                    ]),
                 ]);
             }
             $out->setEntries($failedEntries);
+            $out->setStatus(new Status([
+                'code' => $e->getCode(),
+                'message' => $e->getMessage(),
+            ]));
         } catch (\Google\ApiCore\ApiException $e) {
-            $out = $out->setStatus(new Status([
+            $out->setStatus(new Status([
                 'code' => $e->getCode(),
                 'message' => $e->getMessage(),
             ]));
