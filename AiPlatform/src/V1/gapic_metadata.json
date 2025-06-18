@@ -1636,6 +1636,11 @@
                 "grpc": {
                     "libraryClient": "ModelGardenServiceGapicClient",
                     "rpcs": {
+                        "Deploy": {
+                            "methods": [
+                                "deploy"
+                            ]
+                        },
                         "GetPublisherModel": {
                             "methods": [
                                 "getPublisherModel"
