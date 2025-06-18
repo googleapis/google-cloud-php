@@ -1,5 +1,118 @@
 # Changelog
 
+## 0.293.0
+
+<details><summary>google/cloud-ai-platform 1.30.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add Model Garden deploy OSS model API ([#8385](https://github.com/googleapis/google-cloud-php/issues/8385)) ([00bd9e2](https://github.com/googleapis/google-cloud-php/commit/00bd9e20dd46d67ba4b044642b703e2facd27034))
+* [AiPlatform] add RagEngineConfig update/get APIs to v1 ([#8380](https://github.com/googleapis/google-cloud-php/issues/8380)) ([217b12a](https://github.com/googleapis/google-cloud-php/commit/217b12a1487a5bc90737d88540c2ceec29f374ef))
+* Add dns_peering_configs to PscInterfaceConfig ([217b12a](https://github.com/googleapis/google-cloud-php/commit/217b12a1487a5bc90737d88540c2ceec29f374ef))
+* Add DnsPeeringConfig in service_networking.proto ([217b12a](https://github.com/googleapis/google-cloud-php/commit/217b12a1487a5bc90737d88540c2ceec29f374ef))
+* Add RagEngineConfig update/get APIs to v1 ([217b12a](https://github.com/googleapis/google-cloud-php/commit/217b12a1487a5bc90737d88540c2ceec29f374ef))
+* Add Unprovisioned tier to RagEngineConfig to disable RagEngine service and delete all data within the service. ([217b12a](https://github.com/googleapis/google-cloud-php/commit/217b12a1487a5bc90737d88540c2ceec29f374ef))
+
+</details>
+
+<details><summary>google/cloud-alloydb 1.4.0</summary>
+
+
+
+### Features
+
+* [AlloyDb] Instance.ActivationPolicy field ([#8386](https://github.com/googleapis/google-cloud-php/issues/8386)) ([5f48a8e](https://github.com/googleapis/google-cloud-php/commit/5f48a8e2ba87dc7a9782758fc9701ab71084d8fb))
+* Backup.create_completion_time output field ([5f48a8e](https://github.com/googleapis/google-cloud-php/commit/5f48a8e2ba87dc7a9782758fc9701ab71084d8fb))
+* Cluster.DenyMaintenancePeriod field ([5f48a8e](https://github.com/googleapis/google-cloud-php/commit/5f48a8e2ba87dc7a9782758fc9701ab71084d8fb))
+* InstanceNetworkConfig.allocated_ip_range_override field ([5f48a8e](https://github.com/googleapis/google-cloud-php/commit/5f48a8e2ba87dc7a9782758fc9701ab71084d8fb))
+* InstanceNetworkConfig.network output field ([5f48a8e](https://github.com/googleapis/google-cloud-php/commit/5f48a8e2ba87dc7a9782758fc9701ab71084d8fb))
+
+
+### Documentation
+
+* A comment for field `earliest_restorable_time` ([5f48a8e](https://github.com/googleapis/google-cloud-php/commit/5f48a8e2ba87dc7a9782758fc9701ab71084d8fb))
+* A comment for field `status` in message `PscAutoConnectionConfig` ([5f48a8e](https://github.com/googleapis/google-cloud-php/commit/5f48a8e2ba87dc7a9782758fc9701ab71084d8fb))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.12.0</summary>
+
+
+
+### Features
+
+* **Bigtable:** Add pingAndWarm Client option ([#8229](https://github.com/googleapis/google-cloud-php/issues/8229)) ([f3c0c6c](https://github.com/googleapis/google-cloud-php/commit/f3c0c6c968b9b1724ffb60e9dbaebe05c52821a5))
+* **Bigtable:** Expose totalTimeoutMillis in RetrySettings for Read and Mutate Rows ([#8223](https://github.com/googleapis/google-cloud-php/issues/8223)) ([1b4a1c9](https://github.com/googleapis/google-cloud-php/commit/1b4a1c937d3bc99293e0fd4ec11a9d5fe9df816c))
+
+
+### Bug Fixes
+
+* **Bigtable:** Always set rowsLimit to 1 for readRow requests ([#8384](https://github.com/googleapis/google-cloud-php/issues/8384)) ([43730c4](https://github.com/googleapis/google-cloud-php/commit/43730c4d01f6621f9c3d7a4181eccf8e657d034c))
+
+</details>
+
+<details><summary>google/cloud-channel 2.2.0</summary>
+
+
+
+### Features
+
+* [Channel] A new enum `CustomerAttestationState` is added ([#8377](https://github.com/googleapis/google-cloud-php/issues/8377)) ([bce271d](https://github.com/googleapis/google-cloud-php/commit/bce271de76b277d4224d36d1b2f8637e8a1d7d11))
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.5.0</summary>
+
+
+
+### Features
+
+* [Dataproc] Added support for DELTA, ICEBERG, PIG components ([#8364](https://github.com/googleapis/google-cloud-php/issues/8364)) ([a620a80](https://github.com/googleapis/google-cloud-php/commit/a620a80d906382312d7b7aba972503bb6859b8eb))
+
+</details>
+
+<details><summary>google/cloud-dlp 2.6.0</summary>
+
+
+
+### Features
+
+* [Dlp] add SaveToGcsFindingsOutput ([#8388](https://github.com/googleapis/google-cloud-php/issues/8388)) ([02a2938](https://github.com/googleapis/google-cloud-php/commit/02a2938cdaf270013b867fd2075192158caf1d76))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.51.0</summary>
+
+
+
+### Features
+
+* Add the ExplainOptions class support ([#8373](https://github.com/googleapis/google-cloud-php/issues/8373)) ([8c85b99](https://github.com/googleapis/google-cloud-php/commit/8c85b99f5806b5443d0c8b26c5967c165f89c86e))
+
+</details>
+
+<details><summary>google/cloud-speech 2.1.0</summary>
+
+
+
+### Features
+
+* [Speech] updated description of sample_rate_hertz ([#8371](https://github.com/googleapis/google-cloud-php/issues/8371)) ([7dd957c](https://github.com/googleapis/google-cloud-php/commit/7dd957ce38ae0ca7fbc043147321984f777b2d54))
+
+</details>
+
+<details><summary>google/cloud-translate 2.0.1</summary>
+
+
+
+### Documentation
+
+* Markdown syntax fix for the README.md ([#8365](https://github.com/googleapis/google-cloud-php/issues/8365)) ([79d91bb](https://github.com/googleapis/google-cloud-php/commit/79d91bba10c25482b4e641914955da828168b297))
+
+</details>
+
 ## 0.292.0
 
 <details><summary>google/cloud-ai-platform 1.29.0</summary>
