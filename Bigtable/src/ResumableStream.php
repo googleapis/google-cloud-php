@@ -102,7 +102,8 @@ class ResumableStream implements \IteratorAggregate
      *         Only $maxRetries and $totalTimeoutMillis work for RetrySettings in this API.
      *
      *         @type int $maxRetries Number of times to retry. **Defaults to** `3`.
-     *         @type int $totalTimeoutMillis The max accumulative timeout in total for the operation.
+     *         @type int $totalTimeoutMillis The max accumulative timeout in total for the
+     *               operation. `-1` signifies no total timeout. **Defaults to** `-1`.
      *     }
      * }
      */
@@ -238,12 +239,12 @@ class ResumableStream implements \IteratorAggregate
             return $retrySettings->getTotalTimeoutMillis();
         }
 
-        return $retrySettings['totalTimeoutMillis'] ?? 0;
+        return $retrySettings['totalTimeoutMillis'] ?? -1;
     }
 
     private function checkTotalTimeout(int $startTimeMillis): void
     {
-        if ($this->totalTimeoutMillis > 0) {
+        if ($this->totalTimeoutMillis >= 0) {
             $elapsedTimeMillis = floor(microtime(true) * 1000) - $startTimeMillis;
             if ($elapsedTimeMillis > $this->totalTimeoutMillis) {
                 throw new ApiException('Operation timeout exceeeded ', Code::DEADLINE_EXCEEDED);
