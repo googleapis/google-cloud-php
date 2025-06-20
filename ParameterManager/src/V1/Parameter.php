@@ -60,7 +60,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * Parameter. The expected format is
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
      *
-     * Generated from protobuf field <code>optional string kms_key = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string kms_key = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $kms_key = null;
 
@@ -294,7 +294,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * Parameter. The expected format is
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
      *
-     * Generated from protobuf field <code>optional string kms_key = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string kms_key = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getKmsKey()
@@ -319,7 +319,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * Parameter. The expected format is
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
      *
-     * Generated from protobuf field <code>optional string kms_key = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string kms_key = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

@@ -208,6 +208,7 @@ return [
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
             'templateMap' => [
+                'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'location' => 'projects/{project}/locations/{location}',
                 'parameter' => 'projects/{project}/locations/{location}/parameters/{parameter}',
                 'parameterVersion' => 'projects/{project}/locations/{location}/parameters/{parameter}/versions/{parameter_version}',
