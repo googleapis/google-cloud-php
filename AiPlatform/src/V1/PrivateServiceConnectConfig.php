@@ -29,6 +29,13 @@ class PrivateServiceConnectConfig extends \Google\Protobuf\Internal\Message
      */
     private $project_allowlist;
     /**
+     * Optional. List of projects and networks where the PSC endpoints will be
+     * created. This field is used by Online Inference(Prediction) only.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PSCAutomationConfig psc_automation_configs = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $psc_automation_configs;
+    /**
      * Output only. The name of the generated service attachment resource.
      * This is only populated if the endpoint is deployed with
      * PrivateServiceConnect.
@@ -48,6 +55,9 @@ class PrivateServiceConnectConfig extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $project_allowlist
      *           A list of Projects from which the forwarding rule will target the service
      *           attachment.
+     *     @type array<\Google\Cloud\AIPlatform\V1\PSCAutomationConfig>|\Google\Protobuf\Internal\RepeatedField $psc_automation_configs
+     *           Optional. List of projects and networks where the PSC endpoints will be
+     *           created. This field is used by Online Inference(Prediction) only.
      *     @type string $service_attachment
      *           Output only. The name of the generated service attachment resource.
      *           This is only populated if the endpoint is deployed with
@@ -109,6 +119,34 @@ class PrivateServiceConnectConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->project_allowlist = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. List of projects and networks where the PSC endpoints will be
+     * created. This field is used by Online Inference(Prediction) only.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PSCAutomationConfig psc_automation_configs = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPscAutomationConfigs()
+    {
+        return $this->psc_automation_configs;
+    }
+
+    /**
+     * Optional. List of projects and networks where the PSC endpoints will be
+     * created. This field is used by Online Inference(Prediction) only.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PSCAutomationConfig psc_automation_configs = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\PSCAutomationConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPscAutomationConfigs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\PSCAutomationConfig::class);
+        $this->psc_automation_configs = $arr;
 
         return $this;
     }
