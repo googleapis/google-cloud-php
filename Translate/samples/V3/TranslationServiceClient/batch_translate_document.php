@@ -55,7 +55,9 @@ use Google\Rpc\Status;
  *                                           example, "en-US" or "sr-Latn". Supported language codes are listed in
  *                                           [Language Support](https://cloud.google.com/translate/docs/languages).
  * @param string $targetLanguageCodesElement The ISO-639 language code to use for translation of the input
- *                                           document. Specify up to 10 language codes here.
+ *                                           document. Specify up to 10 language codes here. Supported language codes
+ *                                           are listed in [Language
+ *                                           Support](https://cloud.google.com/translate/docs/languages).
  */
 function batch_translate_document_sample(
     string $formattedParent,

@@ -27,13 +27,17 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
-     * Required. Source language code.
+     * Required. Source language code. Supported language codes are listed in
+     * [Language
+     * Support](https://cloud.google.com/translate/docs/languages).
      *
      * Generated from protobuf field <code>string source_language_code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $source_language_code = '';
     /**
-     * Required. Specify up to 10 language codes here.
+     * Required. Specify up to 10 language codes here. Supported language codes
+     * are listed in [Language
+     * Support](https://cloud.google.com/translate/docs/languages).
      *
      * Generated from protobuf field <code>repeated string target_language_codes = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -104,9 +108,13 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      *           the same location-id) can be used, otherwise an INVALID_ARGUMENT (400)
      *           error is returned.
      *     @type string $source_language_code
-     *           Required. Source language code.
+     *           Required. Source language code. Supported language codes are listed in
+     *           [Language
+     *           Support](https://cloud.google.com/translate/docs/languages).
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_language_codes
-     *           Required. Specify up to 10 language codes here.
+     *           Required. Specify up to 10 language codes here. Supported language codes
+     *           are listed in [Language
+     *           Support](https://cloud.google.com/translate/docs/languages).
      *     @type array|\Google\Protobuf\Internal\MapField $models
      *           Optional. The models to use for translation. Map's key is target language
      *           code. Map's value is model name. Value can be a built-in general model,
@@ -182,7 +190,9 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Source language code.
+     * Required. Source language code. Supported language codes are listed in
+     * [Language
+     * Support](https://cloud.google.com/translate/docs/languages).
      *
      * Generated from protobuf field <code>string source_language_code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -193,7 +203,9 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Source language code.
+     * Required. Source language code. Supported language codes are listed in
+     * [Language
+     * Support](https://cloud.google.com/translate/docs/languages).
      *
      * Generated from protobuf field <code>string source_language_code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -208,7 +220,9 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Specify up to 10 language codes here.
+     * Required. Specify up to 10 language codes here. Supported language codes
+     * are listed in [Language
+     * Support](https://cloud.google.com/translate/docs/languages).
      *
      * Generated from protobuf field <code>repeated string target_language_codes = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -219,7 +233,9 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Specify up to 10 language codes here.
+     * Required. Specify up to 10 language codes here. Supported language codes
+     * are listed in [Language
+     * Support](https://cloud.google.com/translate/docs/languages).
      *
      * Generated from protobuf field <code>repeated string target_language_codes = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

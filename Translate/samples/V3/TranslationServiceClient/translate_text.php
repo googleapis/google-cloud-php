@@ -35,7 +35,8 @@ use Google\Cloud\Translate\V3\TranslateTextResponse;
  *                                   We recommend the total content be less than 30,000 codepoints. The max
  *                                   length of this field is 1024. Use BatchTranslateText for larger text.
  * @param string $targetLanguageCode The ISO-639 language code to use for translation of the input
- *                                   text, set to one of the language codes listed in Language Support.
+ *                                   text, set to one of the language codes listed in [Language
+ *                                   Support](https://cloud.google.com/translate/docs/languages).
  * @param string $formattedParent    Project or location to make a call. Must refer to a caller's
  *                                   project.
  *
