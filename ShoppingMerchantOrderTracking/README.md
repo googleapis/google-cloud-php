@@ -34,6 +34,39 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Shopping\Merchant\OrderTracking\V1beta\Client\OrderTrackingSignalsServiceClient;
+Google\Shopping\Merchant\OrderTracking\V1beta\CreateOrderTrackingSignalRequest;
+Google\Shopping\Merchant\OrderTracking\V1beta\OrderTrackingSignal;
+Google\Shopping\Merchant\OrderTracking\V1beta\OrderTrackingSignal\LineItemDetails;
+Google\Shopping\Merchant\OrderTracking\V1beta\OrderTrackingSignal\ShippingInfo;
+Google\Shopping\Merchant\OrderTracking\V1beta\OrderTrackingSignal\ShippingInfo\ShippingState;
+Google\Type\DateTime;
+
+$formattedParent = OrderTrackingSignalsServiceClient::accountName('[ACCOUNT]');
+$orderTrackingSignalOrderId = '[ORDER_ID]';
+$orderTrackingSignalShippingInfoShipmentId = '[SHIPMENT_ID]';
+$orderTrackingSignalShippingInfoShippingStatus = ShippingState::SHIPPING_STATE_UNSPECIFIED;
+$orderTrackingSignalShippingInfoOriginPostalCode = '[ORIGIN_POSTAL_CODE]';
+$orderTrackingSignalShippingInfoOriginRegionCode = '[ORIGIN_REGION_CODE]';
+$orderTrackingSignalLineItemsLineItemId = '[LINE_ITEM_ID]';
+$orderTrackingSignalLineItemsProductId = '[PRODUCT_ID]';
+$orderTrackingSignalLineItemsQuantity = 0;
+
+create_order_tracking_signal_sample(
+    $formattedParent,
+    $orderTrackingSignalOrderId,
+    $orderTrackingSignalShippingInfoShipmentId,
+    $orderTrackingSignalShippingInfoShippingStatus,
+    $orderTrackingSignalShippingInfoOriginPostalCode,
+    $orderTrackingSignalShippingInfoOriginRegionCode,
+    $orderTrackingSignalLineItemsLineItemId,
+    $orderTrackingSignalLineItemsProductId,
+    $orderTrackingSignalLineItemsQuantity
+);
+```
+
 See the [samples directory](https://github.com/googleapis/php-shopping-merchant-ordertracking/tree/main/samples) for a canonical list of samples.
 
 ### Debugging
