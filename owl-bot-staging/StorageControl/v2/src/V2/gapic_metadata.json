@@ -1,0 +1,133 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.storage.control.v2",
+    "libraryPackage": "Google\\Cloud\\Storage\\Control\\V2",
+    "services": {
+        "StorageControl": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "StorageControlGapicClient",
+                    "rpcs": {
+                        "CreateAnywhereCache": {
+                            "methods": [
+                                "createAnywhereCache"
+                            ]
+                        },
+                        "CreateFolder": {
+                            "methods": [
+                                "createFolder"
+                            ]
+                        },
+                        "CreateManagedFolder": {
+                            "methods": [
+                                "createManagedFolder"
+                            ]
+                        },
+                        "DeleteFolder": {
+                            "methods": [
+                                "deleteFolder"
+                            ]
+                        },
+                        "DeleteManagedFolder": {
+                            "methods": [
+                                "deleteManagedFolder"
+                            ]
+                        },
+                        "DisableAnywhereCache": {
+                            "methods": [
+                                "disableAnywhereCache"
+                            ]
+                        },
+                        "GetAnywhereCache": {
+                            "methods": [
+                                "getAnywhereCache"
+                            ]
+                        },
+                        "GetFolder": {
+                            "methods": [
+                                "getFolder"
+                            ]
+                        },
+                        "GetFolderIntelligenceConfig": {
+                            "methods": [
+                                "getFolderIntelligenceConfig"
+                            ]
+                        },
+                        "GetManagedFolder": {
+                            "methods": [
+                                "getManagedFolder"
+                            ]
+                        },
+                        "GetOrganizationIntelligenceConfig": {
+                            "methods": [
+                                "getOrganizationIntelligenceConfig"
+                            ]
+                        },
+                        "GetProjectIntelligenceConfig": {
+                            "methods": [
+                                "getProjectIntelligenceConfig"
+                            ]
+                        },
+                        "GetStorageLayout": {
+                            "methods": [
+                                "getStorageLayout"
+                            ]
+                        },
+                        "ListAnywhereCaches": {
+                            "methods": [
+                                "listAnywhereCaches"
+                            ]
+                        },
+                        "ListFolders": {
+                            "methods": [
+                                "listFolders"
+                            ]
+                        },
+                        "ListManagedFolders": {
+                            "methods": [
+                                "listManagedFolders"
+                            ]
+                        },
+                        "PauseAnywhereCache": {
+                            "methods": [
+                                "pauseAnywhereCache"
+                            ]
+                        },
+                        "RenameFolder": {
+                            "methods": [
+                                "renameFolder"
+                            ]
+                        },
+                        "ResumeAnywhereCache": {
+                            "methods": [
+                                "resumeAnywhereCache"
+                            ]
+                        },
+                        "UpdateAnywhereCache": {
+                            "methods": [
+                                "updateAnywhereCache"
+                            ]
+                        },
+                        "UpdateFolderIntelligenceConfig": {
+                            "methods": [
+                                "updateFolderIntelligenceConfig"
+                            ]
+                        },
+                        "UpdateOrganizationIntelligenceConfig": {
+                            "methods": [
+                                "updateOrganizationIntelligenceConfig"
+                            ]
+                        },
+                        "UpdateProjectIntelligenceConfig": {
+                            "methods": [
+                                "updateProjectIntelligenceConfig"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
