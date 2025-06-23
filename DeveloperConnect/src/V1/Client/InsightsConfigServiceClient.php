@@ -100,9 +100,7 @@ final class InsightsConfigServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -148,7 +146,9 @@ final class InsightsConfigServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -337,8 +337,10 @@ final class InsightsConfigServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createInsightsConfig(CreateInsightsConfigRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createInsightsConfig(
+        CreateInsightsConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateInsightsConfig', $request, $callOptions)->wait();
     }
 
@@ -364,8 +366,10 @@ final class InsightsConfigServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteInsightsConfig(DeleteInsightsConfigRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteInsightsConfig(
+        DeleteInsightsConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteInsightsConfig', $request, $callOptions)->wait();
     }
 
@@ -445,8 +449,10 @@ final class InsightsConfigServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateInsightsConfig(UpdateInsightsConfigRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateInsightsConfig(
+        UpdateInsightsConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateInsightsConfig', $request, $callOptions)->wait();
     }
 

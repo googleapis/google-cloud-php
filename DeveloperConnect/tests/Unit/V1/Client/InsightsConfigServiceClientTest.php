@@ -62,7 +62,9 @@ class InsightsConfigServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return InsightsConfigServiceClient */
@@ -126,7 +128,10 @@ class InsightsConfigServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.developerconnect.v1.InsightsConfigService/CreateInsightsConfig', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.developerconnect.v1.InsightsConfigService/CreateInsightsConfig',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getInsightsConfigId();
@@ -176,12 +181,15 @@ class InsightsConfigServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -244,8 +252,7 @@ class InsightsConfigServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->insightsConfigName('[PROJECT]', '[LOCATION]', '[INSIGHTS_CONFIG]');
-        $request = (new DeleteInsightsConfigRequest())
-            ->setName($formattedName);
+        $request = (new DeleteInsightsConfigRequest())->setName($formattedName);
         $response = $gapicClient->deleteInsightsConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -255,7 +262,10 @@ class InsightsConfigServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.developerconnect.v1.InsightsConfigService/DeleteInsightsConfig', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.developerconnect.v1.InsightsConfigService/DeleteInsightsConfig',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -301,17 +311,19 @@ class InsightsConfigServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->insightsConfigName('[PROJECT]', '[LOCATION]', '[INSIGHTS_CONFIG]');
-        $request = (new DeleteInsightsConfigRequest())
-            ->setName($formattedName);
+        $request = (new DeleteInsightsConfigRequest())->setName($formattedName);
         $response = $gapicClient->deleteInsightsConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -353,8 +365,7 @@ class InsightsConfigServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->insightsConfigName('[PROJECT]', '[LOCATION]', '[INSIGHTS_CONFIG]');
-        $request = (new GetInsightsConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetInsightsConfigRequest())->setName($formattedName);
         $response = $gapicClient->getInsightsConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -378,17 +389,19 @@ class InsightsConfigServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->insightsConfigName('[PROJECT]', '[LOCATION]', '[INSIGHTS_CONFIG]');
-        $request = (new GetInsightsConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetInsightsConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getInsightsConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -413,17 +426,14 @@ class InsightsConfigServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $insightsConfigsElement = new InsightsConfig();
-        $insightsConfigs = [
-            $insightsConfigsElement,
-        ];
+        $insightsConfigs = [$insightsConfigsElement];
         $expectedResponse = new ListInsightsConfigsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setInsightsConfigs($insightsConfigs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListInsightsConfigsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListInsightsConfigsRequest())->setParent($formattedParent);
         $response = $gapicClient->listInsightsConfigs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -433,7 +443,10 @@ class InsightsConfigServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.developerconnect.v1.InsightsConfigService/ListInsightsConfigs', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.developerconnect.v1.InsightsConfigService/ListInsightsConfigs',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -450,17 +463,19 @@ class InsightsConfigServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListInsightsConfigsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListInsightsConfigsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listInsightsConfigs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -511,8 +526,7 @@ class InsightsConfigServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $insightsConfig = new InsightsConfig();
-        $request = (new UpdateInsightsConfigRequest())
-            ->setInsightsConfig($insightsConfig);
+        $request = (new UpdateInsightsConfigRequest())->setInsightsConfig($insightsConfig);
         $response = $gapicClient->updateInsightsConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -522,7 +536,10 @@ class InsightsConfigServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.developerconnect.v1.InsightsConfigService/UpdateInsightsConfig', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.developerconnect.v1.InsightsConfigService/UpdateInsightsConfig',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getInsightsConfig();
         $this->assertProtobufEquals($insightsConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -568,17 +585,19 @@ class InsightsConfigServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $insightsConfig = new InsightsConfig();
-        $request = (new UpdateInsightsConfigRequest())
-            ->setInsightsConfig($insightsConfig);
+        $request = (new UpdateInsightsConfigRequest())->setInsightsConfig($insightsConfig);
         $response = $gapicClient->updateInsightsConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -640,12 +659,15 @@ class InsightsConfigServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -672,9 +694,7 @@ class InsightsConfigServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -704,12 +724,15 @@ class InsightsConfigServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -777,7 +800,10 @@ class InsightsConfigServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.developerconnect.v1.InsightsConfigService/CreateInsightsConfig', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.developerconnect.v1.InsightsConfigService/CreateInsightsConfig',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getInsightsConfigId();
