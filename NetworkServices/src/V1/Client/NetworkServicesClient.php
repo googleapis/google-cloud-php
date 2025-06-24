@@ -51,6 +51,8 @@ use Google\Cloud\NetworkServices\V1\CreateServiceBindingRequest;
 use Google\Cloud\NetworkServices\V1\CreateServiceLbPolicyRequest;
 use Google\Cloud\NetworkServices\V1\CreateTcpRouteRequest;
 use Google\Cloud\NetworkServices\V1\CreateTlsRouteRequest;
+use Google\Cloud\NetworkServices\V1\CreateWasmPluginRequest;
+use Google\Cloud\NetworkServices\V1\CreateWasmPluginVersionRequest;
 use Google\Cloud\NetworkServices\V1\DeleteEndpointPolicyRequest;
 use Google\Cloud\NetworkServices\V1\DeleteGatewayRequest;
 use Google\Cloud\NetworkServices\V1\DeleteGrpcRouteRequest;
@@ -60,6 +62,8 @@ use Google\Cloud\NetworkServices\V1\DeleteServiceBindingRequest;
 use Google\Cloud\NetworkServices\V1\DeleteServiceLbPolicyRequest;
 use Google\Cloud\NetworkServices\V1\DeleteTcpRouteRequest;
 use Google\Cloud\NetworkServices\V1\DeleteTlsRouteRequest;
+use Google\Cloud\NetworkServices\V1\DeleteWasmPluginRequest;
+use Google\Cloud\NetworkServices\V1\DeleteWasmPluginVersionRequest;
 use Google\Cloud\NetworkServices\V1\EndpointPolicy;
 use Google\Cloud\NetworkServices\V1\Gateway;
 use Google\Cloud\NetworkServices\V1\GatewayRouteView;
@@ -74,6 +78,8 @@ use Google\Cloud\NetworkServices\V1\GetServiceBindingRequest;
 use Google\Cloud\NetworkServices\V1\GetServiceLbPolicyRequest;
 use Google\Cloud\NetworkServices\V1\GetTcpRouteRequest;
 use Google\Cloud\NetworkServices\V1\GetTlsRouteRequest;
+use Google\Cloud\NetworkServices\V1\GetWasmPluginRequest;
+use Google\Cloud\NetworkServices\V1\GetWasmPluginVersionRequest;
 use Google\Cloud\NetworkServices\V1\GrpcRoute;
 use Google\Cloud\NetworkServices\V1\HttpRoute;
 use Google\Cloud\NetworkServices\V1\ListEndpointPoliciesRequest;
@@ -87,6 +93,8 @@ use Google\Cloud\NetworkServices\V1\ListServiceBindingsRequest;
 use Google\Cloud\NetworkServices\V1\ListServiceLbPoliciesRequest;
 use Google\Cloud\NetworkServices\V1\ListTcpRoutesRequest;
 use Google\Cloud\NetworkServices\V1\ListTlsRoutesRequest;
+use Google\Cloud\NetworkServices\V1\ListWasmPluginVersionsRequest;
+use Google\Cloud\NetworkServices\V1\ListWasmPluginsRequest;
 use Google\Cloud\NetworkServices\V1\Mesh;
 use Google\Cloud\NetworkServices\V1\MeshRouteView;
 use Google\Cloud\NetworkServices\V1\ServiceBinding;
@@ -102,6 +110,9 @@ use Google\Cloud\NetworkServices\V1\UpdateServiceBindingRequest;
 use Google\Cloud\NetworkServices\V1\UpdateServiceLbPolicyRequest;
 use Google\Cloud\NetworkServices\V1\UpdateTcpRouteRequest;
 use Google\Cloud\NetworkServices\V1\UpdateTlsRouteRequest;
+use Google\Cloud\NetworkServices\V1\UpdateWasmPluginRequest;
+use Google\Cloud\NetworkServices\V1\WasmPlugin;
+use Google\Cloud\NetworkServices\V1\WasmPluginVersion;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -127,6 +138,8 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> createServiceLbPolicyAsync(CreateServiceLbPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createTcpRouteAsync(CreateTcpRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createTlsRouteAsync(CreateTlsRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createWasmPluginAsync(CreateWasmPluginRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createWasmPluginVersionAsync(CreateWasmPluginVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteEndpointPolicyAsync(DeleteEndpointPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteGatewayAsync(DeleteGatewayRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteGrpcRouteAsync(DeleteGrpcRouteRequest $request, array $optionalArgs = [])
@@ -136,6 +149,8 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> deleteServiceLbPolicyAsync(DeleteServiceLbPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteTcpRouteAsync(DeleteTcpRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteTlsRouteAsync(DeleteTlsRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteWasmPluginAsync(DeleteWasmPluginRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteWasmPluginVersionAsync(DeleteWasmPluginVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<EndpointPolicy> getEndpointPolicyAsync(GetEndpointPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Gateway> getGatewayAsync(GetGatewayRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GatewayRouteView> getGatewayRouteViewAsync(GetGatewayRouteViewRequest $request, array $optionalArgs = [])
@@ -147,6 +162,8 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<ServiceLbPolicy> getServiceLbPolicyAsync(GetServiceLbPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TcpRoute> getTcpRouteAsync(GetTcpRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TlsRoute> getTlsRouteAsync(GetTlsRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<WasmPlugin> getWasmPluginAsync(GetWasmPluginRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<WasmPluginVersion> getWasmPluginVersionAsync(GetWasmPluginVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listEndpointPoliciesAsync(ListEndpointPoliciesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listGatewayRouteViewsAsync(ListGatewayRouteViewsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listGatewaysAsync(ListGatewaysRequest $request, array $optionalArgs = [])
@@ -158,6 +175,8 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listServiceLbPoliciesAsync(ListServiceLbPoliciesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listTcpRoutesAsync(ListTcpRoutesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listTlsRoutesAsync(ListTlsRoutesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listWasmPluginVersionsAsync(ListWasmPluginVersionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listWasmPluginsAsync(ListWasmPluginsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateEndpointPolicyAsync(UpdateEndpointPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateGatewayAsync(UpdateGatewayRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateGrpcRouteAsync(UpdateGrpcRouteRequest $request, array $optionalArgs = [])
@@ -167,6 +186,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> updateServiceLbPolicyAsync(UpdateServiceLbPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateTcpRouteAsync(UpdateTcpRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateTlsRouteAsync(UpdateTlsRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateWasmPluginAsync(UpdateWasmPluginRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
@@ -702,6 +722,50 @@ final class NetworkServicesClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a wasm_plugin
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $wasmPlugin
+     *
+     * @return string The formatted wasm_plugin resource.
+     */
+    public static function wasmPluginName(string $project, string $location, string $wasmPlugin): string
+    {
+        return self::getPathTemplate('wasmPlugin')->render([
+            'project' => $project,
+            'location' => $location,
+            'wasm_plugin' => $wasmPlugin,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * wasm_plugin_version resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $wasmPlugin
+     * @param string $wasmPluginVersion
+     *
+     * @return string The formatted wasm_plugin_version resource.
+     */
+    public static function wasmPluginVersionName(
+        string $project,
+        string $location,
+        string $wasmPlugin,
+        string $wasmPluginVersion
+    ): string {
+        return self::getPathTemplate('wasmPluginVersion')->render([
+            'project' => $project,
+            'location' => $location,
+            'wasm_plugin' => $wasmPlugin,
+            'wasm_plugin_version' => $wasmPluginVersion,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -727,6 +791,8 @@ final class NetworkServicesClient
      * - subnetwork: projects/{project}/regions/{region}/subnetworks/{subnetwork}
      * - tcpRoute: projects/{project}/locations/{location}/tcpRoutes/{tcp_route}
      * - tlsRoute: projects/{project}/locations/{location}/tlsRoutes/{tls_route}
+     * - wasmPlugin: projects/{project}/locations/{location}/wasmPlugins/{wasm_plugin}
+     * - wasmPluginVersion: projects/{project}/locations/{location}/wasmPlugins/{wasm_plugin}/versions/{wasm_plugin_version}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -1069,6 +1135,63 @@ final class NetworkServicesClient
     }
 
     /**
+     * Creates a new `WasmPlugin` resource in a given project
+     * and location.
+     *
+     * The async variant is {@see NetworkServicesClient::createWasmPluginAsync()} .
+     *
+     * @example samples/V1/NetworkServicesClient/create_wasm_plugin.php
+     *
+     * @param CreateWasmPluginRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createWasmPlugin(CreateWasmPluginRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateWasmPlugin', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new `WasmPluginVersion` resource in a given project
+     * and location.
+     *
+     * The async variant is
+     * {@see NetworkServicesClient::createWasmPluginVersionAsync()} .
+     *
+     * @example samples/V1/NetworkServicesClient/create_wasm_plugin_version.php
+     *
+     * @param CreateWasmPluginVersionRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createWasmPluginVersion(
+        CreateWasmPluginVersionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateWasmPluginVersion', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single EndpointPolicy.
      *
      * The async variant is {@see NetworkServicesClient::deleteEndpointPolicyAsync()} .
@@ -1307,6 +1430,61 @@ final class NetworkServicesClient
     public function deleteTlsRoute(DeleteTlsRouteRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteTlsRoute', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes the specified `WasmPlugin` resource.
+     *
+     * The async variant is {@see NetworkServicesClient::deleteWasmPluginAsync()} .
+     *
+     * @example samples/V1/NetworkServicesClient/delete_wasm_plugin.php
+     *
+     * @param DeleteWasmPluginRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteWasmPlugin(DeleteWasmPluginRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteWasmPlugin', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes the specified `WasmPluginVersion` resource.
+     *
+     * The async variant is
+     * {@see NetworkServicesClient::deleteWasmPluginVersionAsync()} .
+     *
+     * @example samples/V1/NetworkServicesClient/delete_wasm_plugin_version.php
+     *
+     * @param DeleteWasmPluginVersionRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteWasmPluginVersion(
+        DeleteWasmPluginVersionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteWasmPluginVersion', $request, $callOptions)->wait();
     }
 
     /**
@@ -1593,6 +1771,60 @@ final class NetworkServicesClient
     public function getTlsRoute(GetTlsRouteRequest $request, array $callOptions = []): TlsRoute
     {
         return $this->startApiCall('GetTlsRoute', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of the specified `WasmPlugin` resource.
+     *
+     * The async variant is {@see NetworkServicesClient::getWasmPluginAsync()} .
+     *
+     * @example samples/V1/NetworkServicesClient/get_wasm_plugin.php
+     *
+     * @param GetWasmPluginRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return WasmPlugin
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getWasmPlugin(GetWasmPluginRequest $request, array $callOptions = []): WasmPlugin
+    {
+        return $this->startApiCall('GetWasmPlugin', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of the specified `WasmPluginVersion` resource.
+     *
+     * The async variant is {@see NetworkServicesClient::getWasmPluginVersionAsync()} .
+     *
+     * @example samples/V1/NetworkServicesClient/get_wasm_plugin_version.php
+     *
+     * @param GetWasmPluginVersionRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return WasmPluginVersion
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getWasmPluginVersion(
+        GetWasmPluginVersionRequest $request,
+        array $callOptions = []
+    ): WasmPluginVersion {
+        return $this->startApiCall('GetWasmPluginVersion', $request, $callOptions)->wait();
     }
 
     /**
@@ -1890,6 +2122,63 @@ final class NetworkServicesClient
     }
 
     /**
+     * Lists `WasmPluginVersion` resources in a given project and
+     * location.
+     *
+     * The async variant is {@see NetworkServicesClient::listWasmPluginVersionsAsync()}
+     * .
+     *
+     * @example samples/V1/NetworkServicesClient/list_wasm_plugin_versions.php
+     *
+     * @param ListWasmPluginVersionsRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listWasmPluginVersions(
+        ListWasmPluginVersionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListWasmPluginVersions', $request, $callOptions);
+    }
+
+    /**
+     * Lists `WasmPlugin` resources in a given project and
+     * location.
+     *
+     * The async variant is {@see NetworkServicesClient::listWasmPluginsAsync()} .
+     *
+     * @example samples/V1/NetworkServicesClient/list_wasm_plugins.php
+     *
+     * @param ListWasmPluginsRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listWasmPlugins(ListWasmPluginsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListWasmPlugins', $request, $callOptions);
+    }
+
+    /**
      * Updates the parameters of a single EndpointPolicy.
      *
      * The async variant is {@see NetworkServicesClient::updateEndpointPolicyAsync()} .
@@ -2128,6 +2417,32 @@ final class NetworkServicesClient
     public function updateTlsRoute(UpdateTlsRouteRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateTlsRoute', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the parameters of the specified `WasmPlugin` resource.
+     *
+     * The async variant is {@see NetworkServicesClient::updateWasmPluginAsync()} .
+     *
+     * @example samples/V1/NetworkServicesClient/update_wasm_plugin.php
+     *
+     * @param UpdateWasmPluginRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateWasmPlugin(UpdateWasmPluginRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateWasmPlugin', $request, $callOptions)->wait();
     }
 
     /**
