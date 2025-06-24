@@ -31,7 +31,7 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The ISO-639 language code of the input document if known, for
      * example, "en-US" or "sr-Latn". Supported language codes are listed in
-     * [Language Support] (https://cloud.google.com/translate/docs/languages). If
+     * [Language Support](https://cloud.google.com/translate/docs/languages). If
      * the source language isn't specified, the API attempts to identify the
      * source language automatically and returns the source language within the
      * response. Source language must be specified if the request contains a
@@ -42,8 +42,8 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     protected $source_language_code = '';
     /**
      * Required. The ISO-639 language code to use for translation of the input
-     * document, set to one of the language codes listed in [Language Support]
-     * (https://cloud.google.com/translate/docs/languages).
+     * document, set to one of the language codes listed in [Language
+     * Support](https://cloud.google.com/translate/docs/languages).
      *
      * Generated from protobuf field <code>string target_language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -148,15 +148,15 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *     @type string $source_language_code
      *           Optional. The ISO-639 language code of the input document if known, for
      *           example, "en-US" or "sr-Latn". Supported language codes are listed in
-     *           [Language Support] (https://cloud.google.com/translate/docs/languages). If
+     *           [Language Support](https://cloud.google.com/translate/docs/languages). If
      *           the source language isn't specified, the API attempts to identify the
      *           source language automatically and returns the source language within the
      *           response. Source language must be specified if the request contains a
      *           glossary or a custom model.
      *     @type string $target_language_code
      *           Required. The ISO-639 language code to use for translation of the input
-     *           document, set to one of the language codes listed in [Language Support]
-     *           (https://cloud.google.com/translate/docs/languages).
+     *           document, set to one of the language codes listed in [Language
+     *           Support](https://cloud.google.com/translate/docs/languages).
      *     @type \Google\Cloud\Translate\V3\DocumentInputConfig $document_input_config
      *           Required. Input configurations.
      *     @type \Google\Cloud\Translate\V3\DocumentOutputConfig $document_output_config
@@ -252,7 +252,7 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The ISO-639 language code of the input document if known, for
      * example, "en-US" or "sr-Latn". Supported language codes are listed in
-     * [Language Support] (https://cloud.google.com/translate/docs/languages). If
+     * [Language Support](https://cloud.google.com/translate/docs/languages). If
      * the source language isn't specified, the API attempts to identify the
      * source language automatically and returns the source language within the
      * response. Source language must be specified if the request contains a
@@ -269,7 +269,7 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The ISO-639 language code of the input document if known, for
      * example, "en-US" or "sr-Latn". Supported language codes are listed in
-     * [Language Support] (https://cloud.google.com/translate/docs/languages). If
+     * [Language Support](https://cloud.google.com/translate/docs/languages). If
      * the source language isn't specified, the API attempts to identify the
      * source language automatically and returns the source language within the
      * response. Source language must be specified if the request contains a
@@ -289,8 +289,8 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The ISO-639 language code to use for translation of the input
-     * document, set to one of the language codes listed in [Language Support]
-     * (https://cloud.google.com/translate/docs/languages).
+     * document, set to one of the language codes listed in [Language
+     * Support](https://cloud.google.com/translate/docs/languages).
      *
      * Generated from protobuf field <code>string target_language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -302,8 +302,8 @@ class TranslateDocumentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The ISO-639 language code to use for translation of the input
-     * document, set to one of the language codes listed in [Language Support]
-     * (https://cloud.google.com/translate/docs/languages).
+     * document, set to one of the language codes listed in [Language
+     * Support](https://cloud.google.com/translate/docs/languages).
      *
      * Generated from protobuf field <code>string target_language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
