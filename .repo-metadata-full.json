@@ -849,6 +849,14 @@
         "library_type": "GAPIC_COMBO",
         "api_shortname": "language"
     },
+    "LicenseManager": {
+        "language": "php",
+        "distribution_name": "google/cloud-licensemanager",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-licensemanager/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "licensemanager"
+    },
     "LifeSciences": {
         "language": "php",
         "distribution_name": "google/cloud-life-sciences",
