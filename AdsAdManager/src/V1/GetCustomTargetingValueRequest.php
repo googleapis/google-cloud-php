@@ -18,7 +18,7 @@ class GetCustomTargetingValueRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the CustomTargetingValue.
      * Format:
-     * `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}/customTargetingValues/{custom_targeting_value_id}`
+     * `networks/{network_code}/customTargetingValues/{custom_targeting_value_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -27,7 +27,7 @@ class GetCustomTargetingValueRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The resource name of the CustomTargetingValue.
      *                     Format:
-     *                     `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}/customTargetingValues/{custom_targeting_value_id}`
+     *                     `networks/{network_code}/customTargetingValues/{custom_targeting_value_id}`
      *                     Please see {@see CustomTargetingValueServiceClient::customTargetingValueName()} for help formatting this field.
      *
      * @return \Google\Ads\AdManager\V1\GetCustomTargetingValueRequest
@@ -49,7 +49,7 @@ class GetCustomTargetingValueRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The resource name of the CustomTargetingValue.
      *           Format:
-     *           `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}/customTargetingValues/{custom_targeting_value_id}`
+     *           `networks/{network_code}/customTargetingValues/{custom_targeting_value_id}`
      * }
      */
     public function __construct($data = NULL) {
@@ -60,7 +60,7 @@ class GetCustomTargetingValueRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the CustomTargetingValue.
      * Format:
-     * `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}/customTargetingValues/{custom_targeting_value_id}`
+     * `networks/{network_code}/customTargetingValues/{custom_targeting_value_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -73,7 +73,7 @@ class GetCustomTargetingValueRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the CustomTargetingValue.
      * Format:
-     * `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}/customTargetingValues/{custom_targeting_value_id}`
+     * `networks/{network_code}/customTargetingValues/{custom_targeting_value_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
