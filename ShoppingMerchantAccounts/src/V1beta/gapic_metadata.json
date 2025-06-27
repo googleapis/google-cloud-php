@@ -192,6 +192,35 @@
                 }
             }
         },
+        "CheckoutSettingsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CheckoutSettingsServiceGapicClient",
+                    "rpcs": {
+                        "CreateCheckoutSettings": {
+                            "methods": [
+                                "createCheckoutSettings"
+                            ]
+                        },
+                        "DeleteCheckoutSettings": {
+                            "methods": [
+                                "deleteCheckoutSettings"
+                            ]
+                        },
+                        "GetCheckoutSettings": {
+                            "methods": [
+                                "getCheckoutSettings"
+                            ]
+                        },
+                        "UpdateCheckoutSettings": {
+                            "methods": [
+                                "updateCheckoutSettings"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "EmailPreferencesService": {
             "clients": {
                 "grpc": {
