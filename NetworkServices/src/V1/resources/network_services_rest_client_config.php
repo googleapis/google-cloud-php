@@ -182,6 +182,36 @@ return [
                     'tls_route_id',
                 ],
             ],
+            'CreateWasmPlugin' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/wasmPlugins',
+                'body' => 'wasm_plugin',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'wasm_plugin_id',
+                ],
+            ],
+            'CreateWasmPluginVersion' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/wasmPlugins/*}/versions',
+                'body' => 'wasm_plugin_version',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'wasm_plugin_version_id',
+                ],
+            ],
             'DeleteEndpointPolicy' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/endpointPolicies/*}',
@@ -273,6 +303,28 @@ return [
             'DeleteTlsRoute' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/tlsRoutes/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteWasmPlugin' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/wasmPlugins/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteWasmPluginVersion' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/wasmPlugins/*/versions/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -402,6 +454,28 @@ return [
                     ],
                 ],
             ],
+            'GetWasmPlugin' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/wasmPlugins/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetWasmPluginVersion' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/wasmPlugins/*/versions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListEndpointPolicies' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/endpointPolicies',
@@ -523,6 +597,28 @@ return [
                     ],
                 ],
             ],
+            'ListWasmPluginVersions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/wasmPlugins/*}/versions',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListWasmPlugins' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/wasmPlugins',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateEndpointPolicy' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{endpoint_policy.name=projects/*/locations/*/endpointPolicies/*}',
@@ -635,6 +731,19 @@ return [
                     'tls_route.name' => [
                         'getters' => [
                             'getTlsRoute',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateWasmPlugin' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{wasm_plugin.name=projects/*/locations/*/wasmPlugins/*}',
+                'body' => 'wasm_plugin',
+                'placeholders' => [
+                    'wasm_plugin.name' => [
+                        'getters' => [
+                            'getWasmPlugin',
                             'getName',
                         ],
                     ],
