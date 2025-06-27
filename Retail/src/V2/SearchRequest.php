@@ -363,6 +363,30 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string place_id = 46 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $place_id = '';
+    /**
+     * Optional. The user attributes that could be used for personalization of
+     * search results.
+     * * Populate at most 100 key-value pairs per query.
+     * * Only supports string keys and repeated string values.
+     * * Duplcate keys are not allowed within a single query.
+     * Example:
+     *    user_attributes: [
+     *     { key: "pets"
+     *       value {
+     *         values: "dog"
+     *         values: "cat"
+     *       }
+     *     },
+     *     { key: "state"
+     *       value {
+     *         values: "CA"
+     *       }
+     *     }
+     *    ]
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.StringList> user_attributes = 47 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $user_attributes;
 
     /**
      * Constructor.
@@ -608,6 +632,26 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           product's
      *           [LocalInventory.place_id][google.cloud.retail.v2.LocalInventory.place_id]
      *           for revenue optimization.
+     *     @type array|\Google\Protobuf\Internal\MapField $user_attributes
+     *           Optional. The user attributes that could be used for personalization of
+     *           search results.
+     *           * Populate at most 100 key-value pairs per query.
+     *           * Only supports string keys and repeated string values.
+     *           * Duplcate keys are not allowed within a single query.
+     *           Example:
+     *              user_attributes: [
+     *               { key: "pets"
+     *                 value {
+     *                   values: "dog"
+     *                   values: "cat"
+     *                 }
+     *               },
+     *               { key: "state"
+     *                 value {
+     *                   values: "CA"
+     *                 }
+     *               }
+     *              ]
      * }
      */
     public function __construct($data = NULL) {
@@ -1771,6 +1815,68 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->place_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The user attributes that could be used for personalization of
+     * search results.
+     * * Populate at most 100 key-value pairs per query.
+     * * Only supports string keys and repeated string values.
+     * * Duplcate keys are not allowed within a single query.
+     * Example:
+     *    user_attributes: [
+     *     { key: "pets"
+     *       value {
+     *         values: "dog"
+     *         values: "cat"
+     *       }
+     *     },
+     *     { key: "state"
+     *       value {
+     *         values: "CA"
+     *       }
+     *     }
+     *    ]
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.StringList> user_attributes = 47 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getUserAttributes()
+    {
+        return $this->user_attributes;
+    }
+
+    /**
+     * Optional. The user attributes that could be used for personalization of
+     * search results.
+     * * Populate at most 100 key-value pairs per query.
+     * * Only supports string keys and repeated string values.
+     * * Duplcate keys are not allowed within a single query.
+     * Example:
+     *    user_attributes: [
+     *     { key: "pets"
+     *       value {
+     *         values: "dog"
+     *         values: "cat"
+     *       }
+     *     },
+     *     { key: "state"
+     *       value {
+     *         values: "CA"
+     *       }
+     *     }
+     *    ]
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.StringList> user_attributes = 47 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setUserAttributes($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Retail\V2\StringList::class);
+        $this->user_attributes = $arr;
 
         return $this;
     }
