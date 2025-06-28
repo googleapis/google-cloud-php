@@ -59,6 +59,4 @@ class ClusterTier
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ClusterTier::class, \Google\Cloud\Dataproc\V1\ClusterConfig_ClusterTier::class);
 
