@@ -41,7 +41,6 @@ use Google\Cloud\Compute\V1\SubnetworksScopedList;
 use Google\Cloud\Compute\V1\SubnetworksSetPrivateIpGoogleAccessRequest;
 use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
-use Google\Cloud\Compute\V1\UsableSubnetwork;
 use Google\Cloud\Compute\V1\UsableSubnetworksAggregatedList;
 use Google\Rpc\Code;
 use stdClass;
@@ -787,26 +786,18 @@ class SubnetworksClientTest extends GeneratedTest
         // Mock response
         $id = 'id3355';
         $kind = 'kind3292052';
-        $nextPageToken = '';
+        $nextPageToken = 'nextPageToken-1530815211';
         $selfLink = 'selfLink-1691268851';
-        $itemsElement = new UsableSubnetwork();
-        $items = [
-            $itemsElement,
-        ];
         $expectedResponse = new UsableSubnetworksAggregatedList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSelfLink($selfLink);
-        $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
         $response = $gapicClient->listUsable($project);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
