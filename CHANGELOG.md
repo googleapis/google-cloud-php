@@ -1,5 +1,127 @@
 # Changelog
 
+## 0.294.0
+
+<details><summary>googleads/ad-manager 0.3.0</summary>
+
+
+
+### Features
+
+* [AdsAdManager] Added support for AdBreak resource ([#8409](https://github.com/googleapis/google-cloud-php/issues/8409)) ([3087224](https://github.com/googleapis/google-cloud-php/commit/308722429b90f1d1ce90b32d2e9c4a92ee8baa9b))
+
+</details>
+
+<details><summary>google/cloud-ai-platform 1.31.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add invoke_route_prefix to ModelContainerSpec in aiplatform v1 models.proto ([#8394](https://github.com/googleapis/google-cloud-php/issues/8394)) ([6addf47](https://github.com/googleapis/google-cloud-php/commit/6addf4723fea62aaeca14445b347d05df7ca047f))
+
+</details>
+
+<details><summary>google/apps-events-subscriptions 0.3.0</summary>
+
+
+
+### Features
+
+* Add the AppsEventSubscriptions beta component ([#8405](https://github.com/googleapis/google-cloud-php/issues/8405)) ([fac9667](https://github.com/googleapis/google-cloud-php/commit/fac96679ca13821e05e0b4b71617886e100dea75))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.13.0</summary>
+
+
+
+### Features
+
+* [Bigtable] add SchemaBundles API ([#8399](https://github.com/googleapis/google-cloud-php/issues/8399)) ([6b4dcca](https://github.com/googleapis/google-cloud-php/commit/6b4dcca9d7fc5cdba652a56f45f3288de2c4700e))
+
+</details>
+
+<details><summary>google/cloud-developerconnect 0.4.0</summary>
+
+
+
+### Features
+
+* [DeveloperConnect] add DCI insights config proto ([#8400](https://github.com/googleapis/google-cloud-php/issues/8400)) ([7e24854](https://github.com/googleapis/google-cloud-php/commit/7e248541be39f7d8bc105984f67c23a1f6b76dfd))
+
+</details>
+
+<details><summary>google/cloud-modelarmor 0.2.0</summary>
+
+
+
+### Features
+
+* Add the beta component for Model Armor ([#8404](https://github.com/googleapis/google-cloud-php/issues/8404)) ([149fa25](https://github.com/googleapis/google-cloud-php/commit/149fa25535763f1fca4f055d0527881db8447722))
+
+</details>
+
+<details><summary>google/cloud-networkservices 0.5.0</summary>
+
+
+
+### Features
+
+* [NetworkServices] Add support for WasmPlugin resource in NetworkServices API ([#8401](https://github.com/googleapis/google-cloud-php/issues/8401)) ([72497b7](https://github.com/googleapis/google-cloud-php/commit/72497b762539a81faf2a3d203d23a21aef0af721))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.13.0</summary>
+
+
+
+### Features
+
+* [PubSub] Add MessageTransformationFailureReason to IngestionFailureEvent ([#8403](https://github.com/googleapis/google-cloud-php/issues/8403)) ([e61b01b](https://github.com/googleapis/google-cloud-php/commit/e61b01beee7a3fd9e597cdfec76d5fa5e5063735))
+
+</details>
+
+<details><summary>google/cloud-retail 2.3.0</summary>
+
+
+
+### Features
+
+* [Retail] add a user_attributes field in SearchRequest that can be used for personalization ([#8402](https://github.com/googleapis/google-cloud-php/issues/8402)) ([70f3372](https://github.com/googleapis/google-cloud-php/commit/70f33723a662adecc3fe74acdd7a126f7117593a))
+
+</details>
+
+<details><summary>google/shopping-merchant-accounts 0.9.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantAccounts] Add CheckoutSettings service ([#8407](https://github.com/googleapis/google-cloud-php/issues/8407)) ([398aefa](https://github.com/googleapis/google-cloud-php/commit/398aefa9727b0d9e2f493b8f2020aed2c8fc8d58))
+
+</details>
+
+<details><summary>google/cloud-storage-control 1.4.0</summary>
+
+
+
+### Features
+
+* [StorageControl]Update BUILD configs to support rest transportation for all client ([#8398](https://github.com/googleapis/google-cloud-php/issues/8398)) ([36ca6d0](https://github.com/googleapis/google-cloud-php/commit/36ca6d0a1201f65821be6c9378228071ad1a4d3c))
+
+</details>
+
+<details><summary>google/cloud-translate 2.0.2</summary>
+
+
+
+### Documentation
+
+* [Translate] minor formatting ([#8393](https://github.com/googleapis/google-cloud-php/issues/8393)) ([3dec069](https://github.com/googleapis/google-cloud-php/commit/3dec069cf3f1e06004d89232c0f84a7cbf0c7177))
+
+</details>
+
 ## 0.293.0
 
 <details><summary>google/cloud-ai-platform 1.30.0</summary>
