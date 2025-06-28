@@ -19,16 +19,18 @@ class CustomTargetingValueMessages
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ä
-=google/ads/admanager/v1/custom_targeting_value_messages.protogoogle.ads.admanager.v1google/api/field_behavior.protogoogle/api/resource.proto"ì
+µ
+=google/ads/admanager/v1/custom_targeting_value_messages.protogoogle.ads.admanager.v1google/api/field_behavior.protogoogle/api/resource.proto"æ
 CustomTargetingValue
-name (	B‡A
+name (	B‡AT
+custom_targeting_key (	B6‡A‡A˙A-
++admanager.googleapis.com/CustomTargetingKey
 ad_tag_name (	B‡A
 display_name (	B‡At
 
 match_type (2X.google.ads.admanager.v1.CustomTargetingValueMatchTypeEnum.CustomTargetingValueMatchTypeB‡A‡Ag
-status (2R.google.ads.admanager.v1.CustomTargetingValueStatusEnum.CustomTargetingValueStatusB‡A:”ÍAœ
--admanager.googleapis.com/CustomTargetingValueqnetworks/{network_code}/customTargetingKeys/{custom_targeting_key}/customTargetingValues/{custom_targeting_value}*customTargetingValues2customTargetingValueB’
+status (2R.google.ads.admanager.v1.CustomTargetingValueStatusEnum.CustomTargetingValueStatusB‡A:®ÍA§
+-admanager.googleapis.com/CustomTargetingValueFnetworks/{network_code}/customTargetingValues/{custom_targeting_value}*customTargetingValues2customTargetingValueB’
 com.google.ads.admanager.v1B!CustomTargetingValueMessagesProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager™Google.Ads.AdManager.V1 Google\\Ads\\AdManager\\V1ÍGoogle::Ads::AdManager::V1bproto3'
         , true);
 
