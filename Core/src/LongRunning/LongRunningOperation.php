@@ -19,6 +19,7 @@ namespace Google\Cloud\Core\LongRunning;
 
 /**
  * Represent and interact with a Long Running Operation.
+ * @template T
  */
 class LongRunningOperation
 {
@@ -180,7 +181,7 @@ class LongRunningOperation
      * ```
      *
      * @param array $options [optional] Configuration options.
-     * @return mixed|null
+     * @return T|mixed|null
      */
     public function result(array $options = [])
     {
