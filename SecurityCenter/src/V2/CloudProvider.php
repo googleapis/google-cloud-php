@@ -20,7 +20,7 @@ class CloudProvider
      */
     const CLOUD_PROVIDER_UNSPECIFIED = 0;
     /**
-     * The cloud provider is Google Cloud Platform.
+     * The cloud provider is Google Cloud.
      *
      * Generated from protobuf enum <code>GOOGLE_CLOUD_PLATFORM = 1;</code>
      */

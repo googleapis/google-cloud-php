@@ -62,6 +62,12 @@ class File extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.File.DiskPath disk_path = 7;</code>
      */
     protected $disk_path = null;
+    /**
+     * Operation(s) performed on a file.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.File.FileOperation operations = 8;</code>
+     */
+    private $operations;
 
     /**
      * Constructor.
@@ -87,6 +93,8 @@ class File extends \Google\Protobuf\Internal\Message
      *           Prefix of the file contents as a JSON-encoded string.
      *     @type \Google\Cloud\SecurityCenter\V2\File\DiskPath $disk_path
      *           Path of the file in terms of underlying disk/partition identifiers.
+     *     @type array<\Google\Cloud\SecurityCenter\V2\File\FileOperation>|\Google\Protobuf\Internal\RepeatedField $operations
+     *           Operation(s) performed on a file.
      * }
      */
     public function __construct($data = NULL) {
@@ -290,6 +298,32 @@ class File extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\File\DiskPath::class);
         $this->disk_path = $var;
+
+        return $this;
+    }
+
+    /**
+     * Operation(s) performed on a file.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.File.FileOperation operations = 8;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getOperations()
+    {
+        return $this->operations;
+    }
+
+    /**
+     * Operation(s) performed on a file.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.File.FileOperation operations = 8;</code>
+     * @param array<\Google\Cloud\SecurityCenter\V2\File\FileOperation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setOperations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V2\File\FileOperation::class);
+        $this->operations = $arr;
 
         return $this;
     }
