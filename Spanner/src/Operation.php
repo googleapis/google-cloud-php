@@ -267,7 +267,6 @@ class Operation
                 'database' => $this->getDatabaseNameFromSession($session)
             ] + $transactionSelector);
         };
-
         return new Result($this, $session, $call, $context, $this->mapper);
     }
 

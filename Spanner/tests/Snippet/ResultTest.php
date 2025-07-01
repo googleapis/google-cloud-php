@@ -116,7 +116,9 @@ class ResultTest extends SnippetTestCase
     public function testQueryWithStats()
     {
         $db = $this->prophesize(Database::class);
-        $db->execute(Argument::any(), ['queryMode' => 'PROFILE']);
+        $db->execute(Argument::any(), ['queryMode' => Result::MODE_PROFILE])
+            ->shouldBeCalledOnce()
+            ->willReturn($this->prophesize(Result::class)->reveal());
 
         $snippet = $this->snippetFromMethod(Result::class, 'stats', 1);
         $snippet->addLocal('database', $db->reveal());

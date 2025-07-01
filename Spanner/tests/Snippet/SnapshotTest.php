@@ -61,15 +61,18 @@ class SnapshotTest extends SnippetTestCase
 
     public function testClass()
     {
+        $snapshot = $this->prophesize(Snapshot::class)->reveal();
         $database = $this->prophesize(Database::class);
-        $database->snapshot()->shouldBeCalled()->willReturn('foo');
+        $database->snapshot()
+            ->shouldBeCalled()
+            ->willReturn($snapshot);
 
         $snippet = $this->snippetFromClass(Snapshot::class);
         $snippet->replace('$database =', '//$database =');
         $snippet->addLocal('database', $database->reveal());
 
         $res = $snippet->invoke('transaction');
-        $this->assertEquals('foo', $res->returnVal());
+        $this->assertEquals($snapshot, $res->returnVal());
     }
 
     public function testId()

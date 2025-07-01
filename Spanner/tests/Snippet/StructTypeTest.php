@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
+use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
@@ -31,6 +32,11 @@ use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\PartialResultSet;
+use Google\Cloud\Spanner\V1\ResultSetMetadata;
+use Google\Cloud\Spanner\V1\Type;
+use Google\Cloud\Spanner\V1\StructType as StructTypeProto;
+use Google\Cloud\Spanner\V1\StructType\Field;
+use Google\Protobuf\Value;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -42,6 +48,7 @@ class StructTypeTest extends SnippetTestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
+    use ResultGeneratorTrait;
 
     const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';
@@ -55,6 +62,8 @@ class StructTypeTest extends SnippetTestCase
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
+
+        $this->spannerClient = $this->prophesize(SpannerClient::class);
 
         $instance = $this->prophesize(Instance::class);
         $instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
@@ -78,7 +87,8 @@ class StructTypeTest extends SnippetTestCase
 
         $this->serializer = new Serializer();
         $this->database = new Database(
-            $this->requestHandler->reveal(),
+            $this->spannerClient->reveal(),
+            $this->prophesize(DatabaseAdminClient::class)->reveal(),
             $this->serializer,
             $instance->reveal(),
             self::PROJECT,
@@ -91,58 +101,55 @@ class StructTypeTest extends SnippetTestCase
 
     public function testExecuteStruct()
     {
-        $fields = [
+        $rows = [
             [
                 'name' => 'firstName',
-                'type' => [
-                    'code' => Database::TYPE_STRING,
-                    'typeAnnotation' => 0,
-                    'protoTypeFqn' => ''
-                ]
+                'type' => Database::TYPE_STRING,
+                'value' => 'John',
             ], [
                 'name' => 'lastName',
-                'type' => [
-                    'code' => Database::TYPE_STRING,
-                    'typeAnnotation' => 0,
-                    'protoTypeFqn' => ''
-                ]
+                'type' => Database::TYPE_STRING,
+                'value' => 'Testuser',
             ]
         ];
 
-        $values = [
-            'John',
-            'Testuser'
-        ];
+        $stream = $this->resultGeneratorStream($rows);
 
         $this->spannerClient->executeStreamingSql(
-            function ($args) use ($fields, $values) {
+            Argument::that(function ($args) use ($rows) {
                 $message = $this->serializer->encodeMessage($args);
                 $this->assertEquals('SELECT @userStruct.firstName, @userStruct.lastName', $args->getSql());
-                $this->assertEquals($message['params']['userStruct'], $values);
-                $this->assertEquals($message['paramTypes']['userStruct']['structType']['fields'], $fields);
+                $this->assertEquals(
+                    $message['params']['userStruct'],
+                    array_map(fn ($row) => $row['value'], $rows)
+                );
+                $this->assertEquals(
+                    $message['paramTypes']['userStruct']['structType']['fields'][0]['name'],
+                    $rows[0]['name']
+                );
+                $this->assertEquals(
+                    $message['paramTypes']['userStruct']['structType']['fields'][1]['name'],
+                    $rows[1]['name']
+                );
                 return true;
-            },
-            $this->resultGenerator([
-                'metadata' => [
-                    'rowType' => [
-                        'fields' => $fields
-                    ]
-                ],
-                'values' => $values
-            ])
-        );
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($stream);
+
         $snippet = $this->snippetFromClass(StructType::class);
         $snippet->replace('$database = $spanner->connect(\'my-instance\', \'my-database\');', '');
         $snippet->addLocal('database', $this->database);
 
-        $res = $snippet->invoke('fullName');
-        $this->assertEquals('John Testuser', $res->returnVal());
+        $this->assertEquals('John Testuser', $snippet->invoke('fullName')->returnVal());
     }
 
     public function testConstruct()
     {
         $snippet = $this->snippetFromMethod(StructType::class, '__construct');
-        $snippet->invoke();
+        $structType = $snippet->invoke('structType')->returnVal();
+        $this->assertInstanceOf(StructType::class, $structType);
     }
 
     public function testAdd()
@@ -198,10 +205,5 @@ class StructTypeTest extends SnippetTestCase
                 'child' => null
             ]
         ], $this->type->fields());
-    }
-
-    private function resultGenerator(array $data)
-    {
-        yield $data;
     }
 }

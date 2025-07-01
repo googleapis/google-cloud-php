@@ -528,6 +528,7 @@ class Result implements \IteratorAggregate
         if (!is_null($this->generator)) {
             return $this->generator->valid();
         }
+
         $call = $this->call;
         $generator = null;
 
