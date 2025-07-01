@@ -1,5 +1,58 @@
 # Changelog
 
+## 0.295.0
+
+<details><summary>google/cloud-ai-platform 1.32.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add computer use support to tools ([#8412](https://github.com/googleapis/google-cloud-php/issues/8412)) ([a5717f3](https://github.com/googleapis/google-cloud-php/commit/a5717f301e2c36995c7db37ae58252ac1e06ea29))
+* [AiPlatform] add message ColabImage, add field colab_image to NotebookSoftwareConfig ([#8416](https://github.com/googleapis/google-cloud-php/issues/8416)) ([c3b35ef](https://github.com/googleapis/google-cloud-php/commit/c3b35efa9164a840e92768c4d51848de86abb255))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.14.0</summary>
+
+
+
+### Features
+
+* [Bigtable] add Idempotency to Cloud Bigtable MutateRowRequest API ([#8411](https://github.com/googleapis/google-cloud-php/issues/8411)) ([4a83c13](https://github.com/googleapis/google-cloud-php/commit/4a83c1319d3752774bb9d886860ad86ca6a3c92a))
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.6.0</summary>
+
+
+
+### Features
+
+* [Dataproc] Add `cluster_tier` to support creating premium clusters ([#8413](https://github.com/googleapis/google-cloud-php/issues/8413)) ([61c1438](https://github.com/googleapis/google-cloud-php/commit/61c143885b0e063663561d5af332bea0e4abd505))
+
+</details>
+
+<details><summary>google/cloud-parametermanager 0.4.0</summary>
+
+
+
+### Features
+
+* [ParameterManager] KMS key resource_definition `cloudkms.googleapis.com/CryptoKey is added ([#8392](https://github.com/googleapis/google-cloud-php/issues/8392)) ([899693c](https://github.com/googleapis/google-cloud-php/commit/899693c8d885f129d99a9d3ccabced32acb8b20f))
+
+</details>
+
+<details><summary>google/cloud-security-center 2.2.0</summary>
+
+
+
+### Features
+
+* [SecurityCenter] Add AffectedResources proto ([#8414](https://github.com/googleapis/google-cloud-php/issues/8414)) ([2139cf8](https://github.com/googleapis/google-cloud-php/commit/2139cf843e0f138136d560c18b0b5f004c22d465))
+
+</details>
+
 ## 0.294.0
 
 <details><summary>googleads/ad-manager 0.3.0</summary>
