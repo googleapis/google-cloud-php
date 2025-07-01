@@ -17,8 +17,8 @@ class Process
         \GPBMetadata\Google\Cloud\Securitycenter\V2\File::initOnce();
         $pool->internalAddGeneratedFile(
             '
-é
-,google/cloud/securitycenter/v2/process.protogoogle.cloud.securitycenter.v2"õ
+ú
+,google/cloud/securitycenter/v2/process.protogoogle.cloud.securitycenter.v2"†
 Process
 name (	4
 binary (2$.google.cloud.securitycenter.v2.File7
@@ -31,7 +31,8 @@ class Process
 pid	 (
 
 parent_pid
- ("0
+ (
+user_id ("0
 EnvironmentVariable
 name (	
 val (	Bæ
