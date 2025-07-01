@@ -36,6 +36,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\LongRunning\ListOperationsRequest;
+use Google\LongRunning\Operation as OperationProto;
 
 /**
  * Represents a Cloud Spanner instance
@@ -867,7 +868,13 @@ class Instance
         return $this->buildLongRunningIterator(
             [$this->instanceAdminClient->getOperationsClient(), 'listOperations'],
             $request,
-            $callOptions
+            $callOptions,
+            function (OperationProto $operation) {
+                return $this->resumeOperation(
+                    $operation->getName(),
+                    $this->handleResponse($operation)
+                );
+            }
         );
     }
 

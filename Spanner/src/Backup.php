@@ -32,6 +32,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\DeleteBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\GetBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateBackupRequest;
 use Google\LongRunning\ListOperationsRequest;
+use Google\LongRunning\Operation as OperationProto;
 
 /**
  * Represents a Cloud Spanner Backup.
@@ -407,7 +408,13 @@ class Backup
         return $this->buildLongRunningIterator(
             [$this->databaseAdminClient->getOperationsClient(), 'listOperations'],
             $request,
-            $callOptions
+            $callOptions,
+            function (OperationProto $operation) {
+                return $this->resumeOperation(
+                    $operation->getName(),
+                    $this->handleResponse($operation)
+                );
+            }
         );
     }
 

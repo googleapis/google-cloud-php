@@ -54,6 +54,7 @@ use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
 use Google\Cloud\Spanner\V1\TypeCode;
 use Google\LongRunning\ListOperationsRequest;
+use Google\LongRunning\Operation as OperationProto;
 use Google\Protobuf\Duration;
 use Google\Protobuf\ListValue;
 use Google\Protobuf\Struct;
@@ -2298,7 +2299,8 @@ class Database
         return $this->buildLongRunningIterator(
             [$this->databaseAdminClient, 'listBackupOperations'],
             $request,
-            $callOptions +  ['resource-prefix' => $this->name]
+            $callOptions +  ['resource-prefix' => $this->name],
+            $this->getResultMapper()
         );
     }
 
@@ -2360,7 +2362,8 @@ class Database
         return $this->buildLongRunningIterator(
             [$this->databaseAdminClient, 'listDatabaseOperations'],
             $request,
-            $callOptions + ['resource-prefix' => $this->name]
+            $callOptions + ['resource-prefix' => $this->name],
+            $this->getResultMapper()
         );
     }
 
@@ -2425,7 +2428,8 @@ class Database
         return $this->buildLongRunningIterator(
             [$this->databaseAdminClient->getOperationsClient(), 'listOperations'],
             $request,
-            $callOptions
+            $callOptions,
+            $this->getResultMapper()
         );
     }
 
@@ -2647,6 +2651,16 @@ class Database
                 'database' => $database,
                 'databaseRole' => $this->databaseRole,
             ]);
+        };
+    }
+
+    private function getResultMapper()
+    {
+        return function (OperationProto $operation) {
+            return $this->resumeOperation(
+                $operation->getName(),
+                $this->handleResponse($operation)
+            );
         };
     }
 
