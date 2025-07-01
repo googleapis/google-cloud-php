@@ -23,7 +23,7 @@ class PostStartupScriptConfig extends \Google\Protobuf\Internal\Message
     protected $post_startup_script = '';
     /**
      * Optional. Post startup script url to download. Example:
-     * https://bucket/script.sh
+     * `gs://bucket/script.sh`
      *
      * Generated from protobuf field <code>string post_startup_script_url = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -46,7 +46,7 @@ class PostStartupScriptConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Post startup script to run after runtime is started.
      *     @type string $post_startup_script_url
      *           Optional. Post startup script url to download. Example:
-     *           https://bucket/script.sh
+     *           `gs://bucket/script.sh`
      *     @type int $post_startup_script_behavior
      *           Optional. Post startup script behavior that defines download and execution
      *           behavior.
@@ -85,7 +85,7 @@ class PostStartupScriptConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Post startup script url to download. Example:
-     * https://bucket/script.sh
+     * `gs://bucket/script.sh`
      *
      * Generated from protobuf field <code>string post_startup_script_url = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -97,7 +97,7 @@ class PostStartupScriptConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Post startup script url to download. Example:
-     * https://bucket/script.sh
+     * `gs://bucket/script.sh`
      *
      * Generated from protobuf field <code>string post_startup_script_url = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
