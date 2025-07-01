@@ -110,8 +110,7 @@ class TransactionTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->resultGeneratorStream()
-        );
+            ->willReturn($this->resultGeneratorStream());
 
         $snippet = $this->snippetFromMagicMethod(Transaction::class, 'execute');
         $snippet->addLocal('transaction', $this->transaction);
@@ -127,8 +126,7 @@ class TransactionTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->resultGenerator(true)
-        );
+            ->willReturn($this->resultGenerator(true));
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'executeUpdate');
         $snippet->addLocal('transaction', $this->transaction);
@@ -204,8 +202,7 @@ class TransactionTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]
-        ));
+            ]));
 
         $this->refreshOperation(
             $this->transaction,
@@ -458,8 +455,7 @@ class TransactionTest extends SnippetTestCase
             Argument::type('array')
         )->willReturn(new CommitResponse([
                 'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]
-        ));
+            ]));
 
         $this->refreshOperation(
             $this->transaction,

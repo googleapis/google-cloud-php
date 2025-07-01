@@ -119,8 +119,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
                     ]
                 ],
                 'values' => [0]
-            ])
-        );
+            ]));
 
         $this->refreshOperation(
             $client,
@@ -454,8 +453,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
                     ]
                 ],
                 'rows' => [0]
-            ])
-        );
+            ]));
 
         $snippet->addLocal($localName, $client);
 

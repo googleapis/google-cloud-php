@@ -110,8 +110,7 @@ class SpannerClientTest extends SnippetTestCase
                     ['name' => 'projects/my-awesome-projects/instanceConfigs/foo'],
                     ['name' => 'projects/my-awesome-projects/instanceConfigs/bar'],
                 ]
-            ]
-        );
+            ]);
 
         $snippet = $this->snippetFromMethod(SpannerClient::class, 'instanceConfigurations');
         $snippet->addLocal('spanner', $this->client);
@@ -196,8 +195,7 @@ class SpannerClientTest extends SnippetTestCase
                     ['name' => InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)],
                     ['name' => InstanceAdminClient::instanceName(self::PROJECT, 'bar')]
                 ]
-            ]
-        );
+            ]);
 
         $res = $snippet->invoke('instances');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());

@@ -202,8 +202,7 @@ trait TransactionConfigurationTrait
         $this->validateOptionType($readOnly, 'maxStaleness', Duration::class);
 
         // These are only available in single-use transactions.
-        if (
-            !($options['singleUse'] ?? false)
+        if (!($options['singleUse'] ?? false)
             && (!empty($readOnly['maxStaleness']) || !empty($readOnly['minReadTimestamp']))
         ) {
             throw new \BadMethodCallException(
