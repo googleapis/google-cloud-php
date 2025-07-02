@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode as ReadLockMode;
 
 /**
  * Configure transaction selection for read, executeSql, rollback and commit.
@@ -150,6 +151,12 @@ trait TransactionConfigurationTrait
 
         if (isset($options['excludeTxnFromChangeStreams'])) {
             $transactionOptions['excludeTxnFromChangeStreams'] = $options['excludeTxnFromChangeStreams'];
+        }
+
+        // The `readLockMode` can be set on the base options following convention or as a nested option if need be
+        if (isset($options['readLockMode']) || isset($options['readWrite']['readLockMode'])) {
+            $readLockModeOption = $options['readLockMode'] ?? $options['readWrite']['readLockMode'];
+            $transactionOptions['readWrite']['readLockMode'] = $readLockModeOption;
         }
 
         return $transactionOptions;
