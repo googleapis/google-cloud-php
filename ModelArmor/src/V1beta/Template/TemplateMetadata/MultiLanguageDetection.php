@@ -65,6 +65,4 @@ class MultiLanguageDetection extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MultiLanguageDetection::class, \Google\Cloud\ModelArmor\V1beta\Template_TemplateMetadata_MultiLanguageDetection::class);
 
