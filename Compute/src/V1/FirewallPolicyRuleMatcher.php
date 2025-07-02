@@ -34,6 +34,13 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
      */
     private $dest_ip_ranges;
     /**
+     * Network type of the traffic destination. Allowed values are: - UNSPECIFIED - INTERNET - NON_INTERNET
+     * Check the DestNetworkType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string dest_network_type = 409853224;</code>
+     */
+    private $dest_network_type = null;
+    /**
      * Region codes whose IP addresses will be used to match for destination of traffic. Should be specified as 2 letter country code defined as per ISO 3166 alpha-2 country codes. ex."US" Maximum number of dest region codes allowed is 5000.
      *
      * Generated from protobuf field <code>repeated string dest_region_codes = 199120280;</code>
@@ -70,6 +77,19 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
      */
     private $src_ip_ranges;
     /**
+     * Network type of the traffic source. Allowed values are: - UNSPECIFIED - INTERNET - INTRA_VPC - NON_INTERNET - VPC_NETWORKS
+     * Check the SrcNetworkType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string src_network_type = 309819686;</code>
+     */
+    private $src_network_type = null;
+    /**
+     * Networks of the traffic source. It can be either a full or partial url.
+     *
+     * Generated from protobuf field <code>repeated string src_networks = 247119872;</code>
+     */
+    private $src_networks;
+    /**
      * Region codes whose IP addresses will be used to match for source of traffic. Should be specified as 2 letter country code defined as per ISO 3166 alpha-2 country codes. ex."US" Maximum number of source region codes allowed is 5000.
      *
      * Generated from protobuf field <code>repeated string src_region_codes = 99086742;</code>
@@ -100,6 +120,9 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
      *           Fully Qualified Domain Name (FQDN) which should be matched against traffic destination. Maximum number of destination fqdn allowed is 100.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dest_ip_ranges
      *           CIDR IP address range. Maximum number of destination CIDR IP ranges allowed is 5000.
+     *     @type string $dest_network_type
+     *           Network type of the traffic destination. Allowed values are: - UNSPECIFIED - INTERNET - NON_INTERNET
+     *           Check the DestNetworkType enum for the list of possible values.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dest_region_codes
      *           Region codes whose IP addresses will be used to match for destination of traffic. Should be specified as 2 letter country code defined as per ISO 3166 alpha-2 country codes. ex."US" Maximum number of dest region codes allowed is 5000.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dest_threat_intelligences
@@ -112,6 +135,11 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
      *           Fully Qualified Domain Name (FQDN) which should be matched against traffic source. Maximum number of source fqdn allowed is 100.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $src_ip_ranges
      *           CIDR IP address range. Maximum number of source CIDR IP ranges allowed is 5000.
+     *     @type string $src_network_type
+     *           Network type of the traffic source. Allowed values are: - UNSPECIFIED - INTERNET - INTRA_VPC - NON_INTERNET - VPC_NETWORKS
+     *           Check the SrcNetworkType enum for the list of possible values.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $src_networks
+     *           Networks of the traffic source. It can be either a full or partial url.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $src_region_codes
      *           Region codes whose IP addresses will be used to match for source of traffic. Should be specified as 2 letter country code defined as per ISO 3166 alpha-2 country codes. ex."US" Maximum number of source region codes allowed is 5000.
      *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRuleSecureTag>|\Google\Protobuf\Internal\RepeatedField $src_secure_tags
@@ -199,6 +227,44 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->dest_ip_ranges = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Network type of the traffic destination. Allowed values are: - UNSPECIFIED - INTERNET - NON_INTERNET
+     * Check the DestNetworkType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string dest_network_type = 409853224;</code>
+     * @return string
+     */
+    public function getDestNetworkType()
+    {
+        return isset($this->dest_network_type) ? $this->dest_network_type : '';
+    }
+
+    public function hasDestNetworkType()
+    {
+        return isset($this->dest_network_type);
+    }
+
+    public function clearDestNetworkType()
+    {
+        unset($this->dest_network_type);
+    }
+
+    /**
+     * Network type of the traffic destination. Allowed values are: - UNSPECIFIED - INTERNET - NON_INTERNET
+     * Check the DestNetworkType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string dest_network_type = 409853224;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDestNetworkType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->dest_network_type = $var;
 
         return $this;
     }
@@ -355,6 +421,70 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->src_ip_ranges = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Network type of the traffic source. Allowed values are: - UNSPECIFIED - INTERNET - INTRA_VPC - NON_INTERNET - VPC_NETWORKS
+     * Check the SrcNetworkType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string src_network_type = 309819686;</code>
+     * @return string
+     */
+    public function getSrcNetworkType()
+    {
+        return isset($this->src_network_type) ? $this->src_network_type : '';
+    }
+
+    public function hasSrcNetworkType()
+    {
+        return isset($this->src_network_type);
+    }
+
+    public function clearSrcNetworkType()
+    {
+        unset($this->src_network_type);
+    }
+
+    /**
+     * Network type of the traffic source. Allowed values are: - UNSPECIFIED - INTERNET - INTRA_VPC - NON_INTERNET - VPC_NETWORKS
+     * Check the SrcNetworkType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string src_network_type = 309819686;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSrcNetworkType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->src_network_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Networks of the traffic source. It can be either a full or partial url.
+     *
+     * Generated from protobuf field <code>repeated string src_networks = 247119872;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSrcNetworks()
+    {
+        return $this->src_networks;
+    }
+
+    /**
+     * Networks of the traffic source. It can be either a full or partial url.
+     *
+     * Generated from protobuf field <code>repeated string src_networks = 247119872;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSrcNetworks($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->src_networks = $arr;
 
         return $this;
     }

@@ -131,6 +131,12 @@ class Route extends \Google\Protobuf\Internal\Message
      */
     private $next_hop_vpn_tunnel = null;
     /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouteParams params = 78313862;</code>
+     */
+    private $params = null;
+    /**
      * The priority of this route. Priority is used to break ties in cases where there is more than one matching route of equal prefix length. In cases where multiple routes have equal prefix length, the one with the lowest-numbered priority value wins. The default value is `1000`. The priority value must be from `0` to `65535`, inclusive.
      *
      * Generated from protobuf field <code>optional uint32 priority = 445151652;</code>
@@ -214,6 +220,8 @@ class Route extends \Google\Protobuf\Internal\Message
      *           [Output Only] The network peering name that should handle matching packets, which should conform to RFC1035.
      *     @type string $next_hop_vpn_tunnel
      *           The URL to a VpnTunnel that should handle matching packets.
+     *     @type \Google\Cloud\Compute\V1\RouteParams $params
+     *           Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
      *     @type int $priority
      *           The priority of this route. Priority is used to break ties in cases where there is more than one matching route of equal prefix length. In cases where multiple routes have equal prefix length, the one with the lowest-numbered priority value wins. The default value is `1000`. The priority value must be from `0` to `65535`, inclusive.
      *     @type string $route_status
@@ -907,6 +915,42 @@ class Route extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->next_hop_vpn_tunnel = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouteParams params = 78313862;</code>
+     * @return \Google\Cloud\Compute\V1\RouteParams|null
+     */
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    public function hasParams()
+    {
+        return isset($this->params);
+    }
+
+    public function clearParams()
+    {
+        unset($this->params);
+    }
+
+    /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouteParams params = 78313862;</code>
+     * @param \Google\Cloud\Compute\V1\RouteParams $var
+     * @return $this
+     */
+    public function setParams($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\RouteParams::class);
+        $this->params = $var;
 
         return $this;
     }

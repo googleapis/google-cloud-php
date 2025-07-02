@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\BackendService;
 use UnexpectedValueException;
 
 /**
- * The protocol this BackendService uses to communicate with backends. Possible values are HTTP, HTTPS, HTTP2, TCP, SSL, UDP or GRPC. depending on the chosen load balancer or Traffic Director configuration. Refer to the documentation for the load balancers or for Traffic Director for more information. Must be set to GRPC when the backend service is referenced by a URL map that is bound to target gRPC proxy.
+ * The protocol this BackendService uses to communicate with backends. Possible values are HTTP, HTTPS, HTTP2, H2C, TCP, SSL, UDP or GRPC. depending on the chosen load balancer or Traffic Director configuration. Refer to the documentation for the load balancers or for Traffic Director for more information. Must be set to GRPC when the backend service is referenced by a URL map that is bound to target gRPC proxy.
  *
  * Protobuf type <code>google.cloud.compute.v1.BackendService.Protocol</code>
  */
@@ -25,6 +25,12 @@ class Protocol
      * Generated from protobuf enum <code>GRPC = 2196510;</code>
      */
     const GRPC = 2196510;
+    /**
+     * HTTP2 over cleartext
+     *
+     * Generated from protobuf enum <code>H2C = 70809;</code>
+     */
+    const H2C = 70809;
     /**
      * Generated from protobuf enum <code>HTTP = 2228360;</code>
      */
@@ -67,6 +73,7 @@ class Protocol
     private static $valueToName = [
         self::UNDEFINED_PROTOCOL => 'UNDEFINED_PROTOCOL',
         self::GRPC => 'GRPC',
+        self::H2C => 'H2C',
         self::HTTP => 'HTTP',
         self::HTTP2 => 'HTTP2',
         self::HTTPS => 'HTTPS',
