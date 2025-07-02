@@ -31,22 +31,19 @@ use Google\Cloud\Spanner\V1\TypeAnnotationCode;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * $pgNumeric = $spanner->pgNumeric('99999999999999999999999999999999999999.000000999999999');
  * ```
  */
 class PgNumeric implements ValueInterface, TypeAnnotationInterface
 {
-    /**
-     * @var string|null
-     */
-    private $value;
+    private string|null $value;
 
     /**
      * @param string|int|float|null $value The PG_NUMERIC value.
      */
-    public function __construct($value)
+    public function __construct(string|int|float|null $value)
     {
         // null shouldn't be casted to an empty string
         $value = is_null($value) ? $value : (string) $value;
@@ -58,7 +55,7 @@ class PgNumeric implements ValueInterface, TypeAnnotationInterface
      *
      * @return string|null
      */
-    public function get()
+    public function get(): string|null
     {
         return $this->value;
     }
@@ -69,7 +66,7 @@ class PgNumeric implements ValueInterface, TypeAnnotationInterface
      * @access private
      * @return int
      */
-    public function type()
+    public function type(): int
     {
         return ValueMapper::TYPE_NUMERIC;
     }
@@ -81,7 +78,7 @@ class PgNumeric implements ValueInterface, TypeAnnotationInterface
      * @access private
      * @return int
      */
-    public function typeAnnotation()
+    public function typeAnnotation(): int
     {
         return TypeAnnotationCode::PG_NUMERIC;
     }
@@ -91,7 +88,7 @@ class PgNumeric implements ValueInterface, TypeAnnotationInterface
      *
      * @return string
      */
-    public function formatAsString()
+    public function formatAsString(): string
     {
         return (string) $this->value;
     }

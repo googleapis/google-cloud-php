@@ -18,10 +18,10 @@
 namespace Google\Cloud\Spanner\Batch;
 
 use Google\Cloud\Core\TimeTrait;
-use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\TransactionConfigurationTrait;
+use Google\Protobuf\Duration;
 
 /**
  * Provides Batch APIs used to read data from a Cloud Spanner database.
@@ -36,7 +36,7 @@ use Google\Cloud\Spanner\TransactionConfigurationTrait;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $batch = $spanner->batch('instance-id', 'database-id');
  * ```
  *
@@ -108,29 +108,14 @@ class BatchClient
     use TransactionConfigurationTrait;
 
     const PARTITION_TYPE_KEY = '__partitionTypeName';
-
-    /**
-     * @var Operation
-     */
-    private $operation;
-
-    /**
-     * @var string
-     */
-    private $databaseName;
-
-    /**
-     * @var string|null
-     */
-    private $databaseRole;
-
-    /**
-     * @var array
-     */
-    private $allowedPartitionTypes = [
+    private const ALLOWED_PARTITION_TYPES = [
         QueryPartition::class,
         ReadPartition::class
     ];
+
+    private Operation $operation;
+    private string $databaseName;
+    private string|null $databaseRole;
 
     /**
      * @param Operation $operation A Cloud Spanner Operations wrapper.
@@ -187,7 +172,7 @@ class BatchClient
         $transactionOptions = $this->pluck('transactionOptions', $options);
         $transactionOptions['returnReadTimestamp'] = true;
 
-        $transactionOptions = $this->configureSnapshotOptions($transactionOptions);
+        $transactionOptions = $this->configureReadOnlyTransactionOptions($transactionOptions);
 
         if ($this->databaseRole !== null) {
             $sessionOptions['creator_role'] = $this->databaseRole;
@@ -262,7 +247,7 @@ class BatchClient
         }
 
         $class = $data[self::PARTITION_TYPE_KEY];
-        if (!in_array($class, $this->allowedPartitionTypes)) {
+        if (!in_array($class, self::ALLOWED_PARTITION_TYPES)) {
             throw new \InvalidArgumentException('Invalid partition type.');
         }
 
