@@ -62,6 +62,12 @@ class TemplateMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool log_sanitize_operations = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $log_sanitize_operations = false;
+    /**
+     * Optional. Metadata for multi language detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.Template.TemplateMetadata.MultiLanguageDetection multi_language_detection = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $multi_language_detection = null;
 
     /**
      * Constructor.
@@ -88,6 +94,8 @@ class TemplateMetadata extends \Google\Protobuf\Internal\Message
      *           Optional. If true, log template crud operations.
      *     @type bool $log_sanitize_operations
      *           Optional. If true, log sanitize operations.
+     *     @type \Google\Cloud\ModelArmor\V1\Template\TemplateMetadata\MultiLanguageDetection $multi_language_detection
+     *           Optional. Metadata for multi language detection.
      * }
      */
     public function __construct($data = NULL) {
@@ -283,6 +291,42 @@ class TemplateMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->log_sanitize_operations = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Metadata for multi language detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.Template.TemplateMetadata.MultiLanguageDetection multi_language_detection = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ModelArmor\V1\Template\TemplateMetadata\MultiLanguageDetection|null
+     */
+    public function getMultiLanguageDetection()
+    {
+        return $this->multi_language_detection;
+    }
+
+    public function hasMultiLanguageDetection()
+    {
+        return isset($this->multi_language_detection);
+    }
+
+    public function clearMultiLanguageDetection()
+    {
+        unset($this->multi_language_detection);
+    }
+
+    /**
+     * Optional. Metadata for multi language detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.Template.TemplateMetadata.MultiLanguageDetection multi_language_detection = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ModelArmor\V1\Template\TemplateMetadata\MultiLanguageDetection $var
+     * @return $this
+     */
+    public function setMultiLanguageDetection($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ModelArmor\V1\Template\TemplateMetadata\MultiLanguageDetection::class);
+        $this->multi_language_detection = $var;
 
         return $this;
     }

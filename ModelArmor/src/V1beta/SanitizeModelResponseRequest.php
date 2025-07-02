@@ -35,7 +35,7 @@ class SanitizeModelResponseRequest extends \Google\Protobuf\Internal\Message
      */
     protected $user_prompt = '';
     /**
-     * Optional. Metadata related for Translations.
+     * Optional. Metadata related for multi language detection.
      *
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1beta.MultiLanguageDetectionMetadata multi_language_detection_metadata = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -55,7 +55,7 @@ class SanitizeModelResponseRequest extends \Google\Protobuf\Internal\Message
      *     @type string $user_prompt
      *           Optional. User Prompt associated with Model response.
      *     @type \Google\Cloud\ModelArmor\V1beta\MultiLanguageDetectionMetadata $multi_language_detection_metadata
-     *           Optional. Metadata related for Translations.
+     *           Optional. Metadata related for multi language detection.
      * }
      */
     public function __construct($data = NULL) {
@@ -154,7 +154,7 @@ class SanitizeModelResponseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Metadata related for Translations.
+     * Optional. Metadata related for multi language detection.
      *
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1beta.MultiLanguageDetectionMetadata multi_language_detection_metadata = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\ModelArmor\V1beta\MultiLanguageDetectionMetadata|null
@@ -175,7 +175,7 @@ class SanitizeModelResponseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Metadata related for Translations.
+     * Optional. Metadata related for multi language detection.
      *
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1beta.MultiLanguageDetectionMetadata multi_language_detection_metadata = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\ModelArmor\V1beta\MultiLanguageDetectionMetadata $var
