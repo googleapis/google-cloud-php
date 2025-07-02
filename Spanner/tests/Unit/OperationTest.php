@@ -20,7 +20,6 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\Connection\Grpc;
@@ -36,12 +35,12 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\V1\CommitResponse;
 use Google\Cloud\Spanner\V1\ResultSet;
 use Google\Cloud\Spanner\V1\ResultSetStats;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
 use Google\Cloud\Spanner\V1\TransactionOptions;
+use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode as ReadLockMode;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -419,6 +418,86 @@ class OperationTest extends TestCase
         $operation->executeUpdate($this->session, $transaction, $sql, [
            'transaction' => ['begin' => ['excludeTxnFromChangeStreams' => true]]
         ]);
+    }
+
+    public function testTransactionWithReadLockMode()
+    {
+        $expectedReadLockMode = ReadLockMode::OPTIMISTIC;
+        $gapic = $this->prophesize(SpannerClient::class);
+        $gapic->beginTransaction(
+            self::SESSION,
+            Argument::that(function (TransactionOptions $options) use ($expectedReadLockMode) {
+                $this->assertNotNull($readWriteTxnOptions = $options->getReadWrite());
+                $this->assertNotNull($readLockModeOption = $readWriteTxnOptions->getReadLockMode());
+                $this->assertEquals(
+                    $expectedReadLockMode,
+                    $readLockModeOption
+                );
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalled()
+            ->willReturn(new TransactionProto(['id' => 'foo']));
+
+        $operation = new Operation(
+            new Grpc(['gapicSpannerClient' => $gapic->reveal()]),
+            true
+        );
+
+        $transaction = $operation->transaction($this->session, [
+            'transactionOptions' => ['readLockMode' => $expectedReadLockMode, ]
+        ]);
+
+        $this->assertEquals('foo', $transaction->id());
+    }
+
+    public function testExecuteAndExecuteUpdateWithReadLockMode()
+    {
+        $expectedReadLockMode = ReadLockMode::OPTIMISTIC;
+        $sql = 'SELECT example FROM sql_query';
+
+        $resultSet = new ResultSet(['stats' => new ResultSetStats(['row_count_exact' => 0])]);
+        $stream = $this->prophesize(ServerStream::class);
+        $stream->readAll()->shouldBeCalledTimes(2)->willReturn([$resultSet]);
+
+        $gapic = $this->prophesize(SpannerClient::class);
+        $gapic->executeStreamingSql(
+            self::SESSION,
+            $sql,
+            Argument::that(function (array $options) use ($expectedReadLockMode) {
+                $this->assertArrayHasKey('transaction', $options);
+                $this->assertNotNull($transactionOptions = $options['transaction']->getBegin());
+                $this->assertNotNull($readWriteTxnOptions = $transactionOptions->getReadWrite());
+                $this->assertNotNull($readLockModeOption = $readWriteTxnOptions->getReadLockMode());
+                $this->assertEquals(
+                    $expectedReadLockMode,
+                    $readLockModeOption
+                );
+                return true;
+            })
+        )
+            ->shouldBeCalledTimes(2)
+            ->willReturn($stream->reveal());
+
+        $operation = new Operation(
+            new Grpc(['gapicSpannerClient' => $gapic->reveal()]),
+            true
+        );
+
+        $lockModeOptions = [
+            'transaction' => [
+                'begin' => [
+                    'readLockMode' => $expectedReadLockMode,
+                ]
+            ]
+         ];
+
+        $operation->execute($this->session, $sql, $lockModeOptions);
+
+        $transaction = $this->prophesize(Transaction::class)->reveal();
+
+        $operation->executeUpdate($this->session, $transaction, $sql, $lockModeOptions);
     }
 
     public function testSnapshot()
