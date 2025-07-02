@@ -812,8 +812,12 @@ class Database
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
         }
 
-        // There isn't anything configurable here.
-        $options['transactionOptions'] = $this->configureTransactionOptions();
+        // Purva: Check purpose of the configureTransactionOptions method. Why can't we pass $options[transsactionOptions] as arg directly and let the method handle the filtering?
+
+        // This method configures readWrite and base transaction options
+        $options['transactionOptions'] = $this->configureTransactionOptions([
+            'readLockMode' => isset($options['transactionOptions']['readLockMode']) ? $options['transactionOptions']['readLockMode'] : null;
+        ]);
 
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READWRITE,
@@ -920,8 +924,14 @@ class Database
             'maxRetries' => self::MAX_RETRIES,
         ];
 
+        // Purva: Why is the configureTransactionOptions even called if nothing is to be configured?
+        
         // There isn't anything configurable here.
-        $options['transactionOptions'] = $this->configureTransactionOptions($options['transactionOptions'] ?? []);
+        $txnConfigurableOptions = [
+            'readLockMode' => isset($options['readLockMode']) ? $options['readLockMode'] : null;
+        ] + $options['transactionOptions'] ?? [];
+
+        $options['transactionOptions'] = $this->configureTransactionOptions($txnConfigurableOptions);
 
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READWRITE,

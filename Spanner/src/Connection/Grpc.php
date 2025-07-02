@@ -1106,7 +1106,7 @@ class Grpc implements ConnectionInterface
         } elseif (isset($transactionOptions['readWrite'])) {
             $readWrite = new ReadWrite();
             $options->setReadWrite($readWrite);
-            $args = $this->addLarHeader($args, $this->larEnabled);
+            $args = $this->addLarHeader($args, $this->larEnabled); // Purva: Check no changes here. The ReadLockMode should be set through the compiled code when we set the ReadWrite Txn Options - https://github.com/googleapis/google-cloud-php/blob/c3b35efa9164a840e92768c4d51848de86abb255/Spanner/src/V1/TransactionOptions/ReadWrite.php#L75-L82
         } elseif (isset($transactionOptions['partitionedDml'])) {
             $pdml = new PartitionedDml();
             $options->setPartitionedDml($pdml);

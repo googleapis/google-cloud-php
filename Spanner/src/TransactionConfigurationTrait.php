@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;
 
 /**
  * Configure transaction selection for read, executeSql, rollback and commit.
@@ -130,7 +131,7 @@ trait TransactionConfigurationTrait
             $transactionOptions = $this->configureSnapshotOptions($options, $previous);
         } elseif ($context === SessionPoolInterface::CONTEXT_READWRITE) {
             $transactionOptions = $this->configureTransactionOptions(
-                $type == 'begin' && is_array($begin) ? $begin : []
+                $type == 'begin' && is_array($begin) ? $begin : [] // Purva: What are these 'begin' options? Where are they configured (need to understand formating and keys in this array)?
             );
         } else {
             throw new \BadMethodCallException(sprintf(
@@ -145,11 +146,17 @@ trait TransactionConfigurationTrait
     private function configureTransactionOptions(array $options = [])
     {
         $transactionOptions = [
-            'readWrite' => []
+            'readWrite' => [
+                'readLockMode' => ReadLockMode::READ_LOCK_MODE_UNSPECIFIED,
+            ]
         ];
 
         if (isset($options['excludeTxnFromChangeStreams'])) {
             $transactionOptions['excludeTxnFromChangeStreams'] = $options['excludeTxnFromChangeStreams'];
+        }
+
+        if(isset($options['readLockMode'])) { // Purva: Will this be 'readLockMode'] or ['readWrite']['readLockMode'] or ['transactionOptions']['readWrite']['readLockMode']
+            $transactionOptions['readWrite']['readLockMode'] = $options[]['readLockMode'];
         }
 
         return $transactionOptions;
