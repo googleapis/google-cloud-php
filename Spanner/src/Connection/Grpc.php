@@ -1107,6 +1107,12 @@ class Grpc implements ConnectionInterface
             $readWrite = new ReadWrite();
             $options->setReadWrite($readWrite);
             $args = $this->addLarHeader($args, $this->larEnabled);
+
+            if(isset($transactionOptions['readWrite']['readLockMode'])) {
+                // Nested option `readLockMode` inside `readWrite` transactions
+                $readLockModeOption = $transactionOptions['readWrite']['readLockMode'];
+                $options->getReadWrite()->setReadLockMode($readLockModeOption);
+            }
         } elseif (isset($transactionOptions['partitionedDml'])) {
             $pdml = new PartitionedDml();
             $options->setPartitionedDml($pdml);
@@ -1576,6 +1582,19 @@ class Grpc implements ConnectionInterface
             $transactionOptions['readOnly'] = $ro;
         }
 
+        if (isset($transactionOptions['readWrite'])) {
+            $rw = $transactionOptions['readWrite'];
+
+            // Format nested options inside readWrite transaction
+            if (isset($transactionOptions['readLockMode'])) {
+                $rw['readLockMode'] = $transactionOptions['readLockMode'];
+
+                // Unset the readLockMode key on the base options array. If we don't do this it causes issues in the serializer for TransactionOptions
+                unset($transactionOptions['readLockMode']);
+            }
+
+            $transactionOptions['readWrite'] = $rw;
+        }
         return $transactionOptions;
     }
 

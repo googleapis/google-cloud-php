@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode as ReadLockMode;
 
 /**
  * Configure transaction selection for read, executeSql, rollback and commit.
@@ -143,13 +144,22 @@ trait TransactionConfigurationTrait
     }
 
     private function configureTransactionOptions(array $options = [])
-    {
+    { // Purva: this method is being called twice somehow once with ['readLockMode'] and then with the correct formatted ['readWrite']['readLockMode']. Second call is removing the option due to condition on L158
         $transactionOptions = [
             'readWrite' => []
         ];
 
         if (isset($options['excludeTxnFromChangeStreams'])) {
             $transactionOptions['excludeTxnFromChangeStreams'] = $options['excludeTxnFromChangeStreams'];
+        }
+
+        // Allow for proper configuring of the `readLockMode` if it's set as a base or nested option
+        if (isset($options['readLockMode'])) {
+            $transactionOptions['readWrite']['readLockMode'] = $options['readLockMode'];
+        }
+        
+        if (isset($options['readWrite']['readLockMode'])) {
+            $transactionOptions['readWrite']['readLockMode'] = $options['readWrite']['readLockMode'];
         }
 
         return $transactionOptions;
