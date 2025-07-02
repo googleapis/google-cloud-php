@@ -54,7 +54,7 @@ trait SnapshotTrait
         Operation $operation,
         Session $session,
         array $options = []
-    ) {
+    ): void {
         $this->operation = $operation;
         $this->session = $session;
 
@@ -95,7 +95,7 @@ trait SnapshotTrait
      *
      * @return Timestamp
      */
-    public function readTimestamp()
+    public function readTimestamp(): Timestamp
     {
         return $this->readTimestamp;
     }

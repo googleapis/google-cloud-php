@@ -86,7 +86,9 @@ class TransactionTest extends SnippetTestCase
     public function testClass()
     {
         $database = $this->prophesize(Database::class);
-        $database->runTransaction(Argument::type('callable'))->shouldBeCalled();
+        $database->runTransaction(Argument::type('callable'))
+            ->shouldBeCalled()
+            ->willReturn(null);
 
         $snippet = $this->snippetFromClass(Transaction::class);
         $snippet->replace('$database =', '//$database =');

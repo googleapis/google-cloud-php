@@ -57,15 +57,14 @@ use Throwable;
 class SpannerMiddleware implements MiddlewareInterface
 {
     use ArrayTrait;
+    use RequestProcessorTrait;
 
     private const ROUTE_TO_LEADER_HEADER = 'x-goog-spanner-route-to-leader';
     private const RESOURCE_PREFIX_HEADER = 'google-cloud-resource-prefix';
 
-    use RequestProcessorTrait;
-
     /** @var callable */
     private $nextHandler;
-    private $serializer;
+    private Serializer $serializer;
 
     public function __construct(callable $nextHandler)
     {
@@ -78,9 +77,12 @@ class SpannerMiddleware implements MiddlewareInterface
      * @param array $options
      *
      * @return PromiseInterface|ClientStream|ServerStream|BidiStream
+     * @throws Throwable
      */
-    public function __invoke(Call $call, array $options)
-    {
+    public function __invoke(
+        Call $call,
+        array $options
+    ): PromiseInterface|ClientStream|ServerStream|BidiStream {
         if ($resourcePrefix = $this->pluck('resource-prefix', $options, false)) {
             $options['headers'][self::RESOURCE_PREFIX_HEADER] = [$options['resource-prefix']];
         }

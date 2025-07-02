@@ -54,7 +54,7 @@ class Timestamp extends CoreTimestamp implements ValueInterface
      *
      * @return int
      */
-    public function type()
+    public function type(): int
     {
         return Database::TYPE_TIMESTAMP;
     }

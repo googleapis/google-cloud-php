@@ -6,7 +6,7 @@ use Google\ApiCore\Serializer as ApiCoreSerializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\Type;
-use Google\Protobuf\Internal\RepeatedField;
+use Google\Protobuf\RepeatedField;
 use Google\Protobuf\Value;
 
 /**
@@ -16,6 +16,7 @@ use Google\Protobuf\Value;
 class Serializer extends ApiCoreSerializer
 {
     use ApiHelperTrait;
+
     private Serializer $serializer; // Self reference for ApiHelperTrait
 
     public function __construct()
@@ -114,11 +115,11 @@ class Serializer extends ApiCoreSerializer
      * The type is converted from a string like INT64 to ["code" => 2, "typeAnnotation" => 0]
      * conforming with the Google\Cloud\Spanner\V1\TypeCode class.
      *
-     * @param ?RepeatedField $fields The array contain list of fields.
+     * @param RepeatedField|null $fields The array contain list of fields.
      *
      * @return array The formatted fields data.
      */
-    private function getFieldDataFromRepeatedFields(?RepeatedField $fields): array
+    private function getFieldDataFromRepeatedFields(RepeatedField|null $fields): array
     {
         if (is_null($fields)) {
             return [];

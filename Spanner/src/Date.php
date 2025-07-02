@@ -44,7 +44,7 @@ class Date implements ValueInterface
     /**
      * @var DateTimeInterface
      */
-    protected $value;
+    protected DateTimeInterface $value;
 
     /**
      * @param DateTimeInterface $value The date value.
@@ -67,8 +67,11 @@ class Date implements ValueInterface
      * @param int|string $day The day of the month.
      * @return Date
      */
-    public static function createFromValues($year, $month, $day): Date
-    {
+    public static function createFromValues(
+        int|string $year,
+        int|string $month,
+        int|string $day
+    ): Date {
         $value = sprintf('%s-%s-%s', $year, $month, $day);
         $dt = \DateTimeImmutable::createFromFormat(self::FORMAT, $value);
 

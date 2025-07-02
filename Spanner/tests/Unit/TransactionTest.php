@@ -557,7 +557,7 @@ class TransactionTest extends TestCase
         $operation = $this->prophesize(Operation::class);
         $operation->commitWithResponse(Argument::cetera())
             ->shouldBeCalledOnce()
-            ->willReturn([[]]);
+            ->willReturn([$this->prophesize(Timestamp::class)->reveal()]);
 
         $transaction = new Transaction(
             $operation->reveal(),
@@ -594,7 +594,7 @@ class TransactionTest extends TestCase
         $operation = $this->prophesize(Operation::class);
         $operation->commitWithResponse(Argument::cetera())
             ->shouldBeCalledOnce()
-            ->willReturn([[]]);
+            ->willReturn([$this->prophesize(Timestamp::class)->reveal()]);
 
         $transaction = new Transaction(
             $operation->reveal(),
@@ -620,7 +620,7 @@ class TransactionTest extends TestCase
         $operation = $this->prophesize(Operation::class);
         $operation->commitWithResponse(Argument::cetera())
             ->shouldBeCalledOnce()
-            ->willReturn([[]]);
+            ->willReturn([$this->prophesize(Timestamp::class)->reveal()]);
 
         $transaction = new Transaction(
             $operation->reveal(),

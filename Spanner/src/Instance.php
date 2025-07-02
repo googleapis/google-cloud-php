@@ -59,31 +59,11 @@ class Instance
 
     const DEFAULT_NODE_COUNT = 1;
 
-    /**
-     * @var IamManager|null
-     */
-    private $iam;
-
-    /**
-     * @var array
-     */
-    private $directedReadOptions;
-
-    /**
-     * @var array
-     */
-    private $defaultQueryOptions;
-
-    /**
-     * @var bool
-     */
-    private $routeToLeader;
-
-    /**
-     * @var string
-     */
-    private $projectName;
-
+    private IamManager|null $iam = null;
+    private array $directedReadOptions;
+    private array $defaultQueryOptions;
+    private bool $routeToLeader;
+    private string $projectName;
     private bool $returnInt64AsObject;
 
     /**
@@ -472,8 +452,11 @@ class Instance
      *
      * @return LongRunningOperation
      */
-    public function createDatabaseFromBackup($name, $backup, array $options = []): LongRunningOperation
-    {
+    public function createDatabaseFromBackup(
+        string $name,
+        Backup|string $backup,
+        array $options = []
+    ): LongRunningOperation {
         return $this->database($name)->createDatabaseFromBackup($name, $backup, $options);
     }
 
@@ -509,7 +492,7 @@ class Instance
      * }
      * @return Database
      */
-    public function database($name, array $options = []): Database
+    public function database(string $name, array $options = []): Database
     {
         return new Database(
             $this->spannerClient,
@@ -581,7 +564,7 @@ class Instance
      *
      * @return Backup
      */
-    public function backup($name, array $backup = []): Backup
+    public function backup(string $name, array $backup = []): Backup
     {
         return new Backup(
             $this->databaseAdminClient,
@@ -736,7 +719,7 @@ class Instance
      * @param string $project The project ID.
      * @return string
      */
-    private function fullyQualifiedInstanceName($name, $project): string
+    private function fullyQualifiedInstanceName(string $name, string $project): string
     {
         return InstanceAdminClient::instanceName(
             $project,
@@ -797,7 +780,7 @@ class Instance
      */
     public function createInstanceArray(
         array $instanceArray,
-        ?InstanceConfiguration $config = null
+        InstanceConfiguration|null $config = null
     ): array {
         return $instanceArray + [
             'name' => $this->name,
@@ -818,7 +801,7 @@ class Instance
      * @param string $operationName The Long Running Operation name.
      * @return LongRunningOperation
      */
-    public function resumeOperation($operationName, array $options = []): LongRunningOperation
+    public function resumeOperation(string $operationName, array $options = []): LongRunningOperation
     {
         return new LongRunningOperation(
             new LongRunningClientConnection($this->instanceAdminClient, $this->serializer),

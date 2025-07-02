@@ -29,61 +29,22 @@ trait TransactionalReadTrait
 {
     use TransactionConfigurationTrait;
 
-    /**
-     * @var Operation
-     */
     private Operation $operation;
-
-    /**
-     * @var Session
-     */
     private Session $session;
-
-    /**
-     * @var string
-     */
-    private ?string $transactionId;
-
-    /**
-     * @var string
-     */
+    private string|null $transactionId;
     private string $context;
-
-    /**
-     * @var int
-     */
     private int $type;
-
-    /**
-     * @var int
-     */
     private int $state = TransactionalReadInterface::STATE_ACTIVE;
-
     /**
      * @see V1\TransactionSelector
-     * @var array
      */
     private array $transactionSelector = [];
-
     /**
      * @see V1\TransactionOptions
-     * @var array
      */
     private array $transactionOptions = [];
-
-    /**
-     * @var int
-     */
     private int $seqno = 1;
-
-    /**
-     * @var string
-     */
-    private ?string $tag = null;
-
-    /**
-     * @var array
-     */
+    private string|null $tag = null;
     private array $directedReadOptions = [];
 
     /**
@@ -280,7 +241,7 @@ trait TransactionalReadTrait
      * @codingStandardsIgnoreEnd
      * @return Result
      */
-    public function execute($sql, array $options = [])
+    public function execute(string $sql, array $options = []): Result
     {
         $this->singleUseState();
         $this->checkReadContext();
@@ -370,7 +331,7 @@ trait TransactionalReadTrait
      * }
      * @return Result
      */
-    public function read($table, KeySet $keySet, array $columns, array $options = [])
+    public function read(string $table, KeySet $keySet, array $columns, array $options = []): Result
     {
         $this->singleUseState();
         $this->checkReadContext();
@@ -420,7 +381,7 @@ trait TransactionalReadTrait
      *
      * @return string|null
      */
-    public function id()
+    public function id(): string|null
     {
         return $this->transactionId;
     }
@@ -428,7 +389,7 @@ trait TransactionalReadTrait
     /**
      * Set the transaction ID.
      */
-    public function setId(?string $transactionId)
+    public function setId(string|null $transactionId): void
     {
         $this->transactionId = $transactionId;
     }
@@ -439,7 +400,7 @@ trait TransactionalReadTrait
      * @access private
      * @return int
      */
-    public function type()
+    public function type(): int
     {
         return $this->type;
     }
@@ -450,7 +411,7 @@ trait TransactionalReadTrait
      * @access private
      * @return Session
      */
-    public function session()
+    public function session(): Session
     {
         return $this->session;
     }
@@ -461,7 +422,7 @@ trait TransactionalReadTrait
      * @return bool true if transaction is single use, false otherwise.
      * @throws \BadMethodCallException
      */
-    private function singleUseState()
+    private function singleUseState(): bool
     {
         if ($this->type === self::TYPE_SINGLE_USE) {
             if ($this->state === self::STATE_SINGLE_USE_USED) {
@@ -482,7 +443,7 @@ trait TransactionalReadTrait
      *
      * @throws \BadMethodCallException
      */
-    private function checkReadContext()
+    private function checkReadContext(): void
     {
         if ($this->type === self::TYPE_SINGLE_USE && $this->context === SessionPoolInterface::CONTEXT_READWRITE) {
             throw new \BadMethodCallException('Cannot use a single-use read-write transaction for read or execute.');
