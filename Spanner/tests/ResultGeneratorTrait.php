@@ -72,7 +72,7 @@ trait ResultGeneratorTrait
                     'type' => new Type(['code' => $row['type']])
                 ]);
 
-                $values[] = new Value(['string_value' => $row['value']]);
+                $values[] = new Value(['string_value' => (string) $row['value']]);
             }
 
             $result = [

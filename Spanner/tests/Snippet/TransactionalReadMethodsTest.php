@@ -429,7 +429,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
 
     private function createClientForClass(string $clientClass)
     {
-        return match($clientClass) {
+        return match ($clientClass) {
             Database::class => $this->setupDatabase(),
             Transaction::class => $this->setupTransaction(),
             Snapshot::class => $this->setupSnapshot(),
