@@ -42,7 +42,7 @@ trait TransactionConfigurationTrait
      * @param array $previousReadOnlyOptions Previously given call options (for single-use snapshots).
      * @return array [(array) transaction selector, (string) context]
      */
-    private function transactionSelector(array &$options, array $previousReadOnlyOptions = [])
+    private function transactionSelector(array &$options, array $previousReadOnlyOptions = []): array
     {
         $options += [
             'begin' => false,
@@ -77,7 +77,7 @@ trait TransactionConfigurationTrait
      * @param array $previousReadOnlyOptions Previously given call options (for single-use snapshots).
      * @return array [(array) transaction options, (string) transaction type, (string) context]
      */
-    private function transactionOptions(array &$options, array $previousReadOnlyOptions = [])
+    private function transactionOptions(array &$options, array $previousReadOnlyOptions = []): array
     {
         // @TODO: Remove $options being passed by reference
 
@@ -134,7 +134,7 @@ trait TransactionConfigurationTrait
         return [$transactionOptions, $type, $context];
     }
 
-    private function configureReadWriteTransactionOptions(array $options = [])
+    private function configureReadWriteTransactionOptions(array $options = []): array
     {
         return array_intersect_key($options, array_flip([
             'excludeTxnFromChangeStreams',
@@ -174,10 +174,10 @@ trait TransactionConfigurationTrait
      *           "single-use", and may be used for only a single operation.
      *           **Defaults to** `false`.
      * }
-     * @param array $previous Previously given call options (for single-use snapshots).
+     * @param array $previousReadOnlyOptions Previously given call options (for single-use snapshots).
      * @return array
      */
-    private function configureReadOnlyTransactionOptions(array $options, array $previousReadOnlyOptions = [])
+    private function configureReadOnlyTransactionOptions(array $options, array $previousReadOnlyOptions = []): array
     {
         // select only the PBReadOnly fields from $options
         $readOnly = array_intersect_key($options, array_flip([
@@ -229,7 +229,7 @@ trait TransactionConfigurationTrait
      * @param array $clientOptions Client level Directed Read Options.
      * @return array
      */
-    private function configureDirectedReadOptions(array $requestOptions, array $clientOptions)
+    private function configureDirectedReadOptions(array $requestOptions, array $clientOptions): array
     {
         if (isset($requestOptions['directedReadOptions'])) {
             return $requestOptions['directedReadOptions'];
@@ -252,7 +252,7 @@ trait TransactionConfigurationTrait
     /**
      * @throws \BadMethodCallException
      */
-    private function validateOptionType($options, $field, $type)
+    private function validateOptionType(array $options, string $field, string $type): bool
     {
         if (!isset($options[$field])) {
             return false;

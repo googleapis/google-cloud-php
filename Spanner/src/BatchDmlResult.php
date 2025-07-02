@@ -47,20 +47,9 @@ namespace Google\Cloud\Spanner;
  */
 class BatchDmlResult
 {
-    /**
-     * @var array
-     */
-    private $data;
-
-    /**
-     * @var array|null
-     */
-    private $errorStatement;
-
-    /**
-     * @var array|null
-     */
-    private $rowCounts;
+    private array $data;
+    private array $rowCounts = [];
+    private array|null $errorStatement;
 
     /**
      * @param array $data The executeBatchDml response data.

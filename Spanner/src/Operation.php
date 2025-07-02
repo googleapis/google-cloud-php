@@ -59,20 +59,9 @@ class Operation
     const OP_REPLACE = 'replace';
     const OP_DELETE = 'delete';
 
-    /**
-     * @var ValueMapper
-     */
-    private $mapper;
-
-    /**
-     * @var bool
-     */
-    private $routeToLeader;
-
-    /**
-     * @var array
-     */
-    private $defaultQueryOptions;
+    private ValueMapper $mapper;
+    private bool $routeToLeader;
+    private array $defaultQueryOptions;
 
     /**
      * @param SpannerClient $spannerClient The Spanner client used to make requests.
@@ -190,8 +179,11 @@ class Operation
      * @return void
      * @throws InvalidArgumentException If the transaction is not yet initialized.
      */
-    public function rollback(Session $session, $transactionId, array $options = []): void
-    {
+    public function rollback(
+        Session $session,
+        string|null $transactionId,
+        array $options = []
+    ): void {
         if (empty($transactionId)) {
             throw new InvalidArgumentException('Rollback failed: Transaction not initiated.');
         }
@@ -232,7 +224,7 @@ class Operation
      * }
      * @return Result
      */
-    public function execute(Session $session, $sql, array $options = []): Result
+    public function execute(Session $session, string $sql, array $options = []): Result
     {
         $transactionSelector = $options + [
             'parameters' => [],
@@ -242,6 +234,7 @@ class Operation
 
         $parameters = $this->pluck('parameters', $transactionSelector);
         $types = $this->pluck('types', $transactionSelector);
+
         $transactionSelector += $this->mapper->formatParamsForExecuteSql($parameters, $types);
 
         $context = $this->pluck('transactionContext', $transactionSelector);
@@ -294,7 +287,7 @@ class Operation
     public function executeUpdate(
         Session $session,
         Transaction $transaction,
-        $sql,
+        string $sql,
         array $options = []
     ): int {
         if (!isset($options['transaction']['begin'])) {
@@ -595,7 +588,7 @@ class Operation
      *           be instantiated. This setting is intended for internal use.
      *           **Defaults to** `Google\Cloud\Spanner\Snapshot`.
      * }
-     * @return mixed
+     * @return TransactionalReadInterface
      */
     public function snapshot(Session $session, array $options = []): TransactionalReadInterface
     {
@@ -629,12 +622,12 @@ class Operation
      * @param array $res [optional] The createTransaction response.
      * @param string $className [optional] The class to instantiate with a
      *        snapshot. **Defaults to** `Google\Cloud\Spanner\Snapshot`.
-     * @return mixed
+     * @return TransactionalReadInterface
      */
     public function createSnapshot(
         Session $session,
         array $res = [],
-        $className = Snapshot::class
+        string $className = Snapshot::class
     ): TransactionalReadInterface {
         $res += [
             'id' => null,
@@ -674,14 +667,14 @@ class Operation
      * }
      * @return Session
      */
-    public function createSession($databaseName, array $options = []): Session
+    public function createSession(string $databaseName, array $options = []): Session
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
+        [$_, $callOptions] = $this->splitOptionalArgs($options);
         $data = [
             'database' => $databaseName,
             'session' => [
-                'labels' => $this->pluck('labels', $options, false) ?: [],
-                'creator_role' => $this->pluck('creator_role', $options, false) ?: ''
+                'labels' => $options['labels'] ?? [],
+                'creator_role' => $options['creator_role'] ?? ''
         ]];
 
         $request = $this->serializer->decodeMessage(new CreateSessionRequest(), $data);
@@ -706,7 +699,7 @@ class Operation
      * @param string $sessionName The session's name.
      * @return Session
      */
-    public function session($sessionName): Session
+    public function session(string $sessionName): Session
     {
         $sessionNameComponents = SpannerClient::parseName($sessionName);
         return new Session(
@@ -759,7 +752,7 @@ class Operation
      */
     public function partitionQuery(
         Session $session,
-        $transactionId,
+        string $transactionId,
         string $sql,
         array $options = []
     ): array {
@@ -768,11 +761,16 @@ class Operation
         [$data, $callOptions] = $this->splitOptionalArgs($options);
 
         $data = $this->formatPartitionQueryOptions($data);
+
+        // move partitio options up a level
+        $partitionOptions = $this->partitionOptions($data);
+        unset($data['partitionSizeBytes'], $data['maxPartitions']);
+
+        $data['transaction'] = $this->createTransactionSelector($data, $transactionId);
         $data += [
-            'transaction' => $this->createTransactionSelector($data, $transactionId),
             'session' => $session->name(),
             'sql' => $sql,
-            'partitionOptions' => $this->partitionOptions($data)
+            'partitionOptions' => $partitionOptions,
         ];
 
         $request = $this->serializer->decodeMessage(new PartitionQueryRequest(), $data);
@@ -821,8 +819,8 @@ class Operation
      */
     public function partitionRead(
         Session $session,
-        $transactionId,
-        $table,
+        string $transactionId,
+        string $table,
         KeySet $keySet,
         array $columns,
         array $options = []
@@ -830,13 +828,18 @@ class Operation
         // cache this to pass to the partition instance.
         $originalOptions = $options;
         [$data, $callOptions] = $this->splitOptionalArgs($options);
+
+        // move partitio options up a level
+        $partitionOptions = $this->partitionOptions($data);
+        unset($data['partitionSizeBytes'], $data['maxPartitions']);
+
+        $data['transaction'] = $this->createTransactionSelector($data, $transactionId);
         $data += [
-            'transaction' => $this->createTransactionSelector($data, $transactionId),
             'session' => $session->name(),
             'table' => $table,
             'columns' => $columns,
             'keySet' => $this->flattenKeySet($keySet),
-            'partitionOptions' => $this->partitionOptions($data)
+            'partitionOptions' => $partitionOptions,
         ];
 
         $request = $this->serializer->decodeMessage(new PartitionReadRequest(), $data);
@@ -867,11 +870,11 @@ class Operation
      * @param array $options
      * @return array
      */
-    private function partitionOptions(array &$options): array
+    private function partitionOptions(array $options): array
     {
         return array_filter([
-            'partitionSizeBytes' => $this->pluck('partitionSizeBytes', $options, false),
-            'maxPartitions' => $this->pluck('maxPartitions', $options, false)
+            'partitionSizeBytes' => $options['partitionSizeBytes'] ?? null,
+            'maxPartitions' => $options['maxPartitions'] ?? null,
         ]);
     }
 
@@ -989,8 +992,8 @@ class Operation
                 throw new InvalidArgumentException('Each statement must contain a SQL key.');
             }
 
-            $parameters = $this->pluck('parameters', $statement, false) ?: [];
-            $types = $this->pluck('types', $statement, false) ?: [];
+            $parameters = $statement['parameters'] ?? [];
+            $types = $statement['types'] ?? [];
             $mappedStatement = [
                 'sql' => $statement['sql']
             ] + $this->mapper->formatParamsForExecuteSql($parameters, $types);
@@ -1017,15 +1020,16 @@ class Operation
 
     /**
      * @param array $args
-     * @param ?string $transactionId
+     * @param string|null $transactionId
      *
      * @return array
      */
-    private function createTransactionSelector(array &$args, ?string $transactionId = null): array
-    {
-        $transactionSelector = [];
+    private function createTransactionSelector(
+        array $args,
+        string|null $transactionId = null
+    ): array {
         if (isset($args['transaction'])) {
-            $transactionSelector = $this->pluck('transaction', $args);
+            $transactionSelector = $args['transaction'];
 
             if (isset($transactionSelector['singleUse'])) {
                 $transactionSelector['singleUse'] =
@@ -1036,15 +1040,18 @@ class Operation
                 $transactionSelector['begin'] =
                     $this->formatTransactionOptions($transactionSelector['begin']);
             }
-        } elseif ($transactionId) {
-            $transactionSelector = ['id' => $transactionId];
+            return $transactionSelector;
         }
 
-        return $transactionSelector;
+        if ($transactionId) {
+            return ['id' => $transactionId];
+        }
+
+        return [];
     }
 
     /**
-     * @param array $data
+     * @param array $args
      *
      * @return array
      */
@@ -1091,7 +1098,7 @@ class Operation
      * @param array $args
      * @return \Generator
      */
-    private function executeStreamingSql(array $args)
+    private function executeStreamingSql(array $args): \Generator
     {
         list($data, $callOptions) = $this->splitOptionalArgs($args, ['route-to-leader']);
         $data = $this->formatSqlParams($data);
@@ -1152,14 +1159,14 @@ class Operation
 
     /**
      * @param array $args
-     * @param string $transactionId
      *
      * @return array
      */
     private function formatPartitionQueryOptions(array $args): array
     {
-        $parameters = $this->pluck('parameters', $args, false) ?: [];
-        $types = $this->pluck('types', $args, false) ?: [];
+        $parameters = $args['parameters'] ?? [];
+        $types = $args['types'] ?? [];
+        unset($args['parameters'], $args['types']);
         $args += $this->mapper->formatParamsForExecuteSql($parameters, $types);
         $args = $this->formatSqlParams($args);
 

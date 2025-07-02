@@ -69,18 +69,9 @@ class Transaction implements TransactionalReadInterface
     use MutationTrait;
     use TransactionalReadTrait;
 
-    /**
-     * @var CommitStats
-     */
-    private $commitStats = [];
-
-    /**
-     * @var array
-     */
-    private $mutations = [];
-
+    private array $commitStats = [];
+    private array $mutations = [];
     private bool $isRetry;
-
     private array $requestOptions;
 
     /**
@@ -104,9 +95,9 @@ class Transaction implements TransactionalReadInterface
     public function __construct(
         private Operation $operation,
         private Session $session,
-        private ?string $transactionId = null,
+        private string|null $transactionId = null,
         array $options = [],
-        private ?ValueMapper $mapper = null
+        private ValueMapper|null $mapper = null
     ) {
         $this->type = ($transactionId || isset($options['begin']))
             ? self::TYPE_PRE_ALLOCATED
@@ -146,7 +137,7 @@ class Transaction implements TransactionalReadInterface
      *
      * @return array The commit stats
      */
-    public function getCommitStats()
+    public function getCommitStats(): array
     {
         return $this->commitStats;
     }
@@ -237,7 +228,7 @@ class Transaction implements TransactionalReadInterface
      * }
      * @return int The number of rows modified.
      */
-    public function executeUpdate($sql, array $options = [])
+    public function executeUpdate(string $sql, array $options = []): int
     {
         if (isset($options['transaction']['begin']['excludeTxnFromChangeStreams'])) {
             throw new ValidationException(
@@ -333,7 +324,7 @@ class Transaction implements TransactionalReadInterface
      * @return BatchDmlResult
      * @throws \InvalidArgumentException If any statement is missing the `sql` key.
      */
-    public function executeUpdateBatch(array $statements, array $options = [])
+    public function executeUpdateBatch(array $statements, array $options = []): BatchDmlResult
     {
         $options = $this->buildUpdateOptions($options);
         return $this->operation
@@ -364,7 +355,7 @@ class Transaction implements TransactionalReadInterface
      * @param array $options [optional] Configuration Options.
      * @return void
      */
-    public function rollback(array $options = [])
+    public function rollback(array $options = []): void
     {
         if ($this->state !== self::STATE_ACTIVE) {
             throw new \BadMethodCallException('The transaction cannot be rolled back because it is not active');
@@ -411,10 +402,10 @@ class Transaction implements TransactionalReadInterface
      *         Please note, the `requestTag` setting will be ignored as it is not supported for commit requests.
      * }
      * @return Timestamp The commit timestamp.
-     * @throws \BadMethodCall If the transaction is not active or already used.
+     * @throws \BadMethodCallException If the transaction is not active or already used.
      * @throws AbortedException If the commit is aborted for any reason.
      */
-    public function commit(array $options = [])
+    public function commit(array $options = []): Timestamp
     {
         if ($this->state !== self::STATE_ACTIVE) {
             throw new \BadMethodCallException('The transaction cannot be committed because it is not active');
@@ -478,7 +469,7 @@ class Transaction implements TransactionalReadInterface
      *
      * @return int
      */
-    public function state()
+    public function state(): int
     {
         return $this->state;
     }
@@ -501,7 +492,7 @@ class Transaction implements TransactionalReadInterface
      *
      * @return bool
      */
-    public function isRetry()
+    public function isRetry(): bool
     {
         return $this->isRetry;
     }

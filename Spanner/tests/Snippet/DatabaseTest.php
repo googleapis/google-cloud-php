@@ -109,8 +109,7 @@ class DatabaseTest extends SnippetTestCase
             ]);
         $session->name()
             ->willReturn('database');
-        $session->setExpiration(Argument::any())
-            ->willReturn(100);
+        $session->setExpiration(Argument::any());
 
         $sessionPool = $this->prophesize(SessionPoolInterface::class);
         $sessionPool->acquire(Argument::any())

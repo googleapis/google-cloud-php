@@ -58,7 +58,8 @@ class Backup
      *
      * @internal Backup is constructed by the {@see Instance} class.
      *
-     * @param DatabaseAdminClient The database admin client to make backup RPC calls.
+     * @param DatabaseAdminClient $databaseAdminClient The database admin client to make backup RPC
+     *        calls.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param Instance $instance The instance in which the backup exists.
      * @param string $projectId The project ID.
@@ -100,7 +101,7 @@ class Backup
      * @throws \InvalidArgumentException
      */
     public function create(
-        $database,
+        string $database,
         DateTimeInterface $expireTime,
         array $options = []
     ): LongRunningOperation {
@@ -362,7 +363,7 @@ class Backup
      * @param string $operationName The Long Running Operation name.
      * @return LongRunningOperation
      */
-    public function resumeOperation($operationName, array $options = []): LongRunningOperation
+    public function resumeOperation(string $operationName, array $options = []): LongRunningOperation
     {
         return new LongRunningOperation(
             new LongRunningClientConnection($this->databaseAdminClient, $this->serializer),
@@ -423,7 +424,7 @@ class Backup
      *
      * @return string
      */
-    private function fullyQualifiedBackupName($name): string
+    private function fullyQualifiedBackupName(string $name): string
     {
         $instance = DatabaseAdminClient::parseName($this->instance->name())['instance'];
 

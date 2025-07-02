@@ -403,7 +403,7 @@ class CacheSessionPool implements SessionPoolInterface
      * @param int $percent The percentage to downsize the pool by. Must be
      *        between 1 and 100.
      * @return int The number of sessions removed from the pool.
-     * @throws \InvaldArgumentException
+     * @throws \InvalidArgumentException
      * @throws \RuntimeException
      */
     public function downsize($percent)
@@ -764,6 +764,8 @@ class CacheSessionPool implements SessionPoolInterface
             unset($data['inUse'][$session['name']]);
             $this->save($item->set($data));
         });
+
+        return null;
     }
 
     /**

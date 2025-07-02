@@ -302,22 +302,7 @@ class BatchSnapshotTest extends TestCase
         $this->expectException(\BadMethodCallException::class);
         $this->expectExceptionMessage('Unsupported partition type.');
 
-        $dummy = new DummyPartition();
-        $this->snapshot->executePartition($dummy);
+        $dummy = $this->prophesize(PartitionInterface::class);
+        $this->snapshot->executePartition($dummy->reveal());
     }
 }
-
-//@codingStandardsIgnoreStart
-class DummyPartition implements PartitionInterface
-{
-    public function __toString()
-    {
-    }
-    public function serialize()
-    {
-    }
-    public static function hydrate(array $data)
-    {
-    }
-}
-//@codingStandardsIgnoreEnd

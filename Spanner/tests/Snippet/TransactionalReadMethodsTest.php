@@ -83,7 +83,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
             ]);
         $this->session->name()
             ->willReturn('sessionName');
-        $this->session->setExpiration()->willReturn(null);
+        $this->session->setExpiration();
         $this->spannerClient = $this->prophesize(SpannerClient::class);
         $this->operation = new Operation(
             $this->spannerClient->reveal(),
