@@ -108,29 +108,14 @@ class BatchClient
     use TransactionConfigurationTrait;
 
     const PARTITION_TYPE_KEY = '__partitionTypeName';
-
-    /**
-     * @var Operation
-     */
-    private $operation;
-
-    /**
-     * @var string
-     */
-    private $databaseName;
-
-    /**
-     * @var string|null
-     */
-    private $databaseRole;
-
-    /**
-     * @var array
-     */
-    private $allowedPartitionTypes = [
+    private const ALLOWED_PARTITION_TYPES = [
         QueryPartition::class,
         ReadPartition::class
     ];
+
+    private Operation $operation;
+    private string $databaseName;
+    private string|null $databaseRole;
 
     /**
      * @param Operation $operation A Cloud Spanner Operations wrapper.
@@ -262,7 +247,7 @@ class BatchClient
         }
 
         $class = $data[self::PARTITION_TYPE_KEY];
-        if (!in_array($class, $this->allowedPartitionTypes)) {
+        if (!in_array($class, self::ALLOWED_PARTITION_TYPES)) {
             throw new \InvalidArgumentException('Invalid partition type.');
         }
 

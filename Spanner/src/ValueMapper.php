@@ -55,7 +55,7 @@ class ValueMapper
      * @var array
      * @internal
      */
-    public static $allowedTypes = [
+    public static array $allowedTypes = [
         self::TYPE_BOOL,
         self::TYPE_INT64,
         self::TYPE_FLOAT64,
@@ -84,7 +84,7 @@ class ValueMapper
      *
      * @var array
      */
-    private static $typeToClassMap = [
+    private static array $typeToClassMap = [
         self::TYPE_PG_NUMERIC => PgNumeric::class,
         self::TYPE_PG_JSONB => PgJsonb::class,
         self::TYPE_PG_OID => PgOid::class,
@@ -96,7 +96,7 @@ class ValueMapper
      *
      * @var array
      */
-    private static $typeCodes = [
+    private static array $typeCodes = [
         self::TYPE_PG_NUMERIC => self::TYPE_NUMERIC,
         self::TYPE_PG_JSONB => self::TYPE_JSON,
         self::TYPE_PG_OID => self::TYPE_INT64,
@@ -108,7 +108,7 @@ class ValueMapper
      *
      * @var array
      */
-    private static $typeAnnotations = [
+    private static array $typeAnnotations = [
         self::TYPE_PG_NUMERIC => TypeAnnotationCode::PG_NUMERIC,
         self::TYPE_PG_JSONB => TypeAnnotationCode::PG_JSONB,
         self::TYPE_PG_OID => TypeAnnotationCode::PG_OID,
@@ -117,12 +117,12 @@ class ValueMapper
     /**
      * @var bool
      */
-    private $returnInt64AsObject;
+    private bool $returnInt64AsObject;
 
     /**
      * @param bool $returnInt64AsObject
      */
-    public function __construct($returnInt64AsObject)
+    public function __construct(bool $returnInt64AsObject)
     {
         $this->returnInt64AsObject = $returnInt64AsObject;
     }
@@ -136,7 +136,7 @@ class ValueMapper
      * @param array $types The types of values.
      * @return array An associative array containing params and paramTypes.
      */
-    public function formatParamsForExecuteSql(array $parameters, array $types = [])
+    public function formatParamsForExecuteSql(array $parameters, array $types = []): array
     {
         $paramTypes = [];
 
@@ -156,7 +156,7 @@ class ValueMapper
 
             $definition = null;
             if ($type) {
-                list($type, $definition) = $this->resolveTypeDefinition($type, $key);
+                list($type, $definition) = $this->resolveTypeDefinition($type);
             }
 
             $paramDefinition = $this->paramType($value, $type, $definition);
@@ -178,7 +178,7 @@ class ValueMapper
      *        **Defaults to** `false`.
      * @return array The encoded values
      */
-    public function encodeValuesAsSimpleType(array $values, $allowMixedArrayType = false)
+    public function encodeValuesAsSimpleType(array $values, $allowMixedArrayType = false): array
     {
         $res = [];
         foreach ($values as $value) {
@@ -205,7 +205,7 @@ class ValueMapper
      * @return array The decoded row data.
      * @throws \InvalidArgumentException
      */
-    public function decodeValues(array $columns, array $row, $format)
+    public function decodeValues(array $columns, array $row, string $format): array
     {
         switch ($format) {
             case Result::RETURN_NAME_VALUE_PAIR:
@@ -250,11 +250,10 @@ class ValueMapper
      * both the type and definition prior to calling `paramType()`.
      *
      * @param mixed $type The type code or definition.
-     * @param string $key the parameter key name.
      * @return array Containing the type value at position 0, and definition or
      *         null at position 1.
      */
-    private function resolveTypeDefinition($type, $key = null)
+    private function resolveTypeDefinition($type): array
     {
         $definition = null;
         if (is_array($type)) {
@@ -283,7 +282,7 @@ class ValueMapper
      * @param array $type The value type
      * @return mixed
      */
-    private function decodeValue($value, array $type)
+    private function decodeValue(mixed $value, array $type): mixed
     {
         if ($value === null || $value === '') {
             return $value;
@@ -406,11 +405,11 @@ class ValueMapper
      *        in the format: [<value>, ['code' => <typeCode>, 'typeAnnotation' => <typeAnnotation>]].
      */
     private function paramType(
-        $value,
+        mixed $value,
         $givenType = null,
         $definition = null,
         $allowMixedArrayType = false
-    ) {
+    ): array {
         $valueType = gettype($value);
         $typeAnnotation = null;
 
@@ -481,12 +480,22 @@ class ValueMapper
                         $value = (array) $value;
                     }
 
+                    if (!($value instanceof StructValue) && !is_array($value) && $value !== null) {
+                        throw new \InvalidArgumentException(
+                            'Struct value must be an array an instance of `Google\Cloud\Spanner\StructValue` or null.'
+                        );
+                    }
+
                     list($value, $type) = $this->structParam($value, $definition);
                 } else {
                     if (!($definition instanceof ArrayType)) {
                         throw new \InvalidArgumentException(
                             'Array parameter types must be an instance of Google\Cloud\Spanner\ArrayType.'
                         );
+                    }
+
+                    if (!is_array($value) && $value !== null) {
+                        throw new \InvalidArgumentException('Array value must be an array or null.');
                     }
 
                     list($value, $type) = $this->arrayParam($value, $definition, $allowMixedArrayType);
@@ -518,14 +527,8 @@ class ValueMapper
      * @param StructType $type The struct type.
      * @return array{0: array, 1: array} An array containing the value and type.
      */
-    private function structParam($value, StructType $type)
+    private function structParam(StructValue|array|null $value, StructType $type): array
     {
-        if (!($value instanceof StructValue) && !is_array($value) && $value !== null) {
-            throw new \InvalidArgumentException(
-                'Struct value must be an array an instance of `Google\Cloud\Spanner\StructValue` or null.'
-            );
-        }
-
         $typeFields = $type->fields();
 
         // iterate through types and values separately to accurately align
@@ -659,12 +662,8 @@ class ValueMapper
      *        elements of differing types.
      * @return array{0: array, 1: array} An array containing the value and type.
      */
-    private function arrayParam($value, ArrayType $arrayObj, $allowMixedArrayType = false)
+    private function arrayParam(array|null $value, ArrayType $arrayObj, bool $allowMixedArrayType = false): array
     {
-        if (!is_array($value) && $value !== null) {
-            throw new \InvalidArgumentException('Array value must be an array or null.');
-        }
-
         // tracks the diff typeCode, typeAnnotation of all elements
         // inside the array
         $inferredTypes = [];
@@ -767,7 +766,7 @@ class ValueMapper
      * @param mixed $value The parameter value.
      * @return array{0: array, 1: array} An array containing the value and type.
      */
-    private function objectParam($value)
+    private function objectParam(mixed $value): array
     {
         if ($value instanceof \stdClass) {
             throw new \InvalidArgumentException(
@@ -836,11 +835,11 @@ class ValueMapper
      * @return array{0: array, 1: array}
      */
     private function typeObject(
-        $type,
-        $typeAnnotation = null,
+        int|null $type,
+        int|null $typeAnnotation = null,
         array $nestedDefinition = [],
-        $nestedDefinitionType = null
-    ) {
+        string|null $nestedDefinitionType = null
+    ): array {
         return array_filter([
             'code' => $type,
             $nestedDefinitionType => $nestedDefinition,
@@ -861,7 +860,7 @@ class ValueMapper
      * @return string|int
      * @codingStandardsIgnoreEnd
      */
-    private function getColumnName($columns, $index)
+    private function getColumnName(array $columns, int $index): string|int
     {
         return (isset($columns[$index]['name']) && $columns[$index]['name'])
             ? $columns[$index]['name']
@@ -874,7 +873,7 @@ class ValueMapper
      * @param string $type
      * @return bool
      */
-    private static function isCustomType($type)
+    private static function isCustomType(string|null $type): bool
     {
         return array_key_exists($type, self::$typeToClassMap);
     }
@@ -886,7 +885,7 @@ class ValueMapper
      * @param string $type
      * @return int
      */
-    private static function getTypeCodeFromString($type)
+    private static function getTypeCodeFromString(string $type): int
     {
         return array_key_exists($type, self::$typeCodes) ? self::$typeCodes[$type] : null;
     }
@@ -898,7 +897,7 @@ class ValueMapper
      * @param string $type
      * @return int
      */
-    private static function getTypeAnnotationFromString($type)
+    private static function getTypeAnnotationFromString(string $type): int
     {
         return array_key_exists($type, self::$typeAnnotations) ? self::$typeAnnotations[$type] : null;
     }
@@ -908,22 +907,28 @@ class ValueMapper
      *
      * @return bool
      */
-    private function arrayDataMismatch($value, $arrayTypeCode, $arrayTypeAnnotation, $inferredTypes)
-    {
-        $mismatch = false;
-
+    private function arrayDataMismatch(
+        $value,
+        $arrayTypeCode,
+        $arrayTypeAnnotation,
+        array $inferredTypes
+    ): int {
         if (!empty($value)) {
-            if ($arrayTypeCode && isset($inferredTypes[0]['code'])  &&
-            $arrayTypeCode !== $inferredTypes[0]['code']) {
-                $mismatch = true;
+            if ($arrayTypeCode
+                && isset($inferredTypes[0]['code'])
+                && $arrayTypeCode !== $inferredTypes[0]['code']
+            ) {
+                return true;
             }
 
-            if ($arrayTypeAnnotation && isset($inferredTypes[0]['typeAnnotation']) &&
-            $arrayTypeAnnotation !== $inferredTypes[0]['typeAnnotation']) {
-                $mismatch = true;
+            if ($arrayTypeAnnotation
+                && isset($inferredTypes[0]['typeAnnotation'])
+                && $arrayTypeAnnotation !== $inferredTypes[0]['typeAnnotation']
+            ) {
+                return true;
             }
         }
 
-        return $mismatch;
+        return false;
     }
 }

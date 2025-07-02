@@ -120,7 +120,7 @@ trait RequestTrait
             throw new \BadMethodCallException('This class must implement resumeOperation to call this method.');
         }
         return $this->resumeOperation(
-            $operation->getName(),
+            (string) $operation->getName(),
             $this->handleResponse($operation->getLastProtoResponse()) ?? []
         );
     }

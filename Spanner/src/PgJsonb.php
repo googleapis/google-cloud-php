@@ -38,15 +38,9 @@ class PgJsonb implements ValueInterface, TypeAnnotationInterface
 {
     use JsonTrait;
 
-    /**
-     * @var string|null
-     */
-    private $value;
+    private string|null $value;
 
-    /**
-     * @param string|array|JsonSerializable|null $value The value to be used as the JSONB string.
-     */
-    public function __construct($value)
+    public function __construct(string|array|JsonSerializable|null $value)
     {
         // null shouldn't be casted to an empty string
         if (!is_null($value)) {
@@ -64,7 +58,7 @@ class PgJsonb implements ValueInterface, TypeAnnotationInterface
      *
      * @return string|null
      */
-    public function get()
+    public function get(): string|null
     {
         return $this->value;
     }
@@ -75,7 +69,7 @@ class PgJsonb implements ValueInterface, TypeAnnotationInterface
      * @access private
      * @return int
      */
-    public function type()
+    public function type(): int
     {
         return ValueMapper::TYPE_JSON;
     }
@@ -87,7 +81,7 @@ class PgJsonb implements ValueInterface, TypeAnnotationInterface
      * @access private
      * @return int
      */
-    public function typeAnnotation()
+    public function typeAnnotation(): int
     {
         return TypeAnnotationCode::PG_JSONB;
     }
@@ -97,7 +91,7 @@ class PgJsonb implements ValueInterface, TypeAnnotationInterface
      *
      * @return string
      */
-    public function formatAsString()
+    public function formatAsString(): string
     {
         return (string) $this->value;
     }

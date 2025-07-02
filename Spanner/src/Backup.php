@@ -100,7 +100,7 @@ class Backup
      * @throws \InvalidArgumentException
      */
     public function create(
-        $database,
+        string $database,
         DateTimeInterface $expireTime,
         array $options = []
     ): LongRunningOperation {
@@ -362,7 +362,7 @@ class Backup
      * @param string $operationName The Long Running Operation name.
      * @return LongRunningOperation
      */
-    public function resumeOperation($operationName, array $options = []): LongRunningOperation
+    public function resumeOperation(string $operationName, array $options = []): LongRunningOperation
     {
         return new LongRunningOperation(
             new LongRunningClientConnection($this->databaseAdminClient, $this->serializer),
@@ -423,7 +423,7 @@ class Backup
      *
      * @return string
      */
-    private function fullyQualifiedBackupName($name): string
+    private function fullyQualifiedBackupName(string $name): string
     {
         $instance = DatabaseAdminClient::parseName($this->instance->name())['instance'];
 

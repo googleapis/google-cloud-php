@@ -57,7 +57,7 @@ class CommitTimestamp implements ValueInterface
     /**
      * @access private
      */
-    public function type()
+    public function type(): string
     {
         return Database::TYPE_TIMESTAMP;
     }
@@ -65,7 +65,7 @@ class CommitTimestamp implements ValueInterface
     /**
      * @access private
      */
-    public function get()
+    public function get(): string
     {
         return self::SPECIAL_VALUE;
     }
@@ -73,7 +73,7 @@ class CommitTimestamp implements ValueInterface
     /**
      * @access private
      */
-    public function formatAsString()
+    public function formatAsString(): string
     {
         return self::SPECIAL_VALUE;
     }

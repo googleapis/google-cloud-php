@@ -53,11 +53,6 @@ class InstanceConfiguration
     use RequestTrait;
 
     /**
-     * @var string
-     */
-    private $name;
-
-    /**
      * Create an instance configuration object.
      *
      * @internal InstanceConfiguration is constructed by the {@see SpannerClient} class.
@@ -73,11 +68,10 @@ class InstanceConfiguration
         private InstanceAdminClient $instanceAdminClient,
         private Serializer $serializer,
         private string $projectId,
-        $name,
+        private string $name,
         private array $info = []
     ) {
         $this->name = $this->fullyQualifiedConfigName($name, $projectId);
-        $this->info = $info;
     }
 
     /**
@@ -334,7 +328,7 @@ class InstanceConfiguration
      * @param string $operationName The Long Running Operation name.
      * @return LongRunningOperation
      */
-    public function resumeOperation($operationName, array $options = [])
+    public function resumeOperation(string $operationName, array $options = [])
     {
         return new LongRunningOperation(
             new LongRunningClientConnection($this->instanceAdminClient, $this->serializer),

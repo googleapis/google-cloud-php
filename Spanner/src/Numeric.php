@@ -67,7 +67,7 @@ class Numeric implements ValueInterface
      *
      * @return string
      */
-    public function get()
+    public function get(): string
     {
         return $this->value;
     }
@@ -77,7 +77,7 @@ class Numeric implements ValueInterface
      *
      * @return string
      */
-    public function type()
+    public function type(): string
     {
         return ValueMapper::TYPE_NUMERIC;
     }
@@ -87,7 +87,7 @@ class Numeric implements ValueInterface
      *
      * @return string
      */
-    public function formatAsString()
+    public function formatAsString(): string
     {
         return $this->value;
     }

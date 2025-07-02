@@ -18,8 +18,8 @@
 namespace Google\Cloud\Spanner;
 
 use Closure;
+use DateTimeInterface;
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
@@ -112,53 +112,19 @@ class Database
     const TYPE_PG_OID = 'pgOid';
     const TYPE_INTERVAL = TypeCode::INTERVAL;
 
-    /**
-     * @var Operation
-     */
-    private $operation;
-
-    /**
-     * @var IamManager|null
-     */
-    private $iam;
-
-    /**
-     * @var Session|null
-     */
-    private $session;
-
-    /**
-     * @var bool
-     */
+    private Operation $operation;
+    private IamManager|null $iam = null;
+    private Session|null $session = null;
     private bool $isRunningTransaction = false;
-
-    /**
-     * @var array
-     */
     private array $directedReadOptions;
-
-    /**
-     * @var bool
-     */
     private bool $routeToLeader;
-
-    /**
-     * @var array
-     */
-    private $defaultQueryOptions;
-
+    private array $defaultQueryOptions;
     private string $databaseRole;
-
     private bool $returnInt64AsObject;
-
-    private ?SessionPoolInterface $sessionPool;
-
+    private SessionPoolInterface|null $sessionPool;
     private array $info;
 
-    /**
-     * @var array
-     */
-    private $mutationSetters = [
+    private const MUTATION_SETTERS = [
         'insert' => 'setInsert',
         'update' => 'setUpdate',
         'insertOrUpdate' => 'setInsertOrUpdate',
@@ -245,7 +211,7 @@ class Database
      * @param array $options [optional] Configuration options.
      * @return int|null
      */
-    public function state(array $options = []): ?int
+    public function state(array $options = []): int|null
     {
         $info = $this->info($options);
 
@@ -299,7 +265,7 @@ class Database
      * ```
      *
      * @param string $name The backup name.
-     * @param \DateTimeInterface $expireTime ​The expiration time of the backup,
+     * @param DateTimeInterface $expireTime ​The expiration time of the backup,
      *        with microseconds granularity that must be at least 6 hours and
      *        at most 366 days. Once the expireTime has passed, the backup is
      *        eligible to be automatically deleted by Cloud Spanner.
@@ -308,8 +274,8 @@ class Database
      * @return LongRunningOperation<Backup>
      */
     public function createBackup(
-        $name,
-        \DateTimeInterface $expireTime,
+        string $name,
+        DateTimeInterface $expireTime,
         array $options = []
     ): LongRunningOperation {
         $backup = $this->instance->backup($name);
@@ -464,7 +430,7 @@ class Database
      *
      * @return LongRunningOperation<Database>
      */
-    public function restore($backup, array $options = []): LongRunningOperation
+    public function restore(Backup|string $backup, array $options = []): LongRunningOperation
     {
         return $this->instance->createDatabaseFromBackup($this->name, $backup, $options);
     }
@@ -539,7 +505,7 @@ class Database
      * @param array $options [optional] Configuration options.
      * @return LongRunningOperation<Database>
      */
-    public function updateDdl($statement, array $options = []): LongRunningOperation
+    public function updateDdl(string $statement, array $options = []): LongRunningOperation
     {
         return $this->updateDdlBatch([$statement], $options);
     }
@@ -679,7 +645,7 @@ class Database
      *
      * @return IamManager
      */
-    public function iam()
+    public function iam(): IamManager
     {
         if (!$this->iam) {
             $this->iam = new IamManager(
@@ -940,7 +906,7 @@ class Database
      * @throws \BadMethodCallException If attempting to call this method within
      *         an existing transaction.
      */
-    public function runTransaction(callable $operation, array $options = [])
+    public function runTransaction(callable $operation, array $options = []): mixed
     {
         if ($this->isRunningTransaction) {
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
@@ -1398,7 +1364,7 @@ class Database
      * }
      * @return Timestamp The commit Timestamp.
      */
-    public function replaceBatch($table, array $dataSet, array $options = []): Timestamp
+    public function replaceBatch(string $table, array $dataSet, array $options = []): Timestamp
     {
         $mutations = [];
         foreach ($dataSet as $data) {
@@ -1448,7 +1414,7 @@ class Database
      * }
      * @return Timestamp The commit Timestamp.
      */
-    public function delete($table, KeySet $keySet, array $options = []): Timestamp
+    public function delete(string $table, KeySet $keySet, array $options = []): Timestamp
     {
         $mutations = [$this->operation->deleteMutation($table, $keySet)];
 
@@ -2378,7 +2344,7 @@ class Database
      * @param string $operationName The Long Running Operation name.
      * @return LongRunningOperation
      */
-    public function resumeOperation($operationName, array $options = []): LongRunningOperation
+    public function resumeOperation(string $operationName, array $options = []): LongRunningOperation
     {
         return new LongRunningOperation(
             new LongRunningClientConnection($this->databaseAdminClient, $this->serializer),
@@ -2580,7 +2546,7 @@ class Database
                     break;
             }
 
-            $setterName = $this->mutationSetters[$type];
+            $setterName = self::MUTATION_SETTERS[$type];
             $mutation = new Mutation();
             $mutation->$setterName($operation);
             $mutations[] = $mutation;

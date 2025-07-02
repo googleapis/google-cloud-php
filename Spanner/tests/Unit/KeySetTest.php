@@ -34,11 +34,11 @@ class KeySetTest extends TestCase
     {
         $set = new KeySet();
         $range = $this->prophesize(KeyRange::class);
-        $range->keyRangeObject()->willReturn('foo');
+        $range->keyRangeObject()->willReturn(['foo']);
 
         $set->addRange($range->reveal());
 
-        $this->assertEquals('foo', $set->keySetObject()['ranges'][0]);
+        $this->assertEquals(['foo'], $set->keySetObject()['ranges'][0]);
     }
 
     public function testSetRanges()
@@ -46,10 +46,10 @@ class KeySetTest extends TestCase
         $set = new KeySet();
 
         $range1 = $this->prophesize(KeyRange::class);
-        $range1->keyRangeObject()->willReturn('foo');
+        $range1->keyRangeObject()->willReturn(['foo']);
 
         $range2 = $this->prophesize(KeyRange::class);
-        $range2->keyRangeObject()->willReturn('bar');
+        $range2->keyRangeObject()->willReturn(['bar']);
 
         $ranges = [
             $range1->reveal(),
@@ -58,8 +58,8 @@ class KeySetTest extends TestCase
 
         $set->setRanges($ranges);
 
-        $this->assertEquals('foo', $set->keySetObject()['ranges'][0]);
-        $this->assertEquals('bar', $set->keySetObject()['ranges'][1]);
+        $this->assertEquals(['foo'], $set->keySetObject()['ranges'][0]);
+        $this->assertEquals(['bar'], $set->keySetObject()['ranges'][1]);
     }
 
     public function testAddKey()

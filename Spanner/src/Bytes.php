@@ -43,12 +43,12 @@ class Bytes implements ValueInterface
     /**
      * @var string|resource|StreamInterface
      */
-    private $value;
+    private mixed $value;
 
     /**
      * @param string|resource|StreamInterface $value The bytes value.
      */
-    public function __construct($value)
+    public function __construct(mixed $value)
     {
         $this->value = Utils::streamFor($value);
     }

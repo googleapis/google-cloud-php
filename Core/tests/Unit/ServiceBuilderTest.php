@@ -24,7 +24,6 @@ use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Language\LanguageClient;
 use Google\Cloud\Logging\LoggingClient;
-use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Core\Tests\Unit\Fixtures;
 use GuzzleHttp\Psr7\Response;
@@ -161,10 +160,6 @@ class ServiceBuilderTest extends TestCase
             ], [
                 'language',
                 LanguageClient::class
-            ], [
-                'speech',
-                SpeechClient::class,
-                ['languageCode' => 'en-US']
             ], [
                 'storage',
                 StorageClient::class

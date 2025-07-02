@@ -49,7 +49,7 @@ jobs:
       - name: Install dependencies
         run: |
           # ensure composer uses local Core instead of pulling from packagist
-          # composer config repositories.local  --json '{"type":"path", "url": "../Core", "options": {"versions": {"google/cloud-core": "1.100"}}}' -d Spanner
+          composer config repositories.local  --json '{"type":"path", "url": "../Core", "options": {"versions": {"google/cloud-core": "1.100"}},"canonical":false}' -d Spanner
           composer update --prefer-dist --no-interaction --no-suggest -d Spanner/
 
       - name: Run system tests

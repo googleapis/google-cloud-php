@@ -25,9 +25,6 @@ namespace Google\Cloud\Spanner;
  */
 trait MutationTrait
 {
-    /**
-     * @var array
-     */
     private array $mutationData = [];
 
     /**
@@ -46,7 +43,7 @@ trait MutationTrait
      * @param array $data The data to insert.
      * @return MutationGroup Current mutation group data object.
      */
-    public function insert($table, array $data)
+    public function insert(string $table, array $data): self
     {
         return $this->insertBatch($table, [$data]);
     }
@@ -69,7 +66,7 @@ trait MutationTrait
      * @param array $dataSet The data to insert.
      * @return $this Current object instance, to enable object chaining.
      */
-    public function insertBatch($table, array $dataSet)
+    public function insertBatch(string $table, array $dataSet): self
     {
         $this->enqueue(Operation::OP_INSERT, $table, $dataSet);
 
@@ -92,7 +89,7 @@ trait MutationTrait
      * @param array $data The data to update.
      * @return $this Current object instance, to enable object chaining.
      */
-    public function update($table, array $data)
+    public function update(string $table, array $data): self
     {
         return $this->updateBatch($table, [$data]);
     }
@@ -115,7 +112,7 @@ trait MutationTrait
      * @param array $dataSet The data to update.
      * @return $this Current object instance, to enable object chaining.
      */
-    public function updateBatch($table, array $dataSet)
+    public function updateBatch(string $table, array $dataSet): self
     {
         $this->enqueue(Operation::OP_UPDATE, $table, $dataSet);
 
@@ -138,7 +135,7 @@ trait MutationTrait
      * @param array $data The data to insert or update.
      * @return $this Current mutation group, to enable object chaining.
      */
-    public function insertOrUpdate($table, array $data)
+    public function insertOrUpdate(string $table, array $data): self
     {
         return $this->insertOrUpdateBatch($table, [$data]);
     }
@@ -161,7 +158,7 @@ trait MutationTrait
      * @param array $dataSet The data to insert or update.
      * @return $this Current object instance, to enable object chaining.
      */
-    public function insertOrUpdateBatch($table, array $dataSet)
+    public function insertOrUpdateBatch(string $table, array $dataSet): self
     {
         $this->enqueue(Operation::OP_INSERT_OR_UPDATE, $table, $dataSet);
 
@@ -184,7 +181,7 @@ trait MutationTrait
      * @param array $data The data to replace.
      * @return $this Current object instance, to enable object chaining.
      */
-    public function replace($table, array $data)
+    public function replace(string $table, array $data): self
     {
         return $this->replaceBatch($table, [$data]);
     }
@@ -207,7 +204,7 @@ trait MutationTrait
      * @param array $dataSet The data to replace.
      * @return $this Current object instance, to enable object chaining.
      */
-    public function replaceBatch($table, array $dataSet)
+    public function replaceBatch(string $table, array $dataSet): self
     {
         $this->enqueue(Operation::OP_REPLACE, $table, $dataSet);
 
@@ -230,7 +227,7 @@ trait MutationTrait
      * @param KeySet $keySet The KeySet to identify rows to delete.
      * @return $this Current object instance, to enable object chaining.
      */
-    public function delete($table, KeySet $keySet)
+    public function delete(string $table, KeySet $keySet): self
     {
         $this->enqueue(Operation::OP_DELETE, $table, [$keySet]);
 
@@ -245,7 +242,7 @@ trait MutationTrait
      * @param array $dataSet the mutations to enqueue
      * @return void
      */
-    private function enqueue($op, $table, array $dataSet)
+    private function enqueue(string $op, string $table, array $dataSet): void
     {
         foreach ($dataSet as $data) {
             if ($op === Operation::OP_DELETE) {
@@ -265,7 +262,7 @@ trait MutationTrait
      *        key/value pairs.
      * @return array
      */
-    public function mutation($operation, $table, $mutation)
+    public function mutation(string $operation, string $table, array $mutation): array
     {
         return [
             $operation => [
@@ -283,7 +280,7 @@ trait MutationTrait
      * @param KeySet $keySet The keys to delete.
      * @return array
      */
-    public function deleteMutation($table, KeySet $keySet)
+    public function deleteMutation(string $table, KeySet $keySet): array
     {
         return [
             'delete' => [
@@ -297,12 +294,12 @@ trait MutationTrait
      * Returns the mutation data as associative array.
      * @return array
     */
-    private function getMutations()
+    private function getMutations(): array
     {
         return $this->mutationData;
     }
 
-    private function getValueMapper()
+    private function getValueMapper(): ValueMapper
     {
         if (!isset($this->mapper)) {
             $this->mapper = new ValueMapper(false);
@@ -311,7 +308,7 @@ trait MutationTrait
         return $this->mapper;
     }
 
-    private function flattenKeySet(KeySet $keySet)
+    private function flattenKeySet(KeySet $keySet): array
     {
         $keys = $keySet->keySetObject();
 
