@@ -177,6 +177,4 @@ class GeneratorSettings extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GeneratorSettings::class, \Google\Cloud\Dialogflow\Cx\V3\Fulfillment_GeneratorSettings::class);
 
