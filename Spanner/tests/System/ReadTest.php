@@ -218,6 +218,27 @@ class ReadTest extends SpannerTestCase
         $this->assertNotContains(self::$dataset[10], $rows);
     }
 
+     public function testOrderByReturnsRowsOrderedById()
+    {
+        $db = self::$database;
+
+        $range = new KeyRange([
+            'start' => self::$dataset[0],
+            'end' => self::$dataset[10],
+            'startType' => KeyRange::TYPE_CLOSED,
+            'endType' => KeyRange::TYPE_CLOSED,
+        ]);
+
+        $keyset = new KeySet(['ranges' => [$range]]);
+
+        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]), [
+            'index' => $this->getIndexName(self::$rangeTableName, 'complex')
+        ]);
+        $rows = iterator_to_array($res->rows());
+        $this->assertEquals(self::$dataset[0]['id'], $rows[0]['id']);
+        $this->assertEquals(self::$dataset[10]['id'], $rows[10]['id']);
+    }
+
     /**
      * covers 9
      */
