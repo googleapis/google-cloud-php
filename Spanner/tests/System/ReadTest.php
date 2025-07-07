@@ -218,7 +218,7 @@ class ReadTest extends SpannerTestCase
         $this->assertNotContains(self::$dataset[10], $rows);
     }
 
-     public function testOrderByReturnsRowsOrderedById()
+    public function testOrderByReturnsRowsOrderedById()
     {
         $db = self::$database;
 
