@@ -17,10 +17,12 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\Exception\DeadlineExceededException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
+use Google\Cloud\Spanner\V1\ReadRequest\OrderBy;
 
 /**
  * @group spanner
@@ -222,21 +224,17 @@ class ReadTest extends SpannerTestCase
     {
         $db = self::$database;
 
-        $range = new KeyRange([
-            'start' => self::$dataset[0],
-            'end' => self::$dataset[10],
-            'startType' => KeyRange::TYPE_CLOSED,
-            'endType' => KeyRange::TYPE_CLOSED,
-        ]);
+        $this->insertUnorderedBatch();
 
-        $keyset = new KeySet(['ranges' => [$range]]);
-
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]), [
-            'index' => $this->getIndexName(self::$rangeTableName, 'complex')
+        $res = $db->read(self::$rangeTableName, new KeySet(['all' => true]), array_keys(self::$dataset[0]), [
+            'orderBy' => OrderBy::ORDER_BY_PRIMARY_KEY
         ]);
         $rows = iterator_to_array($res->rows());
-        $this->assertEquals(self::$dataset[0]['id'], $rows[0]['id']);
-        $this->assertEquals(self::$dataset[10]['id'], $rows[10]['id']);
+
+        // Assert that the returned rows are sorted by the 'id' property.
+        for ($i = 0; $i < count($rows) - 1; $i++) {
+            $this->assertLessThanOrEqual($rows[$i + 1]['id'], $rows[$i]['id'], 'The array is not sorted by id in ascending order.');
+        }
     }
 
     /**
@@ -536,5 +534,24 @@ class ReadTest extends SpannerTestCase
         }
 
         return current($res)['name'];
+    }
+
+    private function insertUnorderedBatch()
+    {
+        // Because we are generating IDs at random there is a non zero chance
+        // that we create an ID that already exists on the DB.
+        // If that happens, we recursively call this function to generate another set.
+        try {
+            $unorderedDataset = self::generateDataset(10, false);
+            self::$database->insertBatch(self::$rangeTableName, $unorderedDataset);
+        } catch (ConflictException $e) {
+            $json = json_decode($e->getMessage(), true);
+
+            if ($json['status'] == 'ALREADY_EXISTS') {
+                $this->insertUnorderedBatch($data);
+            } else {
+                throw $e;
+            }
+        }
     }
 }
