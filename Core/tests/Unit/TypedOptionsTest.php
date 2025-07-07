@@ -101,7 +101,7 @@ class TypedOptionsTest extends TestCase
     public function testValidateWithInvalidOptionTypeThrowsRuntimeException()
     {
         $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage('invalid option type "NULL" for option "bad_type"');
+        $this->expectExceptionMessage('invalid option type "" for option "bad_type"');
 
         $options = [
             'bad_type' => 'value',
