@@ -233,7 +233,11 @@ class ReadTest extends SpannerTestCase
 
         // Assert that the returned rows are sorted by the 'id' property.
         for ($i = 0; $i < count($rows) - 1; $i++) {
-            $this->assertLessThanOrEqual($rows[$i + 1]['id'], $rows[$i]['id'], 'The array is not sorted by id in ascending order.');
+            $this->assertLessThanOrEqual(
+                $rows[$i + 1]['id'],
+                $rows[$i]['id'],
+                'The array is not sorted by id in ascending order.'
+            );
         }
     }
 
