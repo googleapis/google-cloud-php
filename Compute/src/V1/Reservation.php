@@ -34,6 +34,18 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     private $creation_timestamp = null;
     /**
+     * Duration time relative to reservation creation when Compute Engine will automatically delete this resource.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration delete_after_duration = 323997099;</code>
+     */
+    private $delete_after_duration = null;
+    /**
+     * Absolute time in future when the reservation will be auto-deleted by Compute Engine. Timestamp is represented in RFC3339 text format.
+     *
+     * Generated from protobuf field <code>optional string delete_at_time = 83294405;</code>
+     */
+    private $delete_at_time = null;
+    /**
      * Specifies the deployment strategy for this reservation.
      * Check the DeploymentType enum for the list of possible values.
      *
@@ -46,6 +58,12 @@ class Reservation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
+    /**
+     * Indicates whether Compute Engine allows unplanned maintenance for your VMs; for example, to fix hardware errors.
+     *
+     * Generated from protobuf field <code>optional bool enable_emergent_maintenance = 353759497;</code>
+     */
+    private $enable_emergent_maintenance = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
@@ -144,11 +162,17 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *           [Output Only] Full or partial URL to a parent commitment. This field displays for reservations that are tied to a commitment.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
+     *     @type \Google\Cloud\Compute\V1\Duration $delete_after_duration
+     *           Duration time relative to reservation creation when Compute Engine will automatically delete this resource.
+     *     @type string $delete_at_time
+     *           Absolute time in future when the reservation will be auto-deleted by Compute Engine. Timestamp is represented in RFC3339 text format.
      *     @type string $deployment_type
      *           Specifies the deployment strategy for this reservation.
      *           Check the DeploymentType enum for the list of possible values.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
+     *     @type bool $enable_emergent_maintenance
+     *           Indicates whether Compute Engine allows unplanned maintenance for your VMs; for example, to fix hardware errors.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
@@ -294,6 +318,78 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Duration time relative to reservation creation when Compute Engine will automatically delete this resource.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration delete_after_duration = 323997099;</code>
+     * @return \Google\Cloud\Compute\V1\Duration|null
+     */
+    public function getDeleteAfterDuration()
+    {
+        return $this->delete_after_duration;
+    }
+
+    public function hasDeleteAfterDuration()
+    {
+        return isset($this->delete_after_duration);
+    }
+
+    public function clearDeleteAfterDuration()
+    {
+        unset($this->delete_after_duration);
+    }
+
+    /**
+     * Duration time relative to reservation creation when Compute Engine will automatically delete this resource.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration delete_after_duration = 323997099;</code>
+     * @param \Google\Cloud\Compute\V1\Duration $var
+     * @return $this
+     */
+    public function setDeleteAfterDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\Duration::class);
+        $this->delete_after_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Absolute time in future when the reservation will be auto-deleted by Compute Engine. Timestamp is represented in RFC3339 text format.
+     *
+     * Generated from protobuf field <code>optional string delete_at_time = 83294405;</code>
+     * @return string
+     */
+    public function getDeleteAtTime()
+    {
+        return isset($this->delete_at_time) ? $this->delete_at_time : '';
+    }
+
+    public function hasDeleteAtTime()
+    {
+        return isset($this->delete_at_time);
+    }
+
+    public function clearDeleteAtTime()
+    {
+        unset($this->delete_at_time);
+    }
+
+    /**
+     * Absolute time in future when the reservation will be auto-deleted by Compute Engine. Timestamp is represented in RFC3339 text format.
+     *
+     * Generated from protobuf field <code>optional string delete_at_time = 83294405;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDeleteAtTime($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->delete_at_time = $var;
+
+        return $this;
+    }
+
+    /**
      * Specifies the deployment strategy for this reservation.
      * Check the DeploymentType enum for the list of possible values.
      *
@@ -363,6 +459,42 @@ class Reservation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates whether Compute Engine allows unplanned maintenance for your VMs; for example, to fix hardware errors.
+     *
+     * Generated from protobuf field <code>optional bool enable_emergent_maintenance = 353759497;</code>
+     * @return bool
+     */
+    public function getEnableEmergentMaintenance()
+    {
+        return isset($this->enable_emergent_maintenance) ? $this->enable_emergent_maintenance : false;
+    }
+
+    public function hasEnableEmergentMaintenance()
+    {
+        return isset($this->enable_emergent_maintenance);
+    }
+
+    public function clearEnableEmergentMaintenance()
+    {
+        unset($this->enable_emergent_maintenance);
+    }
+
+    /**
+     * Indicates whether Compute Engine allows unplanned maintenance for your VMs; for example, to fix hardware errors.
+     *
+     * Generated from protobuf field <code>optional bool enable_emergent_maintenance = 353759497;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableEmergentMaintenance($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_emergent_maintenance = $var;
 
         return $this;
     }

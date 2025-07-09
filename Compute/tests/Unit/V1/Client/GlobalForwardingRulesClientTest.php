@@ -211,6 +211,8 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         $baseForwardingRule = 'baseForwardingRule524873104';
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
+        $externalManagedBackendBucketMigrationState = 'externalManagedBackendBucketMigrationState-429059542';
+        $externalManagedBackendBucketMigrationTestingPercentage = 3856772;
         $fingerprint = 'fingerprint-1375934236';
         $id = 3355;
         $ipCollection = 'ipCollection176818358';
@@ -228,6 +230,7 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         $pscConnectionStatus = 'pscConnectionStatus-889592652';
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
+        $selfLinkWithId = 'selfLinkWithId-1029220862';
         $serviceLabel = 'serviceLabel-1730474774';
         $serviceName = 'serviceName359880149';
         $subnetwork = 'subnetwork-1302785042';
@@ -242,6 +245,8 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         $expectedResponse->setBaseForwardingRule($baseForwardingRule);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setExternalManagedBackendBucketMigrationState($externalManagedBackendBucketMigrationState);
+        $expectedResponse->setExternalManagedBackendBucketMigrationTestingPercentage($externalManagedBackendBucketMigrationTestingPercentage);
         $expectedResponse->setFingerprint($fingerprint);
         $expectedResponse->setId($id);
         $expectedResponse->setIpCollection($ipCollection);
@@ -259,6 +264,7 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         $expectedResponse->setPscConnectionStatus($pscConnectionStatus);
         $expectedResponse->setRegion($region);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setSelfLinkWithId($selfLinkWithId);
         $expectedResponse->setServiceLabel($serviceLabel);
         $expectedResponse->setServiceName($serviceName);
         $expectedResponse->setSubnetwork($subnetwork);
