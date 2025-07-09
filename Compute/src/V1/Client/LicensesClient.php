@@ -44,6 +44,7 @@ use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\SetIamPolicyLicenseRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsLicenseRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
+use Google\Cloud\Compute\V1\UpdateLicenseRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -60,6 +61,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listAsync(ListLicensesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyLicenseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsLicenseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateLicenseRequest $request, array $optionalArgs = [])
  */
 final class LicensesClient
 {
@@ -434,5 +436,31 @@ final class LicensesClient
     public function testIamPermissions(TestIamPermissionsLicenseRequest $request, array $callOptions = []): TestPermissionsResponse
     {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a License resource in the specified project. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
+     *
+     * The async variant is {@see LicensesClient::updateAsync()} .
+     *
+     * @example samples/V1/LicensesClient/update.php
+     *
+     * @param UpdateLicenseRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function update(UpdateLicenseRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('Update', $request, $callOptions)->wait();
     }
 }
