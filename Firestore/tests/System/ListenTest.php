@@ -23,7 +23,6 @@ use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use Google\Cloud\Firestore\V1\ListenRequest;
 use Google\Cloud\Firestore\V1\ListenResponse;
 
-
 /**
  * @group firestore
  * @group firestore-listen
