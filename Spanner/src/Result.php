@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Spanner;
 
+use Generator;
+use Google\ApiCore\RetrySettings;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Spanner\Session\Session;
@@ -31,7 +33,7 @@ use Grpc;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * $database = $spanner->connect('my-instance', 'my-database');
  * $result = $database->execute('SELECT * FROM Posts');
@@ -41,90 +43,28 @@ use Grpc;
  */
 class Result implements \IteratorAggregate
 {
-    const BUFFER_RESULT_LIMIT = 10;
-
+    private const BUFFER_RESULT_LIMIT = 10;
     const RETURN_NAME_VALUE_PAIR = 'nameValuePair';
     const RETURN_ASSOCIATIVE = 'associative';
     const RETURN_ZERO_INDEXED = 'zeroIndexed';
-
     const MODE_NORMAL = QueryMode::NORMAL;
     const MODE_PLAN = QueryMode::PLAN;
     const MODE_PROFILE = QueryMode::PROFILE;
 
-    /**
-     * @var array
-     */
-    private $columns = [];
-
-    /**
-     * @var int
-     */
-    private $columnCount = 0;
-
-    /**
-     * @var array|null
-     */
-    private $columnNames;
-
-    /**
-     * @var ValueMapper
-     */
-    private $mapper;
-
-    /**
-     * @var array|null
-     */
-    private $metadata;
-
-    /**
-     * @var Operation
-     */
-    private $operation;
-
-    /**
-     * @var int
-     */
-    private $retries;
-
-    /**
-     * @var string|null
-     */
-    private $resumeToken;
-
-    /**
-     * @var Session
-     */
-    private $session;
-
-    /**
-     * @var Snapshot|null
-     */
-    private $snapshot;
-
-    /**
-     * @var array|null
-     */
-    private $stats;
-
-    /**
-     * @var Transaction|null
-     */
-    private $transaction;
-
-    /**
-     * @var string
-     */
-    private $transactionContext;
-
+    private array $columns = [];
+    private int $columnCount = 0;
+    private array $columnNames;
+    private array|null $metadata;
+    private int $retries;
+    private string|null $resumeToken = null;
+    private TransactionalReadInterface|null $snapshot;
+    private array|bool|null $stats;
+    private Transaction|null $transaction = null;
     /**
      * @var callable
      */
     private $call;
-
-    /**
-     * @var \Generator
-     */
-    private $generator;
+    private Generator $generator;
 
     /**
      * @param Operation $operation Runs operations against Google Cloud Spanner.
@@ -132,23 +72,25 @@ class Result implements \IteratorAggregate
      * @param callable $call A callable, yielding a generator filled with results.
      * @param string $transactionContext The transaction's context.
      * @param ValueMapper $mapper Maps values.
-     * @param int $retries Number of attempts to resume a broken stream, assuming
-     *        a resume token is present. **Defaults to** 3.
+     * @param RetrySettings|null $retrySettings {
+     *     Retry configuration options. Currently, only the `maxRetries` option
+     *     is supported.
+     *
+     *     @type int $maxRetries The maximum number of retry attempts before the operation
+     *           fails. Defaults to 3.
+     * }
      */
     public function __construct(
-        Operation $operation,
-        Session $session,
+        private Operation $operation,
+        private Session $session,
         callable $call,
-        $transactionContext,
-        ValueMapper $mapper,
-        $retries = 3
+        private string|null $transactionContext,
+        private ValueMapper $mapper,
+        RetrySettings|null $retrySettings = null
     ) {
-        $this->operation = $operation;
         $this->session = $session;
         $this->call = $call;
-        $this->transactionContext = $transactionContext;
-        $this->mapper = $mapper;
-        $this->retries = $retries;
+        $this->retries = isset($retrySettings) ? $retrySettings->getMaxRetries() : 3;
         $this->createGenerator();
     }
 
@@ -173,12 +115,12 @@ class Result implements \IteratorAggregate
      *        array, with the key representing the column number as found by
      *        executing {@see \Google\Cloud\Spanner\Result::columns()}. Ex:
      *        `[0 => 'my_value']`. **Defaults to** `Result::RETURN_ASSOCIATIVE`.
-     * @return \Generator
+     * @return Generator
      * @throws \InvalidArgumentException When an invalid format is provided.
      * @throws \RuntimeException When duplicate column names exist with a
      *         selected format of `Result::RETURN_ASSOCIATIVE`.
      */
-    public function rows($format = self::RETURN_ASSOCIATIVE)
+    public function rows($format = self::RETURN_ASSOCIATIVE): Generator
     {
         $bufferedResults = [];
         $call = $this->call;
@@ -267,7 +209,7 @@ class Result implements \IteratorAggregate
      */
     public function columns()
     {
-        return $this->columnNames;
+        return $this->columnNames ?? null;
     }
 
     /**
@@ -333,9 +275,9 @@ class Result implements \IteratorAggregate
      * @return array|null [ResultSetStats](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.ResultSetStats).
      * @codingStandardsIgnoreEnd
      */
-    public function stats()
+    public function stats(): array|bool|null
     {
-        return $this->stats;
+        return $this->stats ?? null;
     }
 
     /**
@@ -348,9 +290,9 @@ class Result implements \IteratorAggregate
      * $snapshot = $result->snapshot();
      * ```
      *
-     * @return Snapshot|null
+     * @return TransactionalReadInterface|null
      */
-    public function snapshot()
+    public function snapshot(): TransactionalReadInterface|null
     {
         return $this->snapshot;
     }
@@ -367,17 +309,17 @@ class Result implements \IteratorAggregate
      *
      * @return Transaction|null
      */
-    public function transaction()
+    public function transaction(): Transaction|null
     {
         return $this->transaction;
     }
 
     /**
      * @access private
-     * @return \Generator
+     * @return Generator
      */
     #[\ReturnTypeWillChange]
-    public function getIterator()
+    public function getIterator(): Generator
     {
         return $this->rows();
     }
@@ -386,7 +328,7 @@ class Result implements \IteratorAggregate
      * @param array $bufferedResults
      * @return array
      */
-    private function parseRowsFromBufferedResults(array $bufferedResults)
+    private function parseRowsFromBufferedResults(array $bufferedResults): array
     {
         $values = [];
         $chunkedResult = null;
@@ -432,7 +374,7 @@ class Result implements \IteratorAggregate
      * @param string $format
      * @throws \RuntimeException
      */
-    private function setResultData(array $result, $format)
+    private function setResultData(array $result, $format): void
     {
         $this->stats = $result['stats'] ?? null;
 
@@ -475,7 +417,7 @@ class Result implements \IteratorAggregate
      * @param array $set2
      * @return array
      */
-    private function mergeValues(array $set1, array $set2)
+    private function mergeValues(array $set1, array $set2): array
     {
         // `$set2` may be empty if an array value is chunked at the end of the
         // list. Handling it normally results in an additional `null` value
@@ -507,7 +449,7 @@ class Result implements \IteratorAggregate
      * @param string $key
      * @return bool
      */
-    private function isSetAndTrue($arr, $key)
+    private function isSetAndTrue($arr, $key): bool
     {
         return isset($arr[$key]) && $arr[$key];
     }
@@ -517,11 +459,12 @@ class Result implements \IteratorAggregate
      *
      * @return bool Whether or not the created generator is valid.
      */
-    private function createGenerator()
+    private function createGenerator(): bool
     {
-        if (!is_null($this->generator)) {
+        if (isset($this->generator)) {
             return $this->generator->valid();
         }
+
         $call = $this->call;
         $generator = null;
 
@@ -549,7 +492,7 @@ class Result implements \IteratorAggregate
      *
      * @param array $result The streaming call response from the server.
      */
-    private function setSnapshotOrTransaction(array $result)
+    private function setSnapshotOrTransaction(array $result): void
     {
         if (!empty($result['metadata']['transaction']['id'])) {
             if ($this->transactionContext === SessionPoolInterface::CONTEXT_READ) {
