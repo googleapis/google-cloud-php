@@ -174,7 +174,7 @@ trait TransactionConfigurationTrait
      *           "single-use", and may be used for only a single operation.
      *           **Defaults to** `false`.
      * }
-     * @param array $previous Previously given call options (for single-use snapshots).
+     * @param array $previousReadOnlyOptions Previously given call options (for single-use snapshots).
      * @return array
      */
     private function configureReadOnlyTransactionOptions(array $options, array $previousReadOnlyOptions = []): array

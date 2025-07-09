@@ -402,7 +402,7 @@ class Transaction implements TransactionalReadInterface
      *         Please note, the `requestTag` setting will be ignored as it is not supported for commit requests.
      * }
      * @return Timestamp The commit timestamp.
-     * @throws \BadMethodCall If the transaction is not active or already used.
+     * @throws \BadMethodCallException If the transaction is not active or already used.
      * @throws AbortedException If the commit is aborted for any reason.
      */
     public function commit(array $options = []): Timestamp

@@ -183,6 +183,7 @@ class BatchClient
             $sessionOptions
         );
 
+        /** @var BatchSnapshot */
         return $this->operation->snapshot($session, [
             'className' => BatchSnapshot::class,
             'transactionOptions' => $transactionOptions
@@ -218,7 +219,7 @@ class BatchClient
 
         $session = $this->operation->session($data['sessionName']);
 
-        $readTime = $this->parseTimeString($data['readTimestamp']);
+        /** @var BatchSnapshot */
         return $this->operation->createSnapshot($session, [
             'id' => $data['transactionId'],
             'readTimestamp' => $data['readTimestamp']

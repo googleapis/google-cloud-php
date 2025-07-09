@@ -41,7 +41,7 @@ trait MutationTrait
      *
      * @param string $table The table to insert into.
      * @param array $data The data to insert.
-     * @return MutationGroup Current mutation group data object.
+     * @return self Current mutation group data object.
      */
     public function insert(string $table, array $data): self
     {

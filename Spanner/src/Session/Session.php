@@ -190,6 +190,7 @@ class Session
     public function __debugInfo()
     {
         return [
+            /** @phpstan-ignore-next-line */
             'spannerClient' => isset($this->spannerClient) ? get_class($this->spannerClient) : '<not set>',
             'projectId' => $this->projectId,
             'instance' => $this->instance,

@@ -75,9 +75,9 @@ class Numeric implements ValueInterface
     /**
      * Get the type.
      *
-     * @return string
+     * @return int
      */
-    public function type(): string
+    public function type(): int
     {
         return ValueMapper::TYPE_NUMERIC;
     }

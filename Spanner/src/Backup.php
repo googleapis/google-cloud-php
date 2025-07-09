@@ -58,7 +58,8 @@ class Backup
      *
      * @internal Backup is constructed by the {@see Instance} class.
      *
-     * @param DatabaseAdminClient The database admin client to make backup RPC calls.
+     * @param DatabaseAdminClient $databaseAdminClient The database admin client to make backup RPC
+     *        calls.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param Instance $instance The instance in which the backup exists.
      * @param string $projectId The project ID.

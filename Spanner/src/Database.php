@@ -143,7 +143,7 @@ class Database
      * @param Instance $instance The instance in which the database exists.
      * @param string $projectId The project ID.
      * @param string $name The database name or ID.
-     * @param string $options [Optional] {
+     * @param array $options [Optional] {
      *     Database options.
      *
      *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
@@ -503,7 +503,7 @@ class Database
      *
      * @param string $statement A DDL statements to run against a database.
      * @param array $options [optional] Configuration options.
-     * @return LongRunningOperation<Database>
+     * @return LongRunningOperation<void>
      */
     public function updateDdl(string $statement, array $options = []): LongRunningOperation
     {
@@ -717,12 +717,12 @@ class Database
      *     @type array $sessionOptions Session configuration and request options.
      *           Session labels may be applied using the `labels` key.
      * }
-     * @return Snapshot
+     * @return TransactionalReadInterface
      * @throws \BadMethodCallException If attempting to call this method within
      *         an existing transaction.
      * @codingStandardsIgnoreEnd
      */
-    public function snapshot(array $options = []): Snapshot
+    public function snapshot(array $options = []): TransactionalReadInterface
     {
         if ($this->isRunningTransaction) {
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
@@ -1689,7 +1689,7 @@ class Database
 
         $options['directedReadOptions'] = $this->configureDirectedReadOptions(
             $options,
-            $this->directedReadOptions ?? []
+            $this->directedReadOptions
         );
 
         try {
@@ -2074,7 +2074,7 @@ class Database
 
         $options['directedReadOptions'] = $this->configureDirectedReadOptions(
             $options,
-            $this->directedReadOptions ?? []
+            $this->directedReadOptions
         );
 
         try {
@@ -2222,7 +2222,7 @@ class Database
      * @param array $options {
      *     @type name The session name to be deleted
      * }
-     * @return PromiseInterface<void>
+     * @return PromiseInterface
      * @experimental
      */
     public function deleteSessionAsync(array $options): PromiseInterface

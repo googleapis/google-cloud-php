@@ -57,7 +57,7 @@ class InstanceConfiguration
      *
      * @internal InstanceConfiguration is constructed by the {@see SpannerClient} class.
      *
-     * @param InstanceAdminClient The client library to use for the request
+     * @param InstanceAdminClient $instanceAdminClient The client library to use for the request
      * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param string $projectId The current project ID.
      * @param string $name The configuration name or ID.

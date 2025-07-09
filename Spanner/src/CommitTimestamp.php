@@ -57,7 +57,7 @@ class CommitTimestamp implements ValueInterface
     /**
      * @access private
      */
-    public function type(): string
+    public function type(): int
     {
         return Database::TYPE_TIMESTAMP;
     }

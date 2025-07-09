@@ -57,7 +57,7 @@ class Result implements \IteratorAggregate
     private array|null $metadata;
     private int $retries;
     private string|null $resumeToken = null;
-    private Snapshot|null $snapshot;
+    private TransactionalReadInterface|null $snapshot;
     private array|bool|null $stats;
     private Transaction|null $transaction = null;
     /**
@@ -290,9 +290,9 @@ class Result implements \IteratorAggregate
      * $snapshot = $result->snapshot();
      * ```
      *
-     * @return Snapshot|null
+     * @return TransactionalReadInterface|null
      */
-    public function snapshot()
+    public function snapshot(): TransactionalReadInterface|null
     {
         return $this->snapshot;
     }
@@ -309,7 +309,7 @@ class Result implements \IteratorAggregate
      *
      * @return Transaction|null
      */
-    public function transaction()
+    public function transaction(): Transaction|null
     {
         return $this->transaction;
     }
@@ -319,7 +319,7 @@ class Result implements \IteratorAggregate
      * @return Generator
      */
     #[\ReturnTypeWillChange]
-    public function getIterator()
+    public function getIterator(): Generator
     {
         return $this->rows();
     }
@@ -328,7 +328,7 @@ class Result implements \IteratorAggregate
      * @param array $bufferedResults
      * @return array
      */
-    private function parseRowsFromBufferedResults(array $bufferedResults)
+    private function parseRowsFromBufferedResults(array $bufferedResults): array
     {
         $values = [];
         $chunkedResult = null;
@@ -374,7 +374,7 @@ class Result implements \IteratorAggregate
      * @param string $format
      * @throws \RuntimeException
      */
-    private function setResultData(array $result, $format)
+    private function setResultData(array $result, $format): void
     {
         $this->stats = $result['stats'] ?? null;
 
@@ -417,7 +417,7 @@ class Result implements \IteratorAggregate
      * @param array $set2
      * @return array
      */
-    private function mergeValues(array $set1, array $set2)
+    private function mergeValues(array $set1, array $set2): array
     {
         // `$set2` may be empty if an array value is chunked at the end of the
         // list. Handling it normally results in an additional `null` value
@@ -449,7 +449,7 @@ class Result implements \IteratorAggregate
      * @param string $key
      * @return bool
      */
-    private function isSetAndTrue($arr, $key)
+    private function isSetAndTrue($arr, $key): bool
     {
         return isset($arr[$key]) && $arr[$key];
     }
@@ -459,7 +459,7 @@ class Result implements \IteratorAggregate
      *
      * @return bool Whether or not the created generator is valid.
      */
-    private function createGenerator()
+    private function createGenerator(): bool
     {
         if (isset($this->generator)) {
             return $this->generator->valid();
@@ -492,7 +492,7 @@ class Result implements \IteratorAggregate
      *
      * @param array $result The streaming call response from the server.
      */
-    private function setSnapshotOrTransaction(array $result)
+    private function setSnapshotOrTransaction(array $result): void
     {
         if (!empty($result['metadata']['transaction']['id'])) {
             if ($this->transactionContext === SessionPoolInterface::CONTEXT_READ) {

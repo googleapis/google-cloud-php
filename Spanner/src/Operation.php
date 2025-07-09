@@ -588,7 +588,7 @@ class Operation
      *           be instantiated. This setting is intended for internal use.
      *           **Defaults to** `Google\Cloud\Spanner\Snapshot`.
      * }
-     * @return mixed
+     * @return TransactionalReadInterface
      */
     public function snapshot(Session $session, array $options = []): TransactionalReadInterface
     {
@@ -622,7 +622,7 @@ class Operation
      * @param array $res [optional] The createTransaction response.
      * @param string $className [optional] The class to instantiate with a
      *        snapshot. **Defaults to** `Google\Cloud\Spanner\Snapshot`.
-     * @return mixed
+     * @return TransactionalReadInterface
      */
     public function createSnapshot(
         Session $session,
@@ -1051,7 +1051,7 @@ class Operation
     }
 
     /**
-     * @param array $data
+     * @param array $args
      *
      * @return array
      */
@@ -1159,7 +1159,6 @@ class Operation
 
     /**
      * @param array $args
-     * @param string $transactionId
      *
      * @return array
      */

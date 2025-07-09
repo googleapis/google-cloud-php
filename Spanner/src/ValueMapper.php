@@ -262,7 +262,7 @@ class ValueMapper
                 2 => null
             ];
 
-            $definition = new ArrayType($type[1], $type[2]);
+            $definition = new ArrayType($type[1]);
             $type = Database::TYPE_ARRAY;
         } elseif ($type instanceof ArrayType) {
             $definition = $type;
@@ -764,7 +764,7 @@ class ValueMapper
      * Handle query parameter mappings for various types of objects.
      *
      * @param mixed $value The parameter value.
-     * @return array{0: array, 1: array} An array containing the value and type.
+     * @return array{0: array, 1: string} An array containing the value and type.
      */
     private function objectParam(mixed $value): array
     {
@@ -832,7 +832,12 @@ class ValueMapper
      *        the structure of an array or struct type.
      * @param string $nestedDefinitionType [optional] Either `arrayElementType`
      *        or `structType`.
-     * @return array{0: array, 1: array}
+     * @return array{
+     *     code?: int,
+     *     arrayElementType?: array,
+     *     structType?: array,
+     *     typeAnnotation?: int
+     * }
      */
     private function typeObject(
         int|null $type,
@@ -912,7 +917,7 @@ class ValueMapper
         $arrayTypeCode,
         $arrayTypeAnnotation,
         array $inferredTypes
-    ): int {
+    ): bool {
         if (!empty($value)) {
             if ($arrayTypeCode
                 && isset($inferredTypes[0]['code'])

@@ -43,7 +43,7 @@ use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\LongRunning\Operation as OperationProto;
 use Google\Protobuf\Duration;
 use Psr\Cache\CacheItemPoolInterface;
-use Psr\Http\StreamInterface;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * Cloud Spanner is a highly scalable, transactional, managed, NewSQL
@@ -428,17 +428,17 @@ class SpannerClient
      * @codingStandardsIgnoreEnd
      *
      * @param string $name The Configuration name.
-     * @param array $config [optional] The configuration details.
+     * @param array $info [optional] The configuration details.
      * @return InstanceConfiguration
      */
-    public function instanceConfiguration($name, array $options = []): InstanceConfiguration
+    public function instanceConfiguration($name, array $info = []): InstanceConfiguration
     {
         return new InstanceConfiguration(
             $this->instanceAdminClient,
             $this->serializer,
             $this->projectId,
             $name,
-            $options
+            $info
         );
     }
 
