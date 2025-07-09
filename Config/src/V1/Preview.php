@@ -153,7 +153,7 @@ class Preview extends \Google\Protobuf\Internal\Message
     protected $tf_version_constraint = null;
     /**
      * Optional. Arbitrary key-value metadata storage e.g. to help client tools
-     * identifiy preview during automation. See
+     * identify preview during automation. See
      * https://google.aip.dev/148#annotations for details on format and size
      * limitations.
      *
@@ -234,7 +234,7 @@ class Preview extends \Google\Protobuf\Internal\Message
      *           Example: "=1.3.10".
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           Optional. Arbitrary key-value metadata storage e.g. to help client tools
-     *           identifiy preview during automation. See
+     *           identify preview during automation. See
      *           https://google.aip.dev/148#annotations for details on format and size
      *           limitations.
      * }
@@ -857,7 +857,7 @@ class Preview extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Arbitrary key-value metadata storage e.g. to help client tools
-     * identifiy preview during automation. See
+     * identify preview during automation. See
      * https://google.aip.dev/148#annotations for details on format and size
      * limitations.
      *
@@ -871,7 +871,7 @@ class Preview extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Arbitrary key-value metadata storage e.g. to help client tools
-     * identifiy preview during automation. See
+     * identify preview during automation. See
      * https://google.aip.dev/148#annotations for details on format and size
      * limitations.
      *
