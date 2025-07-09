@@ -73,6 +73,23 @@ return [
                     ],
                 ],
             ],
+            'BulkSetLabels' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/disks/bulkSetLabels',
+                'body' => 'bulk_zone_set_labels_request_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
             'CreateSnapshot' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}/createSnapshot',
