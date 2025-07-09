@@ -40,6 +40,8 @@ use Google\Cloud\Config\V1\ExportPreviewResultResponse;
 use Google\Cloud\Config\V1\ExportRevisionStatefileRequest;
 use Google\Cloud\Config\V1\GetDeploymentRequest;
 use Google\Cloud\Config\V1\GetPreviewRequest;
+use Google\Cloud\Config\V1\GetResourceChangeRequest;
+use Google\Cloud\Config\V1\GetResourceDriftRequest;
 use Google\Cloud\Config\V1\GetResourceRequest;
 use Google\Cloud\Config\V1\GetRevisionRequest;
 use Google\Cloud\Config\V1\GetTerraformVersionRequest;
@@ -48,6 +50,10 @@ use Google\Cloud\Config\V1\ListDeploymentsRequest;
 use Google\Cloud\Config\V1\ListDeploymentsResponse;
 use Google\Cloud\Config\V1\ListPreviewsRequest;
 use Google\Cloud\Config\V1\ListPreviewsResponse;
+use Google\Cloud\Config\V1\ListResourceChangesRequest;
+use Google\Cloud\Config\V1\ListResourceChangesResponse;
+use Google\Cloud\Config\V1\ListResourceDriftsRequest;
+use Google\Cloud\Config\V1\ListResourceDriftsResponse;
 use Google\Cloud\Config\V1\ListResourcesRequest;
 use Google\Cloud\Config\V1\ListResourcesResponse;
 use Google\Cloud\Config\V1\ListRevisionsRequest;
@@ -58,6 +64,8 @@ use Google\Cloud\Config\V1\LockDeploymentRequest;
 use Google\Cloud\Config\V1\LockInfo;
 use Google\Cloud\Config\V1\Preview;
 use Google\Cloud\Config\V1\Resource;
+use Google\Cloud\Config\V1\ResourceChange;
+use Google\Cloud\Config\V1\ResourceDrift;
 use Google\Cloud\Config\V1\Revision;
 use Google\Cloud\Config\V1\Statefile;
 use Google\Cloud\Config\V1\TerraformVersion;
@@ -1292,6 +1300,136 @@ class ConfigClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getResourceChangeTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new ResourceChange();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->resourceChangeName('[PROJECT]', '[LOCATION]', '[PREVIEW]', '[RESOURCE_CHANGE]');
+        $request = (new GetResourceChangeRequest())->setName($formattedName);
+        $response = $gapicClient->getResourceChange($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.config.v1.Config/GetResourceChange', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getResourceChangeExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->resourceChangeName('[PROJECT]', '[LOCATION]', '[PREVIEW]', '[RESOURCE_CHANGE]');
+        $request = (new GetResourceChangeRequest())->setName($formattedName);
+        try {
+            $gapicClient->getResourceChange($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getResourceDriftTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new ResourceDrift();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->resourceDriftName('[PROJECT]', '[LOCATION]', '[PREVIEW]', '[RESOURCE_DRIFT]');
+        $request = (new GetResourceDriftRequest())->setName($formattedName);
+        $response = $gapicClient->getResourceDrift($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.config.v1.Config/GetResourceDrift', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getResourceDriftExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->resourceDriftName('[PROJECT]', '[LOCATION]', '[PREVIEW]', '[RESOURCE_DRIFT]');
+        $request = (new GetResourceDriftRequest())->setName($formattedName);
+        try {
+            $gapicClient->getResourceDrift($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getRevisionTest()
     {
         $transport = $this->createTransport();
@@ -1641,6 +1779,148 @@ class ConfigClientTest extends GeneratedTest
         $request = (new ListPreviewsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listPreviews($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listResourceChangesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $resourceChangesElement = new ResourceChange();
+        $resourceChanges = [$resourceChangesElement];
+        $expectedResponse = new ListResourceChangesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setResourceChanges($resourceChanges);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->previewName('[PROJECT]', '[LOCATION]', '[PREVIEW]');
+        $request = (new ListResourceChangesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listResourceChanges($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getResourceChanges()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.config.v1.Config/ListResourceChanges', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listResourceChangesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->previewName('[PROJECT]', '[LOCATION]', '[PREVIEW]');
+        $request = (new ListResourceChangesRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listResourceChanges($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listResourceDriftsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $resourceDriftsElement = new ResourceDrift();
+        $resourceDrifts = [$resourceDriftsElement];
+        $expectedResponse = new ListResourceDriftsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setResourceDrifts($resourceDrifts);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->previewName('[PROJECT]', '[LOCATION]', '[PREVIEW]');
+        $request = (new ListResourceDriftsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listResourceDrifts($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getResourceDrifts()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.config.v1.Config/ListResourceDrifts', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listResourceDriftsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->previewName('[PROJECT]', '[LOCATION]', '[PREVIEW]');
+        $request = (new ListResourceDriftsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listResourceDrifts($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
