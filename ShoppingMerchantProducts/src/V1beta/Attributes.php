@@ -24,8 +24,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
      */
     protected $identifier_exists = null;
     /**
-     * Whether the item is a merchant-defined bundle. A bundle is a custom
-     * grouping of different products sold by a merchant for a single price.
+     * Whether the item is a business-defined sub-API. A [sub-API]
+     * (https://support.google.com/merchants/answer/6324449) is a custom
+     * grouping of different products sold by a business for a single price.
      *
      * Generated from protobuf field <code>optional bool is_bundle = 5;</code>
      */
@@ -86,8 +87,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
     /**
      * The date time when an offer becomes visible in search results across
      * Google’s YouTube surfaces, in [ISO
-     * 8601](http://en.wikipedia.org/wiki/ISO_8601) format. See [Disclosure date](
-     * https://support.google.com/merchants/answer/13034208) for more information.
+     * 8601](http://en.wikipedia.org/wiki/ISO_8601) format.
+     * See [Disclosure date](https://support.google.com/merchants/answer/13034208)
+     * for more information.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp disclosure_date = 79;</code>
      */
@@ -106,7 +108,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
      */
     protected $age_group = null;
     /**
-     * Availability status of the item.
+     * [Availability](https://support.google.com/merchants/answer/6324448) status
+     * of the item. For example, "in_stock" or "out_of_stock".
      *
      * Generated from protobuf field <code>optional string availability = 19;</code>
      */
@@ -119,25 +122,29 @@ class Attributes extends \Google\Protobuf\Internal\Message
      */
     protected $availability_date = null;
     /**
-     * Brand of the item.
+     * [Brand](https://support.google.com/merchants/answer/6324351) of the item.
+     * For example, "Google".
      *
      * Generated from protobuf field <code>optional string brand = 21;</code>
      */
     protected $brand = null;
     /**
-     * Color of the item.
+     * [Color](https://support.google.com/merchants/answer/6324487) of the item.
+     * For example, "red".
      *
      * Generated from protobuf field <code>optional string color = 22;</code>
      */
     protected $color = null;
     /**
-     * Condition or state of the item.
+     * [Condition](https://support.google.com/merchants/answer/6324469) or state
+     * of the item. For example, "new" or "used".
      *
      * Generated from protobuf field <code>optional string condition = 23;</code>
      */
     protected $condition = null;
     /**
-     * Target gender of the item.
+     * Target [gender](https://support.google.com/merchants/answer/6324479) of the
+     * item. For example, "male" or "female".
      *
      * Generated from protobuf field <code>optional string gender = 24;</code>
      */
@@ -157,10 +164,21 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the
      * item.
      * You can provide up to 10 GTINs.
+     * Deprecated: Use `gtins` instead.
      *
-     * Generated from protobuf field <code>repeated string gtin = 26;</code>
+     * Generated from protobuf field <code>repeated string gtin = 26 [deprecated = true];</code>
+     * @deprecated
      */
     private $gtin;
+    /**
+     * Global Trade Item Numbers
+     * ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the
+     * item.
+     * You can provide up to 10 GTINs.
+     *
+     * Generated from protobuf field <code>repeated string gtins = 140;</code>
+     */
+    private $gtins;
     /**
      * Shared identifier for all variants of the same product.
      *
@@ -168,7 +186,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
      */
     protected $item_group_id = null;
     /**
-     * The material of which the item is made.
+     * The [material](https://support.google.com/merchants/answer/6324410) of
+     * which the item is made. For example, "Leather" or "Cotton".
      *
      * Generated from protobuf field <code>optional string material = 28;</code>
      */
@@ -182,7 +201,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
      */
     protected $mpn = null;
     /**
-     * The item's pattern (for example, polka dots).
+     * The item's [pattern](https://support.google.com/merchants/answer/6324483).
+     * For example, polka dots.
      *
      * Generated from protobuf field <code>optional string pattern = 30;</code>
      */
@@ -193,6 +213,12 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.shopping.type.Price price = 31;</code>
      */
     protected $price = null;
+    /**
+     * Maximum retail price (MRP) of the item. Applicable to India only.
+     *
+     * Generated from protobuf field <code>.google.shopping.type.Price maximum_retail_price = 139;</code>
+     */
+    protected $maximum_retail_price = null;
     /**
      * Number and amount of installments to pay for an item.
      *
@@ -222,7 +248,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
     private $loyalty_programs;
     /**
      * Categories of the item (formatted as in [product data
-     * specification](https://support.google.com/merchants/answer/188494#product_type)).
+     * specification](https://support.google.com/merchants/answer/7052112#product_category)).
      *
      * Generated from protobuf field <code>repeated string product_types = 35;</code>
      */
@@ -234,8 +260,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
      */
     protected $sale_price = null;
     /**
-     * Date range during which the item is on sale (see [product data
-     * specification](https://support.google.com/merchants/answer/188494#sale_price_effective_date)).
+     * Date range during which the item is on sale, see [product data
+     * specification](https://support.google.com/merchants/answer/7052112#price_and_availability).
      *
      * Generated from protobuf field <code>.google.type.Interval sale_price_effective_date = 37;</code>
      */
@@ -341,22 +367,26 @@ class Attributes extends \Google\Protobuf\Internal\Message
     /**
      * Size of the item. Only one value is allowed. For variants with different
      * sizes, insert a separate product for each size with the same
-     * `itemGroupId` value (see
-     * [https://support.google.com/merchants/answer/6324492](size definition)).
+     * `itemGroupId` value, see
+     * [Size](https://support.google.com/merchants/answer/6324492).
      *
      * Generated from protobuf field <code>optional string size = 48;</code>
      */
     protected $size = null;
     /**
      * System in which the size is specified. Recommended for apparel items.
+     * For example, "US", "UK", "DE".
+     * For more information, see
+     * [Size system](https://support.google.com/merchants/answer/6324502).
      *
      * Generated from protobuf field <code>optional string size_system = 49;</code>
      */
     protected $size_system = null;
     /**
      * The cut of the item. It can be used to represent combined size types for
-     * apparel items. Maximum two of size types can be provided (see
-     * [https://support.google.com/merchants/answer/6324497](size type)).
+     * apparel items. Maximum two of size types can be provided, see
+     * [Size type](https://support.google.com/merchants/answer/6324497).
+     * For example, "petite", "plus size".
      *
      * Generated from protobuf field <code>repeated string size_types = 50;</code>
      */
@@ -364,13 +394,16 @@ class Attributes extends \Google\Protobuf\Internal\Message
     /**
      * Tax information.
      *
-     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1beta.Tax taxes = 51;</code>
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1beta.Tax taxes = 51 [deprecated = true];</code>
+     * @deprecated
      */
     private $taxes;
     /**
-     * The tax category of the product.
+     * The [tax category](https://support.google.com/merchants/answer/7569847) of
+     * the product.
      *
-     * Generated from protobuf field <code>optional string tax_category = 52;</code>
+     * Generated from protobuf field <code>optional string tax_category = 52 [deprecated = true];</code>
+     * @deprecated
      */
     protected $tax_category = null;
     /**
@@ -404,14 +437,16 @@ class Attributes extends \Google\Protobuf\Internal\Message
      */
     protected $unit_pricing_base_measure = null;
     /**
-     * The number of identical products in a merchant-defined multipack.
+     * The number of identical products in a business-defined multipack.
      *
      * Generated from protobuf field <code>optional int64 multipack = 58;</code>
      */
     protected $multipack = null;
     /**
      * Used to group items in an arbitrary way. Only for CPA%, discouraged
-     * otherwise.
+     * otherwise. For more information, see
+     * [Display ads
+     * attribute](https://support.google.com/merchants/answer/6069387).
      *
      * Generated from protobuf field <code>optional string ads_grouping = 59;</code>
      */
@@ -442,7 +477,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
      */
     private $product_details;
     /**
-     * Bullet points describing the most relevant highlights of a product.
+     * Bullet points describing the most relevant [product
+     * highlights](https://support.google.com/merchants/answer/9216100).
      *
      * Generated from protobuf field <code>repeated string product_highlights = 64;</code>
      */
@@ -454,7 +490,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
      */
     protected $display_ads_id = null;
     /**
-     * Advertiser-specified recommendations.
+     * Advertiser-specified recommendations. For more information, see
+     * [Display ads attribute
+     * specification](https://support.google.com/merchants/answer/6069387).
      *
      * Generated from protobuf field <code>repeated string display_ads_similar_ids = 66;</code>
      */
@@ -473,7 +511,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
      */
     protected $display_ads_link = null;
     /**
-     * Offer margin for dynamic remarketing campaigns.
+     * Offer margin for dynamic remarketing campaigns. For more information, see
+     * [Display ads
+     * attribute](https://support.google.com/merchants/answer/6069387).
      *
      * Generated from protobuf field <code>optional double display_ads_value = 69;</code>
      */
@@ -485,56 +525,65 @@ class Attributes extends \Google\Protobuf\Internal\Message
      */
     private $promotion_ids;
     /**
-     * The pick up option for the item.
+     * The [pickup](https://support.google.com/merchants/answer/14634021) option
+     * for the item.
      *
      * Generated from protobuf field <code>optional string pickup_method = 80;</code>
      */
     protected $pickup_method = null;
     /**
-     * Item store pickup timeline.
+     * Item store pickup timeline. For more information, see
+     * [Pickup SLA](https://support.google.com/merchants/answer/14635400).
      *
      * Generated from protobuf field <code>optional string pickup_sla = 81;</code>
      */
     protected $pickup_sla = null;
     /**
-     * Link template for merchant hosted local storefront.
+     * [Link template](https://support.google.com/merchants/answer/13871172) for
+     * business hosted local storefront.
      *
      * Generated from protobuf field <code>optional string link_template = 82;</code>
      */
     protected $link_template = null;
     /**
-     * Link template for merchant hosted local storefront optimized for mobile
+     * [Link template](https://support.google.com/merchants/answer/13870216) for
+     * business hosted local storefront optimized for mobile
      * devices.
      *
      * Generated from protobuf field <code>optional string mobile_link_template = 83;</code>
      */
     protected $mobile_link_template = null;
     /**
-     * Custom label 0 for custom grouping of items in a Shopping campaign.
+     * [Custom label 0](https://support.google.com/merchants/answer/6324473) for
+     * custom grouping of items in a Shopping campaign.
      *
      * Generated from protobuf field <code>optional string custom_label_0 = 71;</code>
      */
     protected $custom_label_0 = null;
     /**
-     * Custom label 1 for custom grouping of items in a Shopping campaign.
+     * [Custom label 1](https://support.google.com/merchants/answer/6324473)
+     * for custom grouping of items in a Shopping campaign.
      *
      * Generated from protobuf field <code>optional string custom_label_1 = 72;</code>
      */
     protected $custom_label_1 = null;
     /**
-     * Custom label 2 for custom grouping of items in a Shopping campaign.
+     * [Custom label 2](https://support.google.com/merchants/answer/6324473)
+     * for custom grouping of items in a Shopping campaign.
      *
      * Generated from protobuf field <code>optional string custom_label_2 = 73;</code>
      */
     protected $custom_label_2 = null;
     /**
-     * Custom label 3 for custom grouping of items in a Shopping campaign.
+     * [Custom label 3](https://support.google.com/merchants/answer/6324473)
+     * for custom grouping of items in a Shopping campaign.
      *
      * Generated from protobuf field <code>optional string custom_label_3 = 74;</code>
      */
     protected $custom_label_3 = null;
     /**
-     * Custom label 4 for custom grouping of items in a Shopping campaign.
+     * [Custom label 4](https://support.google.com/merchants/answer/6324473) for
+     * custom grouping of items in a Shopping campaign.
      *
      * Generated from protobuf field <code>optional string custom_label_4 = 75;</code>
      */
@@ -543,6 +592,11 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * The list of destinations to include for this target (corresponds to
      * checked check boxes in Merchant Center). Default destinations are always
      * included unless provided in `excludedDestinations`.
+     * For more information, see
+     * [Included
+     * destination](https://support.google.com/merchants/answer/7501026).
+     * Note: We recommend setting destinations on datasources level for most use
+     * cases. Use this field within products to only setup exceptions.
      *
      * Generated from protobuf field <code>repeated string included_destinations = 76;</code>
      */
@@ -550,15 +604,20 @@ class Attributes extends \Google\Protobuf\Internal\Message
     /**
      * The list of destinations to exclude for this target (corresponds to
      * unchecked check boxes in Merchant Center).
+     * For more information, see
+     * [Excluded
+     * destination](https://support.google.com/merchants/answer/6324486).
+     * Note: We recommend setting destinations on datasources level for most use
+     * cases. Use this field within products to only setup exceptions.
      *
      * Generated from protobuf field <code>repeated string excluded_destinations = 77;</code>
      */
     private $excluded_destinations;
     /**
-     * List of country codes (ISO 3166-1 alpha-2) to exclude the offer from
-     * Shopping Ads destination.
-     * Countries from this list are removed from countries configured
-     * in data source settings.
+     * List of country codes [(ISO 3166-1
+     * alpha-2)](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) to exclude the
+     * offer from Shopping Ads destination. Countries from this list are removed
+     * from countries configured in data source settings.
      *
      * Generated from protobuf field <code>repeated string shopping_ads_excluded_countries = 78;</code>
      */
@@ -624,11 +683,11 @@ class Attributes extends \Google\Protobuf\Internal\Message
      */
     protected $structured_description = null;
     /**
-     * A safeguard in the "Automated Discounts"
+     * A safeguard in the [automated discounts]
      * (https://support.google.com/merchants/answer/10295759) and
      * "Dynamic Promotions"
      * (https://support.google.com/merchants/answer/13949249) projects,
-     * ensuring that discounts on merchants' offers do not fall below this value,
+     * ensuring that discounts on business offers do not fall below this value,
      * thereby preserving the offer's value and profitability.
      *
      * Generated from protobuf field <code>.google.shopping.type.Price auto_pricing_min_price = 124;</code>
@@ -652,8 +711,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *           identifiers appropriate to its category, such as GTIN, MPN, and brand.
      *           Defaults to true, if not provided.
      *     @type bool $is_bundle
-     *           Whether the item is a merchant-defined bundle. A bundle is a custom
-     *           grouping of different products sold by a merchant for a single price.
+     *           Whether the item is a business-defined sub-API. A [sub-API]
+     *           (https://support.google.com/merchants/answer/6324449) is a custom
+     *           grouping of different products sold by a business for a single price.
      *     @type string $title
      *           Title of the item.
      *     @type string $description
@@ -678,26 +738,32 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $disclosure_date
      *           The date time when an offer becomes visible in search results across
      *           Google’s YouTube surfaces, in [ISO
-     *           8601](http://en.wikipedia.org/wiki/ISO_8601) format. See [Disclosure date](
-     *           https://support.google.com/merchants/answer/13034208) for more information.
+     *           8601](http://en.wikipedia.org/wiki/ISO_8601) format.
+     *           See [Disclosure date](https://support.google.com/merchants/answer/13034208)
+     *           for more information.
      *     @type bool $adult
      *           Set to true if the item is targeted towards adults.
      *     @type string $age_group
      *           Target [age group](https://support.google.com/merchants/answer/6324463) of
      *           the item.
      *     @type string $availability
-     *           Availability status of the item.
+     *           [Availability](https://support.google.com/merchants/answer/6324448) status
+     *           of the item. For example, "in_stock" or "out_of_stock".
      *     @type \Google\Protobuf\Timestamp $availability_date
      *           The day a pre-ordered product becomes available for delivery, in [ISO
      *           8601](http://en.wikipedia.org/wiki/ISO_8601) format.
      *     @type string $brand
-     *           Brand of the item.
+     *           [Brand](https://support.google.com/merchants/answer/6324351) of the item.
+     *           For example, "Google".
      *     @type string $color
-     *           Color of the item.
+     *           [Color](https://support.google.com/merchants/answer/6324487) of the item.
+     *           For example, "red".
      *     @type string $condition
-     *           Condition or state of the item.
+     *           [Condition](https://support.google.com/merchants/answer/6324469) or state
+     *           of the item. For example, "new" or "used".
      *     @type string $gender
-     *           Target gender of the item.
+     *           Target [gender](https://support.google.com/merchants/answer/6324479) of the
+     *           item. For example, "male" or "female".
      *     @type string $google_product_category
      *           Google's category of the item (see [Google product
      *           taxonomy](https://support.google.com/merchants/answer/1705911)). When
@@ -709,18 +775,28 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *           ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the
      *           item.
      *           You can provide up to 10 GTINs.
+     *           Deprecated: Use `gtins` instead.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $gtins
+     *           Global Trade Item Numbers
+     *           ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the
+     *           item.
+     *           You can provide up to 10 GTINs.
      *     @type string $item_group_id
      *           Shared identifier for all variants of the same product.
      *     @type string $material
-     *           The material of which the item is made.
+     *           The [material](https://support.google.com/merchants/answer/6324410) of
+     *           which the item is made. For example, "Leather" or "Cotton".
      *     @type string $mpn
      *           Manufacturer Part Number
      *           ([MPN](https://support.google.com/merchants/answer/188494#mpn)) of the
      *           item.
      *     @type string $pattern
-     *           The item's pattern (for example, polka dots).
+     *           The item's [pattern](https://support.google.com/merchants/answer/6324483).
+     *           For example, polka dots.
      *     @type \Google\Shopping\Type\Price $price
      *           Price of the item.
+     *     @type \Google\Shopping\Type\Price $maximum_retail_price
+     *           Maximum retail price (MRP) of the item. Applicable to India only.
      *     @type \Google\Shopping\Merchant\Products\V1beta\Installment $installment
      *           Number and amount of installments to pay for an item.
      *     @type \Google\Shopping\Merchant\Products\V1beta\SubscriptionCost $subscription_cost
@@ -734,12 +810,12 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *           item.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $product_types
      *           Categories of the item (formatted as in [product data
-     *           specification](https://support.google.com/merchants/answer/188494#product_type)).
+     *           specification](https://support.google.com/merchants/answer/7052112#product_category)).
      *     @type \Google\Shopping\Type\Price $sale_price
      *           Advertised sale price of the item.
      *     @type \Google\Type\Interval $sale_price_effective_date
-     *           Date range during which the item is on sale (see [product data
-     *           specification](https://support.google.com/merchants/answer/188494#sale_price_effective_date)).
+     *           Date range during which the item is on sale, see [product data
+     *           specification](https://support.google.com/merchants/answer/7052112#price_and_availability).
      *     @type int|string $sell_on_google_quantity
      *           The quantity of the product that is available for selling on Google.
      *           Supported only for online products.
@@ -781,18 +857,23 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *     @type string $size
      *           Size of the item. Only one value is allowed. For variants with different
      *           sizes, insert a separate product for each size with the same
-     *           `itemGroupId` value (see
-     *           [https://support.google.com/merchants/answer/6324492](size definition)).
+     *           `itemGroupId` value, see
+     *           [Size](https://support.google.com/merchants/answer/6324492).
      *     @type string $size_system
      *           System in which the size is specified. Recommended for apparel items.
+     *           For example, "US", "UK", "DE".
+     *           For more information, see
+     *           [Size system](https://support.google.com/merchants/answer/6324502).
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $size_types
      *           The cut of the item. It can be used to represent combined size types for
-     *           apparel items. Maximum two of size types can be provided (see
-     *           [https://support.google.com/merchants/answer/6324497](size type)).
+     *           apparel items. Maximum two of size types can be provided, see
+     *           [Size type](https://support.google.com/merchants/answer/6324497).
+     *           For example, "petite", "plus size".
      *     @type array<\Google\Shopping\Merchant\Products\V1beta\Tax>|\Google\Protobuf\Internal\RepeatedField $taxes
      *           Tax information.
      *     @type string $tax_category
-     *           The tax category of the product.
+     *           The [tax category](https://support.google.com/merchants/answer/7569847) of
+     *           the product.
      *     @type string $energy_efficiency_class
      *           The energy efficiency class as defined in EU directive 2010/30/EU.
      *     @type string $min_energy_efficiency_class
@@ -804,10 +885,12 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *     @type \Google\Shopping\Merchant\Products\V1beta\UnitPricingBaseMeasure $unit_pricing_base_measure
      *           The preference of the denominator of the unit price.
      *     @type int|string $multipack
-     *           The number of identical products in a merchant-defined multipack.
+     *           The number of identical products in a business-defined multipack.
      *     @type string $ads_grouping
      *           Used to group items in an arbitrary way. Only for CPA%, discouraged
-     *           otherwise.
+     *           otherwise. For more information, see
+     *           [Display ads
+     *           attribute](https://support.google.com/merchants/answer/6069387).
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ads_labels
      *           Similar to ads_grouping, but only works on CPC.
      *     @type string $ads_redirect
@@ -818,51 +901,75 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Shopping\Merchant\Products\V1beta\ProductDetail>|\Google\Protobuf\Internal\RepeatedField $product_details
      *           Technical specification or additional product details.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $product_highlights
-     *           Bullet points describing the most relevant highlights of a product.
+     *           Bullet points describing the most relevant [product
+     *           highlights](https://support.google.com/merchants/answer/9216100).
      *     @type string $display_ads_id
      *           An identifier for an item for dynamic remarketing campaigns.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $display_ads_similar_ids
-     *           Advertiser-specified recommendations.
+     *           Advertiser-specified recommendations. For more information, see
+     *           [Display ads attribute
+     *           specification](https://support.google.com/merchants/answer/6069387).
      *     @type string $display_ads_title
      *           Title of an item for dynamic remarketing campaigns.
      *     @type string $display_ads_link
      *           URL directly to your item's landing page for dynamic remarketing
      *           campaigns.
      *     @type float $display_ads_value
-     *           Offer margin for dynamic remarketing campaigns.
+     *           Offer margin for dynamic remarketing campaigns. For more information, see
+     *           [Display ads
+     *           attribute](https://support.google.com/merchants/answer/6069387).
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $promotion_ids
      *           The unique ID of a promotion.
      *     @type string $pickup_method
-     *           The pick up option for the item.
+     *           The [pickup](https://support.google.com/merchants/answer/14634021) option
+     *           for the item.
      *     @type string $pickup_sla
-     *           Item store pickup timeline.
+     *           Item store pickup timeline. For more information, see
+     *           [Pickup SLA](https://support.google.com/merchants/answer/14635400).
      *     @type string $link_template
-     *           Link template for merchant hosted local storefront.
+     *           [Link template](https://support.google.com/merchants/answer/13871172) for
+     *           business hosted local storefront.
      *     @type string $mobile_link_template
-     *           Link template for merchant hosted local storefront optimized for mobile
+     *           [Link template](https://support.google.com/merchants/answer/13870216) for
+     *           business hosted local storefront optimized for mobile
      *           devices.
      *     @type string $custom_label_0
-     *           Custom label 0 for custom grouping of items in a Shopping campaign.
+     *           [Custom label 0](https://support.google.com/merchants/answer/6324473) for
+     *           custom grouping of items in a Shopping campaign.
      *     @type string $custom_label_1
-     *           Custom label 1 for custom grouping of items in a Shopping campaign.
+     *           [Custom label 1](https://support.google.com/merchants/answer/6324473)
+     *           for custom grouping of items in a Shopping campaign.
      *     @type string $custom_label_2
-     *           Custom label 2 for custom grouping of items in a Shopping campaign.
+     *           [Custom label 2](https://support.google.com/merchants/answer/6324473)
+     *           for custom grouping of items in a Shopping campaign.
      *     @type string $custom_label_3
-     *           Custom label 3 for custom grouping of items in a Shopping campaign.
+     *           [Custom label 3](https://support.google.com/merchants/answer/6324473)
+     *           for custom grouping of items in a Shopping campaign.
      *     @type string $custom_label_4
-     *           Custom label 4 for custom grouping of items in a Shopping campaign.
+     *           [Custom label 4](https://support.google.com/merchants/answer/6324473) for
+     *           custom grouping of items in a Shopping campaign.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $included_destinations
      *           The list of destinations to include for this target (corresponds to
      *           checked check boxes in Merchant Center). Default destinations are always
      *           included unless provided in `excludedDestinations`.
+     *           For more information, see
+     *           [Included
+     *           destination](https://support.google.com/merchants/answer/7501026).
+     *           Note: We recommend setting destinations on datasources level for most use
+     *           cases. Use this field within products to only setup exceptions.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_destinations
      *           The list of destinations to exclude for this target (corresponds to
      *           unchecked check boxes in Merchant Center).
+     *           For more information, see
+     *           [Excluded
+     *           destination](https://support.google.com/merchants/answer/6324486).
+     *           Note: We recommend setting destinations on datasources level for most use
+     *           cases. Use this field within products to only setup exceptions.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $shopping_ads_excluded_countries
-     *           List of country codes (ISO 3166-1 alpha-2) to exclude the offer from
-     *           Shopping Ads destination.
-     *           Countries from this list are removed from countries configured
-     *           in data source settings.
+     *           List of country codes [(ISO 3166-1
+     *           alpha-2)](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) to exclude the
+     *           offer from Shopping Ads destination. Countries from this list are removed
+     *           from countries configured in data source settings.
      *     @type string $external_seller_id
      *           Required for multi-seller accounts. Use this attribute if you're a
      *           marketplace uploading products for various sellers to your multi-seller
@@ -892,11 +999,11 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *     @type \Google\Shopping\Merchant\Products\V1beta\ProductStructuredDescription $structured_description
      *           Structured description, for algorithmically (AI)-generated descriptions.
      *     @type \Google\Shopping\Type\Price $auto_pricing_min_price
-     *           A safeguard in the "Automated Discounts"
+     *           A safeguard in the [automated discounts]
      *           (https://support.google.com/merchants/answer/10295759) and
      *           "Dynamic Promotions"
      *           (https://support.google.com/merchants/answer/13949249) projects,
-     *           ensuring that discounts on merchants' offers do not fall below this value,
+     *           ensuring that discounts on business offers do not fall below this value,
      *           thereby preserving the offer's value and profitability.
      *     @type array<\Google\Shopping\Merchant\Products\V1beta\ProductSustainabilityIncentive>|\Google\Protobuf\Internal\RepeatedField $sustainability_incentives
      *           The list of sustainability incentive programs.
@@ -948,8 +1055,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the item is a merchant-defined bundle. A bundle is a custom
-     * grouping of different products sold by a merchant for a single price.
+     * Whether the item is a business-defined sub-API. A [sub-API]
+     * (https://support.google.com/merchants/answer/6324449) is a custom
+     * grouping of different products sold by a business for a single price.
      *
      * Generated from protobuf field <code>optional bool is_bundle = 5;</code>
      * @return bool
@@ -970,8 +1078,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the item is a merchant-defined bundle. A bundle is a custom
-     * grouping of different products sold by a merchant for a single price.
+     * Whether the item is a business-defined sub-API. A [sub-API]
+     * (https://support.google.com/merchants/answer/6324449) is a custom
+     * grouping of different products sold by a business for a single price.
      *
      * Generated from protobuf field <code>optional bool is_bundle = 5;</code>
      * @param bool $var
@@ -1276,8 +1385,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
     /**
      * The date time when an offer becomes visible in search results across
      * Google’s YouTube surfaces, in [ISO
-     * 8601](http://en.wikipedia.org/wiki/ISO_8601) format. See [Disclosure date](
-     * https://support.google.com/merchants/answer/13034208) for more information.
+     * 8601](http://en.wikipedia.org/wiki/ISO_8601) format.
+     * See [Disclosure date](https://support.google.com/merchants/answer/13034208)
+     * for more information.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp disclosure_date = 79;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -1300,8 +1410,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
     /**
      * The date time when an offer becomes visible in search results across
      * Google’s YouTube surfaces, in [ISO
-     * 8601](http://en.wikipedia.org/wiki/ISO_8601) format. See [Disclosure date](
-     * https://support.google.com/merchants/answer/13034208) for more information.
+     * 8601](http://en.wikipedia.org/wiki/ISO_8601) format.
+     * See [Disclosure date](https://support.google.com/merchants/answer/13034208)
+     * for more information.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp disclosure_date = 79;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -1390,7 +1501,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Availability status of the item.
+     * [Availability](https://support.google.com/merchants/answer/6324448) status
+     * of the item. For example, "in_stock" or "out_of_stock".
      *
      * Generated from protobuf field <code>optional string availability = 19;</code>
      * @return string
@@ -1411,7 +1523,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Availability status of the item.
+     * [Availability](https://support.google.com/merchants/answer/6324448) status
+     * of the item. For example, "in_stock" or "out_of_stock".
      *
      * Generated from protobuf field <code>optional string availability = 19;</code>
      * @param string $var
@@ -1464,7 +1577,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Brand of the item.
+     * [Brand](https://support.google.com/merchants/answer/6324351) of the item.
+     * For example, "Google".
      *
      * Generated from protobuf field <code>optional string brand = 21;</code>
      * @return string
@@ -1485,7 +1599,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Brand of the item.
+     * [Brand](https://support.google.com/merchants/answer/6324351) of the item.
+     * For example, "Google".
      *
      * Generated from protobuf field <code>optional string brand = 21;</code>
      * @param string $var
@@ -1500,7 +1615,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Color of the item.
+     * [Color](https://support.google.com/merchants/answer/6324487) of the item.
+     * For example, "red".
      *
      * Generated from protobuf field <code>optional string color = 22;</code>
      * @return string
@@ -1521,7 +1637,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Color of the item.
+     * [Color](https://support.google.com/merchants/answer/6324487) of the item.
+     * For example, "red".
      *
      * Generated from protobuf field <code>optional string color = 22;</code>
      * @param string $var
@@ -1536,7 +1653,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Condition or state of the item.
+     * [Condition](https://support.google.com/merchants/answer/6324469) or state
+     * of the item. For example, "new" or "used".
      *
      * Generated from protobuf field <code>optional string condition = 23;</code>
      * @return string
@@ -1557,7 +1675,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Condition or state of the item.
+     * [Condition](https://support.google.com/merchants/answer/6324469) or state
+     * of the item. For example, "new" or "used".
      *
      * Generated from protobuf field <code>optional string condition = 23;</code>
      * @param string $var
@@ -1572,7 +1691,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Target gender of the item.
+     * Target [gender](https://support.google.com/merchants/answer/6324479) of the
+     * item. For example, "male" or "female".
      *
      * Generated from protobuf field <code>optional string gender = 24;</code>
      * @return string
@@ -1593,7 +1713,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Target gender of the item.
+     * Target [gender](https://support.google.com/merchants/answer/6324479) of the
+     * item. For example, "male" or "female".
      *
      * Generated from protobuf field <code>optional string gender = 24;</code>
      * @param string $var
@@ -1656,12 +1777,17 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the
      * item.
      * You can provide up to 10 GTINs.
+     * Deprecated: Use `gtins` instead.
      *
-     * Generated from protobuf field <code>repeated string gtin = 26;</code>
+     * Generated from protobuf field <code>repeated string gtin = 26 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getGtin()
     {
+        if ($this->gtin->count() !== 0) {
+            @trigger_error('gtin is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->gtin;
     }
 
@@ -1670,15 +1796,52 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the
      * item.
      * You can provide up to 10 GTINs.
+     * Deprecated: Use `gtins` instead.
      *
-     * Generated from protobuf field <code>repeated string gtin = 26;</code>
+     * Generated from protobuf field <code>repeated string gtin = 26 [deprecated = true];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setGtin($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        if ($arr->count() !== 0) {
+            @trigger_error('gtin is deprecated.', E_USER_DEPRECATED);
+        }
         $this->gtin = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Global Trade Item Numbers
+     * ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the
+     * item.
+     * You can provide up to 10 GTINs.
+     *
+     * Generated from protobuf field <code>repeated string gtins = 140;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getGtins()
+    {
+        return $this->gtins;
+    }
+
+    /**
+     * Global Trade Item Numbers
+     * ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the
+     * item.
+     * You can provide up to 10 GTINs.
+     *
+     * Generated from protobuf field <code>repeated string gtins = 140;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setGtins($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->gtins = $arr;
 
         return $this;
     }
@@ -1720,7 +1883,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The material of which the item is made.
+     * The [material](https://support.google.com/merchants/answer/6324410) of
+     * which the item is made. For example, "Leather" or "Cotton".
      *
      * Generated from protobuf field <code>optional string material = 28;</code>
      * @return string
@@ -1741,7 +1905,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The material of which the item is made.
+     * The [material](https://support.google.com/merchants/answer/6324410) of
+     * which the item is made. For example, "Leather" or "Cotton".
      *
      * Generated from protobuf field <code>optional string material = 28;</code>
      * @param string $var
@@ -1796,7 +1961,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The item's pattern (for example, polka dots).
+     * The item's [pattern](https://support.google.com/merchants/answer/6324483).
+     * For example, polka dots.
      *
      * Generated from protobuf field <code>optional string pattern = 30;</code>
      * @return string
@@ -1817,7 +1983,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The item's pattern (for example, polka dots).
+     * The item's [pattern](https://support.google.com/merchants/answer/6324483).
+     * For example, polka dots.
      *
      * Generated from protobuf field <code>optional string pattern = 30;</code>
      * @param string $var
@@ -1863,6 +2030,42 @@ class Attributes extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Shopping\Type\Price::class);
         $this->price = $var;
+
+        return $this;
+    }
+
+    /**
+     * Maximum retail price (MRP) of the item. Applicable to India only.
+     *
+     * Generated from protobuf field <code>.google.shopping.type.Price maximum_retail_price = 139;</code>
+     * @return \Google\Shopping\Type\Price|null
+     */
+    public function getMaximumRetailPrice()
+    {
+        return $this->maximum_retail_price;
+    }
+
+    public function hasMaximumRetailPrice()
+    {
+        return isset($this->maximum_retail_price);
+    }
+
+    public function clearMaximumRetailPrice()
+    {
+        unset($this->maximum_retail_price);
+    }
+
+    /**
+     * Maximum retail price (MRP) of the item. Applicable to India only.
+     *
+     * Generated from protobuf field <code>.google.shopping.type.Price maximum_retail_price = 139;</code>
+     * @param \Google\Shopping\Type\Price $var
+     * @return $this
+     */
+    public function setMaximumRetailPrice($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Type\Price::class);
+        $this->maximum_retail_price = $var;
 
         return $this;
     }
@@ -2009,7 +2212,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
 
     /**
      * Categories of the item (formatted as in [product data
-     * specification](https://support.google.com/merchants/answer/188494#product_type)).
+     * specification](https://support.google.com/merchants/answer/7052112#product_category)).
      *
      * Generated from protobuf field <code>repeated string product_types = 35;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -2021,7 +2224,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
 
     /**
      * Categories of the item (formatted as in [product data
-     * specification](https://support.google.com/merchants/answer/188494#product_type)).
+     * specification](https://support.google.com/merchants/answer/7052112#product_category)).
      *
      * Generated from protobuf field <code>repeated string product_types = 35;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -2072,8 +2275,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Date range during which the item is on sale (see [product data
-     * specification](https://support.google.com/merchants/answer/188494#sale_price_effective_date)).
+     * Date range during which the item is on sale, see [product data
+     * specification](https://support.google.com/merchants/answer/7052112#price_and_availability).
      *
      * Generated from protobuf field <code>.google.type.Interval sale_price_effective_date = 37;</code>
      * @return \Google\Type\Interval|null
@@ -2094,8 +2297,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Date range during which the item is on sale (see [product data
-     * specification](https://support.google.com/merchants/answer/188494#sale_price_effective_date)).
+     * Date range during which the item is on sale, see [product data
+     * specification](https://support.google.com/merchants/answer/7052112#price_and_availability).
      *
      * Generated from protobuf field <code>.google.type.Interval sale_price_effective_date = 37;</code>
      * @param \Google\Type\Interval $var
@@ -2648,8 +2851,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     /**
      * Size of the item. Only one value is allowed. For variants with different
      * sizes, insert a separate product for each size with the same
-     * `itemGroupId` value (see
-     * [https://support.google.com/merchants/answer/6324492](size definition)).
+     * `itemGroupId` value, see
+     * [Size](https://support.google.com/merchants/answer/6324492).
      *
      * Generated from protobuf field <code>optional string size = 48;</code>
      * @return string
@@ -2672,8 +2875,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     /**
      * Size of the item. Only one value is allowed. For variants with different
      * sizes, insert a separate product for each size with the same
-     * `itemGroupId` value (see
-     * [https://support.google.com/merchants/answer/6324492](size definition)).
+     * `itemGroupId` value, see
+     * [Size](https://support.google.com/merchants/answer/6324492).
      *
      * Generated from protobuf field <code>optional string size = 48;</code>
      * @param string $var
@@ -2689,6 +2892,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
 
     /**
      * System in which the size is specified. Recommended for apparel items.
+     * For example, "US", "UK", "DE".
+     * For more information, see
+     * [Size system](https://support.google.com/merchants/answer/6324502).
      *
      * Generated from protobuf field <code>optional string size_system = 49;</code>
      * @return string
@@ -2710,6 +2916,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
 
     /**
      * System in which the size is specified. Recommended for apparel items.
+     * For example, "US", "UK", "DE".
+     * For more information, see
+     * [Size system](https://support.google.com/merchants/answer/6324502).
      *
      * Generated from protobuf field <code>optional string size_system = 49;</code>
      * @param string $var
@@ -2725,8 +2934,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
 
     /**
      * The cut of the item. It can be used to represent combined size types for
-     * apparel items. Maximum two of size types can be provided (see
-     * [https://support.google.com/merchants/answer/6324497](size type)).
+     * apparel items. Maximum two of size types can be provided, see
+     * [Size type](https://support.google.com/merchants/answer/6324497).
+     * For example, "petite", "plus size".
      *
      * Generated from protobuf field <code>repeated string size_types = 50;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -2738,8 +2948,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
 
     /**
      * The cut of the item. It can be used to represent combined size types for
-     * apparel items. Maximum two of size types can be provided (see
-     * [https://support.google.com/merchants/answer/6324497](size type)).
+     * apparel items. Maximum two of size types can be provided, see
+     * [Size type](https://support.google.com/merchants/answer/6324497).
+     * For example, "petite", "plus size".
      *
      * Generated from protobuf field <code>repeated string size_types = 50;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -2756,59 +2967,79 @@ class Attributes extends \Google\Protobuf\Internal\Message
     /**
      * Tax information.
      *
-     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1beta.Tax taxes = 51;</code>
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1beta.Tax taxes = 51 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getTaxes()
     {
+        if ($this->taxes->count() !== 0) {
+            @trigger_error('taxes is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->taxes;
     }
 
     /**
      * Tax information.
      *
-     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1beta.Tax taxes = 51;</code>
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1beta.Tax taxes = 51 [deprecated = true];</code>
      * @param array<\Google\Shopping\Merchant\Products\V1beta\Tax>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setTaxes($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Products\V1beta\Tax::class);
+        if ($arr->count() !== 0) {
+            @trigger_error('taxes is deprecated.', E_USER_DEPRECATED);
+        }
         $this->taxes = $arr;
 
         return $this;
     }
 
     /**
-     * The tax category of the product.
+     * The [tax category](https://support.google.com/merchants/answer/7569847) of
+     * the product.
      *
-     * Generated from protobuf field <code>optional string tax_category = 52;</code>
+     * Generated from protobuf field <code>optional string tax_category = 52 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getTaxCategory()
     {
+        if (isset($this->tax_category)) {
+            @trigger_error('tax_category is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->tax_category) ? $this->tax_category : '';
     }
 
     public function hasTaxCategory()
     {
+        if (isset($this->tax_category)) {
+            @trigger_error('tax_category is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->tax_category);
     }
 
     public function clearTaxCategory()
     {
+        @trigger_error('tax_category is deprecated.', E_USER_DEPRECATED);
         unset($this->tax_category);
     }
 
     /**
-     * The tax category of the product.
+     * The [tax category](https://support.google.com/merchants/answer/7569847) of
+     * the product.
      *
-     * Generated from protobuf field <code>optional string tax_category = 52;</code>
+     * Generated from protobuf field <code>optional string tax_category = 52 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setTaxCategory($var)
     {
+        @trigger_error('tax_category is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->tax_category = $var;
 
@@ -2996,7 +3227,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of identical products in a merchant-defined multipack.
+     * The number of identical products in a business-defined multipack.
      *
      * Generated from protobuf field <code>optional int64 multipack = 58;</code>
      * @return int|string
@@ -3017,7 +3248,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of identical products in a merchant-defined multipack.
+     * The number of identical products in a business-defined multipack.
      *
      * Generated from protobuf field <code>optional int64 multipack = 58;</code>
      * @param int|string $var
@@ -3033,7 +3264,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
 
     /**
      * Used to group items in an arbitrary way. Only for CPA%, discouraged
-     * otherwise.
+     * otherwise. For more information, see
+     * [Display ads
+     * attribute](https://support.google.com/merchants/answer/6069387).
      *
      * Generated from protobuf field <code>optional string ads_grouping = 59;</code>
      * @return string
@@ -3055,7 +3288,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
 
     /**
      * Used to group items in an arbitrary way. Only for CPA%, discouraged
-     * otherwise.
+     * otherwise. For more information, see
+     * [Display ads
+     * attribute](https://support.google.com/merchants/answer/6069387).
      *
      * Generated from protobuf field <code>optional string ads_grouping = 59;</code>
      * @param string $var
@@ -3196,7 +3431,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Bullet points describing the most relevant highlights of a product.
+     * Bullet points describing the most relevant [product
+     * highlights](https://support.google.com/merchants/answer/9216100).
      *
      * Generated from protobuf field <code>repeated string product_highlights = 64;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -3207,7 +3443,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Bullet points describing the most relevant highlights of a product.
+     * Bullet points describing the most relevant [product
+     * highlights](https://support.google.com/merchants/answer/9216100).
      *
      * Generated from protobuf field <code>repeated string product_highlights = 64;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -3258,7 +3495,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Advertiser-specified recommendations.
+     * Advertiser-specified recommendations. For more information, see
+     * [Display ads attribute
+     * specification](https://support.google.com/merchants/answer/6069387).
      *
      * Generated from protobuf field <code>repeated string display_ads_similar_ids = 66;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -3269,7 +3508,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Advertiser-specified recommendations.
+     * Advertiser-specified recommendations. For more information, see
+     * [Display ads attribute
+     * specification](https://support.google.com/merchants/answer/6069387).
      *
      * Generated from protobuf field <code>repeated string display_ads_similar_ids = 66;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -3358,7 +3599,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Offer margin for dynamic remarketing campaigns.
+     * Offer margin for dynamic remarketing campaigns. For more information, see
+     * [Display ads
+     * attribute](https://support.google.com/merchants/answer/6069387).
      *
      * Generated from protobuf field <code>optional double display_ads_value = 69;</code>
      * @return float
@@ -3379,7 +3622,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Offer margin for dynamic remarketing campaigns.
+     * Offer margin for dynamic remarketing campaigns. For more information, see
+     * [Display ads
+     * attribute](https://support.google.com/merchants/answer/6069387).
      *
      * Generated from protobuf field <code>optional double display_ads_value = 69;</code>
      * @param float $var
@@ -3420,7 +3665,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The pick up option for the item.
+     * The [pickup](https://support.google.com/merchants/answer/14634021) option
+     * for the item.
      *
      * Generated from protobuf field <code>optional string pickup_method = 80;</code>
      * @return string
@@ -3441,7 +3687,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The pick up option for the item.
+     * The [pickup](https://support.google.com/merchants/answer/14634021) option
+     * for the item.
      *
      * Generated from protobuf field <code>optional string pickup_method = 80;</code>
      * @param string $var
@@ -3456,7 +3703,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Item store pickup timeline.
+     * Item store pickup timeline. For more information, see
+     * [Pickup SLA](https://support.google.com/merchants/answer/14635400).
      *
      * Generated from protobuf field <code>optional string pickup_sla = 81;</code>
      * @return string
@@ -3477,7 +3725,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Item store pickup timeline.
+     * Item store pickup timeline. For more information, see
+     * [Pickup SLA](https://support.google.com/merchants/answer/14635400).
      *
      * Generated from protobuf field <code>optional string pickup_sla = 81;</code>
      * @param string $var
@@ -3492,7 +3741,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Link template for merchant hosted local storefront.
+     * [Link template](https://support.google.com/merchants/answer/13871172) for
+     * business hosted local storefront.
      *
      * Generated from protobuf field <code>optional string link_template = 82;</code>
      * @return string
@@ -3513,7 +3763,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Link template for merchant hosted local storefront.
+     * [Link template](https://support.google.com/merchants/answer/13871172) for
+     * business hosted local storefront.
      *
      * Generated from protobuf field <code>optional string link_template = 82;</code>
      * @param string $var
@@ -3528,7 +3779,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Link template for merchant hosted local storefront optimized for mobile
+     * [Link template](https://support.google.com/merchants/answer/13870216) for
+     * business hosted local storefront optimized for mobile
      * devices.
      *
      * Generated from protobuf field <code>optional string mobile_link_template = 83;</code>
@@ -3550,7 +3802,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Link template for merchant hosted local storefront optimized for mobile
+     * [Link template](https://support.google.com/merchants/answer/13870216) for
+     * business hosted local storefront optimized for mobile
      * devices.
      *
      * Generated from protobuf field <code>optional string mobile_link_template = 83;</code>
@@ -3566,7 +3819,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Custom label 0 for custom grouping of items in a Shopping campaign.
+     * [Custom label 0](https://support.google.com/merchants/answer/6324473) for
+     * custom grouping of items in a Shopping campaign.
      *
      * Generated from protobuf field <code>optional string custom_label_0 = 71;</code>
      * @return string
@@ -3587,7 +3841,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Custom label 0 for custom grouping of items in a Shopping campaign.
+     * [Custom label 0](https://support.google.com/merchants/answer/6324473) for
+     * custom grouping of items in a Shopping campaign.
      *
      * Generated from protobuf field <code>optional string custom_label_0 = 71;</code>
      * @param string $var
@@ -3602,7 +3857,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Custom label 1 for custom grouping of items in a Shopping campaign.
+     * [Custom label 1](https://support.google.com/merchants/answer/6324473)
+     * for custom grouping of items in a Shopping campaign.
      *
      * Generated from protobuf field <code>optional string custom_label_1 = 72;</code>
      * @return string
@@ -3623,7 +3879,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Custom label 1 for custom grouping of items in a Shopping campaign.
+     * [Custom label 1](https://support.google.com/merchants/answer/6324473)
+     * for custom grouping of items in a Shopping campaign.
      *
      * Generated from protobuf field <code>optional string custom_label_1 = 72;</code>
      * @param string $var
@@ -3638,7 +3895,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Custom label 2 for custom grouping of items in a Shopping campaign.
+     * [Custom label 2](https://support.google.com/merchants/answer/6324473)
+     * for custom grouping of items in a Shopping campaign.
      *
      * Generated from protobuf field <code>optional string custom_label_2 = 73;</code>
      * @return string
@@ -3659,7 +3917,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Custom label 2 for custom grouping of items in a Shopping campaign.
+     * [Custom label 2](https://support.google.com/merchants/answer/6324473)
+     * for custom grouping of items in a Shopping campaign.
      *
      * Generated from protobuf field <code>optional string custom_label_2 = 73;</code>
      * @param string $var
@@ -3674,7 +3933,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Custom label 3 for custom grouping of items in a Shopping campaign.
+     * [Custom label 3](https://support.google.com/merchants/answer/6324473)
+     * for custom grouping of items in a Shopping campaign.
      *
      * Generated from protobuf field <code>optional string custom_label_3 = 74;</code>
      * @return string
@@ -3695,7 +3955,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Custom label 3 for custom grouping of items in a Shopping campaign.
+     * [Custom label 3](https://support.google.com/merchants/answer/6324473)
+     * for custom grouping of items in a Shopping campaign.
      *
      * Generated from protobuf field <code>optional string custom_label_3 = 74;</code>
      * @param string $var
@@ -3710,7 +3971,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Custom label 4 for custom grouping of items in a Shopping campaign.
+     * [Custom label 4](https://support.google.com/merchants/answer/6324473) for
+     * custom grouping of items in a Shopping campaign.
      *
      * Generated from protobuf field <code>optional string custom_label_4 = 75;</code>
      * @return string
@@ -3731,7 +3993,8 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Custom label 4 for custom grouping of items in a Shopping campaign.
+     * [Custom label 4](https://support.google.com/merchants/answer/6324473) for
+     * custom grouping of items in a Shopping campaign.
      *
      * Generated from protobuf field <code>optional string custom_label_4 = 75;</code>
      * @param string $var
@@ -3749,6 +4012,11 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * The list of destinations to include for this target (corresponds to
      * checked check boxes in Merchant Center). Default destinations are always
      * included unless provided in `excludedDestinations`.
+     * For more information, see
+     * [Included
+     * destination](https://support.google.com/merchants/answer/7501026).
+     * Note: We recommend setting destinations on datasources level for most use
+     * cases. Use this field within products to only setup exceptions.
      *
      * Generated from protobuf field <code>repeated string included_destinations = 76;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -3762,6 +4030,11 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * The list of destinations to include for this target (corresponds to
      * checked check boxes in Merchant Center). Default destinations are always
      * included unless provided in `excludedDestinations`.
+     * For more information, see
+     * [Included
+     * destination](https://support.google.com/merchants/answer/7501026).
+     * Note: We recommend setting destinations on datasources level for most use
+     * cases. Use this field within products to only setup exceptions.
      *
      * Generated from protobuf field <code>repeated string included_destinations = 76;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -3778,6 +4051,11 @@ class Attributes extends \Google\Protobuf\Internal\Message
     /**
      * The list of destinations to exclude for this target (corresponds to
      * unchecked check boxes in Merchant Center).
+     * For more information, see
+     * [Excluded
+     * destination](https://support.google.com/merchants/answer/6324486).
+     * Note: We recommend setting destinations on datasources level for most use
+     * cases. Use this field within products to only setup exceptions.
      *
      * Generated from protobuf field <code>repeated string excluded_destinations = 77;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -3790,6 +4068,11 @@ class Attributes extends \Google\Protobuf\Internal\Message
     /**
      * The list of destinations to exclude for this target (corresponds to
      * unchecked check boxes in Merchant Center).
+     * For more information, see
+     * [Excluded
+     * destination](https://support.google.com/merchants/answer/6324486).
+     * Note: We recommend setting destinations on datasources level for most use
+     * cases. Use this field within products to only setup exceptions.
      *
      * Generated from protobuf field <code>repeated string excluded_destinations = 77;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -3804,10 +4087,10 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of country codes (ISO 3166-1 alpha-2) to exclude the offer from
-     * Shopping Ads destination.
-     * Countries from this list are removed from countries configured
-     * in data source settings.
+     * List of country codes [(ISO 3166-1
+     * alpha-2)](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) to exclude the
+     * offer from Shopping Ads destination. Countries from this list are removed
+     * from countries configured in data source settings.
      *
      * Generated from protobuf field <code>repeated string shopping_ads_excluded_countries = 78;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -3818,10 +4101,10 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of country codes (ISO 3166-1 alpha-2) to exclude the offer from
-     * Shopping Ads destination.
-     * Countries from this list are removed from countries configured
-     * in data source settings.
+     * List of country codes [(ISO 3166-1
+     * alpha-2)](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) to exclude the
+     * offer from Shopping Ads destination. Countries from this list are removed
+     * from countries configured in data source settings.
      *
      * Generated from protobuf field <code>repeated string shopping_ads_excluded_countries = 78;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -4118,11 +4401,11 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A safeguard in the "Automated Discounts"
+     * A safeguard in the [automated discounts]
      * (https://support.google.com/merchants/answer/10295759) and
      * "Dynamic Promotions"
      * (https://support.google.com/merchants/answer/13949249) projects,
-     * ensuring that discounts on merchants' offers do not fall below this value,
+     * ensuring that discounts on business offers do not fall below this value,
      * thereby preserving the offer's value and profitability.
      *
      * Generated from protobuf field <code>.google.shopping.type.Price auto_pricing_min_price = 124;</code>
@@ -4144,11 +4427,11 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A safeguard in the "Automated Discounts"
+     * A safeguard in the [automated discounts]
      * (https://support.google.com/merchants/answer/10295759) and
      * "Dynamic Promotions"
      * (https://support.google.com/merchants/answer/13949249) projects,
-     * ensuring that discounts on merchants' offers do not fall below this value,
+     * ensuring that discounts on business offers do not fall below this value,
      * thereby preserving the offer's value and profitability.
      *
      * Generated from protobuf field <code>.google.shopping.type.Price auto_pricing_min_price = 124;</code>
