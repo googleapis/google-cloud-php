@@ -48,7 +48,7 @@ page_token (	B‡A"£
 merchant_review_id (	B‡AZ
 
 attributes (2A.google.shopping.merchant.reviews.v1beta.MerchantReviewAttributesB‡AE
-custom_attributes (2%.google.shopping.type.CustomAttributeB‡A
+custom_attributes (2%.google.shopping.type.CustomAttributeB‡A
 data_source (	B‡Ab
 merchant_review_status (2=.google.shopping.merchant.reviews.v1beta.MerchantReviewStatusB‡A:zÍAw
 )merchantapi.googleapis.com/MerchantReview)accounts/{account}/merchantReviews/{name}*merchantReviews2merchantReview2»
