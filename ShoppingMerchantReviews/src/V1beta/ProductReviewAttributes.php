@@ -96,9 +96,10 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      */
     protected $title = null;
     /**
-     * Required. The content of the review.
+     * Optional. The content of the review. If empty, the content might still get
+     * populated from pros and cons.
      *
-     * Generated from protobuf field <code>optional string content = 12 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string content = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $content = null;
     /**
@@ -205,6 +206,18 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      */
     protected $is_spam = null;
     /**
+     * Optional. Indicates whether the reviewer's purchase is verified.
+     *
+     * Generated from protobuf field <code>optional bool is_verified_purchase = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $is_verified_purchase = null;
+    /**
+     * Optional. Indicates whether the review is incentivized.
+     *
+     * Generated from protobuf field <code>optional bool is_incentivized_review = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $is_incentivized_review = null;
+    /**
      * Optional. The method used to collect the review.
      *
      * Generated from protobuf field <code>.google.shopping.merchant.reviews.v1beta.ProductReviewAttributes.CollectionMethod collection_method = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -262,7 +275,8 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      *     @type string $title
      *           Optional. The title of the review.
      *     @type string $content
-     *           Required. The content of the review.
+     *           Optional. The content of the review. If empty, the content might still get
+     *           populated from pros and cons.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pros
      *           Optional. Contains the advantages based on the opinion of the reviewer.
      *           Omit boilerplate text like "pro:" unless it was written by the reviewer.
@@ -306,6 +320,10 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      *     @type bool $is_spam
      *           Optional. Indicates whether the review is marked as spam in the publisher's
      *           system.
+     *     @type bool $is_verified_purchase
+     *           Optional. Indicates whether the reviewer's purchase is verified.
+     *     @type bool $is_incentivized_review
+     *           Optional. Indicates whether the review is incentivized.
      *     @type int $collection_method
      *           Optional. The method used to collect the review.
      *     @type string $transaction_id
@@ -744,9 +762,10 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The content of the review.
+     * Optional. The content of the review. If empty, the content might still get
+     * populated from pros and cons.
      *
-     * Generated from protobuf field <code>optional string content = 12 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string content = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getContent()
@@ -765,9 +784,10 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The content of the review.
+     * Optional. The content of the review. If empty, the content might still get
+     * populated from pros and cons.
      *
-     * Generated from protobuf field <code>optional string content = 12 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string content = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -1241,6 +1261,78 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->is_spam = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates whether the reviewer's purchase is verified.
+     *
+     * Generated from protobuf field <code>optional bool is_verified_purchase = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getIsVerifiedPurchase()
+    {
+        return isset($this->is_verified_purchase) ? $this->is_verified_purchase : false;
+    }
+
+    public function hasIsVerifiedPurchase()
+    {
+        return isset($this->is_verified_purchase);
+    }
+
+    public function clearIsVerifiedPurchase()
+    {
+        unset($this->is_verified_purchase);
+    }
+
+    /**
+     * Optional. Indicates whether the reviewer's purchase is verified.
+     *
+     * Generated from protobuf field <code>optional bool is_verified_purchase = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIsVerifiedPurchase($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->is_verified_purchase = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates whether the review is incentivized.
+     *
+     * Generated from protobuf field <code>optional bool is_incentivized_review = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getIsIncentivizedReview()
+    {
+        return isset($this->is_incentivized_review) ? $this->is_incentivized_review : false;
+    }
+
+    public function hasIsIncentivizedReview()
+    {
+        return isset($this->is_incentivized_review);
+    }
+
+    public function clearIsIncentivizedReview()
+    {
+        unset($this->is_incentivized_review);
+    }
+
+    /**
+     * Optional. Indicates whether the review is incentivized.
+     *
+     * Generated from protobuf field <code>optional bool is_incentivized_review = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIsIncentivizedReview($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->is_incentivized_review = $var;
 
         return $this;
     }
