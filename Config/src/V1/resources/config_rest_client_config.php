@@ -164,6 +164,28 @@ return [
                     ],
                 ],
             ],
+            'GetResourceChange' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/previews/*/resourceChanges/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetResourceDrift' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/previews/*/resourceDrifts/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetRevision' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/deployments/*/revisions/*}',
@@ -212,6 +234,28 @@ return [
             'ListPreviews' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/previews',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListResourceChanges' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/previews/*}/resourceChanges',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListResourceDrifts' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/previews/*}/resourceDrifts',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

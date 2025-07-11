@@ -9,45 +9,50 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for the ListTerraformVersions method.
+ * The request message for the ListResourceChanges method.
  *
- * Generated from protobuf message <code>google.cloud.config.v1.ListTerraformVersionsRequest</code>
+ * Generated from protobuf message <code>google.cloud.config.v1.ListResourceChangesRequest</code>
  */
-class ListTerraformVersionsRequest extends \Google\Protobuf\Internal\Message
+class ListResourceChangesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent in whose context the TerraformVersions are listed. The
+     * Required. The parent in whose context the ResourceChanges are listed. The
      * parent value is in the format:
-     * 'projects/{project_id}/locations/{location}'.
+     * 'projects/{project_id}/locations/{location}/previews/{preview}'.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
-     * Optional. When requesting a page of terraform versions, 'page_size'
-     * specifies number of terraform versions to return. If unspecified, at most
-     * 500 will be returned. The maximum value is 1000.
+     * Optional. When requesting a page of resource changes, 'page_size' specifies
+     * number of resource changes to return. If unspecified, at most 500 will be
+     * returned. The maximum value is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * Optional. Token returned by previous call to 'ListTerraformVersions' which
+     * Optional. Token returned by previous call to 'ListResourceChanges' which
      * specifies the position in the list from where to continue listing the
-     * terraform versions.
+     * resource changes.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
     /**
-     * Optional. Lists the TerraformVersions that match the filter expression. A
-     * filter expression filters the resources listed in the response. The
+     * Optional. Lists the resource changes that match the filter expression. A
+     * filter expression filters the resource changes listed in the response. The
      * expression must be of the form '{field} {operator} {value}' where
      * operators: '<', '>',
-     * '<=', '>=', '!=', '=', ':' are supported (colon ':' represents a HAS
-     * operator which is roughly synonymous with equality). {field} can refer to a
-     * proto or JSON field, or a synthetic field. Field names can be camelCase or
-     * snake_case.
+     * '<=',
+     * '>=',
+     * '!=', '=', ':' are supported (colon ':' represents a HAS operator which is
+     * roughly synonymous with equality). {field} can refer to a proto or JSON
+     * field, or a synthetic field. Field names can be camelCase or snake_case.
+     * Examples:
+     * - Filter by name:
+     *   name =
+     *   "projects/foo/locations/us-central1/previews/dep/resourceChanges/baz
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -60,12 +65,12 @@ class ListTerraformVersionsRequest extends \Google\Protobuf\Internal\Message
     protected $order_by = '';
 
     /**
-     * @param string $parent Required. The parent in whose context the TerraformVersions are listed. The
+     * @param string $parent Required. The parent in whose context the ResourceChanges are listed. The
      *                       parent value is in the format:
-     *                       'projects/{project_id}/locations/{location}'. Please see
-     *                       {@see ConfigClient::locationName()} for help formatting this field.
+     *                       'projects/{project_id}/locations/{location}/previews/{preview}'. Please see
+     *                       {@see ConfigClient::previewName()} for help formatting this field.
      *
-     * @return \Google\Cloud\Config\V1\ListTerraformVersionsRequest
+     * @return \Google\Cloud\Config\V1\ListResourceChangesRequest
      *
      * @experimental
      */
@@ -82,26 +87,31 @@ class ListTerraformVersionsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent in whose context the TerraformVersions are listed. The
+     *           Required. The parent in whose context the ResourceChanges are listed. The
      *           parent value is in the format:
-     *           'projects/{project_id}/locations/{location}'.
+     *           'projects/{project_id}/locations/{location}/previews/{preview}'.
      *     @type int $page_size
-     *           Optional. When requesting a page of terraform versions, 'page_size'
-     *           specifies number of terraform versions to return. If unspecified, at most
-     *           500 will be returned. The maximum value is 1000.
+     *           Optional. When requesting a page of resource changes, 'page_size' specifies
+     *           number of resource changes to return. If unspecified, at most 500 will be
+     *           returned. The maximum value is 1000.
      *     @type string $page_token
-     *           Optional. Token returned by previous call to 'ListTerraformVersions' which
+     *           Optional. Token returned by previous call to 'ListResourceChanges' which
      *           specifies the position in the list from where to continue listing the
-     *           terraform versions.
+     *           resource changes.
      *     @type string $filter
-     *           Optional. Lists the TerraformVersions that match the filter expression. A
-     *           filter expression filters the resources listed in the response. The
+     *           Optional. Lists the resource changes that match the filter expression. A
+     *           filter expression filters the resource changes listed in the response. The
      *           expression must be of the form '{field} {operator} {value}' where
      *           operators: '<', '>',
-     *           '<=', '>=', '!=', '=', ':' are supported (colon ':' represents a HAS
-     *           operator which is roughly synonymous with equality). {field} can refer to a
-     *           proto or JSON field, or a synthetic field. Field names can be camelCase or
-     *           snake_case.
+     *           '<=',
+     *           '>=',
+     *           '!=', '=', ':' are supported (colon ':' represents a HAS operator which is
+     *           roughly synonymous with equality). {field} can refer to a proto or JSON
+     *           field, or a synthetic field. Field names can be camelCase or snake_case.
+     *           Examples:
+     *           - Filter by name:
+     *             name =
+     *             "projects/foo/locations/us-central1/previews/dep/resourceChanges/baz
      *     @type string $order_by
      *           Optional. Field to use to sort the list.
      * }
@@ -112,9 +122,9 @@ class ListTerraformVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent in whose context the TerraformVersions are listed. The
+     * Required. The parent in whose context the ResourceChanges are listed. The
      * parent value is in the format:
-     * 'projects/{project_id}/locations/{location}'.
+     * 'projects/{project_id}/locations/{location}/previews/{preview}'.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -125,9 +135,9 @@ class ListTerraformVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent in whose context the TerraformVersions are listed. The
+     * Required. The parent in whose context the ResourceChanges are listed. The
      * parent value is in the format:
-     * 'projects/{project_id}/locations/{location}'.
+     * 'projects/{project_id}/locations/{location}/previews/{preview}'.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -142,9 +152,9 @@ class ListTerraformVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. When requesting a page of terraform versions, 'page_size'
-     * specifies number of terraform versions to return. If unspecified, at most
-     * 500 will be returned. The maximum value is 1000.
+     * Optional. When requesting a page of resource changes, 'page_size' specifies
+     * number of resource changes to return. If unspecified, at most 500 will be
+     * returned. The maximum value is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -155,9 +165,9 @@ class ListTerraformVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. When requesting a page of terraform versions, 'page_size'
-     * specifies number of terraform versions to return. If unspecified, at most
-     * 500 will be returned. The maximum value is 1000.
+     * Optional. When requesting a page of resource changes, 'page_size' specifies
+     * number of resource changes to return. If unspecified, at most 500 will be
+     * returned. The maximum value is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -172,9 +182,9 @@ class ListTerraformVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Token returned by previous call to 'ListTerraformVersions' which
+     * Optional. Token returned by previous call to 'ListResourceChanges' which
      * specifies the position in the list from where to continue listing the
-     * terraform versions.
+     * resource changes.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -185,9 +195,9 @@ class ListTerraformVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Token returned by previous call to 'ListTerraformVersions' which
+     * Optional. Token returned by previous call to 'ListResourceChanges' which
      * specifies the position in the list from where to continue listing the
-     * terraform versions.
+     * resource changes.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -202,14 +212,19 @@ class ListTerraformVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Lists the TerraformVersions that match the filter expression. A
-     * filter expression filters the resources listed in the response. The
+     * Optional. Lists the resource changes that match the filter expression. A
+     * filter expression filters the resource changes listed in the response. The
      * expression must be of the form '{field} {operator} {value}' where
      * operators: '<', '>',
-     * '<=', '>=', '!=', '=', ':' are supported (colon ':' represents a HAS
-     * operator which is roughly synonymous with equality). {field} can refer to a
-     * proto or JSON field, or a synthetic field. Field names can be camelCase or
-     * snake_case.
+     * '<=',
+     * '>=',
+     * '!=', '=', ':' are supported (colon ':' represents a HAS operator which is
+     * roughly synonymous with equality). {field} can refer to a proto or JSON
+     * field, or a synthetic field. Field names can be camelCase or snake_case.
+     * Examples:
+     * - Filter by name:
+     *   name =
+     *   "projects/foo/locations/us-central1/previews/dep/resourceChanges/baz
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -220,14 +235,19 @@ class ListTerraformVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Lists the TerraformVersions that match the filter expression. A
-     * filter expression filters the resources listed in the response. The
+     * Optional. Lists the resource changes that match the filter expression. A
+     * filter expression filters the resource changes listed in the response. The
      * expression must be of the form '{field} {operator} {value}' where
      * operators: '<', '>',
-     * '<=', '>=', '!=', '=', ':' are supported (colon ':' represents a HAS
-     * operator which is roughly synonymous with equality). {field} can refer to a
-     * proto or JSON field, or a synthetic field. Field names can be camelCase or
-     * snake_case.
+     * '<=',
+     * '>=',
+     * '!=', '=', ':' are supported (colon ':' represents a HAS operator which is
+     * roughly synonymous with equality). {field} can refer to a proto or JSON
+     * field, or a synthetic field. Field names can be camelCase or snake_case.
+     * Examples:
+     * - Filter by name:
+     *   name =
+     *   "projects/foo/locations/us-central1/previews/dep/resourceChanges/baz
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
