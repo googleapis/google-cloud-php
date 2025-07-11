@@ -63,7 +63,7 @@ class Proto implements ValueInterface
                 $this->protoTypeFqn
             ));
         }
-        /** @var Message $message */
+        /** @var T $message */
         $message = new ($descriptor->getClass())();
         $message->mergeFromString(base64_decode($this->value));
         return $message;
