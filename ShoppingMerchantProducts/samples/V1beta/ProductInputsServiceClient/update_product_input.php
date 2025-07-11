@@ -43,15 +43,18 @@ use Google\Shopping\Merchant\Products\V1beta\UpdateProductInputRequest;
  * @param string $productInputContentLanguage Immutable. The two-letter [ISO
  *                                            639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code for the
  *                                            product.
- * @param string $productInputFeedLabel       Immutable. The [feed
- *                                            label](https://developers.google.com/shopping-content/guides/products/feed-labels)
- *                                            for the product.
+ * @param string $productInputFeedLabel       Immutable. The label that lets you categorize and identify your
+ *                                            products. The maximum allowed characters are 20, and the supported
+ *                                            characters are `A-Z`, `0-9`, hyphen, and underscore. The feed label must
+ *                                            not include any spaces. For more information, see [Using feed
+ *                                            labels](//support.google.com/merchants/answer/14994087).
  * @param string $dataSource                  The primary or supplemental product data source where
  *                                            `data_source` name identifies the product input to be updated.
  *
  *                                            Only API data sources are supported.
  *
- *                                            Format: `accounts/{account}/dataSources/{datasource}`.
+ *                                            Format: `accounts/{account}/dataSources/{datasource}`. For example,
+ *                                            `accounts/123456/dataSources/104628`.
  */
 function update_product_input_sample(
     string $productInputOfferId,
