@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/managedkafka/schemaregistry/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/ManagedKafkaSchemaRegistry/$1/$2
+api-name: ManagedKafkaSchemaRegistry
