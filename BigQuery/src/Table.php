@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2016 Google Inc. All Rights Reserved.
  *
@@ -224,6 +225,8 @@ class Table
      *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      *     @type int $startIndex Zero-based index of the starting row.
+     *     @type boolean $formatOptions.useInt64Timestamp Optional. Output
+     *           timestamp as usec int64. Default is true.
      * }
      * @return ItemIterator<array>
      * @throws GoogleException
@@ -232,6 +235,7 @@ class Table
     {
         $resultLimit = $this->pluck('resultLimit', $options, false);
         $schema = $this->info()['schema']['fields'];
+        $options += ['formatOptions.useInt64Timestamp' => true];
 
         return new ItemIterator(
             new PageIterator(

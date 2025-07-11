@@ -186,6 +186,11 @@ class Job
      *           Please note that this option is used when iterating on the
      *           returned class, and will not block immediately upon calling of
      *           this method.
+     *     @type bool $returnRawResults Returns the raw data types returned from
+     *           BigQuery without converting their values into native PHP types or
+     *           the custom type classes supported by this library. Default is false
+     *     @type boolean $formatOptions.useInt64Timestamp Optional. Output
+     *           timestamp as usec int64. Default is false.
      * }
      * @return QueryResults
      */
