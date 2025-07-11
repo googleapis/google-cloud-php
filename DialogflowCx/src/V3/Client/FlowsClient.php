@@ -248,6 +248,27 @@ final class FlowsClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a generator
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $agent
+     * @param string $generator
+     *
+     * @return string The formatted generator resource.
+     */
+    public static function generatorName(string $project, string $location, string $agent, string $generator): string
+    {
+        return self::getPathTemplate('generator')->render([
+            'project' => $project,
+            'location' => $location,
+            'agent' => $agent,
+            'generator' => $generator,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a intent
      * resource.
      *
@@ -405,6 +426,7 @@ final class FlowsClient
      * - agent: projects/{project}/locations/{location}/agents/{agent}
      * - flow: projects/{project}/locations/{location}/agents/{agent}/flows/{flow}
      * - flowValidationResult: projects/{project}/locations/{location}/agents/{agent}/flows/{flow}/validationResult
+     * - generator: projects/{project}/locations/{location}/agents/{agent}/generators/{generator}
      * - intent: projects/{project}/locations/{location}/agents/{agent}/intents/{intent}
      * - page: projects/{project}/locations/{location}/agents/{agent}/flows/{flow}/pages/{page}
      * - projectLocationAgentFlowTransitionRouteGroup: projects/{project}/locations/{location}/agents/{agent}/flows/{flow}/transitionRouteGroups/{transition_route_group}
