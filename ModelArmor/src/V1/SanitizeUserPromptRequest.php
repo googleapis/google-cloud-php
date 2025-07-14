@@ -28,6 +28,12 @@ class SanitizeUserPromptRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1.DataItem user_prompt_data = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $user_prompt_data = null;
+    /**
+     * Optional. Metadata related to Multi Language Detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.MultiLanguageDetectionMetadata multi_language_detection_metadata = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $multi_language_detection_metadata = null;
 
     /**
      * Constructor.
@@ -40,6 +46,8 @@ class SanitizeUserPromptRequest extends \Google\Protobuf\Internal\Message
      *           e.g. name=projects/sample-project/locations/us-central1/templates/templ01
      *     @type \Google\Cloud\ModelArmor\V1\DataItem $user_prompt_data
      *           Required. User prompt data to sanitize.
+     *     @type \Google\Cloud\ModelArmor\V1\MultiLanguageDetectionMetadata $multi_language_detection_metadata
+     *           Optional. Metadata related to Multi Language Detection.
      * }
      */
     public function __construct($data = NULL) {
@@ -107,6 +115,42 @@ class SanitizeUserPromptRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ModelArmor\V1\DataItem::class);
         $this->user_prompt_data = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Metadata related to Multi Language Detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.MultiLanguageDetectionMetadata multi_language_detection_metadata = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ModelArmor\V1\MultiLanguageDetectionMetadata|null
+     */
+    public function getMultiLanguageDetectionMetadata()
+    {
+        return $this->multi_language_detection_metadata;
+    }
+
+    public function hasMultiLanguageDetectionMetadata()
+    {
+        return isset($this->multi_language_detection_metadata);
+    }
+
+    public function clearMultiLanguageDetectionMetadata()
+    {
+        unset($this->multi_language_detection_metadata);
+    }
+
+    /**
+     * Optional. Metadata related to Multi Language Detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.MultiLanguageDetectionMetadata multi_language_detection_metadata = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ModelArmor\V1\MultiLanguageDetectionMetadata $var
+     * @return $this
+     */
+    public function setMultiLanguageDetectionMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ModelArmor\V1\MultiLanguageDetectionMetadata::class);
+        $this->multi_language_detection_metadata = $var;
 
         return $this;
     }

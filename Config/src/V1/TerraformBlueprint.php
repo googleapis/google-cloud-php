@@ -17,9 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class TerraformBlueprint extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Input variable values for the Terraform blueprint.
+     * Optional. Input variable values for the Terraform blueprint.
      *
-     * Generated from protobuf field <code>map<string, .google.cloud.config.v1.TerraformVariable> input_values = 4;</code>
+     * Generated from protobuf field <code>map<string, .google.cloud.config.v1.TerraformVariable> input_values = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $input_values;
     protected $source;
@@ -38,7 +38,7 @@ class TerraformBlueprint extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Config\V1\GitSource $git_source
      *           URI of a public Git repo.
      *     @type array|\Google\Protobuf\Internal\MapField $input_values
-     *           Input variable values for the Terraform blueprint.
+     *           Optional. Input variable values for the Terraform blueprint.
      * }
      */
     public function __construct($data = NULL) {
@@ -115,9 +115,9 @@ class TerraformBlueprint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input variable values for the Terraform blueprint.
+     * Optional. Input variable values for the Terraform blueprint.
      *
-     * Generated from protobuf field <code>map<string, .google.cloud.config.v1.TerraformVariable> input_values = 4;</code>
+     * Generated from protobuf field <code>map<string, .google.cloud.config.v1.TerraformVariable> input_values = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getInputValues()
@@ -126,9 +126,9 @@ class TerraformBlueprint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input variable values for the Terraform blueprint.
+     * Optional. Input variable values for the Terraform blueprint.
      *
-     * Generated from protobuf field <code>map<string, .google.cloud.config.v1.TerraformVariable> input_values = 4;</code>
+     * Generated from protobuf field <code>map<string, .google.cloud.config.v1.TerraformVariable> input_values = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */

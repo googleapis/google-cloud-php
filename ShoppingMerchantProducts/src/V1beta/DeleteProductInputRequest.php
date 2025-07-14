@@ -17,11 +17,11 @@ class DeleteProductInputRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the product input resource to delete.
-     * Format: accounts/{account}/productInputs/{product}
+     * Format: `accounts/{account}/productInputs/{product}`
      * where the last section `product` consists of 4 parts:
-     * channel~content_language~feed_label~offer_id
+     * `channel~content_language~feed_label~offer_id`
      * example for product name is
-     * "accounts/123/productInputs/online~en~US~sku123"
+     * `accounts/123/productInputs/online~en~US~sku123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -29,7 +29,8 @@ class DeleteProductInputRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The primary or supplemental data source from which the product
      * input should be deleted. Format:
-     * `accounts/{account}/dataSources/{datasource}`.
+     * `accounts/{account}/dataSources/{datasource}`. For example,
+     * `accounts/123456/dataSources/104628`.
      *
      * Generated from protobuf field <code>string data_source = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -37,12 +38,12 @@ class DeleteProductInputRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the product input resource to delete.
-     *                     Format: accounts/{account}/productInputs/{product}
+     *                     Format: `accounts/{account}/productInputs/{product}`
      *                     where the last section `product` consists of 4 parts:
-     *                     channel~content_language~feed_label~offer_id
+     *                     `channel~content_language~feed_label~offer_id`
      *                     example for product name is
-     *                     "accounts/123/productInputs/online~en~US~sku123"
-     *                     Please see {@see ProductInputsServiceClient::productInputName()} for help formatting this field.
+     *                     `accounts/123/productInputs/online~en~US~sku123`. Please see
+     *                     {@see ProductInputsServiceClient::productInputName()} for help formatting this field.
      *
      * @return \Google\Shopping\Merchant\Products\V1beta\DeleteProductInputRequest
      *
@@ -62,15 +63,16 @@ class DeleteProductInputRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the product input resource to delete.
-     *           Format: accounts/{account}/productInputs/{product}
+     *           Format: `accounts/{account}/productInputs/{product}`
      *           where the last section `product` consists of 4 parts:
-     *           channel~content_language~feed_label~offer_id
+     *           `channel~content_language~feed_label~offer_id`
      *           example for product name is
-     *           "accounts/123/productInputs/online~en~US~sku123"
+     *           `accounts/123/productInputs/online~en~US~sku123`.
      *     @type string $data_source
      *           Required. The primary or supplemental data source from which the product
      *           input should be deleted. Format:
-     *           `accounts/{account}/dataSources/{datasource}`.
+     *           `accounts/{account}/dataSources/{datasource}`. For example,
+     *           `accounts/123456/dataSources/104628`.
      * }
      */
     public function __construct($data = NULL) {
@@ -80,11 +82,11 @@ class DeleteProductInputRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the product input resource to delete.
-     * Format: accounts/{account}/productInputs/{product}
+     * Format: `accounts/{account}/productInputs/{product}`
      * where the last section `product` consists of 4 parts:
-     * channel~content_language~feed_label~offer_id
+     * `channel~content_language~feed_label~offer_id`
      * example for product name is
-     * "accounts/123/productInputs/online~en~US~sku123"
+     * `accounts/123/productInputs/online~en~US~sku123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -96,11 +98,11 @@ class DeleteProductInputRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the product input resource to delete.
-     * Format: accounts/{account}/productInputs/{product}
+     * Format: `accounts/{account}/productInputs/{product}`
      * where the last section `product` consists of 4 parts:
-     * channel~content_language~feed_label~offer_id
+     * `channel~content_language~feed_label~offer_id`
      * example for product name is
-     * "accounts/123/productInputs/online~en~US~sku123"
+     * `accounts/123/productInputs/online~en~US~sku123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -117,7 +119,8 @@ class DeleteProductInputRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The primary or supplemental data source from which the product
      * input should be deleted. Format:
-     * `accounts/{account}/dataSources/{datasource}`.
+     * `accounts/{account}/dataSources/{datasource}`. For example,
+     * `accounts/123456/dataSources/104628`.
      *
      * Generated from protobuf field <code>string data_source = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -130,7 +133,8 @@ class DeleteProductInputRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The primary or supplemental data source from which the product
      * input should be deleted. Format:
-     * `accounts/{account}/dataSources/{datasource}`.
+     * `accounts/{account}/dataSources/{datasource}`. For example,
+     * `accounts/123456/dataSources/104628`.
      *
      * Generated from protobuf field <code>string data_source = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

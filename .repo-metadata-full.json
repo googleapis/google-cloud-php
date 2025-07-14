@@ -443,6 +443,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "config"
     },
+    "ConfigDelivery": {
+        "language": "php",
+        "distribution_name": "google/cloud-configdelivery",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-configdelivery/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "configdelivery"
+    },
     "ContactCenterInsights": {
         "language": "php",
         "distribution_name": "google/cloud-contact-center-insights",
@@ -894,6 +902,14 @@
         "distribution_name": "google/cloud-managedkafka",
         "release_level": "preview",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-managedkafka/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "managedkafka"
+    },
+    "ManagedKafkaSchemaRegistry": {
+        "language": "php",
+        "distribution_name": "google/cloud-managedkafka-schemaregistry",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-managedkafka-schemaregistry/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "managedkafka"
     },
