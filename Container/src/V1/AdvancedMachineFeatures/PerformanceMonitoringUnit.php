@@ -7,7 +7,7 @@ namespace Google\Cloud\Container\V1\AdvancedMachineFeatures;
 use UnexpectedValueException;
 
 /**
- * Level of PMU access
+ * Level of PMU access.
  *
  * Protobuf type <code>google.container.v1.AdvancedMachineFeatures.PerformanceMonitoringUnit</code>
  */
