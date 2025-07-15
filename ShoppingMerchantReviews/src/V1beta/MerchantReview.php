@@ -39,7 +39,7 @@ class MerchantReview extends \Google\Protobuf\Internal\Message
      */
     protected $attributes = null;
     /**
-     * Required. A list of custom (merchant-provided) attributes. It can also be
+     * Optional. A list of custom (merchant-provided) attributes. It can also be
      * used for submitting any attribute of the data specification in its generic
      * form (for example,
      * `{ "name": "size type", "value": "regular" }`).
@@ -51,7 +51,7 @@ class MerchantReview extends \Google\Protobuf\Internal\Message
      * size of 102.4kB. Underscores in custom attribute names are replaced by
      * spaces upon insertion.
      *
-     * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $custom_attributes;
     /**
@@ -84,7 +84,7 @@ class MerchantReview extends \Google\Protobuf\Internal\Message
      *     @type \Google\Shopping\Merchant\Reviews\V1beta\MerchantReviewAttributes $attributes
      *           Optional. A list of merchant review attributes.
      *     @type array<\Google\Shopping\Type\CustomAttribute>|\Google\Protobuf\Internal\RepeatedField $custom_attributes
-     *           Required. A list of custom (merchant-provided) attributes. It can also be
+     *           Optional. A list of custom (merchant-provided) attributes. It can also be
      *           used for submitting any attribute of the data specification in its generic
      *           form (for example,
      *           `{ "name": "size type", "value": "regular" }`).
@@ -202,7 +202,7 @@ class MerchantReview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A list of custom (merchant-provided) attributes. It can also be
+     * Optional. A list of custom (merchant-provided) attributes. It can also be
      * used for submitting any attribute of the data specification in its generic
      * form (for example,
      * `{ "name": "size type", "value": "regular" }`).
@@ -214,7 +214,7 @@ class MerchantReview extends \Google\Protobuf\Internal\Message
      * size of 102.4kB. Underscores in custom attribute names are replaced by
      * spaces upon insertion.
      *
-     * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getCustomAttributes()
@@ -223,7 +223,7 @@ class MerchantReview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A list of custom (merchant-provided) attributes. It can also be
+     * Optional. A list of custom (merchant-provided) attributes. It can also be
      * used for submitting any attribute of the data specification in its generic
      * form (for example,
      * `{ "name": "size type", "value": "regular" }`).
@@ -235,7 +235,7 @@ class MerchantReview extends \Google\Protobuf\Internal\Message
      * size of 102.4kB. Underscores in custom attribute names are replaced by
      * spaces upon insertion.
      *
-     * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Shopping\Type\CustomAttribute>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

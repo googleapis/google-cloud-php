@@ -68,6 +68,13 @@ class ServiceLbPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.networkservices.v1.ServiceLbPolicy.FailoverConfig failover_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $failover_config = null;
+    /**
+     * Optional. Configuration to provide isolation support for the associated
+     * Backend Service.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.ServiceLbPolicy.IsolationConfig isolation_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $isolation_config = null;
 
     /**
      * Constructor.
@@ -95,6 +102,9 @@ class ServiceLbPolicy extends \Google\Protobuf\Internal\Message
      *           IG/NEG for the associated Backend Service.
      *     @type \Google\Cloud\NetworkServices\V1\ServiceLbPolicy\FailoverConfig $failover_config
      *           Optional. Configuration related to health based failover.
+     *     @type \Google\Cloud\NetworkServices\V1\ServiceLbPolicy\IsolationConfig $isolation_config
+     *           Optional. Configuration to provide isolation support for the associated
+     *           Backend Service.
      * }
      */
     public function __construct($data = NULL) {
@@ -354,6 +364,44 @@ class ServiceLbPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkServices\V1\ServiceLbPolicy\FailoverConfig::class);
         $this->failover_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration to provide isolation support for the associated
+     * Backend Service.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.ServiceLbPolicy.IsolationConfig isolation_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\NetworkServices\V1\ServiceLbPolicy\IsolationConfig|null
+     */
+    public function getIsolationConfig()
+    {
+        return $this->isolation_config;
+    }
+
+    public function hasIsolationConfig()
+    {
+        return isset($this->isolation_config);
+    }
+
+    public function clearIsolationConfig()
+    {
+        unset($this->isolation_config);
+    }
+
+    /**
+     * Optional. Configuration to provide isolation support for the associated
+     * Backend Service.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.ServiceLbPolicy.IsolationConfig isolation_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\NetworkServices\V1\ServiceLbPolicy\IsolationConfig $var
+     * @return $this
+     */
+    public function setIsolationConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkServices\V1\ServiceLbPolicy\IsolationConfig::class);
+        $this->isolation_config = $var;
 
         return $this;
     }

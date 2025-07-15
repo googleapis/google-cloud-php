@@ -129,6 +129,7 @@ return [
             'templateMap' => [
                 'entityType' => 'projects/{project}/locations/{location}/agents/{agent}/entityTypes/{entity_type}',
                 'flow' => 'projects/{project}/locations/{location}/agents/{agent}/flows/{flow}',
+                'generator' => 'projects/{project}/locations/{location}/agents/{agent}/generators/{generator}',
                 'intent' => 'projects/{project}/locations/{location}/agents/{agent}/intents/{intent}',
                 'page' => 'projects/{project}/locations/{location}/agents/{agent}/flows/{flow}/pages/{page}',
                 'projectLocationAgentFlowTransitionRouteGroup' => 'projects/{project}/locations/{location}/agents/{agent}/flows/{flow}/transitionRouteGroups/{transition_route_group}',

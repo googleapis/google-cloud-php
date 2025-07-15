@@ -96,6 +96,12 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_generative_fallback = 12;</code>
      */
     protected $enable_generative_fallback = false;
+    /**
+     * A list of Generators to be called during this fulfillment.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Fulfillment.GeneratorSettings generators = 13;</code>
+     */
+    private $generators;
 
     /**
      * Constructor.
@@ -140,6 +146,8 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      *           [responses][google.cloud.dialogflow.cx.v3.Fulfillment.messages] in the
      *           fulfillment will be respected. This flag is only useful for fulfillments
      *           associated with no-match event handlers.
+     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Fulfillment\GeneratorSettings>|\Google\Protobuf\Internal\RepeatedField $generators
+     *           A list of Generators to be called during this fulfillment.
      * }
      */
     public function __construct($data = NULL) {
@@ -403,6 +411,32 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_generative_fallback = $var;
+
+        return $this;
+    }
+
+    /**
+     * A list of Generators to be called during this fulfillment.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Fulfillment.GeneratorSettings generators = 13;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getGenerators()
+    {
+        return $this->generators;
+    }
+
+    /**
+     * A list of Generators to be called during this fulfillment.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Fulfillment.GeneratorSettings generators = 13;</code>
+     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Fulfillment\GeneratorSettings>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setGenerators($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\Cx\V3\Fulfillment\GeneratorSettings::class);
+        $this->generators = $arr;
 
         return $this;
     }
