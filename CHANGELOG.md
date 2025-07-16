@@ -1,5 +1,282 @@
 # Changelog
 
+## 0.295.0
+
+<details><summary>google/cloud-ai-platform 1.32.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add computer use support to tools ([#8412](https://github.com/googleapis/google-cloud-php/issues/8412)) ([a5717f3](https://github.com/googleapis/google-cloud-php/commit/a5717f301e2c36995c7db37ae58252ac1e06ea29))
+* [AiPlatform] add message ColabImage, add field colab_image to NotebookSoftwareConfig ([#8416](https://github.com/googleapis/google-cloud-php/issues/8416)) ([c3b35ef](https://github.com/googleapis/google-cloud-php/commit/c3b35efa9164a840e92768c4d51848de86abb255))
+* [AiPlatform] Expose task_unique_name in pipeline task details for pipeline rerun ([#8425](https://github.com/googleapis/google-cloud-php/issues/8425)) ([b58ccc7](https://github.com/googleapis/google-cloud-php/commit/b58ccc7fac27c47006dce7abd7629d12a8533a9c))
+* combined changes across many products. See https://github.com/googleapis/google-cloud-php/pull/8424 for a complete list of changes. ([5fd6a84](https://github.com/googleapis/google-cloud-php/commit/5fd6a842ca9518d75133e6839e1a2bd683096724))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.33.0</summary>
+
+
+
+### Features
+
+* **BigQuery:** Use lossless Int64 Timestamps ([#8375](https://github.com/googleapis/google-cloud-php/issues/8375)) ([43739c5](https://github.com/googleapis/google-cloud-php/commit/43739c509a3ba91a1521a8596facde0e4db9d7eb))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.14.0</summary>
+
+
+
+### Features
+
+* [Bigtable] add Idempotency to Cloud Bigtable MutateRowRequest API ([#8411](https://github.com/googleapis/google-cloud-php/issues/8411)) ([4a83c13](https://github.com/googleapis/google-cloud-php/commit/4a83c1319d3752774bb9d886860ad86ca6a3c92a))
+
+</details>
+
+<details><summary>google/cloud-compute 1.31.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* removed ScratchDiskField from Disks
+* removed ScratchDiskField from Disks
+
+### Features
+
+* Update Compute Engine v1 API to revision 20250626 ([8fc7d40](https://github.com/googleapis/google-cloud-php/commit/8fc7d40c305ac5a30eda34ff8ca1bce36568f9d7))
+* Update Compute Engine v1 API to revision 20250626 ([8fc7d40](https://github.com/googleapis/google-cloud-php/commit/8fc7d40c305ac5a30eda34ff8ca1bce36568f9d7))
+
+
+### Bug Fixes
+
+* removed ScratchDiskField from Disks ([8fc7d40](https://github.com/googleapis/google-cloud-php/commit/8fc7d40c305ac5a30eda34ff8ca1bce36568f9d7))
+* removed ScratchDiskField from Disks ([8fc7d40](https://github.com/googleapis/google-cloud-php/commit/8fc7d40c305ac5a30eda34ff8ca1bce36568f9d7))
+
+</details>
+
+<details><summary>google/cloud-config 1.4.0</summary>
+
+
+
+### Features
+
+* [Config] added resource change and drift details for the preview ([#8426](https://github.com/googleapis/google-cloud-php/issues/8426)) ([350a245](https://github.com/googleapis/google-cloud-php/commit/350a2455e8a3413188c73862e4a925938ae99244))
+
+</details>
+
+<details><summary>google/cloud-configdelivery 0.1.0</summary>
+
+
+
+### Features
+
+* Add the ConfigDelivery component ([#8408](https://github.com/googleapis/google-cloud-php/issues/8408)) ([f64db7f](https://github.com/googleapis/google-cloud-php/commit/f64db7f038a8e1bd772c8a0bec10f72e08d26ab3))
+
+</details>
+
+<details><summary>google/cloud-core 1.64.0</summary>
+
+
+
+### Features
+
+* Support for dot-syntax query parameters in RequestBuilder ([#8434](https://github.com/googleapis/google-cloud-php/issues/8434)) ([c284176](https://github.com/googleapis/google-cloud-php/commit/c28417685d71cb47c96cc4266b089a9cddb80b9f))
+
+</details>
+
+<details><summary>google/cloud-dataform 0.8.0</summary>
+
+
+
+### Features
+
+* Add Dataform V1 ([#8395](https://github.com/googleapis/google-cloud-php/issues/8395)) ([8517f23](https://github.com/googleapis/google-cloud-php/commit/8517f2382d511dd493a17a1fa3857aad0a445a06))
+
+</details>
+
+<details><summary>google/cloud-dataplex 1.7.0</summary>
+
+
+
+### Features
+
+* combined changes across many products. See https://github.com/googleapis/google-cloud-php/pull/8424 for a complete list of changes. ([5fd6a84](https://github.com/googleapis/google-cloud-php/commit/5fd6a842ca9518d75133e6839e1a2bd683096724))
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.6.0</summary>
+
+
+
+### Features
+
+* [Dataproc] Add `cluster_tier` to support creating premium clusters ([#8413](https://github.com/googleapis/google-cloud-php/issues/8413)) ([61c1438](https://github.com/googleapis/google-cloud-php/commit/61c143885b0e063663561d5af332bea0e4abd505))
+
+</details>
+
+<details><summary>google/cloud-dataproc-metastore 1.1.0</summary>
+
+
+
+### Features
+
+* combined changes across many products. See https://github.com/googleapis/google-cloud-php/pull/8424 for a complete list of changes. ([5fd6a84](https://github.com/googleapis/google-cloud-php/commit/5fd6a842ca9518d75133e6839e1a2bd683096724))
+
+</details>
+
+<details><summary>google/cloud-dialogflow-cx 0.8.0</summary>
+
+
+
+### Features
+
+* [DialogflowCx] Add support for generator settings on fulfillment ([#8420](https://github.com/googleapis/google-cloud-php/issues/8420)) ([f6933f3](https://github.com/googleapis/google-cloud-php/commit/f6933f3f5073cf62b8acd878af43ba0bbc96ebb2))
+
+</details>
+
+<details><summary>google/cloud-managedkafka 0.6.0</summary>
+
+
+
+### Features
+
+* combined changes across many products. See https://github.com/googleapis/google-cloud-php/pull/8424 for a complete list of changes. ([5fd6a84](https://github.com/googleapis/google-cloud-php/commit/5fd6a842ca9518d75133e6839e1a2bd683096724))
+
+</details>
+
+<details><summary>google/cloud-managedkafka-schemaregistry 0.1.0</summary>
+
+
+
+### Features
+
+* Add the ManagedKafkaSchemaRegistry component ([#8432](https://github.com/googleapis/google-cloud-php/issues/8432)) ([cb458d4](https://github.com/googleapis/google-cloud-php/commit/cb458d4d257fe22925f94ce5bad75d17c886d502))
+
+</details>
+
+<details><summary>google/maps-fleetengine 0.4.0</summary>
+
+
+
+### Features
+
+* [MapsFleetEngine] add ability to specify trip attributes to Trip and deprecate Trip.remaining_waypoints_version ([#8429](https://github.com/googleapis/google-cloud-php/issues/8429)) ([5672be0](https://github.com/googleapis/google-cloud-php/commit/5672be004e50587eda6742df63060fc51306268e))
+
+</details>
+
+<details><summary>google/maps-fleetengine-delivery 0.4.0</summary>
+
+
+
+### Features
+
+* [MapsFleetEngineDelivery] add ability to specify trip attributes to Trip and deprecate Trip.remaining_waypoints_version ([#8428](https://github.com/googleapis/google-cloud-php/issues/8428)) ([4e70664](https://github.com/googleapis/google-cloud-php/commit/4e706649efda4b2c57a7f339957318de5168cf98))
+
+</details>
+
+<details><summary>google/cloud-modelarmor 0.3.0</summary>
+
+
+
+### Features
+
+* [ModelArmor] Add MultiLingual Support for Sanitize APIs ([#8417](https://github.com/googleapis/google-cloud-php/issues/8417)) ([b9d6aec](https://github.com/googleapis/google-cloud-php/commit/b9d6aec8703ffc1034a14032d0a6112cf640cf1e))
+
+</details>
+
+<details><summary>google/cloud-networkservices 0.6.0</summary>
+
+
+
+### Features
+
+* combined changes across many products. See https://github.com/googleapis/google-cloud-php/pull/8424 for a complete list of changes. ([5fd6a84](https://github.com/googleapis/google-cloud-php/commit/5fd6a842ca9518d75133e6839e1a2bd683096724))
+
+</details>
+
+<details><summary>google/cloud-parametermanager 0.4.0</summary>
+
+
+
+### Features
+
+* [ParameterManager] KMS key resource_definition `cloudkms.googleapis.com/CryptoKey is added ([#8392](https://github.com/googleapis/google-cloud-php/issues/8392)) ([899693c](https://github.com/googleapis/google-cloud-php/commit/899693c8d885f129d99a9d3ccabced32acb8b20f))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.13.1</summary>
+
+
+
+### Bug Fixes
+
+* [PubSub] Remove element_count_limit and request_byte_limit from pubsub_gapic.yaml ([#8427](https://github.com/googleapis/google-cloud-php/issues/8427)) ([4ea2abf](https://github.com/googleapis/google-cloud-php/commit/4ea2abf91a5c9f2a991fbecf36a6636ed723138d))
+
+</details>
+
+<details><summary>google/cloud-security-center 2.2.0</summary>
+
+
+
+### Features
+
+* [SecurityCenter] Add AffectedResources proto ([#8414](https://github.com/googleapis/google-cloud-php/issues/8414)) ([2139cf8](https://github.com/googleapis/google-cloud-php/commit/2139cf843e0f138136d560c18b0b5f004c22d465))
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 2.1.0</summary>
+
+
+
+### Features
+
+* combined changes across many products. See https://github.com/googleapis/google-cloud-php/pull/8424 for a complete list of changes. ([5fd6a84](https://github.com/googleapis/google-cloud-php/commit/5fd6a842ca9518d75133e6839e1a2bd683096724))
+
+</details>
+
+<details><summary>google/shopping-merchant-ordertracking 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce ShoppingMerchantOrderTracking ([#8396](https://github.com/googleapis/google-cloud-php/issues/8396)) ([67ab2bf](https://github.com/googleapis/google-cloud-php/commit/67ab2bf85bd83ea5d6ce319974e6ad27ba74eb08))
+
+</details>
+
+<details><summary>google/shopping-merchant-products 0.6.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantProducts] adds fields maximum_retail_price and gtins to message .google.shopping.merchant.products.v1beta.Attributes ([#8431](https://github.com/googleapis/google-cloud-php/issues/8431)) ([9bd2a1a](https://github.com/googleapis/google-cloud-php/commit/9bd2a1aaafc8eddc415e313c54ff5a601a51316a))
+
+</details>
+
+<details><summary>google/shopping-merchant-reviews 0.3.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantReviews] adds fields is_incentivized_review and is_verified_purchase to message ProductReviewAttributes ([#8430](https://github.com/googleapis/google-cloud-php/issues/8430)) ([3dbe351](https://github.com/googleapis/google-cloud-php/commit/3dbe351cd1ae3f76d86a182a935c20f2f2f5687b))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.102.0</summary>
+
+
+
+### Features
+
+* **Spanner:** Ordering and lock options ([#8421](https://github.com/googleapis/google-cloud-php/issues/8421)) ([f3b49b2](https://github.com/googleapis/google-cloud-php/commit/f3b49b26c805d732cb1d74a082fddb40801c033a))
+
+</details>
+
 ## 0.294.0
 
 <details><summary>googleads/ad-manager 0.3.0</summary>
