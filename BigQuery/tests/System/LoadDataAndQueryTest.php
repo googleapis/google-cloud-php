@@ -191,14 +191,21 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             self::$client->query($queryString),
             ['formatOptions.useInt64Timestamp' => true, 'returnRawResults' => true]
         );
+        $int64TimestampResultsArrayParam = self::$client->runQuery(
+            self::$client->query($queryString),
+            ['formatOptions' => ['useInt64Timestamp' => true], 'returnRawResults' => true]
+        );
         $floatTimestampResults->waitUntilComplete();
         $int64TimestampResults->waitUntilComplete();
+        $int64TimestampResultsArrayParam->waitUntilComplete();
 
         $int64TimestampRow = iterator_to_array($int64TimestampResults->rows())[0];
         $floatTimestampRow = iterator_to_array($floatTimestampResults->rows())[0];
+        $int64TimestampRowArrayParam = iterator_to_array($int64TimestampResultsArrayParam->rows())[0];
 
         $this->assertEquals(946771196.000001, (float) $floatTimestampRow['Spells'][0]['v']['f'][1]['v']);
         $this->assertEquals(946771196000001, (int) $int64TimestampRow['Spells'][0]['v']['f'][1]['v']);
+        $this->assertEquals(946771196000001, (int) $int64TimestampRowArrayParam['Spells'][0]['v']['f'][1]['v']);
     }
 
     /**
