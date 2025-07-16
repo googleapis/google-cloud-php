@@ -112,9 +112,9 @@ class MerchantReviewAttributes extends \Google\Protobuf\Internal\Message
      */
     protected $review_time = null;
     /**
-     * Required. The language of the review defined by BCP-47 language code.
+     * Optional. The language of the review defined by BCP-47 language code.
      *
-     * Generated from protobuf field <code>optional string review_language = 15 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string review_language = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $review_language = null;
     /**
@@ -172,7 +172,7 @@ class MerchantReviewAttributes extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $review_time
      *           Required. The timestamp indicating when the review was written.
      *     @type string $review_language
-     *           Required. The language of the review defined by BCP-47 language code.
+     *           Optional. The language of the review defined by BCP-47 language code.
      *     @type string $review_country
      *           Optional. The country where the reviewer made the order defined by ISO
      *           3166-1 Alpha-2 Country Code.
@@ -712,9 +712,9 @@ class MerchantReviewAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The language of the review defined by BCP-47 language code.
+     * Optional. The language of the review defined by BCP-47 language code.
      *
-     * Generated from protobuf field <code>optional string review_language = 15 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string review_language = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getReviewLanguage()
@@ -733,9 +733,9 @@ class MerchantReviewAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The language of the review defined by BCP-47 language code.
+     * Optional. The language of the review defined by BCP-47 language code.
      *
-     * Generated from protobuf field <code>optional string review_language = 15 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string review_language = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

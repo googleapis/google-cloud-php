@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Shopping\Merchant\Reviews\V1beta\Client\MerchantReviewsServiceClient;
 use Google\Shopping\Merchant\Reviews\V1beta\InsertMerchantReviewRequest;
 use Google\Shopping\Merchant\Reviews\V1beta\MerchantReview;
-use Google\Shopping\Type\CustomAttribute;
 
 /**
  * Inserts a review for your Merchant Center account. If the review
@@ -51,10 +50,8 @@ function insert_merchant_review_sample(
     $merchantReviewsServiceClient = new MerchantReviewsServiceClient();
 
     // Prepare the request message.
-    $merchantReviewCustomAttributes = [new CustomAttribute()];
     $merchantReview = (new MerchantReview())
-        ->setMerchantReviewId($merchantReviewMerchantReviewId)
-        ->setCustomAttributes($merchantReviewCustomAttributes);
+        ->setMerchantReviewId($merchantReviewMerchantReviewId);
     $request = (new InsertMerchantReviewRequest())
         ->setParent($parent)
         ->setMerchantReview($merchantReview)

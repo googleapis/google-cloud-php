@@ -368,6 +368,7 @@ return [
             ],
             'templateMap' => [
                 'acl' => 'projects/{project}/locations/{location}/clusters/{cluster}/acls/{acl}',
+                'caPool' => 'projects/{project}/locations/{location}/caPools/{ca_pool}',
                 'cluster' => 'projects/{project}/locations/{location}/clusters/{cluster}',
                 'consumerGroup' => 'projects/{project}/locations/{location}/clusters/{cluster}/consumerGroups/{consumer_group}',
                 'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',

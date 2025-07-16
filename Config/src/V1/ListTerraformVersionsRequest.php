@@ -24,9 +24,9 @@ class ListTerraformVersionsRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
-     * Optional. When requesting a page of resources, 'page_size' specifies number
-     * of resources to return. If unspecified, at most 500 will be returned. The
-     * maximum value is 1000.
+     * Optional. When requesting a page of terraform versions, 'page_size'
+     * specifies number of terraform versions to return. If unspecified, at most
+     * 500 will be returned. The maximum value is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -34,7 +34,7 @@ class ListTerraformVersionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Token returned by previous call to 'ListTerraformVersions' which
      * specifies the position in the list from where to continue listing the
-     * resources.
+     * terraform versions.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -86,13 +86,13 @@ class ListTerraformVersionsRequest extends \Google\Protobuf\Internal\Message
      *           parent value is in the format:
      *           'projects/{project_id}/locations/{location}'.
      *     @type int $page_size
-     *           Optional. When requesting a page of resources, 'page_size' specifies number
-     *           of resources to return. If unspecified, at most 500 will be returned. The
-     *           maximum value is 1000.
+     *           Optional. When requesting a page of terraform versions, 'page_size'
+     *           specifies number of terraform versions to return. If unspecified, at most
+     *           500 will be returned. The maximum value is 1000.
      *     @type string $page_token
      *           Optional. Token returned by previous call to 'ListTerraformVersions' which
      *           specifies the position in the list from where to continue listing the
-     *           resources.
+     *           terraform versions.
      *     @type string $filter
      *           Optional. Lists the TerraformVersions that match the filter expression. A
      *           filter expression filters the resources listed in the response. The
@@ -142,9 +142,9 @@ class ListTerraformVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. When requesting a page of resources, 'page_size' specifies number
-     * of resources to return. If unspecified, at most 500 will be returned. The
-     * maximum value is 1000.
+     * Optional. When requesting a page of terraform versions, 'page_size'
+     * specifies number of terraform versions to return. If unspecified, at most
+     * 500 will be returned. The maximum value is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -155,9 +155,9 @@ class ListTerraformVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. When requesting a page of resources, 'page_size' specifies number
-     * of resources to return. If unspecified, at most 500 will be returned. The
-     * maximum value is 1000.
+     * Optional. When requesting a page of terraform versions, 'page_size'
+     * specifies number of terraform versions to return. If unspecified, at most
+     * 500 will be returned. The maximum value is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -174,7 +174,7 @@ class ListTerraformVersionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Token returned by previous call to 'ListTerraformVersions' which
      * specifies the position in the list from where to continue listing the
-     * resources.
+     * terraform versions.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -187,7 +187,7 @@ class ListTerraformVersionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Token returned by previous call to 'ListTerraformVersions' which
      * specifies the position in the list from where to continue listing the
-     * resources.
+     * terraform versions.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
