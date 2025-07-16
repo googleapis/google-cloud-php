@@ -1401,6 +1401,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "merchantapi"
     },
+    "ShoppingMerchantOrderTracking": {
+        "language": "php",
+        "distribution_name": "google/shopping-merchant-ordertracking",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-ordertracking/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "merchantapi"
+    },
     "ShoppingMerchantProducts": {
         "language": "php",
         "distribution_name": "google/shopping-merchant-products",
