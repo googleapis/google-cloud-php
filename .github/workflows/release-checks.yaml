@@ -109,7 +109,7 @@ jobs:
             if [[ "$(cat $COMPONENT/VERSION)" == "0.1.0" ]]; then
               SUBREPO=$(cat $COMPONENT/composer.json | jq -r '.extra.component.target')
               echo "New component found: $COMPONENT"
-              if curl --head --silent --fail "https://api.github.com/repos/$SUBREPO" -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN}}' > /dev/null; then
+              if curl --head --silent --fail "https://api.github.com/repos/$SUBREPO" -H 'Authorization: Bearer ${{secrets.GITHUB_TOKEN}}' > /dev/null; then
                   echo " - Target Repo '$SUBREPO' exists"
               else
                   echo " - Target Repo '$SUBREPO' DOES NOT EXIST"
