@@ -43,7 +43,7 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "rize/uri-template": "~0.3",
         "guzzlehttp/guzzle": "^7.4.5",
         "guzzlehttp/psr7": "^2.6",
