@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class AnonymousAuthenticationConfig extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Defines the mode of limiting anonymous access in the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AnonymousAuthenticationConfig.Mode mode = 1;</code>
+     */
+    protected $mode = 0;
 
     /**
      * Constructor.
@@ -23,11 +29,39 @@ class AnonymousAuthenticationConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type int $mode
+     *           Defines the mode of limiting anonymous access in the cluster.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Defines the mode of limiting anonymous access in the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AnonymousAuthenticationConfig.Mode mode = 1;</code>
+     * @return int
+     */
+    public function getMode()
+    {
+        return $this->mode;
+    }
+
+    /**
+     * Defines the mode of limiting anonymous access in the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AnonymousAuthenticationConfig.Mode mode = 1;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\AnonymousAuthenticationConfig\Mode::class);
+        $this->mode = $var;
+
+        return $this;
     }
 
 }

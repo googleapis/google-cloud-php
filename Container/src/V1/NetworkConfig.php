@@ -26,8 +26,8 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     protected $network = '';
     /**
      * Output only. The relative name of the Google Compute Engine
-     * [subnetwork](https://cloud.google.com/compute/docs/vpc) to which the
-     * cluster is connected. Example:
+     * [subnetwork](https://cloud.google.com/compute/docs/vpc)
+     * to which the cluster is connected. Example:
      * projects/my-project/regions/us-central1/subnetworks/my-subnet
      *
      * Generated from protobuf field <code>string subnetwork = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -151,8 +151,8 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *           projects/my-project/global/networks/my-network
      *     @type string $subnetwork
      *           Output only. The relative name of the Google Compute Engine
-     *           [subnetwork](https://cloud.google.com/compute/docs/vpc) to which the
-     *           cluster is connected. Example:
+     *           [subnetwork](https://cloud.google.com/compute/docs/vpc)
+     *           to which the cluster is connected. Example:
      *           projects/my-project/regions/us-central1/subnetworks/my-subnet
      *     @type bool $enable_intra_node_visibility
      *           Whether Intra-node visibility is enabled for this cluster.
@@ -239,8 +239,8 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The relative name of the Google Compute Engine
-     * [subnetwork](https://cloud.google.com/compute/docs/vpc) to which the
-     * cluster is connected. Example:
+     * [subnetwork](https://cloud.google.com/compute/docs/vpc)
+     * to which the cluster is connected. Example:
      * projects/my-project/regions/us-central1/subnetworks/my-subnet
      *
      * Generated from protobuf field <code>string subnetwork = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -253,8 +253,8 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The relative name of the Google Compute Engine
-     * [subnetwork](https://cloud.google.com/compute/docs/vpc) to which the
-     * cluster is connected. Example:
+     * [subnetwork](https://cloud.google.com/compute/docs/vpc)
+     * to which the cluster is connected. Example:
      * projects/my-project/regions/us-central1/subnetworks/my-subnet
      *
      * Generated from protobuf field <code>string subnetwork = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
