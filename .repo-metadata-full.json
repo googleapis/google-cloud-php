@@ -752,6 +752,14 @@
         "issue_tracker": "https://github.com/googleapis/google-cloud-php/issues",
         "api_shortname": "gsuiteaddons"
     },
+    "GeminiDataAnalytics": {
+        "language": "php",
+        "distribution_name": "google/cloud-geminidataanalytics",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-geminidataanalytics/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "geminidataanalytics"
+    },
     "GeoCommonProtos": {
         "distribution_name": "google/geo-common-protos",
         "release_level": "preview",
