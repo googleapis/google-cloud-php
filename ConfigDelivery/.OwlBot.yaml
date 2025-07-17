@@ -1,4 +1,4 @@
 deep-copy-regex:
-    - source: /google/cloud/configdelivery/(v1beta)/.*-php/(.*)
+    - source: /google/cloud/configdelivery/(v1|v1beta)/.*-php/(.*)
       dest: /owl-bot-staging/ConfigDelivery/$1/$2
 api-name: ConfigDelivery
