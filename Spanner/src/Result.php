@@ -207,7 +207,7 @@ class Result implements \IteratorAggregate
      *
      * @return array|null
      */
-    public function columns()
+    public function columns(): array|null
     {
         return $this->columnNames ?? null;
     }
@@ -226,7 +226,7 @@ class Result implements \IteratorAggregate
      * @return array|null [ResultSetMetadata](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.ResultSetMetadata).
      * @codingStandardsIgnoreEnd
      */
-    public function metadata()
+    public function metadata(): array|null
     {
         return $this->metadata;
     }
@@ -241,7 +241,7 @@ class Result implements \IteratorAggregate
      *
      * @return Session
      */
-    public function session()
+    public function session(): Session
     {
         return $this->session;
     }

@@ -871,8 +871,7 @@ class CacheSessionPoolTest extends TestCase
         $session->exists()
             ->willReturn(false);
         if ($willDeleteSessions) {
-            $session->delete()
-                ->willReturn(null);
+            $session->delete();
             $database->deleteSessionAsync(Argument::any())
                 ->willReturn(new FulfilledPromise(new GPBEmpty()));
         } else {

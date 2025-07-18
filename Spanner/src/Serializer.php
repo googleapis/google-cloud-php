@@ -11,8 +11,9 @@ use Google\Protobuf\RepeatedField;
 use Google\Protobuf\Value;
 
 /**
- * @internal
  * Supplies helper methods to interact with the APIs.
+ *
+ * @internal
  */
 class Serializer extends ApiCoreSerializer
 {

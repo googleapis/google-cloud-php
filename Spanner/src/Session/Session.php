@@ -35,17 +35,17 @@ class Session
     /**
      * @var int|null
      */
-    private $expiration;
+    private int|null $expiration;
 
     /**
      * @var bool
      */
-    private $routeToLeader;
+    private bool $routeToLeader;
 
     /**
      * @var string
      */
-    private $databaseName;
+    private string $databaseName;
 
     /**
      * @internal Session is constructed by the {@see Database} class.
@@ -65,11 +65,11 @@ class Session
     public function __construct(
         private SpannerClient $spannerClient,
         private Serializer $serializer,
-        private $projectId,
-        private $instance,
-        private $database,
-        private $name,
-        $config = []
+        private string $projectId,
+        private string $instance,
+        private string $database,
+        private string $name,
+        array $config = []
     ) {
         $this->databaseName = SpannerClient::databaseName(
             $projectId,
@@ -91,7 +91,7 @@ class Session
      * @return array An array containing the `projectId`, `instance`, `database`, 'databaseName' and session `name`
      *         keys.
      */
-    public function info()
+    public function info(): array
     {
         return [
             'projectId' => $this->projectId,
@@ -108,7 +108,7 @@ class Session
      * @param array $options [optional] Configuration options.
      * @return bool
      */
-    public function exists(array $options = [])
+    public function exists(array $options = []): bool
     {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += [
@@ -134,7 +134,7 @@ class Session
      * @param array $options [optional] Configuration options.
      * @return void
      */
-    public function delete(array $options = [])
+    public function delete(array $options = []): void
     {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data = [
@@ -153,7 +153,7 @@ class Session
      *
      * @return string
      */
-    public function name()
+    public function name(): string
     {
         return $this->name;
     }
@@ -166,7 +166,7 @@ class Session
      *        minutes.
      * @return void
      */
-    public function setExpiration($expiration = null)
+    public function setExpiration($expiration = null): void
     {
         $this->expiration = $expiration ?: time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS;
     }
@@ -176,7 +176,7 @@ class Session
      *
      * @return int|null
      */
-    public function expiration()
+    public function expiration(): int|null
     {
         return $this->expiration;
     }
