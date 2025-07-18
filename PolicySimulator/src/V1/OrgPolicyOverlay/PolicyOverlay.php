@@ -113,6 +113,4 @@ class PolicyOverlay extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PolicyOverlay::class, \Google\Cloud\PolicySimulator\V1\OrgPolicyOverlay_PolicyOverlay::class);
 
