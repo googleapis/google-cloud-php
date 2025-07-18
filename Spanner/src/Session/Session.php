@@ -24,6 +24,7 @@ use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\GetSessionRequest;
+use Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken;
 
 /**
  * Represents and manages a single Cloud Spanner session.
@@ -46,6 +47,8 @@ class Session
      * @var string
      */
     private string $databaseName;
+
+    private MultiplexedSessionPrecommitToken|null $precommitToken = null;
 
     /**
      * @internal Session is constructed by the {@see Database} class.
@@ -181,6 +184,16 @@ class Session
         return $this->expiration;
     }
 
+    public function setPrecommitToken(MultiplexedSessionPrecommitToken $precommitToken)
+    {
+        $this->precommitToken = $precommitToken;
+    }
+
+    public function getPrecommitToken(): MultiplexedSessionPrecommitToken|null
+    {
+        return $this->precommitToken;
+    }
+
     /**
      * Represent the class in a more readable and digestable fashion.
      *
@@ -197,6 +210,7 @@ class Session
             'database' => $this->database,
             'databaseName' => $this->databaseName,
             'name' => $this->name,
+            'precommitToken' => print_r($this->precommitToken, true),
         ];
     }
 }

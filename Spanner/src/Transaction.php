@@ -23,6 +23,7 @@ use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\RequestOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions;
+use Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken;
 use Google\Protobuf\Duration;
 
 /**
@@ -101,7 +102,7 @@ class Transaction implements TransactionalReadInterface
         private Session $session,
         private string|null $transactionId = null,
         array $options = [],
-        private ValueMapper|null $mapper = null
+        private ValueMapper|null $mapper = null,
     ) {
         $this->type = ($transactionId || isset($options['begin']))
             ? self::TYPE_PRE_ALLOCATED
