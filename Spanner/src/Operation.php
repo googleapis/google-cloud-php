@@ -865,6 +865,9 @@ class Operation
             'resource-prefix' => $this->getDatabaseNameFromSession($session),
             'route-to-leader' => $routeToLeader,
         ]);
+        if ($precommitToken = $response->getPrecommitToken()) {
+            $session->setPrecommitToken($precommitToken);
+        }
         return $this->handleResponse($response);
     }
 
