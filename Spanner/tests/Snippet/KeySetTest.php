@@ -17,10 +17,10 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
 
 /**
  * @group spanner

@@ -28,21 +28,18 @@ use Google\Cloud\Spanner\V1\TypeAnnotationCode;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $pgOid = $spanner->pgOid('123');
  * ```
  */
 class PgOid implements ValueInterface, TypeAnnotationInterface
 {
-    /**
-     * @var string|null
-     */
-    private ?string $value;
+    private string|null $value;
 
     /**
      * @param string|null $value The OID value.
      */
-    public function __construct(?string $value)
+    public function __construct(string|null $value)
     {
         $this->value = $value;
     }
@@ -52,7 +49,7 @@ class PgOid implements ValueInterface, TypeAnnotationInterface
      *
      * @return string|null
      */
-    public function get(): ?string
+    public function get(): string|null
     {
         return $this->value;
     }
@@ -85,7 +82,7 @@ class PgOid implements ValueInterface, TypeAnnotationInterface
      *
      * @return string
      */
-    public function formatAsString(): ?string
+    public function formatAsString(): string
     {
         return (string) $this->value;
     }
