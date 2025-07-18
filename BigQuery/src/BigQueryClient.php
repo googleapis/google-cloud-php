@@ -363,6 +363,7 @@ class BigQueryClient
             'timeoutMs',
             'maxRetries',
             'returnRawResults',
+            'formatOptions',
             'formatOptions.useInt64Timestamp'
         ], $options);
         $queryResultsOptions['initialTimeoutMs'] = 10000;
