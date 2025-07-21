@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Dev\Tests\Unit\Command;
 
-use Google\Cloud\Dev\Command\AddComponentCommand;
+use Google\Cloud\Dev\Command\NewComponentCommand;
 use Google\Cloud\Dev\Composer;
 use Google\Cloud\Dev\RunProcess;
 use GuzzleHttp\Client;
@@ -30,7 +30,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 /**
  * @group dev
  */
-class AddComponentCommandTest extends TestCase
+class NewComponentCommandTest extends TestCase
 {
     use ProphecyTrait;
 
@@ -56,11 +56,11 @@ class AddComponentCommandTest extends TestCase
         file_put_contents($tmpDir . '/.repo-metadata-full.json', '{}');
         self::$tmpDir = realpath($tmpDir);
         $application = new Application();
-        $application->add(new AddComponentCommand($tmpDir));
+        $application->add(new NewComponentCommand($tmpDir));
         self::$commandTester = new CommandTester($application->get('add-component'));
     }
 
-    public function testAddComponent()
+    public function testNewComponent()
     {
         self::$commandTester->setInputs([
             'Y'    // Does this information look correct? [Y/n]
@@ -102,7 +102,7 @@ class AddComponentCommandTest extends TestCase
         $this->assertComposerJson('SecretManager');
     }
 
-    public function testAddComponentWithCustomOptions()
+    public function testNewComponentWithCustomOptions()
     {
         self::$commandTester->setInputs([
             'n',                                                            // Does this information look correct? [Y/n]
@@ -185,7 +185,7 @@ class AddComponentCommandTest extends TestCase
             ->willReturn('');
 
         $application = new Application();
-        $application->add(new AddComponentCommand(self::$tmpDir, null, $runProcess->reveal()));
+        $application->add(new NewComponentCommand(self::$tmpDir, null, $runProcess->reveal()));
 
         $commandTester = new CommandTester($application->get('add-component'));
         $commandTester->setInputs([
@@ -255,7 +255,7 @@ class AddComponentCommandTest extends TestCase
             ->willReturn($client->get($productHomePage));
 
         $application = new Application();
-        $application->add(new AddComponentCommand(self::$tmpDir, $httpClient->reveal(), $runProcess->reveal()));
+        $application->add(new NewComponentCommand(self::$tmpDir, $httpClient->reveal(), $runProcess->reveal()));
 
         $commandTester = new CommandTester($application->get('add-component'));
         // No documentationPage/homePage input is required as it is fetched automatically from the yaml file.

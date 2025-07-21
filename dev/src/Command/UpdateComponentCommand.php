@@ -23,6 +23,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Yaml\Yaml;
 use RuntimeException;
 use Exception;
 
@@ -37,7 +38,6 @@ use Exception;
 class UpdateComponentCommand extends Command
 {
     private const OWLBOT_CLI_IMAGE = 'gcr.io/cloud-devrel-public-resources/owlbot-cli:latest';
-    private const OWLBOT_PHP_IMAGE = 'gcr.io/cloud-devrel-public-resources/owlbot-php@sha256:1ab73a7e74a718382e9f13cbd8e90db24fad736b5fbbd1ab7e5139f163f08118';
 
     private $rootPath;
     private RunProcess $runProcess;
@@ -210,9 +210,11 @@ class UpdateComponentCommand extends Command
     private function owlbotPostProcessor(): string
     {
         list($userId, $groupId) = $this->getUserAndGroupId();
+        $owlbotLock = Yaml::parse(file_get_contents($this->rootPath . '.github/.OwlBot.lock.yaml'));
+        $owlbotPhpImage = sprintf('%s@%s', $owlbotLock['docker']['image'], $owlbotLock['docker']['digest']);
 
         $command = [
-            'docker', 'pull', self::OWLBOT_PHP_IMAGE
+            'docker', 'pull', $owlbotPhpImage
         ];
         $this->runProcess->execute($command);
 
@@ -221,7 +223,7 @@ class UpdateComponentCommand extends Command
             '--user', sprintf('%s:%s', $userId, $groupId),
             '-v', sprintf('%s:/repo', $this->rootPath),
             '-w', '/repo',
-            self::OWLBOT_PHP_IMAGE
+            $owlbotPhpImage
         ];
 
         return $this->runProcess->execute($command);
