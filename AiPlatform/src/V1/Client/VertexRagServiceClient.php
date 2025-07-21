@@ -35,7 +35,6 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\AIPlatform\V1\AugmentPromptRequest;
 use Google\Cloud\AIPlatform\V1\AugmentPromptResponse;
-use Google\Cloud\AIPlatform\V1\Content;
 use Google\Cloud\AIPlatform\V1\CorroborateContentRequest;
 use Google\Cloud\AIPlatform\V1\CorroborateContentResponse;
 use Google\Cloud\AIPlatform\V1\RetrieveContextsRequest;

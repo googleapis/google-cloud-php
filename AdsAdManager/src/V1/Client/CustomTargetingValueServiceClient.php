@@ -78,7 +78,7 @@ final class CustomTargetingValueServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/admanager'];
 
     private static function getClientDefaults()
     {
@@ -114,40 +114,33 @@ final class CustomTargetingValueServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
-     * custom_targeting_key resource.
-     *
-     * @param string $networkCode
-     * @param string $customTargetingKey
-     *
-     * @return string The formatted custom_targeting_key resource.
-     */
-    public static function customTargetingKeyName(string $networkCode, string $customTargetingKey): string
-    {
-        return self::getPathTemplate('customTargetingKey')->render([
-            'network_code' => $networkCode,
-            'custom_targeting_key' => $customTargetingKey,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent a
      * custom_targeting_value resource.
      *
      * @param string $networkCode
-     * @param string $customTargetingKey
      * @param string $customTargetingValue
      *
      * @return string The formatted custom_targeting_value resource.
      */
-    public static function customTargetingValueName(
-        string $networkCode,
-        string $customTargetingKey,
-        string $customTargetingValue
-    ): string {
+    public static function customTargetingValueName(string $networkCode, string $customTargetingValue): string
+    {
         return self::getPathTemplate('customTargetingValue')->render([
             'network_code' => $networkCode,
-            'custom_targeting_key' => $customTargetingKey,
             'custom_targeting_value' => $customTargetingValue,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a network
+     * resource.
+     *
+     * @param string $networkCode
+     *
+     * @return string The formatted network resource.
+     */
+    public static function networkName(string $networkCode): string
+    {
+        return self::getPathTemplate('network')->render([
+            'network_code' => $networkCode,
         ]);
     }
 
@@ -155,8 +148,8 @@ final class CustomTargetingValueServiceClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - customTargetingKey: networks/{network_code}/customTargetingKeys/{custom_targeting_key}
-     * - customTargetingValue: networks/{network_code}/customTargetingKeys/{custom_targeting_key}/customTargetingValues/{custom_targeting_value}
+     * - customTargetingValue: networks/{network_code}/customTargetingValues/{custom_targeting_value}
+     * - network: networks/{network_code}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

@@ -34,7 +34,8 @@ class NodePool extends \Google\Protobuf\Internal\Message
     protected $config = null;
     /**
      * The initial node count for the pool. You must ensure that your
-     * Compute Engine [resource quota](https://cloud.google.com/compute/quotas)
+     * Compute Engine [resource
+     * quota](https://cloud.google.com/compute/quotas)
      * is sufficient for this number of instances. You must also have available
      * firewall and routes quota.
      *
@@ -43,8 +44,8 @@ class NodePool extends \Google\Protobuf\Internal\Message
     protected $initial_node_count = 0;
     /**
      * The list of Google Compute Engine
-     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
-     * NodePool's nodes should be located.
+     * [zones](https://cloud.google.com/compute/docs/zones#available)
+     * in which the NodePool's nodes should be located.
      * If this value is unspecified during node pool creation, the
      * [Cluster.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters#Cluster.FIELDS.locations)
      * value will be used, instead.
@@ -184,13 +185,14 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *           The node configuration of the pool.
      *     @type int $initial_node_count
      *           The initial node count for the pool. You must ensure that your
-     *           Compute Engine [resource quota](https://cloud.google.com/compute/quotas)
+     *           Compute Engine [resource
+     *           quota](https://cloud.google.com/compute/quotas)
      *           is sufficient for this number of instances. You must also have available
      *           firewall and routes quota.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $locations
      *           The list of Google Compute Engine
-     *           [zones](https://cloud.google.com/compute/docs/zones#available) in which the
-     *           NodePool's nodes should be located.
+     *           [zones](https://cloud.google.com/compute/docs/zones#available)
+     *           in which the NodePool's nodes should be located.
      *           If this value is unspecified during node pool creation, the
      *           [Cluster.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters#Cluster.FIELDS.locations)
      *           value will be used, instead.
@@ -315,7 +317,8 @@ class NodePool extends \Google\Protobuf\Internal\Message
 
     /**
      * The initial node count for the pool. You must ensure that your
-     * Compute Engine [resource quota](https://cloud.google.com/compute/quotas)
+     * Compute Engine [resource
+     * quota](https://cloud.google.com/compute/quotas)
      * is sufficient for this number of instances. You must also have available
      * firewall and routes quota.
      *
@@ -329,7 +332,8 @@ class NodePool extends \Google\Protobuf\Internal\Message
 
     /**
      * The initial node count for the pool. You must ensure that your
-     * Compute Engine [resource quota](https://cloud.google.com/compute/quotas)
+     * Compute Engine [resource
+     * quota](https://cloud.google.com/compute/quotas)
      * is sufficient for this number of instances. You must also have available
      * firewall and routes quota.
      *
@@ -347,8 +351,8 @@ class NodePool extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of Google Compute Engine
-     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
-     * NodePool's nodes should be located.
+     * [zones](https://cloud.google.com/compute/docs/zones#available)
+     * in which the NodePool's nodes should be located.
      * If this value is unspecified during node pool creation, the
      * [Cluster.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters#Cluster.FIELDS.locations)
      * value will be used, instead.
@@ -365,8 +369,8 @@ class NodePool extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of Google Compute Engine
-     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
-     * NodePool's nodes should be located.
+     * [zones](https://cloud.google.com/compute/docs/zones#available)
+     * in which the NodePool's nodes should be located.
      * If this value is unspecified during node pool creation, the
      * [Cluster.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters#Cluster.FIELDS.locations)
      * value will be used, instead.

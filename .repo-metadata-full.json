@@ -443,6 +443,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "config"
     },
+    "ConfigDelivery": {
+        "language": "php",
+        "distribution_name": "google/cloud-configdelivery",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-configdelivery/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "configdelivery"
+    },
     "ContactCenterInsights": {
         "language": "php",
         "distribution_name": "google/cloud-contact-center-insights",
@@ -744,6 +752,14 @@
         "issue_tracker": "https://github.com/googleapis/google-cloud-php/issues",
         "api_shortname": "gsuiteaddons"
     },
+    "GeminiDataAnalytics": {
+        "language": "php",
+        "distribution_name": "google/cloud-geminidataanalytics",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-geminidataanalytics/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "geminidataanalytics"
+    },
     "GeoCommonProtos": {
         "distribution_name": "google/geo-common-protos",
         "release_level": "preview",
@@ -894,6 +910,14 @@
         "distribution_name": "google/cloud-managedkafka",
         "release_level": "preview",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-managedkafka/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "managedkafka"
+    },
+    "ManagedKafkaSchemaRegistry": {
+        "language": "php",
+        "distribution_name": "google/cloud-managedkafka-schemaregistry",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-managedkafka-schemaregistry/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "managedkafka"
     },
@@ -1382,6 +1406,14 @@
         "distribution_name": "google/shopping-merchant-notifications",
         "release_level": "preview",
         "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-notifications/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "merchantapi"
+    },
+    "ShoppingMerchantOrderTracking": {
+        "language": "php",
+        "distribution_name": "google/shopping-merchant-ordertracking",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-ordertracking/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "merchantapi"
     },

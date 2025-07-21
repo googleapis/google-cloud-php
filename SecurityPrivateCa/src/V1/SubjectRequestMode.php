@@ -34,6 +34,20 @@ class SubjectRequestMode
      */
     const PBDEFAULT = 1;
     /**
+     * A mode used to get an accurate representation of the Subject
+     * field's distinguished name. Indicates that the certificate's
+     * [Subject][google.cloud.security.privateca.v1.Subject] and/or
+     * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames] are
+     * specified in the certificate request. When parsing a PEM CSR this mode will
+     * maintain the sequence of RDNs found in the CSR's subject field in the
+     * issued [Certificate][google.cloud.security.privateca.v1.Certificate]. This
+     * mode requires the caller to have the `privateca.certificates.create`
+     * permission.
+     *
+     * Generated from protobuf enum <code>RDN_SEQUENCE = 3;</code>
+     */
+    const RDN_SEQUENCE = 3;
+    /**
      * A mode reserved for special cases. Indicates that the certificate should
      * have one SPIFFE
      * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames] set
@@ -51,6 +65,7 @@ class SubjectRequestMode
     private static $valueToName = [
         self::SUBJECT_REQUEST_MODE_UNSPECIFIED => 'SUBJECT_REQUEST_MODE_UNSPECIFIED',
         self::PBDEFAULT => 'DEFAULT',
+        self::RDN_SEQUENCE => 'RDN_SEQUENCE',
         self::REFLECTED_SPIFFE => 'REFLECTED_SPIFFE',
     ];
 

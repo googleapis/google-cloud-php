@@ -27,10 +27,19 @@ class TaskAttemptResult extends \Google\Protobuf\Internal\Message
      * This may be unset if the container was unable to exit cleanly with a code
      * due to some other failure.
      * See status field for possible failure details.
+     * At most one of exit_code or term_signal will be set.
      *
      * Generated from protobuf field <code>int32 exit_code = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $exit_code = 0;
+    /**
+     * Output only. Termination signal of the container. This is set to non-zero
+     * if the container is terminated by the system.
+     * At most one of exit_code or term_signal will be set.
+     *
+     * Generated from protobuf field <code>int32 term_signal = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $term_signal = 0;
 
     /**
      * Constructor.
@@ -46,6 +55,11 @@ class TaskAttemptResult extends \Google\Protobuf\Internal\Message
      *           This may be unset if the container was unable to exit cleanly with a code
      *           due to some other failure.
      *           See status field for possible failure details.
+     *           At most one of exit_code or term_signal will be set.
+     *     @type int $term_signal
+     *           Output only. Termination signal of the container. This is set to non-zero
+     *           if the container is terminated by the system.
+     *           At most one of exit_code or term_signal will be set.
      * }
      */
     public function __construct($data = NULL) {
@@ -96,6 +110,7 @@ class TaskAttemptResult extends \Google\Protobuf\Internal\Message
      * This may be unset if the container was unable to exit cleanly with a code
      * due to some other failure.
      * See status field for possible failure details.
+     * At most one of exit_code or term_signal will be set.
      *
      * Generated from protobuf field <code>int32 exit_code = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -110,6 +125,7 @@ class TaskAttemptResult extends \Google\Protobuf\Internal\Message
      * This may be unset if the container was unable to exit cleanly with a code
      * due to some other failure.
      * See status field for possible failure details.
+     * At most one of exit_code or term_signal will be set.
      *
      * Generated from protobuf field <code>int32 exit_code = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -119,6 +135,36 @@ class TaskAttemptResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->exit_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Termination signal of the container. This is set to non-zero
+     * if the container is terminated by the system.
+     * At most one of exit_code or term_signal will be set.
+     *
+     * Generated from protobuf field <code>int32 term_signal = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getTermSignal()
+    {
+        return $this->term_signal;
+    }
+
+    /**
+     * Output only. Termination signal of the container. This is set to non-zero
+     * if the container is terminated by the system.
+     * At most one of exit_code or term_signal will be set.
+     *
+     * Generated from protobuf field <code>int32 term_signal = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTermSignal($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->term_signal = $var;
 
         return $this;
     }

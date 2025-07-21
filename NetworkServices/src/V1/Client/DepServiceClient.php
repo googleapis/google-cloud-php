@@ -42,16 +42,22 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\Cloud\NetworkServices\V1\AuthzExtension;
+use Google\Cloud\NetworkServices\V1\CreateAuthzExtensionRequest;
 use Google\Cloud\NetworkServices\V1\CreateLbRouteExtensionRequest;
 use Google\Cloud\NetworkServices\V1\CreateLbTrafficExtensionRequest;
+use Google\Cloud\NetworkServices\V1\DeleteAuthzExtensionRequest;
 use Google\Cloud\NetworkServices\V1\DeleteLbRouteExtensionRequest;
 use Google\Cloud\NetworkServices\V1\DeleteLbTrafficExtensionRequest;
+use Google\Cloud\NetworkServices\V1\GetAuthzExtensionRequest;
 use Google\Cloud\NetworkServices\V1\GetLbRouteExtensionRequest;
 use Google\Cloud\NetworkServices\V1\GetLbTrafficExtensionRequest;
 use Google\Cloud\NetworkServices\V1\LbRouteExtension;
 use Google\Cloud\NetworkServices\V1\LbTrafficExtension;
+use Google\Cloud\NetworkServices\V1\ListAuthzExtensionsRequest;
 use Google\Cloud\NetworkServices\V1\ListLbRouteExtensionsRequest;
 use Google\Cloud\NetworkServices\V1\ListLbTrafficExtensionsRequest;
+use Google\Cloud\NetworkServices\V1\UpdateAuthzExtensionRequest;
 use Google\Cloud\NetworkServices\V1\UpdateLbRouteExtensionRequest;
 use Google\Cloud\NetworkServices\V1\UpdateLbTrafficExtensionRequest;
 use Google\LongRunning\Client\OperationsClient;
@@ -70,14 +76,19 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<OperationResponse> createAuthzExtensionAsync(CreateAuthzExtensionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createLbRouteExtensionAsync(CreateLbRouteExtensionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createLbTrafficExtensionAsync(CreateLbTrafficExtensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAuthzExtensionAsync(DeleteAuthzExtensionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteLbRouteExtensionAsync(DeleteLbRouteExtensionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteLbTrafficExtensionAsync(DeleteLbTrafficExtensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AuthzExtension> getAuthzExtensionAsync(GetAuthzExtensionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<LbRouteExtension> getLbRouteExtensionAsync(GetLbRouteExtensionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<LbTrafficExtension> getLbTrafficExtensionAsync(GetLbTrafficExtensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAuthzExtensionsAsync(ListAuthzExtensionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLbRouteExtensionsAsync(ListLbRouteExtensionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLbTrafficExtensionsAsync(ListLbTrafficExtensionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAuthzExtensionAsync(UpdateAuthzExtensionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateLbRouteExtensionAsync(UpdateLbRouteExtensionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateLbTrafficExtensionAsync(UpdateLbTrafficExtensionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
@@ -186,6 +197,25 @@ final class DepServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * authz_extension resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $authzExtension
+     *
+     * @return string The formatted authz_extension resource.
+     */
+    public static function authzExtensionName(string $project, string $location, string $authzExtension): string
+    {
+        return self::getPathTemplate('authzExtension')->render([
+            'project' => $project,
+            'location' => $location,
+            'authz_extension' => $authzExtension,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * lb_route_extension resource.
      *
      * @param string $project
@@ -243,6 +273,7 @@ final class DepServiceClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - authzExtension: projects/{project}/locations/{location}/authzExtensions/{authz_extension}
      * - lbRouteExtension: projects/{project}/locations/{location}/lbRouteExtensions/{lb_route_extension}
      * - lbTrafficExtension: projects/{project}/locations/{location}/lbTrafficExtensions/{lb_traffic_extension}
      * - location: projects/{project}/locations/{location}
@@ -347,6 +378,35 @@ final class DepServiceClient
     }
 
     /**
+     * Creates a new `AuthzExtension` resource in a given project
+     * and location.
+     *
+     * The async variant is {@see DepServiceClient::createAuthzExtensionAsync()} .
+     *
+     * @example samples/V1/DepServiceClient/create_authz_extension.php
+     *
+     * @param CreateAuthzExtensionRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createAuthzExtension(
+        CreateAuthzExtensionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateAuthzExtension', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new `LbRouteExtension` resource in a given project and location.
      *
      * The async variant is {@see DepServiceClient::createLbRouteExtensionAsync()} .
@@ -401,6 +461,34 @@ final class DepServiceClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('CreateLbTrafficExtension', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes the specified `AuthzExtension` resource.
+     *
+     * The async variant is {@see DepServiceClient::deleteAuthzExtensionAsync()} .
+     *
+     * @example samples/V1/DepServiceClient/delete_authz_extension.php
+     *
+     * @param DeleteAuthzExtensionRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteAuthzExtension(
+        DeleteAuthzExtensionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteAuthzExtension', $request, $callOptions)->wait();
     }
 
     /**
@@ -460,6 +548,32 @@ final class DepServiceClient
     }
 
     /**
+     * Gets details of the specified `AuthzExtension` resource.
+     *
+     * The async variant is {@see DepServiceClient::getAuthzExtensionAsync()} .
+     *
+     * @example samples/V1/DepServiceClient/get_authz_extension.php
+     *
+     * @param GetAuthzExtensionRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AuthzExtension
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAuthzExtension(GetAuthzExtensionRequest $request, array $callOptions = []): AuthzExtension
+    {
+        return $this->startApiCall('GetAuthzExtension', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets details of the specified `LbRouteExtension` resource.
      *
      * The async variant is {@see DepServiceClient::getLbRouteExtensionAsync()} .
@@ -511,6 +625,32 @@ final class DepServiceClient
         array $callOptions = []
     ): LbTrafficExtension {
         return $this->startApiCall('GetLbTrafficExtension', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists `AuthzExtension` resources in a given project and location.
+     *
+     * The async variant is {@see DepServiceClient::listAuthzExtensionsAsync()} .
+     *
+     * @example samples/V1/DepServiceClient/list_authz_extensions.php
+     *
+     * @param ListAuthzExtensionsRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listAuthzExtensions(ListAuthzExtensionsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListAuthzExtensions', $request, $callOptions);
     }
 
     /**
@@ -567,6 +707,35 @@ final class DepServiceClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('ListLbTrafficExtensions', $request, $callOptions);
+    }
+
+    /**
+     * Updates the parameters of the specified `AuthzExtension`
+     * resource.
+     *
+     * The async variant is {@see DepServiceClient::updateAuthzExtensionAsync()} .
+     *
+     * @example samples/V1/DepServiceClient/update_authz_extension.php
+     *
+     * @param UpdateAuthzExtensionRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateAuthzExtension(
+        UpdateAuthzExtensionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateAuthzExtension', $request, $callOptions)->wait();
     }
 
     /**

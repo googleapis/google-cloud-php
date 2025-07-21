@@ -17,55 +17,55 @@ class CustomField extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. The resource name of the `CustomField`.
-     * Format: `networks/{network_code}/customFields/{custom_field_id}`
+     * Format: `networks/{network_code}/customFields/{custom_field}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * Output only. Unique ID of the CustomField. This value is readonly and is
-     * assigned by Google.
+     * Output only. Unique ID of the CustomField. This attribute is assigned by
+     * Google.
      *
-     * Generated from protobuf field <code>int64 custom_field_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 custom_field_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $custom_field_id = 0;
+    protected $custom_field_id = null;
     /**
      * Required. Name of the CustomField. The max length is 127 characters.
      *
-     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $display_name = '';
+    protected $display_name = null;
     /**
      * Optional. A description of the custom field. The maximum length is 511
      * characters.
      *
-     * Generated from protobuf field <code>string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $description = '';
+    protected $description = null;
     /**
      * Output only. The status of the `CustomField`.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomFieldStatusEnum.CustomFieldStatus status = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomFieldStatusEnum.CustomFieldStatus status = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $status = 0;
+    protected $status = null;
     /**
      * Required. The type of entity the `CustomField` can be applied to.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomFieldEntityTypeEnum.CustomFieldEntityType entity_type = 7 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomFieldEntityTypeEnum.CustomFieldEntityType entity_type = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $entity_type = 0;
+    protected $entity_type = null;
     /**
      * Required. The data type of the `CustomField`.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType data_type = 8 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType data_type = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $data_type = 0;
+    protected $data_type = null;
     /**
      * Required. The visibility of the `CustomField`.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomFieldVisibilityEnum.CustomFieldVisibility visibility = 9 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomFieldVisibilityEnum.CustomFieldVisibility visibility = 9 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $visibility = 0;
+    protected $visibility = null;
     /**
      * Optional. The drop-down options for the `CustomField`.
      * Only applicable for `CustomField` with the drop-down data type.
@@ -82,10 +82,10 @@ class CustomField extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. The resource name of the `CustomField`.
-     *           Format: `networks/{network_code}/customFields/{custom_field_id}`
+     *           Format: `networks/{network_code}/customFields/{custom_field}`
      *     @type int|string $custom_field_id
-     *           Output only. Unique ID of the CustomField. This value is readonly and is
-     *           assigned by Google.
+     *           Output only. Unique ID of the CustomField. This attribute is assigned by
+     *           Google.
      *     @type string $display_name
      *           Required. Name of the CustomField. The max length is 127 characters.
      *     @type string $description
@@ -111,7 +111,7 @@ class CustomField extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The resource name of the `CustomField`.
-     * Format: `networks/{network_code}/customFields/{custom_field_id}`
+     * Format: `networks/{network_code}/customFields/{custom_field}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -123,7 +123,7 @@ class CustomField extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The resource name of the `CustomField`.
-     * Format: `networks/{network_code}/customFields/{custom_field_id}`
+     * Format: `networks/{network_code}/customFields/{custom_field}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -138,22 +138,32 @@ class CustomField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Unique ID of the CustomField. This value is readonly and is
-     * assigned by Google.
+     * Output only. Unique ID of the CustomField. This attribute is assigned by
+     * Google.
      *
-     * Generated from protobuf field <code>int64 custom_field_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 custom_field_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
      */
     public function getCustomFieldId()
     {
-        return $this->custom_field_id;
+        return isset($this->custom_field_id) ? $this->custom_field_id : 0;
+    }
+
+    public function hasCustomFieldId()
+    {
+        return isset($this->custom_field_id);
+    }
+
+    public function clearCustomFieldId()
+    {
+        unset($this->custom_field_id);
     }
 
     /**
-     * Output only. Unique ID of the CustomField. This value is readonly and is
-     * assigned by Google.
+     * Output only. Unique ID of the CustomField. This attribute is assigned by
+     * Google.
      *
-     * Generated from protobuf field <code>int64 custom_field_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 custom_field_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
      */
@@ -168,18 +178,28 @@ class CustomField extends \Google\Protobuf\Internal\Message
     /**
      * Required. Name of the CustomField. The max length is 127 characters.
      *
-     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDisplayName()
     {
-        return $this->display_name;
+        return isset($this->display_name) ? $this->display_name : '';
+    }
+
+    public function hasDisplayName()
+    {
+        return isset($this->display_name);
+    }
+
+    public function clearDisplayName()
+    {
+        unset($this->display_name);
     }
 
     /**
      * Required. Name of the CustomField. The max length is 127 characters.
      *
-     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -195,19 +215,29 @@ class CustomField extends \Google\Protobuf\Internal\Message
      * Optional. A description of the custom field. The maximum length is 511
      * characters.
      *
-     * Generated from protobuf field <code>string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * Optional. A description of the custom field. The maximum length is 511
      * characters.
      *
-     * Generated from protobuf field <code>string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -222,18 +252,28 @@ class CustomField extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The status of the `CustomField`.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomFieldStatusEnum.CustomFieldStatus status = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomFieldStatusEnum.CustomFieldStatus status = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : 0;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**
      * Output only. The status of the `CustomField`.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomFieldStatusEnum.CustomFieldStatus status = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomFieldStatusEnum.CustomFieldStatus status = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -248,18 +288,28 @@ class CustomField extends \Google\Protobuf\Internal\Message
     /**
      * Required. The type of entity the `CustomField` can be applied to.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomFieldEntityTypeEnum.CustomFieldEntityType entity_type = 7 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomFieldEntityTypeEnum.CustomFieldEntityType entity_type = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getEntityType()
     {
-        return $this->entity_type;
+        return isset($this->entity_type) ? $this->entity_type : 0;
+    }
+
+    public function hasEntityType()
+    {
+        return isset($this->entity_type);
+    }
+
+    public function clearEntityType()
+    {
+        unset($this->entity_type);
     }
 
     /**
      * Required. The type of entity the `CustomField` can be applied to.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomFieldEntityTypeEnum.CustomFieldEntityType entity_type = 7 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomFieldEntityTypeEnum.CustomFieldEntityType entity_type = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -274,18 +324,28 @@ class CustomField extends \Google\Protobuf\Internal\Message
     /**
      * Required. The data type of the `CustomField`.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType data_type = 8 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType data_type = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getDataType()
     {
-        return $this->data_type;
+        return isset($this->data_type) ? $this->data_type : 0;
+    }
+
+    public function hasDataType()
+    {
+        return isset($this->data_type);
+    }
+
+    public function clearDataType()
+    {
+        unset($this->data_type);
     }
 
     /**
      * Required. The data type of the `CustomField`.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType data_type = 8 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomFieldDataTypeEnum.CustomFieldDataType data_type = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -300,18 +360,28 @@ class CustomField extends \Google\Protobuf\Internal\Message
     /**
      * Required. The visibility of the `CustomField`.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomFieldVisibilityEnum.CustomFieldVisibility visibility = 9 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomFieldVisibilityEnum.CustomFieldVisibility visibility = 9 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getVisibility()
     {
-        return $this->visibility;
+        return isset($this->visibility) ? $this->visibility : 0;
+    }
+
+    public function hasVisibility()
+    {
+        return isset($this->visibility);
+    }
+
+    public function clearVisibility()
+    {
+        unset($this->visibility);
     }
 
     /**
      * Required. The visibility of the `CustomField`.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.CustomFieldVisibilityEnum.CustomFieldVisibility visibility = 9 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomFieldVisibilityEnum.CustomFieldVisibility visibility = 9 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */

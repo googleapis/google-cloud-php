@@ -26,9 +26,9 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     protected $project_id = '';
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster resides, or "-" for all zones. This field has been deprecated and
-     * replaced by the parent field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster resides, or "-" for all zones. This field has been
+     * deprecated and replaced by the parent field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @deprecated
@@ -48,9 +48,9 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      *                          number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *                          This field has been deprecated and replaced by the parent field.
      * @param string $zone      Deprecated. The name of the Google Compute Engine
-     *                          [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     *                          cluster resides, or "-" for all zones. This field has been deprecated and
-     *                          replaced by the parent field.
+     *                          [zone](https://cloud.google.com/compute/docs/zones#available)
+     *                          in which the cluster resides, or "-" for all zones. This field has been
+     *                          deprecated and replaced by the parent field.
      *
      * @return \Google\Cloud\Container\V1\ListClustersRequest
      *
@@ -90,9 +90,9 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      *           This field has been deprecated and replaced by the parent field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
-     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     *           cluster resides, or "-" for all zones. This field has been deprecated and
-     *           replaced by the parent field.
+     *           [zone](https://cloud.google.com/compute/docs/zones#available)
+     *           in which the cluster resides, or "-" for all zones. This field has been
+     *           deprecated and replaced by the parent field.
      *     @type string $parent
      *           The parent (project and location) where the clusters will be listed.
      *           Specified in the format `projects/&#42;&#47;locations/&#42;`.
@@ -142,9 +142,9 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster resides, or "-" for all zones. This field has been deprecated and
-     * replaced by the parent field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster resides, or "-" for all zones. This field has been
+     * deprecated and replaced by the parent field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @return string
@@ -160,9 +160,9 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     * cluster resides, or "-" for all zones. This field has been deprecated and
-     * replaced by the parent field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available)
+     * in which the cluster resides, or "-" for all zones. This field has been
+     * deprecated and replaced by the parent field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @param string $var

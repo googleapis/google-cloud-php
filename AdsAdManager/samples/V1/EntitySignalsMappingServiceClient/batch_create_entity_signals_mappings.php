@@ -33,30 +33,23 @@ use Google\ApiCore\ApiException;
 /**
  * API to batch create `EntitySignalsMapping` objects.
  *
- * @param string $formattedParent                                        The parent resource where `EntitySignalsMappings` will be
- *                                                                       created. Format: `networks/{network_code}` The parent field in the
- *                                                                       CreateEntitySignalsMappingRequest must match this field. Please see
- *                                                                       {@see EntitySignalsMappingServiceClient::networkName()} for help formatting this field.
- * @param string $formattedRequestsParent                                The parent resource where this EntitySignalsMapping will be
- *                                                                       created. Format: `networks/{network_code}`
- *                                                                       Please see {@see EntitySignalsMappingServiceClient::networkName()} for help formatting this field.
- * @param int    $requestsEntitySignalsMappingTaxonomyCategoryIdsElement The IDs of the categories that are associated with the
- *                                                                       referencing entity.
+ * @param string $formattedParent         The parent resource where `EntitySignalsMappings` will be
+ *                                        created. Format: `networks/{network_code}` The parent field in the
+ *                                        CreateEntitySignalsMappingRequest must match this field. Please see
+ *                                        {@see EntitySignalsMappingServiceClient::networkName()} for help formatting this field.
+ * @param string $formattedRequestsParent The parent resource where this EntitySignalsMapping will be
+ *                                        created. Format: `networks/{network_code}`
+ *                                        Please see {@see EntitySignalsMappingServiceClient::networkName()} for help formatting this field.
  */
 function batch_create_entity_signals_mappings_sample(
     string $formattedParent,
-    string $formattedRequestsParent,
-    int $requestsEntitySignalsMappingTaxonomyCategoryIdsElement
+    string $formattedRequestsParent
 ): void {
     // Create a client.
     $entitySignalsMappingServiceClient = new EntitySignalsMappingServiceClient();
 
     // Prepare the request message.
-    $requestsEntitySignalsMappingTaxonomyCategoryIds = [
-        $requestsEntitySignalsMappingTaxonomyCategoryIdsElement,
-    ];
-    $requestsEntitySignalsMapping = (new EntitySignalsMapping())
-        ->setTaxonomyCategoryIds($requestsEntitySignalsMappingTaxonomyCategoryIds);
+    $requestsEntitySignalsMapping = new EntitySignalsMapping();
     $createEntitySignalsMappingRequest = (new CreateEntitySignalsMappingRequest())
         ->setParent($formattedRequestsParent)
         ->setEntitySignalsMapping($requestsEntitySignalsMapping);
@@ -88,12 +81,7 @@ function callSample(): void
 {
     $formattedParent = EntitySignalsMappingServiceClient::networkName('[NETWORK_CODE]');
     $formattedRequestsParent = EntitySignalsMappingServiceClient::networkName('[NETWORK_CODE]');
-    $requestsEntitySignalsMappingTaxonomyCategoryIdsElement = 0;
 
-    batch_create_entity_signals_mappings_sample(
-        $formattedParent,
-        $formattedRequestsParent,
-        $requestsEntitySignalsMappingTaxonomyCategoryIdsElement
-    );
+    batch_create_entity_signals_mappings_sample($formattedParent, $formattedRequestsParent);
 }
 // [END admanager_v1_generated_EntitySignalsMappingService_BatchCreateEntitySignalsMappings_sync]

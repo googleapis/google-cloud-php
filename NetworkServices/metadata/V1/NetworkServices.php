@@ -18,6 +18,7 @@ class NetworkServices
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Cloud\Networkservices\V1\Common::initOnce();
         \GPBMetadata\Google\Cloud\Networkservices\V1\EndpointPolicy::initOnce();
+        \GPBMetadata\Google\Cloud\Networkservices\V1\Extensibility::initOnce();
         \GPBMetadata\Google\Cloud\Networkservices\V1\Gateway::initOnce();
         \GPBMetadata\Google\Cloud\Networkservices\V1\GrpcRoute::initOnce();
         \GPBMetadata\Google\Cloud\Networkservices\V1\HttpRoute::initOnce();
@@ -28,10 +29,11 @@ class NetworkServices
         \GPBMetadata\Google\Cloud\Networkservices\V1\TcpRoute::initOnce();
         \GPBMetadata\Google\Cloud\Networkservices\V1\TlsRoute::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
+        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         $pool->internalAddGeneratedFile(
             '
-”c
-6google/cloud/networkservices/v1/network_services.protogoogle.cloud.networkservices.v1google/api/client.proto,google/cloud/networkservices/v1/common.proto5google/cloud/networkservices/v1/endpoint_policy.proto-google/cloud/networkservices/v1/gateway.proto0google/cloud/networkservices/v1/grpc_route.proto0google/cloud/networkservices/v1/http_route.proto*google/cloud/networkservices/v1/mesh.proto0google/cloud/networkservices/v1/route_view.proto5google/cloud/networkservices/v1/service_binding.proto7google/cloud/networkservices/v1/service_lb_policy.proto/google/cloud/networkservices/v1/tcp_route.proto/google/cloud/networkservices/v1/tls_route.proto#google/longrunning/operations.proto2è[
+Àu
+6google/cloud/networkservices/v1/network_services.protogoogle.cloud.networkservices.v1google/api/client.proto,google/cloud/networkservices/v1/common.proto5google/cloud/networkservices/v1/endpoint_policy.proto3google/cloud/networkservices/v1/extensibility.proto-google/cloud/networkservices/v1/gateway.proto0google/cloud/networkservices/v1/grpc_route.proto0google/cloud/networkservices/v1/http_route.proto*google/cloud/networkservices/v1/mesh.proto0google/cloud/networkservices/v1/route_view.proto5google/cloud/networkservices/v1/service_binding.proto7google/cloud/networkservices/v1/service_lb_policy.proto/google/cloud/networkservices/v1/tcp_route.proto/google/cloud/networkservices/v1/tls_route.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto2Âm
 NetworkServicesÚ
 ListEndpointPolicies<.google.cloud.networkservices.v1.ListEndpointPoliciesRequest=.google.cloud.networkservices.v1.ListEndpointPoliciesResponse"EÚAparent‚Óä“64/v1/{parent=projects/*/locations/*}/endpointPoliciesÄ
 GetEndpointPolicy9.google.cloud.networkservices.v1.GetEndpointPolicyRequest/.google.cloud.networkservices.v1.EndpointPolicy"CÚAname‚Óä“64/v1/{name=projects/*/locations/*/endpointPolicies/*}µ
@@ -40,7 +42,23 @@ class NetworkServices
 UpdateEndpointPolicy<.google.cloud.networkservices.v1.UpdateEndpointPolicyRequest.google.longrunning.Operation"ÁÊAC
 EndpointPolicy1google.cloud.networkservices.v1.OperationMetadataÚAendpoint_policy,update_mask‚Óä“W2D/v1/{endpoint_policy.name=projects/*/locations/*/endpointPolicies/*}:endpoint_policy†
 DeleteEndpointPolicy<.google.cloud.networkservices.v1.DeleteEndpointPolicyRequest.google.longrunning.Operation"ÊAJ
-google.protobuf.Empty1google.cloud.networkservices.v1.OperationMetadataÚAname‚Óä“6*4/v1/{name=projects/*/locations/*/endpointPolicies/*}º
+google.protobuf.Empty1google.cloud.networkservices.v1.OperationMetadataÚAname‚Óä“6*4/v1/{name=projects/*/locations/*/endpointPolicies/*}æ
+ListWasmPluginVersions>.google.cloud.networkservices.v1.ListWasmPluginVersionsRequest?.google.cloud.networkservices.v1.ListWasmPluginVersionsResponse"KÚAparent‚Óä“<:/v1/{parent=projects/*/locations/*/wasmPlugins/*}/versionsÓ
+GetWasmPluginVersion<.google.cloud.networkservices.v1.GetWasmPluginVersionRequest2.google.cloud.networkservices.v1.WasmPluginVersion"IÚAname‚Óä“<:/v1/{name=projects/*/locations/*/wasmPlugins/*/versions/*}Ð
+CreateWasmPluginVersion?.google.cloud.networkservices.v1.CreateWasmPluginVersionRequest.google.longrunning.Operation"ÔÊAF
+WasmPluginVersion1google.cloud.networkservices.v1.OperationMetadataÚA1parent,wasm_plugin_version,wasm_plugin_version_id‚Óä“Q":/v1/{parent=projects/*/locations/*/wasmPlugins/*}/versions:wasm_plugin_version’
+DeleteWasmPluginVersion?.google.cloud.networkservices.v1.DeleteWasmPluginVersionRequest.google.longrunning.Operation"–ÊAJ
+google.protobuf.Empty1google.cloud.networkservices.v1.OperationMetadataÚAname‚Óä“<*:/v1/{name=projects/*/locations/*/wasmPlugins/*/versions/*}Æ
+ListWasmPlugins7.google.cloud.networkservices.v1.ListWasmPluginsRequest8.google.cloud.networkservices.v1.ListWasmPluginsResponse"@ÚAparent‚Óä“1//v1/{parent=projects/*/locations/*}/wasmPlugins³
+GetWasmPlugin5.google.cloud.networkservices.v1.GetWasmPluginRequest+.google.cloud.networkservices.v1.WasmPlugin">ÚAname‚Óä“1//v1/{name=projects/*/locations/*/wasmPlugins/*}˜
+CreateWasmPlugin8.google.cloud.networkservices.v1.CreateWasmPluginRequest.google.longrunning.Operation"ªÊA?
+
+WasmPlugin1google.cloud.networkservices.v1.OperationMetadataÚA!parent,wasm_plugin,wasm_plugin_id‚Óä“>"//v1/{parent=projects/*/locations/*}/wasmPlugins:wasm_pluginš
+UpdateWasmPlugin8.google.cloud.networkservices.v1.UpdateWasmPluginRequest.google.longrunning.Operation"¬ÊA?
+
+WasmPlugin1google.cloud.networkservices.v1.OperationMetadataÚAwasm_plugin,update_mask‚Óä“J2;/v1/{wasm_plugin.name=projects/*/locations/*/wasmPlugins/*}:wasm_pluginù
+DeleteWasmPlugin8.google.cloud.networkservices.v1.DeleteWasmPluginRequest.google.longrunning.Operation"‹ÊAJ
+google.protobuf.Empty1google.cloud.networkservices.v1.OperationMetadataÚAname‚Óä“1*//v1/{name=projects/*/locations/*/wasmPlugins/*}º
 ListGateways4.google.cloud.networkservices.v1.ListGatewaysRequest5.google.cloud.networkservices.v1.ListGatewaysResponse"=ÚAparent‚Óä“.,/v1/{parent=projects/*/locations/*}/gateways§
 
 GetGateway2.google.cloud.networkservices.v1.GetGatewayRequest(.google.cloud.networkservices.v1.Gateway";ÚAname‚Óä“.,/v1/{name=projects/*/locations/*/gateways/*}€
