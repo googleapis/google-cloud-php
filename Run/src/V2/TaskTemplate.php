@@ -75,6 +75,12 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.run.v2.NodeSelector node_selector = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $node_selector = null;
+    /**
+     * Optional. True if GPU zonal redundancy is disabled on this task template.
+     *
+     * Generated from protobuf field <code>optional bool gpu_zonal_redundancy_disabled = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $gpu_zonal_redundancy_disabled = null;
     protected $retries;
 
     /**
@@ -113,6 +119,8 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/run/docs/configuring/connecting-vpc.
      *     @type \Google\Cloud\Run\V2\NodeSelector $node_selector
      *           Optional. The node selector for the task template.
+     *     @type bool $gpu_zonal_redundancy_disabled
+     *           Optional. True if GPU zonal redundancy is disabled on this task template.
      * }
      */
     public function __construct($data = NULL) {
@@ -409,6 +417,42 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\NodeSelector::class);
         $this->node_selector = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. True if GPU zonal redundancy is disabled on this task template.
+     *
+     * Generated from protobuf field <code>optional bool gpu_zonal_redundancy_disabled = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getGpuZonalRedundancyDisabled()
+    {
+        return isset($this->gpu_zonal_redundancy_disabled) ? $this->gpu_zonal_redundancy_disabled : false;
+    }
+
+    public function hasGpuZonalRedundancyDisabled()
+    {
+        return isset($this->gpu_zonal_redundancy_disabled);
+    }
+
+    public function clearGpuZonalRedundancyDisabled()
+    {
+        unset($this->gpu_zonal_redundancy_disabled);
+    }
+
+    /**
+     * Optional. True if GPU zonal redundancy is disabled on this task template.
+     *
+     * Generated from protobuf field <code>optional bool gpu_zonal_redundancy_disabled = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setGpuZonalRedundancyDisabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->gpu_zonal_redundancy_disabled = $var;
 
         return $this;
     }

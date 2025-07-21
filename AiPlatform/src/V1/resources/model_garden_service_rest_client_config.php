@@ -23,6 +23,18 @@
 return [
     'interfaces' => [
         'google.cloud.aiplatform.v1.ModelGardenService' => [
+            'Deploy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{destination=projects/*/locations/*}:deploy',
+                'body' => '*',
+                'placeholders' => [
+                    'destination' => [
+                        'getters' => [
+                            'getDestination',
+                        ],
+                    ],
+                ],
+            ],
             'GetPublisherModel' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=publishers/*/models/*}',

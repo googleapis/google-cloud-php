@@ -92,8 +92,8 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
     protected $boot_disk_kms_key = '';
     /**
      * The image type to use for NAP created node. Please see
-     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
-     * available image types.
+     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images
+     * for available image types.
      *
      * Generated from protobuf field <code>string image_type = 10;</code>
      */
@@ -150,8 +150,8 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/compute/docs/disks/customer-managed-encryption
      *     @type string $image_type
      *           The image type to use for NAP created node. Please see
-     *           https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
-     *           available image types.
+     *           https://cloud.google.com/kubernetes-engine/docs/concepts/node-images
+     *           for available image types.
      *     @type bool $insecure_kubelet_readonly_port_enabled
      *           DEPRECATED. Use NodePoolAutoConfig.NodeKubeletConfig instead.
      * }
@@ -471,8 +471,8 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
 
     /**
      * The image type to use for NAP created node. Please see
-     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
-     * available image types.
+     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images
+     * for available image types.
      *
      * Generated from protobuf field <code>string image_type = 10;</code>
      * @return string
@@ -484,8 +484,8 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
 
     /**
      * The image type to use for NAP created node. Please see
-     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
-     * available image types.
+     * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images
+     * for available image types.
      *
      * Generated from protobuf field <code>string image_type = 10;</code>
      * @param string $var

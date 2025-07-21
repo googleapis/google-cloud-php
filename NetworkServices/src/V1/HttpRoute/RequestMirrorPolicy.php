@@ -13,6 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * destination service. The proxy does not wait for responses from the
  * shadow service. Prior to sending traffic to the shadow service, the
  * host/authority header is suffixed with -shadow.
+ * Mirroring is currently not supported for Cloud Run destinations.
  *
  * Generated from protobuf message <code>google.cloud.networkservices.v1.HttpRoute.RequestMirrorPolicy</code>
  */
@@ -25,6 +26,13 @@ class RequestMirrorPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.networkservices.v1.HttpRoute.Destination destination = 1;</code>
      */
     protected $destination = null;
+    /**
+     * Optional. The percentage of requests to get mirrored to the desired
+     * destination.
+     *
+     * Generated from protobuf field <code>float mirror_percent = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $mirror_percent = 0.0;
 
     /**
      * Constructor.
@@ -35,6 +43,9 @@ class RequestMirrorPolicy extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\NetworkServices\V1\HttpRoute\Destination $destination
      *           The destination the requests will be mirrored to. The weight of the
      *           destination will be ignored.
+     *     @type float $mirror_percent
+     *           Optional. The percentage of requests to get mirrored to the desired
+     *           destination.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,6 +87,34 @@ class RequestMirrorPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkServices\V1\HttpRoute\Destination::class);
         $this->destination = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The percentage of requests to get mirrored to the desired
+     * destination.
+     *
+     * Generated from protobuf field <code>float mirror_percent = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return float
+     */
+    public function getMirrorPercent()
+    {
+        return $this->mirror_percent;
+    }
+
+    /**
+     * Optional. The percentage of requests to get mirrored to the desired
+     * destination.
+     *
+     * Generated from protobuf field <code>float mirror_percent = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setMirrorPercent($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->mirror_percent = $var;
 
         return $this;
     }

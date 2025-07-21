@@ -33,20 +33,23 @@ use Google\Rpc\Status;
 /**
  * Updates the parameters of a single instance.
  *
- * @param string $instanceFilesystem       Immutable. The filesystem name for this instance. This name is
- *                                         used by client-side tools, including when mounting the instance. Must be
- *                                         eight characters or less and can only contain letters and numbers.
- * @param int    $instanceCapacityGib      The storage capacity of the instance in gibibytes (GiB). Allowed
- *                                         values are from `18000` to `936000`, in increments of 9000.
- * @param string $formattedInstanceNetwork Immutable. The full name of the VPC network to which the instance
- *                                         is connected. Must be in the format
- *                                         `projects/{project_id}/global/networks/{network_name}`. Please see
- *                                         {@see LustreClient::networkName()} for help formatting this field.
+ * @param string $instanceFilesystem               Immutable. The filesystem name for this instance. This name is
+ *                                                 used by client-side tools, including when mounting the instance. Must be
+ *                                                 eight characters or less and can only contain letters and numbers.
+ * @param int    $instanceCapacityGib              The storage capacity of the instance in gibibytes (GiB). Allowed
+ *                                                 values are from `18000` to `954000`, in increments of 9000.
+ * @param string $formattedInstanceNetwork         Immutable. The full name of the VPC network to which the instance
+ *                                                 is connected. Must be in the format
+ *                                                 `projects/{project_id}/global/networks/{network_name}`. Please see
+ *                                                 {@see LustreClient::networkName()} for help formatting this field.
+ * @param int    $instancePerUnitStorageThroughput The throughput of the instance in MB/s/TiB.
+ *                                                 Valid values are 125, 250, 500, 1000.
  */
 function update_instance_sample(
     string $instanceFilesystem,
     int $instanceCapacityGib,
-    string $formattedInstanceNetwork
+    string $formattedInstanceNetwork,
+    int $instancePerUnitStorageThroughput
 ): void {
     // Create a client.
     $lustreClient = new LustreClient();
@@ -55,7 +58,8 @@ function update_instance_sample(
     $instance = (new Instance())
         ->setFilesystem($instanceFilesystem)
         ->setCapacityGib($instanceCapacityGib)
-        ->setNetwork($formattedInstanceNetwork);
+        ->setNetwork($formattedInstanceNetwork)
+        ->setPerUnitStorageThroughput($instancePerUnitStorageThroughput);
     $request = (new UpdateInstanceRequest())
         ->setInstance($instance);
 
@@ -93,7 +97,13 @@ function callSample(): void
     $instanceFilesystem = '[FILESYSTEM]';
     $instanceCapacityGib = 0;
     $formattedInstanceNetwork = LustreClient::networkName('[PROJECT]', '[NETWORK]');
+    $instancePerUnitStorageThroughput = 0;
 
-    update_instance_sample($instanceFilesystem, $instanceCapacityGib, $formattedInstanceNetwork);
+    update_instance_sample(
+        $instanceFilesystem,
+        $instanceCapacityGib,
+        $formattedInstanceNetwork,
+        $instancePerUnitStorageThroughput
+    );
 }
 // [END lustre_v1_generated_Lustre_UpdateInstance_sync]

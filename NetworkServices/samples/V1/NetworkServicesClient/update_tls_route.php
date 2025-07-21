@@ -37,13 +37,10 @@ use Google\Rpc\Status;
 /**
  * Updates the parameters of a single TlsRoute.
  *
- * @param string $tlsRouteName                                        Name of the TlsRoute resource. It matches pattern
- *                                                                    `projects/&#42;/locations/global/tlsRoutes/tls_route_name>`.
  * @param string $formattedTlsRouteRulesActionDestinationsServiceName The URL of a BackendService to route traffic to. Please see
  *                                                                    {@see NetworkServicesClient::backendServiceName()} for help formatting this field.
  */
 function update_tls_route_sample(
-    string $tlsRouteName,
     string $formattedTlsRouteRulesActionDestinationsServiceName
 ): void {
     // Create a client.
@@ -61,7 +58,6 @@ function update_tls_route_sample(
         ->setAction($tlsRouteRulesAction);
     $tlsRouteRules = [$routeRule,];
     $tlsRoute = (new TlsRoute())
-        ->setName($tlsRouteName)
         ->setRules($tlsRouteRules);
     $request = (new UpdateTlsRouteRequest())
         ->setTlsRoute($tlsRoute);
@@ -97,13 +93,12 @@ function update_tls_route_sample(
  */
 function callSample(): void
 {
-    $tlsRouteName = '[NAME]';
     $formattedTlsRouteRulesActionDestinationsServiceName = NetworkServicesClient::backendServiceName(
         '[PROJECT]',
         '[LOCATION]',
         '[BACKEND_SERVICE]'
     );
 
-    update_tls_route_sample($tlsRouteName, $formattedTlsRouteRulesActionDestinationsServiceName);
+    update_tls_route_sample($formattedTlsRouteRulesActionDestinationsServiceName);
 }
 // [END networkservices_v1_generated_NetworkServices_UpdateTlsRoute_sync]

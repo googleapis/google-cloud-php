@@ -128,6 +128,17 @@ class Secret extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.CustomerManagedEncryption customer_managed_encryption = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $customer_managed_encryption = null;
+    /**
+     * Optional. Input only. Immutable. Mapping of Tag keys/values directly bound
+     * to this resource. For example:
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing"
+     * Tags are used to organize and group resources.
+     * Tags can be used to control policy evaluation for the resource.
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 16 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tags;
     protected $expiration;
 
     /**
@@ -208,6 +219,13 @@ class Secret extends \Google\Protobuf\Internal\Message
      *           [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] added
      *           afterwards. They do not apply retroactively to existing
      *           [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
+     *     @type array|\Google\Protobuf\Internal\MapField $tags
+     *           Optional. Input only. Immutable. Mapping of Tag keys/values directly bound
+     *           to this resource. For example:
+     *             "123/environment": "production",
+     *             "123/costCenter": "marketing"
+     *           Tags are used to organize and group resources.
+     *           Tags can be used to control policy evaluation for the resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -701,6 +719,42 @@ class Secret extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecretManager\V1\CustomerManagedEncryption::class);
         $this->customer_managed_encryption = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Mapping of Tag keys/values directly bound
+     * to this resource. For example:
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing"
+     * Tags are used to organize and group resources.
+     * Tags can be used to control policy evaluation for the resource.
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 16 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Mapping of Tag keys/values directly bound
+     * to this resource. For example:
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing"
+     * Tags are used to organize and group resources.
+     * Tags can be used to control policy evaluation for the resource.
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 16 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setTags($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->tags = $arr;
 
         return $this;
     }

@@ -34,15 +34,16 @@ use Google\Shopping\Merchant\Products\V1beta\DeleteProductInputRequest;
  * minutes before the processed product can be retrieved.
  *
  * @param string $formattedName The name of the product input resource to delete.
- *                              Format: accounts/{account}/productInputs/{product}
+ *                              Format: `accounts/{account}/productInputs/{product}`
  *                              where the last section `product` consists of 4 parts:
- *                              channel~content_language~feed_label~offer_id
+ *                              `channel~content_language~feed_label~offer_id`
  *                              example for product name is
- *                              "accounts/123/productInputs/online~en~US~sku123"
- *                              Please see {@see ProductInputsServiceClient::productInputName()} for help formatting this field.
+ *                              `accounts/123/productInputs/online~en~US~sku123`. Please see
+ *                              {@see ProductInputsServiceClient::productInputName()} for help formatting this field.
  * @param string $dataSource    The primary or supplemental data source from which the product
  *                              input should be deleted. Format:
- *                              `accounts/{account}/dataSources/{datasource}`.
+ *                              `accounts/{account}/dataSources/{datasource}`. For example,
+ *                              `accounts/123456/dataSources/104628`.
  */
 function delete_product_input_sample(string $formattedName, string $dataSource): void
 {

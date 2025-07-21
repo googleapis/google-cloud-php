@@ -148,9 +148,13 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name2 = 'name2-1052831874';
         $gcsBucket = 'gcsBucket-1720393710';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new CertificateAuthority();
         $expectedResponse->setName($name2);
         $expectedResponse->setGcsBucket($gcsBucket);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -544,9 +548,13 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $gcsBucket = 'gcsBucket-1720393710';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new CertificateAuthority();
         $expectedResponse->setName($name);
         $expectedResponse->setGcsBucket($gcsBucket);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -979,9 +987,13 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name2 = 'name2-1052831874';
         $gcsBucket = 'gcsBucket-1720393710';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new CertificateAuthority();
         $expectedResponse->setName($name2);
         $expectedResponse->setGcsBucket($gcsBucket);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1243,9 +1255,13 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name2 = 'name2-1052831874';
         $gcsBucket = 'gcsBucket-1720393710';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new CertificateAuthority();
         $expectedResponse->setName($name2);
         $expectedResponse->setGcsBucket($gcsBucket);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1382,9 +1398,13 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name2 = 'name2-1052831874';
         $gcsBucket = 'gcsBucket-1720393710';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new CertificateAuthority();
         $expectedResponse->setName($name2);
         $expectedResponse->setGcsBucket($gcsBucket);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1794,9 +1814,13 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $gcsBucket = 'gcsBucket-1720393710';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new CertificateAuthority();
         $expectedResponse->setName($name2);
         $expectedResponse->setGcsBucket($gcsBucket);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->certificateAuthorityName(
@@ -2504,9 +2528,13 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name2 = 'name2-1052831874';
         $gcsBucket = 'gcsBucket-1720393710';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new CertificateAuthority();
         $expectedResponse->setName($name2);
         $expectedResponse->setGcsBucket($gcsBucket);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2862,9 +2890,13 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $gcsBucket = 'gcsBucket-1720393710';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new CertificateAuthority();
         $expectedResponse->setName($name);
         $expectedResponse->setGcsBucket($gcsBucket);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -3636,9 +3668,13 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name2 = 'name2-1052831874';
         $gcsBucket = 'gcsBucket-1720393710';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new CertificateAuthority();
         $expectedResponse->setName($name2);
         $expectedResponse->setGcsBucket($gcsBucket);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

@@ -81,6 +81,8 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
      *           A snapshot of a CalculatedMetric resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\ReportingDataAnnotation $reporting_data_annotation
      *           A snapshot of a ReportingDataAnnotation resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\SubpropertySyncConfig $subproperty_sync_config
+     *           A snapshot of a SubpropertySyncConfig resource in change history.
      * }
      */
     public function __construct($data = NULL) {
@@ -927,6 +929,37 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\ReportingDataAnnotation::class);
         $this->writeOneof(32, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of a SubpropertySyncConfig resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.SubpropertySyncConfig subproperty_sync_config = 33;</code>
+     * @return \Google\Analytics\Admin\V1alpha\SubpropertySyncConfig|null
+     */
+    public function getSubpropertySyncConfig()
+    {
+        return $this->readOneof(33);
+    }
+
+    public function hasSubpropertySyncConfig()
+    {
+        return $this->hasOneof(33);
+    }
+
+    /**
+     * A snapshot of a SubpropertySyncConfig resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.SubpropertySyncConfig subproperty_sync_config = 33;</code>
+     * @param \Google\Analytics\Admin\V1alpha\SubpropertySyncConfig $var
+     * @return $this
+     */
+    public function setSubpropertySyncConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\SubpropertySyncConfig::class);
+        $this->writeOneof(33, $var);
 
         return $this;
     }

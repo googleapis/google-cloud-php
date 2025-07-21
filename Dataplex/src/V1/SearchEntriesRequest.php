@@ -62,6 +62,13 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string scope = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $scope = '';
+    /**
+     * Optional. Specifies whether the search should understand the meaning and
+     * intent behind the query, rather than just matching keywords.
+     *
+     * Generated from protobuf field <code>bool semantic_search = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $semantic_search = false;
 
     /**
      * @param string $name  Required. The project to which the request should be attributed in the
@@ -113,6 +120,9 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
      *           either be `organizations/<org_id>` or `projects/<project_ref>`. If it is
      *           unspecified, it defaults to the organization where the project provided in
      *           `name` is located.
+     *     @type bool $semantic_search
+     *           Optional. Specifies whether the search should understand the meaning and
+     *           intent behind the query, rather than just matching keywords.
      * }
      */
     public function __construct($data = NULL) {
@@ -298,6 +308,34 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->scope = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies whether the search should understand the meaning and
+     * intent behind the query, rather than just matching keywords.
+     *
+     * Generated from protobuf field <code>bool semantic_search = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getSemanticSearch()
+    {
+        return $this->semantic_search;
+    }
+
+    /**
+     * Optional. Specifies whether the search should understand the meaning and
+     * intent behind the query, rather than just matching keywords.
+     *
+     * Generated from protobuf field <code>bool semantic_search = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSemanticSearch($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->semantic_search = $var;
 
         return $this;
     }

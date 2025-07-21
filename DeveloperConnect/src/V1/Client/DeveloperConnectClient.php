@@ -34,11 +34,18 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\DeveloperConnect\V1\AccountConnector;
 use Google\Cloud\DeveloperConnect\V1\Connection;
+use Google\Cloud\DeveloperConnect\V1\CreateAccountConnectorRequest;
 use Google\Cloud\DeveloperConnect\V1\CreateConnectionRequest;
 use Google\Cloud\DeveloperConnect\V1\CreateGitRepositoryLinkRequest;
+use Google\Cloud\DeveloperConnect\V1\DeleteAccountConnectorRequest;
 use Google\Cloud\DeveloperConnect\V1\DeleteConnectionRequest;
 use Google\Cloud\DeveloperConnect\V1\DeleteGitRepositoryLinkRequest;
+use Google\Cloud\DeveloperConnect\V1\DeleteSelfRequest;
+use Google\Cloud\DeveloperConnect\V1\DeleteUserRequest;
+use Google\Cloud\DeveloperConnect\V1\FetchAccessTokenRequest;
+use Google\Cloud\DeveloperConnect\V1\FetchAccessTokenResponse;
 use Google\Cloud\DeveloperConnect\V1\FetchGitHubInstallationsRequest;
 use Google\Cloud\DeveloperConnect\V1\FetchGitHubInstallationsResponse;
 use Google\Cloud\DeveloperConnect\V1\FetchGitRefsRequest;
@@ -47,12 +54,18 @@ use Google\Cloud\DeveloperConnect\V1\FetchReadTokenRequest;
 use Google\Cloud\DeveloperConnect\V1\FetchReadTokenResponse;
 use Google\Cloud\DeveloperConnect\V1\FetchReadWriteTokenRequest;
 use Google\Cloud\DeveloperConnect\V1\FetchReadWriteTokenResponse;
+use Google\Cloud\DeveloperConnect\V1\FetchSelfRequest;
+use Google\Cloud\DeveloperConnect\V1\GetAccountConnectorRequest;
 use Google\Cloud\DeveloperConnect\V1\GetConnectionRequest;
 use Google\Cloud\DeveloperConnect\V1\GetGitRepositoryLinkRequest;
 use Google\Cloud\DeveloperConnect\V1\GitRepositoryLink;
+use Google\Cloud\DeveloperConnect\V1\ListAccountConnectorsRequest;
 use Google\Cloud\DeveloperConnect\V1\ListConnectionsRequest;
 use Google\Cloud\DeveloperConnect\V1\ListGitRepositoryLinksRequest;
+use Google\Cloud\DeveloperConnect\V1\ListUsersRequest;
+use Google\Cloud\DeveloperConnect\V1\UpdateAccountConnectorRequest;
 use Google\Cloud\DeveloperConnect\V1\UpdateConnectionRequest;
+use Google\Cloud\DeveloperConnect\V1\User;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
@@ -72,19 +85,29 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<OperationResponse> createAccountConnectorAsync(CreateAccountConnectorRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createConnectionAsync(CreateConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createGitRepositoryLinkAsync(CreateGitRepositoryLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAccountConnectorAsync(DeleteAccountConnectorRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteConnectionAsync(DeleteConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteGitRepositoryLinkAsync(DeleteGitRepositoryLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteSelfAsync(DeleteSelfRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteUserAsync(DeleteUserRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FetchAccessTokenResponse> fetchAccessTokenAsync(FetchAccessTokenRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<FetchGitHubInstallationsResponse> fetchGitHubInstallationsAsync(FetchGitHubInstallationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> fetchGitRefsAsync(FetchGitRefsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> fetchLinkableGitRepositoriesAsync(FetchLinkableGitRepositoriesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<FetchReadTokenResponse> fetchReadTokenAsync(FetchReadTokenRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<FetchReadWriteTokenResponse> fetchReadWriteTokenAsync(FetchReadWriteTokenRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<User> fetchSelfAsync(FetchSelfRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AccountConnector> getAccountConnectorAsync(GetAccountConnectorRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Connection> getConnectionAsync(GetConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GitRepositoryLink> getGitRepositoryLinkAsync(GetGitRepositoryLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAccountConnectorsAsync(ListAccountConnectorsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listConnectionsAsync(ListConnectionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listGitRepositoryLinksAsync(ListGitRepositoryLinksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listUsersAsync(ListUsersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAccountConnectorAsync(UpdateAccountConnectorRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateConnectionAsync(UpdateConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -185,6 +208,25 @@ final class DeveloperConnectClient
         }
 
         return new OperationsClient($options);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * account_connector resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $accountConnector
+     *
+     * @return string The formatted account_connector resource.
+     */
+    public static function accountConnectorName(string $project, string $location, string $accountConnector): string
+    {
+        return self::getPathTemplate('accountConnector')->render([
+            'project' => $project,
+            'location' => $location,
+            'account_connector' => $accountConnector,
+        ]);
     }
 
     /**
@@ -310,15 +352,38 @@ final class DeveloperConnectClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a user
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $accountConnector
+     * @param string $user
+     *
+     * @return string The formatted user resource.
+     */
+    public static function userName(string $project, string $location, string $accountConnector, string $user): string
+    {
+        return self::getPathTemplate('user')->render([
+            'project' => $project,
+            'location' => $location,
+            'account_connector' => $accountConnector,
+            'user' => $user,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - accountConnector: projects/{project}/locations/{location}/accountConnectors/{account_connector}
      * - connection: projects/{project}/locations/{location}/connections/{connection}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - gitRepositoryLink: projects/{project}/locations/{location}/connections/{connection}/gitRepositoryLinks/{git_repository_link}
      * - location: projects/{project}/locations/{location}
      * - secretVersion: projects/{project}/secrets/{secret}/versions/{secret_version}
      * - service: projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}
+     * - user: projects/{project}/locations/{location}/accountConnectors/{account_connector}/users/{user}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -420,6 +485,35 @@ final class DeveloperConnectClient
     }
 
     /**
+     * Creates a new AccountConnector in a given project and location.
+     *
+     * The async variant is
+     * {@see DeveloperConnectClient::createAccountConnectorAsync()} .
+     *
+     * @example samples/V1/DeveloperConnectClient/create_account_connector.php
+     *
+     * @param CreateAccountConnectorRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createAccountConnector(
+        CreateAccountConnectorRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateAccountConnector', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new Connection in a given project and location.
      *
      * The async variant is {@see DeveloperConnectClient::createConnectionAsync()} .
@@ -479,6 +573,35 @@ final class DeveloperConnectClient
     }
 
     /**
+     * Deletes a single AccountConnector.
+     *
+     * The async variant is
+     * {@see DeveloperConnectClient::deleteAccountConnectorAsync()} .
+     *
+     * @example samples/V1/DeveloperConnectClient/delete_account_connector.php
+     *
+     * @param DeleteAccountConnectorRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteAccountConnector(
+        DeleteAccountConnectorRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteAccountConnector', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single Connection.
      *
      * The async variant is {@see DeveloperConnectClient::deleteConnectionAsync()} .
@@ -531,6 +654,86 @@ final class DeveloperConnectClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('DeleteGitRepositoryLink', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Delete the User based on the user credentials.
+     *
+     * The async variant is {@see DeveloperConnectClient::deleteSelfAsync()} .
+     *
+     * @example samples/V1/DeveloperConnectClient/delete_self.php
+     *
+     * @param DeleteSelfRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteSelf(DeleteSelfRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteSelf', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single User.
+     *
+     * The async variant is {@see DeveloperConnectClient::deleteUserAsync()} .
+     *
+     * @example samples/V1/DeveloperConnectClient/delete_user.php
+     *
+     * @param DeleteUserRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteUser(DeleteUserRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteUser', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetches OAuth access token based on end user credentials.
+     *
+     * The async variant is {@see DeveloperConnectClient::fetchAccessTokenAsync()} .
+     *
+     * @example samples/V1/DeveloperConnectClient/fetch_access_token.php
+     *
+     * @param FetchAccessTokenRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return FetchAccessTokenResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function fetchAccessToken(
+        FetchAccessTokenRequest $request,
+        array $callOptions = []
+    ): FetchAccessTokenResponse {
+        return $this->startApiCall('FetchAccessToken', $request, $callOptions)->wait();
     }
 
     /**
@@ -676,6 +879,58 @@ final class DeveloperConnectClient
     }
 
     /**
+     * Fetch the User based on the user credentials.
+     *
+     * The async variant is {@see DeveloperConnectClient::fetchSelfAsync()} .
+     *
+     * @example samples/V1/DeveloperConnectClient/fetch_self.php
+     *
+     * @param FetchSelfRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return User
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function fetchSelf(FetchSelfRequest $request, array $callOptions = []): User
+    {
+        return $this->startApiCall('FetchSelf', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single AccountConnector.
+     *
+     * The async variant is {@see DeveloperConnectClient::getAccountConnectorAsync()} .
+     *
+     * @example samples/V1/DeveloperConnectClient/get_account_connector.php
+     *
+     * @param GetAccountConnectorRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AccountConnector
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAccountConnector(GetAccountConnectorRequest $request, array $callOptions = []): AccountConnector
+    {
+        return $this->startApiCall('GetAccountConnector', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets details of a single Connection.
      *
      * The async variant is {@see DeveloperConnectClient::getConnectionAsync()} .
@@ -731,6 +986,35 @@ final class DeveloperConnectClient
     }
 
     /**
+     * Lists AccountConnectors in a given project and location.
+     *
+     * The async variant is {@see DeveloperConnectClient::listAccountConnectorsAsync()}
+     * .
+     *
+     * @example samples/V1/DeveloperConnectClient/list_account_connectors.php
+     *
+     * @param ListAccountConnectorsRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listAccountConnectors(
+        ListAccountConnectorsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListAccountConnectors', $request, $callOptions);
+    }
+
+    /**
      * Lists Connections in a given project and location.
      *
      * The async variant is {@see DeveloperConnectClient::listConnectionsAsync()} .
@@ -783,6 +1067,61 @@ final class DeveloperConnectClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('ListGitRepositoryLinks', $request, $callOptions);
+    }
+
+    /**
+     * Lists Users in a given project, location, and account_connector.
+     *
+     * The async variant is {@see DeveloperConnectClient::listUsersAsync()} .
+     *
+     * @example samples/V1/DeveloperConnectClient/list_users.php
+     *
+     * @param ListUsersRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listUsers(ListUsersRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListUsers', $request, $callOptions);
+    }
+
+    /**
+     * Updates the parameters of a single AccountConnector.
+     *
+     * The async variant is
+     * {@see DeveloperConnectClient::updateAccountConnectorAsync()} .
+     *
+     * @example samples/V1/DeveloperConnectClient/update_account_connector.php
+     *
+     * @param UpdateAccountConnectorRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateAccountConnector(
+        UpdateAccountConnectorRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateAccountConnector', $request, $callOptions)->wait();
     }
 
     /**

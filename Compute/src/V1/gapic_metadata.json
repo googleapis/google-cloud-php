@@ -319,6 +319,11 @@
                                 "bulkInsert"
                             ]
                         },
+                        "BulkSetLabels": {
+                            "methods": [
+                                "bulkSetLabels"
+                            ]
+                        },
                         "CreateSnapshot": {
                             "methods": [
                                 "createSnapshot"
@@ -1558,6 +1563,60 @@
                 }
             }
         },
+        "InterconnectAttachmentGroups": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "InterconnectAttachmentGroupsGapicClient",
+                    "rpcs": {
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "GetOperationalStatus": {
+                            "methods": [
+                                "getOperationalStatus"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "Patch": {
+                            "methods": [
+                                "patch"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "InterconnectAttachments": {
             "clients": {
                 "grpc": {
@@ -1596,6 +1655,65 @@
                         "SetLabels": {
                             "methods": [
                                 "setLabels"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "InterconnectGroups": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "InterconnectGroupsGapicClient",
+                    "rpcs": {
+                        "CreateMembers": {
+                            "methods": [
+                                "createMembers"
+                            ]
+                        },
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "GetOperationalStatus": {
+                            "methods": [
+                                "getOperationalStatus"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "Patch": {
+                            "methods": [
+                                "patch"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
                             ]
                         }
                     }
@@ -1746,6 +1864,11 @@
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
+                            ]
+                        },
+                        "Update": {
+                            "methods": [
+                                "update"
                             ]
                         }
                     }
@@ -3621,6 +3744,30 @@
             "clients": {
                 "grpc": {
                     "libraryClient": "ReservationBlocksGapicClient",
+                    "rpcs": {
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "PerformMaintenance": {
+                            "methods": [
+                                "performMaintenance"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ReservationSubBlocks": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ReservationSubBlocksGapicClient",
                     "rpcs": {
                         "Get": {
                             "methods": [

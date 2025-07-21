@@ -29,36 +29,35 @@ class Placement extends \Google\Protobuf\Internal\Message
      */
     protected $placement_id = 0;
     /**
-     * Required. The display name of the placement. Its maximum length is 255
-     * characters.
+     * Required. The display name of the placement. This attribute has a maximum
+     * length of 255 characters.
      *
-     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $display_name = '';
+    protected $display_name = null;
     /**
-     * Optional. A description of the Placement. This value is optional and its
-     * maximum length is 65,535 characters.
+     * Optional. A description of the Placement. This attribute has a maximum
+     * length of 65,535 characters.
      *
-     * Generated from protobuf field <code>string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $description = '';
+    protected $description = null;
     /**
      * Output only. A string used to uniquely identify the Placement for purposes
-     * of serving the ad. This attribute is read-only and is assigned by Google
-     * when a placement is created.
+     * of serving the ad. This attribute is assigned by Google.
      *
-     * Generated from protobuf field <code>string placement_code = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string placement_code = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $placement_code = '';
+    protected $placement_code = null;
     /**
-     * Output only. The status of the Placement. This attribute is read-only.
+     * Output only. The status of the Placement.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.PlacementStatusEnum.PlacementStatus status = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.PlacementStatusEnum.PlacementStatus status = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $status = 0;
+    protected $status = null;
     /**
      * Optional. The resource names of AdUnits that constitute the Placement.
-     * Format: "networks/{network_code}/adUnits/{ad_unit_id}"
+     * Format: "networks/{network_code}/adUnits/{ad_unit}"
      *
      * Generated from protobuf field <code>repeated string targeted_ad_units = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -66,7 +65,7 @@ class Placement extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The instant this Placement was last modified.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp update_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $update_time = null;
 
@@ -82,20 +81,19 @@ class Placement extends \Google\Protobuf\Internal\Message
      *     @type int|string $placement_id
      *           Output only. `Placement` ID.
      *     @type string $display_name
-     *           Required. The display name of the placement. Its maximum length is 255
-     *           characters.
+     *           Required. The display name of the placement. This attribute has a maximum
+     *           length of 255 characters.
      *     @type string $description
-     *           Optional. A description of the Placement. This value is optional and its
-     *           maximum length is 65,535 characters.
+     *           Optional. A description of the Placement. This attribute has a maximum
+     *           length of 65,535 characters.
      *     @type string $placement_code
      *           Output only. A string used to uniquely identify the Placement for purposes
-     *           of serving the ad. This attribute is read-only and is assigned by Google
-     *           when a placement is created.
+     *           of serving the ad. This attribute is assigned by Google.
      *     @type int $status
-     *           Output only. The status of the Placement. This attribute is read-only.
+     *           Output only. The status of the Placement.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $targeted_ad_units
      *           Optional. The resource names of AdUnits that constitute the Placement.
-     *           Format: "networks/{network_code}/adUnits/{ad_unit_id}"
+     *           Format: "networks/{network_code}/adUnits/{ad_unit}"
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The instant this Placement was last modified.
      * }
@@ -160,22 +158,32 @@ class Placement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The display name of the placement. Its maximum length is 255
-     * characters.
+     * Required. The display name of the placement. This attribute has a maximum
+     * length of 255 characters.
      *
-     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDisplayName()
     {
-        return $this->display_name;
+        return isset($this->display_name) ? $this->display_name : '';
+    }
+
+    public function hasDisplayName()
+    {
+        return isset($this->display_name);
+    }
+
+    public function clearDisplayName()
+    {
+        unset($this->display_name);
     }
 
     /**
-     * Required. The display name of the placement. Its maximum length is 255
-     * characters.
+     * Required. The display name of the placement. This attribute has a maximum
+     * length of 255 characters.
      *
-     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -188,22 +196,32 @@ class Placement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A description of the Placement. This value is optional and its
-     * maximum length is 65,535 characters.
+     * Optional. A description of the Placement. This attribute has a maximum
+     * length of 65,535 characters.
      *
-     * Generated from protobuf field <code>string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
-     * Optional. A description of the Placement. This value is optional and its
-     * maximum length is 65,535 characters.
+     * Optional. A description of the Placement. This attribute has a maximum
+     * length of 65,535 characters.
      *
-     * Generated from protobuf field <code>string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -217,23 +235,31 @@ class Placement extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. A string used to uniquely identify the Placement for purposes
-     * of serving the ad. This attribute is read-only and is assigned by Google
-     * when a placement is created.
+     * of serving the ad. This attribute is assigned by Google.
      *
-     * Generated from protobuf field <code>string placement_code = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string placement_code = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getPlacementCode()
     {
-        return $this->placement_code;
+        return isset($this->placement_code) ? $this->placement_code : '';
+    }
+
+    public function hasPlacementCode()
+    {
+        return isset($this->placement_code);
+    }
+
+    public function clearPlacementCode()
+    {
+        unset($this->placement_code);
     }
 
     /**
      * Output only. A string used to uniquely identify the Placement for purposes
-     * of serving the ad. This attribute is read-only and is assigned by Google
-     * when a placement is created.
+     * of serving the ad. This attribute is assigned by Google.
      *
-     * Generated from protobuf field <code>string placement_code = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string placement_code = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -246,20 +272,30 @@ class Placement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The status of the Placement. This attribute is read-only.
+     * Output only. The status of the Placement.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.PlacementStatusEnum.PlacementStatus status = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.PlacementStatusEnum.PlacementStatus status = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : 0;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**
-     * Output only. The status of the Placement. This attribute is read-only.
+     * Output only. The status of the Placement.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.PlacementStatusEnum.PlacementStatus status = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.PlacementStatusEnum.PlacementStatus status = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -273,7 +309,7 @@ class Placement extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The resource names of AdUnits that constitute the Placement.
-     * Format: "networks/{network_code}/adUnits/{ad_unit_id}"
+     * Format: "networks/{network_code}/adUnits/{ad_unit}"
      *
      * Generated from protobuf field <code>repeated string targeted_ad_units = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -285,7 +321,7 @@ class Placement extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The resource names of AdUnits that constitute the Placement.
-     * Format: "networks/{network_code}/adUnits/{ad_unit_id}"
+     * Format: "networks/{network_code}/adUnits/{ad_unit}"
      *
      * Generated from protobuf field <code>repeated string targeted_ad_units = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -302,7 +338,7 @@ class Placement extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The instant this Placement was last modified.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp update_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
@@ -323,7 +359,7 @@ class Placement extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The instant this Placement was last modified.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp update_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */

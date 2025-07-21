@@ -22,13 +22,22 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      */
     private $commit_timestamp = null;
     /**
-     * The statistics about this Commit. Not returned by default.
+     * The statistics about this `Commit`. Not returned by default.
      * For more information, see
      * [CommitRequest.return_commit_stats][google.spanner.v1.CommitRequest.return_commit_stats].
      *
      * Generated from protobuf field <code>.google.spanner.v1.CommitResponse.CommitStats commit_stats = 2;</code>
      */
     private $commit_stats = null;
+    /**
+     * If `TransactionOptions.isolation_level` is set to
+     * `IsolationLevel.REPEATABLE_READ`, then the snapshot timestamp is the
+     * timestamp at which all reads in the transaction ran. This timestamp is
+     * never returned.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp snapshot_timestamp = 5;</code>
+     */
+    private $snapshot_timestamp = null;
     protected $MultiplexedSessionRetry;
 
     /**
@@ -40,12 +49,17 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $commit_timestamp
      *           The Cloud Spanner timestamp at which the transaction committed.
      *     @type \Google\Cloud\Spanner\V1\CommitResponse\CommitStats $commit_stats
-     *           The statistics about this Commit. Not returned by default.
+     *           The statistics about this `Commit`. Not returned by default.
      *           For more information, see
      *           [CommitRequest.return_commit_stats][google.spanner.v1.CommitRequest.return_commit_stats].
      *     @type \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken $precommit_token
      *           If specified, transaction has not committed yet.
-     *           Clients must retry the commit with the new precommit token.
+     *           You must retry the commit with the new precommit token.
+     *     @type \Google\Protobuf\Timestamp $snapshot_timestamp
+     *           If `TransactionOptions.isolation_level` is set to
+     *           `IsolationLevel.REPEATABLE_READ`, then the snapshot timestamp is the
+     *           timestamp at which all reads in the transaction ran. This timestamp is
+     *           never returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -90,7 +104,7 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The statistics about this Commit. Not returned by default.
+     * The statistics about this `Commit`. Not returned by default.
      * For more information, see
      * [CommitRequest.return_commit_stats][google.spanner.v1.CommitRequest.return_commit_stats].
      *
@@ -113,7 +127,7 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The statistics about this Commit. Not returned by default.
+     * The statistics about this `Commit`. Not returned by default.
      * For more information, see
      * [CommitRequest.return_commit_stats][google.spanner.v1.CommitRequest.return_commit_stats].
      *
@@ -131,7 +145,7 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * If specified, transaction has not committed yet.
-     * Clients must retry the commit with the new precommit token.
+     * You must retry the commit with the new precommit token.
      *
      * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 4;</code>
      * @return \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken|null
@@ -148,7 +162,7 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * If specified, transaction has not committed yet.
-     * Clients must retry the commit with the new precommit token.
+     * You must retry the commit with the new precommit token.
      *
      * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 4;</code>
      * @param \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken $var
@@ -158,6 +172,48 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * If `TransactionOptions.isolation_level` is set to
+     * `IsolationLevel.REPEATABLE_READ`, then the snapshot timestamp is the
+     * timestamp at which all reads in the transaction ran. This timestamp is
+     * never returned.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp snapshot_timestamp = 5;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getSnapshotTimestamp()
+    {
+        return $this->snapshot_timestamp;
+    }
+
+    public function hasSnapshotTimestamp()
+    {
+        return isset($this->snapshot_timestamp);
+    }
+
+    public function clearSnapshotTimestamp()
+    {
+        unset($this->snapshot_timestamp);
+    }
+
+    /**
+     * If `TransactionOptions.isolation_level` is set to
+     * `IsolationLevel.REPEATABLE_READ`, then the snapshot timestamp is the
+     * timestamp at which all reads in the transaction ran. This timestamp is
+     * never returned.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp snapshot_timestamp = 5;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setSnapshotTimestamp($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->snapshot_timestamp = $var;
 
         return $this;
     }

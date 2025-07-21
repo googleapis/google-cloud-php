@@ -54,6 +54,13 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation mutations = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $mutations;
+    /**
+     * Optional parameter for ensuring a MutateRow request is only applied once.
+     * Currently applicable only for certain aggregate types.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.Idempotency idempotency = 8;</code>
+     */
+    protected $idempotency = null;
 
     /**
      * @param string                               $tableName Optional. The unique name of the table to which the mutation should be
@@ -131,6 +138,9 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
      *           Required. Changes to be atomically applied to the specified row. Entries
      *           are applied in order, meaning that earlier mutations can be masked by later
      *           ones. Must contain at least one entry and at most 100000.
+     *     @type \Google\Cloud\Bigtable\V2\Idempotency $idempotency
+     *           Optional parameter for ensuring a MutateRow request is only applied once.
+     *           Currently applicable only for certain aggregate types.
      * }
      */
     public function __construct($data = NULL) {
@@ -282,6 +292,44 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Bigtable\V2\Mutation::class);
         $this->mutations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional parameter for ensuring a MutateRow request is only applied once.
+     * Currently applicable only for certain aggregate types.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.Idempotency idempotency = 8;</code>
+     * @return \Google\Cloud\Bigtable\V2\Idempotency|null
+     */
+    public function getIdempotency()
+    {
+        return $this->idempotency;
+    }
+
+    public function hasIdempotency()
+    {
+        return isset($this->idempotency);
+    }
+
+    public function clearIdempotency()
+    {
+        unset($this->idempotency);
+    }
+
+    /**
+     * Optional parameter for ensuring a MutateRow request is only applied once.
+     * Currently applicable only for certain aggregate types.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.Idempotency idempotency = 8;</code>
+     * @param \Google\Cloud\Bigtable\V2\Idempotency $var
+     * @return $this
+     */
+    public function setIdempotency($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\Idempotency::class);
+        $this->idempotency = $var;
 
         return $this;
     }
