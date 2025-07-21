@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Notebook Software Config.
+ * Notebook Software Config. This is passed to the backend when user
+ * makes software configurations in UI.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.NotebookSoftwareConfig</code>
  */
@@ -28,6 +29,7 @@ class NotebookSoftwareConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PostStartupScriptConfig post_startup_script_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $post_startup_script_config = null;
+    protected $runtime_image;
 
     /**
      * Constructor.
@@ -35,6 +37,8 @@ class NotebookSoftwareConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\AIPlatform\V1\ColabImage $colab_image
+     *           Optional. Google-managed NotebookRuntime colab image.
      *     @type array<\Google\Cloud\AIPlatform\V1\EnvVar>|\Google\Protobuf\Internal\RepeatedField $env
      *           Optional. Environment variables to be passed to the container.
      *           Maximum limit is 100.
@@ -45,6 +49,37 @@ class NotebookSoftwareConfig extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Aiplatform\V1\NotebookSoftwareConfig::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. Google-managed NotebookRuntime colab image.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ColabImage colab_image = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\ColabImage|null
+     */
+    public function getColabImage()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasColabImage()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Optional. Google-managed NotebookRuntime colab image.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ColabImage colab_image = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\ColabImage $var
+     * @return $this
+     */
+    public function setColabImage($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ColabImage::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
     }
 
     /**
@@ -109,6 +144,14 @@ class NotebookSoftwareConfig extends \Google\Protobuf\Internal\Message
         $this->post_startup_script_config = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRuntimeImage()
+    {
+        return $this->whichOneof("runtime_image");
     }
 
 }

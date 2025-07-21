@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateAuthorizedViewMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The request that prompted the initiation of this CreateInstance operation.
+     * The request that prompted the initiation of this CreateAuthorizedView
+     * operation.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.CreateAuthorizedViewRequest original_request = 1;</code>
      */
@@ -41,7 +42,8 @@ class CreateAuthorizedViewMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Bigtable\Admin\V2\CreateAuthorizedViewRequest $original_request
-     *           The request that prompted the initiation of this CreateInstance operation.
+     *           The request that prompted the initiation of this CreateAuthorizedView
+     *           operation.
      *     @type \Google\Protobuf\Timestamp $request_time
      *           The time at which the original request was received.
      *     @type \Google\Protobuf\Timestamp $finish_time
@@ -54,7 +56,8 @@ class CreateAuthorizedViewMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The request that prompted the initiation of this CreateInstance operation.
+     * The request that prompted the initiation of this CreateAuthorizedView
+     * operation.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.CreateAuthorizedViewRequest original_request = 1;</code>
      * @return \Google\Cloud\Bigtable\Admin\V2\CreateAuthorizedViewRequest|null
@@ -75,7 +78,8 @@ class CreateAuthorizedViewMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The request that prompted the initiation of this CreateInstance operation.
+     * The request that prompted the initiation of this CreateAuthorizedView
+     * operation.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.CreateAuthorizedViewRequest original_request = 1;</code>
      * @param \Google\Cloud\Bigtable\Admin\V2\CreateAuthorizedViewRequest $var

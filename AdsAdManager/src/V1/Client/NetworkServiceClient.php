@@ -40,7 +40,7 @@ use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: Provides methods for handling Network objects.
+ * Service Description: Provides methods for handling `Network` objects.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -78,7 +78,7 @@ final class NetworkServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/admanager'];
 
     private static function getClientDefaults()
     {

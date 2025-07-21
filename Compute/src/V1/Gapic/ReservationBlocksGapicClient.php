@@ -261,6 +261,9 @@ class ReservationBlocksGapicClient
      * @param array  $optionalArgs     {
      *     Optional.
      *
+     *     @type string $view
+     *           View of the Block.
+     *           Check the View enum for the list of possible values.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -283,6 +286,10 @@ class ReservationBlocksGapicClient
         $requestParamHeaders['reservation'] = $reservation;
         $requestParamHeaders['reservation_block'] = $reservationBlock;
         $requestParamHeaders['zone'] = $zone;
+        if (isset($optionalArgs['view'])) {
+            $request->setView($optionalArgs['view']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', ReservationBlocksGetResponse::class, $optionalArgs, $request)->wait();

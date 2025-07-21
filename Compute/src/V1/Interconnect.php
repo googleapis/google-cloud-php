@@ -83,6 +83,12 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     private $interconnect_attachments;
     /**
+     * [Output Only] URLs of InterconnectGroups that include this Interconnect. Order is arbitrary and items are unique.
+     *
+     * Generated from protobuf field <code>repeated string interconnect_groups = 237049509;</code>
+     */
+    private $interconnect_groups;
+    /**
      * Type of interconnect, which can take one of the following values: - PARTNER: A partner-managed interconnection shared between customers though a partner. - DEDICATED: A dedicated physical interconnection with the customer. Note that a value IT_PRIVATE has been deprecated in favor of DEDICATED.
      * Check the InterconnectType enum for the list of possible values.
      *
@@ -231,6 +237,8 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $interconnect_attachments
      *           [Output Only] A list of the URLs of all InterconnectAttachments configured to use this Interconnect.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $interconnect_groups
+     *           [Output Only] URLs of InterconnectGroups that include this Interconnect. Order is arbitrary and items are unique.
      *     @type string $interconnect_type
      *           Type of interconnect, which can take one of the following values: - PARTNER: A partner-managed interconnection shared between customers though a partner. - DEDICATED: A dedicated physical interconnection with the customer. Note that a value IT_PRIVATE has been deprecated in favor of DEDICATED.
      *           Check the InterconnectType enum for the list of possible values.
@@ -635,6 +643,32 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->interconnect_attachments = $arr;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] URLs of InterconnectGroups that include this Interconnect. Order is arbitrary and items are unique.
+     *
+     * Generated from protobuf field <code>repeated string interconnect_groups = 237049509;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getInterconnectGroups()
+    {
+        return $this->interconnect_groups;
+    }
+
+    /**
+     * [Output Only] URLs of InterconnectGroups that include this Interconnect. Order is arbitrary and items are unique.
+     *
+     * Generated from protobuf field <code>repeated string interconnect_groups = 237049509;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setInterconnectGroups($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->interconnect_groups = $arr;
 
         return $this;
     }

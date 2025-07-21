@@ -10,7 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Represent custom field value type.
- * Next Id: 5
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.CustomFieldValue.Value</code>
  */

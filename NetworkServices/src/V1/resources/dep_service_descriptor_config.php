@@ -23,6 +23,25 @@
 return [
     'interfaces' => [
         'google.cloud.networkservices.v1.DepService' => [
+            'CreateAuthzExtension' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkServices\V1\AuthzExtension',
+                    'metadataReturnType' => '\Google\Cloud\NetworkServices\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateLbRouteExtension' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\NetworkServices\V1\LbRouteExtension',
@@ -61,6 +80,25 @@ return [
                     ],
                 ],
             ],
+            'DeleteAuthzExtension' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\NetworkServices\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteLbRouteExtension' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
@@ -94,6 +132,26 @@ return [
                     [
                         'keyName' => 'name',
                         'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateAuthzExtension' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkServices\V1\AuthzExtension',
+                    'metadataReturnType' => '\Google\Cloud\NetworkServices\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'authz_extension.name',
+                        'fieldAccessors' => [
+                            'getAuthzExtension',
                             'getName',
                         ],
                     ],
@@ -139,6 +197,18 @@ return [
                     ],
                 ],
             ],
+            'GetAuthzExtension' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\NetworkServices\V1\AuthzExtension',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetLbRouteExtension' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\NetworkServices\V1\LbRouteExtension',
@@ -159,6 +229,26 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAuthzExtensions' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getAuthzExtensions',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\NetworkServices\V1\ListAuthzExtensionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -277,6 +367,7 @@ return [
                 'interfaceOverride' => 'google.iam.v1.IAMPolicy',
             ],
             'templateMap' => [
+                'authzExtension' => 'projects/{project}/locations/{location}/authzExtensions/{authz_extension}',
                 'lbRouteExtension' => 'projects/{project}/locations/{location}/lbRouteExtensions/{lb_route_extension}',
                 'lbTrafficExtension' => 'projects/{project}/locations/{location}/lbTrafficExtensions/{lb_traffic_extension}',
                 'location' => 'projects/{project}/locations/{location}',

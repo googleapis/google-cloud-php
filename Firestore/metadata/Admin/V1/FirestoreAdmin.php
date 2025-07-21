@@ -31,7 +31,7 @@ class FirestoreAdmin
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-®Y
+®Z
 /google/firestore/admin/v1/firestore_admin.protogoogle.firestore.admin.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/firestore/admin/v1/backup.proto(google/firestore/admin/v1/database.proto%google/firestore/admin/v1/field.proto%google/firestore/admin/v1/index.proto)google/firestore/admin/v1/operation.proto(google/firestore/admin/v1/schedule.proto*google/firestore/admin/v1/user_creds.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"g
 ListDatabasesRequest9
 parent (	B)àAúA#!firestore.googleapis.com/Database
@@ -166,13 +166,18 @@ page_token (	"_
 unreachable (	"L
 DeleteBackupRequest5
 name (	B\'àAúA!
-firestore.googleapis.com/Backup"ü
+firestore.googleapis.com/Backup"ü
 RestoreDatabaseRequest9
 parent (	B)àAúA#!firestore.googleapis.com/Database
 database_id (	BàA7
 backup (	B\'àAúA!
 firestore.googleapis.com/BackupT
-encryption_config	 (24.google.firestore.admin.v1.Database.EncryptionConfigBàA2Á/
+encryption_config	 (24.google.firestore.admin.v1.Database.EncryptionConfigBàAQ
+tags
+ (2;.google.firestore.admin.v1.RestoreDatabaseRequest.TagsEntryBàAàA+
+	TagsEntry
+key (	
+value (	:82Á/
 FirestoreAdminÛ
 CreateIndex-.google.firestore.admin.v1.CreateIndexRequest.google.longrunning.Operation"~ÊA
 IndexIndexOperationMetadataÚAparent,index‚Óä“G">/v1/{parent=projects/*/databases/*/collectionGroups/*}/indexes:index½

@@ -33,7 +33,7 @@ use Google\Cloud\NetworkServices\V1\ListLbRouteExtensionsRequest;
  * Lists `LbRouteExtension` resources in a given project and location.
  *
  * @param string $formattedParent The project and location from which the `LbRouteExtension`
- *                                resources are listed, specified in the following format:
+ *                                resources are listed. These values are specified in the following format:
  *                                `projects/{project}/locations/{location}`. Please see
  *                                {@see DepServiceClient::locationName()} for help formatting this field.
  */

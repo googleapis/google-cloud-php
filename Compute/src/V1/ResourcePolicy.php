@@ -90,6 +90,10 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
     private $status = null;
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyWorkloadPolicy workload_policy = 114721530;</code>
+     */
+    private $workload_policy = null;
 
     /**
      * Constructor.
@@ -122,6 +126,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
      *     @type string $status
      *           [Output Only] The status of resource policy creation.
      *           Check the Status enum for the list of possible values.
+     *     @type \Google\Cloud\Compute\V1\ResourcePolicyWorkloadPolicy $workload_policy
      * }
      */
     public function __construct($data = NULL) {
@@ -587,6 +592,38 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyWorkloadPolicy workload_policy = 114721530;</code>
+     * @return \Google\Cloud\Compute\V1\ResourcePolicyWorkloadPolicy|null
+     */
+    public function getWorkloadPolicy()
+    {
+        return $this->workload_policy;
+    }
+
+    public function hasWorkloadPolicy()
+    {
+        return isset($this->workload_policy);
+    }
+
+    public function clearWorkloadPolicy()
+    {
+        unset($this->workload_policy);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyWorkloadPolicy workload_policy = 114721530;</code>
+     * @param \Google\Cloud\Compute\V1\ResourcePolicyWorkloadPolicy $var
+     * @return $this
+     */
+    public function setWorkloadPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ResourcePolicyWorkloadPolicy::class);
+        $this->workload_policy = $var;
 
         return $this;
     }

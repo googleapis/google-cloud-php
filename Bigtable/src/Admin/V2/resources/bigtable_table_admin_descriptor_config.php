@@ -80,6 +80,25 @@ return [
                     ],
                 ],
             ],
+            'CreateSchemaBundle' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\SchemaBundle',
+                    'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\CreateSchemaBundleMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateTableFromSnapshot' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\Table',
@@ -176,6 +195,26 @@ return [
                     ],
                 ],
             ],
+            'UpdateSchemaBundle' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\SchemaBundle',
+                    'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\UpdateSchemaBundleMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'schema_bundle.name',
+                        'fieldAccessors' => [
+                            'getSchemaBundle',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateTable' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\Table',
@@ -233,6 +272,18 @@ return [
                 ],
             ],
             'DeleteBackup' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteSchemaBundle' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
                 'headerParams' => [
@@ -328,6 +379,18 @@ return [
                     ],
                 ],
             ],
+            'GetSchemaBundle' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Bigtable\Admin\V2\SchemaBundle',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetSnapshot' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Bigtable\Admin\V2\Snapshot',
@@ -383,6 +446,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\Bigtable\Admin\V2\ListBackupsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSchemaBundles' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSchemaBundles',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Bigtable\Admin\V2\ListSchemaBundlesResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -487,6 +570,7 @@ return [
                 'cluster' => 'projects/{project}/instances/{instance}/clusters/{cluster}',
                 'cryptoKeyVersion' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}',
                 'instance' => 'projects/{project}/instances/{instance}',
+                'schemaBundle' => 'projects/{project}/instances/{instance}/tables/{table}/schemaBundles/{schema_bundle}',
                 'snapshot' => 'projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}',
                 'table' => 'projects/{project}/instances/{instance}/tables/{table}',
             ],

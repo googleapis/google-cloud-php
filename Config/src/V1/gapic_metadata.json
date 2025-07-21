@@ -70,6 +70,16 @@
                                 "getResource"
                             ]
                         },
+                        "GetResourceChange": {
+                            "methods": [
+                                "getResourceChange"
+                            ]
+                        },
+                        "GetResourceDrift": {
+                            "methods": [
+                                "getResourceDrift"
+                            ]
+                        },
                         "GetRevision": {
                             "methods": [
                                 "getRevision"
@@ -93,6 +103,16 @@
                         "ListPreviews": {
                             "methods": [
                                 "listPreviews"
+                            ]
+                        },
+                        "ListResourceChanges": {
+                            "methods": [
+                                "listResourceChanges"
+                            ]
+                        },
+                        "ListResourceDrifts": {
+                            "methods": [
+                                "listResourceDrifts"
                             ]
                         },
                         "ListResources": {

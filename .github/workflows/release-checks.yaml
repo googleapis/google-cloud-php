@@ -3,6 +3,8 @@ on:
   pull_request:
     types: [opened, synchronize, reopened, edited]
     branches: ['main']
+permissions:
+  contents: read
 jobs:
   # More info at https://github.com/Roave/BackwardCompatibilityCheck.
   backwards-compatibility-check:
@@ -87,4 +89,35 @@ jobs:
             echo "Add \"MAJOR_VERSION_ALLOWED=component1,component2\" to the PR description to allow "
             echo "major version releases for those components"
             exit 1
+          fi
+
+  # Ensure that if the release PR contains any NEW components, the new component's corresponding
+  # sub-repo exists
+  new-component-subrepo-check:
+    name: New Component Sub-Repo Check
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.user.login == 'release-please[bot]'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: "Verify the subrepos exist for new components"
+        run: |
+          COMPONENTS=$(git diff origin/main --name-only | grep VERSION | xargs dirname)
+          FAIL=""
+          for COMPONENT in ${COMPONENTS}; do {
+            if [[ "$(cat $COMPONENT/VERSION)" == "0.1.0" ]]; then
+              SUBREPO=$(cat $COMPONENT/composer.json | jq -r '.extra.component.target')
+              echo "New component found: $COMPONENT"
+              if curl --head --silent --fail "https://api.github.com/repos/$SUBREPO" -H 'Authorization: Bearer ${{secrets.SPLIT_TOKEN}}' > /dev/null; then
+                  echo " - Target Repo '$SUBREPO' exists"
+              else
+                  echo " - Target Repo '$SUBREPO' DOES NOT EXIST"
+                  FAIL="true"
+              fi
+            fi
+          }; done
+          if [[ "$FAIL" == "true" ]]; then
+              echo "Missing repositories for one or more new components"
+              exit 1
           fi

@@ -87,6 +87,7 @@ class TasksClientTest extends GeneratedTest
         $encryptionKey = 'encryptionKey-1122344029';
         $logUri = 'logUri342054385';
         $satisfiesPzs = false;
+        $gpuZonalRedundancyDisabled = true;
         $etag = 'etag3123477';
         $expectedResponse = new Task();
         $expectedResponse->setName($name2);
@@ -103,6 +104,7 @@ class TasksClientTest extends GeneratedTest
         $expectedResponse->setEncryptionKey($encryptionKey);
         $expectedResponse->setLogUri($logUri);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setGpuZonalRedundancyDisabled($gpuZonalRedundancyDisabled);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -251,6 +253,7 @@ class TasksClientTest extends GeneratedTest
         $encryptionKey = 'encryptionKey-1122344029';
         $logUri = 'logUri342054385';
         $satisfiesPzs = false;
+        $gpuZonalRedundancyDisabled = true;
         $etag = 'etag3123477';
         $expectedResponse = new Task();
         $expectedResponse->setName($name2);
@@ -267,6 +270,7 @@ class TasksClientTest extends GeneratedTest
         $expectedResponse->setEncryptionKey($encryptionKey);
         $expectedResponse->setLogUri($logUri);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setGpuZonalRedundancyDisabled($gpuZonalRedundancyDisabled);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request

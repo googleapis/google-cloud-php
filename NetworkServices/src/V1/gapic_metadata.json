@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "DepServiceGapicClient",
                     "rpcs": {
+                        "CreateAuthzExtension": {
+                            "methods": [
+                                "createAuthzExtension"
+                            ]
+                        },
                         "CreateLbRouteExtension": {
                             "methods": [
                                 "createLbRouteExtension"
@@ -18,6 +23,11 @@
                         "CreateLbTrafficExtension": {
                             "methods": [
                                 "createLbTrafficExtension"
+                            ]
+                        },
+                        "DeleteAuthzExtension": {
+                            "methods": [
+                                "deleteAuthzExtension"
                             ]
                         },
                         "DeleteLbRouteExtension": {
@@ -30,6 +40,11 @@
                                 "deleteLbTrafficExtension"
                             ]
                         },
+                        "GetAuthzExtension": {
+                            "methods": [
+                                "getAuthzExtension"
+                            ]
+                        },
                         "GetLbRouteExtension": {
                             "methods": [
                                 "getLbRouteExtension"
@@ -40,6 +55,11 @@
                                 "getLbTrafficExtension"
                             ]
                         },
+                        "ListAuthzExtensions": {
+                            "methods": [
+                                "listAuthzExtensions"
+                            ]
+                        },
                         "ListLbRouteExtensions": {
                             "methods": [
                                 "listLbRouteExtensions"
@@ -48,6 +68,11 @@
                         "ListLbTrafficExtensions": {
                             "methods": [
                                 "listLbTrafficExtensions"
+                            ]
+                        },
+                        "UpdateAuthzExtension": {
+                            "methods": [
+                                "updateAuthzExtension"
                             ]
                         },
                         "UpdateLbRouteExtension": {
@@ -139,6 +164,16 @@
                                 "createTlsRoute"
                             ]
                         },
+                        "CreateWasmPlugin": {
+                            "methods": [
+                                "createWasmPlugin"
+                            ]
+                        },
+                        "CreateWasmPluginVersion": {
+                            "methods": [
+                                "createWasmPluginVersion"
+                            ]
+                        },
                         "DeleteEndpointPolicy": {
                             "methods": [
                                 "deleteEndpointPolicy"
@@ -182,6 +217,16 @@
                         "DeleteTlsRoute": {
                             "methods": [
                                 "deleteTlsRoute"
+                            ]
+                        },
+                        "DeleteWasmPlugin": {
+                            "methods": [
+                                "deleteWasmPlugin"
+                            ]
+                        },
+                        "DeleteWasmPluginVersion": {
+                            "methods": [
+                                "deleteWasmPluginVersion"
                             ]
                         },
                         "GetEndpointPolicy": {
@@ -239,6 +284,16 @@
                                 "getTlsRoute"
                             ]
                         },
+                        "GetWasmPlugin": {
+                            "methods": [
+                                "getWasmPlugin"
+                            ]
+                        },
+                        "GetWasmPluginVersion": {
+                            "methods": [
+                                "getWasmPluginVersion"
+                            ]
+                        },
                         "ListEndpointPolicies": {
                             "methods": [
                                 "listEndpointPolicies"
@@ -294,6 +349,16 @@
                                 "listTlsRoutes"
                             ]
                         },
+                        "ListWasmPluginVersions": {
+                            "methods": [
+                                "listWasmPluginVersions"
+                            ]
+                        },
+                        "ListWasmPlugins": {
+                            "methods": [
+                                "listWasmPlugins"
+                            ]
+                        },
                         "UpdateEndpointPolicy": {
                             "methods": [
                                 "updateEndpointPolicy"
@@ -337,6 +402,11 @@
                         "UpdateTlsRoute": {
                             "methods": [
                                 "updateTlsRoute"
+                            ]
+                        },
+                        "UpdateWasmPlugin": {
+                            "methods": [
+                                "updateWasmPlugin"
                             ]
                         },
                         "GetLocation": {
