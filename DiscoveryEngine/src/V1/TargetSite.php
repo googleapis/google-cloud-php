@@ -38,14 +38,14 @@ class TargetSite extends \Google\Protobuf\Internal\Message
      */
     protected $type = 0;
     /**
-     * Input only. If set to false, a uri_pattern is generated to include all
-     * pages whose address contains the provided_uri_pattern. If set to true, an
+     * Immutable. If set to false, a uri_pattern is generated to include all pages
+     * whose address contains the provided_uri_pattern. If set to true, an
      * uri_pattern is generated to try to be an exact match of the
      * provided_uri_pattern or just the specific page if the provided_uri_pattern
      * is a specific one. provided_uri_pattern is always normalized to
      * generate the URI pattern to be used by the search engine.
      *
-     * Generated from protobuf field <code>bool exact_match = 6 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>bool exact_match = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $exact_match = false;
     /**
@@ -102,8 +102,8 @@ class TargetSite extends \Google\Protobuf\Internal\Message
      *           The type of the target site, e.g., whether the site is to be included or
      *           excluded.
      *     @type bool $exact_match
-     *           Input only. If set to false, a uri_pattern is generated to include all
-     *           pages whose address contains the provided_uri_pattern. If set to true, an
+     *           Immutable. If set to false, a uri_pattern is generated to include all pages
+     *           whose address contains the provided_uri_pattern. If set to true, an
      *           uri_pattern is generated to try to be an exact match of the
      *           provided_uri_pattern or just the specific page if the provided_uri_pattern
      *           is a specific one. provided_uri_pattern is always normalized to
@@ -214,14 +214,14 @@ class TargetSite extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. If set to false, a uri_pattern is generated to include all
-     * pages whose address contains the provided_uri_pattern. If set to true, an
+     * Immutable. If set to false, a uri_pattern is generated to include all pages
+     * whose address contains the provided_uri_pattern. If set to true, an
      * uri_pattern is generated to try to be an exact match of the
      * provided_uri_pattern or just the specific page if the provided_uri_pattern
      * is a specific one. provided_uri_pattern is always normalized to
      * generate the URI pattern to be used by the search engine.
      *
-     * Generated from protobuf field <code>bool exact_match = 6 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>bool exact_match = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return bool
      */
     public function getExactMatch()
@@ -230,14 +230,14 @@ class TargetSite extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. If set to false, a uri_pattern is generated to include all
-     * pages whose address contains the provided_uri_pattern. If set to true, an
+     * Immutable. If set to false, a uri_pattern is generated to include all pages
+     * whose address contains the provided_uri_pattern. If set to true, an
      * uri_pattern is generated to try to be an exact match of the
      * provided_uri_pattern or just the specific page if the provided_uri_pattern
      * is a specific one. provided_uri_pattern is always normalized to
      * generate the URI pattern to be used by the search engine.
      *
-     * Generated from protobuf field <code>bool exact_match = 6 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>bool exact_match = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param bool $var
      * @return $this
      */

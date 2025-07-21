@@ -33,7 +33,7 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
      * field are specified). If `false`, the builds also have access to the
      * internet.
      * This field is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * Generated from protobuf field <code>bool enable_private_builds_only = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -136,7 +136,7 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
      *           field are specified). If `false`, the builds also have access to the
      *           internet.
      *           This field is supported for Cloud Composer environments in versions
-     *           composer-3.*.*-airflow-*.*.* and newer.
+     *           composer-3-airflow-*.*.*-build.* and newer.
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\PrivateClusterConfig $private_cluster_config
      *           Optional. Configuration for the private GKE cluster for a Private IP
      *           Cloud Composer environment.
@@ -226,7 +226,7 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
      * field are specified). If `false`, the builds also have access to the
      * internet.
      * This field is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * Generated from protobuf field <code>bool enable_private_builds_only = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -244,7 +244,7 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
      * field are specified). If `false`, the builds also have access to the
      * internet.
      * This field is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * Generated from protobuf field <code>bool enable_private_builds_only = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

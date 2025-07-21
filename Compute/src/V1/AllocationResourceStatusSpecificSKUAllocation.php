@@ -21,6 +21,12 @@ class AllocationResourceStatusSpecificSKUAllocation extends \Google\Protobuf\Int
      * Generated from protobuf field <code>optional string source_instance_template_id = 111196154;</code>
      */
     private $source_instance_template_id = null;
+    /**
+     * Per service utilization breakdown. The Key is the Google Cloud managed service name.
+     *
+     * Generated from protobuf field <code>map<string, int64> utilizations = 402495121;</code>
+     */
+    private $utilizations;
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class AllocationResourceStatusSpecificSKUAllocation extends \Google\Protobuf\Int
      *
      *     @type string $source_instance_template_id
      *           ID of the instance template used to populate reservation properties.
+     *     @type array|\Google\Protobuf\Internal\MapField $utilizations
+     *           Per service utilization breakdown. The Key is the Google Cloud managed service name.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +77,32 @@ class AllocationResourceStatusSpecificSKUAllocation extends \Google\Protobuf\Int
     {
         GPBUtil::checkString($var, True);
         $this->source_instance_template_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Per service utilization breakdown. The Key is the Google Cloud managed service name.
+     *
+     * Generated from protobuf field <code>map<string, int64> utilizations = 402495121;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getUtilizations()
+    {
+        return $this->utilizations;
+    }
+
+    /**
+     * Per service utilization breakdown. The Key is the Google Cloud managed service name.
+     *
+     * Generated from protobuf field <code>map<string, int64> utilizations = 402495121;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setUtilizations($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::INT64);
+        $this->utilizations = $arr;
 
         return $this;
     }

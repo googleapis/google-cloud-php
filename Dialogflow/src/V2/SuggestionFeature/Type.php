@@ -38,6 +38,12 @@ class Type
      */
     const SMART_REPLY = 3;
     /**
+     * Run conversation summarization model for chat.
+     *
+     * Generated from protobuf enum <code>CONVERSATION_SUMMARIZATION = 8;</code>
+     */
+    const CONVERSATION_SUMMARIZATION = 8;
+    /**
      * Run knowledge search with text input from agent or text generated query.
      *
      * Generated from protobuf enum <code>KNOWLEDGE_SEARCH = 14;</code>
@@ -55,6 +61,7 @@ class Type
         self::ARTICLE_SUGGESTION => 'ARTICLE_SUGGESTION',
         self::FAQ => 'FAQ',
         self::SMART_REPLY => 'SMART_REPLY',
+        self::CONVERSATION_SUMMARIZATION => 'CONVERSATION_SUMMARIZATION',
         self::KNOWLEDGE_SEARCH => 'KNOWLEDGE_SEARCH',
         self::KNOWLEDGE_ASSIST => 'KNOWLEDGE_ASSIST',
     ];

@@ -82,11 +82,16 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
      * Docker Registry to use for this deployment. This configuration is only
      * applicable to 1st Gen functions, 2nd Gen functions can only use Artifact
      * Registry.
+     * Deprecated: As of March 2025, `CONTAINER_REGISTRY` option is no longer
+     * available in response to Container Registry's deprecation:
+     * https://cloud.google.com/artifact-registry/docs/transition/transition-from-gcr
+     * Please use Artifact Registry instead, which is the default choice.
      * If unspecified, it defaults to `ARTIFACT_REGISTRY`.
      * If `docker_repository` field is specified, this field should either be left
      * unspecified or set to `ARTIFACT_REGISTRY`.
      *
-     * Generated from protobuf field <code>.google.cloud.functions.v2.BuildConfig.DockerRegistry docker_registry = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.functions.v2.BuildConfig.DockerRegistry docker_registry = 10 [deprecated = true];</code>
+     * @deprecated
      */
     protected $docker_registry = 0;
     /**
@@ -97,8 +102,6 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
      * for every deployed region.
      * It must match the pattern
      * `projects/{project}/locations/{location}/repositories/{repository}`.
-     * Cross-project repositories are not supported.
-     * Cross-location repositories are not supported.
      * Repository format must be 'DOCKER'.
      *
      * Generated from protobuf field <code>string docker_repository = 7 [(.google.api.resource_reference) = {</code>
@@ -159,6 +162,10 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
      *           Docker Registry to use for this deployment. This configuration is only
      *           applicable to 1st Gen functions, 2nd Gen functions can only use Artifact
      *           Registry.
+     *           Deprecated: As of March 2025, `CONTAINER_REGISTRY` option is no longer
+     *           available in response to Container Registry's deprecation:
+     *           https://cloud.google.com/artifact-registry/docs/transition/transition-from-gcr
+     *           Please use Artifact Registry instead, which is the default choice.
      *           If unspecified, it defaults to `ARTIFACT_REGISTRY`.
      *           If `docker_repository` field is specified, this field should either be left
      *           unspecified or set to `ARTIFACT_REGISTRY`.
@@ -170,8 +177,6 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
      *           for every deployed region.
      *           It must match the pattern
      *           `projects/{project}/locations/{location}/repositories/{repository}`.
-     *           Cross-project repositories are not supported.
-     *           Cross-location repositories are not supported.
      *           Repository format must be 'DOCKER'.
      *     @type string $service_account
      *           Service account to be used for building the container. The format of this
@@ -483,15 +488,23 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
      * Docker Registry to use for this deployment. This configuration is only
      * applicable to 1st Gen functions, 2nd Gen functions can only use Artifact
      * Registry.
+     * Deprecated: As of March 2025, `CONTAINER_REGISTRY` option is no longer
+     * available in response to Container Registry's deprecation:
+     * https://cloud.google.com/artifact-registry/docs/transition/transition-from-gcr
+     * Please use Artifact Registry instead, which is the default choice.
      * If unspecified, it defaults to `ARTIFACT_REGISTRY`.
      * If `docker_repository` field is specified, this field should either be left
      * unspecified or set to `ARTIFACT_REGISTRY`.
      *
-     * Generated from protobuf field <code>.google.cloud.functions.v2.BuildConfig.DockerRegistry docker_registry = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.functions.v2.BuildConfig.DockerRegistry docker_registry = 10 [deprecated = true];</code>
      * @return int
+     * @deprecated
      */
     public function getDockerRegistry()
     {
+        if ($this->docker_registry !== 0) {
+            @trigger_error('docker_registry is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->docker_registry;
     }
 
@@ -499,16 +512,22 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
      * Docker Registry to use for this deployment. This configuration is only
      * applicable to 1st Gen functions, 2nd Gen functions can only use Artifact
      * Registry.
+     * Deprecated: As of March 2025, `CONTAINER_REGISTRY` option is no longer
+     * available in response to Container Registry's deprecation:
+     * https://cloud.google.com/artifact-registry/docs/transition/transition-from-gcr
+     * Please use Artifact Registry instead, which is the default choice.
      * If unspecified, it defaults to `ARTIFACT_REGISTRY`.
      * If `docker_repository` field is specified, this field should either be left
      * unspecified or set to `ARTIFACT_REGISTRY`.
      *
-     * Generated from protobuf field <code>.google.cloud.functions.v2.BuildConfig.DockerRegistry docker_registry = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.functions.v2.BuildConfig.DockerRegistry docker_registry = 10 [deprecated = true];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setDockerRegistry($var)
     {
+        @trigger_error('docker_registry is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkEnum($var, \Google\Cloud\Functions\V2\BuildConfig\DockerRegistry::class);
         $this->docker_registry = $var;
 
@@ -523,8 +542,6 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
      * for every deployed region.
      * It must match the pattern
      * `projects/{project}/locations/{location}/repositories/{repository}`.
-     * Cross-project repositories are not supported.
-     * Cross-location repositories are not supported.
      * Repository format must be 'DOCKER'.
      *
      * Generated from protobuf field <code>string docker_repository = 7 [(.google.api.resource_reference) = {</code>
@@ -543,8 +560,6 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
      * for every deployed region.
      * It must match the pattern
      * `projects/{project}/locations/{location}/repositories/{repository}`.
-     * Cross-project repositories are not supported.
-     * Cross-location repositories are not supported.
      * Repository format must be 'DOCKER'.
      *
      * Generated from protobuf field <code>string docker_repository = 7 [(.google.api.resource_reference) = {</code>

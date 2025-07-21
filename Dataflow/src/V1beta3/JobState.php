@@ -7,7 +7,8 @@ namespace Google\Cloud\Dataflow\V1beta3;
 use UnexpectedValueException;
 
 /**
- * Describes the overall state of a [google.dataflow.v1beta3.Job][google.dataflow.v1beta3.Job].
+ * Describes the overall state of a
+ * [google.dataflow.v1beta3.Job][google.dataflow.v1beta3.Job].
  *
  * Protobuf type <code>google.dataflow.v1beta3.JobState</code>
  */

@@ -9,27 +9,27 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Describes values that are relevant in a CA certificate.
+ * Describes the X.509 basic constraints extension, per [RFC 5280
+ * section 4.2.1.9](https://tools.ietf.org/html/rfc5280#section-4.2.1.9)
  *
  * Generated from protobuf message <code>google.cloud.security.privateca.v1.X509Parameters.CaOptions</code>
  */
 class CaOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Refers to the "CA" X.509 extension, which is a boolean value.
-     * When this value is missing, the extension will be omitted from the CA
-     * certificate.
+     * Optional. Refers to the "CA" boolean field in the X.509 extension.
+     * When this value is missing, the basic constraints extension will be
+     * omitted from the certificate.
      *
      * Generated from protobuf field <code>optional bool is_ca = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $is_ca = null;
     /**
-     * Optional. Refers to the path length restriction X.509 extension. For a CA
-     * certificate, this value describes the depth of subordinate CA
-     * certificates that are allowed.
-     * If this value is less than 0, the request will fail.
-     * If this value is missing, the max path length will be omitted from the
-     * CA certificate.
+     * Optional. Refers to the path length constraint field in the X.509
+     * extension. For a CA certificate, this value describes the depth of
+     * subordinate CA certificates that are allowed. If this value is less than
+     * 0, the request will fail. If this value is missing, the max path length
+     * will be omitted from the certificate.
      *
      * Generated from protobuf field <code>optional int32 max_issuer_path_length = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -42,16 +42,15 @@ class CaOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $is_ca
-     *           Optional. Refers to the "CA" X.509 extension, which is a boolean value.
-     *           When this value is missing, the extension will be omitted from the CA
-     *           certificate.
+     *           Optional. Refers to the "CA" boolean field in the X.509 extension.
+     *           When this value is missing, the basic constraints extension will be
+     *           omitted from the certificate.
      *     @type int $max_issuer_path_length
-     *           Optional. Refers to the path length restriction X.509 extension. For a CA
-     *           certificate, this value describes the depth of subordinate CA
-     *           certificates that are allowed.
-     *           If this value is less than 0, the request will fail.
-     *           If this value is missing, the max path length will be omitted from the
-     *           CA certificate.
+     *           Optional. Refers to the path length constraint field in the X.509
+     *           extension. For a CA certificate, this value describes the depth of
+     *           subordinate CA certificates that are allowed. If this value is less than
+     *           0, the request will fail. If this value is missing, the max path length
+     *           will be omitted from the certificate.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,9 +59,9 @@ class CaOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Refers to the "CA" X.509 extension, which is a boolean value.
-     * When this value is missing, the extension will be omitted from the CA
-     * certificate.
+     * Optional. Refers to the "CA" boolean field in the X.509 extension.
+     * When this value is missing, the basic constraints extension will be
+     * omitted from the certificate.
      *
      * Generated from protobuf field <code>optional bool is_ca = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -83,9 +82,9 @@ class CaOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Refers to the "CA" X.509 extension, which is a boolean value.
-     * When this value is missing, the extension will be omitted from the CA
-     * certificate.
+     * Optional. Refers to the "CA" boolean field in the X.509 extension.
+     * When this value is missing, the basic constraints extension will be
+     * omitted from the certificate.
      *
      * Generated from protobuf field <code>optional bool is_ca = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -100,12 +99,11 @@ class CaOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Refers to the path length restriction X.509 extension. For a CA
-     * certificate, this value describes the depth of subordinate CA
-     * certificates that are allowed.
-     * If this value is less than 0, the request will fail.
-     * If this value is missing, the max path length will be omitted from the
-     * CA certificate.
+     * Optional. Refers to the path length constraint field in the X.509
+     * extension. For a CA certificate, this value describes the depth of
+     * subordinate CA certificates that are allowed. If this value is less than
+     * 0, the request will fail. If this value is missing, the max path length
+     * will be omitted from the certificate.
      *
      * Generated from protobuf field <code>optional int32 max_issuer_path_length = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -126,12 +124,11 @@ class CaOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Refers to the path length restriction X.509 extension. For a CA
-     * certificate, this value describes the depth of subordinate CA
-     * certificates that are allowed.
-     * If this value is less than 0, the request will fail.
-     * If this value is missing, the max path length will be omitted from the
-     * CA certificate.
+     * Optional. Refers to the path length constraint field in the X.509
+     * extension. For a CA certificate, this value describes the depth of
+     * subordinate CA certificates that are allowed. If this value is less than
+     * 0, the request will fail. If this value is missing, the max path length
+     * will be omitted from the certificate.
      *
      * Generated from protobuf field <code>optional int32 max_issuer_path_length = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

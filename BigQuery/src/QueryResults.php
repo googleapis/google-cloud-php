@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2016 Google Inc. All Rights Reserved.
  *
@@ -78,7 +79,9 @@ class QueryResults implements \IteratorAggregate
      * @param ValueMapper $mapper Maps values between PHP and BigQuery.
      * @param Job $job The job from which the query results originated.
      * @param array $queryResultsOptions Default options to be used for calls to
-     *        get query results.
+     *        get query results. See
+     *        [documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/getQueryResults#query-parameters)
+     *        for available options.
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -151,7 +154,9 @@ class QueryResults implements \IteratorAggregate
      *           until the job is complete. By default, will poll indefinitely.
      *     @type bool $returnRawResults Returns the raw data types returned from
      *           BigQuery without converting their values into native PHP types or
-     *           the custom type classes supported by this library.
+     *           the custom type classes supported by this library. Default is false.
+     *     @type boolean $formatOptions.useInt64Timestamp Optional. Output
+     *           timestamp as usec int64. Default is false.
      * }
      * @return ItemIterator
      * @throws JobException If the maximum number of retries while waiting for
@@ -221,6 +226,8 @@ class QueryResults implements \IteratorAggregate
      *           **Defaults to** `10000` milliseconds (10 seconds).
      *     @type int $maxRetries The number of times to poll the Job status,
      *           until the job is complete. By default, will poll indefinitely.
+     *     @type boolean $formatOptions.useInt64Timestamp Optional. Output
+     *           timestamp as usec int64. Default is false.
      * }
      * @throws JobException If the maximum number of retries while waiting for
      *         query completion has been exceeded.
@@ -278,6 +285,8 @@ class QueryResults implements \IteratorAggregate
      *     @type int $startIndex Zero-based index of the starting row.
      *     @type int $timeoutMs How long to wait for the query to complete, in
      *           milliseconds. **Defaults to** `10000` milliseconds (10 seconds).
+     *     @type boolean $formatOptions.useInt64Timestamp Optional. Output
+     *           timestamp as usec int64. Default is false.
      * }
      * @return array
      */

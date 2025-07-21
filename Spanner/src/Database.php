@@ -28,16 +28,14 @@ use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LROTrait;
 use Google\Cloud\Core\Retry;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\Database\State;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamDatabase;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\V1\BatchWriteResponse;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TypeCode;
 use Google\Rpc\Code;
@@ -121,10 +119,12 @@ class Database
     const TYPE_ARRAY = TypeCode::PBARRAY;
     const TYPE_STRUCT = TypeCode::STRUCT;
     const TYPE_NUMERIC = TypeCode::NUMERIC;
+    const TYPE_PROTO = TypeCode::PROTO;
     const TYPE_PG_NUMERIC = 'pgNumeric';
     const TYPE_PG_JSONB = 'pgJsonb';
     const TYPE_JSON = TypeCode::JSON;
     const TYPE_PG_OID = 'pgOid';
+    const TYPE_INTERVAL = TypeCode::INTERVAL;
 
     /**
      * @var ConnectionInterface
@@ -218,7 +218,7 @@ class Database
         array $lroCallables,
         $projectId,
         $name,
-        SessionPoolInterface $sessionPool = null,
+        ?SessionPoolInterface $sessionPool = null,
         $returnInt64AsObject = false,
         array $info = [],
         $databaseRole = ''
@@ -294,7 +294,7 @@ class Database
      */
     public function backups(array $options = [])
     {
-        $filter = "database:" . $this->name();
+        $filter = 'database:' . $this->name();
 
         if (isset($options['filter'])) {
             $filter = sprintf('(%1$s) AND (%2$s)', $filter, $this->pluck('filter', $options));
@@ -429,6 +429,10 @@ class Database
      *     Configuration Options
      *
      *     @type string[] $statements Additional DDL statements.
+     *     @type \Google\Protobuf\FileDescriptorSet|string $protoDescriptors The file
+     *         descriptor set object to be used in the update, or alternatively, an absolute
+     *         path to the generated file descriptor set. The descriptor set is only used
+     *         during DDL statements, such as `CREATE PROTO BUNDLE`.
      * }
      * @return LongRunningOperation<Database>
      */
@@ -2033,6 +2037,12 @@ class Database
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
+     *     @type int $orderBy Set the OrderBy option for the ReadRequest.
+     *           {@see \Google\Cloud\Spanner\V1\ReadRequest} and {@see \Google\Cloud\Spanner\V1\ReadRequest\OrderBy}
+     *           for more information and available options.
+     *     @type int $lockHint Set the LockHint option for the ReadRequest.
+     *           {@see \Google\Cloud\Spanner\V1\ReadRequest} and {@see \Google\Cloud\Spanner\V1\ReadRequest\LockHint}
+     *           for more information and available options.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
@@ -2111,9 +2121,10 @@ class Database
     {
         try {
             $this->close();
-        //@codingStandardsIgnoreStart
-        //@codeCoverageIgnoreStart
-        } catch (\Exception $ex) {}
+            //@codingStandardsIgnoreStart
+            //@codeCoverageIgnoreStart
+        } catch (\Exception $ex) {
+        }
         //@codeCoverageIgnoreEnd
         //@codingStandardsIgnoreStart
     }
@@ -2268,7 +2279,7 @@ class Database
                 $instance,
                 $name
             );
-        //@codeCoverageIgnoreStart
+            //@codeCoverageIgnoreStart
         } catch (ValidationException $e) {
             return $name;
         }

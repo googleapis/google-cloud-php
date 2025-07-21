@@ -9,16 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a file attached to a support case.
+ * An Attachment contains metadata about a file that was uploaded to a
+ * case - it is NOT a file itself. That being said, the name of an Attachment
+ * object can be used to download its accompanying file through the
+ * `media.download` endpoint.
+ * While attachments can be uploaded in the console at the
+ * same time as a comment, they're associated on a "case" level, not a
+ * "comment" level.
  *
  * Generated from protobuf message <code>google.cloud.support.v2.Attachment</code>
  */
 class Attachment extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name of the attachment.
+     * Output only. Identifier. The resource name of the attachment.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -60,7 +66,7 @@ class Attachment extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name of the attachment.
+     *           Output only. Identifier. The resource name of the attachment.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time at which the attachment was created.
      *     @type \Google\Cloud\Support\V2\Actor $creator
@@ -80,9 +86,9 @@ class Attachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the attachment.
+     * Output only. Identifier. The resource name of the attachment.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -91,9 +97,9 @@ class Attachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the attachment.
+     * Output only. Identifier. The resource name of the attachment.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

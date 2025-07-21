@@ -41,22 +41,26 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * The geographic placement of nodes in this instance configuration and their
      * replication properties.
+     * To create user-managed configurations, input
+     * `replicas` must include all replicas in `replicas` of the `base_config`
+     * and include one or more replicas in the `optional_replicas` of the
+     * `base_config`.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaInfo replicas = 3;</code>
      */
     private $replicas;
     /**
-     * Output only. The available optional replicas to choose from for user
-     * managed configurations. Populated for Google managed configurations.
+     * Output only. The available optional replicas to choose from for
+     * user-managed configurations. Populated for Google-managed configurations.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaInfo optional_replicas = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $optional_replicas;
     /**
      * Base configuration name, e.g. projects/<project_name>/instanceConfigs/nam3,
-     * based on which this configuration is created. Only set for user managed
+     * based on which this configuration is created. Only set for user-managed
      * configurations. `base_config` must refer to a configuration of type
-     * GOOGLE_MANAGED in the same project as this configuration.
+     * `GOOGLE_MANAGED` in the same project as this configuration.
      *
      * Generated from protobuf field <code>string base_config = 7 [(.google.api.resource_reference) = {</code>
      */
@@ -122,6 +126,25 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.State state = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
+    /**
+     * Output only. Describes whether free instances are available to be created
+     * in this instance configuration.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.FreeInstanceAvailability free_instance_availability = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $free_instance_availability = 0;
+    /**
+     * Output only. The `QuorumType` of the instance configuration.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.QuorumType quorum_type = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $quorum_type = 0;
+    /**
+     * Output only. The storage limit in bytes per processing unit.
+     *
+     * Generated from protobuf field <code>int64 storage_limit_per_processing_unit = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $storage_limit_per_processing_unit = 0;
 
     /**
      * Constructor.
@@ -142,14 +165,18 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo>|\Google\Protobuf\Internal\RepeatedField $replicas
      *           The geographic placement of nodes in this instance configuration and their
      *           replication properties.
+     *           To create user-managed configurations, input
+     *           `replicas` must include all replicas in `replicas` of the `base_config`
+     *           and include one or more replicas in the `optional_replicas` of the
+     *           `base_config`.
      *     @type array<\Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo>|\Google\Protobuf\Internal\RepeatedField $optional_replicas
-     *           Output only. The available optional replicas to choose from for user
-     *           managed configurations. Populated for Google managed configurations.
+     *           Output only. The available optional replicas to choose from for
+     *           user-managed configurations. Populated for Google-managed configurations.
      *     @type string $base_config
      *           Base configuration name, e.g. projects/<project_name>/instanceConfigs/nam3,
-     *           based on which this configuration is created. Only set for user managed
+     *           based on which this configuration is created. Only set for user-managed
      *           configurations. `base_config` must refer to a configuration of type
-     *           GOOGLE_MANAGED in the same project as this configuration.
+     *           `GOOGLE_MANAGED` in the same project as this configuration.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Cloud Labels are a flexible and lightweight mechanism for organizing cloud
      *           resources into groups that reflect a customer's organizational needs and
@@ -191,6 +218,13 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. The current instance configuration state. Applicable only for
      *           `USER_MANAGED` configurations.
+     *     @type int $free_instance_availability
+     *           Output only. Describes whether free instances are available to be created
+     *           in this instance configuration.
+     *     @type int $quorum_type
+     *           Output only. The `QuorumType` of the instance configuration.
+     *     @type int|string $storage_limit_per_processing_unit
+     *           Output only. The storage limit in bytes per processing unit.
      * }
      */
     public function __construct($data = NULL) {
@@ -287,6 +321,10 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * The geographic placement of nodes in this instance configuration and their
      * replication properties.
+     * To create user-managed configurations, input
+     * `replicas` must include all replicas in `replicas` of the `base_config`
+     * and include one or more replicas in the `optional_replicas` of the
+     * `base_config`.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaInfo replicas = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -299,6 +337,10 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * The geographic placement of nodes in this instance configuration and their
      * replication properties.
+     * To create user-managed configurations, input
+     * `replicas` must include all replicas in `replicas` of the `base_config`
+     * and include one or more replicas in the `optional_replicas` of the
+     * `base_config`.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaInfo replicas = 3;</code>
      * @param array<\Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo>|\Google\Protobuf\Internal\RepeatedField $var
@@ -313,8 +355,8 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The available optional replicas to choose from for user
-     * managed configurations. Populated for Google managed configurations.
+     * Output only. The available optional replicas to choose from for
+     * user-managed configurations. Populated for Google-managed configurations.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaInfo optional_replicas = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -325,8 +367,8 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The available optional replicas to choose from for user
-     * managed configurations. Populated for Google managed configurations.
+     * Output only. The available optional replicas to choose from for
+     * user-managed configurations. Populated for Google-managed configurations.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaInfo optional_replicas = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo>|\Google\Protobuf\Internal\RepeatedField $var
@@ -342,9 +384,9 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Base configuration name, e.g. projects/<project_name>/instanceConfigs/nam3,
-     * based on which this configuration is created. Only set for user managed
+     * based on which this configuration is created. Only set for user-managed
      * configurations. `base_config` must refer to a configuration of type
-     * GOOGLE_MANAGED in the same project as this configuration.
+     * `GOOGLE_MANAGED` in the same project as this configuration.
      *
      * Generated from protobuf field <code>string base_config = 7 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -356,9 +398,9 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Base configuration name, e.g. projects/<project_name>/instanceConfigs/nam3,
-     * based on which this configuration is created. Only set for user managed
+     * based on which this configuration is created. Only set for user-managed
      * configurations. `base_config` must refer to a configuration of type
-     * GOOGLE_MANAGED in the same project as this configuration.
+     * `GOOGLE_MANAGED` in the same project as this configuration.
      *
      * Generated from protobuf field <code>string base_config = 7 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -560,6 +602,86 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Describes whether free instances are available to be created
+     * in this instance configuration.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.FreeInstanceAvailability free_instance_availability = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getFreeInstanceAvailability()
+    {
+        return $this->free_instance_availability;
+    }
+
+    /**
+     * Output only. Describes whether free instances are available to be created
+     * in this instance configuration.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.FreeInstanceAvailability free_instance_availability = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setFreeInstanceAvailability($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\FreeInstanceAvailability::class);
+        $this->free_instance_availability = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The `QuorumType` of the instance configuration.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.QuorumType quorum_type = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getQuorumType()
+    {
+        return $this->quorum_type;
+    }
+
+    /**
+     * Output only. The `QuorumType` of the instance configuration.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig.QuorumType quorum_type = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setQuorumType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\QuorumType::class);
+        $this->quorum_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The storage limit in bytes per processing unit.
+     *
+     * Generated from protobuf field <code>int64 storage_limit_per_processing_unit = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getStorageLimitPerProcessingUnit()
+    {
+        return $this->storage_limit_per_processing_unit;
+    }
+
+    /**
+     * Output only. The storage limit in bytes per processing unit.
+     *
+     * Generated from protobuf field <code>int64 storage_limit_per_processing_unit = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setStorageLimitPerProcessingUnit($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->storage_limit_per_processing_unit = $var;
 
         return $this;
     }

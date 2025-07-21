@@ -34,9 +34,10 @@ class OracleAsmConfig extends \Google\Protobuf\Internal\Message
      */
     protected $username = '';
     /**
-     * Required. Password for the Oracle ASM connection.
+     * Optional. Password for the Oracle ASM connection. Mutually exclusive with
+     * the `secret_manager_stored_password` field.
      *
-     * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $password = '';
     /**
@@ -57,6 +58,13 @@ class OracleAsmConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.datastream.v1.OracleSslConfig oracle_ssl_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $oracle_ssl_config = null;
+    /**
+     * Optional. A reference to a Secret Manager resource name storing the Oracle
+     * ASM connection password. Mutually exclusive with the `password` field.
+     *
+     * Generated from protobuf field <code>string secret_manager_stored_password = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $secret_manager_stored_password = '';
 
     /**
      * Constructor.
@@ -71,13 +79,17 @@ class OracleAsmConfig extends \Google\Protobuf\Internal\Message
      *     @type string $username
      *           Required. Username for the Oracle ASM connection.
      *     @type string $password
-     *           Required. Password for the Oracle ASM connection.
+     *           Optional. Password for the Oracle ASM connection. Mutually exclusive with
+     *           the `secret_manager_stored_password` field.
      *     @type string $asm_service
      *           Required. ASM service name for the Oracle ASM connection.
      *     @type array|\Google\Protobuf\Internal\MapField $connection_attributes
      *           Optional. Connection string attributes
      *     @type \Google\Cloud\Datastream\V1\OracleSslConfig $oracle_ssl_config
      *           Optional. SSL configuration for the Oracle connection.
+     *     @type string $secret_manager_stored_password
+     *           Optional. A reference to a Secret Manager resource name storing the Oracle
+     *           ASM connection password. Mutually exclusive with the `password` field.
      * }
      */
     public function __construct($data = NULL) {
@@ -164,9 +176,10 @@ class OracleAsmConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Password for the Oracle ASM connection.
+     * Optional. Password for the Oracle ASM connection. Mutually exclusive with
+     * the `secret_manager_stored_password` field.
      *
-     * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPassword()
@@ -175,9 +188,10 @@ class OracleAsmConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Password for the Oracle ASM connection.
+     * Optional. Password for the Oracle ASM connection. Mutually exclusive with
+     * the `secret_manager_stored_password` field.
      *
-     * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -273,6 +287,34 @@ class OracleAsmConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\OracleSslConfig::class);
         $this->oracle_ssl_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A reference to a Secret Manager resource name storing the Oracle
+     * ASM connection password. Mutually exclusive with the `password` field.
+     *
+     * Generated from protobuf field <code>string secret_manager_stored_password = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getSecretManagerStoredPassword()
+    {
+        return $this->secret_manager_stored_password;
+    }
+
+    /**
+     * Optional. A reference to a Secret Manager resource name storing the Oracle
+     * ASM connection password. Mutually exclusive with the `password` field.
+     *
+     * Generated from protobuf field <code>string secret_manager_stored_password = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSecretManagerStoredPassword($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->secret_manager_stored_password = $var;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -72,6 +72,18 @@ return [
                     ],
                 ],
             ],
+            'GenerateSuggestions' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dialogflow\V2\GenerateSuggestionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'conversation',
+                        'fieldAccessors' => [
+                            'getConversation',
+                        ],
+                    ],
+                ],
+            ],
             'GetConversation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dialogflow\V2\Conversation',
@@ -80,6 +92,18 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'IngestContextReferences' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dialogflow\V2\IngestContextReferencesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'conversation',
+                        'fieldAccessors' => [
+                            'getConversation',
                         ],
                     ],
                 ],

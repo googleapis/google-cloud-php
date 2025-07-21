@@ -33,10 +33,9 @@ use Google\Rpc\Status;
 /**
  * Revert an existing instance's file system to a specified snapshot.
  *
- * @param string $formattedName    Required.
- *                                 `projects/{project_id}/locations/{location_id}/instances/{instance_id}`.
- *                                 The resource name of the instance, in the format
- *                                 Please see {@see CloudFilestoreManagerClient::instanceName()} for help formatting this field.
+ * @param string $formattedName    The resource name of the instance, in the format
+ *                                 `projects/{project_id}/locations/{location_id}/instances/{instance_id}`. Please see
+ *                                 {@see CloudFilestoreManagerClient::instanceName()} for help formatting this field.
  * @param string $targetSnapshotId The snapshot resource ID, in the format 'my-snapshot', where the
  *                                 specified ID is the {snapshot_id} of the fully qualified name like
  *                                 `projects/{project_id}/locations/{location_id}/instances/{instance_id}/snapshots/{snapshot_id}`

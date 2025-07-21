@@ -379,6 +379,18 @@ return [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\Property',
             ],
+            'CreateReportingDataAnnotation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\ReportingDataAnnotation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateRollupProperty' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\CreateRollupPropertyResponse',
@@ -642,6 +654,18 @@ return [
             'DeleteProperty' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\Property',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteReportingDataAnnotation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -1019,6 +1043,18 @@ return [
                     ],
                 ],
             ],
+            'GetReportingDataAnnotation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\ReportingDataAnnotation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetRollupPropertySourceLink' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\RollupPropertySourceLink',
@@ -1058,6 +1094,18 @@ return [
             'GetSubpropertyEventFilter' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\SubpropertyEventFilter',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetSubpropertySyncConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\SubpropertySyncConfig',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -1487,6 +1535,26 @@ return [
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\ListPropertiesResponse',
             ],
+            'ListReportingDataAnnotations' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getReportingDataAnnotations',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\ListReportingDataAnnotationsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListRollupPropertySourceLinks' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -1567,6 +1635,26 @@ return [
                     ],
                 ],
             ],
+            'ListSubpropertySyncConfigs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSubpropertySyncConfigs',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\ListSubpropertySyncConfigsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ProvisionAccountTicket' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\ProvisionAccountTicketResponse',
@@ -1622,6 +1710,18 @@ return [
             'SetAutomatedGa4ConfigurationOptOut' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutResponse',
+            ],
+            'SubmitUserDeletion' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\SubmitUserDeletionResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
             'UpdateAccessBinding' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -1922,6 +2022,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateReportingDataAnnotation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\ReportingDataAnnotation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'reporting_data_annotation.name',
+                        'fieldAccessors' => [
+                            'getReportingDataAnnotation',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateSKAdNetworkConversionValueSchema' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema',
@@ -1961,6 +2074,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateSubpropertySyncConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\SubpropertySyncConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'subproperty_sync_config.name',
+                        'fieldAccessors' => [
+                            'getSubpropertySyncConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
                 'accessBinding' => 'accounts/{account}/accessBindings/{access_binding}',
                 'account' => 'accounts/{account}',
@@ -1993,10 +2119,12 @@ return [
                 'organization' => 'organizations/{organization}',
                 'property' => 'properties/{property}',
                 'propertyAccessBinding' => 'properties/{property}/accessBindings/{access_binding}',
+                'reportingDataAnnotation' => 'properties/{property}/reportingDataAnnotations/{reporting_data_annotation}',
                 'rollupPropertySourceLink' => 'properties/{property}/rollupPropertySourceLinks/{rollup_property_source_link}',
                 'sKAdNetworkConversionValueSchema' => 'properties/{property}/dataStreams/{data_stream}/sKAdNetworkConversionValueSchema/{skadnetwork_conversion_value_schema}',
                 'searchAds360Link' => 'properties/{property}/searchAds360Links/{search_ads_360_link}',
                 'subpropertyEventFilter' => 'properties/{property}/subpropertyEventFilters/{sub_property_event_filter}',
+                'subpropertySyncConfig' => 'properties/{property}/subpropertySyncConfigs/{subproperty_sync_config}',
             ],
         ],
     ],

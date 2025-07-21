@@ -60,7 +60,14 @@ class SupportedDatabaseFlag extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool requires_db_restart = 6;</code>
      */
     protected $requires_db_restart = false;
+    /**
+     * The scope of the flag.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.SupportedDatabaseFlag.Scope scope = 9;</code>
+     */
+    protected $scope = 0;
     protected $restrictions;
+    protected $recommended_value;
 
     /**
      * Constructor.
@@ -72,6 +79,10 @@ class SupportedDatabaseFlag extends \Google\Protobuf\Internal\Message
      *           Restriction on STRING type value.
      *     @type \Google\Cloud\AlloyDb\V1\SupportedDatabaseFlag\IntegerRestrictions $integer_restrictions
      *           Restriction on INTEGER type value.
+     *     @type string $recommended_string_value
+     *           The recommended value for a STRING flag.
+     *     @type \Google\Protobuf\Int64Value $recommended_integer_value
+     *           The recommended value for an INTEGER flag.
      *     @type string $name
      *           The name of the flag resource, following Google Cloud conventions, e.g.:
      *            * projects/{project}/locations/{location}/flags/{flag}
@@ -90,6 +101,8 @@ class SupportedDatabaseFlag extends \Google\Protobuf\Internal\Message
      *           restart. If a flag that requires database restart is set, the backend
      *           will automatically restart the database (making sure to satisfy any
      *           availability SLO's).
+     *     @type int $scope
+     *           The scope of the flag.
      * }
      */
     public function __construct($data = NULL) {
@@ -158,6 +171,95 @@ class SupportedDatabaseFlag extends \Google\Protobuf\Internal\Message
 
         return $this;
     }
+
+    /**
+     * The recommended value for a STRING flag.
+     *
+     * Generated from protobuf field <code>string recommended_string_value = 10;</code>
+     * @return string
+     */
+    public function getRecommendedStringValue()
+    {
+        return $this->readOneof(10);
+    }
+
+    public function hasRecommendedStringValue()
+    {
+        return $this->hasOneof(10);
+    }
+
+    /**
+     * The recommended value for a STRING flag.
+     *
+     * Generated from protobuf field <code>string recommended_string_value = 10;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRecommendedStringValue($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(10, $var);
+
+        return $this;
+    }
+
+    /**
+     * The recommended value for an INTEGER flag.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int64Value recommended_integer_value = 11;</code>
+     * @return \Google\Protobuf\Int64Value|null
+     */
+    public function getRecommendedIntegerValue()
+    {
+        return $this->readOneof(11);
+    }
+
+    public function hasRecommendedIntegerValue()
+    {
+        return $this->hasOneof(11);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getRecommendedIntegerValue()</code>
+
+     * The recommended value for an INTEGER flag.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int64Value recommended_integer_value = 11;</code>
+     * @return int|string|null
+     */
+    public function getRecommendedIntegerValueUnwrapped()
+    {
+        return $this->readWrapperValue("recommended_integer_value");
+    }
+
+    /**
+     * The recommended value for an INTEGER flag.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int64Value recommended_integer_value = 11;</code>
+     * @param \Google\Protobuf\Int64Value $var
+     * @return $this
+     */
+    public function setRecommendedIntegerValue($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Int64Value::class);
+        $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\Int64Value object.
+
+     * The recommended value for an INTEGER flag.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int64Value recommended_integer_value = 11;</code>
+     * @param int|string|null $var
+     * @return $this
+     */
+    public function setRecommendedIntegerValueUnwrapped($var)
+    {
+        $this->writeWrapperValue("recommended_integer_value", $var);
+        return $this;}
 
     /**
      * The name of the flag resource, following Google Cloud conventions, e.g.:
@@ -326,11 +428,45 @@ class SupportedDatabaseFlag extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The scope of the flag.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.SupportedDatabaseFlag.Scope scope = 9;</code>
+     * @return int
+     */
+    public function getScope()
+    {
+        return $this->scope;
+    }
+
+    /**
+     * The scope of the flag.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.SupportedDatabaseFlag.Scope scope = 9;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setScope($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AlloyDb\V1\SupportedDatabaseFlag\Scope::class);
+        $this->scope = $var;
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getRestrictions()
     {
         return $this->whichOneof("restrictions");
+    }
+
+    /**
+     * @return string
+     */
+    public function getRecommendedValue()
+    {
+        return $this->whichOneof("recommended_value");
     }
 
 }

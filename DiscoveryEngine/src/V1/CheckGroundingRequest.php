@@ -25,7 +25,7 @@ class CheckGroundingRequest extends \Google\Protobuf\Internal\Message
      */
     protected $grounding_config = '';
     /**
-     * Answer candidate to check. Can have a maximum length of 1024 characters.
+     * Answer candidate to check. It can have a maximum length of 4096 tokens.
      *
      * Generated from protobuf field <code>string answer_candidate = 2;</code>
      */
@@ -74,7 +74,7 @@ class CheckGroundingRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the grounding config, such as
      *           `projects/&#42;&#47;locations/global/groundingConfigs/default_grounding_config`.
      *     @type string $answer_candidate
-     *           Answer candidate to check. Can have a maximum length of 1024 characters.
+     *           Answer candidate to check. It can have a maximum length of 4096 tokens.
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\GroundingFact>|\Google\Protobuf\Internal\RepeatedField $facts
      *           List of facts for the grounding check.
      *           We support up to 200 facts.
@@ -132,7 +132,7 @@ class CheckGroundingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Answer candidate to check. Can have a maximum length of 1024 characters.
+     * Answer candidate to check. It can have a maximum length of 4096 tokens.
      *
      * Generated from protobuf field <code>string answer_candidate = 2;</code>
      * @return string
@@ -143,7 +143,7 @@ class CheckGroundingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Answer candidate to check. Can have a maximum length of 1024 characters.
+     * Answer candidate to check. It can have a maximum length of 4096 tokens.
      *
      * Generated from protobuf field <code>string answer_candidate = 2;</code>
      * @param string $var

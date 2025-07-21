@@ -421,6 +421,47 @@ return [
                     ],
                 ],
             ],
+            'ReportHostAsFaulty' => [
+                'longRunning' => [
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                        'getZone',
+                    ],
+                    'getOperationMethod' => 'get',
+                    'cancelOperationMethod' => null,
+                    'deleteOperationMethod' => 'delete',
+                    'operationErrorCodeMethod' => 'getHttpErrorStatusCode',
+                    'operationErrorMessageMethod' => 'getHttpErrorMessage',
+                    'operationNameMethod' => 'getName',
+                    'operationStatusMethod' => 'getStatus',
+                    'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+                    'getOperationRequest' => '\Google\Cloud\Compute\V1\GetZoneOperationRequest',
+                    'cancelOperationRequest' => null,
+                    'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteZoneOperationRequest',
+                ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'zone',
+                        'fieldAccessors' => [
+                            'getZone',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'instance',
+                        'fieldAccessors' => [
+                            'getInstance',
+                        ],
+                    ],
+                ],
+            ],
             'Reset' => [
                 'longRunning' => [
                     'additionalArgumentMethods' => [

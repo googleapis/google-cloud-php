@@ -20,13 +20,13 @@ class SheetExportAudienceListResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string spreadsheet_uri = 1;</code>
      */
-    private $spreadsheet_uri = null;
+    protected $spreadsheet_uri = null;
     /**
      * An ID that identifies the created Google Sheet resource.
      *
      * Generated from protobuf field <code>optional string spreadsheet_id = 2;</code>
      */
-    private $spreadsheet_id = null;
+    protected $spreadsheet_id = null;
     /**
      * The total number of rows in the AudienceList result. `rowCount` is
      * independent of the number of rows returned in the response, the `limit`
@@ -38,7 +38,7 @@ class SheetExportAudienceListResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 row_count = 3;</code>
      */
-    private $row_count = null;
+    protected $row_count = null;
     /**
      * Configuration data about AudienceList being exported. Returned to help
      * interpret the AudienceList in the Google Sheet of this response.
@@ -49,7 +49,7 @@ class SheetExportAudienceListResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.analytics.data.v1alpha.AudienceList audience_list = 4;</code>
      */
-    private $audience_list = null;
+    protected $audience_list = null;
 
     /**
      * Constructor.

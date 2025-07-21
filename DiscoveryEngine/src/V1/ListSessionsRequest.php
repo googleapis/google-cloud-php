@@ -52,9 +52,12 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
      *   * `update_time`
      *   * `create_time`
      *   * `session_name`
+     *   * `is_pinned`
      * Example:
-     * "update_time desc"
-     * "create_time"
+     * * "update_time desc"
+     * * "create_time"
+     * * "is_pinned desc,update_time desc": list sessions by is_pinned first, then
+     *    by update_time.
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
      */
@@ -102,9 +105,12 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
      *             * `update_time`
      *             * `create_time`
      *             * `session_name`
+     *             * `is_pinned`
      *           Example:
-     *           "update_time desc"
-     *           "create_time"
+     *           * "update_time desc"
+     *           * "create_time"
+     *           * "is_pinned desc,update_time desc": list sessions by is_pinned first, then
+     *              by update_time.
      * }
      */
     public function __construct($data = NULL) {
@@ -235,9 +241,12 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
      *   * `update_time`
      *   * `create_time`
      *   * `session_name`
+     *   * `is_pinned`
      * Example:
-     * "update_time desc"
-     * "create_time"
+     * * "update_time desc"
+     * * "create_time"
+     * * "is_pinned desc,update_time desc": list sessions by is_pinned first, then
+     *    by update_time.
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
      * @return string
@@ -254,9 +263,12 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
      *   * `update_time`
      *   * `create_time`
      *   * `session_name`
+     *   * `is_pinned`
      * Example:
-     * "update_time desc"
-     * "create_time"
+     * * "update_time desc"
+     * * "create_time"
+     * * "is_pinned desc,update_time desc": list sessions by is_pinned first, then
+     *    by update_time.
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
      * @param string $var

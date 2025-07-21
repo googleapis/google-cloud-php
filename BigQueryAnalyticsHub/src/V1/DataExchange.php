@@ -19,7 +19,7 @@ class DataExchange extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The resource name of the data exchange.
-     * e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * e.g. `projects/myproject/locations/us/dataExchanges/123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -86,6 +86,13 @@ class DataExchange extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.bigquery.analyticshub.v1.DiscoveryType discovery_type = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $discovery_type = null;
+    /**
+     * Optional. By default, false.
+     * If true, the DataExchange has an email sharing mandate enabled.
+     *
+     * Generated from protobuf field <code>optional bool log_linked_dataset_query_user_email = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $log_linked_dataset_query_user_email = null;
 
     /**
      * Constructor.
@@ -95,7 +102,7 @@ class DataExchange extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The resource name of the data exchange.
-     *           e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     *           e.g. `projects/myproject/locations/us/dataExchanges/123`.
      *     @type string $display_name
      *           Required. Human-readable display name of the data exchange. The display
      *           name must contain only Unicode letters, numbers (0-9), underscores (_),
@@ -126,6 +133,9 @@ class DataExchange extends \Google\Protobuf\Internal\Message
      *           Optional. Type of discovery on the discovery page for all the listings
      *           under this exchange. Updating this field also updates (overwrites) the
      *           discovery_type field for all the listings under this exchange.
+     *     @type bool $log_linked_dataset_query_user_email
+     *           Optional. By default, false.
+     *           If true, the DataExchange has an email sharing mandate enabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -135,7 +145,7 @@ class DataExchange extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name of the data exchange.
-     * e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * e.g. `projects/myproject/locations/us/dataExchanges/123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -147,7 +157,7 @@ class DataExchange extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name of the data exchange.
-     * e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * e.g. `projects/myproject/locations/us/dataExchanges/123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -413,6 +423,44 @@ class DataExchange extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\DiscoveryType::class);
         $this->discovery_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. By default, false.
+     * If true, the DataExchange has an email sharing mandate enabled.
+     *
+     * Generated from protobuf field <code>optional bool log_linked_dataset_query_user_email = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getLogLinkedDatasetQueryUserEmail()
+    {
+        return isset($this->log_linked_dataset_query_user_email) ? $this->log_linked_dataset_query_user_email : false;
+    }
+
+    public function hasLogLinkedDatasetQueryUserEmail()
+    {
+        return isset($this->log_linked_dataset_query_user_email);
+    }
+
+    public function clearLogLinkedDatasetQueryUserEmail()
+    {
+        unset($this->log_linked_dataset_query_user_email);
+    }
+
+    /**
+     * Optional. By default, false.
+     * If true, the DataExchange has an email sharing mandate enabled.
+     *
+     * Generated from protobuf field <code>optional bool log_linked_dataset_query_user_email = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setLogLinkedDatasetQueryUserEmail($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->log_linked_dataset_query_user_email = $var;
 
         return $this;
     }

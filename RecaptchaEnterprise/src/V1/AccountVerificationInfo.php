@@ -27,13 +27,13 @@ class AccountVerificationInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * Output only. Result of the latest account verification challenge.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountVerificationInfo.Result latest_verification_result = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $latest_verification_result = 0;
+    protected $latest_verification_result = 0;
     /**
      * Username of the account that is being verified. Deprecated. Customers
      * should now provide the `account_id` field in `event.user_info`.
@@ -156,7 +156,9 @@ class AccountVerificationInfo extends \Google\Protobuf\Internal\Message
      */
     public function getUsername()
     {
-        @trigger_error('username is deprecated.', E_USER_DEPRECATED);
+        if ($this->username !== '') {
+            @trigger_error('username is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->username;
     }
 

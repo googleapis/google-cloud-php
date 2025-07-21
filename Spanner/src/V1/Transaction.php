@@ -38,15 +38,13 @@ class Transaction extends \Google\Protobuf\Internal\Message
      */
     private $read_timestamp = null;
     /**
-     * A precommit token will be included in the response of a BeginTransaction
+     * A precommit token is included in the response of a BeginTransaction
      * request if the read-write transaction is on a multiplexed session and
      * a mutation_key was specified in the
      * [BeginTransaction][google.spanner.v1.BeginTransactionRequest].
      * The precommit token with the highest sequence number from this transaction
      * attempt should be passed to the [Commit][google.spanner.v1.Spanner.Commit]
      * request for this transaction.
-     * This feature is not yet supported and will result in an UNIMPLEMENTED
-     * error.
      *
      * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 3;</code>
      */
@@ -73,15 +71,13 @@ class Transaction extends \Google\Protobuf\Internal\Message
      *           A timestamp in RFC3339 UTC \"Zulu\" format, accurate to nanoseconds.
      *           Example: `"2014-10-02T15:01:23.045123456Z"`.
      *     @type \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken $precommit_token
-     *           A precommit token will be included in the response of a BeginTransaction
+     *           A precommit token is included in the response of a BeginTransaction
      *           request if the read-write transaction is on a multiplexed session and
      *           a mutation_key was specified in the
      *           [BeginTransaction][google.spanner.v1.BeginTransactionRequest].
      *           The precommit token with the highest sequence number from this transaction
      *           attempt should be passed to the [Commit][google.spanner.v1.Spanner.Commit]
      *           request for this transaction.
-     *           This feature is not yet supported and will result in an UNIMPLEMENTED
-     *           error.
      * }
      */
     public function __construct($data = NULL) {
@@ -172,15 +168,13 @@ class Transaction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A precommit token will be included in the response of a BeginTransaction
+     * A precommit token is included in the response of a BeginTransaction
      * request if the read-write transaction is on a multiplexed session and
      * a mutation_key was specified in the
      * [BeginTransaction][google.spanner.v1.BeginTransactionRequest].
      * The precommit token with the highest sequence number from this transaction
      * attempt should be passed to the [Commit][google.spanner.v1.Spanner.Commit]
      * request for this transaction.
-     * This feature is not yet supported and will result in an UNIMPLEMENTED
-     * error.
      *
      * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 3;</code>
      * @return \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken|null
@@ -201,15 +195,13 @@ class Transaction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A precommit token will be included in the response of a BeginTransaction
+     * A precommit token is included in the response of a BeginTransaction
      * request if the read-write transaction is on a multiplexed session and
      * a mutation_key was specified in the
      * [BeginTransaction][google.spanner.v1.BeginTransactionRequest].
      * The precommit token with the highest sequence number from this transaction
      * attempt should be passed to the [Commit][google.spanner.v1.Spanner.Commit]
      * request for this transaction.
-     * This feature is not yet supported and will result in an UNIMPLEMENTED
-     * error.
      *
      * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 3;</code>
      * @param \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken $var

@@ -428,6 +428,11 @@
                         ]
                     }
                 },
+                "generation": {
+                    "type": "string",
+                    "description": "The version of the bucket.",
+                    "format": "int64"
+                },
                 "owner": {
                     "type": "object",
                     "description": "The owner of the bucket. This is always the project team's owner group.",
@@ -500,6 +505,16 @@
                             "format": "date-time"
                         }
                     }
+                },
+                "softDeleteTime": {
+                    "type": "string",
+                    "description": "The time at which the bucket was soft-deleted.",
+                    "format": "date-time"
+                },
+                "hardDeleteTime": {
+                    "type": "string",
+                    "description": "The time when a soft-deleted bucket is permanently deleted and can no longer be restored.",
+                    "format": "date-time"
                 },
                 "storageClass": {
                     "type": "string",
@@ -2277,6 +2292,12 @@
                             "required": true,
                             "location": "path"
                         },
+                        "generation": {
+                            "type": "string",
+                            "description": "If present, selects a specific soft-deleted version of this bucket instead of the live version. This parameter is required if softDeleted is set to true.",
+                            "format": "int64",
+                            "location": "query"
+                        },
                         "ifMetagenerationMatch": {
                             "type": "string",
                             "description": "Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.",
@@ -2305,6 +2326,11 @@
                         "userProject": {
                             "type": "string",
                             "description": "The project to be billed for this request. Required for Requester Pays buckets.",
+                            "location": "query"
+                        },
+                        "softDeleted": {
+                            "type": "boolean",
+                            "description": "If true, returns the soft-deleted bucket. This parameter is required if generation is specified.",
                             "location": "query"
                         }
                     },
@@ -2496,6 +2522,11 @@
                         "userProject": {
                             "type": "string",
                             "description": "The project to be billed for this request.",
+                            "location": "query"
+                        },
+                        "softDeleted": {
+                            "type": "boolean",
+                            "description": "If set to true, only soft-deleted bucket versions are listed as distinct results in order of bucket name and generation number. The default value is false.",
                             "location": "query"
                         }
                     },
@@ -2809,6 +2840,51 @@
                     "request": {
                         "$ref": "Bucket"
                     },
+                    "response": {
+                        "$ref": "Bucket"
+                    },
+                    "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/devstorage.full_control"
+                    ]
+                },
+                "restore": {
+                    "id": "storage.buckets.restore",
+                    "path": "b/{bucket}/restore",
+                    "httpMethod": "POST",
+                    "description": "Restores a soft-deleted bucket.",
+                    "parameters": {
+                        "bucket": {
+                            "type": "string",
+                            "description": "Name of the bucket to be restored.",
+                            "required": true,
+                            "location": "path"
+                        },
+                        "generation": {
+                            "type": "string",
+                            "description": "The specific version of the bucket to be restored.",
+                            "required": true,
+                            "format": "int64",
+                            "location": "query"
+                        },
+                        "projection": {
+                            "type": "string",
+                            "description": "Set of properties to return. Defaults to full.",
+                            "enum": [
+                                "full",
+                                "noAcl"
+                            ],
+                            "enumDescriptions": [
+                                "Include all properties.",
+                                "Omit the owner, acl property."
+                            ],
+                            "location": "query"
+                        }
+                    },
+                    "parameterOrder": [
+                        "bucket",
+                        "generation"
+                    ],
                     "response": {
                         "$ref": "Bucket"
                     },
@@ -4903,6 +4979,101 @@
                     "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
                         "https://www.googleapis.com/auth/devstorage.full_control"
+                    ]
+                },
+                "move": {
+                    "id": "storage.objects.move",
+                    "path": "b/{bucket}/o/{sourceObject}/moveTo/o/{destinationObject}",
+                    "httpMethod": "POST",
+                    "description": "Moves a source object to a destination object. Optionally overrides metadata.",
+                    "parameters": {
+                        "bucket": {
+                            "type": "string",
+                            "description": "Name of the bucket in which to find the source object.",
+                            "required": true,
+                            "location": "path"
+                        },
+                        "sourceObject": {
+                            "type": "string",
+                            "description": "Name of the source object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).",
+                            "required": true,
+                            "location": "path"
+                        },
+                        "destinationObject": {
+                            "type": "string",
+                            "description": "Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).",
+                            "required": true,
+                            "location": "path"
+                        },
+                        "ifGenerationMatch": {
+                            "type": "string",
+                            "description": "Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.",
+                            "format": "int64",
+                            "location": "query"
+                        },
+                        "ifGenerationNotMatch": {
+                            "type": "string",
+                            "description": "Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.",
+                            "format": "int64",
+                            "location": "query"
+                        },
+                        "ifMetagenerationMatch": {
+                            "type": "string",
+                            "description": "Makes the operation conditional on whether the destination object's current metageneration matches the given value.",
+                            "format": "int64",
+                            "location": "query"
+                        },
+                        "ifMetagenerationNotMatch": {
+                            "type": "string",
+                            "description": "Makes the operation conditional on whether the destination object's current metageneration does not match the given value.",
+                            "format": "int64",
+                            "location": "query"
+                        },
+                        "ifSourceGenerationMatch": {
+                            "type": "string",
+                            "description": "Makes the operation conditional on whether the source object's current generation matches the given value.",
+                            "format": "int64",
+                            "location": "query"
+                        },
+                        "ifSourceGenerationNotMatch": {
+                            "type": "string",
+                            "description": "Makes the operation conditional on whether the source object's current generation does not match the given value.",
+                            "format": "int64",
+                            "location": "query"
+                        },
+                        "ifSourceMetagenerationMatch": {
+                            "type": "string",
+                            "description": "Makes the operation conditional on whether the source object's current metageneration matches the given value.",
+                            "format": "int64",
+                            "location": "query"
+                        },
+                        "ifSourceMetagenerationNotMatch": {
+                            "type": "string",
+                            "description": "Makes the operation conditional on whether the source object's current metageneration does not match the given value.",
+                            "format": "int64",
+                            "location": "query"
+                        },
+                        "userProject": {
+                            "type": "string",
+                            "description": "The project to be billed for this request. Required for Requester Pays buckets.",
+                            "location": "query"
+                        }
+                    },
+                    "parameterOrder": [
+                        "bucket",
+                        "sourceObject",
+                        "destinationObject"
+                    ],
+                    "request": {
+                        "$ref": "Object"
+                    },
+                    "response": {
+                        "$ref": "Object"
+                    },
+                    "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/devstorage.full_control",
+                        "https://www.googleapis.com/auth/devstorage.read_write"
                     ]
                 },
                 "rewrite": {

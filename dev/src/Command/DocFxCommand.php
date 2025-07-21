@@ -51,6 +51,14 @@ class DocFxCommand extends Command
             => 'ConfigServiceV2Client::getViewAsync()'
     ];
 
+    private static array $productNeutralGuides = [
+        'README.md' => 'Getting Started',
+        'AUTHENTICATION.md' => 'Authentication',
+        'DEBUG.md' => 'Debug Logging',
+        'MIGRATING.md' => 'Migrating to V2',
+        'GRPC.md' => 'Installing gRPC',
+    ];
+
     protected function configure()
     {
         $this->setName('docfx')
@@ -62,13 +70,67 @@ class DocFxCommand extends Command
             ->addOption('staging-bucket', '', InputOption::VALUE_REQUIRED, 'Upload to the specified staging bucket using docuploader.')
             ->addOption('path', '', InputOption::VALUE_OPTIONAL, 'Specify the path to the composer package to generate.')
             ->addOption('--with-cache', '', InputOption::VALUE_NONE, 'Cache expensive proto namespace lookups to a file')
+            ->addOption('--generate-product-neutral-guides', '', InputOption::VALUE_NONE, 'Instead of a component, generate product-neutral guides.')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if (PHP_VERSION_ID < 80000) {
-            throw new RuntimeException('This command must be run on PHP 8.0 or above');
+        // YAML dump configuration
+        $inline = 11; // The level where you switch to inline YAML
+        $indent = 2; // The amount of spaces to use for indentation of nested nodes
+        $flags = Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK;
+
+        $outDir = $input->getOption('out');
+        if (!is_dir($outDir)) {
+            if (!mkdir($outDir)) {
+                throw new RuntimeException('out directory doesn\'t exist and cannot be created');
+            }
+        }
+
+        if ($input->getOption('generate-product-neutral-guides')) {
+            $output->writeln('Generating <options=bold;fg=white>product neutral guides</>');
+            $tocItems = [];
+            foreach (self::$productNeutralGuides as $file => $name) {
+                $href = $file === 'README.md' ? 'getting-started.md' : strtolower(basename($file));
+                file_put_contents(
+                    $outDir . '/' . $href,
+                    file_get_contents(Component::ROOT_DIR . '/' . $file)
+                );
+                $tocItems[] = ['name' => $name, 'href' => $href];
+            }
+            // Write the TOC to a file
+            $guideToc = array_filter([
+                'uid' => 'product-neutral-guides',
+                'name' => 'Client library help',
+                'items' => $tocItems,
+            ]);
+            $tocYaml = Yaml::dump([$guideToc], $inline, $indent, $flags);
+            $outFile = sprintf('%s/toc.yml', $outDir);
+            file_put_contents($outFile, $tocYaml);
+
+            $output->writeln('Done.');
+
+            if ($metadataVersion = $input->getOption('metadata-version')) {
+                $output->write(sprintf('Writing docs.metadata with version <fg=white>%s</>... ', $metadataVersion));
+                $process = new Process([
+                    'docuploader', 'create-metadata',
+                    '--name', 'help',
+                    '--version', $metadataVersion,
+                    '--language', 'php',
+                    $outDir . '/docs.metadata'
+                ]);
+                $process->mustRun();
+                $output->writeln('Done.');
+            }
+
+            if ($stagingBucket = $input->getOption('staging-bucket')) {
+                $output->write(sprintf('Running docuploader to upload to staging bucket <fg=white>%s</>... ', $stagingBucket));
+                $this->uploadToStagingBucket($outDir, $stagingBucket);
+                $output->writeln('Done.');
+            }
+
+            return 0;
         }
 
         $componentPath = $input->getOption('path');
@@ -77,7 +139,6 @@ class DocFxCommand extends Command
         $output->writeln(sprintf('Generating documentation for <options=bold;fg=white>%s</>', $this->componentName));
 
         $xml = $input->getOption('xml');
-        $outDir = $input->getOption('out');
         if (empty($xml)) {
             $output->write('Running phpdoc to generate structure.xml... ');
             // Run "phpdoc"
@@ -98,11 +159,6 @@ class DocFxCommand extends Command
         }
 
         $output->writeln(sprintf('Writing output to <fg=white>%s</>... ', $outDir));
-
-        // YAML dump configuration
-        $inline = 11; // The level where you switch to inline YAML
-        $indent = 2; // The amount of spaces to use for indentation of nested nodes
-        $flags = Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK;
 
         $valid = true;
         $tocItems = [];
@@ -198,19 +254,7 @@ class DocFxCommand extends Command
 
         if ($stagingBucket = $input->getOption('staging-bucket')) {
             $output->write(sprintf('Running docuploader to upload to staging bucket <fg=white>%s</>... ', $stagingBucket));
-            $process = new Process([
-                'docuploader',
-                'upload',
-                $outDir,
-                '--staging-bucket',
-                $stagingBucket,
-                '--destination-prefix',
-                'docfx-',
-                '--metadata-file',
-                 // use "realdir" until https://github.com/googleapis/docuploader/issues/132 is fixed
-                realpath($outDir) . '/docs.metadata'
-            ]);
-            $process->mustRun();
+            $this->uploadToStagingBucket($outDir, $stagingBucket);
             $output->writeln('Done.');
         }
 
@@ -292,5 +336,22 @@ class DocFxCommand extends Command
         }
 
         return $item->get();
+    }
+
+    private function uploadToStagingBucket(string $outDir, string $stagingBucket): void
+    {
+        $process = new Process([
+            'docuploader',
+            'upload',
+            $outDir,
+            '--staging-bucket',
+            $stagingBucket,
+            '--destination-prefix',
+            'docfx-',
+            '--metadata-file',
+             // use "realdir" until https://github.com/googleapis/docuploader/issues/132 is fixed
+            realpath($outDir) . '/docs.metadata'
+        ]);
+        $process->mustRun();
     }
 }

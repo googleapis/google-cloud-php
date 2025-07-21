@@ -76,6 +76,4 @@ class ConditionCombinerType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConditionCombinerType::class, \Google\Cloud\Monitoring\V3\AlertPolicy_ConditionCombinerType::class);
 

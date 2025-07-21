@@ -22,6 +22,9 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      * * "description"
      * * "file_shares"
      * * "labels"
+     * * "performance_config"
+     * * "deletion_protection_enabled"
+     * * "deletion_protection_reason"
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1;</code>
      */
@@ -42,6 +45,9 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *                                                        * "description"
      *                                                        * "file_shares"
      *                                                        * "labels"
+     *                                                        * "performance_config"
+     *                                                        * "deletion_protection_enabled"
+     *                                                        * "deletion_protection_reason"
      *
      * @return \Google\Cloud\Filestore\V1\UpdateInstanceRequest
      *
@@ -67,6 +73,9 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *           * "description"
      *           * "file_shares"
      *           * "labels"
+     *           * "performance_config"
+     *           * "deletion_protection_enabled"
+     *           * "deletion_protection_reason"
      *     @type \Google\Cloud\Filestore\V1\Instance $instance
      *           Only fields specified in update_mask are updated.
      * }
@@ -83,6 +92,9 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      * * "description"
      * * "file_shares"
      * * "labels"
+     * * "performance_config"
+     * * "deletion_protection_enabled"
+     * * "deletion_protection_reason"
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -109,6 +121,9 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      * * "description"
      * * "file_shares"
      * * "labels"
+     * * "performance_config"
+     * * "deletion_protection_enabled"
+     * * "deletion_protection_reason"
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1;</code>
      * @param \Google\Protobuf\FieldMask $var

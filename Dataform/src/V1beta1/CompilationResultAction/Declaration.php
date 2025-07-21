@@ -22,7 +22,7 @@ class Declaration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.RelationDescriptor relation_descriptor = 1;</code>
      */
-    private $relation_descriptor = null;
+    protected $relation_descriptor = null;
 
     /**
      * Constructor.

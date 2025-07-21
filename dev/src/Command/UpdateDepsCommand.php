@@ -41,6 +41,7 @@ class UpdateDepsCommand extends Command
             ->addOption('component', 'c', InputOption::VALUE_REQUIRED|InputOption::VALUE_IS_ARRAY, 'bumps deps for the specified component/file')
             ->addOption('bump', '', InputOption::VALUE_NONE, 'Bump to latest version of the package')
             ->addOption('add', '', InputOption::VALUE_OPTIONAL, 'Adds the dep if it doesn\'t exist (--add=dev for require-dev)', false)
+            ->addOption('no-dev', '', InputOption::VALUE_NONE, 'Only updates the dep if its in "require" (deps in "require-dev" are left alone)')
             ->addOption('local', '', InputOption::VALUE_NONE, 'Add a link to the local component')
         ;
     }
@@ -73,7 +74,7 @@ class UpdateDepsCommand extends Command
             $composerJson = json_decode(file_get_contents($jsonFile), true);
             $require = 'require';
             if (!isset($composerJson['require'][$package])) {
-                if (isset($composerJson['require-dev'][$package])) {
+                if (isset($composerJson['require-dev'][$package]) && !$input->getOption('no-dev')) {
                     $require = 'require-dev';
                 } elseif (false === $input->getOption('add')) {
                     continue;

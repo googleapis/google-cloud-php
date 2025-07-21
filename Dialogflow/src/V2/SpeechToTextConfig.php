@@ -29,7 +29,7 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SpeechModelVariant speech_model_variant = 1;</code>
      */
-    private $speech_model_variant = 0;
+    protected $speech_model_variant = 0;
     /**
      * Which Speech model to select. Select the
      * model best suited to your domain to get best results. If a model is not
@@ -54,9 +54,11 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 2;</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * List of names of Cloud Speech phrase sets that are used for transcription.
+     * For phrase set limitations, please refer to [Cloud Speech API quotas and
+     * limits](https://cloud.google.com/speech-to-text/quotas#content).
      *
      * Generated from protobuf field <code>repeated string phrase_sets = 4 [(.google.api.resource_reference) = {</code>
      */
@@ -66,7 +68,7 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AudioEncoding audio_encoding = 6;</code>
      */
-    private $audio_encoding = 0;
+    protected $audio_encoding = 0;
     /**
      * Sample rate (in Hertz) of the audio content sent in the query.
      * Refer to [Cloud Speech API
@@ -75,7 +77,7 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 7;</code>
      */
-    private $sample_rate_hertz = 0;
+    protected $sample_rate_hertz = 0;
     /**
      * The language of the supplied audio. Dialogflow does not do
      * translations. See [Language
@@ -85,7 +87,7 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 8;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * If `true`, Dialogflow returns
      * [SpeechWordInfo][google.cloud.dialogflow.v2.SpeechWordInfo] in
@@ -96,14 +98,14 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_word_info = 9;</code>
      */
-    private $enable_word_info = false;
+    protected $enable_word_info = false;
     /**
-     * Use timeout based endpointing, interpreting endpointer sensitivy as
+     * Use timeout based endpointing, interpreting endpointer sensitivity as
      * seconds of timeout value.
      *
      * Generated from protobuf field <code>bool use_timeout_based_endpointing = 11;</code>
      */
-    private $use_timeout_based_endpointing = false;
+    protected $use_timeout_based_endpointing = false;
 
     /**
      * Constructor.
@@ -144,6 +146,8 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      *           for model selection.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $phrase_sets
      *           List of names of Cloud Speech phrase sets that are used for transcription.
+     *           For phrase set limitations, please refer to [Cloud Speech API quotas and
+     *           limits](https://cloud.google.com/speech-to-text/quotas#content).
      *     @type int $audio_encoding
      *           Audio encoding of the audio content to process.
      *     @type int $sample_rate_hertz
@@ -165,7 +169,7 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      *           offsets. If false or unspecified, Speech doesn't return any word-level
      *           information.
      *     @type bool $use_timeout_based_endpointing
-     *           Use timeout based endpointing, interpreting endpointer sensitivy as
+     *           Use timeout based endpointing, interpreting endpointer sensitivity as
      *           seconds of timeout value.
      * }
      */
@@ -282,6 +286,8 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * List of names of Cloud Speech phrase sets that are used for transcription.
+     * For phrase set limitations, please refer to [Cloud Speech API quotas and
+     * limits](https://cloud.google.com/speech-to-text/quotas#content).
      *
      * Generated from protobuf field <code>repeated string phrase_sets = 4 [(.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -293,6 +299,8 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * List of names of Cloud Speech phrase sets that are used for transcription.
+     * For phrase set limitations, please refer to [Cloud Speech API quotas and
+     * limits](https://cloud.google.com/speech-to-text/quotas#content).
      *
      * Generated from protobuf field <code>repeated string phrase_sets = 4 [(.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -435,7 +443,7 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Use timeout based endpointing, interpreting endpointer sensitivy as
+     * Use timeout based endpointing, interpreting endpointer sensitivity as
      * seconds of timeout value.
      *
      * Generated from protobuf field <code>bool use_timeout_based_endpointing = 11;</code>
@@ -447,7 +455,7 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Use timeout based endpointing, interpreting endpointer sensitivy as
+     * Use timeout based endpointing, interpreting endpointer sensitivity as
      * seconds of timeout value.
      *
      * Generated from protobuf field <code>bool use_timeout_based_endpointing = 11;</code>

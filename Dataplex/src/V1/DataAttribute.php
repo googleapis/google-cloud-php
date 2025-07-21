@@ -20,6 +20,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *                 - readers :bar&#64;foo.com
  * ```
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DataAttribute</code>
  */
 class DataAttribute extends \Google\Protobuf\Internal\Message

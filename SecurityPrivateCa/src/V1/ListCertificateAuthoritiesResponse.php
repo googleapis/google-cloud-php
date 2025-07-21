@@ -25,8 +25,8 @@ class ListCertificateAuthoritiesResponse extends \Google\Protobuf\Internal\Messa
     private $certificate_authorities;
     /**
      * A token to retrieve next page of results. Pass this value in
-     * [ListCertificateAuthoritiesRequest.next_page_token][] to retrieve the next
-     * page of results.
+     * [ListCertificateAuthoritiesRequest.page_token][google.cloud.security.privateca.v1.ListCertificateAuthoritiesRequest.page_token]
+     * to retrieve the next page of results.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -49,8 +49,8 @@ class ListCertificateAuthoritiesResponse extends \Google\Protobuf\Internal\Messa
      *           [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority].
      *     @type string $next_page_token
      *           A token to retrieve next page of results. Pass this value in
-     *           [ListCertificateAuthoritiesRequest.next_page_token][] to retrieve the next
-     *           page of results.
+     *           [ListCertificateAuthoritiesRequest.page_token][google.cloud.security.privateca.v1.ListCertificateAuthoritiesRequest.page_token]
+     *           to retrieve the next page of results.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           A list of locations (e.g. "us-west1") that could not be reached.
      * }
@@ -90,8 +90,8 @@ class ListCertificateAuthoritiesResponse extends \Google\Protobuf\Internal\Messa
 
     /**
      * A token to retrieve next page of results. Pass this value in
-     * [ListCertificateAuthoritiesRequest.next_page_token][] to retrieve the next
-     * page of results.
+     * [ListCertificateAuthoritiesRequest.page_token][google.cloud.security.privateca.v1.ListCertificateAuthoritiesRequest.page_token]
+     * to retrieve the next page of results.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -103,8 +103,8 @@ class ListCertificateAuthoritiesResponse extends \Google\Protobuf\Internal\Messa
 
     /**
      * A token to retrieve next page of results. Pass this value in
-     * [ListCertificateAuthoritiesRequest.next_page_token][] to retrieve the next
-     * page of results.
+     * [ListCertificateAuthoritiesRequest.page_token][google.cloud.security.privateca.v1.ListCertificateAuthoritiesRequest.page_token]
+     * to retrieve the next page of results.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

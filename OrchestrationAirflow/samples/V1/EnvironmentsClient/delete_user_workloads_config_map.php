@@ -31,7 +31,7 @@ use Google\Cloud\Orchestration\Airflow\Service\V1\DeleteUserWorkloadsConfigMapRe
  * Deletes a user workloads ConfigMap.
  *
  * This method is supported for Cloud Composer environments in versions
- * composer-3.*.*-airflow-*.*.* and newer.
+ * composer-3-airflow-*.*.*-build.* and newer.
  *
  * @param string $formattedName The ConfigMap to delete, in the form:
  *                              "projects/{projectId}/locations/{locationId}/environments/{environmentId}/userWorkloadsConfigMaps/{userWorkloadsConfigMapId}"

@@ -27,9 +27,9 @@ class OAuthSettings extends \Google\Protobuf\Internal\Message
      */
     protected $login_hint = null;
     /**
-     * List of OAuth client IDs allowed to programmatically authenticate with IAP.
+     * Optional. List of client ids allowed to use IAP programmatically.
      *
-     * Generated from protobuf field <code>repeated string programmatic_clients = 5;</code>
+     * Generated from protobuf field <code>repeated string programmatic_clients = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $programmatic_clients;
 
@@ -46,7 +46,7 @@ class OAuthSettings extends \Google\Protobuf\Internal\Message
      *           Note: IAP does not verify that the id token's hd claim matches this value
      *           since access behavior is managed by IAM policies.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $programmatic_clients
-     *           List of OAuth client IDs allowed to programmatically authenticate with IAP.
+     *           Optional. List of client ids allowed to use IAP programmatically.
      * }
      */
     public function __construct($data = NULL) {
@@ -134,9 +134,9 @@ class OAuthSettings extends \Google\Protobuf\Internal\Message
         return $this;}
 
     /**
-     * List of OAuth client IDs allowed to programmatically authenticate with IAP.
+     * Optional. List of client ids allowed to use IAP programmatically.
      *
-     * Generated from protobuf field <code>repeated string programmatic_clients = 5;</code>
+     * Generated from protobuf field <code>repeated string programmatic_clients = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getProgrammaticClients()
@@ -145,9 +145,9 @@ class OAuthSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of OAuth client IDs allowed to programmatically authenticate with IAP.
+     * Optional. List of client ids allowed to use IAP programmatically.
      *
-     * Generated from protobuf field <code>repeated string programmatic_clients = 5;</code>
+     * Generated from protobuf field <code>repeated string programmatic_clients = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

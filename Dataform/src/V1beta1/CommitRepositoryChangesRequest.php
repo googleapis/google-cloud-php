@@ -20,13 +20,13 @@ class CommitRepositoryChangesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The changes to commit to the repository.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CommitMetadata commit_metadata = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $commit_metadata = null;
+    protected $commit_metadata = null;
     /**
      * Optional. The commit SHA which must be the repository's current HEAD before
      * applying this commit; otherwise this request will fail. If unset, no
@@ -34,12 +34,12 @@ class CommitRepositoryChangesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string required_head_commit_sha = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $required_head_commit_sha = '';
+    protected $required_head_commit_sha = '';
     /**
-     * A map to the path of the file to the operation. The path is the full file
-     * path including filename, from repository root.
+     * Optional. A map to the path of the file to the operation. The path is the
+     * full file path including filename, from repository root.
      *
-     * Generated from protobuf field <code>map<string, .google.cloud.dataform.v1beta1.CommitRepositoryChangesRequest.FileOperation> file_operations = 3;</code>
+     * Generated from protobuf field <code>map<string, .google.cloud.dataform.v1beta1.CommitRepositoryChangesRequest.FileOperation> file_operations = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $file_operations;
 
@@ -58,8 +58,8 @@ class CommitRepositoryChangesRequest extends \Google\Protobuf\Internal\Message
      *           applying this commit; otherwise this request will fail. If unset, no
      *           validation on the current HEAD commit SHA is performed.
      *     @type array|\Google\Protobuf\Internal\MapField $file_operations
-     *           A map to the path of the file to the operation. The path is the full file
-     *           path including filename, from repository root.
+     *           Optional. A map to the path of the file to the operation. The path is the
+     *           full file path including filename, from repository root.
      * }
      */
     public function __construct($data = NULL) {
@@ -160,10 +160,10 @@ class CommitRepositoryChangesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A map to the path of the file to the operation. The path is the full file
-     * path including filename, from repository root.
+     * Optional. A map to the path of the file to the operation. The path is the
+     * full file path including filename, from repository root.
      *
-     * Generated from protobuf field <code>map<string, .google.cloud.dataform.v1beta1.CommitRepositoryChangesRequest.FileOperation> file_operations = 3;</code>
+     * Generated from protobuf field <code>map<string, .google.cloud.dataform.v1beta1.CommitRepositoryChangesRequest.FileOperation> file_operations = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getFileOperations()
@@ -172,10 +172,10 @@ class CommitRepositoryChangesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A map to the path of the file to the operation. The path is the full file
-     * path including filename, from repository root.
+     * Optional. A map to the path of the file to the operation. The path is the
+     * full file path including filename, from repository root.
      *
-     * Generated from protobuf field <code>map<string, .google.cloud.dataform.v1beta1.CommitRepositoryChangesRequest.FileOperation> file_operations = 3;</code>
+     * Generated from protobuf field <code>map<string, .google.cloud.dataform.v1beta1.CommitRepositoryChangesRequest.FileOperation> file_operations = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */

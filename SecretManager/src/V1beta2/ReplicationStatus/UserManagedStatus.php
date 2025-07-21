@@ -74,6 +74,4 @@ class UserManagedStatus extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(UserManagedStatus::class, \Google\Cloud\SecretManager\V1beta2\ReplicationStatus_UserManagedStatus::class);
 

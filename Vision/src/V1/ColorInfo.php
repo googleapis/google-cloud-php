@@ -21,20 +21,20 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Color color = 1;</code>
      */
-    private $color = null;
+    protected $color = null;
     /**
      * Image-specific score for this color. Value in range [0, 1].
      *
      * Generated from protobuf field <code>float score = 2;</code>
      */
-    private $score = 0.0;
+    protected $score = 0.0;
     /**
      * The fraction of pixels the color occupies in the image.
      * Value in range [0, 1].
      *
      * Generated from protobuf field <code>float pixel_fraction = 3;</code>
      */
-    private $pixel_fraction = 0.0;
+    protected $pixel_fraction = 0.0;
 
     /**
      * Constructor.

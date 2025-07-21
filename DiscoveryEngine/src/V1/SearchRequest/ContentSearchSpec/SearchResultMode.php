@@ -28,7 +28,8 @@ class SearchResultMode
     const DOCUMENTS = 1;
     /**
      * Returns chunks in the search result. Only available if the
-     * [DataStore.DocumentProcessingConfig.chunking_config][] is specified.
+     * [DocumentProcessingConfig.chunking_config][google.cloud.discoveryengine.v1.DocumentProcessingConfig.chunking_config]
+     * is specified.
      *
      * Generated from protobuf enum <code>CHUNKS = 2;</code>
      */

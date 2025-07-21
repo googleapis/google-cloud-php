@@ -407,6 +407,7 @@ class UserEventServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $eventType = 'eventType984376767';
+        $conversionType = 'conversionType624279747';
         $userPseudoId = 'userPseudoId-1850666040';
         $engine = 'engine-1298662846';
         $dataStore = 'dataStore1619682316';
@@ -416,6 +417,7 @@ class UserEventServiceClientTest extends GeneratedTest
         $filter = 'filter-1274492040';
         $expectedResponse = new UserEvent();
         $expectedResponse->setEventType($eventType);
+        $expectedResponse->setConversionType($conversionType);
         $expectedResponse->setUserPseudoId($userPseudoId);
         $expectedResponse->setEngine($engine);
         $expectedResponse->setDataStore($dataStore);

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Representes a singular feature of a model. If the feature is `recognizer`,
+ * Represents a singular feature of a model. If the feature is `recognizer`,
  * the release_state of the feature represents the release_state of the model
  *
  * Generated from protobuf message <code>google.cloud.speech.v2.ModelFeature</code>
@@ -21,13 +21,13 @@ class ModelFeature extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string feature = 1;</code>
      */
-    private $feature = '';
+    protected $feature = '';
     /**
      * The release state of the feature
      *
      * Generated from protobuf field <code>string release_state = 2;</code>
      */
-    private $release_state = '';
+    protected $release_state = '';
 
     /**
      * Constructor.

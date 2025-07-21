@@ -233,6 +233,19 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     protected $satisfies_pzs = false;
     /**
+     * Output only. The node selector for the task.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.NodeSelector node_selector = 36 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $node_selector = null;
+    /**
+     * Optional. Output only. True if GPU zonal redundancy is disabled on this
+     * task.
+     *
+     * Generated from protobuf field <code>optional bool gpu_zonal_redundancy_disabled = 37 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $gpu_zonal_redundancy_disabled = null;
+    /**
      * Output only. A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
      *
@@ -343,6 +356,11 @@ class Task extends \Google\Protobuf\Internal\Message
      *           Console.
      *     @type bool $satisfies_pzs
      *           Output only. Reserved for future use.
+     *     @type \Google\Cloud\Run\V2\NodeSelector $node_selector
+     *           Output only. The node selector for the task.
+     *     @type bool $gpu_zonal_redundancy_disabled
+     *           Optional. Output only. True if GPU zonal redundancy is disabled on this
+     *           task.
      *     @type string $etag
      *           Output only. A system-generated fingerprint for this version of the
      *           resource. May be used to detect modification conflict during updates.
@@ -1303,6 +1321,80 @@ class Task extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The node selector for the task.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.NodeSelector node_selector = 36 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Run\V2\NodeSelector|null
+     */
+    public function getNodeSelector()
+    {
+        return $this->node_selector;
+    }
+
+    public function hasNodeSelector()
+    {
+        return isset($this->node_selector);
+    }
+
+    public function clearNodeSelector()
+    {
+        unset($this->node_selector);
+    }
+
+    /**
+     * Output only. The node selector for the task.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.NodeSelector node_selector = 36 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Run\V2\NodeSelector $var
+     * @return $this
+     */
+    public function setNodeSelector($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\NodeSelector::class);
+        $this->node_selector = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Output only. True if GPU zonal redundancy is disabled on this
+     * task.
+     *
+     * Generated from protobuf field <code>optional bool gpu_zonal_redundancy_disabled = 37 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getGpuZonalRedundancyDisabled()
+    {
+        return isset($this->gpu_zonal_redundancy_disabled) ? $this->gpu_zonal_redundancy_disabled : false;
+    }
+
+    public function hasGpuZonalRedundancyDisabled()
+    {
+        return isset($this->gpu_zonal_redundancy_disabled);
+    }
+
+    public function clearGpuZonalRedundancyDisabled()
+    {
+        unset($this->gpu_zonal_redundancy_disabled);
+    }
+
+    /**
+     * Optional. Output only. True if GPU zonal redundancy is disabled on this
+     * task.
+     *
+     * Generated from protobuf field <code>optional bool gpu_zonal_redundancy_disabled = 37 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setGpuZonalRedundancyDisabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->gpu_zonal_redundancy_disabled = $var;
 
         return $this;
     }

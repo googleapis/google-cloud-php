@@ -32,7 +32,6 @@ use Google\ApiCore\PagedListResponse;
 /**
  * Returns child Properties under the specified parent Account.
  *
- * Only "GA4" properties will be returned.
  * Properties will be excluded if the caller does not have access.
  * Soft-deleted (ie: "trashed") properties are excluded by default.
  * Returns an empty list if no relevant properties are found.

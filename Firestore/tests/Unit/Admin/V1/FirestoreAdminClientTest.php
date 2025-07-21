@@ -40,6 +40,8 @@ use Google\Cloud\Firestore\Admin\V1\ListBackupsResponse;
 use Google\Cloud\Firestore\Admin\V1\ListDatabasesResponse;
 use Google\Cloud\Firestore\Admin\V1\ListFieldsResponse;
 use Google\Cloud\Firestore\Admin\V1\ListIndexesResponse;
+use Google\Cloud\Firestore\Admin\V1\ListUserCredsResponse;
+use Google\Cloud\Firestore\Admin\V1\UserCreds;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -282,6 +284,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $locationId = 'locationId552319461';
         $keyPrefix = 'keyPrefix438630514';
         $previousId = 'previousId-1005863069';
+        $freeTier = false;
         $etag = 'etag3123477';
         $expectedResponse = new Database();
         $expectedResponse->setName($name);
@@ -289,6 +292,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setKeyPrefix($keyPrefix);
         $expectedResponse->setPreviousId($previousId);
+        $expectedResponse->setFreeTier($freeTier);
         $expectedResponse->setEtag($etag);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -415,8 +419,12 @@ class FirestoreAdminClientTest extends GeneratedTest
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
+        $multikey = true;
+        $shardCount = 495377042;
         $expectedResponse = new Index();
         $expectedResponse->setName($name);
+        $expectedResponse->setMultikey($multikey);
+        $expectedResponse->setShardCount($shardCount);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -514,6 +522,76 @@ class FirestoreAdminClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createUserCredsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $securePassword = 'securePassword934119011';
+        $expectedResponse = new UserCreds();
+        $expectedResponse->setName($name);
+        $expectedResponse->setSecurePassword($securePassword);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
+        $userCreds = new UserCreds();
+        $userCredsId = 'userCredsId1873704105';
+        $response = $gapicClient->createUserCreds($formattedParent, $userCreds, $userCredsId);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/CreateUserCreds', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getUserCreds();
+        $this->assertProtobufEquals($userCreds, $actualValue);
+        $actualValue = $actualRequestObject->getUserCredsId();
+        $this->assertProtobufEquals($userCredsId, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createUserCredsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
+        $userCreds = new UserCreds();
+        $userCredsId = 'userCredsId1873704105';
+        try {
+            $gapicClient->createUserCreds($formattedParent, $userCreds, $userCredsId);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -656,6 +734,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $locationId = 'locationId552319461';
         $keyPrefix = 'keyPrefix438630514';
         $previousId = 'previousId-1005863069';
+        $freeTier = false;
         $etag2 = 'etag2-1293302904';
         $expectedResponse = new Database();
         $expectedResponse->setName($name2);
@@ -663,6 +742,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setKeyPrefix($keyPrefix);
         $expectedResponse->setPreviousId($previousId);
+        $expectedResponse->setFreeTier($freeTier);
         $expectedResponse->setEtag($etag2);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -805,6 +885,187 @@ class FirestoreAdminClientTest extends GeneratedTest
         $formattedName = $gapicClient->indexName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[INDEX]');
         try {
             $gapicClient->deleteIndex($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteUserCredsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
+        $gapicClient->deleteUserCreds($formattedName);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/DeleteUserCreds', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteUserCredsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
+        try {
+            $gapicClient->deleteUserCreds($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function disableUserCredsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $securePassword = 'securePassword934119011';
+        $expectedResponse = new UserCreds();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setSecurePassword($securePassword);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
+        $response = $gapicClient->disableUserCreds($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/DisableUserCreds', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function disableUserCredsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
+        try {
+            $gapicClient->disableUserCreds($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function enableUserCredsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $securePassword = 'securePassword934119011';
+        $expectedResponse = new UserCreds();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setSecurePassword($securePassword);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
+        $response = $gapicClient->enableUserCreds($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/EnableUserCreds', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function enableUserCredsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
+        try {
+            $gapicClient->enableUserCreds($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1073,6 +1334,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $locationId = 'locationId552319461';
         $keyPrefix = 'keyPrefix438630514';
         $previousId = 'previousId-1005863069';
+        $freeTier = false;
         $etag = 'etag3123477';
         $expectedResponse = new Database();
         $expectedResponse->setName($name2);
@@ -1080,6 +1342,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setKeyPrefix($keyPrefix);
         $expectedResponse->setPreviousId($previousId);
+        $expectedResponse->setFreeTier($freeTier);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -1199,8 +1462,12 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $multikey = true;
+        $shardCount = 495377042;
         $expectedResponse = new Index();
         $expectedResponse->setName($name2);
+        $expectedResponse->setMultikey($multikey);
+        $expectedResponse->setShardCount($shardCount);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->indexName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[INDEX]');
@@ -1238,6 +1505,68 @@ class FirestoreAdminClientTest extends GeneratedTest
         $formattedName = $gapicClient->indexName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[INDEX]');
         try {
             $gapicClient->getIndex($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getUserCredsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $securePassword = 'securePassword934119011';
+        $expectedResponse = new UserCreds();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setSecurePassword($securePassword);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
+        $response = $gapicClient->getUserCreds($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/GetUserCreds', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getUserCredsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
+        try {
+            $gapicClient->getUserCreds($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1677,6 +2006,126 @@ class FirestoreAdminClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listUserCredsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new ListUserCredsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
+        $response = $gapicClient->listUserCreds($formattedParent);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/ListUserCreds', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listUserCredsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
+        try {
+            $gapicClient->listUserCreds($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function resetUserPasswordTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $securePassword = 'securePassword934119011';
+        $expectedResponse = new UserCreds();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setSecurePassword($securePassword);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
+        $response = $gapicClient->resetUserPassword($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/ResetUserPassword', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function resetUserPasswordExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->userCredsName('[PROJECT]', '[DATABASE]', '[USER_CREDS]');
+        try {
+            $gapicClient->resetUserPassword($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function restoreDatabaseTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1702,6 +2151,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $locationId = 'locationId552319461';
         $keyPrefix = 'keyPrefix438630514';
         $previousId = 'previousId-1005863069';
+        $freeTier = false;
         $etag = 'etag3123477';
         $expectedResponse = new Database();
         $expectedResponse->setName($name);
@@ -1709,6 +2159,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setKeyPrefix($keyPrefix);
         $expectedResponse->setPreviousId($previousId);
+        $expectedResponse->setFreeTier($freeTier);
         $expectedResponse->setEtag($etag);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -1899,6 +2350,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $locationId = 'locationId552319461';
         $keyPrefix = 'keyPrefix438630514';
         $previousId = 'previousId-1005863069';
+        $freeTier = false;
         $etag = 'etag3123477';
         $expectedResponse = new Database();
         $expectedResponse->setName($name);
@@ -1906,6 +2358,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setKeyPrefix($keyPrefix);
         $expectedResponse->setPreviousId($previousId);
+        $expectedResponse->setFreeTier($freeTier);
         $expectedResponse->setEtag($etag);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());

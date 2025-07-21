@@ -14,11 +14,11 @@ permissions:
   contents: read
 jobs:
   test:
-    runs-on: ubuntu-20.04
+    runs-on: 'ubuntu-24.04'
 
     services:
       emulator:
-        image: gcr.io/cloud-spanner-emulator/emulator:1.5.27
+        image: gcr.io/cloud-spanner-emulator/emulator:1.5.34
         ports:
           - 9010:9010
           - 9020:9020
@@ -30,7 +30,7 @@ jobs:
       - name: Create Spanner instance
         uses: google-github-actions/setup-gcloud@v2
         with:
-          version: '290.0.1'
+          version: '516.0.0'
       - run: gcloud info
       - run: gcloud config configurations create emulator
       - run: gcloud config set auth/disable_credentials true

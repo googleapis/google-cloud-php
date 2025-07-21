@@ -34,10 +34,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * (`OutputOnly`)
-     * The current state of the instance.
+     * Output only. The current state of the instance.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance.State state = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance.State state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $state = 0;
     /**
@@ -62,9 +61,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Output only. A server-assigned timestamp representing when this Instance
-     * was created. For instances created before this field was added (August
-     * 2021), this value is `seconds: 0, nanos: 1`.
+     * Output only. A commit timestamp representing when this Instance was
+     * created. For instances created before this field was added (August 2021),
+     * this value is `seconds: 0, nanos: 1`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -75,6 +74,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool satisfies_pzs = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $satisfies_pzs = null;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = null;
 
     /**
      * Constructor.
@@ -90,8 +95,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Can be changed at any time, but should be kept globally unique
      *           to avoid confusion.
      *     @type int $state
-     *           (`OutputOnly`)
-     *           The current state of the instance.
+     *           Output only. The current state of the instance.
      *     @type int $type
      *           The type of the instance. Defaults to `PRODUCTION`.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
@@ -106,10 +110,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           * No more than 64 labels can be associated with a given resource.
      *           * Keys and values must both be under 128 bytes.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. A server-assigned timestamp representing when this Instance
-     *           was created. For instances created before this field was added (August
-     *           2021), this value is `seconds: 0, nanos: 1`.
+     *           Output only. A commit timestamp representing when this Instance was
+     *           created. For instances created before this field was added (August 2021),
+     *           this value is `seconds: 0, nanos: 1`.
      *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type bool $satisfies_pzi
      *           Output only. Reserved for future use.
      * }
      */
@@ -177,10 +183,9 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
-     * The current state of the instance.
+     * Output only. The current state of the instance.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance.State state = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance.State state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getState()
@@ -189,10 +194,9 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
-     * The current state of the instance.
+     * Output only. The current state of the instance.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance.State state = 3;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance.State state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -275,9 +279,9 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A server-assigned timestamp representing when this Instance
-     * was created. For instances created before this field was added (August
-     * 2021), this value is `seconds: 0, nanos: 1`.
+     * Output only. A commit timestamp representing when this Instance was
+     * created. For instances created before this field was added (August 2021),
+     * this value is `seconds: 0, nanos: 1`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -298,9 +302,9 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A server-assigned timestamp representing when this Instance
-     * was created. For instances created before this field was added (August
-     * 2021), this value is `seconds: 0, nanos: 1`.
+     * Output only. A commit timestamp representing when this Instance was
+     * created. For instances created before this field was added (August 2021),
+     * this value is `seconds: 0, nanos: 1`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -346,6 +350,42 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi) ? $this->satisfies_pzi : false;
+    }
+
+    public function hasSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi);
+    }
+
+    public function clearSatisfiesPzi()
+    {
+        unset($this->satisfies_pzi);
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

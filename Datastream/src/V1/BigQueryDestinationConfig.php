@@ -24,6 +24,12 @@ class BigQueryDestinationConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration data_freshness = 300;</code>
      */
     protected $data_freshness = null;
+    /**
+     * Optional. Big Lake Managed Tables (BLMT) configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.BigQueryDestinationConfig.BlmtConfig blmt_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $blmt_config = null;
     protected $dataset_config;
     protected $write_mode;
 
@@ -42,6 +48,8 @@ class BigQueryDestinationConfig extends \Google\Protobuf\Internal\Message
      *           the stream. Editing this field will only affect new tables created in the
      *           future, but existing tables will not be impacted. Lower values mean that
      *           queries will return fresher data, but may result in higher cost.
+     *     @type \Google\Cloud\Datastream\V1\BigQueryDestinationConfig\BlmtConfig $blmt_config
+     *           Optional. Big Lake Managed Tables (BLMT) configuration.
      *     @type \Google\Cloud\Datastream\V1\BigQueryDestinationConfig\Merge $merge
      *           The standard mode
      *     @type \Google\Cloud\Datastream\V1\BigQueryDestinationConfig\AppendOnly $append_only
@@ -153,6 +161,42 @@ class BigQueryDestinationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->data_freshness = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Big Lake Managed Tables (BLMT) configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.BigQueryDestinationConfig.BlmtConfig blmt_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Datastream\V1\BigQueryDestinationConfig\BlmtConfig|null
+     */
+    public function getBlmtConfig()
+    {
+        return $this->blmt_config;
+    }
+
+    public function hasBlmtConfig()
+    {
+        return isset($this->blmt_config);
+    }
+
+    public function clearBlmtConfig()
+    {
+        unset($this->blmt_config);
+    }
+
+    /**
+     * Optional. Big Lake Managed Tables (BLMT) configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.BigQueryDestinationConfig.BlmtConfig blmt_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Datastream\V1\BigQueryDestinationConfig\BlmtConfig $var
+     * @return $this
+     */
+    public function setBlmtConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\BigQueryDestinationConfig\BlmtConfig::class);
+        $this->blmt_config = $var;
 
         return $this;
     }

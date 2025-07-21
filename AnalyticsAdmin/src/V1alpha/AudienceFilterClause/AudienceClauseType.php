@@ -63,6 +63,4 @@ class AudienceClauseType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AudienceClauseType::class, \Google\Analytics\Admin\V1alpha\AudienceFilterClause_AudienceClauseType::class);
 

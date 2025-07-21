@@ -33,9 +33,9 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      */
     protected $next_page_token = '';
     /**
-     * Locations that could not be reached.
+     * Unordered list. Locations that could not be reached.
      *
-     * Generated from protobuf field <code>repeated string unreachable = 3;</code>
+     * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
      */
     private $unreachable;
 
@@ -55,7 +55,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      *           The token you can use to retrieve the next page of results. Not returned
      *           if there are no more results in the list.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
-     *           Locations that could not be reached.
+     *           Unordered list. Locations that could not be reached.
      * }
      */
     public function __construct($data = NULL) {
@@ -126,9 +126,9 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Locations that could not be reached.
+     * Unordered list. Locations that could not be reached.
      *
-     * Generated from protobuf field <code>repeated string unreachable = 3;</code>
+     * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getUnreachable()
@@ -137,9 +137,9 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Locations that could not be reached.
+     * Unordered list. Locations that could not be reached.
      *
-     * Generated from protobuf field <code>repeated string unreachable = 3;</code>
+     * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

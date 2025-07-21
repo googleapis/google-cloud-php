@@ -321,6 +321,15 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode keyword_match_mode = 18;</code>
      */
     protected $keyword_match_mode = 0;
+    /**
+     * Optional. The relevance threshold of the search results.
+     * Default to Google defined threshold, leveraging a balance of
+     * precision and recall to deliver both highly accurate results and
+     * comprehensive coverage of relevant information.
+     *
+     * Generated from protobuf field <code>.google.cloud.talent.v4.SearchJobsRequest.RelevanceThreshold relevance_threshold = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $relevance_threshold = 0;
 
     /**
      * Constructor.
@@ -573,6 +582,11 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *           Defaults to
      *           [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL]
      *           if no value is specified.
+     *     @type int $relevance_threshold
+     *           Optional. The relevance threshold of the search results.
+     *           Default to Google defined threshold, leveraging a balance of
+     *           precision and recall to deliver both highly accurate results and
+     *           comprehensive coverage of relevant information.
      * }
      */
     public function __construct($data = NULL) {
@@ -1349,7 +1363,9 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDisableKeywordMatch()
     {
-        @trigger_error('disable_keyword_match is deprecated.', E_USER_DEPRECATED);
+        if ($this->disable_keyword_match !== false) {
+            @trigger_error('disable_keyword_match is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->disable_keyword_match;
     }
 
@@ -1430,6 +1446,38 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4\SearchJobsRequest\KeywordMatchMode::class);
         $this->keyword_match_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The relevance threshold of the search results.
+     * Default to Google defined threshold, leveraging a balance of
+     * precision and recall to deliver both highly accurate results and
+     * comprehensive coverage of relevant information.
+     *
+     * Generated from protobuf field <code>.google.cloud.talent.v4.SearchJobsRequest.RelevanceThreshold relevance_threshold = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getRelevanceThreshold()
+    {
+        return $this->relevance_threshold;
+    }
+
+    /**
+     * Optional. The relevance threshold of the search results.
+     * Default to Google defined threshold, leveraging a balance of
+     * precision and recall to deliver both highly accurate results and
+     * comprehensive coverage of relevant information.
+     *
+     * Generated from protobuf field <code>.google.cloud.talent.v4.SearchJobsRequest.RelevanceThreshold relevance_threshold = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRelevanceThreshold($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4\SearchJobsRequest\RelevanceThreshold::class);
+        $this->relevance_threshold = $var;
 
         return $this;
     }

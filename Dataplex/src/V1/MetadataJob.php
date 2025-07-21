@@ -88,8 +88,12 @@ class MetadataJob extends \Google\Protobuf\Internal\Message
      *           Required. Metadata job type.
      *     @type \Google\Cloud\Dataplex\V1\MetadataJob\ImportJobSpec $import_spec
      *           Import job specification.
+     *     @type \Google\Cloud\Dataplex\V1\MetadataJob\ExportJobSpec $export_spec
+     *           Export job specification.
      *     @type \Google\Cloud\Dataplex\V1\MetadataJob\ImportJobResult $import_result
      *           Output only. Import job result.
+     *     @type \Google\Cloud\Dataplex\V1\MetadataJob\ExportJobResult $export_result
+     *           Output only. Export job result.
      *     @type \Google\Cloud\Dataplex\V1\MetadataJob\Status $status
      *           Output only. Metadata job status.
      * }
@@ -315,6 +319,37 @@ class MetadataJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Export job specification.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.MetadataJob.ExportJobSpec export_spec = 101;</code>
+     * @return \Google\Cloud\Dataplex\V1\MetadataJob\ExportJobSpec|null
+     */
+    public function getExportSpec()
+    {
+        return $this->readOneof(101);
+    }
+
+    public function hasExportSpec()
+    {
+        return $this->hasOneof(101);
+    }
+
+    /**
+     * Export job specification.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.MetadataJob.ExportJobSpec export_spec = 101;</code>
+     * @param \Google\Cloud\Dataplex\V1\MetadataJob\ExportJobSpec $var
+     * @return $this
+     */
+    public function setExportSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\MetadataJob\ExportJobSpec::class);
+        $this->writeOneof(101, $var);
+
+        return $this;
+    }
+
+    /**
      * Output only. Import job result.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.MetadataJob.ImportJobResult import_result = 200 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -341,6 +376,37 @@ class MetadataJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\MetadataJob\ImportJobResult::class);
         $this->writeOneof(200, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. Export job result.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.MetadataJob.ExportJobResult export_result = 201 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataplex\V1\MetadataJob\ExportJobResult|null
+     */
+    public function getExportResult()
+    {
+        return $this->readOneof(201);
+    }
+
+    public function hasExportResult()
+    {
+        return $this->hasOneof(201);
+    }
+
+    /**
+     * Output only. Export job result.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.MetadataJob.ExportJobResult export_result = 201 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataplex\V1\MetadataJob\ExportJobResult $var
+     * @return $this
+     */
+    public function setExportResult($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\MetadataJob\ExportJobResult::class);
+        $this->writeOneof(201, $var);
 
         return $this;
     }

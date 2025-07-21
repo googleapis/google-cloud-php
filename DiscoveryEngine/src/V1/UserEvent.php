@@ -24,16 +24,33 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * * `view-item-list`: View of a panel or ordered list of Documents.
      * * `view-home-page`: View of the home page.
      * * `view-category-page`: View of a category page, e.g. Home > Men > Jeans
+     * * `add-feedback`: Add a user feedback.
      * Retail-related values:
      * * `add-to-cart`: Add an item(s) to cart, e.g. in Retail online shopping
      * * `purchase`: Purchase an item(s)
      * Media-related values:
      * * `media-play`: Start/resume watching a video, playing a song, etc.
      * * `media-complete`: Finished or stopped midway through a video, song, etc.
+     * Custom conversion value:
+     * * `conversion`: Customer defined conversion event.
      *
      * Generated from protobuf field <code>string event_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $event_type = '';
+    /**
+     * Optional. Conversion type.
+     * Required if
+     * [UserEvent.event_type][google.cloud.discoveryengine.v1.UserEvent.event_type]
+     * is `conversion`. This is a customer-defined conversion name in lowercase
+     * letters or numbers separated by "-", such as "watch", "good-visit" etc.
+     * Do not set the field if
+     * [UserEvent.event_type][google.cloud.discoveryengine.v1.UserEvent.event_type]
+     * is not `conversion`. This mixes the custom conversion event with predefined
+     * events like `search`, `view-item` etc.
+     *
+     * Generated from protobuf field <code>string conversion_type = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $conversion_type = '';
     /**
      * Required. A unique identifier for tracking visitors.
      * For example, this could be implemented with an HTTP cookie, which should be
@@ -265,6 +282,13 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.MediaInfo media_info = 18;</code>
      */
     protected $media_info = null;
+    /**
+     * Optional. List of panels associated with this event.
+     * Used for page-level impression data.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.PanelInfo panels = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $panels;
 
     /**
      * Constructor.
@@ -280,12 +304,25 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           * `view-item-list`: View of a panel or ordered list of Documents.
      *           * `view-home-page`: View of the home page.
      *           * `view-category-page`: View of a category page, e.g. Home > Men > Jeans
+     *           * `add-feedback`: Add a user feedback.
      *           Retail-related values:
      *           * `add-to-cart`: Add an item(s) to cart, e.g. in Retail online shopping
      *           * `purchase`: Purchase an item(s)
      *           Media-related values:
      *           * `media-play`: Start/resume watching a video, playing a song, etc.
      *           * `media-complete`: Finished or stopped midway through a video, song, etc.
+     *           Custom conversion value:
+     *           * `conversion`: Customer defined conversion event.
+     *     @type string $conversion_type
+     *           Optional. Conversion type.
+     *           Required if
+     *           [UserEvent.event_type][google.cloud.discoveryengine.v1.UserEvent.event_type]
+     *           is `conversion`. This is a customer-defined conversion name in lowercase
+     *           letters or numbers separated by "-", such as "watch", "good-visit" etc.
+     *           Do not set the field if
+     *           [UserEvent.event_type][google.cloud.discoveryengine.v1.UserEvent.event_type]
+     *           is not `conversion`. This mixes the custom conversion event with predefined
+     *           events like `search`, `view-item` etc.
      *     @type string $user_pseudo_id
      *           Required. A unique identifier for tracking visitors.
      *           For example, this could be implemented with an HTTP cookie, which should be
@@ -441,6 +478,9 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           search, or in other ways.
      *     @type \Google\Cloud\DiscoveryEngine\V1\MediaInfo $media_info
      *           Media-specific info.
+     *     @type array<\Google\Cloud\DiscoveryEngine\V1\PanelInfo>|\Google\Protobuf\Internal\RepeatedField $panels
+     *           Optional. List of panels associated with this event.
+     *           Used for page-level impression data.
      * }
      */
     public function __construct($data = NULL) {
@@ -456,12 +496,15 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * * `view-item-list`: View of a panel or ordered list of Documents.
      * * `view-home-page`: View of the home page.
      * * `view-category-page`: View of a category page, e.g. Home > Men > Jeans
+     * * `add-feedback`: Add a user feedback.
      * Retail-related values:
      * * `add-to-cart`: Add an item(s) to cart, e.g. in Retail online shopping
      * * `purchase`: Purchase an item(s)
      * Media-related values:
      * * `media-play`: Start/resume watching a video, playing a song, etc.
      * * `media-complete`: Finished or stopped midway through a video, song, etc.
+     * Custom conversion value:
+     * * `conversion`: Customer defined conversion event.
      *
      * Generated from protobuf field <code>string event_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -479,12 +522,15 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * * `view-item-list`: View of a panel or ordered list of Documents.
      * * `view-home-page`: View of the home page.
      * * `view-category-page`: View of a category page, e.g. Home > Men > Jeans
+     * * `add-feedback`: Add a user feedback.
      * Retail-related values:
      * * `add-to-cart`: Add an item(s) to cart, e.g. in Retail online shopping
      * * `purchase`: Purchase an item(s)
      * Media-related values:
      * * `media-play`: Start/resume watching a video, playing a song, etc.
      * * `media-complete`: Finished or stopped midway through a video, song, etc.
+     * Custom conversion value:
+     * * `conversion`: Customer defined conversion event.
      *
      * Generated from protobuf field <code>string event_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -494,6 +540,48 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->event_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Conversion type.
+     * Required if
+     * [UserEvent.event_type][google.cloud.discoveryengine.v1.UserEvent.event_type]
+     * is `conversion`. This is a customer-defined conversion name in lowercase
+     * letters or numbers separated by "-", such as "watch", "good-visit" etc.
+     * Do not set the field if
+     * [UserEvent.event_type][google.cloud.discoveryengine.v1.UserEvent.event_type]
+     * is not `conversion`. This mixes the custom conversion event with predefined
+     * events like `search`, `view-item` etc.
+     *
+     * Generated from protobuf field <code>string conversion_type = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getConversionType()
+    {
+        return $this->conversion_type;
+    }
+
+    /**
+     * Optional. Conversion type.
+     * Required if
+     * [UserEvent.event_type][google.cloud.discoveryengine.v1.UserEvent.event_type]
+     * is `conversion`. This is a customer-defined conversion name in lowercase
+     * letters or numbers separated by "-", such as "watch", "good-visit" etc.
+     * Do not set the field if
+     * [UserEvent.event_type][google.cloud.discoveryengine.v1.UserEvent.event_type]
+     * is not `conversion`. This mixes the custom conversion event with predefined
+     * events like `search`, `view-item` etc.
+     *
+     * Generated from protobuf field <code>string conversion_type = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setConversionType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->conversion_type = $var;
 
         return $this;
     }
@@ -1302,6 +1390,34 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\MediaInfo::class);
         $this->media_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. List of panels associated with this event.
+     * Used for page-level impression data.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.PanelInfo panels = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPanels()
+    {
+        return $this->panels;
+    }
+
+    /**
+     * Optional. List of panels associated with this event.
+     * Used for page-level impression data.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.PanelInfo panels = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\DiscoveryEngine\V1\PanelInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPanels($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\PanelInfo::class);
+        $this->panels = $arr;
 
         return $this;
     }

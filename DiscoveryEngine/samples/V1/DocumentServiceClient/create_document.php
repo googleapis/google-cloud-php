@@ -49,7 +49,7 @@ use Google\Cloud\DiscoveryEngine\V1\Document;
  *                                Otherwise, an `ALREADY_EXISTS` error is returned.
  *
  *                                This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034)
- *                                standard with a length limit of 63 characters. Otherwise, an
+ *                                standard with a length limit of 128 characters. Otherwise, an
  *                                `INVALID_ARGUMENT` error is returned.
  */
 function create_document_sample(string $formattedParent, string $documentId): void

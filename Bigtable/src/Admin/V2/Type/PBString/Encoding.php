@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Rules used to convert to/from lower level types.
+ * Rules used to convert to or from lower level types.
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.Type.String.Encoding</code>
  */
@@ -43,13 +43,17 @@ class Encoding extends \Google\Protobuf\Internal\Message
      */
     public function getUtf8Raw()
     {
-        @trigger_error('utf8_raw is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(1)) {
+            @trigger_error('utf8_raw is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(1);
     }
 
     public function hasUtf8Raw()
     {
-        @trigger_error('utf8_raw is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(1)) {
+            @trigger_error('utf8_raw is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(1);
     }
 

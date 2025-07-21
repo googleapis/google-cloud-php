@@ -30,9 +30,8 @@ use Google\Apps\Meet\V2beta\ListParticipantSessionsRequest;
 use Google\Apps\Meet\V2beta\ParticipantSession;
 
 /**
- * [Developer Preview](https://developers.google.com/workspace/preview).
- * Lists the participant sessions of a participant in a conference record, by
- * default ordered by join time and in descending order. This API supports
+ * Lists the participant sessions of a participant in a conference record. By
+ * default, ordered by join time and in descending order. This API supports
  * `fields` as standard parameters like every other API. However, when the
  * `fields` request parameter is omitted this API defaults to
  * `'participantsessions/*, next_page_token'`.

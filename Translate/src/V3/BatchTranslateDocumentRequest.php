@@ -25,7 +25,7 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ISO-639 language code of the input document if known, for
      * example, "en-US" or "sr-Latn". Supported language codes are listed in
@@ -33,10 +33,12 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_language_code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $source_language_code = '';
+    protected $source_language_code = '';
     /**
      * Required. The ISO-639 language code to use for translation of the input
-     * document. Specify up to 10 language codes here.
+     * document. Specify up to 10 language codes here. Supported language codes
+     * are listed in [Language
+     * Support](https://cloud.google.com/translate/docs/languages).
      *
      * Generated from protobuf field <code>repeated string target_language_codes = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -57,7 +59,7 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.BatchDocumentOutputConfig output_config = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $output_config = null;
+    protected $output_config = null;
     /**
      * Optional. The models to use for translation. Map's key is target language
      * code. Map's value is the model name. Value can be a built-in general model,
@@ -100,7 +102,7 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string customized_attribution = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $customized_attribution = '';
+    protected $customized_attribution = '';
     /**
      * Optional. If true, use the text removal server to remove the shadow text on
      * background image for native pdf translation.
@@ -109,13 +111,13 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_shadow_removal_native_pdf = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_shadow_removal_native_pdf = false;
+    protected $enable_shadow_removal_native_pdf = false;
     /**
      * Optional. If true, enable auto rotation correction in DVS.
      *
      * Generated from protobuf field <code>bool enable_rotation_correction = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_rotation_correction = false;
+    protected $enable_rotation_correction = false;
 
     /**
      * @param string                                                $parent              Required. Location to make a regional call.
@@ -132,7 +134,9 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *                                                                                   example, "en-US" or "sr-Latn". Supported language codes are listed in
      *                                                                                   [Language Support](https://cloud.google.com/translate/docs/languages).
      * @param string[]                                              $targetLanguageCodes Required. The ISO-639 language code to use for translation of the input
-     *                                                                                   document. Specify up to 10 language codes here.
+     *                                                                                   document. Specify up to 10 language codes here. Supported language codes
+     *                                                                                   are listed in [Language
+     *                                                                                   Support](https://cloud.google.com/translate/docs/languages).
      * @param \Google\Cloud\Translate\V3\BatchDocumentInputConfig[] $inputConfigs        Required. Input configurations.
      *                                                                                   The total number of files matched should be <= 100.
      *                                                                                   The total content size to translate should be <= 100M Unicode codepoints.
@@ -174,7 +178,9 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *           [Language Support](https://cloud.google.com/translate/docs/languages).
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_language_codes
      *           Required. The ISO-639 language code to use for translation of the input
-     *           document. Specify up to 10 language codes here.
+     *           document. Specify up to 10 language codes here. Supported language codes
+     *           are listed in [Language
+     *           Support](https://cloud.google.com/translate/docs/languages).
      *     @type array<\Google\Cloud\Translate\V3\BatchDocumentInputConfig>|\Google\Protobuf\Internal\RepeatedField $input_configs
      *           Required. Input configurations.
      *           The total number of files matched should be <= 100.
@@ -293,7 +299,9 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The ISO-639 language code to use for translation of the input
-     * document. Specify up to 10 language codes here.
+     * document. Specify up to 10 language codes here. Supported language codes
+     * are listed in [Language
+     * Support](https://cloud.google.com/translate/docs/languages).
      *
      * Generated from protobuf field <code>repeated string target_language_codes = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -305,7 +313,9 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The ISO-639 language code to use for translation of the input
-     * document. Specify up to 10 language codes here.
+     * document. Specify up to 10 language codes here. Supported language codes
+     * are listed in [Language
+     * Support](https://cloud.google.com/translate/docs/languages).
      *
      * Generated from protobuf field <code>repeated string target_language_codes = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

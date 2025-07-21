@@ -68,6 +68,7 @@ use Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsSecret;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Managed Apache Airflow Environments.
@@ -286,14 +287,14 @@ final class EnvironmentsClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -315,6 +316,12 @@ final class EnvironmentsClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -348,6 +355,9 @@ final class EnvironmentsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -428,7 +438,7 @@ final class EnvironmentsClient
      * Creates a user workloads ConfigMap.
      *
      * This method is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * The async variant is
      * {@see EnvironmentsClient::createUserWorkloadsConfigMapAsync()} .
@@ -460,7 +470,7 @@ final class EnvironmentsClient
      * Creates a user workloads Secret.
      *
      * This method is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * The async variant is {@see EnvironmentsClient::createUserWorkloadsSecretAsync()}
      * .
@@ -544,7 +554,7 @@ final class EnvironmentsClient
      * Deletes a user workloads ConfigMap.
      *
      * This method is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * The async variant is
      * {@see EnvironmentsClient::deleteUserWorkloadsConfigMapAsync()} .
@@ -574,7 +584,7 @@ final class EnvironmentsClient
      * Deletes a user workloads Secret.
      *
      * This method is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * The async variant is {@see EnvironmentsClient::deleteUserWorkloadsSecretAsync()}
      * .
@@ -684,7 +694,7 @@ final class EnvironmentsClient
      * Gets an existing user workloads ConfigMap.
      *
      * This method is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * The async variant is {@see EnvironmentsClient::getUserWorkloadsConfigMapAsync()}
      * .
@@ -717,7 +727,7 @@ final class EnvironmentsClient
      * Values of the "data" field in the response are cleared.
      *
      * This method is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * The async variant is {@see EnvironmentsClient::getUserWorkloadsSecretAsync()} .
      *
@@ -774,7 +784,7 @@ final class EnvironmentsClient
      * Lists user workloads ConfigMaps.
      *
      * This method is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * The async variant is
      * {@see EnvironmentsClient::listUserWorkloadsConfigMapsAsync()} .
@@ -806,7 +816,7 @@ final class EnvironmentsClient
      * Lists user workloads Secrets.
      *
      * This method is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * The async variant is {@see EnvironmentsClient::listUserWorkloadsSecretsAsync()}
      * .
@@ -839,7 +849,7 @@ final class EnvironmentsClient
      * runs a single Composer component.
      *
      * This method is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-2.*.*-airflow-*.*.* and newer.
      *
      * The async variant is {@see EnvironmentsClient::listWorkloadsAsync()} .
      *
@@ -1008,7 +1018,7 @@ final class EnvironmentsClient
      * Updates a user workloads ConfigMap.
      *
      * This method is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * The async variant is
      * {@see EnvironmentsClient::updateUserWorkloadsConfigMapAsync()} .
@@ -1040,7 +1050,7 @@ final class EnvironmentsClient
      * Updates a user workloads Secret.
      *
      * This method is supported for Cloud Composer environments in versions
-     * composer-3.*.*-airflow-*.*.* and newer.
+     * composer-3-airflow-*.*.*-build.* and newer.
      *
      * The async variant is {@see EnvironmentsClient::updateUserWorkloadsSecretAsync()}
      * .

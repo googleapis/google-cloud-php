@@ -26,8 +26,8 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      * request ID so that if you must retry your request, the server will know to
      * ignore the request if it has already been completed. The server will
      * guarantee that for at least 60 minutes since the first request.
-     * For example, consider a situation where you make an initial request and t
-     * he request times out. If you make the request again with the same request
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same request
      * ID, the server can check if original operation with the same request ID
      * was received, and if so, will ignore the second request. This prevents
      * clients from accidentally creating duplicate commitments.
@@ -50,6 +50,12 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $service_account = '';
+    /**
+     * Optional. The transfer metadata options for the import data.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferMetadataOptions metadata_options = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $metadata_options = null;
     protected $source;
     protected $destination;
 
@@ -70,8 +76,8 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      *           request ID so that if you must retry your request, the server will know to
      *           ignore the request if it has already been completed. The server will
      *           guarantee that for at least 60 minutes since the first request.
-     *           For example, consider a situation where you make an initial request and t
-     *           he request times out. If you make the request again with the same request
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
      *           was received, and if so, will ignore the second request. This prevents
      *           clients from accidentally creating duplicate commitments.
@@ -86,6 +92,8 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      *           * `projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`
      *           If unspecified, the Parallelstore service agent is used:
      *           `service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com`
+     *     @type \Google\Cloud\Parallelstore\V1beta\TransferMetadataOptions $metadata_options
+     *           Optional. The transfer metadata options for the import data.
      * }
      */
     public function __construct($data = NULL) {
@@ -186,8 +194,8 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      * request ID so that if you must retry your request, the server will know to
      * ignore the request if it has already been completed. The server will
      * guarantee that for at least 60 minutes since the first request.
-     * For example, consider a situation where you make an initial request and t
-     * he request times out. If you make the request again with the same request
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same request
      * ID, the server can check if original operation with the same request ID
      * was received, and if so, will ignore the second request. This prevents
      * clients from accidentally creating duplicate commitments.
@@ -207,8 +215,8 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      * request ID so that if you must retry your request, the server will know to
      * ignore the request if it has already been completed. The server will
      * guarantee that for at least 60 minutes since the first request.
-     * For example, consider a situation where you make an initial request and t
-     * he request times out. If you make the request again with the same request
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same request
      * ID, the server can check if original operation with the same request ID
      * was received, and if so, will ignore the second request. This prevents
      * clients from accidentally creating duplicate commitments.
@@ -263,6 +271,42 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->service_account = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The transfer metadata options for the import data.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferMetadataOptions metadata_options = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Parallelstore\V1beta\TransferMetadataOptions|null
+     */
+    public function getMetadataOptions()
+    {
+        return $this->metadata_options;
+    }
+
+    public function hasMetadataOptions()
+    {
+        return isset($this->metadata_options);
+    }
+
+    public function clearMetadataOptions()
+    {
+        unset($this->metadata_options);
+    }
+
+    /**
+     * Optional. The transfer metadata options for the import data.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferMetadataOptions metadata_options = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Parallelstore\V1beta\TransferMetadataOptions $var
+     * @return $this
+     */
+    public function setMetadataOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Parallelstore\V1beta\TransferMetadataOptions::class);
+        $this->metadata_options = $var;
 
         return $this;
     }

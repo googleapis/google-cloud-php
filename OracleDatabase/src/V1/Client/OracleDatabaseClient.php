@@ -62,10 +62,14 @@ use Google\Cloud\OracleDatabase\V1\ListDbServersRequest;
 use Google\Cloud\OracleDatabase\V1\ListDbSystemShapesRequest;
 use Google\Cloud\OracleDatabase\V1\ListEntitlementsRequest;
 use Google\Cloud\OracleDatabase\V1\ListGiVersionsRequest;
+use Google\Cloud\OracleDatabase\V1\RestartAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\RestoreAutonomousDatabaseRequest;
+use Google\Cloud\OracleDatabase\V1\StartAutonomousDatabaseRequest;
+use Google\Cloud\OracleDatabase\V1\StopAutonomousDatabaseRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service describing handlers for resources
@@ -99,7 +103,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface<PagedListResponse> listDbSystemShapesAsync(ListDbSystemShapesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listEntitlementsAsync(ListEntitlementsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listGiVersionsAsync(ListGiVersionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> restartAutonomousDatabaseAsync(RestartAutonomousDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> restoreAutonomousDatabaseAsync(RestoreAutonomousDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> startAutonomousDatabaseAsync(StartAutonomousDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> stopAutonomousDatabaseAsync(StopAutonomousDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
@@ -139,9 +146,9 @@ final class OracleDatabaseClient
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__ . '/../resources/oracle_database_client_config.json',
             'descriptorsConfigPath' => __DIR__ . '/../resources/oracle_database_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../resources/oracle_database_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
-                'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
@@ -149,18 +156,6 @@ final class OracleDatabaseClient
                 ],
             ],
         ];
-    }
-
-    /** Implements GapicClientTrait::defaultTransport. */
-    private static function defaultTransport()
-    {
-        return 'rest';
-    }
-
-    /** Implements ClientOptionsTrait::supportedTransports. */
-    private static function supportedTransports()
-    {
-        return ['rest'];
     }
 
     /**
@@ -323,14 +318,14 @@ final class OracleDatabaseClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -352,6 +347,12 @@ final class OracleDatabaseClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -365,8 +366,9 @@ final class OracleDatabaseClient
      *           default this settings points to the default client config file, which is
      *           provided in the resources folder.
      *     @type string|TransportInterface $transport
-     *           The transport used for executing network requests. At the moment, supports only
-     *           `rest`. *Advanced usage*: Additionally, it is possible to pass in an already
+     *           The transport used for executing network requests. May be either the string
+     *           `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
+     *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
      *           $apiEndpoint setting, will be ignored.
@@ -375,13 +377,18 @@ final class OracleDatabaseClient
      *           each supported transport type should be passed in a key for that transport. For
      *           example:
      *           $transportConfig = [
+     *               'grpc' => [...],
      *               'rest' => [...],
      *           ];
-     *           See the {@see \Google\ApiCore\Transport\RestTransport::build()} method for the
+     *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
+     *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
      *           supported options.
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -992,6 +999,35 @@ final class OracleDatabaseClient
     }
 
     /**
+     * Restarts an Autonomous Database.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::restartAutonomousDatabaseAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/restart_autonomous_database.php
+     *
+     * @param RestartAutonomousDatabaseRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function restartAutonomousDatabase(
+        RestartAutonomousDatabaseRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('RestartAutonomousDatabase', $request, $callOptions)->wait();
+    }
+
+    /**
      * Restores a single Autonomous Database.
      *
      * The async variant is
@@ -1018,6 +1054,64 @@ final class OracleDatabaseClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('RestoreAutonomousDatabase', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Starts an Autonomous Database.
+     *
+     * The async variant is {@see OracleDatabaseClient::startAutonomousDatabaseAsync()}
+     * .
+     *
+     * @example samples/V1/OracleDatabaseClient/start_autonomous_database.php
+     *
+     * @param StartAutonomousDatabaseRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function startAutonomousDatabase(
+        StartAutonomousDatabaseRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('StartAutonomousDatabase', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Stops an Autonomous Database.
+     *
+     * The async variant is {@see OracleDatabaseClient::stopAutonomousDatabaseAsync()}
+     * .
+     *
+     * @example samples/V1/OracleDatabaseClient/stop_autonomous_database.php
+     *
+     * @param StopAutonomousDatabaseRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function stopAutonomousDatabase(
+        StopAutonomousDatabaseRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('StopAutonomousDatabase', $request, $callOptions)->wait();
     }
 
     /**

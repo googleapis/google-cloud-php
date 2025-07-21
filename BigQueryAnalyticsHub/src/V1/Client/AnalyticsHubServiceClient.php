@@ -66,6 +66,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The `AnalyticsHubService` API facilitates data sharing within and across
@@ -282,6 +283,40 @@ final class AnalyticsHubServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * managed_service resource.
+     *
+     * @param string $service
+     *
+     * @return string The formatted managed_service resource.
+     */
+    public static function managedServiceName(string $service): string
+    {
+        return self::getPathTemplate('managedService')->render([
+            'service' => $service,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a routine
+     * resource.
+     *
+     * @param string $project
+     * @param string $dataset
+     * @param string $routine
+     *
+     * @return string The formatted routine resource.
+     */
+    public static function routineName(string $project, string $dataset, string $routine): string
+    {
+        return self::getPathTemplate('routine')->render([
+            'project' => $project,
+            'dataset' => $dataset,
+            'routine' => $routine,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a subscription
      * resource.
      *
@@ -320,6 +355,23 @@ final class AnalyticsHubServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a topic
+     * resource.
+     *
+     * @param string $project
+     * @param string $topic
+     *
+     * @return string The formatted topic resource.
+     */
+    public static function topicName(string $project, string $topic): string
+    {
+        return self::getPathTemplate('topic')->render([
+            'project' => $project,
+            'topic' => $topic,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -327,8 +379,11 @@ final class AnalyticsHubServiceClient
      * - dataset: projects/{project}/datasets/{dataset}
      * - listing: projects/{project}/locations/{location}/dataExchanges/{data_exchange}/listings/{listing}
      * - location: projects/{project}/locations/{location}
+     * - managedService: services/{service}
+     * - routine: projects/{project}/datasets/{dataset}/routines/{routine}
      * - subscription: projects/{project}/locations/{location}/subscriptions/{subscription}
      * - table: projects/{project}/datasets/{dataset}/tables/{table}
+     * - topic: projects/{project}/topics/{topic}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -336,14 +391,14 @@ final class AnalyticsHubServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -365,6 +420,12 @@ final class AnalyticsHubServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -398,6 +459,9 @@ final class AnalyticsHubServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -877,8 +941,10 @@ final class AnalyticsHubServiceClient
     }
 
     /**
-     * Creates a Subscription to a Data Exchange. This is a long-running operation
-     * as it will create one or more linked datasets.
+     * Creates a Subscription to a Data Clean Room. This is a
+     * long-running operation as it will create one or more linked datasets.
+     * Throws a Bad Request error if the Data Exchange does not contain any
+     * listings.
      *
      * The async variant is
      * {@see AnalyticsHubServiceClient::subscribeDataExchangeAsync()} .

@@ -21,13 +21,13 @@ class UserService
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ü
+¨
 *google/ads/admanager/v1/user_service.protogoogle.ads.admanager.v1google/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"E
 GetUserRequest3
 name (	B%àAúA
-admanager.googleapis.com/User2«
+admanager.googleapis.com/User2×
 UserService
-GetUser\'.google.ads.admanager.v1.GetUserRequest.google.ads.admanager.v1.User",ÚAname‚Óä“/v1/{name=networks/*/users/*}ÊAadmanager.googleapis.comBÄ
+GetUser\'.google.ads.admanager.v1.GetUserRequest.google.ads.admanager.v1.User",ÚAname‚Óä“/v1/{name=networks/*/users/*}GÊAadmanager.googleapis.comÒA)https://www.googleapis.com/auth/admanagerBÄ
 com.google.ads.admanager.v1BUserServiceProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1êGoogle::Ads::AdManager::V1bproto3'
         , true);
 

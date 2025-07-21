@@ -137,7 +137,9 @@ class Accelerator extends \Google\Protobuf\Internal\Message
      */
     public function getInstallGpuDrivers()
     {
-        @trigger_error('install_gpu_drivers is deprecated.', E_USER_DEPRECATED);
+        if ($this->install_gpu_drivers !== false) {
+            @trigger_error('install_gpu_drivers is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->install_gpu_drivers;
     }
 

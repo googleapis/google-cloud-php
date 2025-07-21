@@ -28,7 +28,7 @@ class PointData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TimeInterval time_interval = 2;</code>
      */
-    private $time_interval = null;
+    protected $time_interval = null;
 
     /**
      * Constructor.
@@ -111,6 +111,4 @@ class PointData extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PointData::class, \Google\Cloud\Monitoring\V3\TimeSeriesData_PointData::class);
 

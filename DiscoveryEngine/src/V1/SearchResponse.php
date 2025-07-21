@@ -101,6 +101,12 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.SessionInfo session_info = 19;</code>
      */
     protected $session_info = null;
+    /**
+     * Promotions for site search.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchLinkPromotion search_link_promotions = 23;</code>
+     */
+    private $search_link_promotions;
 
     /**
      * Constructor.
@@ -152,6 +158,8 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *           Only set if
      *           [SearchRequest.session][google.cloud.discoveryengine.v1.SearchRequest.session]
      *           is provided. See its description for more details.
+     *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchLinkPromotion>|\Google\Protobuf\Internal\RepeatedField $search_link_promotions
+     *           Promotions for site search.
      * }
      */
     public function __construct($data = NULL) {
@@ -493,6 +501,32 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SessionInfo::class);
         $this->session_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Promotions for site search.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchLinkPromotion search_link_promotions = 23;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSearchLinkPromotions()
+    {
+        return $this->search_link_promotions;
+    }
+
+    /**
+     * Promotions for site search.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchLinkPromotion search_link_promotions = 23;</code>
+     * @param array<\Google\Cloud\DiscoveryEngine\V1\SearchLinkPromotion>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSearchLinkPromotions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\SearchLinkPromotion::class);
+        $this->search_link_promotions = $arr;
 
         return $this;
     }

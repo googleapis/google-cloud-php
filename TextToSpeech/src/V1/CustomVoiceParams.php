@@ -20,7 +20,7 @@ class CustomVoiceParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * Optional. Deprecated. The usage of the synthesized audio to be reported.
      *
@@ -81,7 +81,9 @@ class CustomVoiceParams extends \Google\Protobuf\Internal\Message
      */
     public function getReportedUsage()
     {
-        @trigger_error('reported_usage is deprecated.', E_USER_DEPRECATED);
+        if ($this->reported_usage !== 0) {
+            @trigger_error('reported_usage is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->reported_usage;
     }
 

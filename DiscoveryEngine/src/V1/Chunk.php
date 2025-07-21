@@ -42,7 +42,8 @@ class Chunk extends \Google\Protobuf\Internal\Message
      * Output only. Represents the relevance score based on similarity.
      * Higher score indicates higher chunk relevance.
      * The score is in range [-1.0, 1.0].
-     * Only populated on [SearchService.SearchResponse][].
+     * Only populated on
+     * [SearchResponse][google.cloud.discoveryengine.v1.SearchResponse].
      *
      * Generated from protobuf field <code>optional double relevance_score = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -72,6 +73,29 @@ class Chunk extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Chunk.ChunkMetadata chunk_metadata = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $chunk_metadata = null;
+    /**
+     * Output only. Image Data URLs if the current chunk contains images.
+     * Data URLs are composed of four parts: a prefix (data:), a MIME type
+     * indicating the type of data, an optional base64 token if non-textual,
+     * and the data itself:
+     * data:[<mediatype>][;base64],<data>
+     *
+     * Generated from protobuf field <code>repeated string data_urls = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $data_urls;
+    /**
+     * Output only. Annotation contents if the current chunk contains annotations.
+     *
+     * Generated from protobuf field <code>repeated string annotation_contents = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $annotation_contents;
+    /**
+     * Output only. The annotation metadata includes structured content in the
+     * current chunk.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Chunk.AnnotationMetadata annotation_metadata = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $annotation_metadata;
 
     /**
      * Constructor.
@@ -93,7 +117,8 @@ class Chunk extends \Google\Protobuf\Internal\Message
      *           Output only. Represents the relevance score based on similarity.
      *           Higher score indicates higher chunk relevance.
      *           The score is in range [-1.0, 1.0].
-     *           Only populated on [SearchService.SearchResponse][].
+     *           Only populated on
+     *           [SearchResponse][google.cloud.discoveryengine.v1.SearchResponse].
      *     @type \Google\Cloud\DiscoveryEngine\V1\Chunk\DocumentMetadata $document_metadata
      *           Metadata of the document from the current chunk.
      *     @type \Google\Protobuf\Struct $derived_struct_data
@@ -103,6 +128,17 @@ class Chunk extends \Google\Protobuf\Internal\Message
      *           Page span of the chunk.
      *     @type \Google\Cloud\DiscoveryEngine\V1\Chunk\ChunkMetadata $chunk_metadata
      *           Output only. Metadata of the current chunk.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $data_urls
+     *           Output only. Image Data URLs if the current chunk contains images.
+     *           Data URLs are composed of four parts: a prefix (data:), a MIME type
+     *           indicating the type of data, an optional base64 token if non-textual,
+     *           and the data itself:
+     *           data:[<mediatype>][;base64],<data>
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $annotation_contents
+     *           Output only. Annotation contents if the current chunk contains annotations.
+     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Chunk\AnnotationMetadata>|\Google\Protobuf\Internal\RepeatedField $annotation_metadata
+     *           Output only. The annotation metadata includes structured content in the
+     *           current chunk.
      * }
      */
     public function __construct($data = NULL) {
@@ -200,7 +236,8 @@ class Chunk extends \Google\Protobuf\Internal\Message
      * Output only. Represents the relevance score based on similarity.
      * Higher score indicates higher chunk relevance.
      * The score is in range [-1.0, 1.0].
-     * Only populated on [SearchService.SearchResponse][].
+     * Only populated on
+     * [SearchResponse][google.cloud.discoveryengine.v1.SearchResponse].
      *
      * Generated from protobuf field <code>optional double relevance_score = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return float
@@ -224,7 +261,8 @@ class Chunk extends \Google\Protobuf\Internal\Message
      * Output only. Represents the relevance score based on similarity.
      * Higher score indicates higher chunk relevance.
      * The score is in range [-1.0, 1.0].
-     * Only populated on [SearchService.SearchResponse][].
+     * Only populated on
+     * [SearchResponse][google.cloud.discoveryengine.v1.SearchResponse].
      *
      * Generated from protobuf field <code>optional double relevance_score = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param float $var
@@ -380,6 +418,94 @@ class Chunk extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\Chunk\ChunkMetadata::class);
         $this->chunk_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Image Data URLs if the current chunk contains images.
+     * Data URLs are composed of four parts: a prefix (data:), a MIME type
+     * indicating the type of data, an optional base64 token if non-textual,
+     * and the data itself:
+     * data:[<mediatype>][;base64],<data>
+     *
+     * Generated from protobuf field <code>repeated string data_urls = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDataUrls()
+    {
+        return $this->data_urls;
+    }
+
+    /**
+     * Output only. Image Data URLs if the current chunk contains images.
+     * Data URLs are composed of four parts: a prefix (data:), a MIME type
+     * indicating the type of data, an optional base64 token if non-textual,
+     * and the data itself:
+     * data:[<mediatype>][;base64],<data>
+     *
+     * Generated from protobuf field <code>repeated string data_urls = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDataUrls($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->data_urls = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Annotation contents if the current chunk contains annotations.
+     *
+     * Generated from protobuf field <code>repeated string annotation_contents = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAnnotationContents()
+    {
+        return $this->annotation_contents;
+    }
+
+    /**
+     * Output only. Annotation contents if the current chunk contains annotations.
+     *
+     * Generated from protobuf field <code>repeated string annotation_contents = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAnnotationContents($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->annotation_contents = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The annotation metadata includes structured content in the
+     * current chunk.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Chunk.AnnotationMetadata annotation_metadata = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAnnotationMetadata()
+    {
+        return $this->annotation_metadata;
+    }
+
+    /**
+     * Output only. The annotation metadata includes structured content in the
+     * current chunk.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Chunk.AnnotationMetadata annotation_metadata = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\DiscoveryEngine\V1\Chunk\AnnotationMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAnnotationMetadata($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\Chunk\AnnotationMetadata::class);
+        $this->annotation_metadata = $arr;
 
         return $this;
     }

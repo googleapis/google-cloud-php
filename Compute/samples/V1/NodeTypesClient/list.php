@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NodeTypes_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\NodeTypesClient;
+use Google\Cloud\Compute\V1\Client\NodeTypesClient;
+use Google\Cloud\Compute\V1\ListNodeTypesRequest;
 
 /**
  * Retrieves a list of node types available to the specified project.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $zone): void
     // Create a client.
     $nodeTypesClient = new NodeTypesClient();
 
+    // Prepare the request message.
+    $request = (new ListNodeTypesRequest())
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $nodeTypesClient->list($project, $zone);
+        $response = $nodeTypesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

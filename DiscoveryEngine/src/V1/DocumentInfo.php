@@ -40,6 +40,17 @@ class DocumentInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool joined = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $joined = false;
+    /**
+     * Optional. The conversion value associated with this Document.
+     * Must be set if
+     * [UserEvent.event_type][google.cloud.discoveryengine.v1.UserEvent.event_type]
+     * is "conversion".
+     * For example, a value of 1000 signifies that 1000 seconds were spent viewing
+     * a Document for the `watch` conversion type.
+     *
+     * Generated from protobuf field <code>optional float conversion_value = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $conversion_value = null;
     protected $document_descriptor;
 
     /**
@@ -70,6 +81,13 @@ class DocumentInfo extends \Google\Protobuf\Internal\Message
      *     @type bool $joined
      *           Output only. Whether the referenced Document can be found in the data
      *           store.
+     *     @type float $conversion_value
+     *           Optional. The conversion value associated with this Document.
+     *           Must be set if
+     *           [UserEvent.event_type][google.cloud.discoveryengine.v1.UserEvent.event_type]
+     *           is "conversion".
+     *           For example, a value of 1000 signifies that 1000 seconds were spent viewing
+     *           a Document for the `watch` conversion type.
      * }
      */
     public function __construct($data = NULL) {
@@ -274,6 +292,52 @@ class DocumentInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->joined = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The conversion value associated with this Document.
+     * Must be set if
+     * [UserEvent.event_type][google.cloud.discoveryengine.v1.UserEvent.event_type]
+     * is "conversion".
+     * For example, a value of 1000 signifies that 1000 seconds were spent viewing
+     * a Document for the `watch` conversion type.
+     *
+     * Generated from protobuf field <code>optional float conversion_value = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return float
+     */
+    public function getConversionValue()
+    {
+        return isset($this->conversion_value) ? $this->conversion_value : 0.0;
+    }
+
+    public function hasConversionValue()
+    {
+        return isset($this->conversion_value);
+    }
+
+    public function clearConversionValue()
+    {
+        unset($this->conversion_value);
+    }
+
+    /**
+     * Optional. The conversion value associated with this Document.
+     * Must be set if
+     * [UserEvent.event_type][google.cloud.discoveryengine.v1.UserEvent.event_type]
+     * is "conversion".
+     * For example, a value of 1000 signifies that 1000 seconds were spent viewing
+     * a Document for the `watch` conversion type.
+     *
+     * Generated from protobuf field <code>optional float conversion_value = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setConversionValue($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->conversion_value = $var;
 
         return $this;
     }

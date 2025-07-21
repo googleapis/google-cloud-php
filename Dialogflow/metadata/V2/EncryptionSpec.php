@@ -21,7 +21,7 @@ class EncryptionSpec
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‘
+Ž
 0google/cloud/dialogflow/v2/encryption_spec.protogoogle.cloud.dialogflow.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/longrunning/operations.proto"Z
 GetEncryptionSpecRequest>
 name (	B0àAúA*
@@ -38,8 +38,8 @@ class EncryptionSpec
 EncryptionSpecService¶
 GetEncryptionSpec4.google.cloud.dialogflow.v2.GetEncryptionSpecRequest*.google.cloud.dialogflow.v2.EncryptionSpec"?ÚAname‚Óä“20/v2/{name=projects/*/locations/*/encryptionSpec}¨
 InitializeEncryptionSpec;.google.cloud.dialogflow.v2.InitializeEncryptionSpecRequest.google.longrunning.Operation"¯ÊAD
- InitializeEncryptionSpecResponse InitializeEncryptionSpecMetadataÚAencryption_spec‚Óä“P"K/v2/{encryption_spec.name=projects/*/locations/*/encryptionSpec}:initialize:*xÊAdialogflow.googleapis.comÒAYhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowBœ
-com.google.cloud.dialogflow.v2BEncryptionSpecProtoPZ>cloud.google.com/go/dialogflow/apiv2/dialogflowpb;dialogflowpbø¢DFªGoogle.Cloud.Dialogflow.V2bproto3'
+ InitializeEncryptionSpecResponse InitializeEncryptionSpecMetadataÚAencryption_spec‚Óä“P"K/v2/{encryption_spec.name=projects/*/locations/*/encryptionSpec}:initialize:*xÊAdialogflow.googleapis.comÒAYhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB™
+com.google.cloud.dialogflow.v2BEncryptionSpecProtoPZ>cloud.google.com/go/dialogflow/apiv2/dialogflowpb;dialogflowpb¢DFªGoogle.Cloud.Dialogflow.V2bproto3'
         , true);
 
         static::$is_initialized = true;

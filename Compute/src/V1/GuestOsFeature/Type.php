@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\GuestOsFeature;
 use UnexpectedValueException;
 
 /**
- * The ID of a supported feature. To add multiple values, use commas to separate values. Set to one or more of the following values: - VIRTIO_SCSI_MULTIQUEUE - WINDOWS - MULTI_IP_SUBNET - UEFI_COMPATIBLE - GVNIC - SEV_CAPABLE - SUSPEND_RESUME_COMPATIBLE - SEV_LIVE_MIGRATABLE_V2 - SEV_SNP_CAPABLE - TDX_CAPABLE - IDPF For more information, see Enabling guest operating system features.
+ * The ID of a supported feature. To add multiple values, use commas to separate values. Set to one or more of the following values: - VIRTIO_SCSI_MULTIQUEUE - WINDOWS - MULTI_IP_SUBNET - UEFI_COMPATIBLE - GVNIC - SEV_CAPABLE - SUSPEND_RESUME_COMPATIBLE - SEV_LIVE_MIGRATABLE_V2 - SEV_SNP_CAPABLE - TDX_CAPABLE - IDPF - SNP_SVSM_CAPABLE For more information, see Enabling guest operating system features.
  *
  * Protobuf type <code>google.cloud.compute.v1.GuestOsFeature.Type</code>
  */
@@ -19,6 +19,10 @@ class Type
      * Generated from protobuf enum <code>UNDEFINED_TYPE = 0;</code>
      */
     const UNDEFINED_TYPE = 0;
+    /**
+     * Generated from protobuf enum <code>BARE_METAL_LINUX_COMPATIBLE = 354232740;</code>
+     */
+    const BARE_METAL_LINUX_COMPATIBLE = 354232740;
     /**
      * Generated from protobuf enum <code>FEATURE_TYPE_UNSPECIFIED = 531767259;</code>
      */
@@ -56,6 +60,10 @@ class Type
      */
     const SEV_SNP_CAPABLE = 426919;
     /**
+     * Generated from protobuf enum <code>SNP_SVSM_CAPABLE = 52921460;</code>
+     */
+    const SNP_SVSM_CAPABLE = 52921460;
+    /**
      * Generated from protobuf enum <code>TDX_CAPABLE = 240446133;</code>
      */
     const TDX_CAPABLE = 240446133;
@@ -74,6 +82,7 @@ class Type
 
     private static $valueToName = [
         self::UNDEFINED_TYPE => 'UNDEFINED_TYPE',
+        self::BARE_METAL_LINUX_COMPATIBLE => 'BARE_METAL_LINUX_COMPATIBLE',
         self::FEATURE_TYPE_UNSPECIFIED => 'FEATURE_TYPE_UNSPECIFIED',
         self::GVNIC => 'GVNIC',
         self::IDPF => 'IDPF',
@@ -83,6 +92,7 @@ class Type
         self::SEV_LIVE_MIGRATABLE => 'SEV_LIVE_MIGRATABLE',
         self::SEV_LIVE_MIGRATABLE_V2 => 'SEV_LIVE_MIGRATABLE_V2',
         self::SEV_SNP_CAPABLE => 'SEV_SNP_CAPABLE',
+        self::SNP_SVSM_CAPABLE => 'SNP_SVSM_CAPABLE',
         self::TDX_CAPABLE => 'TDX_CAPABLE',
         self::UEFI_COMPATIBLE => 'UEFI_COMPATIBLE',
         self::VIRTIO_SCSI_MULTIQUEUE => 'VIRTIO_SCSI_MULTIQUEUE',

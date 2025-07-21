@@ -186,9 +186,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     protected $allow_answer_feedback = false;
     /**
      * Optional. Data store connection feature output signals.
-     * Filled only when data stores are involved in serving the query and
-     * DetectIntentRequest.populate_data_store_connection_signals is set to true
-     * in the request.
+     * Filled only when data stores are involved in serving the query.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.DataStoreConnectionSignals data_store_connection_signals = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -316,9 +314,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *           shown for the response in the Dialogflow Messenger widget.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals $data_store_connection_signals
      *           Optional. Data store connection feature output signals.
-     *           Filled only when data stores are involved in serving the query and
-     *           DetectIntentRequest.populate_data_store_connection_signals is set to true
-     *           in the request.
+     *           Filled only when data stores are involved in serving the query.
      * }
      */
     public function __construct($data = NULL) {
@@ -875,13 +871,17 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      */
     public function getIntent()
     {
-        @trigger_error('intent is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->intent)) {
+            @trigger_error('intent is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->intent;
     }
 
     public function hasIntent()
     {
-        @trigger_error('intent is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->intent)) {
+            @trigger_error('intent is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->intent);
     }
 
@@ -930,7 +930,9 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      */
     public function getIntentDetectionConfidence()
     {
-        @trigger_error('intent_detection_confidence is deprecated.', E_USER_DEPRECATED);
+        if ($this->intent_detection_confidence !== 0.0) {
+            @trigger_error('intent_detection_confidence is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->intent_detection_confidence;
     }
 
@@ -1175,9 +1177,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Data store connection feature output signals.
-     * Filled only when data stores are involved in serving the query and
-     * DetectIntentRequest.populate_data_store_connection_signals is set to true
-     * in the request.
+     * Filled only when data stores are involved in serving the query.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.DataStoreConnectionSignals data_store_connection_signals = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals|null
@@ -1199,9 +1199,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Data store connection feature output signals.
-     * Filled only when data stores are involved in serving the query and
-     * DetectIntentRequest.populate_data_store_connection_signals is set to true
-     * in the request.
+     * Filled only when data stores are involved in serving the query.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.DataStoreConnectionSignals data_store_connection_signals = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals $var

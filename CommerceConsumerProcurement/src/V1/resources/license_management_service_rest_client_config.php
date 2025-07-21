@@ -71,7 +71,7 @@ return [
             ],
             'UpdateLicensePool' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v1/{license_pool.name=billingAccounts/*/orders/*/licensePool/*}',
+                'uriTemplate' => '/v1/{license_pool.name=billingAccounts/*/orders/*/licensePool}',
                 'body' => 'license_pool',
                 'placeholders' => [
                     'license_pool.name' => [

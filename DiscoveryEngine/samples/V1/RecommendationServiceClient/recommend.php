@@ -55,6 +55,7 @@ use Google\Cloud\DiscoveryEngine\V1\UserEvent;
  *                                       * `view-item-list`: View of a panel or ordered list of Documents.
  *                                       * `view-home-page`: View of the home page.
  *                                       * `view-category-page`: View of a category page, e.g. Home > Men > Jeans
+ *                                       * `add-feedback`: Add a user feedback.
  *
  *                                       Retail-related values:
  *
@@ -65,6 +66,10 @@ use Google\Cloud\DiscoveryEngine\V1\UserEvent;
  *
  *                                       * `media-play`: Start/resume watching a video, playing a song, etc.
  *                                       * `media-complete`: Finished or stopped midway through a video, song, etc.
+ *
+ *                                       Custom conversion value:
+ *
+ *                                       * `conversion`: Customer defined conversion event.
  * @param string $userEventUserPseudoId  A unique identifier for tracking visitors.
  *
  *                                       For example, this could be implemented with an HTTP cookie, which should be

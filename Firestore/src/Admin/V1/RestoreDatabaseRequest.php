@@ -54,6 +54,14 @@ class RestoreDatabaseRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.firestore.admin.v1.Database.EncryptionConfig encryption_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $encryption_config = null;
+    /**
+     * Optional. Immutable. Tags to be bound to the restored database.
+     * The tags should be provided in the format of
+     * `tagKeys/{tag_key_id} -> tagValues/{tag_value_id}`.
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 10 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tags;
 
     /**
      * Constructor.
@@ -83,6 +91,10 @@ class RestoreDatabaseRequest extends \Google\Protobuf\Internal\Message
      *           If this field is not specified, the restored database will use
      *           the same encryption configuration as the backup, namely
      *           [use_source_encryption][google.firestore.admin.v1.Database.EncryptionConfig.use_source_encryption].
+     *     @type array|\Google\Protobuf\Internal\MapField $tags
+     *           Optional. Immutable. Tags to be bound to the restored database.
+     *           The tags should be provided in the format of
+     *           `tagKeys/{tag_key_id} -> tagValues/{tag_value_id}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -228,6 +240,36 @@ class RestoreDatabaseRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Firestore\Admin\V1\Database\EncryptionConfig::class);
         $this->encryption_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. Tags to be bound to the restored database.
+     * The tags should be provided in the format of
+     * `tagKeys/{tag_key_id} -> tagValues/{tag_value_id}`.
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 10 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Optional. Immutable. Tags to be bound to the restored database.
+     * The tags should be provided in the format of
+     * `tagKeys/{tag_key_id} -> tagValues/{tag_value_id}`.
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 10 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setTags($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->tags = $arr;
 
         return $this;
     }

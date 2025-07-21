@@ -137,6 +137,21 @@ return [
                     'service_binding_id',
                 ],
             ],
+            'CreateServiceLbPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/serviceLbPolicies',
+                'body' => 'service_lb_policy',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'service_lb_policy_id',
+                ],
+            ],
             'CreateTcpRoute' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/tcpRoutes',
@@ -165,6 +180,36 @@ return [
                 ],
                 'queryParams' => [
                     'tls_route_id',
+                ],
+            ],
+            'CreateWasmPlugin' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/wasmPlugins',
+                'body' => 'wasm_plugin',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'wasm_plugin_id',
+                ],
+            ],
+            'CreateWasmPluginVersion' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/wasmPlugins/*}/versions',
+                'body' => 'wasm_plugin_version',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'wasm_plugin_version_id',
                 ],
             ],
             'DeleteEndpointPolicy' => [
@@ -233,6 +278,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteServiceLbPolicy' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/serviceLbPolicies/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteTcpRoute' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/tcpRoutes/*}',
@@ -255,6 +311,28 @@ return [
                     ],
                 ],
             ],
+            'DeleteWasmPlugin' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/wasmPlugins/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteWasmPluginVersion' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/wasmPlugins/*/versions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetEndpointPolicy' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/endpointPolicies/*}',
@@ -269,6 +347,17 @@ return [
             'GetGateway' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/gateways/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetGatewayRouteView' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/gateways/*/routeViews/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -310,9 +399,31 @@ return [
                     ],
                 ],
             ],
+            'GetMeshRouteView' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/meshes/*/routeViews/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetServiceBinding' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/serviceBindings/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetServiceLbPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/serviceLbPolicies/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -343,9 +454,42 @@ return [
                     ],
                 ],
             ],
+            'GetWasmPlugin' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/wasmPlugins/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetWasmPluginVersion' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/wasmPlugins/*/versions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListEndpointPolicies' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/endpointPolicies',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListGatewayRouteViews' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/gateways/*}/routeViews',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -387,6 +531,17 @@ return [
                     ],
                 ],
             ],
+            'ListMeshRouteViews' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/meshes/*}/routeViews',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListMeshes' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/meshes',
@@ -409,6 +564,17 @@ return [
                     ],
                 ],
             ],
+            'ListServiceLbPolicies' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/serviceLbPolicies',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListTcpRoutes' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/tcpRoutes',
@@ -423,6 +589,28 @@ return [
             'ListTlsRoutes' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/tlsRoutes',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListWasmPluginVersions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/wasmPlugins/*}/versions',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListWasmPlugins' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/wasmPlugins',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -496,6 +684,32 @@ return [
                     ],
                 ],
             ],
+            'UpdateServiceBinding' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{service_binding.name=projects/*/locations/*/serviceBindings/*}',
+                'body' => 'service_binding',
+                'placeholders' => [
+                    'service_binding.name' => [
+                        'getters' => [
+                            'getServiceBinding',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateServiceLbPolicy' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{service_lb_policy.name=projects/*/locations/*/serviceLbPolicies/*}',
+                'body' => 'service_lb_policy',
+                'placeholders' => [
+                    'service_lb_policy.name' => [
+                        'getters' => [
+                            'getServiceLbPolicy',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateTcpRoute' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{tcp_route.name=projects/*/locations/*/tcpRoutes/*}',
@@ -517,6 +731,19 @@ return [
                     'tls_route.name' => [
                         'getters' => [
                             'getTlsRoute',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateWasmPlugin' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{wasm_plugin.name=projects/*/locations/*/wasmPlugins/*}',
+                'body' => 'wasm_plugin',
+                'placeholders' => [
+                    'wasm_plugin.name' => [
+                        'getters' => [
+                            'getWasmPlugin',
                             'getName',
                         ],
                     ],

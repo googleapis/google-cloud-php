@@ -38,7 +38,9 @@ class NextHopType
      */
     const NEXT_HOP_NETWORK = 3;
     /**
-     * Next hop is a peering VPC.
+     * Next hop is a peering VPC. This scenario only happens when the user
+     * doesn't have permissions to the project where the next hop resource is
+     * located.
      *
      * Generated from protobuf enum <code>NEXT_HOP_PEERING = 4;</code>
      */
@@ -72,7 +74,7 @@ class NextHopType
     const NEXT_HOP_INTERNET_GATEWAY = 8;
     /**
      * Next hop is blackhole; that is, the next hop either does not exist or is
-     * not running.
+     * unusable.
      *
      * Generated from protobuf enum <code>NEXT_HOP_BLACKHOLE = 9;</code>
      */
@@ -92,7 +94,8 @@ class NextHopType
      */
     const NEXT_HOP_ROUTER_APPLIANCE = 11;
     /**
-     * Next hop is an NCC hub.
+     * Next hop is an NCC hub. This scenario only happens when the user doesn't
+     * have permissions to the project where the next hop resource is located.
      *
      * Generated from protobuf enum <code>NEXT_HOP_NCC_HUB = 12;</code>
      */

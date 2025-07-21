@@ -25,35 +25,35 @@ class TaxonomyCategory extends \Google\Protobuf\Internal\Message
     /**
      * Output only. `TaxonomyCategory` ID.
      *
-     * Generated from protobuf field <code>int64 taxonomy_category_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 taxonomy_category_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $taxonomy_category_id = 0;
+    protected $taxonomy_category_id = null;
     /**
      * Output only. Display name of the `TaxonomyCategory`.
      *
-     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $display_name = '';
+    protected $display_name = null;
     /**
      * Output only. Whether this `TaxonomyCategory` only serves to group its
      * children.
      *
-     * Generated from protobuf field <code>bool grouping_only = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool grouping_only = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $grouping_only = false;
+    protected $grouping_only = null;
     /**
      * Output only. The ID of the parent category this `TaxonomyCategory` descends
      * from.
      *
-     * Generated from protobuf field <code>int64 parent_taxonomy_category_id = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 parent_taxonomy_category_id = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $parent_taxonomy_category_id = 0;
+    protected $parent_taxonomy_category_id = null;
     /**
      * Output only. The taxonomy that this `TaxonomyCategory` belongs to.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.TaxonomyTypeEnum.TaxonomyType taxonomy_type = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.TaxonomyTypeEnum.TaxonomyType taxonomy_type = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $taxonomy_type = 0;
+    protected $taxonomy_type = null;
     /**
      * Output only. The list of names of the ancestors of this `TaxonomyCategory`.
      *
@@ -130,18 +130,28 @@ class TaxonomyCategory extends \Google\Protobuf\Internal\Message
     /**
      * Output only. `TaxonomyCategory` ID.
      *
-     * Generated from protobuf field <code>int64 taxonomy_category_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 taxonomy_category_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
      */
     public function getTaxonomyCategoryId()
     {
-        return $this->taxonomy_category_id;
+        return isset($this->taxonomy_category_id) ? $this->taxonomy_category_id : 0;
+    }
+
+    public function hasTaxonomyCategoryId()
+    {
+        return isset($this->taxonomy_category_id);
+    }
+
+    public function clearTaxonomyCategoryId()
+    {
+        unset($this->taxonomy_category_id);
     }
 
     /**
      * Output only. `TaxonomyCategory` ID.
      *
-     * Generated from protobuf field <code>int64 taxonomy_category_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 taxonomy_category_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
      */
@@ -156,18 +166,28 @@ class TaxonomyCategory extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Display name of the `TaxonomyCategory`.
      *
-     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getDisplayName()
     {
-        return $this->display_name;
+        return isset($this->display_name) ? $this->display_name : '';
+    }
+
+    public function hasDisplayName()
+    {
+        return isset($this->display_name);
+    }
+
+    public function clearDisplayName()
+    {
+        unset($this->display_name);
     }
 
     /**
      * Output only. Display name of the `TaxonomyCategory`.
      *
-     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -183,19 +203,29 @@ class TaxonomyCategory extends \Google\Protobuf\Internal\Message
      * Output only. Whether this `TaxonomyCategory` only serves to group its
      * children.
      *
-     * Generated from protobuf field <code>bool grouping_only = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool grouping_only = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
     public function getGroupingOnly()
     {
-        return $this->grouping_only;
+        return isset($this->grouping_only) ? $this->grouping_only : false;
+    }
+
+    public function hasGroupingOnly()
+    {
+        return isset($this->grouping_only);
+    }
+
+    public function clearGroupingOnly()
+    {
+        unset($this->grouping_only);
     }
 
     /**
      * Output only. Whether this `TaxonomyCategory` only serves to group its
      * children.
      *
-     * Generated from protobuf field <code>bool grouping_only = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool grouping_only = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */
@@ -211,19 +241,29 @@ class TaxonomyCategory extends \Google\Protobuf\Internal\Message
      * Output only. The ID of the parent category this `TaxonomyCategory` descends
      * from.
      *
-     * Generated from protobuf field <code>int64 parent_taxonomy_category_id = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 parent_taxonomy_category_id = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
      */
     public function getParentTaxonomyCategoryId()
     {
-        return $this->parent_taxonomy_category_id;
+        return isset($this->parent_taxonomy_category_id) ? $this->parent_taxonomy_category_id : 0;
+    }
+
+    public function hasParentTaxonomyCategoryId()
+    {
+        return isset($this->parent_taxonomy_category_id);
+    }
+
+    public function clearParentTaxonomyCategoryId()
+    {
+        unset($this->parent_taxonomy_category_id);
     }
 
     /**
      * Output only. The ID of the parent category this `TaxonomyCategory` descends
      * from.
      *
-     * Generated from protobuf field <code>int64 parent_taxonomy_category_id = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 parent_taxonomy_category_id = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
      */
@@ -238,18 +278,28 @@ class TaxonomyCategory extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The taxonomy that this `TaxonomyCategory` belongs to.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.TaxonomyTypeEnum.TaxonomyType taxonomy_type = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.TaxonomyTypeEnum.TaxonomyType taxonomy_type = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getTaxonomyType()
     {
-        return $this->taxonomy_type;
+        return isset($this->taxonomy_type) ? $this->taxonomy_type : 0;
+    }
+
+    public function hasTaxonomyType()
+    {
+        return isset($this->taxonomy_type);
+    }
+
+    public function clearTaxonomyType()
+    {
+        unset($this->taxonomy_type);
     }
 
     /**
      * Output only. The taxonomy that this `TaxonomyCategory` belongs to.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.TaxonomyTypeEnum.TaxonomyType taxonomy_type = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.TaxonomyTypeEnum.TaxonomyType taxonomy_type = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */

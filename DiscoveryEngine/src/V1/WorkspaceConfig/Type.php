@@ -61,6 +61,12 @@ class Type
      * Generated from protobuf enum <code>GOOGLE_KEEP = 7;</code>
      */
     const GOOGLE_KEEP = 7;
+    /**
+     * Workspace Data Store contains People data
+     *
+     * Generated from protobuf enum <code>GOOGLE_PEOPLE = 8;</code>
+     */
+    const GOOGLE_PEOPLE = 8;
 
     private static $valueToName = [
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
@@ -71,6 +77,7 @@ class Type
         self::GOOGLE_CHAT => 'GOOGLE_CHAT',
         self::GOOGLE_GROUPS => 'GOOGLE_GROUPS',
         self::GOOGLE_KEEP => 'GOOGLE_KEEP',
+        self::GOOGLE_PEOPLE => 'GOOGLE_PEOPLE',
     ];
 
     public static function name($value)

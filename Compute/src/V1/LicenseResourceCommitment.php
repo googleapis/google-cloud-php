@@ -16,19 +16,19 @@ use Google\Protobuf\Internal\GPBUtil;
 class LicenseResourceCommitment extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The number of licenses purchased.
+     * The number of licenses you plan to purchase.
      *
      * Generated from protobuf field <code>optional int64 amount = 196759640;</code>
      */
     private $amount = null;
     /**
-     * Specifies the core range of the instance for which this license applies.
+     * The number of cores per license.
      *
      * Generated from protobuf field <code>optional string cores_per_license = 32482324;</code>
      */
     private $cores_per_license = null;
     /**
-     * Any applicable license URI.
+     * The applicable license URI.
      *
      * Generated from protobuf field <code>optional string license = 166757441;</code>
      */
@@ -41,11 +41,11 @@ class LicenseResourceCommitment extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $amount
-     *           The number of licenses purchased.
+     *           The number of licenses you plan to purchase.
      *     @type string $cores_per_license
-     *           Specifies the core range of the instance for which this license applies.
+     *           The number of cores per license.
      *     @type string $license
-     *           Any applicable license URI.
+     *           The applicable license URI.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,7 +54,7 @@ class LicenseResourceCommitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of licenses purchased.
+     * The number of licenses you plan to purchase.
      *
      * Generated from protobuf field <code>optional int64 amount = 196759640;</code>
      * @return int|string
@@ -75,7 +75,7 @@ class LicenseResourceCommitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of licenses purchased.
+     * The number of licenses you plan to purchase.
      *
      * Generated from protobuf field <code>optional int64 amount = 196759640;</code>
      * @param int|string $var
@@ -90,7 +90,7 @@ class LicenseResourceCommitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the core range of the instance for which this license applies.
+     * The number of cores per license.
      *
      * Generated from protobuf field <code>optional string cores_per_license = 32482324;</code>
      * @return string
@@ -111,7 +111,7 @@ class LicenseResourceCommitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the core range of the instance for which this license applies.
+     * The number of cores per license.
      *
      * Generated from protobuf field <code>optional string cores_per_license = 32482324;</code>
      * @param string $var
@@ -126,7 +126,7 @@ class LicenseResourceCommitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Any applicable license URI.
+     * The applicable license URI.
      *
      * Generated from protobuf field <code>optional string license = 166757441;</code>
      * @return string
@@ -147,7 +147,7 @@ class LicenseResourceCommitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Any applicable license URI.
+     * The applicable license URI.
      *
      * Generated from protobuf field <code>optional string license = 166757441;</code>
      * @param string $var

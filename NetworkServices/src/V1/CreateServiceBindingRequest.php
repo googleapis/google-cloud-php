@@ -17,7 +17,7 @@ class CreateServiceBindingRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent resource of the ServiceBinding. Must be in the
-     * format `projects/&#42;&#47;locations/global`.
+     * format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -37,7 +37,7 @@ class CreateServiceBindingRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                          $parent           Required. The parent resource of the ServiceBinding. Must be in the
-     *                                                                          format `projects/&#42;/locations/global`. Please see
+     *                                                                          format `projects/&#42;/locations/*`. Please see
      *                                                                          {@see NetworkServicesClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\NetworkServices\V1\ServiceBinding $serviceBinding   Required. ServiceBinding resource to be created.
      * @param string                                          $serviceBindingId Required. Short name of the ServiceBinding resource to be created.
@@ -62,7 +62,7 @@ class CreateServiceBindingRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent resource of the ServiceBinding. Must be in the
-     *           format `projects/&#42;&#47;locations/global`.
+     *           format `projects/&#42;&#47;locations/&#42;`.
      *     @type string $service_binding_id
      *           Required. Short name of the ServiceBinding resource to be created.
      *     @type \Google\Cloud\NetworkServices\V1\ServiceBinding $service_binding
@@ -76,7 +76,7 @@ class CreateServiceBindingRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource of the ServiceBinding. Must be in the
-     * format `projects/&#42;&#47;locations/global`.
+     * format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -88,7 +88,7 @@ class CreateServiceBindingRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource of the ServiceBinding. Must be in the
-     * format `projects/&#42;&#47;locations/global`.
+     * format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -25,9 +25,9 @@ from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-audit_src = Path(f"../{php.STAGING_DIR}/CommonProtos/audit-protos").resolve()
-devtools_src = Path(f"../{php.STAGING_DIR}/CommonProtos/devtools-protos").resolve()
-common_src = Path(f"../{php.STAGING_DIR}/CommonProtos/common-protos").resolve()
+audit_src = Path(f"../{php.STAGING_DIR}/CloudCommonProtos/audit-protos").resolve()
+devtools_src = Path(f"../{php.STAGING_DIR}/CloudCommonProtos/devtools-protos").resolve()
+common_src = Path(f"../{php.STAGING_DIR}/CloudCommonProtos/common-protos").resolve()
 dest = Path().resolve()
 
 # Added so that we can pass copy_excludes in the owlbot_main() call
@@ -61,6 +61,12 @@ php.owlbot_copy_version(
     ],
     version_string="common",
 )
+
+# fix protobuf bug (b/418528083)
+s.replace(
+    "src/**/*.php",
+    "\$arr->count\(\)",
+    "count($arr)")
 
 # remove class_alias code (but keep the existing class aliases)
 sources = list(Path(".").glob("src/**/*.php"))

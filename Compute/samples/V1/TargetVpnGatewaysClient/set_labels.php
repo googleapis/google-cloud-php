@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetVpnGateways_SetLabels_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\TargetVpnGatewaysClient;
 use Google\Cloud\Compute\V1\RegionSetLabelsRequest;
-use Google\Cloud\Compute\V1\TargetVpnGatewaysClient;
+use Google\Cloud\Compute\V1\SetLabelsTargetVpnGatewayRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function set_labels_sample(string $project, string $region, string $resource): v
     // Create a client.
     $targetVpnGatewaysClient = new TargetVpnGatewaysClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $regionSetLabelsRequestResource = new RegionSetLabelsRequest();
+    $request = (new SetLabelsTargetVpnGatewayRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setRegionSetLabelsRequestResource($regionSetLabelsRequestResource)
+        ->setResource($resource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetVpnGatewaysClient->setLabels(
-            $project,
-            $region,
-            $regionSetLabelsRequestResource,
-            $resource
-        );
+        $response = $targetVpnGatewaysClient->setLabels($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

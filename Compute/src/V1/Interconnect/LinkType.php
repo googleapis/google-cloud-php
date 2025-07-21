@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Interconnect;
 use UnexpectedValueException;
 
 /**
- * Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
+ * Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. - LINK_TYPE_ETHERNET_400G_LR4: A 400G Ethernet with LR4 optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
  *
  * Protobuf type <code>google.cloud.compute.v1.Interconnect.LinkType</code>
  */
@@ -31,11 +31,18 @@ class LinkType
      * Generated from protobuf enum <code>LINK_TYPE_ETHERNET_10G_LR = 236739749;</code>
      */
     const LINK_TYPE_ETHERNET_10G_LR = 236739749;
+    /**
+     * 400G Ethernet, LR4 Optics.
+     *
+     * Generated from protobuf enum <code>LINK_TYPE_ETHERNET_400G_LR4 = 127023690;</code>
+     */
+    const LINK_TYPE_ETHERNET_400G_LR4 = 127023690;
 
     private static $valueToName = [
         self::UNDEFINED_LINK_TYPE => 'UNDEFINED_LINK_TYPE',
         self::LINK_TYPE_ETHERNET_100G_LR => 'LINK_TYPE_ETHERNET_100G_LR',
         self::LINK_TYPE_ETHERNET_10G_LR => 'LINK_TYPE_ETHERNET_10G_LR',
+        self::LINK_TYPE_ETHERNET_400G_LR4 => 'LINK_TYPE_ETHERNET_400G_LR4',
     ];
 
     public static function name($value)

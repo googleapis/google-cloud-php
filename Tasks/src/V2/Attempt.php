@@ -21,21 +21,21 @@ class Attempt extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 1;</code>
      */
-    private $schedule_time = null;
+    protected $schedule_time = null;
     /**
      * Output only. The time that this attempt was dispatched.
      * `dispatch_time` will be truncated to the nearest microsecond.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp dispatch_time = 2;</code>
      */
-    private $dispatch_time = null;
+    protected $dispatch_time = null;
     /**
      * Output only. The time that this attempt response was received.
      * `response_time` will be truncated to the nearest microsecond.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp response_time = 3;</code>
      */
-    private $response_time = null;
+    protected $response_time = null;
     /**
      * Output only. The response from the worker for this attempt.
      * If `response_time` is unset, then the task has not been attempted or is
@@ -43,7 +43,7 @@ class Attempt extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status response_status = 4;</code>
      */
-    private $response_status = null;
+    protected $response_status = null;
 
     /**
      * Constructor.

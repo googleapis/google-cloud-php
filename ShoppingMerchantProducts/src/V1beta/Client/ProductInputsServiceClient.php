@@ -37,7 +37,9 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Shopping\Merchant\Products\V1beta\DeleteProductInputRequest;
 use Google\Shopping\Merchant\Products\V1beta\InsertProductInputRequest;
 use Google\Shopping\Merchant\Products\V1beta\ProductInput;
+use Google\Shopping\Merchant\Products\V1beta\UpdateProductInputRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service to use ProductInput resource.
@@ -55,6 +57,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @method PromiseInterface<void> deleteProductInputAsync(DeleteProductInputRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ProductInput> insertProductInputAsync(InsertProductInputRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ProductInput> updateProductInputAsync(UpdateProductInputRequest $request, array $optionalArgs = [])
  */
 final class ProductInputsServiceClient
 {
@@ -151,8 +154,8 @@ final class ProductInputsServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
@@ -160,7 +163,7 @@ final class ProductInputsServiceClient
      *
      * @experimental
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -182,6 +185,12 @@ final class ProductInputsServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -215,6 +224,9 @@ final class ProductInputsServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -269,9 +281,14 @@ final class ProductInputsServiceClient
     }
 
     /**
-     * Uploads a product input to your Merchant Center account. If an input
-     * with the same contentLanguage, offerId, and dataSource already exists,
-     * this method replaces that entry.
+     * [Uploads a product input to your Merchant Center
+     * account](/merchant/api/guides/products/overview#upload-product-input). You
+     * must have a products data source to be able to insert a product. The unique
+     * identifier of the data source is passed as a query parameter in the request
+     * URL.
+     *
+     * If an input with the same contentLanguage, offerId, and dataSource already
+     * exists, this method replaces that entry.
      *
      * After inserting, updating, or deleting a product input, it may take several
      * minutes before the processed product can be retrieved.
@@ -300,5 +317,37 @@ final class ProductInputsServiceClient
     public function insertProductInput(InsertProductInputRequest $request, array $callOptions = []): ProductInput
     {
         return $this->startApiCall('InsertProductInput', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the existing product input in your Merchant Center account.
+     *
+     * After inserting, updating, or deleting a product input, it may take several
+     * minutes before the processed product can be retrieved.
+     *
+     * The async variant is
+     * {@see ProductInputsServiceClient::updateProductInputAsync()} .
+     *
+     * @example samples/V1beta/ProductInputsServiceClient/update_product_input.php
+     *
+     * @param UpdateProductInputRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ProductInput
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateProductInput(UpdateProductInputRequest $request, array $callOptions = []): ProductInput
+    {
+        return $this->startApiCall('UpdateProductInput', $request, $callOptions)->wait();
     }
 }

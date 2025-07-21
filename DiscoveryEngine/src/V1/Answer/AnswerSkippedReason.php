@@ -87,6 +87,24 @@ class AnswerSkippedReason
      * Generated from protobuf enum <code>LOW_GROUNDED_ANSWER = 9;</code>
      */
     const LOW_GROUNDED_ANSWER = 9;
+    /**
+     * The user defined query classification ignored case.
+     * Google skips the answer if the query is classified as a user defined
+     * query classification.
+     *
+     * Generated from protobuf enum <code>USER_DEFINED_CLASSIFICATION_QUERY_IGNORED = 10;</code>
+     */
+    const USER_DEFINED_CLASSIFICATION_QUERY_IGNORED = 10;
+    /**
+     * The unhelpful answer case.
+     * Google skips the answer if the answer is not helpful. This can be due to
+     * a variety of factors, including but not limited to: the query is not
+     * answerable, the answer is not relevant to the query, or the answer is
+     * not well-formatted.
+     *
+     * Generated from protobuf enum <code>UNHELPFUL_ANSWER = 11;</code>
+     */
+    const UNHELPFUL_ANSWER = 11;
 
     private static $valueToName = [
         self::ANSWER_SKIPPED_REASON_UNSPECIFIED => 'ANSWER_SKIPPED_REASON_UNSPECIFIED',
@@ -99,6 +117,8 @@ class AnswerSkippedReason
         self::CUSTOMER_POLICY_VIOLATION => 'CUSTOMER_POLICY_VIOLATION',
         self::NON_ANSWER_SEEKING_QUERY_IGNORED_V2 => 'NON_ANSWER_SEEKING_QUERY_IGNORED_V2',
         self::LOW_GROUNDED_ANSWER => 'LOW_GROUNDED_ANSWER',
+        self::USER_DEFINED_CLASSIFICATION_QUERY_IGNORED => 'USER_DEFINED_CLASSIFICATION_QUERY_IGNORED',
+        self::UNHELPFUL_ANSWER => 'UNHELPFUL_ANSWER',
     ];
 
     public static function name($value)

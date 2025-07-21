@@ -31,7 +31,7 @@ use Google\Cloud\GSuiteAddOns\V1\GetAuthorizationRequest;
 /**
  * Gets the authorization information for deployments in a given project.
  *
- * @param string $formattedName Name of the project for which to get the Google Workspace Add-ons
+ * @param string $formattedName Name of the project for which to get the Google Workspace add-ons
  *                              authorization information.
  *
  *                              Example: `projects/my_project/authorization`. Please see

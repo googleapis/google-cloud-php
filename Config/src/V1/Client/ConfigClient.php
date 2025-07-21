@@ -47,12 +47,16 @@ use Google\Cloud\Config\V1\ExportPreviewResultResponse;
 use Google\Cloud\Config\V1\ExportRevisionStatefileRequest;
 use Google\Cloud\Config\V1\GetDeploymentRequest;
 use Google\Cloud\Config\V1\GetPreviewRequest;
+use Google\Cloud\Config\V1\GetResourceChangeRequest;
+use Google\Cloud\Config\V1\GetResourceDriftRequest;
 use Google\Cloud\Config\V1\GetResourceRequest;
 use Google\Cloud\Config\V1\GetRevisionRequest;
 use Google\Cloud\Config\V1\GetTerraformVersionRequest;
 use Google\Cloud\Config\V1\ImportStatefileRequest;
 use Google\Cloud\Config\V1\ListDeploymentsRequest;
 use Google\Cloud\Config\V1\ListPreviewsRequest;
+use Google\Cloud\Config\V1\ListResourceChangesRequest;
+use Google\Cloud\Config\V1\ListResourceDriftsRequest;
 use Google\Cloud\Config\V1\ListResourcesRequest;
 use Google\Cloud\Config\V1\ListRevisionsRequest;
 use Google\Cloud\Config\V1\ListTerraformVersionsRequest;
@@ -60,6 +64,8 @@ use Google\Cloud\Config\V1\LockDeploymentRequest;
 use Google\Cloud\Config\V1\LockInfo;
 use Google\Cloud\Config\V1\Preview;
 use Google\Cloud\Config\V1\Resource;
+use Google\Cloud\Config\V1\ResourceChange;
+use Google\Cloud\Config\V1\ResourceDrift;
 use Google\Cloud\Config\V1\Revision;
 use Google\Cloud\Config\V1\Statefile;
 use Google\Cloud\Config\V1\TerraformVersion;
@@ -76,6 +82,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Infrastructure Manager is a managed service that automates the deployment and
@@ -101,11 +108,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface<Deployment> getDeploymentAsync(GetDeploymentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Preview> getPreviewAsync(GetPreviewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Resource> getResourceAsync(GetResourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ResourceChange> getResourceChangeAsync(GetResourceChangeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ResourceDrift> getResourceDriftAsync(GetResourceDriftRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Revision> getRevisionAsync(GetRevisionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TerraformVersion> getTerraformVersionAsync(GetTerraformVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Statefile> importStatefileAsync(ImportStatefileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listDeploymentsAsync(ListDeploymentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listPreviewsAsync(ListPreviewsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listResourceChangesAsync(ListResourceChangesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listResourceDriftsAsync(ListResourceDriftsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listResourcesAsync(ListResourcesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listRevisionsAsync(ListRevisionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listTerraformVersionsAsync(ListTerraformVersionsRequest $request, array $optionalArgs = [])
@@ -300,6 +311,56 @@ final class ConfigClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * resource_change resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $preview
+     * @param string $resourceChange
+     *
+     * @return string The formatted resource_change resource.
+     */
+    public static function resourceChangeName(
+        string $project,
+        string $location,
+        string $preview,
+        string $resourceChange
+    ): string {
+        return self::getPathTemplate('resourceChange')->render([
+            'project' => $project,
+            'location' => $location,
+            'preview' => $preview,
+            'resource_change' => $resourceChange,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * resource_drift resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $preview
+     * @param string $resourceDrift
+     *
+     * @return string The formatted resource_drift resource.
+     */
+    public static function resourceDriftName(
+        string $project,
+        string $location,
+        string $preview,
+        string $resourceDrift
+    ): string {
+        return self::getPathTemplate('resourceDrift')->render([
+            'project' => $project,
+            'location' => $location,
+            'preview' => $preview,
+            'resource_drift' => $resourceDrift,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a revision
      * resource.
      *
@@ -383,6 +444,8 @@ final class ConfigClient
      * - location: projects/{project}/locations/{location}
      * - preview: projects/{project}/locations/{location}/previews/{preview}
      * - resource: projects/{project}/locations/{location}/deployments/{deployment}/revisions/{revision}/resources/{resource}
+     * - resourceChange: projects/{project}/locations/{location}/previews/{preview}/resourceChanges/{resource_change}
+     * - resourceDrift: projects/{project}/locations/{location}/previews/{preview}/resourceDrifts/{resource_drift}
      * - revision: projects/{project}/locations/{location}/deployments/{deployment}/revisions/{revision}
      * - serviceAccount: projects/{project}/serviceAccounts/{service_account}
      * - terraformVersion: projects/{project}/locations/{location}/terraformVersions/{terraform_version}
@@ -394,14 +457,14 @@ final class ConfigClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -423,6 +486,12 @@ final class ConfigClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -456,6 +525,9 @@ final class ConfigClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -794,6 +866,58 @@ final class ConfigClient
     }
 
     /**
+     * Get a ResourceChange for a given preview.
+     *
+     * The async variant is {@see ConfigClient::getResourceChangeAsync()} .
+     *
+     * @example samples/V1/ConfigClient/get_resource_change.php
+     *
+     * @param GetResourceChangeRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ResourceChange
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getResourceChange(GetResourceChangeRequest $request, array $callOptions = []): ResourceChange
+    {
+        return $this->startApiCall('GetResourceChange', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Get a ResourceDrift for a given preview.
+     *
+     * The async variant is {@see ConfigClient::getResourceDriftAsync()} .
+     *
+     * @example samples/V1/ConfigClient/get_resource_drift.php
+     *
+     * @param GetResourceDriftRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ResourceDrift
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getResourceDrift(GetResourceDriftRequest $request, array $callOptions = []): ResourceDrift
+    {
+        return $this->startApiCall('GetResourceDrift', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets details about a [Revision][google.cloud.config.v1.Revision].
      *
      * The async variant is {@see ConfigClient::getRevisionAsync()} .
@@ -928,7 +1052,59 @@ final class ConfigClient
     }
 
     /**
-     * Lists [Resource][google.cloud.config.v1.Resource]s in a given revision.
+     * Lists ResourceChanges for a given preview.
+     *
+     * The async variant is {@see ConfigClient::listResourceChangesAsync()} .
+     *
+     * @example samples/V1/ConfigClient/list_resource_changes.php
+     *
+     * @param ListResourceChangesRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listResourceChanges(ListResourceChangesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListResourceChanges', $request, $callOptions);
+    }
+
+    /**
+     * List ResourceDrifts for a given preview.
+     *
+     * The async variant is {@see ConfigClient::listResourceDriftsAsync()} .
+     *
+     * @example samples/V1/ConfigClient/list_resource_drifts.php
+     *
+     * @param ListResourceDriftsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listResourceDrifts(ListResourceDriftsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListResourceDrifts', $request, $callOptions);
+    }
+
+    /**
+     * Lists [Resources][google.cloud.config.v1.Resource] in a given revision.
      *
      * The async variant is {@see ConfigClient::listResourcesAsync()} .
      *

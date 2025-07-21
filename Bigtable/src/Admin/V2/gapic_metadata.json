@@ -25,6 +25,16 @@
                                 "createInstance"
                             ]
                         },
+                        "CreateLogicalView": {
+                            "methods": [
+                                "createLogicalView"
+                            ]
+                        },
+                        "CreateMaterializedView": {
+                            "methods": [
+                                "createMaterializedView"
+                            ]
+                        },
                         "DeleteAppProfile": {
                             "methods": [
                                 "deleteAppProfile"
@@ -38,6 +48,16 @@
                         "DeleteInstance": {
                             "methods": [
                                 "deleteInstance"
+                            ]
+                        },
+                        "DeleteLogicalView": {
+                            "methods": [
+                                "deleteLogicalView"
+                            ]
+                        },
+                        "DeleteMaterializedView": {
+                            "methods": [
+                                "deleteMaterializedView"
                             ]
                         },
                         "GetAppProfile": {
@@ -60,6 +80,16 @@
                                 "getInstance"
                             ]
                         },
+                        "GetLogicalView": {
+                            "methods": [
+                                "getLogicalView"
+                            ]
+                        },
+                        "GetMaterializedView": {
+                            "methods": [
+                                "getMaterializedView"
+                            ]
+                        },
                         "ListAppProfiles": {
                             "methods": [
                                 "listAppProfiles"
@@ -78,6 +108,16 @@
                         "ListInstances": {
                             "methods": [
                                 "listInstances"
+                            ]
+                        },
+                        "ListLogicalViews": {
+                            "methods": [
+                                "listLogicalViews"
+                            ]
+                        },
+                        "ListMaterializedViews": {
+                            "methods": [
+                                "listMaterializedViews"
                             ]
                         },
                         "PartialUpdateCluster": {
@@ -114,6 +154,16 @@
                             "methods": [
                                 "updateInstance"
                             ]
+                        },
+                        "UpdateLogicalView": {
+                            "methods": [
+                                "updateLogicalView"
+                            ]
+                        },
+                        "UpdateMaterializedView": {
+                            "methods": [
+                                "updateMaterializedView"
+                            ]
                         }
                     }
                 }
@@ -144,6 +194,11 @@
                                 "createBackup"
                             ]
                         },
+                        "CreateSchemaBundle": {
+                            "methods": [
+                                "createSchemaBundle"
+                            ]
+                        },
                         "CreateTable": {
                             "methods": [
                                 "createTable"
@@ -162,6 +217,11 @@
                         "DeleteBackup": {
                             "methods": [
                                 "deleteBackup"
+                            ]
+                        },
+                        "DeleteSchemaBundle": {
+                            "methods": [
+                                "deleteSchemaBundle"
                             ]
                         },
                         "DeleteSnapshot": {
@@ -199,6 +259,11 @@
                                 "getIamPolicy"
                             ]
                         },
+                        "GetSchemaBundle": {
+                            "methods": [
+                                "getSchemaBundle"
+                            ]
+                        },
                         "GetSnapshot": {
                             "methods": [
                                 "getSnapshot"
@@ -217,6 +282,11 @@
                         "ListBackups": {
                             "methods": [
                                 "listBackups"
+                            ]
+                        },
+                        "ListSchemaBundles": {
+                            "methods": [
+                                "listSchemaBundles"
                             ]
                         },
                         "ListSnapshots": {
@@ -267,6 +337,11 @@
                         "UpdateBackup": {
                             "methods": [
                                 "updateBackup"
+                            ]
+                        },
+                        "UpdateSchemaBundle": {
+                            "methods": [
+                                "updateSchemaBundle"
                             ]
                         },
                         "UpdateTable": {

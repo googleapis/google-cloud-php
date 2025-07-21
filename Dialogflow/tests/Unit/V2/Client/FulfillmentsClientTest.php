@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,7 +54,9 @@ class FulfillmentsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return FulfillmentsClient */
@@ -85,8 +87,7 @@ class FulfillmentsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->fulfillmentName('[PROJECT]');
-        $request = (new GetFulfillmentRequest())
-            ->setName($formattedName);
+        $request = (new GetFulfillmentRequest())->setName($formattedName);
         $response = $gapicClient->getFulfillment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -110,17 +111,19 @@ class FulfillmentsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->fulfillmentName('[PROJECT]');
-        $request = (new GetFulfillmentRequest())
-            ->setName($formattedName);
+        $request = (new GetFulfillmentRequest())->setName($formattedName);
         try {
             $gapicClient->getFulfillment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -156,9 +159,7 @@ class FulfillmentsClientTest extends GeneratedTest
         $fulfillmentName = 'fulfillmentName1097998729';
         $fulfillment->setName($fulfillmentName);
         $updateMask = new FieldMask();
-        $request = (new UpdateFulfillmentRequest())
-            ->setFulfillment($fulfillment)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateFulfillmentRequest())->setFulfillment($fulfillment)->setUpdateMask($updateMask);
         $response = $gapicClient->updateFulfillment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -184,21 +185,22 @@ class FulfillmentsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $fulfillment = new Fulfillment();
         $fulfillmentName = 'fulfillmentName1097998729';
         $fulfillment->setName($fulfillmentName);
         $updateMask = new FieldMask();
-        $request = (new UpdateFulfillmentRequest())
-            ->setFulfillment($fulfillment)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateFulfillmentRequest())->setFulfillment($fulfillment)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateFulfillment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -251,12 +253,15 @@ class FulfillmentsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -283,9 +288,7 @@ class FulfillmentsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -315,12 +318,15 @@ class FulfillmentsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -355,8 +361,7 @@ class FulfillmentsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->fulfillmentName('[PROJECT]');
-        $request = (new GetFulfillmentRequest())
-            ->setName($formattedName);
+        $request = (new GetFulfillmentRequest())->setName($formattedName);
         $response = $gapicClient->getFulfillmentAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

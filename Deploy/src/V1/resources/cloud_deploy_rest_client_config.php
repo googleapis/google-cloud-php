@@ -618,6 +618,10 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/customTargetTypes/*}:getIamPolicy',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/deployPolicies/*}:getIamPolicy',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -640,6 +644,11 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/customTargetTypes/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/deployPolicies/*}:setIamPolicy',
                         'body' => '*',
                     ],
                 ],

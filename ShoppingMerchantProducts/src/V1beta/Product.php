@@ -12,11 +12,11 @@ use Google\Protobuf\Internal\GPBUtil;
  * The processed product, built from multiple [product
  * inputs][google.shopping.merchant.products.v1main.ProductInput]
  * after applying rules and supplemental data sources. This processed product
- * matches what is shown in your Merchant Center account and in Shopping ads and
- * other surfaces across Google. Each product is built from exactly one primary
- * data source product input, and multiple supplemental data source inputs.
- * After inserting, updating, or deleting a product input, it may take
- * several minutes before the updated processed product can be retrieved.
+ * matches what is shown in your Merchant Center account. Each product is built
+ * from exactly one primary data source product input, and multiple supplemental
+ * data source inputs. After inserting, updating, or deleting a product input,
+ * it may take several minutes before the updated processed product can be
+ * retrieved.
  * All fields in the processed product and its sub-messages match the name of
  * their corresponding attribute in the [Product data
  * specification](https://support.google.com/merchants/answer/7052112) with some
@@ -29,10 +29,10 @@ class Product extends \Google\Protobuf\Internal\Message
     /**
      * The name of the product.
      * Format:
-     * `"{product.name=accounts/{account}/products/{product}}"` where the last
+     * `accounts/{account}/products/{product}` where the last
      * section `product` consists of 4 parts:
-     * channel~content_language~feed_label~offer_id
-     * example for product name is "accounts/123/products/online~en~US~sku123"
+     * `channel~content_language~feed_label~offer_id`
+     * example for product name is `accounts/123/products/online~en~US~sku123`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -65,7 +65,11 @@ class Product extends \Google\Protobuf\Internal\Message
      */
     protected $content_language = '';
     /**
-     * Output only. The feed label for the product.
+     * Output only. The feed label lets you categorize and identify your products.
+     * The maximum allowed characters is 20 and the supported characters are`A-Z`,
+     * `0-9`, hyphen and underscore. The feed label must not include any spaces.
+     * For more information, see [Using feed
+     * labels](//support.google.com/merchants/answer/14994087)
      *
      * Generated from protobuf field <code>string feed_label = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -115,6 +119,12 @@ class Product extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.shopping.merchant.products.v1beta.ProductStatus product_status = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $product_status = null;
+    /**
+     * Output only. The automated discounts information for the product.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1beta.AutomatedDiscounts automated_discounts = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $automated_discounts = null;
 
     /**
      * Constructor.
@@ -125,10 +135,10 @@ class Product extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name of the product.
      *           Format:
-     *           `"{product.name=accounts/{account}/products/{product}}"` where the last
+     *           `accounts/{account}/products/{product}` where the last
      *           section `product` consists of 4 parts:
-     *           channel~content_language~feed_label~offer_id
-     *           example for product name is "accounts/123/products/online~en~US~sku123"
+     *           `channel~content_language~feed_label~offer_id`
+     *           example for product name is `accounts/123/products/online~en~US~sku123`
      *     @type int $channel
      *           Output only. The
      *           [channel](https://support.google.com/merchants/answer/7361332) of the
@@ -145,7 +155,11 @@ class Product extends \Google\Protobuf\Internal\Message
      *           639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code for the
      *           product.
      *     @type string $feed_label
-     *           Output only. The feed label for the product.
+     *           Output only. The feed label lets you categorize and identify your products.
+     *           The maximum allowed characters is 20 and the supported characters are`A-Z`,
+     *           `0-9`, hyphen and underscore. The feed label must not include any spaces.
+     *           For more information, see [Using feed
+     *           labels](//support.google.com/merchants/answer/14994087)
      *     @type string $data_source
      *           Output only. The primary data source of the product.
      *     @type int|string $version_number
@@ -171,6 +185,8 @@ class Product extends \Google\Protobuf\Internal\Message
      *     @type \Google\Shopping\Merchant\Products\V1beta\ProductStatus $product_status
      *           Output only. The status of a product, data validation issues, that is,
      *           information about a product computed asynchronously.
+     *     @type \Google\Shopping\Merchant\Products\V1beta\AutomatedDiscounts $automated_discounts
+     *           Output only. The automated discounts information for the product.
      * }
      */
     public function __construct($data = NULL) {
@@ -181,10 +197,10 @@ class Product extends \Google\Protobuf\Internal\Message
     /**
      * The name of the product.
      * Format:
-     * `"{product.name=accounts/{account}/products/{product}}"` where the last
+     * `accounts/{account}/products/{product}` where the last
      * section `product` consists of 4 parts:
-     * channel~content_language~feed_label~offer_id
-     * example for product name is "accounts/123/products/online~en~US~sku123"
+     * `channel~content_language~feed_label~offer_id`
+     * example for product name is `accounts/123/products/online~en~US~sku123`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -197,10 +213,10 @@ class Product extends \Google\Protobuf\Internal\Message
     /**
      * The name of the product.
      * Format:
-     * `"{product.name=accounts/{account}/products/{product}}"` where the last
+     * `accounts/{account}/products/{product}` where the last
      * section `product` consists of 4 parts:
-     * channel~content_language~feed_label~offer_id
-     * example for product name is "accounts/123/products/online~en~US~sku123"
+     * `channel~content_language~feed_label~offer_id`
+     * example for product name is `accounts/123/products/online~en~US~sku123`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -311,7 +327,11 @@ class Product extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The feed label for the product.
+     * Output only. The feed label lets you categorize and identify your products.
+     * The maximum allowed characters is 20 and the supported characters are`A-Z`,
+     * `0-9`, hyphen and underscore. The feed label must not include any spaces.
+     * For more information, see [Using feed
+     * labels](//support.google.com/merchants/answer/14994087)
      *
      * Generated from protobuf field <code>string feed_label = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -322,7 +342,11 @@ class Product extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The feed label for the product.
+     * Output only. The feed label lets you categorize and identify your products.
+     * The maximum allowed characters is 20 and the supported characters are`A-Z`,
+     * `0-9`, hyphen and underscore. The feed label must not include any spaces.
+     * For more information, see [Using feed
+     * labels](//support.google.com/merchants/answer/14994087)
      *
      * Generated from protobuf field <code>string feed_label = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -522,6 +546,42 @@ class Product extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Products\V1beta\ProductStatus::class);
         $this->product_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The automated discounts information for the product.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1beta.AutomatedDiscounts automated_discounts = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Shopping\Merchant\Products\V1beta\AutomatedDiscounts|null
+     */
+    public function getAutomatedDiscounts()
+    {
+        return $this->automated_discounts;
+    }
+
+    public function hasAutomatedDiscounts()
+    {
+        return isset($this->automated_discounts);
+    }
+
+    public function clearAutomatedDiscounts()
+    {
+        unset($this->automated_discounts);
+    }
+
+    /**
+     * Output only. The automated discounts information for the product.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1beta.AutomatedDiscounts automated_discounts = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Shopping\Merchant\Products\V1beta\AutomatedDiscounts $var
+     * @return $this
+     */
+    public function setAutomatedDiscounts($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Products\V1beta\AutomatedDiscounts::class);
+        $this->automated_discounts = $var;
 
         return $this;
     }

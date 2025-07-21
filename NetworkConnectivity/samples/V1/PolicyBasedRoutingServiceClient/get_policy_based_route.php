@@ -29,7 +29,7 @@ use Google\Cloud\NetworkConnectivity\V1\GetPolicyBasedRouteRequest;
 use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute;
 
 /**
- * Gets details of a single PolicyBasedRoute.
+ * Gets details of a single policy-based route.
  *
  * @param string $formattedName Name of the PolicyBasedRoute resource to get. Please see
  *                              {@see PolicyBasedRoutingServiceClient::policyBasedRouteName()} for help formatting this field.

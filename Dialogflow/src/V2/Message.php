@@ -22,13 +22,13 @@ class Message extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The message content.
      *
      * Generated from protobuf field <code>string content = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $content = '';
+    protected $content = '';
     /**
      * Optional. The message language.
      * This should be a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt)
@@ -36,43 +36,44 @@ class Message extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * Output only. The participant that sends this message.
      *
      * Generated from protobuf field <code>string participant = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $participant = '';
+    protected $participant = '';
     /**
      * Output only. The role of the participant.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Participant.Role participant_role = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $participant_role = 0;
+    protected $participant_role = 0;
     /**
      * Output only. The time when the message was created in Contact Center AI.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
-     * Optional. The time when the message was sent.
+     * Optional. The time when the message was sent. For voice messages, this is
+     * the time when an utterance started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp send_time = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $send_time = null;
+    protected $send_time = null;
     /**
      * Output only. The annotation for the message.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.MessageAnnotation message_annotation = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $message_annotation = null;
+    protected $message_annotation = null;
     /**
      * Output only. The sentiment analysis result for the message.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SentimentAnalysisResult sentiment_analysis = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $sentiment_analysis = null;
+    protected $sentiment_analysis = null;
 
     /**
      * Constructor.
@@ -97,7 +98,8 @@ class Message extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time when the message was created in Contact Center AI.
      *     @type \Google\Protobuf\Timestamp $send_time
-     *           Optional. The time when the message was sent.
+     *           Optional. The time when the message was sent. For voice messages, this is
+     *           the time when an utterance started.
      *     @type \Google\Cloud\Dialogflow\V2\MessageAnnotation $message_annotation
      *           Output only. The annotation for the message.
      *     @type \Google\Cloud\Dialogflow\V2\SentimentAnalysisResult $sentiment_analysis
@@ -284,7 +286,8 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The time when the message was sent.
+     * Optional. The time when the message was sent. For voice messages, this is
+     * the time when an utterance started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp send_time = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -305,7 +308,8 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The time when the message was sent.
+     * Optional. The time when the message was sent. For voice messages, this is
+     * the time when an utterance started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp send_time = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Timestamp $var

@@ -27,18 +27,15 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\Client\AnalyticsHubServiceClient;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\CreateListingRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing;
-use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource;
 
 /**
  * Creates a new listing.
  *
  * @param string $formattedParent    The parent resource path of the listing.
- *                                   e.g. `projects/myproject/locations/US/dataExchanges/123`. Please see
+ *                                   e.g. `projects/myproject/locations/us/dataExchanges/123`. Please see
  *                                   {@see AnalyticsHubServiceClient::dataExchangeName()} for help formatting this field.
  * @param string $listingId          The ID of the listing to create.
  *                                   Must contain only Unicode letters, numbers (0-9), underscores (_).
- *                                   Should not use characters that require URL-escaping, or characters
- *                                   outside of ASCII, spaces.
  *                                   Max length: 100 bytes.
  * @param string $listingDisplayName Human-readable display name of the listing. The display name must
  *                                   contain only Unicode letters, numbers (0-9), underscores (_), dashes (-),
@@ -54,9 +51,7 @@ function create_listing_sample(
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
     // Prepare the request message.
-    $listingBigqueryDataset = new BigQueryDatasetSource();
     $listing = (new Listing())
-        ->setBigqueryDataset($listingBigqueryDataset)
         ->setDisplayName($listingDisplayName);
     $request = (new CreateListingRequest())
         ->setParent($formattedParent)

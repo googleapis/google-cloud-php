@@ -39,11 +39,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      * request the next page of results, page_token must be the value of
      * [next_page_token][google.cloud.scheduler.v1.ListJobsResponse.next_page_token]
      * returned from the previous call to
-     * [ListJobs][google.cloud.scheduler.v1.CloudScheduler.ListJobs]. It is an
-     * error to switch the value of
-     * [filter][google.cloud.scheduler.v1.ListJobsRequest.filter] or
-     * [order_by][google.cloud.scheduler.v1.ListJobsRequest.order_by] while
-     * iterating through pages.
+     * [ListJobs][google.cloud.scheduler.v1.CloudScheduler.ListJobs].
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
      */
@@ -85,11 +81,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      *           request the next page of results, page_token must be the value of
      *           [next_page_token][google.cloud.scheduler.v1.ListJobsResponse.next_page_token]
      *           returned from the previous call to
-     *           [ListJobs][google.cloud.scheduler.v1.CloudScheduler.ListJobs]. It is an
-     *           error to switch the value of
-     *           [filter][google.cloud.scheduler.v1.ListJobsRequest.filter] or
-     *           [order_by][google.cloud.scheduler.v1.ListJobsRequest.order_by] while
-     *           iterating through pages.
+     *           [ListJobs][google.cloud.scheduler.v1.CloudScheduler.ListJobs].
      * }
      */
     public function __construct($data = NULL) {
@@ -165,11 +157,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      * request the next page of results, page_token must be the value of
      * [next_page_token][google.cloud.scheduler.v1.ListJobsResponse.next_page_token]
      * returned from the previous call to
-     * [ListJobs][google.cloud.scheduler.v1.CloudScheduler.ListJobs]. It is an
-     * error to switch the value of
-     * [filter][google.cloud.scheduler.v1.ListJobsRequest.filter] or
-     * [order_by][google.cloud.scheduler.v1.ListJobsRequest.order_by] while
-     * iterating through pages.
+     * [ListJobs][google.cloud.scheduler.v1.CloudScheduler.ListJobs].
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
      * @return string
@@ -185,11 +173,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      * request the next page of results, page_token must be the value of
      * [next_page_token][google.cloud.scheduler.v1.ListJobsResponse.next_page_token]
      * returned from the previous call to
-     * [ListJobs][google.cloud.scheduler.v1.CloudScheduler.ListJobs]. It is an
-     * error to switch the value of
-     * [filter][google.cloud.scheduler.v1.ListJobsRequest.filter] or
-     * [order_by][google.cloud.scheduler.v1.ListJobsRequest.order_by] while
-     * iterating through pages.
+     * [ListJobs][google.cloud.scheduler.v1.CloudScheduler.ListJobs].
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
      * @param string $var

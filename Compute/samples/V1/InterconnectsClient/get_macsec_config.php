@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_Interconnects_GetMacsecConfig_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\InterconnectsClient;
+use Google\Cloud\Compute\V1\Client\InterconnectsClient;
+use Google\Cloud\Compute\V1\GetMacsecConfigInterconnectRequest;
 use Google\Cloud\Compute\V1\InterconnectsGetMacsecConfigResponse;
 
 /**
@@ -38,10 +39,15 @@ function get_macsec_config_sample(string $interconnect, string $project): void
     // Create a client.
     $interconnectsClient = new InterconnectsClient();
 
+    // Prepare the request message.
+    $request = (new GetMacsecConfigInterconnectRequest())
+        ->setInterconnect($interconnect)
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var InterconnectsGetMacsecConfigResponse $response */
-        $response = $interconnectsClient->getMacsecConfig($interconnect, $project);
+        $response = $interconnectsClient->getMacsecConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

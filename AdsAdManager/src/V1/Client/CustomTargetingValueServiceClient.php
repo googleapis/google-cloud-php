@@ -37,6 +37,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Provides methods for handling `CustomTargetingValue` objects.
@@ -77,7 +78,7 @@ final class CustomTargetingValueServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/admanager'];
 
     private static function getClientDefaults()
     {
@@ -113,40 +114,33 @@ final class CustomTargetingValueServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
-     * custom_targeting_key resource.
-     *
-     * @param string $networkCode
-     * @param string $customTargetingKey
-     *
-     * @return string The formatted custom_targeting_key resource.
-     */
-    public static function customTargetingKeyName(string $networkCode, string $customTargetingKey): string
-    {
-        return self::getPathTemplate('customTargetingKey')->render([
-            'network_code' => $networkCode,
-            'custom_targeting_key' => $customTargetingKey,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent a
      * custom_targeting_value resource.
      *
      * @param string $networkCode
-     * @param string $customTargetingKey
      * @param string $customTargetingValue
      *
      * @return string The formatted custom_targeting_value resource.
      */
-    public static function customTargetingValueName(
-        string $networkCode,
-        string $customTargetingKey,
-        string $customTargetingValue
-    ): string {
+    public static function customTargetingValueName(string $networkCode, string $customTargetingValue): string
+    {
         return self::getPathTemplate('customTargetingValue')->render([
             'network_code' => $networkCode,
-            'custom_targeting_key' => $customTargetingKey,
             'custom_targeting_value' => $customTargetingValue,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a network
+     * resource.
+     *
+     * @param string $networkCode
+     *
+     * @return string The formatted network resource.
+     */
+    public static function networkName(string $networkCode): string
+    {
+        return self::getPathTemplate('network')->render([
+            'network_code' => $networkCode,
         ]);
     }
 
@@ -154,8 +148,8 @@ final class CustomTargetingValueServiceClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - customTargetingKey: networks/{network_code}/customTargetingKeys/{custom_targeting_key}
-     * - customTargetingValue: networks/{network_code}/customTargetingKeys/{custom_targeting_key}/customTargetingValues/{custom_targeting_value}
+     * - customTargetingValue: networks/{network_code}/customTargetingValues/{custom_targeting_value}
+     * - network: networks/{network_code}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -163,14 +157,14 @@ final class CustomTargetingValueServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -192,6 +186,12 @@ final class CustomTargetingValueServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -222,6 +222,9 @@ final class CustomTargetingValueServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

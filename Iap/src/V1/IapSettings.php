@@ -22,15 +22,15 @@ class IapSettings extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Top level wrapper for all access related setting in IAP
+     * Optional. Top level wrapper for all access related setting in IAP
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.AccessSettings access_settings = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.AccessSettings access_settings = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $access_settings = null;
     /**
-     * Top level wrapper for all application related settings in IAP
+     * Optional. Top level wrapper for all application related settings in IAP
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.ApplicationSettings application_settings = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.ApplicationSettings application_settings = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $application_settings = null;
 
@@ -43,9 +43,9 @@ class IapSettings extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The resource name of the IAP protected resource.
      *     @type \Google\Cloud\Iap\V1\AccessSettings $access_settings
-     *           Top level wrapper for all access related setting in IAP
+     *           Optional. Top level wrapper for all access related setting in IAP
      *     @type \Google\Cloud\Iap\V1\ApplicationSettings $application_settings
-     *           Top level wrapper for all application related settings in IAP
+     *           Optional. Top level wrapper for all application related settings in IAP
      * }
      */
     public function __construct($data = NULL) {
@@ -80,9 +80,9 @@ class IapSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Top level wrapper for all access related setting in IAP
+     * Optional. Top level wrapper for all access related setting in IAP
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.AccessSettings access_settings = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.AccessSettings access_settings = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Iap\V1\AccessSettings|null
      */
     public function getAccessSettings()
@@ -101,9 +101,9 @@ class IapSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Top level wrapper for all access related setting in IAP
+     * Optional. Top level wrapper for all access related setting in IAP
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.AccessSettings access_settings = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.AccessSettings access_settings = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Iap\V1\AccessSettings $var
      * @return $this
      */
@@ -116,9 +116,9 @@ class IapSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Top level wrapper for all application related settings in IAP
+     * Optional. Top level wrapper for all application related settings in IAP
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.ApplicationSettings application_settings = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.ApplicationSettings application_settings = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Iap\V1\ApplicationSettings|null
      */
     public function getApplicationSettings()
@@ -137,9 +137,9 @@ class IapSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Top level wrapper for all application related settings in IAP
+     * Optional. Top level wrapper for all application related settings in IAP
      *
-     * Generated from protobuf field <code>.google.cloud.iap.v1.ApplicationSettings application_settings = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.iap.v1.ApplicationSettings application_settings = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Iap\V1\ApplicationSettings $var
      * @return $this
      */

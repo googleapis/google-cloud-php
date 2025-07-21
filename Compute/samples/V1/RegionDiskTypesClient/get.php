@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_RegionDiskTypes_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\RegionDiskTypesClient;
 use Google\Cloud\Compute\V1\DiskType;
-use Google\Cloud\Compute\V1\RegionDiskTypesClient;
+use Google\Cloud\Compute\V1\GetRegionDiskTypeRequest;
 
 /**
  * Returns the specified regional disk type.
@@ -39,10 +40,16 @@ function get_sample(string $diskType, string $project, string $region): void
     // Create a client.
     $regionDiskTypesClient = new RegionDiskTypesClient();
 
+    // Prepare the request message.
+    $request = (new GetRegionDiskTypeRequest())
+        ->setDiskType($diskType)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var DiskType $response */
-        $response = $regionDiskTypesClient->get($diskType, $project, $region);
+        $response = $regionDiskTypesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

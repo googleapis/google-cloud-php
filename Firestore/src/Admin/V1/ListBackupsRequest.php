@@ -26,6 +26,20 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
+    /**
+     * An expression that filters the list of returned backups.
+     * A filter expression consists of a field name, a comparison operator, and a
+     * value for filtering.
+     * The value must be a string, a number, or a boolean. The comparison operator
+     * must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`.
+     * Colon `:` is the contains operator. Filter rules are not case sensitive.
+     * The following fields in the [Backup][google.firestore.admin.v1.Backup] are
+     * eligible for filtering:
+     *   * `database_uid` (supports `=` only)
+     *
+     * Generated from protobuf field <code>string filter = 2;</code>
+     */
+    private $filter = '';
 
     /**
      * @param string $parent Required. The location to list backups from.
@@ -58,6 +72,16 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *           Use `{location} = '-'` to list backups from all locations for the given
      *           project. This allows listing backups from a single location or from all
      *           locations.
+     *     @type string $filter
+     *           An expression that filters the list of returned backups.
+     *           A filter expression consists of a field name, a comparison operator, and a
+     *           value for filtering.
+     *           The value must be a string, a number, or a boolean. The comparison operator
+     *           must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`.
+     *           Colon `:` is the contains operator. Filter rules are not case sensitive.
+     *           The following fields in the [Backup][google.firestore.admin.v1.Backup] are
+     *           eligible for filtering:
+     *             * `database_uid` (supports `=` only)
      * }
      */
     public function __construct($data = NULL) {
@@ -95,6 +119,48 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->parent = $var;
+
+        return $this;
+    }
+
+    /**
+     * An expression that filters the list of returned backups.
+     * A filter expression consists of a field name, a comparison operator, and a
+     * value for filtering.
+     * The value must be a string, a number, or a boolean. The comparison operator
+     * must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`.
+     * Colon `:` is the contains operator. Filter rules are not case sensitive.
+     * The following fields in the [Backup][google.firestore.admin.v1.Backup] are
+     * eligible for filtering:
+     *   * `database_uid` (supports `=` only)
+     *
+     * Generated from protobuf field <code>string filter = 2;</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * An expression that filters the list of returned backups.
+     * A filter expression consists of a field name, a comparison operator, and a
+     * value for filtering.
+     * The value must be a string, a number, or a boolean. The comparison operator
+     * must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`.
+     * Colon `:` is the contains operator. Filter rules are not case sensitive.
+     * The following fields in the [Backup][google.firestore.admin.v1.Backup] are
+     * eligible for filtering:
+     *   * `database_uid` (supports `=` only)
+     *
+     * Generated from protobuf field <code>string filter = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
 
         return $this;
     }

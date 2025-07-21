@@ -22,7 +22,7 @@ class KnowledgeBase
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Þ
+Û
 /google/cloud/dialogflow/v2/knowledge_base.protogoogle.cloud.dialogflow.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"ü
 KnowledgeBase
 name (	
@@ -56,8 +56,8 @@ page_token (	
 GetKnowledgeBase3.google.cloud.dialogflow.v2.GetKnowledgeBaseRequest).google.cloud.dialogflow.v2.KnowledgeBase"œÚAname‚Óä“Ž&/v2/{name=projects/*/knowledgeBases/*}Z42/v2/{name=projects/*/locations/*/knowledgeBases/*}Z.,/v2/{name=projects/*/agent/knowledgeBases/*}Ø
 CreateKnowledgeBase6.google.cloud.dialogflow.v2.CreateKnowledgeBaseRequest).google.cloud.dialogflow.v2.KnowledgeBase"ÝÚAparent,knowledge_base‚Óä“¾"&/v2/{parent=projects/*}/knowledgeBases:knowledge_baseZD"2/v2/{parent=projects/*/locations/*}/knowledgeBases:knowledge_baseZ>",/v2/{parent=projects/*/agent}/knowledgeBases:knowledge_base„
 DeleteKnowledgeBase6.google.cloud.dialogflow.v2.DeleteKnowledgeBaseRequest.google.protobuf.Empty"œÚAname‚Óä“Ž*&/v2/{name=projects/*/knowledgeBases/*}Z4*2/v2/{name=projects/*/locations/*/knowledgeBases/*}Z.*,/v2/{name=projects/*/agent/knowledgeBases/*}Š
-UpdateKnowledgeBase6.google.cloud.dialogflow.v2.UpdateKnowledgeBaseRequest).google.cloud.dialogflow.v2.KnowledgeBase"ÚAknowledge_base,update_mask‚Óä“ë25/v2/{knowledge_base.name=projects/*/knowledgeBases/*}:knowledge_baseZS2A/v2/{knowledge_base.name=projects/*/locations/*/knowledgeBases/*}:knowledge_baseZM2;/v2/{knowledge_base.name=projects/*/agent/knowledgeBases/*}:knowledge_basexÊAdialogflow.googleapis.comÒAYhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB›
-com.google.cloud.dialogflow.v2BKnowledgeBaseProtoPZ>cloud.google.com/go/dialogflow/apiv2/dialogflowpb;dialogflowpbø¢DFªGoogle.Cloud.Dialogflow.V2bproto3'
+UpdateKnowledgeBase6.google.cloud.dialogflow.v2.UpdateKnowledgeBaseRequest).google.cloud.dialogflow.v2.KnowledgeBase"ÚAknowledge_base,update_mask‚Óä“ë25/v2/{knowledge_base.name=projects/*/knowledgeBases/*}:knowledge_baseZS2A/v2/{knowledge_base.name=projects/*/locations/*/knowledgeBases/*}:knowledge_baseZM2;/v2/{knowledge_base.name=projects/*/agent/knowledgeBases/*}:knowledge_basexÊAdialogflow.googleapis.comÒAYhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB˜
+com.google.cloud.dialogflow.v2BKnowledgeBaseProtoPZ>cloud.google.com/go/dialogflow/apiv2/dialogflowpb;dialogflowpb¢DFªGoogle.Cloud.Dialogflow.V2bproto3'
         , true);
 
         static::$is_initialized = true;

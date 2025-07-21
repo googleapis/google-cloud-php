@@ -70,7 +70,7 @@ class LoggingClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.31.2';
+    const VERSION = '1.32.3';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/logging.admin';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/logging.read';
@@ -464,7 +464,7 @@ class LoggingClient
         $resourceNames = ['projects/' . $this->projectId];
         if (isset($options['projectIds'])) {
             foreach ($options['projectIds'] as $projectId) {
-                  $resourceNames[] = 'projects/' . $projectId;
+                $resourceNames[] = 'projects/' . $projectId;
             }
             unset($options['projectIds']);
         }

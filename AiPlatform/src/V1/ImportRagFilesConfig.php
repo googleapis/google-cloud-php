@@ -22,6 +22,13 @@ class ImportRagFilesConfig extends \Google\Protobuf\Internal\Message
      */
     protected $rag_file_transformation_config = null;
     /**
+     * Optional. Specifies the parsing config for RagFiles.
+     * RAG will use the default parser if this field is not set.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RagFileParsingConfig rag_file_parsing_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $rag_file_parsing_config = null;
+    /**
      * Optional. The max number of queries per minute that this job is allowed to
      * make to the embedding model specified on the corpus. This value is specific
      * to this job and not shared across other import jobs. Consult the Quotas
@@ -31,8 +38,20 @@ class ImportRagFilesConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 max_embedding_requests_per_min = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $max_embedding_requests_per_min = 0;
+    /**
+     * Rebuilds the ANN index to optimize for recall on the imported data.
+     * Only applicable for RagCorpora running on RagManagedDb with
+     * `retrieval_strategy` set to `ANN`. The rebuild will be performed using the
+     * existing ANN config set on the RagCorpus. To change the ANN config, please
+     * use the UpdateRagCorpus API.
+     * Default is false, i.e., index is not rebuilt.
+     *
+     * Generated from protobuf field <code>bool rebuild_ann_index = 19;</code>
+     */
+    protected $rebuild_ann_index = false;
     protected $import_source;
     protected $partial_failure_sink;
+    protected $import_result_sink;
 
     /**
      * Constructor.
@@ -65,14 +84,33 @@ class ImportRagFilesConfig extends \Google\Protobuf\Internal\Message
      *           table exists, the schema will be validated and data will be added to this
      *           existing table.
      *           Deprecated. Prefer to use `import_result_bq_sink`.
+     *     @type \Google\Cloud\AIPlatform\V1\GcsDestination $import_result_gcs_sink
+     *           The Cloud Storage path to write import result to.
+     *     @type \Google\Cloud\AIPlatform\V1\BigQueryDestination $import_result_bigquery_sink
+     *           The BigQuery destination to write import result to. It should be a
+     *           bigquery table resource name (e.g.
+     *           "bq://projectId.bqDatasetId.bqTableId"). The dataset must exist. If the
+     *           table does not exist, it will be created with the expected schema. If the
+     *           table exists, the schema will be validated and data will be added to this
+     *           existing table.
      *     @type \Google\Cloud\AIPlatform\V1\RagFileTransformationConfig $rag_file_transformation_config
      *           Specifies the transformation config for RagFiles.
+     *     @type \Google\Cloud\AIPlatform\V1\RagFileParsingConfig $rag_file_parsing_config
+     *           Optional. Specifies the parsing config for RagFiles.
+     *           RAG will use the default parser if this field is not set.
      *     @type int $max_embedding_requests_per_min
      *           Optional. The max number of queries per minute that this job is allowed to
      *           make to the embedding model specified on the corpus. This value is specific
      *           to this job and not shared across other import jobs. Consult the Quotas
      *           page on the project to set an appropriate value here.
      *           If unspecified, a default value of 1,000 QPM would be used.
+     *     @type bool $rebuild_ann_index
+     *           Rebuilds the ANN index to optimize for recall on the imported data.
+     *           Only applicable for RagCorpora running on RagManagedDb with
+     *           `retrieval_strategy` set to `ANN`. The rebuild will be performed using the
+     *           existing ANN config set on the RagCorpus. To change the ANN config, please
+     *           use the UpdateRagCorpus API.
+     *           Default is false, i.e., index is not rebuilt.
      * }
      */
     public function __construct($data = NULL) {
@@ -253,13 +291,17 @@ class ImportRagFilesConfig extends \Google\Protobuf\Internal\Message
      */
     public function getPartialFailureGcsSink()
     {
-        @trigger_error('partial_failure_gcs_sink is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(11)) {
+            @trigger_error('partial_failure_gcs_sink is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(11);
     }
 
     public function hasPartialFailureGcsSink()
     {
-        @trigger_error('partial_failure_gcs_sink is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(11)) {
+            @trigger_error('partial_failure_gcs_sink is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(11);
     }
 
@@ -296,13 +338,17 @@ class ImportRagFilesConfig extends \Google\Protobuf\Internal\Message
      */
     public function getPartialFailureBigquerySink()
     {
-        @trigger_error('partial_failure_bigquery_sink is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(12)) {
+            @trigger_error('partial_failure_bigquery_sink is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(12);
     }
 
     public function hasPartialFailureBigquerySink()
     {
-        @trigger_error('partial_failure_bigquery_sink is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(12)) {
+            @trigger_error('partial_failure_bigquery_sink is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(12);
     }
 
@@ -325,6 +371,78 @@ class ImportRagFilesConfig extends \Google\Protobuf\Internal\Message
         @trigger_error('partial_failure_bigquery_sink is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\BigQueryDestination::class);
         $this->writeOneof(12, $var);
+
+        return $this;
+    }
+
+    /**
+     * The Cloud Storage path to write import result to.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GcsDestination import_result_gcs_sink = 14;</code>
+     * @return \Google\Cloud\AIPlatform\V1\GcsDestination|null
+     */
+    public function getImportResultGcsSink()
+    {
+        return $this->readOneof(14);
+    }
+
+    public function hasImportResultGcsSink()
+    {
+        return $this->hasOneof(14);
+    }
+
+    /**
+     * The Cloud Storage path to write import result to.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GcsDestination import_result_gcs_sink = 14;</code>
+     * @param \Google\Cloud\AIPlatform\V1\GcsDestination $var
+     * @return $this
+     */
+    public function setImportResultGcsSink($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GcsDestination::class);
+        $this->writeOneof(14, $var);
+
+        return $this;
+    }
+
+    /**
+     * The BigQuery destination to write import result to. It should be a
+     * bigquery table resource name (e.g.
+     * "bq://projectId.bqDatasetId.bqTableId"). The dataset must exist. If the
+     * table does not exist, it will be created with the expected schema. If the
+     * table exists, the schema will be validated and data will be added to this
+     * existing table.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.BigQueryDestination import_result_bigquery_sink = 15;</code>
+     * @return \Google\Cloud\AIPlatform\V1\BigQueryDestination|null
+     */
+    public function getImportResultBigquerySink()
+    {
+        return $this->readOneof(15);
+    }
+
+    public function hasImportResultBigquerySink()
+    {
+        return $this->hasOneof(15);
+    }
+
+    /**
+     * The BigQuery destination to write import result to. It should be a
+     * bigquery table resource name (e.g.
+     * "bq://projectId.bqDatasetId.bqTableId"). The dataset must exist. If the
+     * table does not exist, it will be created with the expected schema. If the
+     * table exists, the schema will be validated and data will be added to this
+     * existing table.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.BigQueryDestination import_result_bigquery_sink = 15;</code>
+     * @param \Google\Cloud\AIPlatform\V1\BigQueryDestination $var
+     * @return $this
+     */
+    public function setImportResultBigquerySink($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\BigQueryDestination::class);
+        $this->writeOneof(15, $var);
 
         return $this;
     }
@@ -366,6 +484,44 @@ class ImportRagFilesConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Specifies the parsing config for RagFiles.
+     * RAG will use the default parser if this field is not set.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RagFileParsingConfig rag_file_parsing_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\RagFileParsingConfig|null
+     */
+    public function getRagFileParsingConfig()
+    {
+        return $this->rag_file_parsing_config;
+    }
+
+    public function hasRagFileParsingConfig()
+    {
+        return isset($this->rag_file_parsing_config);
+    }
+
+    public function clearRagFileParsingConfig()
+    {
+        unset($this->rag_file_parsing_config);
+    }
+
+    /**
+     * Optional. Specifies the parsing config for RagFiles.
+     * RAG will use the default parser if this field is not set.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RagFileParsingConfig rag_file_parsing_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\RagFileParsingConfig $var
+     * @return $this
+     */
+    public function setRagFileParsingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\RagFileParsingConfig::class);
+        $this->rag_file_parsing_config = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. The max number of queries per minute that this job is allowed to
      * make to the embedding model specified on the corpus. This value is specific
      * to this job and not shared across other import jobs. Consult the Quotas
@@ -400,6 +556,42 @@ class ImportRagFilesConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Rebuilds the ANN index to optimize for recall on the imported data.
+     * Only applicable for RagCorpora running on RagManagedDb with
+     * `retrieval_strategy` set to `ANN`. The rebuild will be performed using the
+     * existing ANN config set on the RagCorpus. To change the ANN config, please
+     * use the UpdateRagCorpus API.
+     * Default is false, i.e., index is not rebuilt.
+     *
+     * Generated from protobuf field <code>bool rebuild_ann_index = 19;</code>
+     * @return bool
+     */
+    public function getRebuildAnnIndex()
+    {
+        return $this->rebuild_ann_index;
+    }
+
+    /**
+     * Rebuilds the ANN index to optimize for recall on the imported data.
+     * Only applicable for RagCorpora running on RagManagedDb with
+     * `retrieval_strategy` set to `ANN`. The rebuild will be performed using the
+     * existing ANN config set on the RagCorpus. To change the ANN config, please
+     * use the UpdateRagCorpus API.
+     * Default is false, i.e., index is not rebuilt.
+     *
+     * Generated from protobuf field <code>bool rebuild_ann_index = 19;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRebuildAnnIndex($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->rebuild_ann_index = $var;
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getImportSource()
@@ -413,6 +605,14 @@ class ImportRagFilesConfig extends \Google\Protobuf\Internal\Message
     public function getPartialFailureSink()
     {
         return $this->whichOneof("partial_failure_sink");
+    }
+
+    /**
+     * @return string
+     */
+    public function getImportResultSink()
+    {
+        return $this->whichOneof("import_result_sink");
     }
 
 }

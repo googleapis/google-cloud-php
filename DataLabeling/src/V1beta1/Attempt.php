@@ -18,7 +18,7 @@ class Attempt extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>.google.protobuf.Timestamp attempt_time = 1;</code>
      */
-    private $attempt_time = null;
+    protected $attempt_time = null;
     /**
      * Details of errors that occurred.
      *

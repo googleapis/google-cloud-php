@@ -171,6 +171,21 @@ return [
                     ],
                 ],
             ],
+            'StreamAnswerQuery' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'ServerStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::SERVER_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\DiscoveryEngine\V1\AnswerQueryResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'serving_config',
+                        'fieldAccessors' => [
+                            'getServingConfig',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateConversation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\DiscoveryEngine\V1\Conversation',

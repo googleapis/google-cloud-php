@@ -20,13 +20,13 @@ class Parameter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The name of the parameter.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. The definition of the parameter value. It can be:
      * - a constant string,
@@ -37,7 +37,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string value = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $value = '';
+    protected $value = '';
     /**
      * Optional. The default value to use when the `value` yields an empty
      * result.
@@ -46,7 +46,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string default_value = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $default_value = '';
+    protected $default_value = '';
     /**
      * Optional. The name of the entity type, prefixed with `&#64;`, that
      * describes values of the parameter. If the parameter is
@@ -54,7 +54,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entity_type_display_name = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $entity_type_display_name = '';
+    protected $entity_type_display_name = '';
     /**
      * Optional. Indicates whether the parameter is required. That is,
      * whether the intent cannot be completed without collecting the parameter
@@ -62,7 +62,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool mandatory = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $mandatory = false;
+    protected $mandatory = false;
     /**
      * Optional. The collection of prompts that the agent can present to the
      * user in order to collect a value for the parameter.
@@ -75,7 +75,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool is_list = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $is_list = false;
+    protected $is_list = false;
 
     /**
      * Constructor.

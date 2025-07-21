@@ -471,6 +471,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $enableCdn = false;
         $id = 3355;
         $kind = 'kind3292052';
+        $loadBalancingScheme = 'loadBalancingScheme1974502980';
         $name = 'name3373707';
         $selfLink = 'selfLink-1691268851';
         $expectedResponse = new BackendBucket();
@@ -482,6 +483,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $expectedResponse->setEnableCdn($enableCdn);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
+        $expectedResponse->setLoadBalancingScheme($loadBalancingScheme);
         $expectedResponse->setName($name);
         $expectedResponse->setSelfLink($selfLink);
         $transport->addResponse($expectedResponse);

@@ -31,14 +31,16 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeDataExchangeResponse;
 use Google\Rpc\Status;
 
 /**
- * Creates a Subscription to a Data Exchange. This is a long-running operation
- * as it will create one or more linked datasets.
+ * Creates a Subscription to a Data Clean Room. This is a
+ * long-running operation as it will create one or more linked datasets.
+ * Throws a Bad Request error if the Data Exchange does not contain any
+ * listings.
  *
  * @param string $formattedName        Resource name of the Data Exchange.
- *                                     e.g. `projects/publisherproject/locations/US/dataExchanges/123`
+ *                                     e.g. `projects/publisherproject/locations/us/dataExchanges/123`
  *                                     Please see {@see AnalyticsHubServiceClient::dataExchangeName()} for help formatting this field.
  * @param string $formattedDestination The parent resource path of the Subscription.
- *                                     e.g. `projects/subscriberproject/locations/US`
+ *                                     e.g. `projects/subscriberproject/locations/us`
  *                                     Please see {@see AnalyticsHubServiceClient::locationName()} for help formatting this field.
  * @param string $subscription         Name of the subscription to create.
  *                                     e.g. `subscription1`

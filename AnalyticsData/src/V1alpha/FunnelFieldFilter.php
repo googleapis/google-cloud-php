@@ -20,7 +20,7 @@ class FunnelFieldFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string field_name = 1;</code>
      */
-    private $field_name = '';
+    protected $field_name = '';
     protected $one_filter;
 
     /**

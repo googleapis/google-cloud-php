@@ -21,28 +21,28 @@ class Event extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string token = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $token = '';
+    protected $token = '';
     /**
      * Optional. The site key that was used to invoke reCAPTCHA Enterprise on your
      * site and generate the token.
      *
      * Generated from protobuf field <code>string site_key = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $site_key = '';
+    protected $site_key = '';
     /**
      * Optional. The user agent present in the request from the user's device
      * related to this event.
      *
      * Generated from protobuf field <code>string user_agent = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $user_agent = '';
+    protected $user_agent = '';
     /**
      * Optional. The IP address in the request from the user's device related to
      * this event.
      *
      * Generated from protobuf field <code>string user_ip_address = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      */
-    private $user_ip_address = '';
+    protected $user_ip_address = '';
     /**
      * Optional. The expected action for this type of event. This should be the
      * same action provided at token generation time on client-side platforms
@@ -50,7 +50,7 @@ class Event extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string expected_action = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $expected_action = '';
+    protected $expected_action = '';
     /**
      * Optional. Deprecated: use `user_info.account_id` instead.
      * Unique stable hashed user identifier for the request. The identifier must
@@ -66,13 +66,13 @@ class Event extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool express = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $express = false;
+    protected $express = false;
     /**
      * Optional. The URI resource the user requested that triggered an assessment.
      *
      * Generated from protobuf field <code>string requested_uri = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $requested_uri = '';
+    protected $requested_uri = '';
     /**
      * Optional. Flag for running WAF token assessment.
      * If enabled, the token must be specified, and have been created by a
@@ -80,13 +80,21 @@ class Event extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool waf_token_assessment = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $waf_token_assessment = false;
+    protected $waf_token_assessment = false;
     /**
-     * Optional. JA3 fingerprint for SSL clients.
+     * Optional. JA3 fingerprint for SSL clients. To learn how to compute this
+     * fingerprint, please refer to https://github.com/salesforce/ja3.
      *
      * Generated from protobuf field <code>string ja3 = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ja3 = '';
+    protected $ja3 = '';
+    /**
+     * Optional. JA4 fingerprint for SSL clients. To learn how to compute this
+     * fingerprint, please refer to https://github.com/FoxIO-LLC/ja4.
+     *
+     * Generated from protobuf field <code>string ja4 = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ja4 = '';
     /**
      * Optional. HTTP header information about the request.
      *
@@ -100,7 +108,7 @@ class Event extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool firewall_policy_evaluation = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $firewall_policy_evaluation = false;
+    protected $firewall_policy_evaluation = false;
     /**
      * Optional. Data describing a payment transaction to be assessed. Sending
      * this data enables reCAPTCHA Enterprise Fraud Prevention and the
@@ -108,7 +116,7 @@ class Event extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData transaction_data = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $transaction_data = null;
+    protected $transaction_data = null;
     /**
      * Optional. Information about the user that generates this event, when they
      * can be identified. They are often identified through the use of an account
@@ -117,13 +125,13 @@ class Event extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.UserInfo user_info = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $user_info = null;
+    protected $user_info = null;
     /**
      * Optional. The Fraud Prevention setting for this assessment.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.Event.FraudPrevention fraud_prevention = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $fraud_prevention = 0;
+    protected $fraud_prevention = 0;
 
     /**
      * Constructor.
@@ -161,7 +169,11 @@ class Event extends \Google\Protobuf\Internal\Message
      *           If enabled, the token must be specified, and have been created by a
      *           WAF-enabled key.
      *     @type string $ja3
-     *           Optional. JA3 fingerprint for SSL clients.
+     *           Optional. JA3 fingerprint for SSL clients. To learn how to compute this
+     *           fingerprint, please refer to https://github.com/salesforce/ja3.
+     *     @type string $ja4
+     *           Optional. JA4 fingerprint for SSL clients. To learn how to compute this
+     *           fingerprint, please refer to https://github.com/FoxIO-LLC/ja4.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $headers
      *           Optional. HTTP header information about the request.
      *     @type bool $firewall_policy_evaluation
@@ -339,7 +351,9 @@ class Event extends \Google\Protobuf\Internal\Message
      */
     public function getHashedAccountId()
     {
-        @trigger_error('hashed_account_id is deprecated.', E_USER_DEPRECATED);
+        if ($this->hashed_account_id !== '') {
+            @trigger_error('hashed_account_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hashed_account_id;
     }
 
@@ -447,7 +461,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. JA3 fingerprint for SSL clients.
+     * Optional. JA3 fingerprint for SSL clients. To learn how to compute this
+     * fingerprint, please refer to https://github.com/salesforce/ja3.
      *
      * Generated from protobuf field <code>string ja3 = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -458,7 +473,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. JA3 fingerprint for SSL clients.
+     * Optional. JA3 fingerprint for SSL clients. To learn how to compute this
+     * fingerprint, please refer to https://github.com/salesforce/ja3.
      *
      * Generated from protobuf field <code>string ja3 = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -468,6 +484,34 @@ class Event extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->ja3 = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. JA4 fingerprint for SSL clients. To learn how to compute this
+     * fingerprint, please refer to https://github.com/FoxIO-LLC/ja4.
+     *
+     * Generated from protobuf field <code>string ja4 = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getJa4()
+    {
+        return $this->ja4;
+    }
+
+    /**
+     * Optional. JA4 fingerprint for SSL clients. To learn how to compute this
+     * fingerprint, please refer to https://github.com/FoxIO-LLC/ja4.
+     *
+     * Generated from protobuf field <code>string ja4 = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setJa4($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ja4 = $var;
 
         return $this;
     }

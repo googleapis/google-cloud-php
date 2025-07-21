@@ -28,6 +28,19 @@ class GenerateContentResponse extends \Google\Protobuf\Internal\Message
      */
     protected $model_version = '';
     /**
+     * Output only. Timestamp when the request is made to the server.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $create_time = null;
+    /**
+     * Output only. response_id is used to identify each response. It is the
+     * encoding of the event_id.
+     *
+     * Generated from protobuf field <code>string response_id = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $response_id = '';
+    /**
      * Output only. Content filter results for a prompt sent in the request.
      * Note: Sent only in the first stream chunk.
      * Only happens when no candidates were generated due to content violations.
@@ -52,6 +65,11 @@ class GenerateContentResponse extends \Google\Protobuf\Internal\Message
      *           Output only. Generated candidates.
      *     @type string $model_version
      *           Output only. The model version used to generate the response.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Output only. Timestamp when the request is made to the server.
+     *     @type string $response_id
+     *           Output only. response_id is used to identify each response. It is the
+     *           encoding of the event_id.
      *     @type \Google\Cloud\AIPlatform\V1\GenerateContentResponse\PromptFeedback $prompt_feedback
      *           Output only. Content filter results for a prompt sent in the request.
      *           Note: Sent only in the first stream chunk.
@@ -113,6 +131,70 @@ class GenerateContentResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->model_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Timestamp when the request is made to the server.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreateTime()
+    {
+        return $this->create_time;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
+    }
+
+    /**
+     * Output only. Timestamp when the request is made to the server.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. response_id is used to identify each response. It is the
+     * encoding of the event_id.
+     *
+     * Generated from protobuf field <code>string response_id = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getResponseId()
+    {
+        return $this->response_id;
+    }
+
+    /**
+     * Output only. response_id is used to identify each response. It is the
+     * encoding of the event_id.
+     *
+     * Generated from protobuf field <code>string response_id = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setResponseId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->response_id = $var;
 
         return $this;
     }

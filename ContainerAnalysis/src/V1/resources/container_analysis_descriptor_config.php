@@ -23,6 +23,18 @@
 return [
     'interfaces' => [
         'google.devtools.containeranalysis.v1.ContainerAnalysis' => [
+            'ExportSBOM' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ContainerAnalysis\V1\ExportSBOMResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetIamPolicy' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Iam\V1\Policy',

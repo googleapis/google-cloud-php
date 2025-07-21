@@ -19,20 +19,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class SynthesisInput extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The pronunciation customizations to be applied to the input. If
-     * this is set, the input will be synthesized using the given pronunciation
+     * Optional. The pronunciation customizations are applied to the input. If
+     * this is set, the input is synthesized using the given pronunciation
      * customizations.
-     * The initial support will be for EFIGS (English, French,
-     * Italian, German, Spanish) languages, as provided in
-     * VoiceSelectionParams. Journey and Instant Clone voices are
-     * not supported yet.
+     * The initial support is for en-us, with plans to expand to other locales in
+     * the future. Instant Clone voices aren't supported.
      * In order to customize the pronunciation of a phrase, there must be an exact
      * match of the phrase in the input types. If using SSML, the phrase must not
-     * be inside a phoneme tag (entirely or partially).
+     * be inside a phoneme tag.
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.CustomPronunciations custom_pronunciations = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $custom_pronunciations = null;
+    protected $custom_pronunciations = null;
     protected $input_source;
 
     /**
@@ -43,6 +41,9 @@ class SynthesisInput extends \Google\Protobuf\Internal\Message
      *
      *     @type string $text
      *           The raw text to be synthesized.
+     *     @type string $markup
+     *           Markup for HD voices specifically. This field may not be used with any
+     *           other voices.
      *     @type string $ssml
      *           The SSML document to be synthesized. The SSML document must be valid
      *           and well-formed. Otherwise the RPC will fail and return
@@ -53,16 +54,14 @@ class SynthesisInput extends \Google\Protobuf\Internal\Message
      *           The multi-speaker input to be synthesized. Only applicable for
      *           multi-speaker synthesis.
      *     @type \Google\Cloud\TextToSpeech\V1\CustomPronunciations $custom_pronunciations
-     *           Optional. The pronunciation customizations to be applied to the input. If
-     *           this is set, the input will be synthesized using the given pronunciation
+     *           Optional. The pronunciation customizations are applied to the input. If
+     *           this is set, the input is synthesized using the given pronunciation
      *           customizations.
-     *           The initial support will be for EFIGS (English, French,
-     *           Italian, German, Spanish) languages, as provided in
-     *           VoiceSelectionParams. Journey and Instant Clone voices are
-     *           not supported yet.
+     *           The initial support is for en-us, with plans to expand to other locales in
+     *           the future. Instant Clone voices aren't supported.
      *           In order to customize the pronunciation of a phrase, there must be an exact
      *           match of the phrase in the input types. If using SSML, the phrase must not
-     *           be inside a phoneme tag (entirely or partially).
+     *           be inside a phoneme tag.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,6 +96,39 @@ class SynthesisInput extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Markup for HD voices specifically. This field may not be used with any
+     * other voices.
+     *
+     * Generated from protobuf field <code>string markup = 5;</code>
+     * @return string
+     */
+    public function getMarkup()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasMarkup()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Markup for HD voices specifically. This field may not be used with any
+     * other voices.
+     *
+     * Generated from protobuf field <code>string markup = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMarkup($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(5, $var);
 
         return $this;
     }
@@ -174,16 +206,14 @@ class SynthesisInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The pronunciation customizations to be applied to the input. If
-     * this is set, the input will be synthesized using the given pronunciation
+     * Optional. The pronunciation customizations are applied to the input. If
+     * this is set, the input is synthesized using the given pronunciation
      * customizations.
-     * The initial support will be for EFIGS (English, French,
-     * Italian, German, Spanish) languages, as provided in
-     * VoiceSelectionParams. Journey and Instant Clone voices are
-     * not supported yet.
+     * The initial support is for en-us, with plans to expand to other locales in
+     * the future. Instant Clone voices aren't supported.
      * In order to customize the pronunciation of a phrase, there must be an exact
      * match of the phrase in the input types. If using SSML, the phrase must not
-     * be inside a phoneme tag (entirely or partially).
+     * be inside a phoneme tag.
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.CustomPronunciations custom_pronunciations = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\TextToSpeech\V1\CustomPronunciations|null
@@ -204,16 +234,14 @@ class SynthesisInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The pronunciation customizations to be applied to the input. If
-     * this is set, the input will be synthesized using the given pronunciation
+     * Optional. The pronunciation customizations are applied to the input. If
+     * this is set, the input is synthesized using the given pronunciation
      * customizations.
-     * The initial support will be for EFIGS (English, French,
-     * Italian, German, Spanish) languages, as provided in
-     * VoiceSelectionParams. Journey and Instant Clone voices are
-     * not supported yet.
+     * The initial support is for en-us, with plans to expand to other locales in
+     * the future. Instant Clone voices aren't supported.
      * In order to customize the pronunciation of a phrase, there must be an exact
      * match of the phrase in the input types. If using SSML, the phrase must not
-     * be inside a phoneme tag (entirely or partially).
+     * be inside a phoneme tag.
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.CustomPronunciations custom_pronunciations = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\TextToSpeech\V1\CustomPronunciations $var

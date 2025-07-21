@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,16 +27,20 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dataform\V1beta1\CancelWorkflowInvocationRequest;
+use Google\Cloud\Dataform\V1beta1\CancelWorkflowInvocationResponse;
 use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
 use Google\Cloud\Dataform\V1beta1\CommitAuthor;
 use Google\Cloud\Dataform\V1beta1\CommitLogEntry;
 use Google\Cloud\Dataform\V1beta1\CommitMetadata;
 use Google\Cloud\Dataform\V1beta1\CommitRepositoryChangesRequest;
+use Google\Cloud\Dataform\V1beta1\CommitRepositoryChangesResponse;
 use Google\Cloud\Dataform\V1beta1\CommitWorkspaceChangesRequest;
+use Google\Cloud\Dataform\V1beta1\CommitWorkspaceChangesResponse;
 use Google\Cloud\Dataform\V1beta1\CompilationResult;
 use Google\Cloud\Dataform\V1beta1\CompilationResultAction;
 use Google\Cloud\Dataform\V1beta1\ComputeRepositoryAccessTokenStatusRequest;
 use Google\Cloud\Dataform\V1beta1\ComputeRepositoryAccessTokenStatusResponse;
+use Google\Cloud\Dataform\V1beta1\Config;
 use Google\Cloud\Dataform\V1beta1\CreateCompilationResultRequest;
 use Google\Cloud\Dataform\V1beta1\CreateReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\CreateRepositoryRequest;
@@ -60,6 +64,7 @@ use Google\Cloud\Dataform\V1beta1\FetchRemoteBranchesResponse;
 use Google\Cloud\Dataform\V1beta1\FetchRepositoryHistoryRequest;
 use Google\Cloud\Dataform\V1beta1\FetchRepositoryHistoryResponse;
 use Google\Cloud\Dataform\V1beta1\GetCompilationResultRequest;
+use Google\Cloud\Dataform\V1beta1\GetConfigRequest;
 use Google\Cloud\Dataform\V1beta1\GetReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\GetRepositoryRequest;
 use Google\Cloud\Dataform\V1beta1\GetWorkflowConfigRequest;
@@ -86,7 +91,9 @@ use Google\Cloud\Dataform\V1beta1\MoveDirectoryResponse;
 use Google\Cloud\Dataform\V1beta1\MoveFileRequest;
 use Google\Cloud\Dataform\V1beta1\MoveFileResponse;
 use Google\Cloud\Dataform\V1beta1\PullGitCommitsRequest;
+use Google\Cloud\Dataform\V1beta1\PullGitCommitsResponse;
 use Google\Cloud\Dataform\V1beta1\PushGitCommitsRequest;
+use Google\Cloud\Dataform\V1beta1\PushGitCommitsResponse;
 use Google\Cloud\Dataform\V1beta1\QueryCompilationResultActionsRequest;
 use Google\Cloud\Dataform\V1beta1\QueryCompilationResultActionsResponse;
 use Google\Cloud\Dataform\V1beta1\QueryDirectoryContentsRequest;
@@ -101,9 +108,16 @@ use Google\Cloud\Dataform\V1beta1\ReadRepositoryFileRequest;
 use Google\Cloud\Dataform\V1beta1\ReadRepositoryFileResponse;
 use Google\Cloud\Dataform\V1beta1\ReleaseConfig;
 use Google\Cloud\Dataform\V1beta1\RemoveDirectoryRequest;
+use Google\Cloud\Dataform\V1beta1\RemoveDirectoryResponse;
 use Google\Cloud\Dataform\V1beta1\RemoveFileRequest;
+use Google\Cloud\Dataform\V1beta1\RemoveFileResponse;
 use Google\Cloud\Dataform\V1beta1\Repository;
 use Google\Cloud\Dataform\V1beta1\ResetWorkspaceChangesRequest;
+use Google\Cloud\Dataform\V1beta1\ResetWorkspaceChangesResponse;
+use Google\Cloud\Dataform\V1beta1\SearchFilesRequest;
+use Google\Cloud\Dataform\V1beta1\SearchFilesResponse;
+use Google\Cloud\Dataform\V1beta1\SearchResult;
+use Google\Cloud\Dataform\V1beta1\UpdateConfigRequest;
 use Google\Cloud\Dataform\V1beta1\UpdateReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\UpdateRepositoryRequest;
 use Google\Cloud\Dataform\V1beta1\UpdateWorkflowConfigRequest;
@@ -142,7 +156,9 @@ class DataformClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return DataformClient */
@@ -163,13 +179,18 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new GPBEmpty();
+        $expectedResponse = new CancelWorkflowInvocationResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->workflowInvocationName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_INVOCATION]');
-        $request = (new CancelWorkflowInvocationRequest())
-            ->setName($formattedName);
-        $gapicClient->cancelWorkflowInvocation($request);
+        $formattedName = $gapicClient->workflowInvocationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[REPOSITORY]',
+            '[WORKFLOW_INVOCATION]'
+        );
+        $request = (new CancelWorkflowInvocationRequest())->setName($formattedName);
+        $response = $gapicClient->cancelWorkflowInvocation($request);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -191,17 +212,24 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->workflowInvocationName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_INVOCATION]');
-        $request = (new CancelWorkflowInvocationRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->workflowInvocationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[REPOSITORY]',
+            '[WORKFLOW_INVOCATION]'
+        );
+        $request = (new CancelWorkflowInvocationRequest())->setName($formattedName);
         try {
             $gapicClient->cancelWorkflowInvocation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -224,7 +252,9 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new GPBEmpty();
+        $commitSha = 'commitSha1018601892';
+        $expectedResponse = new CommitRepositoryChangesResponse();
+        $expectedResponse->setCommitSha($commitSha);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
@@ -235,10 +265,9 @@ class DataformClientTest extends GeneratedTest
         $authorEmailAddress = 'authorEmailAddress-6398493';
         $commitMetadataAuthor->setEmailAddress($authorEmailAddress);
         $commitMetadata->setAuthor($commitMetadataAuthor);
-        $request = (new CommitRepositoryChangesRequest())
-            ->setName($formattedName)
-            ->setCommitMetadata($commitMetadata);
-        $gapicClient->commitRepositoryChanges($request);
+        $request = (new CommitRepositoryChangesRequest())->setName($formattedName)->setCommitMetadata($commitMetadata);
+        $response = $gapicClient->commitRepositoryChanges($request);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -262,12 +291,15 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
@@ -278,9 +310,7 @@ class DataformClientTest extends GeneratedTest
         $authorEmailAddress = 'authorEmailAddress-6398493';
         $commitMetadataAuthor->setEmailAddress($authorEmailAddress);
         $commitMetadata->setAuthor($commitMetadataAuthor);
-        $request = (new CommitRepositoryChangesRequest())
-            ->setName($formattedName)
-            ->setCommitMetadata($commitMetadata);
+        $request = (new CommitRepositoryChangesRequest())->setName($formattedName)->setCommitMetadata($commitMetadata);
         try {
             $gapicClient->commitRepositoryChanges($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -303,7 +333,7 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new GPBEmpty();
+        $expectedResponse = new CommitWorkspaceChangesResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
@@ -312,10 +342,9 @@ class DataformClientTest extends GeneratedTest
         $author->setName($authorName);
         $authorEmailAddress = 'authorEmailAddress-6398493';
         $author->setEmailAddress($authorEmailAddress);
-        $request = (new CommitWorkspaceChangesRequest())
-            ->setName($formattedName)
-            ->setAuthor($author);
-        $gapicClient->commitWorkspaceChanges($request);
+        $request = (new CommitWorkspaceChangesRequest())->setName($formattedName)->setAuthor($author);
+        $response = $gapicClient->commitWorkspaceChanges($request);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -339,12 +368,15 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
@@ -353,9 +385,7 @@ class DataformClientTest extends GeneratedTest
         $author->setName($authorName);
         $authorEmailAddress = 'authorEmailAddress-6398493';
         $author->setEmailAddress($authorEmailAddress);
-        $request = (new CommitWorkspaceChangesRequest())
-            ->setName($formattedName)
-            ->setAuthor($author);
+        $request = (new CommitWorkspaceChangesRequest())->setName($formattedName)->setAuthor($author);
         try {
             $gapicClient->commitWorkspaceChanges($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -382,15 +412,17 @@ class DataformClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ComputeRepositoryAccessTokenStatusRequest())
-            ->setName($formattedName);
+        $request = (new ComputeRepositoryAccessTokenStatusRequest())->setName($formattedName);
         $response = $gapicClient->computeRepositoryAccessTokenStatus($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/ComputeRepositoryAccessTokenStatus', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.dataform.v1beta1.Dataform/ComputeRepositoryAccessTokenStatus',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -407,17 +439,19 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ComputeRepositoryAccessTokenStatusRequest())
-            ->setName($formattedName);
+        $request = (new ComputeRepositoryAccessTokenStatusRequest())->setName($formattedName);
         try {
             $gapicClient->computeRepositoryAccessTokenStatus($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -440,15 +474,17 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $name = 'name3373707';
         $gitCommitish = 'gitCommitish-459981894';
+        $name = 'name3373707';
         $resolvedGitCommitSha = 'resolvedGitCommitSha-1974209704';
         $dataformCoreVersion = 'dataformCoreVersion1918089577';
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new CompilationResult();
-        $expectedResponse->setName($name);
         $expectedResponse->setGitCommitish($gitCommitish);
+        $expectedResponse->setName($name);
         $expectedResponse->setResolvedGitCommitSha($resolvedGitCommitSha);
         $expectedResponse->setDataformCoreVersion($dataformCoreVersion);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
@@ -481,12 +517,15 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
@@ -521,12 +560,16 @@ class DataformClientTest extends GeneratedTest
         $cronSchedule = 'cronSchedule206244136';
         $timeZone = 'timeZone36848094';
         $releaseCompilationResult = 'releaseCompilationResult1831489873';
+        $disabled = true;
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new ReleaseConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setGitCommitish($gitCommitish);
         $expectedResponse->setCronSchedule($cronSchedule);
         $expectedResponse->setTimeZone($timeZone);
         $expectedResponse->setReleaseCompilationResult($releaseCompilationResult);
+        $expectedResponse->setDisabled($disabled);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
@@ -565,12 +608,15 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
@@ -609,12 +655,16 @@ class DataformClientTest extends GeneratedTest
         $npmrcEnvironmentVariablesSecretVersion = 'npmrcEnvironmentVariablesSecretVersion-2118517056';
         $setAuthenticatedUserAdmin = true;
         $serviceAccount = 'serviceAccount-1948028253';
+        $kmsKeyName = 'kmsKeyName2094986649';
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new Repository();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setNpmrcEnvironmentVariablesSecretVersion($npmrcEnvironmentVariablesSecretVersion);
         $expectedResponse->setSetAuthenticatedUserAdmin($setAuthenticatedUserAdmin);
         $expectedResponse->setServiceAccount($serviceAccount);
+        $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -651,12 +701,15 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -692,16 +745,25 @@ class DataformClientTest extends GeneratedTest
         $releaseConfig = 'releaseConfig582587002';
         $cronSchedule = 'cronSchedule206244136';
         $timeZone = 'timeZone36848094';
+        $disabled = true;
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new WorkflowConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setReleaseConfig($releaseConfig);
         $expectedResponse->setCronSchedule($cronSchedule);
         $expectedResponse->setTimeZone($timeZone);
+        $expectedResponse->setDisabled($disabled);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
         $workflowConfig = new WorkflowConfig();
-        $workflowConfigReleaseConfig = $gapicClient->releaseConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RELEASE_CONFIG]');
+        $workflowConfigReleaseConfig = $gapicClient->releaseConfigName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[REPOSITORY]',
+            '[RELEASE_CONFIG]'
+        );
         $workflowConfig->setReleaseConfig($workflowConfigReleaseConfig);
         $workflowConfigId = 'workflowConfigId-60129608';
         $request = (new CreateWorkflowConfigRequest())
@@ -735,17 +797,25 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
         $workflowConfig = new WorkflowConfig();
-        $workflowConfigReleaseConfig = $gapicClient->releaseConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RELEASE_CONFIG]');
+        $workflowConfigReleaseConfig = $gapicClient->releaseConfigName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[REPOSITORY]',
+            '[RELEASE_CONFIG]'
+        );
         $workflowConfig->setReleaseConfig($workflowConfigReleaseConfig);
         $workflowConfigId = 'workflowConfigId-60129608';
         $request = (new CreateWorkflowConfigRequest())
@@ -774,11 +844,15 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $name = 'name3373707';
         $compilationResult = 'compilationResult-2035984871';
+        $name = 'name3373707';
+        $resolvedCompilationResult = 'resolvedCompilationResult-2110280256';
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new WorkflowInvocation();
-        $expectedResponse->setName($name);
         $expectedResponse->setCompilationResult($compilationResult);
+        $expectedResponse->setName($name);
+        $expectedResponse->setResolvedCompilationResult($resolvedCompilationResult);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
@@ -811,12 +885,15 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
@@ -847,8 +924,10 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new Workspace();
         $expectedResponse->setName($name);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
@@ -885,12 +964,15 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
@@ -926,8 +1008,7 @@ class DataformClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->releaseConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RELEASE_CONFIG]');
-        $request = (new DeleteReleaseConfigRequest())
-            ->setName($formattedName);
+        $request = (new DeleteReleaseConfigRequest())->setName($formattedName);
         $gapicClient->deleteReleaseConfig($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -950,17 +1031,19 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->releaseConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RELEASE_CONFIG]');
-        $request = (new DeleteReleaseConfigRequest())
-            ->setName($formattedName);
+        $request = (new DeleteReleaseConfigRequest())->setName($formattedName);
         try {
             $gapicClient->deleteReleaseConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -987,8 +1070,7 @@ class DataformClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new DeleteRepositoryRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRepositoryRequest())->setName($formattedName);
         $gapicClient->deleteRepository($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1011,17 +1093,19 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new DeleteRepositoryRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRepositoryRequest())->setName($formattedName);
         try {
             $gapicClient->deleteRepository($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1047,9 +1131,13 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->workflowConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_CONFIG]');
-        $request = (new DeleteWorkflowConfigRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->workflowConfigName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[REPOSITORY]',
+            '[WORKFLOW_CONFIG]'
+        );
+        $request = (new DeleteWorkflowConfigRequest())->setName($formattedName);
         $gapicClient->deleteWorkflowConfig($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1072,17 +1160,24 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->workflowConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_CONFIG]');
-        $request = (new DeleteWorkflowConfigRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->workflowConfigName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[REPOSITORY]',
+            '[WORKFLOW_CONFIG]'
+        );
+        $request = (new DeleteWorkflowConfigRequest())->setName($formattedName);
         try {
             $gapicClient->deleteWorkflowConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1108,9 +1203,13 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->workflowInvocationName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_INVOCATION]');
-        $request = (new DeleteWorkflowInvocationRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->workflowInvocationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[REPOSITORY]',
+            '[WORKFLOW_INVOCATION]'
+        );
+        $request = (new DeleteWorkflowInvocationRequest())->setName($formattedName);
         $gapicClient->deleteWorkflowInvocation($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1133,17 +1232,24 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->workflowInvocationName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_INVOCATION]');
-        $request = (new DeleteWorkflowInvocationRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->workflowInvocationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[REPOSITORY]',
+            '[WORKFLOW_INVOCATION]'
+        );
+        $request = (new DeleteWorkflowInvocationRequest())->setName($formattedName);
         try {
             $gapicClient->deleteWorkflowInvocation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1170,8 +1276,7 @@ class DataformClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
-        $request = (new DeleteWorkspaceRequest())
-            ->setName($formattedName);
+        $request = (new DeleteWorkspaceRequest())->setName($formattedName);
         $gapicClient->deleteWorkspace($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1194,17 +1299,19 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
-        $request = (new DeleteWorkspaceRequest())
-            ->setName($formattedName);
+        $request = (new DeleteWorkspaceRequest())->setName($formattedName);
         try {
             $gapicClient->deleteWorkspace($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1234,9 +1341,7 @@ class DataformClientTest extends GeneratedTest
         // Mock request
         $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
         $path = 'path3433509';
-        $request = (new FetchFileDiffRequest())
-            ->setWorkspace($formattedWorkspace)
-            ->setPath($path);
+        $request = (new FetchFileDiffRequest())->setWorkspace($formattedWorkspace)->setPath($path);
         $response = $gapicClient->fetchFileDiff($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1262,19 +1367,20 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
         $path = 'path3433509';
-        $request = (new FetchFileDiffRequest())
-            ->setWorkspace($formattedWorkspace)
-            ->setPath($path);
+        $request = (new FetchFileDiffRequest())->setWorkspace($formattedWorkspace)->setPath($path);
         try {
             $gapicClient->fetchFileDiff($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1301,8 +1407,7 @@ class DataformClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
-        $request = (new FetchFileGitStatusesRequest())
-            ->setName($formattedName);
+        $request = (new FetchFileGitStatusesRequest())->setName($formattedName);
         $response = $gapicClient->fetchFileGitStatuses($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1326,17 +1431,19 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
-        $request = (new FetchFileGitStatusesRequest())
-            ->setName($formattedName);
+        $request = (new FetchFileGitStatusesRequest())->setName($formattedName);
         try {
             $gapicClient->fetchFileGitStatuses($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1367,8 +1474,7 @@ class DataformClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
-        $request = (new FetchGitAheadBehindRequest())
-            ->setName($formattedName);
+        $request = (new FetchGitAheadBehindRequest())->setName($formattedName);
         $response = $gapicClient->fetchGitAheadBehind($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1392,17 +1498,19 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
-        $request = (new FetchGitAheadBehindRequest())
-            ->setName($formattedName);
+        $request = (new FetchGitAheadBehindRequest())->setName($formattedName);
         try {
             $gapicClient->fetchGitAheadBehind($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1429,8 +1537,7 @@ class DataformClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new FetchRemoteBranchesRequest())
-            ->setName($formattedName);
+        $request = (new FetchRemoteBranchesRequest())->setName($formattedName);
         $response = $gapicClient->fetchRemoteBranches($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1454,17 +1561,19 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new FetchRemoteBranchesRequest())
-            ->setName($formattedName);
+        $request = (new FetchRemoteBranchesRequest())->setName($formattedName);
         try {
             $gapicClient->fetchRemoteBranches($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1489,17 +1598,14 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $commitsElement = new CommitLogEntry();
-        $commits = [
-            $commitsElement,
-        ];
+        $commits = [$commitsElement];
         $expectedResponse = new FetchRepositoryHistoryResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCommits($commits);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new FetchRepositoryHistoryRequest())
-            ->setName($formattedName);
+        $request = (new FetchRepositoryHistoryRequest())->setName($formattedName);
         $response = $gapicClient->fetchRepositoryHistory($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1526,17 +1632,19 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new FetchRepositoryHistoryRequest())
-            ->setName($formattedName);
+        $request = (new FetchRepositoryHistoryRequest())->setName($formattedName);
         try {
             $gapicClient->fetchRepositoryHistory($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1559,20 +1667,26 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $name2 = 'name2-1052831874';
         $gitCommitish = 'gitCommitish-459981894';
+        $name2 = 'name2-1052831874';
         $resolvedGitCommitSha = 'resolvedGitCommitSha-1974209704';
         $dataformCoreVersion = 'dataformCoreVersion1918089577';
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new CompilationResult();
-        $expectedResponse->setName($name2);
         $expectedResponse->setGitCommitish($gitCommitish);
+        $expectedResponse->setName($name2);
         $expectedResponse->setResolvedGitCommitSha($resolvedGitCommitSha);
         $expectedResponse->setDataformCoreVersion($dataformCoreVersion);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->compilationResultName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[COMPILATION_RESULT]');
-        $request = (new GetCompilationResultRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->compilationResultName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[REPOSITORY]',
+            '[COMPILATION_RESULT]'
+        );
+        $request = (new GetCompilationResultRequest())->setName($formattedName);
         $response = $gapicClient->getCompilationResult($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1596,19 +1710,93 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->compilationResultName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[COMPILATION_RESULT]');
-        $request = (new GetCompilationResultRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->compilationResultName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[REPOSITORY]',
+            '[COMPILATION_RESULT]'
+        );
+        $request = (new GetCompilationResultRequest())->setName($formattedName);
         try {
             $gapicClient->getCompilationResult($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getConfigTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $defaultKmsKeyName = 'defaultKmsKeyName-635012393';
+        $expectedResponse = new Config();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDefaultKmsKeyName($defaultKmsKeyName);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->configName('[PROJECT]', '[LOCATION]');
+        $request = (new GetConfigRequest())->setName($formattedName);
+        $response = $gapicClient->getConfig($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/GetConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->configName('[PROJECT]', '[LOCATION]');
+        $request = (new GetConfigRequest())->setName($formattedName);
+        try {
+            $gapicClient->getConfig($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1634,17 +1822,20 @@ class DataformClientTest extends GeneratedTest
         $cronSchedule = 'cronSchedule206244136';
         $timeZone = 'timeZone36848094';
         $releaseCompilationResult = 'releaseCompilationResult1831489873';
+        $disabled = true;
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new ReleaseConfig();
         $expectedResponse->setName($name2);
         $expectedResponse->setGitCommitish($gitCommitish);
         $expectedResponse->setCronSchedule($cronSchedule);
         $expectedResponse->setTimeZone($timeZone);
         $expectedResponse->setReleaseCompilationResult($releaseCompilationResult);
+        $expectedResponse->setDisabled($disabled);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->releaseConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RELEASE_CONFIG]');
-        $request = (new GetReleaseConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetReleaseConfigRequest())->setName($formattedName);
         $response = $gapicClient->getReleaseConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1668,17 +1859,19 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->releaseConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RELEASE_CONFIG]');
-        $request = (new GetReleaseConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetReleaseConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getReleaseConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1706,17 +1899,20 @@ class DataformClientTest extends GeneratedTest
         $npmrcEnvironmentVariablesSecretVersion = 'npmrcEnvironmentVariablesSecretVersion-2118517056';
         $setAuthenticatedUserAdmin = true;
         $serviceAccount = 'serviceAccount-1948028253';
+        $kmsKeyName = 'kmsKeyName2094986649';
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new Repository();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setNpmrcEnvironmentVariablesSecretVersion($npmrcEnvironmentVariablesSecretVersion);
         $expectedResponse->setSetAuthenticatedUserAdmin($setAuthenticatedUserAdmin);
         $expectedResponse->setServiceAccount($serviceAccount);
+        $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new GetRepositoryRequest())
-            ->setName($formattedName);
+        $request = (new GetRepositoryRequest())->setName($formattedName);
         $response = $gapicClient->getRepository($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1740,17 +1936,19 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new GetRepositoryRequest())
-            ->setName($formattedName);
+        $request = (new GetRepositoryRequest())->setName($formattedName);
         try {
             $gapicClient->getRepository($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1777,16 +1975,24 @@ class DataformClientTest extends GeneratedTest
         $releaseConfig = 'releaseConfig582587002';
         $cronSchedule = 'cronSchedule206244136';
         $timeZone = 'timeZone36848094';
+        $disabled = true;
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new WorkflowConfig();
         $expectedResponse->setName($name2);
         $expectedResponse->setReleaseConfig($releaseConfig);
         $expectedResponse->setCronSchedule($cronSchedule);
         $expectedResponse->setTimeZone($timeZone);
+        $expectedResponse->setDisabled($disabled);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->workflowConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_CONFIG]');
-        $request = (new GetWorkflowConfigRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->workflowConfigName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[REPOSITORY]',
+            '[WORKFLOW_CONFIG]'
+        );
+        $request = (new GetWorkflowConfigRequest())->setName($formattedName);
         $response = $gapicClient->getWorkflowConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1810,17 +2016,24 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->workflowConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_CONFIG]');
-        $request = (new GetWorkflowConfigRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->workflowConfigName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[REPOSITORY]',
+            '[WORKFLOW_CONFIG]'
+        );
+        $request = (new GetWorkflowConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getWorkflowConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1843,16 +2056,24 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $name2 = 'name2-1052831874';
         $compilationResult = 'compilationResult-2035984871';
+        $name2 = 'name2-1052831874';
+        $resolvedCompilationResult = 'resolvedCompilationResult-2110280256';
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new WorkflowInvocation();
-        $expectedResponse->setName($name2);
         $expectedResponse->setCompilationResult($compilationResult);
+        $expectedResponse->setName($name2);
+        $expectedResponse->setResolvedCompilationResult($resolvedCompilationResult);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->workflowInvocationName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_INVOCATION]');
-        $request = (new GetWorkflowInvocationRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->workflowInvocationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[REPOSITORY]',
+            '[WORKFLOW_INVOCATION]'
+        );
+        $request = (new GetWorkflowInvocationRequest())->setName($formattedName);
         $response = $gapicClient->getWorkflowInvocation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1876,17 +2097,24 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->workflowInvocationName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_INVOCATION]');
-        $request = (new GetWorkflowInvocationRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->workflowInvocationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[REPOSITORY]',
+            '[WORKFLOW_INVOCATION]'
+        );
+        $request = (new GetWorkflowInvocationRequest())->setName($formattedName);
         try {
             $gapicClient->getWorkflowInvocation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1910,13 +2138,14 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new Workspace();
         $expectedResponse->setName($name2);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
-        $request = (new GetWorkspaceRequest())
-            ->setName($formattedName);
+        $request = (new GetWorkspaceRequest())->setName($formattedName);
         $response = $gapicClient->getWorkspace($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1940,17 +2169,19 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
-        $request = (new GetWorkspaceRequest())
-            ->setName($formattedName);
+        $request = (new GetWorkspaceRequest())->setName($formattedName);
         try {
             $gapicClient->getWorkspace($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1977,8 +2208,7 @@ class DataformClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
-        $request = (new InstallNpmPackagesRequest())
-            ->setWorkspace($formattedWorkspace);
+        $request = (new InstallNpmPackagesRequest())->setWorkspace($formattedWorkspace);
         $response = $gapicClient->installNpmPackages($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2002,17 +2232,19 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
-        $request = (new InstallNpmPackagesRequest())
-            ->setWorkspace($formattedWorkspace);
+        $request = (new InstallNpmPackagesRequest())->setWorkspace($formattedWorkspace);
         try {
             $gapicClient->installNpmPackages($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2037,17 +2269,14 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $compilationResultsElement = new CompilationResult();
-        $compilationResults = [
-            $compilationResultsElement,
-        ];
+        $compilationResults = [$compilationResultsElement];
         $expectedResponse = new ListCompilationResultsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCompilationResults($compilationResults);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListCompilationResultsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCompilationResultsRequest())->setParent($formattedParent);
         $response = $gapicClient->listCompilationResults($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2074,17 +2303,19 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListCompilationResultsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCompilationResultsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listCompilationResults($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2109,17 +2340,14 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $releaseConfigsElement = new ReleaseConfig();
-        $releaseConfigs = [
-            $releaseConfigsElement,
-        ];
+        $releaseConfigs = [$releaseConfigsElement];
         $expectedResponse = new ListReleaseConfigsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setReleaseConfigs($releaseConfigs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListReleaseConfigsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListReleaseConfigsRequest())->setParent($formattedParent);
         $response = $gapicClient->listReleaseConfigs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2146,17 +2374,19 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListReleaseConfigsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListReleaseConfigsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listReleaseConfigs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2181,17 +2411,14 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $repositoriesElement = new Repository();
-        $repositories = [
-            $repositoriesElement,
-        ];
+        $repositories = [$repositoriesElement];
         $expectedResponse = new ListRepositoriesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRepositories($repositories);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListRepositoriesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRepositoriesRequest())->setParent($formattedParent);
         $response = $gapicClient->listRepositories($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2218,17 +2445,19 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListRepositoriesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRepositoriesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listRepositories($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2253,17 +2482,14 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $workflowConfigsElement = new WorkflowConfig();
-        $workflowConfigs = [
-            $workflowConfigsElement,
-        ];
+        $workflowConfigs = [$workflowConfigsElement];
         $expectedResponse = new ListWorkflowConfigsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setWorkflowConfigs($workflowConfigs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListWorkflowConfigsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListWorkflowConfigsRequest())->setParent($formattedParent);
         $response = $gapicClient->listWorkflowConfigs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2290,17 +2516,19 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListWorkflowConfigsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListWorkflowConfigsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listWorkflowConfigs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2325,17 +2553,14 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $workflowInvocationsElement = new WorkflowInvocation();
-        $workflowInvocations = [
-            $workflowInvocationsElement,
-        ];
+        $workflowInvocations = [$workflowInvocationsElement];
         $expectedResponse = new ListWorkflowInvocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setWorkflowInvocations($workflowInvocations);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListWorkflowInvocationsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListWorkflowInvocationsRequest())->setParent($formattedParent);
         $response = $gapicClient->listWorkflowInvocations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2362,17 +2587,19 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListWorkflowInvocationsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListWorkflowInvocationsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listWorkflowInvocations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2397,17 +2624,14 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $workspacesElement = new Workspace();
-        $workspaces = [
-            $workspacesElement,
-        ];
+        $workspaces = [$workspacesElement];
         $expectedResponse = new ListWorkspacesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setWorkspaces($workspaces);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListWorkspacesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListWorkspacesRequest())->setParent($formattedParent);
         $response = $gapicClient->listWorkspaces($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2434,17 +2658,19 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListWorkspacesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListWorkspacesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listWorkspaces($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2472,9 +2698,7 @@ class DataformClientTest extends GeneratedTest
         // Mock request
         $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
         $path = 'path3433509';
-        $request = (new MakeDirectoryRequest())
-            ->setWorkspace($formattedWorkspace)
-            ->setPath($path);
+        $request = (new MakeDirectoryRequest())->setWorkspace($formattedWorkspace)->setPath($path);
         $response = $gapicClient->makeDirectory($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2500,19 +2724,20 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
         $path = 'path3433509';
-        $request = (new MakeDirectoryRequest())
-            ->setWorkspace($formattedWorkspace)
-            ->setPath($path);
+        $request = (new MakeDirectoryRequest())->setWorkspace($formattedWorkspace)->setPath($path);
         try {
             $gapicClient->makeDirectory($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2572,12 +2797,15 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
@@ -2646,12 +2874,15 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
@@ -2683,7 +2914,7 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new GPBEmpty();
+        $expectedResponse = new PullGitCommitsResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
@@ -2692,10 +2923,9 @@ class DataformClientTest extends GeneratedTest
         $author->setName($authorName);
         $authorEmailAddress = 'authorEmailAddress-6398493';
         $author->setEmailAddress($authorEmailAddress);
-        $request = (new PullGitCommitsRequest())
-            ->setName($formattedName)
-            ->setAuthor($author);
-        $gapicClient->pullGitCommits($request);
+        $request = (new PullGitCommitsRequest())->setName($formattedName)->setAuthor($author);
+        $response = $gapicClient->pullGitCommits($request);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -2719,12 +2949,15 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
@@ -2733,9 +2966,7 @@ class DataformClientTest extends GeneratedTest
         $author->setName($authorName);
         $authorEmailAddress = 'authorEmailAddress-6398493';
         $author->setEmailAddress($authorEmailAddress);
-        $request = (new PullGitCommitsRequest())
-            ->setName($formattedName)
-            ->setAuthor($author);
+        $request = (new PullGitCommitsRequest())->setName($formattedName)->setAuthor($author);
         try {
             $gapicClient->pullGitCommits($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2758,13 +2989,13 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new GPBEmpty();
+        $expectedResponse = new PushGitCommitsResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
-        $request = (new PushGitCommitsRequest())
-            ->setName($formattedName);
-        $gapicClient->pushGitCommits($request);
+        $request = (new PushGitCommitsRequest())->setName($formattedName);
+        $response = $gapicClient->pushGitCommits($request);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -2786,17 +3017,19 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
-        $request = (new PushGitCommitsRequest())
-            ->setName($formattedName);
+        $request = (new PushGitCommitsRequest())->setName($formattedName);
         try {
             $gapicClient->pushGitCommits($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2821,17 +3054,19 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $compilationResultActionsElement = new CompilationResultAction();
-        $compilationResultActions = [
-            $compilationResultActionsElement,
-        ];
+        $compilationResultActions = [$compilationResultActionsElement];
         $expectedResponse = new QueryCompilationResultActionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCompilationResultActions($compilationResultActions);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->compilationResultName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[COMPILATION_RESULT]');
-        $request = (new QueryCompilationResultActionsRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->compilationResultName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[REPOSITORY]',
+            '[COMPILATION_RESULT]'
+        );
+        $request = (new QueryCompilationResultActionsRequest())->setName($formattedName);
         $response = $gapicClient->queryCompilationResultActions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2858,17 +3093,24 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->compilationResultName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[COMPILATION_RESULT]');
-        $request = (new QueryCompilationResultActionsRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->compilationResultName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[REPOSITORY]',
+            '[COMPILATION_RESULT]'
+        );
+        $request = (new QueryCompilationResultActionsRequest())->setName($formattedName);
         try {
             $gapicClient->queryCompilationResultActions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2893,17 +3135,14 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $directoryEntriesElement = new DirectoryEntry();
-        $directoryEntries = [
-            $directoryEntriesElement,
-        ];
+        $directoryEntries = [$directoryEntriesElement];
         $expectedResponse = new QueryDirectoryContentsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDirectoryEntries($directoryEntries);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
-        $request = (new QueryDirectoryContentsRequest())
-            ->setWorkspace($formattedWorkspace);
+        $request = (new QueryDirectoryContentsRequest())->setWorkspace($formattedWorkspace);
         $response = $gapicClient->queryDirectoryContents($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2930,17 +3169,19 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
-        $request = (new QueryDirectoryContentsRequest())
-            ->setWorkspace($formattedWorkspace);
+        $request = (new QueryDirectoryContentsRequest())->setWorkspace($formattedWorkspace);
         try {
             $gapicClient->queryDirectoryContents($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2965,17 +3206,14 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $directoryEntriesElement = new DirectoryEntry();
-        $directoryEntries = [
-            $directoryEntriesElement,
-        ];
+        $directoryEntries = [$directoryEntriesElement];
         $expectedResponse = new QueryRepositoryDirectoryContentsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDirectoryEntries($directoryEntries);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new QueryRepositoryDirectoryContentsRequest())
-            ->setName($formattedName);
+        $request = (new QueryRepositoryDirectoryContentsRequest())->setName($formattedName);
         $response = $gapicClient->queryRepositoryDirectoryContents($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3002,17 +3240,19 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new QueryRepositoryDirectoryContentsRequest())
-            ->setName($formattedName);
+        $request = (new QueryRepositoryDirectoryContentsRequest())->setName($formattedName);
         try {
             $gapicClient->queryRepositoryDirectoryContents($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3037,17 +3277,19 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $workflowInvocationActionsElement = new WorkflowInvocationAction();
-        $workflowInvocationActions = [
-            $workflowInvocationActionsElement,
-        ];
+        $workflowInvocationActions = [$workflowInvocationActionsElement];
         $expectedResponse = new QueryWorkflowInvocationActionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setWorkflowInvocationActions($workflowInvocationActions);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->workflowInvocationName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_INVOCATION]');
-        $request = (new QueryWorkflowInvocationActionsRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->workflowInvocationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[REPOSITORY]',
+            '[WORKFLOW_INVOCATION]'
+        );
+        $request = (new QueryWorkflowInvocationActionsRequest())->setName($formattedName);
         $response = $gapicClient->queryWorkflowInvocationActions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3074,17 +3316,24 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->workflowInvocationName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_INVOCATION]');
-        $request = (new QueryWorkflowInvocationActionsRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->workflowInvocationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[REPOSITORY]',
+            '[WORKFLOW_INVOCATION]'
+        );
+        $request = (new QueryWorkflowInvocationActionsRequest())->setName($formattedName);
         try {
             $gapicClient->queryWorkflowInvocationActions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3114,9 +3363,7 @@ class DataformClientTest extends GeneratedTest
         // Mock request
         $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
         $path = 'path3433509';
-        $request = (new ReadFileRequest())
-            ->setWorkspace($formattedWorkspace)
-            ->setPath($path);
+        $request = (new ReadFileRequest())->setWorkspace($formattedWorkspace)->setPath($path);
         $response = $gapicClient->readFile($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3142,19 +3389,20 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
         $path = 'path3433509';
-        $request = (new ReadFileRequest())
-            ->setWorkspace($formattedWorkspace)
-            ->setPath($path);
+        $request = (new ReadFileRequest())->setWorkspace($formattedWorkspace)->setPath($path);
         try {
             $gapicClient->readFile($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3184,9 +3432,7 @@ class DataformClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
         $path = 'path3433509';
-        $request = (new ReadRepositoryFileRequest())
-            ->setName($formattedName)
-            ->setPath($path);
+        $request = (new ReadRepositoryFileRequest())->setName($formattedName)->setPath($path);
         $response = $gapicClient->readRepositoryFile($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3212,19 +3458,20 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
         $path = 'path3433509';
-        $request = (new ReadRepositoryFileRequest())
-            ->setName($formattedName)
-            ->setPath($path);
+        $request = (new ReadRepositoryFileRequest())->setName($formattedName)->setPath($path);
         try {
             $gapicClient->readRepositoryFile($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3247,15 +3494,14 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new GPBEmpty();
+        $expectedResponse = new RemoveDirectoryResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
         $path = 'path3433509';
-        $request = (new RemoveDirectoryRequest())
-            ->setWorkspace($formattedWorkspace)
-            ->setPath($path);
-        $gapicClient->removeDirectory($request);
+        $request = (new RemoveDirectoryRequest())->setWorkspace($formattedWorkspace)->setPath($path);
+        $response = $gapicClient->removeDirectory($request);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -3279,19 +3525,20 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
         $path = 'path3433509';
-        $request = (new RemoveDirectoryRequest())
-            ->setWorkspace($formattedWorkspace)
-            ->setPath($path);
+        $request = (new RemoveDirectoryRequest())->setWorkspace($formattedWorkspace)->setPath($path);
         try {
             $gapicClient->removeDirectory($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3314,15 +3561,14 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new GPBEmpty();
+        $expectedResponse = new RemoveFileResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
         $path = 'path3433509';
-        $request = (new RemoveFileRequest())
-            ->setWorkspace($formattedWorkspace)
-            ->setPath($path);
-        $gapicClient->removeFile($request);
+        $request = (new RemoveFileRequest())->setWorkspace($formattedWorkspace)->setPath($path);
+        $response = $gapicClient->removeFile($request);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -3346,19 +3592,20 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
         $path = 'path3433509';
-        $request = (new RemoveFileRequest())
-            ->setWorkspace($formattedWorkspace)
-            ->setPath($path);
+        $request = (new RemoveFileRequest())->setWorkspace($formattedWorkspace)->setPath($path);
         try {
             $gapicClient->removeFile($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3381,13 +3628,13 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new GPBEmpty();
+        $expectedResponse = new ResetWorkspaceChangesResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
-        $request = (new ResetWorkspaceChangesRequest())
-            ->setName($formattedName);
-        $gapicClient->resetWorkspaceChanges($request);
+        $request = (new ResetWorkspaceChangesRequest())->setName($formattedName);
+        $response = $gapicClient->resetWorkspaceChanges($request);
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -3409,19 +3656,159 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
-        $request = (new ResetWorkspaceChangesRequest())
-            ->setName($formattedName);
+        $request = (new ResetWorkspaceChangesRequest())->setName($formattedName);
         try {
             $gapicClient->resetWorkspaceChanges($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function searchFilesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $searchResultsElement = new SearchResult();
+        $searchResults = [$searchResultsElement];
+        $expectedResponse = new SearchFilesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSearchResults($searchResults);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $request = (new SearchFilesRequest())->setWorkspace($formattedWorkspace);
+        $response = $gapicClient->searchFiles($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getSearchResults()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/SearchFiles', $actualFuncCall);
+        $actualValue = $actualRequestObject->getWorkspace();
+        $this->assertProtobufEquals($formattedWorkspace, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function searchFilesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $request = (new SearchFilesRequest())->setWorkspace($formattedWorkspace);
+        try {
+            $gapicClient->searchFiles($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateConfigTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $defaultKmsKeyName = 'defaultKmsKeyName-635012393';
+        $expectedResponse = new Config();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDefaultKmsKeyName($defaultKmsKeyName);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $config = new Config();
+        $request = (new UpdateConfigRequest())->setConfig($config);
+        $response = $gapicClient->updateConfig($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/UpdateConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getConfig();
+        $this->assertProtobufEquals($config, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $config = new Config();
+        $request = (new UpdateConfigRequest())->setConfig($config);
+        try {
+            $gapicClient->updateConfig($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3447,19 +3834,22 @@ class DataformClientTest extends GeneratedTest
         $cronSchedule = 'cronSchedule206244136';
         $timeZone = 'timeZone36848094';
         $releaseCompilationResult = 'releaseCompilationResult1831489873';
+        $disabled = true;
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new ReleaseConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setGitCommitish($gitCommitish);
         $expectedResponse->setCronSchedule($cronSchedule);
         $expectedResponse->setTimeZone($timeZone);
         $expectedResponse->setReleaseCompilationResult($releaseCompilationResult);
+        $expectedResponse->setDisabled($disabled);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $releaseConfig = new ReleaseConfig();
         $releaseConfigGitCommitish = 'releaseConfigGitCommitish1714987262';
         $releaseConfig->setGitCommitish($releaseConfigGitCommitish);
-        $request = (new UpdateReleaseConfigRequest())
-            ->setReleaseConfig($releaseConfig);
+        $request = (new UpdateReleaseConfigRequest())->setReleaseConfig($releaseConfig);
         $response = $gapicClient->updateReleaseConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3483,19 +3873,21 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $releaseConfig = new ReleaseConfig();
         $releaseConfigGitCommitish = 'releaseConfigGitCommitish1714987262';
         $releaseConfig->setGitCommitish($releaseConfigGitCommitish);
-        $request = (new UpdateReleaseConfigRequest())
-            ->setReleaseConfig($releaseConfig);
+        $request = (new UpdateReleaseConfigRequest())->setReleaseConfig($releaseConfig);
         try {
             $gapicClient->updateReleaseConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3523,17 +3915,20 @@ class DataformClientTest extends GeneratedTest
         $npmrcEnvironmentVariablesSecretVersion = 'npmrcEnvironmentVariablesSecretVersion-2118517056';
         $setAuthenticatedUserAdmin = true;
         $serviceAccount = 'serviceAccount-1948028253';
+        $kmsKeyName = 'kmsKeyName2094986649';
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new Repository();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setNpmrcEnvironmentVariablesSecretVersion($npmrcEnvironmentVariablesSecretVersion);
         $expectedResponse->setSetAuthenticatedUserAdmin($setAuthenticatedUserAdmin);
         $expectedResponse->setServiceAccount($serviceAccount);
+        $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $repository = new Repository();
-        $request = (new UpdateRepositoryRequest())
-            ->setRepository($repository);
+        $request = (new UpdateRepositoryRequest())->setRepository($repository);
         $response = $gapicClient->updateRepository($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3557,17 +3952,19 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $repository = new Repository();
-        $request = (new UpdateRepositoryRequest())
-            ->setRepository($repository);
+        $request = (new UpdateRepositoryRequest())->setRepository($repository);
         try {
             $gapicClient->updateRepository($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3594,18 +3991,26 @@ class DataformClientTest extends GeneratedTest
         $releaseConfig = 'releaseConfig582587002';
         $cronSchedule = 'cronSchedule206244136';
         $timeZone = 'timeZone36848094';
+        $disabled = true;
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new WorkflowConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setReleaseConfig($releaseConfig);
         $expectedResponse->setCronSchedule($cronSchedule);
         $expectedResponse->setTimeZone($timeZone);
+        $expectedResponse->setDisabled($disabled);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $workflowConfig = new WorkflowConfig();
-        $workflowConfigReleaseConfig = $gapicClient->releaseConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RELEASE_CONFIG]');
+        $workflowConfigReleaseConfig = $gapicClient->releaseConfigName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[REPOSITORY]',
+            '[RELEASE_CONFIG]'
+        );
         $workflowConfig->setReleaseConfig($workflowConfigReleaseConfig);
-        $request = (new UpdateWorkflowConfigRequest())
-            ->setWorkflowConfig($workflowConfig);
+        $request = (new UpdateWorkflowConfigRequest())->setWorkflowConfig($workflowConfig);
         $response = $gapicClient->updateWorkflowConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3629,19 +4034,26 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $workflowConfig = new WorkflowConfig();
-        $workflowConfigReleaseConfig = $gapicClient->releaseConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RELEASE_CONFIG]');
+        $workflowConfigReleaseConfig = $gapicClient->releaseConfigName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[REPOSITORY]',
+            '[RELEASE_CONFIG]'
+        );
         $workflowConfig->setReleaseConfig($workflowConfigReleaseConfig);
-        $request = (new UpdateWorkflowConfigRequest())
-            ->setWorkflowConfig($workflowConfig);
+        $request = (new UpdateWorkflowConfigRequest())->setWorkflowConfig($workflowConfig);
         try {
             $gapicClient->updateWorkflowConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3701,12 +4113,15 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
@@ -3768,12 +4183,15 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -3800,9 +4218,7 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -3832,12 +4248,15 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -3870,8 +4289,7 @@ class DataformClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3895,17 +4313,19 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3937,9 +4357,7 @@ class DataformClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3965,19 +4383,20 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4005,9 +4424,7 @@ class DataformClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4033,19 +4450,20 @@ class DataformClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4068,13 +4486,18 @@ class DataformClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new GPBEmpty();
+        $expectedResponse = new CancelWorkflowInvocationResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->workflowInvocationName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_INVOCATION]');
-        $request = (new CancelWorkflowInvocationRequest())
-            ->setName($formattedName);
-        $gapicClient->cancelWorkflowInvocationAsync($request)->wait();
+        $formattedName = $gapicClient->workflowInvocationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[REPOSITORY]',
+            '[WORKFLOW_INVOCATION]'
+        );
+        $request = (new CancelWorkflowInvocationRequest())->setName($formattedName);
+        $response = $gapicClient->cancelWorkflowInvocationAsync($request)->wait();
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();

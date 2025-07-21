@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetPools_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\TargetPoolsClient;
+use Google\Cloud\Compute\V1\Client\TargetPoolsClient;
+use Google\Cloud\Compute\V1\DeleteTargetPoolRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $project, string $region, string $targetPool): voi
     // Create a client.
     $targetPoolsClient = new TargetPoolsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteTargetPoolRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setTargetPool($targetPool);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetPoolsClient->delete($project, $region, $targetPool);
+        $response = $targetPoolsClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

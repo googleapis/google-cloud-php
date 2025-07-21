@@ -25,9 +25,11 @@ class StreamingSynthesisInput extends \Google\Protobuf\Internal\Message
      *
      *     @type string $text
      *           The raw text to be synthesized. It is recommended that each input
-     *           contains complete, terminating sentences, as this will likely result in
-     *           better prosody in the output audio. That being said, users are free to
-     *           input text however they please.
+     *           contains complete, terminating sentences, which results in better prosody
+     *           in the output audio.
+     *     @type string $markup
+     *           Markup for HD voices specifically. This field may not be used with any
+     *           other voices.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,9 +39,8 @@ class StreamingSynthesisInput extends \Google\Protobuf\Internal\Message
 
     /**
      * The raw text to be synthesized. It is recommended that each input
-     * contains complete, terminating sentences, as this will likely result in
-     * better prosody in the output audio. That being said, users are free to
-     * input text however they please.
+     * contains complete, terminating sentences, which results in better prosody
+     * in the output audio.
      *
      * Generated from protobuf field <code>string text = 1;</code>
      * @return string
@@ -56,9 +57,8 @@ class StreamingSynthesisInput extends \Google\Protobuf\Internal\Message
 
     /**
      * The raw text to be synthesized. It is recommended that each input
-     * contains complete, terminating sentences, as this will likely result in
-     * better prosody in the output audio. That being said, users are free to
-     * input text however they please.
+     * contains complete, terminating sentences, which results in better prosody
+     * in the output audio.
      *
      * Generated from protobuf field <code>string text = 1;</code>
      * @param string $var
@@ -68,6 +68,39 @@ class StreamingSynthesisInput extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Markup for HD voices specifically. This field may not be used with any
+     * other voices.
+     *
+     * Generated from protobuf field <code>string markup = 5;</code>
+     * @return string
+     */
+    public function getMarkup()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasMarkup()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Markup for HD voices specifically. This field may not be used with any
+     * other voices.
+     *
+     * Generated from protobuf field <code>string markup = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMarkup($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(5, $var);
 
         return $this;
     }

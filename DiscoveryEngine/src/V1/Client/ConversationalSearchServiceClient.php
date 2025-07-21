@@ -30,6 +30,7 @@ use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
+use Google\ApiCore\ServerStream;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
@@ -52,6 +53,7 @@ use Google\Cloud\DiscoveryEngine\V1\Session;
 use Google\Cloud\DiscoveryEngine\V1\UpdateConversationRequest;
 use Google\Cloud\DiscoveryEngine\V1\UpdateSessionRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service for conversational search.
@@ -839,14 +841,14 @@ final class ConversationalSearchServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -868,6 +870,12 @@ final class ConversationalSearchServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -901,6 +909,9 @@ final class ConversationalSearchServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -1229,6 +1240,34 @@ final class ConversationalSearchServiceClient
     public function listSessions(ListSessionsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListSessions', $request, $callOptions);
+    }
+
+    /**
+     * Answer query method (streaming).
+     *
+     * It takes one
+     * [AnswerQueryRequest][google.cloud.discoveryengine.v1.AnswerQueryRequest]
+     * and returns multiple
+     * [AnswerQueryResponse][google.cloud.discoveryengine.v1.AnswerQueryResponse]
+     * messages in a stream.
+     *
+     * @example samples/V1/ConversationalSearchServiceClient/stream_answer_query.php
+     *
+     * @param AnswerQueryRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return ServerStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function streamAnswerQuery(AnswerQueryRequest $request, array $callOptions = []): ServerStream
+    {
+        return $this->startApiCall('StreamAnswerQuery', $request, $callOptions);
     }
 
     /**

@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for [PolicyBasedRouting.GetPolicyBasedRoute][] method.
+ * Request for
+ * [PolicyBasedRoutingService.GetPolicyBasedRoute][google.cloud.networkconnectivity.v1.PolicyBasedRoutingService.GetPolicyBasedRoute]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.GetPolicyBasedRouteRequest</code>
  */

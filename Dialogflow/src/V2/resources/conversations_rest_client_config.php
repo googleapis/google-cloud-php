@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -93,6 +93,25 @@ return [
                     ],
                 ],
             ],
+            'GenerateSuggestions' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{conversation=projects/*/conversations/*}/suggestions:generate',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{conversation=projects/*/locations/*/conversations/*}/suggestions:generate',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'conversation' => [
+                        'getters' => [
+                            'getConversation',
+                        ],
+                    ],
+                ],
+            ],
             'GetConversation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=projects/*/conversations/*}',
@@ -106,6 +125,18 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'IngestContextReferences' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{conversation=projects/*/locations/*/conversations/*}:ingestContextReferences',
+                'body' => '*',
+                'placeholders' => [
+                    'conversation' => [
+                        'getters' => [
+                            'getConversation',
                         ],
                     ],
                 ],

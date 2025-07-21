@@ -76,6 +76,9 @@ class Grpc implements ConnectionInterface
             },
             'google.protobuf.Timestamp' => function ($v) {
                 return $this->formatTimestampFromApi($v);
+            },
+            'google.protobuf.Duration' => function ($v) {
+                return $this->formatDurationFromApi($v);
             }
         ], [], [
             'google.protobuf.Timestamp' => function ($v) {
@@ -139,7 +142,7 @@ class Grpc implements ConnectionInterface
             });
 
             $args['transactionOptions'] = $this->serializer->decodeMessage(
-                new TransactionOptions,
+                new TransactionOptions(),
                 $args['transactionOptions']
             );
         }
@@ -165,7 +168,7 @@ class Grpc implements ConnectionInterface
             $data = $mutation[$mutationType];
             if (isset($data['properties'])) {
                 foreach ($data['properties'] as &$property) {
-                    list ($type, $val) = $this->toGrpcValue($property);
+                    list($type, $val) = $this->toGrpcValue($property);
 
                     $property[$type] = $val;
                 }
@@ -173,7 +176,7 @@ class Grpc implements ConnectionInterface
 
             $mutation[$mutationType] = $data;
 
-            $mutation = $this->serializer->decodeMessage(new Mutation, $mutation);
+            $mutation = $this->serializer->decodeMessage(new Mutation(), $mutation);
         }
 
         return $this->send([$this->datastoreClient, 'commit'], [
@@ -237,7 +240,7 @@ class Grpc implements ConnectionInterface
             }
 
             $args['aggregationQuery'] = $this->serializer->decodeMessage(
-                new AggregationQuery,
+                new AggregationQuery(),
                 $args['aggregationQuery']
             );
         }
@@ -258,7 +261,7 @@ class Grpc implements ConnectionInterface
     public function runQuery(array $args)
     {
         $partitionId = $this->serializer->decodeMessage(
-            new PartitionId,
+            new PartitionId(),
             $this->pluck('partitionId', $args)
         );
 
@@ -308,7 +311,7 @@ class Grpc implements ConnectionInterface
         }
 
         $parsedQuery = $this->serializer->decodeMessage(
-            new Query,
+            new Query(),
             $query
         );
         return $parsedQuery;
@@ -343,7 +346,7 @@ class Grpc implements ConnectionInterface
         }
 
         $parsedGqlQuery = $this->serializer->decodeMessage(
-            new GqlQuery,
+            new GqlQuery(),
             $gqlQuery
         );
 
@@ -401,7 +404,7 @@ class Grpc implements ConnectionInterface
     {
         $value = $binding['value'];
 
-        list ($type, $val) = $this->toGrpcValue($value);
+        list($type, $val) = $this->toGrpcValue($value);
 
         $binding['value'][$type] = $val;
 
@@ -435,7 +438,7 @@ class Grpc implements ConnectionInterface
         }
 
         return $this->serializer->decodeMessage(
-            new ReadOptions,
+            new ReadOptions(),
             $readOptions
         );
     }

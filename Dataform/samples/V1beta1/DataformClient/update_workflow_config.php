@@ -31,6 +31,11 @@ use Google\Cloud\Dataform\V1beta1\WorkflowConfig;
 /**
  * Updates a single WorkflowConfig.
  *
+ * **Note:** *This method does not fully implement
+ * [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated
+ * as a bad request, and when the `field_mask` is omitted, the request is
+ * treated as a full update on all modifiable fields.*
+ *
  * @param string $formattedWorkflowConfigReleaseConfig The name of the release config whose release_compilation_result
  *                                                     should be executed. Must be in the format
  *                                                     `projects/&#42;/locations/&#42;/repositories/&#42;/releaseConfigs/*`. Please see

@@ -176,6 +176,27 @@ return [
                     ],
                 ],
             ],
+            'PrepareQuery' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Bigtable\V2\PrepareQueryResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getInstanceName',
+                        ],
+                        'matchers' => [
+                            '/^(?<name>projects\/[^\/]+\/instances\/[^\/]+)$/',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'app_profile_id',
+                        'fieldAccessors' => [
+                            'getAppProfileId',
+                        ],
+                    ],
+                ],
+            ],
             'ReadChangeStream' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'ServerStreaming',
@@ -290,6 +311,7 @@ return [
             'templateMap' => [
                 'authorizedView' => 'projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}',
                 'instance' => 'projects/{project}/instances/{instance}',
+                'materializedView' => 'projects/{project}/instances/{instance}/materializedViews/{materialized_view}',
                 'table' => 'projects/{project}/instances/{instance}/tables/{table}',
             ],
         ],

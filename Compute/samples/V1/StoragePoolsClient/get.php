@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_StoragePools_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\StoragePoolsClient;
+use Google\Cloud\Compute\V1\GetStoragePoolRequest;
 use Google\Cloud\Compute\V1\StoragePool;
-use Google\Cloud\Compute\V1\StoragePoolsClient;
 
 /**
  * Returns a specified storage pool. Gets a list of available storage pools by making a list() request.
@@ -39,10 +40,16 @@ function get_sample(string $project, string $storagePool, string $zone): void
     // Create a client.
     $storagePoolsClient = new StoragePoolsClient();
 
+    // Prepare the request message.
+    $request = (new GetStoragePoolRequest())
+        ->setProject($project)
+        ->setStoragePool($storagePool)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var StoragePool $response */
-        $response = $storagePoolsClient->get($project, $storagePool, $zone);
+        $response = $storagePoolsClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

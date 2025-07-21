@@ -19,8 +19,8 @@ class UpdateAuthorizedViewRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The AuthorizedView to update. The `name` in `authorized_view` is
      * used to identify the AuthorizedView. AuthorizedView name must in this
-     * format
-     * projects/<project>/instances/<instance>/tables/<table>/authorizedViews/<authorized_view>
+     * format:
+     * `projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}`.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.AuthorizedView authorized_view = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -48,8 +48,8 @@ class UpdateAuthorizedViewRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param \Google\Cloud\Bigtable\Admin\V2\AuthorizedView $authorizedView Required. The AuthorizedView to update. The `name` in `authorized_view` is
      *                                                                       used to identify the AuthorizedView. AuthorizedView name must in this
-     *                                                                       format
-     *                                                                       projects/<project>/instances/<instance>/tables/<table>/authorizedViews/<authorized_view>
+     *                                                                       format:
+     *                                                                       `projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}`.
      * @param \Google\Protobuf\FieldMask                     $updateMask     Optional. The list of fields to update.
      *                                                                       A mask specifying which fields in the AuthorizedView resource should be
      *                                                                       updated. This mask is relative to the AuthorizedView resource, not to the
@@ -78,8 +78,8 @@ class UpdateAuthorizedViewRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Bigtable\Admin\V2\AuthorizedView $authorized_view
      *           Required. The AuthorizedView to update. The `name` in `authorized_view` is
      *           used to identify the AuthorizedView. AuthorizedView name must in this
-     *           format
-     *           projects/<project>/instances/<instance>/tables/<table>/authorizedViews/<authorized_view>
+     *           format:
+     *           `projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}`.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Optional. The list of fields to update.
      *           A mask specifying which fields in the AuthorizedView resource should be
@@ -101,8 +101,8 @@ class UpdateAuthorizedViewRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The AuthorizedView to update. The `name` in `authorized_view` is
      * used to identify the AuthorizedView. AuthorizedView name must in this
-     * format
-     * projects/<project>/instances/<instance>/tables/<table>/authorizedViews/<authorized_view>
+     * format:
+     * `projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}`.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.AuthorizedView authorized_view = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Bigtable\Admin\V2\AuthorizedView|null
@@ -125,8 +125,8 @@ class UpdateAuthorizedViewRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The AuthorizedView to update. The `name` in `authorized_view` is
      * used to identify the AuthorizedView. AuthorizedView name must in this
-     * format
-     * projects/<project>/instances/<instance>/tables/<table>/authorizedViews/<authorized_view>
+     * format:
+     * `projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}`.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.AuthorizedView authorized_view = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Bigtable\Admin\V2\AuthorizedView $var

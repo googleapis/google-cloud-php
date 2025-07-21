@@ -104,9 +104,11 @@ class ReservationServiceClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $assignee = 'assignee-369881649';
+        $enableGeminiInBigquery = true;
         $expectedResponse = new Assignment();
         $expectedResponse->setName($name);
         $expectedResponse->setAssignee($assignee);
+        $expectedResponse->setEnableGeminiInBigquery($enableGeminiInBigquery);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
@@ -1105,9 +1107,11 @@ class ReservationServiceClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $assignee = 'assignee-369881649';
+        $enableGeminiInBigquery = true;
         $expectedResponse = new Assignment();
         $expectedResponse->setName($name2);
         $expectedResponse->setAssignee($assignee);
+        $expectedResponse->setEnableGeminiInBigquery($enableGeminiInBigquery);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->assignmentName('[PROJECT]', '[LOCATION]', '[RESERVATION]', '[ASSIGNMENT]');
@@ -1386,9 +1390,11 @@ class ReservationServiceClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $assignee = 'assignee-369881649';
+        $enableGeminiInBigquery = true;
         $expectedResponse = new Assignment();
         $expectedResponse->setName($name);
         $expectedResponse->setAssignee($assignee);
+        $expectedResponse->setEnableGeminiInBigquery($enableGeminiInBigquery);
         $transport->addResponse($expectedResponse);
         $request = new UpdateAssignmentRequest();
         $response = $gapicClient->updateAssignment($request);
@@ -1655,9 +1661,11 @@ class ReservationServiceClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $assignee = 'assignee-369881649';
+        $enableGeminiInBigquery = true;
         $expectedResponse = new Assignment();
         $expectedResponse->setName($name);
         $expectedResponse->setAssignee($assignee);
+        $expectedResponse->setEnableGeminiInBigquery($enableGeminiInBigquery);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');

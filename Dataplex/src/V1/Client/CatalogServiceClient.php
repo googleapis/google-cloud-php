@@ -76,6 +76,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The primary resources offered by this service are EntryGroups, EntryTypes,
@@ -337,6 +338,21 @@ final class CatalogServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a project
+     * resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     */
+    public static function projectName(string $project): string
+    {
+        return self::getPathTemplate('project')->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -346,6 +362,7 @@ final class CatalogServiceClient
      * - entryType: projects/{project}/locations/{location}/entryTypes/{entry_type}
      * - location: projects/{project}/locations/{location}
      * - metadataJob: projects/{project}/locations/{location}/metadataJobs/{metadataJob}
+     * - project: projects/{project}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -353,14 +370,14 @@ final class CatalogServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -382,6 +399,12 @@ final class CatalogServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -415,6 +438,9 @@ final class CatalogServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -730,11 +756,6 @@ final class CatalogServiceClient
     /**
      * Gets an Entry.
      *
-     * **Caution**: The BigQuery metadata that is stored in Dataplex Catalog is
-     * changing. For more information, see [Changes to BigQuery metadata stored in
-     * Dataplex
-     * Catalog](https://cloud.google.com/dataplex/docs/biqquery-metadata-changes).
-     *
      * The async variant is {@see CatalogServiceClient::getEntryAsync()} .
      *
      * @example samples/V1/CatalogServiceClient/get_entry.php
@@ -967,12 +988,7 @@ final class CatalogServiceClient
     }
 
     /**
-     * Looks up a single Entry by name using the permission on the source system.
-     *
-     * **Caution**: The BigQuery metadata that is stored in Dataplex Catalog is
-     * changing. For more information, see [Changes to BigQuery metadata stored in
-     * Dataplex
-     * Catalog](https://cloud.google.com/dataplex/docs/biqquery-metadata-changes).
+     * Looks up an entry by name using the permission on the source system.
      *
      * The async variant is {@see CatalogServiceClient::lookupEntryAsync()} .
      *

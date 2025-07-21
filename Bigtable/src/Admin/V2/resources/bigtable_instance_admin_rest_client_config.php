@@ -65,6 +65,36 @@ return [
                     ],
                 ],
             ],
+            'CreateLogicalView' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/instances/*}/logicalViews',
+                'body' => 'logical_view',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'logical_view_id',
+                ],
+            ],
+            'CreateMaterializedView' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/instances/*}/materializedViews',
+                'body' => 'materialized_view',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'materialized_view_id',
+                ],
+            ],
             'DeleteAppProfile' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/{name=projects/*/instances/*/appProfiles/*}',
@@ -101,6 +131,28 @@ return [
                     ],
                 ],
             ],
+            'DeleteLogicalView' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/logicalViews/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteMaterializedView' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/materializedViews/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetAppProfile' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=projects/*/instances/*/appProfiles/*}',
@@ -127,6 +179,18 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{resource=projects/*/instances/*}:getIamPolicy',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{resource=projects/*/instances/*/materializedViews/*}:getIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{resource=projects/*/instances/*/logicalViews/*}:getIamPolicy',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
@@ -138,6 +202,28 @@ return [
             'GetInstance' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=projects/*/instances/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetLogicalView' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/logicalViews/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetMaterializedView' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/materializedViews/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -190,6 +276,28 @@ return [
                     ],
                 ],
             ],
+            'ListLogicalViews' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/instances/*}/logicalViews',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListMaterializedViews' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/instances/*}/materializedViews',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'PartialUpdateCluster' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v2/{cluster.name=projects/*/instances/*/clusters/*}',
@@ -226,6 +334,18 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{resource=projects/*/instances/*}:setIamPolicy',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{resource=projects/*/instances/*/materializedViews/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{resource=projects/*/instances/*/logicalViews/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
@@ -238,6 +358,18 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{resource=projects/*/instances/*}:testIamPermissions',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{resource=projects/*/instances/*/materializedViews/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{resource=projects/*/instances/*/logicalViews/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
@@ -281,6 +413,32 @@ return [
                 'placeholders' => [
                     'name' => [
                         'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateLogicalView' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{logical_view.name=projects/*/instances/*/logicalViews/*}',
+                'body' => 'logical_view',
+                'placeholders' => [
+                    'logical_view.name' => [
+                        'getters' => [
+                            'getLogicalView',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateMaterializedView' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{materialized_view.name=projects/*/instances/*/materializedViews/*}',
+                'body' => 'materialized_view',
+                'placeholders' => [
+                    'materialized_view.name' => [
+                        'getters' => [
+                            'getMaterializedView',
                             'getName',
                         ],
                     ],

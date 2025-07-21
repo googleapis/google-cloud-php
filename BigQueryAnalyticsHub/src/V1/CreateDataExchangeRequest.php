@@ -17,7 +17,7 @@ class CreateDataExchangeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent resource path of the data exchange.
-     * e.g. `projects/myproject/locations/US`.
+     * e.g. `projects/myproject/locations/us`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -25,8 +25,6 @@ class CreateDataExchangeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The ID of the data exchange.
      * Must contain only Unicode letters, numbers (0-9), underscores (_).
-     * Should not use characters that require URL-escaping, or characters
-     * outside of ASCII, spaces.
      * Max length: 100 bytes.
      *
      * Generated from protobuf field <code>string data_exchange_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -41,7 +39,7 @@ class CreateDataExchangeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                              $parent       Required. The parent resource path of the data exchange.
-     *                                                                          e.g. `projects/myproject/locations/US`. Please see
+     *                                                                          e.g. `projects/myproject/locations/us`. Please see
      *                                                                          {@see AnalyticsHubServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\DataExchange $dataExchange Required. The data exchange to create.
      *
@@ -64,12 +62,10 @@ class CreateDataExchangeRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent resource path of the data exchange.
-     *           e.g. `projects/myproject/locations/US`.
+     *           e.g. `projects/myproject/locations/us`.
      *     @type string $data_exchange_id
      *           Required. The ID of the data exchange.
      *           Must contain only Unicode letters, numbers (0-9), underscores (_).
-     *           Should not use characters that require URL-escaping, or characters
-     *           outside of ASCII, spaces.
      *           Max length: 100 bytes.
      *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\DataExchange $data_exchange
      *           Required. The data exchange to create.
@@ -82,7 +78,7 @@ class CreateDataExchangeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource path of the data exchange.
-     * e.g. `projects/myproject/locations/US`.
+     * e.g. `projects/myproject/locations/us`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -94,7 +90,7 @@ class CreateDataExchangeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource path of the data exchange.
-     * e.g. `projects/myproject/locations/US`.
+     * e.g. `projects/myproject/locations/us`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -111,8 +107,6 @@ class CreateDataExchangeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The ID of the data exchange.
      * Must contain only Unicode letters, numbers (0-9), underscores (_).
-     * Should not use characters that require URL-escaping, or characters
-     * outside of ASCII, spaces.
      * Max length: 100 bytes.
      *
      * Generated from protobuf field <code>string data_exchange_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -126,8 +120,6 @@ class CreateDataExchangeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The ID of the data exchange.
      * Must contain only Unicode letters, numbers (0-9), underscores (_).
-     * Should not use characters that require URL-escaping, or characters
-     * outside of ASCII, spaces.
      * Max length: 100 bytes.
      *
      * Generated from protobuf field <code>string data_exchange_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>

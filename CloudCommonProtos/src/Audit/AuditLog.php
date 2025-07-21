@@ -743,13 +743,17 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      */
     public function getServiceData()
     {
-        @trigger_error('service_data is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->service_data)) {
+            @trigger_error('service_data is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->service_data;
     }
 
     public function hasServiceData()
     {
-        @trigger_error('service_data is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->service_data)) {
+            @trigger_error('service_data is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->service_data);
     }
 

@@ -44,7 +44,7 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.Sentiment document_sentiment = 4;</code>
      */
-    private $document_sentiment = null;
+    protected $document_sentiment = null;
     /**
      * The language of the text, which will be the same as the language specified
      * in the request or, if not specified, the automatically-detected language.
@@ -53,7 +53,7 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language = 5;</code>
      */
-    private $language = '';
+    protected $language = '';
     /**
      * Categories identified in the input document.
      *

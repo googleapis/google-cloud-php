@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Subnetworks_SetPrivateIpGoogleAccess_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\SubnetworksClient;
+use Google\Cloud\Compute\V1\Client\SubnetworksClient;
+use Google\Cloud\Compute\V1\SetPrivateIpGoogleAccessSubnetworkRequest;
 use Google\Cloud\Compute\V1\SubnetworksSetPrivateIpGoogleAccessRequest;
 use Google\Rpc\Status;
 
@@ -44,18 +45,20 @@ function set_private_ip_google_access_sample(
     // Create a client.
     $subnetworksClient = new SubnetworksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $subnetworksSetPrivateIpGoogleAccessRequestResource = new SubnetworksSetPrivateIpGoogleAccessRequest();
+    $request = (new SetPrivateIpGoogleAccessSubnetworkRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setSubnetwork($subnetwork)
+        ->setSubnetworksSetPrivateIpGoogleAccessRequestResource(
+            $subnetworksSetPrivateIpGoogleAccessRequestResource
+        );
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $subnetworksClient->setPrivateIpGoogleAccess(
-            $project,
-            $region,
-            $subnetwork,
-            $subnetworksSetPrivateIpGoogleAccessRequestResource
-        );
+        $response = $subnetworksClient->setPrivateIpGoogleAccess($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

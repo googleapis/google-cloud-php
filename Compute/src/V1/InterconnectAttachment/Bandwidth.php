@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\InterconnectAttachment;
 use UnexpectedValueException;
 
 /**
- * Provisioned bandwidth capacity for the interconnect attachment. For attachments of type DEDICATED, the user can set the bandwidth. For attachments of type PARTNER, the Google Partner that is operating the interconnect must set the bandwidth. Output only for PARTNER type, mutable for PARTNER_PROVIDER and DEDICATED, and can take one of the following values: - BPS_50M: 50 Mbit/s - BPS_100M: 100 Mbit/s - BPS_200M: 200 Mbit/s - BPS_300M: 300 Mbit/s - BPS_400M: 400 Mbit/s - BPS_500M: 500 Mbit/s - BPS_1G: 1 Gbit/s - BPS_2G: 2 Gbit/s - BPS_5G: 5 Gbit/s - BPS_10G: 10 Gbit/s - BPS_20G: 20 Gbit/s - BPS_50G: 50 Gbit/s 
+ * Provisioned bandwidth capacity for the interconnect attachment. For attachments of type DEDICATED, the user can set the bandwidth. For attachments of type PARTNER, the Google Partner that is operating the interconnect must set the bandwidth. Output only for PARTNER type, mutable for PARTNER_PROVIDER and DEDICATED, and can take one of the following values: - BPS_50M: 50 Mbit/s - BPS_100M: 100 Mbit/s - BPS_200M: 200 Mbit/s - BPS_300M: 300 Mbit/s - BPS_400M: 400 Mbit/s - BPS_500M: 500 Mbit/s - BPS_1G: 1 Gbit/s - BPS_2G: 2 Gbit/s - BPS_5G: 5 Gbit/s - BPS_10G: 10 Gbit/s - BPS_20G: 20 Gbit/s - BPS_50G: 50 Gbit/s - BPS_100G: 100 Gbit/s 
  *
  * Protobuf type <code>google.cloud.compute.v1.InterconnectAttachment.Bandwidth</code>
  */
@@ -19,6 +19,12 @@ class Bandwidth
      * Generated from protobuf enum <code>UNDEFINED_BANDWIDTH = 0;</code>
      */
     const UNDEFINED_BANDWIDTH = 0;
+    /**
+     * 100 Gbit/s
+     *
+     * Generated from protobuf enum <code>BPS_100G = 49547952;</code>
+     */
+    const BPS_100G = 49547952;
     /**
      * 100 Mbit/s
      *
@@ -94,6 +100,7 @@ class Bandwidth
 
     private static $valueToName = [
         self::UNDEFINED_BANDWIDTH => 'UNDEFINED_BANDWIDTH',
+        self::BPS_100G => 'BPS_100G',
         self::BPS_100M => 'BPS_100M',
         self::BPS_10G => 'BPS_10G',
         self::BPS_1G => 'BPS_1G',

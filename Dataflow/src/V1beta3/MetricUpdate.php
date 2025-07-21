@@ -10,6 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Describes the state of a metric.
+ * Next ID: 14
  *
  * Generated from protobuf message <code>google.dataflow.v1beta3.MetricUpdate</code>
  */
@@ -20,7 +21,7 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.MetricStructuredName name = 1;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * Metric aggregation kind.  The possible metric aggregation kinds are
      * "Sum", "Max", "Min", "Mean", "Set", "And", "Or", and "Distribution".
@@ -30,7 +31,7 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 2;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * True if this metric is reported as the total cumulative aggregate
      * value accumulated since the worker started working on this WorkItem.
@@ -39,14 +40,14 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool cumulative = 3;</code>
      */
-    private $cumulative = false;
+    protected $cumulative = false;
     /**
      * Worker-computed aggregate value for aggregation kinds "Sum", "Max", "Min",
      * "And", and "Or".  The possible value types are Long, Double, and Boolean.
      *
      * Generated from protobuf field <code>.google.protobuf.Value scalar = 4;</code>
      */
-    private $scalar = null;
+    protected $scalar = null;
     /**
      * Worker-computed aggregate value for the "Mean" aggregation kind.
      * This holds the sum of the aggregated values and is used in combination
@@ -55,7 +56,7 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Value mean_sum = 5;</code>
      */
-    private $mean_sum = null;
+    protected $mean_sum = null;
     /**
      * Worker-computed aggregate value for the "Mean" aggregation kind.
      * This holds the count of the aggregated values and is used in combination
@@ -64,22 +65,29 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Value mean_count = 6;</code>
      */
-    private $mean_count = null;
+    protected $mean_count = null;
     /**
      * Worker-computed aggregate value for the "Set" aggregation kind.  The only
      * possible value type is a list of Values whose type can be Long, Double,
-     * or String, according to the metric's type.  All Values in the list must
-     * be of the same type.
+     * String, or BoundedTrie according to the metric's type.  All Values in the
+     * list must be of the same type.
      *
      * Generated from protobuf field <code>.google.protobuf.Value set = 7;</code>
      */
-    private $set = null;
+    protected $set = null;
+    /**
+     * Worker-computed aggregate value for the "Trie" aggregation kind.  The only
+     * possible value type is a BoundedTrieNode.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value trie = 13;</code>
+     */
+    protected $trie = null;
     /**
      * A struct value describing properties of a distribution of numeric values.
      *
      * Generated from protobuf field <code>.google.protobuf.Value distribution = 11;</code>
      */
-    private $distribution = null;
+    protected $distribution = null;
     /**
      * A struct value describing properties of a Gauge.
      * Metrics of gauge type show the value of a metric across time, and is
@@ -87,14 +95,14 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Value gauge = 12;</code>
      */
-    private $gauge = null;
+    protected $gauge = null;
     /**
      * Worker-computed aggregate value for internal use by the Dataflow
      * service.
      *
      * Generated from protobuf field <code>.google.protobuf.Value internal = 8;</code>
      */
-    private $internal = null;
+    protected $internal = null;
     /**
      * Timestamp associated with the metric value. Optional when workers are
      * reporting work progress; it will be filled in responses from the
@@ -102,7 +110,7 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 9;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
 
     /**
      * Constructor.
@@ -139,8 +147,11 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Value $set
      *           Worker-computed aggregate value for the "Set" aggregation kind.  The only
      *           possible value type is a list of Values whose type can be Long, Double,
-     *           or String, according to the metric's type.  All Values in the list must
-     *           be of the same type.
+     *           String, or BoundedTrie according to the metric's type.  All Values in the
+     *           list must be of the same type.
+     *     @type \Google\Protobuf\Value $trie
+     *           Worker-computed aggregate value for the "Trie" aggregation kind.  The only
+     *           possible value type is a BoundedTrieNode.
      *     @type \Google\Protobuf\Value $distribution
      *           A struct value describing properties of a distribution of numeric values.
      *     @type \Google\Protobuf\Value $gauge
@@ -388,8 +399,8 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
     /**
      * Worker-computed aggregate value for the "Set" aggregation kind.  The only
      * possible value type is a list of Values whose type can be Long, Double,
-     * or String, according to the metric's type.  All Values in the list must
-     * be of the same type.
+     * String, or BoundedTrie according to the metric's type.  All Values in the
+     * list must be of the same type.
      *
      * Generated from protobuf field <code>.google.protobuf.Value set = 7;</code>
      * @return \Google\Protobuf\Value|null
@@ -412,8 +423,8 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
     /**
      * Worker-computed aggregate value for the "Set" aggregation kind.  The only
      * possible value type is a list of Values whose type can be Long, Double,
-     * or String, according to the metric's type.  All Values in the list must
-     * be of the same type.
+     * String, or BoundedTrie according to the metric's type.  All Values in the
+     * list must be of the same type.
      *
      * Generated from protobuf field <code>.google.protobuf.Value set = 7;</code>
      * @param \Google\Protobuf\Value $var
@@ -423,6 +434,44 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Value::class);
         $this->set = $var;
+
+        return $this;
+    }
+
+    /**
+     * Worker-computed aggregate value for the "Trie" aggregation kind.  The only
+     * possible value type is a BoundedTrieNode.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value trie = 13;</code>
+     * @return \Google\Protobuf\Value|null
+     */
+    public function getTrie()
+    {
+        return $this->trie;
+    }
+
+    public function hasTrie()
+    {
+        return isset($this->trie);
+    }
+
+    public function clearTrie()
+    {
+        unset($this->trie);
+    }
+
+    /**
+     * Worker-computed aggregate value for the "Trie" aggregation kind.  The only
+     * possible value type is a BoundedTrieNode.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value trie = 13;</code>
+     * @param \Google\Protobuf\Value $var
+     * @return $this
+     */
+    public function setTrie($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Value::class);
+        $this->trie = $var;
 
         return $this;
     }

@@ -22,7 +22,7 @@ class AnnotatedMessagePart extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string text = 1;</code>
      */
-    private $text = '';
+    protected $text = '';
     /**
      * The [Dialogflow system entity
      * type](https://cloud.google.com/dialogflow/docs/reference/system-entities)
@@ -31,7 +31,7 @@ class AnnotatedMessagePart extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entity_type = 2;</code>
      */
-    private $entity_type = '';
+    protected $entity_type = '';
     /**
      * The [Dialogflow system entity formatted value
      * ](https://cloud.google.com/dialogflow/docs/reference/system-entities) of
@@ -46,7 +46,7 @@ class AnnotatedMessagePart extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Value formatted_value = 3;</code>
      */
-    private $formatted_value = null;
+    protected $formatted_value = null;
 
     /**
      * Constructor.

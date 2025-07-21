@@ -20,13 +20,13 @@ class ReferenceSentencePair extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_sentence = 1;</code>
      */
-    private $source_sentence = '';
+    protected $source_sentence = '';
     /**
      * Target sentence in the sentence pair.
      *
      * Generated from protobuf field <code>string target_sentence = 2;</code>
      */
-    private $target_sentence = '';
+    protected $target_sentence = '';
 
     /**
      * Constructor.
@@ -99,6 +99,4 @@ class ReferenceSentencePair extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReferenceSentencePair::class, \Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest_ReferenceSentencePair::class);
 

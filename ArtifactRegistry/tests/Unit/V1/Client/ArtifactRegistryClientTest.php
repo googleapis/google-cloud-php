@@ -459,6 +459,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $cleanupPolicyDryRun = false;
         $disallowUnspecifiedMode = false;
         $satisfiesPzi = false;
+        $registryUri = 'registryUri-1328759190';
         $expectedResponse = new Repository();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -468,6 +469,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $expectedResponse->setCleanupPolicyDryRun($cleanupPolicyDryRun);
         $expectedResponse->setDisallowUnspecifiedMode($disallowUnspecifiedMode);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setRegistryUri($registryUri);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2062,6 +2064,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $cleanupPolicyDryRun = false;
         $disallowUnspecifiedMode = false;
         $satisfiesPzi = false;
+        $registryUri = 'registryUri-1328759190';
         $expectedResponse = new Repository();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
@@ -2071,6 +2074,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $expectedResponse->setCleanupPolicyDryRun($cleanupPolicyDryRun);
         $expectedResponse->setDisallowUnspecifiedMode($disallowUnspecifiedMode);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setRegistryUri($registryUri);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
@@ -3738,6 +3742,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $cleanupPolicyDryRun = false;
         $disallowUnspecifiedMode = false;
         $satisfiesPzi = false;
+        $registryUri = 'registryUri-1328759190';
         $expectedResponse = new Repository();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -3747,6 +3752,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $expectedResponse->setCleanupPolicyDryRun($cleanupPolicyDryRun);
         $expectedResponse->setDisallowUnspecifiedMode($disallowUnspecifiedMode);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setRegistryUri($registryUri);
         $transport->addResponse($expectedResponse);
         $request = new UpdateRepositoryRequest();
         $response = $gapicClient->updateRepository($request);

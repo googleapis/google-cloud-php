@@ -37,8 +37,6 @@ use Google\Shopping\Merchant\DataSources\V1beta\FetchDataSourceRequest;
 use Google\Shopping\Merchant\DataSources\V1beta\GetDataSourceRequest;
 use Google\Shopping\Merchant\DataSources\V1beta\ListDataSourcesRequest;
 use Google\Shopping\Merchant\DataSources\V1beta\ListDataSourcesResponse;
-use Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource;
-use Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource\Channel;
 use Google\Shopping\Merchant\DataSources\V1beta\UpdateDataSourceRequest;
 use stdClass;
 
@@ -94,10 +92,6 @@ class DataSourcesServiceClientTest extends GeneratedTest
         $dataSource = new DataSource();
         $dataSourceDisplayName = 'dataSourceDisplayName121757896';
         $dataSource->setDisplayName($dataSourceDisplayName);
-        $dataSourcePrimaryProductDataSource = new PrimaryProductDataSource();
-        $primaryProductDataSourceChannel = Channel::CHANNEL_UNSPECIFIED;
-        $dataSourcePrimaryProductDataSource->setChannel($primaryProductDataSourceChannel);
-        $dataSource->setPrimaryProductDataSource($dataSourcePrimaryProductDataSource);
         $request = (new CreateDataSourceRequest())->setParent($formattedParent)->setDataSource($dataSource);
         $response = $gapicClient->createDataSource($request);
         $this->assertEquals($expectedResponse, $response);
@@ -142,10 +136,6 @@ class DataSourcesServiceClientTest extends GeneratedTest
         $dataSource = new DataSource();
         $dataSourceDisplayName = 'dataSourceDisplayName121757896';
         $dataSource->setDisplayName($dataSourceDisplayName);
-        $dataSourcePrimaryProductDataSource = new PrimaryProductDataSource();
-        $primaryProductDataSourceChannel = Channel::CHANNEL_UNSPECIFIED;
-        $dataSourcePrimaryProductDataSource->setChannel($primaryProductDataSourceChannel);
-        $dataSource->setPrimaryProductDataSource($dataSourcePrimaryProductDataSource);
         $request = (new CreateDataSourceRequest())->setParent($formattedParent)->setDataSource($dataSource);
         try {
             $gapicClient->createDataSource($request);
@@ -457,10 +447,6 @@ class DataSourcesServiceClientTest extends GeneratedTest
         $dataSource = new DataSource();
         $dataSourceDisplayName = 'dataSourceDisplayName121757896';
         $dataSource->setDisplayName($dataSourceDisplayName);
-        $dataSourcePrimaryProductDataSource = new PrimaryProductDataSource();
-        $primaryProductDataSourceChannel = Channel::CHANNEL_UNSPECIFIED;
-        $dataSourcePrimaryProductDataSource->setChannel($primaryProductDataSourceChannel);
-        $dataSource->setPrimaryProductDataSource($dataSourcePrimaryProductDataSource);
         $updateMask = new FieldMask();
         $request = (new UpdateDataSourceRequest())->setDataSource($dataSource)->setUpdateMask($updateMask);
         $response = $gapicClient->updateDataSource($request);
@@ -505,10 +491,6 @@ class DataSourcesServiceClientTest extends GeneratedTest
         $dataSource = new DataSource();
         $dataSourceDisplayName = 'dataSourceDisplayName121757896';
         $dataSource->setDisplayName($dataSourceDisplayName);
-        $dataSourcePrimaryProductDataSource = new PrimaryProductDataSource();
-        $primaryProductDataSourceChannel = Channel::CHANNEL_UNSPECIFIED;
-        $dataSourcePrimaryProductDataSource->setChannel($primaryProductDataSourceChannel);
-        $dataSource->setPrimaryProductDataSource($dataSourcePrimaryProductDataSource);
         $updateMask = new FieldMask();
         $request = (new UpdateDataSourceRequest())->setDataSource($dataSource)->setUpdateMask($updateMask);
         try {
@@ -546,10 +528,6 @@ class DataSourcesServiceClientTest extends GeneratedTest
         $dataSource = new DataSource();
         $dataSourceDisplayName = 'dataSourceDisplayName121757896';
         $dataSource->setDisplayName($dataSourceDisplayName);
-        $dataSourcePrimaryProductDataSource = new PrimaryProductDataSource();
-        $primaryProductDataSourceChannel = Channel::CHANNEL_UNSPECIFIED;
-        $dataSourcePrimaryProductDataSource->setChannel($primaryProductDataSourceChannel);
-        $dataSource->setPrimaryProductDataSource($dataSourcePrimaryProductDataSource);
         $request = (new CreateDataSourceRequest())->setParent($formattedParent)->setDataSource($dataSource);
         $response = $gapicClient->createDataSourceAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);

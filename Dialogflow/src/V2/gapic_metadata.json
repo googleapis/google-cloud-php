@@ -69,6 +69,50 @@
                 }
             }
         },
+        "Generators": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "GeneratorsGapicClient",
+                    "rpcs": {
+                        "CreateGenerator": {
+                            "methods": [
+                                "createGenerator"
+                            ]
+                        },
+                        "DeleteGenerator": {
+                            "methods": [
+                                "deleteGenerator"
+                            ]
+                        },
+                        "GetGenerator": {
+                            "methods": [
+                                "getGenerator"
+                            ]
+                        },
+                        "ListGenerators": {
+                            "methods": [
+                                "listGenerators"
+                            ]
+                        },
+                        "UpdateGenerator": {
+                            "methods": [
+                                "updateGenerator"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "Contexts": {
             "clients": {
                 "grpc": {
@@ -466,50 +510,6 @@
                 }
             }
         },
-        "Generators": {
-            "clients": {
-                "grpc": {
-                    "libraryClient": "GeneratorsGapicClient",
-                    "rpcs": {
-                        "CreateGenerator": {
-                            "methods": [
-                                "createGenerator"
-                            ]
-                        },
-                        "DeleteGenerator": {
-                            "methods": [
-                                "deleteGenerator"
-                            ]
-                        },
-                        "GetGenerator": {
-                            "methods": [
-                                "getGenerator"
-                            ]
-                        },
-                        "ListGenerators": {
-                            "methods": [
-                                "listGenerators"
-                            ]
-                        },
-                        "UpdateGenerator": {
-                            "methods": [
-                                "updateGenerator"
-                            ]
-                        },
-                        "GetLocation": {
-                            "methods": [
-                                "getLocation"
-                            ]
-                        },
-                        "ListLocations": {
-                            "methods": [
-                                "listLocations"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
         "Conversations": {
             "clients": {
                 "grpc": {
@@ -535,9 +535,19 @@
                                 "generateStatelessSummary"
                             ]
                         },
+                        "GenerateSuggestions": {
+                            "methods": [
+                                "generateSuggestions"
+                            ]
+                        },
                         "GetConversation": {
                             "methods": [
                                 "getConversation"
+                            ]
+                        },
+                        "IngestContextReferences": {
+                            "methods": [
+                                "ingestContextReferences"
                             ]
                         },
                         "ListConversations": {

@@ -291,9 +291,45 @@ return [
                     ],
                 ],
             ],
+            'RestartAutonomousDatabase' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/autonomousDatabases/*}:restart',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'RestoreAutonomousDatabase' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/autonomousDatabases/*}:restore',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'StartAutonomousDatabase' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/autonomousDatabases/*}:start',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'StopAutonomousDatabase' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/autonomousDatabases/*}:stop',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [

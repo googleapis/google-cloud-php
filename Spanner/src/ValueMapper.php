@@ -20,8 +20,10 @@ namespace Google\Cloud\Spanner;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\TimeTrait;
-use Google\Cloud\Spanner\V1\TypeCode;
 use Google\Cloud\Spanner\V1\TypeAnnotationCode;
+use Google\Cloud\Spanner\V1\TypeCode;
+use Google\Protobuf\Internal\DescriptorPool;
+use Google\Protobuf\Internal\Message;
 
 /**
  * Manage value mappings between Google Cloud PHP and Cloud Spanner
@@ -43,6 +45,8 @@ class ValueMapper
     const TYPE_STRUCT = TypeCode::STRUCT;
     const TYPE_NUMERIC = TypeCode::NUMERIC;
     const TYPE_JSON = TypeCode::JSON;
+    const TYPE_PROTO = TypeCode::PROTO;
+    const TYPE_INTERVAL = TypeCode::INTERVAL;
     const TYPE_PG_NUMERIC = 'pgNumeric';
     const TYPE_PG_JSONB = 'pgJsonb';
     const TYPE_PG_OID = 'pgOid';
@@ -67,6 +71,8 @@ class ValueMapper
         self::TYPE_PG_JSONB,
         self::TYPE_PG_OID,
         self::TYPE_FLOAT32,
+        self::TYPE_PROTO,
+        self::TYPE_INTERVAL,
     ];
 
     /*
@@ -150,11 +156,11 @@ class ValueMapper
 
             $definition = null;
             if ($type) {
-                list ($type, $definition) = $this->resolveTypeDefinition($type, $key);
+                list($type, $definition) = $this->resolveTypeDefinition($type, $key);
             }
 
             $paramDefinition = $this->paramType($value, $type, $definition);
-            list ($parameters[$key], $paramTypes[$key]) = $paramDefinition;
+            list($parameters[$key], $paramTypes[$key]) = $paramDefinition;
         }
 
         return [
@@ -367,6 +373,19 @@ class ValueMapper
                 }
 
                 break;
+            case self::TYPE_PROTO:
+                $value = new Proto($value, $type['protoTypeFqn']);
+                break;
+            case self::TYPE_INTERVAL:
+                if (!is_string($value)) {
+                    throw new \RuntimeException(sprintf(
+                        'Unexpected value %s in %s field.',
+                        $value,
+                        TypeCode::name($type['code'])
+                    ));
+                }
+                $value = Interval::parse($value);
+                break;
         }
 
         return $value;
@@ -446,14 +465,14 @@ class ValueMapper
                 break;
 
             case 'object':
-                list ($type, $value) = $this->objectParam($value);
+                list($type, $value) = $this->objectParam($value);
                 break;
 
             case 'array':
                 if ($givenType === Database::TYPE_STRUCT) {
                     if (!($definition instanceof StructType)) {
                         throw new \InvalidArgumentException(
-                            'Struct parameter types must be declared explicitly, and must '.
+                            'Struct parameter types must be declared explicitly, and must ' .
                             'be an instance of Google\Cloud\Spanner\StructType.'
                         );
                     }
@@ -462,7 +481,7 @@ class ValueMapper
                         $value = (array) $value;
                     }
 
-                    list ($value, $type) = $this->structParam($value, $definition);
+                    list($value, $type) = $this->structParam($value, $definition);
                 } else {
                     if (!($definition instanceof ArrayType)) {
                         throw new \InvalidArgumentException(
@@ -470,7 +489,7 @@ class ValueMapper
                         );
                     }
 
-                    list ($value, $type) = $this->arrayParam($value, $definition, $allowMixedArrayType);
+                    list($value, $type) = $this->arrayParam($value, $definition, $allowMixedArrayType);
                 }
 
                 break;
@@ -652,6 +671,7 @@ class ValueMapper
 
         // counts the diff data types used inside the array
         $uniqueTypes = [];
+        $protoTypeFqn = null;
         $res = null;
         if ($value !== null) {
             $res = [];
@@ -682,6 +702,10 @@ class ValueMapper
                         $inferredType['typeAnnotation'] = $type[1]['typeAnnotation'];
                     }
 
+                    if (isset($type[1]['protoTypeFqn'])) {
+                        $protoTypeFqn = $type[1]['protoTypeFqn'];
+                    }
+
                     $inferredTypes[] = $inferredType;
                 }
             }
@@ -690,7 +714,6 @@ class ValueMapper
         if (!$allowMixedArrayType && count($uniqueTypes) > 1) {
             throw new \InvalidArgumentException('Array values may not be of mixed type');
         }
-
 
         // get typeCode either from the array type or the first element's inferred type
         $typeCode = self::isCustomType($arrayObj->type())
@@ -723,6 +746,9 @@ class ValueMapper
             $typeObject = $nestedDef[1];
         } else {
             $typeObject = $this->typeObject($typeCode, $typeAnnotationCode);
+            if ($protoTypeFqn) {
+                $typeObject['protoTypeFqn'] = $protoTypeFqn;
+            }
         }
 
         $type = $this->typeObject(
@@ -754,16 +780,40 @@ class ValueMapper
                           ? $value->typeAnnotation()
                           : null;
 
-            return [
-                $this->typeObject($value->type(), $typeAnnotation),
-                $value->formatAsString()
-            ];
+            $typeObject = $this->typeObject($value->type(), $typeAnnotation);
+
+            if ($value instanceof Proto) {
+                $typeObject['protoTypeFqn'] = $value->getProtoTypeFqn();
+            }
+
+            return [$typeObject, $value->formatAsString()];
         }
 
         if ($value instanceof Int64) {
             return [
                 $this->typeObject(self::TYPE_INT64),
                 $value->get()
+            ];
+        }
+
+        if ($value instanceof Message) {
+            $fullName = DescriptorPool::getGeneratedPool()
+                ->getDescriptorByClassName(get_class($value))
+                ->getFullName();
+            $typeObject = [
+                'code' => self::TYPE_PROTO,
+                'protoTypeFqn' => $fullName,
+            ];
+            return [
+                $typeObject,
+                base64_encode($value->serializetoString())
+            ];
+        }
+
+        if ($value instanceof Interval) {
+            return [
+                $this->typeObject(self::TYPE_INTERVAL),
+                $value->__toString(),
             ];
         }
 

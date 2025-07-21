@@ -35,6 +35,10 @@ return [
                     ],
                 ],
             ],
+            'CreateCustomEmoji' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\CustomEmoji',
+            ],
             'CreateMembership' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\Membership',
@@ -74,6 +78,18 @@ return [
             'CreateSpace' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\Space',
+            ],
+            'DeleteCustomEmoji' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
             'DeleteMembership' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -139,6 +155,18 @@ return [
                     ],
                 ],
             ],
+            'GetCustomEmoji' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\CustomEmoji',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetMembership' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\Membership',
@@ -187,6 +215,18 @@ return [
                     ],
                 ],
             ],
+            'GetSpaceNotificationSetting' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\SpaceNotificationSetting',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetSpaceReadState' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\SpaceReadState',
@@ -210,6 +250,18 @@ return [
                         ],
                     ],
                 ],
+            ],
+            'ListCustomEmojis' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getCustomEmojis',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\ListCustomEmojisResponse',
             ],
             'ListMemberships' => [
                 'pageStreaming' => [
@@ -358,6 +410,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateSpaceNotificationSetting' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\SpaceNotificationSetting',
+                'headerParams' => [
+                    [
+                        'keyName' => 'space_notification_setting.name',
+                        'fieldAccessors' => [
+                            'getSpaceNotificationSetting',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateSpaceReadState' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\SpaceReadState',
@@ -385,12 +450,14 @@ return [
             ],
             'templateMap' => [
                 'attachment' => 'spaces/{space}/messages/{message}/attachments/{attachment}',
+                'customEmoji' => 'customEmojis/{custom_emoji}',
                 'membership' => 'spaces/{space}/members/{member}',
                 'message' => 'spaces/{space}/messages/{message}',
                 'quotedMessageMetadata' => 'spaces/{space}/messages/{message}/quotedMessageMetadata/{quoted_message_metadata}',
                 'reaction' => 'spaces/{space}/messages/{message}/reactions/{reaction}',
                 'space' => 'spaces/{space}',
                 'spaceEvent' => 'spaces/{space}/spaceEvents/{space_event}',
+                'spaceNotificationSetting' => 'users/{user}/spaces/{space}/spaceNotificationSetting',
                 'spaceReadState' => 'users/{user}/spaces/{space}/spaceReadState',
                 'thread' => 'spaces/{space}/threads/{thread}',
                 'threadReadState' => 'users/{user}/spaces/{space}/threads/{thread}/threadReadState',

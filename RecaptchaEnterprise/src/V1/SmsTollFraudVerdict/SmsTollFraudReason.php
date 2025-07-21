@@ -52,6 +52,4 @@ class SmsTollFraudReason
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SmsTollFraudReason::class, \Google\Cloud\RecaptchaEnterprise\V1\SmsTollFraudVerdict_SmsTollFraudReason::class);
 

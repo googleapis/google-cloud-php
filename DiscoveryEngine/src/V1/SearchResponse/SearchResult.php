@@ -38,6 +38,12 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Chunk chunk = 18;</code>
      */
     protected $chunk = null;
+    /**
+     * Output only. Google provided available scores.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.DoubleList> model_scores = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $model_scores;
 
     /**
      * Constructor.
@@ -56,6 +62,8 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      *           [SearchRequest.ContentSearchSpec.search_result_mode][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.search_result_mode]
      *           is set to
      *           [CHUNKS][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS].
+     *     @type array|\Google\Protobuf\Internal\MapField $model_scores
+     *           Output only. Google provided available scores.
      * }
      */
     public function __construct($data = NULL) {
@@ -167,6 +175,32 @@ class SearchResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\Chunk::class);
         $this->chunk = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Google provided available scores.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.DoubleList> model_scores = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getModelScores()
+    {
+        return $this->model_scores;
+    }
+
+    /**
+     * Output only. Google provided available scores.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.DoubleList> model_scores = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setModelScores($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\DoubleList::class);
+        $this->model_scores = $arr;
 
         return $this;
     }

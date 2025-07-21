@@ -18,6 +18,7 @@ class UpdateInputRequest extends \Google\Protobuf\Internal\Message
     /**
      * Field mask is used to specify the fields to be overwritten in the Input
      * resource by the update. You can only update the following fields:
+     * * [`tier`](https://cloud.google.com/livestream/docs/reference/rest/v1/projects.locations.inputs#Tier)
      * * [`preprocessingConfig`](https://cloud.google.com/livestream/docs/reference/rest/v1/projects.locations.inputs#PreprocessingConfig)
      * * [`securityRules`](https://cloud.google.com/livestream/docs/reference/rest/v1/projects.locations.inputs#SecurityRule)
      * The fields specified in the update_mask are relative to the resource, not
@@ -57,6 +58,7 @@ class UpdateInputRequest extends \Google\Protobuf\Internal\Message
      * @param \Google\Protobuf\FieldMask              $updateMask Field mask is used to specify the fields to be overwritten in the Input
      *                                                            resource by the update. You can only update the following fields:
      *
+     *                                                            * [`tier`](https://cloud.google.com/livestream/docs/reference/rest/v1/projects.locations.inputs#Tier)
      *                                                            * [`preprocessingConfig`](https://cloud.google.com/livestream/docs/reference/rest/v1/projects.locations.inputs#PreprocessingConfig)
      *                                                            * [`securityRules`](https://cloud.google.com/livestream/docs/reference/rest/v1/projects.locations.inputs#SecurityRule)
      *
@@ -87,6 +89,7 @@ class UpdateInputRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Field mask is used to specify the fields to be overwritten in the Input
      *           resource by the update. You can only update the following fields:
+     *           * [`tier`](https://cloud.google.com/livestream/docs/reference/rest/v1/projects.locations.inputs#Tier)
      *           * [`preprocessingConfig`](https://cloud.google.com/livestream/docs/reference/rest/v1/projects.locations.inputs#PreprocessingConfig)
      *           * [`securityRules`](https://cloud.google.com/livestream/docs/reference/rest/v1/projects.locations.inputs#SecurityRule)
      *           The fields specified in the update_mask are relative to the resource, not
@@ -118,6 +121,7 @@ class UpdateInputRequest extends \Google\Protobuf\Internal\Message
     /**
      * Field mask is used to specify the fields to be overwritten in the Input
      * resource by the update. You can only update the following fields:
+     * * [`tier`](https://cloud.google.com/livestream/docs/reference/rest/v1/projects.locations.inputs#Tier)
      * * [`preprocessingConfig`](https://cloud.google.com/livestream/docs/reference/rest/v1/projects.locations.inputs#PreprocessingConfig)
      * * [`securityRules`](https://cloud.google.com/livestream/docs/reference/rest/v1/projects.locations.inputs#SecurityRule)
      * The fields specified in the update_mask are relative to the resource, not
@@ -147,6 +151,7 @@ class UpdateInputRequest extends \Google\Protobuf\Internal\Message
     /**
      * Field mask is used to specify the fields to be overwritten in the Input
      * resource by the update. You can only update the following fields:
+     * * [`tier`](https://cloud.google.com/livestream/docs/reference/rest/v1/projects.locations.inputs#Tier)
      * * [`preprocessingConfig`](https://cloud.google.com/livestream/docs/reference/rest/v1/projects.locations.inputs#PreprocessingConfig)
      * * [`securityRules`](https://cloud.google.com/livestream/docs/reference/rest/v1/projects.locations.inputs#SecurityRule)
      * The fields specified in the update_mask are relative to the resource, not

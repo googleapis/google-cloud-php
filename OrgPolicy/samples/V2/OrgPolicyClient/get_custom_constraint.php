@@ -29,13 +29,13 @@ use Google\Cloud\OrgPolicy\V2\CustomConstraint;
 use Google\Cloud\OrgPolicy\V2\GetCustomConstraintRequest;
 
 /**
- * Gets a custom constraint.
+ * Gets a custom or managed constraint.
  *
  * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
- * custom constraint does not exist.
+ * custom or managed constraint does not exist.
  *
- * @param string $formattedName Resource name of the custom constraint. See the custom constraint
- *                              entry for naming requirements. Please see
+ * @param string $formattedName Resource name of the custom or managed constraint. See the custom
+ *                              constraint entry for naming requirements. Please see
  *                              {@see OrgPolicyClient::customConstraintName()} for help formatting this field.
  */
 function get_custom_constraint_sample(string $formattedName): void

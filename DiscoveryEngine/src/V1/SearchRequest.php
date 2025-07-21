@@ -94,10 +94,13 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      */
     protected $one_box_page_size = 0;
     /**
-     * Specs defining dataStores to filter on in a search call and configurations
-     * for those dataStores. This is only considered for engines with multiple
-     * dataStores use case. For single dataStore within an engine, they should
-     * use the specs at the top level.
+     * Specifications that define the specific
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore]s to be searched,
+     * along with configurations for those data stores. This is only considered
+     * for [Engine][google.cloud.discoveryengine.v1.Engine]s with multiple data
+     * stores. For engines with a single data store, the specs directly under
+     * [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] should be
+     * used.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec data_store_specs = 32;</code>
      */
@@ -152,7 +155,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     protected $order_by = '';
     /**
      * Information about the end user.
-     * Highly recommended for analytics.
+     * Highly recommended for analytics and personalization.
      * [UserInfo.user_agent][google.cloud.discoveryengine.v1.UserInfo.user_agent]
      * is used to deduce `device_type` for analytics.
      *
@@ -273,6 +276,13 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      */
     protected $search_as_you_type_spec = null;
     /**
+     * Optional. Config for display feature, like match highlighting on search
+     * results.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.DisplaySpec display_spec = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $display_spec = null;
+    /**
      * The session resource name. Optional.
      * Session allows users to do multi-turn /search API calls or coordination
      * between /search API calls and /answer API calls.
@@ -305,6 +315,22 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.SessionSpec session_spec = 42;</code>
      */
     protected $session_spec = null;
+    /**
+     * The relevance threshold of the search results.
+     * Default to Google defined threshold, leveraging a balance of
+     * precision and recall to deliver both highly accurate results and
+     * comprehensive coverage of relevant information.
+     * This feature is not supported for healthcare search.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.RelevanceThreshold relevance_threshold = 44;</code>
+     */
+    protected $relevance_threshold = 0;
+    /**
+     * Optional. The specification for returning the relevance score.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.RelevanceScoreSpec relevance_score_spec = 52 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $relevance_score_spec = null;
 
     /**
      * Constructor.
@@ -357,10 +383,13 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           This applies to each OneBox type individually.
      *           Default number is 10.
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $data_store_specs
-     *           Specs defining dataStores to filter on in a search call and configurations
-     *           for those dataStores. This is only considered for engines with multiple
-     *           dataStores use case. For single dataStore within an engine, they should
-     *           use the specs at the top level.
+     *           Specifications that define the specific
+     *           [DataStore][google.cloud.discoveryengine.v1.DataStore]s to be searched,
+     *           along with configurations for those data stores. This is only considered
+     *           for [Engine][google.cloud.discoveryengine.v1.Engine]s with multiple data
+     *           stores. For engines with a single data store, the specs directly under
+     *           [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] should be
+     *           used.
      *     @type string $filter
      *           The filter syntax consists of an expression language for constructing a
      *           predicate from one or more fields of the documents being filtered. Filter
@@ -399,7 +428,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      *     @type \Google\Cloud\DiscoveryEngine\V1\UserInfo $user_info
      *           Information about the end user.
-     *           Highly recommended for analytics.
+     *           Highly recommended for analytics and personalization.
      *           [UserInfo.user_agent][google.cloud.discoveryengine.v1.UserInfo.user_agent]
      *           is used to deduce `device_type` for analytics.
      *     @type string $language_code
@@ -471,6 +500,9 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           Search as you type configuration. Only supported for the
      *           [IndustryVertical.MEDIA][google.cloud.discoveryengine.v1.IndustryVertical.MEDIA]
      *           vertical.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\DisplaySpec $display_spec
+     *           Optional. Config for display feature, like match highlighting on search
+     *           results.
      *     @type string $session
      *           The session resource name. Optional.
      *           Session allows users to do multi-turn /search API calls or coordination
@@ -496,6 +528,14 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SessionSpec $session_spec
      *           Session specification.
      *           Can be used only when `session` is set.
+     *     @type int $relevance_threshold
+     *           The relevance threshold of the search results.
+     *           Default to Google defined threshold, leveraging a balance of
+     *           precision and recall to deliver both highly accurate results and
+     *           comprehensive coverage of relevant information.
+     *           This feature is not supported for healthcare search.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\RelevanceScoreSpec $relevance_score_spec
+     *           Optional. The specification for returning the relevance score.
      * }
      */
     public function __construct($data = NULL) {
@@ -778,10 +818,13 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specs defining dataStores to filter on in a search call and configurations
-     * for those dataStores. This is only considered for engines with multiple
-     * dataStores use case. For single dataStore within an engine, they should
-     * use the specs at the top level.
+     * Specifications that define the specific
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore]s to be searched,
+     * along with configurations for those data stores. This is only considered
+     * for [Engine][google.cloud.discoveryengine.v1.Engine]s with multiple data
+     * stores. For engines with a single data store, the specs directly under
+     * [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] should be
+     * used.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec data_store_specs = 32;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -792,10 +835,13 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specs defining dataStores to filter on in a search call and configurations
-     * for those dataStores. This is only considered for engines with multiple
-     * dataStores use case. For single dataStore within an engine, they should
-     * use the specs at the top level.
+     * Specifications that define the specific
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore]s to be searched,
+     * along with configurations for those data stores. This is only considered
+     * for [Engine][google.cloud.discoveryengine.v1.Engine]s with multiple data
+     * stores. For engines with a single data store, the specs directly under
+     * [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] should be
+     * used.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec data_store_specs = 32;</code>
      * @param array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $var
@@ -949,7 +995,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Information about the end user.
-     * Highly recommended for analytics.
+     * Highly recommended for analytics and personalization.
      * [UserInfo.user_agent][google.cloud.discoveryengine.v1.UserInfo.user_agent]
      * is used to deduce `device_type` for analytics.
      *
@@ -973,7 +1019,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Information about the end user.
-     * Highly recommended for analytics.
+     * Highly recommended for analytics and personalization.
      * [UserInfo.user_agent][google.cloud.discoveryengine.v1.UserInfo.user_agent]
      * is used to deduce `device_type` for analytics.
      *
@@ -1420,6 +1466,44 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Config for display feature, like match highlighting on search
+     * results.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.DisplaySpec display_spec = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchRequest\DisplaySpec|null
+     */
+    public function getDisplaySpec()
+    {
+        return $this->display_spec;
+    }
+
+    public function hasDisplaySpec()
+    {
+        return isset($this->display_spec);
+    }
+
+    public function clearDisplaySpec()
+    {
+        unset($this->display_spec);
+    }
+
+    /**
+     * Optional. Config for display feature, like match highlighting on search
+     * results.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.DisplaySpec display_spec = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\DisplaySpec $var
+     * @return $this
+     */
+    public function setDisplaySpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\DisplaySpec::class);
+        $this->display_spec = $var;
+
+        return $this;
+    }
+
+    /**
      * The session resource name. Optional.
      * Session allows users to do multi-turn /search API calls or coordination
      * between /search API calls and /answer API calls.
@@ -1519,6 +1603,76 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SessionSpec::class);
         $this->session_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * The relevance threshold of the search results.
+     * Default to Google defined threshold, leveraging a balance of
+     * precision and recall to deliver both highly accurate results and
+     * comprehensive coverage of relevant information.
+     * This feature is not supported for healthcare search.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.RelevanceThreshold relevance_threshold = 44;</code>
+     * @return int
+     */
+    public function getRelevanceThreshold()
+    {
+        return $this->relevance_threshold;
+    }
+
+    /**
+     * The relevance threshold of the search results.
+     * Default to Google defined threshold, leveraging a balance of
+     * precision and recall to deliver both highly accurate results and
+     * comprehensive coverage of relevant information.
+     * This feature is not supported for healthcare search.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.RelevanceThreshold relevance_threshold = 44;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRelevanceThreshold($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\RelevanceThreshold::class);
+        $this->relevance_threshold = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The specification for returning the relevance score.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.RelevanceScoreSpec relevance_score_spec = 52 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchRequest\RelevanceScoreSpec|null
+     */
+    public function getRelevanceScoreSpec()
+    {
+        return $this->relevance_score_spec;
+    }
+
+    public function hasRelevanceScoreSpec()
+    {
+        return isset($this->relevance_score_spec);
+    }
+
+    public function clearRelevanceScoreSpec()
+    {
+        unset($this->relevance_score_spec);
+    }
+
+    /**
+     * Optional. The specification for returning the relevance score.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.RelevanceScoreSpec relevance_score_spec = 52 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\RelevanceScoreSpec $var
+     * @return $this
+     */
+    public function setRelevanceScoreSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\RelevanceScoreSpec::class);
+        $this->relevance_score_spec = $var;
 
         return $this;
     }

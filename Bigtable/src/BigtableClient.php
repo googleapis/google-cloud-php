@@ -17,16 +17,19 @@
 
 namespace Google\Cloud\Bigtable;
 
+use Google\ApiCore\ArrayTrait;
+use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\Serializer;
+use Google\ApiCore\Transport\GrpcTransport;
+use Google\ApiCore\Transport\RestTransport;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\ApiCore\ArrayTrait;
-use Google\ApiCore\ClientOptionsTrait;
-use Google\ApiCore\Serializer;
 use Google\Cloud\Bigtable\V2\Client\BigtableClient as GapicClient;
+use Google\Cloud\Bigtable\V2\PingAndWarmRequest;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\DetectProjectIdTrait;
-use Google\Cloud\Core\RequestHandler;
 
 /**
  * Google Cloud Bigtable is Google's NoSQL Big Data database service.
@@ -45,6 +48,10 @@ class BigtableClient
     use ArrayTrait;
     use DetectProjectIdTrait;
     use ClientOptionsTrait;
+    use ApiHelperTrait;
+
+    // The name of the service. Used in debug logging.
+    private const SERVICE_NAME = 'google.bigtable.v2.Bigtable';
 
     /**
      * @var GapicClient
@@ -55,6 +62,23 @@ class BigtableClient
      * @var Serializer
      */
     private Serializer $serializer;
+
+    /**
+     * Invoke {@see GapicClient::pingAndWarm()} when {@see self::table()} is called
+     * in order to establish a persistent gRPC channel before making an RPC call.
+     *
+     * @experimental
+     * @var bool
+     */
+    private $pingAndWarm;
+
+    /**
+     * An in-memory array to ensure pingAndWarm is only called once per instance.
+     *
+     * @experimental
+     * @var array
+     */
+    private $pingAndWarmCalled = [];
 
     /**
      * Create a Bigtable client.
@@ -72,14 +96,13 @@ class BigtableClient
      *           This option accepts either a path to a credentials file, or a
      *           decoded credentials file as a PHP array.
      *           *Advanced usage*: In addition, this option can also accept a
-     *           pre-constructed {@see Google\Auth\FetchAuthTokenInterface} object
-     *           or {@see Google\ApiCore\CredentialsWrapper} object. Note that when
-     *           one of these objects are provided, any settings in
-     *           $config['credentialsConfig'] will be ignored.
+     *           pre-constructed {@see FetchAuthTokenInterface} object
+     *           or {@see CredentialsWrapper} object. Note that when one of
+     *           these objects are provided, any settings in
+     *           `$config['credentialsConfig']` will be ignored.
      *     @type array $credentialsConfig Options used to configure credentials,
      *           including auth token caching, for the client. For a full list of
-     *           supporting configuration options, see
-     *           {@see Google\ApiCore\CredentialsWrapper}.
+     *           supporting configuration options, see {@see CredentialsWrapper}.
      *     @type bool $disableRetries Determines whether or not retries defined by
      *           the client configuration should be disabled. **Defaults to**
      *           `false`.
@@ -90,9 +113,8 @@ class BigtableClient
      *           executing network requests. May be either the string `rest` or
      *           `grpc`. **Defaults to** `grpc` if gRPC support is detected on
      *           the system. *Advanced usage*: Additionally, it is possible to
-     *           pass in an already instantiated
-     *           {@see Google\ApiCore\Transport\TransportInterface} object. Note
-     *           that when this object is provided, any settings in
+     *           pass in an already instantiated {@see TransportInterface}
+     *           object. Note that when this object is provided, any settings in
      *           $config['transportConfig'] and the $config['apiEndpoint']
      *           setting will be ignored.
      *     @type array $transportConfig Configuration options that will be used to
@@ -102,11 +124,13 @@ class BigtableClient
      *               'grpc' => [...],
      *               'rest' => [...]
      *           ];
-     *           See the `build` method on {@see Google\ApiCore\Transport\GrpcTransport}
-     *           and {@see Google\ApiCore\Transport\RestTransport} for the
-     *           supported options.
+     *           See the `build` method on {@see GrpcTransport} and
+     *           {@see RestTransport} for the supported options.
      *     @type string $quotaProject Specifies a user project to bill for
      *           access charges associated with the request.
+     *     @type bool $pingAndWarm EXPERIMENTAL When true, calls the
+     *           {@see GapicClient::pingAndWarm()} RPC to establish a persistent
+     *           gRPC channel before making an RPC call.
      * }
      * @throws ValidationException
      */
@@ -136,6 +160,7 @@ class BigtableClient
 
         $this->projectId = $this->detectProjectId($detectProjectIdConfig);
         $this->serializer = new Serializer();
+        $this->pingAndWarm = $config['pingAndWarm'] ?? false;
         $this->gapicClient = new GapicClient($config);
     }
 
@@ -161,6 +186,17 @@ class BigtableClient
      */
     public function table($instanceId, $tableId, array $options = [])
     {
+        if ($this->pingAndWarm && !($this->pingAndWarmCalled[$instanceId] ?? false)) {
+            // The default deadline is configured by the "clientConfig" option, which uses
+            // `src/V2/resources/bigtable_client_config.json`.
+            // This default deadline should be high enough to absorb cold connection latencies.
+            list($data, $callOptions) = $this->splitOptionalArgs($options);
+            $data['name'] = GapicClient::instanceName($this->projectId, $instanceId);
+            $request = $this->serializer->decodeMessage(new PingAndWarmRequest(), $data);
+            $this->gapicClient->pingAndWarm($request, $callOptions);
+            $this->pingAndWarmCalled[$instanceId] = true;
+        }
+
         return new Table(
             $this->gapicClient,
             $this->serializer,

@@ -27,6 +27,8 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ContainerAnalysis\V1\Client\ContainerAnalysisClient;
+use Google\Cloud\ContainerAnalysis\V1\ExportSBOMRequest;
+use Google\Cloud\ContainerAnalysis\V1\ExportSBOMResponse;
 use Google\Cloud\ContainerAnalysis\V1\GetVulnerabilityOccurrencesSummaryRequest;
 use Google\Cloud\ContainerAnalysis\V1\VulnerabilityOccurrencesSummary;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -65,6 +67,71 @@ class ContainerAnalysisClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new ContainerAnalysisClient($options);
+    }
+
+    /** @test */
+    public function exportSBOMTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $discoveryOccurrence = 'discoveryOccurrence704596928';
+        $expectedResponse = new ExportSBOMResponse();
+        $expectedResponse->setDiscoveryOccurrence($discoveryOccurrence);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $name = 'name3373707';
+        $request = (new ExportSBOMRequest())->setName($name);
+        $response = $gapicClient->exportSBOM($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.containeranalysis.v1.ContainerAnalysis/ExportSBOM', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function exportSBOMExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $name = 'name3373707';
+        $request = (new ExportSBOMRequest())->setName($name);
+        try {
+            $gapicClient->exportSBOM($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -342,7 +409,7 @@ class ContainerAnalysisClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function getIamPolicyAsyncTest()
+    public function exportSBOMAsyncTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -350,24 +417,22 @@ class ContainerAnalysisClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $version = 351608024;
-        $etag = '21';
-        $expectedResponse = new Policy();
-        $expectedResponse->setVersion($version);
-        $expectedResponse->setEtag($etag);
+        $discoveryOccurrence = 'discoveryOccurrence704596928';
+        $expectedResponse = new ExportSBOMResponse();
+        $expectedResponse->setDiscoveryOccurrence($discoveryOccurrence);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())->setResource($resource);
-        $response = $gapicClient->getIamPolicyAsync($request)->wait();
+        $name = 'name3373707';
+        $request = (new ExportSBOMRequest())->setName($name);
+        $response = $gapicClient->exportSBOMAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.devtools.containeranalysis.v1.ContainerAnalysis/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertSame('/google.devtools.containeranalysis.v1.ContainerAnalysis/ExportSBOM', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

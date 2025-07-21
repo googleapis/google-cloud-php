@@ -25,7 +25,7 @@ class RankRequest extends \Google\Protobuf\Internal\Message
     protected $ranking_config = '';
     /**
      * The identifier of the model to use. It is one of:
-     * * `semantic-ranker-512&#64;latest`: Semantic ranking model with maxiumn input
+     * * `semantic-ranker-512&#64;latest`: Semantic ranking model with maximum input
      * token size 512.
      * It is set to `semantic-ranker-512&#64;latest` by default if unspecified.
      *
@@ -90,7 +90,7 @@ class RankRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project_num}/locations/{location}/rankingConfigs/default_ranking_config`.
      *     @type string $model
      *           The identifier of the model to use. It is one of:
-     *           * `semantic-ranker-512&#64;latest`: Semantic ranking model with maxiumn input
+     *           * `semantic-ranker-512&#64;latest`: Semantic ranking model with maximum input
      *           token size 512.
      *           It is set to `semantic-ranker-512&#64;latest` by default if unspecified.
      *     @type int $top_n
@@ -156,7 +156,7 @@ class RankRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The identifier of the model to use. It is one of:
-     * * `semantic-ranker-512&#64;latest`: Semantic ranking model with maxiumn input
+     * * `semantic-ranker-512&#64;latest`: Semantic ranking model with maximum input
      * token size 512.
      * It is set to `semantic-ranker-512&#64;latest` by default if unspecified.
      *
@@ -170,7 +170,7 @@ class RankRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The identifier of the model to use. It is one of:
-     * * `semantic-ranker-512&#64;latest`: Semantic ranking model with maxiumn input
+     * * `semantic-ranker-512&#64;latest`: Semantic ranking model with maximum input
      * token size 512.
      * It is set to `semantic-ranker-512&#64;latest` by default if unspecified.
      *

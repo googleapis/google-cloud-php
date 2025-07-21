@@ -35,33 +35,51 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\GkeBackup\V1\Backup;
+use Google\Cloud\GkeBackup\V1\BackupChannel;
 use Google\Cloud\GkeBackup\V1\BackupPlan;
+use Google\Cloud\GkeBackup\V1\BackupPlanBinding;
+use Google\Cloud\GkeBackup\V1\CreateBackupChannelRequest;
 use Google\Cloud\GkeBackup\V1\CreateBackupPlanRequest;
 use Google\Cloud\GkeBackup\V1\CreateBackupRequest;
+use Google\Cloud\GkeBackup\V1\CreateRestoreChannelRequest;
 use Google\Cloud\GkeBackup\V1\CreateRestorePlanRequest;
 use Google\Cloud\GkeBackup\V1\CreateRestoreRequest;
+use Google\Cloud\GkeBackup\V1\DeleteBackupChannelRequest;
 use Google\Cloud\GkeBackup\V1\DeleteBackupPlanRequest;
 use Google\Cloud\GkeBackup\V1\DeleteBackupRequest;
+use Google\Cloud\GkeBackup\V1\DeleteRestoreChannelRequest;
 use Google\Cloud\GkeBackup\V1\DeleteRestorePlanRequest;
 use Google\Cloud\GkeBackup\V1\DeleteRestoreRequest;
+use Google\Cloud\GkeBackup\V1\GetBackupChannelRequest;
 use Google\Cloud\GkeBackup\V1\GetBackupIndexDownloadUrlRequest;
 use Google\Cloud\GkeBackup\V1\GetBackupIndexDownloadUrlResponse;
+use Google\Cloud\GkeBackup\V1\GetBackupPlanBindingRequest;
 use Google\Cloud\GkeBackup\V1\GetBackupPlanRequest;
 use Google\Cloud\GkeBackup\V1\GetBackupRequest;
+use Google\Cloud\GkeBackup\V1\GetRestoreChannelRequest;
+use Google\Cloud\GkeBackup\V1\GetRestorePlanBindingRequest;
 use Google\Cloud\GkeBackup\V1\GetRestorePlanRequest;
 use Google\Cloud\GkeBackup\V1\GetRestoreRequest;
 use Google\Cloud\GkeBackup\V1\GetVolumeBackupRequest;
 use Google\Cloud\GkeBackup\V1\GetVolumeRestoreRequest;
+use Google\Cloud\GkeBackup\V1\ListBackupChannelsRequest;
+use Google\Cloud\GkeBackup\V1\ListBackupPlanBindingsRequest;
 use Google\Cloud\GkeBackup\V1\ListBackupPlansRequest;
 use Google\Cloud\GkeBackup\V1\ListBackupsRequest;
+use Google\Cloud\GkeBackup\V1\ListRestoreChannelsRequest;
+use Google\Cloud\GkeBackup\V1\ListRestorePlanBindingsRequest;
 use Google\Cloud\GkeBackup\V1\ListRestorePlansRequest;
 use Google\Cloud\GkeBackup\V1\ListRestoresRequest;
 use Google\Cloud\GkeBackup\V1\ListVolumeBackupsRequest;
 use Google\Cloud\GkeBackup\V1\ListVolumeRestoresRequest;
 use Google\Cloud\GkeBackup\V1\Restore;
+use Google\Cloud\GkeBackup\V1\RestoreChannel;
 use Google\Cloud\GkeBackup\V1\RestorePlan;
+use Google\Cloud\GkeBackup\V1\RestorePlanBinding;
+use Google\Cloud\GkeBackup\V1\UpdateBackupChannelRequest;
 use Google\Cloud\GkeBackup\V1\UpdateBackupPlanRequest;
 use Google\Cloud\GkeBackup\V1\UpdateBackupRequest;
+use Google\Cloud\GkeBackup\V1\UpdateRestoreChannelRequest;
 use Google\Cloud\GkeBackup\V1\UpdateRestorePlanRequest;
 use Google\Cloud\GkeBackup\V1\UpdateRestoreRequest;
 use Google\Cloud\GkeBackup\V1\VolumeBackup;
@@ -77,6 +95,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: BackupForGKE allows Kubernetes administrators to configure, execute, and
@@ -91,29 +110,43 @@ use GuzzleHttp\Promise\PromiseInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface<OperationResponse> createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createBackupChannelAsync(CreateBackupChannelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createBackupPlanAsync(CreateBackupPlanRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createRestoreAsync(CreateRestoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createRestoreChannelAsync(CreateRestoreChannelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createRestorePlanAsync(CreateRestorePlanRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteBackupChannelAsync(DeleteBackupChannelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteBackupPlanAsync(DeleteBackupPlanRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteRestoreAsync(DeleteRestoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteRestoreChannelAsync(DeleteRestoreChannelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteRestorePlanAsync(DeleteRestorePlanRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupChannel> getBackupChannelAsync(GetBackupChannelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GetBackupIndexDownloadUrlResponse> getBackupIndexDownloadUrlAsync(GetBackupIndexDownloadUrlRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BackupPlan> getBackupPlanAsync(GetBackupPlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupPlanBinding> getBackupPlanBindingAsync(GetBackupPlanBindingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Restore> getRestoreAsync(GetRestoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RestoreChannel> getRestoreChannelAsync(GetRestoreChannelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RestorePlan> getRestorePlanAsync(GetRestorePlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RestorePlanBinding> getRestorePlanBindingAsync(GetRestorePlanBindingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<VolumeBackup> getVolumeBackupAsync(GetVolumeBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<VolumeRestore> getVolumeRestoreAsync(GetVolumeRestoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupChannelsAsync(ListBackupChannelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupPlanBindingsAsync(ListBackupPlanBindingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupPlansAsync(ListBackupPlansRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRestoreChannelsAsync(ListRestoreChannelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRestorePlanBindingsAsync(ListRestorePlanBindingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listRestorePlansAsync(ListRestorePlansRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listRestoresAsync(ListRestoresRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listVolumeBackupsAsync(ListVolumeBackupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listVolumeRestoresAsync(ListVolumeRestoresRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateBackupChannelAsync(UpdateBackupChannelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateBackupPlanAsync(UpdateBackupPlanRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateRestoreAsync(UpdateRestoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateRestoreChannelAsync(UpdateRestoreChannelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateRestorePlanAsync(UpdateRestorePlanRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -241,6 +274,25 @@ final class BackupForGKEClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * backup_channel resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $backupChannel
+     *
+     * @return string The formatted backup_channel resource.
+     */
+    public static function backupChannelName(string $project, string $location, string $backupChannel): string
+    {
+        return self::getPathTemplate('backupChannel')->render([
+            'project' => $project,
+            'location' => $location,
+            'backup_channel' => $backupChannel,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a backup_plan
      * resource.
      *
@@ -256,6 +308,31 @@ final class BackupForGKEClient
             'project' => $project,
             'location' => $location,
             'backup_plan' => $backupPlan,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * backup_plan_binding resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $backupChannel
+     * @param string $backupPlanBinding
+     *
+     * @return string The formatted backup_plan_binding resource.
+     */
+    public static function backupPlanBindingName(
+        string $project,
+        string $location,
+        string $backupChannel,
+        string $backupPlanBinding
+    ): string {
+        return self::getPathTemplate('backupPlanBinding')->render([
+            'project' => $project,
+            'location' => $location,
+            'backup_channel' => $backupChannel,
+            'backup_plan_binding' => $backupPlanBinding,
         ]);
     }
 
@@ -338,6 +415,25 @@ final class BackupForGKEClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * restore_channel resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $restoreChannel
+     *
+     * @return string The formatted restore_channel resource.
+     */
+    public static function restoreChannelName(string $project, string $location, string $restoreChannel): string
+    {
+        return self::getPathTemplate('restoreChannel')->render([
+            'project' => $project,
+            'location' => $location,
+            'restore_channel' => $restoreChannel,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a restore_plan
      * resource.
      *
@@ -353,6 +449,31 @@ final class BackupForGKEClient
             'project' => $project,
             'location' => $location,
             'restore_plan' => $restorePlan,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * restore_plan_binding resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $restoreChannel
+     * @param string $restorePlanBinding
+     *
+     * @return string The formatted restore_plan_binding resource.
+     */
+    public static function restorePlanBindingName(
+        string $project,
+        string $location,
+        string $restoreChannel,
+        string $restorePlanBinding
+    ): string {
+        return self::getPathTemplate('restorePlanBinding')->render([
+            'project' => $project,
+            'location' => $location,
+            'restore_channel' => $restoreChannel,
+            'restore_plan_binding' => $restorePlanBinding,
         ]);
     }
 
@@ -417,12 +538,16 @@ final class BackupForGKEClient
      * The following name formats are supported:
      * Template: Pattern
      * - backup: projects/{project}/locations/{location}/backupPlans/{backup_plan}/backups/{backup}
+     * - backupChannel: projects/{project}/locations/{location}/backupChannels/{backup_channel}
      * - backupPlan: projects/{project}/locations/{location}/backupPlans/{backup_plan}
+     * - backupPlanBinding: projects/{project}/locations/{location}/backupChannels/{backup_channel}/backupPlanBindings/{backup_plan_binding}
      * - cluster: projects/{project}/locations/{location}/clusters/{cluster}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - location: projects/{project}/locations/{location}
      * - restore: projects/{project}/locations/{location}/restorePlans/{restore_plan}/restores/{restore}
+     * - restoreChannel: projects/{project}/locations/{location}/restoreChannels/{restore_channel}
      * - restorePlan: projects/{project}/locations/{location}/restorePlans/{restore_plan}
+     * - restorePlanBinding: projects/{project}/locations/{location}/restoreChannels/{restore_channel}/restorePlanBindings/{restore_plan_binding}
      * - volumeBackup: projects/{project}/locations/{location}/backupPlans/{backup_plan}/backups/{backup}/volumeBackups/{volume_backup}
      * - volumeRestore: projects/{project}/locations/{location}/restorePlans/{restore_plan}/restores/{restore}/volumeRestores/{volume_restore}
      *
@@ -432,14 +557,14 @@ final class BackupForGKEClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -461,6 +586,12 @@ final class BackupForGKEClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -494,6 +625,9 @@ final class BackupForGKEClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -540,6 +674,32 @@ final class BackupForGKEClient
     public function createBackup(CreateBackupRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('CreateBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new BackupChannel in a given location.
+     *
+     * The async variant is {@see BackupForGKEClient::createBackupChannelAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/create_backup_channel.php
+     *
+     * @param CreateBackupChannelRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createBackupChannel(CreateBackupChannelRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateBackupChannel', $request, $callOptions)->wait();
     }
 
     /**
@@ -595,6 +755,34 @@ final class BackupForGKEClient
     }
 
     /**
+     * Creates a new RestoreChannel in a given location.
+     *
+     * The async variant is {@see BackupForGKEClient::createRestoreChannelAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/create_restore_channel.php
+     *
+     * @param CreateRestoreChannelRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createRestoreChannel(
+        CreateRestoreChannelRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateRestoreChannel', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new RestorePlan in a given location.
      *
      * The async variant is {@see BackupForGKEClient::createRestorePlanAsync()} .
@@ -644,6 +832,32 @@ final class BackupForGKEClient
     public function deleteBackup(DeleteBackupRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes an existing BackupChannel.
+     *
+     * The async variant is {@see BackupForGKEClient::deleteBackupChannelAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/delete_backup_channel.php
+     *
+     * @param DeleteBackupChannelRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteBackupChannel(DeleteBackupChannelRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteBackupChannel', $request, $callOptions)->wait();
     }
 
     /**
@@ -699,6 +913,34 @@ final class BackupForGKEClient
     }
 
     /**
+     * Deletes an existing RestoreChannel.
+     *
+     * The async variant is {@see BackupForGKEClient::deleteRestoreChannelAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/delete_restore_channel.php
+     *
+     * @param DeleteRestoreChannelRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteRestoreChannel(
+        DeleteRestoreChannelRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteRestoreChannel', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes an existing RestorePlan.
      *
      * The async variant is {@see BackupForGKEClient::deleteRestorePlanAsync()} .
@@ -748,6 +990,32 @@ final class BackupForGKEClient
     public function getBackup(GetBackupRequest $request, array $callOptions = []): Backup
     {
         return $this->startApiCall('GetBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Retrieve the details of a single BackupChannel.
+     *
+     * The async variant is {@see BackupForGKEClient::getBackupChannelAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/get_backup_channel.php
+     *
+     * @param GetBackupChannelRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BackupChannel
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getBackupChannel(GetBackupChannelRequest $request, array $callOptions = []): BackupChannel
+    {
+        return $this->startApiCall('GetBackupChannel', $request, $callOptions)->wait();
     }
 
     /**
@@ -806,6 +1074,34 @@ final class BackupForGKEClient
     }
 
     /**
+     * Retrieve the details of a single BackupPlanBinding.
+     *
+     * The async variant is {@see BackupForGKEClient::getBackupPlanBindingAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/get_backup_plan_binding.php
+     *
+     * @param GetBackupPlanBindingRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BackupPlanBinding
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getBackupPlanBinding(
+        GetBackupPlanBindingRequest $request,
+        array $callOptions = []
+    ): BackupPlanBinding {
+        return $this->startApiCall('GetBackupPlanBinding', $request, $callOptions)->wait();
+    }
+
+    /**
      * Retrieves the details of a single Restore.
      *
      * The async variant is {@see BackupForGKEClient::getRestoreAsync()} .
@@ -832,6 +1128,32 @@ final class BackupForGKEClient
     }
 
     /**
+     * Retrieve the details of a single RestoreChannel.
+     *
+     * The async variant is {@see BackupForGKEClient::getRestoreChannelAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/get_restore_channel.php
+     *
+     * @param GetRestoreChannelRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RestoreChannel
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getRestoreChannel(GetRestoreChannelRequest $request, array $callOptions = []): RestoreChannel
+    {
+        return $this->startApiCall('GetRestoreChannel', $request, $callOptions)->wait();
+    }
+
+    /**
      * Retrieve the details of a single RestorePlan.
      *
      * The async variant is {@see BackupForGKEClient::getRestorePlanAsync()} .
@@ -855,6 +1177,34 @@ final class BackupForGKEClient
     public function getRestorePlan(GetRestorePlanRequest $request, array $callOptions = []): RestorePlan
     {
         return $this->startApiCall('GetRestorePlan', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Retrieve the details of a single RestorePlanBinding.
+     *
+     * The async variant is {@see BackupForGKEClient::getRestorePlanBindingAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/get_restore_plan_binding.php
+     *
+     * @param GetRestorePlanBindingRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RestorePlanBinding
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getRestorePlanBinding(
+        GetRestorePlanBindingRequest $request,
+        array $callOptions = []
+    ): RestorePlanBinding {
+        return $this->startApiCall('GetRestorePlanBinding', $request, $callOptions)->wait();
     }
 
     /**
@@ -910,6 +1260,60 @@ final class BackupForGKEClient
     }
 
     /**
+     * Lists BackupChannels in a given location.
+     *
+     * The async variant is {@see BackupForGKEClient::listBackupChannelsAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/list_backup_channels.php
+     *
+     * @param ListBackupChannelsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listBackupChannels(ListBackupChannelsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListBackupChannels', $request, $callOptions);
+    }
+
+    /**
+     * Lists BackupPlanBindings in a given location.
+     *
+     * The async variant is {@see BackupForGKEClient::listBackupPlanBindingsAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/list_backup_plan_bindings.php
+     *
+     * @param ListBackupPlanBindingsRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listBackupPlanBindings(
+        ListBackupPlanBindingsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListBackupPlanBindings', $request, $callOptions);
+    }
+
+    /**
      * Lists BackupPlans in a given location.
      *
      * The async variant is {@see BackupForGKEClient::listBackupPlansAsync()} .
@@ -959,6 +1363,60 @@ final class BackupForGKEClient
     public function listBackups(ListBackupsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListBackups', $request, $callOptions);
+    }
+
+    /**
+     * Lists RestoreChannels in a given location.
+     *
+     * The async variant is {@see BackupForGKEClient::listRestoreChannelsAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/list_restore_channels.php
+     *
+     * @param ListRestoreChannelsRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listRestoreChannels(ListRestoreChannelsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListRestoreChannels', $request, $callOptions);
+    }
+
+    /**
+     * Lists RestorePlanBindings in a given location.
+     *
+     * The async variant is {@see BackupForGKEClient::listRestorePlanBindingsAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/list_restore_plan_bindings.php
+     *
+     * @param ListRestorePlanBindingsRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listRestorePlanBindings(
+        ListRestorePlanBindingsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListRestorePlanBindings', $request, $callOptions);
     }
 
     /**
@@ -1092,6 +1550,32 @@ final class BackupForGKEClient
     }
 
     /**
+     * Update a BackupChannel.
+     *
+     * The async variant is {@see BackupForGKEClient::updateBackupChannelAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/update_backup_channel.php
+     *
+     * @param UpdateBackupChannelRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateBackupChannel(UpdateBackupChannelRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateBackupChannel', $request, $callOptions)->wait();
+    }
+
+    /**
      * Update a BackupPlan.
      *
      * The async variant is {@see BackupForGKEClient::updateBackupPlanAsync()} .
@@ -1141,6 +1625,34 @@ final class BackupForGKEClient
     public function updateRestore(UpdateRestoreRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateRestore', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Update a RestoreChannel.
+     *
+     * The async variant is {@see BackupForGKEClient::updateRestoreChannelAsync()} .
+     *
+     * @example samples/V1/BackupForGKEClient/update_restore_channel.php
+     *
+     * @param UpdateRestoreChannelRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateRestoreChannel(
+        UpdateRestoreChannelRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateRestoreChannel', $request, $callOptions)->wait();
     }
 
     /**

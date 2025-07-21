@@ -137,6 +137,25 @@ return [
                     ],
                 ],
             ],
+            'PromoteReplica' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Filestore\V1\Instance',
+                    'metadataReturnType' => '\Google\Cloud\Common\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'RestoreInstance' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Filestore\V1\Instance',

@@ -261,6 +261,13 @@ class Cause
      * Generated from protobuf enum <code>UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG = 31;</code>
      */
     const UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG = 31;
+    /**
+     * Aborted because the source endpoint is a Cloud Run revision with direct
+     * VPC access enabled, but there are no reserved serverless IP ranges.
+     *
+     * Generated from protobuf enum <code>NO_SERVERLESS_IP_RANGES = 37;</code>
+     */
+    const NO_SERVERLESS_IP_RANGES = 37;
 
     private static $valueToName = [
         self::CAUSE_UNSPECIFIED => 'CAUSE_UNSPECIFIED',
@@ -299,6 +306,7 @@ class Cause
         self::NON_ROUTABLE_IP_ADDRESS => 'NON_ROUTABLE_IP_ADDRESS',
         self::UNKNOWN_ISSUE_IN_GOOGLE_MANAGED_PROJECT => 'UNKNOWN_ISSUE_IN_GOOGLE_MANAGED_PROJECT',
         self::UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG => 'UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG',
+        self::NO_SERVERLESS_IP_RANGES => 'NO_SERVERLESS_IP_RANGES',
     ];
 
     public static function name($value)

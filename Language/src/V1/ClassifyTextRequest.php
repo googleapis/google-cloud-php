@@ -20,14 +20,14 @@ class ClassifyTextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $document = null;
+    protected $document = null;
     /**
      * Model options to use for classification. Defaults to v1 options if not
      * specified.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.ClassificationModelOptions classification_model_options = 3;</code>
      */
-    private $classification_model_options = null;
+    protected $classification_model_options = null;
 
     /**
      * @param \Google\Cloud\Language\V1\Document $document Required. Input document.

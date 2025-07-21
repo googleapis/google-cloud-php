@@ -71,6 +71,20 @@ class Type
      * Generated from protobuf enum <code>CUSTOMER_DEFINED = 7;</code>
      */
     const CUSTOMER_DEFINED = 7;
+    /**
+     * Concise version of the situation section. This type is only available if
+     * type SITUATION is not selected.
+     *
+     * Generated from protobuf enum <code>SITUATION_CONCISE = 9;</code>
+     */
+    const SITUATION_CONCISE = 9;
+    /**
+     * Concise version of the action section. This type is only available if
+     * type ACTION is not selected.
+     *
+     * Generated from protobuf enum <code>ACTION_CONCISE = 10;</code>
+     */
+    const ACTION_CONCISE = 10;
 
     private static $valueToName = [
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
@@ -81,6 +95,8 @@ class Type
         self::CUSTOMER_SATISFACTION => 'CUSTOMER_SATISFACTION',
         self::ENTITIES => 'ENTITIES',
         self::CUSTOMER_DEFINED => 'CUSTOMER_DEFINED',
+        self::SITUATION_CONCISE => 'SITUATION_CONCISE',
+        self::ACTION_CONCISE => 'ACTION_CONCISE',
     ];
 
     public static function name($value)

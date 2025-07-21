@@ -17,10 +17,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class Deployment extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource name of the deployment.
+     * Identifier. Resource name of the deployment.
      * Format: `projects/{project}/locations/{location}/deployments/{deployment}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -36,9 +36,9 @@ class Deployment extends \Google\Protobuf\Internal\Message
      */
     protected $update_time = null;
     /**
-     * User-defined metadata for the deployment.
+     * Optional. User-defined metadata for the deployment.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
     /**
@@ -116,11 +116,11 @@ class Deployment extends \Google\Protobuf\Internal\Message
      */
     protected $artifacts_gcs_bucket = null;
     /**
-     * Optional. User-specified Service Account (SA) credentials to be used when
+     * Required. User-specified Service Account (SA) credentials to be used when
      * actuating resources.
      * Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
      *
-     * Generated from protobuf field <code>optional string service_account = 16 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string service_account = 16 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $service_account = null;
     /**
@@ -193,14 +193,14 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *           A blueprint described using Terraform's HashiCorp Configuration Language
      *           as a root module.
      *     @type string $name
-     *           Resource name of the deployment.
+     *           Identifier. Resource name of the deployment.
      *           Format: `projects/{project}/locations/{location}/deployments/{deployment}`
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time when the deployment was created.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Time when the deployment was last modified.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           User-defined metadata for the deployment.
+     *           Optional. User-defined metadata for the deployment.
      *     @type int $state
      *           Output only. Current state of the deployment.
      *     @type string $latest_revision
@@ -236,7 +236,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *           - The path cannot be within the path of `gcs_source`
      *           - The field cannot be updated, including changing its presence
      *     @type string $service_account
-     *           Optional. User-specified Service Account (SA) credentials to be used when
+     *           Required. User-specified Service Account (SA) credentials to be used when
      *           actuating resources.
      *           Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
      *     @type bool $import_existing_resources
@@ -310,10 +310,10 @@ class Deployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the deployment.
+     * Identifier. Resource name of the deployment.
      * Format: `projects/{project}/locations/{location}/deployments/{deployment}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -322,10 +322,10 @@ class Deployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the deployment.
+     * Identifier. Resource name of the deployment.
      * Format: `projects/{project}/locations/{location}/deployments/{deployment}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -410,9 +410,9 @@ class Deployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-defined metadata for the deployment.
+     * Optional. User-defined metadata for the deployment.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -421,9 +421,9 @@ class Deployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-defined metadata for the deployment.
+     * Optional. User-defined metadata for the deployment.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -744,11 +744,11 @@ class Deployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User-specified Service Account (SA) credentials to be used when
+     * Required. User-specified Service Account (SA) credentials to be used when
      * actuating resources.
      * Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
      *
-     * Generated from protobuf field <code>optional string service_account = 16 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string service_account = 16 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getServiceAccount()
@@ -767,11 +767,11 @@ class Deployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User-specified Service Account (SA) credentials to be used when
+     * Required. User-specified Service Account (SA) credentials to be used when
      * actuating resources.
      * Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
      *
-     * Generated from protobuf field <code>optional string service_account = 16 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string service_account = 16 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

@@ -30,6 +30,11 @@
                                 "createIndex"
                             ]
                         },
+                        "CreateUserCreds": {
+                            "methods": [
+                                "createUserCreds"
+                            ]
+                        },
                         "DeleteBackup": {
                             "methods": [
                                 "deleteBackup"
@@ -48,6 +53,21 @@
                         "DeleteIndex": {
                             "methods": [
                                 "deleteIndex"
+                            ]
+                        },
+                        "DeleteUserCreds": {
+                            "methods": [
+                                "deleteUserCreds"
+                            ]
+                        },
+                        "DisableUserCreds": {
+                            "methods": [
+                                "disableUserCreds"
+                            ]
+                        },
+                        "EnableUserCreds": {
+                            "methods": [
+                                "enableUserCreds"
                             ]
                         },
                         "ExportDocuments": {
@@ -80,6 +100,11 @@
                                 "getIndex"
                             ]
                         },
+                        "GetUserCreds": {
+                            "methods": [
+                                "getUserCreds"
+                            ]
+                        },
                         "ImportDocuments": {
                             "methods": [
                                 "importDocuments"
@@ -108,6 +133,16 @@
                         "ListIndexes": {
                             "methods": [
                                 "listIndexes"
+                            ]
+                        },
+                        "ListUserCreds": {
+                            "methods": [
+                                "listUserCreds"
+                            ]
+                        },
+                        "ResetUserPassword": {
+                            "methods": [
+                                "resetUserPassword"
                             ]
                         },
                         "RestoreDatabase": {

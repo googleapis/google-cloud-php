@@ -17,11 +17,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class DataQualityDimension extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The dimension name a rule belongs to. Supported dimensions are
-     * ["COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS",
-     * "FRESHNESS", "VOLUME"]
+     * Optional. The dimension name a rule belongs to. Custom dimension name is
+     * supported with all uppercase letters and maximum length of 30 characters.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $name = '';
 
@@ -32,9 +31,8 @@ class DataQualityDimension extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The dimension name a rule belongs to. Supported dimensions are
-     *           ["COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS",
-     *           "FRESHNESS", "VOLUME"]
+     *           Optional. The dimension name a rule belongs to. Custom dimension name is
+     *           supported with all uppercase letters and maximum length of 30 characters.
      * }
      */
     public function __construct($data = NULL) {
@@ -43,11 +41,10 @@ class DataQualityDimension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The dimension name a rule belongs to. Supported dimensions are
-     * ["COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS",
-     * "FRESHNESS", "VOLUME"]
+     * Optional. The dimension name a rule belongs to. Custom dimension name is
+     * supported with all uppercase letters and maximum length of 30 characters.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getName()
@@ -56,11 +53,10 @@ class DataQualityDimension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The dimension name a rule belongs to. Supported dimensions are
-     * ["COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS",
-     * "FRESHNESS", "VOLUME"]
+     * Optional. The dimension name a rule belongs to. Custom dimension name is
+     * supported with all uppercase letters and maximum length of 30 characters.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

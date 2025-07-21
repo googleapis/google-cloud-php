@@ -25,7 +25,7 @@ class AgentAssistantFeedback extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.AnswerRelevance answer_relevance = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $answer_relevance = 0;
+    protected $answer_relevance = 0;
     /**
      * Optional. Whether or not the information in the document is correct.
      * For example:
@@ -33,11 +33,11 @@ class AgentAssistantFeedback extends \Google\Protobuf\Internal\Message
      * * Suggested document says: "Items must be returned/exchanged within 60
      *   days of the purchase date."
      * * Ground truth: "No return or exchange is allowed."
-     * * [document_correctness]: INCORRECT
+     * * [document_correctness][google.cloud.dialogflow.v2.AgentAssistantFeedback.document_correctness]: [INCORRECT][google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentCorrectness.INCORRECT]
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentCorrectness document_correctness = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $document_correctness = 0;
+    protected $document_correctness = 0;
     /**
      * Optional. Whether or not the suggested document is efficient. For example,
      * if the document is poorly written, hard to understand, hard to use or
@@ -48,25 +48,25 @@ class AgentAssistantFeedback extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentEfficiency document_efficiency = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $document_efficiency = 0;
+    protected $document_efficiency = 0;
     /**
      * Optional. Feedback for conversation summarization.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.SummarizationFeedback summarization_feedback = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $summarization_feedback = null;
+    protected $summarization_feedback = null;
     /**
      * Optional. Feedback for knowledge search.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.KnowledgeSearchFeedback knowledge_search_feedback = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $knowledge_search_feedback = null;
+    protected $knowledge_search_feedback = null;
     /**
      * Optional. Feedback for knowledge assist.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.KnowledgeAssistFeedback knowledge_assist_feedback = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $knowledge_assist_feedback = null;
+    protected $knowledge_assist_feedback = null;
 
     /**
      * Constructor.
@@ -88,7 +88,7 @@ class AgentAssistantFeedback extends \Google\Protobuf\Internal\Message
      *           * Suggested document says: "Items must be returned/exchanged within 60
      *             days of the purchase date."
      *           * Ground truth: "No return or exchange is allowed."
-     *           * [document_correctness]: INCORRECT
+     *           * [document_correctness][google.cloud.dialogflow.v2.AgentAssistantFeedback.document_correctness]: [INCORRECT][google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentCorrectness.INCORRECT]
      *     @type int $document_efficiency
      *           Optional. Whether or not the suggested document is efficient. For example,
      *           if the document is poorly written, hard to understand, hard to use or
@@ -152,7 +152,7 @@ class AgentAssistantFeedback extends \Google\Protobuf\Internal\Message
      * * Suggested document says: "Items must be returned/exchanged within 60
      *   days of the purchase date."
      * * Ground truth: "No return or exchange is allowed."
-     * * [document_correctness]: INCORRECT
+     * * [document_correctness][google.cloud.dialogflow.v2.AgentAssistantFeedback.document_correctness]: [INCORRECT][google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentCorrectness.INCORRECT]
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentCorrectness document_correctness = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -169,7 +169,7 @@ class AgentAssistantFeedback extends \Google\Protobuf\Internal\Message
      * * Suggested document says: "Items must be returned/exchanged within 60
      *   days of the purchase date."
      * * Ground truth: "No return or exchange is allowed."
-     * * [document_correctness]: INCORRECT
+     * * [document_correctness][google.cloud.dialogflow.v2.AgentAssistantFeedback.document_correctness]: [INCORRECT][google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentCorrectness.INCORRECT]
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentCorrectness document_correctness = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

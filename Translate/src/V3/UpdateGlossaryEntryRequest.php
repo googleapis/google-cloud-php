@@ -20,7 +20,7 @@ class UpdateGlossaryEntryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.GlossaryEntry glossary_entry = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $glossary_entry = null;
+    protected $glossary_entry = null;
 
     /**
      * @param \Google\Cloud\Translate\V3\GlossaryEntry $glossaryEntry Required. The glossary entry to update.

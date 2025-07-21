@@ -135,6 +135,25 @@
                 }
             }
         },
+        "AutomaticImprovementsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AutomaticImprovementsServiceGapicClient",
+                    "rpcs": {
+                        "GetAutomaticImprovements": {
+                            "methods": [
+                                "getAutomaticImprovements"
+                            ]
+                        },
+                        "UpdateAutomaticImprovements": {
+                            "methods": [
+                                "updateAutomaticImprovements"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "BusinessIdentityService": {
             "clients": {
                 "grpc": {
@@ -173,6 +192,35 @@
                 }
             }
         },
+        "CheckoutSettingsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CheckoutSettingsServiceGapicClient",
+                    "rpcs": {
+                        "CreateCheckoutSettings": {
+                            "methods": [
+                                "createCheckoutSettings"
+                            ]
+                        },
+                        "DeleteCheckoutSettings": {
+                            "methods": [
+                                "deleteCheckoutSettings"
+                            ]
+                        },
+                        "GetCheckoutSettings": {
+                            "methods": [
+                                "getCheckoutSettings"
+                            ]
+                        },
+                        "UpdateCheckoutSettings": {
+                            "methods": [
+                                "updateCheckoutSettings"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "EmailPreferencesService": {
             "clients": {
                 "grpc": {
@@ -186,6 +234,25 @@
                         "UpdateEmailPreferences": {
                             "methods": [
                                 "updateEmailPreferences"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "GbpAccountsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "GbpAccountsServiceGapicClient",
+                    "rpcs": {
+                        "LinkGbpAccount": {
+                            "methods": [
+                                "linkGbpAccount"
+                            ]
+                        },
+                        "ListGbpAccounts": {
+                            "methods": [
+                                "listGbpAccounts"
                             ]
                         }
                     }
@@ -221,11 +288,74 @@
                 }
             }
         },
+        "LfpProvidersService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "LfpProvidersServiceGapicClient",
+                    "rpcs": {
+                        "FindLfpProviders": {
+                            "methods": [
+                                "findLfpProviders"
+                            ]
+                        },
+                        "LinkLfpProvider": {
+                            "methods": [
+                                "linkLfpProvider"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "OmnichannelSettingsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "OmnichannelSettingsServiceGapicClient",
+                    "rpcs": {
+                        "CreateOmnichannelSetting": {
+                            "methods": [
+                                "createOmnichannelSetting"
+                            ]
+                        },
+                        "GetOmnichannelSetting": {
+                            "methods": [
+                                "getOmnichannelSetting"
+                            ]
+                        },
+                        "ListOmnichannelSettings": {
+                            "methods": [
+                                "listOmnichannelSettings"
+                            ]
+                        },
+                        "RequestInventoryVerification": {
+                            "methods": [
+                                "requestInventoryVerification"
+                            ]
+                        },
+                        "UpdateOmnichannelSetting": {
+                            "methods": [
+                                "updateOmnichannelSetting"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "OnlineReturnPolicyService": {
             "clients": {
                 "grpc": {
                     "libraryClient": "OnlineReturnPolicyServiceGapicClient",
                     "rpcs": {
+                        "CreateOnlineReturnPolicy": {
+                            "methods": [
+                                "createOnlineReturnPolicy"
+                            ]
+                        },
+                        "DeleteOnlineReturnPolicy": {
+                            "methods": [
+                                "deleteOnlineReturnPolicy"
+                            ]
+                        },
                         "GetOnlineReturnPolicy": {
                             "methods": [
                                 "getOnlineReturnPolicy"
@@ -234,6 +364,11 @@
                         "ListOnlineReturnPolicies": {
                             "methods": [
                                 "listOnlineReturnPolicies"
+                            ]
+                        },
+                        "UpdateOnlineReturnPolicy": {
+                            "methods": [
+                                "updateOnlineReturnPolicy"
                             ]
                         }
                     }

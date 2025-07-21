@@ -51,6 +51,12 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GenerateGroundedContentResponse.Candidate.GroundingMetadata.GroundingSupport grounding_support = 2;</code>
      */
     private $grounding_support;
+    /**
+     * Images from the web search.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GenerateGroundedContentResponse.Candidate.GroundingMetadata.ImageMetadata images = 9;</code>
+     */
+    private $images;
 
     /**
      * Constructor.
@@ -74,6 +80,8 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      *           GroundingSupport across all claims in the answer candidate.
      *           An support to a fact indicates that the claim is supported by
      *           the fact.
+     *     @type array<\Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\ImageMetadata>|\Google\Protobuf\Internal\RepeatedField $images
+     *           Images from the web search.
      * }
      */
     public function __construct($data = NULL) {
@@ -229,6 +237,32 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\GroundingSupport::class);
         $this->grounding_support = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Images from the web search.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GenerateGroundedContentResponse.Candidate.GroundingMetadata.ImageMetadata images = 9;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * Images from the web search.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GenerateGroundedContentResponse.Candidate.GroundingMetadata.ImageMetadata images = 9;</code>
+     * @param array<\Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\ImageMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setImages($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\ImageMetadata::class);
+        $this->images = $arr;
 
         return $this;
     }

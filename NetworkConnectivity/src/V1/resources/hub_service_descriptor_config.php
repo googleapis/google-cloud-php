@@ -42,6 +42,25 @@ return [
                     ],
                 ],
             ],
+            'AcceptSpokeUpdate' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkConnectivity\V1\AcceptSpokeUpdateResponse',
+                    'metadataReturnType' => '\Google\Cloud\NetworkConnectivity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateHub' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\NetworkConnectivity\V1\Hub',
@@ -121,6 +140,25 @@ return [
             'RejectHubSpoke' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\NetworkConnectivity\V1\RejectHubSpokeResponse',
+                    'metadataReturnType' => '\Google\Cloud\NetworkConnectivity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'RejectSpokeUpdate' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkConnectivity\V1\RejectSpokeUpdateResponse',
                     'metadataReturnType' => '\Google\Cloud\NetworkConnectivity\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',

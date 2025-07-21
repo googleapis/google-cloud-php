@@ -20,11 +20,11 @@ class BatchRecognizeFileResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 2;</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * Generated from protobuf field <code>.google.cloud.speech.v2.RecognitionResponseMetadata metadata = 3;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * Deprecated. Use `cloud_storage_result.native_format_uri` instead.
      *
@@ -225,7 +225,9 @@ class BatchRecognizeFileResult extends \Google\Protobuf\Internal\Message
      */
     public function getUri()
     {
-        @trigger_error('uri is deprecated.', E_USER_DEPRECATED);
+        if ($this->uri !== '') {
+            @trigger_error('uri is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->uri;
     }
 
@@ -255,13 +257,17 @@ class BatchRecognizeFileResult extends \Google\Protobuf\Internal\Message
      */
     public function getTranscript()
     {
-        @trigger_error('transcript is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->transcript)) {
+            @trigger_error('transcript is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->transcript;
     }
 
     public function hasTranscript()
     {
-        @trigger_error('transcript is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->transcript)) {
+            @trigger_error('transcript is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->transcript);
     }
 

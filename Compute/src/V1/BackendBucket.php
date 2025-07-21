@@ -77,6 +77,13 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      */
     private $kind = null;
     /**
+     * The value can only be INTERNAL_MANAGED for cross-region internal layer 7 load balancer. If loadBalancingScheme is not specified, the backend bucket can be used by classic global external load balancers, or global application external load balancers, or both.
+     * Check the LoadBalancingScheme enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string load_balancing_scheme = 363890244;</code>
+     */
+    private $load_balancing_scheme = null;
+    /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
@@ -122,6 +129,9 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      *           [Output Only] Unique identifier for the resource; defined by the server.
      *     @type string $kind
      *           Type of the resource.
+     *     @type string $load_balancing_scheme
+     *           The value can only be INTERNAL_MANAGED for cross-region internal layer 7 load balancer. If loadBalancingScheme is not specified, the backend bucket can be used by classic global external load balancers, or global application external load balancers, or both.
+     *           Check the LoadBalancingScheme enum for the list of possible values.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type string $self_link
@@ -483,6 +493,44 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->kind = $var;
+
+        return $this;
+    }
+
+    /**
+     * The value can only be INTERNAL_MANAGED for cross-region internal layer 7 load balancer. If loadBalancingScheme is not specified, the backend bucket can be used by classic global external load balancers, or global application external load balancers, or both.
+     * Check the LoadBalancingScheme enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string load_balancing_scheme = 363890244;</code>
+     * @return string
+     */
+    public function getLoadBalancingScheme()
+    {
+        return isset($this->load_balancing_scheme) ? $this->load_balancing_scheme : '';
+    }
+
+    public function hasLoadBalancingScheme()
+    {
+        return isset($this->load_balancing_scheme);
+    }
+
+    public function clearLoadBalancingScheme()
+    {
+        unset($this->load_balancing_scheme);
+    }
+
+    /**
+     * The value can only be INTERNAL_MANAGED for cross-region internal layer 7 load balancer. If loadBalancingScheme is not specified, the backend bucket can be used by classic global external load balancers, or global application external load balancers, or both.
+     * Check the LoadBalancingScheme enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string load_balancing_scheme = 363890244;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLoadBalancingScheme($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->load_balancing_scheme = $var;
 
         return $this;
     }

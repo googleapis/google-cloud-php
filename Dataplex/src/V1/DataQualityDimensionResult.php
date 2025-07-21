@@ -23,9 +23,9 @@ class DataQualityDimensionResult extends \Google\Protobuf\Internal\Message
      */
     protected $dimension = null;
     /**
-     * Whether the dimension passed or failed.
+     * Output only. Whether the dimension passed or failed.
      *
-     * Generated from protobuf field <code>bool passed = 3;</code>
+     * Generated from protobuf field <code>bool passed = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $passed = false;
     /**
@@ -47,7 +47,7 @@ class DataQualityDimensionResult extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataplex\V1\DataQualityDimension $dimension
      *           Output only. The dimension config specified in the DataQualitySpec, as is.
      *     @type bool $passed
-     *           Whether the dimension passed or failed.
+     *           Output only. Whether the dimension passed or failed.
      *     @type float $score
      *           Output only. The dimension-level data quality score for this data scan job
      *           if and only if the 'dimension' field is set.
@@ -97,9 +97,9 @@ class DataQualityDimensionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the dimension passed or failed.
+     * Output only. Whether the dimension passed or failed.
      *
-     * Generated from protobuf field <code>bool passed = 3;</code>
+     * Generated from protobuf field <code>bool passed = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
     public function getPassed()
@@ -108,9 +108,9 @@ class DataQualityDimensionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the dimension passed or failed.
+     * Output only. Whether the dimension passed or failed.
      *
-     * Generated from protobuf field <code>bool passed = 3;</code>
+     * Generated from protobuf field <code>bool passed = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */

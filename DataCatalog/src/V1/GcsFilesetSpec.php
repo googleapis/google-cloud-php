@@ -18,7 +18,7 @@ class GcsFilesetSpec extends \Google\Protobuf\Internal\Message
     /**
      * Required. Patterns to identify a set of files in Google Cloud Storage.
      * For more information, see [Wildcard Names]
-     * (https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames).
+     * (https://cloud.google.com/storage/docs/wildcards).
      * Note: Currently, bucket wildcards are not supported.
      * Examples of valid `file_patterns`:
      *  * `gs://bucket_name/dir/&#42;`: matches all files in `bucket_name/dir`
@@ -60,7 +60,7 @@ class GcsFilesetSpec extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $file_patterns
      *           Required. Patterns to identify a set of files in Google Cloud Storage.
      *           For more information, see [Wildcard Names]
-     *           (https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames).
+     *           (https://cloud.google.com/storage/docs/wildcards).
      *           Note: Currently, bucket wildcards are not supported.
      *           Examples of valid `file_patterns`:
      *            * `gs://bucket_name/dir/&#42;`: matches all files in `bucket_name/dir`
@@ -94,7 +94,7 @@ class GcsFilesetSpec extends \Google\Protobuf\Internal\Message
     /**
      * Required. Patterns to identify a set of files in Google Cloud Storage.
      * For more information, see [Wildcard Names]
-     * (https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames).
+     * (https://cloud.google.com/storage/docs/wildcards).
      * Note: Currently, bucket wildcards are not supported.
      * Examples of valid `file_patterns`:
      *  * `gs://bucket_name/dir/&#42;`: matches all files in `bucket_name/dir`
@@ -127,7 +127,7 @@ class GcsFilesetSpec extends \Google\Protobuf\Internal\Message
     /**
      * Required. Patterns to identify a set of files in Google Cloud Storage.
      * For more information, see [Wildcard Names]
-     * (https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames).
+     * (https://cloud.google.com/storage/docs/wildcards).
      * Note: Currently, bucket wildcards are not supported.
      * Examples of valid `file_patterns`:
      *  * `gs://bucket_name/dir/&#42;`: matches all files in `bucket_name/dir`

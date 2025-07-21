@@ -36,6 +36,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AddResourcePoliciesDiskRequest;
 use Google\Cloud\Compute\V1\AggregatedListDisksRequest;
 use Google\Cloud\Compute\V1\BulkInsertDiskRequest;
+use Google\Cloud\Compute\V1\BulkSetLabelsDiskRequest;
 use Google\Cloud\Compute\V1\CreateSnapshotDiskRequest;
 use Google\Cloud\Compute\V1\DeleteDiskRequest;
 use Google\Cloud\Compute\V1\Disk;
@@ -56,6 +57,7 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\UpdateDiskRequest;
 use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Disks API.
@@ -66,6 +68,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface<OperationResponse> addResourcePoliciesAsync(AddResourcePoliciesDiskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListDisksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> bulkInsertAsync(BulkInsertDiskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> bulkSetLabelsAsync(BulkSetLabelsDiskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createSnapshotAsync(CreateSnapshotDiskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAsync(DeleteDiskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Disk> getAsync(GetDiskRequest $request, array $optionalArgs = [])
@@ -215,6 +218,12 @@ final class DisksClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -245,6 +254,9 @@ final class DisksClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -272,6 +284,8 @@ final class DisksClient
      *
      * The async variant is {@see DisksClient::addResourcePoliciesAsync()} .
      *
+     * @example samples/V1/DisksClient/add_resource_policies.php
+     *
      * @param AddResourcePoliciesDiskRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -295,6 +309,8 @@ final class DisksClient
      * Retrieves an aggregated list of persistent disks. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see DisksClient::aggregatedListAsync()} .
+     *
+     * @example samples/V1/DisksClient/aggregated_list.php
      *
      * @param AggregatedListDisksRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -320,6 +336,8 @@ final class DisksClient
      *
      * The async variant is {@see DisksClient::bulkInsertAsync()} .
      *
+     * @example samples/V1/DisksClient/bulk_insert.php
+     *
      * @param BulkInsertDiskRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -340,9 +358,37 @@ final class DisksClient
     }
 
     /**
+     * Sets the labels on many disks at once. To learn more about labels, read the Labeling Resources documentation.
+     *
+     * The async variant is {@see DisksClient::bulkSetLabelsAsync()} .
+     *
+     * @example samples/V1/DisksClient/bulk_set_labels.php
+     *
+     * @param BulkSetLabelsDiskRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function bulkSetLabels(BulkSetLabelsDiskRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('BulkSetLabels', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a snapshot of a specified persistent disk. For regular snapshot creation, consider using snapshots.insert instead, as that method supports more features, such as creating snapshots in a project different from the source disk project.
      *
      * The async variant is {@see DisksClient::createSnapshotAsync()} .
+     *
+     * @example samples/V1/DisksClient/create_snapshot.php
      *
      * @param CreateSnapshotDiskRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -368,6 +414,8 @@ final class DisksClient
      *
      * The async variant is {@see DisksClient::deleteAsync()} .
      *
+     * @example samples/V1/DisksClient/delete.php
+     *
      * @param DeleteDiskRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -391,6 +439,8 @@ final class DisksClient
      * Returns the specified persistent disk.
      *
      * The async variant is {@see DisksClient::getAsync()} .
+     *
+     * @example samples/V1/DisksClient/get.php
      *
      * @param GetDiskRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -416,6 +466,8 @@ final class DisksClient
      *
      * The async variant is {@see DisksClient::getIamPolicyAsync()} .
      *
+     * @example samples/V1/DisksClient/get_iam_policy.php
+     *
      * @param GetIamPolicyDiskRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -439,6 +491,8 @@ final class DisksClient
      * Creates a persistent disk in the specified project using the data in the request. You can create a disk from a source (sourceImage, sourceSnapshot, or sourceDisk) or create an empty 500 GB data disk by omitting all properties. You can also create a disk that is larger than the default size by specifying the sizeGb property.
      *
      * The async variant is {@see DisksClient::insertAsync()} .
+     *
+     * @example samples/V1/DisksClient/insert.php
      *
      * @param InsertDiskRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -464,6 +518,8 @@ final class DisksClient
      *
      * The async variant is {@see DisksClient::listAsync()} .
      *
+     * @example samples/V1/DisksClient/list.php
+     *
      * @param ListDisksRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -487,6 +543,8 @@ final class DisksClient
      * Removes resource policies from a disk.
      *
      * The async variant is {@see DisksClient::removeResourcePoliciesAsync()} .
+     *
+     * @example samples/V1/DisksClient/remove_resource_policies.php
      *
      * @param RemoveResourcePoliciesDiskRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -512,6 +570,8 @@ final class DisksClient
      *
      * The async variant is {@see DisksClient::resizeAsync()} .
      *
+     * @example samples/V1/DisksClient/resize.php
+     *
      * @param ResizeDiskRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -535,6 +595,8 @@ final class DisksClient
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
      * The async variant is {@see DisksClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/DisksClient/set_iam_policy.php
      *
      * @param SetIamPolicyDiskRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -560,6 +622,8 @@ final class DisksClient
      *
      * The async variant is {@see DisksClient::setLabelsAsync()} .
      *
+     * @example samples/V1/DisksClient/set_labels.php
+     *
      * @param SetLabelsDiskRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -583,6 +647,8 @@ final class DisksClient
      * Starts asynchronous replication. Must be invoked on the primary disk.
      *
      * The async variant is {@see DisksClient::startAsyncReplicationAsync()} .
+     *
+     * @example samples/V1/DisksClient/start_async_replication.php
      *
      * @param StartAsyncReplicationDiskRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -608,6 +674,8 @@ final class DisksClient
      *
      * The async variant is {@see DisksClient::stopAsyncReplicationAsync()} .
      *
+     * @example samples/V1/DisksClient/stop_async_replication.php
+     *
      * @param StopAsyncReplicationDiskRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -631,6 +699,8 @@ final class DisksClient
      * Stops asynchronous replication for a consistency group of disks. Can be invoked either in the primary or secondary scope.
      *
      * The async variant is {@see DisksClient::stopGroupAsyncReplicationAsync()} .
+     *
+     * @example samples/V1/DisksClient/stop_group_async_replication.php
      *
      * @param StopGroupAsyncReplicationDiskRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -656,6 +726,8 @@ final class DisksClient
      *
      * The async variant is {@see DisksClient::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/DisksClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsDiskRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -679,6 +751,8 @@ final class DisksClient
      * Updates the specified disk with the data included in the request. The update is performed only on selected fields included as part of update-mask. Only the following fields can be modified: user_license.
      *
      * The async variant is {@see DisksClient::updateAsync()} .
+     *
+     * @example samples/V1/DisksClient/update.php
      *
      * @param UpdateDiskRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {

@@ -22,19 +22,19 @@ class GoogleSignalsSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Status of this setting.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.GoogleSignalsState state = 3;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Terms of Service acceptance.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.GoogleSignalsConsent consent = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $consent = 0;
+    protected $consent = 0;
 
     /**
      * Constructor.

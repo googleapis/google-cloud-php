@@ -16,7 +16,7 @@ class Visibility
         }
         $pool->internalAddGeneratedFile(
             '
-µ
+²
 google/api/visibility.proto
 google.api google/protobuf/descriptor.proto"7
 
@@ -24,8 +24,8 @@ Visibility)
 rules (2.google.api.VisibilityRule"7
 VisibilityRule
 selector (	
-restriction (	Bn
-com.google.apiBVisibilityProtoPZ?google.golang.org/genproto/googleapis/api/visibility;visibilityø¢GAPIbproto3'
+restriction (	Bk
+com.google.apiBVisibilityProtoPZ?google.golang.org/genproto/googleapis/api/visibility;visibility¢GAPIbproto3'
         , true);
 
         static::$is_initialized = true;

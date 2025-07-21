@@ -66,6 +66,13 @@ class DeleteBackupVaultRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool allow_missing = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $allow_missing = false;
+    /**
+     * Optional. If set to true, backupvault deletion will proceed even if there
+     * are backup plans referencing the backupvault. The default is 'false'.
+     *
+     * Generated from protobuf field <code>bool ignore_backup_plan_references = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ignore_backup_plan_references = false;
 
     /**
      * @param string $name Required. Name of the resource. Please see
@@ -114,6 +121,9 @@ class DeleteBackupVaultRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $allow_missing
      *           Optional. If true and the BackupVault is not found, the request will
      *           succeed but no action will be taken.
+     *     @type bool $ignore_backup_plan_references
+     *           Optional. If set to true, backupvault deletion will proceed even if there
+     *           are backup plans referencing the backupvault. The default is 'false'.
      * }
      */
     public function __construct($data = NULL) {
@@ -303,6 +313,34 @@ class DeleteBackupVaultRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->allow_missing = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set to true, backupvault deletion will proceed even if there
+     * are backup plans referencing the backupvault. The default is 'false'.
+     *
+     * Generated from protobuf field <code>bool ignore_backup_plan_references = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getIgnoreBackupPlanReferences()
+    {
+        return $this->ignore_backup_plan_references;
+    }
+
+    /**
+     * Optional. If set to true, backupvault deletion will proceed even if there
+     * are backup plans referencing the backupvault. The default is 'false'.
+     *
+     * Generated from protobuf field <code>bool ignore_backup_plan_references = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIgnoreBackupPlanReferences($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->ignore_backup_plan_references = $var;
 
         return $this;
     }

@@ -5,6 +5,35 @@
     "protoPackage": "google.cloud.discoveryengine.v1",
     "libraryPackage": "Google\\Cloud\\DiscoveryEngine\\V1",
     "services": {
+        "CmekConfigService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CmekConfigServiceGapicClient",
+                    "rpcs": {
+                        "DeleteCmekConfig": {
+                            "methods": [
+                                "deleteCmekConfig"
+                            ]
+                        },
+                        "GetCmekConfig": {
+                            "methods": [
+                                "getCmekConfig"
+                            ]
+                        },
+                        "ListCmekConfigs": {
+                            "methods": [
+                                "listCmekConfigs"
+                            ]
+                        },
+                        "UpdateCmekConfig": {
+                            "methods": [
+                                "updateCmekConfig"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "CompletionService": {
             "clients": {
                 "grpc": {
@@ -150,6 +179,11 @@
                         "ListSessions": {
                             "methods": [
                                 "listSessions"
+                            ]
+                        },
+                        "StreamAnswerQuery": {
+                            "methods": [
+                                "streamAnswerQuery"
                             ]
                         },
                         "UpdateConversation": {
@@ -307,6 +341,50 @@
                 }
             }
         },
+        "IdentityMappingStoreService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "IdentityMappingStoreServiceGapicClient",
+                    "rpcs": {
+                        "CreateIdentityMappingStore": {
+                            "methods": [
+                                "createIdentityMappingStore"
+                            ]
+                        },
+                        "DeleteIdentityMappingStore": {
+                            "methods": [
+                                "deleteIdentityMappingStore"
+                            ]
+                        },
+                        "GetIdentityMappingStore": {
+                            "methods": [
+                                "getIdentityMappingStore"
+                            ]
+                        },
+                        "ImportIdentityMappings": {
+                            "methods": [
+                                "importIdentityMappings"
+                            ]
+                        },
+                        "ListIdentityMappingStores": {
+                            "methods": [
+                                "listIdentityMappingStores"
+                            ]
+                        },
+                        "ListIdentityMappings": {
+                            "methods": [
+                                "listIdentityMappings"
+                            ]
+                        },
+                        "PurgeIdentityMappings": {
+                            "methods": [
+                                "purgeIdentityMappings"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "ProjectService": {
             "clients": {
                 "grpc": {
@@ -402,6 +480,20 @@
                 }
             }
         },
+        "ServingConfigService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ServingConfigServiceGapicClient",
+                    "rpcs": {
+                        "UpdateServingConfig": {
+                            "methods": [
+                                "updateServingConfig"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "SiteSearchEngineService": {
             "clients": {
                 "grpc": {
@@ -417,9 +509,19 @@
                                 "batchVerifyTargetSites"
                             ]
                         },
+                        "CreateSitemap": {
+                            "methods": [
+                                "createSitemap"
+                            ]
+                        },
                         "CreateTargetSite": {
                             "methods": [
                                 "createTargetSite"
+                            ]
+                        },
+                        "DeleteSitemap": {
+                            "methods": [
+                                "deleteSitemap"
                             ]
                         },
                         "DeleteTargetSite": {
@@ -440,6 +542,11 @@
                         "FetchDomainVerificationStatus": {
                             "methods": [
                                 "fetchDomainVerificationStatus"
+                            ]
+                        },
+                        "FetchSitemaps": {
+                            "methods": [
+                                "fetchSitemaps"
                             ]
                         },
                         "GetSiteSearchEngine": {
@@ -494,6 +601,25 @@
                         "WriteUserEvent": {
                             "methods": [
                                 "writeUserEvent"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "UserLicenseService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "UserLicenseServiceGapicClient",
+                    "rpcs": {
+                        "BatchUpdateUserLicenses": {
+                            "methods": [
+                                "batchUpdateUserLicenses"
+                            ]
+                        },
+                        "ListUserLicenses": {
+                            "methods": [
+                                "listUserLicenses"
                             ]
                         }
                     }

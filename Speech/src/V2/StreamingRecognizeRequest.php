@@ -40,7 +40,7 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string recognizer = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $recognizer = '';
+    protected $recognizer = '';
     protected $streaming_request;
 
     /**

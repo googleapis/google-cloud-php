@@ -22,15 +22,19 @@ use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Firestore\FirestoreClient;
-use Google\Cloud\Language\LanguageClient;
+use Google\Cloud\Language\LanguageClient as DeprecatedLanguageClient;
+use Google\Cloud\Language\V2\Client\LanguageServiceClient;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Spanner\SpannerClient;
-use Google\Cloud\Speech\SpeechClient;
+use Google\Cloud\Speech\SpeechClient as DeprecatedSpeechClient;
+use Google\Cloud\Speech\V2\Client\SpeechClient;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Trace\TraceClient;
-use Google\Cloud\Translate\V2\TranslateClient;
-use Google\Cloud\Vision\VisionClient;
+use Google\Cloud\Translate\V2\TranslateClient as DeprecatedTranslateClient;
+use Google\Cloud\Translate\V3\Client\TranslationServiceClient;
+use Google\Cloud\Vision\V1\Client\ImageAnnotatorClient;
+use Google\Cloud\Vision\VisionClient as DeprecatedVisionClient;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
@@ -49,6 +53,8 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * Please note that unless otherwise noted the examples below take advantage of
  * [Application Default Credentials](https://developers.google.com/identity/protocols/application-default-credentials).
+ *
+ * @deprecated
  */
 class ServiceBuilder
 {
@@ -211,11 +217,17 @@ class ServiceBuilder
      *
      * @param array $config [optional] Configuration options. See
      *        {@see \Google\Cloud\Core\ServiceBuilder::__construct()} for the available options.
-     * @return LanguageClient
+     * @return LanguageServiceClient
      */
     public function language(array $config = [])
     {
-        return $this->createClient(LanguageClient::class, 'language', $config);
+        if (class_exists(DeprecatedLanguageClient::class)) {
+            return $this->createClient(DeprecatedLanguageClient::class, 'vision', $config);
+        }
+        throw new \BadMethodCallException(sprintf(
+            'This method is no longer supported, create %s directly instead.',
+            LanguageServiceClient::class
+        ));
     }
 
     /**
@@ -268,32 +280,19 @@ class ServiceBuilder
     }
 
     /**
-     * Google Cloud Speech enables easy integration of Google speech recognition
-     * technologies into developer applications. Send audio and receive a text
-     * transcription from the Cloud Speech API service. Find more information at
-     * the [Google Cloud Speech API docs](https://cloud.google.com/speech/docs/).
-     *
-     * Example:
-     * ```
-     * $speech = $cloud->speech([
-     *     'languageCode' => 'en-US'
-     * ]);
-     * ```
-     *
-     * @param array $config [optional] {
-     *     Configuration options. See
-     *     {@see \Google\Cloud\Core\ServiceBuilder::__construct()} for the other available options.
-     *
-     *     @type string $languageCode The language of the content to
-     *           be recognized. Only BCP-47 (e.g., `"en-US"`, `"es-ES"`)
-     *           language codes are accepted. See
-     *           [Language Support](https://cloud.google.com/speech/docs/languages)
-     *           for a list of the currently supported language codes.
-     * @return SpeechClient
+     * @deprecated
+     * @see SpeechClient
+     * @throws \BadMethodCallException
      */
     public function speech(array $config = [])
     {
-        return $this->createClient(SpeechClient::class, 'speech', $config);
+        if (class_exists(DeprecatedSpeechClient::class)) {
+            return $this->createClient(DeprecatedSpeechClient::class, 'speech', $config);
+        }
+        throw new \BadMethodCallException(sprintf(
+            'This method is no longer supported, create %s directly instead.',
+            SpeechClient::class
+        ));
     }
 
     /**
@@ -315,7 +314,6 @@ class ServiceBuilder
         return $this->createClient(StorageClient::class, 'storage', $config);
     }
 
-
     /**
      * Google Stackdriver Trace allows you to collect latency data from your applications
      * and display it in the Google Cloud Platform Console. Find more information at
@@ -336,71 +334,35 @@ class ServiceBuilder
     }
 
     /**
-     * Google Cloud Vision allows you to understand the content of an image,
-     * classify images into categories, detect text, objects, faces and more.
-     * Find more information at the
-     * [Google Cloud Vision docs](https://cloud.google.com/vision/docs/).
-     *
-     * Example:
-     * ```
-     * $vision = $cloud->vision();
-     * ```
-     *
-     * @param array $config [optional] Configuration options. See
-     *        {@see \Google\Cloud\Core\ServiceBuilder::__construct()} for the available options.
-     * @return VisionClient
+     * @deprecated
+     * @see ImageAnnotatorClient
+     * @throws \BadMethodCallException
      */
     public function vision(array $config = [])
     {
-        return $this->createClient(VisionClient::class, 'vision', $config);
+        if (class_exists(DeprecatedVisionClient::class)) {
+            return $this->createClient(DeprecatedVisionClient::class, 'vision', $config);
+        }
+        throw new \BadMethodCallException(sprintf(
+            'This method is no longer supported, create %s directly instead.',
+            ImageAnnotatorClient::class
+        ));
     }
 
     /**
-     * Google Cloud Translation provides the ability to dynamically translate
-     * text between thousands of language pairs and lets websites and programs
-     * integrate with translation service programmatically.
-     *
-     * The Google Cloud Translation API is available as a paid
-     * service. See the [Pricing](https://cloud.google.com/translation/v2/pricing)
-     * and [FAQ](https://cloud.google.com/translation/v2/faq) pages for details.
-     * Find more information at the the
-     * [Google Cloud Translation docs](https://cloud.google.com/translation/docs/).
-     *
-     * Please note that while the Google Cloud Translation API supports
-     * authentication via service account and application default credentials
-     * like other Cloud Platform APIs, it also supports authentication via a
-     * public API access key. If you wish to authenticate using an API key,
-     * follow the
-     * [before you begin](https://cloud.google.com/translation/v2/translating-text-with-rest#before-you-begin)
-     * instructions to learn how to generate a key.
-     *
-     * Example:
-     * ```
-     * use Google\Cloud\Core\ServiceBuilder;
-     *
-     * $builder = new ServiceBuilder([
-     *     'key' => 'YOUR_KEY'
-     * ]);
-     *
-     * $translate = $builder->translate();
-     * ```
-     *
-     * @param array $config [optional] {
-     *     Configuration options.
-     *
-     *     @type string $key A public API access key.
-     *     @type string $target The target language to assign to the client.
-     *           Defaults to `en` (English).
-     *     @type callable $httpHandler A handler used to deliver Psr7 requests.
-     *           Only valid for requests sent over REST.
-     *     @type int $retries Number of retries for a failed request.
-     *           **Defaults to** `3`.
-     * }
-     * @return TranslateClient
+     * @deprecated
+     * @see TranslationServiceClient
+     * @throws \BadMethodCallException
      */
     public function translate(array $config = [])
     {
-        return $this->createClient(TranslateClient::class, 'translate', $config);
+        if (class_exists(DeprecatedTranslateClient::class)) {
+            return $this->createClient(DeprecatedTranslateClient::class, 'translate', $config);
+        }
+        throw new \BadMethodCallException(sprintf(
+            'This method is no longer supported, create %s directly instead.',
+            TranslationServiceClient::class
+        ));
     }
 
     /**

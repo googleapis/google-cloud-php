@@ -17,14 +17,16 @@
 
 namespace Google\Cloud\Bigtable;
 
+use Google\ApiCore\ApiException;
 use Google\ApiCore\ArrayTrait;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient as GapicClient;
 use Google\Cloud\Bigtable\V2\ReadRowsRequest;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Protobuf\Internal\Message;
-use Google\Cloud\Bigtable\V2\Client\BigtableClient as GapicClient;
+use Google\Rpc\Code;
 
 /**
  * Converts cell chunks into an easily digestable format. Please note this class
@@ -195,6 +197,10 @@ class ChunkFormatter implements \IteratorAggregate
         //   are to be discarded.
 
         foreach ($this->stream as $readRowsResponse) {
+            if ($lastScannedRowKey = $readRowsResponse->getLastScannedRowKey()) {
+                // The server sends the response with a "last_scanned_row_key" in some cases
+                $this->prevRowKey = $lastScannedRowKey;
+            }
             foreach ($readRowsResponse->getChunks() as $chunk) {
                 switch ($this->state) {
                     case self::$rowStateEnum['NEW_ROW']:
@@ -232,7 +238,6 @@ class ChunkFormatter implements \IteratorAggregate
                 $options['requestCompleted'] = true;
             }
         }
-
         if ($request->hasRows()) {
             $rowSet = $request->getRows();
             if (count($rowSet->getRowKeys()) > 0) {
@@ -249,8 +254,9 @@ class ChunkFormatter implements \IteratorAggregate
                 foreach ($rowSet->getRowRanges() as $range) {
                     if (($range->getEndKeyOpen() && $prevRowKey > $range->getEndKeyOpen())
                         || ($range->getEndKeyClosed() && $prevRowKey >= $range->getEndKeyClosed())) {
-                            continue;
-                    } elseif ((!$range->getStartKeyOpen() || $prevRowKey > $range->getStartKeyOpen())
+                        continue;
+                    }
+                    if ((!$range->getStartKeyOpen() || $prevRowKey > $range->getStartKeyOpen())
                         && (!$range->getStartKeyClosed() || $prevRowKey >= $range->getStartKeyClosed())) {
                         $range->setStartKeyOpen($prevRowKey);
                     }
@@ -268,8 +274,10 @@ class ChunkFormatter implements \IteratorAggregate
                 $options['requestCompleted'] = true;
             }
         } else {
-            $range = (new RowRange)->setStartKeyOpen($prevRowKey);
-            $options['rows'] = (new RowSet)->setRowRanges([$range]);
+            $range = (new RowRange());
+            $range->setStartKeyOpen($prevRowKey);
+            $rowset = (new RowSet())->setRowRanges([$range]);
+            $request->setRows($rowset);
         }
 
         return [$request, $options];
@@ -370,6 +378,23 @@ class ChunkFormatter implements \IteratorAggregate
     private function commit()
     {
         $rowKey = $this->rowKey;
+        if ($this->prevRowKey) {
+            // Validate that row keys are in ascending order
+            $cmp = strcmp($this->prevRowKey, $rowKey);
+            if ($this->request->getReversed()) {
+                $cmp *= -1;
+            }
+            if ($cmp >= 0) {
+                throw new ApiException(
+                    sprintf(
+                        'last scanned key must be strictly %s. New last scanned key=%s',
+                        $this->request->getReversed() ? 'decreasing' : 'increasing',
+                        $rowKey
+                    ),
+                    Code::INTERNAL
+                );
+            }
+        }
         $this->reset();
         $this->prevRowKey = $rowKey;
     }

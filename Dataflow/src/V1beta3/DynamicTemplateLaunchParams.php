@@ -9,26 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Params which should be passed when launching a dynamic template.
+ * Parameters to pass when launching a dynamic template.
  *
  * Generated from protobuf message <code>google.dataflow.v1beta3.DynamicTemplateLaunchParams</code>
  */
 class DynamicTemplateLaunchParams extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Path to dynamic template spec file on Cloud Storage.
-     * The file must be a Json serialized DynamicTemplateFieSpec object.
+     * Path to the dynamic template specification file on Cloud Storage.
+     * The file must be a JSON serialized `DynamicTemplateFileSpec` object.
      *
      * Generated from protobuf field <code>string gcs_path = 1;</code>
      */
-    private $gcs_path = '';
+    protected $gcs_path = '';
     /**
      * Cloud Storage path for staging dependencies.
      * Must be a valid Cloud Storage URL, beginning with `gs://`.
      *
      * Generated from protobuf field <code>string staging_location = 2;</code>
      */
-    private $staging_location = '';
+    protected $staging_location = '';
 
     /**
      * Constructor.
@@ -37,8 +37,8 @@ class DynamicTemplateLaunchParams extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $gcs_path
-     *           Path to dynamic template spec file on Cloud Storage.
-     *           The file must be a Json serialized DynamicTemplateFieSpec object.
+     *           Path to the dynamic template specification file on Cloud Storage.
+     *           The file must be a JSON serialized `DynamicTemplateFileSpec` object.
      *     @type string $staging_location
      *           Cloud Storage path for staging dependencies.
      *           Must be a valid Cloud Storage URL, beginning with `gs://`.
@@ -50,8 +50,8 @@ class DynamicTemplateLaunchParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Path to dynamic template spec file on Cloud Storage.
-     * The file must be a Json serialized DynamicTemplateFieSpec object.
+     * Path to the dynamic template specification file on Cloud Storage.
+     * The file must be a JSON serialized `DynamicTemplateFileSpec` object.
      *
      * Generated from protobuf field <code>string gcs_path = 1;</code>
      * @return string
@@ -62,8 +62,8 @@ class DynamicTemplateLaunchParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Path to dynamic template spec file on Cloud Storage.
-     * The file must be a Json serialized DynamicTemplateFieSpec object.
+     * Path to the dynamic template specification file on Cloud Storage.
+     * The file must be a JSON serialized `DynamicTemplateFileSpec` object.
      *
      * Generated from protobuf field <code>string gcs_path = 1;</code>
      * @param string $var

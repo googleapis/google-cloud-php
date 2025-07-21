@@ -51,40 +51,19 @@ $PROJECT_DIR/dev/google-cloud docfx \
     $STAGING_FLAG \
     $VERBOSITY_FLAG
 
-# If this run after a release, store the released artifacts.
-if [ "$KOKORO_GITHUB_COMMIT" != "" ]; then
-    # Move to the project directory
-    cd $PROJECT_DIR
+# Add Auth repo
+AUTH_DIR=$PROJECT_DIR/dev/vendor/google/auth
+$PROJECT_DIR/dev/google-cloud docfx \
+    --path $AUTH_DIR \
+    --out auth-out \
+    --metadata-version $(cat $AUTH_DIR/VERSION) \
+    $STAGING_FLAG \
+    $VERBOSITY_FLAG
 
-    # Create a directory for storing all the artifacts
-    mkdir pkg
-
-    # Get the released version of the commit
-    VERSION=$(git tag --contains "$KOKORO_GITHUB_COMMIT" | head -n 1)
-
-    # Returns the list of modules released in the PR.
-    release_modules () {
-        modules=$( ./dev/google-cloud release-info "$1" --format=json | jq -r '.releases[].component' )
-        echo "${modules[@]}"
-    }
-
-    # Store the released artifacts and composer.lock for SBOM generation.
-    for module in $(release_modules "$VERSION");
-    do
-        # Store the released package
-        zip -r "pkg/$module.zip" "$module"  -x \
-            "$module/.github/*" \
-            "$module/samples/*" \
-            "$module/tests/*" \
-            "$module/.OwlBot.yaml" \
-            "$module/.gitattributes" \
-            "$module/.repo-metadata.json" \
-            "$module/owlbot.py" \
-            "$module/phpunit.xml.dist"
-
-        # Store composer.lock for SBOM generation
-        mkdir "pkg/$module"
-        composer update -d "$module" --ignore-platform-req ext-grpc
-        cp "$module/composer.lock" "pkg/$module/composer.lock"
-    done
-fi
+# Add product-neutral guides
+$PROJECT_DIR/dev/google-cloud docfx \
+    --generate-product-neutral-guides \
+    --out help-out \
+    --metadata-version 1.0.0 \
+    $STAGING_FLAG \
+    $VERBOSITY_FLAG

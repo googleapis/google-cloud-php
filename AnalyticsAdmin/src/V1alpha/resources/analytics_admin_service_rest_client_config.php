@@ -417,6 +417,18 @@ return [
                 'uriTemplate' => '/v1alpha/properties',
                 'body' => 'property',
             ],
+            'CreateReportingDataAnnotation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/reportingDataAnnotations',
+                'body' => 'reporting_data_annotation',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateRollupProperty' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/properties:createRollupProperty',
@@ -671,6 +683,17 @@ return [
             'DeleteProperty' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=properties/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteReportingDataAnnotation' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/reportingDataAnnotations/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -1024,6 +1047,17 @@ return [
                     ],
                 ],
             ],
+            'GetReportingDataAnnotation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/reportingDataAnnotations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetRollupPropertySourceLink' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/rollupPropertySourceLinks/*}',
@@ -1060,6 +1094,17 @@ return [
             'GetSubpropertyEventFilter' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/subpropertyEventFilters/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetSubpropertySyncConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/subpropertySyncConfigs/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -1303,6 +1348,17 @@ return [
                     'filter',
                 ],
             ],
+            'ListReportingDataAnnotations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/reportingDataAnnotations',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListRollupPropertySourceLinks' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/rollupPropertySourceLinks',
@@ -1339,6 +1395,17 @@ return [
             'ListSubpropertyEventFilters' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/subpropertyEventFilters',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSubpropertySyncConfigs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/subpropertySyncConfigs',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -1404,6 +1471,18 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/properties:setAutomatedGa4ConfigurationOptOut',
                 'body' => '*',
+            ],
+            'SubmitUserDeletion' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{name=properties/*}:submitUserDeletion',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
             'UpdateAccessBinding' => [
                 'method' => 'patch',
@@ -1777,6 +1856,19 @@ return [
                     'update_mask',
                 ],
             ],
+            'UpdateReportingDataAnnotation' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{reporting_data_annotation.name=properties/*/reportingDataAnnotations/*}',
+                'body' => 'reporting_data_annotation',
+                'placeholders' => [
+                    'reporting_data_annotation.name' => [
+                        'getters' => [
+                            'getReportingDataAnnotation',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateSKAdNetworkConversionValueSchema' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1alpha/{skadnetwork_conversion_value_schema.name=properties/*/dataStreams/*/sKAdNetworkConversionValueSchema/*}',
@@ -1823,6 +1915,19 @@ return [
                 ],
                 'queryParams' => [
                     'update_mask',
+                ],
+            ],
+            'UpdateSubpropertySyncConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{subproperty_sync_config.name=properties/*/subpropertySyncConfigs/*}',
+                'body' => 'subproperty_sync_config',
+                'placeholders' => [
+                    'subproperty_sync_config.name' => [
+                        'getters' => [
+                            'getSubpropertySyncConfig',
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
         ],

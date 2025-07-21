@@ -17,7 +17,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The account to list processed products for.
-     * Format: accounts/{account}
+     * Format: `accounts/{account}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -25,7 +25,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of products to return. The service may return fewer than
      * this value.
-     * The maximum value is 250; values above 250 will be coerced to 250.
+     * The maximum value is 1000; values above 1000 will be coerced to 1000.
      * If unspecified, the maximum number of products will be returned.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
@@ -43,7 +43,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The account to list processed products for.
-     *                       Format: accounts/{account}
+     *                       Format: `accounts/{account}`
      *                       Please see {@see ProductsServiceClient::accountName()} for help formatting this field.
      *
      * @return \Google\Shopping\Merchant\Products\V1beta\ListProductsRequest
@@ -64,11 +64,11 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The account to list processed products for.
-     *           Format: accounts/{account}
+     *           Format: `accounts/{account}`
      *     @type int $page_size
      *           The maximum number of products to return. The service may return fewer than
      *           this value.
-     *           The maximum value is 250; values above 250 will be coerced to 250.
+     *           The maximum value is 1000; values above 1000 will be coerced to 1000.
      *           If unspecified, the maximum number of products will be returned.
      *     @type string $page_token
      *           A page token, received from a previous `ListProducts` call.
@@ -84,7 +84,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The account to list processed products for.
-     * Format: accounts/{account}
+     * Format: `accounts/{account}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -96,7 +96,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The account to list processed products for.
-     * Format: accounts/{account}
+     * Format: `accounts/{account}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -113,7 +113,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of products to return. The service may return fewer than
      * this value.
-     * The maximum value is 250; values above 250 will be coerced to 250.
+     * The maximum value is 1000; values above 1000 will be coerced to 1000.
      * If unspecified, the maximum number of products will be returned.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
@@ -127,7 +127,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of products to return. The service may return fewer than
      * this value.
-     * The maximum value is 250; values above 250 will be coerced to 250.
+     * The maximum value is 1000; values above 1000 will be coerced to 1000.
      * If unspecified, the maximum number of products will be returned.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>

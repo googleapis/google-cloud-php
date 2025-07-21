@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class SerialPipeline extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Each stage specifies configuration for a `Target`. The ordering
+     * Optional. Each stage specifies configuration for a `Target`. The ordering
      * of this list defines the promotion flow.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Stage stages = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Stage stages = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $stages;
 
@@ -30,7 +30,7 @@ class SerialPipeline extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Deploy\V1\Stage>|\Google\Protobuf\Internal\RepeatedField $stages
-     *           Each stage specifies configuration for a `Target`. The ordering
+     *           Optional. Each stage specifies configuration for a `Target`. The ordering
      *           of this list defines the promotion flow.
      * }
      */
@@ -40,10 +40,10 @@ class SerialPipeline extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Each stage specifies configuration for a `Target`. The ordering
+     * Optional. Each stage specifies configuration for a `Target`. The ordering
      * of this list defines the promotion flow.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Stage stages = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Stage stages = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getStages()
@@ -52,10 +52,10 @@ class SerialPipeline extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Each stage specifies configuration for a `Target`. The ordering
+     * Optional. Each stage specifies configuration for a `Target`. The ordering
      * of this list defines the promotion flow.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Stage stages = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Stage stages = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\Deploy\V1\Stage>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

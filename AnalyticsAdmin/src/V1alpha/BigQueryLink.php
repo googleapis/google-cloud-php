@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A link between a GA4 Property and BigQuery project.
+ * A link between a Google Analytics property and BigQuery project.
  *
  * Generated from protobuf message <code>google.analytics.admin.v1alpha.BigQueryLink</code>
  */
@@ -22,7 +22,7 @@ class BigQueryLink extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Immutable. The linked Google Cloud project. When creating a BigQueryLink,
      * you may provide this resource name using either a project number or project
@@ -33,38 +33,38 @@ class BigQueryLink extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Output only. Time when the link was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * If set true, enables daily data export to the linked Google Cloud project.
      *
      * Generated from protobuf field <code>bool daily_export_enabled = 4;</code>
      */
-    private $daily_export_enabled = false;
+    protected $daily_export_enabled = false;
     /**
      * If set true, enables streaming export to the linked Google Cloud project.
      *
      * Generated from protobuf field <code>bool streaming_export_enabled = 5;</code>
      */
-    private $streaming_export_enabled = false;
+    protected $streaming_export_enabled = false;
     /**
      * If set true, enables fresh daily export to the linked Google Cloud project.
      *
      * Generated from protobuf field <code>bool fresh_daily_export_enabled = 9;</code>
      */
-    private $fresh_daily_export_enabled = false;
+    protected $fresh_daily_export_enabled = false;
     /**
      * If set true, exported data will include advertising identifiers for mobile
      * app streams.
      *
      * Generated from protobuf field <code>bool include_advertising_id = 6;</code>
      */
-    private $include_advertising_id = false;
+    protected $include_advertising_id = false;
     /**
      * The list of streams under the parent property for which data will be
      * exported.
@@ -87,7 +87,7 @@ class BigQueryLink extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataset_location = 10 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $dataset_location = '';
+    protected $dataset_location = '';
 
     /**
      * Constructor.

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_SslCertificates_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\SslCertificatesClient;
+use Google\Cloud\Compute\V1\InsertSslCertificateRequest;
 use Google\Cloud\Compute\V1\SslCertificate;
-use Google\Cloud\Compute\V1\SslCertificatesClient;
 use Google\Rpc\Status;
 
 /**
@@ -39,13 +40,16 @@ function insert_sample(string $project): void
     // Create a client.
     $sslCertificatesClient = new SslCertificatesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $sslCertificateResource = new SslCertificate();
+    $request = (new InsertSslCertificateRequest())
+        ->setProject($project)
+        ->setSslCertificateResource($sslCertificateResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $sslCertificatesClient->insert($project, $sslCertificateResource);
+        $response = $sslCertificatesClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

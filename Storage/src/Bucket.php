@@ -30,7 +30,6 @@ use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\PubSub\Topic;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\IamBucket;
-use Google\Cloud\Storage\SigningHelper;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MimeType;
 use GuzzleHttp\Psr7\Utils;
@@ -708,7 +707,7 @@ class Bucket
      *           value must be UTF-8 encoded. See:
      *           https://cloud.google.com/storage/docs/json_api/v1/objects/list#list-object-glob
      * }
-     * @return ObjectIterator<StorageObject>
+     * @return ObjectIterator
      */
     public function objects(array $options = [])
     {
@@ -903,6 +902,7 @@ class Bucket
     {
         $resultLimit = $this->pluck('resultLimit', $options, false);
 
+        /** @var ItemIterator<Notification> */
         return new ItemIterator(
             new PageIterator(
                 function (array $notification) {
@@ -1178,6 +1178,9 @@ class Bucket
      * @param array $options [optional] {
      *     Configuration options.
      *
+     *     @type string $generation If present, selects a specific soft-deleted
+     *           version of this bucket instead of the live version.
+     *           This parameter is required if softDeleted is set to true.
      *     @type string $ifMetagenerationMatch Makes the return of the bucket
      *           metadata conditional on whether the bucket's current
      *           metageneration matches the given value.
@@ -1186,6 +1189,8 @@ class Bucket
      *           metageneration does not match the given value.
      *     @type string $projection Determines which properties to return. May
      *           be either `"full"` or `"noAcl"`.
+     *     @type bool $softDeleted If true, returns the soft-deleted bucket.
+     *           This parameter is required if generation is specified.
      * }
      * @return array
      */
@@ -1209,6 +1214,9 @@ class Bucket
      * @param array $options [optional] {
      *     Configuration options.
      *
+     *     @type string $generation If present, selects a specific soft-deleted
+     *           version of this bucket instead of the live version.
+     *           This parameter is required if softDeleted is set to true.
      *     @type string $ifMetagenerationMatch Makes the return of the bucket
      *           metadata conditional on whether the bucket's current
      *           metageneration matches the given value.
@@ -1217,6 +1225,8 @@ class Bucket
      *           metageneration does not match the given value.
      *     @type string $projection Determines which properties to return. May
      *           be either `"full"` or `"noAcl"`.
+     *     @type bool $softDeleted If true, returns the soft-deleted bucket.
+     *           This parameter is required if generation is specified.
      * }
      * @return array
      */

@@ -20,50 +20,50 @@ class AssetReference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Output only. The human-readable description of the referenced asset. Maximum 256
      * characters in length.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The definition of input parameters to hydrate the asset template.
      *
      * Generated from protobuf field <code>.google.cloud.privatecatalog.v1beta1.Inputs inputs = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $inputs = null;
+    protected $inputs = null;
     /**
      * Output only. The current state of the asset reference.
      *
      * Generated from protobuf field <code>.google.cloud.privatecatalog.v1beta1.AssetReference.AssetValidationState validation_status = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $validation_status = 0;
+    protected $validation_status = 0;
     /**
      * Output only. The validation process metadata.
      *
      * Generated from protobuf field <code>.google.longrunning.Operation validation_operation = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $validation_operation = null;
+    protected $validation_operation = null;
     /**
      * Output only. The cloud storage source.
      *
      * Generated from protobuf field <code>.google.cloud.privatecatalog.v1beta1.GcsSource gcs_source = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $gcs_source = null;
+    protected $gcs_source = null;
     /**
      * Output only. The creation timestamp of the asset reference.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The last update timestamp of the asset reference.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The version of the source used for this asset reference.
      *
@@ -303,13 +303,17 @@ class AssetReference extends \Google\Protobuf\Internal\Message
      */
     public function getGcsPath()
     {
-        @trigger_error('gcs_path is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(11)) {
+            @trigger_error('gcs_path is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(11);
     }
 
     public function hasGcsPath()
     {
-        @trigger_error('gcs_path is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(11)) {
+            @trigger_error('gcs_path is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(11);
     }
 
@@ -478,7 +482,9 @@ class AssetReference extends \Google\Protobuf\Internal\Message
      */
     public function getVersion()
     {
-        @trigger_error('version is deprecated.', E_USER_DEPRECATED);
+        if ($this->version !== '') {
+            @trigger_error('version is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->version;
     }
 

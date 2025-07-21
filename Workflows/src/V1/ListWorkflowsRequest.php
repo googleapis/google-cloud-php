@@ -44,6 +44,12 @@ class ListWorkflowsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
     /**
      * Filter to restrict results to specific workflows.
+     * For details, see <a href="https://google.aip.dev/160"
+     * class="external">AIP-160</a>.
+     * For example, if you are using the Google APIs Explorer:
+     * `state="SUCCEEDED"`
+     * or
+     * `createTime>"2023-08-01" AND state="FAILED"`
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      */
@@ -94,6 +100,12 @@ class ListWorkflowsRequest extends \Google\Protobuf\Internal\Message
      *           match the call that provided the page token.
      *     @type string $filter
      *           Filter to restrict results to specific workflows.
+     *           For details, see <a href="https://google.aip.dev/160"
+     *           class="external">AIP-160</a>.
+     *           For example, if you are using the Google APIs Explorer:
+     *           `state="SUCCEEDED"`
+     *           or
+     *           `createTime>"2023-08-01" AND state="FAILED"`
      *     @type string $order_by
      *           Comma-separated list of fields that specify the order of the results.
      *           Default sorting order for a field is ascending. To specify descending order
@@ -200,6 +212,12 @@ class ListWorkflowsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Filter to restrict results to specific workflows.
+     * For details, see <a href="https://google.aip.dev/160"
+     * class="external">AIP-160</a>.
+     * For example, if you are using the Google APIs Explorer:
+     * `state="SUCCEEDED"`
+     * or
+     * `createTime>"2023-08-01" AND state="FAILED"`
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      * @return string
@@ -211,6 +229,12 @@ class ListWorkflowsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Filter to restrict results to specific workflows.
+     * For details, see <a href="https://google.aip.dev/160"
+     * class="external">AIP-160</a>.
+     * For example, if you are using the Google APIs Explorer:
+     * `state="SUCCEEDED"`
+     * or
+     * `createTime>"2023-08-01" AND state="FAILED"`
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      * @param string $var

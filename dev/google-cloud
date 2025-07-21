@@ -23,6 +23,7 @@ if (!file_exists(__DIR__ . '/vendor/autoload.php')) {
 require __DIR__ . '/vendor/autoload.php';
 
 use Google\Cloud\Dev\Command\AddComponentCommand;
+use Google\Cloud\Dev\Command\AddSampleToReadmeCommand;
 use Google\Cloud\Dev\Command\ComponentInfoCommand;
 use Google\Cloud\Dev\Command\DocFxCommand;
 use Google\Cloud\Dev\Command\ListBrokenXrefsCommand;
@@ -44,6 +45,7 @@ $rootDirectory = realpath(__DIR__ . '/../') . '/';
 
 $app = new Application;
 $app->add(new AddComponentCommand($rootDirectory));
+$app->add(new AddSampleToReadmeCommand());
 $app->add(new ComponentInfoCommand());
 $app->add(new DocFxCommand());
 $app->add(new ListBrokenXrefsCommand());

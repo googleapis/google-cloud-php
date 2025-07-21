@@ -22,7 +22,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      */
     private $inputs;
     /**
-     * List of `Edit atom`s. Defines the ultimate timeline of the resulting
+     * List of edit atoms. Defines the ultimate timeline of the resulting
      * file or manifest.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.EditAtom edit_list = 2;</code>
@@ -97,7 +97,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Video\Transcoder\V1\Input>|\Google\Protobuf\Internal\RepeatedField $inputs
      *           List of input assets stored in Cloud Storage.
      *     @type array<\Google\Cloud\Video\Transcoder\V1\EditAtom>|\Google\Protobuf\Internal\RepeatedField $edit_list
-     *           List of `Edit atom`s. Defines the ultimate timeline of the resulting
+     *           List of edit atoms. Defines the ultimate timeline of the resulting
      *           file or manifest.
      *     @type array<\Google\Cloud\Video\Transcoder\V1\ElementaryStream>|\Google\Protobuf\Internal\RepeatedField $elementary_streams
      *           List of elementary streams.
@@ -156,7 +156,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of `Edit atom`s. Defines the ultimate timeline of the resulting
+     * List of edit atoms. Defines the ultimate timeline of the resulting
      * file or manifest.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.EditAtom edit_list = 2;</code>
@@ -168,7 +168,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of `Edit atom`s. Defines the ultimate timeline of the resulting
+     * List of edit atoms. Defines the ultimate timeline of the resulting
      * file or manifest.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.EditAtom edit_list = 2;</code>

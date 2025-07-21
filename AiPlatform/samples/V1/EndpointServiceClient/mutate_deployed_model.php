@@ -38,32 +38,18 @@ use Google\Rpc\Status;
  * `disable_container_logging` (v1 only), and `enable_container_logging`
  * (v1beta1 only).
  *
- * @param string $formattedEndpoint           The name of the Endpoint resource into which to mutate a
- *                                            DeployedModel. Format:
- *                                            `projects/{project}/locations/{location}/endpoints/{endpoint}`
- *                                            Please see {@see EndpointServiceClient::endpointName()} for help formatting this field.
- * @param string $formattedDeployedModelModel The resource name of the Model that this is the deployment of.
- *                                            Note that the Model may be in a different location than the DeployedModel's
- *                                            Endpoint.
- *
- *                                            The resource name may contain version id or version alias to specify the
- *                                            version.
- *                                            Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
- *                                            or
- *                                            `projects/{project}/locations/{location}/models/{model}&#64;golden`
- *                                            if no version is specified, the default version will be deployed. Please see
- *                                            {@see EndpointServiceClient::modelName()} for help formatting this field.
+ * @param string $formattedEndpoint The name of the Endpoint resource into which to mutate a
+ *                                  DeployedModel. Format:
+ *                                  `projects/{project}/locations/{location}/endpoints/{endpoint}`
+ *                                  Please see {@see EndpointServiceClient::endpointName()} for help formatting this field.
  */
-function mutate_deployed_model_sample(
-    string $formattedEndpoint,
-    string $formattedDeployedModelModel
-): void {
+function mutate_deployed_model_sample(string $formattedEndpoint): void
+{
     // Create a client.
     $endpointServiceClient = new EndpointServiceClient();
 
     // Prepare the request message.
-    $deployedModel = (new DeployedModel())
-        ->setModel($formattedDeployedModelModel);
+    $deployedModel = new DeployedModel();
     $updateMask = new FieldMask();
     $request = (new MutateDeployedModelRequest())
         ->setEndpoint($formattedEndpoint)
@@ -102,12 +88,7 @@ function mutate_deployed_model_sample(
 function callSample(): void
 {
     $formattedEndpoint = EndpointServiceClient::endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-    $formattedDeployedModelModel = EndpointServiceClient::modelName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[MODEL]'
-    );
 
-    mutate_deployed_model_sample($formattedEndpoint, $formattedDeployedModelModel);
+    mutate_deployed_model_sample($formattedEndpoint);
 }
 // [END aiplatform_v1_generated_EndpointService_MutateDeployedModel_sync]

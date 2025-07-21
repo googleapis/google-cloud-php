@@ -48,6 +48,8 @@ class ListNotebookRuntimesRequest extends \Google\Protobuf\Internal\Message
      *   UI_RESOURCE_STATE_CREATION_FAILED].
      *   * `notebookRuntimeType` supports = and !=. notebookRuntimeType enum:
      *   [USER_DEFINED, ONE_CLICK].
+     *   * `machineType` supports = and !=.
+     *   * `acceleratorType` supports = and !=.
      * Some examples:
      *   * `notebookRuntime="notebookRuntime123"`
      *   * `displayName="myDisplayName"` and `displayName=~"myDisplayNameRegex"`
@@ -57,6 +59,8 @@ class ListNotebookRuntimesRequest extends \Google\Protobuf\Internal\Message
      *   * `runtimeUser="test&#64;google.com"`
      *   * `uiState=UI_RESOURCE_STATE_BEING_DELETED`
      *   * `notebookRuntimeType=USER_DEFINED`
+     *   * `machineType=e2-standard-4`
+     *   * `acceleratorType=NVIDIA_TESLA_T4`
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -146,6 +150,8 @@ class ListNotebookRuntimesRequest extends \Google\Protobuf\Internal\Message
      *             UI_RESOURCE_STATE_CREATION_FAILED].
      *             * `notebookRuntimeType` supports = and !=. notebookRuntimeType enum:
      *             [USER_DEFINED, ONE_CLICK].
+     *             * `machineType` supports = and !=.
+     *             * `acceleratorType` supports = and !=.
      *           Some examples:
      *             * `notebookRuntime="notebookRuntime123"`
      *             * `displayName="myDisplayName"` and `displayName=~"myDisplayNameRegex"`
@@ -155,6 +161,8 @@ class ListNotebookRuntimesRequest extends \Google\Protobuf\Internal\Message
      *             * `runtimeUser="test&#64;google.com"`
      *             * `uiState=UI_RESOURCE_STATE_BEING_DELETED`
      *             * `notebookRuntimeType=USER_DEFINED`
+     *             * `machineType=e2-standard-4`
+     *             * `acceleratorType=NVIDIA_TESLA_T4`
      *     @type int $page_size
      *           Optional. The standard list page size.
      *     @type string $page_token
@@ -234,6 +242,8 @@ class ListNotebookRuntimesRequest extends \Google\Protobuf\Internal\Message
      *   UI_RESOURCE_STATE_CREATION_FAILED].
      *   * `notebookRuntimeType` supports = and !=. notebookRuntimeType enum:
      *   [USER_DEFINED, ONE_CLICK].
+     *   * `machineType` supports = and !=.
+     *   * `acceleratorType` supports = and !=.
      * Some examples:
      *   * `notebookRuntime="notebookRuntime123"`
      *   * `displayName="myDisplayName"` and `displayName=~"myDisplayNameRegex"`
@@ -243,6 +253,8 @@ class ListNotebookRuntimesRequest extends \Google\Protobuf\Internal\Message
      *   * `runtimeUser="test&#64;google.com"`
      *   * `uiState=UI_RESOURCE_STATE_BEING_DELETED`
      *   * `notebookRuntimeType=USER_DEFINED`
+     *   * `machineType=e2-standard-4`
+     *   * `acceleratorType=NVIDIA_TESLA_T4`
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -276,6 +288,8 @@ class ListNotebookRuntimesRequest extends \Google\Protobuf\Internal\Message
      *   UI_RESOURCE_STATE_CREATION_FAILED].
      *   * `notebookRuntimeType` supports = and !=. notebookRuntimeType enum:
      *   [USER_DEFINED, ONE_CLICK].
+     *   * `machineType` supports = and !=.
+     *   * `acceleratorType` supports = and !=.
      * Some examples:
      *   * `notebookRuntime="notebookRuntime123"`
      *   * `displayName="myDisplayName"` and `displayName=~"myDisplayNameRegex"`
@@ -285,6 +299,8 @@ class ListNotebookRuntimesRequest extends \Google\Protobuf\Internal\Message
      *   * `runtimeUser="test&#64;google.com"`
      *   * `uiState=UI_RESOURCE_STATE_BEING_DELETED`
      *   * `notebookRuntimeType=USER_DEFINED`
+     *   * `machineType=e2-standard-4`
+     *   * `acceleratorType=NVIDIA_TESLA_T4`
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

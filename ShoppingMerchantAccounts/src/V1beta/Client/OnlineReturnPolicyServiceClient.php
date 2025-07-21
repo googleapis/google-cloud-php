@@ -35,17 +35,21 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Shopping\Merchant\Accounts\V1beta\CreateOnlineReturnPolicyRequest;
+use Google\Shopping\Merchant\Accounts\V1beta\DeleteOnlineReturnPolicyRequest;
 use Google\Shopping\Merchant\Accounts\V1beta\GetOnlineReturnPolicyRequest;
 use Google\Shopping\Merchant\Accounts\V1beta\ListOnlineReturnPoliciesRequest;
 use Google\Shopping\Merchant\Accounts\V1beta\OnlineReturnPolicy;
+use Google\Shopping\Merchant\Accounts\V1beta\UpdateOnlineReturnPolicyRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The service facilitates the management of a merchant's remorse return policy
  * configuration, encompassing return policies for both ads and free listings
  * ## programs. This API defines the following resource model:
  *
- * [OnlineReturnPolicy][google.shopping.merchant.accounts.v1.OnlineReturnPolicy]
+ * [OnlineReturnPolicy](/merchant/api/reference/rpc/google.shopping.merchant.accounts.v1beta#google.shopping.merchant.accounts.v1beta.OnlineReturnPolicy)
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -57,8 +61,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
+ * @method PromiseInterface<OnlineReturnPolicy> createOnlineReturnPolicyAsync(CreateOnlineReturnPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteOnlineReturnPolicyAsync(DeleteOnlineReturnPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OnlineReturnPolicy> getOnlineReturnPolicyAsync(GetOnlineReturnPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listOnlineReturnPoliciesAsync(ListOnlineReturnPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OnlineReturnPolicy> updateOnlineReturnPolicyAsync(UpdateOnlineReturnPolicyRequest $request, array $optionalArgs = [])
  */
 final class OnlineReturnPolicyServiceClient
 {
@@ -156,8 +163,8 @@ final class OnlineReturnPolicyServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
@@ -165,7 +172,7 @@ final class OnlineReturnPolicyServiceClient
      *
      * @experimental
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -187,6 +194,12 @@ final class OnlineReturnPolicyServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -220,6 +233,9 @@ final class OnlineReturnPolicyServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -244,7 +260,65 @@ final class OnlineReturnPolicyServiceClient
     }
 
     /**
-     * Gets an existing return policy.
+     * Creates a new return policy for a given merchant.
+     *
+     * The async variant is
+     * {@see OnlineReturnPolicyServiceClient::createOnlineReturnPolicyAsync()} .
+     *
+     * @example samples/V1beta/OnlineReturnPolicyServiceClient/create_online_return_policy.php
+     *
+     * @param CreateOnlineReturnPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OnlineReturnPolicy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createOnlineReturnPolicy(
+        CreateOnlineReturnPolicyRequest $request,
+        array $callOptions = []
+    ): OnlineReturnPolicy {
+        return $this->startApiCall('CreateOnlineReturnPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes an existing return policy.
+     *
+     * The async variant is
+     * {@see OnlineReturnPolicyServiceClient::deleteOnlineReturnPolicyAsync()} .
+     *
+     * @example samples/V1beta/OnlineReturnPolicyServiceClient/delete_online_return_policy.php
+     *
+     * @param DeleteOnlineReturnPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteOnlineReturnPolicy(DeleteOnlineReturnPolicyRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteOnlineReturnPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets an existing return policy for a given merchant.
      *
      * The async variant is
      * {@see OnlineReturnPolicyServiceClient::getOnlineReturnPolicyAsync()} .
@@ -275,7 +349,7 @@ final class OnlineReturnPolicyServiceClient
     }
 
     /**
-     * Lists all existing return policies.
+     * Lists all existing return policies for a given merchant.
      *
      * The async variant is
      * {@see OnlineReturnPolicyServiceClient::listOnlineReturnPoliciesAsync()} .
@@ -303,5 +377,36 @@ final class OnlineReturnPolicyServiceClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('ListOnlineReturnPolicies', $request, $callOptions);
+    }
+
+    /**
+     * Updates an existing return policy for a given merchant.
+     *
+     * The async variant is
+     * {@see OnlineReturnPolicyServiceClient::updateOnlineReturnPolicyAsync()} .
+     *
+     * @example samples/V1beta/OnlineReturnPolicyServiceClient/update_online_return_policy.php
+     *
+     * @param UpdateOnlineReturnPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OnlineReturnPolicy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateOnlineReturnPolicy(
+        UpdateOnlineReturnPolicyRequest $request,
+        array $callOptions = []
+    ): OnlineReturnPolicy {
+        return $this->startApiCall('UpdateOnlineReturnPolicy', $request, $callOptions)->wait();
     }
 }

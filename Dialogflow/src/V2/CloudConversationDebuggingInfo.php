@@ -23,26 +23,26 @@ class CloudConversationDebuggingInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 audio_data_chunks = 1;</code>
      */
-    private $audio_data_chunks = 0;
+    protected $audio_data_chunks = 0;
     /**
      * Time offset of the end of speech utterance relative to the
      * beginning of the first audio chunk.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration result_end_time_offset = 2;</code>
      */
-    private $result_end_time_offset = null;
+    protected $result_end_time_offset = null;
     /**
      * Duration of first audio chunk.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration first_audio_duration = 3;</code>
      */
-    private $first_audio_duration = null;
+    protected $first_audio_duration = null;
     /**
      * Whether client used single utterance mode.
      *
      * Generated from protobuf field <code>bool single_utterance = 5;</code>
      */
-    private $single_utterance = false;
+    protected $single_utterance = false;
     /**
      * Time offsets of the speech partial results relative to the beginning of
      * the stream.
@@ -62,7 +62,7 @@ class CloudConversationDebuggingInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 partial_responses = 8;</code>
      */
-    private $partial_responses = 0;
+    protected $partial_responses = 0;
     /**
      * Time offset of Speaker ID stream close time relative to the Speech stream
      * close time in milliseconds. Only meaningful for conversations involving
@@ -70,19 +70,19 @@ class CloudConversationDebuggingInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 speaker_id_passive_latency_ms_offset = 9;</code>
      */
-    private $speaker_id_passive_latency_ms_offset = 0;
+    protected $speaker_id_passive_latency_ms_offset = 0;
     /**
      * Whether a barge-in event is triggered in this request.
      *
      * Generated from protobuf field <code>bool bargein_event_triggered = 10;</code>
      */
-    private $bargein_event_triggered = false;
+    protected $bargein_event_triggered = false;
     /**
      * Whether speech uses single utterance mode.
      *
      * Generated from protobuf field <code>bool speech_single_utterance = 11;</code>
      */
-    private $speech_single_utterance = false;
+    protected $speech_single_utterance = false;
     /**
      * Time offsets of the DTMF partial results relative to the beginning of
      * the stream.
@@ -103,37 +103,37 @@ class CloudConversationDebuggingInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration single_utterance_end_time_offset = 14;</code>
      */
-    private $single_utterance_end_time_offset = null;
+    protected $single_utterance_end_time_offset = null;
     /**
      * No speech timeout settings for the stream.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration no_speech_timeout = 15;</code>
      */
-    private $no_speech_timeout = null;
+    protected $no_speech_timeout = null;
     /**
      * Speech endpointing timeout settings for the stream.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration endpointing_timeout = 19;</code>
      */
-    private $endpointing_timeout = null;
+    protected $endpointing_timeout = null;
     /**
      * Whether the streaming terminates with an injected text query.
      *
      * Generated from protobuf field <code>bool is_input_text = 16;</code>
      */
-    private $is_input_text = false;
+    protected $is_input_text = false;
     /**
      * Client half close time in terms of input audio duration.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration client_half_close_time_offset = 17;</code>
      */
-    private $client_half_close_time_offset = null;
+    protected $client_half_close_time_offset = null;
     /**
      * Client half close time in terms of API streaming duration.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration client_half_close_streaming_time_offset = 18;</code>
      */
-    private $client_half_close_streaming_time_offset = null;
+    protected $client_half_close_streaming_time_offset = null;
 
     /**
      * Constructor.

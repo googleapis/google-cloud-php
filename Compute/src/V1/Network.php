@@ -95,6 +95,18 @@ class Network extends \Google\Protobuf\Internal\Message
      */
     private $network_firewall_policy_enforcement_order = null;
     /**
+     * A full or partial URL of the network profile to apply to this network. This field can be set only at resource creation time. For example, the following are valid URLs: - https://www.googleapis.com/compute/{api_version}/projects/{project_id}/global/networkProfiles/{network_profile_name} - projects/{project_id}/global/networkProfiles/{network_profile_name} 
+     *
+     * Generated from protobuf field <code>optional string network_profile = 173112472;</code>
+     */
+    private $network_profile = null;
+    /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkParams params = 78313862;</code>
+     */
+    private $params = null;
+    /**
      * [Output Only] A list of network peerings for the resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkPeering peerings = 69883187;</code>
@@ -158,6 +170,10 @@ class Network extends \Google\Protobuf\Internal\Message
      *     @type string $network_firewall_policy_enforcement_order
      *           The network firewall policy enforcement order. Can be either AFTER_CLASSIC_FIREWALL or BEFORE_CLASSIC_FIREWALL. Defaults to AFTER_CLASSIC_FIREWALL if the field is not specified.
      *           Check the NetworkFirewallPolicyEnforcementOrder enum for the list of possible values.
+     *     @type string $network_profile
+     *           A full or partial URL of the network profile to apply to this network. This field can be set only at resource creation time. For example, the following are valid URLs: - https://www.googleapis.com/compute/{api_version}/projects/{project_id}/global/networkProfiles/{network_profile_name} - projects/{project_id}/global/networkProfiles/{network_profile_name} 
+     *     @type \Google\Cloud\Compute\V1\NetworkParams $params
+     *           Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
      *     @type array<\Google\Cloud\Compute\V1\NetworkPeering>|\Google\Protobuf\Internal\RepeatedField $peerings
      *           [Output Only] A list of network peerings for the resource.
      *     @type \Google\Cloud\Compute\V1\NetworkRoutingConfig $routing_config
@@ -641,6 +657,78 @@ class Network extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->network_firewall_policy_enforcement_order = $var;
+
+        return $this;
+    }
+
+    /**
+     * A full or partial URL of the network profile to apply to this network. This field can be set only at resource creation time. For example, the following are valid URLs: - https://www.googleapis.com/compute/{api_version}/projects/{project_id}/global/networkProfiles/{network_profile_name} - projects/{project_id}/global/networkProfiles/{network_profile_name} 
+     *
+     * Generated from protobuf field <code>optional string network_profile = 173112472;</code>
+     * @return string
+     */
+    public function getNetworkProfile()
+    {
+        return isset($this->network_profile) ? $this->network_profile : '';
+    }
+
+    public function hasNetworkProfile()
+    {
+        return isset($this->network_profile);
+    }
+
+    public function clearNetworkProfile()
+    {
+        unset($this->network_profile);
+    }
+
+    /**
+     * A full or partial URL of the network profile to apply to this network. This field can be set only at resource creation time. For example, the following are valid URLs: - https://www.googleapis.com/compute/{api_version}/projects/{project_id}/global/networkProfiles/{network_profile_name} - projects/{project_id}/global/networkProfiles/{network_profile_name} 
+     *
+     * Generated from protobuf field <code>optional string network_profile = 173112472;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNetworkProfile($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->network_profile = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkParams params = 78313862;</code>
+     * @return \Google\Cloud\Compute\V1\NetworkParams|null
+     */
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    public function hasParams()
+    {
+        return isset($this->params);
+    }
+
+    public function clearParams()
+    {
+        unset($this->params);
+    }
+
+    /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkParams params = 78313862;</code>
+     * @param \Google\Cloud\Compute\V1\NetworkParams $var
+     * @return $this
+     */
+    public function setParams($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\NetworkParams::class);
+        $this->params = $var;
 
         return $this;
     }

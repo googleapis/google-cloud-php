@@ -161,7 +161,9 @@ class PullRequest extends \Google\Protobuf\Internal\Message
      */
     public function getReturnImmediately()
     {
-        @trigger_error('return_immediately is deprecated.', E_USER_DEPRECATED);
+        if ($this->return_immediately !== false) {
+            @trigger_error('return_immediately is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->return_immediately;
     }
 

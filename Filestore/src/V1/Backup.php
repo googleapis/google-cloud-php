@@ -108,6 +108,28 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string kms_key = 13 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $kms_key = '';
+    /**
+     * Optional. Input only. Immutable. Tag key-value pairs bound to this
+     * resource. Each key must be a namespaced name and each value a short name.
+     * Example:
+     * "123456789012/environment" : "production",
+     * "123456789013/costCenter" : "marketing"
+     * See the documentation for more information:
+     * - Namespaced name:
+     * https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_key
+     * - Short name:
+     * https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_value
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 15 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tags;
+    /**
+     * Output only. The file system protocol of the source Filestore instance that
+     * this backup is created from.
+     *
+     * Generated from protobuf field <code>.google.cloud.filestore.v1.Instance.FileProtocol file_system_protocol = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $file_system_protocol = 0;
 
     /**
      * Constructor.
@@ -152,6 +174,20 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Output only. Reserved for future use.
      *     @type string $kms_key
      *           Immutable. KMS key name used for data encryption.
+     *     @type array|\Google\Protobuf\Internal\MapField $tags
+     *           Optional. Input only. Immutable. Tag key-value pairs bound to this
+     *           resource. Each key must be a namespaced name and each value a short name.
+     *           Example:
+     *           "123456789012/environment" : "production",
+     *           "123456789013/costCenter" : "marketing"
+     *           See the documentation for more information:
+     *           - Namespaced name:
+     *           https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_key
+     *           - Short name:
+     *           https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_value
+     *     @type int $file_system_protocol
+     *           Output only. The file system protocol of the source Filestore instance that
+     *           this backup is created from.
      * }
      */
     public function __construct($data = NULL) {
@@ -584,6 +620,78 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->kms_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag key-value pairs bound to this
+     * resource. Each key must be a namespaced name and each value a short name.
+     * Example:
+     * "123456789012/environment" : "production",
+     * "123456789013/costCenter" : "marketing"
+     * See the documentation for more information:
+     * - Namespaced name:
+     * https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_key
+     * - Short name:
+     * https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_value
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 15 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag key-value pairs bound to this
+     * resource. Each key must be a namespaced name and each value a short name.
+     * Example:
+     * "123456789012/environment" : "production",
+     * "123456789013/costCenter" : "marketing"
+     * See the documentation for more information:
+     * - Namespaced name:
+     * https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_key
+     * - Short name:
+     * https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_value
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 15 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setTags($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->tags = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The file system protocol of the source Filestore instance that
+     * this backup is created from.
+     *
+     * Generated from protobuf field <code>.google.cloud.filestore.v1.Instance.FileProtocol file_system_protocol = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getFileSystemProtocol()
+    {
+        return $this->file_system_protocol;
+    }
+
+    /**
+     * Output only. The file system protocol of the source Filestore instance that
+     * this backup is created from.
+     *
+     * Generated from protobuf field <code>.google.cloud.filestore.v1.Instance.FileProtocol file_system_protocol = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setFileSystemProtocol($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Filestore\V1\Instance\FileProtocol::class);
+        $this->file_system_protocol = $var;
 
         return $this;
     }

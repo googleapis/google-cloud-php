@@ -77,6 +77,10 @@ class Step extends \Google\Protobuf\Internal\Message
      *           Display information of a Compute Engine VPN tunnel.
      *     @type \Google\Cloud\NetworkManagement\V1\VpcConnectorInfo $vpc_connector
      *           Display information of a VPC connector.
+     *     @type \Google\Cloud\NetworkManagement\V1\DirectVpcEgressConnectionInfo $direct_vpc_egress_connection
+     *           Display information of a serverless direct VPC egress connection.
+     *     @type \Google\Cloud\NetworkManagement\V1\ServerlessExternalConnectionInfo $serverless_external_connection
+     *           Display information of a serverless public (external) connection.
      *     @type \Google\Cloud\NetworkManagement\V1\DeliverInfo $deliver
      *           Display information of the final state "deliver" and reason.
      *     @type \Google\Cloud\NetworkManagement\V1\ForwardInfo $forward
@@ -512,6 +516,68 @@ class Step extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Display information of a serverless direct VPC egress connection.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.DirectVpcEgressConnectionInfo direct_vpc_egress_connection = 33;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\DirectVpcEgressConnectionInfo|null
+     */
+    public function getDirectVpcEgressConnection()
+    {
+        return $this->readOneof(33);
+    }
+
+    public function hasDirectVpcEgressConnection()
+    {
+        return $this->hasOneof(33);
+    }
+
+    /**
+     * Display information of a serverless direct VPC egress connection.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.DirectVpcEgressConnectionInfo direct_vpc_egress_connection = 33;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\DirectVpcEgressConnectionInfo $var
+     * @return $this
+     */
+    public function setDirectVpcEgressConnection($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\DirectVpcEgressConnectionInfo::class);
+        $this->writeOneof(33, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display information of a serverless public (external) connection.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ServerlessExternalConnectionInfo serverless_external_connection = 34;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\ServerlessExternalConnectionInfo|null
+     */
+    public function getServerlessExternalConnection()
+    {
+        return $this->readOneof(34);
+    }
+
+    public function hasServerlessExternalConnection()
+    {
+        return $this->hasOneof(34);
+    }
+
+    /**
+     * Display information of a serverless public (external) connection.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ServerlessExternalConnectionInfo serverless_external_connection = 34;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\ServerlessExternalConnectionInfo $var
+     * @return $this
+     */
+    public function setServerlessExternalConnection($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\ServerlessExternalConnectionInfo::class);
+        $this->writeOneof(34, $var);
+
+        return $this;
+    }
+
+    /**
      * Display information of the final state "deliver" and reason.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.DeliverInfo deliver = 12;</code>
@@ -645,13 +711,17 @@ class Step extends \Google\Protobuf\Internal\Message
      */
     public function getLoadBalancer()
     {
-        @trigger_error('load_balancer is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(16)) {
+            @trigger_error('load_balancer is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(16);
     }
 
     public function hasLoadBalancer()
     {
-        @trigger_error('load_balancer is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(16)) {
+            @trigger_error('load_balancer is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(16);
     }
 

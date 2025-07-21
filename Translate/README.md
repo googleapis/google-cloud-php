@@ -30,49 +30,32 @@ $ composer require google/cloud-translate
 Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
-### Sample Using the Handwritten Client (Interacts with the V2 API)
+### Sample
 
 ```php
-require 'vendor/autoload.php';
+Google\ApiCore\ApiException;
+Google\Cloud\Translate\V3\AdaptiveMtDataset;
+Google\Cloud\Translate\V3\Client\TranslationServiceClient;
+Google\Cloud\Translate\V3\GetAdaptiveMtDatasetRequest;
 
-use Google\Cloud\Translate\V2\TranslateClient;
+// Create a client.
+$translationServiceClient = new TranslationServiceClient();
 
-$translate = new TranslateClient([
-    'key' => 'your_key'
-]);
+// Prepare the request message.
+$request = (new GetAdaptiveMtDatasetRequest())
+    ->setName($formattedName);
 
-// Translate text from english to french.
-$result = $translate->translate('Hello world!', [
-    'target' => 'fr'
-]);
-
-echo $result['text'] . "\n";
-
-// Detect the language of a string.
-$result = $translate->detectLanguage('Greetings from Michigan!');
-
-echo $result['languageCode'] . "\n";
-
-// Get the languages supported for translation specifically for your target language.
-$languages = $translate->localizedLanguages([
-    'target' => 'en'
-]);
-
-foreach ($languages as $language) {
-    echo $language['name'] . "\n";
-    echo $language['code'] . "\n";
+// Call the API and handle any network failures.
+try {
+    /** @var AdaptiveMtDataset $response */
+    $response = $translationServiceClient->getAdaptiveMtDataset($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
 }
+``` 
 
-// Get all languages supported for translation.
-$languages = $translate->languages();
-
-foreach ($languages as $language) {
-    echo $language . "\n";
-}
-```
-
-### Sample Using the Generated Client (Interacts with the V3 API)
-
+### Using the Generated Client (Interacts with the V3 API)
 ```php
 require 'vendor/autoload.php';
 
@@ -105,6 +88,11 @@ REST & HTTP/1.1 only.
 
 The handwritten client can be found under `Google\Cloud\Translate\TranslateClient`, whereas the generated client is
 found under `Google\Cloud\Translate\V3\TranslationServiceClient`.
+
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
 
 ### Version
 

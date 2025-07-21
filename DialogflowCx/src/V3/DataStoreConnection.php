@@ -31,6 +31,14 @@ class DataStoreConnection extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string data_store = 2;</code>
      */
     protected $data_store = '';
+    /**
+     * The document processing mode for the data store connection. Should only be
+     * set for PUBLIC_WEB and UNSTRUCTURED data stores. If not set it is
+     * considered as DOCUMENTS, as this is the legacy mode.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.DocumentProcessingMode document_processing_mode = 4;</code>
+     */
+    protected $document_processing_mode = 0;
 
     /**
      * Constructor.
@@ -45,6 +53,10 @@ class DataStoreConnection extends \Google\Protobuf\Internal\Message
      *           Formats:
      *           `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`
      *           `projects/{project}/locations/{location}/dataStores/{data_store}`
+     *     @type int $document_processing_mode
+     *           The document processing mode for the data store connection. Should only be
+     *           set for PUBLIC_WEB and UNSTRUCTURED data stores. If not set it is
+     *           considered as DOCUMENTS, as this is the legacy mode.
      * }
      */
     public function __construct($data = NULL) {
@@ -106,6 +118,36 @@ class DataStoreConnection extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->data_store = $var;
+
+        return $this;
+    }
+
+    /**
+     * The document processing mode for the data store connection. Should only be
+     * set for PUBLIC_WEB and UNSTRUCTURED data stores. If not set it is
+     * considered as DOCUMENTS, as this is the legacy mode.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.DocumentProcessingMode document_processing_mode = 4;</code>
+     * @return int
+     */
+    public function getDocumentProcessingMode()
+    {
+        return $this->document_processing_mode;
+    }
+
+    /**
+     * The document processing mode for the data store connection. Should only be
+     * set for PUBLIC_WEB and UNSTRUCTURED data stores. If not set it is
+     * considered as DOCUMENTS, as this is the legacy mode.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.DocumentProcessingMode document_processing_mode = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDocumentProcessingMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\Cx\V3\DocumentProcessingMode::class);
+        $this->document_processing_mode = $var;
 
         return $this;
     }

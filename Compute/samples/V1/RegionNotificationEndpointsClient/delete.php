@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionNotificationEndpoints_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionNotificationEndpointsClient;
+use Google\Cloud\Compute\V1\Client\RegionNotificationEndpointsClient;
+use Google\Cloud\Compute\V1\DeleteRegionNotificationEndpointRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $notificationEndpoint, string $project, string $re
     // Create a client.
     $regionNotificationEndpointsClient = new RegionNotificationEndpointsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteRegionNotificationEndpointRequest())
+        ->setNotificationEndpoint($notificationEndpoint)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionNotificationEndpointsClient->delete($notificationEndpoint, $project, $region);
+        $response = $regionNotificationEndpointsClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

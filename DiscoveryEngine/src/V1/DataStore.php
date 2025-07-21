@@ -16,13 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class DataStore extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Immutable. The full resource name of the data store.
+     * Immutable. Identifier. The full resource name of the data store.
      * Format:
      * `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.
      * This field must be a UTF-8 encoded string with a length limit of 1024
      * characters.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -51,7 +51,7 @@ class DataStore extends \Google\Protobuf\Internal\Message
     private $solution_types;
     /**
      * Output only. The id of the default
-     * [Schema][google.cloud.discoveryengine.v1.Schema] asscociated to this data
+     * [Schema][google.cloud.discoveryengine.v1.Schema] associated to this data
      * store.
      *
      * Generated from protobuf field <code>string default_schema_id = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -73,11 +73,54 @@ class DataStore extends \Google\Protobuf\Internal\Message
      */
     protected $create_time = null;
     /**
+     * Optional. Configuration for advanced site search.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AdvancedSiteSearchConfig advanced_site_search_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $advanced_site_search_config = null;
+    /**
+     * Input only. The KMS key to be used to protect this DataStore at creation
+     * time.
+     * Must be set for requests that need to comply with CMEK Org Policy
+     * protections.
+     * If this field is set and processed successfully, the DataStore will be
+     * protected by the KMS key, as indicated in the cmek_config field.
+     *
+     * Generated from protobuf field <code>string kms_key_name = 32 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    protected $kms_key_name = '';
+    /**
+     * Output only. CMEK-related information for the DataStore.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.CmekConfig cmek_config = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $cmek_config = null;
+    /**
      * Output only. Data size estimation for billing.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.DataStore.BillingEstimation billing_estimation = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $billing_estimation = null;
+    /**
+     * Immutable. Whether data in the
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore] has ACL information.
+     * If set to `true`, the source data must have ACL. ACL will be ingested when
+     * data is ingested by
+     * [DocumentService.ImportDocuments][google.cloud.discoveryengine.v1.DocumentService.ImportDocuments]
+     * methods.
+     * When ACL is enabled for the
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore],
+     * [Document][google.cloud.discoveryengine.v1.Document] can't be accessed by
+     * calling
+     * [DocumentService.GetDocument][google.cloud.discoveryengine.v1.DocumentService.GetDocument]
+     * or
+     * [DocumentService.ListDocuments][google.cloud.discoveryengine.v1.DocumentService.ListDocuments].
+     * Currently ACL is only supported in `GENERIC` industry vertical with
+     * non-`PUBLIC_WEBSITE` content config.
+     *
+     * Generated from protobuf field <code>bool acl_enabled = 24 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $acl_enabled = false;
     /**
      * Config to store data store type configuration for workspace data. This
      * must be set when
@@ -98,9 +141,12 @@ class DataStore extends \Google\Protobuf\Internal\Message
      * The start schema to use for this
      * [DataStore][google.cloud.discoveryengine.v1.DataStore] when provisioning
      * it. If unset, a default vertical specialized schema will be used.
-     * This field is only used by [CreateDataStore][] API, and will be ignored if
-     * used in other APIs. This field will be omitted from all API responses
-     * including [CreateDataStore][] API. To retrieve a schema of a
+     * This field is only used by
+     * [CreateDataStore][google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]
+     * API, and will be ignored if used in other APIs. This field will be omitted
+     * from all API responses including
+     * [CreateDataStore][google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]
+     * API. To retrieve a schema of a
      * [DataStore][google.cloud.discoveryengine.v1.DataStore], use
      * [SchemaService.GetSchema][google.cloud.discoveryengine.v1.SchemaService.GetSchema]
      * API instead.
@@ -111,6 +157,22 @@ class DataStore extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Schema starting_schema = 28;</code>
      */
     protected $starting_schema = null;
+    /**
+     * Optional. Configuration for `HEALTHCARE_FHIR` vertical.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.HealthcareFhirConfig healthcare_fhir_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $healthcare_fhir_config = null;
+    /**
+     * Immutable. The fully qualified resource name of the associated
+     * [IdentityMappingStore][google.cloud.discoveryengine.v1.IdentityMappingStore].
+     * This field can only be set for acl_enabled DataStores with `THIRD_PARTY` or
+     * `GSUITE` IdP. Format:
+     * `projects/{project}/locations/{location}/identityMappingStores/{identity_mapping_store}`.
+     *
+     * Generated from protobuf field <code>string identity_mapping_store = 31 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     */
+    protected $identity_mapping_store = '';
 
     /**
      * Constructor.
@@ -119,7 +181,7 @@ class DataStore extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Immutable. The full resource name of the data store.
+     *           Immutable. Identifier. The full resource name of the data store.
      *           Format:
      *           `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.
      *           This field must be a UTF-8 encoded string with a length limit of 1024
@@ -138,7 +200,7 @@ class DataStore extends \Google\Protobuf\Internal\Message
      *             solutions cannot be enrolled.
      *     @type string $default_schema_id
      *           Output only. The id of the default
-     *           [Schema][google.cloud.discoveryengine.v1.Schema] asscociated to this data
+     *           [Schema][google.cloud.discoveryengine.v1.Schema] associated to this data
      *           store.
      *     @type int $content_config
      *           Immutable. The content config of the data store. If this field is unset,
@@ -147,8 +209,35 @@ class DataStore extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp the
      *           [DataStore][google.cloud.discoveryengine.v1.DataStore] was created at.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\AdvancedSiteSearchConfig $advanced_site_search_config
+     *           Optional. Configuration for advanced site search.
+     *     @type string $kms_key_name
+     *           Input only. The KMS key to be used to protect this DataStore at creation
+     *           time.
+     *           Must be set for requests that need to comply with CMEK Org Policy
+     *           protections.
+     *           If this field is set and processed successfully, the DataStore will be
+     *           protected by the KMS key, as indicated in the cmek_config field.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\CmekConfig $cmek_config
+     *           Output only. CMEK-related information for the DataStore.
      *     @type \Google\Cloud\DiscoveryEngine\V1\DataStore\BillingEstimation $billing_estimation
      *           Output only. Data size estimation for billing.
+     *     @type bool $acl_enabled
+     *           Immutable. Whether data in the
+     *           [DataStore][google.cloud.discoveryengine.v1.DataStore] has ACL information.
+     *           If set to `true`, the source data must have ACL. ACL will be ingested when
+     *           data is ingested by
+     *           [DocumentService.ImportDocuments][google.cloud.discoveryengine.v1.DocumentService.ImportDocuments]
+     *           methods.
+     *           When ACL is enabled for the
+     *           [DataStore][google.cloud.discoveryengine.v1.DataStore],
+     *           [Document][google.cloud.discoveryengine.v1.Document] can't be accessed by
+     *           calling
+     *           [DocumentService.GetDocument][google.cloud.discoveryengine.v1.DocumentService.GetDocument]
+     *           or
+     *           [DocumentService.ListDocuments][google.cloud.discoveryengine.v1.DocumentService.ListDocuments].
+     *           Currently ACL is only supported in `GENERIC` industry vertical with
+     *           non-`PUBLIC_WEBSITE` content config.
      *     @type \Google\Cloud\DiscoveryEngine\V1\WorkspaceConfig $workspace_config
      *           Config to store data store type configuration for workspace data. This
      *           must be set when
@@ -161,15 +250,26 @@ class DataStore extends \Google\Protobuf\Internal\Message
      *           The start schema to use for this
      *           [DataStore][google.cloud.discoveryengine.v1.DataStore] when provisioning
      *           it. If unset, a default vertical specialized schema will be used.
-     *           This field is only used by [CreateDataStore][] API, and will be ignored if
-     *           used in other APIs. This field will be omitted from all API responses
-     *           including [CreateDataStore][] API. To retrieve a schema of a
+     *           This field is only used by
+     *           [CreateDataStore][google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]
+     *           API, and will be ignored if used in other APIs. This field will be omitted
+     *           from all API responses including
+     *           [CreateDataStore][google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]
+     *           API. To retrieve a schema of a
      *           [DataStore][google.cloud.discoveryengine.v1.DataStore], use
      *           [SchemaService.GetSchema][google.cloud.discoveryengine.v1.SchemaService.GetSchema]
      *           API instead.
      *           The provided schema will be validated against certain rules on schema.
      *           Learn more from [this
      *           doc](https://cloud.google.com/generative-ai-app-builder/docs/provide-schema).
+     *     @type \Google\Cloud\DiscoveryEngine\V1\HealthcareFhirConfig $healthcare_fhir_config
+     *           Optional. Configuration for `HEALTHCARE_FHIR` vertical.
+     *     @type string $identity_mapping_store
+     *           Immutable. The fully qualified resource name of the associated
+     *           [IdentityMappingStore][google.cloud.discoveryengine.v1.IdentityMappingStore].
+     *           This field can only be set for acl_enabled DataStores with `THIRD_PARTY` or
+     *           `GSUITE` IdP. Format:
+     *           `projects/{project}/locations/{location}/identityMappingStores/{identity_mapping_store}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -178,13 +278,13 @@ class DataStore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The full resource name of the data store.
+     * Immutable. Identifier. The full resource name of the data store.
      * Format:
      * `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.
      * This field must be a UTF-8 encoded string with a length limit of 1024
      * characters.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -193,13 +293,13 @@ class DataStore extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The full resource name of the data store.
+     * Immutable. Identifier. The full resource name of the data store.
      * Format:
      * `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.
      * This field must be a UTF-8 encoded string with a length limit of 1024
      * characters.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -303,7 +403,7 @@ class DataStore extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The id of the default
-     * [Schema][google.cloud.discoveryengine.v1.Schema] asscociated to this data
+     * [Schema][google.cloud.discoveryengine.v1.Schema] associated to this data
      * store.
      *
      * Generated from protobuf field <code>string default_schema_id = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -316,7 +416,7 @@ class DataStore extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The id of the default
-     * [Schema][google.cloud.discoveryengine.v1.Schema] asscociated to this data
+     * [Schema][google.cloud.discoveryengine.v1.Schema] associated to this data
      * store.
      *
      * Generated from protobuf field <code>string default_schema_id = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -400,6 +500,114 @@ class DataStore extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Configuration for advanced site search.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AdvancedSiteSearchConfig advanced_site_search_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\AdvancedSiteSearchConfig|null
+     */
+    public function getAdvancedSiteSearchConfig()
+    {
+        return $this->advanced_site_search_config;
+    }
+
+    public function hasAdvancedSiteSearchConfig()
+    {
+        return isset($this->advanced_site_search_config);
+    }
+
+    public function clearAdvancedSiteSearchConfig()
+    {
+        unset($this->advanced_site_search_config);
+    }
+
+    /**
+     * Optional. Configuration for advanced site search.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AdvancedSiteSearchConfig advanced_site_search_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\AdvancedSiteSearchConfig $var
+     * @return $this
+     */
+    public function setAdvancedSiteSearchConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\AdvancedSiteSearchConfig::class);
+        $this->advanced_site_search_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. The KMS key to be used to protect this DataStore at creation
+     * time.
+     * Must be set for requests that need to comply with CMEK Org Policy
+     * protections.
+     * If this field is set and processed successfully, the DataStore will be
+     * protected by the KMS key, as indicated in the cmek_config field.
+     *
+     * Generated from protobuf field <code>string kms_key_name = 32 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return string
+     */
+    public function getKmsKeyName()
+    {
+        return $this->kms_key_name;
+    }
+
+    /**
+     * Input only. The KMS key to be used to protect this DataStore at creation
+     * time.
+     * Must be set for requests that need to comply with CMEK Org Policy
+     * protections.
+     * If this field is set and processed successfully, the DataStore will be
+     * protected by the KMS key, as indicated in the cmek_config field.
+     *
+     * Generated from protobuf field <code>string kms_key_name = 32 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKmsKeyName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->kms_key_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. CMEK-related information for the DataStore.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.CmekConfig cmek_config = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\CmekConfig|null
+     */
+    public function getCmekConfig()
+    {
+        return $this->cmek_config;
+    }
+
+    public function hasCmekConfig()
+    {
+        return isset($this->cmek_config);
+    }
+
+    public function clearCmekConfig()
+    {
+        unset($this->cmek_config);
+    }
+
+    /**
+     * Output only. CMEK-related information for the DataStore.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.CmekConfig cmek_config = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\CmekConfig $var
+     * @return $this
+     */
+    public function setCmekConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\CmekConfig::class);
+        $this->cmek_config = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. Data size estimation for billing.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.DataStore.BillingEstimation billing_estimation = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -431,6 +639,60 @@ class DataStore extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\DataStore\BillingEstimation::class);
         $this->billing_estimation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. Whether data in the
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore] has ACL information.
+     * If set to `true`, the source data must have ACL. ACL will be ingested when
+     * data is ingested by
+     * [DocumentService.ImportDocuments][google.cloud.discoveryengine.v1.DocumentService.ImportDocuments]
+     * methods.
+     * When ACL is enabled for the
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore],
+     * [Document][google.cloud.discoveryengine.v1.Document] can't be accessed by
+     * calling
+     * [DocumentService.GetDocument][google.cloud.discoveryengine.v1.DocumentService.GetDocument]
+     * or
+     * [DocumentService.ListDocuments][google.cloud.discoveryengine.v1.DocumentService.ListDocuments].
+     * Currently ACL is only supported in `GENERIC` industry vertical with
+     * non-`PUBLIC_WEBSITE` content config.
+     *
+     * Generated from protobuf field <code>bool acl_enabled = 24 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return bool
+     */
+    public function getAclEnabled()
+    {
+        return $this->acl_enabled;
+    }
+
+    /**
+     * Immutable. Whether data in the
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore] has ACL information.
+     * If set to `true`, the source data must have ACL. ACL will be ingested when
+     * data is ingested by
+     * [DocumentService.ImportDocuments][google.cloud.discoveryengine.v1.DocumentService.ImportDocuments]
+     * methods.
+     * When ACL is enabled for the
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore],
+     * [Document][google.cloud.discoveryengine.v1.Document] can't be accessed by
+     * calling
+     * [DocumentService.GetDocument][google.cloud.discoveryengine.v1.DocumentService.GetDocument]
+     * or
+     * [DocumentService.ListDocuments][google.cloud.discoveryengine.v1.DocumentService.ListDocuments].
+     * Currently ACL is only supported in `GENERIC` industry vertical with
+     * non-`PUBLIC_WEBSITE` content config.
+     *
+     * Generated from protobuf field <code>bool acl_enabled = 24 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAclEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->acl_enabled = $var;
 
         return $this;
     }
@@ -519,9 +781,12 @@ class DataStore extends \Google\Protobuf\Internal\Message
      * The start schema to use for this
      * [DataStore][google.cloud.discoveryengine.v1.DataStore] when provisioning
      * it. If unset, a default vertical specialized schema will be used.
-     * This field is only used by [CreateDataStore][] API, and will be ignored if
-     * used in other APIs. This field will be omitted from all API responses
-     * including [CreateDataStore][] API. To retrieve a schema of a
+     * This field is only used by
+     * [CreateDataStore][google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]
+     * API, and will be ignored if used in other APIs. This field will be omitted
+     * from all API responses including
+     * [CreateDataStore][google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]
+     * API. To retrieve a schema of a
      * [DataStore][google.cloud.discoveryengine.v1.DataStore], use
      * [SchemaService.GetSchema][google.cloud.discoveryengine.v1.SchemaService.GetSchema]
      * API instead.
@@ -551,9 +816,12 @@ class DataStore extends \Google\Protobuf\Internal\Message
      * The start schema to use for this
      * [DataStore][google.cloud.discoveryengine.v1.DataStore] when provisioning
      * it. If unset, a default vertical specialized schema will be used.
-     * This field is only used by [CreateDataStore][] API, and will be ignored if
-     * used in other APIs. This field will be omitted from all API responses
-     * including [CreateDataStore][] API. To retrieve a schema of a
+     * This field is only used by
+     * [CreateDataStore][google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]
+     * API, and will be ignored if used in other APIs. This field will be omitted
+     * from all API responses including
+     * [CreateDataStore][google.cloud.discoveryengine.v1.DataStoreService.CreateDataStore]
+     * API. To retrieve a schema of a
      * [DataStore][google.cloud.discoveryengine.v1.DataStore], use
      * [SchemaService.GetSchema][google.cloud.discoveryengine.v1.SchemaService.GetSchema]
      * API instead.
@@ -569,6 +837,76 @@ class DataStore extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\Schema::class);
         $this->starting_schema = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for `HEALTHCARE_FHIR` vertical.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.HealthcareFhirConfig healthcare_fhir_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\HealthcareFhirConfig|null
+     */
+    public function getHealthcareFhirConfig()
+    {
+        return $this->healthcare_fhir_config;
+    }
+
+    public function hasHealthcareFhirConfig()
+    {
+        return isset($this->healthcare_fhir_config);
+    }
+
+    public function clearHealthcareFhirConfig()
+    {
+        unset($this->healthcare_fhir_config);
+    }
+
+    /**
+     * Optional. Configuration for `HEALTHCARE_FHIR` vertical.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.HealthcareFhirConfig healthcare_fhir_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\HealthcareFhirConfig $var
+     * @return $this
+     */
+    public function setHealthcareFhirConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\HealthcareFhirConfig::class);
+        $this->healthcare_fhir_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The fully qualified resource name of the associated
+     * [IdentityMappingStore][google.cloud.discoveryengine.v1.IdentityMappingStore].
+     * This field can only be set for acl_enabled DataStores with `THIRD_PARTY` or
+     * `GSUITE` IdP. Format:
+     * `projects/{project}/locations/{location}/identityMappingStores/{identity_mapping_store}`.
+     *
+     * Generated from protobuf field <code>string identity_mapping_store = 31 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getIdentityMappingStore()
+    {
+        return $this->identity_mapping_store;
+    }
+
+    /**
+     * Immutable. The fully qualified resource name of the associated
+     * [IdentityMappingStore][google.cloud.discoveryengine.v1.IdentityMappingStore].
+     * This field can only be set for acl_enabled DataStores with `THIRD_PARTY` or
+     * `GSUITE` IdP. Format:
+     * `projects/{project}/locations/{location}/identityMappingStores/{identity_mapping_store}`.
+     *
+     * Generated from protobuf field <code>string identity_mapping_store = 31 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIdentityMappingStore($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->identity_mapping_store = $var;
 
         return $this;
     }

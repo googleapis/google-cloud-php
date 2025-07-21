@@ -20,13 +20,13 @@ class AutoscalingSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.AutoscalingAlgorithm algorithm = 1;</code>
      */
-    private $algorithm = 0;
+    protected $algorithm = 0;
     /**
      * The maximum number of workers to cap scaling at.
      *
      * Generated from protobuf field <code>int32 max_num_workers = 2;</code>
      */
-    private $max_num_workers = 0;
+    protected $max_num_workers = 0;
 
     /**
      * Constructor.

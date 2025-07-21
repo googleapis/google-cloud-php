@@ -77,6 +77,12 @@ class Model extends \Google\Protobuf\Internal\Message
      */
     protected $version_description = '';
     /**
+     * The default checkpoint id of a model version.
+     *
+     * Generated from protobuf field <code>string default_checkpoint_id = 53;</code>
+     */
+    protected $default_checkpoint_id = '';
+    /**
      * The schemata that describe formats of the Model's predictions and
      * explanations as given and returned via
      * [PredictionService.Predict][google.cloud.aiplatform.v1.PredictionService.Predict]
@@ -376,6 +382,12 @@ class Model extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool satisfies_pzi = 52 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $satisfies_pzi = false;
+    /**
+     * Optional. Output only. The checkpoints of the model.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Checkpoint checkpoints = 57 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $checkpoints;
 
     /**
      * Constructor.
@@ -412,6 +424,8 @@ class Model extends \Google\Protobuf\Internal\Message
      *           The description of the Model.
      *     @type string $version_description
      *           The description of this version.
+     *     @type string $default_checkpoint_id
+     *           The default checkpoint id of a model version.
      *     @type \Google\Cloud\AIPlatform\V1\PredictSchemata $predict_schemata
      *           The schemata that describe formats of the Model's predictions and
      *           explanations as given and returned via
@@ -612,6 +626,8 @@ class Model extends \Google\Protobuf\Internal\Message
      *           Output only. Reserved for future use.
      *     @type bool $satisfies_pzi
      *           Output only. Reserved for future use.
+     *     @type array<\Google\Cloud\AIPlatform\V1\Checkpoint>|\Google\Protobuf\Internal\RepeatedField $checkpoints
+     *           Optional. Output only. The checkpoints of the model.
      * }
      */
     public function __construct($data = NULL) {
@@ -869,6 +885,32 @@ class Model extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->version_description = $var;
+
+        return $this;
+    }
+
+    /**
+     * The default checkpoint id of a model version.
+     *
+     * Generated from protobuf field <code>string default_checkpoint_id = 53;</code>
+     * @return string
+     */
+    public function getDefaultCheckpointId()
+    {
+        return $this->default_checkpoint_id;
+    }
+
+    /**
+     * The default checkpoint id of a model version.
+     *
+     * Generated from protobuf field <code>string default_checkpoint_id = 53;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDefaultCheckpointId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->default_checkpoint_id = $var;
 
         return $this;
     }
@@ -1929,6 +1971,32 @@ class Model extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzi = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Output only. The checkpoints of the model.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Checkpoint checkpoints = 57 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCheckpoints()
+    {
+        return $this->checkpoints;
+    }
+
+    /**
+     * Optional. Output only. The checkpoints of the model.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Checkpoint checkpoints = 57 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\Checkpoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCheckpoints($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Checkpoint::class);
+        $this->checkpoints = $arr;
 
         return $this;
     }

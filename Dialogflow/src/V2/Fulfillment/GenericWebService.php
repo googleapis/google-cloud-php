@@ -26,19 +26,19 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Optional. The user name for HTTP Basic authentication.
      *
      * Generated from protobuf field <code>string username = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $username = '';
+    protected $username = '';
     /**
      * Optional. The password for HTTP Basic authentication.
      *
      * Generated from protobuf field <code>string password = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $password = '';
+    protected $password = '';
     /**
      * Optional. The HTTP request headers to send together with fulfillment
      * requests.
@@ -205,7 +205,9 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
      */
     public function getIsCloudFunction()
     {
-        @trigger_error('is_cloud_function is deprecated.', E_USER_DEPRECATED);
+        if ($this->is_cloud_function !== false) {
+            @trigger_error('is_cloud_function is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->is_cloud_function;
     }
 

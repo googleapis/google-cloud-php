@@ -177,6 +177,26 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 23;</code>
      */
     protected $create_time = null;
+    /**
+     * The BigQuery table to which the sample findings are written.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable sample_findings_table = 37;</code>
+     */
+    protected $sample_findings_table = null;
+    /**
+     * The tags attached to the table, including any tags attached during
+     * profiling. Because tags are attached to Cloud SQL instances rather than
+     * Cloud SQL tables, this field is empty for Cloud SQL table profiles.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Tag tags = 39;</code>
+     */
+    private $tags;
+    /**
+     * Resources related to this profile.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RelatedResource related_resources = 41;</code>
+     */
+    private $related_resources;
 
     /**
      * Constructor.
@@ -242,6 +262,14 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      *           The labels applied to the resource at the time the profile was generated.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The time at which the table was created.
+     *     @type \Google\Cloud\Dlp\V2\BigQueryTable $sample_findings_table
+     *           The BigQuery table to which the sample findings are written.
+     *     @type array<\Google\Cloud\Dlp\V2\Tag>|\Google\Protobuf\Internal\RepeatedField $tags
+     *           The tags attached to the table, including any tags attached during
+     *           profiling. Because tags are attached to Cloud SQL instances rather than
+     *           Cloud SQL tables, this field is empty for Cloud SQL table profiles.
+     *     @type array<\Google\Cloud\Dlp\V2\RelatedResource>|\Google\Protobuf\Internal\RepeatedField $related_resources
+     *           Resources related to this profile.
      * }
      */
     public function __construct($data = NULL) {
@@ -1023,6 +1051,98 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * The BigQuery table to which the sample findings are written.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable sample_findings_table = 37;</code>
+     * @return \Google\Cloud\Dlp\V2\BigQueryTable|null
+     */
+    public function getSampleFindingsTable()
+    {
+        return $this->sample_findings_table;
+    }
+
+    public function hasSampleFindingsTable()
+    {
+        return isset($this->sample_findings_table);
+    }
+
+    public function clearSampleFindingsTable()
+    {
+        unset($this->sample_findings_table);
+    }
+
+    /**
+     * The BigQuery table to which the sample findings are written.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable sample_findings_table = 37;</code>
+     * @param \Google\Cloud\Dlp\V2\BigQueryTable $var
+     * @return $this
+     */
+    public function setSampleFindingsTable($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\BigQueryTable::class);
+        $this->sample_findings_table = $var;
+
+        return $this;
+    }
+
+    /**
+     * The tags attached to the table, including any tags attached during
+     * profiling. Because tags are attached to Cloud SQL instances rather than
+     * Cloud SQL tables, this field is empty for Cloud SQL table profiles.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Tag tags = 39;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * The tags attached to the table, including any tags attached during
+     * profiling. Because tags are attached to Cloud SQL instances rather than
+     * Cloud SQL tables, this field is empty for Cloud SQL table profiles.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Tag tags = 39;</code>
+     * @param array<\Google\Cloud\Dlp\V2\Tag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTags($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\Tag::class);
+        $this->tags = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Resources related to this profile.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RelatedResource related_resources = 41;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getRelatedResources()
+    {
+        return $this->related_resources;
+    }
+
+    /**
+     * Resources related to this profile.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RelatedResource related_resources = 41;</code>
+     * @param array<\Google\Cloud\Dlp\V2\RelatedResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setRelatedResources($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\RelatedResource::class);
+        $this->related_resources = $arr;
 
         return $this;
     }

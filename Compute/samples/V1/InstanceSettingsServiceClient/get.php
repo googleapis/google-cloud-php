@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_InstanceSettingsService_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\InstanceSettingsServiceClient;
+use Google\Cloud\Compute\V1\GetInstanceSettingRequest;
 use Google\Cloud\Compute\V1\InstanceSettings;
-use Google\Cloud\Compute\V1\InstanceSettingsServiceClient;
 
 /**
  * Get Instance settings.
@@ -38,10 +39,15 @@ function get_sample(string $project, string $zone): void
     // Create a client.
     $instanceSettingsServiceClient = new InstanceSettingsServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetInstanceSettingRequest())
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var InstanceSettings $response */
-        $response = $instanceSettingsServiceClient->get($project, $zone);
+        $response = $instanceSettingsServiceClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

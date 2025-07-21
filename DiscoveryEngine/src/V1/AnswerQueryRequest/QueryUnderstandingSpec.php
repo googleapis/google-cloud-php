@@ -27,6 +27,13 @@ class QueryUnderstandingSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AnswerQueryRequest.QueryUnderstandingSpec.QueryRephraserSpec query_rephraser_spec = 2;</code>
      */
     protected $query_rephraser_spec = null;
+    /**
+     * Optional. Whether to disable spell correction.
+     * The default value is `false`.
+     *
+     * Generated from protobuf field <code>bool disable_spell_correction = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $disable_spell_correction = false;
 
     /**
      * Constructor.
@@ -38,6 +45,9 @@ class QueryUnderstandingSpec extends \Google\Protobuf\Internal\Message
      *           Query classification specification.
      *     @type \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\QueryUnderstandingSpec\QueryRephraserSpec $query_rephraser_spec
      *           Query rephraser specification.
+     *     @type bool $disable_spell_correction
+     *           Optional. Whether to disable spell correction.
+     *           The default value is `false`.
      * }
      */
     public function __construct($data = NULL) {
@@ -113,6 +123,34 @@ class QueryUnderstandingSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\QueryUnderstandingSpec\QueryRephraserSpec::class);
         $this->query_rephraser_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether to disable spell correction.
+     * The default value is `false`.
+     *
+     * Generated from protobuf field <code>bool disable_spell_correction = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDisableSpellCorrection()
+    {
+        return $this->disable_spell_correction;
+    }
+
+    /**
+     * Optional. Whether to disable spell correction.
+     * The default value is `false`.
+     *
+     * Generated from protobuf field <code>bool disable_spell_correction = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableSpellCorrection($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_spell_correction = $var;
 
         return $this;
     }

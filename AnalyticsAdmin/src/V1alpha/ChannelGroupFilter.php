@@ -20,7 +20,7 @@ class ChannelGroupFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string field_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $field_name = '';
+    protected $field_name = '';
     protected $value_filter;
 
     /**

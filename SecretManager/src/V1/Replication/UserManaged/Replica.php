@@ -22,7 +22,7 @@ class Replica extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 1;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * Optional. The customer-managed encryption configuration of the
      * [User-Managed Replica][Replication.UserManaged.Replica]. If no
@@ -35,7 +35,7 @@ class Replica extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.CustomerManagedEncryption customer_managed_encryption = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $customer_managed_encryption = null;
+    protected $customer_managed_encryption = null;
 
     /**
      * Constructor.
@@ -142,6 +142,4 @@ class Replica extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Replica::class, \Google\Cloud\SecretManager\V1\Replication_UserManaged_Replica::class);
 

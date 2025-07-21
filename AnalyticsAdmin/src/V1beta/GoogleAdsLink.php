@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A link between a GA4 property and a Google Ads account.
+ * A link between a Google Analytics property and a Google Ads account.
  *
  * Generated from protobuf message <code>google.analytics.admin.v1beta.GoogleAdsLink</code>
  */
@@ -22,19 +22,19 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Immutable. Google Ads customer ID.
      *
      * Generated from protobuf field <code>string customer_id = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $customer_id = '';
+    protected $customer_id = '';
     /**
      * Output only. If true, this link is for a Google Ads manager account.
      *
      * Generated from protobuf field <code>bool can_manage_clients = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $can_manage_clients = false;
+    protected $can_manage_clients = false;
     /**
      * Enable personalized advertising features with this integration.
      * Automatically publish my Google Analytics audience lists and Google
@@ -43,26 +43,26 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue ads_personalization_enabled = 5;</code>
      */
-    private $ads_personalization_enabled = null;
+    protected $ads_personalization_enabled = null;
     /**
      * Output only. Time when this link was originally created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Time when this link was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. Email address of the user that created the link.
      * An empty string will be returned if the email address can't be retrieved.
      *
      * Generated from protobuf field <code>string creator_email_address = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $creator_email_address = '';
+    protected $creator_email_address = '';
 
     /**
      * Constructor.
@@ -214,7 +214,7 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue ads_personalization_enabled = 5;</code>
      * @return bool|null
      */
-    public function getAdsPersonalizationEnabledValue()
+    public function getAdsPersonalizationEnabledUnwrapped()
     {
         return $this->readWrapperValue("ads_personalization_enabled");
     }
@@ -249,7 +249,7 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setAdsPersonalizationEnabledValue($var)
+    public function setAdsPersonalizationEnabledUnwrapped($var)
     {
         $this->writeWrapperValue("ads_personalization_enabled", $var);
         return $this;}

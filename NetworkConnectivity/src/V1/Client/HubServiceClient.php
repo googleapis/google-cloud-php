@@ -43,6 +43,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use Google\Cloud\NetworkConnectivity\V1\AcceptHubSpokeRequest;
+use Google\Cloud\NetworkConnectivity\V1\AcceptSpokeUpdateRequest;
 use Google\Cloud\NetworkConnectivity\V1\CreateHubRequest;
 use Google\Cloud\NetworkConnectivity\V1\CreateSpokeRequest;
 use Google\Cloud\NetworkConnectivity\V1\DeleteHubRequest;
@@ -62,6 +63,7 @@ use Google\Cloud\NetworkConnectivity\V1\ListRoutesRequest;
 use Google\Cloud\NetworkConnectivity\V1\ListSpokesRequest;
 use Google\Cloud\NetworkConnectivity\V1\QueryHubStatusRequest;
 use Google\Cloud\NetworkConnectivity\V1\RejectHubSpokeRequest;
+use Google\Cloud\NetworkConnectivity\V1\RejectSpokeUpdateRequest;
 use Google\Cloud\NetworkConnectivity\V1\Route;
 use Google\Cloud\NetworkConnectivity\V1\RouteTable;
 use Google\Cloud\NetworkConnectivity\V1\Spoke;
@@ -71,6 +73,7 @@ use Google\Cloud\NetworkConnectivity\V1\UpdateSpokeRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Network Connectivity Center is a hub-and-spoke abstraction for network
@@ -86,6 +89,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface<OperationResponse> acceptHubSpokeAsync(AcceptHubSpokeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> acceptSpokeUpdateAsync(AcceptSpokeUpdateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createHubAsync(CreateHubRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createSpokeAsync(CreateSpokeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteHubAsync(DeleteHubRequest $request, array $optionalArgs = [])
@@ -103,6 +107,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface<PagedListResponse> listSpokesAsync(ListSpokesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> queryHubStatusAsync(QueryHubStatusRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> rejectHubSpokeAsync(RejectHubSpokeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> rejectSpokeUpdateAsync(RejectSpokeUpdateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateGroupAsync(UpdateGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateHubAsync(UpdateHubRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateSpokeAsync(UpdateSpokeRequest $request, array $optionalArgs = [])
@@ -417,14 +422,14 @@ final class HubServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -446,6 +451,12 @@ final class HubServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -479,6 +490,9 @@ final class HubServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -526,6 +540,32 @@ final class HubServiceClient
     public function acceptHubSpoke(AcceptHubSpokeRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('AcceptHubSpoke', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Accepts a proposal to update a Network Connectivity Center spoke in a hub.
+     *
+     * The async variant is {@see HubServiceClient::acceptSpokeUpdateAsync()} .
+     *
+     * @example samples/V1/HubServiceClient/accept_spoke_update.php
+     *
+     * @param AcceptSpokeUpdateRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function acceptSpokeUpdate(AcceptSpokeUpdateRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('AcceptSpokeUpdate', $request, $callOptions)->wait();
     }
 
     /**
@@ -975,6 +1015,32 @@ final class HubServiceClient
     public function rejectHubSpoke(RejectHubSpokeRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('RejectHubSpoke', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Rejects a proposal to update a Network Connectivity Center spoke in a hub.
+     *
+     * The async variant is {@see HubServiceClient::rejectSpokeUpdateAsync()} .
+     *
+     * @example samples/V1/HubServiceClient/reject_spoke_update.php
+     *
+     * @param RejectSpokeUpdateRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function rejectSpokeUpdate(RejectSpokeUpdateRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('RejectSpokeUpdate', $request, $callOptions)->wait();
     }
 
     /**

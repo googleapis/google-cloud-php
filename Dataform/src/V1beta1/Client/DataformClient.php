@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,11 +36,15 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dataform\V1beta1\CancelWorkflowInvocationRequest;
+use Google\Cloud\Dataform\V1beta1\CancelWorkflowInvocationResponse;
 use Google\Cloud\Dataform\V1beta1\CommitRepositoryChangesRequest;
+use Google\Cloud\Dataform\V1beta1\CommitRepositoryChangesResponse;
 use Google\Cloud\Dataform\V1beta1\CommitWorkspaceChangesRequest;
+use Google\Cloud\Dataform\V1beta1\CommitWorkspaceChangesResponse;
 use Google\Cloud\Dataform\V1beta1\CompilationResult;
 use Google\Cloud\Dataform\V1beta1\ComputeRepositoryAccessTokenStatusRequest;
 use Google\Cloud\Dataform\V1beta1\ComputeRepositoryAccessTokenStatusResponse;
+use Google\Cloud\Dataform\V1beta1\Config;
 use Google\Cloud\Dataform\V1beta1\CreateCompilationResultRequest;
 use Google\Cloud\Dataform\V1beta1\CreateReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\CreateRepositoryRequest;
@@ -62,6 +66,7 @@ use Google\Cloud\Dataform\V1beta1\FetchRemoteBranchesRequest;
 use Google\Cloud\Dataform\V1beta1\FetchRemoteBranchesResponse;
 use Google\Cloud\Dataform\V1beta1\FetchRepositoryHistoryRequest;
 use Google\Cloud\Dataform\V1beta1\GetCompilationResultRequest;
+use Google\Cloud\Dataform\V1beta1\GetConfigRequest;
 use Google\Cloud\Dataform\V1beta1\GetReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\GetRepositoryRequest;
 use Google\Cloud\Dataform\V1beta1\GetWorkflowConfigRequest;
@@ -82,7 +87,9 @@ use Google\Cloud\Dataform\V1beta1\MoveDirectoryResponse;
 use Google\Cloud\Dataform\V1beta1\MoveFileRequest;
 use Google\Cloud\Dataform\V1beta1\MoveFileResponse;
 use Google\Cloud\Dataform\V1beta1\PullGitCommitsRequest;
+use Google\Cloud\Dataform\V1beta1\PullGitCommitsResponse;
 use Google\Cloud\Dataform\V1beta1\PushGitCommitsRequest;
+use Google\Cloud\Dataform\V1beta1\PushGitCommitsResponse;
 use Google\Cloud\Dataform\V1beta1\QueryCompilationResultActionsRequest;
 use Google\Cloud\Dataform\V1beta1\QueryDirectoryContentsRequest;
 use Google\Cloud\Dataform\V1beta1\QueryRepositoryDirectoryContentsRequest;
@@ -93,9 +100,14 @@ use Google\Cloud\Dataform\V1beta1\ReadRepositoryFileRequest;
 use Google\Cloud\Dataform\V1beta1\ReadRepositoryFileResponse;
 use Google\Cloud\Dataform\V1beta1\ReleaseConfig;
 use Google\Cloud\Dataform\V1beta1\RemoveDirectoryRequest;
+use Google\Cloud\Dataform\V1beta1\RemoveDirectoryResponse;
 use Google\Cloud\Dataform\V1beta1\RemoveFileRequest;
+use Google\Cloud\Dataform\V1beta1\RemoveFileResponse;
 use Google\Cloud\Dataform\V1beta1\Repository;
 use Google\Cloud\Dataform\V1beta1\ResetWorkspaceChangesRequest;
+use Google\Cloud\Dataform\V1beta1\ResetWorkspaceChangesResponse;
+use Google\Cloud\Dataform\V1beta1\SearchFilesRequest;
+use Google\Cloud\Dataform\V1beta1\UpdateConfigRequest;
 use Google\Cloud\Dataform\V1beta1\UpdateReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\UpdateRepositoryRequest;
 use Google\Cloud\Dataform\V1beta1\UpdateWorkflowConfigRequest;
@@ -113,6 +125,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Dataform is a service to develop, create, document, test, and update curated
@@ -128,9 +141,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface<void> cancelWorkflowInvocationAsync(CancelWorkflowInvocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<void> commitRepositoryChangesAsync(CommitRepositoryChangesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<void> commitWorkspaceChangesAsync(CommitWorkspaceChangesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CancelWorkflowInvocationResponse> cancelWorkflowInvocationAsync(CancelWorkflowInvocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CommitRepositoryChangesResponse> commitRepositoryChangesAsync(CommitRepositoryChangesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CommitWorkspaceChangesResponse> commitWorkspaceChangesAsync(CommitWorkspaceChangesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ComputeRepositoryAccessTokenStatusResponse> computeRepositoryAccessTokenStatusAsync(ComputeRepositoryAccessTokenStatusRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CompilationResult> createCompilationResultAsync(CreateCompilationResultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ReleaseConfig> createReleaseConfigAsync(CreateReleaseConfigRequest $request, array $optionalArgs = [])
@@ -149,6 +162,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface<FetchRemoteBranchesResponse> fetchRemoteBranchesAsync(FetchRemoteBranchesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> fetchRepositoryHistoryAsync(FetchRepositoryHistoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CompilationResult> getCompilationResultAsync(GetCompilationResultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Config> getConfigAsync(GetConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ReleaseConfig> getReleaseConfigAsync(GetReleaseConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Repository> getRepositoryAsync(GetRepositoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<WorkflowConfig> getWorkflowConfigAsync(GetWorkflowConfigRequest $request, array $optionalArgs = [])
@@ -164,17 +178,19 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface<MakeDirectoryResponse> makeDirectoryAsync(MakeDirectoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<MoveDirectoryResponse> moveDirectoryAsync(MoveDirectoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<MoveFileResponse> moveFileAsync(MoveFileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<void> pullGitCommitsAsync(PullGitCommitsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<void> pushGitCommitsAsync(PushGitCommitsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PullGitCommitsResponse> pullGitCommitsAsync(PullGitCommitsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PushGitCommitsResponse> pushGitCommitsAsync(PushGitCommitsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> queryCompilationResultActionsAsync(QueryCompilationResultActionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> queryDirectoryContentsAsync(QueryDirectoryContentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> queryRepositoryDirectoryContentsAsync(QueryRepositoryDirectoryContentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> queryWorkflowInvocationActionsAsync(QueryWorkflowInvocationActionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ReadFileResponse> readFileAsync(ReadFileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ReadRepositoryFileResponse> readRepositoryFileAsync(ReadRepositoryFileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<void> removeDirectoryAsync(RemoveDirectoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<void> removeFileAsync(RemoveFileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<void> resetWorkspaceChangesAsync(ResetWorkspaceChangesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RemoveDirectoryResponse> removeDirectoryAsync(RemoveDirectoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RemoveFileResponse> removeFileAsync(RemoveFileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ResetWorkspaceChangesResponse> resetWorkspaceChangesAsync(ResetWorkspaceChangesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchFilesAsync(SearchFilesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Config> updateConfigAsync(UpdateConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ReleaseConfig> updateReleaseConfigAsync(UpdateReleaseConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Repository> updateRepositoryAsync(UpdateRepositoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<WorkflowConfig> updateWorkflowConfigAsync(UpdateWorkflowConfigRequest $request, array $optionalArgs = [])
@@ -211,6 +227,7 @@ final class DataformClient
 
     /** The default scopes required by the service. */
     public static $serviceScopes = [
+        'https://www.googleapis.com/auth/bigquery',
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
@@ -246,13 +263,89 @@ final class DataformClient
      *
      * @experimental
      */
-    public static function compilationResultName(string $project, string $location, string $repository, string $compilationResult): string
-    {
+    public static function compilationResultName(
+        string $project,
+        string $location,
+        string $repository,
+        string $compilationResult
+    ): string {
         return self::getPathTemplate('compilationResult')->render([
             'project' => $project,
             'location' => $location,
             'repository' => $repository,
             'compilation_result' => $compilationResult,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a config
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted config resource.
+     *
+     * @experimental
+     */
+    public static function configName(string $project, string $location): string
+    {
+        return self::getPathTemplate('config')->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     *
+     * @experimental
+     */
+    public static function cryptoKeyName(string $project, string $location, string $keyRing, string $cryptoKey): string
+    {
+        return self::getPathTemplate('cryptoKey')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * crypto_key_version resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     * @param string $cryptoKeyVersion
+     *
+     * @return string The formatted crypto_key_version resource.
+     *
+     * @experimental
+     */
+    public static function cryptoKeyVersionName(
+        string $project,
+        string $location,
+        string $keyRing,
+        string $cryptoKey,
+        string $cryptoKeyVersion
+    ): string {
+        return self::getPathTemplate('cryptoKeyVersion')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+            'crypto_key_version' => $cryptoKeyVersion,
         ]);
     }
 
@@ -277,6 +370,30 @@ final class DataformClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * notebook_runtime_template resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $notebookRuntimeTemplate
+     *
+     * @return string The formatted notebook_runtime_template resource.
+     *
+     * @experimental
+     */
+    public static function notebookRuntimeTemplateName(
+        string $project,
+        string $location,
+        string $notebookRuntimeTemplate
+    ): string {
+        return self::getPathTemplate('notebookRuntimeTemplate')->render([
+            'project' => $project,
+            'location' => $location,
+            'notebook_runtime_template' => $notebookRuntimeTemplate,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * release_config resource.
      *
      * @param string $project
@@ -288,8 +405,12 @@ final class DataformClient
      *
      * @experimental
      */
-    public static function releaseConfigName(string $project, string $location, string $repository, string $releaseConfig): string
-    {
+    public static function releaseConfigName(
+        string $project,
+        string $location,
+        string $repository,
+        string $releaseConfig
+    ): string {
         return self::getPathTemplate('releaseConfig')->render([
             'project' => $project,
             'location' => $location,
@@ -353,8 +474,12 @@ final class DataformClient
      *
      * @experimental
      */
-    public static function workflowConfigName(string $project, string $location, string $repository, string $workflowConfig): string
-    {
+    public static function workflowConfigName(
+        string $project,
+        string $location,
+        string $repository,
+        string $workflowConfig
+    ): string {
         return self::getPathTemplate('workflowConfig')->render([
             'project' => $project,
             'location' => $location,
@@ -376,8 +501,12 @@ final class DataformClient
      *
      * @experimental
      */
-    public static function workflowInvocationName(string $project, string $location, string $repository, string $workflowInvocation): string
-    {
+    public static function workflowInvocationName(
+        string $project,
+        string $location,
+        string $repository,
+        string $workflowInvocation
+    ): string {
         return self::getPathTemplate('workflowInvocation')->render([
             'project' => $project,
             'location' => $location,
@@ -399,8 +528,12 @@ final class DataformClient
      *
      * @experimental
      */
-    public static function workspaceName(string $project, string $location, string $repository, string $workspace): string
-    {
+    public static function workspaceName(
+        string $project,
+        string $location,
+        string $repository,
+        string $workspace
+    ): string {
         return self::getPathTemplate('workspace')->render([
             'project' => $project,
             'location' => $location,
@@ -414,7 +547,11 @@ final class DataformClient
      * The following name formats are supported:
      * Template: Pattern
      * - compilationResult: projects/{project}/locations/{location}/repositories/{repository}/compilationResults/{compilation_result}
+     * - config: projects/{project}/locations/{location}/config
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
+     * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
      * - location: projects/{project}/locations/{location}
+     * - notebookRuntimeTemplate: projects/{project}/locations/{location}/notebookRuntimeTemplates/{notebook_runtime_template}
      * - releaseConfig: projects/{project}/locations/{location}/repositories/{repository}/releaseConfigs/{release_config}
      * - repository: projects/{project}/locations/{location}/repositories/{repository}
      * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}
@@ -428,8 +565,8 @@ final class DataformClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
@@ -437,7 +574,7 @@ final class DataformClient
      *
      * @experimental
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -459,6 +596,12 @@ final class DataformClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -492,6 +635,9 @@ final class DataformClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -532,13 +678,17 @@ final class DataformClient
      *           {@see RetrySettings} for example usage.
      * }
      *
+     * @return CancelWorkflowInvocationResponse
+     *
      * @throws ApiException Thrown if the API call fails.
      *
      * @experimental
      */
-    public function cancelWorkflowInvocation(CancelWorkflowInvocationRequest $request, array $callOptions = []): void
-    {
-        $this->startApiCall('CancelWorkflowInvocation', $request, $callOptions)->wait();
+    public function cancelWorkflowInvocation(
+        CancelWorkflowInvocationRequest $request,
+        array $callOptions = []
+    ): CancelWorkflowInvocationResponse {
+        return $this->startApiCall('CancelWorkflowInvocation', $request, $callOptions)->wait();
     }
 
     /**
@@ -559,13 +709,17 @@ final class DataformClient
      *           {@see RetrySettings} for example usage.
      * }
      *
+     * @return CommitRepositoryChangesResponse
+     *
      * @throws ApiException Thrown if the API call fails.
      *
      * @experimental
      */
-    public function commitRepositoryChanges(CommitRepositoryChangesRequest $request, array $callOptions = []): void
-    {
-        $this->startApiCall('CommitRepositoryChanges', $request, $callOptions)->wait();
+    public function commitRepositoryChanges(
+        CommitRepositoryChangesRequest $request,
+        array $callOptions = []
+    ): CommitRepositoryChangesResponse {
+        return $this->startApiCall('CommitRepositoryChanges', $request, $callOptions)->wait();
     }
 
     /**
@@ -585,13 +739,17 @@ final class DataformClient
      *           {@see RetrySettings} for example usage.
      * }
      *
+     * @return CommitWorkspaceChangesResponse
+     *
      * @throws ApiException Thrown if the API call fails.
      *
      * @experimental
      */
-    public function commitWorkspaceChanges(CommitWorkspaceChangesRequest $request, array $callOptions = []): void
-    {
-        $this->startApiCall('CommitWorkspaceChanges', $request, $callOptions)->wait();
+    public function commitWorkspaceChanges(
+        CommitWorkspaceChangesRequest $request,
+        array $callOptions = []
+    ): CommitWorkspaceChangesResponse {
+        return $this->startApiCall('CommitWorkspaceChanges', $request, $callOptions)->wait();
     }
 
     /**
@@ -618,8 +776,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function computeRepositoryAccessTokenStatus(ComputeRepositoryAccessTokenStatusRequest $request, array $callOptions = []): ComputeRepositoryAccessTokenStatusResponse
-    {
+    public function computeRepositoryAccessTokenStatus(
+        ComputeRepositoryAccessTokenStatusRequest $request,
+        array $callOptions = []
+    ): ComputeRepositoryAccessTokenStatusResponse {
         return $this->startApiCall('ComputeRepositoryAccessTokenStatus', $request, $callOptions)->wait();
     }
 
@@ -646,8 +806,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function createCompilationResult(CreateCompilationResultRequest $request, array $callOptions = []): CompilationResult
-    {
+    public function createCompilationResult(
+        CreateCompilationResultRequest $request,
+        array $callOptions = []
+    ): CompilationResult {
         return $this->startApiCall('CreateCompilationResult', $request, $callOptions)->wait();
     }
 
@@ -758,8 +920,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function createWorkflowInvocation(CreateWorkflowInvocationRequest $request, array $callOptions = []): WorkflowInvocation
-    {
+    public function createWorkflowInvocation(
+        CreateWorkflowInvocationRequest $request,
+        array $callOptions = []
+    ): WorkflowInvocation {
         return $this->startApiCall('CreateWorkflowInvocation', $request, $callOptions)->wait();
     }
 
@@ -972,8 +1136,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function fetchFileGitStatuses(FetchFileGitStatusesRequest $request, array $callOptions = []): FetchFileGitStatusesResponse
-    {
+    public function fetchFileGitStatuses(
+        FetchFileGitStatusesRequest $request,
+        array $callOptions = []
+    ): FetchFileGitStatusesResponse {
         return $this->startApiCall('FetchFileGitStatuses', $request, $callOptions)->wait();
     }
 
@@ -1000,8 +1166,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function fetchGitAheadBehind(FetchGitAheadBehindRequest $request, array $callOptions = []): FetchGitAheadBehindResponse
-    {
+    public function fetchGitAheadBehind(
+        FetchGitAheadBehindRequest $request,
+        array $callOptions = []
+    ): FetchGitAheadBehindResponse {
         return $this->startApiCall('FetchGitAheadBehind', $request, $callOptions)->wait();
     }
 
@@ -1028,8 +1196,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function fetchRemoteBranches(FetchRemoteBranchesRequest $request, array $callOptions = []): FetchRemoteBranchesResponse
-    {
+    public function fetchRemoteBranches(
+        FetchRemoteBranchesRequest $request,
+        array $callOptions = []
+    ): FetchRemoteBranchesResponse {
         return $this->startApiCall('FetchRemoteBranches', $request, $callOptions)->wait();
     }
 
@@ -1057,8 +1227,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function fetchRepositoryHistory(FetchRepositoryHistoryRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function fetchRepositoryHistory(
+        FetchRepositoryHistoryRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('FetchRepositoryHistory', $request, $callOptions);
     }
 
@@ -1085,9 +1257,39 @@ final class DataformClient
      *
      * @experimental
      */
-    public function getCompilationResult(GetCompilationResultRequest $request, array $callOptions = []): CompilationResult
-    {
+    public function getCompilationResult(
+        GetCompilationResultRequest $request,
+        array $callOptions = []
+    ): CompilationResult {
         return $this->startApiCall('GetCompilationResult', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Get default config for a given project and location.
+     *
+     * The async variant is {@see DataformClient::getConfigAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/get_config.php
+     *
+     * @param GetConfigRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Config
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getConfig(GetConfigRequest $request, array $callOptions = []): Config
+    {
+        return $this->startApiCall('GetConfig', $request, $callOptions)->wait();
     }
 
     /**
@@ -1197,8 +1399,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function getWorkflowInvocation(GetWorkflowInvocationRequest $request, array $callOptions = []): WorkflowInvocation
-    {
+    public function getWorkflowInvocation(
+        GetWorkflowInvocationRequest $request,
+        array $callOptions = []
+    ): WorkflowInvocation {
         return $this->startApiCall('GetWorkflowInvocation', $request, $callOptions)->wait();
     }
 
@@ -1253,8 +1457,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function installNpmPackages(InstallNpmPackagesRequest $request, array $callOptions = []): InstallNpmPackagesResponse
-    {
+    public function installNpmPackages(
+        InstallNpmPackagesRequest $request,
+        array $callOptions = []
+    ): InstallNpmPackagesResponse {
         return $this->startApiCall('InstallNpmPackages', $request, $callOptions)->wait();
     }
 
@@ -1281,8 +1487,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function listCompilationResults(ListCompilationResultsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listCompilationResults(
+        ListCompilationResultsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListCompilationResults', $request, $callOptions);
     }
 
@@ -1316,6 +1524,9 @@ final class DataformClient
 
     /**
      * Lists Repositories in a given project and location.
+     *
+     * **Note:** *This method can return repositories not shown in the [Dataform
+     * UI](https://console.cloud.google.com/bigquery/dataform)*.
      *
      * The async variant is {@see DataformClient::listRepositoriesAsync()} .
      *
@@ -1393,8 +1604,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function listWorkflowInvocations(ListWorkflowInvocationsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listWorkflowInvocations(
+        ListWorkflowInvocationsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListWorkflowInvocations', $request, $callOptions);
     }
 
@@ -1528,13 +1741,15 @@ final class DataformClient
      *           {@see RetrySettings} for example usage.
      * }
      *
+     * @return PullGitCommitsResponse
+     *
      * @throws ApiException Thrown if the API call fails.
      *
      * @experimental
      */
-    public function pullGitCommits(PullGitCommitsRequest $request, array $callOptions = []): void
+    public function pullGitCommits(PullGitCommitsRequest $request, array $callOptions = []): PullGitCommitsResponse
     {
-        $this->startApiCall('PullGitCommits', $request, $callOptions)->wait();
+        return $this->startApiCall('PullGitCommits', $request, $callOptions)->wait();
     }
 
     /**
@@ -1554,13 +1769,15 @@ final class DataformClient
      *           {@see RetrySettings} for example usage.
      * }
      *
+     * @return PushGitCommitsResponse
+     *
      * @throws ApiException Thrown if the API call fails.
      *
      * @experimental
      */
-    public function pushGitCommits(PushGitCommitsRequest $request, array $callOptions = []): void
+    public function pushGitCommits(PushGitCommitsRequest $request, array $callOptions = []): PushGitCommitsResponse
     {
-        $this->startApiCall('PushGitCommits', $request, $callOptions)->wait();
+        return $this->startApiCall('PushGitCommits', $request, $callOptions)->wait();
     }
 
     /**
@@ -1587,8 +1804,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function queryCompilationResultActions(QueryCompilationResultActionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function queryCompilationResultActions(
+        QueryCompilationResultActionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('QueryCompilationResultActions', $request, $callOptions);
     }
 
@@ -1615,8 +1834,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function queryDirectoryContents(QueryDirectoryContentsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function queryDirectoryContents(
+        QueryDirectoryContentsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('QueryDirectoryContents', $request, $callOptions);
     }
 
@@ -1645,8 +1866,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function queryRepositoryDirectoryContents(QueryRepositoryDirectoryContentsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function queryRepositoryDirectoryContents(
+        QueryRepositoryDirectoryContentsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('QueryRepositoryDirectoryContents', $request, $callOptions);
     }
 
@@ -1674,8 +1897,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function queryWorkflowInvocationActions(QueryWorkflowInvocationActionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function queryWorkflowInvocationActions(
+        QueryWorkflowInvocationActionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('QueryWorkflowInvocationActions', $request, $callOptions);
     }
 
@@ -1731,8 +1956,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function readRepositoryFile(ReadRepositoryFileRequest $request, array $callOptions = []): ReadRepositoryFileResponse
-    {
+    public function readRepositoryFile(
+        ReadRepositoryFileRequest $request,
+        array $callOptions = []
+    ): ReadRepositoryFileResponse {
         return $this->startApiCall('ReadRepositoryFile', $request, $callOptions)->wait();
     }
 
@@ -1753,13 +1980,15 @@ final class DataformClient
      *           {@see RetrySettings} for example usage.
      * }
      *
+     * @return RemoveDirectoryResponse
+     *
      * @throws ApiException Thrown if the API call fails.
      *
      * @experimental
      */
-    public function removeDirectory(RemoveDirectoryRequest $request, array $callOptions = []): void
+    public function removeDirectory(RemoveDirectoryRequest $request, array $callOptions = []): RemoveDirectoryResponse
     {
-        $this->startApiCall('RemoveDirectory', $request, $callOptions)->wait();
+        return $this->startApiCall('RemoveDirectory', $request, $callOptions)->wait();
     }
 
     /**
@@ -1779,13 +2008,15 @@ final class DataformClient
      *           {@see RetrySettings} for example usage.
      * }
      *
+     * @return RemoveFileResponse
+     *
      * @throws ApiException Thrown if the API call fails.
      *
      * @experimental
      */
-    public function removeFile(RemoveFileRequest $request, array $callOptions = []): void
+    public function removeFile(RemoveFileRequest $request, array $callOptions = []): RemoveFileResponse
     {
-        $this->startApiCall('RemoveFile', $request, $callOptions)->wait();
+        return $this->startApiCall('RemoveFile', $request, $callOptions)->wait();
     }
 
     /**
@@ -1805,17 +2036,87 @@ final class DataformClient
      *           {@see RetrySettings} for example usage.
      * }
      *
+     * @return ResetWorkspaceChangesResponse
+     *
      * @throws ApiException Thrown if the API call fails.
      *
      * @experimental
      */
-    public function resetWorkspaceChanges(ResetWorkspaceChangesRequest $request, array $callOptions = []): void
+    public function resetWorkspaceChanges(
+        ResetWorkspaceChangesRequest $request,
+        array $callOptions = []
+    ): ResetWorkspaceChangesResponse {
+        return $this->startApiCall('ResetWorkspaceChanges', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Finds the contents of a given Workspace directory by filter.
+     *
+     * The async variant is {@see DataformClient::searchFilesAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/search_files.php
+     *
+     * @param SearchFilesRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function searchFiles(SearchFilesRequest $request, array $callOptions = []): PagedListResponse
     {
-        $this->startApiCall('ResetWorkspaceChanges', $request, $callOptions)->wait();
+        return $this->startApiCall('SearchFiles', $request, $callOptions);
+    }
+
+    /**
+     * Update default config for a given project and location.
+     *
+     * **Note:** *This method does not fully implement
+     * [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated
+     * as a bad request, and when the `field_mask` is omitted, the request is
+     * treated as a full update on all modifiable fields.*
+     *
+     * The async variant is {@see DataformClient::updateConfigAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/update_config.php
+     *
+     * @param UpdateConfigRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Config
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateConfig(UpdateConfigRequest $request, array $callOptions = []): Config
+    {
+        return $this->startApiCall('UpdateConfig', $request, $callOptions)->wait();
     }
 
     /**
      * Updates a single ReleaseConfig.
+     *
+     * **Note:** *This method does not fully implement
+     * [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated
+     * as a bad request, and when the `field_mask` is omitted, the request is
+     * treated as a full update on all modifiable fields.*
      *
      * The async variant is {@see DataformClient::updateReleaseConfigAsync()} .
      *
@@ -1845,6 +2146,11 @@ final class DataformClient
     /**
      * Updates a single Repository.
      *
+     * **Note:** *This method does not fully implement
+     * [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated
+     * as a bad request, and when the `field_mask` is omitted, the request is
+     * treated as a full update on all modifiable fields.*
+     *
      * The async variant is {@see DataformClient::updateRepositoryAsync()} .
      *
      * @example samples/V1beta1/DataformClient/update_repository.php
@@ -1872,6 +2178,11 @@ final class DataformClient
 
     /**
      * Updates a single WorkflowConfig.
+     *
+     * **Note:** *This method does not fully implement
+     * [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated
+     * as a bad request, and when the `field_mask` is omitted, the request is
+     * treated as a full update on all modifiable fields.*
      *
      * The async variant is {@see DataformClient::updateWorkflowConfigAsync()} .
      *
@@ -2072,8 +2383,10 @@ final class DataformClient
      *
      * @experimental
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

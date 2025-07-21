@@ -105,6 +105,12 @@ class State
      * Generated from protobuf enum <code>UNHIDING = 15;</code>
      */
     const UNHIDING = 15;
+    /**
+     * TPU node has unknown state after a failed repair.
+     *
+     * Generated from protobuf enum <code>UNKNOWN = 16;</code>
+     */
+    const UNKNOWN = 16;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -122,6 +128,7 @@ class State
         self::HIDING => 'HIDING',
         self::HIDDEN => 'HIDDEN',
         self::UNHIDING => 'UNHIDING',
+        self::UNKNOWN => 'UNKNOWN',
     ];
 
     public static function name($value)

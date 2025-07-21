@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [Developer Preview](https://developers.google.com/workspace/preview).
  * Single instance of a meeting held in a space.
  *
  * Generated from protobuf message <code>google.apps.meet.v2beta.ConferenceRecord</code>
@@ -19,13 +18,13 @@ class ConferenceRecord extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. Resource name of the conference record.
      * Format: `conferenceRecords/{conference_record}` where `{conference_record}`
-     * is a unique id for each instance of a call within a space.
+     * is a unique ID for each instance of a call within a space.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * Output only. Timestamp when the conference started, always set.
+     * Output only. Timestamp when the conference started. Always set.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -38,9 +37,9 @@ class ConferenceRecord extends \Google\Protobuf\Internal\Message
      */
     protected $end_time = null;
     /**
-     * Output only. Server enforced expire time for when this conference record
-     * resource is deleted. The resource is deleted 30 days after the conference
-     * ends.
+     * Output only. Server enforced expiration time for when this conference
+     * record resource is deleted. The resource is deleted 30 days after the
+     * conference ends.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -61,16 +60,16 @@ class ConferenceRecord extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Identifier. Resource name of the conference record.
      *           Format: `conferenceRecords/{conference_record}` where `{conference_record}`
-     *           is a unique id for each instance of a call within a space.
+     *           is a unique ID for each instance of a call within a space.
      *     @type \Google\Protobuf\Timestamp $start_time
-     *           Output only. Timestamp when the conference started, always set.
+     *           Output only. Timestamp when the conference started. Always set.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           Output only. Timestamp when the conference ended.
      *           Set for past conferences. Unset if the conference is ongoing.
      *     @type \Google\Protobuf\Timestamp $expire_time
-     *           Output only. Server enforced expire time for when this conference record
-     *           resource is deleted. The resource is deleted 30 days after the conference
-     *           ends.
+     *           Output only. Server enforced expiration time for when this conference
+     *           record resource is deleted. The resource is deleted 30 days after the
+     *           conference ends.
      *     @type string $space
      *           Output only. The space where the conference was held.
      * }
@@ -83,7 +82,7 @@ class ConferenceRecord extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. Resource name of the conference record.
      * Format: `conferenceRecords/{conference_record}` where `{conference_record}`
-     * is a unique id for each instance of a call within a space.
+     * is a unique ID for each instance of a call within a space.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -96,7 +95,7 @@ class ConferenceRecord extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. Resource name of the conference record.
      * Format: `conferenceRecords/{conference_record}` where `{conference_record}`
-     * is a unique id for each instance of a call within a space.
+     * is a unique ID for each instance of a call within a space.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -111,7 +110,7 @@ class ConferenceRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Timestamp when the conference started, always set.
+     * Output only. Timestamp when the conference started. Always set.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -132,7 +131,7 @@ class ConferenceRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Timestamp when the conference started, always set.
+     * Output only. Timestamp when the conference started. Always set.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -185,9 +184,9 @@ class ConferenceRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Server enforced expire time for when this conference record
-     * resource is deleted. The resource is deleted 30 days after the conference
-     * ends.
+     * Output only. Server enforced expiration time for when this conference
+     * record resource is deleted. The resource is deleted 30 days after the
+     * conference ends.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -208,9 +207,9 @@ class ConferenceRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Server enforced expire time for when this conference record
-     * resource is deleted. The resource is deleted 30 days after the conference
-     * ends.
+     * Output only. Server enforced expiration time for when this conference
+     * record resource is deleted. The resource is deleted 30 days after the
+     * conference ends.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var

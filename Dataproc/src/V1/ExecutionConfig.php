@@ -80,6 +80,15 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string staging_bucket = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $staging_bucket = '';
+    /**
+     * Optional. Authentication configuration used to set the default identity for
+     * the workload execution. The config specifies the type of identity
+     * (service account or user) that will be used by workloads to access
+     * resources on the project(s).
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.AuthenticationConfig authentication_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $authentication_config = null;
     protected $network;
 
     /**
@@ -133,6 +142,11 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      *           staging and temporary buckets.
      *           **This field requires a Cloud Storage bucket name, not a `gs://...` URI to
      *           a Cloud Storage bucket.**
+     *     @type \Google\Cloud\Dataproc\V1\AuthenticationConfig $authentication_config
+     *           Optional. Authentication configuration used to set the default identity for
+     *           the workload execution. The config specifies the type of identity
+     *           (service account or user) that will be used by workloads to access
+     *           resources on the project(s).
      * }
      */
     public function __construct($data = NULL) {
@@ -432,6 +446,48 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->staging_bucket = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Authentication configuration used to set the default identity for
+     * the workload execution. The config specifies the type of identity
+     * (service account or user) that will be used by workloads to access
+     * resources on the project(s).
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.AuthenticationConfig authentication_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\AuthenticationConfig|null
+     */
+    public function getAuthenticationConfig()
+    {
+        return $this->authentication_config;
+    }
+
+    public function hasAuthenticationConfig()
+    {
+        return isset($this->authentication_config);
+    }
+
+    public function clearAuthenticationConfig()
+    {
+        unset($this->authentication_config);
+    }
+
+    /**
+     * Optional. Authentication configuration used to set the default identity for
+     * the workload execution. The config specifies the type of identity
+     * (service account or user) that will be used by workloads to access
+     * resources on the project(s).
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.AuthenticationConfig authentication_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\AuthenticationConfig $var
+     * @return $this
+     */
+    public function setAuthenticationConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\AuthenticationConfig::class);
+        $this->authentication_config = $var;
 
         return $this;
     }

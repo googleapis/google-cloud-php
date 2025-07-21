@@ -43,6 +43,7 @@ use Google\Cloud\Compute\V1\ListGlobalNetworkEndpointGroupsRequest;
 use Google\Cloud\Compute\V1\ListNetworkEndpointsGlobalNetworkEndpointGroupsRequest;
 use Google\Cloud\Compute\V1\NetworkEndpointGroup;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The GlobalNetworkEndpointGroups API.
@@ -190,6 +191,12 @@ final class GlobalNetworkEndpointGroupsClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -220,6 +227,9 @@ final class GlobalNetworkEndpointGroupsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -248,6 +258,8 @@ final class GlobalNetworkEndpointGroupsClient
      * The async variant is
      * {@see GlobalNetworkEndpointGroupsClient::attachNetworkEndpointsAsync()} .
      *
+     * @example samples/V1/GlobalNetworkEndpointGroupsClient/attach_network_endpoints.php
+     *
      * @param AttachNetworkEndpointsGlobalNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                                   $callOptions {
      *     Optional.
@@ -271,6 +283,8 @@ final class GlobalNetworkEndpointGroupsClient
      * Deletes the specified network endpoint group.Note that the NEG cannot be deleted if there are backend services referencing it.
      *
      * The async variant is {@see GlobalNetworkEndpointGroupsClient::deleteAsync()} .
+     *
+     * @example samples/V1/GlobalNetworkEndpointGroupsClient/delete.php
      *
      * @param DeleteGlobalNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -297,6 +311,8 @@ final class GlobalNetworkEndpointGroupsClient
      * The async variant is
      * {@see GlobalNetworkEndpointGroupsClient::detachNetworkEndpointsAsync()} .
      *
+     * @example samples/V1/GlobalNetworkEndpointGroupsClient/detach_network_endpoints.php
+     *
      * @param DetachNetworkEndpointsGlobalNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                                   $callOptions {
      *     Optional.
@@ -320,6 +336,8 @@ final class GlobalNetworkEndpointGroupsClient
      * Returns the specified network endpoint group.
      *
      * The async variant is {@see GlobalNetworkEndpointGroupsClient::getAsync()} .
+     *
+     * @example samples/V1/GlobalNetworkEndpointGroupsClient/get.php
      *
      * @param GetGlobalNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -345,6 +363,8 @@ final class GlobalNetworkEndpointGroupsClient
      *
      * The async variant is {@see GlobalNetworkEndpointGroupsClient::insertAsync()} .
      *
+     * @example samples/V1/GlobalNetworkEndpointGroupsClient/insert.php
+     *
      * @param InsertGlobalNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -368,6 +388,8 @@ final class GlobalNetworkEndpointGroupsClient
      * Retrieves the list of network endpoint groups that are located in the specified project.
      *
      * The async variant is {@see GlobalNetworkEndpointGroupsClient::listAsync()} .
+     *
+     * @example samples/V1/GlobalNetworkEndpointGroupsClient/list.php
      *
      * @param ListGlobalNetworkEndpointGroupsRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -393,6 +415,8 @@ final class GlobalNetworkEndpointGroupsClient
      *
      * The async variant is
      * {@see GlobalNetworkEndpointGroupsClient::listNetworkEndpointsAsync()} .
+     *
+     * @example samples/V1/GlobalNetworkEndpointGroupsClient/list_network_endpoints.php
      *
      * @param ListNetworkEndpointsGlobalNetworkEndpointGroupsRequest $request     A request to house fields associated with the call.
      * @param array                                                  $callOptions {

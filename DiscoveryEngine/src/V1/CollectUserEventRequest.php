@@ -16,8 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent DataStore resource name, such as
+     * Required. The parent resource name.
+     * If the collect user event action is applied in
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore] level, the format
+     * is:
      * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.
+     * If the collect user event action is applied in
+     * [Location][google.cloud.location.Location] level, for example, the event
+     * with [Document][google.cloud.discoveryengine.v1.Document] across multiple
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore], the format is:
+     * `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -54,8 +62,16 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent DataStore resource name, such as
+     *           Required. The parent resource name.
+     *           If the collect user event action is applied in
+     *           [DataStore][google.cloud.discoveryengine.v1.DataStore] level, the format
+     *           is:
      *           `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.
+     *           If the collect user event action is applied in
+     *           [Location][google.cloud.location.Location] level, for example, the event
+     *           with [Document][google.cloud.discoveryengine.v1.Document] across multiple
+     *           [DataStore][google.cloud.discoveryengine.v1.DataStore], the format is:
+     *           `projects/{project}/locations/{location}`.
      *     @type string $user_event
      *           Required. URL encoded UserEvent proto with a length limit of 2,000,000
      *           characters.
@@ -76,8 +92,16 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent DataStore resource name, such as
+     * Required. The parent resource name.
+     * If the collect user event action is applied in
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore] level, the format
+     * is:
      * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.
+     * If the collect user event action is applied in
+     * [Location][google.cloud.location.Location] level, for example, the event
+     * with [Document][google.cloud.discoveryengine.v1.Document] across multiple
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore], the format is:
+     * `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -88,8 +112,16 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent DataStore resource name, such as
+     * Required. The parent resource name.
+     * If the collect user event action is applied in
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore] level, the format
+     * is:
      * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.
+     * If the collect user event action is applied in
+     * [Location][google.cloud.location.Location] level, for example, the event
+     * with [Document][google.cloud.discoveryengine.v1.Document] across multiple
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore], the format is:
+     * `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

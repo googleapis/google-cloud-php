@@ -11,8 +11,9 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A SQL statement that is evaluated to return rows that match an invalid
  * state. If any rows are are returned, this rule fails.
- * The SQL statement must use BigQuery standard SQL syntax, and must not
- * contain any semicolons.
+ * The SQL statement must use [GoogleSQL
+ * syntax](https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax),
+ * and must not contain any semicolons.
  * You can use the data reference parameter `${data()}` to reference the
  * source table with all of its precondition filters applied. Examples of
  * precondition filters include row filters, incremental data filters, and

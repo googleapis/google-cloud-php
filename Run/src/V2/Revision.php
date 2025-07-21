@@ -90,7 +90,7 @@ class Revision extends \Google\Protobuf\Internal\Message
      * [Google Cloud Platform Launch
      * Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
      * `ALPHA`, `BETA`, and `GA`.
-     * <p>Note that this value might not be what was used
+     * Note that this value might not be what was used
      * as input. For example, if ALPHA was provided as input in the parent
      * resource, but only BETA and GA-level features are were, this field will be
      * BETA.
@@ -238,6 +238,19 @@ class Revision extends \Google\Protobuf\Internal\Message
      */
     protected $node_selector = null;
     /**
+     * Optional. Output only. True if GPU zonal redundancy is disabled on this
+     * revision.
+     *
+     * Generated from protobuf field <code>optional bool gpu_zonal_redundancy_disabled = 48 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $gpu_zonal_redundancy_disabled = null;
+    /**
+     * Output only. Email address of the authenticated creator.
+     *
+     * Generated from protobuf field <code>string creator = 49 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $creator = '';
+    /**
      * Output only. A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
      *
@@ -288,7 +301,7 @@ class Revision extends \Google\Protobuf\Internal\Message
      *           [Google Cloud Platform Launch
      *           Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
      *           `ALPHA`, `BETA`, and `GA`.
-     *           <p>Note that this value might not be what was used
+     *           Note that this value might not be what was used
      *           as input. For example, if ALPHA was provided as input in the parent
      *           resource, but only BETA and GA-level features are were, this field will be
      *           BETA.
@@ -347,6 +360,11 @@ class Revision extends \Google\Protobuf\Internal\Message
      *           Output only. The current effective scaling settings for the revision.
      *     @type \Google\Cloud\Run\V2\NodeSelector $node_selector
      *           The node selector for the revision.
+     *     @type bool $gpu_zonal_redundancy_disabled
+     *           Optional. Output only. True if GPU zonal redundancy is disabled on this
+     *           revision.
+     *     @type string $creator
+     *           Output only. Email address of the authenticated creator.
      *     @type string $etag
      *           Output only. A system-generated fingerprint for this version of the
      *           resource. May be used to detect modification conflict during updates.
@@ -664,7 +682,7 @@ class Revision extends \Google\Protobuf\Internal\Message
      * [Google Cloud Platform Launch
      * Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
      * `ALPHA`, `BETA`, and `GA`.
-     * <p>Note that this value might not be what was used
+     * Note that this value might not be what was used
      * as input. For example, if ALPHA was provided as input in the parent
      * resource, but only BETA and GA-level features are were, this field will be
      * BETA.
@@ -682,7 +700,7 @@ class Revision extends \Google\Protobuf\Internal\Message
      * [Google Cloud Platform Launch
      * Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports
      * `ALPHA`, `BETA`, and `GA`.
-     * <p>Note that this value might not be what was used
+     * Note that this value might not be what was used
      * as input. For example, if ALPHA was provided as input in the parent
      * resource, but only BETA and GA-level features are were, this field will be
      * BETA.
@@ -1337,6 +1355,70 @@ class Revision extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\NodeSelector::class);
         $this->node_selector = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Output only. True if GPU zonal redundancy is disabled on this
+     * revision.
+     *
+     * Generated from protobuf field <code>optional bool gpu_zonal_redundancy_disabled = 48 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getGpuZonalRedundancyDisabled()
+    {
+        return isset($this->gpu_zonal_redundancy_disabled) ? $this->gpu_zonal_redundancy_disabled : false;
+    }
+
+    public function hasGpuZonalRedundancyDisabled()
+    {
+        return isset($this->gpu_zonal_redundancy_disabled);
+    }
+
+    public function clearGpuZonalRedundancyDisabled()
+    {
+        unset($this->gpu_zonal_redundancy_disabled);
+    }
+
+    /**
+     * Optional. Output only. True if GPU zonal redundancy is disabled on this
+     * revision.
+     *
+     * Generated from protobuf field <code>optional bool gpu_zonal_redundancy_disabled = 48 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setGpuZonalRedundancyDisabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->gpu_zonal_redundancy_disabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Email address of the authenticated creator.
+     *
+     * Generated from protobuf field <code>string creator = 49 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getCreator()
+    {
+        return $this->creator;
+    }
+
+    /**
+     * Output only. Email address of the authenticated creator.
+     *
+     * Generated from protobuf field <code>string creator = 49 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCreator($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->creator = $var;
 
         return $this;
     }

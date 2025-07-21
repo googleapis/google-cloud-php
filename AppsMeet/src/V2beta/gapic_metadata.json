@@ -10,9 +10,24 @@
                 "grpc": {
                     "libraryClient": "SpacesServiceGapicClient",
                     "rpcs": {
+                        "ConnectActiveConference": {
+                            "methods": [
+                                "connectActiveConference"
+                            ]
+                        },
+                        "CreateMember": {
+                            "methods": [
+                                "createMember"
+                            ]
+                        },
                         "CreateSpace": {
                             "methods": [
                                 "createSpace"
+                            ]
+                        },
+                        "DeleteMember": {
+                            "methods": [
+                                "deleteMember"
                             ]
                         },
                         "EndActiveConference": {
@@ -20,9 +35,19 @@
                                 "endActiveConference"
                             ]
                         },
+                        "GetMember": {
+                            "methods": [
+                                "getMember"
+                            ]
+                        },
                         "GetSpace": {
                             "methods": [
                                 "getSpace"
+                            ]
+                        },
+                        "ListMembers": {
+                            "methods": [
+                                "listMembers"
                             ]
                         },
                         "UpdateSpace": {

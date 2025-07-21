@@ -42,9 +42,66 @@ return [
                     ],
                 ],
             ],
+            'CreateQueuedResource' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Tpu\V2\QueuedResource',
+                    'metadataReturnType' => '\Google\Cloud\Tpu\V2\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteNode' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Tpu\V2\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteQueuedResource' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Tpu\V2\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ResetQueuedResource' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Tpu\V2\QueuedResource',
                     'metadataReturnType' => '\Google\Cloud\Tpu\V2\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
@@ -167,6 +224,18 @@ return [
                     ],
                 ],
             ],
+            'GetQueuedResource' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Tpu\V2\QueuedResource',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetRuntimeVersion' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Tpu\V2\RuntimeVersion',
@@ -210,6 +279,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\Tpu\V2\ListNodesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListQueuedResources' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getQueuedResources',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Tpu\V2\ListQueuedResourcesResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -277,6 +366,7 @@ return [
                 'acceleratorType' => 'projects/{project}/locations/{location}/acceleratorTypes/{accelerator_type}',
                 'location' => 'projects/{project}/locations/{location}',
                 'node' => 'projects/{project}/locations/{location}/nodes/{node}',
+                'queuedResource' => 'projects/{project}/locations/{location}/queuedResources/{queued_resource}',
                 'runtimeVersion' => 'projects/{project}/locations/{location}/runtimeVersions/{runtime_version}',
             ],
         ],

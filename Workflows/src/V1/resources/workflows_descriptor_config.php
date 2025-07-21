@@ -93,6 +93,26 @@ return [
                     ],
                 ],
             ],
+            'ListWorkflowRevisions' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getWorkflows',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Workflows\V1\ListWorkflowRevisionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListWorkflows' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -149,6 +169,7 @@ return [
             ],
             'templateMap' => [
                 'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{cryptoKey}',
+                'cryptoKeyVersion' => 'projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{cryptoKey}/cryptoKeyVersions/{cryptoKeyVersion}',
                 'location' => 'projects/{project}/locations/{location}',
                 'workflow' => 'projects/{project}/locations/{location}/workflows/{workflow}',
             ],

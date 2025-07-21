@@ -21,7 +21,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * learn more.
  * Note: We recommend using  CryptoDeterministicConfig for all use cases which
  * do not require preserving the input alphabet space and size, plus warrant
- * referential integrity.
+ * referential integrity. FPE incurs significant latency costs.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CryptoReplaceFfxFpeConfig</code>
  */

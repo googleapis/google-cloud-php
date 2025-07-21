@@ -23,6 +23,21 @@
 return [
     'interfaces' => [
         'google.cloud.developerconnect.v1.DeveloperConnect' => [
+            'CreateAccountConnector' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/accountConnectors',
+                'body' => 'account_connector',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'account_connector_id',
+                ],
+            ],
             'CreateConnection' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/connections',
@@ -53,6 +68,17 @@ return [
                     'git_repository_link_id',
                 ],
             ],
+            'DeleteAccountConnector' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/accountConnectors/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteConnection' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/connections/*}',
@@ -71,6 +97,40 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteSelf' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/accountConnectors/*}/users:deleteSelf',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteUser' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/accountConnectors/*/users/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'FetchAccessToken' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{account_connector=projects/*/locations/*/accountConnectors/*}/users:fetchAccessToken',
+                'body' => '*',
+                'placeholders' => [
+                    'account_connector' => [
+                        'getters' => [
+                            'getAccountConnector',
                         ],
                     ],
                 ],
@@ -132,6 +192,28 @@ return [
                     ],
                 ],
             ],
+            'FetchSelf' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/accountConnectors/*}/users:fetchSelf',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAccountConnector' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/accountConnectors/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetConnection' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/connections/*}',
@@ -154,6 +236,17 @@ return [
                     ],
                 ],
             ],
+            'ListAccountConnectors' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/accountConnectors',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListConnections' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/connections',
@@ -172,6 +265,30 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListUsers' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/accountConnectors/*}/users',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateAccountConnector' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{account_connector.name=projects/*/locations/*/accountConnectors/*}',
+                'body' => 'account_connector',
+                'placeholders' => [
+                    'account_connector.name' => [
+                        'getters' => [
+                            'getAccountConnector',
+                            'getName',
                         ],
                     ],
                 ],

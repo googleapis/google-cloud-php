@@ -131,6 +131,18 @@ return [
                     ],
                 ],
             ],
+            'PrepareQuery' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{instance_name=projects/*/instances/*}:prepareQuery',
+                'body' => '*',
+                'placeholders' => [
+                    'instance_name' => [
+                        'getters' => [
+                            'getInstanceName',
+                        ],
+                    ],
+                ],
+            ],
             'ReadChangeStream' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:readChangeStream',

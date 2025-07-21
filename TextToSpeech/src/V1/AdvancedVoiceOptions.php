@@ -16,12 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class AdvancedVoiceOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Only for Journey voices. If false, the synthesis will be context aware
-     * and have higher latency.
+     * Only for Journey voices. If false, the synthesis is context aware
+     * and has a higher latency.
      *
      * Generated from protobuf field <code>optional bool low_latency_journey_synthesis = 1;</code>
      */
-    private $low_latency_journey_synthesis = null;
+    protected $low_latency_journey_synthesis = null;
 
     /**
      * Constructor.
@@ -30,8 +30,8 @@ class AdvancedVoiceOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $low_latency_journey_synthesis
-     *           Only for Journey voices. If false, the synthesis will be context aware
-     *           and have higher latency.
+     *           Only for Journey voices. If false, the synthesis is context aware
+     *           and has a higher latency.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +40,8 @@ class AdvancedVoiceOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only for Journey voices. If false, the synthesis will be context aware
-     * and have higher latency.
+     * Only for Journey voices. If false, the synthesis is context aware
+     * and has a higher latency.
      *
      * Generated from protobuf field <code>optional bool low_latency_journey_synthesis = 1;</code>
      * @return bool
@@ -62,8 +62,8 @@ class AdvancedVoiceOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only for Journey voices. If false, the synthesis will be context aware
-     * and have higher latency.
+     * Only for Journey voices. If false, the synthesis is context aware
+     * and has a higher latency.
      *
      * Generated from protobuf field <code>optional bool low_latency_journey_synthesis = 1;</code>
      * @param bool $var

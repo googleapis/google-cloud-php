@@ -36,7 +36,6 @@ class GenerateGroundedContentRequest extends \Google\Protobuf\Internal\Message
      * For single-turn queries, this is a single instance. For multi-turn queries,
      * this is a repeated field that contains conversation history + latest
      * request.
-     * Only a single-turn query is supported currently.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GroundedGenerationContent contents = 2;</code>
      */
@@ -92,7 +91,6 @@ class GenerateGroundedContentRequest extends \Google\Protobuf\Internal\Message
      *           For single-turn queries, this is a single instance. For multi-turn queries,
      *           this is a repeated field that contains conversation history + latest
      *           request.
-     *           Only a single-turn query is supported currently.
      *     @type \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentRequest\GenerationSpec $generation_spec
      *           Content generation specification.
      *     @type \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentRequest\GroundingSpec $grounding_spec
@@ -193,7 +191,6 @@ class GenerateGroundedContentRequest extends \Google\Protobuf\Internal\Message
      * For single-turn queries, this is a single instance. For multi-turn queries,
      * this is a repeated field that contains conversation history + latest
      * request.
-     * Only a single-turn query is supported currently.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GroundedGenerationContent contents = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -208,7 +205,6 @@ class GenerateGroundedContentRequest extends \Google\Protobuf\Internal\Message
      * For single-turn queries, this is a single instance. For multi-turn queries,
      * this is a repeated field that contains conversation history + latest
      * request.
-     * Only a single-turn query is supported currently.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GroundedGenerationContent contents = 2;</code>
      * @param array<\Google\Cloud\DiscoveryEngine\V1\GroundedGenerationContent>|\Google\Protobuf\Internal\RepeatedField $var

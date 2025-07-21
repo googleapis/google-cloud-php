@@ -65,6 +65,20 @@ class FindingClass
      * Generated from protobuf enum <code>TOXIC_COMBINATION = 7;</code>
      */
     const TOXIC_COMBINATION = 7;
+    /**
+     * Describes a potential security risk to data assets that contain sensitive
+     * data.
+     *
+     * Generated from protobuf enum <code>SENSITIVE_DATA_RISK = 8;</code>
+     */
+    const SENSITIVE_DATA_RISK = 8;
+    /**
+     * Describes a resource or resource group where high risk attack paths
+     * converge, based on attack path simulations (APS).
+     *
+     * Generated from protobuf enum <code>CHOKEPOINT = 9;</code>
+     */
+    const CHOKEPOINT = 9;
 
     private static $valueToName = [
         self::FINDING_CLASS_UNSPECIFIED => 'FINDING_CLASS_UNSPECIFIED',
@@ -75,6 +89,8 @@ class FindingClass
         self::SCC_ERROR => 'SCC_ERROR',
         self::POSTURE_VIOLATION => 'POSTURE_VIOLATION',
         self::TOXIC_COMBINATION => 'TOXIC_COMBINATION',
+        self::SENSITIVE_DATA_RISK => 'SENSITIVE_DATA_RISK',
+        self::CHOKEPOINT => 'CHOKEPOINT',
     ];
 
     public static function name($value)

@@ -22,7 +22,7 @@ class GetExampleRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. An expression for filtering Examples. Filter by
      * annotation_spec.display_name is supported. Format
@@ -30,7 +30,7 @@ class GetExampleRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * @param string $name   Required. Name of example, format:

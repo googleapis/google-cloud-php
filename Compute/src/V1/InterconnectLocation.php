@@ -28,14 +28,14 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      */
     private $availability_zone = null;
     /**
-     * [Output only] List of features available at this InterconnectLocation, which can take one of the following values: - MACSEC
+     * [Output only] List of features available at this InterconnectLocation, which can take one of the following values: - IF_MACSEC
      * Check the AvailableFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string available_features = 496344307;</code>
      */
     private $available_features;
     /**
-     * [Output only] List of link types available at this InterconnectLocation, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR - LINK_TYPE_ETHERNET_100G_LR
+     * [Output only] List of link types available at this InterconnectLocation, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR - LINK_TYPE_ETHERNET_100G_LR - LINK_TYPE_ETHERNET_400G_LR4
      * Check the AvailableLinkTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string available_link_types = 509504298;</code>
@@ -139,10 +139,10 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *     @type string $availability_zone
      *           [Output Only] Availability zone for this InterconnectLocation. Within a metropolitan area (metro), maintenance will not be simultaneously scheduled in more than one availability zone. Example: "zone1" or "zone2".
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $available_features
-     *           [Output only] List of features available at this InterconnectLocation, which can take one of the following values: - MACSEC
+     *           [Output only] List of features available at this InterconnectLocation, which can take one of the following values: - IF_MACSEC
      *           Check the AvailableFeatures enum for the list of possible values.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $available_link_types
-     *           [Output only] List of link types available at this InterconnectLocation, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR - LINK_TYPE_ETHERNET_100G_LR
+     *           [Output only] List of link types available at this InterconnectLocation, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR - LINK_TYPE_ETHERNET_100G_LR - LINK_TYPE_ETHERNET_400G_LR4
      *           Check the AvailableLinkTypes enum for the list of possible values.
      *     @type string $city
      *           [Output Only] Metropolitan area designator that indicates which city an interconnect is located. For example: "Chicago, IL", "Amsterdam, Netherlands".
@@ -254,7 +254,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] List of features available at this InterconnectLocation, which can take one of the following values: - MACSEC
+     * [Output only] List of features available at this InterconnectLocation, which can take one of the following values: - IF_MACSEC
      * Check the AvailableFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string available_features = 496344307;</code>
@@ -266,7 +266,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] List of features available at this InterconnectLocation, which can take one of the following values: - MACSEC
+     * [Output only] List of features available at this InterconnectLocation, which can take one of the following values: - IF_MACSEC
      * Check the AvailableFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string available_features = 496344307;</code>
@@ -282,7 +282,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] List of link types available at this InterconnectLocation, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR - LINK_TYPE_ETHERNET_100G_LR
+     * [Output only] List of link types available at this InterconnectLocation, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR - LINK_TYPE_ETHERNET_100G_LR - LINK_TYPE_ETHERNET_400G_LR4
      * Check the AvailableLinkTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string available_link_types = 509504298;</code>
@@ -294,7 +294,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] List of link types available at this InterconnectLocation, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR - LINK_TYPE_ETHERNET_100G_LR
+     * [Output only] List of link types available at this InterconnectLocation, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR - LINK_TYPE_ETHERNET_100G_LR - LINK_TYPE_ETHERNET_400G_LR4
      * Check the AvailableLinkTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string available_link_types = 509504298;</code>

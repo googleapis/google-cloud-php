@@ -24,7 +24,7 @@ class TieringPolicy extends \Google\Protobuf\Internal\Message
     protected $tier_action = null;
     /**
      * Optional. Time in days to mark the volume's data block as cold and make it
-     * eligible for tiering, can be range from 7-183. Default is 31.
+     * eligible for tiering, can be range from 2-183. Default is 31.
      *
      * Generated from protobuf field <code>optional int32 cooling_threshold_days = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -41,7 +41,7 @@ class TieringPolicy extends \Google\Protobuf\Internal\Message
      *           Default is PAUSED.
      *     @type int $cooling_threshold_days
      *           Optional. Time in days to mark the volume's data block as cold and make it
-     *           eligible for tiering, can be range from 7-183. Default is 31.
+     *           eligible for tiering, can be range from 2-183. Default is 31.
      * }
      */
     public function __construct($data = NULL) {
@@ -89,7 +89,7 @@ class TieringPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Time in days to mark the volume's data block as cold and make it
-     * eligible for tiering, can be range from 7-183. Default is 31.
+     * eligible for tiering, can be range from 2-183. Default is 31.
      *
      * Generated from protobuf field <code>optional int32 cooling_threshold_days = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -111,7 +111,7 @@ class TieringPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Time in days to mark the volume's data block as cold and make it
-     * eligible for tiering, can be range from 7-183. Default is 31.
+     * eligible for tiering, can be range from 2-183. Default is 31.
      *
      * Generated from protobuf field <code>optional int32 cooling_threshold_days = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

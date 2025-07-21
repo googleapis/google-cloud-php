@@ -38,6 +38,21 @@ return [
                     ],
                 ],
             ],
+            'DeleteTrip' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'provider_id',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                        'matchers' => [
+                            '/^(?<provider_id>providers\/[^\/]+)$/',
+                        ],
+                    ],
+                ],
+            ],
             'GetTrip' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Maps\FleetEngine\V1\Trip',

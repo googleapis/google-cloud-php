@@ -164,9 +164,9 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
      */
     protected $cpu_core_count = 0;
     /**
-     * Output only. Operating system version of the image.
+     * Optional. Operating system version of the image.
      *
-     * Generated from protobuf field <code>string system_version = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string system_version = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $system_version = '';
     /**
@@ -271,7 +271,7 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
      *     @type int $cpu_core_count
      *           Required. Number of enabled CPU cores.
      *     @type string $system_version
-     *           Output only. Operating system version of the image.
+     *           Optional. Operating system version of the image.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $scan_ip_ids
      *           Output only. OCIDs of scan IPs.
      *     @type string $scan_dns_record_id
@@ -946,9 +946,9 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Operating system version of the image.
+     * Optional. Operating system version of the image.
      *
-     * Generated from protobuf field <code>string system_version = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string system_version = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getSystemVersion()
@@ -957,9 +957,9 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Operating system version of the image.
+     * Optional. Operating system version of the image.
      *
-     * Generated from protobuf field <code>string system_version = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string system_version = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
