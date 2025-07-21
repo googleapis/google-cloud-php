@@ -257,4 +257,3 @@ class UpdateComponentCommand extends Command
         return [$userId, $groupId];
     }
 }
-

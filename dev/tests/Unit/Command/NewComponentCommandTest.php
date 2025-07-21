@@ -57,7 +57,7 @@ class NewComponentCommandTest extends TestCase
         self::$tmpDir = realpath($tmpDir);
         $application = new Application();
         $application->add(new NewComponentCommand($tmpDir));
-        self::$commandTester = new CommandTester($application->get('add-component'));
+        self::$commandTester = new CommandTester($application->get('new-component'));
     }
 
     public function testNewComponent()
@@ -187,7 +187,7 @@ class NewComponentCommandTest extends TestCase
         $application = new Application();
         $application->add(new NewComponentCommand(self::$tmpDir, null, $runProcess->reveal()));
 
-        $commandTester = new CommandTester($application->get('add-component'));
+        $commandTester = new CommandTester($application->get('new-component'));
         $commandTester->setInputs([
             'Y'    // Does this information look correct? [Y/n]
         ]);
@@ -257,7 +257,7 @@ class NewComponentCommandTest extends TestCase
         $application = new Application();
         $application->add(new NewComponentCommand(self::$tmpDir, $httpClient->reveal(), $runProcess->reveal()));
 
-        $commandTester = new CommandTester($application->get('add-component'));
+        $commandTester = new CommandTester($application->get('new-component'));
         // No documentationPage/homePage input is required as it is fetched automatically from the yaml file.
         $commandTester->setInputs([
             'Y'              // Does this information look correct? [Y/n]
