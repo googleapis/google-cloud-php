@@ -34,23 +34,11 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      */
     protected $last_scanned_row_key = '';
     /**
-     * If requested, provide enhanced query performance statistics. The semantics
-     * dictate:
-     *   * request_stats is empty on every (streamed) response, except
-     *   * request_stats has non-empty information after all chunks have been
-     *     streamed, where the ReadRowsResponse message only contains
-     *     request_stats.
-     *       * For example, if a read request would have returned an empty
-     *         response instead a single ReadRowsResponse is streamed with empty
-     *         chunks and request_stats filled.
-     * Visually, response messages will stream as follows:
-     *    ... -> {chunks: [...]} -> {chunks: [], request_stats: {...}}
-     *   \______________________/  \________________________________/
-     *       Primary response         Trailer of RequestStats info
-     * Or if the read did not return any values:
-     *   {chunks: [], request_stats: {...}}
-     *   \________________________________/
-     *      Trailer of RequestStats info
+     * If requested, return enhanced query performance statistics. The field
+     * request_stats is empty in a streamed response unless the ReadRowsResponse
+     * message contains request_stats in the last message of the stream. Always
+     * returned when requested, even when the read request returns an empty
+     * response.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RequestStats request_stats = 3;</code>
      */
@@ -73,23 +61,11 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      *           lot of data that was filtered out since the last committed row
      *           key, allowing the client to skip that work on a retry.
      *     @type \Google\Cloud\Bigtable\V2\RequestStats $request_stats
-     *           If requested, provide enhanced query performance statistics. The semantics
-     *           dictate:
-     *             * request_stats is empty on every (streamed) response, except
-     *             * request_stats has non-empty information after all chunks have been
-     *               streamed, where the ReadRowsResponse message only contains
-     *               request_stats.
-     *                 * For example, if a read request would have returned an empty
-     *                   response instead a single ReadRowsResponse is streamed with empty
-     *                   chunks and request_stats filled.
-     *           Visually, response messages will stream as follows:
-     *              ... -> {chunks: [...]} -> {chunks: [], request_stats: {...}}
-     *             \______________________/  \________________________________/
-     *                 Primary response         Trailer of RequestStats info
-     *           Or if the read did not return any values:
-     *             {chunks: [], request_stats: {...}}
-     *             \________________________________/
-     *                Trailer of RequestStats info
+     *           If requested, return enhanced query performance statistics. The field
+     *           request_stats is empty in a streamed response unless the ReadRowsResponse
+     *           message contains request_stats in the last message of the stream. Always
+     *           returned when requested, even when the read request returns an empty
+     *           response.
      * }
      */
     public function __construct($data = NULL) {
@@ -162,23 +138,11 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If requested, provide enhanced query performance statistics. The semantics
-     * dictate:
-     *   * request_stats is empty on every (streamed) response, except
-     *   * request_stats has non-empty information after all chunks have been
-     *     streamed, where the ReadRowsResponse message only contains
-     *     request_stats.
-     *       * For example, if a read request would have returned an empty
-     *         response instead a single ReadRowsResponse is streamed with empty
-     *         chunks and request_stats filled.
-     * Visually, response messages will stream as follows:
-     *    ... -> {chunks: [...]} -> {chunks: [], request_stats: {...}}
-     *   \______________________/  \________________________________/
-     *       Primary response         Trailer of RequestStats info
-     * Or if the read did not return any values:
-     *   {chunks: [], request_stats: {...}}
-     *   \________________________________/
-     *      Trailer of RequestStats info
+     * If requested, return enhanced query performance statistics. The field
+     * request_stats is empty in a streamed response unless the ReadRowsResponse
+     * message contains request_stats in the last message of the stream. Always
+     * returned when requested, even when the read request returns an empty
+     * response.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RequestStats request_stats = 3;</code>
      * @return \Google\Cloud\Bigtable\V2\RequestStats|null
@@ -199,23 +163,11 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If requested, provide enhanced query performance statistics. The semantics
-     * dictate:
-     *   * request_stats is empty on every (streamed) response, except
-     *   * request_stats has non-empty information after all chunks have been
-     *     streamed, where the ReadRowsResponse message only contains
-     *     request_stats.
-     *       * For example, if a read request would have returned an empty
-     *         response instead a single ReadRowsResponse is streamed with empty
-     *         chunks and request_stats filled.
-     * Visually, response messages will stream as follows:
-     *    ... -> {chunks: [...]} -> {chunks: [], request_stats: {...}}
-     *   \______________________/  \________________________________/
-     *       Primary response         Trailer of RequestStats info
-     * Or if the read did not return any values:
-     *   {chunks: [], request_stats: {...}}
-     *   \________________________________/
-     *      Trailer of RequestStats info
+     * If requested, return enhanced query performance statistics. The field
+     * request_stats is empty in a streamed response unless the ReadRowsResponse
+     * message contains request_stats in the last message of the stream. Always
+     * returned when requested, even when the read request returns an empty
+     * response.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RequestStats request_stats = 3;</code>
      * @param \Google\Cloud\Bigtable\V2\RequestStats $var
