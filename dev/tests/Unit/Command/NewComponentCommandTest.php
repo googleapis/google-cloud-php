@@ -18,12 +18,13 @@
 namespace Google\Cloud\Dev\Tests\Unit\Command;
 
 use Google\Cloud\Dev\Command\NewComponentCommand;
+use Symfony\Component\Console\Input\InputDefinition;
 use Google\Cloud\Dev\Composer;
-use Google\Cloud\Dev\RunProcess;
-use GuzzleHttp\Client;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 
 
@@ -55,8 +56,9 @@ class NewComponentCommandTest extends TestCase
         touch($tmpDir . '/composer.json');
         file_put_contents($tmpDir . '/.repo-metadata-full.json', '{}');
         self::$tmpDir = realpath($tmpDir);
+
         $application = new Application();
-        $application->add(new NewComponentCommand($tmpDir));
+        $application->add(new NewComponentCommand(self::$tmpDir));
         self::$commandTester = new CommandTester($application->get('new-component'));
     }
 
@@ -68,6 +70,7 @@ class NewComponentCommandTest extends TestCase
 
         self::$commandTester->execute([
             'proto' => 'google/cloud/secretmanager/v1/service.proto',
+            '--no-update-component' => true,
         ]);
 
         // confirm expected output
@@ -124,6 +127,7 @@ class NewComponentCommandTest extends TestCase
 
         self::$commandTester->execute([
             'proto' => 'google/cloud/secretmanager/v1/service.proto',
+            '--no-update-component' => true
         ]);
 
         // confirm expected output
@@ -154,6 +158,68 @@ class NewComponentCommandTest extends TestCase
         }
 
         $this->assertComposerJson('CustomInput');
+    }
+    public function testNewComponentWithUpdateComponent()
+    {
+        $dummyCommand = $this->prophesize(Command::class);
+
+        $dummyCommand->isEnabled()->willReturn(true);
+        $dummyCommand->getDefinition()->willReturn($this->prophesize(InputDefinition::class));
+        $dummyCommand->getAliases()->willReturn([]);
+        $dummyCommand->setApplication(Argument::type(Application::class))->shouldBeCalled();
+
+        $application = new Application();
+        $application->add(new NewComponentCommand(self::$tmpDir));
+
+        // Add dummy command for update-command and add-sample-to-readme to ensure they're called
+        $dummyCommand->getName()->willReturn('update-component');
+        $application->add($dummyCommand->reveal());
+        $dummyCommand->getName()->willReturn('add-sample-to-readme');
+        $application->add($dummyCommand->reveal());
+        $dummyCommand->run(Argument::cetera())
+            ->willReturn(0)
+            ->shouldBeCalledTimes(2);
+
+        $commandTester = new CommandTester($application->get('new-component'));
+
+        $commandTester->setInputs([
+            'Y'    // Does this information look correct? [Y/n]
+        ]);
+
+        $commandTester->execute([
+            'proto' => 'google/cloud/secretmanager/v1/service.proto',
+        ]);
+
+        // confirm expected output
+        $display = $commandTester->getDisplay();
+        $expectedDisplay = sprintf(<<<EOF
+        | protoPackage         | google.cloud.secretmanager
+        | phpNamespace         | Google\Cloud\SecretManager
+        | displayName          | Google Cloud Secret Manager
+        | componentName        | SecretManager
+        | componentPath        | %s
+        | composerPackage      | google/cloud-secretmanager
+        | githubRepo           | googleapis/google-cloud-php-secretmanager
+        | gpbMetadataNamespace | GPBMetadata\Google\Cloud\Secretmanager
+        | shortName            | secretmanager
+        | protoPath            | google/cloud/secretmanager/(v1)
+        | version              | v1
+        EOF, self::$tmpDir);
+        foreach (explode("\n", $expectedDisplay) as $expectedLine) {
+            $this->assertStringContainsString($expectedLine, $display);
+        }
+
+        foreach (self::$expectedFiles as $file => $fixtureFile) {
+            $this->assertFileExists(self::$tmpDir . '/SecretManager/' . $file);
+            $this->assertFileEquals(
+                __DIR__ . '/../../fixtures/component/SecretManager/' . ($fixtureFile ?: $file),
+                self::$tmpDir . '/SecretManager/' . $file
+            );
+        }
+
+        $repoMetadataFull = json_decode(file_get_contents(self::$tmpDir . '/.repo-metadata-full.json'), true);
+        $this->assertArrayHasKey('SecretManager', $repoMetadataFull);
+        $this->assertComposerJson('SecretManager');
     }
 
     private function assertComposerJson(string $componentName)

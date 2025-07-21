@@ -212,6 +212,12 @@ class NewComponentCommand extends Command
 
         if (!$input->getOption('no-update-component')) {
             $args = ['component' => $new->componentName];
+            if (!$this->getApplication()->has('update-component')) {
+                throw new \RuntimeException(
+                    'Application does not have an update-component command. '
+                    . 'Run with --no-update-component to skip this.'
+                );
+            }
             $updateCommand = $this->getApplication()->find('update-component');
             $returnCode = $updateCommand->run(new ArrayInput($args), $output);
             if ($returnCode !== Command::SUCCESS) {
