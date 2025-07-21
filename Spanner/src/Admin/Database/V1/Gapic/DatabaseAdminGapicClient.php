@@ -2735,6 +2735,10 @@ class DatabaseAdminGapicClient
      *           ```
      *           For more details, see protobuffer [self
      *           description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
+     *     @type bool $throughputMode
+     *           Optional. This field is exposed to be used by the Spanner Migration Tool.
+     *           For more details, see
+     *           [SMT](https://github.com/GoogleCloudPlatform/spanner-migration-tool).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2761,6 +2765,10 @@ class DatabaseAdminGapicClient
 
         if (isset($optionalArgs['protoDescriptors'])) {
             $request->setProtoDescriptors($optionalArgs['protoDescriptors']);
+        }
+
+        if (isset($optionalArgs['throughputMode'])) {
+            $request->setThroughputMode($optionalArgs['throughputMode']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

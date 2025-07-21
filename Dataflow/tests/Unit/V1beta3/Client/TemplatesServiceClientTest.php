@@ -85,6 +85,7 @@ class TemplatesServiceClientTest extends GeneratedTest
         $location2 = 'location21541837352';
         $createdFromSnapshotId = 'createdFromSnapshotId1520659672';
         $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Job();
         $expectedResponse->setId($id);
         $expectedResponse->setProjectId($projectId2);
@@ -96,6 +97,7 @@ class TemplatesServiceClientTest extends GeneratedTest
         $expectedResponse->setLocation($location2);
         $expectedResponse->setCreatedFromSnapshotId($createdFromSnapshotId);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         $request = new CreateJobFromTemplateRequest();
         $response = $gapicClient->createJobFromTemplate($request);
@@ -276,6 +278,7 @@ class TemplatesServiceClientTest extends GeneratedTest
         $location2 = 'location21541837352';
         $createdFromSnapshotId = 'createdFromSnapshotId1520659672';
         $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Job();
         $expectedResponse->setId($id);
         $expectedResponse->setProjectId($projectId2);
@@ -287,6 +290,7 @@ class TemplatesServiceClientTest extends GeneratedTest
         $expectedResponse->setLocation($location2);
         $expectedResponse->setCreatedFromSnapshotId($createdFromSnapshotId);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         $request = new CreateJobFromTemplateRequest();
         $response = $gapicClient->createJobFromTemplateAsync($request)->wait();

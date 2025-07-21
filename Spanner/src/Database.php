@@ -124,6 +124,7 @@ class Database
     const TYPE_PG_JSONB = 'pgJsonb';
     const TYPE_JSON = TypeCode::JSON;
     const TYPE_PG_OID = 'pgOid';
+    const TYPE_INTERVAL = TypeCode::INTERVAL;
 
     /**
      * @var ConnectionInterface
@@ -2036,6 +2037,12 @@ class Database
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
+     *     @type int $orderBy Set the OrderBy option for the ReadRequest.
+     *           {@see \Google\Cloud\Spanner\V1\ReadRequest} and {@see \Google\Cloud\Spanner\V1\ReadRequest\OrderBy}
+     *           for more information and available options.
+     *     @type int $lockHint Set the LockHint option for the ReadRequest.
+     *           {@see \Google\Cloud\Spanner\V1\ReadRequest} and {@see \Google\Cloud\Spanner\V1\ReadRequest\LockHint}
+     *           for more information and available options.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result

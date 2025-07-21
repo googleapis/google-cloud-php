@@ -19,10 +19,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class Gateway extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the Gateway resource. It matches pattern
+     * Identifier. Name of the Gateway resource. It matches pattern
      * `projects/&#42;&#47;locations/&#42;&#47;gateways/<gateway_name>`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -64,32 +64,104 @@ class Gateway extends \Google\Protobuf\Internal\Message
      */
     protected $type = 0;
     /**
-     * Required. One or more ports that the Gateway must receive traffic on. The
-     * proxy binds to the ports specified. Gateway listen on 0.0.0.0 on the ports
-     * specified below.
+     * Optional. Zero or one IPv4 or IPv6 address on which the Gateway will
+     * receive the traffic. When no address is provided, an IP from the subnetwork
+     * is allocated
+     * This field only applies to gateways of type 'SECURE_WEB_GATEWAY'.
+     * Gateways of type 'OPEN_MESH' listen on 0.0.0.0 for IPv4 and :: for IPv6.
+     *
+     * Generated from protobuf field <code>repeated string addresses = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $addresses;
+    /**
+     * Required. One or more port numbers (1-65535), on which the Gateway will
+     * receive traffic. The proxy binds to the specified ports.
+     * Gateways of type 'SECURE_WEB_GATEWAY' are limited to 1 port.
+     * Gateways of type 'OPEN_MESH' listen on 0.0.0.0 for IPv4 and :: for IPv6 and
+     * support multiple ports.
      *
      * Generated from protobuf field <code>repeated int32 ports = 11 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $ports;
     /**
-     * Required. Immutable. Scope determines how configuration across multiple
-     * Gateway instances are merged. The configuration for multiple Gateway
-     * instances with the same scope will be merged as presented as a single
-     * coniguration to the proxy/load balancer.
+     * Optional. Scope determines how configuration across multiple Gateway
+     * instances are merged. The configuration for multiple Gateway instances with
+     * the same scope will be merged as presented as a single configuration to the
+     * proxy/load balancer.
      * Max length 64 characters.
      * Scope should start with a letter and can only have letters, numbers,
      * hyphens.
      *
-     * Generated from protobuf field <code>string scope = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string scope = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $scope = '';
     /**
      * Optional. A fully-qualified ServerTLSPolicy URL reference. Specifies how
      * TLS traffic is terminated. If empty, TLS termination is disabled.
      *
-     * Generated from protobuf field <code>string server_tls_policy = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string server_tls_policy = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $server_tls_policy = '';
+    /**
+     * Optional. A fully-qualified Certificates URL reference. The proxy presents
+     * a Certificate (selected based on SNI) when establishing a TLS connection.
+     * This feature only applies to gateways of type 'SECURE_WEB_GATEWAY'.
+     *
+     * Generated from protobuf field <code>repeated string certificate_urls = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $certificate_urls;
+    /**
+     * Optional. A fully-qualified GatewaySecurityPolicy URL reference.
+     * Defines how a server should apply security policy to inbound
+     * (VM to Proxy) initiated connections.
+     * For example:
+     * `projects/&#42;&#47;locations/&#42;&#47;gatewaySecurityPolicies/swg-policy`.
+     * This policy is specific to gateways of type 'SECURE_WEB_GATEWAY'.
+     *
+     * Generated from protobuf field <code>string gateway_security_policy = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $gateway_security_policy = '';
+    /**
+     * Optional. The relative resource name identifying the VPC network that is
+     * using this configuration. For example:
+     * `projects/&#42;&#47;global/networks/network-1`.
+     * Currently, this field is specific to gateways of type 'SECURE_WEB_GATEWAY'.
+     *
+     * Generated from protobuf field <code>string network = 16 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $network = '';
+    /**
+     * Optional. The relative resource name identifying  the subnetwork in which
+     * this SWG is allocated. For example:
+     * `projects/&#42;&#47;regions/us-central1/subnetworks/network-1`
+     * Currently, this field is specific to gateways of type 'SECURE_WEB_GATEWAY".
+     *
+     * Generated from protobuf field <code>string subnetwork = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $subnetwork = '';
+    /**
+     * Optional. The IP Version that will be used by this gateway. Valid options
+     * are IPV4 or IPV6. Default is IPV4.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.Gateway.IpVersion ip_version = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ip_version = 0;
+    /**
+     * Optional. Determines if envoy will insert internal debug headers into
+     * upstream requests. Other Envoy headers may still be injected. By default,
+     * envoy will not insert any debug headers.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.networkservices.v1.EnvoyHeaders envoy_headers = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $envoy_headers = null;
+    /**
+     * Optional. The routing mode of the Gateway.
+     * This field is configurable only for gateways of type SECURE_WEB_GATEWAY.
+     * This field is required for gateways of type SECURE_WEB_GATEWAY.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.Gateway.RoutingMode routing_mode = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $routing_mode = 0;
 
     /**
      * Constructor.
@@ -98,7 +170,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Name of the Gateway resource. It matches pattern
+     *           Identifier. Name of the Gateway resource. It matches pattern
      *           `projects/&#42;&#47;locations/&#42;&#47;gateways/<gateway_name>`.
      *     @type string $self_link
      *           Output only. Server-defined URL of this resource
@@ -114,21 +186,61 @@ class Gateway extends \Google\Protobuf\Internal\Message
      *     @type int $type
      *           Immutable. The type of the customer managed gateway.
      *           This field is required. If unspecified, an error is returned.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $addresses
+     *           Optional. Zero or one IPv4 or IPv6 address on which the Gateway will
+     *           receive the traffic. When no address is provided, an IP from the subnetwork
+     *           is allocated
+     *           This field only applies to gateways of type 'SECURE_WEB_GATEWAY'.
+     *           Gateways of type 'OPEN_MESH' listen on 0.0.0.0 for IPv4 and :: for IPv6.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $ports
-     *           Required. One or more ports that the Gateway must receive traffic on. The
-     *           proxy binds to the ports specified. Gateway listen on 0.0.0.0 on the ports
-     *           specified below.
+     *           Required. One or more port numbers (1-65535), on which the Gateway will
+     *           receive traffic. The proxy binds to the specified ports.
+     *           Gateways of type 'SECURE_WEB_GATEWAY' are limited to 1 port.
+     *           Gateways of type 'OPEN_MESH' listen on 0.0.0.0 for IPv4 and :: for IPv6 and
+     *           support multiple ports.
      *     @type string $scope
-     *           Required. Immutable. Scope determines how configuration across multiple
-     *           Gateway instances are merged. The configuration for multiple Gateway
-     *           instances with the same scope will be merged as presented as a single
-     *           coniguration to the proxy/load balancer.
+     *           Optional. Scope determines how configuration across multiple Gateway
+     *           instances are merged. The configuration for multiple Gateway instances with
+     *           the same scope will be merged as presented as a single configuration to the
+     *           proxy/load balancer.
      *           Max length 64 characters.
      *           Scope should start with a letter and can only have letters, numbers,
      *           hyphens.
      *     @type string $server_tls_policy
      *           Optional. A fully-qualified ServerTLSPolicy URL reference. Specifies how
      *           TLS traffic is terminated. If empty, TLS termination is disabled.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $certificate_urls
+     *           Optional. A fully-qualified Certificates URL reference. The proxy presents
+     *           a Certificate (selected based on SNI) when establishing a TLS connection.
+     *           This feature only applies to gateways of type 'SECURE_WEB_GATEWAY'.
+     *     @type string $gateway_security_policy
+     *           Optional. A fully-qualified GatewaySecurityPolicy URL reference.
+     *           Defines how a server should apply security policy to inbound
+     *           (VM to Proxy) initiated connections.
+     *           For example:
+     *           `projects/&#42;&#47;locations/&#42;&#47;gatewaySecurityPolicies/swg-policy`.
+     *           This policy is specific to gateways of type 'SECURE_WEB_GATEWAY'.
+     *     @type string $network
+     *           Optional. The relative resource name identifying the VPC network that is
+     *           using this configuration. For example:
+     *           `projects/&#42;&#47;global/networks/network-1`.
+     *           Currently, this field is specific to gateways of type 'SECURE_WEB_GATEWAY'.
+     *     @type string $subnetwork
+     *           Optional. The relative resource name identifying  the subnetwork in which
+     *           this SWG is allocated. For example:
+     *           `projects/&#42;&#47;regions/us-central1/subnetworks/network-1`
+     *           Currently, this field is specific to gateways of type 'SECURE_WEB_GATEWAY".
+     *     @type int $ip_version
+     *           Optional. The IP Version that will be used by this gateway. Valid options
+     *           are IPV4 or IPV6. Default is IPV4.
+     *     @type int $envoy_headers
+     *           Optional. Determines if envoy will insert internal debug headers into
+     *           upstream requests. Other Envoy headers may still be injected. By default,
+     *           envoy will not insert any debug headers.
+     *     @type int $routing_mode
+     *           Optional. The routing mode of the Gateway.
+     *           This field is configurable only for gateways of type SECURE_WEB_GATEWAY.
+     *           This field is required for gateways of type SECURE_WEB_GATEWAY.
      * }
      */
     public function __construct($data = NULL) {
@@ -137,10 +249,10 @@ class Gateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the Gateway resource. It matches pattern
+     * Identifier. Name of the Gateway resource. It matches pattern
      * `projects/&#42;&#47;locations/&#42;&#47;gateways/<gateway_name>`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -149,10 +261,10 @@ class Gateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the Gateway resource. It matches pattern
+     * Identifier. Name of the Gateway resource. It matches pattern
      * `projects/&#42;&#47;locations/&#42;&#47;gateways/<gateway_name>`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -345,9 +457,45 @@ class Gateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. One or more ports that the Gateway must receive traffic on. The
-     * proxy binds to the ports specified. Gateway listen on 0.0.0.0 on the ports
-     * specified below.
+     * Optional. Zero or one IPv4 or IPv6 address on which the Gateway will
+     * receive the traffic. When no address is provided, an IP from the subnetwork
+     * is allocated
+     * This field only applies to gateways of type 'SECURE_WEB_GATEWAY'.
+     * Gateways of type 'OPEN_MESH' listen on 0.0.0.0 for IPv4 and :: for IPv6.
+     *
+     * Generated from protobuf field <code>repeated string addresses = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAddresses()
+    {
+        return $this->addresses;
+    }
+
+    /**
+     * Optional. Zero or one IPv4 or IPv6 address on which the Gateway will
+     * receive the traffic. When no address is provided, an IP from the subnetwork
+     * is allocated
+     * This field only applies to gateways of type 'SECURE_WEB_GATEWAY'.
+     * Gateways of type 'OPEN_MESH' listen on 0.0.0.0 for IPv4 and :: for IPv6.
+     *
+     * Generated from protobuf field <code>repeated string addresses = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAddresses($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->addresses = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Required. One or more port numbers (1-65535), on which the Gateway will
+     * receive traffic. The proxy binds to the specified ports.
+     * Gateways of type 'SECURE_WEB_GATEWAY' are limited to 1 port.
+     * Gateways of type 'OPEN_MESH' listen on 0.0.0.0 for IPv4 and :: for IPv6 and
+     * support multiple ports.
      *
      * Generated from protobuf field <code>repeated int32 ports = 11 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -358,9 +506,11 @@ class Gateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. One or more ports that the Gateway must receive traffic on. The
-     * proxy binds to the ports specified. Gateway listen on 0.0.0.0 on the ports
-     * specified below.
+     * Required. One or more port numbers (1-65535), on which the Gateway will
+     * receive traffic. The proxy binds to the specified ports.
+     * Gateways of type 'SECURE_WEB_GATEWAY' are limited to 1 port.
+     * Gateways of type 'OPEN_MESH' listen on 0.0.0.0 for IPv4 and :: for IPv6 and
+     * support multiple ports.
      *
      * Generated from protobuf field <code>repeated int32 ports = 11 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
@@ -375,15 +525,15 @@ class Gateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. Scope determines how configuration across multiple
-     * Gateway instances are merged. The configuration for multiple Gateway
-     * instances with the same scope will be merged as presented as a single
-     * coniguration to the proxy/load balancer.
+     * Optional. Scope determines how configuration across multiple Gateway
+     * instances are merged. The configuration for multiple Gateway instances with
+     * the same scope will be merged as presented as a single configuration to the
+     * proxy/load balancer.
      * Max length 64 characters.
      * Scope should start with a letter and can only have letters, numbers,
      * hyphens.
      *
-     * Generated from protobuf field <code>string scope = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string scope = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getScope()
@@ -392,15 +542,15 @@ class Gateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. Scope determines how configuration across multiple
-     * Gateway instances are merged. The configuration for multiple Gateway
-     * instances with the same scope will be merged as presented as a single
-     * coniguration to the proxy/load balancer.
+     * Optional. Scope determines how configuration across multiple Gateway
+     * instances are merged. The configuration for multiple Gateway instances with
+     * the same scope will be merged as presented as a single configuration to the
+     * proxy/load balancer.
      * Max length 64 characters.
      * Scope should start with a letter and can only have letters, numbers,
      * hyphens.
      *
-     * Generated from protobuf field <code>string scope = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string scope = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -416,7 +566,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
      * Optional. A fully-qualified ServerTLSPolicy URL reference. Specifies how
      * TLS traffic is terminated. If empty, TLS termination is disabled.
      *
-     * Generated from protobuf field <code>string server_tls_policy = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string server_tls_policy = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getServerTlsPolicy()
@@ -428,7 +578,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
      * Optional. A fully-qualified ServerTLSPolicy URL reference. Specifies how
      * TLS traffic is terminated. If empty, TLS termination is disabled.
      *
-     * Generated from protobuf field <code>string server_tls_policy = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string server_tls_policy = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -436,6 +586,234 @@ class Gateway extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->server_tls_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A fully-qualified Certificates URL reference. The proxy presents
+     * a Certificate (selected based on SNI) when establishing a TLS connection.
+     * This feature only applies to gateways of type 'SECURE_WEB_GATEWAY'.
+     *
+     * Generated from protobuf field <code>repeated string certificate_urls = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCertificateUrls()
+    {
+        return $this->certificate_urls;
+    }
+
+    /**
+     * Optional. A fully-qualified Certificates URL reference. The proxy presents
+     * a Certificate (selected based on SNI) when establishing a TLS connection.
+     * This feature only applies to gateways of type 'SECURE_WEB_GATEWAY'.
+     *
+     * Generated from protobuf field <code>repeated string certificate_urls = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCertificateUrls($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->certificate_urls = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A fully-qualified GatewaySecurityPolicy URL reference.
+     * Defines how a server should apply security policy to inbound
+     * (VM to Proxy) initiated connections.
+     * For example:
+     * `projects/&#42;&#47;locations/&#42;&#47;gatewaySecurityPolicies/swg-policy`.
+     * This policy is specific to gateways of type 'SECURE_WEB_GATEWAY'.
+     *
+     * Generated from protobuf field <code>string gateway_security_policy = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getGatewaySecurityPolicy()
+    {
+        return $this->gateway_security_policy;
+    }
+
+    /**
+     * Optional. A fully-qualified GatewaySecurityPolicy URL reference.
+     * Defines how a server should apply security policy to inbound
+     * (VM to Proxy) initiated connections.
+     * For example:
+     * `projects/&#42;&#47;locations/&#42;&#47;gatewaySecurityPolicies/swg-policy`.
+     * This policy is specific to gateways of type 'SECURE_WEB_GATEWAY'.
+     *
+     * Generated from protobuf field <code>string gateway_security_policy = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setGatewaySecurityPolicy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->gateway_security_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The relative resource name identifying the VPC network that is
+     * using this configuration. For example:
+     * `projects/&#42;&#47;global/networks/network-1`.
+     * Currently, this field is specific to gateways of type 'SECURE_WEB_GATEWAY'.
+     *
+     * Generated from protobuf field <code>string network = 16 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getNetwork()
+    {
+        return $this->network;
+    }
+
+    /**
+     * Optional. The relative resource name identifying the VPC network that is
+     * using this configuration. For example:
+     * `projects/&#42;&#47;global/networks/network-1`.
+     * Currently, this field is specific to gateways of type 'SECURE_WEB_GATEWAY'.
+     *
+     * Generated from protobuf field <code>string network = 16 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNetwork($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->network = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The relative resource name identifying  the subnetwork in which
+     * this SWG is allocated. For example:
+     * `projects/&#42;&#47;regions/us-central1/subnetworks/network-1`
+     * Currently, this field is specific to gateways of type 'SECURE_WEB_GATEWAY".
+     *
+     * Generated from protobuf field <code>string subnetwork = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getSubnetwork()
+    {
+        return $this->subnetwork;
+    }
+
+    /**
+     * Optional. The relative resource name identifying  the subnetwork in which
+     * this SWG is allocated. For example:
+     * `projects/&#42;&#47;regions/us-central1/subnetworks/network-1`
+     * Currently, this field is specific to gateways of type 'SECURE_WEB_GATEWAY".
+     *
+     * Generated from protobuf field <code>string subnetwork = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSubnetwork($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->subnetwork = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The IP Version that will be used by this gateway. Valid options
+     * are IPV4 or IPV6. Default is IPV4.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.Gateway.IpVersion ip_version = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getIpVersion()
+    {
+        return $this->ip_version;
+    }
+
+    /**
+     * Optional. The IP Version that will be used by this gateway. Valid options
+     * are IPV4 or IPV6. Default is IPV4.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.Gateway.IpVersion ip_version = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setIpVersion($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetworkServices\V1\Gateway\IpVersion::class);
+        $this->ip_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Determines if envoy will insert internal debug headers into
+     * upstream requests. Other Envoy headers may still be injected. By default,
+     * envoy will not insert any debug headers.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.networkservices.v1.EnvoyHeaders envoy_headers = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getEnvoyHeaders()
+    {
+        return isset($this->envoy_headers) ? $this->envoy_headers : 0;
+    }
+
+    public function hasEnvoyHeaders()
+    {
+        return isset($this->envoy_headers);
+    }
+
+    public function clearEnvoyHeaders()
+    {
+        unset($this->envoy_headers);
+    }
+
+    /**
+     * Optional. Determines if envoy will insert internal debug headers into
+     * upstream requests. Other Envoy headers may still be injected. By default,
+     * envoy will not insert any debug headers.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.networkservices.v1.EnvoyHeaders envoy_headers = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEnvoyHeaders($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetworkServices\V1\EnvoyHeaders::class);
+        $this->envoy_headers = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The routing mode of the Gateway.
+     * This field is configurable only for gateways of type SECURE_WEB_GATEWAY.
+     * This field is required for gateways of type SECURE_WEB_GATEWAY.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.Gateway.RoutingMode routing_mode = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getRoutingMode()
+    {
+        return $this->routing_mode;
+    }
+
+    /**
+     * Optional. The routing mode of the Gateway.
+     * This field is configurable only for gateways of type SECURE_WEB_GATEWAY.
+     * This field is required for gateways of type SECURE_WEB_GATEWAY.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.Gateway.RoutingMode routing_mode = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRoutingMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetworkServices\V1\Gateway\RoutingMode::class);
+        $this->routing_mode = $var;
 
         return $this;
     }

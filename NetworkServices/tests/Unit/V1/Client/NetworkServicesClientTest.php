@@ -42,48 +42,72 @@ use Google\Cloud\NetworkServices\V1\CreateGrpcRouteRequest;
 use Google\Cloud\NetworkServices\V1\CreateHttpRouteRequest;
 use Google\Cloud\NetworkServices\V1\CreateMeshRequest;
 use Google\Cloud\NetworkServices\V1\CreateServiceBindingRequest;
+use Google\Cloud\NetworkServices\V1\CreateServiceLbPolicyRequest;
 use Google\Cloud\NetworkServices\V1\CreateTcpRouteRequest;
 use Google\Cloud\NetworkServices\V1\CreateTlsRouteRequest;
+use Google\Cloud\NetworkServices\V1\CreateWasmPluginRequest;
+use Google\Cloud\NetworkServices\V1\CreateWasmPluginVersionRequest;
 use Google\Cloud\NetworkServices\V1\DeleteEndpointPolicyRequest;
 use Google\Cloud\NetworkServices\V1\DeleteGatewayRequest;
 use Google\Cloud\NetworkServices\V1\DeleteGrpcRouteRequest;
 use Google\Cloud\NetworkServices\V1\DeleteHttpRouteRequest;
 use Google\Cloud\NetworkServices\V1\DeleteMeshRequest;
 use Google\Cloud\NetworkServices\V1\DeleteServiceBindingRequest;
+use Google\Cloud\NetworkServices\V1\DeleteServiceLbPolicyRequest;
 use Google\Cloud\NetworkServices\V1\DeleteTcpRouteRequest;
 use Google\Cloud\NetworkServices\V1\DeleteTlsRouteRequest;
+use Google\Cloud\NetworkServices\V1\DeleteWasmPluginRequest;
+use Google\Cloud\NetworkServices\V1\DeleteWasmPluginVersionRequest;
 use Google\Cloud\NetworkServices\V1\EndpointMatcher;
 use Google\Cloud\NetworkServices\V1\EndpointPolicy;
 use Google\Cloud\NetworkServices\V1\EndpointPolicy\EndpointPolicyType;
 use Google\Cloud\NetworkServices\V1\Gateway;
+use Google\Cloud\NetworkServices\V1\GatewayRouteView;
 use Google\Cloud\NetworkServices\V1\GetEndpointPolicyRequest;
 use Google\Cloud\NetworkServices\V1\GetGatewayRequest;
+use Google\Cloud\NetworkServices\V1\GetGatewayRouteViewRequest;
 use Google\Cloud\NetworkServices\V1\GetGrpcRouteRequest;
 use Google\Cloud\NetworkServices\V1\GetHttpRouteRequest;
 use Google\Cloud\NetworkServices\V1\GetMeshRequest;
+use Google\Cloud\NetworkServices\V1\GetMeshRouteViewRequest;
 use Google\Cloud\NetworkServices\V1\GetServiceBindingRequest;
+use Google\Cloud\NetworkServices\V1\GetServiceLbPolicyRequest;
 use Google\Cloud\NetworkServices\V1\GetTcpRouteRequest;
 use Google\Cloud\NetworkServices\V1\GetTlsRouteRequest;
+use Google\Cloud\NetworkServices\V1\GetWasmPluginRequest;
+use Google\Cloud\NetworkServices\V1\GetWasmPluginVersionRequest;
 use Google\Cloud\NetworkServices\V1\GrpcRoute;
 use Google\Cloud\NetworkServices\V1\HttpRoute;
 use Google\Cloud\NetworkServices\V1\ListEndpointPoliciesRequest;
 use Google\Cloud\NetworkServices\V1\ListEndpointPoliciesResponse;
+use Google\Cloud\NetworkServices\V1\ListGatewayRouteViewsRequest;
+use Google\Cloud\NetworkServices\V1\ListGatewayRouteViewsResponse;
 use Google\Cloud\NetworkServices\V1\ListGatewaysRequest;
 use Google\Cloud\NetworkServices\V1\ListGatewaysResponse;
 use Google\Cloud\NetworkServices\V1\ListGrpcRoutesRequest;
 use Google\Cloud\NetworkServices\V1\ListGrpcRoutesResponse;
 use Google\Cloud\NetworkServices\V1\ListHttpRoutesRequest;
 use Google\Cloud\NetworkServices\V1\ListHttpRoutesResponse;
+use Google\Cloud\NetworkServices\V1\ListMeshRouteViewsRequest;
+use Google\Cloud\NetworkServices\V1\ListMeshRouteViewsResponse;
 use Google\Cloud\NetworkServices\V1\ListMeshesRequest;
 use Google\Cloud\NetworkServices\V1\ListMeshesResponse;
 use Google\Cloud\NetworkServices\V1\ListServiceBindingsRequest;
 use Google\Cloud\NetworkServices\V1\ListServiceBindingsResponse;
+use Google\Cloud\NetworkServices\V1\ListServiceLbPoliciesRequest;
+use Google\Cloud\NetworkServices\V1\ListServiceLbPoliciesResponse;
 use Google\Cloud\NetworkServices\V1\ListTcpRoutesRequest;
 use Google\Cloud\NetworkServices\V1\ListTcpRoutesResponse;
 use Google\Cloud\NetworkServices\V1\ListTlsRoutesRequest;
 use Google\Cloud\NetworkServices\V1\ListTlsRoutesResponse;
+use Google\Cloud\NetworkServices\V1\ListWasmPluginVersionsRequest;
+use Google\Cloud\NetworkServices\V1\ListWasmPluginVersionsResponse;
+use Google\Cloud\NetworkServices\V1\ListWasmPluginsRequest;
+use Google\Cloud\NetworkServices\V1\ListWasmPluginsResponse;
 use Google\Cloud\NetworkServices\V1\Mesh;
+use Google\Cloud\NetworkServices\V1\MeshRouteView;
 use Google\Cloud\NetworkServices\V1\ServiceBinding;
+use Google\Cloud\NetworkServices\V1\ServiceLbPolicy;
 use Google\Cloud\NetworkServices\V1\TcpRoute;
 use Google\Cloud\NetworkServices\V1\TlsRoute;
 use Google\Cloud\NetworkServices\V1\UpdateEndpointPolicyRequest;
@@ -91,8 +115,13 @@ use Google\Cloud\NetworkServices\V1\UpdateGatewayRequest;
 use Google\Cloud\NetworkServices\V1\UpdateGrpcRouteRequest;
 use Google\Cloud\NetworkServices\V1\UpdateHttpRouteRequest;
 use Google\Cloud\NetworkServices\V1\UpdateMeshRequest;
+use Google\Cloud\NetworkServices\V1\UpdateServiceBindingRequest;
+use Google\Cloud\NetworkServices\V1\UpdateServiceLbPolicyRequest;
 use Google\Cloud\NetworkServices\V1\UpdateTcpRouteRequest;
 use Google\Cloud\NetworkServices\V1\UpdateTlsRouteRequest;
+use Google\Cloud\NetworkServices\V1\UpdateWasmPluginRequest;
+use Google\Cloud\NetworkServices\V1\WasmPlugin;
+use Google\Cloud\NetworkServices\V1\WasmPluginVersion;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -174,8 +203,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $endpointPolicyId = 'endpointPolicyId-969914082';
         $endpointPolicy = new EndpointPolicy();
-        $endpointPolicyName = 'endpointPolicyName36531794';
-        $endpointPolicy->setName($endpointPolicyName);
         $endpointPolicyType = EndpointPolicyType::ENDPOINT_POLICY_TYPE_UNSPECIFIED;
         $endpointPolicy->setType($endpointPolicyType);
         $endpointPolicyEndpointMatcher = new EndpointMatcher();
@@ -257,8 +284,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $endpointPolicyId = 'endpointPolicyId-969914082';
         $endpointPolicy = new EndpointPolicy();
-        $endpointPolicyName = 'endpointPolicyName36531794';
-        $endpointPolicy->setName($endpointPolicyName);
         $endpointPolicyType = EndpointPolicyType::ENDPOINT_POLICY_TYPE_UNSPECIFIED;
         $endpointPolicy->setType($endpointPolicyType);
         $endpointPolicyEndpointMatcher = new EndpointMatcher();
@@ -315,12 +340,18 @@ class NetworkServicesClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $scope = 'scope109264468';
         $serverTlsPolicy = 'serverTlsPolicy1906438002';
+        $gatewaySecurityPolicy = 'gatewaySecurityPolicy1071716118';
+        $network = 'network1843485230';
+        $subnetwork = 'subnetwork-1302785042';
         $expectedResponse = new Gateway();
         $expectedResponse->setName($name);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setDescription($description);
         $expectedResponse->setScope($scope);
         $expectedResponse->setServerTlsPolicy($serverTlsPolicy);
+        $expectedResponse->setGatewaySecurityPolicy($gatewaySecurityPolicy);
+        $expectedResponse->setNetwork($network);
+        $expectedResponse->setSubnetwork($subnetwork);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -332,12 +363,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $gatewayId = 'gatewayId955798774';
         $gateway = new Gateway();
-        $gatewayName = 'gatewayName-435522833';
-        $gateway->setName($gatewayName);
         $gatewayPorts = [];
         $gateway->setPorts($gatewayPorts);
-        $gatewayScope = 'gatewayScope-611626384';
-        $gateway->setScope($gatewayScope);
         $request = (new CreateGatewayRequest())
             ->setParent($formattedParent)
             ->setGatewayId($gatewayId)
@@ -415,12 +442,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $gatewayId = 'gatewayId955798774';
         $gateway = new Gateway();
-        $gatewayName = 'gatewayName-435522833';
-        $gateway->setName($gatewayName);
         $gatewayPorts = [];
         $gateway->setPorts($gatewayPorts);
-        $gatewayScope = 'gatewayScope-611626384';
-        $gateway->setScope($gatewayScope);
         $request = (new CreateGatewayRequest())
             ->setParent($formattedParent)
             ->setGatewayId($gatewayId)
@@ -486,8 +509,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $grpcRouteId = 'grpcRouteId100668882';
         $grpcRoute = new GrpcRoute();
-        $grpcRouteName = 'grpcRouteName-2118800906';
-        $grpcRoute->setName($grpcRouteName);
         $grpcRouteHostnames = [];
         $grpcRoute->setHostnames($grpcRouteHostnames);
         $grpcRouteRules = [];
@@ -569,8 +590,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $grpcRouteId = 'grpcRouteId100668882';
         $grpcRoute = new GrpcRoute();
-        $grpcRouteName = 'grpcRouteName-2118800906';
-        $grpcRoute->setName($grpcRouteName);
         $grpcRouteHostnames = [];
         $grpcRoute->setHostnames($grpcRouteHostnames);
         $grpcRouteRules = [];
@@ -640,8 +659,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $httpRouteId = 'httpRouteId-1087115096';
         $httpRoute = new HttpRoute();
-        $httpRouteName = 'httpRouteName988382412';
-        $httpRoute->setName($httpRouteName);
         $httpRouteHostnames = [];
         $httpRoute->setHostnames($httpRouteHostnames);
         $httpRouteRules = [];
@@ -723,8 +740,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $httpRouteId = 'httpRouteId-1087115096';
         $httpRoute = new HttpRoute();
-        $httpRouteName = 'httpRouteName988382412';
-        $httpRoute->setName($httpRouteName);
         $httpRouteHostnames = [];
         $httpRoute->setHostnames($httpRouteHostnames);
         $httpRouteRules = [];
@@ -796,8 +811,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $meshId = 'meshId954595501';
         $mesh = new Mesh();
-        $meshName = 'meshName-472824296';
-        $mesh->setName($meshName);
         $request = (new CreateMeshRequest())
             ->setParent($formattedParent)
             ->setMeshId($meshId)
@@ -875,8 +888,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $meshId = 'meshId954595501';
         $mesh = new Mesh();
-        $meshName = 'meshName-472824296';
-        $mesh->setName($meshName);
         $request = (new CreateMeshRequest())
             ->setParent($formattedParent)
             ->setMeshId($meshId)
@@ -927,10 +938,12 @@ class NetworkServicesClientTest extends GeneratedTest
         $name = 'name3373707';
         $description = 'description-1724546052';
         $service = 'service1984153269';
+        $serviceId = 'serviceId-1724763419';
         $expectedResponse = new ServiceBinding();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setService($service);
+        $expectedResponse->setServiceId($serviceId);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -942,10 +955,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $serviceBindingId = 'serviceBindingId-2088291105';
         $serviceBinding = new ServiceBinding();
-        $serviceBindingName = 'serviceBindingName985981115';
-        $serviceBinding->setName($serviceBindingName);
-        $serviceBindingService = 'serviceBindingService344355461';
-        $serviceBinding->setService($serviceBindingService);
         $request = (new CreateServiceBindingRequest())
             ->setParent($formattedParent)
             ->setServiceBindingId($serviceBindingId)
@@ -1023,10 +1032,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $serviceBindingId = 'serviceBindingId-2088291105';
         $serviceBinding = new ServiceBinding();
-        $serviceBindingName = 'serviceBindingName985981115';
-        $serviceBinding->setName($serviceBindingName);
-        $serviceBindingService = 'serviceBindingService344355461';
-        $serviceBinding->setService($serviceBindingService);
         $request = (new CreateServiceBindingRequest())
             ->setParent($formattedParent)
             ->setServiceBindingId($serviceBindingId)
@@ -1036,6 +1041,146 @@ class NetworkServicesClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createServiceBindingTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createServiceLbPolicyTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createServiceLbPolicyTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $expectedResponse = new ServiceLbPolicy();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createServiceLbPolicyTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $serviceLbPolicyId = 'serviceLbPolicyId-1521974007';
+        $serviceLbPolicy = new ServiceLbPolicy();
+        $request = (new CreateServiceLbPolicyRequest())
+            ->setParent($formattedParent)
+            ->setServiceLbPolicyId($serviceLbPolicyId)
+            ->setServiceLbPolicy($serviceLbPolicy);
+        $response = $gapicClient->createServiceLbPolicy($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkservices.v1.NetworkServices/CreateServiceLbPolicy', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getServiceLbPolicyId();
+        $this->assertProtobufEquals($serviceLbPolicyId, $actualValue);
+        $actualValue = $actualApiRequestObject->getServiceLbPolicy();
+        $this->assertProtobufEquals($serviceLbPolicy, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createServiceLbPolicyTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createServiceLbPolicyExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createServiceLbPolicyTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $serviceLbPolicyId = 'serviceLbPolicyId-1521974007';
+        $serviceLbPolicy = new ServiceLbPolicy();
+        $request = (new CreateServiceLbPolicyRequest())
+            ->setParent($formattedParent)
+            ->setServiceLbPolicyId($serviceLbPolicyId)
+            ->setServiceLbPolicy($serviceLbPolicy);
+        $response = $gapicClient->createServiceLbPolicy($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createServiceLbPolicyTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -1092,8 +1237,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $tcpRouteId = 'tcpRouteId-154571409';
         $tcpRoute = new TcpRoute();
-        $tcpRouteName = 'tcpRouteName1920926099';
-        $tcpRoute->setName($tcpRouteName);
         $tcpRouteRules = [];
         $tcpRoute->setRules($tcpRouteRules);
         $request = (new CreateTcpRouteRequest())
@@ -1173,8 +1316,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $tcpRouteId = 'tcpRouteId-154571409';
         $tcpRoute = new TcpRoute();
-        $tcpRouteName = 'tcpRouteName1920926099';
-        $tcpRoute->setName($tcpRouteName);
         $tcpRouteRules = [];
         $tcpRoute->setRules($tcpRouteRules);
         $request = (new CreateTcpRouteRequest())
@@ -1242,8 +1383,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $tlsRouteId = 'tlsRouteId263195029';
         $tlsRoute = new TlsRoute();
-        $tlsRouteName = 'tlsRouteName-1956274759';
-        $tlsRoute->setName($tlsRouteName);
         $tlsRouteRules = [];
         $tlsRoute->setRules($tlsRouteRules);
         $request = (new CreateTlsRouteRequest())
@@ -1323,8 +1462,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $tlsRouteId = 'tlsRouteId263195029';
         $tlsRoute = new TlsRoute();
-        $tlsRouteName = 'tlsRouteName-1956274759';
-        $tlsRoute->setName($tlsRouteName);
         $tlsRouteRules = [];
         $tlsRoute->setRules($tlsRouteRules);
         $request = (new CreateTlsRouteRequest())
@@ -1336,6 +1473,299 @@ class NetworkServicesClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createTlsRouteTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createWasmPluginTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createWasmPluginTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $mainVersionId = 'mainVersionId309311528';
+        $expectedResponse = new WasmPlugin();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setMainVersionId($mainVersionId);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createWasmPluginTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $wasmPluginId = 'wasmPluginId1930650060';
+        $wasmPlugin = new WasmPlugin();
+        $request = (new CreateWasmPluginRequest())
+            ->setParent($formattedParent)
+            ->setWasmPluginId($wasmPluginId)
+            ->setWasmPlugin($wasmPlugin);
+        $response = $gapicClient->createWasmPlugin($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkservices.v1.NetworkServices/CreateWasmPlugin', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getWasmPluginId();
+        $this->assertProtobufEquals($wasmPluginId, $actualValue);
+        $actualValue = $actualApiRequestObject->getWasmPlugin();
+        $this->assertProtobufEquals($wasmPlugin, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createWasmPluginTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createWasmPluginExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createWasmPluginTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $wasmPluginId = 'wasmPluginId1930650060';
+        $wasmPlugin = new WasmPlugin();
+        $request = (new CreateWasmPluginRequest())
+            ->setParent($formattedParent)
+            ->setWasmPluginId($wasmPluginId)
+            ->setWasmPlugin($wasmPlugin);
+        $response = $gapicClient->createWasmPlugin($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createWasmPluginTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createWasmPluginVersionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createWasmPluginVersionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $pluginConfigData = '123';
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $imageUri = 'imageUri-877823864';
+        $imageDigest = 'imageDigest310166824';
+        $pluginConfigDigest = 'pluginConfigDigest672036181';
+        $expectedResponse = new WasmPluginVersion();
+        $expectedResponse->setPluginConfigData($pluginConfigData);
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setImageUri($imageUri);
+        $expectedResponse->setImageDigest($imageDigest);
+        $expectedResponse->setPluginConfigDigest($pluginConfigDigest);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createWasmPluginVersionTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->wasmPluginName('[PROJECT]', '[LOCATION]', '[WASM_PLUGIN]');
+        $wasmPluginVersionId = 'wasmPluginVersionId2144934291';
+        $wasmPluginVersion = new WasmPluginVersion();
+        $request = (new CreateWasmPluginVersionRequest())
+            ->setParent($formattedParent)
+            ->setWasmPluginVersionId($wasmPluginVersionId)
+            ->setWasmPluginVersion($wasmPluginVersion);
+        $response = $gapicClient->createWasmPluginVersion($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.networkservices.v1.NetworkServices/CreateWasmPluginVersion',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getWasmPluginVersionId();
+        $this->assertProtobufEquals($wasmPluginVersionId, $actualValue);
+        $actualValue = $actualApiRequestObject->getWasmPluginVersion();
+        $this->assertProtobufEquals($wasmPluginVersion, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createWasmPluginVersionTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createWasmPluginVersionExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createWasmPluginVersionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->wasmPluginName('[PROJECT]', '[LOCATION]', '[WASM_PLUGIN]');
+        $wasmPluginVersionId = 'wasmPluginVersionId2144934291';
+        $wasmPluginVersion = new WasmPluginVersion();
+        $request = (new CreateWasmPluginVersionRequest())
+            ->setParent($formattedParent)
+            ->setWasmPluginVersionId($wasmPluginVersionId)
+            ->setWasmPluginVersion($wasmPluginVersion);
+        $response = $gapicClient->createWasmPluginVersion($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createWasmPluginVersionTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -2086,6 +2516,128 @@ class NetworkServicesClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteServiceLbPolicyTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteServiceLbPolicyTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteServiceLbPolicyTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->serviceLbPolicyName('[PROJECT]', '[LOCATION]', '[SERVICE_LB_POLICY]');
+        $request = (new DeleteServiceLbPolicyRequest())->setName($formattedName);
+        $response = $gapicClient->deleteServiceLbPolicy($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkservices.v1.NetworkServices/DeleteServiceLbPolicy', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteServiceLbPolicyTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteServiceLbPolicyExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteServiceLbPolicyTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->serviceLbPolicyName('[PROJECT]', '[LOCATION]', '[SERVICE_LB_POLICY]');
+        $request = (new DeleteServiceLbPolicyRequest())->setName($formattedName);
+        $response = $gapicClient->deleteServiceLbPolicy($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteServiceLbPolicyTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function deleteTcpRouteTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2330,6 +2882,263 @@ class NetworkServicesClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteWasmPluginTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteWasmPluginTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteWasmPluginTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->wasmPluginName('[PROJECT]', '[LOCATION]', '[WASM_PLUGIN]');
+        $request = (new DeleteWasmPluginRequest())->setName($formattedName);
+        $response = $gapicClient->deleteWasmPlugin($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkservices.v1.NetworkServices/DeleteWasmPlugin', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteWasmPluginTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteWasmPluginExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteWasmPluginTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->wasmPluginName('[PROJECT]', '[LOCATION]', '[WASM_PLUGIN]');
+        $request = (new DeleteWasmPluginRequest())->setName($formattedName);
+        $response = $gapicClient->deleteWasmPlugin($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteWasmPluginTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteWasmPluginVersionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteWasmPluginVersionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteWasmPluginVersionTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->wasmPluginVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[WASM_PLUGIN]',
+            '[WASM_PLUGIN_VERSION]'
+        );
+        $request = (new DeleteWasmPluginVersionRequest())->setName($formattedName);
+        $response = $gapicClient->deleteWasmPluginVersion($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.networkservices.v1.NetworkServices/DeleteWasmPluginVersion',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteWasmPluginVersionTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteWasmPluginVersionExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteWasmPluginVersionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->wasmPluginVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[WASM_PLUGIN]',
+            '[WASM_PLUGIN_VERSION]'
+        );
+        $request = (new DeleteWasmPluginVersionRequest())->setName($formattedName);
+        $response = $gapicClient->deleteWasmPluginVersion($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteWasmPluginVersionTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function getEndpointPolicyTest()
     {
         $transport = $this->createTransport();
@@ -2416,12 +3225,18 @@ class NetworkServicesClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $scope = 'scope109264468';
         $serverTlsPolicy = 'serverTlsPolicy1906438002';
+        $gatewaySecurityPolicy = 'gatewaySecurityPolicy1071716118';
+        $network = 'network1843485230';
+        $subnetwork = 'subnetwork-1302785042';
         $expectedResponse = new Gateway();
         $expectedResponse->setName($name2);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setDescription($description);
         $expectedResponse->setScope($scope);
         $expectedResponse->setServerTlsPolicy($serverTlsPolicy);
+        $expectedResponse->setGatewaySecurityPolicy($gatewaySecurityPolicy);
+        $expectedResponse->setNetwork($network);
+        $expectedResponse->setSubnetwork($subnetwork);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
@@ -2464,6 +3279,79 @@ class NetworkServicesClientTest extends GeneratedTest
         $request = (new GetGatewayRequest())->setName($formattedName);
         try {
             $gapicClient->getGateway($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getGatewayRouteViewTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $routeProjectNumber = 1055608805;
+        $routeLocation = 'routeLocation-753688341';
+        $routeType = 'routeType912759664';
+        $routeId = 'routeId5418705';
+        $expectedResponse = new GatewayRouteView();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setRouteProjectNumber($routeProjectNumber);
+        $expectedResponse->setRouteLocation($routeLocation);
+        $expectedResponse->setRouteType($routeType);
+        $expectedResponse->setRouteId($routeId);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->gatewayRouteViewName('[PROJECT]', '[LOCATION]', '[GATEWAY]', '[ROUTE_VIEW]');
+        $request = (new GetGatewayRouteViewRequest())->setName($formattedName);
+        $response = $gapicClient->getGatewayRouteView($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkservices.v1.NetworkServices/GetGatewayRouteView', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getGatewayRouteViewExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->gatewayRouteViewName('[PROJECT]', '[LOCATION]', '[GATEWAY]', '[ROUTE_VIEW]');
+        $request = (new GetGatewayRouteViewRequest())->setName($formattedName);
+        try {
+            $gapicClient->getGatewayRouteView($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2685,6 +3573,79 @@ class NetworkServicesClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getMeshRouteViewTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $routeProjectNumber = 1055608805;
+        $routeLocation = 'routeLocation-753688341';
+        $routeType = 'routeType912759664';
+        $routeId = 'routeId5418705';
+        $expectedResponse = new MeshRouteView();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setRouteProjectNumber($routeProjectNumber);
+        $expectedResponse->setRouteLocation($routeLocation);
+        $expectedResponse->setRouteType($routeType);
+        $expectedResponse->setRouteId($routeId);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->meshRouteViewName('[PROJECT]', '[LOCATION]', '[MESH]', '[ROUTE_VIEW]');
+        $request = (new GetMeshRouteViewRequest())->setName($formattedName);
+        $response = $gapicClient->getMeshRouteView($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkservices.v1.NetworkServices/GetMeshRouteView', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getMeshRouteViewExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->meshRouteViewName('[PROJECT]', '[LOCATION]', '[MESH]', '[ROUTE_VIEW]');
+        $request = (new GetMeshRouteViewRequest())->setName($formattedName);
+        try {
+            $gapicClient->getMeshRouteView($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getServiceBindingTest()
     {
         $transport = $this->createTransport();
@@ -2696,10 +3657,12 @@ class NetworkServicesClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $description = 'description-1724546052';
         $service = 'service1984153269';
+        $serviceId = 'serviceId-1724763419';
         $expectedResponse = new ServiceBinding();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setService($service);
+        $expectedResponse->setServiceId($serviceId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->serviceBindingName('[PROJECT]', '[LOCATION]', '[SERVICE_BINDING]');
@@ -2742,6 +3705,73 @@ class NetworkServicesClientTest extends GeneratedTest
         $request = (new GetServiceBindingRequest())->setName($formattedName);
         try {
             $gapicClient->getServiceBinding($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getServiceLbPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $description = 'description-1724546052';
+        $expectedResponse = new ServiceLbPolicy();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDescription($description);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->serviceLbPolicyName('[PROJECT]', '[LOCATION]', '[SERVICE_LB_POLICY]');
+        $request = (new GetServiceLbPolicyRequest())->setName($formattedName);
+        $response = $gapicClient->getServiceLbPolicy($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkservices.v1.NetworkServices/GetServiceLbPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getServiceLbPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->serviceLbPolicyName('[PROJECT]', '[LOCATION]', '[SERVICE_LB_POLICY]');
+        $request = (new GetServiceLbPolicyRequest())->setName($formattedName);
+        try {
+            $gapicClient->getServiceLbPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2892,6 +3922,160 @@ class NetworkServicesClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getWasmPluginTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $description = 'description-1724546052';
+        $mainVersionId = 'mainVersionId309311528';
+        $expectedResponse = new WasmPlugin();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setMainVersionId($mainVersionId);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->wasmPluginName('[PROJECT]', '[LOCATION]', '[WASM_PLUGIN]');
+        $request = (new GetWasmPluginRequest())->setName($formattedName);
+        $response = $gapicClient->getWasmPlugin($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkservices.v1.NetworkServices/GetWasmPlugin', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getWasmPluginExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->wasmPluginName('[PROJECT]', '[LOCATION]', '[WASM_PLUGIN]');
+        $request = (new GetWasmPluginRequest())->setName($formattedName);
+        try {
+            $gapicClient->getWasmPlugin($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getWasmPluginVersionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $pluginConfigData = '123';
+        $name2 = 'name2-1052831874';
+        $description = 'description-1724546052';
+        $imageUri = 'imageUri-877823864';
+        $imageDigest = 'imageDigest310166824';
+        $pluginConfigDigest = 'pluginConfigDigest672036181';
+        $expectedResponse = new WasmPluginVersion();
+        $expectedResponse->setPluginConfigData($pluginConfigData);
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setImageUri($imageUri);
+        $expectedResponse->setImageDigest($imageDigest);
+        $expectedResponse->setPluginConfigDigest($pluginConfigDigest);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->wasmPluginVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[WASM_PLUGIN]',
+            '[WASM_PLUGIN_VERSION]'
+        );
+        $request = (new GetWasmPluginVersionRequest())->setName($formattedName);
+        $response = $gapicClient->getWasmPluginVersion($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkservices.v1.NetworkServices/GetWasmPluginVersion', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getWasmPluginVersionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->wasmPluginVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[WASM_PLUGIN]',
+            '[WASM_PLUGIN_VERSION]'
+        );
+        $request = (new GetWasmPluginVersionRequest())->setName($formattedName);
+        try {
+            $gapicClient->getWasmPluginVersion($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listEndpointPoliciesTest()
     {
         $transport = $this->createTransport();
@@ -2951,6 +4135,77 @@ class NetworkServicesClientTest extends GeneratedTest
         $request = (new ListEndpointPoliciesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listEndpointPolicies($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listGatewayRouteViewsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $gatewayRouteViewsElement = new GatewayRouteView();
+        $gatewayRouteViews = [$gatewayRouteViewsElement];
+        $expectedResponse = new ListGatewayRouteViewsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setGatewayRouteViews($gatewayRouteViews);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
+        $request = (new ListGatewayRouteViewsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listGatewayRouteViews($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getGatewayRouteViews()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkservices.v1.NetworkServices/ListGatewayRouteViews', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listGatewayRouteViewsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
+        $request = (new ListGatewayRouteViewsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listGatewayRouteViews($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3176,6 +4431,77 @@ class NetworkServicesClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listMeshRouteViewsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $meshRouteViewsElement = new MeshRouteView();
+        $meshRouteViews = [$meshRouteViewsElement];
+        $expectedResponse = new ListMeshRouteViewsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setMeshRouteViews($meshRouteViews);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->meshName('[PROJECT]', '[LOCATION]', '[MESH]');
+        $request = (new ListMeshRouteViewsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listMeshRouteViews($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getMeshRouteViews()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkservices.v1.NetworkServices/ListMeshRouteViews', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listMeshRouteViewsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->meshName('[PROJECT]', '[LOCATION]', '[MESH]');
+        $request = (new ListMeshRouteViewsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listMeshRouteViews($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listMeshesTest()
     {
         $transport = $this->createTransport();
@@ -3306,6 +4632,77 @@ class NetworkServicesClientTest extends GeneratedTest
         $request = (new ListServiceBindingsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listServiceBindings($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listServiceLbPoliciesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $serviceLbPoliciesElement = new ServiceLbPolicy();
+        $serviceLbPolicies = [$serviceLbPoliciesElement];
+        $expectedResponse = new ListServiceLbPoliciesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setServiceLbPolicies($serviceLbPolicies);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListServiceLbPoliciesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listServiceLbPolicies($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getServiceLbPolicies()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkservices.v1.NetworkServices/ListServiceLbPolicies', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listServiceLbPoliciesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListServiceLbPoliciesRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listServiceLbPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3460,6 +4857,148 @@ class NetworkServicesClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listWasmPluginVersionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $wasmPluginVersionsElement = new WasmPluginVersion();
+        $wasmPluginVersions = [$wasmPluginVersionsElement];
+        $expectedResponse = new ListWasmPluginVersionsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setWasmPluginVersions($wasmPluginVersions);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->wasmPluginName('[PROJECT]', '[LOCATION]', '[WASM_PLUGIN]');
+        $request = (new ListWasmPluginVersionsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listWasmPluginVersions($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getWasmPluginVersions()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkservices.v1.NetworkServices/ListWasmPluginVersions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listWasmPluginVersionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->wasmPluginName('[PROJECT]', '[LOCATION]', '[WASM_PLUGIN]');
+        $request = (new ListWasmPluginVersionsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listWasmPluginVersions($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listWasmPluginsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $wasmPluginsElement = new WasmPlugin();
+        $wasmPlugins = [$wasmPluginsElement];
+        $expectedResponse = new ListWasmPluginsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setWasmPlugins($wasmPlugins);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListWasmPluginsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listWasmPlugins($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getWasmPlugins()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkservices.v1.NetworkServices/ListWasmPlugins', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listWasmPluginsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListWasmPluginsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listWasmPlugins($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function updateEndpointPolicyTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3500,8 +5039,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $endpointPolicy = new EndpointPolicy();
-        $endpointPolicyName = 'endpointPolicyName36531794';
-        $endpointPolicy->setName($endpointPolicyName);
         $endpointPolicyType = EndpointPolicyType::ENDPOINT_POLICY_TYPE_UNSPECIFIED;
         $endpointPolicy->setType($endpointPolicyType);
         $endpointPolicyEndpointMatcher = new EndpointMatcher();
@@ -3574,8 +5111,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $endpointPolicy = new EndpointPolicy();
-        $endpointPolicyName = 'endpointPolicyName36531794';
-        $endpointPolicy->setName($endpointPolicyName);
         $endpointPolicyType = EndpointPolicyType::ENDPOINT_POLICY_TYPE_UNSPECIFIED;
         $endpointPolicy->setType($endpointPolicyType);
         $endpointPolicyEndpointMatcher = new EndpointMatcher();
@@ -3629,12 +5164,18 @@ class NetworkServicesClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $scope = 'scope109264468';
         $serverTlsPolicy = 'serverTlsPolicy1906438002';
+        $gatewaySecurityPolicy = 'gatewaySecurityPolicy1071716118';
+        $network = 'network1843485230';
+        $subnetwork = 'subnetwork-1302785042';
         $expectedResponse = new Gateway();
         $expectedResponse->setName($name);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setDescription($description);
         $expectedResponse->setScope($scope);
         $expectedResponse->setServerTlsPolicy($serverTlsPolicy);
+        $expectedResponse->setGatewaySecurityPolicy($gatewaySecurityPolicy);
+        $expectedResponse->setNetwork($network);
+        $expectedResponse->setSubnetwork($subnetwork);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -3644,12 +5185,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $gateway = new Gateway();
-        $gatewayName = 'gatewayName-435522833';
-        $gateway->setName($gatewayName);
         $gatewayPorts = [];
         $gateway->setPorts($gatewayPorts);
-        $gatewayScope = 'gatewayScope-611626384';
-        $gateway->setScope($gatewayScope);
         $request = (new UpdateGatewayRequest())->setGateway($gateway);
         $response = $gapicClient->updateGateway($request);
         $this->assertFalse($response->isDone());
@@ -3718,12 +5255,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $gateway = new Gateway();
-        $gatewayName = 'gatewayName-435522833';
-        $gateway->setName($gatewayName);
         $gatewayPorts = [];
         $gateway->setPorts($gatewayPorts);
-        $gatewayScope = 'gatewayScope-611626384';
-        $gateway->setScope($gatewayScope);
         $request = (new UpdateGatewayRequest())->setGateway($gateway);
         $response = $gapicClient->updateGateway($request);
         $this->assertFalse($response->isDone());
@@ -3784,8 +5317,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $grpcRoute = new GrpcRoute();
-        $grpcRouteName = 'grpcRouteName-2118800906';
-        $grpcRoute->setName($grpcRouteName);
         $grpcRouteHostnames = [];
         $grpcRoute->setHostnames($grpcRouteHostnames);
         $grpcRouteRules = [];
@@ -3858,8 +5389,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $grpcRoute = new GrpcRoute();
-        $grpcRouteName = 'grpcRouteName-2118800906';
-        $grpcRoute->setName($grpcRouteName);
         $grpcRouteHostnames = [];
         $grpcRoute->setHostnames($grpcRouteHostnames);
         $grpcRouteRules = [];
@@ -3924,8 +5453,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $httpRoute = new HttpRoute();
-        $httpRouteName = 'httpRouteName988382412';
-        $httpRoute->setName($httpRouteName);
         $httpRouteHostnames = [];
         $httpRoute->setHostnames($httpRouteHostnames);
         $httpRouteRules = [];
@@ -3998,8 +5525,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $httpRoute = new HttpRoute();
-        $httpRouteName = 'httpRouteName988382412';
-        $httpRoute->setName($httpRouteName);
         $httpRouteHostnames = [];
         $httpRoute->setHostnames($httpRouteHostnames);
         $httpRouteRules = [];
@@ -4066,8 +5591,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $mesh = new Mesh();
-        $meshName = 'meshName-472824296';
-        $mesh->setName($meshName);
         $request = (new UpdateMeshRequest())->setMesh($mesh);
         $response = $gapicClient->updateMesh($request);
         $this->assertFalse($response->isDone());
@@ -4136,14 +5659,268 @@ class NetworkServicesClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $mesh = new Mesh();
-        $meshName = 'meshName-472824296';
-        $mesh->setName($meshName);
         $request = (new UpdateMeshRequest())->setMesh($mesh);
         $response = $gapicClient->updateMesh($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateMeshTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateServiceBindingTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateServiceBindingTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $service = 'service1984153269';
+        $serviceId = 'serviceId-1724763419';
+        $expectedResponse = new ServiceBinding();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setService($service);
+        $expectedResponse->setServiceId($serviceId);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateServiceBindingTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $serviceBinding = new ServiceBinding();
+        $request = (new UpdateServiceBindingRequest())->setServiceBinding($serviceBinding);
+        $response = $gapicClient->updateServiceBinding($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkservices.v1.NetworkServices/UpdateServiceBinding', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getServiceBinding();
+        $this->assertProtobufEquals($serviceBinding, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateServiceBindingTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateServiceBindingExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateServiceBindingTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $serviceBinding = new ServiceBinding();
+        $request = (new UpdateServiceBindingRequest())->setServiceBinding($serviceBinding);
+        $response = $gapicClient->updateServiceBinding($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateServiceBindingTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateServiceLbPolicyTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateServiceLbPolicyTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $expectedResponse = new ServiceLbPolicy();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateServiceLbPolicyTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $serviceLbPolicy = new ServiceLbPolicy();
+        $request = (new UpdateServiceLbPolicyRequest())->setServiceLbPolicy($serviceLbPolicy);
+        $response = $gapicClient->updateServiceLbPolicy($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkservices.v1.NetworkServices/UpdateServiceLbPolicy', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getServiceLbPolicy();
+        $this->assertProtobufEquals($serviceLbPolicy, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateServiceLbPolicyTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateServiceLbPolicyExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateServiceLbPolicyTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $serviceLbPolicy = new ServiceLbPolicy();
+        $request = (new UpdateServiceLbPolicyRequest())->setServiceLbPolicy($serviceLbPolicy);
+        $response = $gapicClient->updateServiceLbPolicy($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateServiceLbPolicyTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -4198,8 +5975,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $tcpRoute = new TcpRoute();
-        $tcpRouteName = 'tcpRouteName1920926099';
-        $tcpRoute->setName($tcpRouteName);
         $tcpRouteRules = [];
         $tcpRoute->setRules($tcpRouteRules);
         $request = (new UpdateTcpRouteRequest())->setTcpRoute($tcpRoute);
@@ -4270,8 +6045,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $tcpRoute = new TcpRoute();
-        $tcpRouteName = 'tcpRouteName1920926099';
-        $tcpRoute->setName($tcpRouteName);
         $tcpRouteRules = [];
         $tcpRoute->setRules($tcpRouteRules);
         $request = (new UpdateTcpRouteRequest())->setTcpRoute($tcpRoute);
@@ -4334,8 +6107,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $tlsRoute = new TlsRoute();
-        $tlsRouteName = 'tlsRouteName-1956274759';
-        $tlsRoute->setName($tlsRouteName);
         $tlsRouteRules = [];
         $tlsRoute->setRules($tlsRouteRules);
         $request = (new UpdateTlsRouteRequest())->setTlsRoute($tlsRoute);
@@ -4406,8 +6177,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $tlsRoute = new TlsRoute();
-        $tlsRouteName = 'tlsRouteName-1956274759';
-        $tlsRoute->setName($tlsRouteName);
         $tlsRouteRules = [];
         $tlsRoute->setRules($tlsRouteRules);
         $request = (new UpdateTlsRouteRequest())->setTlsRoute($tlsRoute);
@@ -4416,6 +6185,134 @@ class NetworkServicesClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateTlsRouteTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateWasmPluginTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateWasmPluginTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $mainVersionId = 'mainVersionId309311528';
+        $expectedResponse = new WasmPlugin();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setMainVersionId($mainVersionId);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateWasmPluginTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $wasmPlugin = new WasmPlugin();
+        $request = (new UpdateWasmPluginRequest())->setWasmPlugin($wasmPlugin);
+        $response = $gapicClient->updateWasmPlugin($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkservices.v1.NetworkServices/UpdateWasmPlugin', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getWasmPlugin();
+        $this->assertProtobufEquals($wasmPlugin, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateWasmPluginTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateWasmPluginExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateWasmPluginTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $wasmPlugin = new WasmPlugin();
+        $request = (new UpdateWasmPluginRequest())->setWasmPlugin($wasmPlugin);
+        $response = $gapicClient->updateWasmPlugin($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateWasmPluginTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -4809,8 +6706,6 @@ class NetworkServicesClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $endpointPolicyId = 'endpointPolicyId-969914082';
         $endpointPolicy = new EndpointPolicy();
-        $endpointPolicyName = 'endpointPolicyName36531794';
-        $endpointPolicy->setName($endpointPolicyName);
         $endpointPolicyType = EndpointPolicyType::ENDPOINT_POLICY_TYPE_UNSPECIFIED;
         $endpointPolicy->setType($endpointPolicyType);
         $endpointPolicyEndpointMatcher = new EndpointMatcher();

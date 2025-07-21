@@ -33,9 +33,9 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * for the root ad unit, which is created by Google. Format:
      * "networks/{network_code}/adUnits/{ad_unit_id}"
      *
-     * Generated from protobuf field <code>string parent_ad_unit = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string parent_ad_unit = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
-    protected $parent_ad_unit = '';
+    protected $parent_ad_unit = null;
     /**
      * Output only. The path to this AdUnit in the ad unit hierarchy represented
      * as a list from the root to this ad unit's parent. For root ad units, this
@@ -48,40 +48,40 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * Required. The display name of the ad unit. Its maximum length is 255
      * characters.
      *
-     * Generated from protobuf field <code>string display_name = 9 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string display_name = 9 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $display_name = '';
+    protected $display_name = null;
     /**
-     * Immutable. A string used to uniquely identify the ad unit for the purposes
-     * of serving the ad. This attribute is optional and can be set during ad unit
+     * Optional. Immutable. A string used to uniquely identify the ad unit for the
+     * purposes of serving the ad. This attribute can be set during ad unit
      * creation. If it is not provided, it will be assigned by Google based on the
      * ad unit ID.
      *
-     * Generated from protobuf field <code>string ad_unit_code = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>optional string ad_unit_code = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    protected $ad_unit_code = '';
+    protected $ad_unit_code = null;
     /**
      * Output only. The status of this ad unit.  It defaults to ACTIVE.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.AdUnitStatusEnum.AdUnitStatus status = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.AdUnitStatusEnum.AdUnitStatus status = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $status = 0;
+    protected $status = null;
     /**
      * Optional. The target window directly applied to this AdUnit.
      * If this field is not set, this AdUnit uses the target window specified in
      * effectiveTargetWindow.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.TargetWindowEnum.TargetWindow applied_target_window = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.TargetWindowEnum.TargetWindow applied_target_window = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $applied_target_window = 0;
+    protected $applied_target_window = null;
     /**
      * Output only. Non-empty default. The target window of this AdUnit. This
      * value is inherited from ancestor AdUnits and defaults to TOP if no AdUnit
      * in the hierarchy specifies it.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.TargetWindowEnum.TargetWindow effective_target_window = 45 [(.google.api.field_behavior) = NON_EMPTY_DEFAULT, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.TargetWindowEnum.TargetWindow effective_target_window = 45 [(.google.api.field_behavior) = NON_EMPTY_DEFAULT, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $effective_target_window = 0;
+    protected $effective_target_window = null;
     /**
      * Optional. The resource names of Teams directly applied to this AdUnit.
      * Format: "networks/{network_code}/teams/{team_id}"
@@ -101,28 +101,28 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * Optional. A description of the ad unit. The maximum length is 65,535
      * characters.
      *
-     * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $description = '';
+    protected $description = null;
     /**
      * Optional. If this field is set to true, then the AdUnit will not be
      * implicitly targeted when its parent is. Traffickers must explicitly
      * target such an AdUnit or else no line items will serve to it. This
      * feature is only available for Ad Manager 360 accounts.
      *
-     * Generated from protobuf field <code>bool explicitly_targeted = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool explicitly_targeted = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $explicitly_targeted = false;
+    protected $explicitly_targeted = null;
     /**
      * Output only. This field is set to true if the ad unit has any children.
      *
-     * Generated from protobuf field <code>bool has_children = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool has_children = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $has_children = false;
+    protected $has_children = null;
     /**
      * Output only. The time this AdUnit was last modified.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $update_time = null;
     /**
@@ -135,15 +135,16 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * Optional. Determines what set top box video on demand channel this ad unit
      * corresponds to in an external set top box ad campaign system.
      *
-     * Generated from protobuf field <code>string external_set_top_box_channel_id = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string external_set_top_box_channel_id = 17 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
-    protected $external_set_top_box_channel_id = '';
+    protected $external_set_top_box_channel_id = null;
     /**
      * Optional. The duration after which an Ad Unit will automatically refresh.
      * This is only valid for ad units in mobile apps. If not set, the ad unit
      * will not refresh.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration refresh_delay = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Duration refresh_delay = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $refresh_delay = null;
     /**
@@ -155,8 +156,8 @@ class AdUnit extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Contains the set of labels applied directly to the ad unit as
      * well as those inherited from the parent ad units. If a label has been
-     * negated, only the negated label is returned. This field is readonly and is
-     * assigned by Google.
+     * negated, only the negated label is returned. This attribute is assigned by
+     * Google.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel effective_applied_labels = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -176,16 +177,16 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      */
     private $effective_label_frequency_caps;
     /**
-     * Optional. The smart size mode for this ad unit. This attribute is optional
-     * and defaults to SmartSizeMode.NONE for fixed sizes.
+     * Optional. Non-empty default. The smart size mode for this ad unit. This
+     * attribute defaults to SmartSizeMode.NONE for fixed sizes.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.SmartSizeModeEnum.SmartSizeMode smart_size_mode = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.SmartSizeModeEnum.SmartSizeMode smart_size_mode = 25 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
      */
-    protected $smart_size_mode = 0;
+    protected $smart_size_mode = null;
     /**
-     * Optional. The value of AdSense enabled directly applied to this ad unit.
-     * This attribute is optional and if not specified this ad unit will inherit
-     * the value of effectiveAdsenseEnabled from its ancestors.
+     * Optional. The value of AdSense enabled directly applied to this ad unit. If
+     * not specified this ad unit will inherit the value of
+     * effectiveAdsenseEnabled from its ancestors.
      *
      * Generated from protobuf field <code>optional bool applied_adsense_enabled = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -196,9 +197,9 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * parent or ancestor's setting if one has been set. If no ancestor of the ad
      * unit has set appliedAdsenseEnabled, the attribute is defaulted to true.
      *
-     * Generated from protobuf field <code>bool effective_adsense_enabled = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool effective_adsense_enabled = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $effective_adsense_enabled = false;
+    protected $effective_adsense_enabled = null;
 
     /**
      * Constructor.
@@ -223,8 +224,8 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      *           Required. The display name of the ad unit. Its maximum length is 255
      *           characters.
      *     @type string $ad_unit_code
-     *           Immutable. A string used to uniquely identify the ad unit for the purposes
-     *           of serving the ad. This attribute is optional and can be set during ad unit
+     *           Optional. Immutable. A string used to uniquely identify the ad unit for the
+     *           purposes of serving the ad. This attribute can be set during ad unit
      *           creation. If it is not provided, it will be assigned by Google based on the
      *           ad unit ID.
      *     @type int $status
@@ -270,8 +271,8 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Ads\AdManager\V1\AppliedLabel>|\Google\Protobuf\Internal\RepeatedField $effective_applied_labels
      *           Output only. Contains the set of labels applied directly to the ad unit as
      *           well as those inherited from the parent ad units. If a label has been
-     *           negated, only the negated label is returned. This field is readonly and is
-     *           assigned by Google.
+     *           negated, only the negated label is returned. This attribute is assigned by
+     *           Google.
      *     @type array<\Google\Ads\AdManager\V1\LabelFrequencyCap>|\Google\Protobuf\Internal\RepeatedField $applied_label_frequency_caps
      *           Optional. The set of label frequency caps applied directly to this ad unit.
      *           There is a limit of 10 label frequency caps per ad unit.
@@ -279,12 +280,12 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      *           Output only. The label frequency caps applied directly to the ad unit as
      *           well as those inherited from parent ad units.
      *     @type int $smart_size_mode
-     *           Optional. The smart size mode for this ad unit. This attribute is optional
-     *           and defaults to SmartSizeMode.NONE for fixed sizes.
+     *           Optional. Non-empty default. The smart size mode for this ad unit. This
+     *           attribute defaults to SmartSizeMode.NONE for fixed sizes.
      *     @type bool $applied_adsense_enabled
-     *           Optional. The value of AdSense enabled directly applied to this ad unit.
-     *           This attribute is optional and if not specified this ad unit will inherit
-     *           the value of effectiveAdsenseEnabled from its ancestors.
+     *           Optional. The value of AdSense enabled directly applied to this ad unit. If
+     *           not specified this ad unit will inherit the value of
+     *           effectiveAdsenseEnabled from its ancestors.
      *     @type bool $effective_adsense_enabled
      *           Output only. Specifies whether or not the AdUnit is enabled for serving ads
      *           from the AdSense content network. This attribute defaults to the ad unit's
@@ -356,12 +357,22 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * for the root ad unit, which is created by Google. Format:
      * "networks/{network_code}/adUnits/{ad_unit_id}"
      *
-     * Generated from protobuf field <code>string parent_ad_unit = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string parent_ad_unit = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParentAdUnit()
     {
-        return $this->parent_ad_unit;
+        return isset($this->parent_ad_unit) ? $this->parent_ad_unit : '';
+    }
+
+    public function hasParentAdUnit()
+    {
+        return isset($this->parent_ad_unit);
+    }
+
+    public function clearParentAdUnit()
+    {
+        unset($this->parent_ad_unit);
     }
 
     /**
@@ -369,7 +380,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * for the root ad unit, which is created by Google. Format:
      * "networks/{network_code}/adUnits/{ad_unit_id}"
      *
-     * Generated from protobuf field <code>string parent_ad_unit = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string parent_ad_unit = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -415,19 +426,29 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * Required. The display name of the ad unit. Its maximum length is 255
      * characters.
      *
-     * Generated from protobuf field <code>string display_name = 9 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string display_name = 9 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDisplayName()
     {
-        return $this->display_name;
+        return isset($this->display_name) ? $this->display_name : '';
+    }
+
+    public function hasDisplayName()
+    {
+        return isset($this->display_name);
+    }
+
+    public function clearDisplayName()
+    {
+        unset($this->display_name);
     }
 
     /**
      * Required. The display name of the ad unit. Its maximum length is 255
      * characters.
      *
-     * Generated from protobuf field <code>string display_name = 9 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string display_name = 9 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -440,26 +461,36 @@ class AdUnit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. A string used to uniquely identify the ad unit for the purposes
-     * of serving the ad. This attribute is optional and can be set during ad unit
+     * Optional. Immutable. A string used to uniquely identify the ad unit for the
+     * purposes of serving the ad. This attribute can be set during ad unit
      * creation. If it is not provided, it will be assigned by Google based on the
      * ad unit ID.
      *
-     * Generated from protobuf field <code>string ad_unit_code = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>optional string ad_unit_code = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getAdUnitCode()
     {
-        return $this->ad_unit_code;
+        return isset($this->ad_unit_code) ? $this->ad_unit_code : '';
+    }
+
+    public function hasAdUnitCode()
+    {
+        return isset($this->ad_unit_code);
+    }
+
+    public function clearAdUnitCode()
+    {
+        unset($this->ad_unit_code);
     }
 
     /**
-     * Immutable. A string used to uniquely identify the ad unit for the purposes
-     * of serving the ad. This attribute is optional and can be set during ad unit
+     * Optional. Immutable. A string used to uniquely identify the ad unit for the
+     * purposes of serving the ad. This attribute can be set during ad unit
      * creation. If it is not provided, it will be assigned by Google based on the
      * ad unit ID.
      *
-     * Generated from protobuf field <code>string ad_unit_code = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>optional string ad_unit_code = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -474,18 +505,28 @@ class AdUnit extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The status of this ad unit.  It defaults to ACTIVE.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.AdUnitStatusEnum.AdUnitStatus status = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.AdUnitStatusEnum.AdUnitStatus status = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : 0;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**
      * Output only. The status of this ad unit.  It defaults to ACTIVE.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.AdUnitStatusEnum.AdUnitStatus status = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.AdUnitStatusEnum.AdUnitStatus status = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -502,12 +543,22 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * If this field is not set, this AdUnit uses the target window specified in
      * effectiveTargetWindow.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.TargetWindowEnum.TargetWindow applied_target_window = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.TargetWindowEnum.TargetWindow applied_target_window = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getAppliedTargetWindow()
     {
-        return $this->applied_target_window;
+        return isset($this->applied_target_window) ? $this->applied_target_window : 0;
+    }
+
+    public function hasAppliedTargetWindow()
+    {
+        return isset($this->applied_target_window);
+    }
+
+    public function clearAppliedTargetWindow()
+    {
+        unset($this->applied_target_window);
     }
 
     /**
@@ -515,7 +566,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * If this field is not set, this AdUnit uses the target window specified in
      * effectiveTargetWindow.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.TargetWindowEnum.TargetWindow applied_target_window = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.TargetWindowEnum.TargetWindow applied_target_window = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -532,12 +583,22 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * value is inherited from ancestor AdUnits and defaults to TOP if no AdUnit
      * in the hierarchy specifies it.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.TargetWindowEnum.TargetWindow effective_target_window = 45 [(.google.api.field_behavior) = NON_EMPTY_DEFAULT, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.TargetWindowEnum.TargetWindow effective_target_window = 45 [(.google.api.field_behavior) = NON_EMPTY_DEFAULT, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getEffectiveTargetWindow()
     {
-        return $this->effective_target_window;
+        return isset($this->effective_target_window) ? $this->effective_target_window : 0;
+    }
+
+    public function hasEffectiveTargetWindow()
+    {
+        return isset($this->effective_target_window);
+    }
+
+    public function clearEffectiveTargetWindow()
+    {
+        unset($this->effective_target_window);
     }
 
     /**
@@ -545,7 +606,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * value is inherited from ancestor AdUnits and defaults to TOP if no AdUnit
      * in the hierarchy specifies it.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.TargetWindowEnum.TargetWindow effective_target_window = 45 [(.google.api.field_behavior) = NON_EMPTY_DEFAULT, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.TargetWindowEnum.TargetWindow effective_target_window = 45 [(.google.api.field_behavior) = NON_EMPTY_DEFAULT, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -619,19 +680,29 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * Optional. A description of the ad unit. The maximum length is 65,535
      * characters.
      *
-     * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * Optional. A description of the ad unit. The maximum length is 65,535
      * characters.
      *
-     * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -649,12 +720,22 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * target such an AdUnit or else no line items will serve to it. This
      * feature is only available for Ad Manager 360 accounts.
      *
-     * Generated from protobuf field <code>bool explicitly_targeted = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool explicitly_targeted = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getExplicitlyTargeted()
     {
-        return $this->explicitly_targeted;
+        return isset($this->explicitly_targeted) ? $this->explicitly_targeted : false;
+    }
+
+    public function hasExplicitlyTargeted()
+    {
+        return isset($this->explicitly_targeted);
+    }
+
+    public function clearExplicitlyTargeted()
+    {
+        unset($this->explicitly_targeted);
     }
 
     /**
@@ -663,7 +744,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * target such an AdUnit or else no line items will serve to it. This
      * feature is only available for Ad Manager 360 accounts.
      *
-     * Generated from protobuf field <code>bool explicitly_targeted = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool explicitly_targeted = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -678,18 +759,28 @@ class AdUnit extends \Google\Protobuf\Internal\Message
     /**
      * Output only. This field is set to true if the ad unit has any children.
      *
-     * Generated from protobuf field <code>bool has_children = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool has_children = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
     public function getHasChildren()
     {
-        return $this->has_children;
+        return isset($this->has_children) ? $this->has_children : false;
+    }
+
+    public function hasHasChildren()
+    {
+        return isset($this->has_children);
+    }
+
+    public function clearHasChildren()
+    {
+        unset($this->has_children);
     }
 
     /**
      * Output only. This field is set to true if the ad unit has any children.
      *
-     * Generated from protobuf field <code>bool has_children = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool has_children = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */
@@ -704,7 +795,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time this AdUnit was last modified.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
@@ -725,7 +816,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time this AdUnit was last modified.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -767,24 +858,44 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * Optional. Determines what set top box video on demand channel this ad unit
      * corresponds to in an external set top box ad campaign system.
      *
-     * Generated from protobuf field <code>string external_set_top_box_channel_id = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string external_set_top_box_channel_id = 17 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
+     * @deprecated
      */
     public function getExternalSetTopBoxChannelId()
     {
-        return $this->external_set_top_box_channel_id;
+        if (isset($this->external_set_top_box_channel_id)) {
+            @trigger_error('external_set_top_box_channel_id is deprecated.', E_USER_DEPRECATED);
+        }
+        return isset($this->external_set_top_box_channel_id) ? $this->external_set_top_box_channel_id : '';
+    }
+
+    public function hasExternalSetTopBoxChannelId()
+    {
+        if (isset($this->external_set_top_box_channel_id)) {
+            @trigger_error('external_set_top_box_channel_id is deprecated.', E_USER_DEPRECATED);
+        }
+        return isset($this->external_set_top_box_channel_id);
+    }
+
+    public function clearExternalSetTopBoxChannelId()
+    {
+        @trigger_error('external_set_top_box_channel_id is deprecated.', E_USER_DEPRECATED);
+        unset($this->external_set_top_box_channel_id);
     }
 
     /**
      * Optional. Determines what set top box video on demand channel this ad unit
      * corresponds to in an external set top box ad campaign system.
      *
-     * Generated from protobuf field <code>string external_set_top_box_channel_id = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string external_set_top_box_channel_id = 17 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setExternalSetTopBoxChannelId($var)
     {
+        @trigger_error('external_set_top_box_channel_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->external_set_top_box_channel_id = $var;
 
@@ -796,7 +907,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * This is only valid for ad units in mobile apps. If not set, the ad unit
      * will not refresh.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration refresh_delay = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Duration refresh_delay = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration|null
      */
     public function getRefreshDelay()
@@ -819,7 +930,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * This is only valid for ad units in mobile apps. If not set, the ad unit
      * will not refresh.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration refresh_delay = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Duration refresh_delay = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var
      * @return $this
      */
@@ -860,8 +971,8 @@ class AdUnit extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Contains the set of labels applied directly to the ad unit as
      * well as those inherited from the parent ad units. If a label has been
-     * negated, only the negated label is returned. This field is readonly and is
-     * assigned by Google.
+     * negated, only the negated label is returned. This attribute is assigned by
+     * Google.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel effective_applied_labels = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -874,8 +985,8 @@ class AdUnit extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Contains the set of labels applied directly to the ad unit as
      * well as those inherited from the parent ad units. If a label has been
-     * negated, only the negated label is returned. This field is readonly and is
-     * assigned by Google.
+     * negated, only the negated label is returned. This attribute is assigned by
+     * Google.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel effective_applied_labels = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Ads\AdManager\V1\AppliedLabel>|\Google\Protobuf\Internal\RepeatedField $var
@@ -946,22 +1057,32 @@ class AdUnit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The smart size mode for this ad unit. This attribute is optional
-     * and defaults to SmartSizeMode.NONE for fixed sizes.
+     * Optional. Non-empty default. The smart size mode for this ad unit. This
+     * attribute defaults to SmartSizeMode.NONE for fixed sizes.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.SmartSizeModeEnum.SmartSizeMode smart_size_mode = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.SmartSizeModeEnum.SmartSizeMode smart_size_mode = 25 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
      * @return int
      */
     public function getSmartSizeMode()
     {
-        return $this->smart_size_mode;
+        return isset($this->smart_size_mode) ? $this->smart_size_mode : 0;
+    }
+
+    public function hasSmartSizeMode()
+    {
+        return isset($this->smart_size_mode);
+    }
+
+    public function clearSmartSizeMode()
+    {
+        unset($this->smart_size_mode);
     }
 
     /**
-     * Optional. The smart size mode for this ad unit. This attribute is optional
-     * and defaults to SmartSizeMode.NONE for fixed sizes.
+     * Optional. Non-empty default. The smart size mode for this ad unit. This
+     * attribute defaults to SmartSizeMode.NONE for fixed sizes.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.SmartSizeModeEnum.SmartSizeMode smart_size_mode = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.SmartSizeModeEnum.SmartSizeMode smart_size_mode = 25 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
      * @param int $var
      * @return $this
      */
@@ -974,9 +1095,9 @@ class AdUnit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The value of AdSense enabled directly applied to this ad unit.
-     * This attribute is optional and if not specified this ad unit will inherit
-     * the value of effectiveAdsenseEnabled from its ancestors.
+     * Optional. The value of AdSense enabled directly applied to this ad unit. If
+     * not specified this ad unit will inherit the value of
+     * effectiveAdsenseEnabled from its ancestors.
      *
      * Generated from protobuf field <code>optional bool applied_adsense_enabled = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -997,9 +1118,9 @@ class AdUnit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The value of AdSense enabled directly applied to this ad unit.
-     * This attribute is optional and if not specified this ad unit will inherit
-     * the value of effectiveAdsenseEnabled from its ancestors.
+     * Optional. The value of AdSense enabled directly applied to this ad unit. If
+     * not specified this ad unit will inherit the value of
+     * effectiveAdsenseEnabled from its ancestors.
      *
      * Generated from protobuf field <code>optional bool applied_adsense_enabled = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -1019,12 +1140,22 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * parent or ancestor's setting if one has been set. If no ancestor of the ad
      * unit has set appliedAdsenseEnabled, the attribute is defaulted to true.
      *
-     * Generated from protobuf field <code>bool effective_adsense_enabled = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool effective_adsense_enabled = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
     public function getEffectiveAdsenseEnabled()
     {
-        return $this->effective_adsense_enabled;
+        return isset($this->effective_adsense_enabled) ? $this->effective_adsense_enabled : false;
+    }
+
+    public function hasEffectiveAdsenseEnabled()
+    {
+        return isset($this->effective_adsense_enabled);
+    }
+
+    public function clearEffectiveAdsenseEnabled()
+    {
+        unset($this->effective_adsense_enabled);
     }
 
     /**
@@ -1033,7 +1164,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * parent or ancestor's setting if one has been set. If no ancestor of the ad
      * unit has set appliedAdsenseEnabled, the attribute is defaulted to true.
      *
-     * Generated from protobuf field <code>bool effective_adsense_enabled = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool effective_adsense_enabled = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */

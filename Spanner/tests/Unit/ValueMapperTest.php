@@ -17,12 +17,14 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
+use DateInterval;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
+use Google\Cloud\Spanner\Interval;
 use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\Proto;
@@ -33,9 +35,11 @@ use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\ValueMapper;
 use Google\Cloud\Spanner\V1\TypeAnnotationCode;
 use Google\Cloud\Spanner\V1\TypeCode;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Testing\Data\Book;
 use Testing\Data\User;
+use RuntimeException;
 
 /**
  * @group spanner
@@ -1294,6 +1298,64 @@ class ValueMapperTest extends TestCase
         $this->assertIsArray($res['structTest']['books']);
         $this->assertEquals($book1, $res['structTest']['books'][0]->get());
         $this->assertEquals($book2, $res['structTest']['books'][1]->get());
+    }
+
+    public function testDecodeIntervalField()
+    {
+        $interval = 'P1Y2M3DT4H5M6S';
+
+        $res = $this->mapper->decodeValues(
+            $this->createField(Database::TYPE_INTERVAL),
+            $this->createRow($interval),
+            Result::RETURN_ASSOCIATIVE
+        );
+
+        $expectedValue = Interval::parse($interval);
+        $this->assertEquals($expectedValue, $res['rowName']);
+    }
+
+    public function testDecodeIntervalWithFractionField()
+    {
+        $interval = 'P1Y2M3DT4H5M6.5S';
+
+        $res = $this->mapper->decodeValues(
+            $this->createField(Database::TYPE_INTERVAL),
+            $this->createRow($interval),
+            Result::RETURN_ASSOCIATIVE
+        );
+
+        $expectedValue = Interval::parse($interval);
+
+        $this->assertEquals($res['rowName'], $expectedValue);
+        $this->assertEquals($res['rowName']->__toString(), $interval);
+    }
+
+    /** @dataProvider invalidIntervals */
+    public function testIntervalWithInvalidFormatThrowsException(string $interval)
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $res = $this->mapper->decodeValues(
+            $this->createField(Database::TYPE_INTERVAL),
+            $this->createRow($interval),
+            Result::RETURN_ASSOCIATIVE
+        );
+    }
+
+    public function invalidIntervals()
+    {
+        $intervals = [
+            ['P1.5Y2M3DT4H5M6S'],
+            ['P1Y2.5M3DT4H5M6S'],
+            ['P1Y2M3.5DT4H5M6S'],
+            ['P1Y2M3DT4.5H5M6S'],
+            ['P1Y2M3DT4H5.5M6S'],
+            ['P1Y2M3DT4H5M6.5.5S'],
+            ['P1Y2M3DT4H5.5M6.5S'],
+            ['P1.5Y2.5M3.5DT4.5H5.5M6.5S'],
+        ];
+
+        return $intervals;
     }
 
     private function createField($code, $typeAnnotationCode = null, $type = null, array $typeObj = [])

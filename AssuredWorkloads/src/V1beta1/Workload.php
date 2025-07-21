@@ -439,13 +439,17 @@ class Workload extends \Google\Protobuf\Internal\Message
      */
     public function getIl4Settings()
     {
-        @trigger_error('il4_settings is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(7)) {
+            @trigger_error('il4_settings is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(7);
     }
 
     public function hasIl4Settings()
     {
-        @trigger_error('il4_settings is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(7)) {
+            @trigger_error('il4_settings is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(7);
     }
 
@@ -475,13 +479,17 @@ class Workload extends \Google\Protobuf\Internal\Message
      */
     public function getCjisSettings()
     {
-        @trigger_error('cjis_settings is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(8)) {
+            @trigger_error('cjis_settings is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(8);
     }
 
     public function hasCjisSettings()
     {
-        @trigger_error('cjis_settings is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(8)) {
+            @trigger_error('cjis_settings is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(8);
     }
 
@@ -511,13 +519,17 @@ class Workload extends \Google\Protobuf\Internal\Message
      */
     public function getFedrampHighSettings()
     {
-        @trigger_error('fedramp_high_settings is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(11)) {
+            @trigger_error('fedramp_high_settings is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(11);
     }
 
     public function hasFedrampHighSettings()
     {
-        @trigger_error('fedramp_high_settings is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(11)) {
+            @trigger_error('fedramp_high_settings is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(11);
     }
 
@@ -547,13 +559,17 @@ class Workload extends \Google\Protobuf\Internal\Message
      */
     public function getFedrampModerateSettings()
     {
-        @trigger_error('fedramp_moderate_settings is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(12)) {
+            @trigger_error('fedramp_moderate_settings is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(12);
     }
 
     public function hasFedrampModerateSettings()
     {
-        @trigger_error('fedramp_moderate_settings is deprecated.', E_USER_DEPRECATED);
+        if ($this->hasOneof(12)) {
+            @trigger_error('fedramp_moderate_settings is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(12);
     }
 
@@ -677,13 +693,17 @@ class Workload extends \Google\Protobuf\Internal\Message
      */
     public function getKmsSettings()
     {
-        @trigger_error('kms_settings is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->kms_settings)) {
+            @trigger_error('kms_settings is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->kms_settings;
     }
 
     public function hasKmsSettings()
     {
-        @trigger_error('kms_settings is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->kms_settings)) {
+            @trigger_error('kms_settings is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->kms_settings);
     }
 

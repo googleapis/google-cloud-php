@@ -505,6 +505,25 @@ final class JobServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * network_attachment resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $networkattachment
+     *
+     * @return string The formatted network_attachment resource.
+     */
+    public static function networkAttachmentName(string $project, string $region, string $networkattachment): string
+    {
+        return self::getPathTemplate('networkAttachment')->render([
+            'project' => $project,
+            'region' => $region,
+            'networkattachment' => $networkattachment,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * notification_channel resource.
      *
      * @param string $project
@@ -659,6 +678,7 @@ final class JobServiceClient
      * - nasJob: projects/{project}/locations/{location}/nasJobs/{nas_job}
      * - nasTrialDetail: projects/{project}/locations/{location}/nasJobs/{nas_job}/nasTrialDetails/{nas_trial_detail}
      * - network: projects/{project}/global/networks/{network}
+     * - networkAttachment: projects/{project}/regions/{region}/networkAttachments/{networkattachment}
      * - notificationChannel: projects/{project}/notificationChannels/{notification_channel}
      * - persistentResource: projects/{project}/locations/{location}/persistentResources/{persistent_resource}
      * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}

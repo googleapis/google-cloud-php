@@ -161,6 +161,7 @@ use Google\Analytics\Admin\V1alpha\GetRollupPropertySourceLinkRequest;
 use Google\Analytics\Admin\V1alpha\GetSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\GetSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\GetSubpropertyEventFilterRequest;
+use Google\Analytics\Admin\V1alpha\GetSubpropertySyncConfigRequest;
 use Google\Analytics\Admin\V1alpha\GlobalSiteTag;
 use Google\Analytics\Admin\V1alpha\GoogleAdsLink;
 use Google\Analytics\Admin\V1alpha\GoogleSignalsSettings;
@@ -222,6 +223,8 @@ use Google\Analytics\Admin\V1alpha\ListSearchAds360LinksRequest;
 use Google\Analytics\Admin\V1alpha\ListSearchAds360LinksResponse;
 use Google\Analytics\Admin\V1alpha\ListSubpropertyEventFiltersRequest;
 use Google\Analytics\Admin\V1alpha\ListSubpropertyEventFiltersResponse;
+use Google\Analytics\Admin\V1alpha\ListSubpropertySyncConfigsRequest;
+use Google\Analytics\Admin\V1alpha\ListSubpropertySyncConfigsResponse;
 use Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret;
 use Google\Analytics\Admin\V1alpha\PostbackWindow;
 use Google\Analytics\Admin\V1alpha\Property;
@@ -244,6 +247,8 @@ use Google\Analytics\Admin\V1alpha\SetAutomatedGa4ConfigurationOptOutResponse;
 use Google\Analytics\Admin\V1alpha\SubmitUserDeletionRequest;
 use Google\Analytics\Admin\V1alpha\SubmitUserDeletionResponse;
 use Google\Analytics\Admin\V1alpha\SubpropertyEventFilter;
+use Google\Analytics\Admin\V1alpha\SubpropertySyncConfig;
+use Google\Analytics\Admin\V1alpha\SubpropertySyncConfig\SynchronizationMode;
 use Google\Analytics\Admin\V1alpha\UpdateAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAccountRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAttributionSettingsRequest;
@@ -271,6 +276,7 @@ use Google\Analytics\Admin\V1alpha\UpdateReportingDataAnnotationRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSubpropertyEventFilterRequest;
+use Google\Analytics\Admin\V1alpha\UpdateSubpropertySyncConfigRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
@@ -7181,6 +7187,76 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getSubpropertySyncConfigTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $applyToProperty = 'applyToProperty-1639692344';
+        $expectedResponse = new SubpropertySyncConfig();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setApplyToProperty($applyToProperty);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->subpropertySyncConfigName('[PROPERTY]', '[SUBPROPERTY_SYNC_CONFIG]');
+        $request = (new GetSubpropertySyncConfigRequest())->setName($formattedName);
+        $response = $gapicClient->getSubpropertySyncConfig($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.analytics.admin.v1alpha.AnalyticsAdminService/GetSubpropertySyncConfig',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getSubpropertySyncConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->subpropertySyncConfigName('[PROPERTY]', '[SUBPROPERTY_SYNC_CONFIG]');
+        $request = (new GetSubpropertySyncConfigRequest())->setName($formattedName);
+        try {
+            $gapicClient->getSubpropertySyncConfig($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listAccessBindingsTest()
     {
         $transport = $this->createTransport();
@@ -9176,6 +9252,80 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $request = (new ListSubpropertyEventFiltersRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSubpropertyEventFilters($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSubpropertySyncConfigsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $subpropertySyncConfigsElement = new SubpropertySyncConfig();
+        $subpropertySyncConfigs = [$subpropertySyncConfigsElement];
+        $expectedResponse = new ListSubpropertySyncConfigsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSubpropertySyncConfigs($subpropertySyncConfigs);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $request = (new ListSubpropertySyncConfigsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listSubpropertySyncConfigs($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getSubpropertySyncConfigs()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.analytics.admin.v1alpha.AnalyticsAdminService/ListSubpropertySyncConfigs',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSubpropertySyncConfigsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $request = (new ListSubpropertySyncConfigsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listSubpropertySyncConfigs($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -11874,6 +12024,84 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             ->setUpdateMask($updateMask);
         try {
             $gapicClient->updateSubpropertyEventFilter($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateSubpropertySyncConfigTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $applyToProperty = 'applyToProperty-1639692344';
+        $expectedResponse = new SubpropertySyncConfig();
+        $expectedResponse->setName($name);
+        $expectedResponse->setApplyToProperty($applyToProperty);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $subpropertySyncConfig = new SubpropertySyncConfig();
+        $subpropertySyncConfigCustomDimensionAndMetricSyncMode = SynchronizationMode::SYNCHRONIZATION_MODE_UNSPECIFIED;
+        $subpropertySyncConfig->setCustomDimensionAndMetricSyncMode(
+            $subpropertySyncConfigCustomDimensionAndMetricSyncMode
+        );
+        $request = (new UpdateSubpropertySyncConfigRequest())->setSubpropertySyncConfig($subpropertySyncConfig);
+        $response = $gapicClient->updateSubpropertySyncConfig($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateSubpropertySyncConfig',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getSubpropertySyncConfig();
+        $this->assertProtobufEquals($subpropertySyncConfig, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateSubpropertySyncConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $subpropertySyncConfig = new SubpropertySyncConfig();
+        $subpropertySyncConfigCustomDimensionAndMetricSyncMode = SynchronizationMode::SYNCHRONIZATION_MODE_UNSPECIFIED;
+        $subpropertySyncConfig->setCustomDimensionAndMetricSyncMode(
+            $subpropertySyncConfigCustomDimensionAndMetricSyncMode
+        );
+        $request = (new UpdateSubpropertySyncConfigRequest())->setSubpropertySyncConfig($subpropertySyncConfig);
+        try {
+            $gapicClient->updateSubpropertySyncConfig($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

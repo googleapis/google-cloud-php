@@ -539,7 +539,9 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      */
     public function getEnablePrivateServiceConnect()
     {
-        @trigger_error('enable_private_service_connect is deprecated.', E_USER_DEPRECATED);
+        if ($this->enable_private_service_connect !== false) {
+            @trigger_error('enable_private_service_connect is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->enable_private_service_connect;
     }
 

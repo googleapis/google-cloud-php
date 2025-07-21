@@ -60,6 +60,11 @@ class ConfluentCloudFailureReason extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\PubSub\V1\IngestionFailureEvent\ApiViolationReason $api_violation_reason
      *           Optional. The Pub/Sub API limits prevented the desired message from
      *           being published.
+     *     @type \Google\Cloud\PubSub\V1\IngestionFailureEvent\SchemaViolationReason $schema_violation_reason
+     *           Optional. The Pub/Sub message failed schema validation.
+     *     @type \Google\Cloud\PubSub\V1\IngestionFailureEvent\MessageTransformationFailureReason $message_transformation_failure_reason
+     *           Optional. Failure encountered when applying a message transformation to
+     *           the Pub/Sub message.
      * }
      */
     public function __construct($data = NULL) {
@@ -202,6 +207,70 @@ class ConfluentCloudFailureReason extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\IngestionFailureEvent\ApiViolationReason::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Pub/Sub message failed schema validation.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionFailureEvent.SchemaViolationReason schema_violation_reason = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\PubSub\V1\IngestionFailureEvent\SchemaViolationReason|null
+     */
+    public function getSchemaViolationReason()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasSchemaViolationReason()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Optional. The Pub/Sub message failed schema validation.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionFailureEvent.SchemaViolationReason schema_violation_reason = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\PubSub\V1\IngestionFailureEvent\SchemaViolationReason $var
+     * @return $this
+     */
+    public function setSchemaViolationReason($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\IngestionFailureEvent\SchemaViolationReason::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Failure encountered when applying a message transformation to
+     * the Pub/Sub message.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionFailureEvent.MessageTransformationFailureReason message_transformation_failure_reason = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\PubSub\V1\IngestionFailureEvent\MessageTransformationFailureReason|null
+     */
+    public function getMessageTransformationFailureReason()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasMessageTransformationFailureReason()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Optional. Failure encountered when applying a message transformation to
+     * the Pub/Sub message.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionFailureEvent.MessageTransformationFailureReason message_transformation_failure_reason = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\PubSub\V1\IngestionFailureEvent\MessageTransformationFailureReason $var
+     * @return $this
+     */
+    public function setMessageTransformationFailureReason($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\IngestionFailureEvent\MessageTransformationFailureReason::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }

@@ -19,6 +19,9 @@ namespace Google\Cloud\Core\Iterator;
 
 /**
  * Iterates over a set of items.
+ *
+ * @template T
+ * @implements \Iterator<int, T>
  */
 class ItemIterator implements \Iterator
 {

@@ -55,6 +55,7 @@ class DocFxCommand extends Command
         'AUTHENTICATION.md' => 'Authentication',
         'DEBUG.md' => 'Debug Logging',
         'MIGRATING.md' => 'Migrating to V2',
+        'GRPC.md' => 'Installing gRPC',
     ];
 
     protected function configure()
@@ -74,10 +75,6 @@ class DocFxCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if (PHP_VERSION_ID < 80000) {
-            throw new RuntimeException('This command must be run on PHP 8.0 or above');
-        }
-
         // YAML dump configuration
         $inline = 11; // The level where you switch to inline YAML
         $indent = 2; // The amount of spaces to use for indentation of nested nodes
@@ -94,7 +91,7 @@ class DocFxCommand extends Command
             $output->writeln('Generating <options=bold;fg=white>product neutral guides</>');
             $tocItems = [];
             foreach (self::$productNeutralGuides as $file => $name) {
-                $href = $file === 'README.md' ? 'getting-started.md' : strtolower($file);
+                $href = $file === 'README.md' ? 'getting-started.md' : strtolower(basename($file));
                 file_put_contents(
                     $outDir . '/' . $href,
                     file_get_contents(Component::ROOT_DIR . '/' . $file)

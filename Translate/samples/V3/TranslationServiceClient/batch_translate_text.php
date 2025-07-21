@@ -51,8 +51,12 @@ use Google\Rpc\Status;
  *                                           the same location-id) can be used, otherwise an INVALID_ARGUMENT (400)
  *                                           error is returned. Please see
  *                                           {@see TranslationServiceClient::locationName()} for help formatting this field.
- * @param string $sourceLanguageCode         Source language code.
- * @param string $targetLanguageCodesElement Specify up to 10 language codes here.
+ * @param string $sourceLanguageCode         Source language code. Supported language codes are listed in
+ *                                           [Language
+ *                                           Support](https://cloud.google.com/translate/docs/languages).
+ * @param string $targetLanguageCodesElement Specify up to 10 language codes here. Supported language codes
+ *                                           are listed in [Language
+ *                                           Support](https://cloud.google.com/translate/docs/languages).
  */
 function batch_translate_text_sample(
     string $formattedParent,

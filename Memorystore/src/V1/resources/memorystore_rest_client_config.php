@@ -47,6 +47,18 @@ return [
             ],
         ],
         'google.cloud.memorystore.v1.Memorystore' => [
+            'BackupInstance' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}:backup',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateInstance' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/instances',
@@ -62,9 +74,54 @@ return [
                     'instance_id',
                 ],
             ],
+            'DeleteBackup' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupCollections/*/backups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteInstance' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ExportBackup' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupCollections/*/backups/*}:export',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackup' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupCollections/*/backups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackupCollection' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupCollections/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -95,6 +152,28 @@ return [
                     ],
                 ],
             ],
+            'ListBackupCollections' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupCollections',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackups' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/backupCollections/*}/backups',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListInstances' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/instances',
@@ -102,6 +181,18 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RescheduleMaintenance' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}:rescheduleMaintenance',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],

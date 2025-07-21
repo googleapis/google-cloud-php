@@ -17,22 +17,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class LocalInventory extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The place ID for the current set of inventory information.
+     * Optional. The place ID for the current set of inventory information.
      *
-     * Generated from protobuf field <code>string place_id = 1;</code>
+     * Generated from protobuf field <code>string place_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $place_id = '';
     /**
-     * Product price and cost information.
+     * Optional. Product price and cost information.
      * Google Merchant Center property
      * [price](https://support.google.com/merchants/answer/6324371).
      *
-     * Generated from protobuf field <code>.google.cloud.retail.v2.PriceInfo price_info = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.retail.v2.PriceInfo price_info = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $price_info = null;
     /**
-     * Additional local inventory attributes, for example, store name, promotion
-     * tags, etc.
+     * Optional. Additional local inventory attributes, for example, store name,
+     * promotion tags, etc.
      * This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT
      * error is returned:
      * * At most 30 attributes are allowed.
@@ -48,11 +48,11 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      * * The max summed total bytes of custom attribute keys and values per
      *   product is 5MiB.
      *
-     * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.CustomAttribute> attributes = 3;</code>
+     * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.CustomAttribute> attributes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $attributes;
     /**
-     * Input only. Supported fulfillment types. Valid fulfillment type values
+     * Optional. Supported fulfillment types. Valid fulfillment type values
      * include commonly used types (such as pickup in store and same day
      * delivery), and custom types. Customers have to map custom types to their
      * display names before rendering UI.
@@ -71,7 +71,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      * All the elements must be distinct. Otherwise, an INVALID_ARGUMENT error is
      * returned.
      *
-     * Generated from protobuf field <code>repeated string fulfillment_types = 4 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated string fulfillment_types = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $fulfillment_types;
 
@@ -82,14 +82,14 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $place_id
-     *           The place ID for the current set of inventory information.
+     *           Optional. The place ID for the current set of inventory information.
      *     @type \Google\Cloud\Retail\V2\PriceInfo $price_info
-     *           Product price and cost information.
+     *           Optional. Product price and cost information.
      *           Google Merchant Center property
      *           [price](https://support.google.com/merchants/answer/6324371).
      *     @type array|\Google\Protobuf\Internal\MapField $attributes
-     *           Additional local inventory attributes, for example, store name, promotion
-     *           tags, etc.
+     *           Optional. Additional local inventory attributes, for example, store name,
+     *           promotion tags, etc.
      *           This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT
      *           error is returned:
      *           * At most 30 attributes are allowed.
@@ -105,7 +105,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      *           * The max summed total bytes of custom attribute keys and values per
      *             product is 5MiB.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $fulfillment_types
-     *           Input only. Supported fulfillment types. Valid fulfillment type values
+     *           Optional. Supported fulfillment types. Valid fulfillment type values
      *           include commonly used types (such as pickup in store and same day
      *           delivery), and custom types. Customers have to map custom types to their
      *           display names before rendering UI.
@@ -131,9 +131,9 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The place ID for the current set of inventory information.
+     * Optional. The place ID for the current set of inventory information.
      *
-     * Generated from protobuf field <code>string place_id = 1;</code>
+     * Generated from protobuf field <code>string place_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPlaceId()
@@ -142,9 +142,9 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The place ID for the current set of inventory information.
+     * Optional. The place ID for the current set of inventory information.
      *
-     * Generated from protobuf field <code>string place_id = 1;</code>
+     * Generated from protobuf field <code>string place_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -157,11 +157,11 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Product price and cost information.
+     * Optional. Product price and cost information.
      * Google Merchant Center property
      * [price](https://support.google.com/merchants/answer/6324371).
      *
-     * Generated from protobuf field <code>.google.cloud.retail.v2.PriceInfo price_info = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.retail.v2.PriceInfo price_info = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Retail\V2\PriceInfo|null
      */
     public function getPriceInfo()
@@ -180,11 +180,11 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Product price and cost information.
+     * Optional. Product price and cost information.
      * Google Merchant Center property
      * [price](https://support.google.com/merchants/answer/6324371).
      *
-     * Generated from protobuf field <code>.google.cloud.retail.v2.PriceInfo price_info = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.retail.v2.PriceInfo price_info = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Retail\V2\PriceInfo $var
      * @return $this
      */
@@ -197,8 +197,8 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Additional local inventory attributes, for example, store name, promotion
-     * tags, etc.
+     * Optional. Additional local inventory attributes, for example, store name,
+     * promotion tags, etc.
      * This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT
      * error is returned:
      * * At most 30 attributes are allowed.
@@ -214,7 +214,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      * * The max summed total bytes of custom attribute keys and values per
      *   product is 5MiB.
      *
-     * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.CustomAttribute> attributes = 3;</code>
+     * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.CustomAttribute> attributes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getAttributes()
@@ -223,8 +223,8 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Additional local inventory attributes, for example, store name, promotion
-     * tags, etc.
+     * Optional. Additional local inventory attributes, for example, store name,
+     * promotion tags, etc.
      * This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT
      * error is returned:
      * * At most 30 attributes are allowed.
@@ -240,7 +240,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      * * The max summed total bytes of custom attribute keys and values per
      *   product is 5MiB.
      *
-     * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.CustomAttribute> attributes = 3;</code>
+     * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.CustomAttribute> attributes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -253,7 +253,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. Supported fulfillment types. Valid fulfillment type values
+     * Optional. Supported fulfillment types. Valid fulfillment type values
      * include commonly used types (such as pickup in store and same day
      * delivery), and custom types. Customers have to map custom types to their
      * display names before rendering UI.
@@ -272,7 +272,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      * All the elements must be distinct. Otherwise, an INVALID_ARGUMENT error is
      * returned.
      *
-     * Generated from protobuf field <code>repeated string fulfillment_types = 4 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated string fulfillment_types = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFulfillmentTypes()
@@ -281,7 +281,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. Supported fulfillment types. Valid fulfillment type values
+     * Optional. Supported fulfillment types. Valid fulfillment type values
      * include commonly used types (such as pickup in store and same day
      * delivery), and custom types. Customers have to map custom types to their
      * display names before rendering UI.
@@ -300,7 +300,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      * All the elements must be distinct. Otherwise, an INVALID_ARGUMENT error is
      * returned.
      *
-     * Generated from protobuf field <code>repeated string fulfillment_types = 4 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated string fulfillment_types = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

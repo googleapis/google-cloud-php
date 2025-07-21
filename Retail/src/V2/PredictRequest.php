@@ -439,7 +439,9 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      */
     public function getPageToken()
     {
-        @trigger_error('page_token is deprecated.', E_USER_DEPRECATED);
+        if ($this->page_token !== '') {
+            @trigger_error('page_token is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->page_token;
     }
 

@@ -33,26 +33,40 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ```php
 require 'vendor/autoload.php';
 
+use Google\ApiCore\ApiException;
+use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
+use Google\Cloud\RecaptchaEnterprise\V1\CreateKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\Key;
-use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
 use Google\Cloud\RecaptchaEnterprise\V1\WebKeySettings;
 use Google\Cloud\RecaptchaEnterprise\V1\WebKeySettings\IntegrationType;
 
+$formattedParent = RecaptchaEnterpriseServiceClient::projectName('[PROJECT]');
+$keyDisplayName = '[DISPLAY_NAME]';
 
-$client = new RecaptchaEnterpriseServiceClient();
-$project = RecaptchaEnterpriseServiceClient::projectName('[MY_PROJECT_ID]');
+// Create a client.
+$recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
+
+// Prepare the request message.
 $webKeySettings = (new WebKeySettings())
     ->setAllowedDomains(['example.com'])
     ->setAllowAmpTraffic(false)
     ->setIntegrationType(IntegrationType::CHECKBOX);
 $key = (new Key())
     ->setWebSettings($webKeySettings)
-    ->setDisplayName('my sample key')
+    ->setDisplayName($keyDisplayName)
     ->setName('my_key');
+$request = (new CreateKeyRequest())
+    ->setParent($formattedParent)
+    ->setKey($key);
 
-$response = $client->createKey($project, $key);
-
-printf('Created key: %s' . PHP_EOL, $response->getName());
+// Call the API and handle any network failures.
+try {
+    /** @var Key $response */
+    $response = $recaptchaEnterpriseServiceClient->createKey($request);
+    printf('Created key: %s' . PHP_EOL, $response->getName());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
 ```
 
 ### Debugging

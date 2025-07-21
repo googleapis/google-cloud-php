@@ -32,6 +32,9 @@ use Google\Cloud\Dataform\V1beta1\Repository;
 /**
  * Lists Repositories in a given project and location.
  *
+ * **Note:** *This method can return repositories not shown in the [Dataform
+ * UI](https://console.cloud.google.com/bigquery/dataform)*.
+ *
  * @param string $formattedParent The location in which to list repositories. Must be in the format
  *                                `projects/&#42;/locations/*`. Please see
  *                                {@see DataformClient::locationName()} for help formatting this field.

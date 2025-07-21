@@ -9,16 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Allows customers to configure HTTP request paths that'll allow HTTP OPTIONS
- * call to bypass authentication and authorization.
+ * Allows customers to configure HTTP request paths that'll allow HTTP
+ * `OPTIONS` call to bypass authentication and authorization.
  *
  * Generated from protobuf message <code>google.cloud.iap.v1.CorsSettings</code>
  */
 class CorsSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Configuration to allow HTTP OPTIONS calls to skip authorization. If
-     * undefined, IAP will not apply any special logic to OPTIONS requests.
+     * Configuration to allow HTTP `OPTIONS` calls to skip
+     * authentication and authorization. If undefined, IAP will not apply any
+     * special logic to `OPTIONS` requests.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue allow_http_options = 1;</code>
      */
@@ -31,8 +32,9 @@ class CorsSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\BoolValue $allow_http_options
-     *           Configuration to allow HTTP OPTIONS calls to skip authorization. If
-     *           undefined, IAP will not apply any special logic to OPTIONS requests.
+     *           Configuration to allow HTTP `OPTIONS` calls to skip
+     *           authentication and authorization. If undefined, IAP will not apply any
+     *           special logic to `OPTIONS` requests.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,8 +43,9 @@ class CorsSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration to allow HTTP OPTIONS calls to skip authorization. If
-     * undefined, IAP will not apply any special logic to OPTIONS requests.
+     * Configuration to allow HTTP `OPTIONS` calls to skip
+     * authentication and authorization. If undefined, IAP will not apply any
+     * special logic to `OPTIONS` requests.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue allow_http_options = 1;</code>
      * @return \Google\Protobuf\BoolValue|null
@@ -65,8 +68,9 @@ class CorsSettings extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getAllowHttpOptions()</code>
 
-     * Configuration to allow HTTP OPTIONS calls to skip authorization. If
-     * undefined, IAP will not apply any special logic to OPTIONS requests.
+     * Configuration to allow HTTP `OPTIONS` calls to skip
+     * authentication and authorization. If undefined, IAP will not apply any
+     * special logic to `OPTIONS` requests.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue allow_http_options = 1;</code>
      * @return bool|null
@@ -77,8 +81,9 @@ class CorsSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration to allow HTTP OPTIONS calls to skip authorization. If
-     * undefined, IAP will not apply any special logic to OPTIONS requests.
+     * Configuration to allow HTTP `OPTIONS` calls to skip
+     * authentication and authorization. If undefined, IAP will not apply any
+     * special logic to `OPTIONS` requests.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue allow_http_options = 1;</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -95,8 +100,9 @@ class CorsSettings extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
-     * Configuration to allow HTTP OPTIONS calls to skip authorization. If
-     * undefined, IAP will not apply any special logic to OPTIONS requests.
+     * Configuration to allow HTTP `OPTIONS` calls to skip
+     * authentication and authorization. If undefined, IAP will not apply any
+     * special logic to `OPTIONS` requests.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue allow_http_options = 1;</code>
      * @param bool|null $var

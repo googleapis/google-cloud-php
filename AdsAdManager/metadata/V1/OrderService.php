@@ -21,7 +21,7 @@ class OrderService
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ò
+þ
 +google/ads/admanager/v1/order_service.protogoogle.ads.admanager.v1google/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"G
 GetOrderRequest4
 name (	B&àAúA 
@@ -39,11 +39,11 @@ page_token (	BàA
 orders (2.google.ads.admanager.v1.Order
 next_page_token (	
 
-total_size (2Ê
+total_size (2ö
 OrderServiceƒ
 GetOrder(.google.ads.admanager.v1.GetOrderRequest.google.ads.admanager.v1.Order"-ÚAname‚Óä“ /v1/{name=networks/*/orders/*}–
 
-ListOrders*.google.ads.admanager.v1.ListOrdersRequest+.google.ads.admanager.v1.ListOrdersResponse"/ÚAparent‚Óä“ /v1/{parent=networks/*}/ordersÊAadmanager.googleapis.comBÅ
+ListOrders*.google.ads.admanager.v1.ListOrdersRequest+.google.ads.admanager.v1.ListOrdersResponse"/ÚAparent‚Óä“ /v1/{parent=networks/*}/ordersGÊAadmanager.googleapis.comÒA)https://www.googleapis.com/auth/admanagerBÅ
 com.google.ads.admanager.v1BOrderServiceProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1êGoogle::Ads::AdManager::V1bproto3'
         , true);
 

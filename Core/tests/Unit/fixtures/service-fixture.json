@@ -20,6 +20,10 @@
               "type": "string",
               "location": "query"
             },
+            "object.queryParam": {
+              "type": "string",
+              "location": "query"
+            },
             "pathParam": {
               "type": "string",
               "required": true,

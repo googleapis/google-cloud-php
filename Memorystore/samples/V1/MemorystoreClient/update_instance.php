@@ -27,33 +27,25 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Memorystore\V1\Client\MemorystoreClient;
 use Google\Cloud\Memorystore\V1\Instance;
-use Google\Cloud\Memorystore\V1\PscAutoConnection;
 use Google\Cloud\Memorystore\V1\UpdateInstanceRequest;
 use Google\Rpc\Status;
 
 /**
  * Updates the parameters of a single Instance.
  *
- * @param string $instancePscAutoConnectionsProjectId        The consumer project_id where PSC connections are established.
- *                                                           This should be the same project_id that the instance is being created in.
- * @param string $formattedInstancePscAutoConnectionsNetwork The network where the PSC endpoints are created, in the form of
- *                                                           projects/{project_id}/global/networks/{network_id}. Please see
- *                                                           {@see MemorystoreClient::networkName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_instance_sample(
-    string $instancePscAutoConnectionsProjectId,
-    string $formattedInstancePscAutoConnectionsNetwork
-): void {
+function update_instance_sample(): void
+{
     // Create a client.
     $memorystoreClient = new MemorystoreClient();
 
     // Prepare the request message.
-    $pscAutoConnection = (new PscAutoConnection())
-        ->setProjectId($instancePscAutoConnectionsProjectId)
-        ->setNetwork($formattedInstancePscAutoConnectionsNetwork);
-    $instancePscAutoConnections = [$pscAutoConnection,];
-    $instance = (new Instance())
-        ->setPscAutoConnections($instancePscAutoConnections);
+    $instance = new Instance();
     $request = (new UpdateInstanceRequest())
         ->setInstance($instance);
 
@@ -75,28 +67,5 @@ function update_instance_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $instancePscAutoConnectionsProjectId = '[PROJECT_ID]';
-    $formattedInstancePscAutoConnectionsNetwork = MemorystoreClient::networkName(
-        '[PROJECT]',
-        '[NETWORK]'
-    );
-
-    update_instance_sample(
-        $instancePscAutoConnectionsProjectId,
-        $formattedInstancePscAutoConnectionsNetwork
-    );
 }
 // [END memorystore_v1_generated_Memorystore_UpdateInstance_sync]

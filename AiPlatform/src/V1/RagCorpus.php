@@ -54,6 +54,15 @@ class RagCorpus extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.CorpusStatus corpus_status = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $corpus_status = null;
+    /**
+     * Optional. Immutable. The CMEK key name used to encrypt at-rest data related
+     * to this Corpus. Only applicable to RagManagedDb option for Vector DB. This
+     * field can only be set at corpus creation time, and cannot be updated or
+     * deleted.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 12 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $encryption_spec = null;
     protected $backend_config;
 
     /**
@@ -80,6 +89,11 @@ class RagCorpus extends \Google\Protobuf\Internal\Message
      *           Output only. Timestamp when this RagCorpus was last updated.
      *     @type \Google\Cloud\AIPlatform\V1\CorpusStatus $corpus_status
      *           Output only. RagCorpus state.
+     *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
+     *           Optional. Immutable. The CMEK key name used to encrypt at-rest data related
+     *           to this Corpus. Only applicable to RagManagedDb option for Vector DB. This
+     *           field can only be set at corpus creation time, and cannot be updated or
+     *           deleted.
      * }
      */
     public function __construct($data = NULL) {
@@ -335,6 +349,48 @@ class RagCorpus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\CorpusStatus::class);
         $this->corpus_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. The CMEK key name used to encrypt at-rest data related
+     * to this Corpus. Only applicable to RagManagedDb option for Vector DB. This
+     * field can only be set at corpus creation time, and cannot be updated or
+     * deleted.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 12 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\EncryptionSpec|null
+     */
+    public function getEncryptionSpec()
+    {
+        return $this->encryption_spec;
+    }
+
+    public function hasEncryptionSpec()
+    {
+        return isset($this->encryption_spec);
+    }
+
+    public function clearEncryptionSpec()
+    {
+        unset($this->encryption_spec);
+    }
+
+    /**
+     * Optional. Immutable. The CMEK key name used to encrypt at-rest data related
+     * to this Corpus. Only applicable to RagManagedDb option for Vector DB. This
+     * field can only be set at corpus creation time, and cannot be updated or
+     * deleted.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 12 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\EncryptionSpec $var
+     * @return $this
+     */
+    public function setEncryptionSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EncryptionSpec::class);
+        $this->encryption_spec = $var;
 
         return $this;
     }

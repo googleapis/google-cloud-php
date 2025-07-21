@@ -36,6 +36,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AddResourcePoliciesDiskRequest;
 use Google\Cloud\Compute\V1\AggregatedListDisksRequest;
 use Google\Cloud\Compute\V1\BulkInsertDiskRequest;
+use Google\Cloud\Compute\V1\BulkSetLabelsDiskRequest;
 use Google\Cloud\Compute\V1\CreateSnapshotDiskRequest;
 use Google\Cloud\Compute\V1\DeleteDiskRequest;
 use Google\Cloud\Compute\V1\Disk;
@@ -67,6 +68,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> addResourcePoliciesAsync(AddResourcePoliciesDiskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListDisksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> bulkInsertAsync(BulkInsertDiskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> bulkSetLabelsAsync(BulkSetLabelsDiskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createSnapshotAsync(CreateSnapshotDiskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAsync(DeleteDiskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Disk> getAsync(GetDiskRequest $request, array $optionalArgs = [])
@@ -353,6 +355,32 @@ final class DisksClient
     public function bulkInsert(BulkInsertDiskRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('BulkInsert', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Sets the labels on many disks at once. To learn more about labels, read the Labeling Resources documentation.
+     *
+     * The async variant is {@see DisksClient::bulkSetLabelsAsync()} .
+     *
+     * @example samples/V1/DisksClient/bulk_set_labels.php
+     *
+     * @param BulkSetLabelsDiskRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function bulkSetLabels(BulkSetLabelsDiskRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('BulkSetLabels', $request, $callOptions)->wait();
     }
 
     /**

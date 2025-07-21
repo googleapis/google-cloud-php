@@ -35,16 +35,20 @@ use Google\ApiCore\ValidationException;
 use Google\Apps\Chat\V1\Attachment;
 use Google\Apps\Chat\V1\CompleteImportSpaceRequest;
 use Google\Apps\Chat\V1\CompleteImportSpaceResponse;
+use Google\Apps\Chat\V1\CreateCustomEmojiRequest;
 use Google\Apps\Chat\V1\CreateMembershipRequest;
 use Google\Apps\Chat\V1\CreateMessageRequest;
 use Google\Apps\Chat\V1\CreateReactionRequest;
 use Google\Apps\Chat\V1\CreateSpaceRequest;
+use Google\Apps\Chat\V1\CustomEmoji;
+use Google\Apps\Chat\V1\DeleteCustomEmojiRequest;
 use Google\Apps\Chat\V1\DeleteMembershipRequest;
 use Google\Apps\Chat\V1\DeleteMessageRequest;
 use Google\Apps\Chat\V1\DeleteReactionRequest;
 use Google\Apps\Chat\V1\DeleteSpaceRequest;
 use Google\Apps\Chat\V1\FindDirectMessageRequest;
 use Google\Apps\Chat\V1\GetAttachmentRequest;
+use Google\Apps\Chat\V1\GetCustomEmojiRequest;
 use Google\Apps\Chat\V1\GetMembershipRequest;
 use Google\Apps\Chat\V1\GetMessageRequest;
 use Google\Apps\Chat\V1\GetSpaceEventRequest;
@@ -52,6 +56,7 @@ use Google\Apps\Chat\V1\GetSpaceNotificationSettingRequest;
 use Google\Apps\Chat\V1\GetSpaceReadStateRequest;
 use Google\Apps\Chat\V1\GetSpaceRequest;
 use Google\Apps\Chat\V1\GetThreadReadStateRequest;
+use Google\Apps\Chat\V1\ListCustomEmojisRequest;
 use Google\Apps\Chat\V1\ListMembershipsRequest;
 use Google\Apps\Chat\V1\ListMessagesRequest;
 use Google\Apps\Chat\V1\ListReactionsRequest;
@@ -91,16 +96,19 @@ use Psr\Log\LoggerInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface<CompleteImportSpaceResponse> completeImportSpaceAsync(CompleteImportSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomEmoji> createCustomEmojiAsync(CreateCustomEmojiRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Membership> createMembershipAsync(CreateMembershipRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Message> createMessageAsync(CreateMessageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Reaction> createReactionAsync(CreateReactionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Space> createSpaceAsync(CreateSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteCustomEmojiAsync(DeleteCustomEmojiRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Membership> deleteMembershipAsync(DeleteMembershipRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteMessageAsync(DeleteMessageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteReactionAsync(DeleteReactionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteSpaceAsync(DeleteSpaceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Space> findDirectMessageAsync(FindDirectMessageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Attachment> getAttachmentAsync(GetAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomEmoji> getCustomEmojiAsync(GetCustomEmojiRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Membership> getMembershipAsync(GetMembershipRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Message> getMessageAsync(GetMessageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Space> getSpaceAsync(GetSpaceRequest $request, array $optionalArgs = [])
@@ -108,6 +116,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<SpaceNotificationSetting> getSpaceNotificationSettingAsync(GetSpaceNotificationSettingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SpaceReadState> getSpaceReadStateAsync(GetSpaceReadStateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ThreadReadState> getThreadReadStateAsync(GetThreadReadStateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCustomEmojisAsync(ListCustomEmojisRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listMembershipsAsync(ListMembershipsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listMessagesAsync(ListMessagesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listReactionsAsync(ListReactionsRequest $request, array $optionalArgs = [])
@@ -154,6 +163,8 @@ final class ChatServiceClient
         'https://www.googleapis.com/auth/chat.admin.spaces',
         'https://www.googleapis.com/auth/chat.admin.spaces.readonly',
         'https://www.googleapis.com/auth/chat.bot',
+        'https://www.googleapis.com/auth/chat.customemojis',
+        'https://www.googleapis.com/auth/chat.customemojis.readonly',
         'https://www.googleapis.com/auth/chat.delete',
         'https://www.googleapis.com/auth/chat.import',
         'https://www.googleapis.com/auth/chat.memberships',
@@ -208,6 +219,21 @@ final class ChatServiceClient
             'space' => $space,
             'message' => $message,
             'attachment' => $attachment,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a custom_emoji
+     * resource.
+     *
+     * @param string $customEmoji
+     *
+     * @return string The formatted custom_emoji resource.
+     */
+    public static function customEmojiName(string $customEmoji): string
+    {
+        return self::getPathTemplate('customEmoji')->render([
+            'custom_emoji' => $customEmoji,
         ]);
     }
 
@@ -393,6 +419,7 @@ final class ChatServiceClient
      * The following name formats are supported:
      * Template: Pattern
      * - attachment: spaces/{space}/messages/{message}/attachments/{attachment}
+     * - customEmoji: customEmojis/{custom_emoji}
      * - membership: spaces/{space}/members/{member}
      * - message: spaces/{space}/messages/{message}
      * - quotedMessageMetadata: spaces/{space}/messages/{message}/quotedMessageMetadata/{quoted_message_metadata}
@@ -536,6 +563,42 @@ final class ChatServiceClient
         array $callOptions = []
     ): CompleteImportSpaceResponse {
         return $this->startApiCall('CompleteImportSpace', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a custom emoji.
+     *
+     * Custom emojis are only available for Google Workspace accounts, and the
+     * administrator must turn custom emojis on for the organization. For more
+     * information, see [Learn about custom emojis in Google
+     * Chat](https://support.google.com/chat/answer/12800149) and
+     * [Manage custom emoji
+     * permissions](https://support.google.com/a/answer/12850085).
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     *
+     * The async variant is {@see ChatServiceClient::createCustomEmojiAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/create_custom_emoji.php
+     *
+     * @param CreateCustomEmojiRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CustomEmoji
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createCustomEmoji(CreateCustomEmojiRequest $request, array $callOptions = []): CustomEmoji
+    {
+        return $this->startApiCall('CreateCustomEmoji', $request, $callOptions)->wait();
     }
 
     /**
@@ -726,6 +789,44 @@ final class ChatServiceClient
     public function createSpace(CreateSpaceRequest $request, array $callOptions = []): Space
     {
         return $this->startApiCall('CreateSpace', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a custom emoji. By default, users can only delete custom emoji they
+     * created. [Emoji managers](https://support.google.com/a/answer/12850085)
+     * assigned by the administrator can delete any custom emoji in the
+     * organization. See [Learn about custom emojis in Google
+     * Chat](https://support.google.com/chat/answer/12800149).
+     *
+     * Custom emojis are only available for Google Workspace accounts, and the
+     * administrator must turn custom emojis on for the organization. For more
+     * information, see [Learn about custom emojis in Google
+     * Chat](https://support.google.com/chat/answer/12800149) and
+     * [Manage custom emoji
+     * permissions](https://support.google.com/a/answer/12850085).
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     *
+     * The async variant is {@see ChatServiceClient::deleteCustomEmojiAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/delete_custom_emoji.php
+     *
+     * @param DeleteCustomEmojiRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteCustomEmoji(DeleteCustomEmojiRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteCustomEmoji', $request, $callOptions)->wait();
     }
 
     /**
@@ -956,6 +1057,42 @@ final class ChatServiceClient
     public function getAttachment(GetAttachmentRequest $request, array $callOptions = []): Attachment
     {
         return $this->startApiCall('GetAttachment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns details about a custom emoji.
+     *
+     * Custom emojis are only available for Google Workspace accounts, and the
+     * administrator must turn custom emojis on for the organization. For more
+     * information, see [Learn about custom emojis in Google
+     * Chat](https://support.google.com/chat/answer/12800149) and
+     * [Manage custom emoji
+     * permissions](https://support.google.com/a/answer/12850085).
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     *
+     * The async variant is {@see ChatServiceClient::getCustomEmojiAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/get_custom_emoji.php
+     *
+     * @param GetCustomEmojiRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CustomEmoji
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getCustomEmoji(GetCustomEmojiRequest $request, array $callOptions = []): CustomEmoji
+    {
+        return $this->startApiCall('GetCustomEmoji', $request, $callOptions)->wait();
     }
 
     /**
@@ -1213,6 +1350,42 @@ final class ChatServiceClient
     public function getThreadReadState(GetThreadReadStateRequest $request, array $callOptions = []): ThreadReadState
     {
         return $this->startApiCall('GetThreadReadState', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists custom emojis visible to the authenticated user.
+     *
+     * Custom emojis are only available for Google Workspace accounts, and the
+     * administrator must turn custom emojis on for the organization. For more
+     * information, see [Learn about custom emojis in Google
+     * Chat](https://support.google.com/chat/answer/12800149) and
+     * [Manage custom emoji
+     * permissions](https://support.google.com/a/answer/12850085).
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     *
+     * The async variant is {@see ChatServiceClient::listCustomEmojisAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/list_custom_emojis.php
+     *
+     * @param ListCustomEmojisRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listCustomEmojis(ListCustomEmojisRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListCustomEmojis', $request, $callOptions);
     }
 
     /**

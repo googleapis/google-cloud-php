@@ -35,26 +35,35 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Cloud\NetworkServices\V1\AuthzExtension;
 use Google\Cloud\NetworkServices\V1\Client\DepServiceClient;
+use Google\Cloud\NetworkServices\V1\CreateAuthzExtensionRequest;
 use Google\Cloud\NetworkServices\V1\CreateLbRouteExtensionRequest;
 use Google\Cloud\NetworkServices\V1\CreateLbTrafficExtensionRequest;
+use Google\Cloud\NetworkServices\V1\DeleteAuthzExtensionRequest;
 use Google\Cloud\NetworkServices\V1\DeleteLbRouteExtensionRequest;
 use Google\Cloud\NetworkServices\V1\DeleteLbTrafficExtensionRequest;
+use Google\Cloud\NetworkServices\V1\GetAuthzExtensionRequest;
 use Google\Cloud\NetworkServices\V1\GetLbRouteExtensionRequest;
 use Google\Cloud\NetworkServices\V1\GetLbTrafficExtensionRequest;
 use Google\Cloud\NetworkServices\V1\LbRouteExtension;
 use Google\Cloud\NetworkServices\V1\LbTrafficExtension;
+use Google\Cloud\NetworkServices\V1\ListAuthzExtensionsRequest;
+use Google\Cloud\NetworkServices\V1\ListAuthzExtensionsResponse;
 use Google\Cloud\NetworkServices\V1\ListLbRouteExtensionsRequest;
 use Google\Cloud\NetworkServices\V1\ListLbRouteExtensionsResponse;
 use Google\Cloud\NetworkServices\V1\ListLbTrafficExtensionsRequest;
 use Google\Cloud\NetworkServices\V1\ListLbTrafficExtensionsResponse;
 use Google\Cloud\NetworkServices\V1\LoadBalancingScheme;
+use Google\Cloud\NetworkServices\V1\UpdateAuthzExtensionRequest;
 use Google\Cloud\NetworkServices\V1\UpdateLbRouteExtensionRequest;
 use Google\Cloud\NetworkServices\V1\UpdateLbTrafficExtensionRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\Duration;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -87,6 +96,172 @@ class DepServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new DepServiceClient($options);
+    }
+
+    /** @test */
+    public function createAuthzExtensionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createAuthzExtensionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $authority = 'authority1475610435';
+        $service = 'service1984153269';
+        $failOpen = false;
+        $expectedResponse = new AuthzExtension();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setAuthority($authority);
+        $expectedResponse->setService($service);
+        $expectedResponse->setFailOpen($failOpen);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createAuthzExtensionTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $authzExtensionId = 'authzExtensionId1521602664';
+        $authzExtension = new AuthzExtension();
+        $authzExtensionName = 'authzExtensionName1185018040';
+        $authzExtension->setName($authzExtensionName);
+        $authzExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
+        $authzExtension->setLoadBalancingScheme($authzExtensionLoadBalancingScheme);
+        $authzExtensionAuthority = 'authzExtensionAuthority-1897306826';
+        $authzExtension->setAuthority($authzExtensionAuthority);
+        $authzExtensionService = 'authzExtensionService-1496447640';
+        $authzExtension->setService($authzExtensionService);
+        $authzExtensionTimeout = new Duration();
+        $authzExtension->setTimeout($authzExtensionTimeout);
+        $request = (new CreateAuthzExtensionRequest())
+            ->setParent($formattedParent)
+            ->setAuthzExtensionId($authzExtensionId)
+            ->setAuthzExtension($authzExtension);
+        $response = $gapicClient->createAuthzExtension($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkservices.v1.DepService/CreateAuthzExtension', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getAuthzExtensionId();
+        $this->assertProtobufEquals($authzExtensionId, $actualValue);
+        $actualValue = $actualApiRequestObject->getAuthzExtension();
+        $this->assertProtobufEquals($authzExtension, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createAuthzExtensionTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createAuthzExtensionExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createAuthzExtensionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $authzExtensionId = 'authzExtensionId1521602664';
+        $authzExtension = new AuthzExtension();
+        $authzExtensionName = 'authzExtensionName1185018040';
+        $authzExtension->setName($authzExtensionName);
+        $authzExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
+        $authzExtension->setLoadBalancingScheme($authzExtensionLoadBalancingScheme);
+        $authzExtensionAuthority = 'authzExtensionAuthority-1897306826';
+        $authzExtension->setAuthority($authzExtensionAuthority);
+        $authzExtensionService = 'authzExtensionService-1496447640';
+        $authzExtension->setService($authzExtensionService);
+        $authzExtensionTimeout = new Duration();
+        $authzExtension->setTimeout($authzExtensionTimeout);
+        $request = (new CreateAuthzExtensionRequest())
+            ->setParent($formattedParent)
+            ->setAuthzExtensionId($authzExtensionId)
+            ->setAuthzExtension($authzExtension);
+        $response = $gapicClient->createAuthzExtension($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createAuthzExtensionTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -284,8 +459,6 @@ class DepServiceClientTest extends GeneratedTest
         $lbTrafficExtension = new LbTrafficExtension();
         $lbTrafficExtensionName = 'lbTrafficExtensionName1872015107';
         $lbTrafficExtension->setName($lbTrafficExtensionName);
-        $lbTrafficExtensionForwardingRules = [];
-        $lbTrafficExtension->setForwardingRules($lbTrafficExtensionForwardingRules);
         $lbTrafficExtensionExtensionChains = [];
         $lbTrafficExtension->setExtensionChains($lbTrafficExtensionExtensionChains);
         $lbTrafficExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
@@ -369,8 +542,6 @@ class DepServiceClientTest extends GeneratedTest
         $lbTrafficExtension = new LbTrafficExtension();
         $lbTrafficExtensionName = 'lbTrafficExtensionName1872015107';
         $lbTrafficExtension->setName($lbTrafficExtensionName);
-        $lbTrafficExtensionForwardingRules = [];
-        $lbTrafficExtension->setForwardingRules($lbTrafficExtensionForwardingRules);
         $lbTrafficExtensionExtensionChains = [];
         $lbTrafficExtension->setExtensionChains($lbTrafficExtensionExtensionChains);
         $lbTrafficExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
@@ -384,6 +555,128 @@ class DepServiceClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createLbTrafficExtensionTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteAuthzExtensionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteAuthzExtensionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteAuthzExtensionTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->authzExtensionName('[PROJECT]', '[LOCATION]', '[AUTHZ_EXTENSION]');
+        $request = (new DeleteAuthzExtensionRequest())->setName($formattedName);
+        $response = $gapicClient->deleteAuthzExtension($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkservices.v1.DepService/DeleteAuthzExtension', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteAuthzExtensionTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteAuthzExtensionExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteAuthzExtensionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->authzExtensionName('[PROJECT]', '[LOCATION]', '[AUTHZ_EXTENSION]');
+        $request = (new DeleteAuthzExtensionRequest())->setName($formattedName);
+        $response = $gapicClient->deleteAuthzExtension($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteAuthzExtensionTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -646,6 +939,79 @@ class DepServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getAuthzExtensionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $description = 'description-1724546052';
+        $authority = 'authority1475610435';
+        $service = 'service1984153269';
+        $failOpen = false;
+        $expectedResponse = new AuthzExtension();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setAuthority($authority);
+        $expectedResponse->setService($service);
+        $expectedResponse->setFailOpen($failOpen);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->authzExtensionName('[PROJECT]', '[LOCATION]', '[AUTHZ_EXTENSION]');
+        $request = (new GetAuthzExtensionRequest())->setName($formattedName);
+        $response = $gapicClient->getAuthzExtension($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkservices.v1.DepService/GetAuthzExtension', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAuthzExtensionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->authzExtensionName('[PROJECT]', '[LOCATION]', '[AUTHZ_EXTENSION]');
+        $request = (new GetAuthzExtensionRequest())->setName($formattedName);
+        try {
+            $gapicClient->getAuthzExtension($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getLbRouteExtensionTest()
     {
         $transport = $this->createTransport();
@@ -768,6 +1134,77 @@ class DepServiceClientTest extends GeneratedTest
         $request = (new GetLbTrafficExtensionRequest())->setName($formattedName);
         try {
             $gapicClient->getLbTrafficExtension($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAuthzExtensionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $authzExtensionsElement = new AuthzExtension();
+        $authzExtensions = [$authzExtensionsElement];
+        $expectedResponse = new ListAuthzExtensionsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setAuthzExtensions($authzExtensions);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListAuthzExtensionsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listAuthzExtensions($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getAuthzExtensions()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkservices.v1.DepService/ListAuthzExtensions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAuthzExtensionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListAuthzExtensionsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listAuthzExtensions($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -919,6 +1356,162 @@ class DepServiceClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateAuthzExtensionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateAuthzExtensionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $authority = 'authority1475610435';
+        $service = 'service1984153269';
+        $failOpen = false;
+        $expectedResponse = new AuthzExtension();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setAuthority($authority);
+        $expectedResponse->setService($service);
+        $expectedResponse->setFailOpen($failOpen);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateAuthzExtensionTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $updateMask = new FieldMask();
+        $authzExtension = new AuthzExtension();
+        $authzExtensionName = 'authzExtensionName1185018040';
+        $authzExtension->setName($authzExtensionName);
+        $authzExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
+        $authzExtension->setLoadBalancingScheme($authzExtensionLoadBalancingScheme);
+        $authzExtensionAuthority = 'authzExtensionAuthority-1897306826';
+        $authzExtension->setAuthority($authzExtensionAuthority);
+        $authzExtensionService = 'authzExtensionService-1496447640';
+        $authzExtension->setService($authzExtensionService);
+        $authzExtensionTimeout = new Duration();
+        $authzExtension->setTimeout($authzExtensionTimeout);
+        $request = (new UpdateAuthzExtensionRequest())->setUpdateMask($updateMask)->setAuthzExtension($authzExtension);
+        $response = $gapicClient->updateAuthzExtension($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkservices.v1.DepService/UpdateAuthzExtension', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $actualValue = $actualApiRequestObject->getAuthzExtension();
+        $this->assertProtobufEquals($authzExtension, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateAuthzExtensionTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateAuthzExtensionExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateAuthzExtensionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $updateMask = new FieldMask();
+        $authzExtension = new AuthzExtension();
+        $authzExtensionName = 'authzExtensionName1185018040';
+        $authzExtension->setName($authzExtensionName);
+        $authzExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
+        $authzExtension->setLoadBalancingScheme($authzExtensionLoadBalancingScheme);
+        $authzExtensionAuthority = 'authzExtensionAuthority-1897306826';
+        $authzExtension->setAuthority($authzExtensionAuthority);
+        $authzExtensionService = 'authzExtensionService-1496447640';
+        $authzExtension->setService($authzExtensionService);
+        $authzExtensionTimeout = new Duration();
+        $authzExtension->setTimeout($authzExtensionTimeout);
+        $request = (new UpdateAuthzExtensionRequest())->setUpdateMask($updateMask)->setAuthzExtension($authzExtension);
+        $response = $gapicClient->updateAuthzExtension($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateAuthzExtensionTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -1100,8 +1693,6 @@ class DepServiceClientTest extends GeneratedTest
         $lbTrafficExtension = new LbTrafficExtension();
         $lbTrafficExtensionName = 'lbTrafficExtensionName1872015107';
         $lbTrafficExtension->setName($lbTrafficExtensionName);
-        $lbTrafficExtensionForwardingRules = [];
-        $lbTrafficExtension->setForwardingRules($lbTrafficExtensionForwardingRules);
         $lbTrafficExtensionExtensionChains = [];
         $lbTrafficExtension->setExtensionChains($lbTrafficExtensionExtensionChains);
         $lbTrafficExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
@@ -1176,8 +1767,6 @@ class DepServiceClientTest extends GeneratedTest
         $lbTrafficExtension = new LbTrafficExtension();
         $lbTrafficExtensionName = 'lbTrafficExtensionName1872015107';
         $lbTrafficExtension->setName($lbTrafficExtensionName);
-        $lbTrafficExtensionForwardingRules = [];
-        $lbTrafficExtension->setForwardingRules($lbTrafficExtensionForwardingRules);
         $lbTrafficExtensionExtensionChains = [];
         $lbTrafficExtension->setExtensionChains($lbTrafficExtensionExtensionChains);
         $lbTrafficExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
@@ -1539,7 +2128,7 @@ class DepServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createLbRouteExtensionAsyncTest()
+    public function createAuthzExtensionAsyncTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -1556,38 +2145,46 @@ class DepServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createLbRouteExtensionTest');
+        $incompleteOperation->setName('operations/createAuthzExtensionTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $description = 'description-1724546052';
-        $expectedResponse = new LbRouteExtension();
+        $authority = 'authority1475610435';
+        $service = 'service1984153269';
+        $failOpen = false;
+        $expectedResponse = new AuthzExtension();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setAuthority($authority);
+        $expectedResponse->setService($service);
+        $expectedResponse->setFailOpen($failOpen);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/createLbRouteExtensionTest');
+        $completeOperation->setName('operations/createAuthzExtensionTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $lbRouteExtensionId = 'lbRouteExtensionId1673910458';
-        $lbRouteExtension = new LbRouteExtension();
-        $lbRouteExtensionName = 'lbRouteExtensionName-498882633';
-        $lbRouteExtension->setName($lbRouteExtensionName);
-        $lbRouteExtensionForwardingRules = [];
-        $lbRouteExtension->setForwardingRules($lbRouteExtensionForwardingRules);
-        $lbRouteExtensionExtensionChains = [];
-        $lbRouteExtension->setExtensionChains($lbRouteExtensionExtensionChains);
-        $lbRouteExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
-        $lbRouteExtension->setLoadBalancingScheme($lbRouteExtensionLoadBalancingScheme);
-        $request = (new CreateLbRouteExtensionRequest())
+        $authzExtensionId = 'authzExtensionId1521602664';
+        $authzExtension = new AuthzExtension();
+        $authzExtensionName = 'authzExtensionName1185018040';
+        $authzExtension->setName($authzExtensionName);
+        $authzExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
+        $authzExtension->setLoadBalancingScheme($authzExtensionLoadBalancingScheme);
+        $authzExtensionAuthority = 'authzExtensionAuthority-1897306826';
+        $authzExtension->setAuthority($authzExtensionAuthority);
+        $authzExtensionService = 'authzExtensionService-1496447640';
+        $authzExtension->setService($authzExtensionService);
+        $authzExtensionTimeout = new Duration();
+        $authzExtension->setTimeout($authzExtensionTimeout);
+        $request = (new CreateAuthzExtensionRequest())
             ->setParent($formattedParent)
-            ->setLbRouteExtensionId($lbRouteExtensionId)
-            ->setLbRouteExtension($lbRouteExtension);
-        $response = $gapicClient->createLbRouteExtensionAsync($request)->wait();
+            ->setAuthzExtensionId($authzExtensionId)
+            ->setAuthzExtension($authzExtension);
+        $response = $gapicClient->createAuthzExtensionAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1596,15 +2193,15 @@ class DepServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networkservices.v1.DepService/CreateLbRouteExtension', $actualApiFuncCall);
+        $this->assertSame('/google.cloud.networkservices.v1.DepService/CreateAuthzExtension', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getLbRouteExtensionId();
-        $this->assertProtobufEquals($lbRouteExtensionId, $actualValue);
-        $actualValue = $actualApiRequestObject->getLbRouteExtension();
-        $this->assertProtobufEquals($lbRouteExtension, $actualValue);
+        $actualValue = $actualApiRequestObject->getAuthzExtensionId();
+        $this->assertProtobufEquals($authzExtensionId, $actualValue);
+        $actualValue = $actualApiRequestObject->getAuthzExtension();
+        $this->assertProtobufEquals($authzExtension, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createLbRouteExtensionTest');
+        $expectedOperationsRequestObject->setName('operations/createAuthzExtensionTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

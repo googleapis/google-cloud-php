@@ -850,6 +850,7 @@ return [
                 'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'cryptoKeyVersion' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}',
                 'location' => 'projects/{project}/locations/{location}',
+                'notebookRuntimeTemplate' => 'projects/{project}/locations/{location}/notebookRuntimeTemplates/{notebook_runtime_template}',
                 'releaseConfig' => 'projects/{project}/locations/{location}/repositories/{repository}/releaseConfigs/{release_config}',
                 'repository' => 'projects/{project}/locations/{location}/repositories/{repository}',
                 'secretVersion' => 'projects/{project}/secrets/{secret}/versions/{version}',

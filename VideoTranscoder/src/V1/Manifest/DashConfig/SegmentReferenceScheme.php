@@ -20,13 +20,34 @@ class SegmentReferenceScheme
      */
     const SEGMENT_REFERENCE_SCHEME_UNSPECIFIED = 0;
     /**
-     * Lists the URLs of media files for each segment.
+     * Explicitly lists the URLs of media files for each segment. For example,
+     * if
+     * [SegmentSettings.individual_segments][google.cloud.video.transcoder.v1.SegmentSettings.individual_segments]
+     * is `true`, then the manifest contains fields similar to the following:
+     * ```xml
+     * <Initialization sourceURL="my-hd-stream-init.m4s"/>
+     *   <SegmentList presentationTimeOffset="0" duration="1000"
+     *   timescale="10000">
+     *     <SegmentURL media="hd-stream0000000000.m4s"/>
+     *     <SegmentURL media="hd-stream0000000001.m4s"/>
+     *     ...
+     * ```
      *
      * Generated from protobuf enum <code>SEGMENT_LIST = 1;</code>
      */
     const SEGMENT_LIST = 1;
     /**
-     * Lists each segment from a template with $Number$ variable.
+     * [SegmentSettings.individual_segments][google.cloud.video.transcoder.v1.SegmentSettings.individual_segments]
+     * must be set to `true` to use this segment reference scheme. Uses the
+     * DASH specification
+     * `<SegmentTemplate>` tag to determine the URLs of media files for each
+     * segment. For example:
+     * ```xml
+     * <SegmentTemplate presentationTimeOffset="0" timescale="10000"
+     *       initialization="my-hd-stream-init.m4s"
+     *       media="hd-stream$Number%010d$.m4s" startNumber="0">
+     *   ...
+     * ```
      *
      * Generated from protobuf enum <code>SEGMENT_TEMPLATE_NUMBER = 2;</code>
      */

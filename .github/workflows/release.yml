@@ -1,8 +1,8 @@
 name: Release Components
 on:
-    push:
-        tags:
-            - "*"
+    # push:
+    #     tags:
+    #         - "*"
     workflow_dispatch:
         inputs:
             tag:
@@ -67,4 +67,5 @@ jobs:
               --splitsh=/usr/local/bin/splitsh-lite \
               -t ${{ secrets.SPLIT_TOKEN }} \
               --packagist-username=${{ vars.PACKAGIST_USERNAME }} \
-              --packagist-token=${{ secrets.PACKAGIST_TOKEN }}
+              --packagist-token=${{ secrets.PACKAGIST_TOKEN }} \
+              --packagist-safe-token=${{ secrets.PACKAGIST_SAFE_TOKEN }}

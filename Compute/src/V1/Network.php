@@ -101,6 +101,12 @@ class Network extends \Google\Protobuf\Internal\Message
      */
     private $network_profile = null;
     /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkParams params = 78313862;</code>
+     */
+    private $params = null;
+    /**
      * [Output Only] A list of network peerings for the resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkPeering peerings = 69883187;</code>
@@ -166,6 +172,8 @@ class Network extends \Google\Protobuf\Internal\Message
      *           Check the NetworkFirewallPolicyEnforcementOrder enum for the list of possible values.
      *     @type string $network_profile
      *           A full or partial URL of the network profile to apply to this network. This field can be set only at resource creation time. For example, the following are valid URLs: - https://www.googleapis.com/compute/{api_version}/projects/{project_id}/global/networkProfiles/{network_profile_name} - projects/{project_id}/global/networkProfiles/{network_profile_name} 
+     *     @type \Google\Cloud\Compute\V1\NetworkParams $params
+     *           Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
      *     @type array<\Google\Cloud\Compute\V1\NetworkPeering>|\Google\Protobuf\Internal\RepeatedField $peerings
      *           [Output Only] A list of network peerings for the resource.
      *     @type \Google\Cloud\Compute\V1\NetworkRoutingConfig $routing_config
@@ -685,6 +693,42 @@ class Network extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->network_profile = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkParams params = 78313862;</code>
+     * @return \Google\Cloud\Compute\V1\NetworkParams|null
+     */
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    public function hasParams()
+    {
+        return isset($this->params);
+    }
+
+    public function clearParams()
+    {
+        unset($this->params);
+    }
+
+    /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkParams params = 78313862;</code>
+     * @param \Google\Cloud\Compute\V1\NetworkParams $var
+     * @return $this
+     */
+    public function setParams($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\NetworkParams::class);
+        $this->params = $var;
 
         return $this;
     }

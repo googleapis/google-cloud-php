@@ -333,6 +333,60 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.TileNavigationSpec tile_navigation_spec = 41 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $tile_navigation_spec = null;
+    /**
+     * Optional. The BCP-47 language code, such as "en-US" or "sr-Latn"
+     * [list](https://www.unicode.org/cldr/charts/46/summary/root.html). For more
+     * information, see [Standardized codes](https://google.aip.dev/143). This
+     * field helps to better interpret the query. If a value isn't specified, the
+     * query language code is automatically detected, which may not be accurate.
+     *
+     * Generated from protobuf field <code>string language_code = 43 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $language_code = '';
+    /**
+     * Optional. The Unicode country/region code (CLDR) of a location, such as
+     * "US" and "419"
+     * [list](https://www.unicode.org/cldr/charts/46/supplemental/territory_information.html).
+     * For more information, see [Standardized codes](https://google.aip.dev/143).
+     * If set, then results will be boosted based on the region_code provided.
+     *
+     * Generated from protobuf field <code>string region_code = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $region_code = '';
+    /**
+     * Optional. An id corresponding to a place, such as a store id or region id.
+     * When specified, we use the price from the local inventory with the matching
+     * product's
+     * [LocalInventory.place_id][google.cloud.retail.v2.LocalInventory.place_id]
+     * for revenue optimization.
+     *
+     * Generated from protobuf field <code>string place_id = 46 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $place_id = '';
+    /**
+     * Optional. The user attributes that could be used for personalization of
+     * search results.
+     * * Populate at most 100 key-value pairs per query.
+     * * Only supports string keys and repeated string values.
+     * * Duplcate keys are not allowed within a single query.
+     * Example:
+     *    user_attributes: [
+     *     { key: "pets"
+     *       value {
+     *         values: "dog"
+     *         values: "cat"
+     *       }
+     *     },
+     *     { key: "state"
+     *       value {
+     *         values: "CA"
+     *       }
+     *     }
+     *    ]
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.StringList> user_attributes = 47 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $user_attributes;
 
     /**
      * Constructor.
@@ -560,6 +614,44 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           addition to traditional retail search.
      *     @type \Google\Cloud\Retail\V2\SearchRequest\TileNavigationSpec $tile_navigation_spec
      *           Optional. This field specifies tile navigation related parameters.
+     *     @type string $language_code
+     *           Optional. The BCP-47 language code, such as "en-US" or "sr-Latn"
+     *           [list](https://www.unicode.org/cldr/charts/46/summary/root.html). For more
+     *           information, see [Standardized codes](https://google.aip.dev/143). This
+     *           field helps to better interpret the query. If a value isn't specified, the
+     *           query language code is automatically detected, which may not be accurate.
+     *     @type string $region_code
+     *           Optional. The Unicode country/region code (CLDR) of a location, such as
+     *           "US" and "419"
+     *           [list](https://www.unicode.org/cldr/charts/46/supplemental/territory_information.html).
+     *           For more information, see [Standardized codes](https://google.aip.dev/143).
+     *           If set, then results will be boosted based on the region_code provided.
+     *     @type string $place_id
+     *           Optional. An id corresponding to a place, such as a store id or region id.
+     *           When specified, we use the price from the local inventory with the matching
+     *           product's
+     *           [LocalInventory.place_id][google.cloud.retail.v2.LocalInventory.place_id]
+     *           for revenue optimization.
+     *     @type array|\Google\Protobuf\Internal\MapField $user_attributes
+     *           Optional. The user attributes that could be used for personalization of
+     *           search results.
+     *           * Populate at most 100 key-value pairs per query.
+     *           * Only supports string keys and repeated string values.
+     *           * Duplcate keys are not allowed within a single query.
+     *           Example:
+     *              user_attributes: [
+     *               { key: "pets"
+     *                 value {
+     *                   values: "dog"
+     *                   values: "cat"
+     *                 }
+     *               },
+     *               { key: "state"
+     *                 value {
+     *                   values: "CA"
+     *                 }
+     *               }
+     *              ]
      * }
      */
     public function __construct($data = NULL) {
@@ -1011,13 +1103,17 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDynamicFacetSpec()
     {
-        @trigger_error('dynamic_facet_spec is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->dynamic_facet_spec)) {
+            @trigger_error('dynamic_facet_spec is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->dynamic_facet_spec;
     }
 
     public function hasDynamicFacetSpec()
     {
-        @trigger_error('dynamic_facet_spec is deprecated.', E_USER_DEPRECATED);
+        if (isset($this->dynamic_facet_spec)) {
+            @trigger_error('dynamic_facet_spec is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->dynamic_facet_spec);
     }
 
@@ -1617,6 +1713,170 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Retail\V2\SearchRequest\TileNavigationSpec::class);
         $this->tile_navigation_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The BCP-47 language code, such as "en-US" or "sr-Latn"
+     * [list](https://www.unicode.org/cldr/charts/46/summary/root.html). For more
+     * information, see [Standardized codes](https://google.aip.dev/143). This
+     * field helps to better interpret the query. If a value isn't specified, the
+     * query language code is automatically detected, which may not be accurate.
+     *
+     * Generated from protobuf field <code>string language_code = 43 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getLanguageCode()
+    {
+        return $this->language_code;
+    }
+
+    /**
+     * Optional. The BCP-47 language code, such as "en-US" or "sr-Latn"
+     * [list](https://www.unicode.org/cldr/charts/46/summary/root.html). For more
+     * information, see [Standardized codes](https://google.aip.dev/143). This
+     * field helps to better interpret the query. If a value isn't specified, the
+     * query language code is automatically detected, which may not be accurate.
+     *
+     * Generated from protobuf field <code>string language_code = 43 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLanguageCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->language_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Unicode country/region code (CLDR) of a location, such as
+     * "US" and "419"
+     * [list](https://www.unicode.org/cldr/charts/46/supplemental/territory_information.html).
+     * For more information, see [Standardized codes](https://google.aip.dev/143).
+     * If set, then results will be boosted based on the region_code provided.
+     *
+     * Generated from protobuf field <code>string region_code = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getRegionCode()
+    {
+        return $this->region_code;
+    }
+
+    /**
+     * Optional. The Unicode country/region code (CLDR) of a location, such as
+     * "US" and "419"
+     * [list](https://www.unicode.org/cldr/charts/46/supplemental/territory_information.html).
+     * For more information, see [Standardized codes](https://google.aip.dev/143).
+     * If set, then results will be boosted based on the region_code provided.
+     *
+     * Generated from protobuf field <code>string region_code = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRegionCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->region_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. An id corresponding to a place, such as a store id or region id.
+     * When specified, we use the price from the local inventory with the matching
+     * product's
+     * [LocalInventory.place_id][google.cloud.retail.v2.LocalInventory.place_id]
+     * for revenue optimization.
+     *
+     * Generated from protobuf field <code>string place_id = 46 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPlaceId()
+    {
+        return $this->place_id;
+    }
+
+    /**
+     * Optional. An id corresponding to a place, such as a store id or region id.
+     * When specified, we use the price from the local inventory with the matching
+     * product's
+     * [LocalInventory.place_id][google.cloud.retail.v2.LocalInventory.place_id]
+     * for revenue optimization.
+     *
+     * Generated from protobuf field <code>string place_id = 46 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPlaceId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->place_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The user attributes that could be used for personalization of
+     * search results.
+     * * Populate at most 100 key-value pairs per query.
+     * * Only supports string keys and repeated string values.
+     * * Duplcate keys are not allowed within a single query.
+     * Example:
+     *    user_attributes: [
+     *     { key: "pets"
+     *       value {
+     *         values: "dog"
+     *         values: "cat"
+     *       }
+     *     },
+     *     { key: "state"
+     *       value {
+     *         values: "CA"
+     *       }
+     *     }
+     *    ]
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.StringList> user_attributes = 47 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getUserAttributes()
+    {
+        return $this->user_attributes;
+    }
+
+    /**
+     * Optional. The user attributes that could be used for personalization of
+     * search results.
+     * * Populate at most 100 key-value pairs per query.
+     * * Only supports string keys and repeated string values.
+     * * Duplcate keys are not allowed within a single query.
+     * Example:
+     *    user_attributes: [
+     *     { key: "pets"
+     *       value {
+     *         values: "dog"
+     *         values: "cat"
+     *       }
+     *     },
+     *     { key: "state"
+     *       value {
+     *         values: "CA"
+     *       }
+     *     }
+     *    ]
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.StringList> user_attributes = 47 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setUserAttributes($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Retail\V2\StringList::class);
+        $this->user_attributes = $arr;
 
         return $this;
     }

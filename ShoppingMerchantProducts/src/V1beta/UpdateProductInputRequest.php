@@ -44,7 +44,8 @@ class UpdateProductInputRequest extends \Google\Protobuf\Internal\Message
      * Required. The primary or supplemental product data source where
      * `data_source` name identifies the product input to be updated.
      * Only API data sources are supported.
-     * Format: `accounts/{account}/dataSources/{datasource}`.
+     * Format: `accounts/{account}/dataSources/{datasource}`. For example,
+     * `accounts/123456/dataSources/104628`.
      *
      * Generated from protobuf field <code>string data_source = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -104,7 +105,8 @@ class UpdateProductInputRequest extends \Google\Protobuf\Internal\Message
      *           Required. The primary or supplemental product data source where
      *           `data_source` name identifies the product input to be updated.
      *           Only API data sources are supported.
-     *           Format: `accounts/{account}/dataSources/{datasource}`.
+     *           Format: `accounts/{account}/dataSources/{datasource}`. For example,
+     *           `accounts/123456/dataSources/104628`.
      * }
      */
     public function __construct($data = NULL) {
@@ -208,7 +210,8 @@ class UpdateProductInputRequest extends \Google\Protobuf\Internal\Message
      * Required. The primary or supplemental product data source where
      * `data_source` name identifies the product input to be updated.
      * Only API data sources are supported.
-     * Format: `accounts/{account}/dataSources/{datasource}`.
+     * Format: `accounts/{account}/dataSources/{datasource}`. For example,
+     * `accounts/123456/dataSources/104628`.
      *
      * Generated from protobuf field <code>string data_source = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -222,7 +225,8 @@ class UpdateProductInputRequest extends \Google\Protobuf\Internal\Message
      * Required. The primary or supplemental product data source where
      * `data_source` name identifies the product input to be updated.
      * Only API data sources are supported.
-     * Format: `accounts/{account}/dataSources/{datasource}`.
+     * Format: `accounts/{account}/dataSources/{datasource}`. For example,
+     * `accounts/123456/dataSources/104628`.
      *
      * Generated from protobuf field <code>string data_source = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
