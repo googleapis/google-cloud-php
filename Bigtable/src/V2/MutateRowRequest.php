@@ -55,8 +55,8 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
      */
     private $mutations;
     /**
-     * Optional parameter for ensuring a MutateRow request is only applied once.
-     * Currently applicable only for certain aggregate types.
+     * If set consistently across retries, prevents this mutation from being
+     * double applied to aggregate column families within a 15m window.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.Idempotency idempotency = 8;</code>
      */
@@ -139,8 +139,8 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
      *           are applied in order, meaning that earlier mutations can be masked by later
      *           ones. Must contain at least one entry and at most 100000.
      *     @type \Google\Cloud\Bigtable\V2\Idempotency $idempotency
-     *           Optional parameter for ensuring a MutateRow request is only applied once.
-     *           Currently applicable only for certain aggregate types.
+     *           If set consistently across retries, prevents this mutation from being
+     *           double applied to aggregate column families within a 15m window.
      * }
      */
     public function __construct($data = NULL) {
@@ -297,8 +297,8 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional parameter for ensuring a MutateRow request is only applied once.
-     * Currently applicable only for certain aggregate types.
+     * If set consistently across retries, prevents this mutation from being
+     * double applied to aggregate column families within a 15m window.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.Idempotency idempotency = 8;</code>
      * @return \Google\Cloud\Bigtable\V2\Idempotency|null
@@ -319,8 +319,8 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional parameter for ensuring a MutateRow request is only applied once.
-     * Currently applicable only for certain aggregate types.
+     * If set consistently across retries, prevents this mutation from being
+     * double applied to aggregate column families within a 15m window.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.Idempotency idempotency = 8;</code>
      * @param \Google\Cloud\Bigtable\V2\Idempotency $var
