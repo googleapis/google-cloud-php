@@ -22,7 +22,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Middleware\MiddlewareInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Int64;
@@ -106,8 +106,8 @@ use Psr\Http\Message\StreamInterface;
  */
 class SpannerClient
 {
+    use DetectProjectIdTrait;
     use ClientOptionsTrait;
-    use ClientTrait;
     use EmulatorTrait;
     use RequestTrait;
 
@@ -882,5 +882,32 @@ class SpannerClient
     public function commitTimestamp(): CommitTimestamp
     {
         return new CommitTimestamp();
+    }
+
+    /**
+     * Throw an exception if the gRPC extension is not loaded.
+     *
+     * @throws GoogleException
+     */
+    private function requireGrpc()
+    {
+        if (!$this->isGrpcLoaded()) {
+            throw new GoogleException(
+                'The requested client requires the gRPC extension. '
+                . 'Please see https://cloud.google.com/php/grpc for installation '
+                . 'instructions.'
+            );
+        }
+    }
+
+    /**
+     * Abstract the checking of the grpc extension for unit testing.
+     *
+     * @codeCoverageIgnore
+     * @return bool
+     */
+    private function isGrpcLoaded()
+    {
+        return extension_loaded('grpc');
     }
 }
