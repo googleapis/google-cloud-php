@@ -68,6 +68,4 @@ class HuddleStatus
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(HuddleStatus::class, \Google\Apps\Chat\V1\MeetSpaceLinkData_HuddleStatus::class);
 
