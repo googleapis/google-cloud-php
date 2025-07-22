@@ -35,7 +35,7 @@ class Session
     /**
      * @var int|null
      */
-    private int|null $expiration;
+    private int|null $expiration = null;
 
     /**
      * @var bool
