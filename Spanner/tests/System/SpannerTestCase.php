@@ -116,11 +116,11 @@ abstract class SpannerTestCase extends SystemTestCase
                 'serviceAddress' => $serviceAddress
             ];
 
-            $clientConfig['gapicSpannerClient'] = new Spanner\V1\SpannerClient($gapicConfig);
+            $clientConfig['gapicSpannerClient'] = new Spanner\V1\Client\SpannerClient($gapicConfig);
             $clientConfig['gapicSpannerDatabaseAdminClient'] =
-                new Spanner\Admin\Database\V1\DatabaseAdminClient($gapicConfig);
+                new Spanner\Admin\Database\V1\Client\DatabaseAdminClient($gapicConfig);
             $clientConfig['gapicSpannerInstanceAdminClient'] =
-                new Spanner\Admin\Instance\V1\InstanceAdminClient($gapicConfig);
+                new Spanner\Admin\Instance\V1\Client\InstanceAdminClient($gapicConfig);
 
             echo 'Using Service Address: ' . $serviceAddress . PHP_EOL;
         }
