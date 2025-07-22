@@ -37,26 +37,33 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\BackupDR\V1\Backup;
 use Google\Cloud\BackupDR\V1\BackupPlan;
 use Google\Cloud\BackupDR\V1\BackupPlanAssociation;
+use Google\Cloud\BackupDR\V1\BackupPlanRevision;
 use Google\Cloud\BackupDR\V1\BackupVault;
 use Google\Cloud\BackupDR\V1\CreateBackupPlanAssociationRequest;
 use Google\Cloud\BackupDR\V1\CreateBackupPlanRequest;
 use Google\Cloud\BackupDR\V1\CreateBackupVaultRequest;
 use Google\Cloud\BackupDR\V1\CreateManagementServerRequest;
 use Google\Cloud\BackupDR\V1\DataSource;
+use Google\Cloud\BackupDR\V1\DataSourceReference;
 use Google\Cloud\BackupDR\V1\DeleteBackupPlanAssociationRequest;
 use Google\Cloud\BackupDR\V1\DeleteBackupPlanRequest;
 use Google\Cloud\BackupDR\V1\DeleteBackupRequest;
 use Google\Cloud\BackupDR\V1\DeleteBackupVaultRequest;
 use Google\Cloud\BackupDR\V1\DeleteManagementServerRequest;
+use Google\Cloud\BackupDR\V1\FetchBackupPlanAssociationsForResourceTypeRequest;
+use Google\Cloud\BackupDR\V1\FetchDataSourceReferencesForResourceTypeRequest;
 use Google\Cloud\BackupDR\V1\FetchUsableBackupVaultsRequest;
 use Google\Cloud\BackupDR\V1\GetBackupPlanAssociationRequest;
 use Google\Cloud\BackupDR\V1\GetBackupPlanRequest;
+use Google\Cloud\BackupDR\V1\GetBackupPlanRevisionRequest;
 use Google\Cloud\BackupDR\V1\GetBackupRequest;
 use Google\Cloud\BackupDR\V1\GetBackupVaultRequest;
+use Google\Cloud\BackupDR\V1\GetDataSourceReferenceRequest;
 use Google\Cloud\BackupDR\V1\GetDataSourceRequest;
 use Google\Cloud\BackupDR\V1\GetManagementServerRequest;
 use Google\Cloud\BackupDR\V1\InitializeServiceRequest;
 use Google\Cloud\BackupDR\V1\ListBackupPlanAssociationsRequest;
+use Google\Cloud\BackupDR\V1\ListBackupPlanRevisionsRequest;
 use Google\Cloud\BackupDR\V1\ListBackupPlansRequest;
 use Google\Cloud\BackupDR\V1\ListBackupVaultsRequest;
 use Google\Cloud\BackupDR\V1\ListBackupsRequest;
@@ -65,6 +72,8 @@ use Google\Cloud\BackupDR\V1\ListManagementServersRequest;
 use Google\Cloud\BackupDR\V1\ManagementServer;
 use Google\Cloud\BackupDR\V1\RestoreBackupRequest;
 use Google\Cloud\BackupDR\V1\TriggerBackupRequest;
+use Google\Cloud\BackupDR\V1\UpdateBackupPlanAssociationRequest;
+use Google\Cloud\BackupDR\V1\UpdateBackupPlanRequest;
 use Google\Cloud\BackupDR\V1\UpdateBackupRequest;
 use Google\Cloud\BackupDR\V1\UpdateBackupVaultRequest;
 use Google\Cloud\BackupDR\V1\UpdateDataSourceRequest;
@@ -101,15 +110,20 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> deleteBackupPlanAssociationAsync(DeleteBackupPlanAssociationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteBackupVaultAsync(DeleteBackupVaultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteManagementServerAsync(DeleteManagementServerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> fetchBackupPlanAssociationsForResourceTypeAsync(FetchBackupPlanAssociationsForResourceTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> fetchDataSourceReferencesForResourceTypeAsync(FetchDataSourceReferencesForResourceTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> fetchUsableBackupVaultsAsync(FetchUsableBackupVaultsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BackupPlan> getBackupPlanAsync(GetBackupPlanRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BackupPlanAssociation> getBackupPlanAssociationAsync(GetBackupPlanAssociationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupPlanRevision> getBackupPlanRevisionAsync(GetBackupPlanRevisionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BackupVault> getBackupVaultAsync(GetBackupVaultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DataSource> getDataSourceAsync(GetDataSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataSourceReference> getDataSourceReferenceAsync(GetDataSourceReferenceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ManagementServer> getManagementServerAsync(GetManagementServerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> initializeServiceAsync(InitializeServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupPlanAssociationsAsync(ListBackupPlanAssociationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupPlanRevisionsAsync(ListBackupPlanRevisionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupPlansAsync(ListBackupPlansRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupVaultsAsync(ListBackupVaultsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
@@ -118,6 +132,8 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> restoreBackupAsync(RestoreBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> triggerBackupAsync(TriggerBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateBackupPlanAsync(UpdateBackupPlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateBackupPlanAssociationAsync(UpdateBackupPlanAssociationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateBackupVaultAsync(UpdateBackupVaultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateDataSourceAsync(UpdateDataSourceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
@@ -294,6 +310,31 @@ final class BackupDRClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * backup_plan_revision resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $backupPlan
+     * @param string $revision
+     *
+     * @return string The formatted backup_plan_revision resource.
+     */
+    public static function backupPlanRevisionName(
+        string $project,
+        string $location,
+        string $backupPlan,
+        string $revision
+    ): string {
+        return self::getPathTemplate('backupPlanRevision')->render([
+            'project' => $project,
+            'location' => $location,
+            'backup_plan' => $backupPlan,
+            'revision' => $revision,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a backup_vault
      * resource.
      *
@@ -338,6 +379,45 @@ final class BackupDRClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * data_source_reference resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataSourceReference
+     *
+     * @return string The formatted data_source_reference resource.
+     */
+    public static function dataSourceReferenceName(
+        string $project,
+        string $location,
+        string $dataSourceReference
+    ): string {
+        return self::getPathTemplate('dataSourceReference')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_source_reference' => $dataSourceReference,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a instance
+     * resource.
+     *
+     * @param string $project
+     * @param string $instance
+     *
+     * @return string The formatted instance resource.
+     */
+    public static function instanceName(string $project, string $instance): string
+    {
+        return self::getPathTemplate('instance')->render([
+            'project' => $project,
+            'instance' => $instance,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -374,16 +454,39 @@ final class BackupDRClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a storage_pool
+     * resource.
+     *
+     * @param string $project
+     * @param string $zone
+     * @param string $storagePool
+     *
+     * @return string The formatted storage_pool resource.
+     */
+    public static function storagePoolName(string $project, string $zone, string $storagePool): string
+    {
+        return self::getPathTemplate('storagePool')->render([
+            'project' => $project,
+            'zone' => $zone,
+            'storage_pool' => $storagePool,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - backup: projects/{project}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}/backups/{backup}
      * - backupPlan: projects/{project}/locations/{location}/backupPlans/{backup_plan}
      * - backupPlanAssociation: projects/{project}/locations/{location}/backupPlanAssociations/{backup_plan_association}
+     * - backupPlanRevision: projects/{project}/locations/{location}/backupPlans/{backup_plan}/revisions/{revision}
      * - backupVault: projects/{project}/locations/{location}/backupVaults/{backupvault}
      * - dataSource: projects/{project}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}
+     * - dataSourceReference: projects/{project}/locations/{location}/dataSourceReferences/{data_source_reference}
+     * - instance: projects/{project}/instances/{instance}
      * - location: projects/{project}/locations/{location}
      * - managementServer: projects/{project}/locations/{location}/managementServers/{managementserver}
+     * - storagePool: projects/{project}/zones/{zone}/storagePools/{storage_pool}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -727,6 +830,64 @@ final class BackupDRClient
     }
 
     /**
+     * List BackupPlanAssociations for a given resource type.
+     *
+     * The async variant is
+     * {@see BackupDRClient::fetchBackupPlanAssociationsForResourceTypeAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/fetch_backup_plan_associations_for_resource_type.php
+     *
+     * @param FetchBackupPlanAssociationsForResourceTypeRequest $request     A request to house fields associated with the call.
+     * @param array                                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function fetchBackupPlanAssociationsForResourceType(
+        FetchBackupPlanAssociationsForResourceTypeRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('FetchBackupPlanAssociationsForResourceType', $request, $callOptions);
+    }
+
+    /**
+     * Fetch DataSourceReferences for a given project, location and resource type.
+     *
+     * The async variant is
+     * {@see BackupDRClient::fetchDataSourceReferencesForResourceTypeAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/fetch_data_source_references_for_resource_type.php
+     *
+     * @param FetchDataSourceReferencesForResourceTypeRequest $request     A request to house fields associated with the call.
+     * @param array                                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function fetchDataSourceReferencesForResourceType(
+        FetchDataSourceReferencesForResourceTypeRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('FetchDataSourceReferencesForResourceType', $request, $callOptions);
+    }
+
+    /**
      * FetchUsableBackupVaults lists usable BackupVaults in a given project and
      * location. Usable BackupVault are the ones that user has
      * backupdr.backupVaults.get permission.
@@ -837,6 +998,34 @@ final class BackupDRClient
     }
 
     /**
+     * Gets details of a single BackupPlanRevision.
+     *
+     * The async variant is {@see BackupDRClient::getBackupPlanRevisionAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/get_backup_plan_revision.php
+     *
+     * @param GetBackupPlanRevisionRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BackupPlanRevision
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getBackupPlanRevision(
+        GetBackupPlanRevisionRequest $request,
+        array $callOptions = []
+    ): BackupPlanRevision {
+        return $this->startApiCall('GetBackupPlanRevision', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets details of a BackupVault.
      *
      * The async variant is {@see BackupDRClient::getBackupVaultAsync()} .
@@ -886,6 +1075,34 @@ final class BackupDRClient
     public function getDataSource(GetDataSourceRequest $request, array $callOptions = []): DataSource
     {
         return $this->startApiCall('GetDataSource', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single DataSourceReference.
+     *
+     * The async variant is {@see BackupDRClient::getDataSourceReferenceAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/get_data_source_reference.php
+     *
+     * @param GetDataSourceReferenceRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DataSourceReference
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getDataSourceReference(
+        GetDataSourceReferenceRequest $request,
+        array $callOptions = []
+    ): DataSourceReference {
+        return $this->startApiCall('GetDataSourceReference', $request, $callOptions)->wait();
     }
 
     /**
@@ -966,6 +1183,34 @@ final class BackupDRClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('ListBackupPlanAssociations', $request, $callOptions);
+    }
+
+    /**
+     * Lists BackupPlanRevisions in a given project and location.
+     *
+     * The async variant is {@see BackupDRClient::listBackupPlanRevisionsAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/list_backup_plan_revisions.php
+     *
+     * @param ListBackupPlanRevisionsRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listBackupPlanRevisions(
+        ListBackupPlanRevisionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListBackupPlanRevisions', $request, $callOptions);
     }
 
     /**
@@ -1176,6 +1421,60 @@ final class BackupDRClient
     public function updateBackup(UpdateBackupRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Update a BackupPlan.
+     *
+     * The async variant is {@see BackupDRClient::updateBackupPlanAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/update_backup_plan.php
+     *
+     * @param UpdateBackupPlanRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateBackupPlan(UpdateBackupPlanRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateBackupPlan', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Update a BackupPlanAssociation.
+     *
+     * The async variant is {@see BackupDRClient::updateBackupPlanAssociationAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/update_backup_plan_association.php
+     *
+     * @param UpdateBackupPlanAssociationRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateBackupPlanAssociation(
+        UpdateBackupPlanAssociationRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateBackupPlanAssociation', $request, $callOptions)->wait();
     }
 
     /**

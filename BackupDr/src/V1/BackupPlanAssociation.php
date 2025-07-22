@@ -32,8 +32,12 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
      */
     protected $resource_type = '';
     /**
-     * Required. Immutable. Resource name of workload on which backupplan is
-     * applied
+     * Required. Immutable. Resource name of workload on which the backup plan is
+     * applied.
+     * The format can either be the resource name (e.g.,
+     * "projects/my-project/zones/us-central1-a/instances/my-instance") or the
+     * full resource URI (e.g.,
+     * "https://www.googleapis.com/compute/v1/projects/my-project/zones/us-central1-a/instances/my-instance").
      *
      * Generated from protobuf field <code>string resource = 3 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -78,6 +82,22 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string data_source = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $data_source = '';
+    /**
+     * Output only. The user friendly revision ID of the `BackupPlanRevision`.
+     * Example: v0, v1, v2, etc.
+     *
+     * Generated from protobuf field <code>string backup_plan_revision_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $backup_plan_revision_id = '';
+    /**
+     * Output only. The resource id of the `BackupPlanRevision`.
+     * Format:
+     * `projects/{project}/locations/{location}/backupPlans/{backup_plan}/revisions/{revision_id}`
+     *
+     * Generated from protobuf field <code>string backup_plan_revision_name = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $backup_plan_revision_name = '';
+    protected $resource_properties;
 
     /**
      * Constructor.
@@ -93,8 +113,12 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
      *           Required. Immutable. Resource type of workload on which backupplan is
      *           applied
      *     @type string $resource
-     *           Required. Immutable. Resource name of workload on which backupplan is
-     *           applied
+     *           Required. Immutable. Resource name of workload on which the backup plan is
+     *           applied.
+     *           The format can either be the resource name (e.g.,
+     *           "projects/my-project/zones/us-central1-a/instances/my-instance") or the
+     *           full resource URI (e.g.,
+     *           "https://www.googleapis.com/compute/v1/projects/my-project/zones/us-central1-a/instances/my-instance").
      *     @type string $backup_plan
      *           Required. Resource name of backup plan which needs to be applied on
      *           workload. Format:
@@ -111,6 +135,15 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
      *           Output only. Resource name of data source which will be used as storage
      *           location for backups taken. Format :
      *           projects/{project}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}
+     *     @type \Google\Cloud\BackupDR\V1\CloudSqlInstanceBackupPlanAssociationProperties $cloud_sql_instance_backup_plan_association_properties
+     *           Output only. Cloud SQL instance's backup plan association properties.
+     *     @type string $backup_plan_revision_id
+     *           Output only. The user friendly revision ID of the `BackupPlanRevision`.
+     *           Example: v0, v1, v2, etc.
+     *     @type string $backup_plan_revision_name
+     *           Output only. The resource id of the `BackupPlanRevision`.
+     *           Format:
+     *           `projects/{project}/locations/{location}/backupPlans/{backup_plan}/revisions/{revision_id}`
      * }
      */
     public function __construct($data = NULL) {
@@ -177,8 +210,12 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. Resource name of workload on which backupplan is
-     * applied
+     * Required. Immutable. Resource name of workload on which the backup plan is
+     * applied.
+     * The format can either be the resource name (e.g.,
+     * "projects/my-project/zones/us-central1-a/instances/my-instance") or the
+     * full resource URI (e.g.,
+     * "https://www.googleapis.com/compute/v1/projects/my-project/zones/us-central1-a/instances/my-instance").
      *
      * Generated from protobuf field <code>string resource = 3 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -189,8 +226,12 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. Resource name of workload on which backupplan is
-     * applied
+     * Required. Immutable. Resource name of workload on which the backup plan is
+     * applied.
+     * The format can either be the resource name (e.g.,
+     * "projects/my-project/zones/us-central1-a/instances/my-instance") or the
+     * full resource URI (e.g.,
+     * "https://www.googleapis.com/compute/v1/projects/my-project/zones/us-central1-a/instances/my-instance").
      *
      * Generated from protobuf field <code>string resource = 3 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -386,6 +427,103 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
         $this->data_source = $var;
 
         return $this;
+    }
+
+    /**
+     * Output only. Cloud SQL instance's backup plan association properties.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.CloudSqlInstanceBackupPlanAssociationProperties cloud_sql_instance_backup_plan_association_properties = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\BackupDR\V1\CloudSqlInstanceBackupPlanAssociationProperties|null
+     */
+    public function getCloudSqlInstanceBackupPlanAssociationProperties()
+    {
+        return $this->readOneof(10);
+    }
+
+    public function hasCloudSqlInstanceBackupPlanAssociationProperties()
+    {
+        return $this->hasOneof(10);
+    }
+
+    /**
+     * Output only. Cloud SQL instance's backup plan association properties.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.CloudSqlInstanceBackupPlanAssociationProperties cloud_sql_instance_backup_plan_association_properties = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\BackupDR\V1\CloudSqlInstanceBackupPlanAssociationProperties $var
+     * @return $this
+     */
+    public function setCloudSqlInstanceBackupPlanAssociationProperties($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\CloudSqlInstanceBackupPlanAssociationProperties::class);
+        $this->writeOneof(10, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. The user friendly revision ID of the `BackupPlanRevision`.
+     * Example: v0, v1, v2, etc.
+     *
+     * Generated from protobuf field <code>string backup_plan_revision_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getBackupPlanRevisionId()
+    {
+        return $this->backup_plan_revision_id;
+    }
+
+    /**
+     * Output only. The user friendly revision ID of the `BackupPlanRevision`.
+     * Example: v0, v1, v2, etc.
+     *
+     * Generated from protobuf field <code>string backup_plan_revision_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBackupPlanRevisionId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->backup_plan_revision_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The resource id of the `BackupPlanRevision`.
+     * Format:
+     * `projects/{project}/locations/{location}/backupPlans/{backup_plan}/revisions/{revision_id}`
+     *
+     * Generated from protobuf field <code>string backup_plan_revision_name = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getBackupPlanRevisionName()
+    {
+        return $this->backup_plan_revision_name;
+    }
+
+    /**
+     * Output only. The resource id of the `BackupPlanRevision`.
+     * Format:
+     * `projects/{project}/locations/{location}/backupPlans/{backup_plan}/revisions/{revision_id}`
+     *
+     * Generated from protobuf field <code>string backup_plan_revision_name = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBackupPlanRevisionName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->backup_plan_revision_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResourceProperties()
+    {
+        return $this->whichOneof("resource_properties");
     }
 
 }

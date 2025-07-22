@@ -32,6 +32,22 @@ class GCPBackupPlanInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string backup_plan_rule_id = 2;</code>
      */
     protected $backup_plan_rule_id = '';
+    /**
+     * Resource name of the backup plan revision which triggered this backup in
+     * case of scheduled backup or used for on demand backup.
+     * Format:
+     * projects/{project}/locations/{location}/backupPlans/{backupPlanId}/revisions/{revisionId}
+     *
+     * Generated from protobuf field <code>string backup_plan_revision_name = 3;</code>
+     */
+    protected $backup_plan_revision_name = '';
+    /**
+     * The user friendly id of the backup plan revision which triggered this
+     * backup in case of scheduled backup or used for on demand backup.
+     *
+     * Generated from protobuf field <code>string backup_plan_revision_id = 4;</code>
+     */
+    protected $backup_plan_revision_id = '';
 
     /**
      * Constructor.
@@ -47,6 +63,14 @@ class GCPBackupPlanInfo extends \Google\Protobuf\Internal\Message
      *     @type string $backup_plan_rule_id
      *           The rule id of the backup plan which triggered this backup in case of
      *           scheduled backup or used for
+     *     @type string $backup_plan_revision_name
+     *           Resource name of the backup plan revision which triggered this backup in
+     *           case of scheduled backup or used for on demand backup.
+     *           Format:
+     *           projects/{project}/locations/{location}/backupPlans/{backupPlanId}/revisions/{revisionId}
+     *     @type string $backup_plan_revision_id
+     *           The user friendly id of the backup plan revision which triggered this
+     *           backup in case of scheduled backup or used for on demand backup.
      * }
      */
     public function __construct($data = NULL) {
@@ -110,6 +134,66 @@ class GCPBackupPlanInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->backup_plan_rule_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Resource name of the backup plan revision which triggered this backup in
+     * case of scheduled backup or used for on demand backup.
+     * Format:
+     * projects/{project}/locations/{location}/backupPlans/{backupPlanId}/revisions/{revisionId}
+     *
+     * Generated from protobuf field <code>string backup_plan_revision_name = 3;</code>
+     * @return string
+     */
+    public function getBackupPlanRevisionName()
+    {
+        return $this->backup_plan_revision_name;
+    }
+
+    /**
+     * Resource name of the backup plan revision which triggered this backup in
+     * case of scheduled backup or used for on demand backup.
+     * Format:
+     * projects/{project}/locations/{location}/backupPlans/{backupPlanId}/revisions/{revisionId}
+     *
+     * Generated from protobuf field <code>string backup_plan_revision_name = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBackupPlanRevisionName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->backup_plan_revision_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The user friendly id of the backup plan revision which triggered this
+     * backup in case of scheduled backup or used for on demand backup.
+     *
+     * Generated from protobuf field <code>string backup_plan_revision_id = 4;</code>
+     * @return string
+     */
+    public function getBackupPlanRevisionId()
+    {
+        return $this->backup_plan_revision_id;
+    }
+
+    /**
+     * The user friendly id of the backup plan revision which triggered this
+     * backup in case of scheduled backup or used for on demand backup.
+     *
+     * Generated from protobuf field <code>string backup_plan_revision_id = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBackupPlanRevisionId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->backup_plan_revision_id = $var;
 
         return $this;
     }
