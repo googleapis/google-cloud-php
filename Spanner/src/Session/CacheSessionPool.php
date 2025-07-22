@@ -126,11 +126,24 @@ class CacheSessionPool implements SessionPoolInterface
 {
     use SysvTrait;
 
-    private const CACHE_KEY_TEMPLATE = 'cache-session-pool.%s.%s.%s';
-    private const DURATION_SESSION_LIFETIME = 28 * 24 * 3600; // 28 days
-    const DURATION_SESSION_REFRESH = 6 * 24 * 3600; // 6 days
+    const CACHE_KEY_TEMPLATE = 'cache-session-pool.%s.%s.%s';
+    const DURATION_SESSION_LIFETIME = 28 * 24 * 3600; // 28 days
     const DURATION_TWENTY_MINUTES = 1200;
     const DURATION_ONE_MINUTE = 60;
+    const WINDOW_SIZE = 600;
+
+    /**
+     * @var array
+     */
+    private static $defaultConfig = [
+        'maxSessions' => 500,
+        'minSessions' => 1,
+        'shouldWaitForSession' => true,
+        'maxCyclesToWaitForSession' => 30,
+        'sleepIntervalSeconds' => .5,
+        'shouldAutoDownsize' => true,
+        'labels' => [],
+    ];
 
     /**
      * @var CacheItemPoolInterface
