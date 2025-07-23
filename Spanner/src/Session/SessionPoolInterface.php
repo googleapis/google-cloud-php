@@ -26,7 +26,7 @@ interface SessionPoolInterface
 {
     const CONTEXT_READ = 'r';
     const CONTEXT_READWRITE = 'rw';
-    const SESSION_EXPIRATION_SECONDS = 3600;
+    const SESSION_EXPIRATION_SECONDS = 7 * 24 * 3600; // 7 days;
 
     /**
      * Acquire a session from the pool.
