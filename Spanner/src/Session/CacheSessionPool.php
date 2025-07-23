@@ -126,24 +126,11 @@ class CacheSessionPool implements SessionPoolInterface
 {
     use SysvTrait;
 
-    const CACHE_KEY_TEMPLATE = 'cache-session-pool.%s.%s.%s';
-    const DURATION_SESSION_LIFETIME = 28 * 24 * 3600; // 28 days
-    const DURATION_TWENTY_MINUTES = 1200;
-    const DURATION_ONE_MINUTE = 60;
-    const WINDOW_SIZE = 600;
-
-    /**
-     * @var array
-     */
-    private static $defaultConfig = [
-        'maxSessions' => 500,
-        'minSessions' => 1,
-        'shouldWaitForSession' => true,
-        'maxCyclesToWaitForSession' => 30,
-        'sleepIntervalSeconds' => .5,
-        'shouldAutoDownsize' => true,
-        'labels' => [],
-    ];
+    private const CACHE_KEY_TEMPLATE = 'cache-session-pool.%s.%s.%s';
+    private const DURATION_SESSION_LIFETIME = 28 * 24 * 3600; // 28 days
+    private const DURATION_TWENTY_MINUTES = 1200;
+    private const DURATION_ONE_MINUTE = 60;
+    private const WINDOW_SIZE = 600;
 
     /**
      * @var CacheItemPoolInterface
@@ -155,10 +142,7 @@ class CacheSessionPool implements SessionPoolInterface
      */
     private $cacheKey;
 
-    /**
-     * @var array
-     */
-    private $config;
+    private LockInterface $lock;
 
     /**
      * @var Database|null
@@ -175,40 +159,18 @@ class CacheSessionPool implements SessionPoolInterface
      */
     private $deleteQueue = [];
 
+    private string $databaseRole;
+
     /**
      * @param CacheItemPoolInterface $cacheItemPool A PSR-6 compatible cache
      *        implementation used to store the session data.
      * @param array $config [optional] {
      *     Configuration Options.
      *
-     *     @type int $maxSessions The maximum number of sessions to store in the
-     *           pool. **Defaults to** `500`.
-     *     @type int $minSessions The minimum number of sessions to store in the
-     *           pool. **Defaults to** `1`.
-     *     @type bool $shouldWaitForSession If the pool is full, whether to block
-     *           until a new session is available. **Defaults to* `true`.
-     *     @type int $maxCyclesToWaitForSession The maximum number cycles to
-     *           wait for a session before throwing an exception. **Defaults to**
-     *           `30`. Ignored when $shouldWaitForSession is `false`.
-     *     @type float $sleepIntervalSeconds The sleep interval between cycles.
-     *           **Defaults to** `0.5`. Ignored when $shouldWaitForSession is
-     *           `false`.
      *     @type LockInterface $lock A lock implementation capable of blocking.
      *           **Defaults to** a semaphore based implementation if the
      *           required extensions are installed, otherwise an flock based
      *           implementation.
-     *     @type bool $shouldAutoDownsize Determines whether or not to
-     *           automatically attempt to downsize the pool after every 10
-     *           minute window. **Defaults to** `true`.
-     *     @type array $labels Labels to be applied to each session created in
-     *           the pool. Label keys must be between 1 and 63 characters long
-     *           and must conform to the following regular expression:
-     *           `[a-z]([-a-z0-9]*[a-z0-9])?`. Label values must be between 0
-     *           and 63 characters long and must conform to the regular
-     *           expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`. No more than 64
-     *           labels can be associated with a given session. See
-     *           https://goo.gl/xmQnxf for more information on and examples of
-     *           labels.
      *     @type string $databaseRole The user created database role which creates the session.
      * }
      * @throws \InvalidArgumentException
@@ -216,8 +178,12 @@ class CacheSessionPool implements SessionPoolInterface
     public function __construct(CacheItemPoolInterface $cacheItemPool, array $config = [])
     {
         $this->cacheItemPool = $cacheItemPool;
-        $this->config = $config + self::$defaultConfig;
-        $this->validateConfig();
+        if (isset($config['lock']) && !$config['lock'] instanceof LockInterface) {
+            throw new \InvalidArgumentException('The lock must implement ' . LockInterface::class);
+        }
+
+        $this->lock = $config['lock'] ?? $this->getDefaultLock();
+        $this->databaseRole = $config['databaseRole'] ?? '';
     }
 
     /**
@@ -232,7 +198,7 @@ class CacheSessionPool implements SessionPoolInterface
     {
         // Try to get a session, run maintenance on the pool, and calculate if
         // we need to create any new sessions.
-        [$session, $toCreate] = $this->config['lock']->synchronize(function () {
+        [$session, $toCreate] = $this->lock->synchronize(function () {
             $toCreate = [];
             $session = null;
             $shouldSave = false;
@@ -246,7 +212,7 @@ class CacheSessionPool implements SessionPoolInterface
             if ($data['queue']) {
                 $session = $this->getSession($data);
                 $shouldSave = true;
-            } elseif ($this->config['maxSessions'] <= $this->getSessionCount($data)) {
+            } else {
                 $this->purgeOrphanedInUseSessions($data);
                 $this->purgeOrphanedToCreateItems($data);
                 $session = $this->getSession($data);
@@ -276,7 +242,7 @@ class CacheSessionPool implements SessionPoolInterface
             list($createdSessions, $exception) = $this->createSessions(count($toCreate));
             $hasCreatedSessions = count($createdSessions) > 0;
 
-            $session = $this->config['lock']->synchronize(function () use (
+            $session = $this->lock->synchronize(function () use (
                 $toCreate,
                 $createdSessions,
                 $hasCreatedSessions
@@ -345,7 +311,7 @@ class CacheSessionPool implements SessionPoolInterface
      */
     public function release(Session $session)
     {
-        $this->config['lock']->synchronize(function () use ($session) {
+        $this->lock->synchronize(function () use ($session) {
             $item = $this->cacheItemPool->getItem($this->cacheKey);
             $data = $item->get();
             $name = $session->name();
@@ -381,7 +347,7 @@ class CacheSessionPool implements SessionPoolInterface
      */
     public function keepAlive(Session $session)
     {
-        $this->config['lock']->synchronize(function () use ($session) {
+        $this->lock->synchronize(function () use ($session) {
             $item = $this->cacheItemPool->getItem($this->cacheKey);
             $data = $item->get();
             $data['inUse'][$session->name()]['lastActive'] = $this->time();
@@ -412,7 +378,7 @@ class CacheSessionPool implements SessionPoolInterface
             throw new \InvalidArgumentException('The provided percent must be between 1 and 100.');
         }
 
-        $toDelete = $this->config['lock']->synchronize(function () use ($percent) {
+        $toDelete = $this->lock->synchronize(function () use ($percent) {
             $item = $this->cacheItemPool->getItem($this->cacheKey);
             $data = (array) $item->get() ?: $this->initialize();
             $toDelete = [];
@@ -451,7 +417,7 @@ class CacheSessionPool implements SessionPoolInterface
      */
     public function warmup()
     {
-        $toCreate = $this->config['lock']->synchronize(function () {
+        $toCreate = $this->lock->synchronize(function () {
             $item = $this->cacheItemPool->getItem($this->cacheKey);
             $data = (array) $item->get() ?: $this->initialize();
             $count = $this->getSessionCount($data);
@@ -473,7 +439,7 @@ class CacheSessionPool implements SessionPoolInterface
         $exception = null;
         list($createdSessions, $exception) = $this->createSessions(count($toCreate));
 
-        $this->config['lock']->synchronize(function () use ($toCreate, $createdSessions) {
+        $this->lock->synchronize(function () use ($toCreate, $createdSessions) {
             $item = $this->cacheItemPool->getItem($this->cacheKey);
             $data = $item->get();
             $data['queue'] = array_merge($data['queue'], $createdSessions);
@@ -507,7 +473,7 @@ class CacheSessionPool implements SessionPoolInterface
      */
     public function clear()
     {
-        $sessions = $this->config['lock']->synchronize(function () {
+        $sessions = $this->lock->synchronize(function () {
             $item = $this->cacheItemPool->getItem($this->cacheKey);
             $data = (array) $item->get() ?: $this->initialize();
             $sessions = $data['queue'] + $data['inUse'];
@@ -534,10 +500,6 @@ class CacheSessionPool implements SessionPoolInterface
             $identity['instance'],
             $identity['database']
         );
-
-        if (!isset($this->config['lock'])) {
-            $this->config['lock'] = $this->getDefaultLock();
-        }
     }
 
     /**
@@ -693,7 +655,7 @@ class CacheSessionPool implements SessionPoolInterface
                 $res = $this->database->batchCreateSessions([
                     'sessionTemplate' => [
                         'labels' => isset($this->config['labels']) ? $this->config['labels'] : [],
-                        'creator_role' => isset($this->config['databaseRole']) ? $this->config['databaseRole'] : ''
+                        'creator_role' => $this->databaseRole,
                     ],
                     'sessionCount' => $count - $created
                 ]);
@@ -758,7 +720,7 @@ class CacheSessionPool implements SessionPoolInterface
             return $session;
         }
 
-        $this->config['lock']->synchronize(function () use ($session) {
+        $this->lock->synchronize(function () use ($session) {
             $item = $this->cacheItemPool->getItem($this->cacheKey);
             $data = $item->get();
             unset($data['inUse'][$session['name']]);
@@ -780,7 +742,7 @@ class CacheSessionPool implements SessionPoolInterface
         $elapsedCycles = 0;
 
         while (true) {
-            $session = $this->config['lock']->synchronize(function () use ($elapsedCycles, $exception) {
+            $session = $this->lock->synchronize(function () use ($elapsedCycles, $exception) {
                 $item = $this->cacheItemPool->getItem($this->cacheKey);
                 $data = $item->get();
                 $session = $this->getSession($data);
@@ -830,32 +792,6 @@ class CacheSessionPool implements SessionPoolInterface
         }
 
         return new FlockLock($this->cacheKey);
-    }
-
-    /**
-     * Validate the config.
-     *
-     * @throws \InvalidArgumentException
-     */
-    private function validateConfig()
-    {
-        $mustBePositiveKeys = ['maxCyclesToWaitForSession', 'maxSessions', 'minSessions', 'sleepIntervalSeconds'];
-
-        foreach ($mustBePositiveKeys as $key) {
-            if ($this->config[$key] < 0) {
-                throw new \InvalidArgumentException("$key may not be negative");
-            }
-        }
-
-        if ($this->config['maxSessions'] < $this->config['minSessions']) {
-            throw new \InvalidArgumentException('minSessions cannot exceed maxSessions');
-        }
-
-        if (isset($this->config['lock']) && !$this->config['lock'] instanceof LockInterface) {
-            throw new \InvalidArgumentException(
-                'The lock must implement Google\Cloud\Core\Lock\LockInterface'
-            );
-        }
     }
 
     /**
@@ -945,7 +881,7 @@ class CacheSessionPool implements SessionPoolInterface
             throw new \LogicException('Cannot maintain session pool: database not set.');
         }
 
-        $this->config['lock']->synchronize(function () {
+        $this->lock->synchronize(function () {
             $cacheItem = $this->cacheItemPool->getItem($this->cacheKey);
             $cachedData = $cacheItem->get();
             if (!$cachedData) {
