@@ -109,12 +109,21 @@ $ export GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH='/path/to/keyfile.json'
 ## Coding Style
 
 Please follow the established coding style in the library. Google Cloud PHP follows the [PSR-2](https://www.php-fig.org/psr/psr-2/) Coding Style.
+This is enforced using both [PHP CS Fixer](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer) and [PHP Code Sniffer](https://github.com/squizlabs/PHP_CodeSniffer).
 
-You can check your code against these rules by running PHPCS with the proper ruleset, like this:
+You can run both of these checks using the `style-check` composer script:
 
 ```sh
-$ composer style
+$ composer style-check
 ```
+
+If these changes look correct, you can automatically fix the issues by running this command:
+
+```sh
+$ composer style-fix
+```
+
+**NOTE**: PHP CS Fixer does not check for or fix line lengths or trailing whitespace, which is the primary reason we use both libraries.
 
 ## Owlbot
 
