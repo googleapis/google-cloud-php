@@ -280,8 +280,6 @@ trait ApiHelperTrait
                 $splitOptions[] = $this->pluckArray($optionType, $options);
             } elseif (is_string($optionType)) {
                 if (is_subclass_of($optionType, Message::class)) {
-                    $r = new \ReflectionClass($optionType);
-                    $optionType = $r->newInstanceWithoutConstructor();
                     $messageKeys = array_map(
                         fn ($method) => lcfirst(substr($method, 3)),
                         array_filter(
