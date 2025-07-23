@@ -42,22 +42,64 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\Cloud\SecureSourceManager\V1\BatchCreatePullRequestCommentsRequest;
 use Google\Cloud\SecureSourceManager\V1\BranchRule;
+use Google\Cloud\SecureSourceManager\V1\CloseIssueRequest;
+use Google\Cloud\SecureSourceManager\V1\ClosePullRequestRequest;
 use Google\Cloud\SecureSourceManager\V1\CreateBranchRuleRequest;
+use Google\Cloud\SecureSourceManager\V1\CreateHookRequest;
 use Google\Cloud\SecureSourceManager\V1\CreateInstanceRequest;
+use Google\Cloud\SecureSourceManager\V1\CreateIssueCommentRequest;
+use Google\Cloud\SecureSourceManager\V1\CreateIssueRequest;
+use Google\Cloud\SecureSourceManager\V1\CreatePullRequestCommentRequest;
+use Google\Cloud\SecureSourceManager\V1\CreatePullRequestRequest;
 use Google\Cloud\SecureSourceManager\V1\CreateRepositoryRequest;
 use Google\Cloud\SecureSourceManager\V1\DeleteBranchRuleRequest;
+use Google\Cloud\SecureSourceManager\V1\DeleteHookRequest;
 use Google\Cloud\SecureSourceManager\V1\DeleteInstanceRequest;
+use Google\Cloud\SecureSourceManager\V1\DeleteIssueCommentRequest;
+use Google\Cloud\SecureSourceManager\V1\DeleteIssueRequest;
+use Google\Cloud\SecureSourceManager\V1\DeletePullRequestCommentRequest;
 use Google\Cloud\SecureSourceManager\V1\DeleteRepositoryRequest;
+use Google\Cloud\SecureSourceManager\V1\FetchBlobRequest;
+use Google\Cloud\SecureSourceManager\V1\FetchBlobResponse;
+use Google\Cloud\SecureSourceManager\V1\FetchTreeRequest;
 use Google\Cloud\SecureSourceManager\V1\GetBranchRuleRequest;
+use Google\Cloud\SecureSourceManager\V1\GetHookRequest;
 use Google\Cloud\SecureSourceManager\V1\GetInstanceRequest;
+use Google\Cloud\SecureSourceManager\V1\GetIssueCommentRequest;
+use Google\Cloud\SecureSourceManager\V1\GetIssueRequest;
+use Google\Cloud\SecureSourceManager\V1\GetPullRequestCommentRequest;
+use Google\Cloud\SecureSourceManager\V1\GetPullRequestRequest;
 use Google\Cloud\SecureSourceManager\V1\GetRepositoryRequest;
+use Google\Cloud\SecureSourceManager\V1\Hook;
 use Google\Cloud\SecureSourceManager\V1\Instance;
+use Google\Cloud\SecureSourceManager\V1\Issue;
+use Google\Cloud\SecureSourceManager\V1\IssueComment;
 use Google\Cloud\SecureSourceManager\V1\ListBranchRulesRequest;
+use Google\Cloud\SecureSourceManager\V1\ListHooksRequest;
 use Google\Cloud\SecureSourceManager\V1\ListInstancesRequest;
+use Google\Cloud\SecureSourceManager\V1\ListIssueCommentsRequest;
+use Google\Cloud\SecureSourceManager\V1\ListIssuesRequest;
+use Google\Cloud\SecureSourceManager\V1\ListPullRequestCommentsRequest;
+use Google\Cloud\SecureSourceManager\V1\ListPullRequestFileDiffsRequest;
+use Google\Cloud\SecureSourceManager\V1\ListPullRequestsRequest;
 use Google\Cloud\SecureSourceManager\V1\ListRepositoriesRequest;
+use Google\Cloud\SecureSourceManager\V1\MergePullRequestRequest;
+use Google\Cloud\SecureSourceManager\V1\OpenIssueRequest;
+use Google\Cloud\SecureSourceManager\V1\OpenPullRequestRequest;
+use Google\Cloud\SecureSourceManager\V1\PullRequest;
+use Google\Cloud\SecureSourceManager\V1\PullRequestComment;
 use Google\Cloud\SecureSourceManager\V1\Repository;
+use Google\Cloud\SecureSourceManager\V1\ResolvePullRequestCommentsRequest;
+use Google\Cloud\SecureSourceManager\V1\UnresolvePullRequestCommentsRequest;
 use Google\Cloud\SecureSourceManager\V1\UpdateBranchRuleRequest;
+use Google\Cloud\SecureSourceManager\V1\UpdateHookRequest;
+use Google\Cloud\SecureSourceManager\V1\UpdateIssueCommentRequest;
+use Google\Cloud\SecureSourceManager\V1\UpdateIssueRequest;
+use Google\Cloud\SecureSourceManager\V1\UpdatePullRequestCommentRequest;
+use Google\Cloud\SecureSourceManager\V1\UpdatePullRequestRequest;
+use Google\Cloud\SecureSourceManager\V1\UpdateRepositoryRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -68,23 +110,6 @@ use Psr\Log\LoggerInterface;
  *
  * Access Secure Source Manager instances, resources, and repositories.
  *
- * This API is split across two servers: the Control Plane and the Data Plane.
- *
- * Data Plane endpoints are hosted directly by your Secure Source Manager
- * instance, so you must connect to your instance's API hostname to access
- * them. The API hostname looks like the following:
- *
- * https://[instance-id]-[project-number]-api.[location].sourcemanager.dev
- *
- * For example,
- *
- * https://my-instance-702770452863-api.us-central1.sourcemanager.dev
- *
- * Data Plane endpoints are denoted with **Host: Data Plane**.
- *
- * All other endpoints are found in the normal Cloud API location, namely,
- * `securcesourcemanager.googleapis.com`.
- *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
@@ -93,22 +118,58 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<OperationResponse> batchCreatePullRequestCommentsAsync(BatchCreatePullRequestCommentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> closeIssueAsync(CloseIssueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> closePullRequestAsync(ClosePullRequestRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createBranchRuleAsync(CreateBranchRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createHookAsync(CreateHookRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createIssueAsync(CreateIssueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createIssueCommentAsync(CreateIssueCommentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createPullRequestAsync(CreatePullRequestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createPullRequestCommentAsync(CreatePullRequestCommentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createRepositoryAsync(CreateRepositoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteBranchRuleAsync(DeleteBranchRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteHookAsync(DeleteHookRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteIssueAsync(DeleteIssueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteIssueCommentAsync(DeleteIssueCommentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deletePullRequestCommentAsync(DeletePullRequestCommentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteRepositoryAsync(DeleteRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FetchBlobResponse> fetchBlobAsync(FetchBlobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> fetchTreeAsync(FetchTreeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BranchRule> getBranchRuleAsync(GetBranchRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Hook> getHookAsync(GetHookRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> getIamPolicyRepoAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Instance> getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Issue> getIssueAsync(GetIssueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IssueComment> getIssueCommentAsync(GetIssueCommentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PullRequest> getPullRequestAsync(GetPullRequestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PullRequestComment> getPullRequestCommentAsync(GetPullRequestCommentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Repository> getRepositoryAsync(GetRepositoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBranchRulesAsync(ListBranchRulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listHooksAsync(ListHooksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listIssueCommentsAsync(ListIssueCommentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listIssuesAsync(ListIssuesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPullRequestCommentsAsync(ListPullRequestCommentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPullRequestFileDiffsAsync(ListPullRequestFileDiffsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPullRequestsAsync(ListPullRequestsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listRepositoriesAsync(ListRepositoriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> mergePullRequestAsync(MergePullRequestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> openIssueAsync(OpenIssueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> openPullRequestAsync(OpenPullRequestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> resolvePullRequestCommentsAsync(ResolvePullRequestCommentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyRepoAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsRepoAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> unresolvePullRequestCommentsAsync(UnresolvePullRequestCommentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateBranchRuleAsync(UpdateBranchRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateHookAsync(UpdateHookRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateIssueAsync(UpdateIssueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateIssueCommentAsync(UpdateIssueCommentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updatePullRequestAsync(UpdatePullRequestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updatePullRequestCommentAsync(UpdatePullRequestCommentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateRepositoryAsync(UpdateRepositoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
@@ -279,6 +340,27 @@ final class SecureSourceManagerClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a hook
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $repository
+     * @param string $hook
+     *
+     * @return string The formatted hook resource.
+     */
+    public static function hookName(string $project, string $location, string $repository, string $hook): string
+    {
+        return self::getPathTemplate('hook')->render([
+            'project' => $project,
+            'location' => $location,
+            'repository' => $repository,
+            'hook' => $hook,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a instance
      * resource.
      *
@@ -298,6 +380,55 @@ final class SecureSourceManagerClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a issue
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $repository
+     * @param string $issue
+     *
+     * @return string The formatted issue resource.
+     */
+    public static function issueName(string $project, string $location, string $repository, string $issue): string
+    {
+        return self::getPathTemplate('issue')->render([
+            'project' => $project,
+            'location' => $location,
+            'repository' => $repository,
+            'issue' => $issue,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * issue_comment resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $repository
+     * @param string $issue
+     * @param string $comment
+     *
+     * @return string The formatted issue_comment resource.
+     */
+    public static function issueCommentName(
+        string $project,
+        string $location,
+        string $repository,
+        string $issue,
+        string $comment
+    ): string {
+        return self::getPathTemplate('issueComment')->render([
+            'project' => $project,
+            'location' => $location,
+            'repository' => $repository,
+            'issue' => $issue,
+            'comment' => $comment,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -311,6 +442,59 @@ final class SecureSourceManagerClient
         return self::getPathTemplate('location')->render([
             'project' => $project,
             'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a pull_request
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $repository
+     * @param string $pullRequest
+     *
+     * @return string The formatted pull_request resource.
+     */
+    public static function pullRequestName(
+        string $project,
+        string $location,
+        string $repository,
+        string $pullRequest
+    ): string {
+        return self::getPathTemplate('pullRequest')->render([
+            'project' => $project,
+            'location' => $location,
+            'repository' => $repository,
+            'pull_request' => $pullRequest,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * pull_request_comment resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $repository
+     * @param string $pullRequest
+     * @param string $comment
+     *
+     * @return string The formatted pull_request_comment resource.
+     */
+    public static function pullRequestCommentName(
+        string $project,
+        string $location,
+        string $repository,
+        string $pullRequest,
+        string $comment
+    ): string {
+        return self::getPathTemplate('pullRequestComment')->render([
+            'project' => $project,
+            'location' => $location,
+            'repository' => $repository,
+            'pull_request' => $pullRequest,
+            'comment' => $comment,
         ]);
     }
 
@@ -359,8 +543,13 @@ final class SecureSourceManagerClient
      * - branchRule: projects/{project}/locations/{location}/repositories/{repository}/branchRules/{branch_rule}
      * - caPool: projects/{project}/locations/{location}/caPools/{ca_pool}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
+     * - hook: projects/{project}/locations/{location}/repositories/{repository}/hooks/{hook}
      * - instance: projects/{project}/locations/{location}/instances/{instance}
+     * - issue: projects/{project}/locations/{location}/repositories/{repository}/issues/{issue}
+     * - issueComment: projects/{project}/locations/{location}/repositories/{repository}/issues/{issue}/issueComments/{comment}
      * - location: projects/{project}/locations/{location}
+     * - pullRequest: projects/{project}/locations/{location}/repositories/{repository}/pullRequests/{pull_request}
+     * - pullRequestComment: projects/{project}/locations/{location}/repositories/{repository}/pullRequests/{pull_request}/pullRequestComments/{comment}
      * - repository: projects/{project}/locations/{location}/repositories/{repository}
      * - serviceAttachment: projects/{project}/regions/{region}/serviceAttachments/{service_attachment}
      *
@@ -464,6 +653,87 @@ final class SecureSourceManagerClient
     }
 
     /**
+     * Batch creates pull request comments.
+     *
+     * The async variant is
+     * {@see SecureSourceManagerClient::batchCreatePullRequestCommentsAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/batch_create_pull_request_comments.php
+     *
+     * @param BatchCreatePullRequestCommentsRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchCreatePullRequestComments(
+        BatchCreatePullRequestCommentsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('BatchCreatePullRequestComments', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Closes an issue.
+     *
+     * The async variant is {@see SecureSourceManagerClient::closeIssueAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/close_issue.php
+     *
+     * @param CloseIssueRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function closeIssue(CloseIssueRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CloseIssue', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Closes a pull request without merging.
+     *
+     * The async variant is {@see SecureSourceManagerClient::closePullRequestAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/close_pull_request.php
+     *
+     * @param ClosePullRequestRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function closePullRequest(ClosePullRequestRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ClosePullRequest', $request, $callOptions)->wait();
+    }
+
+    /**
      * CreateBranchRule creates a branch rule in a given repository.
      *
      * The async variant is {@see SecureSourceManagerClient::createBranchRuleAsync()} .
@@ -487,6 +757,32 @@ final class SecureSourceManagerClient
     public function createBranchRule(CreateBranchRuleRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('CreateBranchRule', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new hook in a given repository.
+     *
+     * The async variant is {@see SecureSourceManagerClient::createHookAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/create_hook.php
+     *
+     * @param CreateHookRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createHook(CreateHookRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateHook', $request, $callOptions)->wait();
     }
 
     /**
@@ -516,9 +812,119 @@ final class SecureSourceManagerClient
     }
 
     /**
+     * Creates an issue.
+     *
+     * The async variant is {@see SecureSourceManagerClient::createIssueAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/create_issue.php
+     *
+     * @param CreateIssueRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createIssue(CreateIssueRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateIssue', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates an issue comment.
+     *
+     * The async variant is {@see SecureSourceManagerClient::createIssueCommentAsync()}
+     * .
+     *
+     * @example samples/V1/SecureSourceManagerClient/create_issue_comment.php
+     *
+     * @param CreateIssueCommentRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createIssueComment(CreateIssueCommentRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateIssueComment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a pull request.
+     *
+     * The async variant is {@see SecureSourceManagerClient::createPullRequestAsync()}
+     * .
+     *
+     * @example samples/V1/SecureSourceManagerClient/create_pull_request.php
+     *
+     * @param CreatePullRequestRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createPullRequest(CreatePullRequestRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreatePullRequest', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a pull request comment.
+     *
+     * The async variant is
+     * {@see SecureSourceManagerClient::createPullRequestCommentAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/create_pull_request_comment.php
+     *
+     * @param CreatePullRequestCommentRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createPullRequestComment(
+        CreatePullRequestCommentRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreatePullRequestComment', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new repository in a given project and location.
      *
-     * **Host: Data Plane**
+     * The Repository.Instance field is required in the request body for requests
+     * using the securesourcemanager.googleapis.com endpoint.
      *
      * The async variant is {@see SecureSourceManagerClient::createRepositoryAsync()} .
      *
@@ -570,6 +976,32 @@ final class SecureSourceManagerClient
     }
 
     /**
+     * Deletes a Hook.
+     *
+     * The async variant is {@see SecureSourceManagerClient::deleteHookAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/delete_hook.php
+     *
+     * @param DeleteHookRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteHook(DeleteHookRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteHook', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single instance.
      *
      * The async variant is {@see SecureSourceManagerClient::deleteInstanceAsync()} .
@@ -596,9 +1028,89 @@ final class SecureSourceManagerClient
     }
 
     /**
-     * Deletes a Repository.
+     * Deletes an issue.
      *
-     * **Host: Data Plane**
+     * The async variant is {@see SecureSourceManagerClient::deleteIssueAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/delete_issue.php
+     *
+     * @param DeleteIssueRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteIssue(DeleteIssueRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteIssue', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes an issue comment.
+     *
+     * The async variant is {@see SecureSourceManagerClient::deleteIssueCommentAsync()}
+     * .
+     *
+     * @example samples/V1/SecureSourceManagerClient/delete_issue_comment.php
+     *
+     * @param DeleteIssueCommentRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteIssueComment(DeleteIssueCommentRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteIssueComment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a pull request comment.
+     *
+     * The async variant is
+     * {@see SecureSourceManagerClient::deletePullRequestCommentAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/delete_pull_request_comment.php
+     *
+     * @param DeletePullRequestCommentRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deletePullRequestComment(
+        DeletePullRequestCommentRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeletePullRequestComment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a Repository.
      *
      * The async variant is {@see SecureSourceManagerClient::deleteRepositoryAsync()} .
      *
@@ -621,6 +1133,58 @@ final class SecureSourceManagerClient
     public function deleteRepository(DeleteRepositoryRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteRepository', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetches a blob from a repository.
+     *
+     * The async variant is {@see SecureSourceManagerClient::fetchBlobAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/fetch_blob.php
+     *
+     * @param FetchBlobRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return FetchBlobResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function fetchBlob(FetchBlobRequest $request, array $callOptions = []): FetchBlobResponse
+    {
+        return $this->startApiCall('FetchBlob', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetches a tree from a repository.
+     *
+     * The async variant is {@see SecureSourceManagerClient::fetchTreeAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/fetch_tree.php
+     *
+     * @param FetchTreeRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function fetchTree(FetchTreeRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('FetchTree', $request, $callOptions);
     }
 
     /**
@@ -647,6 +1211,32 @@ final class SecureSourceManagerClient
     public function getBranchRule(GetBranchRuleRequest $request, array $callOptions = []): BranchRule
     {
         return $this->startApiCall('GetBranchRule', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets metadata of a hook.
+     *
+     * The async variant is {@see SecureSourceManagerClient::getHookAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/get_hook.php
+     *
+     * @param GetHookRequest $request     A request to house fields associated with the call.
+     * @param array          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Hook
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getHook(GetHookRequest $request, array $callOptions = []): Hook
+    {
+        return $this->startApiCall('GetHook', $request, $callOptions)->wait();
     }
 
     /**
@@ -702,9 +1292,114 @@ final class SecureSourceManagerClient
     }
 
     /**
-     * Gets metadata of a repository.
+     * Gets an issue.
      *
-     * **Host: Data Plane**
+     * The async variant is {@see SecureSourceManagerClient::getIssueAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/get_issue.php
+     *
+     * @param GetIssueRequest $request     A request to house fields associated with the call.
+     * @param array           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Issue
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getIssue(GetIssueRequest $request, array $callOptions = []): Issue
+    {
+        return $this->startApiCall('GetIssue', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets an issue comment.
+     *
+     * The async variant is {@see SecureSourceManagerClient::getIssueCommentAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/get_issue_comment.php
+     *
+     * @param GetIssueCommentRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return IssueComment
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getIssueComment(GetIssueCommentRequest $request, array $callOptions = []): IssueComment
+    {
+        return $this->startApiCall('GetIssueComment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets a pull request.
+     *
+     * The async variant is {@see SecureSourceManagerClient::getPullRequestAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/get_pull_request.php
+     *
+     * @param GetPullRequestRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PullRequest
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getPullRequest(GetPullRequestRequest $request, array $callOptions = []): PullRequest
+    {
+        return $this->startApiCall('GetPullRequest', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets a pull request comment.
+     *
+     * The async variant is
+     * {@see SecureSourceManagerClient::getPullRequestCommentAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/get_pull_request_comment.php
+     *
+     * @param GetPullRequestCommentRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PullRequestComment
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getPullRequestComment(
+        GetPullRequestCommentRequest $request,
+        array $callOptions = []
+    ): PullRequestComment {
+        return $this->startApiCall('GetPullRequestComment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets metadata of a repository.
      *
      * The async variant is {@see SecureSourceManagerClient::getRepositoryAsync()} .
      *
@@ -756,6 +1451,32 @@ final class SecureSourceManagerClient
     }
 
     /**
+     * Lists hooks in a given repository.
+     *
+     * The async variant is {@see SecureSourceManagerClient::listHooksAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/list_hooks.php
+     *
+     * @param ListHooksRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listHooks(ListHooksRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListHooks', $request, $callOptions);
+    }
+
+    /**
      * Lists Instances in a given project and location.
      *
      * The async variant is {@see SecureSourceManagerClient::listInstancesAsync()} .
@@ -782,9 +1503,147 @@ final class SecureSourceManagerClient
     }
 
     /**
+     * Lists comments in an issue.
+     *
+     * The async variant is {@see SecureSourceManagerClient::listIssueCommentsAsync()}
+     * .
+     *
+     * @example samples/V1/SecureSourceManagerClient/list_issue_comments.php
+     *
+     * @param ListIssueCommentsRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listIssueComments(ListIssueCommentsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListIssueComments', $request, $callOptions);
+    }
+
+    /**
+     * Lists issues in a repository.
+     *
+     * The async variant is {@see SecureSourceManagerClient::listIssuesAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/list_issues.php
+     *
+     * @param ListIssuesRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listIssues(ListIssuesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListIssues', $request, $callOptions);
+    }
+
+    /**
+     * Lists pull request comments.
+     *
+     * The async variant is
+     * {@see SecureSourceManagerClient::listPullRequestCommentsAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/list_pull_request_comments.php
+     *
+     * @param ListPullRequestCommentsRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listPullRequestComments(
+        ListPullRequestCommentsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListPullRequestComments', $request, $callOptions);
+    }
+
+    /**
+     * Lists a pull request's file diffs.
+     *
+     * The async variant is
+     * {@see SecureSourceManagerClient::listPullRequestFileDiffsAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/list_pull_request_file_diffs.php
+     *
+     * @param ListPullRequestFileDiffsRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listPullRequestFileDiffs(
+        ListPullRequestFileDiffsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListPullRequestFileDiffs', $request, $callOptions);
+    }
+
+    /**
+     * Lists pull requests in a repository.
+     *
+     * The async variant is {@see SecureSourceManagerClient::listPullRequestsAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/list_pull_requests.php
+     *
+     * @param ListPullRequestsRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listPullRequests(ListPullRequestsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListPullRequests', $request, $callOptions);
+    }
+
+    /**
      * Lists Repositories in a given project and location.
      *
-     * **Host: Data Plane**
+     * The instance field is required in the query parameter for requests using
+     * the securesourcemanager.googleapis.com endpoint.
      *
      * The async variant is {@see SecureSourceManagerClient::listRepositoriesAsync()} .
      *
@@ -807,6 +1666,113 @@ final class SecureSourceManagerClient
     public function listRepositories(ListRepositoriesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListRepositories', $request, $callOptions);
+    }
+
+    /**
+     * Merges a pull request.
+     *
+     * The async variant is {@see SecureSourceManagerClient::mergePullRequestAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/merge_pull_request.php
+     *
+     * @param MergePullRequestRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function mergePullRequest(MergePullRequestRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('MergePullRequest', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Opens an issue.
+     *
+     * The async variant is {@see SecureSourceManagerClient::openIssueAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/open_issue.php
+     *
+     * @param OpenIssueRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function openIssue(OpenIssueRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('OpenIssue', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Opens a pull request.
+     *
+     * The async variant is {@see SecureSourceManagerClient::openPullRequestAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/open_pull_request.php
+     *
+     * @param OpenPullRequestRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function openPullRequest(OpenPullRequestRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('OpenPullRequest', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Resolves pull request comments.
+     *
+     * The async variant is
+     * {@see SecureSourceManagerClient::resolvePullRequestCommentsAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/resolve_pull_request_comments.php
+     *
+     * @param ResolvePullRequestCommentsRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function resolvePullRequestComments(
+        ResolvePullRequestCommentsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('ResolvePullRequestComments', $request, $callOptions)->wait();
     }
 
     /**
@@ -866,6 +1832,35 @@ final class SecureSourceManagerClient
     }
 
     /**
+     * Unresolves pull request comment.
+     *
+     * The async variant is
+     * {@see SecureSourceManagerClient::unresolvePullRequestCommentsAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/unresolve_pull_request_comments.php
+     *
+     * @param UnresolvePullRequestCommentsRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function unresolvePullRequestComments(
+        UnresolvePullRequestCommentsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UnresolvePullRequestComments', $request, $callOptions)->wait();
+    }
+
+    /**
      * UpdateBranchRule updates a branch rule.
      *
      * The async variant is {@see SecureSourceManagerClient::updateBranchRuleAsync()} .
@@ -889,6 +1884,167 @@ final class SecureSourceManagerClient
     public function updateBranchRule(UpdateBranchRuleRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateBranchRule', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the metadata of a hook.
+     *
+     * The async variant is {@see SecureSourceManagerClient::updateHookAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/update_hook.php
+     *
+     * @param UpdateHookRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateHook(UpdateHookRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateHook', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a issue.
+     *
+     * The async variant is {@see SecureSourceManagerClient::updateIssueAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/update_issue.php
+     *
+     * @param UpdateIssueRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateIssue(UpdateIssueRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateIssue', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates an issue comment.
+     *
+     * The async variant is {@see SecureSourceManagerClient::updateIssueCommentAsync()}
+     * .
+     *
+     * @example samples/V1/SecureSourceManagerClient/update_issue_comment.php
+     *
+     * @param UpdateIssueCommentRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateIssueComment(UpdateIssueCommentRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateIssueComment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a pull request.
+     *
+     * The async variant is {@see SecureSourceManagerClient::updatePullRequestAsync()}
+     * .
+     *
+     * @example samples/V1/SecureSourceManagerClient/update_pull_request.php
+     *
+     * @param UpdatePullRequestRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updatePullRequest(UpdatePullRequestRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdatePullRequest', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a pull request comment.
+     *
+     * The async variant is
+     * {@see SecureSourceManagerClient::updatePullRequestCommentAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/update_pull_request_comment.php
+     *
+     * @param UpdatePullRequestCommentRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updatePullRequestComment(
+        UpdatePullRequestCommentRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdatePullRequestComment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the metadata of a repository.
+     *
+     * The async variant is {@see SecureSourceManagerClient::updateRepositoryAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/update_repository.php
+     *
+     * @param UpdateRepositoryRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateRepository(UpdateRepositoryRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateRepository', $request, $callOptions)->wait();
     }
 
     /**
