@@ -5,6 +5,39 @@
     "protoPackage": "google.cloud.discoveryengine.v1",
     "libraryPackage": "Google\\Cloud\\DiscoveryEngine\\V1",
     "services": {
+        "SearchService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SearchServiceGapicClient",
+                    "rpcs": {
+                        "Search": {
+                            "methods": [
+                                "search"
+                            ]
+                        },
+                        "SearchLite": {
+                            "methods": [
+                                "searchLite"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "AssistantService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AssistantServiceGapicClient",
+                    "rpcs": {
+                        "StreamAssist": {
+                            "methods": [
+                                "streamAssist"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "CmekConfigService": {
             "clients": {
                 "grpc": {
@@ -96,25 +129,6 @@
                         "UpdateControl": {
                             "methods": [
                                 "updateControl"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "SearchService": {
-            "clients": {
-                "grpc": {
-                    "libraryClient": "SearchServiceGapicClient",
-                    "rpcs": {
-                        "Search": {
-                            "methods": [
-                                "search"
-                            ]
-                        },
-                        "SearchLite": {
-                            "methods": [
-                                "searchLite"
                             ]
                         }
                     }
