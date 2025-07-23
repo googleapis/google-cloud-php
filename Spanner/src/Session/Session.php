@@ -139,16 +139,7 @@ class Session
      */
     public function delete(array $options = []): void
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $data = [
-            'name' => $this->name()
-        ];
-
-        $request = $this->serializer->decodeMessage(new DeleteSessionRequest(), $data);
-
-        $this->spannerClient->deleteSession($request, $callOptions + [
-            'resource-prefix' => $this->databaseName,
-        ]);
+        // Multiplexed sessions do not have a Delete RPC
     }
 
     /**
