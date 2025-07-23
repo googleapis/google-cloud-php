@@ -2123,15 +2123,8 @@ class Database
      */
     public function close(): void
     {
-        if ($this->session) {
-            if ($this->sessionPool) {
-                $this->sessionPool->release($this->session);
-            } else {
-                $this->session->delete();
-            }
-
-            $this->session = null;
-        }
+        // Multiplexed sessions don't need to be closed
+        // @TODO: remove this method
     }
 
     /**
