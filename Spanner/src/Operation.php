@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\Options\CallOptions;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Spanner\Batch\QueryPartition;
@@ -756,24 +757,26 @@ class Operation
         string $sql,
         array $options = []
     ): array {
-        // cache this to pass to the partition instance.
-        $originalOptions = $options;
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
+        // Split all the options into their respective categories
+        [$paramsAndTypes, $partitionOptions, $partitionQuery, $executeSql, $callOptions] = $this->validateOptions(
+            $options,
+            ['parameters', 'types'],
+            ['partitionSizeBytes', 'maxPartitions'],
+            PartitionQueryRequest::class,
+            ExecuteSqlRequest::class,
+            CallOptions::class
+        );
+        // format "parameters" and "types" into "params" and "paramTypes"
+        $partitionQuery += $this->formatPartitionQueryOptions($paramsAndTypes);
 
-        $data = $this->formatPartitionQueryOptions($data);
-
-        // move partitio options up a level
-        $partitionOptions = $this->partitionOptions($data);
-        unset($data['partitionSizeBytes'], $data['maxPartitions']);
-
-        $data['transaction'] = $this->createTransactionSelector($data, $transactionId);
-        $data += [
+        $partitionQuery['transaction'] = $this->createTransactionSelector($partitionQuery, $transactionId);
+        $partitionQuery += [
             'session' => $session->name(),
             'sql' => $sql,
             'partitionOptions' => $partitionOptions,
         ];
 
-        $request = $this->serializer->decodeMessage(new PartitionQueryRequest(), $data);
+        $request = $this->serializer->decodeMessage(new PartitionQueryRequest(), $partitionQuery);
 
         $response = $this->spannerClient->partitionQuery($request, $callOptions + [
             'resource-prefix' => $this->getDatabaseNameFromSession($session),
@@ -786,7 +789,7 @@ class Operation
             $partitions[] = new QueryPartition(
                 $partition['partitionToken'],
                 $sql,
-                $originalOptions
+                $options
             );
         }
 
@@ -825,16 +828,17 @@ class Operation
         array $columns,
         array $options = []
     ): array {
-        // cache this to pass to the partition instance.
-        $originalOptions = $options;
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
+        // Split all the options into their respective categories
+        [$partitionOptions, $partitionRead, $readRequest, $callOptions] = $this->validateOptions(
+            $options,
+            ['partitionSizeBytes', 'maxPartitions'],
+            PartitionReadRequest::class,
+            ReadRequest::class,
+            CallOptions::class
+        );
 
-        // move partitio options up a level
-        $partitionOptions = $this->partitionOptions($data);
-        unset($data['partitionSizeBytes'], $data['maxPartitions']);
-
-        $data['transaction'] = $this->createTransactionSelector($data, $transactionId);
-        $data += [
+        $partitionRead['transaction'] = $this->createTransactionSelector($partitionRead, $transactionId);
+        $partitionRead += [
             'session' => $session->name(),
             'table' => $table,
             'columns' => $columns,
@@ -842,7 +846,7 @@ class Operation
             'partitionOptions' => $partitionOptions,
         ];
 
-        $request = $this->serializer->decodeMessage(new PartitionReadRequest(), $data);
+        $request = $this->serializer->decodeMessage(new PartitionReadRequest(), $partitionRead);
 
         $response = $this->spannerClient->partitionRead($request, $callOptions + [
             'resource-prefix' => $this->getDatabaseNameFromSession($session),
@@ -857,25 +861,11 @@ class Operation
                 $table,
                 $keySet,
                 $columns,
-                $originalOptions
+                $options
             );
         }
 
         return $partitions;
-    }
-
-    /**
-     * Normalize options for partition configuration.
-     *
-     * @param array $options
-     * @return array
-     */
-    private function partitionOptions(array $options): array
-    {
-        return array_filter([
-            'partitionSizeBytes' => $options['partitionSizeBytes'] ?? null,
-            'maxPartitions' => $options['maxPartitions'] ?? null,
-        ]);
     }
 
     /**
@@ -1160,17 +1150,15 @@ class Operation
     /**
      * @param array $args
      *
-     * @return array
+     * @return array{params: array, paramTypes: array}
      */
     private function formatPartitionQueryOptions(array $args): array
     {
         $parameters = $args['parameters'] ?? [];
         $types = $args['types'] ?? [];
-        unset($args['parameters'], $args['types']);
-        $args += $this->mapper->formatParamsForExecuteSql($parameters, $types);
-        $args = $this->formatSqlParams($args);
 
-        return $args;
+        $paramsAndParamTypes = $this->mapper->formatParamsForExecuteSql($parameters, $types);
+        return $this->formatSqlParams($paramsAndParamTypes);
     }
 
     /**
