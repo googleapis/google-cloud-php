@@ -40,7 +40,7 @@ namespace Google\Cloud\Spanner;
  * use Google\Cloud\Spanner\StructType;
  * use Google\Cloud\Spanner\StructValue;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $database = $spanner->connect('my-instance', 'my-database');
  *
  * $res = $database->execute('SELECT * FROM UNNEST(ARRAY(SELECT @structParam))', [
@@ -99,7 +99,7 @@ class StructValue
      * @return StructValue The current instance, for chaining additional struct
      *        values.
      */
-    public function add($name, $value)
+    public function add(string|null $name, mixed $value): StructValue
     {
         $this->values[] = [
             'name' => $name,
@@ -121,7 +121,7 @@ class StructValue
      * @return StructValue The current instance, for chaining additional struct
      *        values.
      */
-    public function addUnnamed($value)
+    public function addUnnamed(mixed $value): StructValue
     {
         return $this->add(null, $value);
     }
@@ -132,7 +132,7 @@ class StructValue
      * @access private
      * @return array[]
      */
-    public function values()
+    public function values(): array
     {
         return $this->values;
     }
