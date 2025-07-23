@@ -126,7 +126,7 @@ class CacheSessionPool implements SessionPoolInterface
 {
     use SysvTrait;
 
-    private const CACHE_KEY_TEMPLATE = 'cache-session-pool.%s.%s.%s';
+    public const CACHE_KEY_TEMPLATE = 'cache-session-pool.%s.%s.%s';
     private const DURATION_SESSION_LIFETIME = 28 * 24 * 3600; // 28 days
     private const DURATION_TWENTY_MINUTES = 1200;
     private const DURATION_ONE_MINUTE = 60;
@@ -198,108 +198,22 @@ class CacheSessionPool implements SessionPoolInterface
     {
         // Try to get a session, run maintenance on the pool, and calculate if
         // we need to create any new sessions.
-        [$session, $toCreate] = $this->lock->synchronize(function () {
-            $toCreate = [];
-            $session = null;
-            $shouldSave = false;
+        $session = $this->lock->synchronize(function () {
             $item = $this->cacheItemPool->getItem($this->cacheKey);
-            $data = (array) $item->get() ?: $this->initialize();
+            $session = (array) $item->get() ?: null;
 
-            // If the queue has items in it, let's shift one off, however if the
-            // queue is empty and we have maxed out the number of sessions let's
-            // attempt to purge any orphaned items from the pool to make room
-            // for more.
-            if ($data['queue']) {
-                $session = $this->getSession($data);
-                $shouldSave = true;
-            } else {
-                $this->purgeOrphanedInUseSessions($data);
-                $this->purgeOrphanedToCreateItems($data);
-                $session = $this->getSession($data);
-                $shouldSave = true;
-            }
-
+            // Verify the session is valid
+            $session = $this->handleSession($session);
             if (!$session) {
-                $count = $this->getSessionCount($data);
+                $session = $this->database->createSession();
+                $item->set($session);
+                $item->expiresAt($session->expiration());
 
-                if ($count < $this->config['maxSessions']) {
-                    $toCreate = $this->buildToCreateList(1);
-                    $data['toCreate'] += $toCreate;
-                    $shouldSave = true;
-                }
+                $this->save($item);
             }
-
-            if ($shouldSave) {
-                $this->save($item->set($data));
-            }
-
-            return [$session, $toCreate];
         });
 
-        // Create a session if needed.
-        $exception = null;
-        if ($toCreate) {
-            list($createdSessions, $exception) = $this->createSessions(count($toCreate));
-            $hasCreatedSessions = count($createdSessions) > 0;
-
-            $session = $this->lock->synchronize(function () use (
-                $toCreate,
-                $createdSessions,
-                $hasCreatedSessions
-            ) {
-                $session = null;
-                $item = $this->cacheItemPool->getItem($this->cacheKey);
-                $data = $item->get();
-                $data['queue'] = array_merge($data['queue'], $createdSessions);
-
-                // Now that we've created the session, we can remove it from
-                // the list of intent.
-                foreach ($toCreate as $id => $time) {
-                    unset($data['toCreate'][$id]);
-                }
-
-                if ($hasCreatedSessions) {
-                    $session = array_shift($data['queue']);
-                    $data['inUse'][$session['name']] = $session + [
-                        'lastActive' => $this->time()
-                    ];
-
-                    if ($this->config['shouldAutoDownsize']) {
-                        $this->manageSessionsToDelete($data);
-                    }
-                }
-
-                $this->save($item->set($data));
-
-                return $session;
-            });
-        }
-
-        if ($session) {
-            $session = $this->handleSession($session);
-        }
-
-        // If we don't have a session, let's wait for one or throw an exception.
-        if (!$session) {
-            if (!$this->config['shouldWaitForSession']) {
-                if ($exception) {
-                    throw $exception instanceof \RuntimeException
-                        ? $exception
-                        : new \RuntimeException($exception->getMessage(), $exception->getCode(), $exception);
-                } else {
-                    throw new \RuntimeException('No sessions available.');
-                }
-            }
-
-            $session = $this->waitForNextAvailableSession($exception);
-        }
-
-        if ($this->deleteQueue) {
-            // Note: This might not delete all sessions.
-            $this->deleteSessions($this->deleteQueue);
-            $this->deleteQueue = [];
-        }
-
+        $session = $this->handleSession($session);
         return $this->database->session($session['name']);
     }
 
@@ -311,25 +225,8 @@ class CacheSessionPool implements SessionPoolInterface
      */
     public function release(Session $session)
     {
-        $this->lock->synchronize(function () use ($session) {
-            $item = $this->cacheItemPool->getItem($this->cacheKey);
-            $data = $item->get();
-            $name = $session->name();
-
-            if (isset($data['inUse'][$name])) {
-                // set creation time to an expired time if no value is found
-                $creationTime = $data['inUse'][$name]['creation']
-                    ?? $this->time() - self::DURATION_SESSION_LIFETIME;
-                unset($data['inUse'][$name]);
-                array_push($data['queue'], [
-                    'name' => $name,
-                    'expiration' => $session->expiration()
-                        ?: $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS,
-                    'creation' => $creationTime,
-                ]);
-                $this->save($item->set($data));
-            }
-        });
+        // Multiplexed sessions do not need to be released
+        // @TODO: Remove this method
     }
 
     /**
@@ -347,13 +244,8 @@ class CacheSessionPool implements SessionPoolInterface
      */
     public function keepAlive(Session $session)
     {
-        $this->lock->synchronize(function () use ($session) {
-            $item = $this->cacheItemPool->getItem($this->cacheKey);
-            $data = $item->get();
-            $data['inUse'][$session->name()]['lastActive'] = $this->time();
-
-            $this->save($item->set($data));
-        });
+        // Multiplexed sessions do not need to be kept alive
+        // @TODO: Remove this method
     }
 
     /**
@@ -374,39 +266,9 @@ class CacheSessionPool implements SessionPoolInterface
      */
     public function downsize($percent)
     {
-        if ($percent < 1 || 100 < $percent) {
-            throw new \InvalidArgumentException('The provided percent must be between 1 and 100.');
-        }
-
-        $toDelete = $this->lock->synchronize(function () use ($percent) {
-            $item = $this->cacheItemPool->getItem($this->cacheKey);
-            $data = (array) $item->get() ?: $this->initialize();
-            $toDelete = [];
-            $queueCount = count($data['queue']);
-            $availableCount = max($queueCount - $this->config['minSessions'], 0);
-            $countToDelete = ceil($availableCount * ($percent * 0.01));
-
-            if ($countToDelete) {
-                $toDelete = array_splice($data['queue'], (int) -$countToDelete);
-            }
-
-            $this->save($item->set($data));
-            return $toDelete;
-        });
-
-        foreach ($toDelete as $sessionData) {
-            $session = $this->database->session($sessionData['name']);
-
-            try {
-                $session->delete();
-            } catch (\Exception $ex) {
-                if ($ex instanceof NotFoundException) {
-                    continue;
-                }
-            }
-        }
-
-        return count($toDelete);
+        // Multiplexed sessions do not need to be downsized
+        // @TODO: Remove this method
+        return 0;
     }
 
     /**
@@ -417,47 +279,9 @@ class CacheSessionPool implements SessionPoolInterface
      */
     public function warmup()
     {
-        $toCreate = $this->lock->synchronize(function () {
-            $item = $this->cacheItemPool->getItem($this->cacheKey);
-            $data = (array) $item->get() ?: $this->initialize();
-            $count = $this->getSessionCount($data);
-            $toCreate = [];
-
-            if ($count < $this->config['minSessions']) {
-                $toCreate = $this->buildToCreateList($this->config['minSessions'] - $count);
-                $data['toCreate'] += $toCreate;
-                $this->save($item->set($data));
-            }
-
-            return $toCreate;
-        });
-
-        if (!$toCreate) {
-            return 0;
-        }
-
-        $exception = null;
-        list($createdSessions, $exception) = $this->createSessions(count($toCreate));
-
-        $this->lock->synchronize(function () use ($toCreate, $createdSessions) {
-            $item = $this->cacheItemPool->getItem($this->cacheKey);
-            $data = $item->get();
-            $data['queue'] = array_merge($data['queue'], $createdSessions);
-
-            // Now that we've created the sessions, we can remove them from
-            // the list of intent.
-            foreach ($toCreate as $id => $time) {
-                unset($data['toCreate'][$id]);
-            }
-
-            $this->save($item->set($data));
-        });
-
-        if ($exception) {
-            throw $exception;
-        }
-
-        return count($toCreate);
+        // Multiplexed sessions do not need warmup
+        // @TODO: Remove this method
+        return 0;
     }
 
     /**
@@ -473,16 +297,9 @@ class CacheSessionPool implements SessionPoolInterface
      */
     public function clear()
     {
-        $sessions = $this->lock->synchronize(function () {
-            $item = $this->cacheItemPool->getItem($this->cacheKey);
-            $data = (array) $item->get() ?: $this->initialize();
-            $sessions = $data['queue'] + $data['inUse'];
-            $this->cacheItemPool->clear();
-
-            return $sessions;
-        });
-
-        return $this->deleteSessions($sessions, true);
+        // Multiplexed sessions do not need to be cleared
+        // @TODO: Remove this method
+        return true;
     }
 
     /**
@@ -523,161 +340,6 @@ class CacheSessionPool implements SessionPoolInterface
     }
 
     /**
-     * Builds out a list of timestamps indicating the start time of the intent
-     * to create a session.
-     *
-     * @param int $number
-     * @return array
-     */
-    private function buildToCreateList($number)
-    {
-        $toCreate = [];
-        $time = $this->time();
-
-        for ($i = 0; $i < $number; $i++) {
-            $toCreate[uniqid($time . '_', true)] = $time;
-        }
-
-        return $toCreate;
-    }
-
-    /**
-     * Purge any items in the to create queue that have been inactive for 20
-     * minutes or more.
-     *
-     * @param array $data
-     */
-    private function purgeOrphanedToCreateItems(array &$data)
-    {
-        foreach ($data['toCreate'] as $key => $timestamp) {
-            $time = $this->time();
-
-            if ($timestamp + self::DURATION_TWENTY_MINUTES < $this->time()) {
-                unset($data['toCreate'][$key]);
-            }
-        }
-    }
-
-    /**
-     * Purges in use sessions. If a session was last active an hour ago, we
-     * assume it is expired and remove it from the pool. If last active 20
-     * minutes ago, we attempt to return the session back to the queue.
-     *
-     * @param array $data
-     */
-    private function purgeOrphanedInUseSessions(array &$data)
-    {
-        foreach ($data['inUse'] as $key => $session) {
-            if ($session['lastActive'] + SessionPoolInterface::SESSION_EXPIRATION_SECONDS < $this->time()) {
-                unset($data['inUse'][$key]);
-            } elseif ($session['lastActive'] + self::DURATION_TWENTY_MINUTES < $this->time()) {
-                unset($session['lastActive']);
-                array_push($data['queue'], $session);
-                unset($data['inUse'][$key]);
-            }
-        }
-    }
-
-    /**
-     * Initialize the session data.
-     *
-     * @return array
-     */
-    private function initialize()
-    {
-        return [
-            'queue' => [],
-            'inUse' => [],
-            'toCreate' => [],
-            'windowStart' => $this->time(),
-            'maxInUseSessions' => 0,
-            'maintainTime' => $this->time(),
-        ];
-    }
-
-    /**
-     * Returns the total count of sessions in queue, use, and in the process of
-     * being created.
-     *
-     * @param array $data
-     * @return int
-     */
-    private function getSessionCount(array $data)
-    {
-        return count($data['queue'])
-            + count($data['inUse'])
-            + count($data['toCreate']);
-    }
-
-    /**
-     * Gets the next session in the queue, clearing out any which are expired.
-     *
-     * @param array $data
-     * @return array|null
-     */
-    private function getSession(array &$data)
-    {
-        $session = array_shift($data['queue']);
-
-        if ($session) {
-            if ($session['expiration'] - self::DURATION_ONE_MINUTE < $this->time()) {
-                return $this->getSession($data);
-            }
-
-            $data['inUse'][$session['name']] = $session + [
-                'lastActive' => $this->time()
-            ];
-
-            if ($this->config['shouldAutoDownsize']) {
-                $this->manageSessionsToDelete($data);
-            }
-        }
-
-        return $session;
-    }
-
-    /**
-     * Creates sessions up to the count provided.
-     *
-     * @param int $count
-     * @return array{0: array[], 1: \Exception|null }
-     */
-    private function createSessions($count)
-    {
-        $sessions = [];
-        $created = 0;
-        $exception = null;
-
-        // Loop over RPC in case it returns less than the desired number of sessions.
-        // @see https://github.com/googleapis/google-cloud-php/pull/2342#discussion_r327925546
-        while ($count > $created) {
-            try {
-                $res = $this->database->batchCreateSessions([
-                    'sessionTemplate' => [
-                        'labels' => isset($this->config['labels']) ? $this->config['labels'] : [],
-                        'creator_role' => $this->databaseRole,
-                    ],
-                    'sessionCount' => $count - $created
-                ]);
-            } catch (\Exception $exception) {
-                break;
-            }
-
-            foreach ($res['session'] as $result) {
-                $sessions[] = [
-                    'name' => $result['name'],
-                    'expiration' => $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS,
-                    'creation' => $this->time(),
-                ];
-
-                $created++;
-            }
-        }
-
-        return [$sessions, $exception];
-    }
-
-    /**
      * If necessary, triggers a network request to determine the status of the
      * provided session.
      *
@@ -708,13 +370,12 @@ class CacheSessionPool implements SessionPoolInterface
     }
 
     /**
-     * If the session is valid, return it - otherwise remove from the in use
-     * list.
+     * If the session is valid, return it - otherwise refresh it
      *
-     * @param array $session
-     * @return array|null
+     * @param Session $session
+     * @return Session|null
      */
-    private function handleSession(array $session)
+    private function handleSession(Session $session)
     {
         if ($this->isSessionValid($session)) {
             return $session;
@@ -728,54 +389,6 @@ class CacheSessionPool implements SessionPoolInterface
         });
 
         return null;
-    }
-
-    /**
-     * Blocks until a session becomes available.
-     *
-     * @param \RuntimeException $exception
-     * @return array
-     * @throws \RuntimeException
-     */
-    private function waitForNextAvailableSession($exception = null)
-    {
-        $elapsedCycles = 0;
-
-        while (true) {
-            $session = $this->lock->synchronize(function () use ($elapsedCycles, $exception) {
-                $item = $this->cacheItemPool->getItem($this->cacheKey);
-                $data = $item->get();
-                $session = $this->getSession($data);
-
-                if ($session) {
-                    $this->save($item->set($data));
-                    return $session;
-                }
-
-                if ($this->config['maxCyclesToWaitForSession'] <= $elapsedCycles) {
-                    $this->save($item->set($data));
-
-                    if ($exception) {
-                        throw new \RuntimeException(
-                            $exception->getMessage(),
-                            $exception->getCode(),
-                            $exception
-                        );
-                    } else {
-                        throw new \RuntimeException(
-                            'A session did not become available in the allotted number of attempts.'
-                        );
-                    }
-                }
-            });
-
-            if ($session && $this->handleSession($session)) {
-                return $session;
-            }
-
-            $elapsedCycles++;
-            usleep($this->config['sleepIntervalSeconds'] * 1000000);
-        }
     }
 
     /**
@@ -795,79 +408,6 @@ class CacheSessionPool implements SessionPoolInterface
     }
 
     /**
-     * Attempt to delete the provided sessions.
-     * If $waitForPromises is set to false, then the caller doesn't wait for sessions
-     * to get deleted completely. So a side effect may be that sessions might not get
-     * deleted when gRPC calls go out of scope.
-     *
-     * @param array $sessions
-     * @param bool $waitForPromises Whether to explicitly wait on gRPC calls
-     *        to delete sessions. **Defaults to ** `false`.
-     * @return bool Returns false if some delete operations failed to delete.
-     *        True if $waitForPromises flag is false or all delete are successful.
-     */
-    private function deleteSessions(array $sessions, $waitForPromises = false)
-    {
-        $this->deleteCalls = [];
-        foreach ($sessions as $session) {
-            $this->deleteCalls[] = $this->database->deleteSessionAsync([
-                'name' => $session['name']
-            ]);
-        }
-
-        if ($waitForPromises && !empty($this->deleteCalls)) {
-            // try clearing sessions otherwise it could lead to leaking of sessions
-            try {
-                $results = Utils::all($this->deleteCalls)->wait();
-                // successful session deletes should resolve to empty protobuf objects
-                // return true when $results has single unique object with empty string value
-                return count(array_unique($results, SORT_REGULAR)) === 1 &&
-                    empty(reset($results)->serializeToString());
-            } catch (RejectionException $ex) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Checks the maximum number of sessions in use over the last window(s) then
-     * removes the sessions from the cache and prepares them to be deleted from
-     * the Spanner backend.
-     *
-     * @param array $data
-     */
-    private function manageSessionsToDelete(array &$data)
-    {
-        $secondsSinceLastWindow = $this->time() - $data['windowStart'];
-        $inUseCount = count($data['inUse']);
-
-        if ($secondsSinceLastWindow < self::WINDOW_SIZE + 1) {
-            if ($data['maxInUseSessions'] < $inUseCount) {
-                $data['maxInUseSessions'] = $inUseCount;
-            }
-
-            return;
-        }
-
-        $totalCount = $inUseCount + count($data['queue']) + count($data['toCreate']);
-        $windowsPassed = (int) ($secondsSinceLastWindow / self::WINDOW_SIZE);
-        $deletionCount = min(
-            $totalCount - (int) round($data['maxInUseSessions'] / $windowsPassed),
-            $totalCount - $this->config['minSessions']
-        );
-        $data['maxInUseSessions'] = $inUseCount;
-        $data['windowStart'] = $this->time();
-
-        if ($deletionCount) {
-            $this->deleteQueue += array_splice(
-                $data['queue'],
-                (int) -$deletionCount
-            );
-        }
-    }
-
-    /**
      * Maintain queued sessions for selected database and keep them alive.
      *
      * This method drops expired sessions and refreshes "old" ones (expiring in next 10 minutes).
@@ -877,141 +417,10 @@ class CacheSessionPool implements SessionPoolInterface
      */
     public function maintain()
     {
-        if (!isset($this->database)) {
-            throw new \LogicException('Cannot maintain session pool: database not set.');
-        }
-
-        $this->lock->synchronize(function () {
-            $cacheItem = $this->cacheItemPool->getItem($this->cacheKey);
-            $cachedData = $cacheItem->get();
-            if (!$cachedData) {
-                return;
-            }
-
-            $sessions = $cachedData['queue'];
-            foreach ($sessions as $id => $session) {
-                if (self::DURATION_SESSION_LIFETIME + $session['creation'] <
-                    $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS) {
-                    // sessions more than 28 days old are auto deleted by server
-                    $this->deleteQueue += $session;
-                    unset($sessions[$id]);
-                }
-            }
-            // Sort sessions by expiration time, "oldest" first.
-            // acquire() method picks sessions from the beginning of the queue,
-            // so make sure that "oldest" ones will be picked first.
-            usort($sessions, function ($a, $b) {
-                return ($a['expiration'] - $b['expiration']);
-            });
-
-            $now = $this->time();
-            $soonToExpireThreshold = $now + 600;
-            $prevMaintainTime = $cachedData['maintainTime'] ?? null;
-
-            $len = count($sessions);
-            // Find sessions that already expired.
-            for ($expiredPos = 0; $expiredPos < $len; $expiredPos++) {
-                if ($sessions[$expiredPos]['expiration'] > $now) {
-                    break;
-                }
-            }
-            // Find sessions that will expire in next 10 minutes ("old" sessions).
-            for ($soonToExpirePos = $expiredPos; $soonToExpirePos < $len; $soonToExpirePos++) {
-                if ($sessions[$soonToExpirePos]['expiration'] > $soonToExpireThreshold) {
-                    break;
-                }
-            }
-            // Find sessions that were refreshed after the previous maintenance ("fresh" sessions).
-            $freshPos = $len - 1;
-            if (isset($prevMaintainTime)) {
-                $freshThreshold = $prevMaintainTime + self::SESSION_EXPIRATION_SECONDS;
-                for (; $freshPos >= 0; $freshPos--) {
-                    if ($sessions[$freshPos]['expiration'] <= $freshThreshold) {
-                        break;
-                    }
-                }
-            }
-            $freshSessionsCount = $len - 1 - $freshPos;
-            $soonToExpireSessions = array_splice($sessions, $expiredPos, ($soonToExpirePos - $expiredPos));
-            // Drop expired sessions.
-            array_splice($sessions, 0, $expiredPos);
-            // Sessions created at peak load and (probably) not needed anymore.
-            $extraSessions = [];
-
-            $totalSessionsCount = count($cachedData['inUse']) + count($sessions) + count($soonToExpireSessions);
-            $maintainedSessionsCount = $this->config['minSessions'];
-            $extraSessionsCount = ($totalSessionsCount - $maintainedSessionsCount);
-            if ($extraSessionsCount > 0) {
-                // Treat some "old" sessions as extra sessions (do not refresh them).
-                $extraSessions = array_splice($soonToExpireSessions, -$extraSessionsCount);
-            }
-
-            // Refresh remaining "old" sessions and move them to the end of the queue.
-            foreach ($soonToExpireSessions as $item) {
-                $session = $this->database->session($item['name']);
-                if ($this->refreshSession($session)) {
-                    $sessions[] = [
-                        'name' => $item['name'],
-                        'expiration' => $session->expiration(),
-                        'creation' => $item['creation'],
-                    ];
-                    $freshSessionsCount++;
-                } else {
-                    $totalSessionsCount--;
-                }
-            }
-
-            if (isset($prevMaintainTime)) {
-                // Try to distribute refresh requests evenly between maintenance calls to smooth request peaks.
-                // To be safe each session must be refreshed at least once per 50 minutes, it will be
-                // (total sessions * maintenance interval / 50 minutes) sessions refreshed between maintenance calls.
-                // No need to be precise here, it's just an optimization.
-
-                $maintainInterval = $now - $prevMaintainTime;
-                $maxLifetime = self::SESSION_EXPIRATION_SECONDS - 600;
-                $totalSessionsCount = min($totalSessionsCount, $maintainedSessionsCount);
-                $meanRefreshCount = (int) ($totalSessionsCount * $maintainInterval / $maxLifetime);
-                $meanRefreshCount = min($meanRefreshCount, $maintainedSessionsCount);
-                // There may be sessions already refreshed since previous maintenance,
-                // so we can save some refresh requests.
-                $refreshCount = $meanRefreshCount - $freshSessionsCount;
-                if ($refreshCount > 0) {
-                    // Refresh some "oldest" sessions and move them to the end of the queue.
-                    $refreshCount = min($refreshCount, count($sessions));
-                    for ($pos = 0; $pos < $refreshCount; $pos++) {
-                        $item = $sessions[$pos];
-                        $session = $this->database->session($item['name']);
-                        if ($this->refreshSession($session)) {
-                            $sessions[] = [
-                                'name' => $item['name'],
-                                'expiration' => $session->expiration(),
-                                'creation' => $item['creation'],
-                            ];
-                        }
-                    }
-                    array_splice($sessions, 0, $refreshCount);
-                }
-            }
-
-            $cachedData['maintainTime'] = $this->time();
-            // Put extra sessions to the end of the queue, so they won't be acquired until really needed.
-            $cachedData['queue'] = array_merge($sessions, $extraSessions);
-            $this->save($cacheItem->set($cachedData));
-        });
-    }
-
-    /**
-     * @param Session $session
-     * @return bool `true`: session was refreshed, `false`: session does not exist
-     */
-    private function refreshSession($session)
-    {
-        try {
-            $this->database->execute('SELECT 1', ['session' => $session])->rows()->current();
-            return true;
-        } catch (NotFoundException $e) {
-            return false;
-        }
+        // Multiplexed sessions do not need to be maintained. However, we can use this method to
+        // ensure the current multiplexed session is valid and refresh it if not. Potentially we can
+        // rename this method to something more descriptive.
+        // @TODO: Rewrite or remove this method
     }
 
     /**

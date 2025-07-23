@@ -140,6 +140,7 @@ class Session
     public function delete(array $options = []): void
     {
         // Multiplexed sessions do not have a Delete RPC
+        // @TODO: Remove this method
     }
 
     /**

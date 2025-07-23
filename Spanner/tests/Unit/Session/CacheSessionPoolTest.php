@@ -64,34 +64,6 @@ class CacheSessionPoolTest extends TestCase
         $this->cacheKey = sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME);
     }
 
-    /**
-     * @dataProvider badConfigDataProvider
-     */
-    public function testThrowsExceptionWithInvalidConfig($config)
-    {
-        $exceptionThrown = false;
-
-        try {
-            new CacheSessionPool($this->getCacheItemPool(), $config);
-        } catch (\InvalidArgumentException $ex) {
-            $exceptionThrown = true;
-        }
-
-        $this->assertTrue($exceptionThrown);
-    }
-
-    public function badConfigDataProvider()
-    {
-        return [
-            [['maxSessions' => -1]],
-            [['minSessions' => -1]],
-            [['maxCyclesToWaitForSession' => -1]],
-            [['sleepIntervalSeconds' => -1]],
-            [['minSessions' => 5, 'maxSessions' => 1]],
-            [['lock' => new \stdClass()]]
-        ];
-    }
-
     public function testAcquireThrowsExceptionUnableToSaveItem()
     {
         $this->expectException(\RuntimeException::class);

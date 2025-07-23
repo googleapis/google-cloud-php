@@ -671,7 +671,10 @@ class InstanceTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new Session(['name' => self::SESSION]));
+            ->willReturn(new Session([
+                'name' => self::SESSION,
+                'multiplexed' => true,
+            ]));
 
         $this->spannerClient->executeStreamingSql(
             Argument::that(function (ExecuteSqlRequest $request) use ($sql) {
@@ -681,11 +684,6 @@ class InstanceTest extends TestCase
         )
             ->shouldBeCalledOnce()
             ->willReturn($this->resultGeneratorStream());
-
-        $this->spannerClient->deleteSession(
-            Argument::type(DeleteSessionRequest::class),
-            Argument::type('array')
-        )->shouldBeCalledOnce();
 
         $database->execute($sql);
     }
@@ -700,7 +698,10 @@ class InstanceTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new Session(['name' => self::SESSION]));
+            ->willReturn(new Session([
+                'name' => self::SESSION,
+                'multiplexed' => true,
+            ]));
 
         $this->spannerClient->executeStreamingSql(
             Argument::that(function ($request) {
@@ -715,11 +716,6 @@ class InstanceTest extends TestCase
         )
             ->shouldBeCalledOnce()
             ->willReturn($this->resultGeneratorStream());
-
-        $this->spannerClient->deleteSession(
-            Argument::type(DeleteSessionRequest::class),
-            Argument::type('array')
-        )->shouldBeCalledOnce();
 
         $sql = 'SELECT * FROM Table';
         $res = $database->execute($sql);
@@ -740,7 +736,10 @@ class InstanceTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new Session(['name' => self::SESSION]));
+            ->willReturn(new Session([
+                'name' => self::SESSION,
+                'multiplexed' => true,
+            ]));
 
         $this->spannerClient->streamingRead(
             Argument::that(function ($request) {
@@ -755,11 +754,6 @@ class InstanceTest extends TestCase
         )
             ->shouldBeCalledOnce()
             ->willReturn($this->resultGeneratorStream());
-
-        $this->spannerClient->deleteSession(
-            Argument::type(DeleteSessionRequest::class),
-            Argument::type('array')
-        )->shouldBeCalledOnce();
 
         $res = $database->read(
             $table,
