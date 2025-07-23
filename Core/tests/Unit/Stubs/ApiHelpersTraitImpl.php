@@ -31,5 +31,6 @@ class ApiHelpersTraitImpl
         formatDurationForApi as public;
         formatValueForApi as public;
         unpackValue as public;
+        validateOptions as public;
     }
 }
