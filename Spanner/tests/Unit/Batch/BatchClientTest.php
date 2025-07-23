@@ -79,7 +79,12 @@ class BatchClientTest extends TestCase
                 return true;
             }),
             Argument::type('array')
-        )->shouldBeCalledOnce()->willReturn(new Session(['name' => self::SESSION]));
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new Session([
+                'name' => self::SESSION,
+                'multiplexed' => true,
+            ]));
 
         $this->spannerClient->beginTransaction(
             Argument::that(function (BeginTransactionRequest $request) {
@@ -182,7 +187,10 @@ class BatchClientTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new Session(['name' => self::SESSION]));
+            ->willReturn(new Session([
+                'name' => self::SESSION,
+                'multiplexed' => true,
+            ]));
 
         $this->spannerClient->beginTransaction(
             Argument::that(function (BeginTransactionRequest $request) {
