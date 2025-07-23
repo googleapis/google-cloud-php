@@ -20,31 +20,31 @@ class InternalUpdateGraphOperationRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $database = '';
+    private $database = '';
     /**
      * Internal field, do not use directly.
      *
      * Generated from protobuf field <code>string operation_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $operation_id = '';
+    private $operation_id = '';
     /**
      * Internal field, do not use directly.
      *
      * Generated from protobuf field <code>string vm_identity_token = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $vm_identity_token = '';
+    private $vm_identity_token = '';
     /**
      * Internal field, do not use directly.
      *
      * Generated from protobuf field <code>double progress = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $progress = 0.0;
+    private $progress = 0.0;
     /**
      * Internal field, do not use directly.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $status = null;
+    private $status = null;
 
     /**
      * @param string $database    Internal field, do not use directly. Please see
