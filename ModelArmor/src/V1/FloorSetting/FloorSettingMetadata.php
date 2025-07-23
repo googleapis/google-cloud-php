@@ -31,6 +31,4 @@ class FloorSettingMetadata extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FloorSettingMetadata::class, \Google\Cloud\ModelArmor\V1\FloorSetting_FloorSettingMetadata::class);
 

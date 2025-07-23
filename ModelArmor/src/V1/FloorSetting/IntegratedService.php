@@ -52,6 +52,4 @@ class IntegratedService
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IntegratedService::class, \Google\Cloud\ModelArmor\V1\FloorSetting_IntegratedService::class);
 

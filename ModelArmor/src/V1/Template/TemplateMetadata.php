@@ -63,6 +63,12 @@ class TemplateMetadata extends \Google\Protobuf\Internal\Message
      */
     protected $log_sanitize_operations = false;
     /**
+     * Optional. Enforcement type for Model Armor filters.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.Template.TemplateMetadata.EnforcementType enforcement_type = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enforcement_type = 0;
+    /**
      * Optional. Metadata for multi language detection.
      *
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1.Template.TemplateMetadata.MultiLanguageDetection multi_language_detection = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -94,6 +100,8 @@ class TemplateMetadata extends \Google\Protobuf\Internal\Message
      *           Optional. If true, log template crud operations.
      *     @type bool $log_sanitize_operations
      *           Optional. If true, log sanitize operations.
+     *     @type int $enforcement_type
+     *           Optional. Enforcement type for Model Armor filters.
      *     @type \Google\Cloud\ModelArmor\V1\Template\TemplateMetadata\MultiLanguageDetection $multi_language_detection
      *           Optional. Metadata for multi language detection.
      * }
@@ -291,6 +299,32 @@ class TemplateMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->log_sanitize_operations = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Enforcement type for Model Armor filters.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.Template.TemplateMetadata.EnforcementType enforcement_type = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getEnforcementType()
+    {
+        return $this->enforcement_type;
+    }
+
+    /**
+     * Optional. Enforcement type for Model Armor filters.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.Template.TemplateMetadata.EnforcementType enforcement_type = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEnforcementType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\ModelArmor\V1\Template\TemplateMetadata\EnforcementType::class);
+        $this->enforcement_type = $var;
 
         return $this;
     }

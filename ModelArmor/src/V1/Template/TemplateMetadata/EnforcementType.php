@@ -61,6 +61,4 @@ class EnforcementType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EnforcementType::class, \Google\Cloud\ModelArmor\V1\Template_TemplateMetadata_EnforcementType::class);
 
