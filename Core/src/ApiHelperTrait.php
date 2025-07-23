@@ -19,8 +19,8 @@ namespace Google\Cloud\Core;
 
 use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\Options\CallOptions;
-use Google\Protobuf\NullValue;
 use Google\Protobuf\Internal\Message;
+use Google\Protobuf\NullValue;
 
 /**
  * @internal
@@ -272,14 +272,17 @@ trait ApiHelperTrait
      * the CallOptions classname. Parameters are split and returned in the order
      * that the options types are provided.
      */
-    private function validateOptions(array $options, array|string ...$optionTypes): array
+    private function validateOptions(array $options, array|Message|string ...$optionTypes): array
     {
         $splitOptions = [];
         foreach ($optionTypes as $optionType) {
             if (is_array($optionType)) {
                 $splitOptions[] = $this->pluckArray($optionType, $options);
-            } elseif (is_string($optionType)) {
-                if (is_subclass_of($optionType, Message::class)) {
+            } else {
+                if ($optionType === CallOptions::class) {
+                    $callOptionKeys = array_keys((new CallOptions([]))->toArray());
+                    $splitOptions[] = $this->pluckArray($callOptionKeys, $options);
+                } else {
                     $messageKeys = array_map(
                         fn ($method) => lcfirst(substr($method, 3)),
                         array_filter(
@@ -287,10 +290,10 @@ trait ApiHelperTrait
                             fn ($m) => 0 === strpos($m, 'get')
                         )
                     );
-                    $splitOptions[] = $this->pluckArray($messageKeys, $options);
-                } elseif ($optionType === CallOptions::class) {
-                    $callOptionKeys = array_keys((new CallOptions([]))->toArray());
-                    $splitOptions[] = $this->pluckArray($callOptionKeys, $options);
+                    $messageOptions = $this->pluckArray($messageKeys, $options);
+                    $splitOptions[] = $optionType instanceof Message
+                        ? $this->serializer->decodeMessage($optionType, $messageOptions)
+                        : $messageOptions;
                 }
             }
         }

@@ -19,6 +19,8 @@ namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\ArrayTrait;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\V1\TransactionOptions;
+use Google\Cloud\Spanner\V1\TransactionOptions\PBReadOnly;
 use Google\Protobuf\Duration;
 
 /**
@@ -39,17 +41,17 @@ trait TransactionConfigurationTrait
      * @see V1\TransactionSelector
      *
      * @param array $options call options.
-     * @param array $previousReadOnlyOptions Previously given call options (for single-use snapshots).
+     * @param PBReadOnly $transactionLevelReadOnlyOptions Previously given call options (for single-use snapshots).
      * @return array [(array) transaction selector, (string) context]
      */
-    private function transactionSelector(array &$options, array $previousReadOnlyOptions = []): array
+    private function transactionSelector(array &$options, ?PBReadOnly $transactionLevelReadOnlyOptions = null): array
     {
         $options += [
             'begin' => false,
             'transactionType' => SessionPoolInterface::CONTEXT_READ,
         ];
 
-        [$transactionOptions, $type, $context] = $this->transactionOptions($options, $previousReadOnlyOptions);
+        [$transactionOptions, $type, $context] = $this->transactionOptions($options, $transactionLevelReadOnlyOptions);
 
         // TransactionSelector uses a different key name for singleUseTransaction
         // and transactionId than CommitRequest, so we'll rewrite those here
@@ -74,15 +76,15 @@ trait TransactionConfigurationTrait
      *
      * @param array $options call options
      *
-     * @param array $previousReadOnlyOptions Previously given call options (for single-use snapshots).
+     * @param PBReadOnly $transactionLevelReadOnlyOptions Previously given call options (for single-use snapshots).
      * @return array [(array) transaction options, (string) transaction type, (string) context]
      */
-    private function transactionOptions(array &$options, array $previousReadOnlyOptions = []): array
+    private function transactionOptions(array &$options, ?PBReadOnly $transactionLevelReadOnlyOptions = null): array
     {
         // @TODO: Remove $options being passed by reference
 
         $type = null;
-        $begin = $options['begin'] ?? false;
+        $begin = $options['begin'] ?? [];
         $context = $options['transactionType'] ?? SessionPoolInterface::CONTEXT_READWRITE;
         $id = $options['transactionId'] ?? null;
 
@@ -100,10 +102,14 @@ trait TransactionConfigurationTrait
             $transactionOptions = $id;
         } elseif ($context === SessionPoolInterface::CONTEXT_READ) {
             $options += ['singleUse' => null];
-            $transactionOptions = $this->configureReadOnlyTransactionOptions($options, $previousReadOnlyOptions);
+            $transactionOptions = $this->configureReadOnlyTransactionOptions(
+                $options,
+                $transactionLevelReadOnlyOptions
+            );
         } elseif ($context === SessionPoolInterface::CONTEXT_READWRITE) {
             $transactionOptions = $this->configureReadWriteTransactionOptions(
-                $type == 'begin' && is_array($begin) ? $begin : []
+                // TODO: Find out when $begin is a bool and fix it
+                $type == 'begin' && !is_bool($begin) ? $begin : []
             );
         } else {
             throw new \BadMethodCallException(sprintf(
@@ -134,11 +140,20 @@ trait TransactionConfigurationTrait
         return [$transactionOptions, $type, $context];
     }
 
-    private function configureReadWriteTransactionOptions(array $options = []): array
+    // Init readWrite options array with any necessary defaults for its nested options
+    private function initReadWriteTransactionOptions(): array
     {
-        return array_intersect_key($options, array_flip([
-            'excludeTxnFromChangeStreams',
-        ])) + ['readWrite' => []];
+        return ['readWrite' => []];
+    }
+
+    private function configureReadWriteTransactionOptions(array|TransactionOptions $options): array
+    {
+        $excludeTxn = $options instanceof TransactionOptions
+            ? $options->getExcludeTxnFromChangeStreams()
+            : $options['excludeTxnFromChangeStreams'] ?? null;
+        return array_filter([
+            'excludeTxnFromChangeStreams' => $excludeTxn,
+        ]) + $this->initReadWriteTransactionOptions();
     }
 
     /**
@@ -174,11 +189,13 @@ trait TransactionConfigurationTrait
      *           "single-use", and may be used for only a single operation.
      *           **Defaults to** `false`.
      * }
-     * @param array $previousReadOnlyOptions Previously given call options (for single-use snapshots).
+     * @param PBReadOnly $transactionLevelReadOnlyOptions Previously given call options (for single-use snapshots).
      * @return array
      */
-    private function configureReadOnlyTransactionOptions(array $options, array $previousReadOnlyOptions = []): array
-    {
+    private function configureReadOnlyTransactionOptions(
+        array $options,
+        ?PBReadOnly $transactionLevelReadOnlyOptions = null
+    ): array {
         // select only the PBReadOnly fields from $options
         $readOnly = array_intersect_key($options, array_flip([
             'minReadTimestamp',
@@ -210,7 +227,9 @@ trait TransactionConfigurationTrait
             );
         }
 
-        $readOnly += $previousReadOnlyOptions;
+        if ($transactionLevelReadOnlyOptions && empty($readOnly)) {
+            $readOnly = $transactionLevelReadOnlyOptions;
+        }
 
         if (empty($readOnly)) {
             $readOnly['strong'] = true;

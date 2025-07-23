@@ -79,7 +79,7 @@ class TransactionConfigurationTraitTest extends TestCase
         $args = ['transactionType' => SessionPoolInterface::CONTEXT_READWRITE];
         $res = $this->impl->transactionSelector($args);
         $this->assertEquals(SessionPoolInterface::CONTEXT_READWRITE, $res[1]);
-        $this->assertEquals($this->impl->configureReadWriteTransactionOptions(), $res[0]['singleUse']);
+        $this->assertEquals($this->impl->configureReadWriteTransactionOptions([]), $res[0]['singleUse']);
     }
 
     public function testTransactionSelectorReadOnly()

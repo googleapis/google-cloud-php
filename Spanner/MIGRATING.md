@@ -113,3 +113,8 @@ $lro->pollUntilComplete();
 $lro->cancel();
 $lro->delete();
 ```
+
+### Removed Methods
+
+ - `Operation::createTransaction` => use `Operation::transaction` instead
+ - `Operation::createSnapshot` => use `Operation::snapshot` instead

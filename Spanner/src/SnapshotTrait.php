@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner;
 use Google\ApiCore\ArrayTrait;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\V1\TransactionOptions;
 
 /**
  * Common methods for Read-Only transactions (i.e. Snapshots)
@@ -79,7 +80,7 @@ trait SnapshotTrait
             (array) $options,
             array_flip(['singleUse', 'begin'])
         );
-        $this->transactionOptions = $options['transactionOptions'] ?? [];
+        $this->transactionOptions = $options['transactionOptions'] ?? new TransactionOptions();
     }
 
     /**

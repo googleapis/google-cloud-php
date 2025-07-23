@@ -219,11 +219,20 @@ class BatchClient
 
         $session = $this->operation->session($data['sessionName']);
 
-        /** @var BatchSnapshot */
-        return $this->operation->createSnapshot($session, [
-            'id' => $data['transactionId'],
-            'readTimestamp' => $data['readTimestamp']
-        ], BatchSnapshot::class);
+        if ($data['readTimestamp']) {
+            if (!($data['readTimestamp'] instanceof Timestamp)) {
+                $time = $this->parseTimeString($data['readTimestamp']);
+                $data['readTimestamp'] = new Timestamp($time[0], $time[1]);
+            }
+        }
+        return new BatchSnapshot(
+            $this->operation,
+            $session,
+            [
+                'id' => $data['transactionId'],
+                'readTimestamp' => $data['readTimestamp']
+            ]
+        );
     }
 
     /**
