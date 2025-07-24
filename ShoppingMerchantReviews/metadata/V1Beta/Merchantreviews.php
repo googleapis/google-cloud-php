@@ -23,7 +23,7 @@ class Merchantreviews
         \GPBMetadata\Google\Shopping\Type\Types::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Õ
+›
 =google/shopping/merchant/reviews/v1beta/merchantreviews.proto\'google.shopping.merchant.reviews.v1betagoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.protoDgoogle/shopping/merchant/reviews/v1beta/merchantreviews_common.proto google/shopping/type/types.proto"[
 GetMerchantReviewRequest?
 name (	B1‡A˙A+
@@ -42,12 +42,11 @@ page_token (	B‡A"£
 data_source (	B‡A"â
 ListMerchantReviewsResponseQ
 merchant_reviews (27.google.shopping.merchant.reviews.v1beta.MerchantReview
-next_page_token (	"·
+next_page_token (	"Ò
 MerchantReview
 name (	B‡A
-merchant_review_id (	B‡AZ
-
-attributes (2A.google.shopping.merchant.reviews.v1beta.MerchantReviewAttributesB‡AE
+merchant_review_id (	B‡Aj
+merchant_review_attributes (2A.google.shopping.merchant.reviews.v1beta.MerchantReviewAttributesB‡AE
 custom_attributes (2%.google.shopping.type.CustomAttributeB‡A
 data_source (	B‡Ab
 merchant_review_status (2=.google.shopping.merchant.reviews.v1beta.MerchantReviewStatusB‡A:zÍAw
