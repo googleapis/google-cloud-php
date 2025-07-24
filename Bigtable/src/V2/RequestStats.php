@@ -11,8 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * RequestStats is the container for additional information pertaining to a
  * single request, helpful for evaluating the performance of the sent request.
- * Currently, there are the following supported methods:
- *   * google.bigtable.v2.ReadRows
+ * Currently, the following method is supported: google.bigtable.v2.ReadRows
  *
  * Generated from protobuf message <code>google.bigtable.v2.RequestStats</code>
  */
