@@ -33,7 +33,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      * network interface. If not specified by the user, an unused internal IP is
      * assigned by the system.
      *
-     * Generated from protobuf field <code>optional string ip_address = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     * Generated from protobuf field <code>optional string ip_address = 3 [json_name = "networkIP", (.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      */
     protected $ip_address = null;
     /**
@@ -259,7 +259,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      * network interface. If not specified by the user, an unused internal IP is
      * assigned by the system.
      *
-     * Generated from protobuf field <code>optional string ip_address = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     * Generated from protobuf field <code>optional string ip_address = 3 [json_name = "networkIP", (.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @return string
      */
     public function getIpAddress()
@@ -282,7 +282,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      * network interface. If not specified by the user, an unused internal IP is
      * assigned by the system.
      *
-     * Generated from protobuf field <code>optional string ip_address = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     * Generated from protobuf field <code>optional string ip_address = 3 [json_name = "networkIP", (.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @param string $var
      * @return $this
      */

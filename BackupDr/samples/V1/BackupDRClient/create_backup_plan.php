@@ -27,69 +27,46 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\BackupDR\V1\BackupPlan;
 use Google\Cloud\BackupDR\V1\BackupRule;
-use Google\Cloud\BackupDR\V1\BackupWindow;
 use Google\Cloud\BackupDR\V1\Client\BackupDRClient;
 use Google\Cloud\BackupDR\V1\CreateBackupPlanRequest;
-use Google\Cloud\BackupDR\V1\StandardSchedule;
-use Google\Cloud\BackupDR\V1\StandardSchedule\RecurrenceType;
 use Google\Rpc\Status;
 
 /**
  * Create a BackupPlan
  *
- * @param string $formattedParent                                                 The `BackupPlan` project and location in the format
- *                                                                                `projects/{project}/locations/{location}`. In Cloud BackupDR locations
- *                                                                                map to GCP regions, for example **us-central1**. Please see
- *                                                                                {@see BackupDRClient::locationName()} for help formatting this field.
- * @param string $backupPlanId                                                    The name of the `BackupPlan` to create. The name must be unique
- *                                                                                for the specified project and location.The name must start with a lowercase
- *                                                                                letter followed by up to 62 lowercase letters, numbers, or hyphens.
- *                                                                                Pattern, /[a-z][a-z0-9-]{,62}/.
- * @param string $backupPlanBackupRulesRuleId                                     Immutable. The unique id of this `BackupRule`. The `rule_id` is
- *                                                                                unique per `BackupPlan`.The `rule_id` must start with a lowercase letter
- *                                                                                followed by up to 62 lowercase letters, numbers, or hyphens. Pattern,
- *                                                                                /[a-z][a-z0-9-]{,62}/.
- * @param int    $backupPlanBackupRulesBackupRetentionDays                        Configures the duration for which backup data will be kept. It is
- *                                                                                defined in “days”. The value should be greater than or equal to minimum
- *                                                                                enforced retention of the backup vault.
+ * @param string $formattedParent                          The `BackupPlan` project and location in the format
+ *                                                         `projects/{project}/locations/{location}`. In Cloud BackupDR locations
+ *                                                         map to GCP regions, for example **us-central1**. Please see
+ *                                                         {@see BackupDRClient::locationName()} for help formatting this field.
+ * @param string $backupPlanId                             The name of the `BackupPlan` to create. The name must be unique
+ *                                                         for the specified project and location.The name must start with a lowercase
+ *                                                         letter followed by up to 62 lowercase letters, numbers, or hyphens.
+ *                                                         Pattern, /[a-z][a-z0-9-]{,62}/.
+ * @param string $backupPlanBackupRulesRuleId              Immutable. The unique id of this `BackupRule`. The `rule_id` is
+ *                                                         unique per `BackupPlan`.The `rule_id` must start with a lowercase letter
+ *                                                         followed by up to 62 lowercase letters, numbers, or hyphens. Pattern,
+ *                                                         /[a-z][a-z0-9-]{,62}/.
+ * @param int    $backupPlanBackupRulesBackupRetentionDays Configures the duration for which backup data will be kept. It is
+ *                                                         defined in “days”. The value should be greater than or equal to minimum
+ *                                                         enforced retention of the backup vault.
  *
- *                                                                                Minimum value is 1 and maximum value is 90 for hourly backups.
- *                                                                                Minimum value is 1 and maximum value is 90 for daily backups.
- *                                                                                Minimum value is 7 and maximum value is 186 for weekly backups.
- *                                                                                Minimum value is 30 and maximum value is 732 for monthly backups.
- *                                                                                Minimum value is 365 and maximum value is 36159 for yearly backups.
- * @param int    $backupPlanBackupRulesStandardScheduleRecurrenceType             Specifies the `RecurrenceType` for the schedule.
- * @param int    $backupPlanBackupRulesStandardScheduleBackupWindowStartHourOfDay The hour of day (0-23) when the window starts for e.g. if value
- *                                                                                of start hour of day is 6 that mean backup window start at 6:00.
- * @param int    $backupPlanBackupRulesStandardScheduleBackupWindowEndHourOfDay   The hour of day (1-24) when the window end for e.g. if value of
- *                                                                                end hour of day is 10 that mean backup window end time is 10:00.
- *
- *                                                                                End hour of day should be greater than start hour of day.
- *                                                                                0 <= start_hour_of_day < end_hour_of_day <= 24
- *
- *                                                                                End hour of day is not include in backup window that mean if
- *                                                                                end_hour_of_day= 10 jobs should start before 10:00.
- * @param string $backupPlanBackupRulesStandardScheduleTimeZone                   The time zone to be used when interpreting the schedule.
- *                                                                                The value of this field must be a time zone name from the IANA tz database.
- *                                                                                See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for the
- *                                                                                list of valid timezone names. For e.g., Europe/Paris.
- * @param string $backupPlanResourceType                                          The resource type to which the `BackupPlan` will be applied.
- *                                                                                Examples include, "compute.googleapis.com/Instance",
- *                                                                                "sqladmin.googleapis.com/Instance", or "alloydb.googleapis.com/Cluster".
- * @param string $formattedBackupPlanBackupVault                                  Resource name of backup vault which will be used as storage
- *                                                                                location for backups. Format:
- *                                                                                projects/{project}/locations/{location}/backupVaults/{backupvault}
- *                                                                                Please see {@see BackupDRClient::backupVaultName()} for help formatting this field.
+ *                                                         Minimum value is 1 and maximum value is 36159 for custom retention
+ *                                                         on-demand backup.
+ *                                                         Minimum and maximum values are workload specific for all other rules.
+ * @param string $backupPlanResourceType                   The resource type to which the `BackupPlan` will be applied.
+ *                                                         Examples include, "compute.googleapis.com/Instance",
+ *                                                         "sqladmin.googleapis.com/Instance", "alloydb.googleapis.com/Cluster",
+ *                                                         "compute.googleapis.com/Disk".
+ * @param string $formattedBackupPlanBackupVault           Resource name of backup vault which will be used as storage
+ *                                                         location for backups. Format:
+ *                                                         projects/{project}/locations/{location}/backupVaults/{backupvault}
+ *                                                         Please see {@see BackupDRClient::backupVaultName()} for help formatting this field.
  */
 function create_backup_plan_sample(
     string $formattedParent,
     string $backupPlanId,
     string $backupPlanBackupRulesRuleId,
     int $backupPlanBackupRulesBackupRetentionDays,
-    int $backupPlanBackupRulesStandardScheduleRecurrenceType,
-    int $backupPlanBackupRulesStandardScheduleBackupWindowStartHourOfDay,
-    int $backupPlanBackupRulesStandardScheduleBackupWindowEndHourOfDay,
-    string $backupPlanBackupRulesStandardScheduleTimeZone,
     string $backupPlanResourceType,
     string $formattedBackupPlanBackupVault
 ): void {
@@ -97,17 +74,9 @@ function create_backup_plan_sample(
     $backupDRClient = new BackupDRClient();
 
     // Prepare the request message.
-    $backupPlanBackupRulesStandardScheduleBackupWindow = (new BackupWindow())
-        ->setStartHourOfDay($backupPlanBackupRulesStandardScheduleBackupWindowStartHourOfDay)
-        ->setEndHourOfDay($backupPlanBackupRulesStandardScheduleBackupWindowEndHourOfDay);
-    $backupPlanBackupRulesStandardSchedule = (new StandardSchedule())
-        ->setRecurrenceType($backupPlanBackupRulesStandardScheduleRecurrenceType)
-        ->setBackupWindow($backupPlanBackupRulesStandardScheduleBackupWindow)
-        ->setTimeZone($backupPlanBackupRulesStandardScheduleTimeZone);
     $backupRule = (new BackupRule())
         ->setRuleId($backupPlanBackupRulesRuleId)
-        ->setBackupRetentionDays($backupPlanBackupRulesBackupRetentionDays)
-        ->setStandardSchedule($backupPlanBackupRulesStandardSchedule);
+        ->setBackupRetentionDays($backupPlanBackupRulesBackupRetentionDays);
     $backupPlanBackupRules = [$backupRule,];
     $backupPlan = (new BackupPlan())
         ->setBackupRules($backupPlanBackupRules)
@@ -153,10 +122,6 @@ function callSample(): void
     $backupPlanId = '[BACKUP_PLAN_ID]';
     $backupPlanBackupRulesRuleId = '[RULE_ID]';
     $backupPlanBackupRulesBackupRetentionDays = 0;
-    $backupPlanBackupRulesStandardScheduleRecurrenceType = RecurrenceType::RECURRENCE_TYPE_UNSPECIFIED;
-    $backupPlanBackupRulesStandardScheduleBackupWindowStartHourOfDay = 0;
-    $backupPlanBackupRulesStandardScheduleBackupWindowEndHourOfDay = 0;
-    $backupPlanBackupRulesStandardScheduleTimeZone = '[TIME_ZONE]';
     $backupPlanResourceType = '[RESOURCE_TYPE]';
     $formattedBackupPlanBackupVault = BackupDRClient::backupVaultName(
         '[PROJECT]',
@@ -169,10 +134,6 @@ function callSample(): void
         $backupPlanId,
         $backupPlanBackupRulesRuleId,
         $backupPlanBackupRulesBackupRetentionDays,
-        $backupPlanBackupRulesStandardScheduleRecurrenceType,
-        $backupPlanBackupRulesStandardScheduleBackupWindowStartHourOfDay,
-        $backupPlanBackupRulesStandardScheduleBackupWindowEndHourOfDay,
-        $backupPlanBackupRulesStandardScheduleTimeZone,
         $backupPlanResourceType,
         $formattedBackupPlanBackupVault
     );
