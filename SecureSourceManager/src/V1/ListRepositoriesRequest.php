@@ -44,10 +44,9 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
      * Optional. The name of the instance in which the repository is hosted,
      * formatted as
      * `projects/{project_number}/locations/{location_id}/instances/{instance_id}`.
-     * When listing repositories via
-     * securesourcemanager.googleapis.com (Control Plane API), this field is
-     * required. When listing repositories via *.sourcemanager.dev (Data Plane
-     * API), this field is ignored.
+     * When listing repositories via securesourcemanager.googleapis.com, this
+     * field is required. When listing repositories via *.sourcemanager.dev, this
+     * field is ignored.
      *
      * Generated from protobuf field <code>string instance = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -86,10 +85,9 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The name of the instance in which the repository is hosted,
      *           formatted as
      *           `projects/{project_number}/locations/{location_id}/instances/{instance_id}`.
-     *           When listing repositories via
-     *           securesourcemanager.googleapis.com (Control Plane API), this field is
-     *           required. When listing repositories via *.sourcemanager.dev (Data Plane
-     *           API), this field is ignored.
+     *           When listing repositories via securesourcemanager.googleapis.com, this
+     *           field is required. When listing repositories via *.sourcemanager.dev, this
+     *           field is ignored.
      * }
      */
     public function __construct($data = NULL) {
@@ -207,10 +205,9 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
      * Optional. The name of the instance in which the repository is hosted,
      * formatted as
      * `projects/{project_number}/locations/{location_id}/instances/{instance_id}`.
-     * When listing repositories via
-     * securesourcemanager.googleapis.com (Control Plane API), this field is
-     * required. When listing repositories via *.sourcemanager.dev (Data Plane
-     * API), this field is ignored.
+     * When listing repositories via securesourcemanager.googleapis.com, this
+     * field is required. When listing repositories via *.sourcemanager.dev, this
+     * field is ignored.
      *
      * Generated from protobuf field <code>string instance = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -224,10 +221,9 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
      * Optional. The name of the instance in which the repository is hosted,
      * formatted as
      * `projects/{project_number}/locations/{location_id}/instances/{instance_id}`.
-     * When listing repositories via
-     * securesourcemanager.googleapis.com (Control Plane API), this field is
-     * required. When listing repositories via *.sourcemanager.dev (Data Plane
-     * API), this field is ignored.
+     * When listing repositories via securesourcemanager.googleapis.com, this
+     * field is required. When listing repositories via *.sourcemanager.dev, this
+     * field is ignored.
      *
      * Generated from protobuf field <code>string instance = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
