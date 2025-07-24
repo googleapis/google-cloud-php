@@ -41,7 +41,7 @@ use Psr\Http\Message\StreamInterface;
 class Bytes implements ValueInterface
 {
     /**
-     * @var string|resource|StreamInterface
+     * @var StreamInterface
      */
     private $value;
 
