@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,11 +46,11 @@ return [
                 ],
             ],
         ],
-        'google.cloud.networkconnectivity.v1.PolicyBasedRoutingService' => [
-            'CreatePolicyBasedRoute' => [
+        'google.cloud.networkconnectivity.v1.InternalRangeService' => [
+            'CreateInternalRange' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/global}/policyBasedRoutes',
-                'body' => 'policy_based_route',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/internalRanges',
+                'body' => 'internal_range',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -58,13 +58,10 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'policy_based_route_id',
-                ],
             ],
-            'DeletePolicyBasedRoute' => [
+            'DeleteInternalRange' => [
                 'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/global/policyBasedRoutes/*}',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/internalRanges/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -73,9 +70,9 @@ return [
                     ],
                 ],
             ],
-            'GetPolicyBasedRoute' => [
+            'GetInternalRange' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/global/policyBasedRoutes/*}',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/internalRanges/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -84,13 +81,26 @@ return [
                     ],
                 ],
             ],
-            'ListPolicyBasedRoutes' => [
+            'ListInternalRanges' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/global}/policyBasedRoutes',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/internalRanges',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateInternalRange' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{internal_range.name=projects/*/locations/*/internalRanges/*}',
+                'body' => 'internal_range',
+                'placeholders' => [
+                    'internal_range.name' => [
+                        'getters' => [
+                            'getInternalRange',
+                            'getName',
                         ],
                     ],
                 ],
