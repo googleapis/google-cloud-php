@@ -52,6 +52,7 @@ use Google\Cloud\Spanner\V1\Session as SessionProto;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
 use Google\Cloud\Spanner\V1\TransactionOptions;
+use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode as ReadLockMode;
 use Google\Rpc\Code;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -2191,6 +2192,88 @@ class DatabaseTest extends TestCase
         $database->batchWrite($mutationGroups, [
             'excludeTxnFromChangeStreams' => true
         ]);
+    }
+
+    public function testRunTransactionWithReadLockMode()
+    {
+        $expectedReadLockMode = ReadLockMode::OPTIMISTIC;
+
+        $gapic = $this->prophesize(SpannerClient::class);
+
+        $sessName = SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION);
+        $session = new SessionProto(['name' => $sessName]);
+        $resultSet = new ResultSet(['stats' => new ResultSetStats(['row_count_exact' => 0])]);
+        $gapic->createSession(Argument::cetera())->shouldBeCalled()->willReturn($session);
+        $gapic->deleteSession(Argument::cetera())->shouldBeCalled();
+
+        $sql = 'SELECT example FROM sql_query';
+        $stream = $this->prophesize(ServerStream::class);
+        $stream->readAll()->shouldBeCalledOnce()->willReturn([$resultSet]);
+        $gapic->executeStreamingSql($sessName, $sql, Argument::that(function (array $options)
+ use ($expectedReadLockMode) {
+            $this->assertArrayHasKey('transaction', $options);
+            $this->assertNotNull($transactionOptions = $options['transaction']->getBegin());
+            $this->assertNotNull($readWriteTxnOptions = $transactionOptions->getReadWrite());
+            $this->assertNotNull($readLockModeOption = $readWriteTxnOptions->getReadLockMode());
+            $this->assertEquals(
+                $expectedReadLockMode,
+                $readLockModeOption,
+                "The read lock mode received was {$readLockModeOption} does not match expected {$expectedReadLockMode}"
+            );
+            return true;
+        }))
+            ->shouldBeCalledOnce()
+            ->willReturn($stream->reveal());
+
+        $database = new Database(
+            new Grpc(['gapicSpannerClient' => $gapic->reveal()]),
+            $this->instance,
+            $this->lro->reveal(),
+            $this->lroCallables,
+            self::PROJECT,
+            self::DATABASE
+        );
+
+        // Test TransactionOption array format with base level property set for readLockMode
+        // This helps test proper formating by the library to the format expected by Spanner backend
+        // (i.e. readLockMode should be inside readWrite)
+        $database->runTransaction(
+            function (Transaction $t) use ($sql) {
+                // Run a fake query
+                $t->executeUpdate($sql);
+
+                // Simulate calling Transaction::commmit()
+                $prop = new \ReflectionProperty($t, 'state');
+                $prop->setAccessible(true);
+                $prop->setValue($t, Transaction::STATE_COMMITTED);
+            },
+            ['transactionOptions' => ['readLockMode' => $expectedReadLockMode,] ]
+        );
+    }
+
+    public function testTransactionWithReadLockMode()
+    {
+        $expectedReadLockMode = ReadLockMode::OPTIMISTIC;
+
+        $this->connection->beginTransaction(
+            Argument::that(function (array $args) use ($expectedReadLockMode) {
+                $this->assertArrayHasKey('transactionOptions', $args);
+                $this->assertArrayHasKey('readWrite', $args['transactionOptions']);
+                $this->assertArrayHasKey('readLockMode', $args['transactionOptions']['readWrite']);
+                $this->assertEquals(
+                    $expectedReadLockMode,
+                    $args['transactionOptions']['readWrite']['readLockMode'],
+                    "The read lock mode received was {$args['transactionOptions']['readWrite']['readLockMode']} ".
+                    "does not match expected {$expectedReadLockMode}"
+                );
+                return true;
+            })
+        )
+            ->shouldBeCalled()
+            ->willReturn(['id' => self::TRANSACTION]);
+
+        $t = $this->database->transaction(['transactionOptions' => ['readLockMode' => $expectedReadLockMode, ]]);
+        $this->assertInstanceOf(Transaction::class, $t);
     }
 
     private function createStreamingAPIArgs()
