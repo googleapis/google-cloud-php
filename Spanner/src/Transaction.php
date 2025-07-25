@@ -82,7 +82,7 @@ class Transaction implements TransactionalReadInterface
      * @param array $options {
      *     Configuration Options.
      *
-   *     @type bool $isRetry Whether the transaction will automatically retry or not.
+     *     @type bool $isRetry Whether the transaction will automatically retry or not.
      *     @type string $tag A transaction tag. Requests made using this transaction will
      *           use this as the transaction tag.
      *     @type array $begin The begin Transaction options. See {@see V1\TransactionOptions}.
