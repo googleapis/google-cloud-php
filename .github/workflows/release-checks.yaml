@@ -40,6 +40,7 @@ jobs:
         uses: pozetroninc/github-action-get-latest-release@master
         with:
           repository: ${{ github.repository }}
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: "Check for BC breaks (Next Release)"
         if: github.event.pull_request.user.login == 'release-please[bot]'
         # We've already approved and justified the breaking changes. Run the check but continue on error
