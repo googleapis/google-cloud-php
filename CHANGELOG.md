@@ -1,5 +1,127 @@
 # Changelog
 
+## 0.297.0
+
+<details><summary>google/cloud-ai-platform 1.33.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] Add service_account to Reasoning Engine public protos ([#8463](https://github.com/googleapis/google-cloud-php/issues/8463)) ([247cebd](https://github.com/googleapis/google-cloud-php/commit/247cebd4aa22d0cf7bcb06675f850ff15a49bf49))
+
+</details>
+
+<details><summary>google/apps-chat 0.12.0</summary>
+
+
+
+### Features
+
+* [AppsChat] Exposing 1p integration message content (drive, calendar, huddle, meet chips) ([#8461](https://github.com/googleapis/google-cloud-php/issues/8461)) ([bb33d66](https://github.com/googleapis/google-cloud-php/commit/bb33d666dc773bffdf772e426477d808187d9790))
+
+</details>
+
+<details><summary>google/cloud-backupdr 0.7.0</summary>
+
+
+
+### Features
+
+* [BackupDr] Add support for Cloud SQL backup and restore ([#8462](https://github.com/googleapis/google-cloud-php/issues/8462)) ([e2bddbe](https://github.com/googleapis/google-cloud-php/commit/e2bddbea9860b63afaf82a7eebee973c7c58ec97))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.16.0</summary>
+
+
+
+### Features
+
+* [Bigtable] Publish Proto and Enum types to CBT data API ([#8460](https://github.com/googleapis/google-cloud-php/issues/8460)) ([018dc3e](https://github.com/googleapis/google-cloud-php/commit/018dc3e39726ab2d078e1bd7c8bd54bf898a51bc))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 1.7.0</summary>
+
+
+
+### Features
+
+* [DiscoveryEngine] add SessionService ([#8464](https://github.com/googleapis/google-cloud-php/issues/8464)) ([c6eb732](https://github.com/googleapis/google-cloud-php/commit/c6eb732b170b5c7ad7212d23d26b73ac626f2168))
+
+</details>
+
+<details><summary>google/cloud-geminidataanalytics 0.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-licensemanager 0.1.0</summary>
+
+
+
+### Features
+
+* Add LicenseManager component ([#8471](https://github.com/googleapis/google-cloud-php/issues/8471)) ([78ff024](https://github.com/googleapis/google-cloud-php/commit/78ff024d57c677cfc6a8688d96b21e2c84aadd70))
+
+</details>
+
+<details><summary>google/cloud-modelarmor 0.4.0</summary>
+
+
+
+### Features
+
+* [ModelArmor] MultiLanguage Detection in Model Armor Floor Setting ([#8466](https://github.com/googleapis/google-cloud-php/issues/8466)) ([392324a](https://github.com/googleapis/google-cloud-php/commit/392324ad67646bcbc034b89fc617a4a3b7da0e85))
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 2.3.0</summary>
+
+
+
+### Features
+
+* [NetworkConnectivity] add Network Connectivity Center APIs for Internal Range service ([#8456](https://github.com/googleapis/google-cloud-php/issues/8456)) ([a5162a5](https://github.com/googleapis/google-cloud-php/commit/a5162a5da9b4a94e495de6616909dc7f63b8e07f))
+
+</details>
+
+<details><summary>google/cloud-securesourcemanager 1.5.0</summary>
+
+
+
+### Features
+
+* [SecureSourceManager] add support for new API resources: Issues, IssueComments, PullRequests, PullRequestComments, Blobs ([#8467](https://github.com/googleapis/google-cloud-php/issues/8467)) ([f83d4f4](https://github.com/googleapis/google-cloud-php/commit/f83d4f4d884d324b654b4f1f0d68326e5ed29a65))
+
+</details>
+
+<details><summary>google/shopping-merchant-reviews 0.4.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* [ShoppingMerchantReviews] An existing field `attributes` is renamed to `merchant_review_attributes` in message `.google.shopping.merchant.reviews.v1beta.MerchantReview` ([#8470](https://github.com/googleapis/google-cloud-php/issues/8470))
+
+### Bug Fixes
+
+* [ShoppingMerchantReviews] An existing field `attributes` is renamed to `merchant_review_attributes` in message `.google.shopping.merchant.reviews.v1beta.MerchantReview` ([#8470](https://github.com/googleapis/google-cloud-php/issues/8470)) ([f9c26d3](https://github.com/googleapis/google-cloud-php/commit/f9c26d3cec9bc10e08c884be9115856a555ba2dc))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.104.0</summary>
+
+
+
+### Features
+
+* [Spanner] proto changes for an internal api ([#8465](https://github.com/googleapis/google-cloud-php/issues/8465)) ([2b96e11](https://github.com/googleapis/google-cloud-php/commit/2b96e1133fc63532cde43d45d9c96f0b4c09bff1))
+
+</details>
+
 ## 0.296.0
 
 <details><summary>google/cloud-access-approval 2.0.5</summary>
