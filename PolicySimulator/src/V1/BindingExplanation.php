@@ -23,7 +23,7 @@ class BindingExplanation extends \Google\Protobuf\Internal\Message
      * permission for the resource. There might be another binding that overrides
      * this binding. To determine whether the principal actually has the
      * permission, use the `access` field in the
-     * [TroubleshootIamPolicyResponse][IamChecker.TroubleshootIamPolicyResponse].
+     * [TroubleshootIamPolicyResponse][google.cloud.policytroubleshooter.v3.TroubleshootIamPolicyResponse].
      *
      * Generated from protobuf field <code>.google.cloud.policysimulator.v1.AccessState access = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -101,7 +101,7 @@ class BindingExplanation extends \Google\Protobuf\Internal\Message
      *           permission for the resource. There might be another binding that overrides
      *           this binding. To determine whether the principal actually has the
      *           permission, use the `access` field in the
-     *           [TroubleshootIamPolicyResponse][IamChecker.TroubleshootIamPolicyResponse].
+     *           [TroubleshootIamPolicyResponse][google.cloud.policytroubleshooter.v3.TroubleshootIamPolicyResponse].
      *     @type string $role
      *           The role that this binding grants. For example,
      *           `roles/compute.serviceAgent`.
@@ -151,7 +151,7 @@ class BindingExplanation extends \Google\Protobuf\Internal\Message
      * permission for the resource. There might be another binding that overrides
      * this binding. To determine whether the principal actually has the
      * permission, use the `access` field in the
-     * [TroubleshootIamPolicyResponse][IamChecker.TroubleshootIamPolicyResponse].
+     * [TroubleshootIamPolicyResponse][google.cloud.policytroubleshooter.v3.TroubleshootIamPolicyResponse].
      *
      * Generated from protobuf field <code>.google.cloud.policysimulator.v1.AccessState access = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -168,7 +168,7 @@ class BindingExplanation extends \Google\Protobuf\Internal\Message
      * permission for the resource. There might be another binding that overrides
      * this binding. To determine whether the principal actually has the
      * permission, use the `access` field in the
-     * [TroubleshootIamPolicyResponse][IamChecker.TroubleshootIamPolicyResponse].
+     * [TroubleshootIamPolicyResponse][google.cloud.policytroubleshooter.v3.TroubleshootIamPolicyResponse].
      *
      * Generated from protobuf field <code>.google.cloud.policysimulator.v1.AccessState access = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
