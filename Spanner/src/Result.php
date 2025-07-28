@@ -495,15 +495,19 @@ class Result implements \IteratorAggregate
     private function setSnapshotOrTransaction(array $result): void
     {
         if (!empty($result['metadata']['transaction']['id'])) {
+            $res = $result['metadata']['transaction'];
             if ($this->transactionContext === SessionPoolInterface::CONTEXT_READ) {
                 $this->snapshot = $this->snapshot ?? $this->operation->createSnapshot(
                     $this->session,
-                    $result['metadata']['transaction']
+                    $res
                 );
             } else {
-                $this->transaction = $this->transaction ?? $this->operation->createTransaction(
+                $this->transaction = $this->transaction ?? new Transaction(
+                    $this->operation,
                     $this->session,
-                    $result['metadata']['transaction']
+                    $res['id'],
+                    [],
+                    $this->mapper
                 );
             }
         }

@@ -78,11 +78,6 @@ class ResultTest extends TestCase
             $this->session->reveal(),
             Argument::type('array')
         )->willReturn($this->snapshot->reveal());
-
-        $this->operation->createTransaction(
-            $this->session->reveal(),
-            Argument::type('array')
-        )->willReturn($this->transaction->reveal());
     }
 
     /**

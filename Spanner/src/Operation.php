@@ -511,95 +511,35 @@ class Operation
      */
     public function transaction(Session $session, array $options = []): Transaction
     {
-        [$options, $callOptions] = $this->splitOptionalArgs($options);
-        $transactionTag = $options['tag'] ?? null;
-        if (empty($options['singleUse']) && (
-            !isset($options['begin'])
-            || isset($options['transactionConstructorOptions']['partitionedDml'])
+        [$beginTransaction, $transactionSelector, $callOptions, $misc] = $this->validateOptions(
+            $options,
+            BeginTransactionRequest::class,
+            TransactionSelector::class,
+            CallOptions::class,
+            ['tag', 'isRetry', 'transactionOptions']
+        );
+        $transactionTag = $misc['tag'] ?? null;
+        $res = [];
+        if (empty($transactionSelector['singleUse']) && (
+            !isset($transactionSelector['begin'])
+            || isset($misc['transactionOptions']['partitionedDml'])
         )) {
-            $beginTransaction = array_intersect_key(
-                $options,
-                array_flip(['requestOptions', 'transactionOptions', 'begin'])
-            ) + [
-                'requestOptions' => [],
-            ];
+            $beginTransaction += ['requestOptions' => []];
             if ($transactionTag) {
                 $beginTransaction['requestOptions']['transactionTag'] = $transactionTag;
             }
-            if (isset($beginTransaction['transactionOptions'])) {
-                $beginTransaction['options'] = $this->formatTransactionOptions($beginTransaction['transactionOptions']);
-                unset($beginTransaction['transactionOptions']);
+            if (isset($misc['transactionOptions'])) {
+                $beginTransaction['options'] = $this->formatTransactionOptions($misc['transactionOptions']);
             }
 
             $res = $this->beginTransaction($session, $beginTransaction, $callOptions);
-         } else {
-             $res = [];
         }
-        $transactionConstructorOptions = array_intersect_key(
-            $options,
-            array_flip(['singleUse', 'requestOptions', 'transactionOptions', 'begin'])
-        ) + [
-            'singleUse' => false,
-            'requestOptions' => [],
-        ];
-        return $this->createTransaction(
-            $session,
-            $res,
-            [
-                'tag' => $transactionTag,
-               'isRetry' => $options['isRetry'] ?? false,
-               'transactionOptions' => $transactionConstructorOptions
-            ]
-        );
-    }
-
-    /**
-     * Create a Transaction instance from a response object.
-     *
-     * @param Session $session The session the transaction belongs to.
-     * @param array $res [optional] The createTransaction response.
-     * @param array $tranasctionConstructorOptions [optional] {
-     *     Configuration Options.
-     *
-     *     @type bool $singleUse If true, a Transaction ID will not be allocated
-     *           up front. Instead, the transaction will be considered
-     *           "single-use", and may be used for only a single operation.
-     *           **Defaults to** `false`.
-     *     @type bool $isRetry If true, the resulting transaction will indicate
-     *           that it is the result of a retry operation. **Defaults to**
-     *           `false`.
-     *     @type array $begin The begin transaction options.
-     *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
-     *     @type array $requestOptions
-     *     @type string $tag
-     *     @type array $transactionOptions Transaction constructor options. See {@see Transaction}.
-     *           **NOTE**: This is distinct from the TransactionOptions seen in {@see V1\TransactionOptions}.
-     * }
-     * @return Transaction
-     */
-    public function createTransaction(
-        Session $session,
-        array $res = [],
-        array $tranasctionConstructorOptions = [],
-    ): Transaction {
-        $res += [
-            'id' => null
-        ];
-
-        // TODO: unravel this
-        $transactionOptions = $tranasctionConstructorOptions['transactionOptions'] ?? [];
-        unset($tranasctionConstructorOptions['transactionOptions']);
-
-        $tranasctionConstructorOptions += [
-            'tag' => null,
-            'isRetry' => false,
-        ] + $transactionOptions;
 
         return new Transaction(
             $this,
             $session,
-            $res['id'],
-            $tranasctionConstructorOptions,
+            $res['id'] ?? null,
+            $beginTransaction + $transactionSelector + $misc,
             $this->mapper
         );
     }
@@ -917,7 +857,8 @@ class Operation
     private function beginTransaction(Session $session, array $beginTransaction, array $callOptions): array
     {
         $routeToLeader = $this->routeToLeader && (
-            isset($transactionOptions['readWrite']) || isset($transactionOptions['partitionedDml'])
+            isset($beginTransaction['options']['readWrite'])
+            || isset($beginTransaction['options']['partitionedDml'])
         );
 
         $beginTransaction += ['session' => $session->name()];
