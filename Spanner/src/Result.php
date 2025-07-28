@@ -21,6 +21,7 @@ use Generator;
 use Google\ApiCore\RetrySettings;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\ExponentialBackoff;
+use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryMode;
@@ -43,6 +44,8 @@ use Grpc;
  */
 class Result implements \IteratorAggregate
 {
+    use TimeTrait;
+
     private const BUFFER_RESULT_LIMIT = 10;
     const RETURN_NAME_VALUE_PAIR = 'nameValuePair';
     const RETURN_ASSOCIATIVE = 'associative';
@@ -497,7 +500,14 @@ class Result implements \IteratorAggregate
         if (!empty($result['metadata']['transaction']['id'])) {
             $res = $result['metadata']['transaction'];
             if ($this->transactionContext === SessionPoolInterface::CONTEXT_READ) {
-                $this->snapshot = $this->snapshot ?? $this->operation->createSnapshot(
+                if (isset($res['readTimestamp'])) {
+                    if (!($res['readTimestamp'] instanceof Timestamp)) {
+                        $time = $this->parseTimeString($res['readTimestamp']);
+                        $res['readTimestamp'] = new Timestamp($time[0], $time[1]);
+                    }
+                }
+                $this->snapshot = $this->snapshot ?? new Snapshot(
+                    $this->operation,
                     $this->session,
                     $res
                 );

@@ -73,11 +73,6 @@ class ResultTest extends TestCase
         )->will(function ($args) {
             return $args[1];
         });
-
-        $this->operation->createSnapshot(
-            $this->session->reveal(),
-            Argument::type('array')
-        )->willReturn($this->snapshot->reveal());
     }
 
     /**

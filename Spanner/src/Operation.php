@@ -581,42 +581,15 @@ class Operation
             $res = $this->beginTransaction($session, $beginTransaction, $callOptions);
         }
 
-        return $this->createSnapshot(
-            $session,
-            $res + $options, // @TODO: untangle these options
-            $misc['className'] ?? Snapshot::class
-        );
-    }
-
-    /**
-     * Create a Snapshot instance from a response object.
-     *
-     * @param Session $session The session the snapshot belongs to.
-     * @param array $res [optional] The createTransaction response.
-     * @param string $className [optional] The class to instantiate with a
-     *        snapshot. **Defaults to** `Google\Cloud\Spanner\Snapshot`.
-     * @return TransactionalReadInterface
-     */
-    public function createSnapshot(
-        Session $session,
-        array $res = [],
-        string $className = Snapshot::class
-    ): TransactionalReadInterface {
-        // @TODO evaluate if we can make this method private
-
-        $res += [
-            'id' => null,
-            'readTimestamp' => null
-        ];
-
-        if ($res['readTimestamp']) {
+        $snapshotClass = $misc['className'] ?? Snapshot::class;
+        if (isset($res['readTimestamp'])) {
             if (!($res['readTimestamp'] instanceof Timestamp)) {
                 $time = $this->parseTimeString($res['readTimestamp']);
                 $res['readTimestamp'] = new Timestamp($time[0], $time[1]);
             }
         }
 
-        return new $className($this, $session, $res);
+        return new $snapshotClass($this, $session, $res + $options);
     }
 
     /**
