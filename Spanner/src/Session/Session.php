@@ -20,7 +20,7 @@ namespace Google\Cloud\Spanner\Session;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Spanner\Database;
-use Google\Cloud\Spanner\Serializer;
+// use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\GetSessionRequest;
@@ -66,8 +66,8 @@ class Session
      * }
      */
     public function __construct(
-        private SpannerClient $spannerClient,
-        private Serializer $serializer,
+        // private SpannerClient $spannerClient,
+        // private Serializer $serializer,
         private string $projectId,
         private string $instance,
         private string $database,
@@ -85,7 +85,7 @@ class Session
             $database,
             $name
         );
-        $this->routeToLeader = $this->pluck('routeToLeader', $config, false) ?? true;
+        $this->routeToLeader = $config['routeToleader'] ?? true;
     }
 
     /**
@@ -113,22 +113,22 @@ class Session
      */
     public function exists(array $options = []): bool
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $data += [
-            'name' => $this->name()
-        ];
+        // [$data, $callOptions] = $this->splitOptionalArgs($options);
+        // $data += [
+        //     'name' => $this->name()
+        // ];
 
-        try {
-            $request = $this->serializer->decodeMessage(new GetSessionRequest(), $data);
+        // try {
+        //     $request = $this->serializer->decodeMessage(new GetSessionRequest(), $data);
 
-            $this->spannerClient->getSession($request, $callOptions + [
-                'resource-prefix' => $this->databaseName,
-                'route-to-leader' => $this->routeToLeader,
-            ]);
-        } catch (NotFoundException $e) {
-            return false;
-        }
-        return true;
+        //     $this->spannerClient->getSession($request, $callOptions + [
+        //         'resource-prefix' => $this->databaseName,
+        //         'route-to-leader' => $this->routeToLeader,
+        //     ]);
+        // } catch (NotFoundException $e) {
+        //     return false;
+        // }
+        // return true;
     }
 
     /**

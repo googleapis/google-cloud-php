@@ -26,7 +26,6 @@ use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\CommitRequest;
-use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\PartitionQueryRequest;
@@ -595,86 +594,6 @@ class Operation
         }
 
         return new $snapshotClass($this, $session, $res + $options);
-    }
-
-    /**
-     * Create a new session.
-     *
-     * Sessions are handled behind the scenes and this method does not need to
-     * be called directly.
-     *
-     * @param string $databaseName The database name
-     * @param array $options [optional] {
-     *     Configuration options.
-     *
-     *     @type array $labels Labels to be applied to each session created in
-     *           the pool. Label keys must be between 1 and 63 characters long
-     *           and must conform to the following regular expression:
-     *           `[a-z]([-a-z0-9]*[a-z0-9])?`. Label values must be between 0
-     *           and 63 characters long and must conform to the regular
-     *           expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`. No more than 64
-     *           labels can be associated with a given session. See
-     *           https://goo.gl/xmQnxf for more information on and examples of
-     *           labels.
-     *     @type string $creator_role The user created database role which creates the session.
-     * }
-     * @return Session
-     */
-    public function createSession(string $databaseName, array $options = []): Session
-    {
-        [$options, $callOptions] = $this->validateOptions(
-            $options,
-            ['labels', 'creator_role'],
-            CallOptions::class
-        );
-        $createSession = [
-            'database' => $databaseName,
-            'session' => [
-                'labels' => $options['labels'] ?? [],
-                'creator_role' => $options['creator_role'] ?? '',
-                'multiplexed' => true,
-        ]];
-
-        $request = $this->serializer->decodeMessage(new CreateSessionRequest(), $createSession);
-
-        $response = $this->spannerClient->createSession($request, $callOptions + [
-            'resource-prefix' => $databaseName,
-            'route-to-leader' => $this->routeToLeader
-        ]);
-
-        // Verify the session is multiplexed
-        if ($response->getMultiplexed() !== true) {
-            // throw new \Exception('Invalid session - not multiplexed');
-        }
-
-        $res = $this->handleResponse($response);
-
-        return $this->session($res['name']);
-    }
-
-    /**
-     * Lazily instantiates a session. There are no network requests made at this
-     * point. To see the operations that can be performed on a session please
-     * see {@see \Google\Cloud\Spanner\Session\Session}.
-     *
-     * Sessions are handled behind the scenes and this method does not need to
-     * be called directly.
-     *
-     * @param string $sessionName The session's name.
-     * @return Session
-     */
-    public function session(string $sessionName): Session
-    {
-        $sessionNameComponents = SpannerClient::parseName($sessionName);
-        return new Session(
-            $this->spannerClient,
-            $this->serializer,
-            $sessionNameComponents['project'],
-            $sessionNameComponents['instance'],
-            $sessionNameComponents['database'],
-            $sessionNameComponents['session'],
-            ['routeToLeader' => $this->routeToLeader]
-        );
     }
 
     /**
