@@ -84,6 +84,10 @@ class Operation
         private Serializer $serializer,
         array $options = []
     ) {
+        $options = $this->validateOptions(
+            $options,
+            ['returnInt64AsObject', 'routeToLeader', 'defaultQueryOptions']
+        );
         $this->mapper = new ValueMapper($options['returnInt64AsObject'] ?? false);
         $this->routeToLeader = $options['routeToLeader'] ?? true;
         $this->defaultQueryOptions = $options['defaultQueryOptions'] ?? [];
@@ -237,7 +241,7 @@ class Operation
      */
     public function execute(Session $session, string $sql, array $options = []): Result
     {
-        [$executeSqlRequest, $callOptions, $miscOpts, $rtl] = $this->validateOptions(
+        [$executeSqlRequest, $callOptions, $options, $rtl] = $this->validateOptions(
             $options,
             ExecuteSqlRequest::class,
             CallOptions::class,
@@ -249,8 +253,8 @@ class Operation
         $callOptions += $rtl;
 
         $executeSqlRequest += $this->mapper->formatParamsForExecuteSql(
-            $miscOpts['parameters'] ?? [],
-            $miscOpts['types'] ?? []
+            $options['parameters'] ?? [],
+            $options['types'] ?? []
         );
 
         // Initially with begin, transactionId will be null.
@@ -276,7 +280,7 @@ class Operation
                 'session' => $session->name(),
             ] + $executeSqlRequest, $callOptions);
         };
-        return new Result($this, $session, $call, $miscOpts['transactionContext'] ?? null, $this->mapper);
+        return new Result($this, $session, $call, $options['transactionContext'] ?? null, $this->mapper);
     }
 
     /**
@@ -306,10 +310,13 @@ class Operation
         string $sql,
         array $options = []
     ): int {
+
         if (!isset($options['transaction']['begin'])) {
             $options['transaction'] = ['id' => $transaction->id()];
         }
-        $statsItem = $this->pluck('statsItem', $options, false);
+        $statsItem = $options['statsItem'] ?? 'rowCountExact';
+        unset($options['statsItem']);
+
         $res = $this->execute($session, $sql, $options);
 
         if (empty($transaction->id()) && $res->transaction()) {
@@ -325,8 +332,6 @@ class Operation
                 'Partitioned DML response missing stats, possible due to non-DML statement as input.'
             );
         }
-
-        $statsItem = $statsItem ?: 'rowCountExact';
 
         return $stats[$statsItem];
     }
@@ -511,25 +516,25 @@ class Operation
      */
     public function transaction(Session $session, array $options = []): Transaction
     {
-        [$beginTransaction, $transactionSelector, $callOptions, $misc] = $this->validateOptions(
+        [$beginTransaction, $transactionSelector, $callOptions, $options] = $this->validateOptions(
             $options,
             BeginTransactionRequest::class,
             TransactionSelector::class,
             CallOptions::class,
             ['tag', 'isRetry', 'transactionOptions']
         );
-        $transactionTag = $misc['tag'] ?? null;
+        $transactionTag = $options['tag'] ?? null;
         $res = [];
         if (empty($transactionSelector['singleUse']) && (
             !isset($transactionSelector['begin'])
-            || isset($misc['transactionOptions']['partitionedDml'])
+            || isset($options['transactionOptions']['partitionedDml'])
         )) {
             $beginTransaction += ['requestOptions' => []];
             if ($transactionTag) {
                 $beginTransaction['requestOptions']['transactionTag'] = $transactionTag;
             }
-            if (isset($misc['transactionOptions'])) {
-                $beginTransaction['options'] = $this->formatTransactionOptions($misc['transactionOptions']);
+            if (isset($options['transactionOptions'])) {
+                $beginTransaction['options'] = $this->formatTransactionOptions($options['transactionOptions']);
             }
 
             $res = $this->beginTransaction($session, $beginTransaction, $callOptions);
@@ -539,7 +544,7 @@ class Operation
             $this,
             $session,
             $res['id'] ?? null,
-            $beginTransaction + $transactionSelector + $misc,
+            $beginTransaction + $transactionSelector + $options,
             $this->mapper
         );
     }
@@ -617,15 +622,19 @@ class Operation
      */
     public function createSession(string $databaseName, array $options = []): Session
     {
-        [$_, $callOptions] = $this->splitOptionalArgs($options);
-        $data = [
+        [$options, $callOptions] = $this->validateOptions(
+            $options,
+            ['labels', 'creator_role'],
+            CallOptions::class
+        );
+        $createSession = [
             'database' => $databaseName,
             'session' => [
                 'labels' => $options['labels'] ?? [],
                 'creator_role' => $options['creator_role'] ?? ''
         ]];
 
-        $request = $this->serializer->decodeMessage(new CreateSessionRequest(), $data);
+        $request = $this->serializer->decodeMessage(new CreateSessionRequest(), $createSession);
 
         $response = $this->spannerClient->createSession($request, $callOptions + [
             'resource-prefix' => $databaseName,
