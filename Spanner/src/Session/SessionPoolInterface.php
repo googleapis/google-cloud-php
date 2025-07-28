@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Session;
 
 use Google\Cloud\Spanner\Database;
+use Google\Cloud\Spanner\V1\Session;
 
 /**
  * Describes a session pool.
@@ -36,24 +37,5 @@ interface SessionPoolInterface
      * @return Session
      * @throws \RunTimeException
      */
-    public function acquire($context);
-
-    /**
-     * Release a session back to the pool.
-     *
-     * @param Session $session
-     */
-    public function release(Session $session);
-
-    /**
-     * Clear the session pool.
-     */
-    public function clear();
-
-    /**
-     * Set the database used to make calls to manage sessions.
-     *
-     * @param Database $database
-     */
-    public function setDatabase(Database $database);
+    public function acquire(Database $database): Session;
 }
