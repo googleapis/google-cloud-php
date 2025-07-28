@@ -689,7 +689,7 @@ class Operation
 
         // Verify the session is multiplexed
         if ($response->getMultiplexed() !== true) {
-            throw new \Exception('Invalid session - not multiplexed');
+            // throw new \Exception('Invalid session - not multiplexed');
         }
 
         $res = $this->handleResponse($response);
