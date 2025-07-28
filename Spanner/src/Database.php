@@ -805,7 +805,7 @@ class Database
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
         }
 
-        $options['transactionOptions'] = $this->configureReadWriteTransactionOptions();
+        $options['transactionOptions'] = $this->initReadWriteTransactionOptions();
 
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READWRITE,
@@ -920,7 +920,7 @@ class Database
             $maxRetries = $retrySettings['maxRetries'];
         }
 
-        // There isn't anything configurable here.
+        // Configure necessary readWrite nested and base options
         $options['transactionOptions'] = $this->configureReadWriteTransactionOptions(
             $options['transactionOptions'] ?? []
         );
