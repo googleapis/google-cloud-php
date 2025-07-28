@@ -346,12 +346,12 @@ class CacheSessionPool implements SessionPoolInterface
      * @param array $session
      * @return bool
      */
-    private function isSessionValid(array $session)
+    private function isSessionValid(Session $session)
     {
-        $halfHourBeforeExpiration = $session['expiration'] - 1800;
+        $halfHourBeforeExpiration = $session->getExpiration() - 1800;
 
         // sessions more than 28 days old are auto deleted by server
-        if (self::DURATION_SESSION_LIFETIME + $session['creation'] <
+        if (self::DURATION_SESSION_LIFETIME + $session->getCreation() <
             $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS) {
             return false;
         }
@@ -360,9 +360,9 @@ class CacheSessionPool implements SessionPoolInterface
             return true;
         }
         // session expires in less than a half hour, but is not expired
-        if ($this->time() < $session['expiration']) {
+        if ($this->time() < $session-getExpiration()) {
             return $this->database
-                ->session($session['name'])
+                ->session($session->getName())
                 ->exists();
         }
 
