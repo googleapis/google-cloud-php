@@ -199,12 +199,12 @@ class Operation
             throw new InvalidArgumentException('Rollback failed: Transaction not initiated.');
         }
 
-        [$rollbackRequest, $callOptions] = $this->validateOptions(
+        [$callOptions, $unusedOptions] = $this->validateOptions(
             $options,
-            RollbackRequest::class,
-            CallOptions::class
+            CallOptions::class,
+            ['transactionOptions']
         );
-        $rollbackRequest += [
+        $rollbackRequest = [
             'session' => $session->name(),
             'transactionId' => $transactionId
         ];
