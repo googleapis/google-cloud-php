@@ -128,9 +128,6 @@ class CacheSessionPool implements SessionPoolInterface
 
     public const CACHE_KEY_TEMPLATE = 'cache-session-pool.%s.%s.%s';
     private const DURATION_SESSION_LIFETIME = 28 * 24 * 3600; // 28 days
-    private const DURATION_TWENTY_MINUTES = 1200;
-    private const DURATION_ONE_MINUTE = 60;
-    private const WINDOW_SIZE = 600;
 
     /**
      * @var CacheItemPoolInterface
@@ -175,8 +172,10 @@ class CacheSessionPool implements SessionPoolInterface
      * }
      * @throws \InvalidArgumentException
      */
-    public function __construct(CacheItemPoolInterface $cacheItemPool, array $config = [])
-    {
+    public function __construct(
+        CacheItemPoolInterface $cacheItemPool,
+        array $config = []
+    ) {
         $this->cacheItemPool = $cacheItemPool;
         if (isset($config['lock']) && !$config['lock'] instanceof LockInterface) {
             throw new \InvalidArgumentException('The lock must implement ' . LockInterface::class);
@@ -194,27 +193,30 @@ class CacheSessionPool implements SessionPoolInterface
      * @return Session
      * @throws \RuntimeException
      */
-    public function acquire($context = SessionPoolInterface::CONTEXT_READ)
+    public function acquire(Database $database): Session
     {
+        $identity = $database->identity();
+        $cacheKey = sprintf(
+            self::CACHE_KEY_TEMPLATE,
+            $identity['projectId'],
+            $identity['instance'],
+            $identity['database']
+        );
+
         // Try to get a session, run maintenance on the pool, and calculate if
         // we need to create any new sessions.
-        $session = $this->lock->synchronize(function () {
-            $item = $this->cacheItemPool->getItem($this->cacheKey);
-            $session = (array) $item->get() ?: null;
-
-            // Verify the session is valid
-            $session = $this->handleSession($session);
-            if (!$session) {
-                $session = $this->database->createSession();
+        return $this->lock->synchronize(function () use ($cacheKey, $database) {
+            $item = $this->cacheItemPool->getItem($cacheKey);
+            if (!$session = $item->get()) {
+                $session = $database->createSession();
+                $expiresAt = $session->getCreateTime()->getSeconds() + self::SESSION_EXPIRATION_SECONDS;
                 $item->set($session);
-                $item->expiresAt($session->expiration());
-
+                $item->expiresAt($expiresAt);
                 $this->save($item);
             }
-        });
 
-        $session = $this->handleSession($session);
-        return $this->database->session($session['name']);
+            return $session;
+        });
     }
 
     /**
@@ -309,14 +311,7 @@ class CacheSessionPool implements SessionPoolInterface
      */
     public function setDatabase(Database $database)
     {
-        $this->database = $database;
-        $identity = $database->identity();
-        $this->cacheKey = sprintf(
-            self::CACHE_KEY_TEMPLATE,
-            $identity['projectId'],
-            $identity['instance'],
-            $identity['database']
-        );
+
     }
 
     /**
@@ -337,58 +332,6 @@ class CacheSessionPool implements SessionPoolInterface
     protected function time()
     {
         return time();
-    }
-
-    /**
-     * If necessary, triggers a network request to determine the status of the
-     * provided session.
-     *
-     * @param array $session
-     * @return bool
-     */
-    private function isSessionValid(Session $session)
-    {
-        $halfHourBeforeExpiration = $session->getExpiration() - 1800;
-
-        // sessions more than 28 days old are auto deleted by server
-        if (self::DURATION_SESSION_LIFETIME + $session->getCreation() <
-            $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS) {
-            return false;
-        }
-        // session expires in more than half hour
-        if ($this->time() < $halfHourBeforeExpiration) {
-            return true;
-        }
-        // session expires in less than a half hour, but is not expired
-        if ($this->time() < $session-getExpiration()) {
-            return $this->database
-                ->session($session->getName())
-                ->exists();
-        }
-
-        return false;
-    }
-
-    /**
-     * If the session is valid, return it - otherwise refresh it
-     *
-     * @param Session $session
-     * @return Session|null
-     */
-    private function handleSession(Session $session)
-    {
-        if ($this->isSessionValid($session)) {
-            return $session;
-        }
-
-        $this->lock->synchronize(function () use ($session) {
-            $item = $this->cacheItemPool->getItem($this->cacheKey);
-            $data = $item->get();
-            unset($data['inUse'][$session['name']]);
-            $this->save($item->set($data));
-        });
-
-        return null;
     }
 
     /**

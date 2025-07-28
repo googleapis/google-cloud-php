@@ -22,6 +22,7 @@ use DateTimeInterface;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ValidationException;
+use Google\ApiCore\Options\CallOptions;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
@@ -43,15 +44,16 @@ use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest;
-use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\BatchCreateSessionsRequest;
 use Google\Cloud\Spanner\V1\BatchWriteRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
+use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\TypeCode;
 use Google\LongRunning\ListOperationsRequest;
 use Google\LongRunning\Operation as OperationProto;
@@ -2149,25 +2151,28 @@ class Database
      */
     public function createSession(array $options = []): Session
     {
-        return $this->operation->createSession($this->name, $options);
+        [$session, $callOptions] = $this->validateOptions(
+            $options,
+            Session::class,
+            CallOptions::class
+        );
+        $createSession = [
+            'database' => $this->name,
+            'session' => $session + [
+                'multiplexed' => true,
+                'creatorRole' => $this->databaseRole,
+            ]
+        ];
+
+        $request = $this->serializer->decodeMessage(new CreateSessionRequest(), $createSession);
+        $session = $this->spannerClient->createSession($request, $callOptions + [
+            'resource-prefix' => $this->name,
+            'route-to-leader' => $this->routeToLeader
+        ]);
+
+        return $session;
     }
 
-    /**
-     * Lazily instantiates a session. There are no network requests made at this
-     * point. To see the operations that can be performed on a session please
-     * see {@see \Google\Cloud\Spanner\Session\Session}.
-     *
-     * Sessions are handled behind the scenes and this method does not need to
-     * be called directly.
-     *
-     * @access private
-     * @param string $sessionName The session's name.
-     * @return Session
-     */
-    public function session(string $sessionName): Session
-    {
-        return $this->operation->session($sessionName);
-    }
 
     /**
      * Retrieves the database's identity.
@@ -2414,11 +2419,7 @@ class Database
             return $this->session = $this->sessionPool->acquire($context);
         }
 
-        if ($this->databaseRole !== null) {
-            $options['creator_role'] = $this->databaseRole;
-        }
-
-        return $this->session = $this->operation->createSession($this->name, $options);
+        return $this->session = $this->createSession($options);
     }
 
     /**
