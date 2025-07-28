@@ -511,21 +511,27 @@ class Operation
      */
     public function transaction(Session $session, array $options = []): Transaction
     {
+        [$options, $callOptions] = $this->splitOptionalArgs($options);
         $transactionTag = $options['tag'] ?? null;
         if (empty($options['singleUse']) && (
             !isset($options['begin'])
             || isset($options['transactionConstructorOptions']['partitionedDml'])
         )) {
-            $beginTransactionOptions = array_intersect_key(
+            $beginTransaction = array_intersect_key(
                 $options,
                 array_flip(['requestOptions', 'transactionOptions', 'begin'])
             ) + [
                 'requestOptions' => [],
             ];
             if ($transactionTag) {
-                $beginTransactionOptions['requestOptions']['transactionTag'] = $transactionTag;
+                $beginTransaction['requestOptions']['transactionTag'] = $transactionTag;
             }
-            $res = $this->beginTransaction($session, $beginTransactionOptions);
+            if (isset($beginTransaction['transactionOptions'])) {
+                $beginTransaction['options'] = $this->formatTransactionOptions($beginTransaction['transactionOptions']);
+                unset($beginTransaction['transactionOptions']);
+            }
+
+            $res = $this->beginTransaction($session, $beginTransaction, $callOptions);
          } else {
              $res = [];
         }
@@ -619,26 +625,26 @@ class Operation
      */
     public function snapshot(Session $session, array $options = []): TransactionalReadInterface
     {
-        $options += [
-            'singleUse' => false,
-            'className' => Snapshot::class
-        ];
-        $className = $this->pluck('className', $options);
+        [$beginTransaction, $callOptions, $misc] = $this->validateOptions(
+            $options,
+            BeginTransactionRequest::class,
+            CallOptions::class,
+            ['singleUse', 'className', 'transactionOptions']
+        );
 
-        if (!$options['singleUse']) {
-            // Single use transactions never calls the beginTransaction API.
-            // The `singleUse` key creates issue with serializer as BeginTransactionRequest
-            // does not have this attribute.
-            unset($options['singleUse']);
-            $res = $this->beginTransaction($session, $options);
-        } else {
-            $res = [];
+        if (isset($misc['transactionOptions'])) {
+            $beginTransaction['options'] = $this->formatTransactionOptions($misc['transactionOptions']);
+        }
+
+        $res = [];
+        if (false === ($misc['singleUse'] ?? false)) {
+            $res = $this->beginTransaction($session, $beginTransaction, $callOptions);
         }
 
         return $this->createSnapshot(
             $session,
-            $res + $options,
-            $className
+            $res + $options, // @TODO: untangle these options
+            $misc['className'] ?? Snapshot::class
         );
     }
 
@@ -656,6 +662,8 @@ class Operation
         array $res = [],
         string $className = Snapshot::class
     ): TransactionalReadInterface {
+        // @TODO evaluate if we can make this method private
+
         $res += [
             'id' => null,
             'readTimestamp' => null
@@ -854,7 +862,9 @@ class Operation
         array $columns,
         array $options = []
     ): array {
-        // Split all the options into their respective categories
+        // Split all the options into their respective categories.
+        // $readRequest is unused, but the options are valid because they're passed in to the
+        // constructor of ReadPartition.
         [$partitionOptions, $partitionRead, $readRequest, $callOptions] = $this->validateOptions(
             $options,
             ['partitionSizeBytes', 'maxPartitions'],
@@ -904,22 +914,15 @@ class Operation
      *
      * @return array
      */
-    private function beginTransaction(Session $session, array $options = []): array
+    private function beginTransaction(Session $session, array $beginTransaction, array $callOptions): array
     {
-        [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $transactionOptions = $this->formatTransactionOptions(
-            $this->pluck('transactionOptions', $data, false) ?: []
-        );
-        $routeToLeader = (
+        $routeToLeader = $this->routeToLeader && (
             isset($transactionOptions['readWrite']) || isset($transactionOptions['partitionedDml'])
-        ) && $this->routeToLeader;
+        );
 
-        $data += [
-            'session' => $session->name(),
-            'options' => $transactionOptions
-        ];
+        $beginTransaction += ['session' => $session->name()];
 
-        $request = $this->serializer->decodeMessage(new BeginTransactionRequest(), $data);
+        $request = $this->serializer->decodeMessage(new BeginTransactionRequest(), $beginTransaction);
 
         $response = $this->spannerClient->beginTransaction($request, $callOptions + [
             'resource-prefix' => $this->getDatabaseNameFromSession($session),
