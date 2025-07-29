@@ -23,6 +23,7 @@ use Google\Cloud\Core\Lock\LockInterface;
 use Google\Cloud\Core\Lock\SemaphoreLock;
 use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Spanner\Database;
+use Google\Cloud\Spanner\V1\Session;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Promise\RejectionException;
 use GuzzleHttp\Promise\Utils;
@@ -129,60 +130,31 @@ class CacheSessionPool implements SessionPoolInterface
     public const CACHE_KEY_TEMPLATE = 'cache-session-pool.%s.%s.%s';
     private const DURATION_SESSION_LIFETIME = 28 * 24 * 3600; // 28 days
 
-    /**
-     * @var CacheItemPoolInterface
-     */
-    private $cacheItemPool;
-
-    /**
-     * @var string|null
-     */
-    private $cacheKey;
-
+    private string $cacheKey;
     private LockInterface $lock;
-
-    /**
-     * @var Database|null
-     */
-    private $database;
-
-    /**
-     * @var PromiseInterface[]
-     */
-    private $deleteCalls = [];
-
-    /**
-     * @var array
-     */
-    private $deleteQueue = [];
-
-    private string $databaseRole;
 
     /**
      * @param CacheItemPoolInterface $cacheItemPool A PSR-6 compatible cache
      *        implementation used to store the session data.
-     * @param array $config [optional] {
-     *     Configuration Options.
-     *
-     *     @type LockInterface $lock A lock implementation capable of blocking.
-     *           **Defaults to** a semaphore based implementation if the
-     *           required extensions are installed, otherwise an flock based
-     *           implementation.
-     *     @type string $databaseRole The user created database role which creates the session.
-     * }
+     * @param LockInterface $lock A lock implementation capable of blocking.
+     *         **Defaults to** a semaphore based implementation if the
+     *         required extensions are installed, otherwise an flock based
+     *         implementation.
      * @throws \InvalidArgumentException
      */
     public function __construct(
-        CacheItemPoolInterface $cacheItemPool,
-        array $config = []
+        private CacheItemPoolInterface $cacheItemPool,
+        private Database $database,
+        LockInterface|null $lock = null
     ) {
-        $this->cacheItemPool = $cacheItemPool;
-        if (isset($config['lock']) && !$config['lock'] instanceof LockInterface) {
-            throw new \InvalidArgumentException('The lock must implement ' . LockInterface::class);
-        }
-
-        $this->lock = $config['lock'] ?? $this->getDefaultLock();
-        $this->databaseRole = $config['databaseRole'] ?? '';
+        $identity = $database->identity();
+        $this->cacheKey = sprintf(
+            self::CACHE_KEY_TEMPLATE,
+            $identity['projectId'],
+            $identity['instance'],
+            $identity['database']
+        );
+        $this->lock = $lock ?? $this->getDefaultLock($this->cacheKey);
     }
 
     /**
@@ -193,22 +165,14 @@ class CacheSessionPool implements SessionPoolInterface
      * @return Session
      * @throws \RuntimeException
      */
-    public function acquire(Database $database): Session
+    public function acquire(): Session
     {
-        $identity = $database->identity();
-        $cacheKey = sprintf(
-            self::CACHE_KEY_TEMPLATE,
-            $identity['projectId'],
-            $identity['instance'],
-            $identity['database']
-        );
-
         // Try to get a session, run maintenance on the pool, and calculate if
         // we need to create any new sessions.
-        return $this->lock->synchronize(function () use ($cacheKey, $database) {
-            $item = $this->cacheItemPool->getItem($cacheKey);
+        return $this->lock->synchronize(function () {
+            $item = $this->cacheItemPool->getItem($this->cacheKey);
             if (!$session = $item->get()) {
-                $session = $database->createSession();
+                $session = $this->database->createSession();
                 $expiresAt = $session->getCreateTime()->getSeconds() + self::SESSION_EXPIRATION_SECONDS;
                 $item->set($session);
                 $item->expiresAt($expiresAt);
@@ -217,6 +181,22 @@ class CacheSessionPool implements SessionPoolInterface
 
             return $session;
         });
+    }
+
+    /**
+     * Get the default lock.
+     *
+     * @return LockInterface
+     */
+    private function getDefaultLock(string $cacheKey)
+    {
+        if ($this->isSysvIPCLoaded()) {
+            return new SemaphoreLock(
+                $this->getSysvKey(crc32($cacheKey))
+            );
+        }
+
+        return new FlockLock($cacheKey);
     }
 
     /**
@@ -332,22 +312,6 @@ class CacheSessionPool implements SessionPoolInterface
     protected function time()
     {
         return time();
-    }
-
-    /**
-     * Get the default lock.
-     *
-     * @return LockInterface
-     */
-    private function getDefaultLock()
-    {
-        if ($this->isSysvIPCLoaded()) {
-            return new SemaphoreLock(
-                $this->getSysvKey(crc32($this->cacheKey))
-            );
-        }
-
-        return new FlockLock($this->cacheKey);
     }
 
     /**
