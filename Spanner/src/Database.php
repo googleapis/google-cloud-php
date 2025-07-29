@@ -19,6 +19,8 @@ namespace Google\Cloud\Spanner;
 
 use Closure;
 use DateTimeInterface;
+use Google\Auth\Cache\SysVCacheItemPool;
+use Google\Auth\Cache\FilesystemCacheItemPool;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ValidationException;
@@ -44,7 +46,9 @@ use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest;
+use Google\Cloud\Spanner\Session\CacheSessionPool;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\V1\BatchCreateSessionsRequest;
 use Google\Cloud\Spanner\V1\BatchWriteRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
@@ -53,7 +57,6 @@ use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
-use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\TypeCode;
 use Google\LongRunning\ListOperationsRequest;
 use Google\LongRunning\Operation as OperationProto;
@@ -116,14 +119,14 @@ class Database
 
     private Operation $operation;
     private IamManager|null $iam = null;
-    private Session|null $session = null;
+    private Session $session;
     private bool $isRunningTransaction = false;
     private array $directedReadOptions;
     private bool $routeToLeader;
     private array $defaultQueryOptions;
     private string $databaseRole;
     private bool $returnInt64AsObject;
-    private SessionPoolInterface|null $sessionPool;
+    private SessionPoolInterface $sessionPool;
     private array $info;
 
     private const MUTATION_SETTERS = [
@@ -187,8 +190,11 @@ class Database
             ]
         );
 
-        if ($this->sessionPool) {
-            $this->sessionPool->setDatabase($this);
+        if (!$this->sessionPool) {
+            $cacheItemPool = extension_loaded('sysvshm')
+                ? new SysVCacheItemPool()
+                : new FilesystemCacheItemPool();
+            $this->sessionPool = new CacheSessionPool($cacheItemPool, $this);
         }
 
         $this->directedReadOptions = $instance->directedReadOptions();
@@ -590,15 +596,6 @@ class Database
         $this->databaseAdminClient->dropDatabase($request, $callOptions + [
             'resource-prefix' => $this->name
         ]);
-
-        if ($this->sessionPool) {
-            $this->sessionPool->clear();
-        }
-
-        if ($this->session) {
-            $this->session->delete($options);
-            $this->session = null;
-        }
     }
 
     /**
@@ -748,10 +745,7 @@ class Database
             $options['maxStaleness'],
         );
 
-        $session = $this->selectSession(
-            SessionPoolInterface::CONTEXT_READ,
-            $this->pluck('sessionOptions', $options, false) ?: []
-        );
+        $session = $this->selectSession();
 
         try {
             return $this->operation->snapshot($session, $options);
@@ -2098,9 +2092,9 @@ class Database
      * $pool = $database->sessionPool();
      * ```
      *
-     * @return SessionPoolInterface|null
+     * @return SessionPoolInterface
      */
-    public function sessionPool(): ?SessionPoolInterface
+    public function sessionPool(): SessionPoolInterface
     {
         return $this->sessionPool;
     }
@@ -2170,7 +2164,7 @@ class Database
             'route-to-leader' => $this->routeToLeader
         ]);
 
-        return $session;
+        return new Session($this->sessionPool, $session);
     }
 
 
@@ -2407,19 +2401,9 @@ class Database
      * @param array $options [optional] Configuration options.
      * @return Session
      */
-    private function selectSession(
-        $context = SessionPoolInterface::CONTEXT_READ,
-        array $options = []
-    ): Session {
-        if ($this->session) {
-            return $this->session;
-        }
-
-        if ($this->sessionPool) {
-            return $this->session = $this->sessionPool->acquire($context);
-        }
-
-        return $this->session = $this->createSession($options);
+    private function selectSession(): Session
+    {
+        return $this->session = $this->session ?? $this->createSession();;
     }
 
     /**
@@ -2639,7 +2623,7 @@ class Database
             'name' => $this->name,
             'instance' => $this->instance,
             'sessionPool' => $this->sessionPool,
-            'session' => $this->session,
+            'session' => $this->session ?? null,
         ];
     }
 }

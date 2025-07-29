@@ -37,5 +37,5 @@ interface SessionPoolInterface
      * @return Session
      * @throws \RunTimeException
      */
-    public function acquire(Database $database): Session;
+    public function acquire(): Session;
 }
